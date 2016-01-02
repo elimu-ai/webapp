@@ -1,5 +1,5 @@
 # LiteracyApp
-Web application: http://cursonoruego.es
+Web application: http://literacyapp.org
 
 ## Continuous integration
 [![Build Status](https://travis-ci.org/literacyapp-org/literacyapp-web.svg)](https://travis-ci.org/literacyapp-org/literacyapp-web)
