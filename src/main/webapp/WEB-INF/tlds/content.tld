@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+  <tlib-version>1.0</tlib-version>
+  <short-name>content</short-name>
+  <uri>/WEB-INF/tlds/content</uri>
+  <!-- A validator verifies that the tags are used correctly at JSP
+         translation time. Validator entries look like this: 
+      <validator>
+          <validator-class>com.mycompany.TagLibValidator</validator-class>
+          <init-param>
+             <param-name>parameter</param-name>
+             <param-value>value</param-value>
+	  </init-param>
+      </validator>
+   -->
+  <!-- A tag library can register Servlet Context event listeners in
+        case it needs to react to such events. Listener entries look
+        like this: 
+     <listener>
+         <listener-class>com.mycompany.TagLibListener</listener-class> 
+     </listener>
+   -->
+  <tag>
+    <name>section</name>
+    <body-content>scriptless</body-content>
+    <tag-class>org.literacyapp.web.tags.SectionTag</tag-class>
+    <description>
+           The content:section tag is used to define the content of the current
+           page. The content within this tag is placed inside the HTML 
+           section element.
+        </description>
+    <attribute>
+      <name>cssId</name>
+      <description>
+               Adds an id attribute to the section element.
+            </description>
+      <required>true</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <name>cssClass</name>
+      <description>
+               Adds a class attribute to the section element.
+            </description>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <name>getsection</name>
+    <body-content>empty</body-content>
+    <tag-class>org.literacyapp.web.tags.GetSectionTag</tag-class>
+    <description>
+           The content:getsection tag displays the body content of the 
+           content:section tag.
+        </description>
+  </tag>
+  <tag>
+    <name>aside</name>
+    <body-content>scriptless</body-content>
+    <tag-class>org.literacyapp.web.tags.AsideTag</tag-class>
+    <description>
+           The content:aside tag is used to define the content of the current
+           page. The content within this tag is placed inside the HTML 
+           aside element.
+        </description>
+    <attribute>
+      <name>cssClass</name>
+      <description>
+               Adds a class attribute to the aside element.
+            </description>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+  <tag>
+    <name>getaside</name>
+    <body-content>empty</body-content>
+    <tag-class>org.literacyapp.web.tags.GetAsideTag</tag-class>
+    <description>
+           The content:getaside tag displays the body content of the 
+           content:aside tag.
+        </description>
+  </tag>
+  <tag>
+    <name>title</name>
+    <body-content>scriptless</body-content>
+    <tag-class>org.literacyapp.web.tags.TitleTag</tag-class>
+    <description>
+           The content:title tag is used to define the title of the current
+           page. The text within this tag is placed in the title element
+           and in the hgroup element.
+        </description>
+  </tag>
+  <tag>
+    <name>gettitle</name>
+    <body-content>empty</body-content>
+    <tag-class>org.literacyapp.web.tags.GetTitleTag</tag-class>
+    <description>
+            The content:gettitle tag displays the body content of the 
+            content:title tag.
+        </description>
+  </tag>
+  <tag>
+    <name>getversion</name>
+    <body-content>empty</body-content>
+    <tag-class>org.literacyapp.web.tags.GetVersionTag</tag-class>
+    <description>
+            The content:getversion tag display the application version
+        </description>
+  </tag>
+</taglib>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
+       xsi:schemaLocation="
+                        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+                        http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+
+    <context:property-placeholder location="classpath:*.properties"/>
+
+    <!-- JSR-303 support will be detected on classpath and enabled automatically -->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="org.literacyapp.logic.converters.StringToStringConverter" />
+            </list>
+        </property>
+    </bean>
+
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
+        <bean class="org.literacyapp.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+
+    <context:component-scan base-package="org.literacyapp"/>
+
+    <task:annotation-driven/>
+
+    <!--
+             - This bean resolves specific types of exceptions to corresponding logical
+             - view names for error views. The default behaviour of DispatcherServlet
+             - is to propagate all exceptions to the servlet container: this will happen
+             - here with all other types of exceptions.
+     -->
+    <bean id="exceptionResolver" class="org.literacyapp.web.servlet.CustomSimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.web.servlet.PageNotFound">error/page-not-found</prop>
+                <prop key="org.springframework.dao.DataAccessException">error/data-access-failure</prop>
+                <prop key="org.springframework.transaction.TransactionException">error/data-access-failure</prop>
+            </props>
+        </property>
+        <property name="warnLogCategory" value="CustomSimpleMappingExceptionResolver" />
+    </bean>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="4194304" /><!-- 4 MB -->
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <!--
+             - The BeanNameViewResolver is used to pick up the visits view name (below).
+             - It has the order property set to 1, which means that this will
+             - be the first view resolver to be used after the delegating content
+             - negotiating view resolver.
+      -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
+
+    <!--
+             - This bean configures the 'prefix' and 'suffix' properties of
+             - InternalResourceViewResolver, which resolves logical view names
+             - returned by Controllers. For example, a logical view name of "vets"
+             - will be mapped to "/WEB-INF/jsp/vets.jsp".
+     -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" p:order="2"/>
+
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    <bean name="viewController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/error/403">viewController</prop>
+                <prop key="/error/404">viewController</prop>
+                <prop key="/error/500">viewController</prop>
+                <prop key="/error/data-access-failure">viewController</prop>
+                <prop key="/error/page-not-found">viewController</prop>
+                <prop key="/error/session-timeout">viewController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          p:basenames="WEB-INF/i18n/messages, WEB-INF/i18n/errors, WEB-INF/i18n/countries"
+          p:cacheSeconds="5" />
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
+          p:defaultLocale="en_US" />
+</beans>
