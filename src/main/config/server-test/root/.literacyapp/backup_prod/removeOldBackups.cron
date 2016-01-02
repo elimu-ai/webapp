@@ -1,0 +1,8 @@
+# To add the cron job, run the following command: "crontab removeOldBackups.cron"
+
+# Error recipient
+MAILTO=info+crontab@literacyapp.org
+
+# minute hour day month weekday command
+30 04 * * * /root/.literacyapp/backup_prod/removeOldBackups.sh
+

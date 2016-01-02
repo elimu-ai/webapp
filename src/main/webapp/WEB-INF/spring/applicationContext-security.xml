@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- http://static.springsource.org/spring-security/site/docs/3.2.x/reference/ns-config.html -->
+                        
+	<http use-expressions="true" disable-url-rewriting="true">
+		<form-login login-page="/sign-on" authentication-failure-url="/sign-on?login_error" />
+        <logout logout-success-url="/?sign_out" />
+		<!--<session-management invalid-session-url="/sign-on?invalid_session" /> -->
+	</http>
+	
+	<authentication-manager />
+</beans:beans>
