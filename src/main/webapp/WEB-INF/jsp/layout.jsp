@@ -73,7 +73,7 @@
                   <p class="light center">All of the code used in the project is publicly available in our <a href="https://github.com/XPRIZE/GLEXP-Team-Educativo-LiteracyApp">GitHub</a> repository.</p>
                   --%>
                   <div class="row center">
-                    <a href="https://github.com/XPRIZE/GLEXP-Team-Educativo-LiteracyApp " id="download-button" class="btn-large waves-effect waves-light"><fmt:message key="download.source.code" /></a>
+                    <a href="https://github.com/literacyapp-org" id="download-button" class="btn-large waves-effect waves-light"><fmt:message key="download.source.code" /></a>
                   </div>
                 </div>
               </div>
