@@ -3,7 +3,6 @@ package selenium.error_pages;
 import org.junit.Before;
 import org.junit.Rule;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.rules.MethodRule;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +13,6 @@ import selenium.DomainHelper;
 import selenium.ErrorHelper;
 import selenium.ScreenshotOnFailureRule;
 
-@Ignore
 public class ErrorPageTest {
 
     @Rule
