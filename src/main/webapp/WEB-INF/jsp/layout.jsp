@@ -13,8 +13,8 @@
 
         <link rel="shortcut icon" href="<spring:url value='/img/favicon.ico' />" />
         
-        <meta property="og:image" content="https://${pageContext.request.serverName}/img/logo-208x208.png" />
-        <meta property="twitter:image" content="https://${pageContext.request.serverName}/img/logo-208x208.png" />
+        <meta property="og:image" content="<spring:url value='/img/logo-208x208.png' />" />
+        <meta property="twitter:image" content="<spring:url value='/img/logo-208x208.png' />" />
 
         <%-- CSS --%>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
