@@ -1,4 +1,5 @@
-# LiteracyApp
+![logo-text-512x104](https://cloud.githubusercontent.com/assets/15718174/12203188/e8423c3c-b62d-11e5-9496-3b1e59eebacb.png)
+
 Web application: http://literacyapp.org
 
 ## Continuous integration
