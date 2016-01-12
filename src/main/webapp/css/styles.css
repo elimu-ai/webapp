@@ -2,6 +2,10 @@ html[lang="ar"] {
     direction: rtl;
 }
 
+/*body {
+    background: rgba(0,0,0, 0.1);
+}*/
+
 #logo-container {
     font-weight: 300;
 }
@@ -14,8 +18,15 @@ html[lang="ar"] {
 }
 
 #index-banner {
-    background-image: url(../img/glexp-banner.jpg);
+    background-image: url(../img/banner-en.jpg);
     background-size: cover;
+}
+/*html[lang="ar"] #index-banner {
+    background-image: url(../img/banner-ar.jpg);
+}*/
+
+.container > .section {
+    min-height: 400px;
 }
 
 .container h1 {

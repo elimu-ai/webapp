@@ -1,4 +1,4 @@
-package org.literacyapp;
+package org.literacyapp.model;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;

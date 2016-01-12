@@ -58,5 +58,6 @@
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	
 	<!-- DAOs that will be autowired -->
-	<bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
+	<bean id="contributorDao" class="org.literacyapp.dao.jpa.ContributorDaoJpa" />
+        <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
 </beans>
