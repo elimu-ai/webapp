@@ -112,17 +112,17 @@
 
     <!-- Environment Settings -->
     <issueManagement>
-        <system>Asana</system>
-        <url>https://github.com/XPRIZE/GLEXP-Team-Educativo-LiteracyApp/issues</url>
+        <system>Waffle.io</system>
+        <url>https://waffle.io/literacyapp-org/literacyapp-web</url>
     </issueManagement>
     <ciManagement>
-        <system>Jenkins</system>
-        <url>http://jenkins.educativo.eu:8080/job/literacyapp-web-1-compile</url>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/literacyapp-org/literacyapp-web</url>
     </ciManagement>
     <scm>
-        <connection>scm:git:https://github.com/XPRIZE/GLEXP-Team-Educativo-LiteracyApp.git</connection>
-        <developerConnection>scm:git:https://github.com/XPRIZE/GLEXP-Team-Educativo-LiteracyApp.git</developerConnection>
-        <url>https://github.com/XPRIZE/GLEXP-Team-Educativo-LiteracyApp</url>
+        <connection>scm:git:https://github.com/literacyapp-org/literacyapp-web.git</connection>
+        <developerConnection>scm:git:https://github.com/literacyapp-org/literacyapp-web.git</developerConnection>
+        <url>https://github.com/literacyapp-org/literacyapp-web</url>
     </scm>
     <distributionManagement>
         <repository>
@@ -238,11 +238,11 @@
     </profiles>
 
     <dependencies>
-        <!--<dependency>
+        <dependency>
             <groupId>org.literacyapp</groupId>
             <artifactId>literacyapp-model</artifactId>
-            <version>1.0.0</version>
-        </dependency>-->
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         
         <dependency>
             <groupId>commons-fileupload</groupId>

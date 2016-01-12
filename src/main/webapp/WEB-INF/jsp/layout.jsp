@@ -18,7 +18,7 @@
 
         <%-- CSS --%>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css" />
+        <link rel="stylesheet" href="<spring:url value='/css/materialize.min-0.97.5.css' />" />
         <link rel="stylesheet" href="<spring:url value='/css/styles.css?version=' /><content:getversion />" />
     </head>
 
@@ -30,11 +30,11 @@
                   Literacy<span>App</span>
               </a>
               <ul class="right hide-on-med-and-down">
-                  <li><a href="http://eepurl.com/bGihkr"><fmt:message key="sign.on" /></a></li>
+                  <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
               </ul>
 
               <ul id="nav-mobile" class="side-nav">
-                <li><a href="http://eepurl.com/bGihkr"><fmt:message key="sign.on" /></a></li>
+                <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
               </ul>
               <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
@@ -54,7 +54,7 @@
                 <div class="col s2">&nbsp;</div>
             </div>
             <div class="row center">
-              <a href="http://eepurl.com/bGihkr" id="join-button-top" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
+              <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
             </div>
             <br />
           </div>
@@ -122,8 +122,8 @@
         </footer>
         
         <%-- JavaScripts --%>
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+        <script src="<spring:url value='/js/jquery-2.1.4.min.js' />"></script>
+        <script src="<spring:url value='/js/materialize.min-0.97.5.js' />"></script>
         <script src="<spring:url value='/js/init.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
         <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
