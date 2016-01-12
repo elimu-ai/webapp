@@ -25,41 +25,34 @@
     <body>
         <nav class="black lighten-1" role="navigation">
             <div class="nav-wrapper container">
-              <a id="logo-container" href="<spring:url value='/' />" class="brand-logo">
-                  <img src="<spring:url value='/img/logo-208x208.png' />" alt="LiteracyApp" />
-                  Literacy<span>App</span>
-              </a>
-              <ul class="right hide-on-med-and-down">
-                  <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
-              </ul>
-
-              <ul id="nav-mobile" class="side-nav">
-                <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
-              </ul>
-              <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <a id="logo-container" href="<spring:url value='/' />" class="brand-logo">
+                    <img src="<spring:url value='/img/logo-208x208.png' />" alt="LiteracyApp" />
+                    Literacy<span>App</span>
+                </a>
+                <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
+                    </ul>
+                </sec:authorize>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
+                    <ul class="right">
+                        ${contributor.name} &lt;${contributor.email}&gt; <a href="<spring:url value='/j_spring_security_logout' />"><fmt:message key="sign.out" /></a>
+                    </ul>
+                </sec:authorize>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
-        <div class="section no-pad-bot" id="index-banner">
-          <div class="container">
-            <br />
-            <br />
-            <br />
-            <br />
-            <div class="row center">
-                <h1 class="header center white-text">Literacy<span>App</span></h1>
+        
+        <c:if test="${hasBanner}">
+            <div class="section no-pad-bot" id="index-banner">
+                <div class="container">
+                    <content:getbanner />
+                </div>
             </div>
-            <div class="row center">
-                <div class="col s2">&nbsp;</div>
-                <h5 class="header col s8 light white-text"><fmt:message key="frontpage.subtitle" /></h5>
-                <div class="col s2">&nbsp;</div>
-            </div>
-            <div class="row center">
-              <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
-            </div>
-            <br />
-          </div>
-        </div>
-
+        </c:if>
 
         <div id="${cssId}" class="container <c:if test="${cssClass != null}">${cssClass}</c:if>">
             <content:getsection />

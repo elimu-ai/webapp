@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.Image;
+import org.literacyapp.model.Image;
 
 public interface ImageDao extends GenericDao<Image> {
 	

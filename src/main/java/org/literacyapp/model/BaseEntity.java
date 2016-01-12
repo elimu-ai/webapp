@@ -1,4 +1,4 @@
-package org.literacyapp;
+package org.literacyapp.model;
 
 import java.io.Serializable;
 import javax.persistence.GeneratedValue;

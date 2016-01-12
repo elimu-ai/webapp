@@ -20,6 +20,27 @@
          <listener-class>com.mycompany.TagLibListener</listener-class> 
      </listener>
    -->
+   
+  <tag>
+    <name>banner</name>
+    <body-content>scriptless</body-content>
+    <tag-class>org.literacyapp.web.tags.BannerTag</tag-class>
+    <description>
+        The content:banner tag is used to define banner contant placed above 
+        the main section content. The content within this tag is placed inside 
+        the HTML banner element.
+    </description>
+  </tag>
+  <tag>
+    <name>getbanner</name>
+    <body-content>empty</body-content>
+    <tag-class>org.literacyapp.web.tags.GetBannerTag</tag-class>
+    <description>
+        The content:getbanner tag displays the body content of the 
+        content:banner tag.
+    </description>
+  </tag>
+  
   <tag>
     <name>section</name>
     <body-content>scriptless</body-content>
@@ -54,6 +75,7 @@
            content:section tag.
         </description>
   </tag>
+  
   <tag>
     <name>aside</name>
     <body-content>scriptless</body-content>
@@ -80,6 +102,7 @@
            content:aside tag.
         </description>
   </tag>
+  
   <tag>
     <name>title</name>
     <body-content>scriptless</body-content>
@@ -99,6 +122,7 @@
             content:title tag.
         </description>
   </tag>
+  
   <tag>
     <name>getversion</name>
     <body-content>empty</body-content>

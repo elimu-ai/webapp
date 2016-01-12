@@ -87,8 +87,6 @@
                 <prop key="/error/data-access-failure">viewController</prop>
                 <prop key="/error/page-not-found">viewController</prop>
                 <prop key="/error/session-timeout">viewController</prop>
-                
-                <prop key="/sign-on">viewController</prop>
             </props>
         </property>
     </bean>

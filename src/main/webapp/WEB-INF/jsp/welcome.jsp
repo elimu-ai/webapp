@@ -2,6 +2,25 @@
     <fmt:message key="frontpage.subtitle" />
 </content:title>
 
+<content:banner>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row center">
+        <h1 class="header center white-text">Literacy<span>App</span></h1>
+    </div>
+    <div class="row center">
+        <div class="col s2">&nbsp;</div>
+        <h5 class="header col s8 light white-text"><fmt:message key="frontpage.subtitle" /></h5>
+        <div class="col s2">&nbsp;</div>
+    </div>
+    <div class="row center">
+      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
+    </div>
+    <br />
+</content:banner>
+
 <content:section cssId="welcomePage">
     <div class="section">
         <!--   Icon Section   -->
@@ -55,7 +74,7 @@
             </div>
         </div>
         <div class="row center">
-            <a href="http://eepurl.com/bGihkr" id="join-button-bottom" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
+            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
         </div>
     </div>
 </content:section>

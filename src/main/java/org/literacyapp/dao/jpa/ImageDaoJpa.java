@@ -6,7 +6,7 @@ import javax.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.Image;
+import org.literacyapp.model.Image;
 import org.literacyapp.dao.ImageDao;
 
 public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
