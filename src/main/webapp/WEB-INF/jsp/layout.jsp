@@ -18,7 +18,8 @@
 
         <%-- CSS --%>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link rel="stylesheet" href="<spring:url value='/css/materialize.min-0.97.5.css' />" />
+        <%--<link rel="stylesheet" href="<spring:url value='/css/materialize.min-0.97.5.css' />" />--%>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
         <link rel="stylesheet" href="<spring:url value='/css/styles.css?version=' /><content:getversion />" />
     </head>
 
@@ -80,8 +81,9 @@
                 <ul>
                     <li><a class="white-text" href="http://blog.literacyapp.org" target="_blank">Blog</a></li>
                     <li><a class="white-text" href="https://twitter.com/literacyapp" target="_blank">Twitter</a></li>
-                    <li><a class="white-text" href="https://www.facebook.com/LiteracyApp-1517752825212045" target="_blank">Facebook</a></li>
-                    <li><a class="white-text" href="https://plus.google.com/b/115775489057320481208/+LiteracyAppOrgCommunity" target="_blank">Google+</a></li>
+                    <li><a class="white-text" href="https://www.facebook.com/literacyapp" target="_blank">Facebook</a></li>
+                    <li><a class="white-text" href="https://plus.google.com/+LiteracyAppOrgCommunity" target="_blank">Google+</a></li>
+                    <li><a class="white-text" href="https://www.linkedin.com/company/literacyapp-org" target="_blank">LinkedIn</a></li>
                 </ul>
               </div>
             </div>
@@ -116,7 +118,8 @@
         
         <%-- JavaScripts --%>
         <script src="<spring:url value='/js/jquery-2.1.4.min.js' />"></script>
-        <script src="<spring:url value='/js/materialize.min-0.97.5.js' />"></script>
+        <%--<script src="<spring:url value='/js/materialize.min-0.97.5.js' />"></script>--%>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
         <script src="<spring:url value='/js/init.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
         <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
