@@ -120,8 +120,8 @@
         <url>https://travis-ci.org/literacyapp-org/literacyapp-web</url>
     </ciManagement>
     <scm>
-        <connection>scm:git:https://github.com/literacyapp-org/literacyapp-web.git</connection>
-        <developerConnection>scm:git:https://github.com/literacyapp-org/literacyapp-web.git</developerConnection>
+        <connection>scm:git:git@github.com:literacyapp-org/literacyapp-web.git</connection>
+        <developerConnection>scm:git:git@github.com:literacyapp-org/literacyapp-web.git</developerConnection>
         <url>https://github.com/literacyapp-org/literacyapp-web</url>
     </scm>
     <distributionManagement>
