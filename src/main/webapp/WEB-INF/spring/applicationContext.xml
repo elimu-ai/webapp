@@ -93,6 +93,8 @@
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
           p:basenames="WEB-INF/i18n/messages, WEB-INF/i18n/errors, WEB-INF/i18n/countries"
+          p:defaultEncoding="UTF-8"
+          p:fileEncodings="UTF-8"
           p:cacheSeconds="5" />
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"

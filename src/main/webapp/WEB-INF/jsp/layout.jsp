@@ -99,16 +99,16 @@
                     <div class="col s6">
                         <fmt:message key="switch.language" />: 
                         <a class="white-text" href="<spring:url value='/?lang=en' />">
-                            <fmt:message key="language.en" />
+                            English
                         </a> | 
                         <a class="white-text" href="<spring:url value='/?lang=es' />">
-                            <fmt:message key="language.es" />
+                            Español
                         </a> | 
                         <a class="white-text" href="<spring:url value='/?lang=ar' />">
-                            <fmt:message key="language.ar" />
+                            العربية
                         </a> | 
                         <a class="white-text" href="<spring:url value='/?lang=sw' />">
-                            <fmt:message key="language.sw" />
+                            Kiswahili
                         </a>
                     </div>
                 </div>
