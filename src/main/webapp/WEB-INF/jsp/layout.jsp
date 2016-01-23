@@ -64,22 +64,22 @@
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text"><fmt:message key="about" /> LiteracyApp</h5>
-                <p class="grey-text text-lighten-4">We develop open source and scalable software that will enable children in developing countries to teach themselves basic reading, writing and arithmetic.</p>
+                <p class="grey-text text-lighten-4"><fmt:message key="frontpage.open.source.description" /></p>
                 <p class="grey-text text-lighten-4"><fmt:message key="see.our" /> <a class="white-text" href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
               </div>
               <div class="col l3 s12">
                 <h5 class="white-text"><fmt:message key="join.the.community" /></h5>
                 <p class="grey-text text-lighten-4">
-                  Sign up to our mailing list to be informed about updates.
+                    <fmt:message key="sign.up.to.our.mailing.list.to..." />
                 </p>
                 <a class="btn waves-effect waves-light red lighten-3" target="_blank" href="http://eepurl.com/bGihkr">
-                    Subscribe<i class="material-icons right">mail</i>
+                    <fmt:message key="subscribe" /><i class="material-icons right">mail</i>
                 </a>
               </div>
               <div class="col l2 s12 right">
                 <h5 class="white-text"><fmt:message key="connect" /></h5>
                 <ul>
-                    <li><a class="white-text" href="http://blog.literacyapp.org" target="_blank">Blog</a></li>
+                    <li><a class="white-text" href="http://blog.literacyapp.org" target="_blank"><fmt:message key="blog" /></a></li>
                     <li><a class="white-text" href="https://twitter.com/literacyapp" target="_blank">Twitter</a></li>
                     <li><a class="white-text" href="https://www.facebook.com/literacyapp" target="_blank">Facebook</a></li>
                     <li><a class="white-text" href="https://plus.google.com/+LiteracyAppOrgCommunity" target="_blank">Google+</a></li>

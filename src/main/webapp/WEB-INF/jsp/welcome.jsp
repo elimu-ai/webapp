@@ -45,8 +45,8 @@
               <h2 class="center"><i class="material-icons medium">group</i></h2>
               <h5 class="center"><fmt:message key="crowdsourced" /></h5>
 
-              <p class="light center">By utilizing the power of crowdsourcing, we are able to gather a variety of content on one shared platform.</p>
-              <p class="light center">The crowdsourced content is then added to an Android application for the children to use.</p>
+              <p class="light center"><fmt:message key="frontpage.crowdsourced.description1" /></p>
+              <p class="light center"><fmt:message key="frontpage.crowdsourced.description2" /></p>
             </div>
           </div>
 
@@ -55,8 +55,8 @@
               <h2 class="center"><i class="material-icons medium">person_add</i></h2>
               <h5 class="center"><fmt:message key="how.can.i.help?" /></h5>
 
-              <p class="light center">We need help from different types of people. E.g. content creators, storytellers, designers, photographers, developers, testers, etc.</p>
-              <p class="light center">To receive information about different ways to participate, sign up to our <a href="http://eepurl.com/bGihkr">mailing list</a></p>
+              <p class="light center"><fmt:message key="frontpage.how.can.i.help.description1" /></p>
+              <p class="light center"><fmt:message key="frontpage.how.can.i.help.description2" /> <a href="http://eepurl.com/bGihkr"><fmt:message key="mailing.list" /></a></p>
             </div>
           </div>
         </div>
