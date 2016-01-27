@@ -65,7 +65,7 @@
     <div class="section">
         <div class="row center">
             <a href="http://learning.xprize.org" target="_blank">
-                <img src="http://educativo.eu/GLEXP_logo.jpg" alt="Global Learning XPRIZE" style="max-width: 300px;" />
+                <img src="<spring:url value='/img/global-learning-xprize-600x142.png' />" alt="Global Learning XPRIZE" style="max-width: 300px;" />
             </a>
         </div>
         <div class="row center">
