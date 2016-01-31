@@ -2,6 +2,9 @@
 
 Web application: http://literacyapp.org
 
+## Run application locally
+See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp-web/wiki/Project-Configuration)
+
 ## Continuous integration
 [![Build Status](https://travis-ci.org/literacyapp-org/literacyapp-web.svg)](https://travis-ci.org/literacyapp-org/literacyapp-web)
 
