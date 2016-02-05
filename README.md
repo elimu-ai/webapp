@@ -9,9 +9,6 @@ See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp
 [![Build Status](https://travis-ci.org/literacyapp-org/literacyapp-web.svg)](https://travis-ci.org/literacyapp-org/literacyapp-web)
 
 ## Issue management
-[![Stories in Ready](https://badge.waffle.io/literacyapp-org/literacyapp-web.png?label=ready&title=Ready)](https://waffle.io/literacyapp-org/literacyapp-web)
-
-## Issue management
 [Trello](https://trello.com/b/les4HgKG/team-development)
 
 ## Chat
