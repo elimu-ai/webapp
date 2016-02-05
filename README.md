@@ -13,3 +13,6 @@ See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp
 
 ## Chat
 [Slack](https://literacyapp.slack.com/messages/team-development)
+
+## Mailing list
+Sign up at http://eepurl.com/bGihkr
