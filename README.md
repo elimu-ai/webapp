@@ -15,4 +15,4 @@ See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp
 [Trello](https://trello.com/b/les4HgKG/team-development)
 
 ## Chat
-[Slack](literacyapp.slack.com/messages/team-development)
+[Slack](https://literacyapp.slack.com/messages/team-development)
