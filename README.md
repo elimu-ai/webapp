@@ -9,10 +9,10 @@ See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp
 [![Build Status](https://travis-ci.org/literacyapp-org/literacyapp-web.svg)](https://travis-ci.org/literacyapp-org/literacyapp-web)
 
 ## Issue management
-[![Stories in Ready](https://badge.waffle.io/literacyapp-org/literacyapp-web.png?label=ready&title=Ready)](https://waffle.io/literacyapp-org/literacyapp-web)
+[Trello](https://trello.com/b/les4HgKG/team-development)
 
 ## Chat
-[![Join the chat at https://gitter.im/literacyapp-org/chat](https://badges.gitter.im/literacyapp-org/literacyapp-web.svg)](https://gitter.im/literacyapp-org/literacyapp-web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[Slack](https://literacyapp.slack.com/messages/team-development)
 
 ## Mailing list
 Sign up at http://eepurl.com/bGihkr
