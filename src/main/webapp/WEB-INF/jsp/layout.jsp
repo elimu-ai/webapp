@@ -9,8 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <%-- Google will only display the first 150 characters of the meta description in SERPs. --%>
-        <meta name="description" content="We develop open source and scalable software that will enable children in developing countries to teach themselves basic reading, writing and arithmetic." />
-
+        <meta name="description" content="<fmt:message key='frontpage.open.source.description'/>" />
         <link rel="shortcut icon" href="<spring:url value='/img/favicon.ico' />" />
         
         <meta property="og:image" content="http://${pageContext.request.serverName}/img/logo-256x256.png" />
