@@ -28,6 +28,9 @@ body {
 html[lang="ar"] #index-banner {
     background-image: url(../img/banner-ar.jpg);
 }
+html[lang="es"] #index-banner {
+    background-image: url(../img/banner-es.jpg);
+}
 
 .container > .section {
     min-height: 400px;
