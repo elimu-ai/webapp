@@ -20,19 +20,6 @@ public class LocaleChangeInterceptor implements HandlerInterceptor {
     	logger.info("preHandle");
 
         Locale locale = RequestContextUtils.getLocale(request);
-        logger.info("RequestContextUtils.getLocale(request): " + locale);
-        
-        String serverName = request.getServerName();
-        logger.info("serverName: " + serverName);
-        if (serverName.startsWith("ar.")) {
-            locale = new Locale("ar");
-        } else if (serverName.startsWith("en.")) {
-            locale = new Locale("en");
-        } else if (serverName.startsWith("es.")) {
-            locale = new Locale("es");
-        } else if (serverName.startsWith("sw.")) {
-            locale = new Locale("sw");
-        }
         logger.info("locale: " + locale);
         
         request.setAttribute("locale", locale);
