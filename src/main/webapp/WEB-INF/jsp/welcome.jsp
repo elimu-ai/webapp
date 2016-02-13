@@ -56,7 +56,7 @@
               <h5 class="center"><fmt:message key="how.can.i.help?" /></h5>
 
               <p class="light center"><fmt:message key="frontpage.how.can.i.help.description1" /></p>
-              <p class="light center"><fmt:message key="frontpage.how.can.i.help.description2" /> <a href="http://eepurl.com/bGihkr"><fmt:message key="mailing.list" /></a></p>
+              <p class="light center"><fmt:message key="frontpage.how.can.i.help.description2" /> <a href="http://eepurl.com/bGihkr"><c:set var="mailingList"><fmt:message key="mailing.list" /></c:set>${fn:toLowerCase(mailingList)}</a></p>
             </div>
           </div>
         </div>

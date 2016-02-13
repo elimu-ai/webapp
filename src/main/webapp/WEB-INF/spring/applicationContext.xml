@@ -28,11 +28,6 @@
         </property>
     </bean>
 
-    <mvc:interceptors>
-        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
-        <bean class="org.literacyapp.web.servlet.i18n.LocaleChangeInterceptor"/>
-    </mvc:interceptors>
-
     <context:component-scan base-package="org.literacyapp"/>
 
     <task:annotation-driven/>
@@ -99,4 +94,8 @@
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
           p:defaultLocale="en_US" />
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
+        <bean class="org.literacyapp.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
 </beans>

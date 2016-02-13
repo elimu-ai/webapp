@@ -97,18 +97,50 @@
                     </div>
                     <div class="col s6">
                         <fmt:message key="switch.language" />: 
-                        <a class="white-text" href="<spring:url value='/?lang=en' />">
-                            English
-                        </a> | 
-                        <a class="white-text" href="<spring:url value='/?lang=es' />">
-                            Español
-                        </a> | 
-                        <a class="white-text" href="<spring:url value='/?lang=ar' />">
-                            العربية
-                        </a> | 
-                        <a class="white-text" href="<spring:url value='/?lang=sw' />">
-                            Kiswahili
-                        </a>
+                        <c:choose>
+                            <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
+                                <a class="white-text" href="<spring:url value='/?lang=en' />">
+                                    English
+                                </a> | 
+                                <a class="white-text" href="<spring:url value='/?lang=es' />">
+                                    Español
+                                </a> | 
+                                <a class="white-text" href="<spring:url value='/?lang=ar' />">
+                                    العربية
+                                </a> | 
+                                <a class="white-text" href="<spring:url value='/?lang=sw' />">
+                                    Kiswahili
+                                </a>
+                            </c:when>
+                            <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
+                                <a class="white-text" href="http://en.test.literacyapp.org">
+                                    English
+                                </a> | 
+                                <a class="white-text" href="http://es.test.literacyapp.org">
+                                    Español
+                                </a> | 
+                                <a class="white-text" href="http://ar.test.literacyapp.org">
+                                    العربية
+                                </a> | 
+                                <a class="white-text" href="http://sw.test.literacyapp.org">
+                                    Kiswahili
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="white-text" href="http://en.literacyapp.org">
+                                    English
+                                </a> | 
+                                <a class="white-text" href="http://es.literacyapp.org">
+                                    Español
+                                </a> | 
+                                <a class="white-text" href="http://ar.literacyapp.org">
+                                    العربية
+                                </a> | 
+                                <a class="white-text" href="http://sw.literacyapp.org">
+                                    Kiswahili
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
