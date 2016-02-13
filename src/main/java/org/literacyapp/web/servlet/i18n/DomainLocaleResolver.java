@@ -14,16 +14,15 @@ public class DomainLocaleResolver extends SessionLocaleResolver {
 
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
-        logger.info("resolveLocale");
+        logger.info("debug");
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             return super.resolveLocale(request);
         } else {
             Locale locale = new Locale("en", "US");
-            logger.info("locale: " + locale);
 
             String serverName = request.getServerName();
-            logger.info("serverName: " + serverName);
+            logger.debug("serverName: " + serverName);
             if (serverName.startsWith("ar.")) {
                 locale = new Locale("ar");
             } else if (serverName.startsWith("en.")) {
@@ -33,7 +32,7 @@ public class DomainLocaleResolver extends SessionLocaleResolver {
             } else if (serverName.startsWith("sw.")) {
                 locale = new Locale("sw");
             }
-            logger.info("locale: " + locale);
+            logger.debug("locale: " + locale);
             
             return locale;
         }
