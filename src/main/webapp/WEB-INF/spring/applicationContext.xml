@@ -92,7 +92,7 @@
           p:fileEncodings="UTF-8"
           p:cacheSeconds="5" />
 
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
+    <bean id="localeResolver" class="org.literacyapp.web.servlet.i18n.LocaleResolver"
           p:defaultLocale="en_US" />
     <mvc:interceptors>
         <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
