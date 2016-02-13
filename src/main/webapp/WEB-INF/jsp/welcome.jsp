@@ -62,11 +62,43 @@
         </div>
     </div>
 
+    <div class="divider"></div>
+            
     <div class="section">
-        <div class="row center">
-            <a href="http://learning.xprize.org" target="_blank">
-                <img src="<spring:url value='/img/global-learning-xprize-600x142.png' />" alt="Global Learning XPRIZE" style="max-width: 300px;" />
-            </a>
+        <div class="row">
+            <div class="col s12 m4 offset-m2">
+                <div class="card small">
+                  <div class="card-image">
+                    <img src="<spring:url value='/img/banner-en.jpg' />" alt="Global Learning XPRIZE" />
+                    <span class="card-title">Global Learning XPRIZE</span>
+                  </div>
+                  <div class="card-content">
+                      <p>
+                          <img src="<spring:url value='/img/global-learning-xprize-600x142.png' />" alt="Global Learning XPRIZE" style="max-width: 100%;" />
+                      </p>
+                  </div>
+                  <div class="card-action">
+                    <a href="http://learning.xprize.org" target="_blank">learning.xprize.org</a>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="col s12 m4">
+                <div class="card small">
+                  <div class="card-image">
+                    <img src="<spring:url value='/img/banner-ar.jpg' />" alt="EduApp4Syria" />
+                    <span class="card-title">EduApp4Syria</span>
+                  </div>
+                  <div class="card-content">
+                      <p>
+                          <fmt:message key="arabic.for.syrian.refugee.children" />
+                      </p>
+                  </div>
+                  <div class="card-action">
+                    <a href="https://www.norad.no/eduapp4syria" target="_blank">www.norad.no/eduapp4syria</a>
+                  </div>
+                </div>
+            </div>
         </div>
         <div class="row center">
             <div class="video-container">
