@@ -28,6 +28,7 @@
 	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
 	              p:database="${jpa.database}"
 	              p:databasePlatform="${jpa.databasePlatform}"
+                      p:showSql="${jpa.showSql}"
 	              p:generateDdl="${jpa.generateDdl}" />
 		</property>
 	</bean>
