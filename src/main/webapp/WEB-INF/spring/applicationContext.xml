@@ -97,6 +97,7 @@
               p:paramName="lang" />
         <bean class="org.literacyapp.web.servlet.i18n.LocaleChangeInterceptor"/>
     </mvc:interceptors>
+    
     <bean id="localeResolver" class="org.literacyapp.web.servlet.i18n.DomainLocaleResolver"
           p:defaultLocale="en_US" />
 </beans>
