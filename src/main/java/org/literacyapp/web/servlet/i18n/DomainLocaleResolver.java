@@ -8,7 +8,7 @@ import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-public class LocaleResolver extends SessionLocaleResolver {
+public class DomainLocaleResolver extends SessionLocaleResolver {
     
     private Logger logger = Logger.getLogger(getClass());
 
@@ -19,8 +19,8 @@ public class LocaleResolver extends SessionLocaleResolver {
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             return super.resolveLocale(request);
         } else {
-            Locale locale = RequestContextUtils.getLocale(request);
-            logger.info("RequestContextUtils.getLocale(request): " + locale);
+            Locale locale = new Locale("en", "US");
+            logger.info("locale: " + locale);
 
             String serverName = request.getServerName();
             logger.info("serverName: " + serverName);
