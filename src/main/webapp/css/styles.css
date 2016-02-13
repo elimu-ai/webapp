@@ -1,10 +1,13 @@
 html[lang="ar"] {
     direction: rtl;
 }
+html[lang="ar"] nav {
+    direction: ltr;
+}
 
-/*body {
-    background: rgba(0,0,0, 0.1);
-}*/
+body {
+    background: #EEE;
+}
 
 #logo-container {
     font-weight: 300;
@@ -18,12 +21,13 @@ html[lang="ar"] {
 }
 
 #index-banner {
+    background-color: rgba(0,0,0, .5);
     background-image: url(../img/banner-en.jpg);
     background-size: cover;
 }
-/*html[lang="ar"] #index-banner {
+html[lang="ar"] #index-banner {
     background-image: url(../img/banner-ar.jpg);
-}*/
+}
 
 .container > .section {
     min-height: 400px;
