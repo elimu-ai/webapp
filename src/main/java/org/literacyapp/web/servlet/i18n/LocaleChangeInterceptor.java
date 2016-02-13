@@ -29,7 +29,7 @@ public class LocaleChangeInterceptor implements HandlerInterceptor {
         } else if (serverName.startsWith("en.")) {
             locale = new Locale("en");
         } else if (serverName.startsWith("es.")) {
-            locale = new Locale("es_ES");
+            locale = new Locale("es");
         } else if (serverName.startsWith("sw.")) {
             locale = new Locale("sw");
         }
