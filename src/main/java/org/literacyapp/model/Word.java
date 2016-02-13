@@ -1,6 +1,8 @@
 package org.literacyapp.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import org.literacyapp.model.enums.Language;
 
@@ -8,6 +10,7 @@ import org.literacyapp.model.enums.Language;
 public class Word extends BaseEntity {
     
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Language language;
 
     @NotNull
