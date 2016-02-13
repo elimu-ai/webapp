@@ -112,8 +112,8 @@
 
     <!-- Environment Settings -->
     <issueManagement>
-        <system>Waffle.io</system>
-        <url>https://waffle.io/literacyapp-org/literacyapp-web</url>
+        <system>Trello</system>
+        <url>https://trello.com/b/les4HgKG/team-development</url>
     </issueManagement>
     <ciManagement>
         <system>Travis CI</system>
