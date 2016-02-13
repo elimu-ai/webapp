@@ -2,6 +2,8 @@ package org.literacyapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import org.literacyapp.model.enums.Role;
 
@@ -13,6 +15,7 @@ public class Contributor extends BaseEntity {
     private String email;
     
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public String getEmail() {
