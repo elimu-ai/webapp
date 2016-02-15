@@ -55,7 +55,7 @@ public class DbMigrationHelper {
                 logger.info("Looking up pending DB migrations after version " + versionOfMostRecentMigration);
                 
                 // Look up SQL scripts from src/main/resources/db/migration
-                for (int scriptVersion = (versionOfMostRecentMigration + 100); scriptVersion <= pomVersionAsInteger; scriptVersion += 100) {
+                for (int scriptVersion = (versionOfMostRecentMigration + 10); scriptVersion <= pomVersionAsInteger; scriptVersion += 10) {
                     String filePath = "db/migration/" + scriptVersion + ".sql";
                     logger.info("Looking up file \"" + filePath + "\"...");
                     URL url = getClass().getClassLoader().getResource(filePath);
