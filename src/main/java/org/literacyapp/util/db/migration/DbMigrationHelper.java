@@ -56,9 +56,10 @@ public class DbMigrationHelper {
                 
                 // Look up SQL scripts from src/main/resources/db/migration
                 for (int scriptVersion = (versionOfMostRecentMigration + 1); scriptVersion <= pomVersionAsInteger; scriptVersion++) {
-                    URL url = getClass().getClassLoader().getResource("db/migration/" + scriptVersion + ".sql");
-                    logger.info("Looking up file \"" + url.getPath() + "\"...");
-                    if (StringUtils.isNotBlank(url.getFile())) {
+                    String filePath = "db/migration/" + scriptVersion + ".sql";
+                    logger.info("Looking up file \"" + filePath + "\"...");
+                    URL url = getClass().getClassLoader().getResource(filePath);
+                    if ((url != null) && StringUtils.isNotBlank(url.getFile())) {
                         logger.info("Migration script found for version " + scriptVersion);
                         
                         File sqlFile = new File(url.getFile());
