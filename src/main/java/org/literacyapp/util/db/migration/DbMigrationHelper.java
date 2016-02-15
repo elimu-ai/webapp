@@ -1,0 +1,90 @@
+package org.literacyapp.util.db.migration;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import org.apache.log4j.Logger;
+import org.literacyapp.dao.DbMigrationDao;
+import org.literacyapp.model.DbMigration;
+import org.literacyapp.util.ConfigHelper;
+import org.literacyapp.util.VersionHelper;
+import org.springframework.web.context.WebApplicationContext;
+
+public class DbMigrationHelper {
+    
+    private Logger logger = Logger.getLogger(getClass());
+
+    private DbMigrationDao dbMigrationDao;
+    
+    public void performDatabaseMigration(WebApplicationContext wac) {
+        logger.info("performDatabaseMigration");
+        
+        dbMigrationDao = (DbMigrationDao) wac.getBean("dbMigrationDao");
+        
+        String pomVersion = ConfigHelper.getProperty("application.version");
+        logger.info("pomVersion: " + pomVersion);
+        
+        Integer pomVersionAsInteger = VersionHelper.getPomVersionAsInteger(pomVersion);
+        logger.info("pomVersionAsInteger: " + pomVersionAsInteger);
+        
+        List<DbMigration> dbMigrations = dbMigrationDao.readAllOrderedByVersionDesc();
+        logger.info("dbMigrations.size(): " + dbMigrations.size());
+        if (dbMigrations.isEmpty()) {
+            logger.info("Fresh database (no migration necessary)");
+            
+            // Store current version
+            logger.info("Storing current version (" + pomVersionAsInteger + ")");
+            DbMigration dbMigration = new DbMigration();
+            dbMigration.setVersion(pomVersionAsInteger);
+            dbMigration.setScript("-");
+            dbMigration.setCalendar(Calendar.getInstance());
+            dbMigrationDao.create(dbMigration);
+        } else {
+            // Perform missing DB migrations up until the current version
+            
+            DbMigration dbMigrationMostRecent = dbMigrations.get(0);
+            Integer versionOfMostRecentMigration = dbMigrationMostRecent.getVersion();
+            logger.info("versionOfMostRecentMigration: " + versionOfMostRecentMigration);
+            
+            if (versionOfMostRecentMigration < pomVersionAsInteger) {
+                logger.info("Looking up pending DB migrations after version " + versionOfMostRecentMigration);
+                
+                // Look up SQL scripts from src/main/resources/db/migration
+                for (int scriptVersion = (versionOfMostRecentMigration + 1); scriptVersion <= pomVersionAsInteger; scriptVersion++) {
+                    URL url = getClass().getClassLoader().getResource("db/migration/" + scriptVersion + ".sql");
+                    File sqlFile = new File(url.getFile());
+                    logger.info("Looking up file \"" + sqlFile.getAbsolutePath() + "\"...");
+                    if (sqlFile.exists()) {
+                        logger.info("Migration script found for version " + scriptVersion);
+                        
+                        String script = "";
+                        
+                        try {
+                            Scanner scanner = new Scanner(sqlFile);
+                            while (scanner.hasNextLine()) {
+                                String sql = scanner.nextLine();
+                                logger.info("Executing sql: " + sql);
+                                dbMigrationDao.executeMigration(sql);
+                                
+                                script += sql + "\n";
+                            }
+                            scanner.close();
+                        } catch (FileNotFoundException ex) {
+                            logger.error(null, ex);
+                        }
+                        
+                        DbMigration dbMigration = new DbMigration();
+                        dbMigration.setVersion(scriptVersion);
+                        dbMigration.setScript(script);
+                        dbMigration.setCalendar(Calendar.getInstance());
+                        dbMigrationDao.create(dbMigration);
+                    }
+                }
+            }
+        }
+    }
+}
