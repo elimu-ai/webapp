@@ -58,94 +58,96 @@
             <content:getsection />
         </div>
 
-        <footer class="page-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text"><fmt:message key="about" /> LiteracyApp</h5>
-                <p class="grey-text text-lighten-4"><fmt:message key="frontpage.open.source.description" /></p>
-                <p class="grey-text text-lighten-4"><fmt:message key="see.our" /> <a class="white-text" href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
-              </div>
-              <div class="col l3 s12">
-                <h5 class="white-text"><fmt:message key="join.the.community" /></h5>
-                <p class="grey-text text-lighten-4">
-                    <fmt:message key="sign.up.to.our.mailing.list.to..." />
-                </p>
-                <a class="btn waves-effect waves-light red lighten-3" target="_blank" href="http://eepurl.com/bGihkr">
-                    <fmt:message key="subscribe" /><i class="material-icons right">mail</i>
-                </a>
-              </div>
-              <div class="col l2 s12 right">
-                <h5 class="white-text"><fmt:message key="connect" /></h5>
-                <ul>
-                    <li><a class="white-text" href="http://blog.literacyapp.org" target="_blank"><fmt:message key="blog" /></a></li>
-                    <li><a class="white-text" href="https://twitter.com/literacyapp" target="_blank">Twitter</a></li>
-                    <li><a class="white-text" href="https://www.facebook.com/literacyapp" target="_blank">Facebook</a></li>
-                    <li><a class="white-text" href="https://plus.google.com/+LiteracyAppOrgCommunity" target="_blank">Google+</a></li>
-                    <li><a class="white-text" href="https://www.linkedin.com/company/literacyapp-org" target="_blank">LinkedIn</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
+        <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
+            <footer class="page-footer">
+              <div class="container">
                 <div class="row">
-                    <div class="col s6">
-                        <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">
-                            Apache License, 2.0
-                        </a>
-                    </div>
-                    <div class="col s6">
-                        <fmt:message key="switch.language" />: 
-                        <c:choose>
-                            <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
-                                <a class="white-text" href="<spring:url value='/?lang=en' />">
-                                    English
-                                </a> | 
-                                <a class="white-text" href="<spring:url value='/?lang=es' />">
-                                    Español
-                                </a> | 
-                                <a class="white-text" href="<spring:url value='/?lang=ar' />">
-                                    العربية
-                                </a> | 
-                                <a class="white-text" href="<spring:url value='/?lang=sw' />">
-                                    Kiswahili
-                                </a>
-                            </c:when>
-                            <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                <a class="white-text" href="http://en.test.literacyapp.org">
-                                    English
-                                </a> | 
-                                <a class="white-text" href="http://es.test.literacyapp.org">
-                                    Español
-                                </a> | 
-                                <a class="white-text" href="http://ar.test.literacyapp.org">
-                                    العربية
-                                </a> | 
-                                <a class="white-text" href="http://sw.test.literacyapp.org">
-                                    Kiswahili
-                                </a>
-                            </c:when>
-                            <c:otherwise>
-                                <a class="white-text" href="http://en.literacyapp.org">
-                                    English
-                                </a> | 
-                                <a class="white-text" href="http://es.literacyapp.org">
-                                    Español
-                                </a> | 
-                                <a class="white-text" href="http://ar.literacyapp.org">
-                                    العربية
-                                </a> | 
-                                <a class="white-text" href="http://sw.literacyapp.org">
-                                    Kiswahili
-                                </a>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
+                  <div class="col l6 s12">
+                    <h5 class="white-text"><fmt:message key="about" /> LiteracyApp</h5>
+                    <p class="grey-text text-lighten-4"><fmt:message key="frontpage.open.source.description" /></p>
+                    <p class="grey-text text-lighten-4"><fmt:message key="see.our" /> <a class="white-text" href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
+                  </div>
+                  <div class="col l3 s12">
+                    <h5 class="white-text"><fmt:message key="join.the.community" /></h5>
+                    <p class="grey-text text-lighten-4">
+                        <fmt:message key="sign.up.to.our.mailing.list.to..." />
+                    </p>
+                    <a class="btn waves-effect waves-light red lighten-3" target="_blank" href="http://eepurl.com/bGihkr">
+                        <fmt:message key="subscribe" /><i class="material-icons right">mail</i>
+                    </a>
+                  </div>
+                  <div class="col l2 s12 right">
+                    <h5 class="white-text"><fmt:message key="connect" /></h5>
+                    <ul>
+                        <li><a class="white-text" href="http://blog.literacyapp.org" target="_blank"><fmt:message key="blog" /></a></li>
+                        <li><a class="white-text" href="https://twitter.com/literacyapp" target="_blank">Twitter</a></li>
+                        <li><a class="white-text" href="https://www.facebook.com/literacyapp" target="_blank">Facebook</a></li>
+                        <li><a class="white-text" href="https://plus.google.com/+LiteracyAppOrgCommunity" target="_blank">Google+</a></li>
+                        <li><a class="white-text" href="https://www.linkedin.com/company/literacyapp-org" target="_blank">LinkedIn</a></li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
+            <div class="footer-copyright">
+              <div class="container">
+                  <div class="row">
+                      <div class="col s6">
+                          <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">
+                              Apache License, 2.0
+                          </a>
+                      </div>
+                      <div class="col s6">
+                          <fmt:message key="switch.language" />: 
+                          <c:choose>
+                              <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
+                                  <a class="white-text" href="<spring:url value='/?lang=en' />">
+                                      English
+                                  </a> | 
+                                  <a class="white-text" href="<spring:url value='/?lang=es' />">
+                                      Español
+                                  </a> | 
+                                  <a class="white-text" href="<spring:url value='/?lang=ar' />">
+                                      العربية
+                                  </a> | 
+                                  <a class="white-text" href="<spring:url value='/?lang=sw' />">
+                                      Kiswahili
+                                  </a>
+                              </c:when>
+                              <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
+                                  <a class="white-text" href="http://en.test.literacyapp.org">
+                                      English
+                                  </a> | 
+                                  <a class="white-text" href="http://es.test.literacyapp.org">
+                                      Español
+                                  </a> | 
+                                  <a class="white-text" href="http://ar.test.literacyapp.org">
+                                      العربية
+                                  </a> | 
+                                  <a class="white-text" href="http://sw.test.literacyapp.org">
+                                      Kiswahili
+                                  </a>
+                              </c:when>
+                              <c:otherwise>
+                                  <a class="white-text" href="http://en.literacyapp.org">
+                                      English
+                                  </a> | 
+                                  <a class="white-text" href="http://es.literacyapp.org">
+                                      Español
+                                  </a> | 
+                                  <a class="white-text" href="http://ar.literacyapp.org">
+                                      العربية
+                                  </a> | 
+                                  <a class="white-text" href="http://sw.literacyapp.org">
+                                      Kiswahili
+                                  </a>
+                              </c:otherwise>
+                          </c:choose>
+                      </div>
+                  </div>
+              </div>
             </div>
-          </div>
-        </footer>
+          </footer>
+        </c:if>
         
         <%-- JavaScripts --%>
         <script src="<spring:url value='/js/jquery-2.1.4.min.js' />"></script>
@@ -155,7 +157,9 @@
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
         <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
         
-        <%-- HelpScout Beacon --%>
-        <script>!function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!1,baseUrl:""},contact:{enabled:!0,formId:"317454f3-8c8e-11e5-9e75-0a7d6919297d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});</script>
+        <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
+            <%-- HelpScout Beacon --%>
+            <script>!function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!1,baseUrl:""},contact:{enabled:!0,formId:"317454f3-8c8e-11e5-9e75-0a7d6919297d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});</script>
+        </c:if>
     </body>
 </html>

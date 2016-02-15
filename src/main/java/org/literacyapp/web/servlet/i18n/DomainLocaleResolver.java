@@ -14,7 +14,7 @@ public class DomainLocaleResolver extends SessionLocaleResolver {
 
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
-        logger.info("debug");
+        logger.debug("resolveLocale");
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             return super.resolveLocale(request);

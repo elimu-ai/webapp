@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.literacyapp.model.enums.Role;
 
 @Entity
@@ -13,6 +14,10 @@ public class Contributor extends BaseEntity {
     @NotNull
     @Column(unique=true)
     private String email;
+    
+    @NotNull
+    @Size(min=2)
+    private String name;
     
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -24,6 +29,14 @@ public class Contributor extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Role getRole() {
