@@ -1,34 +1,47 @@
 package org.literacyapp.model;
 
+import java.util.Calendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.Language;
 
 @Entity
-public class Audio extends BaseEntity {
+public class DbMigration extends BaseEntity {
     
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private Language language;
+    @Column(unique = true)
+    private Integer version; // 100100100, 100100200, 100100300, ... (1.1.1, 1.1.2, 1.1.3, ...)
+    
+    @NotNull
+    private String script; // SQL script copied from file in src/main/resources/db/migration/<version>.sql
 
     @NotNull
-    private String title;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar calendar;
 
-    public Language getLanguage() {
-        return language;
+    public Integer getVersion() {
+        return version;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setVersion(Integer version) {
+        this.version = version;
     }
     
-    public String getTitle() {
-        return title;
+    public String getScript() {
+        return script;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setScript(String script) {
+        this.script = script;
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 }

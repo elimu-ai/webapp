@@ -1,37 +1,41 @@
 package org.literacyapp.dao.jpa;
 
 import java.util.List;
-
 import javax.persistence.NoResultException;
+import org.literacyapp.dao.DbMigrationDao;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.Image;
-import org.literacyapp.dao.ImageDao;
+import org.literacyapp.model.DbMigration;
 
-public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
+public class DbMigrationDaoJpa extends GenericDaoJpa<DbMigration> implements DbMigrationDao {
 
     @Override
-    public Image read(String title) throws DataAccessException {
+    public DbMigration read(Integer version) throws DataAccessException {
         try {
-            return (Image) em.createQuery(
-                "SELECT i " +
-                "FROM Image i " +
-                "WHERE i.title = :title")
-                .setParameter("title", title)
+            return (DbMigration) em.createQuery(
+                "SELECT dm " +
+                "FROM DbMigration dm " +
+                "WHERE dm.version = :version")
+                .setParameter("version", version)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Image \"" + title + "\" was not found");
+            logger.warn("DbMigration for version \"" + version + "\" was not found");
             return null;
         }
     }
+    
+    @Override
+    public List<DbMigration> readAllOrderedByVersionDesc() throws DataAccessException {
+        return em.createQuery(
+            "SELECT dm " +
+            "FROM DbMigration dm " +
+            "ORDER BY dm.version DESC")
+            .getResultList();
+    }
 
     @Override
-    public List<Image> readAllOrdered() throws DataAccessException {
-        return em.createQuery(
-            "SELECT i " +
-            "FROM Image i " +
-            "ORDER BY i.title")
-            .getResultList();
+    public void executeMigration(String script) throws DataAccessException {
+        em.createNativeQuery(script).executeUpdate();
     }
 }

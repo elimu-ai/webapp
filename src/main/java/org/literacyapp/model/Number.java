@@ -15,7 +15,7 @@ public class Number extends BaseEntity {
     private Language language;
 
     @NotNull
-    @Column(unique = true, length = 1)
+    @Column(length = 1)
     private Integer value;
 
     public Language getLanguage() {

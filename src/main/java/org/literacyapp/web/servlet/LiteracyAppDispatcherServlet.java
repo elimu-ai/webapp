@@ -5,6 +5,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.ConfigHelper;
+import org.literacyapp.util.db.migration.DbMigrationHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 
 public class LiteracyAppDispatcherServlet extends DispatcherServlet {
@@ -15,11 +16,11 @@ public class LiteracyAppDispatcherServlet extends DispatcherServlet {
     	
         WebApplicationContext wac = super.initWebApplicationContext();
         
-        if ((EnvironmentContextLoaderListener.env != Environment.DEV) && !ConfigHelper.getProperty("jpa.database").equals("HSQL")) {
+//        if ((EnvironmentContextLoaderListener.env != Environment.DEV) && !ConfigHelper.getProperty("jpa.database").equals("HSQL")) {
             // Database migration
             logger.info("Performing database migration...");
-            // TODO
-        }
+            new DbMigrationHelper().performDatabaseMigration(wac);
+//        }
 
         return wac;
     }

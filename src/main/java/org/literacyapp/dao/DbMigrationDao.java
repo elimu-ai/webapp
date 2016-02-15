@@ -1,14 +1,15 @@
 package org.literacyapp.dao;
 
 import java.util.List;
+import org.literacyapp.model.DbMigration;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.Image;
-
-public interface ImageDao extends GenericDao<Image> {
+public interface DbMigrationDao extends GenericDao<DbMigration> {
 	
-    Image read(String title) throws DataAccessException;
-
-    List<Image> readAllOrdered() throws DataAccessException;
+    DbMigration read(Integer version) throws DataAccessException;
+    
+    List<DbMigration> readAllOrderedByVersionDesc() throws DataAccessException;
+    
+    void executeMigration(String script) throws DataAccessException;
 }

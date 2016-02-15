@@ -15,7 +15,7 @@ public class Letter extends BaseEntity {
     private Language language;
 
     @NotNull
-    @Column(unique = true, length = 1)
+    @Column(length = 1)
     private String text;
     
     public Language getLanguage() {
