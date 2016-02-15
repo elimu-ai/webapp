@@ -44,7 +44,7 @@ public class SignOnController {
             if (contributor == null) {
                 contributor = new Contributor();
                 contributor.setEmail("test@literacyapp.org");
-                contributor.setName("Test Contributor");
+                contributor.setFirstName("Test");
                 contributor.setRole(Role.CONTRIBUTOR);
                 contributorDao.create(contributor);
             }

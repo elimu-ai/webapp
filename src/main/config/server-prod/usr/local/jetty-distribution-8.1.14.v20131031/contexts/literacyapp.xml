@@ -12,6 +12,10 @@ This file is placed on the prod server under jetty.home/contexts/
     <Arg>env</Arg>
     <Arg>PROD</Arg>
   </Call>
+  <Call name="setAttribute">
+    <Arg>jdbc_password</Arg>
+    <Arg>************</Arg>
+  </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
       <Item>literacyapp.org</Item>
