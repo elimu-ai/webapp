@@ -39,7 +39,7 @@
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
                     <ul class="right">
-                        ${contributor.name} &lt;${contributor.email}&gt; <a href="<spring:url value='/j_spring_security_logout' />"><fmt:message key="sign.out" /></a>
+                        ${contributor.firstName} &lt;${contributor.email}&gt; <a href="<spring:url value='/j_spring_security_logout' />"><fmt:message key="sign.out" /></a>
                     </ul>
                 </sec:authorize>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
