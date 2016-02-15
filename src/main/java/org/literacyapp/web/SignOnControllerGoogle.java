@@ -107,6 +107,10 @@ public class SignOnControllerGoogle {
                 if (jsonObject.has("given_name")) {
                     contributor.setFirstName(jsonObject.getString("given_name"));
                 }
+                
+                if (jsonObject.has("family_name")) {
+                    contributor.setLastName(jsonObject.getString("family_name"));
+                }
             } catch (JSONException e) {
                 logger.error(null, e);
             }

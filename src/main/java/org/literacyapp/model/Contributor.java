@@ -22,6 +22,10 @@ public class Contributor extends BaseEntity {
     @NotNull
     @Size(min=2)
     private String firstName;
+    
+    @NotNull
+    @Size(min=2)
+    private String lastName;
 
     public String getEmail() {
         return email;
@@ -45,5 +49,13 @@ public class Contributor extends BaseEntity {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
