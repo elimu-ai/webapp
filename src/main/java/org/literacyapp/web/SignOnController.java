@@ -35,7 +35,7 @@ public class SignOnController {
      * enable sign-on with a test user during offline development.
      */
     @RequestMapping("/offline")
-    public String handleOfflineSignOnRequest() {
+    public String handleOfflineSignOnRequest(HttpServletRequest request) {
     	logger.info("handleOfflineSignOnRequest");
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
@@ -44,6 +44,7 @@ public class SignOnController {
             if (contributor == null) {
                 contributor = new Contributor();
                 contributor.setEmail("test@literacyapp.org");
+                contributor.setName("Test Contributor");
                 contributor.setRole(Role.CONTRIBUTOR);
                 contributorDao.create(contributor);
             }
@@ -52,7 +53,7 @@ public class SignOnController {
             CustomAuthenticationManager.authenticateUser(contributor.getRole());
             
             // Add Contributor object to session
-            // TODO
+            request.getSession().setAttribute("contributor", contributor);
             
             return "redirect:/content";
         } else {
