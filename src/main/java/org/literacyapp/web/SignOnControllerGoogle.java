@@ -1,6 +1,7 @@
 package org.literacyapp.web;
 
 import java.io.IOException;
+import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
@@ -93,12 +94,12 @@ public class SignOnControllerGoogle {
             }
 
             Contributor contributor = new Contributor();
-            contributor.setRole(Role.CONTRIBUTOR);
             try {
                 JSONObject jsonObject = new JSONObject(responseBody);
                 logger.info("jsonObject: " + jsonObject);
 
                 if (jsonObject.has("email")) {
+                    // TODO: validate e-mail
                     contributor.setEmail(jsonObject.getString("email"));
                 }
                 if (jsonObject.has("given_name")) {
@@ -113,7 +114,12 @@ public class SignOnControllerGoogle {
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
             if (existingContributor == null) {
+                // Store new Contributor in database
+                
+                contributor.setRole(Role.CONTRIBUTOR);
+                contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
+                
                 // TODO: send welcome e-mail
             }
 
