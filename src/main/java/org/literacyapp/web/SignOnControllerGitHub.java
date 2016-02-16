@@ -120,15 +120,17 @@ public class SignOnControllerGitHub {
                     }
                 }
                 if (jsonObject.has("name")) {
-                    String name = jsonObject.getString("name");
-                    String[] nameParts = name.split(" ");
-                    String firstName = nameParts[0];
-                    logger.info("firstName: " + firstName);
-                    contributor.setFirstName(firstName);
-                    if (nameParts.length > 1) {
-                        String lastName = nameParts[nameParts.length - 1];
-                        logger.info("lastName: " + lastName);
-                        contributor.setLastName(lastName);
+                    if (!jsonObject.isNull("name")) {
+                        String name = jsonObject.getString("name");
+                        String[] nameParts = name.split(" ");
+                        String firstName = nameParts[0];
+                        logger.info("firstName: " + firstName);
+                        contributor.setFirstName(firstName);
+                        if (nameParts.length > 1) {
+                            String lastName = nameParts[nameParts.length - 1];
+                            logger.info("lastName: " + lastName);
+                            contributor.setLastName(lastName);
+                        }
                     }
                 }
             } catch (JSONException e) {
