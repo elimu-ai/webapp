@@ -1,9 +1,12 @@
 package org.literacyapp.model;
 
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.literacyapp.model.enums.Role;
@@ -26,6 +29,10 @@ public class Contributor extends BaseEntity {
     @NotNull
     @Size(min=2)
     private String lastName;
+    
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar registrationTime;
 
     public String getEmail() {
         return email;
@@ -57,5 +64,13 @@ public class Contributor extends BaseEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Calendar getRegistrationTime() {
+        return registrationTime;
+    }
+
+    public void setRegistrationTime(Calendar registrationTime) {
+        this.registrationTime = registrationTime;
     }
 }
