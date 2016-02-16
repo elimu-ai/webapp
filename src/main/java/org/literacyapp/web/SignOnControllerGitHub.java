@@ -144,6 +144,10 @@ public class SignOnControllerGitHub {
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
+            } else {
+                // Contributor registered previously
+                
+                contributor = existingContributor;
             }
 
             // Authenticate

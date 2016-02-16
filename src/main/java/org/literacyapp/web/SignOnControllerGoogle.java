@@ -121,6 +121,10 @@ public class SignOnControllerGoogle {
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
+            } else {
+                // Contributor registered previously
+                
+                contributor = existingContributor;
             }
 
             // Authenticate
