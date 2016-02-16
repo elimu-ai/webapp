@@ -47,10 +47,8 @@ public class SignOnControllerGoogle {
         String apiKey = "771733326473-fpcd8jd0561ekbdi7ut6ej2df2ud2tua.apps.googleusercontent.com";
         String apiSecret = "_gYZBt0L-WC7_bQhRyKaz2EO";
         String baseUrl = "http://localhost:8080/literacyapp-webapp";
-        if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-            baseUrl = "http://test.literacyapp.org";
-        } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-            baseUrl = "http://literacyapp.org";
+        if (EnvironmentContextLoaderListener.env != Environment.DEV) {
+            baseUrl = "http://" + request.getServerName();
         }
 
         oAuthService = new ServiceBuilder()
@@ -103,11 +101,9 @@ public class SignOnControllerGoogle {
                 if (jsonObject.has("email")) {
                     contributor.setEmail(jsonObject.getString("email"));
                 }
-                
                 if (jsonObject.has("given_name")) {
                     contributor.setFirstName(jsonObject.getString("given_name"));
                 }
-                
                 if (jsonObject.has("family_name")) {
                     contributor.setLastName(jsonObject.getString("family_name"));
                 }
