@@ -136,18 +136,16 @@ public class SignOnControllerGitHub {
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
-            if (existingContributor == null) {
+            if (existingContributor != null) {
+                // Contributor registered previously
+                contributor = existingContributor;
+            } else {
                 // Store new Contributor in database
-                
                 contributor.setRole(Role.CONTRIBUTOR);
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
-            } else {
-                // Contributor registered previously
-                
-                contributor = existingContributor;
             }
 
             // Authenticate
