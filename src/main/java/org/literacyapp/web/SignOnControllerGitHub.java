@@ -23,6 +23,7 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.model.Verifier;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import java.util.Random;
+import org.apache.commons.lang.StringUtils;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -147,16 +148,28 @@ public class SignOnControllerGitHub {
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
-            if (existingContributor != null) {
-                // Contributor registered previously
-                contributor = existingContributor;
-            } else {
+            if (existingContributor == null) {
                 // Store new Contributor in database
                 contributor.setRole(Role.CONTRIBUTOR);
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
+            } else {
+                // Contributor already exists in database
+                
+                // Update existing contributor with latest values fetched from provider
+                if (StringUtils.isNotBlank(contributor.getProviderIdGitHub())) {
+                    existingContributor.setProviderIdGitHub(contributor.getProviderIdGitHub());
+                }
+                if (StringUtils.isNotBlank(contributor.getImageUrl())) {
+                    existingContributor.setImageUrl(contributor.getImageUrl());
+                }
+                // TODO: firstName/lastName
+                contributorDao.update(existingContributor);
+                
+                // Contributor registered previously
+                contributor = existingContributor;
             }
 
             // Authenticate
@@ -165,7 +178,7 @@ public class SignOnControllerGitHub {
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
             
-            // TODO: handle case where contributor details are missing
+            // TODO: handle case where required contributor details are missing (e-mail/firstName/lastName/teams)
             
             return "redirect:/content";
         }
