@@ -123,7 +123,7 @@ public class SignOnControllerGitHub {
                     }
                 }
                 if (jsonObject.has("id")) {
-                    contributor.setProviderIdGitHub(jsonObject.getLong("id"));
+                    contributor.setProviderIdGitHub(jsonObject.getString("id"));
                 }
                 if (jsonObject.has("name")) {
                     if (!jsonObject.isNull("name")) {

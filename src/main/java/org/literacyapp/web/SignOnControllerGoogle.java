@@ -110,7 +110,7 @@ public class SignOnControllerGoogle {
                     contributor.setEmail(jsonObject.getString("email"));
                 }
                 if (jsonObject.has("id")) {
-                    contributor.setProviderIdGoogle(jsonObject.getLong("id"));
+                    contributor.setProviderIdGoogle(jsonObject.getString("id"));
                 }
                 if (jsonObject.has("given_name")) {
                     contributor.setFirstName(jsonObject.getString("given_name"));
