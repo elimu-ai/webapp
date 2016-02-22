@@ -112,6 +112,9 @@ public class SignOnControllerGoogle {
                 if (jsonObject.has("id")) {
                     contributor.setProviderIdGoogle(jsonObject.getString("id"));
                 }
+                if (jsonObject.has("picture")) {
+                    contributor.setImageUrl(jsonObject.getString("picture"));
+                }
                 if (jsonObject.has("given_name")) {
                     contributor.setFirstName(jsonObject.getString("given_name"));
                 }
