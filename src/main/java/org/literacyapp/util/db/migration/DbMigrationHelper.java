@@ -70,6 +70,9 @@ public class DbMigrationHelper {
                             Scanner scanner = new Scanner(sqlFile);
                             while (scanner.hasNextLine()) {
                                 String sql = scanner.nextLine();
+                                if (StringUtils.isBlank(sql) || sql.startsWith("#")) {
+                                    continue;
+                                }
                                 logger.info("Executing sql: " + sql);
                                 dbMigrationDao.executeMigration(sql);
                                 
