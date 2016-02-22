@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Random;
 import com.github.scribejava.apis.GitHubApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuthRequest;
@@ -23,6 +22,7 @@ import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.model.Verifier;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import java.util.Random;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -66,6 +66,8 @@ public class SignOnControllerGitHub {
             apiSecret = ConfigHelper.getProperty("github.api.secret");
             baseUrl = "http://" + request.getServerName();
         }
+        
+        secretState = "secret_" + new Random().nextInt(999_999);
 
         oAuth20Service = new ServiceBuilder()
                 .apiKey(apiKey)
