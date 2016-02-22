@@ -7,6 +7,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -36,7 +37,7 @@ public class Contributor extends BaseEntity {
     
     private String lastName;
     
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Team> teams;
 
     public String getEmail() {
