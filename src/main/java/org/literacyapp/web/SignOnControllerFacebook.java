@@ -114,6 +114,11 @@ public class SignOnControllerFacebook {
                 if (jsonObject.has("id")) {
                     contributor.setProviderIdFacebook(jsonObject.getString("id"));
                 }
+                if (jsonObject.has("picture")) {
+                    JSONObject picture = jsonObject.getJSONObject("picture");
+                    JSONObject pictureData = picture.getJSONObject("data");
+                    contributor.setImageUrl(pictureData.getString("url"));
+                }
                 if (jsonObject.has("first_name")) {
                     contributor.setFirstName(jsonObject.getString("first_name"));
                 }
