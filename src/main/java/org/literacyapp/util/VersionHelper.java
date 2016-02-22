@@ -6,7 +6,7 @@ package org.literacyapp.util;
 public class VersionHelper {
 
     /**
-     * E.g. "1.2.3-SNAPSHOT" --> "100200300"
+     * E.g. "1.2.3-SNAPSHOT" --> "001002003"
      */
     public static Integer getPomVersionAsInteger(String pomVersion) {
         Integer version = null;
@@ -18,24 +18,19 @@ public class VersionHelper {
         String[] numbers = pomVersion.split("\\.");
         
         String versionMajor = numbers[0];
-        if (versionMajor.length() == 1) {
-            versionMajor = versionMajor + "00";
-        } else if (versionMajor.length() == 2) {
-            versionMajor = versionMajor + "0";
-        }
         
         String versionMinor = numbers[1];
         if (versionMinor.length() == 1) {
-            versionMinor = versionMinor + "00";
+            versionMinor = "00" + versionMinor;
         } else if (versionMinor.length() == 2) {
-            versionMinor = versionMinor + "0";
+            versionMinor = "0" + versionMinor;
         }
         
         String versionIncremental = numbers[2];
         if (versionIncremental.length() == 1) {
-            versionIncremental = versionIncremental + "00";
+            versionIncremental = "00" + versionIncremental;
         } else if (versionIncremental.length() == 2) {
-            versionIncremental = versionIncremental + "0";
+            versionIncremental = "0" + versionIncremental;
         }
         
         version = new Integer(versionMajor + versionMinor + versionIncremental);
