@@ -122,6 +122,9 @@ public class SignOnControllerGitHub {
                         contributor.setEmail(jsonObject.getString("email"));
                     }
                 }
+                if (jsonObject.has("id")) {
+                    contributor.setProviderIdGitHub(jsonObject.getString("id"));
+                }
                 if (jsonObject.has("name")) {
                     if (!jsonObject.isNull("name")) {
                         String name = jsonObject.getString("name");
