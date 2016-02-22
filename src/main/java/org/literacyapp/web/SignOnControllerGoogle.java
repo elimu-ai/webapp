@@ -109,6 +109,9 @@ public class SignOnControllerGoogle {
                     // TODO: validate e-mail
                     contributor.setEmail(jsonObject.getString("email"));
                 }
+                if (jsonObject.has("id")) {
+                    contributor.setProviderIdGoogle(jsonObject.getString("id"));
+                }
                 if (jsonObject.has("given_name")) {
                     contributor.setFirstName(jsonObject.getString("given_name"));
                 }

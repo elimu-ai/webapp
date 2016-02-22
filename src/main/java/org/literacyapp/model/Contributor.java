@@ -25,6 +25,8 @@ public class Contributor extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar registrationTime;
     
+    private String providerIdFacebook, providerIdGoogle, providerIdGitHub;
+    
     private String firstName;
     
     private String lastName;
@@ -51,6 +53,30 @@ public class Contributor extends BaseEntity {
 
     public void setRegistrationTime(Calendar registrationTime) {
         this.registrationTime = registrationTime;
+    }
+    
+    public String getProviderIdFacebook() {
+        return providerIdFacebook;
+    }
+
+    public void setProviderIdFacebook(String providerIdFacebook) {
+        this.providerIdFacebook = providerIdFacebook;
+    }
+
+    public String getProviderIdGoogle() {
+        return providerIdGoogle;
+    }
+
+    public void setProviderIdGoogle(String providerIdGoogle) {
+        this.providerIdGoogle = providerIdGoogle;
+    }
+
+    public String getProviderIdGitHub() {
+        return providerIdGitHub;
+    }
+
+    public void setProviderIdGitHub(String providerIdGitHub) {
+        this.providerIdGitHub = providerIdGitHub;
     }
     
     public String getFirstName() {
