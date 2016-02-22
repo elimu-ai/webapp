@@ -104,6 +104,12 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String googleApiSecret = (String) servletContext.getAttribute("google_api_secret");
                 PROPERTIES.put("google.api.secret", googleApiSecret);
                 
+                String facebookApiSecret = (String) servletContext.getAttribute("facebook_api_secret");
+                PROPERTIES.put("facebook.api.secret", facebookApiSecret);
+                
+                String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
+                PROPERTIES.put("github.api.secret", gitHubApiSecret);
+                
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
                 logger.error(null, ex);

@@ -10,6 +10,7 @@ import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Role;
+import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FacebookApi;
@@ -45,16 +46,17 @@ public class SignOnControllerFacebook {
     public String handleAuthorization(HttpServletRequest request) throws IOException {
         logger.info("handleAuthorization");
 		
-        String apiKey = "1130160227016886";
-        String apiSecret = "e6b47e0310ac33edd404e434fabed0c4";
-        String baseUrl = "http://" + request.getServerName();
+        String apiKey = "1130171497015759";
+        String apiSecret = "d8b49268dacd1e29eca82de8edd88c1c";
+        String baseUrl = "http://localhost:8080/literacyapp-webapp";
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             apiKey = "1130170237015885";
-            apiSecret = "b62a3d943dff072a64b9473197cd78dd";
-        } else if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            apiKey = "1130171497015759";
-            apiSecret = "d8b49268dacd1e29eca82de8edd88c1c";
-            baseUrl = "http://localhost:8080/literacyapp-webapp";
+            apiSecret = ConfigHelper.getProperty("facebook.api.secret");
+            baseUrl = "http://" + request.getServerName();
+        } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+            apiKey = "1130160227016886";
+            apiSecret = ConfigHelper.getProperty("facebook.api.secret");
+            baseUrl = "http://" + request.getServerName();
         }
 
         oAuthService = new ServiceBuilder()
