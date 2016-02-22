@@ -10,6 +10,7 @@ import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Role;
+import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.Google2Api;
@@ -45,10 +46,16 @@ public class SignOnControllerGoogle {
     public String handleAuthorization(HttpServletRequest request) throws IOException {
         logger.info("handleAuthorization");
 		
-        String apiKey = "771733326473-fpcd8jd0561ekbdi7ut6ej2df2ud2tua.apps.googleusercontent.com";
-        String apiSecret = "_gYZBt0L-WC7_bQhRyKaz2EO";
+        String apiKey = "771733326473-ntau0rkb03ca30n8vueps8hdpp38rr1b.apps.googleusercontent.com";
+        String apiSecret = "gkwT-kW54bD59t4X0DQEDleC";
         String baseUrl = "http://localhost:8080/literacyapp-webapp";
-        if (EnvironmentContextLoaderListener.env != Environment.DEV) {
+        if (EnvironmentContextLoaderListener.env == Environment.TEST) {
+            apiKey = "771733326473-rptbjt86j8t68upo2po2itgrlu8r9mn4.apps.googleusercontent.com";
+            apiSecret = ConfigHelper.getProperty("google.api.secret");
+            baseUrl = "http://" + request.getServerName();
+        } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+            apiKey = "771733326473-fpcd8jd0561ekbdi7ut6ej2df2ud2tua.apps.googleusercontent.com";
+            apiSecret = ConfigHelper.getProperty("google.api.secret");
             baseUrl = "http://" + request.getServerName();
         }
 
