@@ -1,7 +1,9 @@
 package org.literacyapp.model;
 
 import java.util.Calendar;
+import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.literacyapp.model.enums.Role;
+import org.literacyapp.model.enums.Team;
 
 @Entity
 public class Contributor extends BaseEntity {
@@ -32,6 +35,9 @@ public class Contributor extends BaseEntity {
     private String firstName;
     
     private String lastName;
+    
+    @ElementCollection
+    private Set<Team> teams;
 
     public String getEmail() {
         return email;
@@ -103,5 +109,13 @@ public class Contributor extends BaseEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
     }
 }
