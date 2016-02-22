@@ -111,6 +111,9 @@ public class SignOnControllerFacebook {
                     // TODO: validate e-mail
                     contributor.setEmail(jsonObject.getString("email"));
                 }
+                if (jsonObject.has("id")) {
+                    contributor.setProviderIdFacebook(jsonObject.getLong("id"));
+                }
                 if (jsonObject.has("first_name")) {
                     contributor.setFirstName(jsonObject.getString("first_name"));
                 }
