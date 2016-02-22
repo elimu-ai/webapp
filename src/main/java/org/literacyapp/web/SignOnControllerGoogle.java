@@ -3,6 +3,7 @@ package org.literacyapp.web;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -126,16 +127,28 @@ public class SignOnControllerGoogle {
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
-            if (existingContributor != null) {
-                // Contributor registered previously
-                contributor = existingContributor;
-            } else {
+            if (existingContributor == null) {
                 // Store new Contributor in database
                 contributor.setRole(Role.CONTRIBUTOR);
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
+            } else {
+                // Contributor already exists in database
+                
+                // Update existing contributor with latest values fetched from provider
+                if (StringUtils.isNotBlank(contributor.getProviderIdGoogle())) {
+                    existingContributor.setProviderIdGoogle(contributor.getProviderIdGoogle());
+                }
+                if (StringUtils.isNotBlank(contributor.getImageUrl())) {
+                    existingContributor.setImageUrl(contributor.getImageUrl());
+                }
+                // TODO: firstName/lastName
+                contributorDao.update(existingContributor);
+                
+                // Contributor registered previously
+                contributor = existingContributor;
             }
 
             // Authenticate
@@ -144,7 +157,7 @@ public class SignOnControllerGoogle {
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
             
-            // TODO: handle case where contributor details are missing
+            // TODO: handle case where required contributor details are missing (e-mail/firstName/lastName/teams)
 
             return "redirect:/content";
         }
