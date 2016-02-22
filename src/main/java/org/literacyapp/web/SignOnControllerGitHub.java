@@ -24,6 +24,7 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.model.Verifier;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import org.literacyapp.model.enums.Environment;
+import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,17 +54,17 @@ public class SignOnControllerGitHub {
     public String handleAuthorization(HttpServletRequest request) throws IOException {
         logger.info("handleAuthorization");
         
-        String apiKey = "7018e4e57438eb0191a7";
-        String apiSecret = "31c5640f07ac2706ae42c4bc76f3dd66c7c59189";
-        secretState = "secret_" + new Random().nextInt(999_999);
-        String baseUrl = "http://" + request.getServerName();
+        String apiKey = "75ab65504795daf525f5";
+        String apiSecret = "4f6eba014e102f0ed48334de77dffc12c4d1f1d6";
+        String baseUrl = "http://localhost:8080/literacyapp-webapp";
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             apiKey = "57aad0f85f09ef18d8e6";
-            apiSecret = "a22d058e027d9e4dc252b465ac37ef749529fd5b";
-        } else if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            apiKey = "75ab65504795daf525f5";
-            apiSecret = "c1ca7986496420935c134e1bc5339602328c91b6";
-            baseUrl = "http://localhost:8080/literacyapp-webapp";
+            apiSecret = ConfigHelper.getProperty("github.api.secret");
+            baseUrl = "http://" + request.getServerName();
+        } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+            apiKey = "7018e4e57438eb0191a7";
+            apiSecret = ConfigHelper.getProperty("github.api.secret");
+            baseUrl = "http://" + request.getServerName();
         }
 
         oAuth20Service = new ServiceBuilder()

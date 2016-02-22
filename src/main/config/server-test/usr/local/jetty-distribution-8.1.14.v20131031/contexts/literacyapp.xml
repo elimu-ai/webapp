@@ -24,6 +24,10 @@ This file is placed on the test server under jetty.home/contexts/
     <Arg>facebook_api_secret</Arg>
     <Arg>************</Arg>
   </Call>
+  <Call name="setAttribute">
+    <Arg>github_api_secret</Arg>
+    <Arg>************</Arg>
+  </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
       <Item>test.literacyapp.org</Item>
