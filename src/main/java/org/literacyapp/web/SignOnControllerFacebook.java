@@ -13,7 +13,6 @@ import org.literacyapp.model.enums.Role;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FacebookApi;
-import org.scribe.builder.api.Google2Api;
 import org.scribe.exceptions.OAuthException;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;

@@ -101,6 +101,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String jdbcPasswordAttr = (String) servletContext.getAttribute("jdbc_password");
                 PROPERTIES.put("jdbc.password", jdbcPasswordAttr);
                 
+                String googleApiSecret = (String) servletContext.getAttribute("google_api_secret");
+                PROPERTIES.put("google.api.secret", googleApiSecret);
+                
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
                 logger.error(null, ex);
