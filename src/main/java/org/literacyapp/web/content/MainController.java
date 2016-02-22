@@ -29,7 +29,7 @@ public class MainController {
             return "redirect:/content/contributor/edit-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if (contributor.getTeams() == null) {
+        } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
             return "redirect:/content/contributor/edit-teams";
         }
     	
