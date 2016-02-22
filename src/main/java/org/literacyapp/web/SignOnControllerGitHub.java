@@ -178,8 +178,6 @@ public class SignOnControllerGitHub {
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
             
-            // TODO: handle case where required contributor details are missing (e-mail/firstName/lastName/teams)
-            
             return "redirect:/content";
         }
     }
