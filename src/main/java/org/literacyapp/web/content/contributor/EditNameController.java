@@ -1,9 +1,5 @@
 package org.literacyapp.web.content.contributor;
 
-import com.google.api.client.http.HttpRequest;
-import java.security.Principal;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;

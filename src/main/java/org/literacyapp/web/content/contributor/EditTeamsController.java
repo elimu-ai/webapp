@@ -1,9 +1,7 @@
 package org.literacyapp.web.content.contributor;
 
-import java.security.Principal;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
