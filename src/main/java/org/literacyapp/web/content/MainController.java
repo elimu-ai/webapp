@@ -1,13 +1,17 @@
 package org.literacyapp.web.content;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.Number;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
     
     private final Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private NumberDao numberDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(HttpServletRequest request, HttpSession session, Principal principal, Model model) {
@@ -32,6 +39,9 @@ public class MainController {
         } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
             return "redirect:/content/contributor/edit-teams";
         }
+        
+        List<Number> numbers = numberDao.readAll();
+        model.addAttribute("numbers", numbers);
     	
         return "content/main";
     }
