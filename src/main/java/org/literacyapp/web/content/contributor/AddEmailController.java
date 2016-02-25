@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+// Redirected from SignOnControllerGitHub because of missing e-mail
 @Controller
-@RequestMapping("/content/contributor/edit-email")
-public class EditEmailController {
+@RequestMapping("/content/contributor/add-email")
+public class AddEmailController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
@@ -24,35 +25,33 @@ public class EditEmailController {
     private ContributorDao contributorDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleEditEmailRequest() {
-    	logger.info("handleEditEmailRequest");
+    public String handleRequest() {
+    	logger.info("handleRequest");
     	
-        return "content/contributor/edit-email";
+        return "content/contributor/add-email";
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String handleEditEmailSubmit(
+    public String handleSubmit(
             HttpSession session,
             @RequestParam String email,
             Model model) {
-    	logger.info("handleEditEmailSubmit");
+    	logger.info("handleSubmit");
         
         if (!EmailValidator.getInstance().isValid(email)) {
-            return "content/contributor/edit-email";
+            // TODO: display error message
+            return "content/contributor/add-email";
         }
         
-        // TODO: check if e-mail already is used by existing Contributor
+        Contributor existingContributor = contributorDao.read(email);
+        if (existingContributor != null) {
+            // TODO: display error message
+            return "content/contributor/add-email";
+        }
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         contributor.setEmail(email);
-        
-        Contributor existingContributor = contributorDao.read(contributor.getEmail());
-        if (existingContributor != null) {
-            contributorDao.update(contributor);
-        } else {
-            // Redirected from SignOnControllerGitHub because of missing e-mail
-            contributorDao.create(contributor);
-        }
+        contributorDao.create(contributor);
         
         session.setAttribute("contributor", contributor);
     	

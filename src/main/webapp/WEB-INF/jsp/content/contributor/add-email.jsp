@@ -1,8 +1,8 @@
 <content:title>
-    <fmt:message key="edit.email" />
+    <fmt:message key="add.email" />
 </content:title>
 
-<content:section cssId="editEmailPage">
+<content:section cssId="addEmailPage">
     <div class="section row">
         <div class="col s12 m10 offset-m1 l8 offset-l2">
             <h4><content:gettitle /></h4>
