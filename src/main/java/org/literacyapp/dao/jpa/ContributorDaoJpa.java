@@ -19,7 +19,22 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("email", email)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor \"" + email + "\" was not found");
+            logger.warn("Contributor with e-mail \"" + email + "\" was not found");
+            return null;
+        }
+    }
+    
+    @Override
+    public Contributor readByProviderIdGitHub(String id) throws DataAccessException {
+        try {
+            return (Contributor) em.createQuery(
+                "SELECT c " +
+                "FROM Contributor c " +
+                "WHERE c.providerIdGitHub = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("Contributor with GitHub id \"" + id + "\" was not found");
             return null;
         }
     }

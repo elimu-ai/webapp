@@ -151,9 +151,20 @@ public class SignOnControllerGitHub {
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
             if (existingContributor == null) {
+                // Look for existing Contributor with matching GitHub id
+                existingContributor = contributorDao.readByProviderIdGitHub(contributor.getProviderIdGitHub());
+            }
+            if (existingContributor == null) {
                 // Store new Contributor in database
                 contributor.setRole(Role.CONTRIBUTOR);
                 contributor.setRegistrationTime(Calendar.getInstance());
+                
+                if (contributor.getEmail() == null) {
+                    request.getSession().setAttribute("contributor", contributor);
+                    CustomAuthenticationManager.authenticateUser(contributor.getRole());
+                    return "redirect:/content/contributor/edit-email";
+                }
+                
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
