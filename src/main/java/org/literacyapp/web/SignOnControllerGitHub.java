@@ -124,7 +124,9 @@ public class SignOnControllerGitHub {
                     }
                 }
                 if (jsonObject.has("id")) {
-                    contributor.setProviderIdGitHub(jsonObject.getString("id"));
+                    Long idAsLong = jsonObject.getLong("id");
+                    String id = String.valueOf(idAsLong);
+                    contributor.setProviderIdGitHub(id);
                 }
                 if (jsonObject.has("avatar_url")) {
                     contributor.setImageUrl(jsonObject.getString("avatar_url"));
