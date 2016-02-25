@@ -162,7 +162,7 @@ public class SignOnControllerGitHub {
                 if (contributor.getEmail() == null) {
                     request.getSession().setAttribute("contributor", contributor);
                     CustomAuthenticationManager.authenticateUser(contributor.getRole());
-                    return "redirect:/content/contributor/edit-email";
+                    return "redirect:/content/contributor/add-email";
                 }
                 
                 contributorDao.create(contributor);

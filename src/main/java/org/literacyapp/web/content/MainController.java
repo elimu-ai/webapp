@@ -33,7 +33,7 @@ public class MainController {
         // Check if the Contributor has not yet provided all required details
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         if (StringUtils.isBlank(contributor.getEmail())) {
-            return "redirect:/content/contributor/edit-email";
+            return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
         } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
