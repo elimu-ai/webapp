@@ -1,11 +1,13 @@
 package org.literacyapp.web.content.number;
 
+import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Number;
 import org.literacyapp.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +62,9 @@ public class NumberCreateController {
             model.addAttribute("languages", Language.values());
             return "content/number/create";
         } else {
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
+            number.setContributor(contributor);
+            number.setCalendar(Calendar.getInstance());
             numberDao.create(number);
             
             // TODO: store event

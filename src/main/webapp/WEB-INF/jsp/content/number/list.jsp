@@ -18,11 +18,23 @@
         <c:forEach var="number" items="${numbers}">
             <div class="col s12 m6 l4">
                 <div class="card-panel">
-                    <fmt:message key="number" />
-                    <div class="divider"></div>
+                    <c:if test="${not empty number.contributor}">
+                        <div class="row valign-wrapper">
+                            <div class="col s2">
+                                <img src="${number.contributor.imageUrl}" alt="" class="circle responsive-img">
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    <c:out value="${number.contributor.firstName}" />&nbsp;<c:out value="${number.contributor.lastName}" />
+                                </span>
+                            </div>
+                        </div>
+                    
+                        <div class="divider"></div>
+                    </c:if>
                     <c:choose>
                         <c:when test="${number.language == 'ARABIC'}">
-                            <h4>${number.symbol} (${number.value})</h4>
+                            <h4><c:out value="${number.symbol}" /> (${number.value})</h4>
                         </c:when>
                         <c:otherwise>
                             <h4>${number.value}</h4>
