@@ -20,8 +20,17 @@
                 <div class="card-panel">
                     <fmt:message key="number" />
                     <div class="divider"></div>
-                    <h4>${number.value}</h4>
+                    <c:choose>
+                        <c:when test="${number.language == 'ARABIC'}">
+                            <h4>${number.symbol} (${number.value})</h4>
+                        </c:when>
+                        <c:otherwise>
+                            <h4>${number.value}</h4>
+                        </c:otherwise>
+                    </c:choose>
                     <div class="chip">${number.language}</div>
+                    <div class="divider" style="margin: 1em 0;"></div>
+                    <a href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>
             </div>
         </c:forEach>

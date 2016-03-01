@@ -65,7 +65,11 @@
                 </c:if>
 
                 <div id="${cssId}" class="container <c:if test="${cssClass != null}">${cssClass}</c:if>">
-                    <content:getsection />
+                    <div class="section row">
+                        <div class="col s12">
+                            <content:getsection />
+                        </div>
+                    </div>
                 </div>
 
                 <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
