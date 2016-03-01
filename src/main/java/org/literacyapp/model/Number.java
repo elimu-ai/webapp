@@ -15,8 +15,9 @@ public class Number extends BaseEntity {
     private Language language;
 
     @NotNull
-    @Column(length = 1)
     private Integer value;
+    
+    private String symbol;
 
     public Language getLanguage() {
         return language;
@@ -32,5 +33,13 @@ public class Number extends BaseEntity {
 
     public void setValue(Integer value) {
         this.value = value;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 }

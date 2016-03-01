@@ -2,6 +2,7 @@ package org.literacyapp.web.content.number;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
@@ -36,7 +37,7 @@ public class NumberEditController {
         return "content/number/edit";
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
             @Valid Number number,
@@ -44,17 +45,20 @@ public class NumberEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Number existingNumber = numberDao.readByValue(Language.ENGLISH, number.getValue()); // TODO: fetch Contributor's chosen language
-        if (existingNumber != null) {
-            result.rejectValue("value", "NonUnique");
+        if (number.getLanguage() == Language.ARABIC) {
+            if (StringUtils.isBlank(number.getSymbol())) {
+                result.rejectValue("symbol", "NotNull");
+            }
         }
+        
+        // TODO: if value is changed, check for existing number
         
         if (result.hasErrors()) {
             model.addAttribute("number", number);
             model.addAttribute("languages", Language.values());
             return "content/number/edit";
         } else {
-            numberDao.create(number);
+            numberDao.update(number);
             
             // TODO: store event
             

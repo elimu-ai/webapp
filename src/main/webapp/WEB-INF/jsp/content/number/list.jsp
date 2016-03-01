@@ -18,8 +18,19 @@
         <c:forEach var="number" items="${numbers}">
             <div class="col s12 m6 l4">
                 <div class="card-panel">
-                    <h4>${number.value}</h4>
+                    <fmt:message key="number" />
+                    <div class="divider"></div>
+                    <c:choose>
+                        <c:when test="${number.language == 'ARABIC'}">
+                            <h4>${number.symbol} (${number.value})</h4>
+                        </c:when>
+                        <c:otherwise>
+                            <h4>${number.value}</h4>
+                        </c:otherwise>
+                    </c:choose>
                     <div class="chip">${number.language}</div>
+                    <div class="divider" style="margin: 1em 0;"></div>
+                    <a href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>
             </div>
         </c:forEach>

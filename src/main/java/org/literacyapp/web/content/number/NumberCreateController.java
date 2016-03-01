@@ -2,6 +2,7 @@ package org.literacyapp.web.content.number;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
@@ -43,7 +44,13 @@ public class NumberCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Number existingNumber = numberDao.readByValue(Language.ENGLISH, number.getValue()); // TODO: fetch Contributor's chosen language
+        if (number.getLanguage() == Language.ARABIC) {
+            if (StringUtils.isBlank(number.getSymbol())) {
+                result.rejectValue("symbol", "NotNull");
+            }
+        }
+        
+        Number existingNumber = numberDao.readByValue(number.getLanguage(), number.getValue()); // TODO: fetch Contributor's chosen language
         if (existingNumber != null) {
             result.rejectValue("value", "NonUnique");
         }

@@ -53,3 +53,7 @@ html[lang="es"] #index-banner {
     padding: 1rem;
     border-radius: 2px;
 }
+
+img {
+    max-width: 100%;
+}
