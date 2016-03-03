@@ -38,4 +38,16 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
             .setParameter("language", language)
             .getResultList();
     }
+
+    @Override
+    public List<Number> readLatest(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT n " +
+            "FROM Number n " +
+            "WHERE n.language = :language " +
+            "ORDER BY n.calendar DESC")
+            .setParameter("language", language)
+            .setMaxResults(10)
+            .getResultList();
+    }
 }
