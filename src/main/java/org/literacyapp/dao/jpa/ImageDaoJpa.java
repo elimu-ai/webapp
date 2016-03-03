@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 
 import org.literacyapp.model.Image;
 import org.literacyapp.dao.ImageDao;
+import org.literacyapp.model.enums.Language;
 
 public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
 
@@ -27,11 +28,21 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
     }
 
     @Override
-    public List<Image> readAllOrdered() throws DataAccessException {
+    public List<Image> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT i " +
             "FROM Image i " +
             "ORDER BY i.title")
+            .getResultList();
+    }
+
+    @Override
+    public List<Image> readLatest(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT i " +
+            "FROM Image i " +
+            "ORDER BY i.calendar DESC")
+            .setMaxResults(10)
             .getResultList();
     }
 }

@@ -12,4 +12,6 @@ public interface NumberDao extends GenericDao<Number> {
     Number readByValue(Language language, Integer value) throws DataAccessException;
 
     List<Number> readAllOrdered(Language language) throws DataAccessException;
+    
+    List<Number> readLatest(Language language) throws DataAccessException;
 }
