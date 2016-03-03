@@ -123,6 +123,9 @@ public class SignOnControllerGitHub {
                         contributor.setEmail(jsonObject.getString("email"));
                     }
                 }
+                if (jsonObject.has("login")) {
+                    contributor.setUsernameGitHub(jsonObject.getString("login"));
+                }
                 if (jsonObject.has("id")) {
                     Long idAsLong = jsonObject.getLong("id");
                     String id = String.valueOf(idAsLong);
@@ -172,6 +175,9 @@ public class SignOnControllerGitHub {
                 // Contributor already exists in database
                 
                 // Update existing contributor with latest values fetched from provider
+                if (StringUtils.isNotBlank(contributor.getUsernameGitHub())) {
+                    existingContributor.setUsernameGitHub(contributor.getUsernameGitHub());
+                }
                 if (StringUtils.isNotBlank(contributor.getProviderIdGitHub())) {
                     existingContributor.setProviderIdGitHub(contributor.getProviderIdGitHub());
                 }
