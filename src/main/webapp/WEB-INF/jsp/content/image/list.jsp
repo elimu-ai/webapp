@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     
-                    <img src="<spring:url value='/image/${image.title}.${fn:toLowerCase(image.imageType)}' />" alt="${image.title}" />
+                    <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />" alt="${image.title}" />
                     
                     <div class="card-content">
                         <h4>${image.title}</h4>
