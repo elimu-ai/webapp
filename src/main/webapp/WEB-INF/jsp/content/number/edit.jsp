@@ -47,6 +47,17 @@
             </button>
         </form:form>
     </div>
+    
+    <div class="divider"></div>
+    
+    <p>
+        <fmt:message key="last.update" />:<br />
+        <div class="chip">
+            <img src="${number.contributor.imageUrl}" alt="" class="circle responsive-img">
+            <c:out value="${number.contributor.firstName}" />&nbsp;<c:out value="${number.contributor.lastName}" />
+        </div> 
+        ${number.calendar.time}
+    </p>
 </content:section>
 
 <content:aside>
