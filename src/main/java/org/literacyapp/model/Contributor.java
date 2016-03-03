@@ -31,6 +31,8 @@ public class Contributor extends BaseEntity {
     
     private String providerIdFacebook, providerIdGoogle, providerIdGitHub;
     
+    private String usernameGitHub;
+    
     private String imageUrl;
     
     private String firstName;
@@ -86,6 +88,14 @@ public class Contributor extends BaseEntity {
 
     public void setProviderIdGitHub(String providerIdGitHub) {
         this.providerIdGitHub = providerIdGitHub;
+    }
+    
+    public String getUsernameGitHub() {
+        return usernameGitHub;
+    }
+
+    public void setUsernameGitHub(String usernameGitHub) {
+        this.usernameGitHub = usernameGitHub;
     }
     
     public String getImageUrl() {
