@@ -62,17 +62,35 @@ public class ImageCreateController {
             try {
                 byte[] bytes = multipartFile.getBytes();
                 if (image.getBytes() != null) {
-                    int width = ImageHelper.getWidth(bytes);
-                    logger.info("width: " + width + "px");
+                    String originalFileName = multipartFile.getOriginalFilename();
+                    logger.info("originalFileName: " + originalFileName);
+                    if (originalFileName.toLowerCase().endsWith(".png")) {
+                        image.setImageType(ImageType.PNG);
+                    } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
+                        image.setImageType(ImageType.JPG);
+                    } else if (originalFileName.toLowerCase().endsWith(".gif")) {
+                        image.setImageType(ImageType.GIF);
+                    }
+
+                    String contentType = multipartFile.getContentType();
+                    logger.info("contentType: " + contentType);
+                    image.setContentType(contentType);
                     
-                    if (width < ImageHelper.MINIMUM_WIDTH) {
-                        result.rejectValue("bytes", "image.too.small");
-                        image.setBytes(null);
-                    } else {
-                        if (width > ImageHelper.MINIMUM_WIDTH) {
-                            bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
+                    image.setBytes(bytes);
+                    
+                    if (image.getImageType() != ImageType.GIF) {
+                        int width = ImageHelper.getWidth(bytes);
+                        logger.info("width: " + width + "px");
+
+                        if (width < ImageHelper.MINIMUM_WIDTH) {
+                            result.rejectValue("bytes", "image.too.small");
+                            image.setBytes(null);
+                        } else {
+                            if (width > ImageHelper.MINIMUM_WIDTH) {
+                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
+                                image.setBytes(bytes);
+                            }
                         }
-                        image.setBytes(bytes);
                     }
                 } else {
                     result.rejectValue("bytes", "required");
@@ -80,20 +98,6 @@ public class ImageCreateController {
             } catch (IOException e) {
                 logger.error(e);
             }
-            
-            String originalFileName = multipartFile.getOriginalFilename();
-            logger.info("originalFileName: " + originalFileName);
-            if (originalFileName.toLowerCase().endsWith(".png")) {
-                image.setImageType(ImageType.PNG);
-            } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
-                image.setImageType(ImageType.JPG);
-            } else if (originalFileName.toLowerCase().endsWith(".gif")) {
-                image.setImageType(ImageType.GIF);
-            }
-            
-            String contentType = multipartFile.getContentType();
-            logger.info("contentType: " + contentType);
-            image.setContentType(contentType);
     	}
         
         if (result.hasErrors()) {

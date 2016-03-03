@@ -50,6 +50,17 @@
             </button>
         </form:form>
     </div>
+    
+    <div class="divider"></div>
+    
+    <p>
+        <fmt:message key="last.update" />:<br />
+        <div class="chip">
+            <img src="${image.contributor.imageUrl}" alt="" class="circle responsive-img">
+            <c:out value="${image.contributor.firstName}" />&nbsp;<c:out value="${image.contributor.lastName}" />
+        </div> 
+        ${image.calendar.time}
+    </p>
 </content:section>
 
 <content:aside>
@@ -57,10 +68,30 @@
     
     <div class="previewContainer valignwrapper" style="position: relative;">
         <img src="<spring:url value='/img/device-nexus-5.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContent" style="position: absolute; top: 35%; font-size: 5em; width: 100%; text-align: center;">
-            <img src="<spring:url value='/image/${image.title}.${fn:toLowerCase(image.imageType)}' />" 
-                 alt="${image.title}"
-                 style="width: 64%;" />
+        <div id="previewContentContainer" style="position: absolute; top: 15.15%; height: 66.75%; width: 100%; text-align: center;">
+            <div id="previewContent" class="valign-wrapper" 
+                 style="
+                 position: relative;
+                 width: 64%; 
+                 height: 100%; 
+                 display: inline-block; 
+                 font-size: 5em;
+                 background-image: url(<spring:url value='/image/${image.title}.${fn:toLowerCase(image.imageType)}' />);
+                 background-repeat: no-repeat;
+                 background-size: contain;
+                 background-position: 0 50%;
+                 ">
+                <h5 class="white-text" style="position: absolute; bottom: 0; width: 100%;">${image.title}</h5>
+            </div>
         </div>
     </div>
+    
+    <script>
+        $(function() {
+            console.debug("dominantColor: ${image.dominantColor[0]},${image.dominantColor[1]},${image.dominantColor[2]}");
+            $('#previewContent').css("background-color", "rgb(${image.dominantColor[0]},${image.dominantColor[1]},${image.dominantColor[2]})");
+            $('nav').removeClass("black");
+            $('nav').css("background-color", "rgb(${image.dominantColor[0]},${image.dominantColor[1]},${image.dominantColor[2]})");
+        });
+    </script>
 </content:aside>
