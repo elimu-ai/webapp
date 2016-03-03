@@ -48,6 +48,7 @@
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
                         <li><a href="<spring:url value='/content/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
                         <li><a href="<spring:url value='/content/image/list' />"><i class="material-icons left">image</i><fmt:message key="images" /></a></li>
+                        <li><a href="<spring:url value='/content/video/list' />"><i class="material-icons left">movie</i><fmt:message key="videos" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>

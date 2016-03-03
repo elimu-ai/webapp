@@ -25,19 +25,19 @@ public class ImageController {
     @Autowired
     private ImageDao imageDao;
     
-    @RequestMapping(value="/{imageTitle}.{imageType}", method = RequestMethod.GET)
+    @RequestMapping(value="/{imageId}.{imageType}", method = RequestMethod.GET)
     public void handleRequest(
             Model model,
-            @PathVariable String imageTitle,
+            @PathVariable Long imageId,
             @PathVariable String imageType,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
-        logger.info("imageTitle: " + imageTitle);
+        logger.info("imageId: " + imageId);
         logger.info("imageType: " + imageType);
         
-        Image image = imageDao.read(imageTitle);
+        Image image = imageDao.read(imageId);
         model.addAttribute("image", image);
         
         response.setContentType(image.getContentType());

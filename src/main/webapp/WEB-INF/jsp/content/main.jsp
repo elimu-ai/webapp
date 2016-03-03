@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     
-                    <img src="<spring:url value='/image/${image.title}.${fn:toLowerCase(image.imageType)}' />" alt="${image.title}" />
+                    <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />" alt="${image.title}" />
                     
                     <div class="card-content">
                         <h4>${image.title}</h4>
@@ -91,6 +91,7 @@
                 <li><a href="<spring:url value='/content/word/create' />" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.word" />"><i class="material-icons">sms</i></a></li>
                 <li><a href="<spring:url value='/content/audio/create' />" class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.audio" />"><i class="material-icons">audiotrack</i></a></li>
                 <li><a href="<spring:url value='/content/image/create' />" class="btn-floating orange tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.image" />"><i class="material-icons">image</i></a></li>
+                <li><a href="<spring:url value='/content/video/create' />" class="btn-floating teal tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.video" />"><i class="material-icons">movie</i></a></li>
             </ul>
         </div>
     </div>

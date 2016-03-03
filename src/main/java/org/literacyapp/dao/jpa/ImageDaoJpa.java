@@ -41,8 +41,10 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
         return em.createQuery(
             "SELECT i " +
             "FROM Image i " +
+            "WHERE i.language = :language " +
             "ORDER BY i.calendar DESC")
             .setMaxResults(10)
+            .setParameter("language", language)
             .getResultList();
     }
 }

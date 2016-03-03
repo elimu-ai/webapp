@@ -76,12 +76,18 @@
                  height: 100%; 
                  display: inline-block; 
                  font-size: 5em;
-                 background-image: url(<spring:url value='/image/${image.title}.${fn:toLowerCase(image.imageType)}' />);
+                 background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />);
                  background-repeat: no-repeat;
                  background-size: contain;
                  background-position: 0 50%;
                  ">
-                <h5 class="white-text" style="position: absolute; bottom: 0; width: 100%;">${image.title}</h5>
+                <h5 class="white-text" style="
+                    position: absolute; 
+                    bottom: 0; 
+                    width: 100%;
+                    text-shadow: 1px 1px rgba(0,0,0, .8);
+                    /*background-color: rgba(0,0,0, .1);*/
+                    ">${image.title}</h5>
             </div>
         </div>
     </div>
