@@ -41,6 +41,12 @@
                 <td>-</td>
                 <td>Concentration, memory</td>
               </tr>
+              <tr>
+                <td><a href="<spring:url value='/content/module/activities/1' />">Number matching</a></td>
+                <td>-</td>
+                <td>Number identification</td>
+                <td>Concentration, memory</td>
+              </tr>
             </tbody>
         </table>
     </div>
