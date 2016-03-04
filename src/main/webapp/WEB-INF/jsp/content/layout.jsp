@@ -42,6 +42,10 @@
                         <li><a href="https://literacyapp.slack.com" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
                         <li><a href="<spring:url value='/content/community/issue-management' />"><i class="material-icons left">assignment</i><fmt:message key="issue.management" /></a></li>
                         <li class="divider"></li>
+                        <li class="grey-text"><b><fmt:message key="curriculum" /></b></li>
+                        <li><a href="<spring:url value='/content/module/list' />"><i class="material-icons left">view_module</i><fmt:message key="modules" /> (age 5-6)</a></li>
+                        <li><a href="<spring:url value='/content/module/list' />"><i class="material-icons left">view_module</i><fmt:message key="modules" /> (age 7-10)</a></li>
+                        <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="application.content" /></b></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
