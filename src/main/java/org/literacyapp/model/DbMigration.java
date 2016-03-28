@@ -15,6 +15,7 @@ public class DbMigration extends BaseEntity {
     private Integer version; // 100100100, 100100200, 100100300, ... (1.1.1, 1.1.2, 1.1.3, ...)
     
     @NotNull
+    @Column(length = 2000)
     private String script; // SQL script copied from file in src/main/resources/db/migration/<version>.sql
 
     @NotNull
