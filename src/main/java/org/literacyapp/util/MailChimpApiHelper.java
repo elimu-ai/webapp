@@ -25,6 +25,9 @@ public class MailChimpApiHelper {
     // http://developer.mailchimp.com/documentation/mailchimp/
     private static final String BASE_URL = "https://us12.api.mailchimp.com/3.0";
     
+    // https://us12.admin.mailchimp.com/account/api/
+    private static final String API_KEY = ConfigHelper.getProperty("mailchimp.api.key");
+    
     private static final String LIST_ID = "97b79a9d90"; // "LiteracyApp"
     
     private static Logger logger = Logger.getLogger(MailChimpApiHelper.class);
@@ -36,9 +39,6 @@ public class MailChimpApiHelper {
      */
     public static String getMemberInfo(String email) {
         logger.info("getMemberInfo");
-        
-        // https://us6.admin.mailchimp.com/account/api/
-        String API_KEY = ConfigHelper.getProperty("mailchimp.api.key");
         
         String memberInfo = null;
         
@@ -54,7 +54,7 @@ public class MailChimpApiHelper {
             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(inputStream));
             memberInfo = bufferedReader.readLine();
         } catch (FileNotFoundException ex) {
-            logger.warn("email: " + email, ex);
+            logger.warn("email not found: " + email);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
@@ -71,9 +71,6 @@ public class MailChimpApiHelper {
      */
     public static void subscribeMember(Contributor contributor) {
         logger.info("subscribeMember");
-        
-        // https://us6.admin.mailchimp.com/account/api/
-        String API_KEY = ConfigHelper.getProperty("mailchimp.api.key");
         
         try {
             URL url = new URL (BASE_URL + "/lists/" + LIST_ID + "/members");
@@ -100,17 +97,22 @@ public class MailChimpApiHelper {
             outputStream.write(messageBody.toString().getBytes());
             outputStream.close();
             
-            InputStream inputStream = (InputStream) connection.getInputStream();
+            int responseCode = connection.getResponseCode();
+            logger.info("responseCode: " + responseCode);
+            InputStream inputStream = null;
+            if (responseCode == 200) {
+                inputStream = connection.getInputStream();
+            } else {
+                // Possibly "Member Exists" error (subscribed previously, but unsubscribed or was deleted)
+                inputStream = connection.getErrorStream();
+                logger.warn("Subscription failed for " + contributor.getEmail());
+            }
             BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(inputStream));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String response = line;
                 logger.info("response: " + response);
             }
-            
-//            if (contributor.getTeams() != null) {
-//                updateTeams(contributor.getEmail(), contributor.getTeams());
-//            }
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
@@ -125,9 +127,6 @@ public class MailChimpApiHelper {
      */
     public static void updateTeams(String email, Set<Team> teams) {
         logger.info("updateTeams");
-        
-        // https://us6.admin.mailchimp.com/account/api/
-        String API_KEY = ConfigHelper.getProperty("mailchimp.api.key");
         
         try {
             String emailMd5Hash = DigestUtils.md5Hex(email);
