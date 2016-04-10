@@ -42,7 +42,7 @@ public class SlackInviteScheduler {
                     JSONObject member = slackMembers.getJSONObject(i);
                     String slackId = member.getString("id");
                     JSONObject memberProfile = member.getJSONObject("profile");
-                    if (memberProfile.has("email")) {
+                    if (!memberProfile.isNull("email")) {
                         String email = memberProfile.getString("email");
                         if (contributor.getEmail().equals(email)) {
                             contributor.setSlackId(slackId);
