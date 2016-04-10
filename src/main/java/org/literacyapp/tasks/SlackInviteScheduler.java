@@ -37,7 +37,7 @@ public class SlackInviteScheduler {
             // If the Contributor has already joined Slack, store the Slack id
             if (StringUtils.isBlank(contributor.getSlackId())) {
                 JSONArray slackMembers = SlackApiHelper.getTeamMembers();
-                System.out.println("slackMembers.length(): " + slackMembers.length());
+                logger.info("slackMembers.length(): " + slackMembers.length());
                 for (int i = 0; i < slackMembers.length(); i++) {
                     JSONObject member = slackMembers.getJSONObject(i);
                     String slackId = member.getString("id");
