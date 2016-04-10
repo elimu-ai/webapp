@@ -110,8 +110,10 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
                 
-                String mailChimpApiKey = (String) servletContext.getAttribute("mailchimp_api_key");
-                PROPERTIES.put("mailchimp.api.key", mailChimpApiKey);
+                if (env == Environment.PROD) {
+                    String mailChimpApiKey = (String) servletContext.getAttribute("mailchimp_api_key");
+                    PROPERTIES.put("mailchimp.api.key", mailChimpApiKey);
+                }
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
