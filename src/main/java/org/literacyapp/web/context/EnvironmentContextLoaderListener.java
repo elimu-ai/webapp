@@ -115,7 +115,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                     PROPERTIES.put("mailchimp.api.key", mailChimpApiKey);
                     
                     String slackApiToken = (String) servletContext.getAttribute("slack_api_token");
-                    PROPERTIES.put("slack.api.token", mailChimpApiKey);
+                    PROPERTIES.put("slack.api.token", slackApiToken);
                 }
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
