@@ -94,5 +94,7 @@ public class SlackInviteScheduler {
                 }
             }
         }
+        
+        logger.info("executeTeamSynchronization complete");
     }
 }

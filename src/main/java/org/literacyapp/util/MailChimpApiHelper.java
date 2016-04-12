@@ -164,7 +164,7 @@ public class MailChimpApiHelper {
             
             messageBody.put("interests", dataInterests);
             
-            logger.info("messageBody: " + messageBody);
+//            logger.info("messageBody: " + messageBody);
             
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(messageBody.toString().getBytes());
@@ -175,7 +175,7 @@ public class MailChimpApiHelper {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String response = line;
-                logger.info("response: " + response);
+//                logger.info("response: " + response);
             }
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
