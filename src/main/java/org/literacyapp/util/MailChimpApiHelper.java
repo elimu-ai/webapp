@@ -51,7 +51,7 @@ public class MailChimpApiHelper {
             String encoding = Base64.encodeBase64String(("literacyapp:" + API_KEY).getBytes());
             connection.setRequestProperty("Authorization", "Basic " + encoding);
             InputStream inputStream = (InputStream) connection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(inputStream));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             memberInfo = bufferedReader.readLine();
         } catch (FileNotFoundException ex) {
             logger.warn("email not found: " + email);
@@ -107,7 +107,7 @@ public class MailChimpApiHelper {
                 inputStream = connection.getErrorStream();
                 logger.warn("Subscription failed for " + contributor.getEmail());
             }
-            BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(inputStream));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String response = line;
@@ -171,7 +171,7 @@ public class MailChimpApiHelper {
             outputStream.close();
             
             InputStream inputStream = (InputStream) connection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(inputStream));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String response = line;

@@ -22,10 +22,12 @@ import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.model.Verifier;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import java.net.URLEncoder;
 import java.util.Random;
 import org.apache.commons.lang.StringUtils;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.ConfigHelper;
+import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -171,6 +173,20 @@ public class SignOnControllerGitHub {
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
+                
+                // Post notification in Slack
+                String name = "";
+                if (StringUtils.isNotBlank(contributor.getFirstName())) {
+                    name += "(";
+                    name += contributor.getFirstName();
+                    if (StringUtils.isNotBlank(contributor.getLastName())) {
+                        name += " " + contributor.getLastName();
+                    }
+                    name += ")";
+                }
+                String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://literacyapp.org/content/community/contributors";
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(null, text, iconUrl);
             } else {
                 // Contributor already exists in database
                 
