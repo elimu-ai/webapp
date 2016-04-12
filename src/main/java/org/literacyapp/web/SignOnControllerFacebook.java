@@ -1,6 +1,7 @@
 package org.literacyapp.web;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +13,7 @@ import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Role;
 import org.literacyapp.util.ConfigHelper;
+import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FacebookApi;
@@ -138,6 +140,22 @@ public class SignOnControllerFacebook {
                 contributorDao.create(contributor);
                 
                 // TODO: send welcome e-mail
+                
+                if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                    // Post notification in Slack
+                    String name = "";
+                    if (StringUtils.isNotBlank(contributor.getFirstName())) {
+                        name += "(";
+                        name += contributor.getFirstName();
+                        if (StringUtils.isNotBlank(contributor.getLastName())) {
+                            name += " " + contributor.getLastName();
+                        }
+                        name += ")";
+                    }
+                    String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://literacyapp.org/content/community/contributors";
+                    String iconUrl = contributor.getImageUrl();
+                    SlackApiHelper.postMessage(null, text, iconUrl);
+                }
             } else {
                 // Contributor already exists in database
                 
