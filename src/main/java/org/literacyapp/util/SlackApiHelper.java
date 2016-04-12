@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -20,8 +19,7 @@ public class SlackApiHelper {
     private static final String BASE_URL = "https://literacyapp.slack.com/api";
     
     // https://api.slack.com/docs/oauth-test-tokens
-//    private static final String API_TOKEN = ConfigHelper.getProperty("slack.api.token");
-    private static final String API_TOKEN = "xoxp-20445604068-20452016834-33422515121-5721ce3808";
+    private static final String API_TOKEN = ConfigHelper.getProperty("slack.api.token");
     
     private static Logger logger = Logger.getLogger(SlackApiHelper.class);
     
