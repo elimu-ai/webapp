@@ -137,19 +137,21 @@ public class SignOnControllerGoogle {
                 
                 // TODO: send welcome e-mail
                 
-                // Post notification in Slack
-                String name = "";
-                if (StringUtils.isNotBlank(contributor.getFirstName())) {
-                    name += "(";
-                    name += contributor.getFirstName();
-                    if (StringUtils.isNotBlank(contributor.getLastName())) {
-                        name += " " + contributor.getLastName();
+                if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                    // Post notification in Slack
+                    String name = "";
+                    if (StringUtils.isNotBlank(contributor.getFirstName())) {
+                        name += "(";
+                        name += contributor.getFirstName();
+                        if (StringUtils.isNotBlank(contributor.getLastName())) {
+                            name += " " + contributor.getLastName();
+                        }
+                        name += ")";
                     }
-                    name += ")";
+                    String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://literacyapp.org/content/community/contributors";
+                    String iconUrl = contributor.getImageUrl();
+                    SlackApiHelper.postMessage(null, text, iconUrl);
                 }
-                String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://literacyapp.org/content/community/contributors";
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(null, text, iconUrl);
             } else {
                 // Contributor already exists in database
                 
