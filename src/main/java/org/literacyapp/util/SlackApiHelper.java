@@ -117,6 +117,9 @@ public class SlackApiHelper {
             logger.info("response: " + response);
             JSONObject jSONObject = new JSONObject(response);
             isResponseOk = jSONObject.getBoolean("ok");
+            if (isResponseOk) {
+                logger.info("Invited " + contributor.getEmail() + " to channel " + channelId);
+            }
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
@@ -161,6 +164,9 @@ public class SlackApiHelper {
             logger.info("response: " + response);
             JSONObject jSONObject = new JSONObject(response);
             isResponseOk = jSONObject.getBoolean("ok");
+            if (isResponseOk) {
+                logger.info("Removed " + contributor.getEmail() + " from channel " + channelId);
+            }
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
