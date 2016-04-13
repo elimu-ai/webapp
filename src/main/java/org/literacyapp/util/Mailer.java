@@ -1,0 +1,141 @@
+package org.literacyapp.util;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.core.io.ClassRelativeResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+public class Mailer {
+    
+    private static final Logger logger = Logger.getLogger(Mailer.class);
+    
+    public static void sendPlainText(String to, String cc, String from, String subject, String text) {
+        logger.info("sendPlainText");
+        
+        if (to.contains(",")) {
+            to = to.replace(",", "");
+        }
+        if (to.contains(":")) {
+            to = to.replace(":", "");
+        }
+                
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setTo(to);
+        if (StringUtils.isNotBlank(cc)) {
+            simpleMailMessage.setCc(cc);
+        }
+        simpleMailMessage.setFrom(from);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(text);
+
+        JavaMailSenderImpl javaMailSenderImpl = new JavaMailSenderImpl();
+        String smtpHost = ConfigHelper.getProperty("smtp.host");
+        javaMailSenderImpl.setHost(smtpHost);
+
+        logger.info("Sending e-mail to " + simpleMailMessage.getTo()[0] + " with subject \"" + simpleMailMessage.getSubject() + "\"...");
+        logger.info("Text: " + simpleMailMessage.getText());
+        javaMailSenderImpl.send(simpleMailMessage);
+    }
+    
+    public static void sendHtml(String to, String cc, String from, String subject, String title, String text) {
+        logger.info("sendPlainText");
+        
+        if (to.contains(",")) {
+            to = to.replace(",", "");
+        }
+        if (to.contains(":")) {
+            to = to.replace(":", "");
+        }
+        
+        JavaMailSenderImpl javaMailSenderImpl = new JavaMailSenderImpl();
+        String smtpHost = ConfigHelper.getProperty("smtp.host");
+        javaMailSenderImpl.setHost(smtpHost);
+        
+        MimeMessage mimeMessage = javaMailSenderImpl.createMimeMessage();
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setFrom(from);
+            mimeMessageHelper.setTo(to);
+            if (StringUtils.isNotBlank(cc)) {
+                mimeMessageHelper.setCc(cc);
+            }
+            mimeMessageHelper.setSubject(subject);
+            
+            String html = "";
+            
+            ResourceLoader resourceLoader = new ClassRelativeResourceLoader(Mailer.class);
+            logger.info("Loading file email_template.html...");
+            Resource resource = resourceLoader.getResource("email_template.html");
+            InputStream inputStream = null;
+            InputStreamReader inputStreamReader = null;
+            BufferedReader bufferedReader = null;
+            try {
+                inputStream = resource.getInputStream();
+                inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                bufferedReader = new BufferedReader(inputStreamReader);
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    if (line.contains("${subject}")) {
+                        line = line.replace("${subject}", subject);
+                    } else if (line.contains("${title}")) {
+                        line = line.replace("${title}", title);
+                    } else if (line.contains("${text}")) {
+                        line = line.replace("${text}", text);
+                    }
+                    
+                    html += line;
+                }
+            } catch (IOException ex) {
+                logger.error(null, ex);
+            } finally {
+                if (bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (IOException e) {
+                        logger.error(null, e);
+                    }
+                }
+                if (inputStreamReader != null) {
+                    try {
+                        inputStreamReader.close();
+                    } catch (IOException e) {
+                        logger.error(null, e);
+                    }
+                }
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e) {
+                        logger.error(null, e);
+                    }
+                }
+            }
+            
+            mimeMessageHelper.setText(text, html);
+            
+            logger.info("Sending MIME message to " + to + " with subject \"" + subject + "\"...");
+            logger.info("title: " + title);
+            logger.info("text: " + text);
+            javaMailSenderImpl.send(mimeMessage);
+        } catch (MessagingException ex) {
+            logger.error(null, ex);
+        }
+    }
+    
+    public static void sendHtmlWithButton(String to, String cc, String from, String subject, String title, String text, String buttonText, String buttonUrl) {
+        logger.info("sendHtmlWithButton");
+        
+        // TODO
+    }
+}
