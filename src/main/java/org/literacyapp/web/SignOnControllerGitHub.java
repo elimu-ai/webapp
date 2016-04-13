@@ -183,7 +183,7 @@ public class SignOnControllerGitHub {
                 htmlText += "<p>Thank you very much for registering as a contributor to the LiteracyApp community. We are glad to see you join us!</p>";
                 htmlText += "<p>With your help, this is what we aim to achieve:</p>";
                 htmlText += "<p><blockquote>\"The mission of the LiteracyApp project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
-                htmlText += "<p><img src=\"http://literacyapp.org/img/banner-en.jpg\" alt=\"\" style=\"max-width: 100%;\" /></p>";
+                htmlText += "<p><img src=\"http://literacyapp.org/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
                 htmlText += "<p>Within the next hour, we will send you an invite to join our Slack channel (to " + contributor.getEmail() + "). There you can chat with the other community members.</p>";
                 htmlText += "<h2>Feedback</h2>";
