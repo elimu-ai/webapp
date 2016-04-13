@@ -1,7 +1,6 @@
 package org.literacyapp.util;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -136,6 +135,95 @@ public class Mailer {
     public static void sendHtmlWithButton(String to, String cc, String from, String subject, String title, String text, String buttonText, String buttonUrl) {
         logger.info("sendHtmlWithButton");
         
-        // TODO
+        if (to.contains(",")) {
+            to = to.replace(",", "");
+        }
+        if (to.contains(":")) {
+            to = to.replace(":", "");
+        }
+        
+        JavaMailSenderImpl javaMailSenderImpl = new JavaMailSenderImpl();
+        String smtpHost = ConfigHelper.getProperty("smtp.host");
+        javaMailSenderImpl.setHost(smtpHost);
+        
+        MimeMessage mimeMessage = javaMailSenderImpl.createMimeMessage();
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setFrom(from);
+            mimeMessageHelper.setTo(to);
+            if (StringUtils.isNotBlank(cc)) {
+                mimeMessageHelper.setCc(cc);
+            }
+            mimeMessageHelper.setSubject(subject);
+            
+            String html = "";
+            
+            ResourceLoader resourceLoader = new ClassRelativeResourceLoader(Mailer.class);
+            logger.info("Loading file email_template_button.html...");
+            Resource resource = resourceLoader.getResource("email_template_button.html");
+            InputStream inputStream = null;
+            InputStreamReader inputStreamReader = null;
+            BufferedReader bufferedReader = null;
+            try {
+                inputStream = resource.getInputStream();
+                inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                bufferedReader = new BufferedReader(inputStreamReader);
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    if (line.contains("${subject}")) {
+                        line = line.replace("${subject}", subject);
+                    }
+                    if (line.contains("${title}")) {
+                        line = line.replace("${title}", title);
+                    }
+                    if (line.contains("${text}")) {
+                        line = line.replace("${text}", text);
+                    }
+                    if (line.contains("${buttonText}")) {
+                        line = line.replace("${buttonText}", buttonText);
+                    }
+                    if (line.contains("${buttonUrl}")) {
+                        line = line.replace("${buttonUrl}", buttonUrl);
+                    }
+                    
+                    html += line;
+                }
+            } catch (IOException ex) {
+                logger.error(null, ex);
+            } finally {
+                if (bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (IOException e) {
+                        logger.error(null, e);
+                    }
+                }
+                if (inputStreamReader != null) {
+                    try {
+                        inputStreamReader.close();
+                    } catch (IOException e) {
+                        logger.error(null, e);
+                    }
+                }
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e) {
+                        logger.error(null, e);
+                    }
+                }
+            }
+            
+            mimeMessageHelper.setText(text, html);
+            
+            logger.info("Sending MIME message to " + to + " with subject \"" + subject + "\"...");
+            logger.info("title: " + title);
+            logger.info("text: " + text);
+            logger.info("buttonText: " + buttonText);
+            logger.info("buttonUrl: " + buttonUrl);
+            javaMailSenderImpl.send(mimeMessage);
+        } catch (MessagingException ex) {
+            logger.error(null, ex);
+        }
     }
 }

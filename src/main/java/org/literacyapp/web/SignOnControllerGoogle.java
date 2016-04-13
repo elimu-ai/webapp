@@ -140,12 +140,15 @@ public class SignOnControllerGoogle {
                 String to = contributor.getEmail();
                 String from = "LiteracyApp <info@literacyapp.org>";
                 String subject = "Welcome to the community";
-                String title = subject;
+                String title = "Welcome!";
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
                 String htmlText = "<p>Hi, " + firstName + "</p>";
-                htmlText += "<p>Thank you very much for registering as a contributor. We are glad to see you join us!</p>";
+                htmlText += "<p>Thank you very much for registering as a contributor to the LiteracyApp community. We are glad to see you join us!</p>";
+                htmlText += "<p>With your help, this is what we aim to achieve:</p>";
+                htmlText += "<p><blockquote>\"The mission of the LiteracyApp project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
+                htmlText += "<p><img src=\"http://literacyapp.org/img/banner-en.jpg\" alt=\"\" style=\"max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
-                htmlText += "<p>Within the next hour, we will send you an invite (to " + contributor.getEmail() + ") to join our Slack channel. There you can chat with the other community members.</p>";
+                htmlText += "<p>Within the next hour, we will send you an invite to join our Slack channel (to " + contributor.getEmail() + "). There you can chat with the other community members.</p>";
                 htmlText += "<h2>Feedback</h2>";
                 htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in Slack.</p>";
                 Mailer.sendHtml(to, null, from, subject, title, htmlText);
