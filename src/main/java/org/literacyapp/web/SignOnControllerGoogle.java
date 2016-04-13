@@ -13,6 +13,7 @@ import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Role;
 import org.literacyapp.util.ConfigHelper;
+import org.literacyapp.util.Mailer;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.scribe.builder.ServiceBuilder;
@@ -135,7 +136,19 @@ public class SignOnControllerGoogle {
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 
-                // TODO: send welcome e-mail
+                // Send welcome e-mail
+                String to = contributor.getEmail();
+                String from = "LiteracyApp <info@literacyapp.org>";
+                String subject = "Welcome to the community";
+                String title = subject;
+                String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
+                String htmlText = "<p>Hi, " + firstName + "</p>";
+                htmlText += "<p>Thank you very much for registering as a contributor. We are glad to see you join us!</p>";
+                htmlText += "<h2>Chat</h2>";
+                htmlText += "<p>Within the next hour, we will send you an invite (to " + contributor.getEmail() + ") to join our Slack channel. There you can chat with the other community members.</p>";
+                htmlText += "<h2>Feedback</h2>";
+                htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in Slack.</p>";
+                Mailer.sendHtml(to, null, from, subject, title, htmlText);
                 
                 if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                     // Post notification in Slack
