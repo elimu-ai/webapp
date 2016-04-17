@@ -50,7 +50,15 @@ public class MailChimpApiHelper {
             connection.setDoOutput(true);
             String encoding = Base64.encodeBase64String(("literacyapp:" + API_KEY).getBytes());
             connection.setRequestProperty("Authorization", "Basic " + encoding);
-            InputStream inputStream = (InputStream) connection.getInputStream();
+            
+            int responseCode = connection.getResponseCode();
+            logger.info("responseCode: " + responseCode);
+            InputStream inputStream = null;
+            if (responseCode == 200) {
+                inputStream = connection.getInputStream();
+            } else {
+                inputStream = connection.getErrorStream();
+            }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             memberInfo = bufferedReader.readLine();
         } catch (FileNotFoundException ex) {
@@ -108,11 +116,8 @@ public class MailChimpApiHelper {
                 logger.warn("Subscription failed for " + contributor.getEmail());
             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String response = line;
-                logger.info("response: " + response);
-            }
+            String response = bufferedReader.readLine();
+            logger.info("response: " + response);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
@@ -170,13 +175,17 @@ public class MailChimpApiHelper {
             outputStream.write(messageBody.toString().getBytes());
             outputStream.close();
             
-            InputStream inputStream = (InputStream) connection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String response = line;
-//                logger.info("response: " + response);
+            int responseCode = connection.getResponseCode();
+            logger.info("responseCode: " + responseCode);
+            InputStream inputStream = null;
+            if (responseCode == 200) {
+                inputStream = connection.getInputStream();
+            } else {
+                inputStream = connection.getErrorStream();
             }
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String response = bufferedReader.readLine();
+            logger.debug("responseCode: " + responseCode);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
