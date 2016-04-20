@@ -88,7 +88,7 @@ public class SlackInviteScheduler {
             
             if (StringUtils.isNotBlank(contributor.getSlackId())) {
                 for (Team team : Team.values()) {
-                    if (team == Team.OTHER) {
+                    if (StringUtils.isBlank(team.getSlackChannelName())) {
                         continue;
                     }
                     
@@ -107,6 +107,13 @@ public class SlackInviteScheduler {
                             htmlText += "<p>You were added to the \"" + teamName + "\" team. The responsibility of this team is the following:</p>";
                             String teamMissionStatement = messageSource.getMessage("team." + team + ".mission.statement", null, locale);
                             htmlText += "<p><blockquote>\"" + teamMissionStatement + "\"</blockquote></p>";
+                            
+                            // Team-specific content
+                            if (team == Team.DEVELOPMENT) {
+                                htmlText += "<h2>GitHub</h2>";
+                                htmlText += "<p>The source code of the project is located at https://github.com/literacyapp-org</p>";
+                            }
+                            
                             htmlText += "<h2>Slack channel</h2>";
                             htmlText += "<p>We just added you to the Slack channel <a href=\"https://literacyapp.slack.com/messages/" + team.getSlackChannelName() + "\">#" + team.getSlackChannelName() + "</a></p>";
                             htmlText += "<p>To chat with the other team members, click the button below:</p>";
