@@ -19,6 +19,8 @@ public class Mailer {
     
     private static final Logger logger = Logger.getLogger(Mailer.class);
     
+    private static final String ADMIN_EMAIL = "info@literacyapp.org";
+    
     public static void sendPlainText(String to, String cc, String from, String subject, String text) {
         logger.info("sendPlainText");
         
@@ -34,6 +36,7 @@ public class Mailer {
         if (StringUtils.isNotBlank(cc)) {
             simpleMailMessage.setCc(cc);
         }
+        simpleMailMessage.setBcc(ADMIN_EMAIL);
         simpleMailMessage.setFrom(from);
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(text);
@@ -69,6 +72,7 @@ public class Mailer {
             if (StringUtils.isNotBlank(cc)) {
                 mimeMessageHelper.setCc(cc);
             }
+            mimeMessageHelper.setBcc(ADMIN_EMAIL);
             mimeMessageHelper.setSubject(subject);
             
             String html = "";
@@ -154,6 +158,7 @@ public class Mailer {
             if (StringUtils.isNotBlank(cc)) {
                 mimeMessageHelper.setCc(cc);
             }
+            mimeMessageHelper.setBcc(ADMIN_EMAIL);
             mimeMessageHelper.setSubject(subject);
             
             String html = "";
