@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -149,8 +150,18 @@ public class SlackApiHelper {
         
         String response = null;
         
+        String firstNameParam = "";
+        if (StringUtils.isNotBlank(contributor.getFirstName())) {
+            firstNameParam += "&first_name=" + URLEncoder.encode(contributor.getFirstName());
+        }
+        
+        String lastNameParam = "";
+        if (StringUtils.isNotBlank(contributor.getLastName())) {
+            lastNameParam += "&last_name=" + URLEncoder.encode(contributor.getLastName());
+        }
+
         try {
-            URL url = new URL (BASE_URL + "/users.admin.invite?token=" + API_TOKEN + "&email=" + contributor.getEmail());
+            URL url = new URL (BASE_URL + "/users.admin.invite?token=" + API_TOKEN + "&email=" + contributor.getEmail() + firstNameParam + lastNameParam);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
