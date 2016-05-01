@@ -66,7 +66,7 @@
             
     <div class="section">
         <div class="row">
-            <div class="col s12 m4 offset-m2">
+            <div class="col s12 m4 offset-m4">
                 <div class="card small">
                   <div class="card-image">
                     <img src="<spring:url value='/img/banner-en.jpg' />" alt="Global Learning XPRIZE" />
@@ -79,23 +79,6 @@
                   </div>
                   <div class="card-action">
                     <a href="http://learning.xprize.org" target="_blank">learning.xprize.org</a>
-                  </div>
-                </div>
-            </div>
-            
-            <div class="col s12 m4">
-                <div class="card small">
-                  <div class="card-image">
-                    <img src="<spring:url value='/img/banner-ar.jpg' />" alt="EduApp4Syria" />
-                    <span class="card-title">EduApp4Syria</span>
-                  </div>
-                  <div class="card-content">
-                      <p>
-                          <fmt:message key="arabic.for.syrian.refugee.children" />
-                      </p>
-                  </div>
-                  <div class="card-action">
-                    <a href="https://www.norad.no/eduapp4syria" target="_blank">www.norad.no/eduapp4syria</a>
                   </div>
                 </div>
             </div>
