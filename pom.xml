@@ -10,7 +10,7 @@
     	<java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>4.3.5.Final</hibernate.version>
-        <jetty.version>8.1.14.v20131031</jetty.version>
+        <jetty.version>9.3.8.v20160314</jetty.version>
         <spring.version>4.2.1.RELEASE</spring.version>
         <spring.security.version>3.2.0.RELEASE</spring.security.version>
         <surefire-plugin.version>2.17</surefire-plugin.version>
@@ -34,7 +34,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
