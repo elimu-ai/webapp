@@ -9,7 +9,7 @@ See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp
 [![Build Status](https://travis-ci.org/literacyapp-org/literacyapp-web.svg)](https://travis-ci.org/literacyapp-org/literacyapp-web)
 
 ## Issue management
-[Trello](https://trello.com/b/les4HgKG/team-development)
+[Trello](https://trello.com/b/les4HgKG/team-development) (send an e-mail to info@literacyapp.org to receive an invite)
 
 ## Chat
 [Slack](https://literacyapp.slack.com/messages/team-development) (send an e-mail to info@literacyapp.org to receive an invite)
