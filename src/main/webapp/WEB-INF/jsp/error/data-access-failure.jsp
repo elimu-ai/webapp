@@ -8,7 +8,7 @@
     <p>
         An error occurred: 
         <hr />
-        ${pageContext.exception.class.name}
+        ${pageContext.exception['class'].name}
     </p>
     <div style="clear: both"></div>
 </content:section>
