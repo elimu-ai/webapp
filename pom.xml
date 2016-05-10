@@ -9,7 +9,7 @@
     <properties>
     	<java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <literacyapp.model.version>1.0.4</literacyapp.model.version>
+        <literacyapp.model.version>1.0.11</literacyapp.model.version>
         <hibernate.version>4.3.5.Final</hibernate.version>
         <jetty.version>9.3.8.v20160314</jetty.version>
         <spring.version>4.2.1.RELEASE</spring.version>
