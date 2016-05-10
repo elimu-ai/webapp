@@ -12,7 +12,7 @@ For documentation of how to install Jetty/MySQL, see Google Drive.
 
 To configure the web application to run on a new server, perform the following:
 
-    1. Add literacyapp.xml to <Jetty installation path>/contexts/
+    1. Add literacyapp.xml to <Jetty installation path>/webapps/
     2. Create database:
         2.1 Execute commands in literacyapp.sql
         2.2 Import existing database (if any): SOURCE literacyapp-<date>.sql

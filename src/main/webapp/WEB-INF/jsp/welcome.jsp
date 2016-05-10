@@ -56,7 +56,13 @@
               <h5 class="center"><fmt:message key="how.can.i.help?" /></h5>
 
               <p class="light center"><fmt:message key="frontpage.how.can.i.help.description1" /></p>
-              <p class="light center"><fmt:message key="frontpage.how.can.i.help.description2" /> <a href="http://eepurl.com/bGihkr"><c:set var="mailingList"><fmt:message key="mailing.list" /></c:set>${fn:toLowerCase(mailingList)}</a></p>
+              <p class="light center"><fmt:message key="frontpage.how.can.i.help.description2" />&nbsp;<a href="http://eepurl.com/bGihkr"><c:set var="mailingList">
+                          <fmt:message key="mailing.list" />
+                      </c:set>${fn:toLowerCase(mailingList)}</a> 
+                <fmt:message key="or" />&nbsp;<a href="<spring:url value='/sign-on' />"><c:set var="joinTheCommunity">
+                          <fmt:message key="join.the.community" />
+                      </c:set>${fn:toLowerCase(joinTheCommunity)}</a>.
+              </p>
             </div>
           </div>
         </div>
