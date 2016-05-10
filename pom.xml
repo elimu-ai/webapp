@@ -201,7 +201,7 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.mortbay.jetty</groupId>
+                        <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-jspc-maven-plugin</artifactId>
                         <version>${jetty.version}</version>
                         <executions>
@@ -511,6 +511,11 @@
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
+        <!--<dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>apache-jsp</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>-->
 
         <!-- test -->
         <dependency>
