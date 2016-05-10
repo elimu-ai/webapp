@@ -9,6 +9,7 @@
     <properties>
     	<java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <literacyapp.model.version>1.0.4</literacyapp.model.version>
         <hibernate.version>4.3.5.Final</hibernate.version>
         <jetty.version>9.3.8.v20160314</jetty.version>
         <spring.version>4.2.1.RELEASE</spring.version>
@@ -65,6 +66,17 @@
                 </configuration>
             </plugin>
             <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.8.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.10.3</version>
@@ -86,21 +98,21 @@
             </plugin>
         </plugins>
         <resources>
-	     <resource>
-	    	<directory>src/main/resources</directory>
-	        <filtering>true</filtering>
-	        <includes>
-	          <include>config.properties</include>
-	        </includes>
-	     </resource>
-             <resource>
-	    	<directory>src/main/resources</directory>
-	        <filtering>false</filtering>
-	        <excludes>
-                 <exclude>config.properties</exclude>
-	        </excludes>
-	     </resource>
-	    </resources>
+            <resource>
+               <directory>src/main/resources</directory>
+               <filtering>true</filtering>
+               <includes>
+                 <include>config.properties</include>
+               </includes>
+            </resource>
+            <resource>
+               <directory>src/main/resources</directory>
+               <filtering>false</filtering>
+               <excludes>
+                <exclude>config.properties</exclude>
+               </excludes>
+            </resource>
+        </resources>
      </build>
 	
     <!-- More Project Information -->
@@ -123,8 +135,8 @@
         <connection>scm:git:git@github.com:literacyapp-org/literacyapp-web.git</connection>
         <developerConnection>scm:git:git@github.com:literacyapp-org/literacyapp-web.git</developerConnection>
         <url>https://github.com/literacyapp-org/literacyapp-web</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
     <distributionManagement>
         <repository>
             <id>archiva.internal</id>
@@ -242,7 +254,7 @@
         <dependency>
             <groupId>org.literacyapp</groupId>
             <artifactId>literacyapp-model</artifactId>
-            <version>1.0.3</version>
+            <version>${literacyapp.model.version}</version>
         </dependency>
         
         <dependency>
@@ -511,11 +523,6 @@
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>apache-jsp</artifactId>
-            <version>${jetty.version}</version>
-        </dependency>-->
 
         <!-- test -->
         <dependency>
