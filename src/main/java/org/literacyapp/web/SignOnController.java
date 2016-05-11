@@ -1,5 +1,6 @@
 package org.literacyapp.web;
 
+import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -47,6 +48,7 @@ public class SignOnController {
                 contributor.setFirstName("Test");
                 contributor.setLastName("Contributor");
                 contributor.setRole(Role.CONTRIBUTOR);
+                contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
             }
             

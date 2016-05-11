@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Number;
 import org.literacyapp.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,15 @@ public class NumberListController {
     private NumberDao numberDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, @RequestParam(defaultValue = "ENGLISH") Language language) {
+    public String handleRequest(Model model, HttpSession session) {
     	logger.info("handleRequest");
         
-        logger.info("language: " + language);
-        model.addAttribute("language", language);
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        List<Number> numbers = numberDao.readLatest(language);
+        logger.info("contributor.getLanguage(): " + contributor.getLanguage());
+        model.addAttribute("language", contributor.getLanguage());
+        
+        List<Number> numbers = numberDao.readLatest(contributor.getLanguage());
         model.addAttribute("numbers", numbers);
 
         return "content/number/list";

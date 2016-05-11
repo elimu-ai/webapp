@@ -32,8 +32,6 @@ public class NumberCreateController {
         
         Number number = new Number();
         model.addAttribute("number", number);
-        
-        model.addAttribute("languages", Language.values());
 
         return "content/number/create";
     }
@@ -59,7 +57,6 @@ public class NumberCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("number", number);
-            model.addAttribute("languages", Language.values());
             return "content/number/create";
         } else {
             Contributor contributor = (Contributor) session.getAttribute("contributor");

@@ -1,11 +1,13 @@
 package org.literacyapp.web.content.image;
 
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Image;
 import org.literacyapp.model.enums.ImageType;
 import org.literacyapp.model.enums.Language;
@@ -38,7 +40,6 @@ public class ImageEditController {
         Image image = imageDao.read(id);
         model.addAttribute("image", image);
         
-        model.addAttribute("languages", Language.values());
         model.addAttribute("imageTypes", ImageType.values());
 
         return "content/image/edit";
@@ -53,9 +54,25 @@ public class ImageEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        // TODO
+        // TODO: if title is changed, check for existing Image
         
-        return null;
+        if (!multipartFile.isEmpty()) {
+            // TODO
+        }
+        
+        if (result.hasErrors()) {
+            model.addAttribute("image", image);
+            return "content/image/edit";
+        } else {
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
+            image.setContributor(contributor);
+            image.setCalendar(Calendar.getInstance());
+            imageDao.update(image);
+            
+            // TODO: store event
+            
+            return "redirect:/content";
+        }
     }
     
     /**

@@ -38,8 +38,7 @@ public class MainController {
             HttpServletRequest request, 
             HttpSession session, 
             Principal principal, 
-            Model model,
-            @RequestParam(defaultValue = "ENGLISH") Language language) {
+            Model model) {
     	logger.info("handleRequest");
         
         // Check if the Contributor has not yet provided all required details
@@ -50,15 +49,17 @@ public class MainController {
             return "redirect:/content/contributor/edit-name";
         } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
             return "redirect:/content/contributor/edit-teams";
+        } else if (contributor.getLanguage() == null) {
+            return "redirect:/content/contributor/edit-language";
         }
         
-        logger.info("language: " + language);
-        model.addAttribute("language", language);
+        logger.info("contributor.getLanguage(): " + contributor.getLanguage());
+        model.addAttribute("language", contributor.getLanguage());
         
-        List<Number> numbers = numberDao.readLatest(language);
+        List<Number> numbers = numberDao.readLatest(contributor.getLanguage());
         model.addAttribute("numbers", numbers);
         
-        List<Image> images = imageDao.readLatest(language);
+        List<Image> images = imageDao.readLatest(contributor.getLanguage());
         model.addAttribute("images", images);
     	
         return "content/main";

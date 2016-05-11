@@ -33,8 +33,6 @@ public class NumberEditController {
         
         Number number = numberDao.read(id);
         model.addAttribute("number", number);
-        
-        model.addAttribute("languages", Language.values());
 
         return "content/number/edit";
     }
@@ -53,11 +51,10 @@ public class NumberEditController {
             }
         }
         
-        // TODO: if value is changed, check for existing number
+        // TODO: if value is changed, check for existing Number
         
         if (result.hasErrors()) {
             model.addAttribute("number", number);
-            model.addAttribute("languages", Language.values());
             return "content/number/edit";
         } else {
             Contributor contributor = (Contributor) session.getAttribute("contributor");

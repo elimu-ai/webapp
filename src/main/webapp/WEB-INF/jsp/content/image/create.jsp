@@ -9,14 +9,7 @@
             <tag:formErrors modelAttribute="image" />
 
             <div class="row">
-                <div class="input-field col s12">
-                    <form:select path="language" cssErrorClass="error">
-                        <c:set var="select"><fmt:message key='select' /></c:set>
-                        <form:option value="" label="-- ${select} --" />
-                        <form:options items="${languages}" />
-                    </form:select>
-                    <form:label path="language" cssErrorClass="error"><fmt:message key='language' /></form:label>
-                </div>
+                <form:hidden path="language" value="${contributor.language}" />
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />
