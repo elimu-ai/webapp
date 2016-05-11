@@ -43,7 +43,6 @@ public class ImageCreateController {
         Image image = new Image();
         model.addAttribute("image", image);
         
-        model.addAttribute("languages", Language.values());
         model.addAttribute("imageTypes", ImageType.values());
 
         return "content/image/create";
@@ -101,7 +100,6 @@ public class ImageCreateController {
     	}
         
         if (result.hasErrors()) {
-            model.addAttribute("languages", Language.values());
             model.addAttribute("imageTypes", ImageType.values());
             return "content/image/create";
         } else {

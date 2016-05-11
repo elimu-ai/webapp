@@ -3,17 +3,6 @@
 </content:title>
 
 <content:section cssId="numberListPage">
-    <div class="row">
-        <div class="col s12">
-          <ul class="tabs">
-            <li class="tab col s3"><a <c:if test="${language == 'ARABIC'}">class="active"</c:if> href="<spring:url value='/content/number/list' />?language=ARABIC"><fmt:message key="language.ar" /></a></li>
-            <li class="tab col s3"><a <c:if test="${language == 'ENGLISH'}">class="active"</c:if> href="<spring:url value='/content/number/list' />?language=ENGLISH"><fmt:message key="language.en" /></a></li>
-            <li class="tab col s3"><a <c:if test="${language == 'SPANISH'}">class="active"</c:if> href="<spring:url value='/content/number/list' />?language=SPANISH"><fmt:message key="language.es" /></a></li>
-            <li class="tab col s3"><a <c:if test="${language == 'SWAHILI'}">class="active"</c:if> href="<spring:url value='/content/number/list' />?language=SWAHILI"><fmt:message key="language.sw" /></a></li>
-          </ul>
-        </div>
-    </div>
-    
     <div class="section row">
         <c:forEach var="number" items="${numbers}">
             <div class="col s12 m6 l4">
@@ -40,7 +29,7 @@
                             <h4>${number.value}</h4>
                         </c:otherwise>
                     </c:choose>
-                    <div class="chip">${number.language}</div>
+                    <div class="chip"><fmt:message key="language.${number.language.designator}" /></div>
                     <div class="divider" style="margin: 1em 0;"></div>
                     <a href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>

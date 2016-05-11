@@ -9,33 +9,13 @@
             <tag:formErrors modelAttribute="number" />
 
             <div class="row">
-                <div class="input-field col s12">
-                    <form:select path="language" cssErrorClass="error">
-                        <c:set var="select"><fmt:message key='select' /></c:set>
-                        <form:option value="" label="-- ${select} --" />
-                        <form:options items="${languages}" />
-                    </form:select>
-                    <form:label path="language" cssErrorClass="error"><fmt:message key='language' /></form:label>
-                    <script>
-                        $(function() {
-                            $('#language').on("change", function() {
-                                console.debug('#language on change');
-                                var language = $(this).val();
-                                console.debug('language: ' + language);
-                                if (language == "ARABIC") {
-                                    $('#symbolContainer').fadeIn();
-                                } else {
-                                    $('#symbol').val("");
-                                    $('#symbolContainer').fadeOut();
-                                }
-                            });
-                        });
-                    </script>
-                </div>
-                <div id="symbolContainer" class="input-field col s12" <c:if test="${number.language != 'ARABIC'}"> style="display: none;" </c:if> >
-                    <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
-                    <form:input path="symbol" cssErrorClass="error" />
-                </div>
+                <form:hidden path="language" value="${number.language}" />
+                <c:if test="${number.language == 'ARABIC'}">
+                    <div id="symbolContainer" class="input-field col s12" <c:if test="${number.language != 'ARABIC'}"> style="display: none;" </c:if> >
+                        <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
+                        <form:input path="symbol" cssErrorClass="error" />
+                    </div>
+                </c:if>
                 <div class="input-field col s12">
                     <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
                     <form:input path="value" cssErrorClass="error" type="number" />
@@ -106,7 +86,7 @@
                 console.debug('initializePreview');
                 var symbol = $('#symbol').val();
                 var value = $('#value').val();
-                if (symbol != "") {
+                if ((symbol != undefined) && (symbol != "")) {
                     $('#previewContent').html(symbol);
                 } else {
                     $('#previewContent').html(value);

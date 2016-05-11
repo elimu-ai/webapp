@@ -22,19 +22,19 @@ public class EditNameController {
     private ContributorDao contributorDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleEditNameRequest() {
-    	logger.info("handleEditNameRequest");
+    public String handleRequest() {
+    	logger.info("handleRequest");
 
         return "content/contributor/edit-name";
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String handleEditNameSubmit(
+    public String handleSubmit(
             HttpSession session,
             @RequestParam String firstName,
             @RequestParam String lastName,
             Model model) {
-    	logger.info("handleEditNameSubmit");
+    	logger.info("handleSubmit");
         
         // TODO: validate firstName/lastName
         

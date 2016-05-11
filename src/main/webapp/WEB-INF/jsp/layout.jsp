@@ -86,7 +86,7 @@
                           <div class="col l6 s12">
                             <h5 class="white-text"><fmt:message key="about" /> LiteracyApp</h5>
                             <p class="grey-text text-lighten-4"><fmt:message key="frontpage.open.source.description" /></p>
-                            <p class="grey-text text-lighten-4"><fmt:message key="see.our" /> <a class="white-text" href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
+                            <p class="grey-text text-lighten-4"><fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
                           </div>
                           <div class="col l3 s12">
                             <h5 class="white-text"><fmt:message key="join.the.community" /></h5>
