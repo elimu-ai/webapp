@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <literacyapp.model.version>1.0.11</literacyapp.model.version>
         <hibernate.version>4.3.5.Final</hibernate.version>
-        <jetty.version>9.3.8.v20160314</jetty.version>
+        <jetty.version>8.1.14.v20131031</jetty.version>
         <spring.version>4.2.1.RELEASE</spring.version>
         <spring.security.version>3.2.0.RELEASE</spring.security.version>
         <surefire-plugin.version>2.17</surefire-plugin.version>
@@ -35,7 +35,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
+                <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
@@ -213,7 +213,7 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.eclipse.jetty</groupId>
+                        <groupId>org.mortbay.jetty</groupId>
                         <artifactId>jetty-jspc-maven-plugin</artifactId>
                         <version>${jetty.version}</version>
                         <executions>
