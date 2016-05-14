@@ -13,7 +13,7 @@
         <hibernate.version>4.3.9.Final</hibernate.version>
         <jetty.version>8.1.14.v20131031</jetty.version>
         <spring.version>4.2.6.RELEASE</spring.version>
-        <spring.security.version>4.1.0.RELEASE</spring.security.version>
+        <spring.security.version>3.2.9.RELEASE</spring.security.version>
         <surefire-plugin.version>2.19.1</surefire-plugin.version>
     </properties>
 
