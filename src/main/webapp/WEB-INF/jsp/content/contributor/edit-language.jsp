@@ -7,6 +7,12 @@
         <h4><content:gettitle /></h4>
         <div class="card-panel">
             <form method="POST">
+                <c:if test="${not empty errorCode}">
+                    <div id="errorPanel" class="card-panel red lighten-3">
+                        <fmt:message key="${errorCode}" />
+                    </div>
+                </c:if>
+                
                 <div class="row">
                     <div class="input-field col s12">
                         <select id="language" name="language">

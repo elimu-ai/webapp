@@ -34,20 +34,23 @@ public class EditTeamsController {
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
-            @RequestParam Set<Team> teams,
+            @RequestParam(required = false) Set<Team> teams,
             Model model
     ) {
     	logger.info("handleSubmit");
         
-        // TODO: validate selection
-        
         logger.info("teams: " + teams);
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        contributor.setTeams(teams);
-        contributorDao.update(contributor);
-        session.setAttribute("contributor", contributor);
-    	
-        return "redirect:/content";
+        if (teams == null) {
+            model.addAttribute("errorCode", "null");
+            return "content/contributor/edit-teams";
+        } else {        
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
+            contributor.setTeams(teams);
+            contributorDao.update(contributor);
+            session.setAttribute("contributor", contributor);
+
+            return "redirect:/content";
+        }
     }
 }

@@ -1,7 +1,6 @@
 package org.literacyapp.model;
 
 import java.util.Calendar;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +21,11 @@ public class Number extends BaseEntity {
     private Integer value;
     
     private String symbol;
+    
+    @OneToOne
+    private Word word;
+    
+    private int[] dominantColor; // RGB array
     
     @OneToOne
     private Contributor contributor;
@@ -52,7 +56,23 @@ public class Number extends BaseEntity {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
+    
+    public Word getWord() {
+        return word;
+    }
 
+    public void setWord(Word word) {
+        this.word = word;
+    }
+
+    public int[] getDominantColor() {
+        return dominantColor;
+    }
+
+    public void setDominantColor(int[] dominantColor) {
+        this.dominantColor = dominantColor;
+    }
+    
     public Contributor getContributor() {
         return contributor;
     }

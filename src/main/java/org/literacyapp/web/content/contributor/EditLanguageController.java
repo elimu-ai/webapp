@@ -42,15 +42,19 @@ public class EditLanguageController {
     ) {
     	logger.info("handleSubmit");
         
-        // TODO: validate selection
-        
         logger.info("language: " + language);
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        contributor.setLanguage(language);
-        contributorDao.update(contributor);
-        session.setAttribute("contributor", contributor);
-    	
-        return "redirect:/content";
+        if (language == null) {
+            model.addAttribute("errorCode", "null");
+            model.addAttribute("languages", Language.values());
+            return "content/contributor/edit-language";
+        } else {        
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
+            contributor.setLanguage(language);
+            contributorDao.update(contributor);
+            session.setAttribute("contributor", contributor);
+
+            return "redirect:/content";
+        }
     }
 }
