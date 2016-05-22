@@ -14,6 +14,12 @@
             <div class="divider"></div>
 
             <form method="POST">
+                <c:if test="${not empty errorCode}">
+                    <div id="errorPanel" class="card-panel red lighten-3">
+                        <fmt:message key="${errorCode}" />
+                    </div>
+                </c:if>
+                
                 <p>
                     <input type="checkbox" name="teams" id="ANALYTICS" value="ANALYTICS" <c:if test="${fn:contains(contributor.teams, 'ANALYTICS')}">checked="checked"</c:if> />
                     <label for="ANALYTICS"><b><fmt:message key="team.ANALYTICS" /></b> <br />(<fmt:message key="team.ANALYTICS.description" />)</label>
