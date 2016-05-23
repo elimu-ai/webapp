@@ -23,7 +23,7 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
                 .setParameter("value", value)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Number \"" + value + "\" was not found");
+            logger.warn("Number \"" + value + "\" was not found for language " + language);
             return null;
         }
     }

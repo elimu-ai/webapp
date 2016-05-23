@@ -42,7 +42,7 @@ public class EditTeamsController {
         logger.info("teams: " + teams);
         
         if (teams == null) {
-            model.addAttribute("errorCode", "null");
+            model.addAttribute("errorCode", "NotNull.teams");
             return "content/contributor/edit-teams";
         } else {        
             Contributor contributor = (Contributor) session.getAttribute("contributor");

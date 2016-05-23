@@ -3,7 +3,7 @@
 </content:title>
 
 <content:section cssId="issueManagementPage">
-    <p>Each teams has its own Trello board:</p>
+    <p>Each team has its own Trello board:</p>
     <ul>
         <c:if test="${fn:contains(contributor.teams, 'ANALYTICS')}">
             <li>

@@ -6,6 +6,12 @@
     <h4><fmt:message key="latest.uploads" /></h4>
     
     <div class="section row">
+        <c:if test="${(empty numbers) && (empty images)}">
+            <p>
+                <fmt:message key="to.add.new.content.click.the.button.below" />
+            </p>
+        </c:if>
+        
         <c:forEach var="number" items="${numbers}">
             <div class="col s12 m6 l4">
                 <div class="card-panel">

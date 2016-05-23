@@ -1,9 +1,15 @@
 <content:title>
-    <fmt:message key="numbers" />
+    <fmt:message key="images" />
 </content:title>
 
 <content:section cssId="numberListPage">
     <div class="section row">
+        <c:if test="${empty images}">
+            <p>
+                <fmt:message key="to.add.new.content.click.the.button.below" />
+            </p>
+        </c:if>
+        
         <c:forEach var="image" items="${images}">
             <div class="col s12 m6 l4">
                 <div class="card">
