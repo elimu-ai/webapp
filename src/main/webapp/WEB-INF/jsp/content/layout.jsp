@@ -36,15 +36,18 @@
                                 <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x52.png' />" alt="LiteracyApp" />
                             </a>
                         </li>
+                        
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="community" /></b></li>
                         <li><a href="<spring:url value='/content/community/contributors' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
                         <li><a href="https://literacyapp.slack.com" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
                         <li><a href="<spring:url value='/content/community/issue-management' />"><i class="material-icons left">assignment</i><fmt:message key="issue.management" /></a></li>
+                        
                         <li class="divider"></li>
                         <%--<li class="grey-text"><b><fmt:message key="curriculum" /></b></li>
                         <li><a href="<spring:url value='/content/module/list' />"><i class="material-icons left">view_module</i><fmt:message key="modules" /> (age 5-6)</a></li>
                         <li><a href="<spring:url value='/content/module/list' />"><i class="material-icons left">view_module</i><fmt:message key="modules" /> (age 7-10)</a></li>
+                        
                         <li class="divider"></li>--%>
                         <li class="grey-text"><b><fmt:message key="application.content" /></b></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
@@ -53,6 +56,10 @@
                         <li><a href="<spring:url value='/content/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
                         <li><a href="<spring:url value='/content/image/list' />"><i class="material-icons left">image</i><fmt:message key="images" /></a></li>
                         <li><a href="<spring:url value='/content/video/list' />"><i class="material-icons left">movie</i><fmt:message key="videos" /></a></li>
+                        
+                        <li class="divider"></li>
+                        <li class="grey-text"><b><fmt:message key="language.${contributor.language.designator}" /></b></li>
+                        <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>

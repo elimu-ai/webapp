@@ -45,7 +45,7 @@ public class EditLanguageController {
         logger.info("language: " + language);
         
         if (language == null) {
-            model.addAttribute("errorCode", "null");
+            model.addAttribute("errorCode", "NotNull.language");
             model.addAttribute("languages", Language.values());
             return "content/contributor/edit-language";
         } else {        

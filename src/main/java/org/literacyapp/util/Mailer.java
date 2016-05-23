@@ -8,6 +8,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -47,7 +49,9 @@ public class Mailer {
 
         logger.info("Sending e-mail to " + simpleMailMessage.getTo()[0] + " with subject \"" + simpleMailMessage.getSubject() + "\"...");
         logger.info("Text: " + simpleMailMessage.getText());
-        javaMailSenderImpl.send(simpleMailMessage);
+        if (EnvironmentContextLoaderListener.env != Environment.DEV) {
+            javaMailSenderImpl.send(simpleMailMessage);
+        }
     }
     
     public static void sendHtml(String to, String cc, String from, String subject, String title, String text) {
@@ -130,7 +134,9 @@ public class Mailer {
             logger.info("Sending MIME message to " + to + " with subject \"" + subject + "\"...");
             logger.info("title: " + title);
             logger.info("text: " + text);
-            javaMailSenderImpl.send(mimeMessage);
+            if (EnvironmentContextLoaderListener.env != Environment.DEV) {
+                javaMailSenderImpl.send(mimeMessage);
+            }
         } catch (MessagingException ex) {
             logger.error(null, ex);
         }
@@ -226,7 +232,9 @@ public class Mailer {
             logger.info("text: " + text);
             logger.info("buttonText: " + buttonText);
             logger.info("buttonUrl: " + buttonUrl);
-            javaMailSenderImpl.send(mimeMessage);
+            if (EnvironmentContextLoaderListener.env != Environment.DEV) {
+                javaMailSenderImpl.send(mimeMessage);
+            }
         } catch (MessagingException ex) {
             logger.error(null, ex);
         }

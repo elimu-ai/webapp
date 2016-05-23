@@ -9,7 +9,7 @@ import org.literacyapp.model.enums.Language;
 
 public interface ImageDao extends GenericDao<Image> {
 	
-    Image read(String title) throws DataAccessException;
+    Image read(String title, Language language) throws DataAccessException;
 
     List<Image> readAllOrdered(Language language) throws DataAccessException;
     
