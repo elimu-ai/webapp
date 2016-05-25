@@ -26,6 +26,6 @@ public class NumberDeleteController {
         Number number = numberDao.read(id);
         numberDao.delete(number);
 
-        return "content/number/list";
+        return "redirect:/content/number/list";
     }
 }

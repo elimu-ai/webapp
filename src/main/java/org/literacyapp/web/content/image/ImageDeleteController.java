@@ -26,6 +26,6 @@ public class ImageDeleteController {
         Image image = imageDao.read(id);
         imageDao.delete(image);
 
-        return "content/image/list";
+        return "redirect:/content/image/list";
     }
 }
