@@ -11,6 +11,7 @@ import org.literacyapp.rest.util.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,9 +23,9 @@ public class WordRestController {
     @Autowired
     private WordDao wordDao;
     
-    @RequestMapping("/{language}")
-    public List<WordJson> readAll(@PathVariable Language language) {
-        logger.info("readAll");
+    @RequestMapping("/read")
+    public List<WordJson> read(@RequestParam Language language) {
+        logger.info("read");
         
         logger.info("language: " + language);
         

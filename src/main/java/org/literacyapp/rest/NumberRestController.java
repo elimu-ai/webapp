@@ -22,8 +22,8 @@ public class NumberRestController {
     private NumberDao numberDao;
     
     @RequestMapping("/read")
-    public List<NumberJson> readAll(@RequestParam Language language) {
-        logger.info("readAll");
+    public List<NumberJson> read(@RequestParam Language language) {
+        logger.info("read");
         
         logger.info("language: " + language);
         
