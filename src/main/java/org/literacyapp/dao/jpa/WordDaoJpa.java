@@ -5,47 +5,47 @@ import javax.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.Number;
-import org.literacyapp.dao.NumberDao;
+import org.literacyapp.dao.WordDao;
+import org.literacyapp.model.Word;
 import org.literacyapp.model.enums.Language;
 
-public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
+public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
 
     @Override
-    public Number readByValue(Language language, Integer value) throws DataAccessException {
+    public Word readByText(Language language, String text) throws DataAccessException {
         try {
-            return (Number) em.createQuery(
-                "SELECT n " +
-                "FROM Number n " +
-                "WHERE n.language = :language " +
-                "AND n.value = :value")
+            return (Word) em.createQuery(
+                "SELECT w " +
+                "FROM Word w " +
+                "WHERE w.language = :language " +
+                "AND w.text = :text")
                 .setParameter("language", language)
-                .setParameter("value", value)
+                .setParameter("text", text)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Number \"" + value + "\" was not found for language " + language);
+            logger.warn("Word \"" + text + "\" was not found for language " + language);
             return null;
         }
     }
 
     @Override
-    public List<Number> readAllOrdered(Language language) throws DataAccessException {
+    public List<Word> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
-            "SELECT n " +
-            "FROM Number n " +
-            "WHERE n.language = :language " +
-            "ORDER BY n.value")
+            "SELECT w " +
+            "FROM Word w " +
+            "WHERE w.language = :language " +
+            "ORDER BY w.text")
             .setParameter("language", language)
             .getResultList();
     }
 
     @Override
-    public List<Number> readLatest(Language language) throws DataAccessException {
+    public List<Word> readLatest(Language language) throws DataAccessException {
         return em.createQuery(
-            "SELECT n " +
-            "FROM Number n " +
-            "WHERE n.language = :language " +
-            "ORDER BY n.calendar DESC")
+            "SELECT w " +
+            "FROM Word w " +
+            "WHERE w.language = :language " +
+            "ORDER BY w.calendar DESC")
             .setParameter("language", language)
             .setMaxResults(10)
             .getResultList();
