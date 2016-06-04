@@ -15,7 +15,7 @@
                         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
                         http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
 
-    <context:property-placeholder location="classpath:*.properties"/>
+    <context:property-placeholder location="classpath:*.properties" />
 
     <!-- JSR-303 support will be detected on classpath and enabled automatically -->
     <mvc:annotation-driven conversion-service="conversionService"/>
@@ -28,9 +28,9 @@
         </property>
     </bean>
 
-    <context:component-scan base-package="org.literacyapp"/>
+    <context:component-scan base-package="org.literacyapp" />
 
-    <task:annotation-driven/>
+    <task:annotation-driven />
 
     <!--
              - This bean resolves specific types of exceptions to corresponding logical
@@ -60,7 +60,7 @@
              - be the first view resolver to be used after the delegating content
              - negotiating view resolver.
       -->
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1" />
 
     <!--
              - This bean configures the 'prefix' and 'suffix' properties of
@@ -69,10 +69,10 @@
              - will be mapped to "/WEB-INF/jsp/vets.jsp".
      -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp" p:order="2"/>
+          p:suffix=".jsp" p:order="2" />
 
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-    <bean name="viewController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+    <bean name="viewController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
@@ -97,7 +97,7 @@
     <mvc:interceptors>
         <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" 
               p:paramName="lang" />
-        <bean class="org.literacyapp.web.servlet.i18n.LocaleChangeInterceptor"/>
+        <bean class="org.literacyapp.web.servlet.i18n.LocaleChangeInterceptor" />
     </mvc:interceptors>
     
     <bean id="localeResolver" class="org.literacyapp.web.servlet.i18n.DomainLocaleResolver"

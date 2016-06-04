@@ -64,4 +64,5 @@
         <bean id="dbMigrationDao" class="org.literacyapp.dao.jpa.DbMigrationDaoJpa" />
         <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
         <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
+        <bean id="wordDao" class="org.literacyapp.dao.jpa.WordDaoJpa" />
 </beans>
