@@ -8,8 +8,8 @@ import org.literacyapp.model.enums.Language;
 import org.literacyapp.model.json.NumberJson;
 import org.literacyapp.rest.util.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,8 +21,8 @@ public class NumberRestController {
     @Autowired
     private NumberDao numberDao;
     
-    @RequestMapping("/{language}")
-    public List<NumberJson> readAll(@PathVariable Language language) {
+    @RequestMapping("/read")
+    public List<NumberJson> readAll(@RequestParam Language language) {
         logger.info("readAll");
         
         logger.info("language: " + language);
