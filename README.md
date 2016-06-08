@@ -12,7 +12,7 @@ See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp
 [Trello](https://trello.com/b/les4HgKG/team-development) (send an e-mail to info@literacyapp.org to receive an invite)
 
 ## Chat
-[Slack](https://literacyapp.slack.com/messages/team-development) (send an e-mail to info@literacyapp.org to receive an invite)
+[Slack](https://literacyapp.slack.com/messages/team-development) (register at http://literacyapp.org/sign-on to receive an invite)
 
 ## Mailing list
 Sign up at http://eepurl.com/bGihkr
