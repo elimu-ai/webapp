@@ -1,4 +1,4 @@
-![logo-text-256x52](https://cloud.githubusercontent.com/assets/15718174/12427414/69022b0c-bedf-11e5-99d4-172819f03de2.png)
+![logo-text-256x52](https://cloud.githubusercontent.com/assets/15718174/16346977/75b2f3b8-3a4a-11e6-85a0-2c3b6742b8a9.png)
 
 Web application: http://literacyapp.org
 
