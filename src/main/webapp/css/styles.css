@@ -16,8 +16,10 @@ body {
     font-weight: 200;
 }
 #logo-container img {
-    max-height: 1em;
+    max-height: 1.15em;
     vertical-align: text-top;
+    background-color: #FFF;
+    border-radius: 50%
 }
 
 #index-banner {
