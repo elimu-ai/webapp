@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Number;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +29,10 @@ public class NumberListController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        logger.info("contributor.getLanguage(): " + contributor.getLanguage());
-        model.addAttribute("language", contributor.getLanguage());
+        logger.info("contributor.getLocale(): " + contributor.getLocale());
+        model.addAttribute("locale", contributor.getLocale());
         
-        List<Number> numbers = numberDao.readLatest(contributor.getLanguage());
+        List<Number> numbers = numberDao.readLatest(contributor.getLocale());
         model.addAttribute("numbers", numbers);
 
         return "content/number/list";

@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import org.literacyapp.model.Image;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 
 public interface ImageDao extends GenericDao<Image> {
 	
-    Image read(String title, Language language) throws DataAccessException;
+    Image read(String title, Locale locale) throws DataAccessException;
 
-    List<Image> readAllOrdered(Language language) throws DataAccessException;
+    List<Image> readAllOrdered(Locale locale) throws DataAccessException;
     
-    List<Image> readLatest(Language language) throws DataAccessException;
+    List<Image> readLatest(Locale locale) throws DataAccessException;
 }

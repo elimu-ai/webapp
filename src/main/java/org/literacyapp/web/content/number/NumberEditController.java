@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Number;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +45,7 @@ public class NumberEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        if (number.getLanguage() == Language.ARABIC) {
+        if (number.getLocale() == Locale.AR) {
             if (StringUtils.isBlank(number.getSymbol())) {
                 result.rejectValue("symbol", "NotNull");
             }

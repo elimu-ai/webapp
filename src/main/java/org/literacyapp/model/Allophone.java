@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import org.literacyapp.model.enums.ConsonantPlace;
 import org.literacyapp.model.enums.ConsonantType;
 import org.literacyapp.model.enums.ConsonantVoicing;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.LipRounding;
 import org.literacyapp.model.enums.SoundType;
 import org.literacyapp.model.enums.VowelFrontness;
@@ -24,7 +24,7 @@ public class Allophone {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Language language;
+    private Locale locale;
     
     @NotNull
     private String valueIpa; // IPA - International Phonetic Alphabet
@@ -62,12 +62,12 @@ public class Allophone {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar calendar;
 
-    public Language getLanguage() {
-        return language;
+    public Locale getLocale() {
+        return locale;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 
     public String getValueIpa() {

@@ -27,10 +27,10 @@ public class AllophoneListController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        logger.info("contributor.getLanguage(): " + contributor.getLanguage());
-        model.addAttribute("language", contributor.getLanguage());
+        logger.info("contributor.getLocale(): " + contributor.getLocale());
+        model.addAttribute("locale", contributor.getLocale());
         
-        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLanguage());
+        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
         model.addAttribute("allophones", allophones);
 
         return "content/allophone/list";

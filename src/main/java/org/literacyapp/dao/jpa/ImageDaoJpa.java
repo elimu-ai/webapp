@@ -8,45 +8,47 @@ import org.springframework.dao.DataAccessException;
 
 import org.literacyapp.model.Image;
 import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 
 public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
 
     @Override
-    public Image read(String title, Language language) throws DataAccessException {
+    public Image read(String title, Locale locale) throws DataAccessException {
         try {
             return (Image) em.createQuery(
                 "SELECT i " +
                 "FROM Image i " +
                 "WHERE i.title = :title " +
-                "AND i.language = :language")
+                "AND i.locale = :locale")
                 .setParameter("title", title)
-                .setParameter("language", language)
+                .setParameter("locale", locale)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Image \"" + title + "\" was not found for language " + language);
+            logger.warn("Image \"" + title + "\" was not found for locale " + locale);
             return null;
         }
     }
 
     @Override
-    public List<Image> readAllOrdered(Language language) throws DataAccessException {
+    public List<Image> readAllOrdered(Locale locale) throws DataAccessException {
         return em.createQuery(
             "SELECT i " +
             "FROM Image i " +
+            "WHERE i.locale = :locale " +
             "ORDER BY i.title")
+            .setParameter("locale", locale)
             .getResultList();
     }
 
     @Override
-    public List<Image> readLatest(Language language) throws DataAccessException {
+    public List<Image> readLatest(Locale locale) throws DataAccessException {
         return em.createQuery(
             "SELECT i " +
             "FROM Image i " +
-            "WHERE i.language = :language " +
+            "WHERE i.locale = :locale " +
             "ORDER BY i.calendar DESC")
             .setMaxResults(10)
-            .setParameter("language", language)
+            .setParameter("locale", locale)
             .getResultList();
     }
 }

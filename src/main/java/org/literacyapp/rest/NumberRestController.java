@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.NumberJson;
 import org.literacyapp.rest.util.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,13 @@ public class NumberRestController {
     private NumberDao numberDao;
     
     @RequestMapping("/read")
-    public List<NumberJson> read(@RequestParam Language language) {
+    public List<NumberJson> read(@RequestParam Locale locale) {
         logger.info("read");
         
-        logger.info("language: " + language);
+        logger.info("locale: " + locale);
         
         List<NumberJson> numberJsons = new ArrayList<>();
-        for (org.literacyapp.model.Number number : numberDao.readAllOrdered(language)) {
+        for (org.literacyapp.model.Number number : numberDao.readAllOrdered(locale)) {
             NumberJson numberJson = JavaToJsonConverter.getNumberJson(number);
             numberJsons.add(numberJson);
         }

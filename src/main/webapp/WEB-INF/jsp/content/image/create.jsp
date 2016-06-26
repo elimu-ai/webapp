@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="image" />
 
             <div class="row">
-                <form:hidden path="language" value="${contributor.language}" />
+                <form:hidden path="locale" value="${contributor.locale}" />
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />

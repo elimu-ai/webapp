@@ -10,7 +10,7 @@ import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Image;
 import org.literacyapp.model.enums.ImageType;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
