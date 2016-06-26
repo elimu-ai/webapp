@@ -45,6 +45,8 @@ public class Contributor extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Team> teams;
     
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Locale locale;
 
     public String getEmail() {
