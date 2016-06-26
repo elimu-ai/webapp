@@ -58,7 +58,7 @@
                         <li><a href="<spring:url value='/content/video/list' />"><i class="material-icons left">movie</i><fmt:message key="videos" /></a></li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="language.${contributor.language.designator}" /></b></li>
+                        <li class="grey-text"><b><fmt:message key="language.${contributor.locale.language}" /></b></li>
                         <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
@@ -80,7 +80,7 @@
                         <ul id='contributorDropdown' class='dropdown-content'>
                             <li><a href="<spring:url value='/content/contributor/edit-teams' />"><i class="material-icons left">group</i><fmt:message key="select.teams" /></a></li>
                             <li class="divider"></li>
-                            <li><a href="<spring:url value='/content/contributor/edit-language' />"><i class="material-icons left">public</i><fmt:message key="select.language" /></a></li>
+                            <li><a href="<spring:url value='/content/contributor/edit-locale' />"><i class="material-icons left">public</i><fmt:message key="select.language" /></a></li>
                             <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
                             <%--<li class="divider"></li>

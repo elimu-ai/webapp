@@ -12,7 +12,7 @@ public class JavaToJsonConverter {
         } else {
             NumberJson numberJson = new NumberJson();
             numberJson.setId(number.getId());
-            numberJson.setLanguage(number.getLanguage());
+            numberJson.setLocale(number.getLocale());
             numberJson.setValue(number.getValue());
             numberJson.setSymbol(number.getSymbol());
             numberJson.setWord(getWordJson(number.getWord()));
@@ -27,7 +27,7 @@ public class JavaToJsonConverter {
         } else {
             WordJson wordJson = new WordJson();
             wordJson.setId(word.getId());
-            wordJson.setLanguage(word.getLanguage());
+            wordJson.setLocale(word.getLocale());
             wordJson.setText(word.getText());
             return wordJson;
         }

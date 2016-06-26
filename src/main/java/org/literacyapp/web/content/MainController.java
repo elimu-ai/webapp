@@ -13,7 +13,7 @@ import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Image;
 import org.literacyapp.model.Number;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,17 +49,17 @@ public class MainController {
             return "redirect:/content/contributor/edit-name";
         } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
             return "redirect:/content/contributor/edit-teams";
-        } else if (contributor.getLanguage() == null) {
-            return "redirect:/content/contributor/edit-language";
+        } else if (contributor.getLocale() == null) {
+            return "redirect:/content/contributor/edit-locale";
         }
         
-        logger.info("contributor.getLanguage(): " + contributor.getLanguage());
-        model.addAttribute("language", contributor.getLanguage());
+        logger.info("contributor.getLocale(): " + contributor.getLocale());
+        model.addAttribute("locale", contributor.getLocale());
         
-        List<Number> numbers = numberDao.readLatest(contributor.getLanguage());
+        List<Number> numbers = numberDao.readLatest(contributor.getLocale());
         model.addAttribute("numbers", numbers);
         
-        List<Image> images = imageDao.readLatest(contributor.getLanguage());
+        List<Image> images = imageDao.readLatest(contributor.getLocale());
         model.addAttribute("images", images);
     	
         return "content/main";

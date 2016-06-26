@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Word;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.WordJson;
 import org.literacyapp.rest.util.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +24,13 @@ public class WordRestController {
     private WordDao wordDao;
     
     @RequestMapping("/read")
-    public List<WordJson> read(@RequestParam Language language) {
+    public List<WordJson> read(@RequestParam Locale locale) {
         logger.info("read");
         
-        logger.info("language: " + language);
+        logger.info("locale: " + locale);
         
         List<WordJson> wordJsons = new ArrayList<>();
-        for (Word word : wordDao.readAllOrdered(language)) {
+        for (Word word : wordDao.readAllOrdered(locale)) {
             WordJson wordJson = JavaToJsonConverter.getWordJson(word);
             wordJsons.add(wordJson);
         }

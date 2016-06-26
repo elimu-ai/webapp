@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="image" />
 
             <div class="row">
-                <form:hidden path="language" value="${image.language}" />
+                <form:hidden path="locale" value="${image.locale}" />
                 <form:hidden path="imageType" value="${number.imageType}" />
                 <form:hidden path="contentType" value="${number.contentType}" />
                 <form:hidden path="dominantColor" value="${number.dominantColor}" />

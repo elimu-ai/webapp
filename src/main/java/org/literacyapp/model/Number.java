@@ -8,14 +8,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 
 @Entity
 public class Number extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Language language;
+    private Locale locale;
 
     @NotNull
     private Integer value;
@@ -33,12 +33,12 @@ public class Number extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar calendar;
 
-    public Language getLanguage() {
-        return language;
+    public Locale getLocale() {
+        return locale;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 
     public Integer getValue() {

@@ -11,7 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.Role;
 import org.literacyapp.model.enums.Team;
 
@@ -45,7 +45,7 @@ public class Contributor extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Team> teams;
     
-    private Language language;
+    private Locale locale;
 
     public String getEmail() {
         return email;
@@ -143,11 +143,11 @@ public class Contributor extends BaseEntity {
         this.teams = teams;
     }
 
-    public Language getLanguage() {
-        return language;
+    public Locale getLocale() {
+        return locale;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }

@@ -3,7 +3,7 @@ package org.literacyapp.web.content.module;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Image;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +24,9 @@ public class ModuleActivityController {
     public String handleRequest(Model model, @PathVariable Long activityId) {
     	logger.info("handleRequest");
         
-        Image imageLion = imageDao.read("Lion", Language.ENGLISH);
-        Image imageTiger = imageDao.read("Tiger", Language.ENGLISH);
-        Image imageCat = imageDao.read("Cat", Language.ENGLISH);
+        Image imageLion = imageDao.read("Lion", Locale.EN);
+        Image imageTiger = imageDao.read("Tiger", Locale.EN);
+        Image imageCat = imageDao.read("Cat", Locale.EN);
         int random = (int) (Math.random() * 3);
         if (random == 0) {
             model.addAttribute("image1", imageLion);

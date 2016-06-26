@@ -4,24 +4,24 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 
 @Entity
 public class Audio extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Language language;
+    private Locale locale;
 
     @NotNull
     private String title;
 
-    public Language getLanguage() {
-        return language;
+    public Locale getLocale() {
+        return locale;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
     
     public String getTitle() {

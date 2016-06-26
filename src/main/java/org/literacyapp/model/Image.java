@@ -11,14 +11,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.literacyapp.model.enums.ImageType;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 
 @Entity
 public class Image extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Language language;
+    private Locale locale;
 
     @NotNull
     private String title;
@@ -47,12 +47,12 @@ public class Image extends BaseEntity {
     private String attributionUrl;
     // TODO: store license type
 
-    public Language getLanguage() {
-        return language;
+    public Locale getLocale() {
+        return locale;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 
     public String getTitle() {

@@ -12,7 +12,7 @@ import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.Image;
 import org.literacyapp.model.enums.ImageType;
-import org.literacyapp.model.enums.Language;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.util.ImageColorHelper;
 import org.literacyapp.util.ImageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

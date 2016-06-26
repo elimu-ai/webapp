@@ -30,7 +30,7 @@
                     
                     <div class="card-content">
                         <h4>${image.title}</h4>
-                        <div class="chip"><fmt:message key="language.${image.language.designator}" /></div>
+                        <div class="chip"><fmt:message key="language.${image.locale.language}" /></div>
                         <div class="divider" style="margin: 1em 0;"></div>
                         <a href="<spring:url value='/content/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>

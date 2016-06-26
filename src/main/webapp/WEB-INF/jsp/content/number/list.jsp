@@ -28,14 +28,14 @@
                         <div class="divider"></div>
                     </c:if>
                     <c:choose>
-                        <c:when test="${number.language == 'ARABIC'}">
+                        <c:when test="${number.locale.language == 'ar'}">
                             <h4><c:out value="${number.symbol}" /> (${number.value})</h4>
                         </c:when>
                         <c:otherwise>
                             <h4>${number.value}</h4>
                         </c:otherwise>
                     </c:choose>
-                    <div class="chip"><fmt:message key="language.${number.language.designator}" /></div>
+                    <div class="chip"><fmt:message key="language.${number.locale.language}" /></div>
                     <div class="divider" style="margin: 1em 0;"></div>
                     <a href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>
