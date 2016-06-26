@@ -138,6 +138,13 @@ public class SignOnControllerFacebook {
                 // Store new Contributor in database
                 contributor.setRole(Role.CONTRIBUTOR);
                 contributor.setRegistrationTime(Calendar.getInstance());
+                
+                if (contributor.getEmail() == null) {
+                    request.getSession().setAttribute("contributor", contributor);
+                    CustomAuthenticationManager.authenticateUser(contributor.getRole());
+                    return "redirect:/content/contributor/add-email";
+                }
+                
                 contributorDao.create(contributor);
                 
                 // Send welcome e-mail
