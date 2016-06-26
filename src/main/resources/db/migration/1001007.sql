@@ -1,11 +1,5 @@
 # 1.1.7
 
-UPDATE Allophone SET locale = 'AR' WHERE language = 'ARABIC';
-UPDATE Allophone SET locale = 'EN' WHERE language = 'ENGLISH';
-UPDATE Allophone SET locale = 'ES' WHERE language = 'SPANISH';
-UPDATE Allophone SET locale = 'SW' WHERE language = 'SWAHILI';
-ALTER TABLE Allophone DROP COLUMN language;
-
 UPDATE Audio SET locale = 'AR' WHERE language = 'ARABIC';
 UPDATE Audio SET locale = 'EN' WHERE language = 'ENGLISH';
 UPDATE Audio SET locale = 'ES' WHERE language = 'SPANISH';
