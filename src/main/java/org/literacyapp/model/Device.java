@@ -3,11 +3,13 @@ package org.literacyapp.model;
 import java.util.Calendar;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Device extends BaseEntity {
 
     @NotNull
