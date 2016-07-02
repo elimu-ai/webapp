@@ -134,12 +134,12 @@ public class SignOnControllerGoogle {
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
             if (existingContributor == null) {
                 // Store new Contributor in database
+                contributor.setRegistrationTime(Calendar.getInstance());
                 if (contributor.getEmail().endsWith("@literacyapp.org")) {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 } else {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
                 }
-                contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 
                 // Send welcome e-mail

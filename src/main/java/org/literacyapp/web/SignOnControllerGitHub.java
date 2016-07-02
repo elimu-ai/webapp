@@ -163,19 +163,18 @@ public class SignOnControllerGitHub {
                 existingContributor = contributorDao.readByProviderIdGitHub(contributor.getProviderIdGitHub());
             }
             if (existingContributor == null) {
+                // Store new Contributor in database
+                contributor.setRegistrationTime(Calendar.getInstance());
+                if (StringUtils.isNotBlank(contributor.getEmail()) && contributor.getEmail().endsWith("@literacyapp.org")) {
+                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
+                } else {
+                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+                }
                 if (contributor.getEmail() == null) {
                     request.getSession().setAttribute("contributor", contributor);
                     new CustomAuthenticationManager().authenticateUser(contributor);
                     return "redirect:/content/contributor/add-email";
                 }
-                
-                // Store new Contributor in database
-                if (contributor.getEmail().endsWith("@literacyapp.org")) {
-                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
-                } else {
-                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
-                }
-                contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 
                 // Send welcome e-mail
