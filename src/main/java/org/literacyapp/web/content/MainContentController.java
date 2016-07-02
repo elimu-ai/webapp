@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/content")
-public class MainController {
+public class MainContentController {
     
     private final Logger logger = Logger.getLogger(getClass());
     

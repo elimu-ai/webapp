@@ -2,7 +2,9 @@ package org.literacyapp.web;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -133,6 +135,11 @@ public class SignOnControllerGoogle {
             if (existingContributor == null) {
                 // Store new Contributor in database
                 contributor.setRole(Role.CONTRIBUTOR);
+                if (contributor.getEmail().endsWith("@literacyapp.org")) {
+//                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
+                } else {
+                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+                }
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 

@@ -1,6 +1,8 @@
 package org.literacyapp.web;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -48,6 +50,7 @@ public class SignOnController {
                 contributor.setFirstName("Test");
                 contributor.setLastName("Contributor");
                 contributor.setRole(Role.CONTRIBUTOR);
+                contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
             }
