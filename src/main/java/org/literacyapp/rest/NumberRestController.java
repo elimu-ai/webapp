@@ -21,9 +21,9 @@ public class NumberRestController {
     @Autowired
     private NumberDao numberDao;
     
-    @RequestMapping("/read")
-    public List<NumberJson> read(@RequestParam Locale locale) {
-        logger.info("read");
+    @RequestMapping("/list")
+    public List<NumberJson> list(@RequestParam Locale locale) {
+        logger.info("list");
         
         logger.info("locale: " + locale);
         

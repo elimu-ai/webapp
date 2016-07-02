@@ -1,6 +1,8 @@
 package org.literacyapp.rest;
 
+import java.util.Calendar;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 import org.literacyapp.dao.DeviceDao;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.json.DeviceJson;
@@ -8,6 +10,8 @@ import org.literacyapp.rest.util.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,9 +23,35 @@ public class DeviceRestController {
     @Autowired
     private DeviceDao deviceDao;
     
+    @RequestMapping("/create")
+    public Device create(
+            @RequestParam String deviceId,
+            @RequestParam String deviceModel,
+            @RequestParam Integer osVersion,
+            @RequestParam String locale,
+            @RequestParam Boolean rooted
+    ) {
+        logger.info("create");
+        
+        logger.info("deviceId: " + deviceId);
+        Device device = deviceDao.read(deviceId);
+        if (device == null) {
+            device = new Device();
+            device.setDeviceId(deviceId);
+            device.setDeviceModel(deviceModel);
+            device.setTimeRegistered(Calendar.getInstance());
+            device.setOsVersion(osVersion);
+            device.setLocale(locale);
+            device.setRooted(rooted);
+            deviceDao.create(device);
+        }
+        
+        return device;
+    }
+    
     @RequestMapping("/read/{deviceId}")
-    public DeviceJson readDeviceId(@PathVariable String deviceId) {
-        logger.info("readDeviceId");
+    public DeviceJson read(@PathVariable String deviceId) {
+        logger.info("read");
         
         logger.info("deviceId: " + deviceId);
         Device device = deviceDao.read(deviceId);
@@ -29,5 +59,5 @@ public class DeviceRestController {
         return deviceJson;
     }
     
-    // TODO: create
+    // TODO: update
 }

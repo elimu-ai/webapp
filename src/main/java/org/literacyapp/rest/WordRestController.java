@@ -9,7 +9,6 @@ import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.WordJson;
 import org.literacyapp.rest.util.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,9 +22,9 @@ public class WordRestController {
     @Autowired
     private WordDao wordDao;
     
-    @RequestMapping("/read")
-    public List<WordJson> read(@RequestParam Locale locale) {
-        logger.info("read");
+    @RequestMapping("/list")
+    public List<WordJson> list(@RequestParam Locale locale) {
+        logger.info("list");
         
         logger.info("locale: " + locale);
         
