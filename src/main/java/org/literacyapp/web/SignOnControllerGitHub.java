@@ -170,7 +170,6 @@ public class SignOnControllerGitHub {
                 }
                 
                 // Store new Contributor in database
-                contributor.setRole(Role.CONTRIBUTOR);
                 if (contributor.getEmail().endsWith("@literacyapp.org")) {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 } else {
