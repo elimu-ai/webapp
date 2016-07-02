@@ -1,9 +1,12 @@
 package org.literacyapp.web;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,15 +27,21 @@ public class CustomAuthenticationManager implements AuthenticationManager {
             logger.info("authenticate");
 
             logger.info("authentication.getName(): " + authentication.getName());
-
-            AUTHORITIES.add(new SimpleGrantedAuthority(authentication.getName()));
+            
+            Contributor contributor = (Contributor) authentication.getPrincipal();
+            logger.info("contributor: " + contributor);
+            logger.info("contributor.getRoles(): " + contributor.getRoles());
+            for (Role role : contributor.getRoles()) {
+                AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_" + role.toString()));
+            }
 
             return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), AUTHORITIES);
     }
 
-    public static void authenticateUser(Role role) {
+    public void authenticateUser(Contributor contributor) {
         logger.info("authenticateUser");
-        Authentication authenticationRequest = new UsernamePasswordAuthenticationToken("ROLE_" + role, "PASSWORD");
+        
+        Authentication authenticationRequest = new UsernamePasswordAuthenticationToken(contributor, "PASSWORD");
         AuthenticationManager authenticationManager = new CustomAuthenticationManager();
         Authentication authenticationResult = authenticationManager.authenticate(authenticationRequest);
         SecurityContextHolder.getContext().setAuthentication(authenticationResult);

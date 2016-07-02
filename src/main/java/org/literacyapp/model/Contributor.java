@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.Role;
 import org.literacyapp.model.enums.Team;
@@ -27,7 +28,7 @@ public class Contributor extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
     
-    @NotNull
+    @NotEmpty
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;

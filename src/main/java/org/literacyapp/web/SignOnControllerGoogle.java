@@ -136,7 +136,7 @@ public class SignOnControllerGoogle {
                 // Store new Contributor in database
                 contributor.setRole(Role.CONTRIBUTOR);
                 if (contributor.getEmail().endsWith("@literacyapp.org")) {
-//                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
+                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 } else {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
                 }
@@ -193,7 +193,7 @@ public class SignOnControllerGoogle {
             }
 
             // Authenticate
-            CustomAuthenticationManager.authenticateUser(contributor.getRole());
+            new CustomAuthenticationManager().authenticateUser(contributor);
 
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
