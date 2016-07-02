@@ -10,6 +10,7 @@
 	<http use-expressions="true" disable-url-rewriting="true">
             <form-login login-page="/sign-on" authentication-failure-url="/sign-on?login_error" />
             
+            <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
             <intercept-url pattern="/content/**" access="hasRole('ROLE_CONTRIBUTOR')" />
             
             <logout logout-success-url="/?sign_out" />
