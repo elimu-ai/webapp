@@ -32,18 +32,18 @@
                 <div class="col s1">
                     <ul id="nav-mobile" class="side-nav">
                         <li>
-                            <a href="<spring:url value='/content' />">
+                            <a href="<spring:url value='/analytics' />">
                                 <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x52.png' />" alt="LiteracyApp" />
                             </a>
                         </li>
                         
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="students" /></b></li>
-                        <li><a href="<spring:url value='/analytics/student/list' />"><i class="material-icons left">group</i><fmt:message key="students" /></a></li>
+                        <li><a href="<spring:url value='/analytics/student/list' />"><i class="material-icons left">school</i><fmt:message key="students" /></a></li>
                         
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="usage.activity" /></b></li>
-                        <li><a href="<spring:url value='/analytics/event/list' />"><i class="material-icons left">list</i><fmt:message key="events" /></a></li>
+                        <li><a href="<spring:url value='/analytics/event/list' />"><i class="material-icons left">timeline</i><fmt:message key="events" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
