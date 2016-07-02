@@ -49,7 +49,6 @@ public class SignOnController {
                 contributor.setEmail("test@literacyapp.org");
                 contributor.setFirstName("Test");
                 contributor.setLastName("Contributor");
-                contributor.setRole(Role.CONTRIBUTOR);
                 contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);

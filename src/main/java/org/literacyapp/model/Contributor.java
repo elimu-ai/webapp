@@ -23,11 +23,6 @@ public class Contributor extends BaseEntity {
     @Column(unique=true)
     private String email;
     
-    @Deprecated
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    
     @NotEmpty
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
@@ -62,14 +57,6 @@ public class Contributor extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
     
     public Set<Role> getRoles() {
