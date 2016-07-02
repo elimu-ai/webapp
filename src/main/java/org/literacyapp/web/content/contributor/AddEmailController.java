@@ -55,13 +55,13 @@ public class AddEmailController {
         }
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        boolean isEmailMissing = contributor.getEmail() == null;
+        boolean isRedirectFromRegistrationPage = contributor.getEmail() == null;
         contributor.setEmail(email);
         contributorDao.create(contributor);
         
         session.setAttribute("contributor", contributor);
         
-        if (isEmailMissing) {
+        if (isRedirectFromRegistrationPage) {
             // Send welcome e-mail
             String to = contributor.getEmail();
             String from = "LiteracyApp <info@literacyapp.org>";

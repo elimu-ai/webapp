@@ -1,17 +1,10 @@
 package org.literacyapp.dao;
 
-import java.util.List;
-
-import org.literacyapp.model.Number;
-import org.literacyapp.model.enums.Locale;
+import org.literacyapp.model.Device;
 
 import org.springframework.dao.DataAccessException;
 
-public interface NumberDao extends GenericDao<Number> {
+public interface DeviceDao extends GenericDao<Device> {
 	
-    Number readByValue(Locale locale, Integer value) throws DataAccessException;
-
-    List<Number> readAllOrdered(Locale locale) throws DataAccessException;
-    
-    List<Number> readLatest(Locale locale) throws DataAccessException;
+    Device read(String deviceId) throws DataAccessException;
 }

@@ -62,6 +62,7 @@
 	<bean id="allophoneDao" class="org.literacyapp.dao.jpa.AllophoneDaoJpa" />
         <bean id="contributorDao" class="org.literacyapp.dao.jpa.ContributorDaoJpa" />
         <bean id="dbMigrationDao" class="org.literacyapp.dao.jpa.DbMigrationDaoJpa" />
+        <bean id="deviceDao" class="org.literacyapp.dao.jpa.DeviceDaoJpa" />
         <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
         <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
         <bean id="wordDao" class="org.literacyapp.dao.jpa.WordDaoJpa" />

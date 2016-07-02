@@ -1,53 +1,26 @@
 package org.literacyapp.dao.jpa;
 
-import java.util.List;
 import javax.persistence.NoResultException;
+import org.literacyapp.dao.DeviceDao;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.Number;
-import org.literacyapp.dao.NumberDao;
-import org.literacyapp.model.enums.Locale;
+import org.literacyapp.model.Device;
 
-public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
+public class DeviceDaoJpa extends GenericDaoJpa<Device> implements DeviceDao {
 
     @Override
-    public Number readByValue(Locale locale, Integer value) throws DataAccessException {
+    public Device read(String deviceId) throws DataAccessException {
         try {
-            return (Number) em.createQuery(
-                "SELECT n " +
-                "FROM Number n " +
-                "WHERE n.locale = :locale " +
-                "AND n.value = :value")
-                .setParameter("locale", locale)
-                .setParameter("value", value)
+            return (Device) em.createQuery(
+                "SELECT d " +
+                "FROM Device d " +
+                "WHERE d.deviceId = :deviceId")
+                .setParameter("deviceId", deviceId)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Number \"" + value + "\" was not found for locale " + locale);
+            logger.warn("Device \"" + deviceId + "\" was not found");
             return null;
         }
-    }
-
-    @Override
-    public List<Number> readAllOrdered(Locale locale) throws DataAccessException {
-        return em.createQuery(
-            "SELECT n " +
-            "FROM Number n " +
-            "WHERE n.locale = :locale " +
-            "ORDER BY n.value")
-            .setParameter("locale", locale)
-            .getResultList();
-    }
-
-    @Override
-    public List<Number> readLatest(Locale locale) throws DataAccessException {
-        return em.createQuery(
-            "SELECT n " +
-            "FROM Number n " +
-            "WHERE n.locale = :locale " +
-            "ORDER BY n.calendar DESC")
-            .setParameter("locale", locale)
-            .setMaxResults(10)
-            .getResultList();
     }
 }
