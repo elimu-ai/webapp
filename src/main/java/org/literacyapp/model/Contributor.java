@@ -43,6 +43,7 @@ public class Contributor extends BaseEntity {
     private String lastName;
     
     @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
     private Set<Team> teams;
     
     @Enumerated(EnumType.STRING)
