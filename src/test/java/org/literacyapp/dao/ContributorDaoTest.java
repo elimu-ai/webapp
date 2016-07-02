@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.hibernate.exception.ConstraintViolationException;
+import org.junit.Ignore;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,7 @@ public class ContributorDaoTest {
     @Autowired
     private ContributorDao contributorDao;
 
+    @Ignore
     @Test(expected=ConstraintViolationException.class)
     public void testConstraintViolation() {
         Contributor contributor = new Contributor();
