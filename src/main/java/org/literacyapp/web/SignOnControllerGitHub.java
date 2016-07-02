@@ -23,6 +23,8 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.model.Verifier;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import java.net.URLEncoder;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
 import org.apache.commons.lang.StringUtils;
 import org.literacyapp.model.enums.Environment;
@@ -161,16 +163,20 @@ public class SignOnControllerGitHub {
                 existingContributor = contributorDao.readByProviderIdGitHub(contributor.getProviderIdGitHub());
             }
             if (existingContributor == null) {
-                // Store new Contributor in database
-                contributor.setRole(Role.CONTRIBUTOR);
-                contributor.setRegistrationTime(Calendar.getInstance());
-                
                 if (contributor.getEmail() == null) {
                     request.getSession().setAttribute("contributor", contributor);
                     CustomAuthenticationManager.authenticateUser(contributor.getRole());
                     return "redirect:/content/contributor/add-email";
                 }
                 
+                // Store new Contributor in database
+                contributor.setRole(Role.CONTRIBUTOR);
+                if (contributor.getEmail().endsWith("@literacyapp.org")) {
+                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
+                } else {
+                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+                }
+                contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
                 
                 // Send welcome e-mail

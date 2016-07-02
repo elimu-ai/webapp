@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.DbMigrationDao;

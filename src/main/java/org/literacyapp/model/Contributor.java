@@ -22,9 +22,15 @@ public class Contributor extends BaseEntity {
     @Column(unique=true)
     private String email;
     
+    @Deprecated
     @NotNull
     @Enumerated(EnumType.STRING)
     private Role role;
+    
+    @NotNull
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
     
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -63,6 +69,14 @@ public class Contributor extends BaseEntity {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+    
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Calendar getRegistrationTime() {
