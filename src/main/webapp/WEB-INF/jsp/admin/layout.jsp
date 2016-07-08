@@ -32,25 +32,20 @@
                 <div class="col s1">
                     <ul id="nav-mobile" class="side-nav">
                         <li>
-                            <a href="<spring:url value='/analytics' />">
+                            <a href="<spring:url value='/admin' />">
                                 <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x52.png' />" alt="LiteracyApp" />
                             </a>
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="students" /></b></li>
-                        <li><a href="<spring:url value='/analytics/student/list' />"><i class="material-icons left">school</i><fmt:message key="students" /></a></li>
-                        <li><a href="<spring:url value='/analytics/device/list' />"><i class="material-icons left">devices</i><fmt:message key="devices" /></a></li>
-                        
-                        <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="usage.activity" /></b></li>
-                        <li><a href="<spring:url value='/analytics/event/list' />"><i class="material-icons left">timeline</i><fmt:message key="events" /></a></li>
+                        <li class="grey-text"><b><fmt:message key="applications" /></b></li>
+                        <li><a href="<spring:url value='/admin/application/list' />"><i class="material-icons left">android</i><fmt:message key="applications" /></a></li>
                     </ul>
-                    <a id="navButton" href="<spring:url value='/analytics' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
+                    <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
-                    <a href="<spring:url value='/analytics' />" class="breadcrumb"><fmt:message key="analytics" /></a>
-                    <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/analytics/main.jsp')}">
+                    <a href="<spring:url value='/admin' />" class="breadcrumb"><fmt:message key="administration" /></a>
+                    <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>
                 </div>

@@ -47,10 +47,10 @@ public class MainContentController {
             return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
-            return "redirect:/content/contributor/edit-teams";
         } else if (contributor.getLocale() == null) {
             return "redirect:/content/contributor/edit-locale";
+        } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
+            return "redirect:/content/contributor/edit-teams";
         }
         
         logger.info("contributor.getLocale(): " + contributor.getLocale());

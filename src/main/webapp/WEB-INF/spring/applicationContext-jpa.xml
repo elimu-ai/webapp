@@ -59,7 +59,8 @@
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	
 	<!-- DAOs that will be autowired -->
-	<bean id="allophoneDao" class="org.literacyapp.dao.jpa.AllophoneDaoJpa" />
+	<bean id="applicationDao" class="org.literacyapp.dao.jpa.ApplicationDaoJpa" />
+        <bean id="allophoneDao" class="org.literacyapp.dao.jpa.AllophoneDaoJpa" />
         <bean id="contributorDao" class="org.literacyapp.dao.jpa.ContributorDaoJpa" />
         <bean id="dbMigrationDao" class="org.literacyapp.dao.jpa.DbMigrationDaoJpa" />
         <bean id="deviceDao" class="org.literacyapp.dao.jpa.DeviceDaoJpa" />
