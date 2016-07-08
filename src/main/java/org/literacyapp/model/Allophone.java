@@ -1,6 +1,7 @@
 package org.literacyapp.model;
 
 import java.util.Calendar;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
@@ -20,7 +21,8 @@ import org.literacyapp.model.enums.VowelLength;
 /**
  * Speech sound
  */
-public class Allophone {
+@Entity
+public class Allophone extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
