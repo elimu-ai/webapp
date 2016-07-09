@@ -53,9 +53,6 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-teams";
         }
         
-        logger.info("contributor.getLocale(): " + contributor.getLocale());
-        model.addAttribute("locale", contributor.getLocale());
-        
         List<Number> numbers = numberDao.readLatest(contributor.getLocale());
         model.addAttribute("numbers", numbers);
         

@@ -26,9 +26,7 @@ public class ApplicationListController {
     	logger.info("handleRequest");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        
         logger.info("contributor.getLocale(): " + contributor.getLocale());
-        model.addAttribute("locale", contributor.getLocale());
         
         List<Application> applications = applicationDao.readAll(contributor.getLocale());
         model.addAttribute("applications", applications);
