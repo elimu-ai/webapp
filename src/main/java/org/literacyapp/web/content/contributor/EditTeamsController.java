@@ -27,6 +27,8 @@ public class EditTeamsController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
     	logger.info("handleRequest");
+        
+        // TODO: fetch from MailChimp and pre-select
     	
         return "content/contributor/edit-teams";
     }

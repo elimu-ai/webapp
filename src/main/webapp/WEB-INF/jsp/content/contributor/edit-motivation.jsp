@@ -1,20 +1,28 @@
 <content:title>
-    <fmt:message key="edit.name" />
+    <fmt:message key="personal.motivation" />
 </content:title>
 
-<content:section cssId="editNamePage">
+<content:section cssId="editMotivationPage">
     <div class="col s12 m10 l8 offset-m1 offset-l2">
         <h4><content:gettitle /></h4>
         <div class="card-panel">
+            <blockquote>
+                <fmt:message key="what.is.your.personal.motivation" />
+            </blockquote>
+
+            <div class="divider"></div>
+            
             <form method="POST">
+                <c:if test="${not empty errorCode}">
+                    <div id="errorPanel" class="card-panel red lighten-3">
+                        <fmt:message key="${errorCode}" />
+                    </div>
+                </c:if>
+                
                 <div class="row">
                     <div class="input-field col s6">
-                        <label for="firstName"><fmt:message key="first.name" /></label>
-                        <input id="firstName" name="firstName" <c:if test="${not empty contributor.firstName}">value="${contributor.firstName}"</c:if> type="text" class="validate" required="required" pattern=".{2,}" title="Minimum 2 characters">
-                    </div>
-                    <div class="input-field col s6">
-                        <label for="lastName"><fmt:message key="last.name" /></label>
-                        <input id="lastName" name="lastName" <c:if test="${not empty contributor.lastName}">value="${contributor.lastName}"</c:if> type="text" class="validate" required="required" pattern=".{2,}" title="Minimum 2 characters">
+                        <label for="motivation"><fmt:message key="personal.motivation" /></label>
+                        <input id="motivation" name="motivation" <c:if test="${not empty contributor.motivation}">value="${contributor.motivation}"</c:if> type="text" class="validate" title="Minimum 2 characters">
                     </div>
                 </div>
 

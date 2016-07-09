@@ -1,5 +1,6 @@
 package org.literacyapp.dao.jpa;
 
+import java.util.List;
 import javax.persistence.NoResultException;
 import org.literacyapp.dao.ContributorDao;
 
@@ -37,5 +38,14 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             logger.warn("Contributor with GitHub id \"" + id + "\" was not found");
             return null;
         }
+    }
+
+    @Override
+    public List<Contributor> readAllOrderedDesc() throws DataAccessException {
+        return em.createQuery(
+            "SELECT c " +
+            "FROM Contributor c " +
+            "ORDER BY c.registrationTime DESC")
+            .getResultList();
     }
 }

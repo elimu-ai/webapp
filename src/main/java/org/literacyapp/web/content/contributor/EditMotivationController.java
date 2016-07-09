@@ -1,6 +1,9 @@
 package org.literacyapp.web.content.contributor;
 
+import java.net.URLEncoder;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
+import org.apache.http.client.utils.URLEncodedUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
@@ -13,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/content/contributor/edit-name")
-public class EditNameController {
+@RequestMapping("/content/contributor/edit-motivation")
+public class EditMotivationController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
@@ -24,26 +27,31 @@ public class EditNameController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
     	logger.info("handleRequest");
+        
+        // TODO: fetch from MailChimp and pre-fill
 
-        return "content/contributor/edit-name";
+        return "content/contributor/edit-motivation";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
-            @RequestParam String firstName,
-            @RequestParam String lastName,
+            @RequestParam String motivation,
             Model model) {
     	logger.info("handleSubmit");
         
-        // TODO: validate firstName/lastName
+        logger.info("motivation: " + motivation);
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        contributor.setFirstName(firstName);
-        contributor.setLastName(lastName);
-        contributorDao.update(contributor);
-        session.setAttribute("contributor", contributor);
-    	
-        return "redirect:/content";
+        if (StringUtils.isBlank(motivation)) {
+            model.addAttribute("errorCode", "NotNull.motivation");
+            return "content/contributor/edit-motivation";
+        } else {
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
+            contributor.setMotivation(motivation);
+            contributorDao.update(contributor);
+            session.setAttribute("contributor", contributor);
+
+            return "redirect:/content";
+        }
     }
 }
