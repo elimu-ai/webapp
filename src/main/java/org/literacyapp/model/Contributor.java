@@ -44,12 +44,35 @@ public class Contributor extends BaseEntity {
     
     private String lastName;
     
+    private String occupation;
+    
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Team> teams;
     
+    @Column(length = 1000)
+    private String motivation;
+    
     @Enumerated(EnumType.STRING)
     private Locale locale;
+    
+    @Column(length=1000)
+    private String referrer;
+
+    // Campaign parameter 'utm_source'
+    private String utmSource;
+
+    // Campaign parameter 'utm_medium'
+    private String utmMedium;
+
+    // Campaign parameter 'utm_campaign'
+    private String utmCampaign;
+
+    // Campaign parameter 'utm_term'
+    private String utmTerm;
+
+    // Id of referring Contributor
+    private Long referralId;
 
     public String getEmail() {
         return email;
@@ -138,6 +161,14 @@ public class Contributor extends BaseEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
 
     public Set<Team> getTeams() {
         return teams;
@@ -146,6 +177,14 @@ public class Contributor extends BaseEntity {
     public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
+    
+    public String getMotivation() {
+        return motivation;
+    }
+
+    public void setMotivation(String motivation) {
+        this.motivation = motivation;
+    }
 
     public Locale getLocale() {
         return locale;
@@ -153,5 +192,53 @@ public class Contributor extends BaseEntity {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+
+    public String getReferrer() {
+        return referrer;
+    }
+
+    public void setReferrer(String referrer) {
+        this.referrer = referrer;
+    }
+
+    public String getUtmSource() {
+        return utmSource;
+    }
+
+    public void setUtmSource(String utmSource) {
+        this.utmSource = utmSource;
+    }
+
+    public String getUtmMedium() {
+        return utmMedium;
+    }
+
+    public void setUtmMedium(String utmMedium) {
+        this.utmMedium = utmMedium;
+    }
+
+    public String getUtmCampaign() {
+        return utmCampaign;
+    }
+
+    public void setUtmCampaign(String utmCampaign) {
+        this.utmCampaign = utmCampaign;
+    }
+
+    public String getUtmTerm() {
+        return utmTerm;
+    }
+
+    public void setUtmTerm(String utmTerm) {
+        this.utmTerm = utmTerm;
+    }
+
+    public Long getReferralId() {
+        return referralId;
+    }
+
+    public void setReferralId(Long referralId) {
+        this.referralId = referralId;
     }
 }

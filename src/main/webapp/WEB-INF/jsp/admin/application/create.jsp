@@ -10,7 +10,7 @@
 
             <div class="row">
                 <form:hidden path="locale" value="${application.locale}" />
-                <div class="input-field col s12">
+                <div class="input-field col s6">
                     <form:label path="packageName" cssErrorClass="error"><fmt:message key='package.name' /></form:label>
                     <form:input path="packageName" cssErrorClass="error" placeholder="org.literacyapp" />
                 </div>

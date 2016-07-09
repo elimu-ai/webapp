@@ -28,7 +28,7 @@ public class ContributorsController {
     public String handleRequest(HttpServletRequest request, HttpSession session, Principal principal, Model model) {
     	logger.info("handleRequest");
         
-        List<Contributor> contributors = contributorDao.readAll();
+        List<Contributor> contributors = contributorDao.readAllOrderedDesc();
         model.addAttribute("contributors", contributors);
     	
         return "content/community/contributors";

@@ -29,6 +29,7 @@ import java.util.Random;
 import org.apache.commons.lang.StringUtils;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.ConfigHelper;
+import org.literacyapp.util.CookieHelper;
 import org.literacyapp.util.Mailer;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -118,6 +119,12 @@ public class SignOnControllerGitHub {
             logger.info("response.getBody(): " + responseBody);
             
             Contributor contributor = new Contributor();
+            contributor.setReferrer(CookieHelper.getReferrer(request));
+            contributor.setUtmSource(CookieHelper.getUtmSource(request));
+            contributor.setUtmMedium(CookieHelper.getUtmMedium(request));
+            contributor.setUtmCampaign(CookieHelper.getUtmCampaign(request));
+            contributor.setUtmTerm(CookieHelper.getUtmTerm(request));
+            contributor.setReferralId(CookieHelper.getReferralId(request));
             try {
                 JSONObject jsonObject = new JSONObject(responseBody);
                 logger.info("jsonObject: " + jsonObject);

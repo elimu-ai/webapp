@@ -51,6 +51,8 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-locale";
         } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
             return "redirect:/content/contributor/edit-teams";
+        } else if (StringUtils.isBlank(contributor.getMotivation())) {
+            return "redirect:/content/contributor/edit-motivation";
         }
         
         List<Number> numbers = numberDao.readLatest(contributor.getLocale());
