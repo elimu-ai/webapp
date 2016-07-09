@@ -14,11 +14,15 @@
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="package.name" /></th>
+                    <th><fmt:message key="literacy.skills" /></th>
+                    <th><fmt:message key="numeracy.skills" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="application" items="${applications}">
                         <tr>
-                            <td>${application.packageName}</td>
+                            <td><a href="<spring:url value='/admin/application/edit/${application.id}' />">${application.packageName}</a></td>
+                            <td>${application.literacySkills}</td>
+                            <td>${application.numeracySkills}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

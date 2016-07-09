@@ -1,15 +1,19 @@
 package org.literacyapp.model;
 
 import java.util.Calendar;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-public class ApplicationRevision {
+@Entity
+public class ApplicationVersion extends BaseEntity {
     
     @ManyToOne
     private Application application;
+    
+    // TODO: APK bytes
     
     @NotNull
     private Integer versionCode;
