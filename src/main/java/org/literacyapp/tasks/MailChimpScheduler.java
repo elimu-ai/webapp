@@ -33,6 +33,7 @@ public class MailChimpScheduler {
         for (Contributor contributor : contributors) {
             // Check if contributor is already subscribed to the mailing list
             String memberInfo = MailChimpApiHelper.getMemberInfo(contributor.getEmail());
+            logger.info("memberInfo: " + memberInfo);
             if (StringUtils.isBlank(memberInfo)) {
                 MailChimpApiHelper.subscribeMember(contributor);
             }

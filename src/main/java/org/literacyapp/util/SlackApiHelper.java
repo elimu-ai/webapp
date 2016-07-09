@@ -64,8 +64,11 @@ public class SlackApiHelper {
         
         String channelId = getChannelId(team);
         
+        logger.info("text: " + text);
+        
         String iconUrlParameter = "";
         if (StringUtils.isNotBlank(iconUrl)) {
+            logger.info("iconUrl: " + iconUrl);
             iconUrlParameter = "&icon_url=" + iconUrl;
         }
         
@@ -73,6 +76,7 @@ public class SlackApiHelper {
         
         try {
             URL url = new URL (BASE_URL + "/chat.postMessage?token=" + API_TOKEN + "&channel=" + channelId + "&text=" + text + iconUrlParameter);
+            logger.info("url: " + url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
