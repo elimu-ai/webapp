@@ -8,6 +8,9 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,6 +53,18 @@ public class EditMotivationController {
             contributor.setMotivation(motivation);
             contributorDao.update(contributor);
             session.setAttribute("contributor", contributor);
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                        contributor.getFirstName() + " just updated his/her information:\n" + 
+                        "• Language: " + contributor.getLocale().getLanguage() + "\n" + 
+                        "• Teams: " + contributor.getTeams() + "\n" + 
+                        "• Personal motivation: \"" + contributor.getMotivation() + "\""
+                ) + "\n" +
+                "http://literacyapp.org/content/community/contributors";
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(null, text, iconUrl);
+            }
 
             return "redirect:/content";
         }
