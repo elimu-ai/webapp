@@ -24,7 +24,7 @@
                         <a href="https://plus.google.com/u/0/${contributor.providerIdGoogle}" target="_blank">Google+</a>
                     </c:if>
                     <c:if test="${not empty contributor.usernameGitHub}">
-                        <a href="https://github.com/${contributor.usernameGitHub}" target="_blank">Google+</a>
+                        <a href="https://github.com/${contributor.usernameGitHub}" target="_blank">GitHub</a>
                     </c:if>
                 </div>
                     
