@@ -59,9 +59,8 @@ public class EditMotivationController {
                         contributor.getFirstName() + " just updated his/her information:\n" + 
                         "• Language: " + contributor.getLocale().getLanguage() + "\n" + 
                         "• Teams: " + contributor.getTeams() + "\n" + 
-                        "• Personal motivation: \"" + contributor.getMotivation() + "\""
-                ) + "\n" +
-                "http://literacyapp.org/content/community/contributors";
+                        "• Personal motivation: \"" + contributor.getMotivation() + "\"\n"
+                ) + "http://literacyapp.org/content/community/contributors";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(null, text, iconUrl);
             }

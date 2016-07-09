@@ -20,9 +20,9 @@
                 </c:if>
                 
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <textarea id="motivation" name="motivation" class="materialize-textarea validate" required="required"><c:if test="${not empty contributor.motivation}">${contributor.motivation}</c:if></textarea>
                         <label for="motivation"><fmt:message key="personal.motivation" /></label>
-                        <input id="motivation" name="motivation" <c:if test="${not empty contributor.motivation}">value="${contributor.motivation}"</c:if> type="text" class="validate" title="Minimum 2 characters">
                     </div>
                 </div>
 
