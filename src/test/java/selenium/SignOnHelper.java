@@ -19,7 +19,7 @@ public class SignOnHelper {
     }
     
     public static void signOnRoleContributor(WebDriver driver) {
-        driver.get(DomainHelper.getBaseDomain() + "/sign-on/test/role-user");
+        driver.get(DomainHelper.getBaseDomain() + "/sign-on/test/role-contributor");
         
         MainContentPage mainContentPage = PageFactory.initElements(driver, MainContentPage.class);
     }
