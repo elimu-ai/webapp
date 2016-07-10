@@ -15,6 +15,10 @@
                     <form:input path="packageName" cssErrorClass="error" placeholder="org.literacyapp" />
                 </div>
             </div>
+                
+            <%-- TODO: literacySkills --%>
+            
+            <%-- TODO: numeracySkills --%>
 
             <button class="btn waves-effect waves-light" type="submit" name="action">
                 <fmt:message key="add" /> <i class="material-icons right">send</i>

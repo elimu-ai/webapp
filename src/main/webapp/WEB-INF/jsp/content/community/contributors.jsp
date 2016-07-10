@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="contributors" />
+    <fmt:message key="contributors" /> (${fn:length(contributors)}})
 </content:title>
 
 <content:section cssId="contributorsPage">
@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4"><c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /><i class="material-icons right">more_vert</i></span>
-                    <c:if test="${empty contributor.slackId}">
+                    <c:if test="${not empty contributor.slackId}">
                         <p><a href="https://literacyapp.slack.com" target="_blank"><i class="material-icons left">chat_bubble_outline</i>Chat with <c:out value="${contributor.firstName}" /> on Slack</a></p>
                     </c:if>
                 </div>
@@ -24,7 +24,7 @@
                         <a href="https://plus.google.com/u/0/${contributor.providerIdGoogle}" target="_blank">Google+</a>
                     </c:if>
                     <c:if test="${not empty contributor.usernameGitHub}">
-                        <a href="https://github.com/${contributor.usernameGitHub}" target="_blank">Google+</a>
+                        <a href="https://github.com/${contributor.usernameGitHub}" target="_blank">GitHub</a>
                     </c:if>
                 </div>
                     

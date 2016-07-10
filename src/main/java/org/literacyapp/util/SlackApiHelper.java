@@ -64,11 +64,8 @@ public class SlackApiHelper {
         
         String channelId = getChannelId(team);
         
-        logger.info("text: " + text);
-        
         String iconUrlParameter = "";
         if (StringUtils.isNotBlank(iconUrl)) {
-            logger.info("iconUrl: " + iconUrl);
             iconUrlParameter = "&icon_url=" + iconUrl;
         }
         
