@@ -49,7 +49,7 @@
                     <label for="OTHER"><b><fmt:message key="team.OTHER" /></b></label>
                 </p>
 
-                <button class="btn waves-effect waves-light" type="submit" name="action">
+                <button id="submitButton" class="btn waves-effect waves-light" type="submit" name="action">
                     <fmt:message key="save" /> <i class="material-icons right">send</i>
                 </button>
             </form>

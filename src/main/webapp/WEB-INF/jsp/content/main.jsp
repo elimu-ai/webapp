@@ -2,7 +2,7 @@
     <fmt:message key="content" />
 </content:title>
 
-<content:section cssId="mainPage">
+<content:section cssId="mainContentPage">
     <h4><fmt:message key="latest.uploads" /></h4>
     
     <div class="section row">
