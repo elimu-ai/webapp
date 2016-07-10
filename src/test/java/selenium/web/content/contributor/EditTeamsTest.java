@@ -32,6 +32,7 @@ public class EditTeamsTest {
     @Test
     public void testEmptySelectionError() {
     	EditTeamsPage editTeamsPage = PageFactory.initElements(driver, EditTeamsPage.class);
+        editTeamsPage.clearSelection();
         editTeamsPage.submitForm();
         assertThat(editTeamsPage.isErrorMessageDisplayed(), is(true));
     }

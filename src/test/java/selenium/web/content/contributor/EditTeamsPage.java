@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
@@ -41,6 +42,16 @@ public class EditTeamsPage {
     
     public boolean isListEmpty() {
         return teams.isEmpty();
+    }
+    
+    public void clearSelection() {
+        for (WebElement team : teams) {
+            if (team.isSelected()) {
+                String teamName = team.getAttribute("id");
+                WebElement label = driver.findElement(By.cssSelector("[for=" + teamName + "]"));
+                label.click();
+            }
+        }
     }
     
     public void submitForm() {

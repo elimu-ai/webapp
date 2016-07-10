@@ -10,7 +10,9 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.Role;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +39,12 @@ public class SignOnControllerSelenium {
         Contributor contributor = new Contributor();
         contributor.setEmail("info+role-contributor@literacyapp.org");
         contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
-        contributor.setRegistrationTime(Calendar.getInstance());	
+        contributor.setRegistrationTime(Calendar.getInstance());
+        contributor.setFirstName("TestRole");
+        contributor.setLastName("Contributor");
+        contributor.setLocale(Locale.EN);
+        contributor.setTeams(new HashSet<>(Arrays.asList(Team.TESTING)));
+        contributor.setMotivation("Regression testing");
 				
         Contributor existingContributor = contributorDao.read(contributor.getEmail());
         logger.info("existingContributor: " + existingContributor);
