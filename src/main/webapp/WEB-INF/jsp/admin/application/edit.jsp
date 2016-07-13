@@ -18,8 +18,8 @@
                 <form:hidden path="applicationStatus" value="${application.applicationStatus}" />
                 <form:hidden path="contributor" value="${contributor.id}" />
                 <div class="input-field col s6">
-                    <form:label path="packageName" cssErrorClass="error"><fmt:message key='package.name' /></form:label>
-                    <form:input path="packageName" cssErrorClass="error" disabled="true" />
+                    <fmt:message key='package.name' />: ${application.packageName}
+                    <form:hidden path="packageName" value="${application.packageName}" />
                 </div>
                 <div class="input-field col s6">
                     <fmt:message key='status' />: ${application.applicationStatus}
