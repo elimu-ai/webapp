@@ -2,13 +2,29 @@ package org.literacyapp.rest.util;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.literacyapp.model.admin.application.Application;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.Word;
 import org.literacyapp.model.json.DeviceJson;
 import org.literacyapp.model.json.NumberJson;
 import org.literacyapp.model.json.WordJson;
+import org.literacyapp.model.json.admin.application.ApplicationJson;
 
 public class JavaToJsonConverter {
+    
+    public static ApplicationJson getApplicationJson(Application application) {
+        if (application == null) {
+            return null;
+        } else {
+            ApplicationJson applicationJson = new ApplicationJson();
+            applicationJson.setId(application.getId());
+            applicationJson.setLocale(application.getLocale());
+            applicationJson.setPackageName(application.getPackageName());
+            applicationJson.setLiteracySkills(application.getLiteracySkills());
+            applicationJson.setNumeracySkills(application.getNumeracySkills());
+            return applicationJson;
+        }
+    }
     
     public static DeviceJson getDeviceJson(Device device) {
         if (device == null) {

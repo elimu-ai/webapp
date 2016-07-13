@@ -4,7 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
-import org.literacyapp.model.Application;
+import org.literacyapp.model.admin.application.Application;
 import org.literacyapp.model.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

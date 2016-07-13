@@ -1,7 +1,10 @@
 package org.literacyapp.model;
 
+import org.literacyapp.model.admin.application.Application;
 import java.util.Calendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,11 +16,20 @@ public class ApplicationVersion extends BaseEntity {
     @ManyToOne
     private Application application;
     
-    // TODO: APK bytes
+    @NotNull
+    @Lob
+    @Column(length=104857600) // 100MB
+    private byte[] bytes;
+    
+    @NotNull
+    private String contentType;
     
     @NotNull
     private Integer versionCode;
     
+    // TODO: minSdk
+    
+    // TODO: @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeUploaded;
     
@@ -30,6 +42,22 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+    
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
+    }
+    
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public Integer getVersionCode() {

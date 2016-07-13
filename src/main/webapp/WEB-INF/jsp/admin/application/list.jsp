@@ -16,6 +16,8 @@
                     <th><fmt:message key="package.name" /></th>
                     <th><fmt:message key="literacy.skills" /></th>
                     <th><fmt:message key="numeracy.skills" /></th>
+                    <th><fmt:message key="status" /></th>
+                    <th><fmt:message key="creator" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="application" items="${applications}">
@@ -23,6 +25,13 @@
                             <td><a href="<spring:url value='/admin/application/edit/${application.id}' />">${application.packageName}</a></td>
                             <td>${application.literacySkills}</td>
                             <td>${application.numeracySkills}</td>
+                            <td>${application.applicationStatus}</td>
+                            <td>
+                                <div class="chip">
+                                    <img src="<spring:url value='${application.contributor.imageUrl}' />" alt="${application.contributor.firstName}" /> 
+                                    <c:out value="${application.contributor.firstName}" />&nbsp;<c:out value="${application.contributor.lastName}" />
+                                </div>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>

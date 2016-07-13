@@ -1,9 +1,14 @@
 <content:title>
-    <fmt:message key="add.application" />
+    <fmt:message key="edit.application" />
 </content:title>
 
-<content:section cssId="applicationCreatePage">
+<content:section cssId="applicationEditPage">
     <h4><content:gettitle /></h4>
+    <c:if test="${empty applicationVersions}">
+        <div class="card-panel amber lighten-3">
+            <b>Note:</b> The application will not be active until you upload a corresponding APK file.
+        </div>
+    </c:if>
     <div class="card-panel">
         <form:form modelAttribute="application">
             <tag:formErrors modelAttribute="application" />
@@ -14,7 +19,45 @@
                 <form:hidden path="contributor" value="${contributor.id}" />
                 <div class="input-field col s6">
                     <form:label path="packageName" cssErrorClass="error"><fmt:message key='package.name' /></form:label>
-                    <form:input path="packageName" cssErrorClass="error" placeholder="org.literacyapp" required="required" pattern=".{2,}\..{2,}" title="Example: org.literacyapp" />
+                    <%-- TODO: disable --%>
+                    <form:input path="packageName" cssErrorClass="error" disabled="disabled" />
+                </div>
+                <div class="input-field col s6">
+                    <fmt:message key='status' />: ${application.applicationStatus}
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s12">
+                    <h5><fmt:message key="application.versions" /></h5>
+                    <p>
+                        <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">upload</i> <fmt:message key='upload.new.apk.file' /></a>
+                    </p>
+                    <c:if test="${not empty applicationVersions}">
+                        <table class="bordered highlight">
+                            <thead>
+                                <th><fmt:message key="version.code" /></th>
+                                <th><fmt:message key="file.size" /></th>
+                                <th><fmt:message key="time.uploaded" /></th>
+                                <th><fmt:message key="contributor" /></th>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="applicationVersion" items="${applicationVersions}">
+                                    <tr>
+                                        <td>${applicationVersion.versionCode}</td>
+                                        <td><fmt:formatNumber value="${fn:length(applicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB</td>
+                                        <td>${applicationVersion.timeUploaded.time}</td>
+                                        <td>
+                                            <div class="chip">
+                                                <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
+                                                <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </c:if>
                 </div>
             </div>
             
@@ -56,7 +99,7 @@
             </div>
 
             <button class="btn waves-effect waves-light" type="submit" name="action">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>

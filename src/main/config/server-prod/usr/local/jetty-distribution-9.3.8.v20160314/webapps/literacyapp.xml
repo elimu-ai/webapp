@@ -45,5 +45,5 @@ This file is placed on the prod server under jetty.home/contexts/
       <Item>sw.literacyapp.org</Item>
     </Array>
   </Set>
-  <Set name="maxFormContentSize">4194304</Set><!-- 4MB -->
+  <Set name="maxFormContentSize">104857600</Set><!-- 100MB -->
 </Configure>

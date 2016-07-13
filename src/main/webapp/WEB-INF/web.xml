@@ -36,9 +36,9 @@
             <param-value>/WEB-INF/spring/applicationContext.xml</param-value>
         </init-param>
         <multipart-config>
-            <!-- 4 MB -->
-            <max-file-size>4194304</max-file-size>
-            <max-request-size>4194304</max-request-size>
+            <!-- 100MB -->
+            <max-file-size>104857600</max-file-size>
+            <max-request-size>104857600</max-request-size>
             <file-size-threshold>0</file-size-threshold>
         </multipart-config>
     </servlet>

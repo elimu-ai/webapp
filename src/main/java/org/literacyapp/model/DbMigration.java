@@ -12,7 +12,7 @@ public class DbMigration extends BaseEntity {
     
     @NotNull
     @Column(unique = true)
-    private Integer version; // 100100100, 100100200, 100100300, ... (1.1.1, 1.1.2, 1.1.3, ...)
+    private Integer version; // 1001001, 1001002, 1001003, ... (1.1.1, 1.1.2, 1.1.3, ...)
     
     @NotNull
     @Column(length = 2000)
