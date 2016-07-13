@@ -25,8 +25,10 @@ public class EditTeamsController {
     private ContributorDao contributorDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest() {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
+        
+        model.addAttribute("teams", Team.values());
         
         // TODO: fetch from MailChimp and pre-select
     	
@@ -45,13 +47,13 @@ public class EditTeamsController {
         
         if (teams == null) {
             model.addAttribute("errorCode", "NotNull.teams");
+            model.addAttribute("teams", Team.values());
             return "content/contributor/edit-teams";
         } else {        
             Contributor contributor = (Contributor) session.getAttribute("contributor");
             contributor.setTeams(teams);
             contributorDao.update(contributor);
             session.setAttribute("contributor", contributor);
-
             return "redirect:/content";
         }
     }

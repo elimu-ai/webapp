@@ -2,7 +2,6 @@ package org.literacyapp.rest;
 
 import java.util.Calendar;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.literacyapp.dao.DeviceDao;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.json.DeviceJson;
@@ -10,7 +9,6 @@ import org.literacyapp.rest.util.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 

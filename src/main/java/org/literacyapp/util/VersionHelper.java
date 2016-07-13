@@ -6,7 +6,7 @@ package org.literacyapp.util;
 public class VersionHelper {
 
     /**
-     * E.g. "1.2.3-SNAPSHOT" --> "001002003"
+     * E.g. "1.2.3-SNAPSHOT" --> "1002003"
      */
     public static Integer getPomVersionAsInteger(String pomVersion) {
         Integer version = null;

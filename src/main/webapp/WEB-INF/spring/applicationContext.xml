@@ -23,6 +23,8 @@
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
+                <bean class="org.literacyapp.logic.converters.StringToApplicationConverter" />
+                <bean class="org.literacyapp.logic.converters.StringToContributorConverter" />
                 <bean class="org.literacyapp.logic.converters.StringToStringConverter" />
             </list>
         </property>
@@ -50,7 +52,7 @@
     </bean>
     
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="4194304" /><!-- 4 MB -->
+        <property name="maxUploadSize" value="104857600" /><!-- 100MB -->
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 

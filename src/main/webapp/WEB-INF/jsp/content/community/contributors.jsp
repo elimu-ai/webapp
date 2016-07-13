@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="contributors" /> (${fn:length(contributors)}})
+    <fmt:message key="contributors" /> (${fn:length(contributors)})
 </content:title>
 
 <content:section cssId="contributorsPage">

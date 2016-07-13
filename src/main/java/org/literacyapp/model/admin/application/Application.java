@@ -1,15 +1,22 @@
-package org.literacyapp.model;
+package org.literacyapp.model.admin.application;
 
+import java.util.Calendar;
 import java.util.Set;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import org.literacyapp.model.BaseEntity;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.LiteracySkill;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.NumeracySkill;
+import org.literacyapp.model.enums.admin.application.ApplicationStatus;
 
 @Entity
 public class Application extends BaseEntity {
@@ -28,6 +35,17 @@ public class Application extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<NumeracySkill> numeracySkills;
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ApplicationStatus applicationStatus;
+    
+    @NotNull
+    @ManyToOne
+    private Contributor contributor;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar timeCreated;
 
     public Locale getLocale() {
         return locale;
@@ -59,5 +77,29 @@ public class Application extends BaseEntity {
 
     public void setNumeracySkills(Set<NumeracySkill> numeracySkills) {
         this.numeracySkills = numeracySkills;
+    }
+    
+    public ApplicationStatus getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
+
+    public Contributor getContributor() {
+        return contributor;
+    }
+
+    public void setContributor(Contributor contributor) {
+        this.contributor = contributor;
+    }
+
+    public Calendar getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(Calendar timeCreated) {
+        this.timeCreated = timeCreated;
     }
 }

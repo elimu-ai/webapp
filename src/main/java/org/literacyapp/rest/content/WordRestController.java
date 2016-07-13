@@ -1,4 +1,4 @@
-package org.literacyapp.rest;
+package org.literacyapp.rest.content;
 
 import java.util.ArrayList;
 import java.util.List;
