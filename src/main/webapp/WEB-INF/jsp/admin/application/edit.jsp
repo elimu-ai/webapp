@@ -19,8 +19,7 @@
                 <form:hidden path="contributor" value="${contributor.id}" />
                 <div class="input-field col s6">
                     <form:label path="packageName" cssErrorClass="error"><fmt:message key='package.name' /></form:label>
-                    <%-- TODO: disable --%>
-                    <form:input path="packageName" cssErrorClass="error" disabled="disabled" />
+                    <form:input path="packageName" cssErrorClass="error" disabled="true" />
                 </div>
                 <div class="input-field col s6">
                     <fmt:message key='status' />: ${application.applicationStatus}
@@ -31,7 +30,7 @@
                 <div class="col s12">
                     <h5><fmt:message key="application.versions" /></h5>
                     <p>
-                        <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">upload</i> <fmt:message key='upload.new.apk.file' /></a>
+                        <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">file_upload</i><fmt:message key='upload.new.apk.file' /></a>
                     </p>
                     <c:if test="${not empty applicationVersions}">
                         <table class="bordered highlight">
