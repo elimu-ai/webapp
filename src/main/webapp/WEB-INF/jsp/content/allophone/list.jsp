@@ -35,7 +35,7 @@
                                     <c:out value="${allophone.contributor.firstName}" />&nbsp;<c:out value="${allophone.contributor.lastName}" />
                                 </div>
                             </td>
-                            <td><a href="<spring:url value='/admin/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
+                            <td><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

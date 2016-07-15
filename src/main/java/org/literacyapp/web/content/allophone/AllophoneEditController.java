@@ -12,30 +12,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/allophone/create")
-public class AllophoneCreateController {
+@RequestMapping("/content/allophone/edit")
+public class AllophoneEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
     private AllophoneDao allophoneDao;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Allophone allophone = new Allophone();
+        Allophone allophone = allophoneDao.read(id);
         model.addAttribute("allophone", allophone);
 
-        return "content/allophone/create";
+        return "content/allophone/edit";
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
+            @PathVariable Long id,
             @Valid Allophone allophone,
             BindingResult result,
             Model model,
@@ -49,7 +51,7 @@ public class AllophoneCreateController {
             }
             
             Allophone existingAllophone = allophoneDao.readByValueIpa(allophone.getLocale(), allophone.getValueIpa());
-            if (existingAllophone != null) {
+            if ((existingAllophone != null) && !existingAllophone.getId().equals(allophone.getId())) {
                 result.rejectValue("valueIpa", "NonUnique");
             }
         }
@@ -60,17 +62,17 @@ public class AllophoneCreateController {
             }
 
             Allophone existingAllophone = allophoneDao.readByValueSampa(allophone.getLocale(), allophone.getValueSampa());
-            if (existingAllophone != null) {
+            if ((existingAllophone != null) && !existingAllophone.getId().equals(allophone.getId())) {
                 result.rejectValue("valueSampa", "NonUnique");
             }
         }
         
         if (result.hasErrors()) {
             model.addAttribute("allophone", allophone);
-            return "content/allophone/create";
+            return "content/allophone/edit";
         } else {
             allophone.setCalendar(Calendar.getInstance());
-            allophoneDao.create(allophone);
+            allophoneDao.update(allophone);
             return "redirect:/content/allophone/list";
         }
     }
