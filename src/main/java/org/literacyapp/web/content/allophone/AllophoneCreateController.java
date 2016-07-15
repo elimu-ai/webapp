@@ -44,7 +44,7 @@ public class AllophoneCreateController {
     	logger.info("handleSubmit");
         
         if (StringUtils.isNotBlank(allophone.getValueIpa())) {
-            if (allophone.getValueIpa().length() > 1) {
+            if (allophone.getValueIpa().length() > 3) {
                 result.rejectValue("valueIpa", "TooLong");
             }
             
@@ -55,7 +55,7 @@ public class AllophoneCreateController {
         }
         
         if (StringUtils.isNotBlank(allophone.getValueSampa())) {
-            if (allophone.getValueSampa().length() > 1) {
+            if (allophone.getValueSampa().length() > 3) {
                 result.rejectValue("valueSampa", "TooLong");
             }
 

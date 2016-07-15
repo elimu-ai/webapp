@@ -14,12 +14,12 @@
                 
                 <div class="input-field col s12">
                     <form:label path="valueIpa" cssErrorClass="error"><fmt:message key='value' /> (IPA)</form:label>
-                    <form:input path="valueIpa" cssErrorClass="error" required="required" pattern=".{1}" title="Maximum 1 character" />
+                    <form:input path="valueIpa" cssErrorClass="error" required="required" pattern=".{,3}" title="Maximum 3 characters" />
                 </div>
                 
                 <div class="input-field col s12">
                     <form:label path="valueSampa" cssErrorClass="error"><fmt:message key='value' /> (X-SAMPA)</form:label>
-                    <form:input path="valueSampa" cssErrorClass="error" required="required" pattern=".{1}" title="Maximum 1 character" />
+                    <form:input path="valueSampa" cssErrorClass="error" required="required" pattern=".{,3}" title="Maximum 3 characters" />
                 </div>
             </div>
 

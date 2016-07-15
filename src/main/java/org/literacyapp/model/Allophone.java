@@ -30,11 +30,11 @@ public class Allophone extends BaseEntity {
     private Locale locale;
     
     @NotNull
-    // TODO: @Column(length = 1)
+    // TODO: @Column(length = 3)
     private String valueIpa; // IPA - International Phonetic Alphabet
     
     @NotNull
-    // TODO: @Column(length = 1)
+    // TODO: @Column(length = 3)
     private String valueSampa; // X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet
     
     @Enumerated(EnumType.STRING)
