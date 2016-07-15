@@ -2,7 +2,7 @@ package org.literacyapp.logic.converters;
 
 import org.apache.commons.lang.StringUtils;
 import org.literacyapp.dao.ApplicationDao;
-import org.literacyapp.model.admin.application.Application;
+import org.literacyapp.model.admin.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 

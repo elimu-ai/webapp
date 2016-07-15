@@ -45,7 +45,7 @@
                                     <tr>
                                         <td>${applicationVersion.versionCode}</td>
                                         <td><fmt:formatNumber value="${fn:length(applicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB</td>
-                                        <td>${applicationVersion.timeUploaded.time}</td>
+                                        <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
                                         <td>
                                             <div class="chip">
                                                 <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 

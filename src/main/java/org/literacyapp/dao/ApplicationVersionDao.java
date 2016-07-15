@@ -1,8 +1,8 @@
 package org.literacyapp.dao;
 
 import java.util.List;
-import org.literacyapp.model.admin.application.Application;
-import org.literacyapp.model.ApplicationVersion;
+import org.literacyapp.model.admin.Application;
+import org.literacyapp.model.admin.ApplicationVersion;
 
 import org.springframework.dao.DataAccessException;
 

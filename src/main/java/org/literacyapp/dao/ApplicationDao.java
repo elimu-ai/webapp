@@ -1,7 +1,7 @@
 package org.literacyapp.dao;
 
 import java.util.List;
-import org.literacyapp.model.admin.application.Application;
+import org.literacyapp.model.admin.Application;
 
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.admin.application.ApplicationStatus;

@@ -60,7 +60,7 @@
                             <p><c:out value="${contributor.email}" /></p>
 
                             <p><b><fmt:message key="registration.time" /></b></p>
-                            <p>${contributor.registrationTime.time}</p>
+                            <p><fmt:formatDate value="${contributor.registrationTime.time}" type="both" timeStyle="short" /></p>
                             
                             <p><b><fmt:message key="referrer" /></b></p>
                             <p>

@@ -2,7 +2,7 @@ package org.literacyapp.rest.util;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.literacyapp.model.admin.application.Application;
+import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.Word;
 import org.literacyapp.model.json.DeviceJson;

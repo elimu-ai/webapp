@@ -1,4 +1,4 @@
-package org.literacyapp.model.admin.application;
+package org.literacyapp.model.admin;
 
 import java.util.Calendar;
 import java.util.Set;

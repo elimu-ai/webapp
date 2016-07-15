@@ -5,7 +5,7 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
-import org.literacyapp.model.admin.application.Application;
+import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.enums.LiteracySkill;
 import org.literacyapp.model.enums.NumeracySkill;
 import org.literacyapp.model.enums.admin.application.ApplicationStatus;

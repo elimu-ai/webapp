@@ -4,11 +4,9 @@
 
 <content:section cssId="numberListPage">
     <div class="section row">
-        <c:if test="${empty images}">
-            <p>
-                <fmt:message key="to.add.new.content.click.the.button.below" />
-            </p>
-        </c:if>
+        <p>
+            <fmt:message key="to.add.new.content.click.the.button.below" />
+        </p>
         
         <c:forEach var="image" items="${images}">
             <div class="col s12 m6 l4">

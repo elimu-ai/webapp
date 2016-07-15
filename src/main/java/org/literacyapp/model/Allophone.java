@@ -61,6 +61,7 @@ public class Allophone extends BaseEntity {
     @OneToOne
     private Contributor contributor;
     
+    // TODO: @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar calendar;
 
