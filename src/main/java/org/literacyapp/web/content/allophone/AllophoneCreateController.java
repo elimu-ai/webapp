@@ -59,7 +59,10 @@ public class AllophoneCreateController {
     	logger.info("handleSubmit");
         
         if (StringUtils.isNotBlank(allophone.getValueIpa())) {
-            // Verify that the Allophone does not already exist
+            if (allophone.getValueIpa().length() > 1) {
+                result.rejectValue("valueIpa", "TooLong");
+            }
+            
             Allophone existingAllophone = allophoneDao.readByValueIpa(allophone.getLocale(), allophone.getValueIpa());
             if (existingAllophone != null) {
                 result.rejectValue("valueIpa", "NonUnique");
@@ -67,7 +70,10 @@ public class AllophoneCreateController {
         }
         
         if (StringUtils.isNotBlank(allophone.getValueSampa())) {
-            // Verify that the Allophone does not already exist
+            if (allophone.getValueSampa().length() > 1) {
+                result.rejectValue("valueSampa", "TooLong");
+            }
+
             Allophone existingAllophone = allophoneDao.readByValueSampa(allophone.getLocale(), allophone.getValueSampa());
             if (existingAllophone != null) {
                 result.rejectValue("valueSampa", "NonUnique");
