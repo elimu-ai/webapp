@@ -4,11 +4,9 @@
 
 <content:section cssId="applicationListPage">
     <div class="section row">
-        <c:if test="${empty applications}">
-            <p>
-                <fmt:message key="to.add.new.content.click.the.button.below" />
-            </p>
-        </c:if>
+        <p>
+            <fmt:message key="to.add.new.content.click.the.button.below" />
+        </p>
         
         <c:if test="${not empty applications}">
             <table class="bordered highlight">
@@ -40,6 +38,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/admin/application/create' />" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.application" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/admin/application/create' />" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.application" />"><i class="material-icons">android</i></a>
     </div>
 </content:section>

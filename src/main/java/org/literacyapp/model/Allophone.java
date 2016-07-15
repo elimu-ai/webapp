@@ -1,6 +1,7 @@
 package org.literacyapp.model;
 
 import java.util.Calendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,9 +30,11 @@ public class Allophone extends BaseEntity {
     private Locale locale;
     
     @NotNull
+    // TODO: @Column(length = 3)
     private String valueIpa; // IPA - International Phonetic Alphabet
     
     @NotNull
+    // TODO: @Column(length = 3)
     private String valueSampa; // X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet
     
     @Enumerated(EnumType.STRING)
@@ -61,6 +64,7 @@ public class Allophone extends BaseEntity {
     @OneToOne
     private Contributor contributor;
     
+    // TODO: @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar calendar;
 

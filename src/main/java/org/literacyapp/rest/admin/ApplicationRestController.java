@@ -1,11 +1,11 @@
-package org.literacyapp.rest.admin.application;
+package org.literacyapp.rest.admin;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
-import org.literacyapp.model.admin.application.Application;
+import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.admin.application.ApplicationStatus;
 import org.literacyapp.model.json.admin.application.ApplicationJson;

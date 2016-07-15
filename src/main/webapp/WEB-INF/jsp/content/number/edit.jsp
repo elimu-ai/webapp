@@ -37,7 +37,7 @@
             <img src="${number.contributor.imageUrl}" alt="" class="circle responsive-img">
             <c:out value="${number.contributor.firstName}" />&nbsp;<c:out value="${number.contributor.lastName}" />
         </div> 
-        ${number.calendar.time}
+        <fmt:formatDate value="${number.calendar.time}" type="both" timeStyle="short" />
     </p>
     
     <div id="disqus_thread"></div>

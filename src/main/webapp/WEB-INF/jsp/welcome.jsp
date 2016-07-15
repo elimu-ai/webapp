@@ -16,7 +16,7 @@
         <div class="col s2">&nbsp;</div>
     </div>
     <div class="row center">
-      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
+      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light green"><fmt:message key="join.now" /></a>
     </div>
     <br />
 </content:banner>
@@ -35,7 +35,7 @@
               <p class="light center">All of the code used in the project is publicly available in our <a href="https://github.com/XPRIZE/GLEXP-Team-Educativo-LiteracyApp">GitHub</a> repository.</p>
               --%>
               <div class="row center">
-                <a href="https://github.com/literacyapp-org" id="download-button" class="btn-large waves-effect waves-light"><fmt:message key="download.source.code" /></a>
+                <a href="https://github.com/literacyapp-org" id="download-button" class="btn-large waves-effect waves-light green"><fmt:message key="download.source.code" /></a>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="row center">
-            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light"><fmt:message key="join.now" /></a>
+            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light green"><fmt:message key="join.now" /></a>
         </div>
     </div>
 </content:section>

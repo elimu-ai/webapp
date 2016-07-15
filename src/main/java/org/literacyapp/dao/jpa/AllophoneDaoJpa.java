@@ -18,7 +18,24 @@ public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements Allopho
                 "SELECT a " +
                 "FROM Allophone a " +
                 "WHERE a.locale = :locale " +
-                "AND a.value = :value")
+                "AND a.valueIpa = :value")
+                .setParameter("locale", locale)
+                .setParameter("value", value)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("Allophone \"" + value + "\" was not found for locale " + locale);
+            return null;
+        }
+    }
+    
+    @Override
+    public Allophone readByValueSampa(Locale locale, String value) throws DataAccessException {
+        try {
+            return (Allophone) em.createQuery(
+                "SELECT a " +
+                "FROM Allophone a " +
+                "WHERE a.locale = :locale " +
+                "AND a.valueSampa = :value")
                 .setParameter("locale", locale)
                 .setParameter("value", value)
                 .getSingleResult();
@@ -31,10 +48,10 @@ public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements Allopho
     @Override
     public List<Allophone> readAllOrdered(Locale locale) throws DataAccessException {
         return em.createQuery(
-            "SELECT n " +
-            "FROM Number n " +
-            "WHERE n.locale = :locale " +
-            "ORDER BY n.value")
+            "SELECT a " +
+            "FROM Allophone a " +
+            "WHERE a.locale = :locale " +
+            "ORDER BY a.valueIpa")
             .setParameter("locale", locale)
             .getResultList();
     }
