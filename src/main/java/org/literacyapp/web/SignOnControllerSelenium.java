@@ -44,14 +44,14 @@ public class SignOnControllerSelenium {
         logger.info("role: " + role);
         
         Contributor contributor = new Contributor();
-        contributor.setEmail("info+role-contributor@literacyapp.org");
+        contributor.setEmail("info+role-" + role + "@literacyapp.org");
         contributor.setRoles(new HashSet<>(Arrays.asList(role)));
         contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setFirstName("TestRole");
         contributor.setLastName(role.toString());
         contributor.setLocale(Locale.EN);
         contributor.setTeams(new HashSet<>(Arrays.asList(Team.TESTING)));
-        contributor.setMotivation("Regression testing");
+        contributor.setMotivation("Regression testing as " + role);
 				
         Contributor existingContributor = contributorDao.read(contributor.getEmail());
         logger.info("existingContributor: " + existingContributor);
