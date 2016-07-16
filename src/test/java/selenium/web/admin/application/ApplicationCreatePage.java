@@ -22,7 +22,7 @@ public class ApplicationCreatePage {
         this.driver = driver;
         
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("allophoneCreatePage")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("applicationCreatePage")));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
