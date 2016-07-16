@@ -41,7 +41,7 @@
                          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png">
                 </a>
                 
-                <nav class="black lighten-1" role="navigation">
+                <nav class="black lighten-1">
                     <div class="nav-wrapper container">
                         <a id="logo-container" href="<spring:url value='/' />" class="brand-logo">
                             <img src="<spring:url value='/img/logo-208x208.png' />" alt="LiteracyApp" />
