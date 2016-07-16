@@ -17,6 +17,7 @@ import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,20 +29,26 @@ public class SignOnControllerSelenium {
     @Autowired
     private ContributorDao contributorDao;
 
-    @RequestMapping(value="/sign-on/test/role-contributor", method=RequestMethod.GET)
-    public String handleRoleContributor(HttpServletRequest request, Model model) {
-        logger.info("handleRoleContributor");
+    @RequestMapping(value="/sign-on/test/role-{role}", method=RequestMethod.GET)
+    public String handleRequest(
+            @PathVariable Role role,
+            HttpServletRequest request,
+            Model model
+    ) {
+        logger.info("handleRequest");
         
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             return "redirect:/sign-on";
         }
         
+        logger.info("role: " + role);
+        
         Contributor contributor = new Contributor();
         contributor.setEmail("info+role-contributor@literacyapp.org");
-        contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+        contributor.setRoles(new HashSet<>(Arrays.asList(role)));
         contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setFirstName("TestRole");
-        contributor.setLastName("Contributor");
+        contributor.setLastName(role.toString());
         contributor.setLocale(Locale.EN);
         contributor.setTeams(new HashSet<>(Arrays.asList(Team.TESTING)));
         contributor.setMotivation("Regression testing");

@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action">
+            <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="add" /> <i class="material-icons right">send</i>
             </button>
         </form:form>

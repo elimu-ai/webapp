@@ -1,5 +1,6 @@
-package selenium.web.content.allophone;
+package selenium.web.admin.application;
 
+import selenium.web.content.allophone.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
 
-public class AllophoneCreatePage {
+public class ApplicationCreatePage {
 
     private WebDriver driver;
     
@@ -17,7 +18,7 @@ public class AllophoneCreatePage {
     
     private WebElement submitButton;
 
-    public AllophoneCreatePage(WebDriver driver) {
+    public ApplicationCreatePage(WebDriver driver) {
         this.driver = driver;
         
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);

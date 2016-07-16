@@ -1,4 +1,4 @@
-package selenium.web.content.allophone;
+package selenium.web.admin.application;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,18 +9,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
 
-public class AllophoneListPage {
+public class ApplicationListPage {
 
     private WebDriver driver;
     
     @FindBy(className = "btn-floating")
     private WebElement addButton;
 
-    public AllophoneListPage(WebDriver driver) {
+    public ApplicationListPage(WebDriver driver) {
         this.driver = driver;
         
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("allophoneListPage")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("applicationListPage")));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
