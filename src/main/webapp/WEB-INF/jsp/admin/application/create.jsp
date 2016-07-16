@@ -14,7 +14,7 @@
                 <form:hidden path="contributor" value="${contributor.id}" />
                 <div class="input-field col s6">
                     <form:label path="packageName" cssErrorClass="error"><fmt:message key='package.name' /></form:label>
-                    <form:input path="packageName" cssErrorClass="error" placeholder="org.literacyapp" required="required" pattern=".{2,}\..{2,}" title="Example: org.literacyapp" />
+                    <form:input path="packageName" cssErrorClass="error" placeholder="org.literacyapp" />
                 </div>
             </div>
             
