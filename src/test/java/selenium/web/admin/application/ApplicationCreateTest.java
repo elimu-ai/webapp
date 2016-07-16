@@ -1,6 +1,6 @@
-package selenium.web.content.allophone;
+package selenium.web.admin.application;
 
-import selenium.web.content.contributor.*;
+import selenium.web.content.allophone.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -17,7 +17,7 @@ import selenium.DomainHelper;
 import selenium.ScreenshotOnFailureRule;
 import selenium.SignOnHelper;
 
-public class AllophoneCreateTest {
+public class ApplicationCreateTest {
 
     @Rule
     public MethodRule methodRule = new ScreenshotOnFailureRule();
@@ -27,17 +27,17 @@ public class AllophoneCreateTest {
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
-        SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/allophone/list");
+        SignOnHelper.signOnRole(driver, Role.ADMIN);
+        driver.get(DomainHelper.getBaseDomain() + "/admin/application/list");
     }
 
     @Test
     public void testSubmitEmptyForm() {
-    	AllophoneListPage allophoneListPage = PageFactory.initElements(driver, AllophoneListPage.class);
-        allophoneListPage.clickAddButton();
+    	ApplicationListPage applicationListPage = PageFactory.initElements(driver, ApplicationListPage.class);
+        applicationListPage.clickAddButton();
         
-        AllophoneCreatePage allophoneCreatePage = PageFactory.initElements(driver, AllophoneCreatePage.class);
-        allophoneCreatePage.submitForm();
-        assertThat(allophoneCreatePage.isErrorMessageDisplayed(), is(true));
+        ApplicationCreatePage applicationCreatePage = PageFactory.initElements(driver, ApplicationCreatePage.class);
+        applicationCreatePage.submitForm();
+        assertThat(applicationCreatePage.isErrorMessageDisplayed(), is(true));
     }
 }

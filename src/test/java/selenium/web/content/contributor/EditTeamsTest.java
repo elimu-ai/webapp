@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.MethodRule;
+import org.literacyapp.model.enums.Role;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -25,7 +26,7 @@ public class EditTeamsTest {
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
-        SignOnHelper.signOnRoleContributor(driver);
+        SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
         driver.get(DomainHelper.getBaseDomain() + "/content/contributor/edit-teams");
     }
 
