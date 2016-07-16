@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class MarkupValidationHelper {
     
-    private static final String URL = "http://html5.validator.nu/";
+    private static final String URL = "https://html5.validator.nu/";
 
     /**
      * Verifies that the HTML is well formed.
@@ -22,12 +22,6 @@ public class MarkupValidationHelper {
      * @param markup The HTML markup to be tested.
      */
     public static void verifyNoMarkupError(String markup) {
-        
-        // YouTube videos fail to validate
-        if (markup.contains("video-container")) {
-            return;
-        }
-       
     //        List<MediaType> supportedMediaTypes = new ArrayList<>();
             List<MediaType> supportedMediaTypes = new ArrayList<MediaType>();
             supportedMediaTypes.add(new MediaType("text", "html", Charset.forName("UTF-8")));
@@ -43,11 +37,8 @@ public class MarkupValidationHelper {
             restTemplate.setMessageConverters(messageConverters);
 
             String result = restTemplate.postForObject(URL, markup, String.class);
+            System.out.println("result: " + result);
 
-            if (result.contains("x-webkit-speech")) {
-                return;
-            } else {
-                assertTrue("The document is not valid HTML5: " + markup, result.contains("The document is valid HTML5"));
-            }
+            assertTrue("The document is not valid HTML5: " + markup, result.contains("The document is valid HTML5"));
     }
 }
