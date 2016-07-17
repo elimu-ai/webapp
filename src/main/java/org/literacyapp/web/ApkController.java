@@ -3,6 +3,7 @@ package org.literacyapp.web;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,40 +12,57 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import org.literacyapp.dao.ApplicationDao;
+import org.literacyapp.dao.ApplicationVersionDao;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Image;
+import org.literacyapp.model.admin.Application;
+import org.literacyapp.model.admin.ApplicationVersion;
+import org.literacyapp.model.enums.Locale;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/image")
-public class ImageController {
+@RequestMapping("/apk")
+public class ApkController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private ImageDao imageDao;
+    private ApplicationDao applicationDao;
     
-    @RequestMapping(value="/{imageId}.{imageType}", method = RequestMethod.GET)
+    @Autowired
+    private ApplicationVersionDao applicationVersionDao;
+    
+    @RequestMapping(value="/{packageName}-{versionCode}.apk", method = RequestMethod.GET)
     public void handleRequest(
-            Model model,
-            @PathVariable Long imageId,
-            @PathVariable String imageType,
+            @PathVariable String packageName,
+            @PathVariable Integer versionCode,
+            
+            @RequestParam String deviceId,
+            // TODO: checksum
+            @RequestParam Locale locale,
+            @RequestParam String deviceModel,
+            @RequestParam Integer osVersion,
+            @RequestParam Integer appVersionCode,
+            
+            HttpServletRequest request,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
-        logger.info("imageId: " + imageId);
-        logger.info("imageType: " + imageType);
+        logger.info("packageName: " + packageName);
+        logger.info("versionCode: " + versionCode);
         
-        Image image = imageDao.read(imageId);
-        model.addAttribute("image", image);
+        Application application = applicationDao.readByPackageName(locale, packageName);
+        ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);
         
-        response.setContentType(image.getContentType());
+        response.setContentType(applicationVersion.getContentType());
         
-        byte[] imageBytes = image.getBytes();
+        byte[] bytes = applicationVersion.getBytes();
         try {
-            outputStream.write(imageBytes);
+            outputStream.write(bytes);
         } catch (EOFException ex) {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);

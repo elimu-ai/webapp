@@ -38,13 +38,12 @@ public class ImageController {
         logger.info("imageType: " + imageType);
         
         Image image = imageDao.read(imageId);
-        model.addAttribute("image", image);
         
         response.setContentType(image.getContentType());
         
-        byte[] imageBytes = image.getBytes();
+        byte[] bytes = image.getBytes();
         try {
-            outputStream.write(imageBytes);
+            outputStream.write(bytes);
         } catch (EOFException ex) {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);

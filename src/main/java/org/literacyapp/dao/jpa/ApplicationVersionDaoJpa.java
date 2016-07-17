@@ -1,6 +1,7 @@
 package org.literacyapp.dao.jpa;
 
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.literacyapp.dao.ApplicationVersionDao;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.admin.ApplicationVersion;
@@ -8,6 +9,23 @@ import org.literacyapp.model.admin.ApplicationVersion;
 import org.springframework.dao.DataAccessException;
 
 public class ApplicationVersionDaoJpa extends GenericDaoJpa<ApplicationVersion> implements ApplicationVersionDao {
+    
+    @Override
+    public ApplicationVersion read(Application application, Integer versionCode) throws DataAccessException {
+        try {
+            return (ApplicationVersion) em.createQuery(
+                "SELECT av " +
+                "FROM ApplicationVersion av " +
+                "WHERE av.application = :application " +
+                "AND av.versionCode = :versionCode")
+                .setParameter("application", application)
+                .setParameter("versionCode", versionCode)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("ApplicationVersion \"" + versionCode + "\" was not found for Application " + application.getPackageName());
+            return null;
+        }
+    }
     
     @Override
     public List<ApplicationVersion> readAll(Application application) throws DataAccessException {
