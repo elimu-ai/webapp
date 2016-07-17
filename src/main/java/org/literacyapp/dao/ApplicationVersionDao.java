@@ -8,5 +8,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface ApplicationVersionDao extends GenericDao<ApplicationVersion> {
     
+    ApplicationVersion read(Application application, Integer versionCode) throws DataAccessException;
+    
     List<ApplicationVersion> readAll(Application application) throws DataAccessException;
 }
