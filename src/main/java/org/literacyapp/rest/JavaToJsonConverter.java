@@ -36,7 +36,7 @@ public class JavaToJsonConverter {
             ApplicationVersionJson applicationVersionJson = new ApplicationVersionJson();
             applicationVersionJson.setId(applicationVersion.getId());
             applicationVersionJson.setFileSizeInKb(applicationVersion.getBytes().length / 1024);
-            applicationVersionJson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
+            applicationVersionJson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
             applicationVersionJson.setContentType(applicationVersion.getContentType());
             applicationVersionJson.setVersionCode(applicationVersion.getVersionCode());
             applicationVersionJson.setTimeUploaded(applicationVersion.getTimeUploaded());
