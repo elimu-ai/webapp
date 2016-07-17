@@ -59,6 +59,7 @@ public class ApkController {
         ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);
         
         response.setContentType(applicationVersion.getContentType());
+        response.setContentLength(applicationVersion.getBytes().length);
         
         byte[] bytes = applicationVersion.getBytes();
         try {
