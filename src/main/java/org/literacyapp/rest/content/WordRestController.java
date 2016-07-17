@@ -7,14 +7,14 @@ import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Word;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.WordJson;
-import org.literacyapp.rest.util.JavaToJsonConverter;
+import org.literacyapp.rest.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/word")
+@RequestMapping("/rest/content/word")
 public class WordRestController {
     
     private Logger logger = Logger.getLogger(getClass());
