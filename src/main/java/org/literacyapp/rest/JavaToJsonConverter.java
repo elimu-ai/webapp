@@ -39,7 +39,7 @@ public class JavaToJsonConverter {
             applicationVersionJson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
             applicationVersionJson.setContentType(applicationVersion.getContentType());
             applicationVersionJson.setVersionCode(applicationVersion.getVersionCode());
-            applicationVersionJson.setTimeUploaded(applicationVersion.getTimeUploaded());
+//            applicationVersionJson.setTimeUploaded(applicationVersion.getTimeUploaded());
             return applicationVersionJson;
         }
     }
