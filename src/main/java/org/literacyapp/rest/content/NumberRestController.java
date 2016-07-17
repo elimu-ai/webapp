@@ -6,14 +6,14 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.NumberJson;
-import org.literacyapp.rest.util.JavaToJsonConverter;
+import org.literacyapp.rest.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/number")
+@RequestMapping("/rest/content/number")
 public class NumberRestController {
     
     private Logger logger = Logger.getLogger(getClass());
