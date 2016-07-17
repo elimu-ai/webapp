@@ -22,6 +22,7 @@ public class JavaToJsonConverter {
             applicationJson.setPackageName(application.getPackageName());
             applicationJson.setLiteracySkills(application.getLiteracySkills());
             applicationJson.setNumeracySkills(application.getNumeracySkills());
+            applicationJson.setApplicationStatus(application.getApplicationStatus());
             return applicationJson;
         }
     }
