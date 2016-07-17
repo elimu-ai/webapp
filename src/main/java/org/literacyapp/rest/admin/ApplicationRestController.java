@@ -5,10 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
+import org.literacyapp.dao.ApplicationVersionDao;
 import org.literacyapp.model.admin.Application;
+import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.admin.application.ApplicationStatus;
-import org.literacyapp.model.json.admin.application.ApplicationJson;
+import org.literacyapp.model.enums.admin.ApplicationStatus;
+import org.literacyapp.model.json.admin.ApplicationJson;
+import org.literacyapp.model.json.admin.ApplicationVersionJson;
 import org.literacyapp.rest.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,9 @@ public class ApplicationRestController {
     
     @Autowired
     private ApplicationDao applicationDao;
+    
+    @Autowired
+    private ApplicationVersionDao applicationVersionDao;
     
     @RequestMapping("/list")
     public List<ApplicationJson> list(
@@ -46,6 +52,15 @@ public class ApplicationRestController {
         List<ApplicationJson> applicationJsons = new ArrayList<>();
         for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
             ApplicationJson applicationJson = JavaToJsonConverter.getApplicationJson(application);
+            
+            List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
+            List<ApplicationVersionJson> applicationVersionList = new ArrayList<>();
+            for (ApplicationVersion applicationVersion : applicationVersions) {
+                ApplicationVersionJson applicationVersionJson = JavaToJsonConverter.getApplicationVersionJson(applicationVersion);
+                applicationVersionList.add(applicationVersionJson);
+            }
+            applicationJson.setApplicationVersionList(applicationVersionList);
+            
             applicationJsons.add(applicationJson);
         }
         return applicationJsons;

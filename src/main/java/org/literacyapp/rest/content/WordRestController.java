@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Word;
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.json.WordJson;
+import org.literacyapp.model.json.content.WordJson;
 import org.literacyapp.rest.JavaToJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

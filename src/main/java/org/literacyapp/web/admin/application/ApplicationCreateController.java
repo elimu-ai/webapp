@@ -8,7 +8,7 @@ import org.literacyapp.dao.ApplicationDao;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.enums.LiteracySkill;
 import org.literacyapp.model.enums.NumeracySkill;
-import org.literacyapp.model.enums.admin.application.ApplicationStatus;
+import org.literacyapp.model.enums.admin.ApplicationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

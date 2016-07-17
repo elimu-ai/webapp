@@ -8,7 +8,7 @@ import org.literacyapp.model.admin.Application;
 import org.springframework.dao.DataAccessException;
 
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.admin.application.ApplicationStatus;
+import org.literacyapp.model.enums.admin.ApplicationStatus;
 
 public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements ApplicationDao {
     

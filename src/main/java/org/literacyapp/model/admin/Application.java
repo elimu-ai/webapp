@@ -16,7 +16,7 @@ import org.literacyapp.model.Contributor;
 import org.literacyapp.model.enums.LiteracySkill;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.NumeracySkill;
-import org.literacyapp.model.enums.admin.application.ApplicationStatus;
+import org.literacyapp.model.enums.admin.ApplicationStatus;
 
 @Entity
 public class Application extends BaseEntity {
@@ -44,6 +44,7 @@ public class Application extends BaseEntity {
     @ManyToOne
     private Contributor contributor;
     
+    // TODO: @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeCreated;
 

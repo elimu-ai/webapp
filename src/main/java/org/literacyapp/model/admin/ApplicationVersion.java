@@ -1,6 +1,5 @@
 package org.literacyapp.model.admin;
 
-import org.literacyapp.model.admin.Application;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
