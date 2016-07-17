@@ -59,7 +59,7 @@ public class ApplicationRestController {
                 ApplicationVersionJson applicationVersionJson = JavaToJsonConverter.getApplicationVersionJson(applicationVersion);
                 applicationVersionList.add(applicationVersionJson);
             }
-            applicationJson.setApplicationVersionList(applicationVersionList);
+            applicationJson.setApplicationVersionJsonList(applicationVersionList);
             
             applicationJsons.add(applicationJson);
         }
