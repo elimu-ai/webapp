@@ -4,7 +4,7 @@ import java.util.List;
 import org.literacyapp.model.admin.Application;
 
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.admin.application.ApplicationStatus;
+import org.literacyapp.model.enums.admin.ApplicationStatus;
 
 import org.springframework.dao.DataAccessException;
 

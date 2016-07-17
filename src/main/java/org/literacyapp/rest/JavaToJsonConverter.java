@@ -5,10 +5,12 @@ import java.util.Set;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.Word;
+import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.json.DeviceJson;
-import org.literacyapp.model.json.NumberJson;
-import org.literacyapp.model.json.WordJson;
-import org.literacyapp.model.json.admin.application.ApplicationJson;
+import org.literacyapp.model.json.content.NumberJson;
+import org.literacyapp.model.json.content.WordJson;
+import org.literacyapp.model.json.admin.ApplicationJson;
+import org.literacyapp.model.json.admin.ApplicationVersionJson;
 
 public class JavaToJsonConverter {
     
@@ -24,6 +26,21 @@ public class JavaToJsonConverter {
             applicationJson.setNumeracySkills(application.getNumeracySkills());
             applicationJson.setApplicationStatus(application.getApplicationStatus());
             return applicationJson;
+        }
+    }
+    
+    public static ApplicationVersionJson getApplicationVersionJson(ApplicationVersion applicationVersion) {
+        if (applicationVersion == null) {
+            return null;
+        } else {
+            ApplicationVersionJson applicationVersionJson = new ApplicationVersionJson();
+            applicationVersionJson.setId(applicationVersion.getId());
+            applicationVersionJson.setFileSizeInKb(applicationVersion.getBytes().length / 1024);
+            applicationVersionJson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
+            applicationVersionJson.setContentType(applicationVersion.getContentType());
+            applicationVersionJson.setVersionCode(applicationVersion.getVersionCode());
+            applicationVersionJson.setTimeUploaded(applicationVersion.getTimeUploaded());
+            return applicationVersionJson;
         }
     }
     
