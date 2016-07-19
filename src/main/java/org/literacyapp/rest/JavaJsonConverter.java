@@ -12,7 +12,7 @@ import org.literacyapp.model.json.content.WordJson;
 import org.literacyapp.model.json.admin.ApplicationJson;
 import org.literacyapp.model.json.admin.ApplicationVersionJson;
 
-public class JavaToJsonConverter {
+public class JavaJsonConverter {
     
     public static ApplicationJson getApplicationJson(Application application) {
         if (application == null) {

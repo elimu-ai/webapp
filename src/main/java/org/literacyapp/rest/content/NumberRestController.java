@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.content.NumberJson;
-import org.literacyapp.rest.JavaToJsonConverter;
+import org.literacyapp.rest.JavaJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +29,7 @@ public class NumberRestController {
         
         List<NumberJson> numberJsons = new ArrayList<>();
         for (org.literacyapp.model.content.Number number : numberDao.readAllOrdered(locale)) {
-            NumberJson numberJson = JavaToJsonConverter.getNumberJson(number);
+            NumberJson numberJson = JavaJsonConverter.getNumberJson(number);
             numberJsons.add(numberJson);
         }
         return numberJsons;

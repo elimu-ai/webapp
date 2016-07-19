@@ -7,7 +7,7 @@ import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.content.WordJson;
-import org.literacyapp.rest.JavaToJsonConverter;
+import org.literacyapp.rest.JavaJsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +30,7 @@ public class WordRestController {
         
         List<WordJson> wordJsons = new ArrayList<>();
         for (Word word : wordDao.readAllOrdered(locale)) {
-            WordJson wordJson = JavaToJsonConverter.getWordJson(word);
+            WordJson wordJson = JavaJsonConverter.getWordJson(word);
             wordJsons.add(wordJson);
         }
         return wordJsons;

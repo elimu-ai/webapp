@@ -83,7 +83,7 @@
                         </ul>
                     </ul>
                     <div class="right">
-                        <div class="white-text"><fmt:message key="language.${locale.language}" /></div>
+                        <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
                     </div>
                 </div>
             </div>
