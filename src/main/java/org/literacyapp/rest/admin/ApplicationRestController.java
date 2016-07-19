@@ -42,12 +42,7 @@ public class ApplicationRestController {
     ) {
         logger.info("list");
         
-        logger.info("deviceId: " + deviceId);
-//        logger.info("checksum: " + checksum);
-        logger.info("locale: " + locale);
-        logger.info("deviceModel: " + deviceModel);
-        logger.info("osVersion: " + osVersion);
-        logger.info("appVersionCode: " + appVersionCode);
+        logger.info("request.getQueryString(): " + request.getQueryString());
         
         List<ApplicationJson> applicationJsons = new ArrayList<>();
         for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {

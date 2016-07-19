@@ -13,9 +13,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.literacyapp.model.BaseEntity;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.enums.LiteracySkill;
+import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.NumeracySkill;
+import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.model.enums.admin.ApplicationStatus;
 
 @Entity
@@ -44,7 +44,7 @@ public class Application extends BaseEntity {
     @ManyToOne
     private Contributor contributor;
     
-    // TODO: @NotNull
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeCreated;
 

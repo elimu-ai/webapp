@@ -28,7 +28,7 @@ public class NumberRestController {
         logger.info("locale: " + locale);
         
         List<NumberJson> numberJsons = new ArrayList<>();
-        for (org.literacyapp.model.Number number : numberDao.readAllOrdered(locale)) {
+        for (org.literacyapp.model.content.Number number : numberDao.readAllOrdered(locale)) {
             NumberJson numberJson = JavaToJsonConverter.getNumberJson(number);
             numberJsons.add(numberJson);
         }

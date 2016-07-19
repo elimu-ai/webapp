@@ -6,7 +6,7 @@ import javax.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.Image;
+import org.literacyapp.model.content.Image;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.enums.Locale;
 
@@ -36,18 +36,6 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
             "FROM Image i " +
             "WHERE i.locale = :locale " +
             "ORDER BY i.title")
-            .setParameter("locale", locale)
-            .getResultList();
-    }
-
-    @Override
-    public List<Image> readLatest(Locale locale) throws DataAccessException {
-        return em.createQuery(
-            "SELECT i " +
-            "FROM Image i " +
-            "WHERE i.locale = :locale " +
-            "ORDER BY i.calendar DESC")
-            .setMaxResults(10)
             .setParameter("locale", locale)
             .getResultList();
     }

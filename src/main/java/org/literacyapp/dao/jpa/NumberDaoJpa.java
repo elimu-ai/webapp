@@ -5,7 +5,7 @@ import javax.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.Number;
+import org.literacyapp.model.content.Number;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.enums.Locale;
 
@@ -36,18 +36,6 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
             "WHERE n.locale = :locale " +
             "ORDER BY n.value")
             .setParameter("locale", locale)
-            .getResultList();
-    }
-
-    @Override
-    public List<Number> readLatest(Locale locale) throws DataAccessException {
-        return em.createQuery(
-            "SELECT n " +
-            "FROM Number n " +
-            "WHERE n.locale = :locale " +
-            "ORDER BY n.calendar DESC")
-            .setParameter("locale", locale)
-            .setMaxResults(10)
             .getResultList();
     }
 }

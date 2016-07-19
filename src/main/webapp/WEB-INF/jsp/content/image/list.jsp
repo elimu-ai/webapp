@@ -11,24 +11,10 @@
         <c:forEach var="image" items="${images}">
             <div class="col s12 m6 l4">
                 <div class="card">
-                    <div class="card-content">
-                        <div class="row valign-wrapper">
-                            <div class="col s2">
-                                <img src="${image.contributor.imageUrl}" alt="" class="circle responsive-img">
-                            </div>
-                            <div class="col s10">
-                                <span class="black-text">
-                                    <c:out value="${image.contributor.firstName}" />&nbsp;<c:out value="${image.contributor.lastName}" />
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />" alt="${image.title}" />
                     
                     <div class="card-content">
                         <h4>${image.title}</h4>
-                        <div class="chip"><fmt:message key="language.${image.locale.language}" /></div>
                         <div class="divider" style="margin: 1em 0;"></div>
                         <a href="<spring:url value='/content/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>

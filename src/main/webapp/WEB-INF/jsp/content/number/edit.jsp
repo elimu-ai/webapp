@@ -31,14 +31,14 @@
     
     <div class="divider"></div>
     
-    <p>
+    <%--<p>
         <fmt:message key="last.update" />:<br />
         <div class="chip">
             <img src="${number.contributor.imageUrl}" alt="" class="circle responsive-img">
             <c:out value="${number.contributor.firstName}" />&nbsp;<c:out value="${number.contributor.lastName}" />
         </div> 
         <fmt:formatDate value="${number.calendar.time}" type="both" timeStyle="short" />
-    </p>
+    </p>--%>
     
     <div id="disqus_thread"></div>
     <script>

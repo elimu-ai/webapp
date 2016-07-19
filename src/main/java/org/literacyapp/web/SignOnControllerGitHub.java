@@ -27,6 +27,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import org.apache.commons.lang.StringUtils;
+import org.literacyapp.dao.SignOnEventDao;
+import org.literacyapp.model.contributor.SignOnEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.util.CookieHelper;
@@ -53,6 +55,9 @@ public class SignOnControllerGitHub {
     
     @Autowired
     private ContributorDao contributorDao;
+    
+    @Autowired
+    private SignOnEventDao signOnEventDao;
 
     /**
      * https://developer.github.com/v3/oauth/#1-redirect-users-to-request-github-access
@@ -259,6 +264,11 @@ public class SignOnControllerGitHub {
 
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
+            
+            SignOnEvent signOnEvent = new SignOnEvent();
+            signOnEvent.setContributor(contributor);
+            signOnEvent.setCalendar(Calendar.getInstance());
+            signOnEventDao.create(signOnEvent);
             
             return "redirect:/content";
         }

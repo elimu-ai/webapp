@@ -1,10 +1,7 @@
 package org.literacyapp.dao;
 
-import org.literacyapp.model.Device;
+import org.literacyapp.model.contributor.ContentCreationEvent;
 
-import org.springframework.dao.DataAccessException;
-
-public interface DeviceDao extends GenericDao<Device> {
-	
-    Device read(String deviceId) throws DataAccessException;
+public interface ContentCreationEventDao extends GenericDao<ContentCreationEvent> {
+    
 }

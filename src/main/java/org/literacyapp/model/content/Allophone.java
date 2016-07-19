@@ -1,40 +1,31 @@
-package org.literacyapp.model;
+package org.literacyapp.model.content;
 
-import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.ConsonantPlace;
-import org.literacyapp.model.enums.ConsonantType;
-import org.literacyapp.model.enums.ConsonantVoicing;
-import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.LipRounding;
-import org.literacyapp.model.enums.SoundType;
-import org.literacyapp.model.enums.VowelFrontness;
-import org.literacyapp.model.enums.VowelHeight;
-import org.literacyapp.model.enums.VowelLength;
+import org.literacyapp.model.enums.content.allophone.ConsonantPlace;
+import org.literacyapp.model.enums.content.allophone.ConsonantType;
+import org.literacyapp.model.enums.content.allophone.ConsonantVoicing;
+import org.literacyapp.model.enums.content.allophone.LipRounding;
+import org.literacyapp.model.enums.content.allophone.SoundType;
+import org.literacyapp.model.enums.content.allophone.VowelFrontness;
+import org.literacyapp.model.enums.content.allophone.VowelHeight;
+import org.literacyapp.model.enums.content.allophone.VowelLength;
 
 /**
  * Speech sound
  */
 @Entity
-public class Allophone extends BaseEntity {
+public class Allophone extends Content {
     
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private Locale locale;
-    
-    @NotNull
-    // TODO: @Column(length = 3)
+    @Column(length = 3)
     private String valueIpa; // IPA - International Phonetic Alphabet
     
     @NotNull
-    // TODO: @Column(length = 3)
+    @Column(length = 3)
     private String valueSampa; // X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet
     
     @Enumerated(EnumType.STRING)
@@ -60,21 +51,6 @@ public class Allophone extends BaseEntity {
     
     @Enumerated(EnumType.STRING)
     private ConsonantVoicing consonantVoicing;
-    
-    @OneToOne
-    private Contributor contributor;
-    
-    // TODO: @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar calendar;
-
-    public Locale getLocale() {
-        return locale;
-    }
-
-    public void setLocale(Locale locale) {
-        this.locale = locale;
-    }
 
     public String getValueIpa() {
         return valueIpa;
@@ -98,22 +74,6 @@ public class Allophone extends BaseEntity {
 
     public void setSoundType(SoundType soundType) {
         this.soundType = soundType;
-    }
-
-    public Contributor getContributor() {
-        return contributor;
-    }
-
-    public void setContributor(Contributor contributor) {
-        this.contributor = contributor;
-    }
-
-    public Calendar getCalendar() {
-        return calendar;
-    }
-
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
     }
 
     public VowelLength getVowelLength() {

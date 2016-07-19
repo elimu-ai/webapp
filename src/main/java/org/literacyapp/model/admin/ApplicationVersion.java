@@ -10,7 +10,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.literacyapp.model.BaseEntity;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.admin.Application;
 
 @Entity
 public class ApplicationVersion extends BaseEntity {
@@ -31,7 +30,9 @@ public class ApplicationVersion extends BaseEntity {
     
     // TODO: minSdk
     
-    // TODO: @NotNull
+    private String startCommand; // "adb shell <command>"
+    
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeUploaded;
     
@@ -68,6 +69,14 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setVersionCode(Integer versionCode) {
         this.versionCode = versionCode;
+    }
+    
+    public String getStartCommand() {
+        return startCommand;
+    }
+
+    public void setStartCommand(String startCommand) {
+        this.startCommand = startCommand;
     }
 
     public Calendar getTimeUploaded() {

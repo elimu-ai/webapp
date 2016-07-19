@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.Image;
+import org.literacyapp.model.content.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +28,7 @@ public class ImageListController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        List<Image> images = imageDao.readLatest(contributor.getLocale());
+        List<Image> images = imageDao.readAllOrdered(contributor.getLocale());
         model.addAttribute("images", images);
 
         return "content/image/list";

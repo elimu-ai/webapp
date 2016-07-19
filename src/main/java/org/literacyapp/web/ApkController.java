@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import org.literacyapp.dao.ApplicationDao;
 import org.literacyapp.dao.ApplicationVersionDao;
-import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.Image;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.enums.Locale;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 

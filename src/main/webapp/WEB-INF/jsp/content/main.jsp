@@ -6,75 +6,9 @@
     <h4><fmt:message key="latest.uploads" /></h4>
     
     <div class="section row">
-        <c:if test="${(empty numbers) && (empty images)}">
-            <p>
-                <fmt:message key="to.add.new.content.click.the.button.below" />
-            </p>
-        </c:if>
+        <%-- TODO: show progress bar --%>
         
-        <c:forEach var="number" items="${numbers}">
-            <div class="col s12 m6 l4">
-                <div class="card-panel">
-                    <c:if test="${not empty number.contributor}">
-                        <div class="row valign-wrapper">
-                            <div class="col s2">
-                                <img src="${number.contributor.imageUrl}" alt="" class="circle responsive-img">
-                            </div>
-                            <div class="col s10">
-                                <span class="black-text">
-                                    <c:out value="${number.contributor.firstName}" />&nbsp;<c:out value="${number.contributor.lastName}" />
-                                </span>
-                            </div>
-                        </div>
-                    
-                        <div class="divider"></div>
-                    </c:if>
-                    <p>    
-                        <fmt:message key="number" />
-                    </p>
-                    <div class="divider"></div>
-                    <c:choose>
-                        <c:when test="${number.locale.language == 'ar'}">
-                            <h4><c:out value="${number.symbol}" /> (${number.value})</h4>
-                        </c:when>
-                        <c:otherwise>
-                            <h4>${number.value}</h4>
-                        </c:otherwise>
-                    </c:choose>
-                    <div class="chip"><fmt:message key="language.${number.locale.language}" /></div>
-                    <div class="divider" style="margin: 1em 0;"></div>
-                    <a href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
-                </div>
-            </div>
-        </c:forEach>
-        
-        <c:forEach var="image" items="${images}">
-            <div class="col s12 m6 l4">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row valign-wrapper">
-                            <div class="col s2">
-                                <img src="${image.contributor.imageUrl}" alt="" class="circle responsive-img">
-                            </div>
-                            <div class="col s10">
-                                <span class="black-text">
-                                    <c:out value="${image.contributor.firstName}" />&nbsp;<c:out value="${image.contributor.lastName}" />
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />" alt="${image.title}" />
-                    
-                    <div class="card-content">
-                        <h4>${image.title}</h4>
-                        <div class="chip"><fmt:message key="language.${image.locale.language}" /></div>
-                        <div class="divider" style="margin: 1em 0;"></div>
-                        <a href="<spring:url value='/content/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
+        <%-- TODO: list latest content creation events --%>
         
         <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
             <a class="btn-floating btn-large red" title="Add content">

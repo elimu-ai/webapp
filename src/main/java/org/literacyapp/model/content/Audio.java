@@ -1,34 +1,23 @@
-package org.literacyapp.model;
+package org.literacyapp.model.content;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.Locale;
 
 @Entity
-public class Audio extends BaseEntity {
+public class Audio extends Multimedia {
     
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private Locale locale;
+    @Lob
+    @Column(length=104857600) // 100MB
+    private byte[] bytes;
 
-    @NotNull
-    private String title;
-
-    public Locale getLocale() {
-        return locale;
+    public byte[] getBytes() {
+        return bytes;
     }
 
-    public void setLocale(Locale locale) {
-        this.locale = locale;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 }

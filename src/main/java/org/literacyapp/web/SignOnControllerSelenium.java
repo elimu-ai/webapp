@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
+import org.literacyapp.dao.SignOnEventDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.contributor.SignOnEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.Role;
@@ -28,6 +30,9 @@ public class SignOnControllerSelenium {
 
     @Autowired
     private ContributorDao contributorDao;
+    
+    @Autowired
+    private SignOnEventDao signOnEventDao;
 
     @RequestMapping(value="/sign-on/test/role-{role}", method=RequestMethod.GET)
     public String handleRequest(
@@ -67,6 +72,11 @@ public class SignOnControllerSelenium {
 
         // Add Contributor object to session
         request.getSession().setAttribute("contributor", contributor);
+        
+        SignOnEvent signOnEvent = new SignOnEvent();
+        signOnEvent.setContributor(contributor);
+        signOnEvent.setCalendar(Calendar.getInstance());
+        signOnEventDao.create(signOnEvent);
 	        	
         return "redirect:/content";
     }

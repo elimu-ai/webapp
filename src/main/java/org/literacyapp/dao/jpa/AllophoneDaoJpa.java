@@ -3,7 +3,7 @@ package org.literacyapp.dao.jpa;
 import java.util.List;
 import javax.persistence.NoResultException;
 import org.literacyapp.dao.AllophoneDao;
-import org.literacyapp.model.Allophone;
+import org.literacyapp.model.content.Allophone;
 
 import org.springframework.dao.DataAccessException;
 

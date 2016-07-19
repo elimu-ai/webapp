@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class Device extends BaseEntity {
 
     @NotNull
-//    @Column(unique=true)
+    @Column(unique=true)
     private String deviceId;
     
     @NotNull
@@ -26,7 +26,7 @@ public class Device extends BaseEntity {
     private Integer osVersion;
     
     @NotNull
-    private String locale;
+    private String locale; // Expected format "en"/"en-US"
     
     @NotNull
     private Boolean rooted;

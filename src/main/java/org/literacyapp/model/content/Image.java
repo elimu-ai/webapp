@@ -1,24 +1,15 @@
-package org.literacyapp.model;
+package org.literacyapp.model.content;
 
-import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.ImageType;
-import org.literacyapp.model.enums.Locale;
+import org.literacyapp.model.enums.content.ImageType;
 
 @Entity
-public class Image extends BaseEntity {
-    
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Locale locale;
+public class Image extends Multimedia {
 
     @NotNull
     private String title;
@@ -33,27 +24,7 @@ public class Image extends BaseEntity {
     private ImageType imageType;
     
     @NotNull
-    private String contentType;
-    
-    @NotNull
-    private int[] dominantColor; // RGB array
-    
-    @OneToOne
-    private Contributor contributor;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar calendar;
-    
-    private String attributionUrl;
-    // TODO: store license type
-
-    public Locale getLocale() {
-        return locale;
-    }
-
-    public void setLocale(Locale locale) {
-        this.locale = locale;
-    }
+    private String dominantColor; // Web color
 
     public String getTitle() {
         return title;
@@ -78,44 +49,12 @@ public class Image extends BaseEntity {
     public void setImageType(ImageType imageType) {
         this.imageType = imageType;
     }
-    
-    public String getContentType() {
-        return contentType;
-    }
 
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    public int[] getDominantColor() {
+    public String getDominantColor() {
         return dominantColor;
     }
 
-    public void setDominantColor(int[] dominantColor) {
+    public void setDominantColor(String dominantColor) {
         this.dominantColor = dominantColor;
-    }
-
-    public Contributor getContributor() {
-        return contributor;
-    }
-
-    public void setContributor(Contributor contributor) {
-        this.contributor = contributor;
-    }
-
-    public Calendar getCalendar() {
-        return calendar;
-    }
-
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
-    }
-
-    public String getAttributionUrl() {
-        return attributionUrl;
-    }
-
-    public void setAttributionUrl(String attributionUrl) {
-        this.attributionUrl = attributionUrl;
     }
 }

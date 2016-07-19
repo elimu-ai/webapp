@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.Number;
+import org.literacyapp.model.content.Number;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class NumberListController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        List<Number> numbers = numberDao.readLatest(contributor.getLocale());
+        List<Number> numbers = numberDao.readAllOrdered(contributor.getLocale());
         model.addAttribute("numbers", numbers);
 
         return "content/number/list";

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
-import org.literacyapp.model.Word;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.json.DeviceJson;
 import org.literacyapp.model.json.content.NumberJson;
@@ -71,7 +71,7 @@ public class JavaToJsonConverter {
         }
     }
 
-    public static NumberJson getNumberJson(org.literacyapp.model.Number number) {
+    public static NumberJson getNumberJson(org.literacyapp.model.content.Number number) {
         if (number == null) {
             return null;
         } else {
@@ -81,7 +81,6 @@ public class JavaToJsonConverter {
             numberJson.setValue(number.getValue());
             numberJson.setSymbol(number.getSymbol());
             numberJson.setWord(getWordJson(number.getWord()));
-            numberJson.setDominantColor(number.getDominantColor());
             return numberJson;
         }
     }

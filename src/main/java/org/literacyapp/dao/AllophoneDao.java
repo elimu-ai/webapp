@@ -1,7 +1,7 @@
 package org.literacyapp.dao;
 
 import java.util.List;
-import org.literacyapp.model.Allophone;
+import org.literacyapp.model.content.Allophone;
 
 import org.literacyapp.model.enums.Locale;
 

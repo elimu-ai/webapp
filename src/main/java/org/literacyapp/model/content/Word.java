@@ -1,28 +1,16 @@
-package org.literacyapp.model;
+package org.literacyapp.model.content;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.Locale;
 
 @Entity
-public class Word extends BaseEntity {
-    
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Locale locale;
+public class Word extends Content {
 
     @NotNull
     private String text;
     
-    public Locale getLocale() {
-        return locale;
-    }
-
-    public void setLocale(Locale locale) {
-        this.locale = locale;
-    }
+    @NotNull
+    private String phonetics;
 
     public String getText() {
         return text;
@@ -30,5 +18,13 @@ public class Word extends BaseEntity {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getPhonetics() {
+        return phonetics;
+    }
+
+    public void setPhonetics(String phonetics) {
+        this.phonetics = phonetics;
     }
 }

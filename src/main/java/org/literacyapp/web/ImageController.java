@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.Image;
+import org.literacyapp.model.content.Image;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,6 +40,7 @@ public class ImageController {
         Image image = imageDao.read(imageId);
         
         response.setContentType(image.getContentType());
+        response.setContentLength(image.getBytes().length);
         
         byte[] bytes = image.getBytes();
         try {

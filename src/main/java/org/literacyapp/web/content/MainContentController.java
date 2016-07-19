@@ -8,11 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.Image;
-import org.literacyapp.model.Number;
+import org.literacyapp.model.content.Image;
+import org.literacyapp.model.content.Number;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +27,7 @@ public class MainContentController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private NumberDao numberDao;
-    
-    @Autowired
-    private ImageDao imageDao;
+    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -53,11 +51,7 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-motivation";
         }
         
-        List<Number> numbers = numberDao.readLatest(contributor.getLocale());
-        model.addAttribute("numbers", numbers);
-        
-        List<Image> images = imageDao.readLatest(contributor.getLocale());
-        model.addAttribute("images", images);
+        // TODO: list latest content creation events
     	
         return "content/main";
     }
