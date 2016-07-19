@@ -10,7 +10,6 @@
 
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
-                <form:hidden path="contributor" value="${contributor.id}" />
                 
                 <div class="input-field col s12">
                     <form:label path="valueIpa" cssErrorClass="error"><fmt:message key='value' /> (IPA)</form:label>

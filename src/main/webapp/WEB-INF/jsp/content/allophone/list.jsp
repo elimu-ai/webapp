@@ -13,8 +13,6 @@
                 <thead>
                     <th><fmt:message key="ipa.value" /></th>
                     <th><fmt:message key="sampa.value" /></th>
-                    <th><fmt:message key="time.added" /></th>
-                    <th><fmt:message key="creator" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
@@ -25,15 +23,6 @@
                             </td>
                             <td style="font-size: 2em;">
                                 ${allophone.valueSampa}
-                            </td>
-                            <td>
-                                <fmt:formatDate value="${allophone.calendar.time}" type="both" timeStyle="short" />
-                            </td>
-                            <td>
-                                <div class="chip">
-                                    <img src="<spring:url value='${allophone.contributor.imageUrl}' />" alt="${allophone.contributor.firstName}" /> 
-                                    <c:out value="${allophone.contributor.firstName}" />&nbsp;<c:out value="${allophone.contributor.lastName}" />
-                                </div>
                             </td>
                             <td><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
