@@ -6,7 +6,7 @@ import javax.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 import org.literacyapp.dao.WordDao;
-import org.literacyapp.model.Word;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.enums.Locale;
 
 public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {

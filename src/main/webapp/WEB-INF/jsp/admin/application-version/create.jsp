@@ -30,6 +30,11 @@
                     <input class="file-path validate" type="text" />
                 </div>
             </div>
+                
+            <div class="input-field col s12">
+                <form:label path="startCommand" cssErrorClass="error"><fmt:message key='start.command' /></form:label>
+                adb shell <form:input path="startCommand" cssErrorClass="error" />
+            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="add" /> <i class="material-icons right">send</i>

@@ -1,5 +1,6 @@
 package org.literacyapp.web.content.image;
 
+import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,9 +9,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.Image;
-import org.literacyapp.model.enums.ImageType;
-import org.literacyapp.model.enums.Locale;
+import org.literacyapp.model.content.Image;
+import org.literacyapp.model.contributor.ContentCreationEvent;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.content.ImageType;
+import org.literacyapp.model.enums.Team;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,14 +69,27 @@ public class ImageEditController {
             model.addAttribute("image", image);
             return "content/image/edit";
         } else {
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
-            image.setContributor(contributor);
-            image.setCalendar(Calendar.getInstance());
             imageDao.update(image);
             
-            // TODO: store event
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
             
-            return "redirect:/content";
+            ContentCreationEvent contentCreationEvent = new ContentCreationEvent();
+            contentCreationEvent.setContributor(contributor);
+            contentCreationEvent.setContent(image);
+            contentCreationEvent.setCalendar(Calendar.getInstance());
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                        contributor.getFirstName() + " just edited an Image:\n" + 
+                        "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
+                        "• Title: \"" + image.getTitle() + "\"\n" + 
+                        "• Image type: \"" + image.getImageType() + "\"\n" + 
+                        "See ") + "http://literacyapp.org/content/image/list";
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl);
+            }
+            
+            return "redirect:/content/image/list";
         }
     }
     

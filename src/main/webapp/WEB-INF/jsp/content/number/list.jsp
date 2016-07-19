@@ -11,20 +11,6 @@
         <c:forEach var="number" items="${numbers}">
             <div class="col s12 m6 l4">
                 <div class="card-panel">
-                    <c:if test="${not empty number.contributor}">
-                        <div class="row valign-wrapper">
-                            <div class="col s2">
-                                <img src="${number.contributor.imageUrl}" alt="" class="circle responsive-img">
-                            </div>
-                            <div class="col s10">
-                                <span class="black-text">
-                                    <c:out value="${number.contributor.firstName}" />&nbsp;<c:out value="${number.contributor.lastName}" />
-                                </span>
-                            </div>
-                        </div>
-                    
-                        <div class="divider"></div>
-                    </c:if>
                     <c:choose>
                         <c:when test="${number.locale.language == 'ar'}">
                             <h4><c:out value="${number.symbol}" /> (${number.value})</h4>
@@ -33,7 +19,6 @@
                             <h4>${number.value}</h4>
                         </c:otherwise>
                     </c:choose>
-                    <div class="chip"><fmt:message key="language.${number.locale.language}" /></div>
                     <div class="divider" style="margin: 1em 0;"></div>
                     <a href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>

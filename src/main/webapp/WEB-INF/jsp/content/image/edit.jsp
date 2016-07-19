@@ -50,14 +50,14 @@
     
     <div class="divider"></div>
     
-    <p>
+    <%--<p>
         <fmt:message key="last.update" />:<br />
         <div class="chip">
             <img src="${image.contributor.imageUrl}" alt="" class="circle responsive-img">
             <c:out value="${image.contributor.firstName}" />&nbsp;<c:out value="${image.contributor.lastName}" />
         </div> 
         <fmt:formatDate value="${image.calendar.time}" type="both" timeStyle="short" />
-    </p>
+    </p>--%>
     
     <div id="disqus_thread"></div>
     <script>
@@ -114,10 +114,10 @@
     
     <script>
         $(function() {
-            console.debug("dominantColor: ${image.dominantColor[0]},${image.dominantColor[1]},${image.dominantColor[2]}");
-            $('#previewContent').css("background-color", "rgb(${image.dominantColor[0]},${image.dominantColor[1]},${image.dominantColor[2]})");
+            console.debug("dominantColor: ${image.dominantColor}");
+            $('#previewContent').css("background-color", "${image.dominantColor}");
             $('nav').removeClass("black");
-            $('nav').css("background-color", "rgb(${image.dominantColor[0]},${image.dominantColor[1]},${image.dominantColor[2]})");
+            $('nav').css("background-color", "${image.dominantColor}");
         });
     </script>
 </content:aside>

@@ -1,5 +1,6 @@
 package org.literacyapp.web.content.number;
 
+import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -8,8 +9,13 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.Number;
+import org.literacyapp.model.content.Number;
+import org.literacyapp.model.contributor.ContentCreationEvent;
+import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Locale;
+import org.literacyapp.model.enums.Team;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,14 +63,27 @@ public class NumberEditController {
             model.addAttribute("number", number);
             return "content/number/edit";
         } else {
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
-            number.setContributor(contributor);
-            number.setCalendar(Calendar.getInstance());
             numberDao.update(number);
             
-            // TODO: store event
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
             
-            return "redirect:/content";
+            ContentCreationEvent contentCreationEvent = new ContentCreationEvent();
+            contentCreationEvent.setContributor(contributor);
+            contentCreationEvent.setContent(number);
+            contentCreationEvent.setCalendar(Calendar.getInstance());
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                        contributor.getFirstName() + " just edited a Number:\n" + 
+                        "• Language: \"" + number.getLocale().getLanguage() + "\"\n" + 
+                        "• Value: \"" + number.getValue() + "\"" + (!StringUtils.isEmpty(number.getSymbol()) ? " (" + number.getSymbol() + ")" : "") + "\n" +
+                        "• Word: \"" + number.getWord() + "\"\n" + 
+                        "See ") + "http://literacyapp.org/content/number/list";
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl);
+            }
+            
+            return "redirect:/content/number/list";
         }
     }
 }

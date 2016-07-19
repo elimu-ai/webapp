@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.WordDao;
-import org.literacyapp.model.Word;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.json.content.WordJson;
 import org.literacyapp.rest.JavaToJsonConverter;

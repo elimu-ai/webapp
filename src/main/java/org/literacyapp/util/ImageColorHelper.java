@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.InputStream;
 import java.util.Arrays;
-import org.literacyapp.model.Image;
+import org.literacyapp.model.content.Image;
 
 /**
  * See https://github.com/SvenWoltmann/color-thief-java/blob/master/src/main/java/de/androidpit/colorthief/ColorThief.java
@@ -21,6 +21,9 @@ public class ImageColorHelper {
     private static final int DEFAULT_QUALITY = 10;
     private static final boolean DEFAULT_IGNORE_WHITE = true;
     
+    /**
+     * Returns RGB array.
+     */
     public static int[] getDominantColor(byte[] bytes) {
         logger.info("getDominantColor");
         

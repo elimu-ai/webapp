@@ -1,13 +1,16 @@
 package org.literacyapp.web.content.contributor;
 
 import java.net.URLEncoder;
+import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.validator.EmailValidator;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
+import org.literacyapp.dao.SignOnEventDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.contributor.SignOnEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.Mailer;
 import org.literacyapp.util.SlackApiHelper;
@@ -28,6 +31,9 @@ public class AddEmailController {
     
     @Autowired
     private ContributorDao contributorDao;
+    
+    @Autowired
+    private SignOnEventDao signOnEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
@@ -60,6 +66,11 @@ public class AddEmailController {
         contributorDao.create(contributor);
         
         session.setAttribute("contributor", contributor);
+        
+        SignOnEvent signOnEvent = new SignOnEvent();
+        signOnEvent.setContributor(contributor);
+        signOnEvent.setCalendar(Calendar.getInstance());
+        signOnEventDao.create(signOnEvent);
         
         if (isRedirectFromRegistrationPage) {
             // Send welcome e-mail

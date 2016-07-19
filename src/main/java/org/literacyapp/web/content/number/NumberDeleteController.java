@@ -2,7 +2,7 @@ package org.literacyapp.web.content.number;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
-import org.literacyapp.model.Number;
+import org.literacyapp.model.content.Number;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

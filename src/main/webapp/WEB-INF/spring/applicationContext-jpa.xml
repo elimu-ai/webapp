@@ -9,63 +9,65 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<context:property-placeholder location="classpath:jdbc.properties" />
+    <context:property-placeholder location="classpath:jdbc.properties" />
 
     <!-- DataSource configuration for Apache Commons DBCP. -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-			p:driverClassName="${jdbc.driverClassName}"
-			p:url="${jdbc.url}"
-			p:username="${jdbc.username}"
-			p:password="${jdbc.password}"
-            p:validationQuery="${jdbc.validationQuery}"
-            p:testOnBorrow="true" />
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+                    p:driverClassName="${jdbc.driverClassName}"
+                    p:url="${jdbc.url}"
+                    p:username="${jdbc.username}"
+                    p:password="${jdbc.password}"
+        p:validationQuery="${jdbc.validationQuery}"
+        p:testOnBorrow="true" />
 
-	<!-- JPA EntityManagerFactory -->
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-			p:dataSource-ref="dataSource"
-			p:persistenceXmlLocation="classpath:META-INF/jpa-persistence.xml">
-        <property name="jpaVendorAdapter">
-	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-	              p:database="${jpa.database}"
-	              p:databasePlatform="${jpa.databasePlatform}"
-                      p:showSql="${jpa.showSql}"
-	              p:generateDdl="${jpa.generateDdl}" />
-		</property>
-	</bean>
+    <!-- JPA EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+                    p:dataSource-ref="dataSource"
+                    p:persistenceXmlLocation="classpath:META-INF/jpa-persistence.xml">
+    <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+                  p:database="${jpa.database}"
+                  p:databasePlatform="${jpa.databasePlatform}"
+                  p:showSql="${jpa.showSql}"
+                  p:generateDdl="${jpa.generateDdl}" />
+            </property>
+    </bean>
 
-	<!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-			p:entityManagerFactory-ref="entityManagerFactory" />
+    <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+                    p:entityManagerFactory-ref="entityManagerFactory" />
 
 
-	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
+    <!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
 
-	<!--
-		Activates various annotations to be detected in bean classes: Spring's
-		@Required and @Autowired, as well as JSR 250's @PostConstruct,
-		@PreDestroy and @Resource (if available) and JPA's @PersistenceContext
-		and @PersistenceUnit (if available).
-	-->
-	<context:annotation-config />
+    <!--
+            Activates various annotations to be detected in bean classes: Spring's
+            @Required and @Autowired, as well as JSR 250's @PostConstruct,
+            @PreDestroy and @Resource (if available) and JPA's @PersistenceContext
+            and @PersistenceUnit (if available).
+    -->
+    <context:annotation-config />
 
-	<!--
-		Instruct Spring to perform declarative transaction management
-		automatically on annotated classes.
-		
-		for mode="aspectj"/ see SPR-6392
-	-->
-	<tx:annotation-driven />
+    <!--
+            Instruct Spring to perform declarative transaction management
+            automatically on annotated classes.
 
-	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-	
-	<!-- DAOs that will be autowired -->
-	<bean id="applicationDao" class="org.literacyapp.dao.jpa.ApplicationDaoJpa" />
-        <bean id="applicationVersionDao" class="org.literacyapp.dao.jpa.ApplicationVersionDaoJpa" />
-        <bean id="allophoneDao" class="org.literacyapp.dao.jpa.AllophoneDaoJpa" />
-        <bean id="contributorDao" class="org.literacyapp.dao.jpa.ContributorDaoJpa" />
-        <bean id="dbMigrationDao" class="org.literacyapp.dao.jpa.DbMigrationDaoJpa" />
-        <bean id="deviceDao" class="org.literacyapp.dao.jpa.DeviceDaoJpa" />
-        <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
-        <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
-        <bean id="wordDao" class="org.literacyapp.dao.jpa.WordDaoJpa" />
+            for mode="aspectj"/ see SPR-6392
+    -->
+    <tx:annotation-driven />
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+    <!-- DAOs that will be autowired -->
+    <bean id="applicationDao" class="org.literacyapp.dao.jpa.ApplicationDaoJpa" />
+    <bean id="applicationVersionDao" class="org.literacyapp.dao.jpa.ApplicationVersionDaoJpa" />
+    <bean id="allophoneDao" class="org.literacyapp.dao.jpa.AllophoneDaoJpa" />
+    <bean id="contentCreationEventDao" class="org.literacyapp.dao.jpa.ContentCreationEventDaoJpa" />
+    <bean id="contributorDao" class="org.literacyapp.dao.jpa.ContributorDaoJpa" />
+    <bean id="dbMigrationDao" class="org.literacyapp.dao.jpa.DbMigrationDaoJpa" />
+    <bean id="deviceDao" class="org.literacyapp.dao.jpa.DeviceDaoJpa" />
+    <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
+    <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
+    <bean id="signOnEventDao" class="org.literacyapp.dao.jpa.SignOnEventDaoJpa" />
+    <bean id="wordDao" class="org.literacyapp.dao.jpa.WordDaoJpa" />
 </beans>
