@@ -52,7 +52,7 @@ public class DeviceRestController {
         
         logger.info("deviceId: " + deviceId);
         Device device = deviceDao.read(deviceId);
-        DeviceJson deviceJson = JavaToJsonConverter.getDeviceJson(device);
+        DeviceJson deviceJson = JavaJsonConverter.getDeviceJson(device);
         return deviceJson;
     }
     
