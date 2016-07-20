@@ -1,3 +1,3 @@
-# 1.1.11
+# 1.1.20
 
-ALTER TABLE Contributor DROP COLUMN role;
+ALTER TABLE Application DROP COLUMN timeCreated;

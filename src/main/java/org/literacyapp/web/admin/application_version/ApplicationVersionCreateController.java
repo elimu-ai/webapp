@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
@@ -66,17 +67,22 @@ public class ApplicationVersionCreateController {
     	logger.info("handleSubmit");
         
         logger.info("applicationVersion.getVersionCode(): " + applicationVersion.getVersionCode());
-        
-        // Verify that the versionCode is higher than previous ones
-        List<ApplicationVersion> existingApplicationVersions = applicationVersionDao.readAll(applicationVersion.getApplication());
-        for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
-            if (existingApplicationVersion.getVersionCode() >= applicationVersion.getVersionCode()) {
-                result.rejectValue("versionCode", "TooLow");
-                break;
+        if (applicationVersion.getVersionCode() == null) {
+            result.rejectValue("versionCode", "NotNull");
+        } else {
+            // Verify that the versionCode is higher than previous ones
+            List<ApplicationVersion> existingApplicationVersions = applicationVersionDao.readAll(applicationVersion.getApplication());
+            for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
+                if (existingApplicationVersion.getVersionCode() >= applicationVersion.getVersionCode()) {
+                    result.rejectValue("versionCode", "TooLow");
+                    break;
+                }
             }
         }
         
-        if (!multipartFile.isEmpty()) {
+        if (multipartFile.isEmpty()) {
+            result.rejectValue("bytes", "NotNull");
+        } else {
             try {
                 byte[] bytes = multipartFile.getBytes();
                 if (applicationVersion.getBytes() != null) {
@@ -95,7 +101,7 @@ public class ApplicationVersionCreateController {
                     
                     // TODO: auto-detect packageName, versionCode, minSdk, app name, app icon
                 } else {
-                    result.rejectValue("bytes", "required");
+                    result.rejectValue("bytes", "NotNull");
                 }
             } catch (IOException ex) {
                 logger.error(ex);
