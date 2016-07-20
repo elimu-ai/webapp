@@ -32,10 +32,12 @@
 <content:aside>
     <%--<h5><fmt:message key="preview" /></h5>--%>
     
-    <div class="previewContainer valignwrapper" style="position: relative;">
-        <img src="<spring:url value='/img/device-nexus-5.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContent" style="position: absolute; top: 40%; font-size: 5em; width: 100%; text-align: center;">
-            
+    <div class="previewContainer valignwrapper">
+        <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
+        <div id="previewContentContainer">
+            <div id="previewContent" class="previewContentGrapheme">
+
+            </div>
         </div>
     </div>
     <script>

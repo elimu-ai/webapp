@@ -86,20 +86,12 @@
 <content:aside>
     <%--<h5><fmt:message key="preview" /></h5>--%>
     
-    <div class="previewContainer valignwrapper" style="position: relative;">
-        <img src="<spring:url value='/img/device-nexus-5.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer" style="position: absolute; top: 15.15%; height: 66.75%; width: 100%; text-align: center;">
+    <div class="previewContainer valignwrapper">
+        <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
+        <div id="previewContentContainer">
             <div id="previewContent" class="valign-wrapper" 
                  style="
-                 position: relative;
-                 width: 64%; 
-                 height: 100%; 
-                 display: inline-block; 
-                 font-size: 5em;
-                 background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />);
-                 background-repeat: no-repeat;
-                 background-size: contain;
-                 background-position: 0 50%;
+                    background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />);
                  ">
                 <h5 class="white-text" style="
                     position: absolute; 

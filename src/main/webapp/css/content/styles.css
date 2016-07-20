@@ -8,3 +8,32 @@ nav {
     -o-transition: all .5s;
     transition: all .5s;
 }
+
+.previewContainer {
+    position: relative;
+}
+.previewContainer #previewContentContainer {
+    position: absolute;
+    top: 15.15%;
+    height: 66.75%;
+    width: 100%;
+    text-align: center;
+}
+.previewContainer #previewContent {
+    position: relative;
+    width: 90%;
+    margin: -2% 10% 0 0;
+    height: 100%; 
+    display: inline-block; 
+    font-size: 5em;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 50%;
+    -ms-transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
+    -webkit-transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
+    transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
+}
+.previewContainer #previewContent.previewContentGrapheme {
+    background: #FFF;
+    font-size: 10em;
+}

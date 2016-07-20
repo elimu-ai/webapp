@@ -28,3 +28,32 @@
         </form:form>
     </div>
 </content:section>
+
+<content:aside>
+    <%--<h5><fmt:message key="preview" /></h5>--%>
+    
+    <div class="previewContainer valignwrapper">
+        <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
+        <div id="previewContentContainer">
+            <div id="previewContent" class="previewContentGrapheme">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            initializePreview();
+            
+            $('#valueIpa').on("change", function() {
+                console.debug('#valueIpa on change');
+                initializePreview();
+            });
+            
+            function initializePreview() {
+                console.debug('initializePreview');
+                var value = $('#valueIpa').val();
+                $('#previewContent').html(value);
+            };
+        });
+    </script>
+</content:aside>

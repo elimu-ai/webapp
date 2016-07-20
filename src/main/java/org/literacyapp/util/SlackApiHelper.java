@@ -73,6 +73,7 @@ public class SlackApiHelper {
         if (StringUtils.isNotBlank(imageUrl)) {
             JSONArray attachments = new JSONArray();
             JSONObject attachment = new JSONObject();
+            attachment.put("text", imageUrl);
             attachment.put("image_url", imageUrl);
             attachments.put(attachment);
             imageUrlParameter = "&attachments=" + attachments;

@@ -20,7 +20,7 @@ public class Device extends BaseEntity {
     private String deviceModel;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar timeRegistered;
+    private Calendar timeRegistered; // Time of first synchronization with server
     
     @NotNull
     private Integer osVersion;
