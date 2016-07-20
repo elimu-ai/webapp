@@ -70,7 +70,7 @@
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
         <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentNumber">
+            <div id="previewContent" class="previewContentGrapheme">
 
             </div>
         </div>

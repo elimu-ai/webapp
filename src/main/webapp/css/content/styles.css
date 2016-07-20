@@ -33,7 +33,7 @@ nav {
     -webkit-transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
     transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
 }
-.previewContainer #previewContent.previewContentNumber {
+.previewContainer #previewContent.previewContentGrapheme {
     background: #FFF;
     font-size: 10em;
 }
