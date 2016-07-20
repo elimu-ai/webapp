@@ -193,7 +193,7 @@ public class SignOnControllerFacebook {
                     }
                     String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://literacyapp.org/content/community/contributors";
                     String iconUrl = contributor.getImageUrl();
-                    SlackApiHelper.postMessage(null, text, iconUrl);
+                    SlackApiHelper.postMessage(null, text, iconUrl, null);
                 }
             } else {
                 // Contributor already exists in database
