@@ -57,7 +57,7 @@ public class SlackApiHelper {
      * 
      * See https://api.slack.com/methods/chat.postMessage
      */
-    public static boolean postMessage(Team team, String text, String iconUrl) {
+    public static boolean postMessage(Team team, String text, String iconUrl, String imageUrl) {
         logger.info("getTeamUsers");
         
         boolean isResponseOk = false;
@@ -69,10 +69,19 @@ public class SlackApiHelper {
             iconUrlParameter = "&icon_url=" + iconUrl;
         }
         
+        String imageUrlParameter = "";
+        if (StringUtils.isNotBlank(imageUrl)) {
+            JSONArray attachments = new JSONArray();
+            JSONObject attachment = new JSONObject();
+            attachment.put("image_url", imageUrl);
+            attachments.put(attachment);
+            imageUrlParameter = "&attachments=" + attachments;
+        }
+        
         String response = null;
         
         try {
-            URL url = new URL (BASE_URL + "/chat.postMessage?token=" + API_TOKEN + "&as_user=true" + "&channel=" + channelId + "&text=" + text + iconUrlParameter);
+            URL url = new URL (BASE_URL + "/chat.postMessage?token=" + API_TOKEN + "&as_user=true" + "&channel=" + channelId + "&text=" + text + iconUrlParameter + imageUrlParameter);
             logger.info("url: " + url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
