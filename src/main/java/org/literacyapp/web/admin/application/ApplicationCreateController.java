@@ -58,7 +58,6 @@ public class ApplicationCreateController {
             model.addAttribute("numeracySkills", NumeracySkill.values());
             return "admin/application/create";
         } else {
-            application.setTimeCreated(Calendar.getInstance());
             applicationDao.create(application);
             return "redirect:/admin/application/list";
         }

@@ -17,7 +17,7 @@
                 <form:hidden path="contributor" value="${contributor.id}" />
                 <div class="input-field col s6">
                     <form:label path="versionCode" cssErrorClass="error"><fmt:message key='version.code' /></form:label>
-                    <form:input path="versionCode" cssErrorClass="error" required="required" type="number" />
+                    <form:input path="versionCode" cssErrorClass="error" type="number" />
                 </div>
             </div>
             
@@ -32,8 +32,8 @@
             </div>
                 
             <div class="input-field col s12">
-                <form:label path="startCommand" cssErrorClass="error"><fmt:message key='start.command' /></form:label>
-                adb shell <form:input path="startCommand" cssErrorClass="error" />
+                <form:label path="startCommand" cssErrorClass="error"><fmt:message key='start.command' /> (adb shell &lt;command&gt;)</form:label>
+                <form:input path="startCommand" cssErrorClass="error" />
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">

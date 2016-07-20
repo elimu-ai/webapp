@@ -43,10 +43,6 @@ public class Application extends BaseEntity {
     @NotNull
     @ManyToOne
     private Contributor contributor;
-    
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar timeCreated;
 
     public Locale getLocale() {
         return locale;
@@ -94,13 +90,5 @@ public class Application extends BaseEntity {
 
     public void setContributor(Contributor contributor) {
         this.contributor = contributor;
-    }
-
-    public Calendar getTimeCreated() {
-        return timeCreated;
-    }
-
-    public void setTimeCreated(Calendar timeCreated) {
-        this.timeCreated = timeCreated;
     }
 }
