@@ -86,7 +86,7 @@ public class ImageEditController {
                         "• Image type: \"" + image.getImageType() + "\"\n" + 
                         "See ") + "http://literacyapp.org/content/image/list";
                 String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl);
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageType().toString().toLowerCase());
             }
             
             return "redirect:/content/image/list";

@@ -62,7 +62,7 @@ public class EditMotivationController {
                         "• Personal motivation: \"" + contributor.getMotivation() + "\"\n" +
                         "See ") + "http://literacyapp.org/content/community/contributors";
                 String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(null, text, iconUrl);
+                SlackApiHelper.postMessage(null, text, iconUrl, null);
             }
 
             return "redirect:/content";

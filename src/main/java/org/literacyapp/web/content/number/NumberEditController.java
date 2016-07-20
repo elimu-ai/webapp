@@ -80,7 +80,7 @@ public class NumberEditController {
                         "• Word: \"" + number.getWord() + "\"\n" + 
                         "See ") + "http://literacyapp.org/content/number/list";
                 String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl);
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }
             
             return "redirect:/content/number/list";

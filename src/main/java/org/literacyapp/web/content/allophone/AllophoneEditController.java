@@ -95,7 +95,7 @@ public class AllophoneEditController {
                         "• X-SAMPA: \"" + allophone.getValueSampa() + "\"\n" + 
                         "See ") + "http://literacyapp.org/content/allophone/list";
                 String iconUrl = contentCreationEvent.getContributor().getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl);
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }
             
             return "redirect:/content/allophone/list";
