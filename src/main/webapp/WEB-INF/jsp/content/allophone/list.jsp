@@ -17,14 +17,14 @@
                 </thead>
                 <tbody>
                     <c:forEach var="allophone" items="${allophones}">
-                        <tr>
+                        <tr class="allophone">
                             <td style="font-size: 2em;">
                                 ${allophone.valueIpa}
                             </td>
                             <td style="font-size: 2em;">
                                 ${allophone.valueSampa}
                             </td>
-                            <td><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
+                            <td><a class="editLink" href="<spring:url value='/content/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
