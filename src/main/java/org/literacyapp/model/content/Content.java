@@ -20,7 +20,6 @@ public class Content extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Locale locale;
     
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeLastUpdate;
     

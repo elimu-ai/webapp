@@ -3,7 +3,7 @@ package org.literacyapp.logic.converters;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 
-public class StringToStringConverter implements Converter<String, String> {
+public class StringToNullConverter implements Converter<String, String> {
 
     /**
      * Convert empty strings ("") to null
