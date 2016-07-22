@@ -6,13 +6,31 @@ import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
+import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.gson.DeviceGson;
 import org.literacyapp.model.gson.content.NumberGson;
 import org.literacyapp.model.gson.content.WordGson;
 import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
+import org.literacyapp.model.gson.content.AllophoneGson;
 
 public class JavaToGsonConverter {
+    
+    public static AllophoneGson getAllophoneGson(Allophone allophone) {
+        if (allophone == null) {
+            return null;
+        } else {
+            AllophoneGson allophoneGson = new AllophoneGson();
+            allophoneGson.setId(allophone.getId());
+            allophoneGson.setLocale(allophone.getLocale());
+            allophoneGson.setTimeLastUpdate(allophone.getTimeLastUpdate());
+            allophoneGson.setRevisionNumber(allophone.getRevisionNumber());
+            
+            allophoneGson.setValueIpa(allophone.getValueIpa());
+            allophoneGson.setValueSampa(allophone.getValueSampa());
+            return allophoneGson;
+        }
+    }
     
     public static ApplicationGson getApplicationGson(Application application) {
         if (application == null) {
@@ -78,6 +96,7 @@ public class JavaToGsonConverter {
             NumberGson numberJson = new NumberGson();
             numberJson.setId(number.getId());
             numberJson.setLocale(number.getLocale());
+            
             numberJson.setValue(number.getValue());
             numberJson.setSymbol(number.getSymbol());
             numberJson.setWord(getWordGson(number.getWord()));
@@ -92,6 +111,7 @@ public class JavaToGsonConverter {
             WordGson wordJson = new WordGson();
             wordJson.setId(word.getId());
             wordJson.setLocale(word.getLocale());
+            
             wordJson.setText(word.getText());
             return wordJson;
         }

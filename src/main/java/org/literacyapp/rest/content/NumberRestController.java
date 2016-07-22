@@ -32,7 +32,7 @@ public class NumberRestController {
     ) {
         logger.info("list");
         
-        logger.info("locale: " + locale);
+        logger.info("request.getQueryString(): " + request.getQueryString());
         
         List<String> numbers = new ArrayList<>();
         for (org.literacyapp.model.content.Number number : numberDao.readAllOrdered(locale)) {
