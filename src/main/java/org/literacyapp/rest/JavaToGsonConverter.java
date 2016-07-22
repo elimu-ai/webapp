@@ -6,19 +6,19 @@ import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
-import org.literacyapp.model.json.DeviceJson;
-import org.literacyapp.model.json.content.NumberJson;
-import org.literacyapp.model.json.content.WordJson;
-import org.literacyapp.model.json.admin.ApplicationJson;
-import org.literacyapp.model.json.admin.ApplicationVersionJson;
+import org.literacyapp.model.gson.DeviceGson;
+import org.literacyapp.model.gson.content.NumberGson;
+import org.literacyapp.model.gson.content.WordGson;
+import org.literacyapp.model.gson.admin.ApplicationGson;
+import org.literacyapp.model.gson.admin.ApplicationVersionGson;
 
-public class JavaJsonConverter {
+public class JavaToGsonConverter {
     
-    public static ApplicationJson getApplicationJson(Application application) {
+    public static ApplicationGson getApplicationGson(Application application) {
         if (application == null) {
             return null;
         } else {
-            ApplicationJson applicationJson = new ApplicationJson();
+            ApplicationGson applicationJson = new ApplicationGson();
             applicationJson.setId(application.getId());
             applicationJson.setLocale(application.getLocale());
             applicationJson.setPackageName(application.getPackageName());
@@ -29,27 +29,27 @@ public class JavaJsonConverter {
         }
     }
     
-    public static ApplicationVersionJson getApplicationVersionJson(ApplicationVersion applicationVersion) {
+    public static ApplicationVersionGson getApplicationVersionGson(ApplicationVersion applicationVersion) {
         if (applicationVersion == null) {
             return null;
         } else {
-            ApplicationVersionJson applicationVersionJson = new ApplicationVersionJson();
-            applicationVersionJson.setId(applicationVersion.getId());
-            applicationVersionJson.setApplicationJson(getApplicationJson(applicationVersion.getApplication()));
-            applicationVersionJson.setFileSizeInKb(applicationVersion.getBytes().length / 1024);
-            applicationVersionJson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
-            applicationVersionJson.setContentType(applicationVersion.getContentType());
-            applicationVersionJson.setVersionCode(applicationVersion.getVersionCode());
+            ApplicationVersionGson applicationVersionGson = new ApplicationVersionGson();
+            applicationVersionGson.setId(applicationVersion.getId());
+            applicationVersionGson.setApplication(getApplicationGson(applicationVersion.getApplication()));
+            applicationVersionGson.setFileSizeInKb(applicationVersion.getBytes().length / 1024);
+            applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
+            applicationVersionGson.setContentType(applicationVersion.getContentType());
+            applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());
 //            applicationVersionJson.setTimeUploaded(applicationVersion.getTimeUploaded());
-            return applicationVersionJson;
+            return applicationVersionGson;
         }
     }
     
-    public static DeviceJson getDeviceJson(Device device) {
+    public static DeviceGson getDeviceGson(Device device) {
         if (device == null) {
             return null;
         } else {
-            DeviceJson deviceJson = new DeviceJson();
+            DeviceGson deviceJson = new DeviceGson();
             deviceJson.setId(device.getId());
             deviceJson.setDeviceId(device.getDeviceId());
             deviceJson.setDeviceModel(device.getDeviceModel());
@@ -58,9 +58,9 @@ public class JavaJsonConverter {
             deviceJson.setLocale(device.getLocale());
             deviceJson.setRooted(device.isRooted());
             
-            Set<DeviceJson> devicesNearby = new HashSet<DeviceJson>();
+            Set<DeviceGson> devicesNearby = new HashSet<DeviceGson>();
             for (Device deviceNearby : device.getDevicesNearby()) {
-                DeviceJson deviceJsonNearby = getDeviceJson(deviceNearby);
+                DeviceGson deviceJsonNearby = getDeviceGson(deviceNearby);
                 devicesNearby.add(deviceJsonNearby);
             }
             if (!devicesNearby.isEmpty()) {
@@ -71,25 +71,25 @@ public class JavaJsonConverter {
         }
     }
 
-    public static NumberJson getNumberJson(org.literacyapp.model.content.Number number) {
+    public static NumberGson getNumberGson(org.literacyapp.model.content.Number number) {
         if (number == null) {
             return null;
         } else {
-            NumberJson numberJson = new NumberJson();
+            NumberGson numberJson = new NumberGson();
             numberJson.setId(number.getId());
             numberJson.setLocale(number.getLocale());
             numberJson.setValue(number.getValue());
             numberJson.setSymbol(number.getSymbol());
-            numberJson.setWord(getWordJson(number.getWord()));
+            numberJson.setWord(getWordGson(number.getWord()));
             return numberJson;
         }
     }
     
-    public static WordJson getWordJson(Word word) {
+    public static WordGson getWordGson(Word word) {
         if (word == null) {
             return null;
         } else {
-            WordJson wordJson = new WordJson();
+            WordGson wordJson = new WordGson();
             wordJson.setId(word.getId());
             wordJson.setLocale(word.getLocale());
             wordJson.setText(word.getText());

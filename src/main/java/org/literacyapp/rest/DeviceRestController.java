@@ -4,7 +4,7 @@ import java.util.Calendar;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.DeviceDao;
 import org.literacyapp.model.Device;
-import org.literacyapp.model.json.DeviceJson;
+import org.literacyapp.model.gson.DeviceGson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,12 +47,12 @@ public class DeviceRestController {
     }
     
     @RequestMapping("/read/{deviceId}")
-    public DeviceJson read(@PathVariable String deviceId) {
+    public DeviceGson read(@PathVariable String deviceId) {
         logger.info("read");
         
         logger.info("deviceId: " + deviceId);
         Device device = deviceDao.read(deviceId);
-        DeviceJson deviceJson = JavaJsonConverter.getDeviceJson(device);
+        DeviceGson deviceJson = JavaToGsonConverter.getDeviceGson(device);
         return deviceJson;
     }
     
