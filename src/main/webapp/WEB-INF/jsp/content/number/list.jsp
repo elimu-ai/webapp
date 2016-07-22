@@ -10,7 +10,7 @@
         
         <c:forEach var="number" items="${numbers}">
             <div class="col s12 m6 l4">
-                <div class="card-panel">
+                <div class="number card-panel">
                     <c:choose>
                         <c:when test="${number.locale.language == 'ar'}">
                             <h4><c:out value="${number.symbol}" /> (${number.value})</h4>
@@ -20,7 +20,7 @@
                         </c:otherwise>
                     </c:choose>
                     <div class="divider" style="margin: 1em 0;"></div>
-                    <a href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                    <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>
             </div>
         </c:forEach>

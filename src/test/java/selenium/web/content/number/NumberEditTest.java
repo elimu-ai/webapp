@@ -1,5 +1,6 @@
-package selenium.web.content.allophone;
+package selenium.web.content.number;
 
+import selenium.web.content.allophone.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -16,7 +17,7 @@ import selenium.DomainHelper;
 import selenium.ScreenshotOnFailureRule;
 import selenium.SignOnHelper;
 
-public class AllophoneEditTest {
+public class NumberEditTest {
 
     @Rule
     public MethodRule methodRule = new ScreenshotOnFailureRule();
@@ -27,17 +28,17 @@ public class AllophoneEditTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/allophone/list");
+        driver.get(DomainHelper.getBaseDomain() + "/content/number/list");
     }
 
     @Test
     public void testEdit() {
-    	AllophoneListPage allophoneListPage = PageFactory.initElements(driver, AllophoneListPage.class);
-        allophoneListPage.clickRandomEditLink();
+    	NumberListPage numberListPage = PageFactory.initElements(driver, NumberListPage.class);
+        numberListPage.clickRandomEditLink();
         
-        AllophoneEditPage allophoneEditPage = PageFactory.initElements(driver, AllophoneEditPage.class);
-        allophoneEditPage.submitForm();
+        NumberEditPage numberEditPage = PageFactory.initElements(driver, NumberEditPage.class);
+        numberEditPage.submitForm();
         
-        PageFactory.initElements(driver, AllophoneListPage.class);
+        PageFactory.initElements(driver, NumberListPage.class);
     }
 }

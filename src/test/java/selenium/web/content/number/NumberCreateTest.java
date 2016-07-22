@@ -1,5 +1,7 @@
-package selenium.web.content.allophone;
+package selenium.web.content.number;
 
+import selenium.web.content.allophone.*;
+import selenium.web.content.contributor.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -16,7 +18,7 @@ import selenium.DomainHelper;
 import selenium.ScreenshotOnFailureRule;
 import selenium.SignOnHelper;
 
-public class AllophoneEditTest {
+public class NumberCreateTest {
 
     @Rule
     public MethodRule methodRule = new ScreenshotOnFailureRule();
@@ -27,17 +29,16 @@ public class AllophoneEditTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/allophone/list");
+        driver.get(DomainHelper.getBaseDomain() + "/content/number/list");
     }
 
     @Test
-    public void testEdit() {
-    	AllophoneListPage allophoneListPage = PageFactory.initElements(driver, AllophoneListPage.class);
-        allophoneListPage.clickRandomEditLink();
+    public void testSubmitEmptyForm() {
+    	NumberListPage numberListPage = PageFactory.initElements(driver, NumberListPage.class);
+        numberListPage.clickAddButton();
         
-        AllophoneEditPage allophoneEditPage = PageFactory.initElements(driver, AllophoneEditPage.class);
-        allophoneEditPage.submitForm();
-        
-        PageFactory.initElements(driver, AllophoneListPage.class);
+        NumberCreatePage numberCreatePage = PageFactory.initElements(driver, NumberCreatePage.class);
+        numberCreatePage.submitForm();
+        assertThat(numberCreatePage.isErrorMessageDisplayed(), is(true));
     }
 }
