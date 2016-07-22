@@ -6,6 +6,7 @@ import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
@@ -25,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,8 +49,6 @@ public class ImageCreateController {
         Image image = new Image();
         image.setRevisionNumber(1);
         model.addAttribute("image", image);
-        
-        model.addAttribute("imageTypes", ImageType.values());
 
         return "content/image/create";
     }
@@ -56,11 +56,16 @@ public class ImageCreateController {
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
-            Image image,
+            /*@Valid*/ Image image,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
+        
+        Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+        if (existingImage != null) {
+            result.rejectValue("title", "NonUnique");
+        }
         
         try {
             byte[] bytes = multipartFile.getBytes();
@@ -103,7 +108,6 @@ public class ImageCreateController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("imageTypes", ImageType.values());
             return "content/image/create";
         } else {
             int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());

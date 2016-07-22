@@ -30,14 +30,6 @@
                         <input class="file-path validate" type="text" />
                     </div>
                 </div>
-                <%--<div class="input-field col s12">
-                    <form:select path="imageType" cssErrorClass="error">
-                        <c:set var="select"><fmt:message key='select' /></c:set>
-                        <form:option value="" label="-- ${select} --" />
-                        <form:options items="${imageTypes}" />
-                    </form:select>
-                    <form:label path="imageType" cssErrorClass="error"><fmt:message key='image.type' /></form:label>
-                </div>--%>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
