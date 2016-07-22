@@ -78,6 +78,8 @@ public class AllophoneEditController {
             model.addAttribute("allophone", allophone);
             return "content/allophone/edit";
         } else {
+            allophone.setTimeLastUpdate(Calendar.getInstance());
+            allophone.setRevisionNumber(allophone.getRevisionNumber() + 1);
             allophoneDao.update(allophone);
             
             Contributor contributor = (Contributor) session.getAttribute("contributor");

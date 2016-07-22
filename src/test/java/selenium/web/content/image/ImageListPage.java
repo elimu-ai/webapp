@@ -1,5 +1,7 @@
-package selenium.web.content.allophone;
+package selenium.web.content.image;
 
+import selenium.web.content.number.*;
+import selenium.web.content.allophone.*;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,28 +12,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
 
-public class AllophoneListPage {
+public class ImageListPage {
 
     private WebDriver driver;
     
-    @FindBy(className = "allophone")
-    private List<WebElement> allophones;
+    @FindBy(className = "image")
+    private List<WebElement> images;
     
     @FindBy(className = "btn-floating")
     private WebElement addButton;
 
-    public AllophoneListPage(WebDriver driver) {
+    public ImageListPage(WebDriver driver) {
         this.driver = driver;
         
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("allophoneListPage")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("imageListPage")));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
     
     public void clickRandomEditLink() {
-        int randomIndex = (int) (Math.random() * allophones.size());
-        WebElement randomElement = allophones.get(randomIndex);
+        int randomIndex = (int) (Math.random() * images.size());
+        WebElement randomElement = images.get(randomIndex);
         WebElement editLink = randomElement.findElement(By.className("editLink"));
         editLink.click();
     }

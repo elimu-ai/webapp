@@ -37,6 +37,7 @@ public class NumberCreateController {
     	logger.info("handleRequest");
         
         Number number = new Number();
+        number.setRevisionNumber(1);
         model.addAttribute("number", number);
 
         return "content/number/create";
@@ -65,6 +66,7 @@ public class NumberCreateController {
             model.addAttribute("number", number);
             return "content/number/create";
         } else {            
+            number.setTimeLastUpdate(Calendar.getInstance());
             numberDao.create(number);
             
             Contributor contributor = (Contributor) session.getAttribute("contributor");

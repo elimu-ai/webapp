@@ -10,6 +10,8 @@
 
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
+                
                 <c:if test="${contributor.locale.language == 'ar'}">
                     <div id="symbolContainer" class="input-field col s12">
                         <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>

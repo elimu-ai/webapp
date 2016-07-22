@@ -1,5 +1,6 @@
 package org.literacyapp.rest.admin;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +11,9 @@ import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.admin.ApplicationStatus;
-import org.literacyapp.model.json.admin.ApplicationJson;
-import org.literacyapp.model.json.admin.ApplicationVersionJson;
-import org.literacyapp.rest.JavaJsonConverter;
+import org.literacyapp.model.gson.admin.ApplicationGson;
+import org.literacyapp.model.gson.admin.ApplicationVersionGson;
+import org.literacyapp.rest.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +32,7 @@ public class ApplicationRestController {
     private ApplicationVersionDao applicationVersionDao;
     
     @RequestMapping("/list")
-    public List<ApplicationJson> list(
+    public List<String> list(
             HttpServletRequest request,
             @RequestParam String deviceId,
             // TODO: checksum
@@ -44,20 +45,19 @@ public class ApplicationRestController {
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
-        List<ApplicationJson> applicationJsons = new ArrayList<>();
+        List<String> applications = new ArrayList<>();
         for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
-            ApplicationJson applicationJson = JavaJsonConverter.getApplicationJson(application);
+            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
             
-            List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
-            List<ApplicationVersionJson> applicationVersionList = new ArrayList<>();
-            for (ApplicationVersion applicationVersion : applicationVersions) {
-                ApplicationVersionJson applicationVersionJson = JavaJsonConverter.getApplicationVersionJson(applicationVersion);
-                applicationVersionList.add(applicationVersionJson);
+            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
+                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                applicationVersions.add(applicationVersionGson);
             }
-            applicationJson.setApplicationVersionJsonList(applicationVersionList);
-            
-            applicationJsons.add(applicationJson);
+            applicationGson.setApplicationVersions(applicationVersions);
+            String json = new Gson().toJson(applicationGson);
+            applications.add(json);
         }
-        return applicationJsons;
+        return applications;
     }
 }

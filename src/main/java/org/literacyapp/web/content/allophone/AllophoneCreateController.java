@@ -40,6 +40,7 @@ public class AllophoneCreateController {
     	logger.info("handleRequest");
         
         Allophone allophone = new Allophone();
+        allophone.setRevisionNumber(1);
         model.addAttribute("allophone", allophone);
 
         return "content/allophone/create";
@@ -80,6 +81,7 @@ public class AllophoneCreateController {
             model.addAttribute("allophone", allophone);
             return "content/allophone/create";
         } else {
+            allophone.setTimeLastUpdate(Calendar.getInstance());
             allophoneDao.create(allophone);
             
             Contributor contributor = (Contributor) session.getAttribute("contributor");

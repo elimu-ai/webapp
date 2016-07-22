@@ -10,6 +10,8 @@
 
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
+                
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />
@@ -28,14 +30,6 @@
                         <input class="file-path validate" type="text" />
                     </div>
                 </div>
-                <%--<div class="input-field col s12">
-                    <form:select path="imageType" cssErrorClass="error">
-                        <c:set var="select"><fmt:message key='select' /></c:set>
-                        <form:option value="" label="-- ${select} --" />
-                        <form:options items="${imageTypes}" />
-                    </form:select>
-                    <form:label path="imageType" cssErrorClass="error"><fmt:message key='image.type' /></form:label>
-                </div>--%>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">

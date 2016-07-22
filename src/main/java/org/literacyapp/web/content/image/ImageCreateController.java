@@ -6,6 +6,7 @@ import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
@@ -25,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,9 +47,8 @@ public class ImageCreateController {
     	logger.info("handleRequest");
         
         Image image = new Image();
+        image.setRevisionNumber(1);
         model.addAttribute("image", image);
-        
-        model.addAttribute("imageTypes", ImageType.values());
 
         return "content/image/create";
     }
@@ -55,60 +56,64 @@ public class ImageCreateController {
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
-            Image image,
+            /*@Valid*/ Image image,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        if (!multipartFile.isEmpty()) {
-            try {
-                byte[] bytes = multipartFile.getBytes();
-                if (image.getBytes() != null) {
-                    String originalFileName = multipartFile.getOriginalFilename();
-                    logger.info("originalFileName: " + originalFileName);
-                    if (originalFileName.toLowerCase().endsWith(".png")) {
-                        image.setImageType(ImageType.PNG);
-                    } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
-                        image.setImageType(ImageType.JPG);
-                    } else if (originalFileName.toLowerCase().endsWith(".gif")) {
-                        image.setImageType(ImageType.GIF);
-                    }
+        Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+        if (existingImage != null) {
+            result.rejectValue("title", "NonUnique");
+        }
+        
+        try {
+            byte[] bytes = multipartFile.getBytes();
+            if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
+                result.rejectValue("bytes", "NotNull");
+            } else {
+                String originalFileName = multipartFile.getOriginalFilename();
+                logger.info("originalFileName: " + originalFileName);
+                if (originalFileName.toLowerCase().endsWith(".png")) {
+                    image.setImageType(ImageType.PNG);
+                } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
+                    image.setImageType(ImageType.JPG);
+                } else if (originalFileName.toLowerCase().endsWith(".gif")) {
+                    image.setImageType(ImageType.GIF);
+                }
 
-                    String contentType = multipartFile.getContentType();
-                    logger.info("contentType: " + contentType);
-                    image.setContentType(contentType);
-                    
-                    image.setBytes(bytes);
-                    
-                    if (image.getImageType() != ImageType.GIF) {
-                        int width = ImageHelper.getWidth(bytes);
-                        logger.info("width: " + width + "px");
+                String contentType = multipartFile.getContentType();
+                logger.info("contentType: " + contentType);
+                image.setContentType(contentType);
 
-                        if (width < ImageHelper.MINIMUM_WIDTH) {
-                            result.rejectValue("bytes", "image.too.small");
-                            image.setBytes(null);
-                        } else {
-                            if (width > ImageHelper.MINIMUM_WIDTH) {
-                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
-                                image.setBytes(bytes);
-                            }
+                image.setBytes(bytes);
+
+                if (image.getImageType() != ImageType.GIF) {
+                    int width = ImageHelper.getWidth(bytes);
+                    logger.info("width: " + width + "px");
+
+                    if (width < ImageHelper.MINIMUM_WIDTH) {
+                        result.rejectValue("bytes", "image.too.small");
+                        image.setBytes(null);
+                    } else {
+                        if (width > ImageHelper.MINIMUM_WIDTH) {
+                            bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
+                            image.setBytes(bytes);
                         }
                     }
-                } else {
-                    result.rejectValue("bytes", "required");
                 }
-            } catch (IOException e) {
-                logger.error(e);
             }
-    	}
+        } catch (IOException e) {
+            logger.error(e);
+        }
         
         if (result.hasErrors()) {
-            model.addAttribute("imageTypes", ImageType.values());
             return "content/image/create";
         } else {
             int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
             image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            image.setTimeLastUpdate(Calendar.getInstance());
+            image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.create(image);
             
             Contributor contributor = (Contributor) session.getAttribute("contributor");
