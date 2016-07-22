@@ -29,6 +29,10 @@ public class AllophoneListPage {
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
     
+    public int getListCount() {
+        return allophones.size();
+    }
+    
     public void clickRandomEditLink() {
         int randomIndex = (int) (Math.random() * allophones.size());
         WebElement randomElement = allophones.get(randomIndex);

@@ -34,11 +34,13 @@ public class NumberEditTest {
     @Test
     public void testEdit() {
     	NumberListPage numberListPage = PageFactory.initElements(driver, NumberListPage.class);
-        numberListPage.clickRandomEditLink();
-        
-        NumberEditPage numberEditPage = PageFactory.initElements(driver, NumberEditPage.class);
-        numberEditPage.submitForm();
-        
-        PageFactory.initElements(driver, NumberListPage.class);
+        if (numberListPage.getListCount() > 0) {
+            numberListPage.clickRandomEditLink();
+
+            NumberEditPage numberEditPage = PageFactory.initElements(driver, NumberEditPage.class);
+            numberEditPage.submitForm();
+
+            PageFactory.initElements(driver, NumberListPage.class);
+        }
     }
 }

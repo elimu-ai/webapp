@@ -31,6 +31,10 @@ public class ImageListPage {
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
     
+    public int getListCount() {
+        return images.size();
+    }
+    
     public void clickRandomEditLink() {
         int randomIndex = (int) (Math.random() * images.size());
         WebElement randomElement = images.get(randomIndex);

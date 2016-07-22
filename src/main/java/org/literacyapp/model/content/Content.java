@@ -13,8 +13,7 @@ import org.literacyapp.model.enums.Locale;
 /**
  * Parent class for different types of educational content.
  */
-@Entity
-public class Content extends BaseEntity {
+public abstract class Content extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
