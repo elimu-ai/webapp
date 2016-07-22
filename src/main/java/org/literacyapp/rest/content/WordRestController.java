@@ -1,7 +1,9 @@
 package org.literacyapp.rest.content;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.content.Word;
@@ -23,16 +25,22 @@ public class WordRestController {
     private WordDao wordDao;
     
     @RequestMapping("/list")
-    public List<WordGson> list(@RequestParam Locale locale) {
+    public List<String> list(
+            HttpServletRequest request,
+            @RequestParam String deviceId,
+            // TODO: checksum
+            @RequestParam Locale locale
+    ) {
         logger.info("list");
         
         logger.info("locale: " + locale);
         
-        List<WordGson> wordJsons = new ArrayList<>();
+        List<String> words = new ArrayList<>();
         for (Word word : wordDao.readAllOrdered(locale)) {
             WordGson wordJson = JavaToGsonConverter.getWordGson(word);
-            wordJsons.add(wordJson);
+            String json = new Gson().toJson(wordJson);
+            words.add(json);
         }
-        return wordJsons;
+        return words;
     }
 }

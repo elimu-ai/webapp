@@ -1,5 +1,6 @@
 package org.literacyapp.rest.admin;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class ApplicationRestController {
     private ApplicationVersionDao applicationVersionDao;
     
     @RequestMapping("/list")
-    public List<ApplicationGson> list(
+    public List<String> list(
             HttpServletRequest request,
             @RequestParam String deviceId,
             // TODO: checksum
@@ -44,20 +45,19 @@ public class ApplicationRestController {
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
-        List<ApplicationGson> applicationJsons = new ArrayList<>();
+        List<String> applications = new ArrayList<>();
         for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
-            ApplicationGson applicationJson = JavaToGsonConverter.getApplicationGson(application);
+            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
             
-            List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
-            List<ApplicationVersionGson> applicationVersionList = new ArrayList<>();
-            for (ApplicationVersion applicationVersion : applicationVersions) {
-                ApplicationVersionGson applicationVersionJson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
-                applicationVersionList.add(applicationVersionJson);
+            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
+                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                applicationVersions.add(applicationVersionGson);
             }
-            applicationJson.setApplicationVersions(applicationVersionList);
-            
-            applicationJsons.add(applicationJson);
+            applicationGson.setApplicationVersions(applicationVersions);
+            String json = new Gson().toJson(applicationGson);
+            applications.add(json);
         }
-        return applicationJsons;
+        return applications;
     }
 }

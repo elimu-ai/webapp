@@ -1,6 +1,8 @@
 package org.literacyapp.rest;
 
+import com.google.gson.Gson;
 import java.util.Calendar;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.DeviceDao;
 import org.literacyapp.model.Device;
@@ -21,8 +23,10 @@ public class DeviceRestController {
     private DeviceDao deviceDao;
     
     @RequestMapping("/create")
-    public Device create(
+    public String create(
+            HttpServletRequest request,
             @RequestParam String deviceId,
+            // TODO: checksum
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
             @RequestParam String locale,
@@ -30,7 +34,8 @@ public class DeviceRestController {
     ) {
         logger.info("create");
         
-        logger.info("deviceId: " + deviceId);
+        logger.info("request.getQueryString(): " + request.getQueryString());
+        
         Device device = deviceDao.read(deviceId);
         if (device == null) {
             device = new Device();
@@ -43,7 +48,10 @@ public class DeviceRestController {
             deviceDao.create(device);
         }
         
-        return device;
+        DeviceGson deviceGson = JavaToGsonConverter.getDeviceGson(device);
+        String json = new Gson().toJson(deviceGson);
+        logger.info("json: " + json);
+        return json;
     }
     
     @RequestMapping("/read/{deviceId}")

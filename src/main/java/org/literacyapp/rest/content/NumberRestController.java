@@ -1,7 +1,9 @@
 package org.literacyapp.rest.content;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.enums.Locale;
@@ -22,16 +24,22 @@ public class NumberRestController {
     private NumberDao numberDao;
     
     @RequestMapping("/list")
-    public List<NumberGson> list(@RequestParam Locale locale) {
+    public List<String> list(
+            HttpServletRequest request,
+            @RequestParam String deviceId,
+            // TODO: checksum,
+            @RequestParam Locale locale
+    ) {
         logger.info("list");
         
         logger.info("locale: " + locale);
         
-        List<NumberGson> numberJsons = new ArrayList<>();
+        List<String> numbers = new ArrayList<>();
         for (org.literacyapp.model.content.Number number : numberDao.readAllOrdered(locale)) {
-            NumberGson numberJson = JavaToGsonConverter.getNumberGson(number);
-            numberJsons.add(numberJson);
+            NumberGson numberGson = JavaToGsonConverter.getNumberGson(number);
+            String json = new Gson().toJson(numberGson);
+            numbers.add(json);
         }
-        return numberJsons;
+        return numbers;
     }
 }
