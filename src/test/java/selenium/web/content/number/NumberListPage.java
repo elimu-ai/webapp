@@ -30,6 +30,10 @@ public class NumberListPage {
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
     
+    public int getListCount() {
+        return numbers.size();
+    }
+    
     public void clickRandomEditLink() {
         int randomIndex = (int) (Math.random() * numbers.size());
         WebElement randomElement = numbers.get(randomIndex);

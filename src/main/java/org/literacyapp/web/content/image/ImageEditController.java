@@ -1,10 +1,12 @@
 package org.literacyapp.web.content.image;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
@@ -14,6 +16,7 @@ import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.ImageType;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.util.ImageHelper;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,10 +62,53 @@ public class ImageEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        // TODO: if title is changed, check for existing Image
+        if (StringUtils.isBlank(image.getTitle())) {
+            result.rejectValue("title", "NotNull");
+        } else {
+            Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+            if ((existingImage != null) && !existingImage.getId().equals(image.getId())) {
+                result.rejectValue("title", "NonUnique");
+            }
+        }
         
-        if (!multipartFile.isEmpty()) {
-            // TODO
+        try {
+            byte[] bytes = multipartFile.getBytes();
+            if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
+                result.rejectValue("bytes", "NotNull");
+            } else {
+                String originalFileName = multipartFile.getOriginalFilename();
+                logger.info("originalFileName: " + originalFileName);
+                if (originalFileName.toLowerCase().endsWith(".png")) {
+                    image.setImageType(ImageType.PNG);
+                } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
+                    image.setImageType(ImageType.JPG);
+                } else if (originalFileName.toLowerCase().endsWith(".gif")) {
+                    image.setImageType(ImageType.GIF);
+                }
+
+                String contentType = multipartFile.getContentType();
+                logger.info("contentType: " + contentType);
+                image.setContentType(contentType);
+
+                image.setBytes(bytes);
+
+                if (image.getImageType() != ImageType.GIF) {
+                    int width = ImageHelper.getWidth(bytes);
+                    logger.info("width: " + width + "px");
+
+                    if (width < ImageHelper.MINIMUM_WIDTH) {
+                        result.rejectValue("bytes", "image.too.small");
+                        image.setBytes(null);
+                    } else {
+                        if (width > ImageHelper.MINIMUM_WIDTH) {
+                            bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
+                            image.setBytes(bytes);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            logger.error(e);
         }
         
         if (result.hasErrors()) {

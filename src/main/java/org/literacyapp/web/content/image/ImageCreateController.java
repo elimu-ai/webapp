@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
@@ -62,9 +63,13 @@ public class ImageCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
-        if (existingImage != null) {
-            result.rejectValue("title", "NonUnique");
+        if (StringUtils.isBlank(image.getTitle())) {
+            result.rejectValue("title", "NotNull");
+        } else {
+            Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+            if (existingImage != null) {
+                result.rejectValue("title", "NonUnique");
+            }
         }
         
         try {

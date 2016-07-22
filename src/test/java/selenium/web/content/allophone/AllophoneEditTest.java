@@ -33,11 +33,13 @@ public class AllophoneEditTest {
     @Test
     public void testEdit() {
     	AllophoneListPage allophoneListPage = PageFactory.initElements(driver, AllophoneListPage.class);
-        allophoneListPage.clickRandomEditLink();
-        
-        AllophoneEditPage allophoneEditPage = PageFactory.initElements(driver, AllophoneEditPage.class);
-        allophoneEditPage.submitForm();
-        
-        PageFactory.initElements(driver, AllophoneListPage.class);
+        if (allophoneListPage.getListCount() > 0) {
+            allophoneListPage.clickRandomEditLink();
+
+            AllophoneEditPage allophoneEditPage = PageFactory.initElements(driver, AllophoneEditPage.class);
+            allophoneEditPage.submitForm();
+
+            PageFactory.initElements(driver, AllophoneListPage.class);
+        }
     }
 }
