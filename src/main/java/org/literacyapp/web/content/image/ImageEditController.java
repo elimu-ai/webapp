@@ -69,6 +69,8 @@ public class ImageEditController {
             model.addAttribute("image", image);
             return "content/image/edit";
         } else {
+            image.setTimeLastUpdate(Calendar.getInstance());
+            image.setRevisionNumber(Integer.MIN_VALUE);
             imageDao.update(image);
             
             Contributor contributor = (Contributor) session.getAttribute("contributor");

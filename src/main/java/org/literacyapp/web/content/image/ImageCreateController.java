@@ -45,6 +45,7 @@ public class ImageCreateController {
     	logger.info("handleRequest");
         
         Image image = new Image();
+        image.setRevisionNumber(1);
         model.addAttribute("image", image);
         
         model.addAttribute("imageTypes", ImageType.values());
@@ -61,47 +62,45 @@ public class ImageCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        if (!multipartFile.isEmpty()) {
-            try {
-                byte[] bytes = multipartFile.getBytes();
-                if (image.getBytes() != null) {
-                    String originalFileName = multipartFile.getOriginalFilename();
-                    logger.info("originalFileName: " + originalFileName);
-                    if (originalFileName.toLowerCase().endsWith(".png")) {
-                        image.setImageType(ImageType.PNG);
-                    } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
-                        image.setImageType(ImageType.JPG);
-                    } else if (originalFileName.toLowerCase().endsWith(".gif")) {
-                        image.setImageType(ImageType.GIF);
-                    }
+        try {
+            byte[] bytes = multipartFile.getBytes();
+            if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
+                result.rejectValue("bytes", "NotNull");
+            } else {
+                String originalFileName = multipartFile.getOriginalFilename();
+                logger.info("originalFileName: " + originalFileName);
+                if (originalFileName.toLowerCase().endsWith(".png")) {
+                    image.setImageType(ImageType.PNG);
+                } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
+                    image.setImageType(ImageType.JPG);
+                } else if (originalFileName.toLowerCase().endsWith(".gif")) {
+                    image.setImageType(ImageType.GIF);
+                }
 
-                    String contentType = multipartFile.getContentType();
-                    logger.info("contentType: " + contentType);
-                    image.setContentType(contentType);
-                    
-                    image.setBytes(bytes);
-                    
-                    if (image.getImageType() != ImageType.GIF) {
-                        int width = ImageHelper.getWidth(bytes);
-                        logger.info("width: " + width + "px");
+                String contentType = multipartFile.getContentType();
+                logger.info("contentType: " + contentType);
+                image.setContentType(contentType);
 
-                        if (width < ImageHelper.MINIMUM_WIDTH) {
-                            result.rejectValue("bytes", "image.too.small");
-                            image.setBytes(null);
-                        } else {
-                            if (width > ImageHelper.MINIMUM_WIDTH) {
-                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
-                                image.setBytes(bytes);
-                            }
+                image.setBytes(bytes);
+
+                if (image.getImageType() != ImageType.GIF) {
+                    int width = ImageHelper.getWidth(bytes);
+                    logger.info("width: " + width + "px");
+
+                    if (width < ImageHelper.MINIMUM_WIDTH) {
+                        result.rejectValue("bytes", "image.too.small");
+                        image.setBytes(null);
+                    } else {
+                        if (width > ImageHelper.MINIMUM_WIDTH) {
+                            bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
+                            image.setBytes(bytes);
                         }
                     }
-                } else {
-                    result.rejectValue("bytes", "required");
                 }
-            } catch (IOException e) {
-                logger.error(e);
             }
-    	}
+        } catch (IOException e) {
+            logger.error(e);
+        }
         
         if (result.hasErrors()) {
             model.addAttribute("imageTypes", ImageType.values());
@@ -109,6 +108,8 @@ public class ImageCreateController {
         } else {
             int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
             image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            image.setTimeLastUpdate(Calendar.getInstance());
+            image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.create(image);
             
             Contributor contributor = (Contributor) session.getAttribute("contributor");

@@ -2,7 +2,7 @@
     <fmt:message key="images" />
 </content:title>
 
-<content:section cssId="numberListPage">
+<content:section cssId="imageListPage">
     <div class="section row">
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
@@ -10,13 +10,13 @@
         
         <c:forEach var="image" items="${images}">
             <div class="col s12 m6 l4">
-                <div class="card">
+                <div class="image card">
                     <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />" alt="${image.title}" />
                     
                     <div class="card-content">
                         <h4>${image.title}</h4>
                         <div class="divider" style="margin: 1em 0;"></div>
-                        <a href="<spring:url value='/content/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                        <a class="editLink" href="<spring:url value='/content/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
                 </div>
             </div>
