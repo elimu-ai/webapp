@@ -1,7 +1,5 @@
-package selenium.web.content.image;
+package selenium.web.content.multimedia.image;
 
-import selenium.web.content.number.*;
-import selenium.web.content.allophone.*;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -6,7 +6,7 @@ import javax.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.content.Image;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.enums.Locale;
 

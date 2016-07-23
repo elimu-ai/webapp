@@ -9,11 +9,8 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContentCreationEventDao;
-import org.literacyapp.dao.ImageDao;
-import org.literacyapp.dao.NumberDao;
+import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.content.Image;
-import org.literacyapp.model.content.Number;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +48,8 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-motivation";
         }
         
-        // TODO: list latest content creation events
+        List<ContentCreationEvent> contentCreationEvents = contentCreationEventDao.readAll(100);
+        model.addAttribute("contentCreationEvents", contentCreationEvents);
     	
         return "content/main";
     }

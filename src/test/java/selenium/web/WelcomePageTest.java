@@ -21,7 +21,7 @@ public class WelcomePageTest {
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
-        driver.get(DomainHelper.getBaseDomain());
+        driver.get(DomainHelper.getBaseUrl());
     }
 
     @Test

@@ -1,6 +1,5 @@
-package selenium.web.content.image;
+package selenium.web.content.multimedia.image;
 
-import selenium.web.content.number.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -28,7 +27,7 @@ public class ImageCreateTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/image/list");
+        driver.get(DomainHelper.getBaseUrl() + "/content/multimedia/image/list");
     }
 
     @Test

@@ -67,3 +67,7 @@ img {
         0 1rem 3rem rgba(0,0,0, .8), 
         -2rem 0 3rem rgba(0,0,0, .8);
 }
+
+.side-nav .grey-text {
+    margin-left: 1rem;
+}

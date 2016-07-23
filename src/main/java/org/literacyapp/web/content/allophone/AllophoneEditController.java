@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
+import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.contributor.ContentCreationEvent;
@@ -31,6 +32,9 @@ public class AllophoneEditController {
     
     @Autowired
     private AllophoneDao allophoneDao;
+    
+    @Autowired
+    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -88,6 +92,7 @@ public class AllophoneEditController {
             contentCreationEvent.setContributor(contributor);
             contentCreationEvent.setContent(allophone);
             contentCreationEvent.setCalendar(Calendar.getInstance());
+            contentCreationEventDao.update(contentCreationEvent);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(

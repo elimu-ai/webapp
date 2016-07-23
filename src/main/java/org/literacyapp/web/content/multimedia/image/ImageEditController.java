@@ -1,4 +1,4 @@
-package org.literacyapp.web.content.image;
+package org.literacyapp.web.content.multimedia.image;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -9,9 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.content.Image;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.ImageType;
@@ -33,13 +34,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
-@RequestMapping("/content/image/edit")
+@RequestMapping("/content/multimedia/image/edit")
 public class ImageEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -50,7 +54,7 @@ public class ImageEditController {
         
         model.addAttribute("imageTypes", ImageType.values());
 
-        return "content/image/edit";
+        return "content/multimedia/image/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
@@ -113,7 +117,7 @@ public class ImageEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("image", image);
-            return "content/image/edit";
+            return "content/multimedia/image/edit";
         } else {
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(Integer.MIN_VALUE);
@@ -125,6 +129,7 @@ public class ImageEditController {
             contentCreationEvent.setContributor(contributor);
             contentCreationEvent.setContent(image);
             contentCreationEvent.setCalendar(Calendar.getInstance());
+            contentCreationEventDao.update(contentCreationEvent);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
@@ -137,7 +142,7 @@ public class ImageEditController {
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageType().toString().toLowerCase());
             }
             
-            return "redirect:/content/image/list";
+            return "redirect:/content/multimedia/image/list";
         }
     }
     

@@ -169,6 +169,7 @@
                         <version>${surefire-plugin.version}</version>
                         <configuration>
                             <excludes>
+                                <exclude>**/rest/**/*Test.java</exclude>
                                 <exclude>**/selenium/**/*Test.java</exclude>
                             </excludes>
                         </configuration>
@@ -199,6 +200,7 @@
                                         <exclude>all</exclude>
                                     </excludes>
                                     <includes>
+                                        <include>**/rest/**/*Test.java</include>
                                         <include>**/selenium/**/*Test.java</include>
                                     </includes>
                                 </configuration>

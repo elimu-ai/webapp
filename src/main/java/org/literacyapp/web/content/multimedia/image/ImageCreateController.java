@@ -1,4 +1,4 @@
-package org.literacyapp.web.content.image;
+package org.literacyapp.web.content.multimedia.image;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -6,13 +6,13 @@ import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.content.Image;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.ImageType;
@@ -27,7 +27,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,13 +34,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
-@RequestMapping("/content/image/create")
+@RequestMapping("/content/multimedia/image/create")
 public class ImageCreateController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -51,7 +53,7 @@ public class ImageCreateController {
         image.setRevisionNumber(1);
         model.addAttribute("image", image);
 
-        return "content/image/create";
+        return "content/multimedia/image/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
@@ -113,7 +115,7 @@ public class ImageCreateController {
         }
         
         if (result.hasErrors()) {
-            return "content/image/create";
+            return "content/multimedia/image/create";
         } else {
             int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
             image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
@@ -127,6 +129,7 @@ public class ImageCreateController {
             contentCreationEvent.setContributor(contributor);
             contentCreationEvent.setContent(image);
             contentCreationEvent.setCalendar(Calendar.getInstance());
+            contentCreationEventDao.create(contentCreationEvent);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
@@ -139,7 +142,7 @@ public class ImageCreateController {
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageType().toString().toLowerCase());
             }
             
-            return "redirect:/content/image/list";
+            return "redirect:/content/multimedia/image/list";
         }
     }
     

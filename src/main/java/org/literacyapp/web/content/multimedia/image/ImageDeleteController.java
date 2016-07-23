@@ -1,8 +1,8 @@
-package org.literacyapp.web.content.image;
+package org.literacyapp.web.content.multimedia.image;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.content.Image;
+import org.literacyapp.model.content.multimedia.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/image/delete")
+@RequestMapping("/content/multimedia/image/delete")
 public class ImageDeleteController {
     
     private final Logger logger = Logger.getLogger(getClass());
@@ -26,6 +26,6 @@ public class ImageDeleteController {
         Image image = imageDao.read(id);
         imageDao.delete(image);
 
-        return "redirect:/content/image/list";
+        return "redirect:/content/multimedia/image/list";
     }
 }

@@ -27,7 +27,7 @@ public class EditTeamsTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/contributor/edit-teams");
+        driver.get(DomainHelper.getBaseUrl() + "/content/contributor/edit-teams");
     }
 
     @Test
