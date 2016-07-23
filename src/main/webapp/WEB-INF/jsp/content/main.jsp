@@ -3,12 +3,70 @@
 </content:title>
 
 <content:section cssId="mainContentPage">
-    <h4><fmt:message key="latest.uploads" /></h4>
-    
     <div class="section row">
-        <%-- TODO: show progress bar --%>
+        <h4><fmt:message key="latest.uploads" /></h4>
         
-        <%-- TODO: list latest content creation events --%>
+        <%-- TODO: show progress bar for each content type --%>
+        
+        <p>
+            <fmt:message key="to.add.new.content.click.the.button.below" />
+        </p>
+        
+        <%-- Latest content creation events --%>
+        <c:if test="${not empty contentCreationEvents}">
+            <table class="bordered highlight">
+                <thead>
+                    <th><fmt:message key="content.type" /></th>
+                    <th><fmt:message key="content" /></th>
+                    <th><fmt:message key="contributor" /></th>
+                    <th><fmt:message key="time.created_updated" /></th>
+                </thead>
+                <tbody>
+                    <c:forEach var="contentCreationEvent" items="${contentCreationEvents}">
+                        <tr class="contentCreationEvent">
+                            <td>
+                                <c:set var="contentClassName" value="${fn:toLowerCase(contentCreationEvent.content.class.simpleName)}" />
+                                <fmt:message key="${contentClassName}" />
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Allophone'}">
+                                        
+                                    </c:when>
+                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Letter'}">
+                                        <%-- TODO --%>
+                                    </c:when>
+                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Number'}">
+                                        <%-- TODO: display value/symbol --%>
+                                    </c:when>
+                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Word'}">
+                                        
+                                    </c:when>
+                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Audio'}">
+                                        
+                                    </c:when>
+                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Image'}">
+                                        <%-- TODO --%>
+                                    </c:when>
+                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Video'}">
+                                        
+                                    </c:when>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <div class="chip">
+                                    <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
+                                    <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
+                                </div>
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" />
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
         
         <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
             <a class="btn-floating btn-large red" title="Add content">

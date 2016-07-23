@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Image;
@@ -40,6 +41,9 @@ public class ImageCreateController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -125,6 +129,7 @@ public class ImageCreateController {
             contentCreationEvent.setContributor(contributor);
             contentCreationEvent.setContent(image);
             contentCreationEvent.setCalendar(Calendar.getInstance());
+            contentCreationEventDao.create(contentCreationEvent);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(

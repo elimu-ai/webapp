@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Number;
@@ -31,6 +32,9 @@ public class NumberCreateController {
     
     @Autowired
     private NumberDao numberDao;
+    
+    @Autowired
+    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -75,6 +79,7 @@ public class NumberCreateController {
             contentCreationEvent.setContributor(contributor);
             contentCreationEvent.setContent(number);
             contentCreationEvent.setCalendar(Calendar.getInstance());
+            contentCreationEventDao.create(contentCreationEvent);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
