@@ -28,7 +28,7 @@ public class NumberEditTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/number/list");
+        driver.get(DomainHelper.getBaseUrl() + "/content/number/list");
     }
 
     @Test

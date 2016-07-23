@@ -27,7 +27,7 @@ public class ImageCreateTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/multimedia/image/list");
+        driver.get(DomainHelper.getBaseUrl() + "/content/multimedia/image/list");
     }
 
     @Test

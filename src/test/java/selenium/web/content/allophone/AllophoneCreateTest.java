@@ -28,7 +28,7 @@ public class AllophoneCreateTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseDomain() + "/content/allophone/list");
+        driver.get(DomainHelper.getBaseUrl() + "/content/allophone/list");
     }
 
     @Test

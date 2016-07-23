@@ -27,7 +27,7 @@ public class ApplicationCreateTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.ADMIN);
-        driver.get(DomainHelper.getBaseDomain() + "/admin/application/list");
+        driver.get(DomainHelper.getBaseUrl() + "/admin/application/list");
     }
 
     @Test

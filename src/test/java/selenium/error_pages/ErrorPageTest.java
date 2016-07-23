@@ -27,7 +27,7 @@ public class ErrorPageTest {
 
     @Test
     public void testHttp403() {
-        driver.get(DomainHelper.getBaseDomain() + "/img");
+        driver.get(DomainHelper.getBaseUrl() + "/img");
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
         
         ErrorPage errorPage = PageFactory.initElements(driver, ErrorPage.class);
@@ -37,7 +37,7 @@ public class ErrorPageTest {
 
     @Test
     public void testHttp404() {
-        driver.get(DomainHelper.getBaseDomain() + "/asdf");
+        driver.get(DomainHelper.getBaseUrl() + "/asdf");
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
         
         ErrorPage errorPage = PageFactory.initElements(driver, ErrorPage.class);
