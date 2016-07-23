@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.InputStream;
 import java.util.Arrays;
-import org.literacyapp.model.content.Image;
+import org.literacyapp.model.content.multimedia.Image;
 
 /**
  * See https://github.com/SvenWoltmann/color-thief-java/blob/master/src/main/java/de/androidpit/colorthief/ColorThief.java

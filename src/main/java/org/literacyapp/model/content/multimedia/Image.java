@@ -1,4 +1,4 @@
-package org.literacyapp.model.content;
+package org.literacyapp.model.content.multimedia;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.content.Image;
+import org.literacyapp.model.content.multimedia.Image;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 

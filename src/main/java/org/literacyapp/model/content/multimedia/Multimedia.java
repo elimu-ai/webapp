@@ -1,8 +1,9 @@
-package org.literacyapp.model.content;
+package org.literacyapp.model.content.multimedia;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import org.literacyapp.model.content.Content;
 
 /**
  * Parent class for different types of multimedia (images, audios, etc).

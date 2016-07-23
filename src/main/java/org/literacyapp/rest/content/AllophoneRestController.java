@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/allophone/number")
+@RequestMapping("/rest/content/allophone")
 public class AllophoneRestController {
     
     private Logger logger = Logger.getLogger(getClass());
