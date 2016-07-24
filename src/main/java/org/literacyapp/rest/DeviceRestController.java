@@ -27,7 +27,9 @@ public class DeviceRestController {
             HttpServletRequest request,
             @RequestParam String deviceId,
             // TODO: checksum
+            @RequestParam String deviceManufacturer,
             @RequestParam String deviceModel,
+            @RequestParam String deviceSerial,
             @RequestParam Integer osVersion,
             @RequestParam String locale,
             @RequestParam Boolean rooted
@@ -40,7 +42,9 @@ public class DeviceRestController {
         if (device == null) {
             device = new Device();
             device.setDeviceId(deviceId);
+            device.setDeviceManufacturer(deviceManufacturer);
             device.setDeviceModel(deviceModel);
+            device.setDeviceSerial(deviceSerial);
             device.setTimeRegistered(Calendar.getInstance());
             device.setOsVersion(osVersion);
             device.setLocale(locale);

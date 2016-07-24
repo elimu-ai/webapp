@@ -17,7 +17,13 @@ public class Device extends BaseEntity {
     private String deviceId;
     
     @NotNull
+    private String deviceManufacturer;
+    
+    @NotNull
     private String deviceModel;
+    
+    @NotNull
+    private String deviceSerial;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeRegistered; // Time of first synchronization with server
@@ -41,6 +47,14 @@ public class Device extends BaseEntity {
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
     }
+    
+    public String getDeviceManufacturer() {
+        return deviceManufacturer;
+    }
+
+    public void setDeviceManufacturer(String deviceManufacturer) {
+        this.deviceManufacturer = deviceManufacturer;
+    }
 
     public String getDeviceModel() {
         return deviceModel;
@@ -48,6 +62,14 @@ public class Device extends BaseEntity {
 
     public void setDeviceModel(String deviceModel) {
         this.deviceModel = deviceModel;
+    }
+    
+    public String getDeviceSerial() {
+        return deviceSerial;
+    }
+
+    public void setDeviceSerial(String deviceSerial) {
+        this.deviceSerial = deviceSerial;
     }
 
     public Calendar getTimeRegistered() {
