@@ -16,7 +16,7 @@ public class FallbackController {
         logger.info("handleRequest");
         
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("error", "URL not found. See /rest/documentation");
+        jsonObject.put("error", "URL not found. See /rest/v1/documentation");
         
         return jsonObject.toString();
     }

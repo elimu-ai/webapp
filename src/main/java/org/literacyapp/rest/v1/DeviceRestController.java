@@ -1,9 +1,9 @@
 package org.literacyapp.rest.v1;
 
-import com.google.gson.Gson;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 import org.literacyapp.dao.DeviceDao;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.gson.DeviceGson;
@@ -38,8 +38,12 @@ public class DeviceRestController {
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
+        JSONObject jSONObject = new JSONObject();
         Device device = deviceDao.read(deviceId);
-        if (device == null) {
+        if (device != null) {
+            jSONObject.put("result", "error");
+            jSONObject.put("description", "Device already exists");
+        } else {
             device = new Device();
             device.setDeviceId(deviceId);
             device.setDeviceManufacturer(deviceManufacturer);
@@ -50,22 +54,33 @@ public class DeviceRestController {
             device.setLocale(locale);
             device.setRooted(rooted);
             deviceDao.create(device);
+            
+            DeviceGson deviceGson = JavaToGsonConverter.getDeviceGson(device);
+            jSONObject.put("result", "success");
+            jSONObject.put("device", deviceGson);
         }
         
-        DeviceGson deviceGson = JavaToGsonConverter.getDeviceGson(device);
-        String json = new Gson().toJson(deviceGson);
-        logger.info("json: " + json);
-        return json;
+        return jSONObject.toString();
     }
     
     @RequestMapping("/read/{deviceId}")
-    public DeviceGson read(@PathVariable String deviceId) {
+    public String read(@PathVariable String deviceId) {
         logger.info("read");
         
         logger.info("deviceId: " + deviceId);
+
+        JSONObject jSONObject = new JSONObject();
         Device device = deviceDao.read(deviceId);
-        DeviceGson deviceJson = JavaToGsonConverter.getDeviceGson(device);
-        return deviceJson;
+        if (device == null) {
+            jSONObject.put("result", "error");
+            jSONObject.put("description", "Device not found");
+        } else {
+            DeviceGson deviceGson = JavaToGsonConverter.getDeviceGson(device);
+            jSONObject.put("result", "success");
+            jSONObject.put("device", deviceGson);
+        }
+        
+        return jSONObject.toString();
     }
     
     // TODO: update
