@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,10 +35,7 @@ public class Device extends BaseEntity {
     @NotNull
     private String locale; // Expected format "en"/"en-US"
     
-    @NotNull
-    private Boolean rooted;
-    
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Device> devicesNearby;
 
     public String getDeviceId() {
@@ -94,14 +92,6 @@ public class Device extends BaseEntity {
 
     public void setLocale(String locale) {
         this.locale = locale;
-    }
-    
-    public Boolean isRooted() {
-        return rooted;
-    }
-
-    public void setRooted(Boolean rooted) {
-        this.rooted = rooted;
     }
 
     public Set<Device> getDevicesNearby() {

@@ -1,0 +1,3 @@
+# 1.1.22
+
+ALTER TABLE Device DROP COLUMN rooted;
