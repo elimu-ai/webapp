@@ -5,6 +5,10 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The responsibility of this controller is to return the version code of the 
+ * newest APK file published in Google Play.
+ */
 @RestController
 @RequestMapping("/rest/v1/version")
 public class VersionRestController {
