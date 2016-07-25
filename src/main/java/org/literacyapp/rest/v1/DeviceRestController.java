@@ -1,4 +1,4 @@
-package org.literacyapp.rest;
+package org.literacyapp.rest.v1;
 
 import com.google.gson.Gson;
 import java.util.Calendar;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/device")
+@RequestMapping("/rest/v1/device")
 public class DeviceRestController {
     
     private Logger logger = Logger.getLogger(getClass());
@@ -27,7 +27,9 @@ public class DeviceRestController {
             HttpServletRequest request,
             @RequestParam String deviceId,
             // TODO: checksum
+            @RequestParam String deviceManufacturer,
             @RequestParam String deviceModel,
+            @RequestParam String deviceSerial,
             @RequestParam Integer osVersion,
             @RequestParam String locale,
             @RequestParam Boolean rooted
@@ -40,7 +42,9 @@ public class DeviceRestController {
         if (device == null) {
             device = new Device();
             device.setDeviceId(deviceId);
+            device.setDeviceManufacturer(deviceManufacturer);
             device.setDeviceModel(deviceModel);
+            device.setDeviceSerial(deviceSerial);
             device.setTimeRegistered(Calendar.getInstance());
             device.setOsVersion(osVersion);
             device.setLocale(locale);

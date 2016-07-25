@@ -1,4 +1,4 @@
-package org.literacyapp.rest;
+package org.literacyapp.rest.v1;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RestController;
@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/v1")
 public class FallbackController {
     
     private Logger logger = Logger.getLogger(getClass());

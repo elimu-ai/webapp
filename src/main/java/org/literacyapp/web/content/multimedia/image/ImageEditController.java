@@ -137,7 +137,7 @@ public class ImageEditController {
                         "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
                         "• Title: \"" + image.getTitle() + "\"\n" + 
                         "• Image type: \"" + image.getImageType() + "\"\n" + 
-                        "See ") + "http://literacyapp.org/content/image/list";
+                        "See ") + "http://literacyapp.org/content/multimedia/image/list";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageType().toString().toLowerCase());
             }

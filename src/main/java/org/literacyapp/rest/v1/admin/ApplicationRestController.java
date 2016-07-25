@@ -1,4 +1,4 @@
-package org.literacyapp.rest.admin;
+package org.literacyapp.rest.v1.admin;
 
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -13,14 +13,14 @@ import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.admin.ApplicationStatus;
 import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
-import org.literacyapp.rest.JavaToGsonConverter;
+import org.literacyapp.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/admin/application")
+@RequestMapping("/rest/v1/admin/application")
 public class ApplicationRestController {
     
     private Logger logger = Logger.getLogger(getClass());
