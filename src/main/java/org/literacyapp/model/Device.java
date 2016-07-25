@@ -34,9 +34,6 @@ public class Device extends BaseEntity {
     @NotNull
     private String locale; // Expected format "en"/"en-US"
     
-    @NotNull
-    private Boolean rooted;
-    
     @OneToMany
     private Set<Device> devicesNearby;
 
@@ -94,14 +91,6 @@ public class Device extends BaseEntity {
 
     public void setLocale(String locale) {
         this.locale = locale;
-    }
-    
-    public Boolean isRooted() {
-        return rooted;
-    }
-
-    public void setRooted(Boolean rooted) {
-        this.rooted = rooted;
     }
 
     public Set<Device> getDevicesNearby() {

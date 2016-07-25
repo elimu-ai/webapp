@@ -74,7 +74,6 @@ public class JavaToGsonConverter {
             deviceJson.setTimeRegistered(device.getTimeRegistered());
             deviceJson.setOsVersion(device.getOsVersion());
             deviceJson.setLocale(device.getLocale());
-            deviceJson.setRooted(device.isRooted());
             
             Set<DeviceGson> devicesNearby = new HashSet<DeviceGson>();
             for (Device deviceNearby : device.getDevicesNearby()) {

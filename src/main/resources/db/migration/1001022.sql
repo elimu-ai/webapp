@@ -1,3 +1,3 @@
-# 1.1.20
+# 1.1.22
 
-ALTER TABLE Application DROP COLUMN timeCreated;
+ALTER TABLE Device DROP COLUMN rooted;

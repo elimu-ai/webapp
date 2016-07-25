@@ -31,8 +31,7 @@ public class DeviceRestController {
             @RequestParam String deviceModel,
             @RequestParam String deviceSerial,
             @RequestParam Integer osVersion,
-            @RequestParam String locale,
-            @RequestParam Boolean rooted
+            @RequestParam String locale
     ) {
         logger.info("create");
         
@@ -52,7 +51,6 @@ public class DeviceRestController {
             device.setTimeRegistered(Calendar.getInstance());
             device.setOsVersion(osVersion);
             device.setLocale(locale);
-            device.setRooted(rooted);
             deviceDao.create(device);
             
             DeviceGson deviceGson = JavaToGsonConverter.getDeviceGson(device);
