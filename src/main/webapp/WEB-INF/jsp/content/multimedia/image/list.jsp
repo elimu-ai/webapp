@@ -16,7 +16,7 @@
                     <div class="card-content">
                         <h4>${image.title}</h4>
                         <div class="divider" style="margin: 1em 0;"></div>
-                        <a class="editLink" href="<spring:url value='/content/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                        <a class="editLink" href="<spring:url value='/content/multimedia/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
                 </div>
             </div>

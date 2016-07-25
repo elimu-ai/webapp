@@ -1,4 +1,4 @@
-package org.literacyapp.rest;
+package org.literacyapp.rest.v1;
 
 import com.google.gson.Gson;
 import java.util.Calendar;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/device")
+@RequestMapping("/rest/v1/device")
 public class DeviceRestController {
     
     private Logger logger = Logger.getLogger(getClass());

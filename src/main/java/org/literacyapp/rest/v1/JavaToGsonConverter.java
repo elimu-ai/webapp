@@ -1,4 +1,4 @@
-package org.literacyapp.rest;
+package org.literacyapp.rest.v1;
 
 import java.util.HashSet;
 import java.util.Set;
