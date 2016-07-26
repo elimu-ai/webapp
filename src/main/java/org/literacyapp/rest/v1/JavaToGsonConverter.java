@@ -58,7 +58,7 @@ public class JavaToGsonConverter {
             applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
             applicationVersionGson.setContentType(applicationVersion.getContentType());
             applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());
-//            applicationVersionJson.setTimeUploaded(applicationVersion.getTimeUploaded());
+            applicationVersionGson.setTimeUploaded(applicationVersion.getTimeUploaded());
             return applicationVersionGson;
         }
     }
@@ -78,7 +78,9 @@ public class JavaToGsonConverter {
             Set<DeviceGson> devicesNearby = new HashSet<DeviceGson>();
             for (Device deviceNearby : device.getDevicesNearby()) {
                 DeviceGson deviceJsonNearby = getDeviceGson(deviceNearby);
-                devicesNearby.add(deviceJsonNearby);
+                if (deviceJsonNearby != null) {
+                    devicesNearby.add(deviceJsonNearby);
+                }
             }
             if (!devicesNearby.isEmpty()) {
                 deviceJson.setDevicesNearby(devicesNearby);

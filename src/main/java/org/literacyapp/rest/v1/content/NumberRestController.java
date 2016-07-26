@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.gson.content.NumberGson;
@@ -24,7 +26,7 @@ public class NumberRestController {
     private NumberDao numberDao;
     
     @RequestMapping("/list")
-    public List<String> list(
+    public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
             // TODO: checksum,
@@ -34,12 +36,17 @@ public class NumberRestController {
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
-        List<String> numbers = new ArrayList<>();
+        JSONArray numbers = new JSONArray();
         for (org.literacyapp.model.content.Number number : numberDao.readAllOrdered(locale)) {
             NumberGson numberGson = JavaToGsonConverter.getNumberGson(number);
             String json = new Gson().toJson(numberGson);
-            numbers.add(json);
+            numbers.put(new JSONObject(json));
         }
-        return numbers;
+        
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", "success");
+        jsonObject.put("numbers", numbers);
+        logger.info("jsonObject: " + jsonObject);
+        return jsonObject.toString();
     }
 }

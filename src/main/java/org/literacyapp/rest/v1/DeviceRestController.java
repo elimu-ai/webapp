@@ -1,11 +1,13 @@
 package org.literacyapp.rest.v1;
 
+import com.google.gson.Gson;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.literacyapp.dao.DeviceDao;
 import org.literacyapp.model.Device;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.gson.DeviceGson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +33,7 @@ public class DeviceRestController {
             @RequestParam String deviceModel,
             @RequestParam String deviceSerial,
             @RequestParam Integer osVersion,
-            @RequestParam String locale
+            @RequestParam Locale locale
     ) {
         logger.info("create");
         
@@ -49,15 +51,17 @@ public class DeviceRestController {
             device.setDeviceModel(deviceModel);
             device.setDeviceSerial(deviceSerial);
             device.setTimeRegistered(Calendar.getInstance());
+            device.setRemoteAddress(request.getRemoteAddr());
             device.setOsVersion(osVersion);
             device.setLocale(locale);
             deviceDao.create(device);
             
             DeviceGson deviceGson = JavaToGsonConverter.getDeviceGson(device);
             jSONObject.put("result", "success");
-            jSONObject.put("device", deviceGson);
+            jSONObject.put("device", new Gson().toJson(deviceGson));
         }
         
+        logger.info("jSONObject: " + jSONObject);
         return jSONObject.toString();
     }
     
@@ -75,9 +79,10 @@ public class DeviceRestController {
         } else {
             DeviceGson deviceGson = JavaToGsonConverter.getDeviceGson(device);
             jSONObject.put("result", "success");
-            jSONObject.put("device", deviceGson);
+            jSONObject.put("device", new Gson().toJson(deviceGson));
         }
         
+        logger.info("jSONObject: " + jSONObject);
         return jSONObject.toString();
     }
     
