@@ -29,7 +29,7 @@
                                 <fmt:formatDate value="${device.timeRegistered.time}" type="both" timeStyle="short" />
                             </td>
                             <td>
-                                ${device.osVersion}
+                                API ${device.osVersion}
                             </td>
                         </tr>
                     </c:forEach>
