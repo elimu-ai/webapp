@@ -7,6 +7,7 @@ import org.literacyapp.model.Device;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.content.Allophone;
+import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.content.multimedia.Video;
@@ -16,6 +17,7 @@ import org.literacyapp.model.gson.content.WordGson;
 import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
 import org.literacyapp.model.gson.content.AllophoneGson;
+import org.literacyapp.model.gson.content.LetterGson;
 import org.literacyapp.model.gson.content.multimedia.AudioGson;
 import org.literacyapp.model.gson.content.multimedia.ImageGson;
 import org.literacyapp.model.gson.content.multimedia.VideoGson;
@@ -27,6 +29,7 @@ public class JavaToGsonConverter {
             return null;
         } else {
             AudioGson audioGson = new AudioGson();
+            
             audioGson.setId(audio.getId());
             audioGson.setLocale(audio.getLocale());
             audioGson.setTimeLastUpdate(audio.getTimeLastUpdate());
@@ -51,6 +54,7 @@ public class JavaToGsonConverter {
             return null;
         } else {
             AllophoneGson allophoneGson = new AllophoneGson();
+            
             allophoneGson.setId(allophone.getId());
             allophoneGson.setLocale(allophone.getLocale());
             allophoneGson.setTimeLastUpdate(allophone.getTimeLastUpdate());
@@ -58,6 +62,7 @@ public class JavaToGsonConverter {
             
             allophoneGson.setValueIpa(allophone.getValueIpa());
             allophoneGson.setValueSampa(allophone.getValueSampa());
+            
             return allophoneGson;
         }
     }
@@ -98,6 +103,7 @@ public class JavaToGsonConverter {
             return null;
         } else {
             DeviceGson deviceJson = new DeviceGson();
+            
             deviceJson.setId(device.getId());
             deviceJson.setDeviceId(device.getDeviceId());
             deviceJson.setDeviceModel(device.getDeviceModel());
@@ -125,6 +131,7 @@ public class JavaToGsonConverter {
             return null;
         } else {
             ImageGson imageGson = new ImageGson();
+            
             imageGson.setId(image.getId());
             imageGson.setLocale(image.getLocale());
             imageGson.setTimeLastUpdate(image.getTimeLastUpdate());
@@ -144,17 +151,38 @@ public class JavaToGsonConverter {
         }
     }
 
+    public static LetterGson getLetterGson(Letter letter) {
+        if (letter == null) {
+            return null;
+        } else {
+            LetterGson letterJson = new LetterGson();
+            
+            letterJson.setId(letter.getId());
+            letterJson.setLocale(letter.getLocale());
+            letterJson.setTimeLastUpdate(letter.getTimeLastUpdate());
+            letterJson.setRevisionNumber(letter.getRevisionNumber());
+            
+            letterJson.setText(letter.getText());
+            
+            return letterJson;
+        }
+    }
+    
     public static NumberGson getNumberGson(org.literacyapp.model.content.Number number) {
         if (number == null) {
             return null;
         } else {
             NumberGson numberJson = new NumberGson();
+            
             numberJson.setId(number.getId());
             numberJson.setLocale(number.getLocale());
+            numberJson.setTimeLastUpdate(number.getTimeLastUpdate());
+            numberJson.setRevisionNumber(number.getRevisionNumber());
             
             numberJson.setValue(number.getValue());
             numberJson.setSymbol(number.getSymbol());
             numberJson.setWord(getWordGson(number.getWord()));
+            
             return numberJson;
         }
     }
@@ -164,6 +192,7 @@ public class JavaToGsonConverter {
             return null;
         } else {
             VideoGson videoGson = new VideoGson();
+            
             videoGson.setId(video.getId());
             videoGson.setLocale(video.getLocale());
             videoGson.setTimeLastUpdate(video.getTimeLastUpdate());
@@ -188,10 +217,14 @@ public class JavaToGsonConverter {
             return null;
         } else {
             WordGson wordJson = new WordGson();
+            
             wordJson.setId(word.getId());
             wordJson.setLocale(word.getLocale());
+            wordJson.setTimeLastUpdate(word.getTimeLastUpdate());
+            wordJson.setRevisionNumber(word.getRevisionNumber());
             
             wordJson.setText(word.getText());
+            
             return wordJson;
         }
     }

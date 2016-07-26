@@ -68,6 +68,7 @@
     <bean id="dbMigrationDao" class="org.literacyapp.dao.jpa.DbMigrationDaoJpa" />
     <bean id="deviceDao" class="org.literacyapp.dao.jpa.DeviceDaoJpa" />
     <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
+    <bean id="letterDao" class="org.literacyapp.dao.jpa.LetterDaoJpa" />
     <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
     <bean id="signOnEventDao" class="org.literacyapp.dao.jpa.SignOnEventDaoJpa" />
     <bean id="videoDao" class="org.literacyapp.dao.jpa.VideoDaoJpa" />
