@@ -62,6 +62,7 @@
     <bean id="applicationDao" class="org.literacyapp.dao.jpa.ApplicationDaoJpa" />
     <bean id="applicationVersionDao" class="org.literacyapp.dao.jpa.ApplicationVersionDaoJpa" />
     <bean id="allophoneDao" class="org.literacyapp.dao.jpa.AllophoneDaoJpa" />
+    <bean id="audioDao" class="org.literacyapp.dao.jpa.AudioDaoJpa" />
     <bean id="contentCreationEventDao" class="org.literacyapp.dao.jpa.ContentCreationEventDaoJpa" />
     <bean id="contributorDao" class="org.literacyapp.dao.jpa.ContributorDaoJpa" />
     <bean id="dbMigrationDao" class="org.literacyapp.dao.jpa.DbMigrationDaoJpa" />
