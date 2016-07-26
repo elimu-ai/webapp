@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.enums.Locale;
@@ -25,7 +27,7 @@ public class AllophoneRestController {
     private AllophoneDao allophoneDao;
     
     @RequestMapping("/list")
-    public List<String> list(
+    public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
             // TODO: checksum,
@@ -35,12 +37,17 @@ public class AllophoneRestController {
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
-        List<String> allophones = new ArrayList<>();
+        JSONArray allophones = new JSONArray();
         for (Allophone allophone : allophoneDao.readAllOrdered(locale)) {
             AllophoneGson allophoneGson = JavaToGsonConverter.getAllophoneGson(allophone);
             String json = new Gson().toJson(allophoneGson);
-            allophones.add(json);
+            allophones.put(new JSONObject(json));
         }
-        return allophones;
+        
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", "success");
+        jsonObject.put("allophones", allophones);
+        logger.info("jsonObject: " + jsonObject);
+        return jsonObject.toString();
     }
 }

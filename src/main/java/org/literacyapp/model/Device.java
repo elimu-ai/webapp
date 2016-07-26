@@ -1,14 +1,18 @@
 package org.literacyapp.model;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import org.literacyapp.model.enums.Locale;
 
 @Entity
 public class Device extends BaseEntity {
@@ -26,17 +30,22 @@ public class Device extends BaseEntity {
     @NotNull
     private String deviceSerial;
     
+    // TODO: @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeRegistered; // Time of first synchronization with server
+    
+    @NotNull
+    private String remoteAddress; // IP address during registration
     
     @NotNull
     private Integer osVersion;
     
     @NotNull
-    private String locale; // Expected format "en"/"en-US"
+    @Enumerated(EnumType.STRING)
+    private Locale locale;
     
     @OneToMany(fetch = FetchType.EAGER)
-    private Set<Device> devicesNearby;
+    private Set<Device> devicesNearby = new HashSet<>();
 
     public String getDeviceId() {
         return deviceId;
@@ -77,6 +86,14 @@ public class Device extends BaseEntity {
     public void setTimeRegistered(Calendar timeRegistered) {
         this.timeRegistered = timeRegistered;
     }
+    
+    public String getRemoteAddress() {
+        return remoteAddress;
+    }
+
+    public void setRemoteAddress(String remoteAddress) {
+        this.remoteAddress = remoteAddress;
+    }
 
     public Integer getOsVersion() {
         return osVersion;
@@ -86,11 +103,11 @@ public class Device extends BaseEntity {
         this.osVersion = osVersion;
     }
     
-    public String getLocale() {
+    public Locale getLocale() {
         return locale;
     }
 
-    public void setLocale(String locale) {
+    public void setLocale(Locale locale) {
         this.locale = locale;
     }
 

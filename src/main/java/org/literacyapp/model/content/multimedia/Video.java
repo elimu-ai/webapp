@@ -6,13 +6,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.content.AudioFormat;
+import org.literacyapp.model.enums.content.VideoFormat;
 
 @Entity
-public class Audio extends Multimedia {
+public class Video extends Multimedia {
     
-    @NotNull
-    private String transcription;
+    private String title;
     
     @NotNull
     @Lob
@@ -21,15 +20,7 @@ public class Audio extends Multimedia {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private AudioFormat audioFormat;
-    
-    public String getTranscription() {
-        return transcription;
-    }
-
-    public void setTranscription(String transcription) {
-        this.transcription = transcription;
-    }
+    private VideoFormat videoFormat;
 
     public byte[] getBytes() {
         return bytes;
@@ -39,11 +30,19 @@ public class Audio extends Multimedia {
         this.bytes = bytes;
     }
 
-    public AudioFormat getAudioFormat() {
-        return audioFormat;
+    public VideoFormat getVideoFormat() {
+        return videoFormat;
     }
 
-    public void setAudioFormat(AudioFormat audioFormat) {
-        this.audioFormat = audioFormat;
+    public void setVideoFormat(VideoFormat videoFormat) {
+        this.videoFormat = videoFormat;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

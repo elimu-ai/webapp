@@ -6,7 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.content.ImageType;
+import org.literacyapp.model.enums.content.ImageFormat;
 
 @Entity
 public class Image extends Multimedia {
@@ -21,7 +21,7 @@ public class Image extends Multimedia {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private ImageType imageType;
+    private ImageFormat imageFormat;
     
     @NotNull
     private String dominantColor; // Web color
@@ -42,12 +42,12 @@ public class Image extends Multimedia {
         this.bytes = bytes;
     }
 
-    public ImageType getImageType() {
-        return imageType;
+    public ImageFormat getImageFormat() {
+        return imageFormat;
     }
 
-    public void setImageType(ImageType imageType) {
-        this.imageType = imageType;
+    public void setImageFormat(ImageFormat imageFormat) {
+        this.imageFormat = imageFormat;
     }
 
     public String getDominantColor() {
