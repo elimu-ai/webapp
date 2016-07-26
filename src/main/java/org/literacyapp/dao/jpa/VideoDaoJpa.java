@@ -3,39 +3,39 @@ package org.literacyapp.dao.jpa;
 import java.util.List;
 
 import javax.persistence.NoResultException;
+import org.literacyapp.dao.VideoDao;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.content.multimedia.Image;
-import org.literacyapp.dao.ImageDao;
+import org.literacyapp.model.content.multimedia.Video;
 import org.literacyapp.model.enums.Locale;
 
-public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
+public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
 
     @Override
-    public Image read(String title, Locale locale) throws DataAccessException {
+    public Video read(String title, Locale locale) throws DataAccessException {
         try {
-            return (Image) em.createQuery(
-                "SELECT i " +
-                "FROM Image i " +
-                "WHERE i.title = :title " +
-                "AND i.locale = :locale")
+            return (Video) em.createQuery(
+                "SELECT v " +
+                "FROM Video v " +
+                "WHERE v.title = :title " +
+                "AND v.locale = :locale")
                 .setParameter("title", title)
                 .setParameter("locale", locale)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Image \"" + title + "\" was not found for locale " + locale);
+            logger.warn("Video \"" + title + "\" was not found for locale " + locale);
             return null;
         }
     }
 
     @Override
-    public List<Image> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<Video> readAllOrdered(Locale locale) throws DataAccessException {
         return em.createQuery(
-            "SELECT i " +
-            "FROM Image i " +
-            "WHERE i.locale = :locale " +
-            "ORDER BY i.title")
+            "SELECT v " +
+            "FROM Video v " +
+            "WHERE v.locale = :locale " +
+            "ORDER BY v.title")
             .setParameter("locale", locale)
             .getResultList();
     }

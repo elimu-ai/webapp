@@ -3,39 +3,39 @@ package org.literacyapp.dao.jpa;
 import java.util.List;
 
 import javax.persistence.NoResultException;
+import org.literacyapp.dao.AudioDao;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.content.multimedia.Image;
-import org.literacyapp.dao.ImageDao;
+import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.enums.Locale;
 
-public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
+public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
 
     @Override
-    public Image read(String title, Locale locale) throws DataAccessException {
+    public Audio read(String transcription, Locale locale) throws DataAccessException {
         try {
-            return (Image) em.createQuery(
-                "SELECT i " +
-                "FROM Image i " +
-                "WHERE i.title = :title " +
-                "AND i.locale = :locale")
-                .setParameter("title", title)
+            return (Audio) em.createQuery(
+                "SELECT a " +
+                "FROM Audio a " +
+                "WHERE a.transcription = :transcription " +
+                "AND a.locale = :locale")
+                .setParameter("transcription", transcription)
                 .setParameter("locale", locale)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Image \"" + title + "\" was not found for locale " + locale);
+            logger.warn("Audio \"" + transcription + "\" was not found for locale " + locale);
             return null;
         }
     }
 
     @Override
-    public List<Image> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<Audio> readAllOrdered(Locale locale) throws DataAccessException {
         return em.createQuery(
-            "SELECT i " +
-            "FROM Image i " +
-            "WHERE i.locale = :locale " +
-            "ORDER BY i.title")
+            "SELECT a " +
+            "FROM Audio a " +
+            "WHERE a.locale = :locale " +
+            "ORDER BY a.transcription")
             .setParameter("locale", locale)
             .getResultList();
     }

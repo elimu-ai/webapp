@@ -1,15 +1,15 @@
 package org.literacyapp.dao;
 
 import java.util.List;
+import org.literacyapp.model.content.multimedia.Video;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.Locale;
 
-public interface ImageDao extends GenericDao<Image> {
+public interface VideoDao extends GenericDao<Video> {
 	
-    Image read(String title, Locale locale) throws DataAccessException;
+    Video read(String title, Locale locale) throws DataAccessException;
 
-    List<Image> readAllOrdered(Locale locale) throws DataAccessException;
+    List<Video> readAllOrdered(Locale locale) throws DataAccessException;
 }

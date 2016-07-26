@@ -7,14 +7,44 @@ import org.literacyapp.model.Device;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.content.Allophone;
+import org.literacyapp.model.content.multimedia.Audio;
+import org.literacyapp.model.content.multimedia.Image;
+import org.literacyapp.model.content.multimedia.Video;
 import org.literacyapp.model.gson.DeviceGson;
 import org.literacyapp.model.gson.content.NumberGson;
 import org.literacyapp.model.gson.content.WordGson;
 import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
 import org.literacyapp.model.gson.content.AllophoneGson;
+import org.literacyapp.model.gson.content.multimedia.AudioGson;
+import org.literacyapp.model.gson.content.multimedia.ImageGson;
+import org.literacyapp.model.gson.content.multimedia.VideoGson;
 
 public class JavaToGsonConverter {
+    
+    public static AudioGson getAudioGson(Audio audio) {
+        if (audio == null) {
+            return null;
+        } else {
+            AudioGson audioGson = new AudioGson();
+            audioGson.setId(audio.getId());
+            audioGson.setLocale(audio.getLocale());
+            audioGson.setTimeLastUpdate(audio.getTimeLastUpdate());
+            audioGson.setRevisionNumber(audio.getRevisionNumber());
+            
+            audioGson.setFileUrl("/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase());
+            audioGson.setFileSize(audio.getBytes().length / 1024);
+            audioGson.setContentType(audio.getContentType());
+            audioGson.setAttributionUrl(audio.getAttributionUrl());
+            audioGson.setLiteracySkills(audio.getLiteracySkills());
+            audioGson.setNumeracySkills(audio.getNumeracySkills());
+            
+            audioGson.setTranscription(audio.getTranscription());
+            audioGson.setAudioType(audio.getAudioFormat());
+            
+            return audioGson;
+        }
+    }
     
     public static AllophoneGson getAllophoneGson(Allophone allophone) {
         if (allophone == null) {
@@ -89,6 +119,30 @@ public class JavaToGsonConverter {
             return deviceJson;
         }
     }
+    
+    public static ImageGson getImageGson(Image image) {
+        if (image == null) {
+            return null;
+        } else {
+            ImageGson imageGson = new ImageGson();
+            imageGson.setId(image.getId());
+            imageGson.setLocale(image.getLocale());
+            imageGson.setTimeLastUpdate(image.getTimeLastUpdate());
+            imageGson.setRevisionNumber(image.getRevisionNumber());
+            
+            imageGson.setFileUrl("/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
+            imageGson.setFileSize(image.getBytes().length / 1024);
+            imageGson.setContentType(image.getContentType());
+            imageGson.setAttributionUrl(image.getAttributionUrl());
+            imageGson.setLiteracySkills(image.getLiteracySkills());
+            imageGson.setNumeracySkills(image.getNumeracySkills());
+            
+            imageGson.setTitle(image.getTitle());
+            imageGson.setImageFormat(image.getImageFormat());
+            
+            return imageGson;
+        }
+    }
 
     public static NumberGson getNumberGson(org.literacyapp.model.content.Number number) {
         if (number == null) {
@@ -102,6 +156,30 @@ public class JavaToGsonConverter {
             numberJson.setSymbol(number.getSymbol());
             numberJson.setWord(getWordGson(number.getWord()));
             return numberJson;
+        }
+    }
+    
+    public static VideoGson getVideoGson(Video video) {
+        if (video == null) {
+            return null;
+        } else {
+            VideoGson videoGson = new VideoGson();
+            videoGson.setId(video.getId());
+            videoGson.setLocale(video.getLocale());
+            videoGson.setTimeLastUpdate(video.getTimeLastUpdate());
+            videoGson.setRevisionNumber(video.getRevisionNumber());
+            
+            videoGson.setFileUrl("/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase());
+            videoGson.setFileSize(video.getBytes().length / 1024);
+            videoGson.setContentType(video.getContentType());
+            videoGson.setAttributionUrl(video.getAttributionUrl());
+            videoGson.setLiteracySkills(video.getLiteracySkills());
+            videoGson.setNumeracySkills(video.getNumeracySkills());
+            
+            videoGson.setTitle(video.getTitle());
+            videoGson.setVideoFormat(video.getVideoFormat());
+            
+            return videoGson;
         }
     }
     

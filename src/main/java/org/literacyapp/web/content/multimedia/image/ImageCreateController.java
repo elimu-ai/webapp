@@ -15,7 +15,7 @@ import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.Environment;
-import org.literacyapp.model.enums.content.ImageType;
+import org.literacyapp.model.enums.content.ImageFormat;
 import org.literacyapp.model.enums.Team;
 import org.literacyapp.util.ImageColorHelper;
 import org.literacyapp.util.ImageHelper;
@@ -82,11 +82,11 @@ public class ImageCreateController {
                 String originalFileName = multipartFile.getOriginalFilename();
                 logger.info("originalFileName: " + originalFileName);
                 if (originalFileName.toLowerCase().endsWith(".png")) {
-                    image.setImageType(ImageType.PNG);
+                    image.setImageFormat(ImageFormat.PNG);
                 } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
-                    image.setImageType(ImageType.JPG);
+                    image.setImageFormat(ImageFormat.JPG);
                 } else if (originalFileName.toLowerCase().endsWith(".gif")) {
-                    image.setImageType(ImageType.GIF);
+                    image.setImageFormat(ImageFormat.GIF);
                 }
 
                 String contentType = multipartFile.getContentType();
@@ -95,7 +95,7 @@ public class ImageCreateController {
 
                 image.setBytes(bytes);
 
-                if (image.getImageType() != ImageType.GIF) {
+                if (image.getImageFormat() != ImageFormat.GIF) {
                     int width = ImageHelper.getWidth(bytes);
                     logger.info("width: " + width + "px");
 
@@ -136,10 +136,10 @@ public class ImageCreateController {
                         contributor.getFirstName() + " just added a new Image:\n" + 
                         "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
                         "• Title: \"" + image.getTitle() + "\"\n" + 
-                        "• Image type: \"" + image.getImageType() + "\"\n" + 
+                        "• Image type: \"" + image.getImageFormat() + "\"\n" + 
                         "See ") + "http://literacyapp.org/content/multimedia/image/list";
                 String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageType().toString().toLowerCase());
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
             }
             
             return "redirect:/content/multimedia/image/list";

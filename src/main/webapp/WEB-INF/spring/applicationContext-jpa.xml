@@ -69,5 +69,6 @@
     <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
     <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
     <bean id="signOnEventDao" class="org.literacyapp.dao.jpa.SignOnEventDaoJpa" />
+    <bean id="videoDao" class="org.literacyapp.dao.jpa.VideoDaoJpa" />
     <bean id="wordDao" class="org.literacyapp.dao.jpa.WordDaoJpa" />
 </beans>

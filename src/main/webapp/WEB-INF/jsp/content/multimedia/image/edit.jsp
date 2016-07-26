@@ -11,7 +11,7 @@
             <div class="row">
                 <form:hidden path="locale" value="${image.locale}" />
                 <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
-                <form:hidden path="imageType" value="${number.imageType}" />
+                <form:hidden path="imageFormat" value="${number.imageFormat}" />
                 <form:hidden path="contentType" value="${number.contentType}" />
                 <form:hidden path="dominantColor" value="${number.dominantColor}" />
                 
@@ -93,7 +93,7 @@
         <div id="previewContentContainer">
             <div id="previewContent" class="valign-wrapper" 
                  style="
-                    background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageType)}' />);
+                    background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />);
                  ">
                 <h5 class="white-text" style="
                     position: absolute; 
