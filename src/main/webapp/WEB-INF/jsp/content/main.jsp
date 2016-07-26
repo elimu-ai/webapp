@@ -28,25 +28,32 @@
                                 <c:set var="contentClassName" value="${fn:toLowerCase(contentCreationEvent.content.class.simpleName)}" />
                                 <fmt:message key="${contentClassName}" />
                             </td>
-                            <td>
+                            <td style="font-size: 2em;">
                                 <c:choose>
                                     <c:when test="${contentCreationEvent.content.class.simpleName == 'Allophone'}">
-                                        
+                                        ${contentCreationEvent.content.valueIpa} (${contentCreationEvent.content.valueSampa})
                                     </c:when>
                                     <c:when test="${contentCreationEvent.content.class.simpleName == 'Letter'}">
-                                        <%-- TODO --%>
+                                        ${contentCreationEvent.content.text}
                                     </c:when>
                                     <c:when test="${contentCreationEvent.content.class.simpleName == 'Number'}">
-                                        <%-- TODO: display value/symbol --%>
+                                        <c:choose>
+                                            <c:when test="${not empty contentCreationEvent.content.symbol}">
+                                                ${contentCreationEvent.content.symbol} (${contentCreationEvent.content.value})
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${contentCreationEvent.content.value}
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:when>
                                     <c:when test="${contentCreationEvent.content.class.simpleName == 'Word'}">
-                                        
+                                        ${contentCreationEvent.content.text}
                                     </c:when>
                                     <c:when test="${contentCreationEvent.content.class.simpleName == 'Audio'}">
                                         
                                     </c:when>
                                     <c:when test="${contentCreationEvent.content.class.simpleName == 'Image'}">
-                                        <%-- TODO --%>
+                                        <img src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" style="max-height: 2em;" alt="${contentCreationEvent.content.title}" />
                                     </c:when>
                                     <c:when test="${contentCreationEvent.content.class.simpleName == 'Video'}">
                                         

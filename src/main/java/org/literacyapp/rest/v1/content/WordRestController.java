@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.enums.Locale;
@@ -25,22 +27,27 @@ public class WordRestController {
     private WordDao wordDao;
     
     @RequestMapping("/list")
-    public List<String> list(
+    public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            // TODO: checksum
+            // TODO: checksum,
             @RequestParam Locale locale
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
-        List<String> words = new ArrayList<>();
+        JSONArray words = new JSONArray();
         for (Word word : wordDao.readAllOrdered(locale)) {
-            WordGson wordJson = JavaToGsonConverter.getWordGson(word);
-            String json = new Gson().toJson(wordJson);
-            words.add(json);
+            WordGson wordGson = JavaToGsonConverter.getWordGson(word);
+            String json = new Gson().toJson(wordGson);
+            words.put(new JSONObject(json));
         }
-        return words;
+        
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", "success");
+        jsonObject.put("words", words);
+        logger.info("jsonObject: " + jsonObject);
+        return jsonObject.toString();
     }
 }
