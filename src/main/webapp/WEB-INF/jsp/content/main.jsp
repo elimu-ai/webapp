@@ -16,8 +16,8 @@
         <c:if test="${not empty contentCreationEvents}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="content.type" /></th>
                     <th><fmt:message key="content" /></th>
+                    <th><fmt:message key="content.type" /></th>
                     <th><fmt:message key="contributor" /></th>
                     <th><fmt:message key="time.created_updated" /></th>
                 </thead>
@@ -25,46 +25,50 @@
                     <c:forEach var="contentCreationEvent" items="${contentCreationEvents}">
                         <tr class="contentCreationEvent">
                             <td>
+                                <h4>
+                                    <c:choose>
+                                        <c:when test="${contentCreationEvent.content.class.simpleName == 'Allophone'}">
+                                            ${contentCreationEvent.content.valueIpa} (${contentCreationEvent.content.valueSampa})
+                                        </c:when>
+                                        <c:when test="${contentCreationEvent.content.class.simpleName == 'Letter'}">
+                                            ${contentCreationEvent.content.text}
+                                        </c:when>
+                                        <c:when test="${contentCreationEvent.content.class.simpleName == 'Number'}">
+                                            <c:choose>
+                                                <c:when test="${not empty contentCreationEvent.content.symbol}">
+                                                    ${contentCreationEvent.content.symbol} (${contentCreationEvent.content.value})
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${contentCreationEvent.content.value}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:when>
+                                        <c:when test="${contentCreationEvent.content.class.simpleName == 'Word'}">
+                                            ${contentCreationEvent.content.text}
+                                        </c:when>
+                                        <c:when test="${contentCreationEvent.content.class.simpleName == 'Audio'}">
+
+                                        </c:when>
+                                        <c:when test="${contentCreationEvent.content.class.simpleName == 'Image'}">
+                                            <img src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" style="max-height: 2em;" alt="${contentCreationEvent.content.title}" />
+                                        </c:when>
+                                        <c:when test="${contentCreationEvent.content.class.simpleName == 'Video'}">
+
+                                        </c:when>
+                                    </c:choose>
+                                </h4>
+                            </td>
+                            <td>
                                 <c:set var="contentClassName" value="${fn:toLowerCase(contentCreationEvent.content.class.simpleName)}" />
                                 <fmt:message key="${contentClassName}" />
                             </td>
-                            <td style="font-size: 2em;">
-                                <c:choose>
-                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Allophone'}">
-                                        ${contentCreationEvent.content.valueIpa} (${contentCreationEvent.content.valueSampa})
-                                    </c:when>
-                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Letter'}">
-                                        ${contentCreationEvent.content.text}
-                                    </c:when>
-                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Number'}">
-                                        <c:choose>
-                                            <c:when test="${not empty contentCreationEvent.content.symbol}">
-                                                ${contentCreationEvent.content.symbol} (${contentCreationEvent.content.value})
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${contentCreationEvent.content.value}
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:when>
-                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Word'}">
-                                        ${contentCreationEvent.content.text}
-                                    </c:when>
-                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Audio'}">
-                                        
-                                    </c:when>
-                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Image'}">
-                                        <img src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" style="max-height: 2em;" alt="${contentCreationEvent.content.title}" />
-                                    </c:when>
-                                    <c:when test="${contentCreationEvent.content.class.simpleName == 'Video'}">
-                                        
-                                    </c:when>
-                                </c:choose>
-                            </td>
                             <td>
-                                <div class="chip">
-                                    <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                    <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
-                                </div>
+                                <a href="<spring:url value='/content/community/contributors' />" target="_blank">
+                                    <div class="chip">
+                                        <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
+                                        <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
+                                    </div>
+                                </a>
                             </td>
                             <td>
                                 <fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" />

@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="images" />
+    <fmt:message key="images" /> (${fn:length(images)})
 </content:title>
 
 <content:section cssId="imageListPage">
