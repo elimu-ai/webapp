@@ -11,38 +11,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
-import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.content.multimedia.Image;
+import org.literacyapp.dao.VideoDao;
+import org.literacyapp.model.content.multimedia.Video;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/image")
-public class ImageController {
+@RequestMapping("/video")
+public class VideoController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private ImageDao imageDao;
+    private VideoDao videoDao;
     
-    @RequestMapping(value="/{imageId}.{imageFormat}", method = RequestMethod.GET)
+    @RequestMapping(value="/{videoId}.{videoFormat}", method = RequestMethod.GET)
     public void handleRequest(
             Model model,
-            @PathVariable Long imageId,
-            @PathVariable String imageFormat,
+            @PathVariable Long videoId,
+            @PathVariable String videoFormat,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
-        logger.info("imageId: " + imageId);
-        logger.info("imageFormat: " + imageFormat);
+        logger.info("videoId: " + videoId);
+        logger.info("videoFormat: " + videoFormat);
         
-        Image image = imageDao.read(imageId);
+        Video video = videoDao.read(videoId);
         
-        response.setContentType(image.getContentType());
-        response.setContentLength(image.getBytes().length);
+        response.setContentType(video.getContentType());
+        response.setContentLength(video.getBytes().length);
         
-        byte[] bytes = image.getBytes();
+        byte[] bytes = video.getBytes();
         try {
             outputStream.write(bytes);
         } catch (EOFException ex) {

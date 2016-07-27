@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="numbers" />
+    <fmt:message key="numbers" /> (${fn:length(numbers)})
 </content:title>
 
 <content:section cssId="numberListPage">

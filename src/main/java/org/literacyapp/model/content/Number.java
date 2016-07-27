@@ -1,6 +1,5 @@
 package org.literacyapp.model.content;
 
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -13,6 +12,7 @@ public class Number extends Content {
     
     private String symbol;
     
+    // TODO: @NotNull
     @OneToOne
     private Word word;
 

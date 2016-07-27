@@ -11,38 +11,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
-import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.content.multimedia.Image;
+import org.literacyapp.dao.AudioDao;
+import org.literacyapp.model.content.multimedia.Audio;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/image")
-public class ImageController {
+@RequestMapping("/audio")
+public class AudioController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private ImageDao imageDao;
+    private AudioDao audioDao;
     
-    @RequestMapping(value="/{imageId}.{imageFormat}", method = RequestMethod.GET)
+    @RequestMapping(value="/{audioId}.{audioFormat}", method = RequestMethod.GET)
     public void handleRequest(
             Model model,
-            @PathVariable Long imageId,
-            @PathVariable String imageFormat,
+            @PathVariable Long audioId,
+            @PathVariable String audioFormat,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
-        logger.info("imageId: " + imageId);
-        logger.info("imageFormat: " + imageFormat);
+        logger.info("audioId: " + audioId);
+        logger.info("audioFormat: " + audioFormat);
         
-        Image image = imageDao.read(imageId);
+        Audio audio = audioDao.read(audioId);
         
-        response.setContentType(image.getContentType());
-        response.setContentLength(image.getBytes().length);
+        response.setContentType(audio.getContentType());
+        response.setContentLength(audio.getBytes().length);
         
-        byte[] bytes = image.getBytes();
+        byte[] bytes = audio.getBytes();
         try {
             outputStream.write(bytes);
         } catch (EOFException ex) {
