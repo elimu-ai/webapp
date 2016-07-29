@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("/rest/v1")
-public class FallbackController {
+public class FallbackRestController {
     
     private Logger logger = Logger.getLogger(getClass());
     

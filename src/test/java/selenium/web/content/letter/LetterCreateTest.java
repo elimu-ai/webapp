@@ -1,4 +1,4 @@
-package selenium.web.content.number;
+package selenium.web.content.letter;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
@@ -16,7 +16,7 @@ import selenium.DomainHelper;
 import selenium.ScreenshotOnFailureRule;
 import selenium.SignOnHelper;
 
-public class NumberCreateTest {
+public class LetterCreateTest {
 
     @Rule
     public MethodRule methodRule = new ScreenshotOnFailureRule();
@@ -27,16 +27,16 @@ public class NumberCreateTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseUrl() + "/content/number/list");
+        driver.get(DomainHelper.getBaseUrl() + "/content/letter/list");
     }
 
     @Test
     public void testSubmitEmptyForm() {
-    	NumberListPage numberListPage = PageFactory.initElements(driver, NumberListPage.class);
-        numberListPage.clickAddButton();
+    	LetterListPage letterListPage = PageFactory.initElements(driver, LetterListPage.class);
+        letterListPage.clickAddButton();
         
-        NumberCreatePage numberCreatePage = PageFactory.initElements(driver, NumberCreatePage.class);
-        numberCreatePage.submitForm();
-        assertThat(numberCreatePage.isErrorMessageDisplayed(), is(true));
+        LetterCreatePage letterCreatePage = PageFactory.initElements(driver, LetterCreatePage.class);
+        letterCreatePage.submitForm();
+        assertThat(letterCreatePage.isErrorMessageDisplayed(), is(true));
     }
 }

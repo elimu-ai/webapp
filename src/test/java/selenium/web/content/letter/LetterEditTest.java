@@ -1,7 +1,4 @@
-package selenium.web.content.number;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+package selenium.web.content.letter;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,7 +13,7 @@ import selenium.DomainHelper;
 import selenium.ScreenshotOnFailureRule;
 import selenium.SignOnHelper;
 
-public class NumberCreateTest {
+public class LetterEditTest {
 
     @Rule
     public MethodRule methodRule = new ScreenshotOnFailureRule();
@@ -27,16 +24,19 @@ public class NumberCreateTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseUrl() + "/content/number/list");
+        driver.get(DomainHelper.getBaseUrl() + "/content/letter/list");
     }
 
     @Test
-    public void testSubmitEmptyForm() {
-    	NumberListPage numberListPage = PageFactory.initElements(driver, NumberListPage.class);
-        numberListPage.clickAddButton();
-        
-        NumberCreatePage numberCreatePage = PageFactory.initElements(driver, NumberCreatePage.class);
-        numberCreatePage.submitForm();
-        assertThat(numberCreatePage.isErrorMessageDisplayed(), is(true));
+    public void testEdit() {
+    	LetterListPage letterListPage = PageFactory.initElements(driver, LetterListPage.class);
+        if (letterListPage.getListCount() > 0) {
+            letterListPage.clickRandomEditLink();
+
+            LetterEditPage letterEditPage = PageFactory.initElements(driver, LetterEditPage.class);
+            letterEditPage.submitForm();
+
+            PageFactory.initElements(driver, LetterListPage.class);
+        }
     }
 }

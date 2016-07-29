@@ -1,4 +1,4 @@
-package selenium.web.content.number;
+package selenium.web.content.letter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
 
-public class NumberEditPage {
+public class LetterEditPage {
 
     private WebDriver driver;
     
@@ -17,11 +17,11 @@ public class NumberEditPage {
     
     private WebElement submitButton;
 
-    public NumberEditPage(WebDriver driver) {
+    public LetterEditPage(WebDriver driver) {
         this.driver = driver;
         
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("numberEditPage")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("letterEditPage")));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }

@@ -1,9 +1,5 @@
 package selenium.web.content.number;
 
-import selenium.web.content.allophone.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
