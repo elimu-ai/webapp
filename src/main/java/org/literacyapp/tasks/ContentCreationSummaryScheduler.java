@@ -63,6 +63,7 @@ public class ContentCreationSummaryScheduler {
                         htmlText += "<th>Contributor</th>\n";
                     htmlText += "</thead>\n";
                     htmlText += "<tbody>";
+                    int counter = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
                         String className = contentCreationEvent.getContent().getClass().getSimpleName();
                         logger.info("className: " + className);
@@ -85,6 +86,10 @@ public class ContentCreationSummaryScheduler {
                                     htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName()  + "</td>\n";
                                 htmlText += "</td>\n";
                             htmlText += "</tr>";
+                            
+                            if (++counter == 5) {
+                                break;
+                            }
                         }
                     }
                     htmlText += "</tbody>\n";
@@ -99,6 +104,7 @@ public class ContentCreationSummaryScheduler {
                         htmlText += "<th>Contributor</th>\n";
                     htmlText += "</thead>\n";
                     htmlText += "<tbody>";
+                    counter = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
                         String className = contentCreationEvent.getContent().getClass().getSimpleName();
                         logger.info("className: " + className);
@@ -118,10 +124,29 @@ public class ContentCreationSummaryScheduler {
                                     htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName()  + "</td>\n";
                                 htmlText += "</td>\n";
                             htmlText += "</tr>";
+                            
+                            if (++counter == 5) {
+                                break;
+                            }
                         }
                     }
                     htmlText += "</tbody>\n";
                 htmlText += "</table>";
+                
+                
+                // TODO: Numbers
+                
+                
+                // TODO: Words
+                
+                
+                // TODO: Audios
+                
+                
+                // TODO: Images
+                
+                
+                // TODO: Videos
                 
                 
                 htmlText += "<h2>Can you help?</h2>";
