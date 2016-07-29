@@ -78,85 +78,85 @@ public class WordListController {
         if (locale == Locale.AR) {
             // TODO
         } else if (locale == Locale.EN) {
-            Word wordZero = new Word();
-            wordZero.setLocale(locale);
-            wordZero.setRevisionNumber(1);
-            wordZero.setTimeLastUpdate(Calendar.getInstance());
-            wordZero.setText("zero");
-            wordZero.setPhonetics("TODO");
-            words.add(wordZero);
-            
-            Word wordOne = new Word();
-            wordOne.setLocale(locale);
-            wordOne.setRevisionNumber(1);
-            wordOne.setTimeLastUpdate(Calendar.getInstance());
-            wordOne.setText("one");
-            wordOne.setPhonetics("TODO");
-            words.add(wordOne);
-            
-            Word wordTwo = new Word();
-            wordTwo.setLocale(locale);
-            wordTwo.setRevisionNumber(1);
-            wordTwo.setTimeLastUpdate(Calendar.getInstance());
-            wordTwo.setText("two");
-            wordTwo.setPhonetics("TODO");
-            words.add(wordTwo);
-            
-            Word wordThree = new Word();
-            wordThree.setLocale(locale);
-            wordThree.setRevisionNumber(1);
-            wordThree.setTimeLastUpdate(Calendar.getInstance());
-            wordThree.setText("three");
-            wordThree.setPhonetics("TODO");
-            words.add(wordThree);
-            
-            Word wordFour = new Word();
-            wordFour.setLocale(locale);
-            wordFour.setRevisionNumber(1);
-            wordFour.setTimeLastUpdate(Calendar.getInstance());
-            wordFour.setText("four");
-            wordFour.setPhonetics("TODO");
-            words.add(wordFour);
-            
-            Word wordFive = new Word();
-            wordFive.setLocale(locale);
-            wordFive.setRevisionNumber(1);
-            wordFive.setTimeLastUpdate(Calendar.getInstance());
-            wordFive.setText("five");
-            wordFive.setPhonetics("TODO");
-            words.add(wordFive);
-            
-            Word wordSix = new Word();
-            wordSix.setLocale(locale);
-            wordSix.setRevisionNumber(1);
-            wordSix.setTimeLastUpdate(Calendar.getInstance());
-            wordSix.setText("six");
-            wordSix.setPhonetics("TODO");
-            words.add(wordSix);
-            
-            Word wordSeven = new Word();
-            wordSeven.setLocale(locale);
-            wordSeven.setRevisionNumber(1);
-            wordSeven.setTimeLastUpdate(Calendar.getInstance());
-            wordSeven.setText("seven");
-            wordSeven.setPhonetics("TODO");
-            words.add(wordSeven);
-            
-            Word wordEight = new Word();
-            wordEight.setLocale(locale);
-            wordEight.setRevisionNumber(1);
-            wordEight.setTimeLastUpdate(Calendar.getInstance());
-            wordEight.setText("eight");
-            wordEight.setPhonetics("TODO");
-            words.add(wordEight);
-            
-            Word wordNine = new Word();
-            wordNine.setLocale(locale);
-            wordNine.setRevisionNumber(1);
-            wordNine.setTimeLastUpdate(Calendar.getInstance());
-            wordNine.setText("nine");
-            wordNine.setPhonetics("TODO");
-            words.add(wordNine);
+//            Word wordZero = new Word();
+//            wordZero.setLocale(locale);
+//            wordZero.setRevisionNumber(1);
+//            wordZero.setTimeLastUpdate(Calendar.getInstance());
+//            wordZero.setText("zero");
+//            wordZero.setPhonetics("TODO");
+//            words.add(wordZero);
+//            
+//            Word wordOne = new Word();
+//            wordOne.setLocale(locale);
+//            wordOne.setRevisionNumber(1);
+//            wordOne.setTimeLastUpdate(Calendar.getInstance());
+//            wordOne.setText("one");
+//            wordOne.setPhonetics("TODO");
+//            words.add(wordOne);
+//            
+//            Word wordTwo = new Word();
+//            wordTwo.setLocale(locale);
+//            wordTwo.setRevisionNumber(1);
+//            wordTwo.setTimeLastUpdate(Calendar.getInstance());
+//            wordTwo.setText("two");
+//            wordTwo.setPhonetics("TODO");
+//            words.add(wordTwo);
+//            
+//            Word wordThree = new Word();
+//            wordThree.setLocale(locale);
+//            wordThree.setRevisionNumber(1);
+//            wordThree.setTimeLastUpdate(Calendar.getInstance());
+//            wordThree.setText("three");
+//            wordThree.setPhonetics("TODO");
+//            words.add(wordThree);
+//            
+//            Word wordFour = new Word();
+//            wordFour.setLocale(locale);
+//            wordFour.setRevisionNumber(1);
+//            wordFour.setTimeLastUpdate(Calendar.getInstance());
+//            wordFour.setText("four");
+//            wordFour.setPhonetics("TODO");
+//            words.add(wordFour);
+//            
+//            Word wordFive = new Word();
+//            wordFive.setLocale(locale);
+//            wordFive.setRevisionNumber(1);
+//            wordFive.setTimeLastUpdate(Calendar.getInstance());
+//            wordFive.setText("five");
+//            wordFive.setPhonetics("TODO");
+//            words.add(wordFive);
+//            
+//            Word wordSix = new Word();
+//            wordSix.setLocale(locale);
+//            wordSix.setRevisionNumber(1);
+//            wordSix.setTimeLastUpdate(Calendar.getInstance());
+//            wordSix.setText("six");
+//            wordSix.setPhonetics("TODO");
+//            words.add(wordSix);
+//            
+//            Word wordSeven = new Word();
+//            wordSeven.setLocale(locale);
+//            wordSeven.setRevisionNumber(1);
+//            wordSeven.setTimeLastUpdate(Calendar.getInstance());
+//            wordSeven.setText("seven");
+//            wordSeven.setPhonetics("TODO");
+//            words.add(wordSeven);
+//            
+//            Word wordEight = new Word();
+//            wordEight.setLocale(locale);
+//            wordEight.setRevisionNumber(1);
+//            wordEight.setTimeLastUpdate(Calendar.getInstance());
+//            wordEight.setText("eight");
+//            wordEight.setPhonetics("TODO");
+//            words.add(wordEight);
+//            
+//            Word wordNine = new Word();
+//            wordNine.setLocale(locale);
+//            wordNine.setRevisionNumber(1);
+//            wordNine.setTimeLastUpdate(Calendar.getInstance());
+//            wordNine.setText("nine");
+//            wordNine.setPhonetics("TODO");
+//            words.add(wordNine);
         } else if (locale == Locale.ES) {
             // TODO
         } else if (locale == Locale.SW) {

@@ -15,6 +15,7 @@ import org.literacyapp.dao.SignOnEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.contributor.SignOnEvent;
 import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Provider;
 import org.literacyapp.model.enums.Role;
 import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.util.CookieHelper;
@@ -239,6 +240,16 @@ public class SignOnControllerFacebook {
             SignOnEvent signOnEvent = new SignOnEvent();
             signOnEvent.setContributor(contributor);
             signOnEvent.setCalendar(Calendar.getInstance());
+            signOnEvent.setServerName(request.getServerName());
+            signOnEvent.setProvider(Provider.FACEBOOK);
+            signOnEvent.setRemoteAddress(request.getRemoteAddr());
+            signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
+            signOnEvent.setReferrer(CookieHelper.getReferrer(request));
+            signOnEvent.setUtmSource(CookieHelper.getUtmSource(request));
+            signOnEvent.setUtmMedium(CookieHelper.getUtmMedium(request));
+            signOnEvent.setUtmCampaign(CookieHelper.getUtmCampaign(request));
+            signOnEvent.setUtmTerm(CookieHelper.getUtmTerm(request));
+            signOnEvent.setReferralId(CookieHelper.getReferralId(request));
             signOnEventDao.create(signOnEvent);
 
             return "redirect:/content";

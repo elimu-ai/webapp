@@ -53,7 +53,7 @@ public class LetterCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Letter existingLetter = letterDao.readByValue(letter.getLocale(), letter.getText());
+        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
         if (existingLetter != null) {
             result.rejectValue("text", "NonUnique");
         }

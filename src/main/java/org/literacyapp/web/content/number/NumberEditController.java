@@ -61,7 +61,10 @@ public class NumberEditController {
             }
         }
         
-        // TODO: if value is changed, check for existing Number
+        Number existingNumber = numberDao.readByValue(number.getLocale(), number.getValue());
+        if ((existingNumber != null) && !existingNumber.getId().equals(number.getId())) {
+            result.rejectValue("value", "NonUnique");
+        }
         
         if (result.hasErrors()) {
             model.addAttribute("number", number);

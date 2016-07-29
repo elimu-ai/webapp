@@ -4,7 +4,6 @@ import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContentCreationEventDao;
@@ -13,7 +12,6 @@ import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.Environment;
-import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.Team;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -55,7 +53,10 @@ public class LetterEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        // TODO: if value is changed, check for existing Letter
+        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
+        if ((existingLetter != null) && !existingLetter.getId().equals(letter.getId())) {
+            result.rejectValue("text", "NonUnique");
+        }
         
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);

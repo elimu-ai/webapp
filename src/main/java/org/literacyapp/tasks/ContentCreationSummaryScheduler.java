@@ -31,12 +31,14 @@ public class ContentCreationSummaryScheduler {
     @Autowired
     private ContentCreationEventDao contentCreationEventDao;
     
-    @Scheduled(cron="00 00 16 * * *") // At 16:00 every day
+//    @Scheduled(cron="00 00 16 * * *") // At 16:00 every day
+    @Scheduled(cron="00 00 * * * *")
     public synchronized void execute() {
         logger.info("execute");
         
         Calendar calendarFrom = Calendar.getInstance();
-        calendarFrom.add(Calendar.DAY_OF_MONTH, -1);
+//        calendarFrom.add(Calendar.DAY_OF_MONTH, -1);
+        calendarFrom.add(Calendar.HOUR_OF_DAY, -1);
         Calendar calendarTo = Calendar.getInstance();
         List<ContentCreationEvent> contentCreationEvents = contentCreationEventDao.readAll(calendarFrom, calendarTo);
         logger.info("contentCreationEvents.size(): " + contentCreationEvents.size());
@@ -51,7 +53,7 @@ public class ContentCreationSummaryScheduler {
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
                 String htmlText = "<p>Hi, " + firstName + "</p>";
                 htmlText += "<p>This is a summary of some of the content that was uploaded to the website during the past day.</p>";
-                htmlText += "<p>The material will be used to enable children without access to school to <i>teach themselves</i> reading/writing/arithmetic.</p>";
+                htmlText += "<p>The material will be used to enable children without access to school to <i>teach themselves</i> basic reading/writing/arithmetic.</p>";
                 
                 
                 htmlText += "<h2>Allophones</h2>";

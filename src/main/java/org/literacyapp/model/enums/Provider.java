@@ -4,5 +4,7 @@ public enum Provider {
     
     FACEBOOK,
     GITHUB,
-    GOOGLE
+    GOOGLE,
+    OFFLINE,
+    SELENIUM
 }
