@@ -13,8 +13,8 @@
                 <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
                 
                 <div class="input-field col s12">
-                    <form:label path="value" cssErrorClass="error"><fmt:message key='text' /></form:label>
-                    <form:input path="value" cssErrorClass="error" />
+                    <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
+                    <form:input path="text" cssErrorClass="error" />
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
 </content:section>
 
 <content:aside>
-    <%--<h5><fmt:message key="preview" /></h5>--%>
+    <h5 class="center"><fmt:message key="preview" /></h5>
     
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
@@ -47,9 +47,9 @@
             
             function initializePreview() {
                 console.debug('initializePreview');
-                var text = $('#text').val();
-                if ((text != undefined) && (text != "")) {
-                    $('#previewContent').html(text);
+                var value = $('#text').val();
+                if ((value != undefined) && (value != "")) {
+                    $('#previewContent').html(value);
                 }
             };
         });

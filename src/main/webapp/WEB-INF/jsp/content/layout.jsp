@@ -64,6 +64,32 @@
                 <div class="col s5">
                     <a href="<spring:url value='/content' />" class="breadcrumb"><fmt:message key="content" /></a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/main.jsp')}">
+                        <c:choose>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/number/list' />"><fmt:message key="numbers" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/letter/list' />"><fmt:message key="letters" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/word/list' />"><fmt:message key="word" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="audios" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="images" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="videos" /></a>
+                            </c:when>
+                        </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>
                 </div>
