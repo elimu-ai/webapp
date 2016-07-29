@@ -22,6 +22,8 @@
                     <div class="divider" style="margin: 1em 0;"></div>
                     <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>
+                
+                <%-- TODO: word --%>
             </div>
         </c:forEach>
     </div>

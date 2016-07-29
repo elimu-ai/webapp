@@ -10,7 +10,7 @@ public class Word extends Content {
     private String text;
     
     @NotNull
-    private String phonetics;
+    private String phonetics; // IPA
 
     public String getText() {
         return text;

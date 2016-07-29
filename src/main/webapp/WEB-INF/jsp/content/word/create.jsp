@@ -1,29 +1,26 @@
 <content:title>
-    <fmt:message key="add.number" />
+    <fmt:message key="add.word" />
 </content:title>
 
-<content:section cssId="numberCreatePage">
+<content:section cssId="wordCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="number">
-            <tag:formErrors modelAttribute="number" />
+        <form:form modelAttribute="word">
+            <tag:formErrors modelAttribute="word" />
 
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
-                <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
+                <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
                 
-                <c:if test="${contributor.locale.language == 'ar'}">
-                    <div id="symbolContainer" class="input-field col s12">
-                        <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
-                        <form:input path="symbol" cssErrorClass="error" />
-                    </div>
-                </c:if>
                 <div class="input-field col s12">
-                    <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
-                    <form:input path="value" cssErrorClass="error" type="number" />
+                    <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
+                    <form:input path="text" cssErrorClass="error" />
                 </div>
                 
-                <%-- TODO: word --%>
+                <div class="input-field col s12">
+                    <form:label path="phonetics" cssErrorClass="error"><fmt:message key='phonetics' /></form:label>
+                    <form:input path="phonetics" cssErrorClass="error" />
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
@@ -48,18 +45,15 @@
         $(function() {
             initializePreview();
             
-            $('#symbol, #value').on("change", function() {
-                console.debug('#symbol/#value on change');
+            $('#text').on("change", function() {
+                console.debug('#text on change');
                 initializePreview();
             });
             
             function initializePreview() {
                 console.debug('initializePreview');
-                var symbol = $('#symbol').val();
-                var value = $('#value').val();
-                if ((symbol != undefined) && (symbol != "")) {
-                    $('#previewContent').html(symbol);
-                } else {
+                var value = $('#text').val();
+                if ((value != undefined) && (value != "")) {
                     $('#previewContent').html(value);
                 }
             };

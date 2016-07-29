@@ -1,5 +1,6 @@
 package org.literacyapp.dao.jpa;
 
+import java.util.Calendar;
 import java.util.List;
 import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.model.contributor.ContentCreationEvent;
@@ -14,6 +15,19 @@ public class ContentCreationEventDaoJpa extends GenericDaoJpa<ContentCreationEve
             "FROM ContentCreationEvent event " +
             "ORDER BY event.calendar DESC")
             .setMaxResults(maxResults)
+            .getResultList();
+    }
+
+    @Override
+    public List<ContentCreationEvent> readAll(Calendar calendarFrom, Calendar calendarTo) throws DataAccessException {
+        return em.createQuery(
+            "SELECT event " +
+            "FROM ContentCreationEvent event " +
+            "WHERE event.calendar >= :calendarFrom " +
+            "AND event.calendar < :calendarTo " +
+            "ORDER BY event.calendar DESC")
+            .setParameter("calendarFrom", calendarFrom)
+            .setParameter("calendarTo", calendarTo)
             .getResultList();
     }
 }
