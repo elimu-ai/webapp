@@ -26,6 +26,7 @@
                 <bean class="org.literacyapp.logic.converters.StringToApplicationConverter" />
                 <bean class="org.literacyapp.logic.converters.StringToContributorConverter" />
                 <bean class="org.literacyapp.logic.converters.StringToNullConverter" />
+                <bean class="org.literacyapp.logic.converters.StringToWordConverter" />
             </list>
         </property>
     </bean>

@@ -117,6 +117,7 @@ public class ImageCreateController {
         if (result.hasErrors()) {
             return "content/multimedia/image/create";
         } else {
+            image.setTitle(image.getTitle().toLowerCase());
             int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
             image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
             image.setTimeLastUpdate(Calendar.getInstance());

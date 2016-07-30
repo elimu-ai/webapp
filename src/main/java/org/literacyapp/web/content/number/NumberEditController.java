@@ -2,6 +2,7 @@ package org.literacyapp.web.content.number;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
@@ -9,8 +10,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.NumberDao;
+import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Number;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Locale;
@@ -35,14 +38,24 @@ public class NumberEditController {
     private NumberDao numberDao;
     
     @Autowired
+    private WordDao wordDao;
+    
+    @Autowired
     private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id) {
+    public String handleRequest(
+            HttpSession session,
+            Model model, 
+            @PathVariable Long id) {
     	logger.info("handleRequest");
         
         Number number = numberDao.read(id);
         model.addAttribute("number", number);
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
+        model.addAttribute("words", words);
 
         return "content/number/edit";
     }
@@ -66,15 +79,19 @@ public class NumberEditController {
             result.rejectValue("value", "NonUnique");
         }
         
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        
         if (result.hasErrors()) {
             model.addAttribute("number", number);
+            
+            List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
+            model.addAttribute("words", words);
+            
             return "content/number/edit";
         } else {
             number.setTimeLastUpdate(Calendar.getInstance());
             number.setRevisionNumber(number.getRevisionNumber() + 1);
             numberDao.update(number);
-            
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
             
             ContentCreationEvent contentCreationEvent = new ContentCreationEvent();
             contentCreationEvent.setContributor(contributor);

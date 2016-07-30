@@ -61,7 +61,8 @@ public class LetterCreateController {
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
             return "content/letter/create";
-        } else {            
+        } else {
+            letter.setText(letter.getText().toLowerCase());
             letter.setTimeLastUpdate(Calendar.getInstance());
             letterDao.create(letter);
             

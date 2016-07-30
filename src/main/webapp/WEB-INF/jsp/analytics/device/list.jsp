@@ -4,6 +4,10 @@
 
 <content:section cssId="deviceListPage">
     <div class="section row">
+        <c:if test="${empty devices}">
+            <p>No devices have been registered.</p>
+            <p>Remember to install the <a href="https://github.com/literacyapp-org/literacyapp-appstore" target="_blank">LiteracyApp Appstore</a> application on the tablet(s).</p>
+        </c:if>
         <c:if test="${not empty devices}">
             <table class="bordered highlight">
                 <thead>

@@ -61,7 +61,8 @@ public class WordCreateController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             return "content/word/create";
-        } else {            
+        } else {
+            word.setText(word.getText().toLowerCase());
             word.setTimeLastUpdate(Calendar.getInstance());
             wordDao.create(word);
             

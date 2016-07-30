@@ -20,11 +20,13 @@
                     <th><fmt:message key="content.type" /></th>
                     <th><fmt:message key="contributor" /></th>
                     <th><fmt:message key="time.created_updated" /></th>
+                    <th><fmt:message key="revision" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="contentCreationEvent" items="${contentCreationEvents}">
                         <tr class="contentCreationEvent">
                             <td>
+                                <a href="<spring:url value='/content/${fn:toLowerCase(contentCreationEvent.content.class.simpleName)}/edit/${contentCreationEvent.content.id}' />">
                                 <h4>
                                     <c:choose>
                                         <c:when test="${contentCreationEvent.content.class.simpleName == 'Allophone'}">
@@ -44,19 +46,20 @@
                                             </c:choose>
                                         </c:when>
                                         <c:when test="${contentCreationEvent.content.class.simpleName == 'Word'}">
-                                            ${contentCreationEvent.content.text}
+                                            <c:out value="${contentCreationEvent.content.text}" />
                                         </c:when>
                                         <c:when test="${contentCreationEvent.content.class.simpleName == 'Audio'}">
-
+                                            
                                         </c:when>
                                         <c:when test="${contentCreationEvent.content.class.simpleName == 'Image'}">
-                                            <img src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" style="max-height: 2em;" alt="${contentCreationEvent.content.title}" />
+                                            <img src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" style="max-height: 2em;" alt="<c:out value="${contentCreationEvent.content.title}" />" />
                                         </c:when>
                                         <c:when test="${contentCreationEvent.content.class.simpleName == 'Video'}">
-
+                                            
                                         </c:when>
                                     </c:choose>
                                 </h4>
+                                </a>
                             </td>
                             <td>
                                 <c:set var="contentClassName" value="${fn:toLowerCase(contentCreationEvent.content.class.simpleName)}" />
@@ -72,6 +75,9 @@
                             </td>
                             <td>
                                 <fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" />
+                            </td>
+                            <td>
+                                ${contentCreationEvent.content.revisionNumber}
                             </td>
                         </tr>
                     </c:forEach>

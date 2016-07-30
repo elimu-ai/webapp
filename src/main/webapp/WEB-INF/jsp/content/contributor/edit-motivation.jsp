@@ -21,7 +21,7 @@
                 
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="motivation" name="motivation" class="materialize-textarea validate" required="required"><c:if test="${not empty contributor.motivation}">${contributor.motivation}</c:if></textarea>
+                        <textarea id="motivation" name="motivation" class="materialize-textarea validate" required="required" maxlength="1000"><c:if test="${not empty contributor.motivation}">${contributor.motivation}</c:if></textarea>
                         <label for="motivation"><fmt:message key="personal.motivation" /></label>
                     </div>
                 </div>

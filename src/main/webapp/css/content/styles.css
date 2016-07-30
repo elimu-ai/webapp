@@ -40,5 +40,7 @@ nav {
 }
 #wordCreatePage .previewContainer #previewContent.previewContentGrapheme,
 #wordEditPage .previewContainer #previewContent.previewContentGrapheme {
-    font-size: 2em;
+    font-size: 4em;
+    padding-top: 4rem;
+    letter-spacing: .5rem;
 }

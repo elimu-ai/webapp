@@ -62,6 +62,7 @@ public class WordEditController {
             model.addAttribute("word", word);
             return "content/word/edit";
         } else {
+            word.setText(word.getText().toLowerCase());
             word.setTimeLastUpdate(Calendar.getInstance());
             word.setRevisionNumber(word.getRevisionNumber() + 1);
             wordDao.update(word);

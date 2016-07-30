@@ -17,6 +17,9 @@
                         </c:when>
                         <c:otherwise>
                             <h4>${number.value}</h4>
+                            <p><fmt:message key="number.word" />: "<a href="<spring:url value='/content/word/edit/${number.word.id}' />">${number.word.text}</a>"</p>
+                            <p>/<c:out value="${number.word.phonetics}" />/</p>
+                            <p><fmt:message key="revision" />: ${number.revisionNumber}</p>
                         </c:otherwise>
                     </c:choose>
                     <div class="divider" style="margin: 1em 0;"></div>

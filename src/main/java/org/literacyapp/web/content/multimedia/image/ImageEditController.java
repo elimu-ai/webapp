@@ -119,6 +119,7 @@ public class ImageEditController {
             model.addAttribute("image", image);
             return "content/multimedia/image/edit";
         } else {
+            image.setTitle(image.getTitle().toLowerCase());
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(Integer.MIN_VALUE);
             imageDao.update(image);
