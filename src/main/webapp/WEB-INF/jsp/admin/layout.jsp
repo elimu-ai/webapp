@@ -51,6 +51,12 @@
                 <div class="col s5">
                     <a href="<spring:url value='/admin' />" class="breadcrumb"><fmt:message key="administration" /></a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
+                        <c:choose>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/admin/application/list' />"><fmt:message key="applications" /></a>
+                            </c:when>
+                        </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>
                 </div>

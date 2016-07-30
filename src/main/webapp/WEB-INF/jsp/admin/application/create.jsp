@@ -22,7 +22,7 @@
                 <div class="col s12 m6">
                     <h5><fmt:message key="literacy.skills" /></h5>
                     <blockquote>
-                        What literacy skill(s) does the application teach?
+                        What <i>literacy</i> skill(s) does the application teach?
                     </blockquote>
                     <div class="divider"></div>
                     <c:forEach var="literacySkill" items="${literacySkills}">
@@ -39,7 +39,7 @@
                 <div class="col s12 m6">
                     <h5><fmt:message key="numeracy.skills" /></h5>
                     <blockquote>
-                        What numeracy skill(s) does the application teach?
+                        What <i>numeracy</i> skill(s) does the application teach?
                     </blockquote>
                     <div class="divider"></div>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
