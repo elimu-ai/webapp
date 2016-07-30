@@ -14,6 +14,7 @@ import org.literacyapp.dao.ImageDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.ContentCreationEvent;
+import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.ImageFormat;
 import org.literacyapp.model.enums.Team;
@@ -52,7 +53,9 @@ public class ImageEditController {
         Image image = imageDao.read(id);
         model.addAttribute("image", image);
         
-        model.addAttribute("imageTypes", ImageFormat.values());
+        model.addAttribute("contentLicenses", ContentLicense.values());
+        
+        model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(image));
 
         return "content/multimedia/image/edit";
     }
@@ -88,25 +91,29 @@ public class ImageEditController {
                     image.setImageFormat(ImageFormat.JPG);
                 } else if (originalFileName.toLowerCase().endsWith(".gif")) {
                     image.setImageFormat(ImageFormat.GIF);
+                } else {
+                    result.rejectValue("bytes", "typeMismatch");
                 }
 
-                String contentType = multipartFile.getContentType();
-                logger.info("contentType: " + contentType);
-                image.setContentType(contentType);
+                if (image.getImageFormat() != null) {
+                    String contentType = multipartFile.getContentType();
+                    logger.info("contentType: " + contentType);
+                    image.setContentType(contentType);
 
-                image.setBytes(bytes);
+                    image.setBytes(bytes);
 
-                if (image.getImageFormat() != ImageFormat.GIF) {
-                    int width = ImageHelper.getWidth(bytes);
-                    logger.info("width: " + width + "px");
+                    if (image.getImageFormat() != ImageFormat.GIF) {
+                        int width = ImageHelper.getWidth(bytes);
+                        logger.info("width: " + width + "px");
 
-                    if (width < ImageHelper.MINIMUM_WIDTH) {
-                        result.rejectValue("bytes", "image.too.small");
-                        image.setBytes(null);
-                    } else {
-                        if (width > ImageHelper.MINIMUM_WIDTH) {
-                            bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
-                            image.setBytes(bytes);
+                        if (width < ImageHelper.MINIMUM_WIDTH) {
+                            result.rejectValue("bytes", "image.too.small");
+                            image.setBytes(null);
+                        } else {
+                            if (width > ImageHelper.MINIMUM_WIDTH) {
+                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
+                                image.setBytes(bytes);
+                            }
                         }
                     }
                 }
@@ -117,6 +124,8 @@ public class ImageEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("image", image);
+            model.addAttribute("contentLicenses", ContentLicense.values());
+            model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(image));
             return "content/multimedia/image/edit";
         } else {
             image.setTitle(image.getTitle().toLowerCase());
@@ -137,7 +146,7 @@ public class ImageEditController {
                         contributor.getFirstName() + " just edited an Image:\n" + 
                         "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
                         "• Title: \"" + image.getTitle() + "\"\n" + 
-                        "• Image type: \"" + image.getImageFormat() + "\"\n" + 
+                        "• Image format: \"" + image.getImageFormat() + "\"\n" + 
                         "See ") + "http://literacyapp.org/content/multimedia/image/list";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());

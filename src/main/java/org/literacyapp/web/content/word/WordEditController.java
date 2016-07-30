@@ -41,6 +41,8 @@ public class WordEditController {
         
         Word word = wordDao.read(id);
         model.addAttribute("word", word);
+        
+        model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(word));
 
         return "content/word/edit";
     }
@@ -60,6 +62,7 @@ public class WordEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);
+            model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(word));
             return "content/word/edit";
         } else {
             word.setText(word.getText().toLowerCase());

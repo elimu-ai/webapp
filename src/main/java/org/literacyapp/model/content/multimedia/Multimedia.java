@@ -8,7 +8,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.literacyapp.model.content.Content;
+import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
 
@@ -21,8 +23,10 @@ public class Multimedia extends Content {
     @NotNull
     private String contentType;
     
-    // TODO: license type
+    @Enumerated(EnumType.STRING)
+    private ContentLicense contentLicense;
     
+    @Length(max = 1000)
     @Column(length = 1000)
     private String attributionUrl;
     
@@ -40,6 +44,14 @@ public class Multimedia extends Content {
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
+    }
+    
+    public ContentLicense getContentLicense() {
+        return contentLicense;
+    }
+
+    public void setContentLicense(ContentLicense contentLicense) {
+        this.contentLicense = contentLicense;
     }
 
     public String getAttributionUrl() {

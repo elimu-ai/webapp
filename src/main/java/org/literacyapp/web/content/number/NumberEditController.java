@@ -56,6 +56,8 @@ public class NumberEditController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
         model.addAttribute("words", words);
+        
+        model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(number));
 
         return "content/number/edit";
     }
@@ -86,6 +88,8 @@ public class NumberEditController {
             
             List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
             model.addAttribute("words", words);
+            
+            model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(number));
             
             return "content/number/edit";
         } else {

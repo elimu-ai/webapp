@@ -5,12 +5,8 @@ import java.util.List;
 import java.util.Locale;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
-import org.literacyapp.model.content.Allophone;
-import org.literacyapp.model.content.Letter;
-import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.util.Mailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -29,7 +25,7 @@ public class ContributorRegistrationSummaryScheduler {
     private ContributorDao contributorDao;
     
 //    @Scheduled(cron="00 00 08 * * *") // At 08:00 every day
-    @Scheduled(cron="00 05 * * * *")
+    @Scheduled(cron="00 50 * * * *")
     public synchronized void execute() {
         logger.info("execute");
         
@@ -42,10 +38,6 @@ public class ContributorRegistrationSummaryScheduler {
         if (!contributorsRegisteredRecently.isEmpty()) {
             // Send summary to existing Contributors
             for (Contributor contributor : contributorDao.readAll()) {
-                // Skip if the person is one of the recently registered Contributors
-                logger.info("contributorsRegisteredRecently.contains(contributor): " + contributorsRegisteredRecently.contains(contributor));
-                // TODO
-                
                 String to = contributor.getEmail();
                 String from = "LiteracyApp <info@literacyapp.org>";
                 Locale locale = new Locale("en");
@@ -59,20 +51,38 @@ public class ContributorRegistrationSummaryScheduler {
                     htmlText += "<p>New contributors joined the LiteracyApp community:</p>";
                 }
                 
+                int counter = 0;
                 for (Contributor contributorRegisteredRecently : contributorsRegisteredRecently) {
-                    htmlText += "<p>" + contributorRegisteredRecently.getFirstName() + " " + contributorRegisteredRecently.getLastName() + "</p>";
+                    if (contributorRegisteredRecently.getId().equals(contributor.getId())) {
+                        // Skip if the Contributor is the same as the one registered recently
+                        continue;
+                    } else if (StringUtils.isEmpty(contributorRegisteredRecently.getMotivation())) {
+                        // Skip if the contributor did not complete the on-boarding wizard
+                        continue;
+                    }
                     
+                    htmlText += "<p>" + contributorRegisteredRecently.getFirstName() + " " + contributorRegisteredRecently.getLastName() + "</p>";
+                    if (StringUtils.isNotBlank(contributorRegisteredRecently.getImageUrl())) {
+                        htmlText += "<img src=\"" + contributorRegisteredRecently.getImageUrl() + "\" alt=\"\" style=\"max-height: 2em; border-radius: 50%;\">";
+                    }
                     htmlText += "<p>Language: " + messageSource.getMessage("language." + contributorRegisteredRecently.getLocale().getLanguage(), null, locale) + "</p>";
                     htmlText += "<p>Teams: " + contributorRegisteredRecently.getTeams() + "</p>";
                     htmlText += "<p>Personal motivation:</p>";
                     htmlText += "<p><blockquote>\"" + contributorRegisteredRecently.getMotivation() + "\"</blockquote></p>";
+                    
+                    if (++counter == 5) {
+                        break;
+                    }
                 }
                 
                 htmlText += "<hr />";
                 htmlText += "<p>Do you want to learn more about the new (and existing) contributors?</p>";
                 String buttonText = "See complete list of contributors";
                 String buttonUrl = "http://literacyapp,org/content/community/contributors";
-                Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
+                
+                if (counter > 0) {
+                    Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
+                }
             }
         }
         

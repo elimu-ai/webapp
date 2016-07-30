@@ -41,6 +41,8 @@ public class LetterEditController {
         
         Letter letter = letterDao.read(id);
         model.addAttribute("letter", letter);
+        
+        model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(letter));
 
         return "content/letter/edit";
     }
@@ -60,6 +62,7 @@ public class LetterEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
+            model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(letter));
             return "content/letter/edit";
         } else {
             letter.setText(letter.getText().toLowerCase());

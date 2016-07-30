@@ -1,26 +1,26 @@
 <content:title>
-    <fmt:message key="add.image" />
+    <fmt:message key="add.audio" />
 </content:title>
 
-<content:section cssId="imageCreatePage">
+<content:section cssId="audioCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="image" enctype="multipart/form-data">
-            <tag:formErrors modelAttribute="image" />
+        <form:form modelAttribute="audio" enctype="multipart/form-data">
+            <tag:formErrors modelAttribute="audio" />
 
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
-                <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
+                <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
                 
                 <div class="input-field col s12">
-                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
-                    <form:input path="title" cssErrorClass="error" />
+                    <form:label path="transcription" cssErrorClass="error"><fmt:message key='transcription' /></form:label>
+                    <form:input path="transcription" cssErrorClass="error" />
                 </div>
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
-                            <option value="${contentLicense.id}" <c:if test="${contentLicense == image.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
+                            <option value="${contentLicense.id}" <c:if test="${contentLicense == audio.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
                     <label for="contentLicense"><fmt:message key="content.license" /></label>

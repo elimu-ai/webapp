@@ -65,7 +65,7 @@ public class ContentCreationSummaryScheduler {
                         htmlText += "<th>Contributor</th>\n";
                     htmlText += "</thead>\n";
                     htmlText += "<tbody>";
-                    int counter = 0;
+                    int counterAllophones = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
                         String className = contentCreationEvent.getContent().getClass().getSimpleName();
                         logger.info("className: " + className);
@@ -89,7 +89,7 @@ public class ContentCreationSummaryScheduler {
                                 htmlText += "</td>\n";
                             htmlText += "</tr>";
                             
-                            if (++counter == 5) {
+                            if (++counterAllophones == 5) {
                                 break;
                             }
                         }
@@ -106,7 +106,7 @@ public class ContentCreationSummaryScheduler {
                         htmlText += "<th>Contributor</th>\n";
                     htmlText += "</thead>\n";
                     htmlText += "<tbody>";
-                    counter = 0;
+                    int counterLetters = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
                         String className = contentCreationEvent.getContent().getClass().getSimpleName();
                         logger.info("className: " + className);
@@ -121,13 +121,13 @@ public class ContentCreationSummaryScheduler {
                                 htmlText += "</td>\n";
                                 htmlText += "<td>\n";
                                     if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
-                                        htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
+                                        htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\">";
                                     }
                                     htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName()  + "</td>\n";
                                 htmlText += "</td>\n";
                             htmlText += "</tr>";
                             
-                            if (++counter == 5) {
+                            if (++counterLetters == 5) {
                                 break;
                             }
                         }

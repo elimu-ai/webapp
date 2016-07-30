@@ -42,6 +42,8 @@ public class AllophoneEditController {
         
         Allophone allophone = allophoneDao.read(id);
         model.addAttribute("allophone", allophone);
+        
+        model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(allophone));
 
         return "content/allophone/edit";
     }
@@ -72,6 +74,7 @@ public class AllophoneEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("allophone", allophone);
+            model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(allophone));
             return "content/allophone/edit";
         } else {
             allophone.setTimeLastUpdate(Calendar.getInstance());

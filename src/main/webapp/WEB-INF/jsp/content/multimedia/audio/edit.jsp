@@ -1,29 +1,28 @@
 <content:title>
-    <fmt:message key="edit.image" />
+    <fmt:message key="edit.audio" />
 </content:title>
 
-<content:section cssId="imageEditPage">
+<content:section cssId="audioEditPage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="image" enctype="multipart/form-data">
-            <tag:formErrors modelAttribute="image" />
+        <form:form modelAttribute="audio" enctype="multipart/form-data">
+            <tag:formErrors modelAttribute="audio" />
 
             <div class="row">
-                <form:hidden path="locale" value="${image.locale}" />
-                <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
-                <form:hidden path="imageFormat" value="${number.imageFormat}" />
+                <form:hidden path="locale" value="${audio.locale}" />
+                <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
+                <form:hidden path="audioFormat" value="${number.audioFormat}" />
                 <form:hidden path="contentType" value="${number.contentType}" />
-                <form:hidden path="dominantColor" value="${number.dominantColor}" />
                 
                 <div class="input-field col s12">
-                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
-                    <form:input path="title" cssErrorClass="error" />
+                    <form:label path="transcription" cssErrorClass="error"><fmt:message key='transcription' /></form:label>
+                    <form:input path="transcription" cssErrorClass="error" />
                 </div>
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
-                            <option value="${contentLicense.id}" <c:if test="${contentLicense == image.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
+                            <option value="${contentLicense.id}" <c:if test="${contentLicense == audio.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
                     <label for="contentLicense"><fmt:message key="content.license" /></label>
@@ -42,20 +41,12 @@
                         <input class="file-path validate" type="text" />
                     </div>
                 </div>
-                <%--<div class="input-field col s12">
-                    <form:select path="imageType" cssErrorClass="error">
-                        <c:set var="select"><fmt:message key='select' /></c:set>
-                        <form:option value="" label="-- ${select} --" />
-                        <form:options items="${imageTypes}" />
-                    </form:select>
-                    <form:label path="imageType" cssErrorClass="error"><fmt:message key='image.type' /></form:label>
-                </div>--%>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
-            <a href="<spring:url value='/content/multimedia/image/delete/${image.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
+            <a href="<spring:url value='/content/multimedia/audio/delete/${audio.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
     
@@ -90,32 +81,8 @@
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
     
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="valign-wrapper" 
-                 style="
-                    background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />);
-                 ">
-                <h5 class="white-text" style="
-                    position: absolute; 
-                    bottom: 0; 
-                    width: 100%;
-                    font-size: 2rem;
-                    letter-spacing: .5em;
-                    text-shadow: 1px 1px rgba(0,0,0, .8);
-                    /*background-color: rgba(0,0,0, .1);*/
-                    ">${image.title}</h5>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        $(function() {
-            console.debug("dominantColor: ${image.dominantColor}");
-            $('#previewContent').css("background-color", "${image.dominantColor}");
-            $('nav').removeClass("black");
-            $('nav').css("background-color", "${image.dominantColor}");
-        });
-    </script>
+    <audio 
+        src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />"
+        controls="true">
+    </audio>
 </content:aside>

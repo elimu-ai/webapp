@@ -89,6 +89,10 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="videos" /></a>
                             </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>
+                            </c:when>
                         </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>
@@ -129,7 +133,31 @@
                 </div>
             </div>
         </nav>
-        
+        <script>
+            $(function() {
+                <c:choose>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')}">
+                        $('nav').addClass('red');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter/')}">
+                        $('nav').addClass('purple');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')}">
+                        $('nav').addClass('green');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')}">
+                        $('nav').addClass('blue');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')}">
+                        $('nav').addClass('orange');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')}">
+                        $('nav').addClass('teal');
+                    </c:when>
+                </c:choose>
+            });
+        </script>
+                        
         <c:if test="${hasBanner}">
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">

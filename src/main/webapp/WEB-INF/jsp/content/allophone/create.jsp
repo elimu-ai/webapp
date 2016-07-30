@@ -53,7 +53,9 @@
             function initializePreview() {
                 console.debug('initializePreview');
                 var value = $('#valueIpa').val();
-                $('#previewContent').html(value);
+                if (value != '') {
+                    $('#previewContent').html('/' + value + '/');
+                }
             };
         });
     </script>
