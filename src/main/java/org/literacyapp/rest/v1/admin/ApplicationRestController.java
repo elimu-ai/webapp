@@ -41,11 +41,13 @@ public class ApplicationRestController {
             @RequestParam Locale locale,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
+            @RequestParam String applicationId,
             @RequestParam Integer appVersionCode
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
+        logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
         JSONArray applications = new JSONArray();
         for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {

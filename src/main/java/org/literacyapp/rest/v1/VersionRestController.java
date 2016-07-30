@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest/v1/version")
 public class VersionRestController {
     
+    public static final Integer NEWEST_VERSION_APPSTORE = 1001000; // 1.1.0 (2016-07-30)
     public static final Integer NEWEST_VERSION_LITERACYAPP = 1001004; // 1.1.4 (2016-06-08)
+    public static final Integer NEWEST_VERSION_CHAT = 1000000; // 1.0.0 (2016-07-30)
     
     public static final Integer MINIMUM_OS_VERSION = 21; // Android 5.0
     
@@ -30,7 +32,8 @@ public class VersionRestController {
     @RequestMapping("/read")
     public String read(
             @RequestParam Locale locale,
-            @RequestParam String appVersionCode,
+            @RequestParam String applicationId,
+            @RequestParam Integer appVersionCode,
             @RequestParam String osVersion) {
         logger.info("read");
         

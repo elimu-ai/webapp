@@ -29,7 +29,7 @@ public class ApplicationRestControllerTest {
                 "&locale=" + Locale.EN + 
                 "&deviceModel=Google+Pixel+C" + 
                 "&osVersion=" + VersionRestController.MINIMUM_OS_VERSION +  
-                "&appVersionCode=" + VersionRestController.NEWEST_VERSION_LITERACYAPP);
+                "&appVersionCode=" + VersionRestController.NEWEST_VERSION_APPSTORE);
         logger.info("jsonResponse: " + jsonResponse);
         JSONObject jsonObject = new JSONObject(jsonResponse);
         assertThat(jsonObject.has("result"), is(true));

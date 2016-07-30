@@ -33,6 +33,8 @@ public class DeviceRestController {
             @RequestParam String deviceModel,
             @RequestParam String deviceSerial,
             @RequestParam Integer osVersion,
+            @RequestParam String applicationId,
+            @RequestParam Integer appVersionCode,
             @RequestParam Locale locale
     ) {
         logger.info("create");
