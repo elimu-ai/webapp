@@ -40,9 +40,9 @@ public class ImageController {
         Image image = imageDao.read(imageId);
         
         response.setContentType(image.getContentType());
-        response.setContentLength(image.getBytes().length);
         
         byte[] bytes = image.getBytes();
+        response.setContentLength(bytes.length);
         try {
             outputStream.write(bytes);
         } catch (EOFException ex) {

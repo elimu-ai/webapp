@@ -56,9 +56,9 @@ public class ApkController {
         ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);
         
         response.setContentType(applicationVersion.getContentType());
-        response.setContentLength(applicationVersion.getBytes().length);
         
         byte[] bytes = applicationVersion.getBytes();
+        response.setContentLength(bytes.length);
         try {
             outputStream.write(bytes);
         } catch (EOFException ex) {
