@@ -23,8 +23,8 @@ public class NumberDeleteController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Number number = numberDao.read(id);
-        numberDao.delete(number);
+//        Number number = numberDao.read(id);
+//        numberDao.delete(number);
 
         return "redirect:/content/number/list";
     }
