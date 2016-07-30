@@ -1,29 +1,29 @@
 <content:title>
-    <fmt:message key="edit.audio" />
+    <fmt:message key="edit.video" />
 </content:title>
 
-<content:section cssId="audioEditPage">
+<content:section cssId="videoEditPage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="audio" enctype="multipart/form-data">
-            <tag:formErrors modelAttribute="audio" />
+        <form:form modelAttribute="video" enctype="multipart/form-data">
+            <tag:formErrors modelAttribute="video" />
 
             <div class="row">
-                <form:hidden path="locale" value="${audio.locale}" />
-                <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
-                <form:hidden path="audioFormat" value="${number.audioFormat}" />
+                <form:hidden path="locale" value="${video.locale}" />
+                <form:hidden path="revisionNumber" value="${video.revisionNumber}" />
+                <form:hidden path="videoFormat" value="${number.videoFormat}" />
                 <form:hidden path="contentType" value="${number.contentType}" />
                 
                 <div class="input-field col s12">
-                    <form:label path="transcription" cssErrorClass="error"><fmt:message key='transcription' /></form:label>
-                    <form:input path="transcription" cssErrorClass="error" />
+                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
+                    <form:input path="title" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
-                            <option value="${contentLicense.id}" <c:if test="${contentLicense == audio.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
+                            <option value="${contentLicense.id}" <c:if test="${contentLicense == video.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
                     <label for="contentLicense"><fmt:message key="content.license" /></label>
@@ -40,7 +40,7 @@
                         <fmt:message key="what.literacy.skills" />
                     </blockquote>
                     <c:forEach var="literacySkill" items="${literacySkills}">
-                        <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(audio.literacySkills, literacySkill)}">checked="checked"</c:if> />
+                        <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(video.literacySkills, literacySkill)}">checked="checked"</c:if> />
                         <label for="${literacySkill}">
                             <fmt:message key="literacy.skill.${literacySkill}" />
                         </label><br />
@@ -52,7 +52,7 @@
                         <fmt:message key="what.numeracy.skills" />
                     </blockquote>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
-                        <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(audio.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
+                        <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(video.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
                         <label for="${numeracySkill}">
                             <fmt:message key="numeracy.skill.${numeracySkill}" />
                         </label><br />
@@ -73,7 +73,7 @@
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
-            <a href="<spring:url value='/content/multimedia/audio/delete/${audio.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
+            <a href="<spring:url value='/content/multimedia/video/delete/${video.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
     
@@ -108,7 +108,7 @@
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
     
-    <audio controls="true">
-        <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
-    </audio>
+    <video controls="true">
+        <source src="<spring:url value='/video/${video.id}.${fn:toLowerCase(video.videoFormat)}' />" />
+    </video>
 </content:aside>

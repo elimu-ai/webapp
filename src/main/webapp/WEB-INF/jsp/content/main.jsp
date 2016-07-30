@@ -54,21 +54,22 @@
                                                 <c:out value="${contentCreationEvent.content.text}" />
                                             </c:when>
                                             <c:when test="${contentCreationEvent.content.class.simpleName == 'Audio'}">
-                                                <audio 
-                                                    src="<spring:url value='/audio/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.audioFormat)}' />"
-                                                    controls="true">
+                                                <audio controls="true">
+                                                    <source src="<spring:url value='/audio/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.audioFormat)}' />" />
                                                 </audio><br />
                                                 "<c:out value="${contentCreationEvent.content.transcription}" />"
                                             </c:when>
                                             <c:when test="${contentCreationEvent.content.class.simpleName == 'Image'}">
-                                                <img 
-                                                    src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" 
+                                                <img src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" 
                                                     style="max-height: 2em;" 
                                                     alt="<c:out value="${contentCreationEvent.content.title}" />" /><br />
                                                 <c:out value="${contentCreationEvent.content.title}" />
                                             </c:when>
                                             <c:when test="${contentCreationEvent.content.class.simpleName == 'Video'}">
-
+                                                <video controls="true">
+                                                    <source src="<spring:url value='/video/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.videoFormat)}' />" />
+                                                </video><br />
+                                                "<c:out value="${contentCreationEvent.content.title}" />"
                                             </c:when>
                                         </c:choose>
                                     </h4>

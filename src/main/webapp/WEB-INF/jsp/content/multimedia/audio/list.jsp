@@ -25,9 +25,8 @@
                                 "<c:out value="${audio.transcription}" />"
                             </td>
                             <td>
-                                <audio 
-                                    src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />"
-                                    controls="true">
+                                <audio controls="true">
+                                    <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
                                 </audio>
                             </td>
                             <td>
