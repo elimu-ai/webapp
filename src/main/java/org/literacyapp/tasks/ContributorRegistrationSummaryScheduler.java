@@ -1,0 +1,81 @@
+package org.literacyapp.tasks;
+
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.literacyapp.dao.ContentCreationEventDao;
+import org.literacyapp.dao.ContributorDao;
+import org.literacyapp.model.Contributor;
+import org.literacyapp.model.content.Allophone;
+import org.literacyapp.model.content.Letter;
+import org.literacyapp.model.contributor.ContentCreationEvent;
+import org.literacyapp.util.Mailer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ContributorRegistrationSummaryScheduler {
+    
+    private Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private MessageSource messageSource;
+
+    @Autowired
+    private ContributorDao contributorDao;
+    
+//    @Scheduled(cron="00 00 08 * * *") // At 08:00 every day
+    @Scheduled(cron="00 05 * * * *")
+    public synchronized void execute() {
+        logger.info("execute");
+        
+        Calendar calendarFrom = Calendar.getInstance();
+//        calendarFrom.add(Calendar.DAY_OF_MONTH, -1);
+        calendarFrom.add(Calendar.HOUR_OF_DAY, -1);
+        Calendar calendarTo = Calendar.getInstance();
+        List<Contributor> contributorsRegisteredRecently = contributorDao.readAll(calendarFrom, calendarTo);
+        logger.info("contributorsRegisteredRecently.size(): " + contributorsRegisteredRecently.size());
+        if (!contributorsRegisteredRecently.isEmpty()) {
+            // Send summary to existing Contributors
+            for (Contributor contributor : contributorDao.readAll()) {
+                // Skip if the person is one of the recently registered Contributors
+                logger.info("contributorsRegisteredRecently.contains(contributor): " + contributorsRegisteredRecently.contains(contributor));
+                // TODO
+                
+                String to = contributor.getEmail();
+                String from = "LiteracyApp <info@literacyapp.org>";
+                Locale locale = new Locale("en");
+                String subject = contributorsRegisteredRecently.get(0).getFirstName() + " " + contributorsRegisteredRecently.get(0).getLastName() + " joined the community";
+                String title = subject;
+                String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
+                String htmlText = "<p>Hi, " + firstName + "</p>";
+                if (contributorsRegisteredRecently.size() == 1) {
+                    htmlText += "<p>A new contributor joined the LiteracyApp community:</p>";
+                } else {
+                    htmlText += "<p>New contributors joined the LiteracyApp community:</p>";
+                }
+                
+                for (Contributor contributorRegisteredRecently : contributorsRegisteredRecently) {
+                    htmlText += "<p>" + contributorRegisteredRecently.getFirstName() + " " + contributorRegisteredRecently.getLastName() + "</p>";
+                    
+                    htmlText += "<p>Language: " + messageSource.getMessage("language." + contributorRegisteredRecently.getLocale().getLanguage(), null, locale) + "</p>";
+                    htmlText += "<p>Teams: " + contributorRegisteredRecently.getTeams() + "</p>";
+                    htmlText += "<p>Personal motivation:</p>";
+                    htmlText += "<p><blockquote>\"" + contributorRegisteredRecently.getMotivation() + "\"</blockquote></p>";
+                }
+                
+                htmlText += "<hr />";
+                htmlText += "<p>Do you want to learn more about the new (and existing) contributors?</p>";
+                String buttonText = "See complete list of contributors";
+                String buttonUrl = "http://literacyapp,org/content/community/contributors";
+                Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
+            }
+        }
+        
+        logger.info("execute complete");
+    }
+}

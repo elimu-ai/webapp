@@ -75,7 +75,7 @@
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/word/list' />"><fmt:message key="word" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/content/word/list' />"><fmt:message key="words" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
@@ -121,9 +121,11 @@
                             <li><a href="<spring:url value='/j_spring_security_logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
-                    <div class="right">
-                        <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
-                    </div>
+                    <c:if test="${not empty contributor.locale}">
+                        <div class="right">
+                            <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </nav>

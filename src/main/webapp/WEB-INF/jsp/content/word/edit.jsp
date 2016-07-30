@@ -18,7 +18,7 @@
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="phonetics" cssErrorClass="error"><fmt:message key='phonetics' /></form:label>
+                    <form:label path="phonetics" cssErrorClass="error"><fmt:message key='phonetics' /> (IPA)</form:label>
                     <form:input path="phonetics" cssErrorClass="error" />
                 </div>
             </div>

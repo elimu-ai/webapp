@@ -76,8 +76,10 @@ public class WordListController {
         List<Word> words = new ArrayList<>();
         
         if (locale == Locale.AR) {
+            // Add number words
             // TODO
         } else if (locale == Locale.EN) {
+            // Add number words
 //            Word wordZero = new Word();
 //            wordZero.setLocale(locale);
 //            wordZero.setRevisionNumber(1);
@@ -158,8 +160,10 @@ public class WordListController {
 //            wordNine.setPhonetics("TODO");
 //            words.add(wordNine);
         } else if (locale == Locale.ES) {
+            // Add number words
             // TODO
         } else if (locale == Locale.SW) {
+            // Add number words
             // TODO
         }
         

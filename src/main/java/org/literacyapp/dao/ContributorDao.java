@@ -1,5 +1,6 @@
 package org.literacyapp.dao;
 
+import java.util.Calendar;
 import java.util.List;
 import org.literacyapp.model.Contributor;
 
@@ -12,4 +13,6 @@ public interface ContributorDao extends GenericDao<Contributor> {
     Contributor readByProviderIdGitHub(String id) throws DataAccessException;
     
     List<Contributor> readAllOrderedDesc() throws DataAccessException;
+    
+    List<Contributor> readAll(Calendar calendarFrom, Calendar calendarTo) throws DataAccessException;
 }

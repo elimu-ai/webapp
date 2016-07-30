@@ -36,4 +36,9 @@ nav {
 .previewContainer #previewContent.previewContentGrapheme {
     background: #FFF;
     font-size: 10em;
+    /*font-family: ...;*/ 
+}
+#wordCreatePage .previewContainer #previewContent.previewContentGrapheme,
+#wordEditPage .previewContainer #previewContent.previewContentGrapheme {
+    font-size: 2em;
 }
