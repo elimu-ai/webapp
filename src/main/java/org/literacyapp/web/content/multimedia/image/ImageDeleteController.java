@@ -23,8 +23,8 @@ public class ImageDeleteController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Image image = imageDao.read(id);
-        imageDao.delete(image);
+//        Image image = imageDao.read(id);
+//        imageDao.delete(image);
 
         return "redirect:/content/multimedia/image/list";
     }

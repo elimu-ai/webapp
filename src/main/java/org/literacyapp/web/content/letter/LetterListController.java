@@ -44,7 +44,7 @@ public class LetterListController {
         // To ease development/testing, auto-generate Letters
         List<Letter> lettersGenerated = generateLetters(contributor.getLocale());
         for (Letter letter : lettersGenerated) {
-            Letter existingLetter = letterDao.readByValue(letter.getLocale(), letter.getText());
+            Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
             if (existingLetter == null) {
                 letterDao.create(letter);
 
@@ -81,9 +81,9 @@ public class LetterListController {
         } else if (locale == Locale.EN) {
             letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"));
         } else if (locale == Locale.ES) {
-            // TODO
+            letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"));
         } else if (locale == Locale.SW) {
-            // TODO
+            letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","w","y","z"));
         }
         
         for (String letterString : letterStringArray) {

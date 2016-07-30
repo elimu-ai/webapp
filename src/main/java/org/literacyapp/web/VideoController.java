@@ -40,9 +40,9 @@ public class VideoController {
         Video video = videoDao.read(videoId);
         
         response.setContentType(video.getContentType());
-        response.setContentLength(video.getBytes().length);
         
         byte[] bytes = video.getBytes();
+        response.setContentLength(bytes.length);
         try {
             outputStream.write(bytes);
         } catch (EOFException ex) {

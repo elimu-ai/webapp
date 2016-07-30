@@ -64,6 +64,36 @@
                 <div class="col s5">
                     <a href="<spring:url value='/content' />" class="breadcrumb"><fmt:message key="content" /></a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/main.jsp')}">
+                        <c:choose>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/number/list' />"><fmt:message key="numbers" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/letter/list' />"><fmt:message key="letters" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/word/list' />"><fmt:message key="words" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="audios" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="images" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="videos" /></a>
+                            </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>
+                            </c:when>
+                        </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>
                 </div>
@@ -95,13 +125,39 @@
                             <li><a href="<spring:url value='/j_spring_security_logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
-                    <div class="right">
-                        <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
-                    </div>
+                    <c:if test="${not empty contributor.locale}">
+                        <div class="right">
+                            <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </nav>
-        
+        <script>
+            $(function() {
+                <c:choose>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')}">
+                        $('nav').addClass('red');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter/')}">
+                        $('nav').addClass('purple');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')}">
+                        $('nav').addClass('green');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')}">
+                        $('nav').addClass('blue');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')}">
+                        $('nav').addClass('orange');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')}">
+                        $('nav').addClass('teal');
+                    </c:when>
+                </c:choose>
+            });
+        </script>
+                        
         <c:if test="${hasBanner}">
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">

@@ -30,6 +30,7 @@ import org.apache.commons.lang.StringUtils;
 import org.literacyapp.dao.SignOnEventDao;
 import org.literacyapp.model.contributor.SignOnEvent;
 import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Provider;
 import org.literacyapp.util.ConfigHelper;
 import org.literacyapp.util.CookieHelper;
 import org.literacyapp.util.Mailer;
@@ -204,7 +205,7 @@ public class SignOnControllerGitHub {
                 htmlText += "<p>Within the next hour, we will send you an invite to join our Slack channel (to " + contributor.getEmail() + "). There you can chat with the other community members.</p>";
                 htmlText += "<h2>Feedback</h2>";
                 htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in Slack.</p>";
-                Mailer.sendHtml(to, null, from, subject, title, htmlText);
+                Mailer.sendHtml(to, from, from, subject, title, htmlText);
                 
                 if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                     // Post notification in Slack
@@ -268,6 +269,16 @@ public class SignOnControllerGitHub {
             SignOnEvent signOnEvent = new SignOnEvent();
             signOnEvent.setContributor(contributor);
             signOnEvent.setCalendar(Calendar.getInstance());
+            signOnEvent.setServerName(request.getServerName());
+            signOnEvent.setProvider(Provider.GITHUB);
+            signOnEvent.setRemoteAddress(request.getRemoteAddr());
+            signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
+            signOnEvent.setReferrer(CookieHelper.getReferrer(request));
+            signOnEvent.setUtmSource(CookieHelper.getUtmSource(request));
+            signOnEvent.setUtmMedium(CookieHelper.getUtmMedium(request));
+            signOnEvent.setUtmCampaign(CookieHelper.getUtmCampaign(request));
+            signOnEvent.setUtmTerm(CookieHelper.getUtmTerm(request));
+            signOnEvent.setReferralId(CookieHelper.getReferralId(request));
             signOnEventDao.create(signOnEvent);
             
             return "redirect:/content";

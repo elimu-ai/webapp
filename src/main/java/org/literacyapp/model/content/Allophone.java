@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.literacyapp.model.enums.content.allophone.ConsonantPlace;
 import org.literacyapp.model.enums.content.allophone.ConsonantType;
 import org.literacyapp.model.enums.content.allophone.ConsonantVoicing;
@@ -21,10 +22,12 @@ import org.literacyapp.model.enums.content.allophone.VowelLength;
 public class Allophone extends Content {
     
     @NotNull
+    @Length(max = 3)
     @Column(length = 3)
     private String valueIpa; // IPA - International Phonetic Alphabet
     
     @NotNull
+    @Length(max = 3)
     @Column(length = 3)
     private String valueSampa; // X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet
     

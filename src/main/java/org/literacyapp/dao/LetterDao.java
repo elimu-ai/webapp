@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface LetterDao extends GenericDao<Letter> {
 	
-    Letter readByValue(Locale locale, String text) throws DataAccessException;
+    Letter readByText(Locale locale, String text) throws DataAccessException;
 
     List<Letter> readAllOrdered(Locale locale) throws DataAccessException;
 }

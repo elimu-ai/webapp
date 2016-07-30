@@ -1,5 +1,6 @@
 package org.literacyapp.dao.jpa;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.NoResultException;
 import org.literacyapp.dao.ContributorDao;
@@ -46,6 +47,19 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             "SELECT c " +
             "FROM Contributor c " +
             "ORDER BY c.registrationTime DESC")
+            .getResultList();
+    }
+
+    @Override
+    public List<Contributor> readAll(Calendar calendarFrom, Calendar calendarTo) throws DataAccessException {
+        return em.createQuery(
+            "SELECT c " +
+            "FROM Contributor c " +
+            "WHERE c.registrationTime >= :calendarFrom " +
+            "AND c.registrationTime < :calendarTo " +
+            "ORDER BY c.registrationTime DESC")
+            .setParameter("calendarFrom", calendarFrom)
+            .setParameter("calendarTo", calendarTo)
             .getResultList();
     }
 }

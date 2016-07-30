@@ -1,8 +1,6 @@
 package org.literacyapp.rest.v1.content;
 
 import com.google.gson.Gson;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;

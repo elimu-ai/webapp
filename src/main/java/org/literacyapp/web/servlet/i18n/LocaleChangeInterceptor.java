@@ -17,10 +17,10 @@ public class LocaleChangeInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
-    	logger.debug("preHandle");
+    	logger.debug("info");
 
         Locale locale = RequestContextUtils.getLocale(request);
-        logger.debug("locale: " + locale);
+        logger.debug("info: " + locale);
         
         request.setAttribute("locale", locale);
 

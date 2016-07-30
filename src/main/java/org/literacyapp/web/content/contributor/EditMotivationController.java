@@ -1,9 +1,9 @@
 package org.literacyapp.web.content.contributor;
 
 import java.net.URLEncoder;
+import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
-import org.apache.http.client.utils.URLEncodedUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
@@ -50,6 +50,11 @@ public class EditMotivationController {
             return "content/contributor/edit-motivation";
         } else {
             Contributor contributor = (Contributor) session.getAttribute("contributor");
+            if (StringUtils.isBlank(contributor.getMotivation())) {
+                // The Contributor completed the on-boarding wizard for the first time
+                // Update registration time to trigger ContributorRegistrationSummaryScheduler
+                contributor.setRegistrationTime(Calendar.getInstance());
+            }
             contributor.setMotivation(motivation);
             contributorDao.update(contributor);
             session.setAttribute("contributor", contributor);

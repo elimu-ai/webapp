@@ -22,6 +22,16 @@
                     <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
                     <form:input path="value" cssErrorClass="error" type="number" />
                 </div>
+                
+                <div class="input-field col s12">
+                    <select id="word" name="word">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="word" items="${words}">
+                            <option value="${word.id}" <c:if test="${word.id == number.word.id}">selected="selected"</c:if>><c:out value="${word.text}" /></option>
+                        </c:forEach>
+                    </select>
+                    <label for="word"><fmt:message key="number.word" /></label>
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
@@ -32,7 +42,7 @@
 </content:section>
 
 <content:aside>
-    <%--<h5><fmt:message key="preview" /></h5>--%>
+    <h5 class="center"><fmt:message key="preview" /></h5>
     
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />

@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="applications" />
+    <fmt:message key="applications" /> (${fn:length(applications)})
 </content:title>
 
 <content:section cssId="applicationListPage">

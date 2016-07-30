@@ -12,7 +12,7 @@ import org.literacyapp.model.enums.Locale;
 public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
 
     @Override
-    public Letter readByValue(Locale locale, String text) throws DataAccessException {
+    public Letter readByText(Locale locale, String text) throws DataAccessException {
         try {
             return (Letter) em.createQuery(
                 "SELECT l " +

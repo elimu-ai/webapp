@@ -122,7 +122,7 @@ public class SlackInviteScheduler {
                             htmlText += "<p>To chat with the other team members, click the button below:</p>";
                             String buttonText = "Go to Slack channel";
                             String buttonUrl = "https://literacyapp.slack.com/messages/" + team.getSlackChannelName();
-                            Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, buttonText, buttonUrl);
+                            Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
                         }
                     } else {
                         SlackApiHelper.kickFromChannel(contributor, team);

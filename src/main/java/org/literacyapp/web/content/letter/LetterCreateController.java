@@ -53,15 +53,16 @@ public class LetterCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Letter existingLetter = letterDao.readByValue(letter.getLocale(), letter.getText());
+        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
         if (existingLetter != null) {
-            result.rejectValue("value", "NonUnique");
+            result.rejectValue("text", "NonUnique");
         }
         
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
             return "content/letter/create";
-        } else {            
+        } else {
+            letter.setText(letter.getText().toLowerCase());
             letter.setTimeLastUpdate(Calendar.getInstance());
             letterDao.create(letter);
             

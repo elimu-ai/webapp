@@ -40,12 +40,23 @@
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="applications" /></b></li>
                         <li><a href="<spring:url value='/admin/application/list' />"><i class="material-icons left">android</i><fmt:message key="applications" /></a></li>
+                        
+                        <li class="divider"></li>
+                        <li class="grey-text"><b><fmt:message key="contributors" /></b></li>
+                        <li><a href="<spring:url value='/admin/contributor/list' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
+                        <li><a href="<spring:url value='/admin/sign-on-event/list' />"><i class="material-icons left">timeline</i><fmt:message key="sign.on.events" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
                     <a href="<spring:url value='/admin' />" class="breadcrumb"><fmt:message key="administration" /></a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
+                        <c:choose>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/admin/application/list' />"><fmt:message key="applications" /></a>
+                            </c:when>
+                        </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>
                 </div>
@@ -83,7 +94,19 @@
                 </div>
             </div>
         </nav>
-        
+        <script>
+            $(function() {
+                <c:choose>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')}">
+                        $('nav').addClass('green');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application-version/')}">
+                        $('nav').addClass('green');
+                    </c:when>
+                </c:choose>
+            });
+        </script>
+                    
         <c:if test="${hasBanner}">
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">

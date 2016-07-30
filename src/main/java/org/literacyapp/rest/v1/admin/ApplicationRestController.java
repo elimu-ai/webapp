@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.literacyapp.dao.ApplicationDao;
 import org.literacyapp.dao.ApplicationVersionDao;
 import org.literacyapp.model.admin.Application;
@@ -32,20 +34,22 @@ public class ApplicationRestController {
     private ApplicationVersionDao applicationVersionDao;
     
     @RequestMapping("/list")
-    public List<String> list(
+    public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
             // TODO: checksum
             @RequestParam Locale locale,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
+            @RequestParam String applicationId,
             @RequestParam Integer appVersionCode
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
+        logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
-        List<String> applications = new ArrayList<>();
+        JSONArray applications = new JSONArray();
         for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
             ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
             
@@ -56,8 +60,13 @@ public class ApplicationRestController {
             }
             applicationGson.setApplicationVersions(applicationVersions);
             String json = new Gson().toJson(applicationGson);
-            applications.add(json);
+            applications.put(new JSONObject(json));
         }
-        return applications;
+        
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", "success");
+        jsonObject.put("applications", applications);
+        logger.info("jsonObject: " + jsonObject);
+        return jsonObject.toString();
     }
 }

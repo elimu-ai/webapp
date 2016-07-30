@@ -40,9 +40,9 @@ public class AudioController {
         Audio audio = audioDao.read(audioId);
         
         response.setContentType(audio.getContentType());
-        response.setContentLength(audio.getBytes().length);
         
         byte[] bytes = audio.getBytes();
+        response.setContentLength(bytes.length);
         try {
             outputStream.write(bytes);
         } catch (EOFException ex) {

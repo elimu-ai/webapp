@@ -17,7 +17,7 @@ public class JsonLoader {
     public static String loadJson(String urlValue) {
         logger.info("loadJson");
 
-        logger.info("Downloading from " + urlValue + "...");
+        logger.info("Downloading from " + urlValue);
 
         String jsonResponse = null;
 
@@ -38,7 +38,13 @@ public class JsonLoader {
                 inputStream = httpURLConnection.getErrorStream();
             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            jsonResponse = bufferedReader.readLine();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (jsonResponse == null) {
+                    jsonResponse = "";
+                }
+                jsonResponse += bufferedReader.readLine();
+            }
         } catch (MalformedURLException e) {
             logger.error("MalformedURLException", e);
         } catch (ProtocolException e) {

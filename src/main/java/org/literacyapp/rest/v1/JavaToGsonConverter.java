@@ -224,6 +224,7 @@ public class JavaToGsonConverter {
             wordJson.setRevisionNumber(word.getRevisionNumber());
             
             wordJson.setText(word.getText());
+            // TODO: set phonetics
             
             return wordJson;
         }

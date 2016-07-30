@@ -22,6 +22,16 @@
                     <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
                     <form:input path="value" cssErrorClass="error" type="number" />
                 </div>
+                
+                <div class="input-field col s12">
+                    <select id="word" name="word">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="word" items="${words}">
+                            <option value="${word.id}" <c:if test="${word.id == number.word.id}">selected="selected"</c:if>><c:out value="${word.text}" /></option>
+                        </c:forEach>
+                    </select>
+                    <label for="word"><fmt:message key="number.word" /></label>
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
@@ -33,41 +43,34 @@
     
     <div class="divider"></div>
     
-    <%--<p>
-        <fmt:message key="last.update" />:<br />
-        <div class="chip">
-            <img src="${number.contributor.imageUrl}" alt="" class="circle responsive-img">
-            <c:out value="${number.contributor.firstName}" />&nbsp;<c:out value="${number.contributor.lastName}" />
-        </div> 
-        <fmt:formatDate value="${number.calendar.time}" type="both" timeStyle="short" />
-    </p>--%>
-    
-    <div id="disqus_thread"></div>
-    <script>
-    /**
-    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-
-    s.src = '//literacyapp.disqus.com/embed.js';
-
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <h5><fmt:message key="revisions" /></h5>
+    <table class="bordered highlight">
+        <thead>
+            <th><fmt:message key="revision" /></th>
+            <th><fmt:message key="time" /></th>
+            <th><fmt:message key="contributor" /></th>
+        </thead>
+        <tbody>
+            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
+                <tr>
+                    <td>${fn:length(contentCreationEvents) - status.index}</td>
+                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
+                    <td>
+                        <a href="<spring:url value='/content/community/contributors' />" target="_blank">
+                            <div class="chip">
+                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
+                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </content:section>
 
 <content:aside>
-    <%--<h5><fmt:message key="preview" /></h5>--%>
+    <h5 class="center"><fmt:message key="preview" /></h5>
     
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />

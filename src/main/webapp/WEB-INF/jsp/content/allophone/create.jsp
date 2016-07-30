@@ -31,7 +31,7 @@
 </content:section>
 
 <content:aside>
-    <%--<h5><fmt:message key="preview" /></h5>--%>
+    <h5 class="center"><fmt:message key="preview" /></h5>
     
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
@@ -53,7 +53,9 @@
             function initializePreview() {
                 console.debug('initializePreview');
                 var value = $('#valueIpa').val();
-                $('#previewContent').html(value);
+                if (value != '') {
+                    $('#previewContent').html('/' + value + '/');
+                }
             };
         });
     </script>

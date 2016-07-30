@@ -13,6 +13,7 @@
                 <thead>
                     <th><fmt:message key="ipa.value" /></th>
                     <th><fmt:message key="sampa.value" /></th>
+                    <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
@@ -23,6 +24,9 @@
                             </td>
                             <td style="font-size: 2em;">
                                 ${allophone.valueSampa}
+                            </td>
+                            <td>
+                                <p>${allophone.revisionNumber}</p>
                             </td>
                             <td><a class="editLink" href="<spring:url value='/content/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
