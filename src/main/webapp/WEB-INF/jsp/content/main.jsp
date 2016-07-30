@@ -57,10 +57,15 @@
                                                 <audio 
                                                     src="<spring:url value='/audio/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.audioFormat)}' />"
                                                     controls="true">
-                                                </audio>
+                                                </audio><br />
+                                                "<c:out value="${contentCreationEvent.content.transcription}" />"
                                             </c:when>
                                             <c:when test="${contentCreationEvent.content.class.simpleName == 'Image'}">
-                                                <img src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" style="max-height: 2em;" alt="<c:out value="${contentCreationEvent.content.title}" />" />
+                                                <img 
+                                                    src="<spring:url value='/image/${contentCreationEvent.content.id}.${fn:toLowerCase(contentCreationEvent.content.imageFormat)}' />" 
+                                                    style="max-height: 2em;" 
+                                                    alt="<c:out value="${contentCreationEvent.content.title}" />" /><br />
+                                                <c:out value="${contentCreationEvent.content.title}" />
                                             </c:when>
                                             <c:when test="${contentCreationEvent.content.class.simpleName == 'Video'}">
 

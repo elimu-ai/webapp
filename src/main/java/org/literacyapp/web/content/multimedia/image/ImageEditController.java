@@ -18,6 +18,8 @@ import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.ImageFormat;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.model.enums.content.LiteracySkill;
+import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.ImageHelper;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -54,6 +56,9 @@ public class ImageEditController {
         model.addAttribute("image", image);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
+        
+        model.addAttribute("literacySkills", LiteracySkill.values());
+        model.addAttribute("numeracySkills", NumeracySkill.values());
         
         model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(image));
 
@@ -125,6 +130,8 @@ public class ImageEditController {
         if (result.hasErrors()) {
             model.addAttribute("image", image);
             model.addAttribute("contentLicenses", ContentLicense.values());
+            model.addAttribute("literacySkills", LiteracySkill.values());
+            model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(image));
             return "content/multimedia/image/edit";
         } else {

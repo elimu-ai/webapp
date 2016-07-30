@@ -18,6 +18,8 @@ import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.AudioFormat;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.model.enums.content.LiteracySkill;
+import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,9 @@ public class AudioEditController {
         model.addAttribute("audio", audio);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
+        
+        model.addAttribute("literacySkills", LiteracySkill.values());
+        model.addAttribute("numeracySkills", NumeracySkill.values());
         
         model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(audio));
 
@@ -111,6 +116,8 @@ public class AudioEditController {
         if (result.hasErrors()) {
             model.addAttribute("audio", audio);
             model.addAttribute("contentLicenses", ContentLicense.values());
+            model.addAttribute("literacySkills", LiteracySkill.values());
+            model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("contentCreationEvents", contentCreationEventDao.readAll(audio));
             return "content/multimedia/audio/edit";
         } else {

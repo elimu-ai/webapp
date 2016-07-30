@@ -18,6 +18,8 @@ import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.ImageFormat;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.model.enums.content.LiteracySkill;
+import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.ImageColorHelper;
 import org.literacyapp.util.ImageHelper;
 import org.literacyapp.util.SlackApiHelper;
@@ -55,6 +57,9 @@ public class ImageCreateController {
         model.addAttribute("image", image);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
+        
+        model.addAttribute("literacySkills", LiteracySkill.values());
+        model.addAttribute("numeracySkills", NumeracySkill.values());
 
         return "content/multimedia/image/create";
     }
@@ -123,6 +128,8 @@ public class ImageCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("contentLicenses", ContentLicense.values());
+            model.addAttribute("literacySkills", LiteracySkill.values());
+            model.addAttribute("numeracySkills", NumeracySkill.values());
             return "content/multimedia/image/create";
         } else {
             image.setTitle(image.getTitle().toLowerCase());

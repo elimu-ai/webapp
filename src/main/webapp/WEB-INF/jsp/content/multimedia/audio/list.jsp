@@ -13,6 +13,8 @@
                 <thead>
                     <th><fmt:message key="transcription" /></th>
                     <th><fmt:message key="audio" /></th>
+                    <th><fmt:message key="literacy.skills" /></th>
+                    <th><fmt:message key="numeracy.skills" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -27,6 +29,12 @@
                                     src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />"
                                     controls="true">
                                 </audio>
+                            </td>
+                            <td>
+                                ${audio.literacySkills}
+                            </td>
+                            <td>
+                                ${audio.numeracySkills}
                             </td>
                             <td>
                                 <p>${audio.revisionNumber}</p>
