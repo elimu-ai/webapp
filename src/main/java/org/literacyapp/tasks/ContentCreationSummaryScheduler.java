@@ -66,6 +66,7 @@ public class ContentCreationSummaryScheduler {
                 String htmlText = "<p>Hi, " + firstName + "</p>";
                 htmlText += "<p>This is a summary of some of the content that was uploaded to the website during the past day.</p>";
                 htmlText += "<p>The material will be used to enable children without access to school to <i>teach themselves</i> basic reading/writing/arithmetic.</p>";
+                htmlText += "<p>&nbsp;</p>";
                 
                 
                 int counterAllophones = 0;
@@ -78,6 +79,7 @@ public class ContentCreationSummaryScheduler {
                 }
                 if (counterAllophones > 0) {
                     htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
+                    htmlText += "<p>&nbsp;</p>";
                     htmlText += "<h2>Allophones</h2>";
                     counterAllophones = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
@@ -115,6 +117,7 @@ public class ContentCreationSummaryScheduler {
                 if (counterLetters > 0) {
                     htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
                     htmlText += "<h2>Letters</h2>";
+                    htmlText += "<p>&nbsp;</p>";
                     counterLetters = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
                         String className = contentCreationEvent.getContent().getClass().getSimpleName();
@@ -150,6 +153,7 @@ public class ContentCreationSummaryScheduler {
                 }
                 if (counterNumbers > 0) {
                     htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
+                    htmlText += "<p>&nbsp;</p>";
                     htmlText += "<h2>Numbers</h2>";
                     counterNumbers = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
@@ -192,6 +196,7 @@ public class ContentCreationSummaryScheduler {
                 }
                 if (counterWords > 0) {
                     htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
+                    htmlText += "<p>&nbsp;</p>";
                     htmlText += "<h2>Words</h2>";
                     counterWords = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
@@ -228,6 +233,7 @@ public class ContentCreationSummaryScheduler {
                 }
                 if (counterAudios > 0) {
                     htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
+                    htmlText += "<p>&nbsp;</p>";
                     htmlText += "<h2>Audios</h2>";
                     counterAudios = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
@@ -266,6 +272,7 @@ public class ContentCreationSummaryScheduler {
                 }
                 if (counterImages > 0) {
                     htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
+                    htmlText += "<p>&nbsp;</p>";
                     htmlText += "<h2>Images</h2>";
                     counterImages = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
@@ -305,6 +312,7 @@ public class ContentCreationSummaryScheduler {
                 }
                 if (counterVideos > 0) {
                     htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
+                    htmlText += "<p>&nbsp;</p>";
                     htmlText += "<h2>Videos</h2>";
                     counterVideos = 0;
                     for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
@@ -334,6 +342,7 @@ public class ContentCreationSummaryScheduler {
                 
                 
                 htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
+                htmlText += "<p>&nbsp;</p>";
                 htmlText += "<h2>Can you help?</h2>";
                 htmlText += "<p>Do you know about anyone else who might be interested in helping us with content creation? Please share our website with them :-)</p>";
                 htmlText += "<p>Or to upload more content, click the button below:</p>";
