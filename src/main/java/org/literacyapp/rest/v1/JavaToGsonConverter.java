@@ -93,6 +93,7 @@ public class JavaToGsonConverter {
             applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
             applicationVersionGson.setContentType(applicationVersion.getContentType());
             applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());
+            applicationVersionGson.setStartCommand(applicationVersion.getStartCommand());
             applicationVersionGson.setTimeUploaded(applicationVersion.getTimeUploaded());
             return applicationVersionGson;
         }

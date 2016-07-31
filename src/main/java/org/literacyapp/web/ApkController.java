@@ -38,7 +38,7 @@ public class ApkController {
             @PathVariable Integer versionCode,
             
             @RequestParam String deviceId,
-            // TODO: checksum
+            @RequestParam String checksum,
             @RequestParam Locale locale,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
@@ -51,6 +51,8 @@ public class ApkController {
         
         logger.info("packageName: " + packageName);
         logger.info("versionCode: " + versionCode);
+        
+        // TODO: validate checksum
         
         Application application = applicationDao.readByPackageName(locale, packageName);
         ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);

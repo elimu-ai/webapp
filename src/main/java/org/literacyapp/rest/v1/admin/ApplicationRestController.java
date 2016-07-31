@@ -37,7 +37,7 @@ public class ApplicationRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            // TODO: checksum
+            @RequestParam String checksum,
             @RequestParam Locale locale,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
@@ -48,6 +48,10 @@ public class ApplicationRestController {
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
+        
+        JSONObject jsonObject = new JSONObject();
+        
+        // TODO: validate checksum
         
         JSONArray applications = new JSONArray();
         for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
@@ -63,9 +67,10 @@ public class ApplicationRestController {
             applications.put(new JSONObject(json));
         }
         
-        JSONObject jsonObject = new JSONObject();
+        
         jsonObject.put("result", "success");
         jsonObject.put("applications", applications);
+        
         logger.info("jsonObject: " + jsonObject);
         return jsonObject.toString();
     }
