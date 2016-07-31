@@ -37,8 +37,7 @@ public class ContentCreationSummaryScheduler {
     @Autowired
     private ContentCreationEventDao contentCreationEventDao;
     
-//    @Scheduled(cron="00 00 16 * * *") // At 16:00 every day
-    @Scheduled(cron="00 00 * * * *")
+    @Scheduled(cron="00 00 16 * * *") // At 16:00 every day
     public synchronized void execute() {
         logger.info("execute");
         
@@ -343,7 +342,11 @@ public class ContentCreationSummaryScheduler {
                 
                 if ((counterAllophones > 0) 
                         || (counterLetters > 0) 
-                        || (counterNumbers > 0)) {
+                        || (counterNumbers > 0)
+                        || (counterWords > 0)
+                        || (counterAudios > 0)
+                        || (counterImages > 0)
+                        || (counterVideos > 0)) {
                     Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
                 }
             }
