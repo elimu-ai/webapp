@@ -10,8 +10,14 @@ import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Letter;
+import org.literacyapp.model.content.Word;
+import org.literacyapp.model.content.multimedia.Audio;
+import org.literacyapp.model.content.multimedia.Image;
+import org.literacyapp.model.content.multimedia.Video;
 import org.literacyapp.model.contributor.ContentCreationEvent;
+import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.Mailer;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -74,8 +80,7 @@ public class ContentCreationSummaryScheduler {
                         if ("Allophone".equals(className)) {
                             Allophone allophone = (Allophone) contentCreationEvent.getContent();
                             htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
-                            htmlText += "<p>IPA value: " + allophone.getValueIpa() + "</p>\n";
-                            htmlText += "<p>X-SAMPA value: " + allophone.getValueSampa() + "</p>\n";
+                            htmlText += "<p>IPA value: /" + allophone.getValueIpa() + "/ (X-SAMPA: " + allophone.getValueSampa() + ")</p>\n";
                             htmlText += "<p>";
                                 htmlText += "Contributor: ";
                                 if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
@@ -94,121 +99,238 @@ public class ContentCreationSummaryScheduler {
                 
                 
                 int counterLetters = 0;
-//                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
-//                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
-//                    logger.info("className: " + className);
-//                    if ("Letter".equals(className)) {
-//                        counterLetters++;
-//                    }
-//                }
-//                if (counterLetters > 0) {
-//                    htmlText += "<p></p>";
-//                    htmlText += "<h2>Letters</h2>";
-//                    htmlText += "<table>\n";
-//                        htmlText += "<thead>\n";
-//                            htmlText += "<th>Language</th>\n";
-//                            htmlText += "<th>Text</th>\n";
-//                            htmlText += "<th>Contributor</th>\n";
-//                        htmlText += "</thead>\n";
-//                        htmlText += "<tbody>";
-//                        counterLetters = 0;
-//                        for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
-//                            String className = contentCreationEvent.getContent().getClass().getSimpleName();
-//                            logger.info("className: " + className);
-//                            if ("Letter".equals(className)) {
-//                                Letter letter = (Letter) contentCreationEvent.getContent();
-//                                htmlText += "<tr>\n";
-//                                    htmlText += "<td>\n";
-//                                        htmlText += contentCreationEvent.getContent().getLocale().getLanguage() + "\n";
-//                                    htmlText += "</td>\n";
-//                                    htmlText += "<td>\n";
-//                                        htmlText += "'" + letter.getText() + "'\n";
-//                                    htmlText += "</td>\n";
-//                                    htmlText += "<td>\n";
-//                                        if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
-//                                            htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
-//                                        }
-//                                        htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName()  + "</td>\n";
-//                                    htmlText += "</td>\n";
-//                                htmlText += "</tr>";
-//
-//                                if (++counterLetters == 5) {
-//                                    break;
-//                                }
-//                            }
-//                        }
-//                        htmlText += "</tbody>\n";
-//                    htmlText += "</table>";
-//                }
+                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                    logger.info("className: " + className);
+                    if ("Letter".equals(className)) {
+                        counterLetters++;
+                    }
+                }
+                if (counterLetters > 0) {
+                    htmlText += "<p>&nbsp;</p>";
+                    htmlText += "<h2>Letters</h2>";
+                    counterLetters = 0;
+                    for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                        String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                        logger.info("className: " + className);
+                        if ("Letter".equals(className)) {
+                            Letter letter = (Letter) contentCreationEvent.getContent();
+                            htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
+                            htmlText += "<p>Text: /" + letter.getText() + "/</p>\n";
+                            htmlText += "<p>";
+                                htmlText += "Contributor: ";
+                                if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
+                                    htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
+                                }
+                                htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName() + "</p>\n";
+                            htmlText += "</p>";
+                            htmlText += "<p>&nbsp;</p>";
+
+                            if (++counterLetters == 5) {
+                                break;
+                            }
+                        }
+                    }
+                }
                 
                 
                 int counterNumbers = 0;
-//                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
-//                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
-//                    logger.info("className: " + className);
-//                    if ("Number".equals(className)) {
-//                        counterNumbers++;
-//                    }
-//                }
-//                if (counterNumbers > 0) {
-//                    htmlText += "<p></p>";
-//                    htmlText += "<h2>Numbers</h2>";
-//                    htmlText += "<table>\n";
-//                        htmlText += "<thead>\n";
-//                            htmlText += "<th>Language</th>\n";
-//                            htmlText += "<th>Value</th>\n";
-//                            htmlText += "<th>Symbol</th>\n";
-//                            htmlText += "<th>Number word</th>\n";
-//                            htmlText += "<th>Contributor</th>\n";
-//                        htmlText += "</thead>\n";
-//                        htmlText += "<tbody>";
-//                        counterNumbers = 0;
-//                        for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
-//                            String className = contentCreationEvent.getContent().getClass().getSimpleName();
-//                            logger.info("className: " + className);
-//                            if ("Number".equals(className)) {
-//                                org.literacyapp.model.content.Number number = (org.literacyapp.model.content.Number) contentCreationEvent.getContent();
-//                                htmlText += "<tr>\n";
-//                                    htmlText += "<td>\n";
-//                                        htmlText += contentCreationEvent.getContent().getLocale().getLanguage() + "\n";
-//                                    htmlText += "</td>\n";
-//                                    htmlText += "<td>\n";
-//                                        htmlText += "/" + number.getValue() + "/\n";
-//                                    htmlText += "</td>\n";
-//                                    htmlText += "<td>\n";
-//                                        htmlText += number.getSymbol() + "\n";
-//                                    htmlText += "</td>\n";
-//                                    htmlText += "<td>\n";
-//                                        htmlText += number.getWord() + "\n";
-//                                    htmlText += "</td>\n";
-//                                    htmlText += "<td>\n";
-//                                        if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
-//                                            htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
-//                                        }
-//                                        htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName()  + "</td>\n";
-//                                    htmlText += "</td>\n";
-//                                htmlText += "</tr>";
-//
-//                                if (++counterNumbers == 5) {
-//                                    break;
-//                                }
-//                            }
-//                        }
-//                        htmlText += "</tbody>\n";
-//                    htmlText += "</table>";
-//                }
+                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                    logger.info("className: " + className);
+                    if ("Number".equals(className)) {
+                        counterNumbers++;
+                    }
+                }
+                if (counterNumbers > 0) {
+                    htmlText += "<p>&nbsp;</p>";
+                    htmlText += "<h2>Numbers</h2>";
+                    counterNumbers = 0;
+                    for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                        String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                        logger.info("className: " + className);
+                        if ("Number".equals(className)) {
+                            org.literacyapp.model.content.Number number = (org.literacyapp.model.content.Number) contentCreationEvent.getContent();
+                            htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
+                            htmlText += "<p>Value: " + number.getValue() + "</p>\n";
+                            if (number.getSymbol() != null) {
+                                htmlText += "<p>Symbol: " + number.getSymbol() + "</p>\n";
+                            }
+                            if (number.getWord() != null) {
+                                htmlText += "<p>Number word: \"" + number.getWord().getText() + "\"</p>\n";
+                            }
+                            htmlText += "<p>";
+                                htmlText += "Contributor: ";
+                                if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
+                                    htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
+                                }
+                                htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName() + "</p>\n";
+                            htmlText += "</p>";
+                            htmlText += "<p>&nbsp;</p>";
+
+                            if (++counterNumbers == 5) {
+                                break;
+                            }
+                        }
+                    }
+                }
                 
                 
-                // TODO: Words
+                int counterWords = 0;
+                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                    logger.info("className: " + className);
+                    if ("Word".equals(className)) {
+                        counterWords++;
+                    }
+                }
+                if (counterWords > 0) {
+                    htmlText += "<p>&nbsp;</p>";
+                    htmlText += "<h2>Words</h2>";
+                    counterWords = 0;
+                    for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                        String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                        logger.info("className: " + className);
+                        if ("Word".equals(className)) {
+                            Word word = (Word) contentCreationEvent.getContent();
+                            htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
+                            htmlText += "<p>Text: \"" + word.getText() + "\"</p>\n";
+                            htmlText += "<p>";
+                                htmlText += "Contributor: ";
+                                if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
+                                    htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
+                                }
+                                htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName() + "</p>\n";
+                            htmlText += "</p>";
+                            htmlText += "<p>&nbsp;</p>";
+
+                            if (++counterWords == 5) {
+                                break;
+                            }
+                        }
+                    }
+                }
                 
                 
-                // TODO: Audios
+                int counterAudios = 0;
+                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                    logger.info("className: " + className);
+                    if ("Audio".equals(className)) {
+                        counterAudios++;
+                    }
+                }
+                if (counterAudios > 0) {
+                    htmlText += "<p>&nbsp;</p>";
+                    htmlText += "<h2>Audios</h2>";
+                    counterAudios = 0;
+                    for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                        String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                        logger.info("className: " + className);
+                        if ("Audio".equals(className)) {
+                            Audio audio = (Audio) contentCreationEvent.getContent();
+                            htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
+                            htmlText += "<p>Transcription: \"" + audio.getTranscription() + "\"</p>\n";
+                            htmlText += "<p>Size: " + (audio.getBytes().length / 1024) + "kB</p>\n";
+                            htmlText += "<p>Audio format: " + audio.getAudioFormat() + "</p>\n";
+                            htmlText += "<p>";
+                                htmlText += "Contributor: ";
+                                if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
+                                    htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
+                                }
+                                htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName() + "</p>\n";
+                            htmlText += "</p>";
+                            htmlText += "<p>&nbsp;</p>";
+
+                            if (++counterAudios == 5) {
+                                break;
+                            }
+                        }
+                    }
+                }
                 
                 
-                // TODO: Images
+                int counterImages = 0;
+                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                    logger.info("className: " + className);
+                    if ("Image".equals(className)) {
+                        counterImages++;
+                    }
+                }
+                if (counterImages > 0) {
+                    htmlText += "<p>&nbsp;</p>";
+                    htmlText += "<h2>Images</h2>";
+                    counterImages = 0;
+                    for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                        String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                        logger.info("className: " + className);
+                        if ("Image".equals(className)) {
+                            Image image = (Image) contentCreationEvent.getContent();
+                            String baseUrl = "http://localhost:8080/literacyapp-webapp";
+                            if (EnvironmentContextLoaderListener.env == Environment.TEST) {
+                                baseUrl = "http://test.literacyapp.org";
+                            } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                                baseUrl = "http://literacyapp.org";
+                            }
+                            htmlText += "<p><img src=\"" + baseUrl + "/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase() + "\" alt=\"\" style=\"max-height: 2em;\"></p>\n";
+                            htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
+                            htmlText += "<p>Title: \"" + image.getTitle() + "\"</p>\n";
+                            htmlText += "<p>Size: " + (image.getBytes().length / 1024) + "kB</p>\n";
+                            htmlText += "<p>Image format: " + image.getImageFormat() + "</p>\n";
+                            htmlText += "<p>";
+                                htmlText += "Contributor: ";
+                                if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
+                                    htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
+                                }
+                                htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName() + "</p>\n";
+                            htmlText += "</p>";
+                            htmlText += "<p>&nbsp;</p>";
+
+                            if (++counterImages == 5) {
+                                break;
+                            }
+                        }
+                    }
+                }
                 
                 
-                // TODO: Videos
+                int counterVideos = 0;
+                for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                    String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                    logger.info("className: " + className);
+                    if ("Video".equals(className)) {
+                        counterVideos++;
+                    }
+                }
+                if (counterVideos > 0) {
+                    htmlText += "<p>&nbsp;</p>";
+                    htmlText += "<h2>Videos</h2>";
+                    counterVideos = 0;
+                    for (ContentCreationEvent contentCreationEvent : contentCreationEvents) {
+                        String className = contentCreationEvent.getContent().getClass().getSimpleName();
+                        logger.info("className: " + className);
+                        if ("Video".equals(className)) {
+                            Video video = (Video) contentCreationEvent.getContent();
+                            htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
+                            htmlText += "<p>Title: \"" + video.getTitle() + "\"</p>\n";
+                            htmlText += "<p>Size: " + (video.getBytes().length / 1024) + "kB</p>\n";
+                            htmlText += "<p>Video format: " + video.getVideoFormat() + "</p>\n";
+                            htmlText += "<p>";
+                                htmlText += "Contributor: ";
+                                if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
+                                    htmlText += "<img src=\"" + contentCreationEvent.getContributor().getImageUrl() + "\" alt=\"\" style=\"max-height: 1em; border-radius: 50%;\"> ";
+                                }
+                                htmlText += contentCreationEvent.getContributor().getFirstName() + " " + contentCreationEvent.getContributor().getLastName() + "</p>\n";
+                            htmlText += "</p>";
+                            htmlText += "<p>&nbsp;</p>";
+
+                            if (++counterVideos == 5) {
+                                break;
+                            }
+                        }
+                    }
+                }
                 
                 
                 htmlText += "<p>&nbsp;</p>";

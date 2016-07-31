@@ -14,6 +14,7 @@
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
         <link rel="stylesheet" href="<spring:url value='/css/styles.css?version=' /><content:getversion />" />
+        <link href="https://fonts.googleapis.com/css?family=Andika" rel="stylesheet" />
         <link rel="stylesheet" href="<spring:url value='/css/content/styles.css?version=' /><content:getversion />" />
         
         <%-- JavaScripts --%>
