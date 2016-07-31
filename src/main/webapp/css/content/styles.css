@@ -36,7 +36,7 @@ nav {
 .previewContainer #previewContent.previewContentGrapheme {
     background: #FFF;
     font-size: 10em;
-    /*font-family: ...;*/ 
+    font-family: "Andika", "Source Sans Pro", Arial, Verdana, sans-serif;
 }
 #wordCreatePage .previewContainer #previewContent.previewContentGrapheme,
 #wordEditPage .previewContainer #previewContent.previewContentGrapheme {
