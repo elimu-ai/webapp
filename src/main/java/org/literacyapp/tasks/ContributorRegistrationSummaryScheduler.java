@@ -7,7 +7,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.enums.Environment;
 import org.literacyapp.util.Mailer;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -38,6 +40,13 @@ public class ContributorRegistrationSummaryScheduler {
         if (!contributorsRegisteredRecently.isEmpty()) {
             // Send summary to existing Contributors
             for (Contributor contributor : contributorDao.readAll()) {
+                String baseUrl = "http://localhost:8080/literacyapp-webapp";
+                if (EnvironmentContextLoaderListener.env == Environment.TEST) {
+                    baseUrl = "http://test.literacyapp.org";
+                } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                    baseUrl = "http://literacyapp.org";
+                }
+                
                 String to = contributor.getEmail();
                 String from = "LiteracyApp <info@literacyapp.org>";
                 Locale locale = new Locale("en");
@@ -61,9 +70,10 @@ public class ContributorRegistrationSummaryScheduler {
                         continue;
                     }
                     
+                    htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
                     htmlText += "<p>" + contributorRegisteredRecently.getFirstName() + " " + contributorRegisteredRecently.getLastName() + "</p>";
                     if (StringUtils.isNotBlank(contributorRegisteredRecently.getImageUrl())) {
-                        htmlText += "<img src=\"" + contributorRegisteredRecently.getImageUrl() + "\" alt=\"\" style=\"max-height: 2em; border-radius: 50%;\">";
+                        htmlText += "<img src=\"" + contributorRegisteredRecently.getImageUrl() + "\" alt=\"\" style=\"max-height: 5em; border-radius: 50%;\">";
                     }
                     htmlText += "<p>Language: " + messageSource.getMessage("language." + contributorRegisteredRecently.getLocale().getLanguage(), null, locale) + "</p>";
                     htmlText += "<p>Teams: " + contributorRegisteredRecently.getTeams() + "</p>";
@@ -75,10 +85,10 @@ public class ContributorRegistrationSummaryScheduler {
                     }
                 }
                 
-                htmlText += "<hr />";
+                htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
                 htmlText += "<p>Do you want to learn more about the new (and existing) contributors?</p>";
                 String buttonText = "See complete list of contributors";
-                String buttonUrl = "http://literacyapp,org/content/community/contributors";
+                String buttonUrl = baseUrl + "/content/community/contributors";
                 
                 if (counter > 0) {
                     Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
