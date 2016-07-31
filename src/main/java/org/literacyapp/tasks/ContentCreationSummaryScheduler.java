@@ -357,7 +357,7 @@ public class ContentCreationSummaryScheduler {
                         || (counterAudios > 0)
                         || (counterImages > 0)
                         || (counterVideos > 0)) {
-                    Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
+                    Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, buttonText, buttonUrl);
                 }
             }
         }
