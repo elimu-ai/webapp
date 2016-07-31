@@ -64,8 +64,9 @@ public class ContentCreationSummaryScheduler {
                 String title = subject;
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
                 String htmlText = "<p>Hi, " + firstName + "</p>";
-                htmlText += "<p>This is a summary of some of the content that was uploaded to the website during the past day.</p>";
-                htmlText += "<p>The material will be used to enable children without access to school to <i>teach themselves</i> basic reading/writing/arithmetic.</p>";
+                htmlText += "<p><blockquote>\"The mission of the LiteracyApp project is to build software that will enable children with little or no access to school to <i>teach themselves</i> basic reading, writing and arithmetic.\"</blockquote></p>";
+                htmlText += "<p><img src=\"http://literacyapp.org/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
+                htmlText += "<p>Below is a summary of some of the content that was uploaded to the website during the past day, and that the children will be interacting with on their tablets:</p>";
                 htmlText += "<p>&nbsp;</p>";
                 
                 
@@ -125,7 +126,7 @@ public class ContentCreationSummaryScheduler {
                         if ("Letter".equals(className)) {
                             Letter letter = (Letter) contentCreationEvent.getContent();
                             htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
-                            htmlText += "<p>Text: /" + letter.getText() + "/</p>\n";
+                            htmlText += "<p>Text: '" + letter.getText() + "'</p>\n";
                             htmlText += "<p>";
                                 htmlText += "Contributor: ";
                                 if (StringUtils.isNotBlank(contentCreationEvent.getContributor().getImageUrl())) {
@@ -356,7 +357,7 @@ public class ContentCreationSummaryScheduler {
                         || (counterAudios > 0)
                         || (counterImages > 0)
                         || (counterVideos > 0)) {
-                    Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
+                    Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, buttonText, buttonUrl);
                 }
             }
         }

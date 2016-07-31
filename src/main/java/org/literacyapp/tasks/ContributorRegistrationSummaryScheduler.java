@@ -90,7 +90,7 @@ public class ContributorRegistrationSummaryScheduler {
                 String buttonUrl = baseUrl + "/content/community/contributors";
                 
                 if (counter > 0) {
-                    Mailer.sendHtmlWithButton(to, from, from, subject, title, htmlText, buttonText, buttonUrl);
+                    Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, buttonText, buttonUrl);
                 }
             }
         }
