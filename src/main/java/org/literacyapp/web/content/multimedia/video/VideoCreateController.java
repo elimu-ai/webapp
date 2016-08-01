@@ -132,9 +132,9 @@ public class VideoCreateController {
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
                         contributor.getFirstName() + " just added a new Video:\n" + 
-                        "• Language: \"" + video.getLocale().getLanguage() + "\"\n" + 
+                        "• Language: " + video.getLocale().getLanguage() + "\n" + 
                         "• Title: \"" + video.getTitle() + "\"\n" + 
-                        "• Video format: \"" + video.getVideoFormat() + "\"\n" + 
+                        "• Video format: " + video.getVideoFormat() + "\n" + 
                         "See ") + "http://literacyapp.org/content/multimedia/video/list";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase());

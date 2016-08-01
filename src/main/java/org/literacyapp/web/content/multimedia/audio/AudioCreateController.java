@@ -134,9 +134,9 @@ public class AudioCreateController {
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
                         contributor.getFirstName() + " just added a new Audio:\n" + 
-                        "• Language: \"" + audio.getLocale().getLanguage() + "\"\n" + 
+                        "• Language: " + audio.getLocale().getLanguage() + "\n" + 
                         "• Transcription: \"" + audio.getTranscription() + "\"\n" + 
-                        "• Audio format: \"" + audio.getAudioFormat() + "\"\n" + 
+                        "• Audio format: " + audio.getAudioFormat() + "\n" + 
                         "See ") + "http://literacyapp.org/content/multimedia/audio/list";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase());

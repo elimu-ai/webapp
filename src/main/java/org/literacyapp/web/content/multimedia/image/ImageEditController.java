@@ -151,9 +151,9 @@ public class ImageEditController {
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
                         contributor.getFirstName() + " just edited an Image:\n" + 
-                        "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
+                        "• Language: " + image.getLocale().getLanguage() + "\n" + 
                         "• Title: \"" + image.getTitle() + "\"\n" + 
-                        "• Image format: \"" + image.getImageFormat() + "\"\n" + 
+                        "• Image format: " + image.getImageFormat() + "\n" + 
                         "See ") + "http://literacyapp.org/content/multimedia/image/list";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
