@@ -75,7 +75,15 @@ public class AllophoneListController {
     private List<Allophone> generateAllophones(Locale locale) {
         List<Allophone> allophones = new ArrayList<>();
         
-        // TODO
+        if (locale == Locale.AR) {
+            // TODO
+        } else if (locale == Locale.EN) {
+            // TODO
+        } else if (locale == Locale.ES) {
+            // TODO
+        } else if (locale == Locale.SW) {
+            // TODO
+        }
         
         return allophones;
     }

@@ -28,7 +28,7 @@ nav {
     font-size: 5em;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: 0 50%;
+    background-position: 50% 50%;
     -ms-transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
     -webkit-transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
     transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);

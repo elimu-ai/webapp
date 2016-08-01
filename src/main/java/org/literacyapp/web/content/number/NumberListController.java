@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.NumberDao;
+import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Number;
 import org.literacyapp.model.enums.Locale;
@@ -31,6 +32,9 @@ public class NumberListController {
     
     @Autowired
     private NumberDao numberDao;
+    
+    @Autowired
+    private WordDao wordDao;
     
     @Autowired
     private ContentCreationEventDao contentCreationEventDao;
@@ -73,6 +77,10 @@ public class NumberListController {
         return "content/number/list";
     }
     
+    /**
+     * Note: number words should be generated _before_ adding them to their 
+     * corresponding numbers.
+     */
     private List<Number> generateNumbers(Locale locale) {
         List<Number> numbers = new ArrayList<>();
         
@@ -83,8 +91,14 @@ public class NumberListController {
         number0.setValue(0);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number0.setWord(wordDao.readByText(locale, "zero"));
+        } else if (locale == Locale.ES) {
+            number0.setWord(wordDao.readByText(locale, "cero"));
+        } else if (locale == Locale.SW) {
+            number0.setWord(wordDao.readByText(locale, "sufuri"));
         }
-        // TODO: set number Word
         numbers.add(number0);
         
         Number number1 = new Number();
@@ -94,8 +108,14 @@ public class NumberListController {
         number1.setValue(1);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number1.setWord(wordDao.readByText(locale, "one"));
+        } else if (locale == Locale.ES) {
+            number1.setWord(wordDao.readByText(locale, "uno"));
+        } else if (locale == Locale.SW) {
+            number1.setWord(wordDao.readByText(locale, "moja"));
         }
-        // TODO: set number Word
         numbers.add(number1);
         
         Number number2 = new Number();
@@ -105,8 +125,14 @@ public class NumberListController {
         number2.setValue(2);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number2.setWord(wordDao.readByText(locale, "two"));
+        } else if (locale == Locale.ES) {
+            number2.setWord(wordDao.readByText(locale, "dos"));
+        } else if (locale == Locale.SW) {
+            number2.setWord(wordDao.readByText(locale, "mbili"));
         }
-        // TODO: set number Word
         numbers.add(number2);
         
         Number number3 = new Number();
@@ -116,8 +142,14 @@ public class NumberListController {
         number3.setValue(3);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number3.setWord(wordDao.readByText(locale, "three"));
+        } else if (locale == Locale.ES) {
+            number3.setWord(wordDao.readByText(locale, "tres"));
+        } else if (locale == Locale.SW) {
+            number3.setWord(wordDao.readByText(locale, "tatu"));
         }
-        // TODO: set number Word
         numbers.add(number3);
         
         Number number4 = new Number();
@@ -127,8 +159,14 @@ public class NumberListController {
         number4.setValue(4);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number4.setWord(wordDao.readByText(locale, "four"));
+        } else if (locale == Locale.ES) {
+            number4.setWord(wordDao.readByText(locale, "cuatro"));
+        } else if (locale == Locale.SW) {
+            number4.setWord(wordDao.readByText(locale, "nne"));
         }
-        // TODO: set number Word
         numbers.add(number4);
         
         Number number5 = new Number();
@@ -138,8 +176,14 @@ public class NumberListController {
         number5.setValue(5);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number5.setWord(wordDao.readByText(locale, "five"));
+        } else if (locale == Locale.ES) {
+            number5.setWord(wordDao.readByText(locale, "cinco"));
+        } else if (locale == Locale.SW) {
+            number5.setWord(wordDao.readByText(locale, "tano"));
         }
-        // TODO: set number Word
         numbers.add(number5);
         
         Number number6 = new Number();
@@ -149,8 +193,14 @@ public class NumberListController {
         number6.setValue(6);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number6.setWord(wordDao.readByText(locale, "six"));
+        } else if (locale == Locale.ES) {
+            number6.setWord(wordDao.readByText(locale, "seis"));
+        } else if (locale == Locale.SW) {
+            number6.setWord(wordDao.readByText(locale, "sita"));
         }
-        // TODO: set number Word
         numbers.add(number6);
         
         Number number7 = new Number();
@@ -160,8 +210,14 @@ public class NumberListController {
         number7.setValue(7);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number7.setWord(wordDao.readByText(locale, "seven"));
+        } else if (locale == Locale.ES) {
+            number7.setWord(wordDao.readByText(locale, "siete"));
+        } else if (locale == Locale.SW) {
+            number7.setWord(wordDao.readByText(locale, "saba"));
         }
-        // TODO: set number Word
         numbers.add(number7);
         
         Number number8 = new Number();
@@ -171,8 +227,14 @@ public class NumberListController {
         number8.setValue(8);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number8.setWord(wordDao.readByText(locale, "eight"));
+        } else if (locale == Locale.ES) {
+            number8.setWord(wordDao.readByText(locale, "ocho"));
+        } else if (locale == Locale.SW) {
+            number8.setWord(wordDao.readByText(locale, "nane"));
         }
-        // TODO: set number Word
         numbers.add(number8);
         
         Number number9 = new Number();
@@ -182,8 +244,14 @@ public class NumberListController {
         number9.setValue(9);
         if (locale == Locale.AR) {
             // TODO: set symbol
+            // TODO: set number word
+        } else if (locale == Locale.EN) {
+            number9.setWord(wordDao.readByText(locale, "nine"));
+        } else if (locale == Locale.ES) {
+            number9.setWord(wordDao.readByText(locale, "nueve"));
+        } else if (locale == Locale.SW) {
+            number9.setWord(wordDao.readByText(locale, "tisa"));
         }
-        // TODO: set number Word
         numbers.add(number9);
         
         return numbers;
