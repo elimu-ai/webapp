@@ -56,7 +56,8 @@ html[lang="es"] #index-banner {
     border-radius: 2px;
 }
 
-img {
+img,
+video {
     max-width: 100%;
 }
 
