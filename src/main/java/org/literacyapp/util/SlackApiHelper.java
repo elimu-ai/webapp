@@ -82,7 +82,7 @@ public class SlackApiHelper {
         String response = null;
         
         try {
-            URL url = new URL (BASE_URL + "/chat.postMessage?token=" + API_TOKEN + "&as_user=false" + "&username=LiteracyApp" + "&unfurl_links=true" + "&channel=" + channelId + "&text=" + text + iconUrlParameter + imageUrlParameter);
+            URL url = new URL (BASE_URL + "/chat.postMessage?token=" + API_TOKEN + "&as_user=false" + "&username=LiteracyApp" + "&unfurl_links=false" + "&channel=" + channelId + "&text=" + text + iconUrlParameter + imageUrlParameter);
             logger.info("url: " + url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
