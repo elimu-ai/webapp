@@ -43,7 +43,7 @@ public class JsonLoader {
                 if (jsonResponse == null) {
                     jsonResponse = "";
                 }
-                jsonResponse += bufferedReader.readLine();
+                jsonResponse += line;
             }
         } catch (MalformedURLException e) {
             logger.error("MalformedURLException", e);

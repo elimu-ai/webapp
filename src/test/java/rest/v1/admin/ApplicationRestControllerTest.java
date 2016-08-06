@@ -30,6 +30,7 @@ public class ApplicationRestControllerTest {
                 "&locale=" + Locale.EN + 
                 "&deviceModel=Google+Pixel+C" + 
                 "&osVersion=" + VersionRestController.MINIMUM_OS_VERSION + 
+                "&applicationId=org.literacyapp.appstore" + 
                 "&appVersionCode=" + VersionRestController.NEWEST_VERSION_APPSTORE);
         logger.info("jsonResponse: " + jsonResponse);
         JSONObject jsonObject = new JSONObject(jsonResponse);
