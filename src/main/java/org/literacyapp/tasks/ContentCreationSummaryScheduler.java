@@ -42,8 +42,7 @@ public class ContentCreationSummaryScheduler {
         logger.info("execute");
         
         Calendar calendarFrom = Calendar.getInstance();
-//        calendarFrom.add(Calendar.DAY_OF_MONTH, -1);
-        calendarFrom.add(Calendar.HOUR_OF_DAY, -1);
+        calendarFrom.add(Calendar.DAY_OF_MONTH, -1);
         Calendar calendarTo = Calendar.getInstance();
         List<ContentCreationEvent> contentCreationEvents = contentCreationEventDao.readAll(calendarFrom, calendarTo);
         logger.info("contentCreationEvents.size(): " + contentCreationEvents.size());

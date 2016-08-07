@@ -21,7 +21,7 @@
                     <select id="contentLicense" name="contentLicense">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
-                            <option value="${contentLicense.id}" <c:if test="${contentLicense == video.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
+                            <option value="${contentLicense}" <c:if test="${contentLicense == video.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
                     <label for="contentLicense"><fmt:message key="content.license" /></label>

@@ -31,8 +31,7 @@ public class ContributorRegistrationSummaryScheduler {
         logger.info("execute");
         
         Calendar calendarFrom = Calendar.getInstance();
-//        calendarFrom.add(Calendar.DAY_OF_MONTH, -1);
-        calendarFrom.add(Calendar.HOUR_OF_DAY, -1);
+        calendarFrom.add(Calendar.DAY_OF_MONTH, -1);
         Calendar calendarTo = Calendar.getInstance();
         List<Contributor> contributorsRegisteredRecently = contributorDao.readAll(calendarFrom, calendarTo);
         logger.info("contributorsRegisteredRecently.size(): " + contributorsRegisteredRecently.size());
