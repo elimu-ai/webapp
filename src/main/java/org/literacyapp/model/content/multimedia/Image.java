@@ -16,7 +16,7 @@ public class Image extends Multimedia {
     
     @NotNull
     @Lob
-    @Column(length=4194304) // 4MB
+    @Column(length=10485760) // 10MB
     private byte[] bytes;
     
     @NotNull
