@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class VersionRestController {
     
     public static final Integer NEWEST_VERSION_APPSTORE = 1001000; // 1.1.0 (2016-07-30)
-    public static final Integer NEWEST_VERSION_LITERACYAPP = 1001004; // 1.1.4 (2016-06-08)
+    public static final Integer NEWEST_VERSION_LITERACYAPP = 1001006; // 1.1.6 (2016-08-07)
     public static final Integer NEWEST_VERSION_CHAT = 1000000; // 1.0.0 (2016-07-30)
     
     public static final Integer MINIMUM_OS_VERSION = 21; // Android 5.0

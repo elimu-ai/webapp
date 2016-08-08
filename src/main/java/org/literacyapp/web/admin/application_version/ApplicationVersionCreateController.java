@@ -1,6 +1,7 @@
 package org.literacyapp.web.admin.application_version;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -14,7 +15,11 @@ import org.literacyapp.dao.ApplicationVersionDao;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.admin.ApplicationStatus;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -122,6 +127,16 @@ public class ApplicationVersionCreateController {
             if (application.getApplicationStatus() == ApplicationStatus.MISSING_APK) {
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
                 applicationDao.update(application);
+            }
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                        contributor.getFirstName() + " just uploaded a new APK version:\n" + 
+                        "• Language: " + applicationVersion.getApplication().getLocale().getLanguage() + "\n" + 
+                        "• Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"\n" + 
+                        "• Version: " + applicationVersion.getVersionCode());
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(Team.DEVELOPMENT, text, iconUrl, null);
             }
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
