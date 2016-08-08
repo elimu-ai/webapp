@@ -51,6 +51,8 @@ public class ApkController {
         
         logger.info("packageName: " + packageName);
         logger.info("versionCode: " + versionCode);
+        logger.info("request.getQueryString(): " + request.getQueryString());
+        logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
         // TODO: validate checksum
         

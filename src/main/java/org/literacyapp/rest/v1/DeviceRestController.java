@@ -40,6 +40,7 @@ public class DeviceRestController {
         logger.info("create");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
+        logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
         JSONObject jSONObject = new JSONObject();
         Device device = deviceDao.read(deviceId);
