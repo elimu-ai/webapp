@@ -1,5 +1,6 @@
 package org.literacyapp.rest.v1;
 
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.literacyapp.dao.ApplicationDao;
@@ -20,7 +21,7 @@ public class VersionRestController {
     
     public static final Integer NEWEST_VERSION_APPSTORE = 1001000; // 1.1.0 (2016-07-30)
     public static final Integer NEWEST_VERSION_LITERACYAPP = 1001006; // 1.1.6 (2016-08-07)
-    public static final Integer NEWEST_VERSION_CHAT = 1000000; // 1.0.0 (2016-07-30)
+    public static final Integer NEWEST_VERSION_CHAT = 1001002; // 1.1.2 (2016-08-08)
     
     public static final Integer MINIMUM_OS_VERSION = 21; // Android 5.0
     
@@ -31,11 +32,15 @@ public class VersionRestController {
     
     @RequestMapping("/read")
     public String read(
+            HttpServletRequest request,
             @RequestParam Locale locale,
             @RequestParam String applicationId,
             @RequestParam Integer appVersionCode,
             @RequestParam String osVersion) {
         logger.info("read");
+        
+        logger.info("request.getQueryString(): " + request.getQueryString());
+        logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
         Application application = applicationDao.readByPackageName(locale, "org.literacyapp");
         if (application != null) {
