@@ -56,13 +56,9 @@ public class MailChimpApiHelper {
             InputStream inputStream = null;
             if (responseCode == 200) {
                 inputStream = connection.getInputStream();
-            } else {
-                inputStream = connection.getErrorStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                memberInfo = bufferedReader.readLine();
             }
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            memberInfo = bufferedReader.readLine();
-        } catch (FileNotFoundException ex) {
-            logger.warn("email not found: " + email);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
@@ -185,7 +181,7 @@ public class MailChimpApiHelper {
             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String response = bufferedReader.readLine();
-            logger.debug("responseCode: " + responseCode);
+            logger.info("response: " + response);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
