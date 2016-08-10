@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.Set;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.literacyapp.model.Contributor;
@@ -92,6 +93,9 @@ public class MailChimpApiHelper {
             JSONObject dataMergeFields = new JSONObject();
             dataMergeFields.put("FNAME", contributor.getFirstName());
             dataMergeFields.put("LNAME", contributor.getLastName());
+            if (StringUtils.isNotBlank(contributor.getMotivation())) {
+                dataMergeFields.put("MOTIVATION", contributor.getMotivation());
+            }
             // TODO: add more fields
             messageBody.put("merge_fields", dataMergeFields);
             
