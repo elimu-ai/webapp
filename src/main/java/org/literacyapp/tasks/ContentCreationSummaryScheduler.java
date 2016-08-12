@@ -280,7 +280,7 @@ public class ContentCreationSummaryScheduler {
                         logger.info("className: " + className);
                         if ("Image".equals(className)) {
                             Image image = (Image) contentCreationEvent.getContent();
-                            htmlText += "<p><img src=\"" + baseUrl + "/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase() + "\" alt=\"\" style=\"max-height: 2em;\"></p>\n";
+//                            htmlText += "<p><img src=\"" + baseUrl + "/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase() + "\" alt=\"\" style=\"max-height: 2em;\"></p>\n";
                             htmlText += "<p>Language: " + contentCreationEvent.getContent().getLocale().getLanguage() + "</p>\n";
                             htmlText += "<p>Title: \"" + image.getTitle() + "\"</p>\n";
                             htmlText += "<p>Size: " + (image.getBytes().length / 1024) + "kB</p>\n";
