@@ -118,6 +118,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                     PROPERTIES.put("slack.api.token", slackApiToken);
                 }
                 
+                String appstoreSecret = (String) servletContext.getAttribute("appstore_secret");
+                PROPERTIES.put("appstore.secret", appstoreSecret);
+                
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
                 logger.error(null, ex);

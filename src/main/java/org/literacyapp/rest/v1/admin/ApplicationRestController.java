@@ -15,6 +15,7 @@ import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.admin.ApplicationStatus;
 import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
+import org.literacyapp.rest.v1.ChecksumHelper;
 import org.literacyapp.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,27 +52,30 @@ public class ApplicationRestController {
         
         JSONObject jsonObject = new JSONObject();
         
-        // TODO: validate checksum
-        
-        JSONArray applications = new JSONArray();
-        for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
-            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
-            
-            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
-            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
-                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
-                applicationVersions.add(applicationVersionGson);
+        if (!checksum.equals(ChecksumHelper.getChecksum(deviceId))) {
+            jsonObject.put("result", "error");
+            jsonObject.put("description", "Incorrect checksum: " + checksum);
+            return jsonObject.toString();
+        } else {        
+            JSONArray applications = new JSONArray();
+            for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
+                ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
+
+                List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+                for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
+                    ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                    applicationVersions.add(applicationVersionGson);
+                }
+                applicationGson.setApplicationVersions(applicationVersions);
+                String json = new Gson().toJson(applicationGson);
+                applications.put(new JSONObject(json));
             }
-            applicationGson.setApplicationVersions(applicationVersions);
-            String json = new Gson().toJson(applicationGson);
-            applications.put(new JSONObject(json));
+
+            jsonObject.put("result", "success");
+            jsonObject.put("applications", applications);
+
+            logger.info("jsonObject: " + jsonObject);
+            return jsonObject.toString();
         }
-        
-        
-        jsonObject.put("result", "success");
-        jsonObject.put("applications", applications);
-        
-        logger.info("jsonObject: " + jsonObject);
-        return jsonObject.toString();
     }
 }

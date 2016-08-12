@@ -134,7 +134,8 @@ public class ApplicationVersionCreateController {
                         contributor.getFirstName() + " just uploaded a new APK version:\n" + 
                         "• Language: " + applicationVersion.getApplication().getLocale().getLanguage() + "\n" + 
                         "• Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"\n" + 
-                        "• Version: " + applicationVersion.getVersionCode());
+                        "• Version: " + applicationVersion.getVersionCode() + "\n" +
+                        "• Start command: " + applicationVersion.getStartCommand());
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.DEVELOPMENT, text, iconUrl, null);
             }

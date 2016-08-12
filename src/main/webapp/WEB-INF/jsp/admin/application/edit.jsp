@@ -37,6 +37,7 @@
                             <thead>
                                 <th><fmt:message key="version.code" /></th>
                                 <th><fmt:message key="file.size" /></th>
+                                <th><fmt:message key="start.command" /></th>
                                 <th><fmt:message key="time.uploaded" /></th>
                                 <th><fmt:message key="contributor" /></th>
                             </thead>
@@ -45,6 +46,7 @@
                                     <tr>
                                         <td>${applicationVersion.versionCode}</td>
                                         <td><fmt:formatNumber value="${fn:length(applicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB</td>
+                                        <td><c:out value="${applicationVersion.startCommand}" /></td>
                                         <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
                                         <td>
                                             <div class="chip">
