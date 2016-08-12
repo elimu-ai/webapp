@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.literacyapp.model.enums.Locale;
+import org.literacyapp.rest.v1.ChecksumHelper;
 import org.literacyapp.rest.v1.VersionRestController;
 import org.literacyapp.util.JsonLoader;
 import selenium.DomainHelper;
@@ -26,7 +27,7 @@ public class ApplicationRestControllerTest {
     public void testList_success() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/admin/application/list" +
                 "?deviceId=abcdef123456" + 
-                "&checksum=" + "..." +
+                "&checksum=c0e08c173958ce4f1624068b131e3c59" + 
                 "&locale=" + Locale.EN + 
                 "&deviceModel=Google+Pixel+C" + 
                 "&osVersion=" + VersionRestController.MINIMUM_OS_VERSION + 
