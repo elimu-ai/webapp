@@ -15,14 +15,19 @@
 
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
-                <form:hidden path="applicationStatus" value="${application.applicationStatus}" />
                 <form:hidden path="contributor" value="${contributor.id}" />
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
                     <form:hidden path="packageName" value="${application.packageName}" />
                 </div>
                 <div class="input-field col s6">
-                    <fmt:message key='status' />: ${application.applicationStatus}
+                    <select id="applicationStatus" name="applicationStatus">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="applicationStatus" items="${applicationStatuses}">
+                            <option value="${applicationStatus}" <c:if test="${applicationStatus == application.applicationStatus}">selected="selected"</c:if>><c:out value="${applicationStatus}" /></option>
+                        </c:forEach>
+                    </select>
+                    <label for="applicationStatus"><fmt:message key="status" /></label>
                 </div>
             </div>
             

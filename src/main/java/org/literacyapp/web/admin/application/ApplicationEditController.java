@@ -13,6 +13,7 @@ import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.model.enums.admin.ApplicationStatus;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.SlackApiHelper;
@@ -47,6 +48,8 @@ public class ApplicationEditController {
         Application application = applicationDao.read(id);
         model.addAttribute("application", application);
         
+        model.addAttribute("applicationStatuses", ApplicationStatus.values());
+        
         List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
         model.addAttribute("applicationVersions", applicationVersions);
         
@@ -67,8 +70,15 @@ public class ApplicationEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("application", application);
+            
+            model.addAttribute("applicationStatuses", ApplicationStatus.values());
+            
+            List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
+            model.addAttribute("applicationVersions", applicationVersions);
+            
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
+            
             return "admin/application/edit";
         } else {
             applicationDao.update(application);
