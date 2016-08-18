@@ -15,7 +15,7 @@ public class ContentCreationEventDaoJpa extends GenericDaoJpa<ContentCreationEve
         return em.createQuery(
             "SELECT event " +
             "FROM ContentCreationEvent event " +
-            "WHERE event.locale = :locale " +
+            "WHERE event.content.locale = :locale " +
             "ORDER BY event.calendar DESC")
             .setParameter("locale", locale)
             .setMaxResults(maxResults)
