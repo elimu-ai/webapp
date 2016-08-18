@@ -48,7 +48,7 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-motivation";
         }
         
-        List<ContentCreationEvent> contentCreationEvents = contentCreationEventDao.readAll(100);
+        List<ContentCreationEvent> contentCreationEvents = contentCreationEventDao.readAll(contributor.getLocale(), 100);
         model.addAttribute("contentCreationEvents", contentCreationEvents);
     	
         return "content/main";
