@@ -5,16 +5,19 @@ import java.util.List;
 import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.model.content.Content;
 import org.literacyapp.model.contributor.ContentCreationEvent;
+import org.literacyapp.model.enums.Locale;
 import org.springframework.dao.DataAccessException;
 
 public class ContentCreationEventDaoJpa extends GenericDaoJpa<ContentCreationEvent> implements ContentCreationEventDao {
 
     @Override
-    public List<ContentCreationEvent> readAll(int maxResults) throws DataAccessException {
+    public List<ContentCreationEvent> readAll(Locale locale, int maxResults) throws DataAccessException {
         return em.createQuery(
             "SELECT event " +
             "FROM ContentCreationEvent event " +
+            "WHERE event.locale = :locale " +
             "ORDER BY event.calendar DESC")
+            .setParameter("locale", locale)
             .setMaxResults(maxResults)
             .getResultList();
     }
