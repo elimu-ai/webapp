@@ -29,7 +29,7 @@ public abstract class Content extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private ContentStatus contentStatus;
+    private ContentStatus contentStatus = ContentStatus.ACTIVE;
 
     public Locale getLocale() {
         return locale;
