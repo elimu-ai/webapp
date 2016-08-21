@@ -9,6 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.literacyapp.model.BaseEntity;
 import org.literacyapp.model.enums.Locale;
+import org.literacyapp.model.enums.content.ContentStatus;
 
 /**
  * Parent class for different types of educational content.
@@ -25,6 +26,10 @@ public abstract class Content extends BaseEntity {
     
     @NotNull
     private Integer revisionNumber; // [1, 2, 3, ...]
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ContentStatus contentStatus;
 
     public Locale getLocale() {
         return locale;
@@ -48,5 +53,13 @@ public abstract class Content extends BaseEntity {
 
     public void setRevisionNumber(Integer revisionNumber) {
         this.revisionNumber = revisionNumber;
+    }
+
+    public ContentStatus getContentStatus() {
+        return contentStatus;
+    }
+
+    public void setContentStatus(ContentStatus contentStatus) {
+        this.contentStatus = contentStatus;
     }
 }
