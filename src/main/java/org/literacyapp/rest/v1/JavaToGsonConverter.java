@@ -34,6 +34,7 @@ public class JavaToGsonConverter {
             audioGson.setLocale(audio.getLocale());
             audioGson.setTimeLastUpdate(audio.getTimeLastUpdate());
             audioGson.setRevisionNumber(audio.getRevisionNumber());
+            audioGson.setContentStatus(audio.getContentStatus());
             
             audioGson.setFileUrl("/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase());
             audioGson.setFileSize(audio.getBytes().length / 1024);
@@ -59,6 +60,7 @@ public class JavaToGsonConverter {
             allophoneGson.setLocale(allophone.getLocale());
             allophoneGson.setTimeLastUpdate(allophone.getTimeLastUpdate());
             allophoneGson.setRevisionNumber(allophone.getRevisionNumber());
+            allophoneGson.setContentStatus(allophone.getContentStatus());
             
             allophoneGson.setValueIpa(allophone.getValueIpa());
             allophoneGson.setValueSampa(allophone.getValueSampa());
@@ -137,6 +139,7 @@ public class JavaToGsonConverter {
             imageGson.setLocale(image.getLocale());
             imageGson.setTimeLastUpdate(image.getTimeLastUpdate());
             imageGson.setRevisionNumber(image.getRevisionNumber());
+            imageGson.setContentStatus(image.getContentStatus());
             
             imageGson.setFileUrl("/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
             imageGson.setFileSize(image.getBytes().length / 1024);
@@ -162,6 +165,7 @@ public class JavaToGsonConverter {
             letterJson.setLocale(letter.getLocale());
             letterJson.setTimeLastUpdate(letter.getTimeLastUpdate());
             letterJson.setRevisionNumber(letter.getRevisionNumber());
+            letterJson.setContentStatus(letter.getContentStatus());
             
             letterJson.setText(letter.getText());
             
@@ -179,6 +183,7 @@ public class JavaToGsonConverter {
             numberJson.setLocale(number.getLocale());
             numberJson.setTimeLastUpdate(number.getTimeLastUpdate());
             numberJson.setRevisionNumber(number.getRevisionNumber());
+            numberJson.setContentStatus(number.getContentStatus());
             
             numberJson.setValue(number.getValue());
             numberJson.setSymbol(number.getSymbol());
@@ -198,6 +203,7 @@ public class JavaToGsonConverter {
             videoGson.setLocale(video.getLocale());
             videoGson.setTimeLastUpdate(video.getTimeLastUpdate());
             videoGson.setRevisionNumber(video.getRevisionNumber());
+            videoGson.setContentStatus(video.getContentStatus());
             
             videoGson.setFileUrl("/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase());
             videoGson.setFileSize(video.getBytes().length / 1024);
@@ -223,6 +229,7 @@ public class JavaToGsonConverter {
             wordJson.setLocale(word.getLocale());
             wordJson.setTimeLastUpdate(word.getTimeLastUpdate());
             wordJson.setRevisionNumber(word.getRevisionNumber());
+            wordJson.setContentStatus(word.getContentStatus());
             
             wordJson.setText(word.getText());
             // TODO: set phonetics
