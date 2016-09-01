@@ -27,7 +27,7 @@
         </c:if>
         <c:if test="${fn:contains(contributor.teams, 'TESTING')}">
             <li>
-                <a href="https://trello.com/b/kD1Kuh5M/team-testing" target="_blank">Team: Testing</a>
+                <a href="https://trello.com/b/kD1Kuh5M/team-qa-testing" target="_blank">Team: Testing</a>
             </li>
         </c:if>
         <c:if test="${fn:contains(contributor.teams, 'TRANSLATION')}">
