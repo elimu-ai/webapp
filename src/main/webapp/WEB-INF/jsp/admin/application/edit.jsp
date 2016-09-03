@@ -75,13 +75,10 @@
                     </blockquote>
                     <div class="divider"></div>
                     <c:forEach var="literacySkill" items="${literacySkills}">
-                        <p>
-                            <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(application.literacySkills, literacySkill)}">checked="checked"</c:if> />
-                            <label for="${literacySkill}">
-                                <b><fmt:message key="literacy.skill.${literacySkill}" /></b>
-                                <br /><fmt:message key="literacy.skill.${literacySkill}.description" />
-                            </label>
-                        </p>
+                        <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(application.literacySkills, literacySkill)}">checked="checked"</c:if> />
+                        <label for="${literacySkill}">
+                            <fmt:message key="literacy.skill.${literacySkill}" />
+                        </label><br />
                     </c:forEach>
                 </div>
 
@@ -92,14 +89,10 @@
                     </blockquote>
                     <div class="divider"></div>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
-                        <p>
-                            <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(application.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
-                            <label for="${numeracySkill}">
-                                <b><fmt:message key="numeracy.skill.${numeracySkill}" /></b><br />
-                                <img src="<spring:url value="/img/admin/EGMA_${numeracySkill}.png" />" alt="<fmt:message key="numeracy.skill.${numeracySkill}" />" /><br />
-                                <fmt:message key="numeracy.skill.${numeracySkill}.description" />
-                            </label>
-                        </p>
+                        <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(application.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
+                        <label for="${numeracySkill}">
+                            <fmt:message key="numeracy.skill.${numeracySkill}" />
+                        </label><br />
                     </c:forEach>
                 </div>
             </div>
