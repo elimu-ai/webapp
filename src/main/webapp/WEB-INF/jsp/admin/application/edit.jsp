@@ -73,7 +73,6 @@
                     <blockquote>
                         What <i>literacy</i> skill(s) does the application teach?
                     </blockquote>
-                    <div class="divider"></div>
                     <c:forEach var="literacySkill" items="${literacySkills}">
                         <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(application.literacySkills, literacySkill)}">checked="checked"</c:if> />
                         <label for="${literacySkill}">
@@ -87,7 +86,6 @@
                     <blockquote>
                         What <i>numeracy</i> skill(s) does the application teach?
                     </blockquote>
-                    <div class="divider"></div>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
                         <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(application.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
                         <label for="${numeracySkill}">
