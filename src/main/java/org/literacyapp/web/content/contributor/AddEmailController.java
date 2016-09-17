@@ -88,7 +88,7 @@ public class AddEmailController {
             htmlText += "<p>Within the next hour, we will send you an invite to join our Slack channel (to " + contributor.getEmail() + "). There you can chat with the other community members.</p>";
             htmlText += "<h2>Feedback</h2>";
             htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in Slack.</p>";
-            Mailer.sendHtml(to, from, from, subject, title, htmlText);
+            Mailer.sendHtml(to, null, from, subject, title, htmlText);
 
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 // Post notification in Slack
