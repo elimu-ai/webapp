@@ -1,10 +1,14 @@
 package org.literacyapp.web.content.contributor;
 
+import java.net.URLEncoder;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/content/contributor/edit-name")
-public class EditNameController {
+@RequestMapping("/content/contributor/edit-time")
+public class EditTimeController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
@@ -24,29 +28,33 @@ public class EditNameController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
     	logger.info("handleRequest");
-        
-        // TODO: fetch from MailChimp and pre-fill
 
-        return "content/contributor/edit-name";
+        return "content/contributor/edit-time";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
-            @RequestParam String firstName,
-            @RequestParam String lastName,
+            @RequestParam Integer timePerWeek,
             Model model) {
     	logger.info("handleSubmit");
         
-        logger.info("firstName: " + firstName);
-        logger.info("lastName: " + lastName);
-        // TODO: validate firstName/lastName
+        logger.info("timePerWeek: " + timePerWeek);
+        // TODO: validate timePerWeek
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        contributor.setFirstName(firstName);
-        contributor.setLastName(lastName);
+        contributor.setTimePerWeek(timePerWeek);
         contributorDao.update(contributor);
         session.setAttribute("contributor", contributor);
+        
+        if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+            String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just updated his/her available time:\n" + 
+                    contributor.getTimePerWeek() + " minutes per week\n" +
+                    "See ") + "http://literacyapp.org/content/community/contributors";
+            String iconUrl = contributor.getImageUrl();
+            SlackApiHelper.postMessage(null, text, iconUrl, null);
+        }
     	
         return "redirect:/content";
     }

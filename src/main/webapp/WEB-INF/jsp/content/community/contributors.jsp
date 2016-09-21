@@ -48,6 +48,9 @@
                     <p><b><fmt:message key="personal.motivation" /></b></p>
                     <p>"<c:out value="${contributor.motivation}" />"</p>
                     
+                    <p><b><fmt:message key="time.available.per.week" /></b></p>
+                    <p><c:out value="${contributor.timePerWeek}" /> <fmt:message key="minutes" /></p>
+                    
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <div class="divider"></div>
                         
