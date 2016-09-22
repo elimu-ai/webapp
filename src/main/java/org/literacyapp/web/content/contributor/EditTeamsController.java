@@ -1,5 +1,6 @@
 package org.literacyapp.web.content.contributor;
 
+import java.net.URLEncoder;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -7,7 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ContributorDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +58,16 @@ public class EditTeamsController {
             contributor.setTeams(teams);
             contributorDao.update(contributor);
             session.setAttribute("contributor", contributor);
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                        contributor.getFirstName() + " just updated his/her team(s):\n" + 
+                        contributor.getTeams() + "\n" + 
+                        "See ") + "http://literacyapp.org/content/community/contributors";
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(null, text, iconUrl, null);
+            }
+            
             return "redirect:/content";
         }
     }

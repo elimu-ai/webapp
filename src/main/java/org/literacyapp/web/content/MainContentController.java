@@ -46,6 +46,8 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-teams";
         } else if (StringUtils.isBlank(contributor.getMotivation())) {
             return "redirect:/content/contributor/edit-motivation";
+        } else if (contributor.getTimePerWeek() == null) {
+            return "redirect:/content/contributor/edit-time";
         }
         
         List<ContentCreationEvent> contentCreationEvents = contentCreationEventDao.readAll(contributor.getLocale(), 100);

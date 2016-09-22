@@ -50,21 +50,21 @@ public class EditMotivationController {
             return "content/contributor/edit-motivation";
         } else {
             Contributor contributor = (Contributor) session.getAttribute("contributor");
+            
             if (StringUtils.isBlank(contributor.getMotivation())) {
                 // The Contributor completed the on-boarding wizard for the first time
                 // Update registration time to trigger ContributorRegistrationSummaryScheduler
                 contributor.setRegistrationTime(Calendar.getInstance());
             }
+            
             contributor.setMotivation(motivation);
             contributorDao.update(contributor);
             session.setAttribute("contributor", contributor);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
-                        contributor.getFirstName() + " just updated his/her information:\n" + 
-                        "• Language: \"" + contributor.getLocale().getLanguage() + "\"\n" + 
-                        "• Teams: " + contributor.getTeams() + "\n" + 
-                        "• Personal motivation: \"" + contributor.getMotivation() + "\"\n" +
+                        contributor.getFirstName() + " just updated his/her personal motivation:\n" + 
+                        "> \"" + contributor.getMotivation() + "\"\n" +
                         "See ") + "http://literacyapp.org/content/community/contributors";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(null, text, iconUrl, null);
