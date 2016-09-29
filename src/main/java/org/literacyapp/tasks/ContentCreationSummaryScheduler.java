@@ -37,7 +37,7 @@ public class ContentCreationSummaryScheduler {
     @Autowired
     private ContentCreationEventDao contentCreationEventDao;
     
-    @Scheduled(cron="00 00 16 * * *") // At 16:00 every day
+//    @Scheduled(cron="00 00 16 * * *") // At 16:00 every day
     public synchronized void execute() {
         logger.info("execute");
         
