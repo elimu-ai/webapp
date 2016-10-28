@@ -4,6 +4,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -17,7 +18,7 @@ public class Student extends BaseEntity {
     private Locale locale;
     
     @NotEmpty
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Device> devices;
 
     public Locale getLocale() {
