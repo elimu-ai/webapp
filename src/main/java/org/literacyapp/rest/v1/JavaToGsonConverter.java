@@ -1,7 +1,5 @@
 package org.literacyapp.rest.v1;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.content.Word;
@@ -109,21 +107,21 @@ public class JavaToGsonConverter {
             
             deviceJson.setId(device.getId());
             deviceJson.setDeviceId(device.getDeviceId());
-            deviceJson.setDeviceModel(device.getDeviceModel());
-            deviceJson.setTimeRegistered(device.getTimeRegistered());
-            deviceJson.setOsVersion(device.getOsVersion());
-            deviceJson.setLocale(device.getLocale());
-            
-            Set<DeviceGson> devicesNearby = new HashSet<DeviceGson>();
-            for (Device deviceNearby : device.getDevicesNearby()) {
-                DeviceGson deviceJsonNearby = getDeviceGson(deviceNearby);
-                if (deviceJsonNearby != null) {
-                    devicesNearby.add(deviceJsonNearby);
-                }
-            }
-            if (!devicesNearby.isEmpty()) {
-                deviceJson.setDevicesNearby(devicesNearby);
-            }
+//            deviceJson.setDeviceModel(device.getDeviceModel());
+//            deviceJson.setTimeRegistered(device.getTimeRegistered());
+//            deviceJson.setOsVersion(device.getOsVersion());
+//            deviceJson.setLocale(device.getLocale());
+//            
+//            Set<DeviceGson> devicesNearby = new HashSet<DeviceGson>();
+//            for (Device deviceNearby : device.getDevicesNearby()) {
+//                DeviceGson deviceJsonNearby = getDeviceGson(deviceNearby);
+//                if (deviceJsonNearby != null) {
+//                    devicesNearby.add(deviceJsonNearby);
+//                }
+//            }
+//            if (!devicesNearby.isEmpty()) {
+//                deviceJson.setDevicesNearby(devicesNearby);
+//            }
             
             return deviceJson;
         }
