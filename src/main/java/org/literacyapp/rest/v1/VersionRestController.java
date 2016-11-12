@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest/v1/version")
 public class VersionRestController {
     
-    public static final Integer NEWEST_VERSION_APPSTORE = 1001000; // 1.1.0 (2016-07-30)
+    public static final Integer NEWEST_VERSION_APPSTORE = 1001008; // 1.1.8 (2016-11-12)
     public static final Integer NEWEST_VERSION_LITERACYAPP = 1001006; // 1.1.6 (2016-08-07)
     public static final Integer NEWEST_VERSION_CHAT = 1001002; // 1.1.2 (2016-08-08)
     
