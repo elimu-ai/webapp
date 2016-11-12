@@ -58,7 +58,7 @@ public class ApplicationRestController {
             return jsonObject.toString();
         } else {        
             JSONArray applications = new JSONArray();
-            for (Application application : applicationDao.readAllByStatus(locale, ApplicationStatus.ACTIVE)) {
+            for (Application application : applicationDao.readAll(locale)) {
                 ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
 
                 List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
