@@ -63,7 +63,7 @@ public class EditLocaleController {
                          "\"" + contributor.getLocale().getLanguage() + "\"\n" +
                         "See ") + "http://literacyapp.org/content/community/contributors";
                 String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(null, text, iconUrl, null);
+//                SlackApiHelper.postMessage(null, text, iconUrl, null);
             }
 
             return "redirect:/content";
