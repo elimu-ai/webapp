@@ -3,10 +3,10 @@ package org.literacyapp.model.content.multimedia;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.literacyapp.model.content.Content;
@@ -17,9 +17,8 @@ import org.literacyapp.model.enums.content.NumeracySkill;
 /**
  * Parent class for different types of multimedia (images, audios, etc).
  */
-@Entity
-// TODO: change to abstract class
-public class Multimedia extends Content {
+@MappedSuperclass
+public abstract class Multimedia extends Content {
     
     @NotNull
     private String contentType;
