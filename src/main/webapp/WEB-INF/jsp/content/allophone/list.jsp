@@ -20,7 +20,7 @@
                     <c:forEach var="allophone" items="${allophones}">
                         <tr class="allophone">
                             <td style="font-size: 2em;">
-                                ${allophone.valueIpa}
+                                /${allophone.valueIpa}/
                             </td>
                             <td style="font-size: 2em;">
                                 ${allophone.valueSampa}

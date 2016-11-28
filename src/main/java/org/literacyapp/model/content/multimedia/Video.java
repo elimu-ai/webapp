@@ -11,6 +11,7 @@ import org.literacyapp.model.enums.content.VideoFormat;
 @Entity
 public class Video extends Multimedia {
     
+//    @NotNull
     private String title;
     
     @NotNull

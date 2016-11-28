@@ -230,7 +230,7 @@ public class JavaToGsonConverter {
             wordJson.setContentStatus(word.getContentStatus());
             
             wordJson.setText(word.getText());
-            // TODO: set phonetics
+            wordJson.setPhonetics(word.getPhonetics());
             
             return wordJson;
         }
