@@ -93,7 +93,7 @@ public class AllophoneEditController {
                 String text = URLEncoder.encode(
                         contentCreationEvent.getContributor().getFirstName() + " just edited an Allophone (speech sound):\n" + 
                         "• Language: \"" + allophone.getLocale().getLanguage() + "\"\n" + 
-                        "• IPA: \"" + allophone.getValueIpa() + "\"\n" + 
+                        "• IPA: \"/" + allophone.getValueIpa() + "/\"\n" + 
                         "• X-SAMPA: \"" + allophone.getValueSampa() + "\"\n" + 
                         "See ") + "http://literacyapp.org/content/allophone/list";
                 String iconUrl = contentCreationEvent.getContributor().getImageUrl();

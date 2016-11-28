@@ -18,6 +18,7 @@ import org.literacyapp.model.enums.content.NumeracySkill;
  * Parent class for different types of multimedia (images, audios, etc).
  */
 @Entity
+// TODO: change to abstract class
 public class Multimedia extends Content {
     
     @NotNull
