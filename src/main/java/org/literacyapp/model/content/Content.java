@@ -25,7 +25,7 @@ public abstract class Content extends BaseEntity {
     private Calendar timeLastUpdate;
     
     @NotNull
-    private Integer revisionNumber; // [1, 2, 3, ...]
+    private Integer revisionNumber = 1; // [1, 2, 3, ...]
     
     @NotNull
     @Enumerated(EnumType.STRING)

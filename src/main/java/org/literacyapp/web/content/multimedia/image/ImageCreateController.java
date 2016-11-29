@@ -1,7 +1,6 @@
 package org.literacyapp.web.content.multimedia.image;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,21 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
-import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.ImageDao;
-import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Image;
-import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.ContentLicense;
-import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.ImageFormat;
-import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.ImageColorHelper;
 import org.literacyapp.util.ImageHelper;
-import org.literacyapp.util.SlackApiHelper;
-import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,16 +36,12 @@ public class ImageCreateController {
     
     @Autowired
     private ImageDao imageDao;
-    
-    @Autowired
-    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
         Image image = new Image();
-        image.setRevisionNumber(1);
         model.addAttribute("image", image);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
@@ -137,25 +125,6 @@ public class ImageCreateController {
             image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
-            
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
-            
-            ContentCreationEvent contentCreationEvent = new ContentCreationEvent();
-            contentCreationEvent.setContributor(contributor);
-            contentCreationEvent.setContent(image);
-            contentCreationEvent.setCalendar(Calendar.getInstance());
-            contentCreationEventDao.create(contentCreationEvent);
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(
-                        contributor.getFirstName() + " just added a new Image:\n" + 
-                        "• Language: " + image.getLocale().getLanguage() + "\n" + 
-                        "• Title: \"" + image.getTitle() + "\"\n" + 
-                        "• Image format: " + image.getImageFormat() + "\n" + 
-                        "See ") + "http://literacyapp.org/content/multimedia/image/list";
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
-            }
             
             return "redirect:/content/multimedia/image/list";
         }

@@ -1,17 +1,13 @@
 package org.literacyapp.web.content;
 
 import java.security.Principal;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
-import org.literacyapp.dao.ContentCreationEventDao;
-import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.Contributor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainContentController {
     
     private final Logger logger = Logger.getLogger(getClass());
-    
-    @Autowired
-    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -49,9 +42,6 @@ public class MainContentController {
         } else if (contributor.getTimePerWeek() == null) {
             return "redirect:/content/contributor/edit-time";
         }
-        
-        List<ContentCreationEvent> contentCreationEvents = contentCreationEventDao.readAll(contributor.getLocale(), 100);
-        model.addAttribute("contentCreationEvents", contentCreationEvents);
     	
         return "content/main";
     }

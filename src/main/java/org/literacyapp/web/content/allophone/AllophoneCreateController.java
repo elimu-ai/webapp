@@ -8,10 +8,8 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
-import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
-import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Team;
 import org.literacyapp.util.SlackApiHelper;
@@ -34,9 +32,6 @@ public class AllophoneCreateController {
     private AllophoneDao allophoneDao;
     
     @Autowired
-    private ContentCreationEventDao contentCreationEventDao;
-    
-    @Autowired
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -44,7 +39,6 @@ public class AllophoneCreateController {
     	logger.info("handleRequest");
         
         Allophone allophone = new Allophone();
-        allophone.setRevisionNumber(1);
         model.addAttribute("allophone", allophone);
 
         return "content/allophone/create";
@@ -79,25 +73,6 @@ public class AllophoneCreateController {
         } else {
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophoneDao.create(allophone);
-            
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
-            
-            ContentCreationEvent contentCreationEvent = new ContentCreationEvent();
-            contentCreationEvent.setContributor(contributor);
-            contentCreationEvent.setContent(allophone);
-            contentCreationEvent.setCalendar(Calendar.getInstance());
-            contentCreationEventDao.create(contentCreationEvent);
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(
-                        contributor.getFirstName() + " just added a new Allophone (speech sound):\n" + 
-                        "• Language: \"" + allophone.getLocale().getLanguage() + "\"\n" + 
-                        "• IPA: \"/" + allophone.getValueIpa() + "/\"\n" + 
-                        "• X-SAMPA: \"" + allophone.getValueSampa() + "\"\n" + 
-                        "See ") + "http://literacyapp.org/content/allophone/list";
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
-            }
             
             return "redirect:/content/allophone/list";
         }
