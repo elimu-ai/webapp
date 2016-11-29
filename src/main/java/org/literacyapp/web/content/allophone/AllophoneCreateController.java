@@ -1,6 +1,5 @@
 package org.literacyapp.web.content.allophone;
 
-import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -8,12 +7,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
-import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
-import org.literacyapp.model.enums.Environment;
-import org.literacyapp.model.enums.Team;
-import org.literacyapp.util.SlackApiHelper;
-import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
