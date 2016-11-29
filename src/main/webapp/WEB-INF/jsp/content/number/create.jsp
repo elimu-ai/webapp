@@ -31,6 +31,7 @@
                         </c:forEach>
                     </select>
                     <label for="word"><fmt:message key="number.word" /></label>
+                    <a href="<spring:url value='/content/number/create' />" target="_blank"><fmt:message key="add.word" /></a>
                 </div>
             </div>
 

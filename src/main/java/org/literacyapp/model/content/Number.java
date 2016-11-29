@@ -12,7 +12,7 @@ public class Number extends Content {
     
     private String symbol;
     
-    // TODO: @NotNull
+    @NotNull
     @OneToOne
     private Word word;
 
