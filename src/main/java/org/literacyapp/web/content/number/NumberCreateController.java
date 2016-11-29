@@ -39,7 +39,6 @@ public class NumberCreateController {
     	logger.info("handleRequest");
         
         Number number = new Number();
-        number.setRevisionNumber(1);
         model.addAttribute("number", number);
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");

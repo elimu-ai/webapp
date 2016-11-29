@@ -63,7 +63,6 @@ public class LetterListController {
         for (String letterString : letterStringArray) {
             Letter letter = new Letter();
             letter.setLocale(locale);
-            letter.setRevisionNumber(1);
             letter.setTimeLastUpdate(Calendar.getInstance());
             letter.setText(letterString);
             letters.add(letter);

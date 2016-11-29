@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.word;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
@@ -52,47 +53,44 @@ public class WordListController {
         
         // Add number words
 
-//        Word wordZero = new Word();
-//        wordZero.setLocale(locale);
-//        wordZero.setRevisionNumber(1);
-//        wordZero.setTimeLastUpdate(Calendar.getInstance());
-//        if (locale == Locale.AR) {
-//            // TODO: set text
-//            // TODO: set phonetics
-//        } else if (locale == Locale.EN) {
-//            wordZero.setText("zero");
-//            wordZero.setPhonetics("TODO");
-//        } else if (locale == Locale.ES) {
-//            wordZero.setText("cero");
-//            wordZero.setPhonetics("TODO");
-//        } else if (locale == Locale.SW) {
-//            wordZero.setText("sufuri");
-//            wordZero.setPhonetics("TODO");
-//        }
-//        words.add(wordZero);
-//
-//        Word wordOne = new Word();
-//        wordOne.setLocale(locale);
-//        wordOne.setRevisionNumber(1);
-//        wordOne.setTimeLastUpdate(Calendar.getInstance());
-//        if (locale == Locale.AR) {
-//            // TODO: set text
-//            // TODO: set phonetics
-//        } else if (locale == Locale.EN) {
-//            wordOne.setText("one");
-//            wordOne.setPhonetics("TODO");
-//        } else if (locale == Locale.ES) {
-//            wordOne.setText("uno");
-//            wordOne.setPhonetics("TODO");
-//        } else if (locale == Locale.SW) {
-//            wordOne.setText("moja");
-//            wordOne.setPhonetics("TODO");
-//        }
-//        words.add(wordOne);
-//
+        Word wordZero = new Word();
+        wordZero.setLocale(locale);
+        wordZero.setTimeLastUpdate(Calendar.getInstance());
+        if (locale == Locale.AR) {
+            // TODO: set text
+            // TODO: set phonetics
+        } else if (locale == Locale.EN) {
+            wordZero.setText("zero");
+            wordZero.setPhonetics("ˈzɪroʊ");
+        } else if (locale == Locale.ES) {
+            wordZero.setText("cero");
+//            wordZero.setPhonetics(TODO);
+        } else if (locale == Locale.SW) {
+            wordZero.setText("sufuri");
+//            wordZero.setPhonetics(TODO);
+        }
+        words.add(wordZero);
+
+        Word wordOne = new Word();
+        wordOne.setLocale(locale);
+        wordOne.setTimeLastUpdate(Calendar.getInstance());
+        if (locale == Locale.AR) {
+            // TODO: set text
+            // TODO: set phonetics
+        } else if (locale == Locale.EN) {
+            wordOne.setText("one");
+            wordOne.setPhonetics("wʌn");
+        } else if (locale == Locale.ES) {
+            wordOne.setText("uno");
+//            wordOne.setPhonetics(TODO);
+        } else if (locale == Locale.SW) {
+            wordOne.setText("moja");
+//            wordOne.setPhonetics(TODO);
+        }
+        words.add(wordOne);
+
 //        Word wordTwo = new Word();
 //        wordTwo.setLocale(locale);
-//        wordTwo.setRevisionNumber(1);
 //        wordTwo.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text
@@ -111,7 +109,6 @@ public class WordListController {
 //
 //        Word wordThree = new Word();
 //        wordThree.setLocale(locale);
-//        wordThree.setRevisionNumber(1);
 //        wordThree.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text
@@ -130,7 +127,6 @@ public class WordListController {
 //
 //        Word wordFour = new Word();
 //        wordFour.setLocale(locale);
-//        wordFour.setRevisionNumber(1);
 //        wordFour.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text
@@ -149,7 +145,6 @@ public class WordListController {
 //
 //        Word wordFive = new Word();
 //        wordFive.setLocale(locale);
-//        wordFive.setRevisionNumber(1);
 //        wordFive.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text
@@ -168,7 +163,6 @@ public class WordListController {
 //
 //        Word wordSix = new Word();
 //        wordSix.setLocale(locale);
-//        wordSix.setRevisionNumber(1);
 //        wordSix.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text
@@ -187,7 +181,6 @@ public class WordListController {
 //
 //        Word wordSeven = new Word();
 //        wordSeven.setLocale(locale);
-//        wordSeven.setRevisionNumber(1);
 //        wordSeven.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text
@@ -206,7 +199,6 @@ public class WordListController {
 //
 //        Word wordEight = new Word();
 //        wordEight.setLocale(locale);
-//        wordEight.setRevisionNumber(1);
 //        wordEight.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text
@@ -225,7 +217,6 @@ public class WordListController {
 //
 //        Word wordNine = new Word();
 //        wordNine.setLocale(locale);
-//        wordNine.setRevisionNumber(1);
 //        wordNine.setTimeLastUpdate(Calendar.getInstance());
 //        if (locale == Locale.AR) {
 //            // TODO: set text

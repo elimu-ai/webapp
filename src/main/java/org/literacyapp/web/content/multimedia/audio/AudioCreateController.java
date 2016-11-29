@@ -40,7 +40,6 @@ public class AudioCreateController {
     	logger.info("handleRequest");
         
         Audio audio = new Audio();
-        audio.setRevisionNumber(1);
         model.addAttribute("audio", audio);
         
         model.addAttribute("contentLicenses", ContentLicense.values());

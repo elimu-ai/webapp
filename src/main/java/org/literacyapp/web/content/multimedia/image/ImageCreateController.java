@@ -42,7 +42,6 @@ public class ImageCreateController {
     	logger.info("handleRequest");
         
         Image image = new Image();
-        image.setRevisionNumber(1);
         model.addAttribute("image", image);
         
         model.addAttribute("contentLicenses", ContentLicense.values());

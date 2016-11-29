@@ -39,7 +39,6 @@ public class AllophoneCreateController {
     	logger.info("handleRequest");
         
         Allophone allophone = new Allophone();
-        allophone.setRevisionNumber(1);
         model.addAttribute("allophone", allophone);
 
         return "content/allophone/create";

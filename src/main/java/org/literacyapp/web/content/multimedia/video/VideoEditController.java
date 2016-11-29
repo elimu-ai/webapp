@@ -107,7 +107,7 @@ public class VideoEditController {
         } else {
             video.setTitle(video.getTitle().toLowerCase());
             video.setTimeLastUpdate(Calendar.getInstance());
-            video.setRevisionNumber(Integer.MIN_VALUE);
+            video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
             
             return "redirect:/content/multimedia/video/list";

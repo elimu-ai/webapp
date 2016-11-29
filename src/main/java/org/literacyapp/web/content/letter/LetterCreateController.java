@@ -28,7 +28,6 @@ public class LetterCreateController {
     	logger.info("handleRequest");
         
         Letter letter = new Letter();
-        letter.setRevisionNumber(1);
         model.addAttribute("letter", letter);
 
         return "content/letter/create";

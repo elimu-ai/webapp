@@ -60,7 +60,6 @@ public class NumberListController {
         
         Number number0 = new Number();
         number0.setLocale(locale);
-        number0.setRevisionNumber(1);
         number0.setTimeLastUpdate(Calendar.getInstance());
         number0.setValue(0);
         if (locale == Locale.AR) {
@@ -77,7 +76,6 @@ public class NumberListController {
         
         Number number1 = new Number();
         number1.setLocale(locale);
-        number1.setRevisionNumber(1);
         number1.setTimeLastUpdate(Calendar.getInstance());
         number1.setValue(1);
         if (locale == Locale.AR) {
@@ -94,7 +92,6 @@ public class NumberListController {
         
         Number number2 = new Number();
         number2.setLocale(locale);
-        number2.setRevisionNumber(1);
         number2.setTimeLastUpdate(Calendar.getInstance());
         number2.setValue(2);
         if (locale == Locale.AR) {
@@ -111,7 +108,6 @@ public class NumberListController {
         
         Number number3 = new Number();
         number3.setLocale(locale);
-        number3.setRevisionNumber(1);
         number3.setTimeLastUpdate(Calendar.getInstance());
         number3.setValue(3);
         if (locale == Locale.AR) {
@@ -128,7 +124,6 @@ public class NumberListController {
         
         Number number4 = new Number();
         number4.setLocale(locale);
-        number4.setRevisionNumber(1);
         number4.setTimeLastUpdate(Calendar.getInstance());
         number4.setValue(4);
         if (locale == Locale.AR) {
@@ -145,7 +140,6 @@ public class NumberListController {
         
         Number number5 = new Number();
         number5.setLocale(locale);
-        number5.setRevisionNumber(1);
         number5.setTimeLastUpdate(Calendar.getInstance());
         number5.setValue(5);
         if (locale == Locale.AR) {
@@ -162,7 +156,6 @@ public class NumberListController {
         
         Number number6 = new Number();
         number6.setLocale(locale);
-        number6.setRevisionNumber(1);
         number6.setTimeLastUpdate(Calendar.getInstance());
         number6.setValue(6);
         if (locale == Locale.AR) {
@@ -179,7 +172,6 @@ public class NumberListController {
         
         Number number7 = new Number();
         number7.setLocale(locale);
-        number7.setRevisionNumber(1);
         number7.setTimeLastUpdate(Calendar.getInstance());
         number7.setValue(7);
         if (locale == Locale.AR) {
@@ -196,7 +188,6 @@ public class NumberListController {
         
         Number number8 = new Number();
         number8.setLocale(locale);
-        number8.setRevisionNumber(1);
         number8.setTimeLastUpdate(Calendar.getInstance());
         number8.setValue(8);
         if (locale == Locale.AR) {
@@ -213,7 +204,6 @@ public class NumberListController {
         
         Number number9 = new Number();
         number9.setLocale(locale);
-        number9.setRevisionNumber(1);
         number9.setTimeLastUpdate(Calendar.getInstance());
         number9.setValue(9);
         if (locale == Locale.AR) {

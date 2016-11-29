@@ -4,7 +4,7 @@
 
 <content:section cssId="mainContentPage">
     <div class="section row">
-        <h4><fmt:message key="latest.uploads" /> (<fmt:message key="language.${contributor.locale.language}" />)</h4>
+        <%--<h4><fmt:message key="latest.uploads" /> (<fmt:message key="language.${contributor.locale.language}" />)</h4>--%>
         
         <%-- TODO: show progress bar for each content type --%>
         

@@ -40,7 +40,6 @@ public class VideoCreateController {
     	logger.info("handleRequest");
         
         Video video = new Video();
-        video.setRevisionNumber(1);
         model.addAttribute("video", video);
         
         model.addAttribute("contentLicenses", ContentLicense.values());

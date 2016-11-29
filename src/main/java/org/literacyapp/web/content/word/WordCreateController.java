@@ -28,7 +28,6 @@ public class WordCreateController {
     	logger.info("handleRequest");
         
         Word word = new Word();
-        word.setRevisionNumber(1);
         model.addAttribute("word", word);
 
         return "content/word/create";

@@ -109,7 +109,7 @@ public class AudioEditController {
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
-            audio.setRevisionNumber(Integer.MIN_VALUE);
+            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
             
             return "redirect:/content/multimedia/audio/list";

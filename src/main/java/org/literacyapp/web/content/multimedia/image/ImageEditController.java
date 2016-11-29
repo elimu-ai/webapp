@@ -123,7 +123,7 @@ public class ImageEditController {
         } else {
             image.setTitle(image.getTitle().toLowerCase());
             image.setTimeLastUpdate(Calendar.getInstance());
-            image.setRevisionNumber(Integer.MIN_VALUE);
+            image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
             
             return "redirect:/content/multimedia/image/list";
