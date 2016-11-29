@@ -66,8 +66,8 @@ public class WordListController {
             wordZero.setText("cero");
 //            wordZero.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
-            wordZero.setText("sufuri");
-//            wordZero.setPhonetics(TODO);
+            wordZero.setText("sifuri");
+            wordZero.setPhonetics("siˈfuɾi");
         }
         words.add(wordZero);
 
@@ -85,7 +85,7 @@ public class WordListController {
 //            wordOne.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordOne.setText("moja");
-//            wordOne.setPhonetics(TODO);
+            wordOne.setPhonetics("ˈmɔja");
         }
         words.add(wordOne);
 
@@ -103,7 +103,7 @@ public class WordListController {
 //            wordTwo.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordTwo.setText("mbili");
-//            wordTwo.setPhonetics(TODO);
+            wordTwo.setPhonetics("mˈbili");
         }
         words.add(wordTwo);
 
@@ -121,7 +121,7 @@ public class WordListController {
 //            wordThree.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordThree.setText("tatu");
-//            wordThree.setPhonetics(TODO);
+            wordThree.setPhonetics("ˈtɑtu");
         }
         words.add(wordThree);
 
@@ -139,7 +139,7 @@ public class WordListController {
 //            wordFour.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordFour.setText("nne");
-//            wordFour.setPhonetics(TODO);
+            wordFour.setPhonetics("nˈnɛ");
         }
         words.add(wordFour);
 
@@ -157,7 +157,7 @@ public class WordListController {
 //            wordFive.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordFive.setText("tano");
-//            wordFive.setPhonetics(TODO);
+            wordFive.setPhonetics("ˈtɑnɔ");
         }
         words.add(wordFive);
 
@@ -175,7 +175,7 @@ public class WordListController {
 //            wordSix.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordSix.setText("sita");
-//            wordSix.setPhonetics(TODO);
+            wordSix.setPhonetics("ˈsitɑ");
         }
         words.add(wordSix);
 
@@ -193,7 +193,7 @@ public class WordListController {
 //            wordSeven.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordSeven.setText("saba");
-//            wordSeven.setPhonetics(TODO);
+            wordSeven.setPhonetics("ˈsɑbɑ");
         }
         words.add(wordSeven);
 
@@ -211,7 +211,7 @@ public class WordListController {
 //            wordEight.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordEight.setText("nane");
-//            wordEight.setPhonetics(TODO);
+            wordEight.setPhonetics("ˈnɑnɛ");
         }
         words.add(wordEight);
 
@@ -229,7 +229,7 @@ public class WordListController {
 //            wordNine.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordNine.setText("tisa");
-//            wordNine.setPhonetics(TODO);
+            wordNine.setPhonetics("ˈtisɑ");
         }
         words.add(wordNine);
         
