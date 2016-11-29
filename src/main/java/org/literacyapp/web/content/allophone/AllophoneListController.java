@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.allophone;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
@@ -47,14 +48,65 @@ public class AllophoneListController {
     private List<Allophone> generateAllophones(Locale locale) {
         List<Allophone> allophones = new ArrayList<>();
         
+        String[][] allophonesArray = null;
         if (locale == Locale.AR) {
             // TODO
         } else if (locale == Locale.EN) {
-            // TODO
+            allophonesArray = new String[][] {
+                {"ɑ","A"},
+                {"ɔ","O"},
+                {"u","u"},
+                {"i","i"},
+                {"æ","{"},
+                {"ʌ","V"},
+                {"ɛ","E"},
+                {"ɪ","I"},
+                {"ʊ","U"},
+                {"ə","@"},
+                {"r̩","r_="},
+                {"aʊ","aU"},
+                {"ɔɪ","OI"},
+                {"əʊ","@U"},
+                {"ɛɪ","EI"},
+                {"ɑɪ","AI"},
+                {"p","p"},
+                {"t","t"},
+                {"k","k"},
+                {"b","b"},
+                {"d","d"},
+                {"g","g"},
+                {"tʃ","tS"},
+                {"dʒ","dZ"},
+                {"f","f"},
+                {"v","v"},
+                {"θ","T"},
+                {"ð","D"},
+                {"s","s"},
+                {"z","z"},
+                {"ʃ","S"},
+                {"ʒ","Z"},
+                {"h","h"},
+                {"l","l"},
+                {"m","m"},
+                {"n","n"},
+                {"ŋ","N"},
+                {"r","r"},
+                {"w","w"},
+                {"j","j"},
+            };
         } else if (locale == Locale.ES) {
             // TODO
         } else if (locale == Locale.SW) {
             // TODO
+        }
+        
+        for (String[] allophoneRow : allophonesArray) {
+            Allophone allophone = new Allophone();
+            allophone.setLocale(locale);
+            allophone.setTimeLastUpdate(Calendar.getInstance());
+            allophone.setValueIpa(allophoneRow[0]);
+            allophone.setValueSampa(allophoneRow[1]);
+            allophones.add(allophone);
         }
         
         return allophones;
