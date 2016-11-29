@@ -63,7 +63,7 @@ public class AllophoneListController {
                 {"ɪ","I"},
                 {"ʊ","U"},
                 {"ə","@"},
-                {"̩r","r_="},
+                {"r̩","r_="},
                 {"aʊ","aU"},
                 {"ɔɪ","OI"},
                 {"əʊ","@U"},
