@@ -1,7 +1,6 @@
 package org.literacyapp.web.content.multimedia.audio;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,19 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
-import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.AudioDao;
-import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Audio;
-import org.literacyapp.model.contributor.ContentCreationEvent;
 import org.literacyapp.model.enums.ContentLicense;
-import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.content.AudioFormat;
-import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
-import org.literacyapp.util.SlackApiHelper;
-import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,9 +34,6 @@ public class AudioCreateController {
     
     @Autowired
     private AudioDao audioDao;
-    
-    @Autowired
-    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -122,25 +111,6 @@ public class AudioCreateController {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
-            
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
-            
-            ContentCreationEvent contentCreationEvent = new ContentCreationEvent();
-            contentCreationEvent.setContributor(contributor);
-            contentCreationEvent.setContent(audio);
-            contentCreationEvent.setCalendar(Calendar.getInstance());
-            contentCreationEventDao.create(contentCreationEvent);
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(
-                        contributor.getFirstName() + " just added a new Audio:\n" + 
-                        "• Language: " + audio.getLocale().getLanguage() + "\n" + 
-                        "• Transcription: \"" + audio.getTranscription() + "\"\n" + 
-                        "• Audio format: " + audio.getAudioFormat() + "\n" + 
-                        "See ") + "http://literacyapp.org/content/multimedia/audio/list";
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, "http://literacyapp.org/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase());
-            }
             
             return "redirect:/content/multimedia/audio/list";
         }

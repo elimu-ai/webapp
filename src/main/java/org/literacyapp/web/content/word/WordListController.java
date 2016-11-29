@@ -1,21 +1,13 @@
 package org.literacyapp.web.content.word;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
-import org.literacyapp.dao.ContentCreationEventDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.contributor.ContentCreationEvent;
-import org.literacyapp.model.enums.Environment;
-import org.literacyapp.model.enums.Team;
-import org.literacyapp.util.SlackApiHelper;
-import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +22,6 @@ public class WordListController {
     
     @Autowired
     private WordDao wordDao;
-    
-    @Autowired
-    private ContentCreationEventDao contentCreationEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, HttpSession session) {
@@ -46,23 +35,6 @@ public class WordListController {
             Word existingWord = wordDao.readByText(word.getLocale(), word.getText());
             if (existingWord == null) {
                 wordDao.create(word);
-
-                ContentCreationEvent contentCreationEvent = new ContentCreationEvent();
-                contentCreationEvent.setContributor(contributor);
-                contentCreationEvent.setContent(word);
-                contentCreationEvent.setCalendar(Calendar.getInstance());
-                contentCreationEventDao.create(contentCreationEvent);
-                
-                if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                    String text = URLEncoder.encode(
-                            contributor.getFirstName() + " just added a new Word:\n" + 
-                            "• Language: \"" + word.getLocale().getLanguage() + "\"\n" + 
-                            "• Text: \"" + word.getText() + "\"\n" + 
-                            "• Phonetics: /" + word.getPhonetics() + "/\n" + 
-                            "See ") + "http://literacyapp.org/content/word/list";
-                    String iconUrl = contributor.getImageUrl();
-                    SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
-                }
             }
         }
         
