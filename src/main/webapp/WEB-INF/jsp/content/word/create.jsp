@@ -24,7 +24,7 @@
                         <c:forEach var="allophone" items="${allophones}">
                             <a href="#" class="chip">${allophone.valueIpa}</a>
                         </c:forEach>
-                        <a class="chip">ˈ</a>
+                        <a href="#" class="chip">ˈ</a>
                         <script>
                             $(function() {
                                 // Append IPA value to text field
@@ -34,6 +34,7 @@
                                     var valueIpa = $(this).html();
                                     console.info('valueIpa: ' + valueIpa);
                                     $('#phonetics').val($('#phonetics').val() + valueIpa);
+                                    $('#phonetics').focus();
                                 });
                             });
                         </script>
