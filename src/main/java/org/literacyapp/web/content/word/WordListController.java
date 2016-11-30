@@ -205,7 +205,7 @@ public class WordListController {
             // TODO: set phonetics
         } else if (locale == Locale.EN) {
             wordEight.setText("eight");
-            wordEight.setPhonetics("eɪt");
+            wordEight.setPhonetics("ɛɪt");
         } else if (locale == Locale.ES) {
             wordEight.setText("ocho");
 //            wordEight.setPhonetics(TODO);

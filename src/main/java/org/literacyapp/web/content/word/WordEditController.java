@@ -1,5 +1,6 @@
 package org.literacyapp.web.content.word;
 
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
@@ -11,9 +12,15 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.dao.WordDao;
+import org.literacyapp.dao.WordRevisionEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Word;
+import org.literacyapp.model.contributor.WordRevisionEvent;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +40,9 @@ public class WordEditController {
     
     @Autowired
     private AllophoneDao allophoneDao;
+    
+    @Autowired
+    private WordRevisionEventDao wordRevisionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id, HttpSession session) {
@@ -65,15 +75,14 @@ public class WordEditController {
         List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
         
         // Verify that only valid Allophones are used
-        Set<String> allophoneSet = new HashSet<String>();
+        String allAllophonesCombined = "";
         for (Allophone allophone : allophones) {
-            allophoneSet.add(allophone.getValueIpa());
+            allAllophonesCombined += allophone.getValueIpa();
         }
         if (StringUtils.isNotBlank(word.getPhonetics())) {
             for (char allophoneCharacter : word.getPhonetics().toCharArray()) {
                 String allophone = String.valueOf(allophoneCharacter);
-                logger.info("allophone: " + allophone);
-                if (!allophoneSet.contains(allophone)) {
+                if (!allAllophonesCombined.contains(allophone)) {
                     result.rejectValue("phonetics", "Invalid");
                     break;
                 }
@@ -89,6 +98,24 @@ public class WordEditController {
             word.setTimeLastUpdate(Calendar.getInstance());
             word.setRevisionNumber(word.getRevisionNumber() + 1);
             wordDao.update(word);
+            
+            WordRevisionEvent wordRevisionEvent = new WordRevisionEvent();
+            wordRevisionEvent.setContributor(contributor);
+            wordRevisionEvent.setCalendar(Calendar.getInstance());
+            wordRevisionEvent.setText(word.getText());
+            wordRevisionEvent.setPhonetics(word.getPhonetics());
+            wordRevisionEventDao.create(wordRevisionEvent);
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just updated a Word:\n" + 
+                    "• Language: \"" + word.getLocale().getLanguage() + "\"\n" +  
+                    "• Text: \"/" + word.getText() + "/\"\n" + 
+                    "• Phonetics (IPA): \"" + word.getPhonetics() + "\"\n" + 
+                    "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
+                    String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
+            }
             
             return "redirect:/content/word/list";
         }

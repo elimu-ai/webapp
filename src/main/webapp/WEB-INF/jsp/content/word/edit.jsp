@@ -54,19 +54,24 @@
     <table class="bordered highlight">
         <thead>
             <th><fmt:message key="revision" /></th>
+            <th><fmt:message key="change" /></th>
             <th><fmt:message key="time" /></th>
             <th><fmt:message key="contributor" /></th>
         </thead>
         <tbody>
-            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
+            <c:forEach var="wordRevisionEvent" items="${wordRevisionEvents}" varStatus="status">
                 <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
-                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
+                    <td>${fn:length(wordRevisionEvents) - status.index}</td>
+                    <td>
+                        change...<br />
+                        comment...
+                    </td>
+                    <td><fmt:formatDate value="${wordRevisionEvent.calendar.time}" type="both" timeStyle="short" /></td>
                     <td>
                         <a href="<spring:url value='/content/community/contributors' />" target="_blank">
                             <div class="chip">
-                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
+                                <img src="<spring:url value='${wordRevisionEvent.contributor.imageUrl}' />" alt="${wordRevisionEvent.contributor.firstName}" /> 
+                                <c:out value="${wordRevisionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordRevisionEvent.contributor.lastName}" />
                             </div>
                         </a>
                     </td>
