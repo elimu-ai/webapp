@@ -1,9 +1,12 @@
 package org.literacyapp.web.content.word;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
@@ -57,13 +60,28 @@ public class WordCreateController {
             result.rejectValue("text", "NonUnique");
         }
         
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+        
+        // Verify that only valid Allophones are used
+        Set<String> allophoneSet = new HashSet<String>();
+        for (Allophone allophone : allophones) {
+            allophoneSet.add(allophone.getValueIpa());
+        }
+        if (StringUtils.isNotBlank(word.getPhonetics())) {
+            for (char allophoneCharacter : word.getPhonetics().toCharArray()) {
+                String allophone = String.valueOf(allophoneCharacter);
+                logger.info("allophone: " + allophone);
+                if (!allophoneSet.contains(allophone)) {
+                    result.rejectValue("phonetics", "Invalid");
+                    break;
+                }
+            }
+        }
+        
         if (result.hasErrors()) {
             model.addAttribute("word", word);
-            
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
-            List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
             model.addAttribute("allophones", allophones);
-            
             return "content/word/create";
         } else {
             word.setText(word.getText().toLowerCase());
