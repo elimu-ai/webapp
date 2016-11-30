@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
@@ -54,6 +55,8 @@ public class WordEditController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
         model.addAttribute("allophones", allophones);
+        
+        model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
 
         return "content/word/edit";
     }
@@ -63,7 +66,8 @@ public class WordEditController {
             HttpSession session,
             @Valid Word word,
             BindingResult result,
-            Model model) {
+            Model model,
+            HttpServletRequest request) {
     	logger.info("handleSubmit");
         
         Word existingWord = wordDao.readByText(word.getLocale(), word.getText());
@@ -92,6 +96,7 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
+            model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
             return "content/word/edit";
         } else {
             word.setText(word.getText().toLowerCase());
@@ -102,16 +107,21 @@ public class WordEditController {
             WordRevisionEvent wordRevisionEvent = new WordRevisionEvent();
             wordRevisionEvent.setContributor(contributor);
             wordRevisionEvent.setCalendar(Calendar.getInstance());
+            wordRevisionEvent.setWord(word);
             wordRevisionEvent.setText(word.getText());
             wordRevisionEvent.setPhonetics(word.getPhonetics());
+            if (StringUtils.isNotBlank(request.getParameter("comment"))) {
+                wordRevisionEvent.setComment(request.getParameter("comment"));
+            }
             wordRevisionEventDao.create(wordRevisionEvent);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
                     contributor.getFirstName() + " just updated a Word:\n" + 
                     "• Language: \"" + word.getLocale().getLanguage() + "\"\n" +  
-                    "• Text: \"/" + word.getText() + "/\"\n" + 
-                    "• Phonetics (IPA): \"" + word.getPhonetics() + "\"\n" + 
+                    "• Text: \"" + word.getText() + "\"\n" + 
+                    "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" + 
+                    "• Comment: \"" + wordRevisionEvent.getComment() + "\"\n" +         
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
                     String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);

@@ -39,6 +39,11 @@
                         </script>
                     </div>
                 </div>
+                
+                <div class="input-field col s12">
+                    <textarea id="comment" name="comment" class="materialize-textarea" maxlength="255"><c:if test="${not empty param.comment}">${param.comment}</c:if></textarea>
+                    <label for="comment"><fmt:message key="comment.about.the.change" /></label>
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
@@ -54,7 +59,7 @@
     <table class="bordered highlight">
         <thead>
             <th><fmt:message key="revision" /></th>
-            <th><fmt:message key="change" /></th>
+            <th><fmt:message key="content" /></th>
             <th><fmt:message key="time" /></th>
             <th><fmt:message key="contributor" /></th>
         </thead>
@@ -63,8 +68,14 @@
                 <tr>
                     <td>${fn:length(wordRevisionEvents) - status.index}</td>
                     <td>
-                        change...<br />
-                        comment...
+                        <fmt:message key='text' />: "${wordRevisionEvent.text}"<br />
+                        IPA: /${wordRevisionEvent.phonetics}/
+                        
+                        <c:if test="${not empty wordRevisionEvent.comment}">
+                            <blockquote>
+                                "<c:out value="${wordRevisionEvent.comment}" />"
+                            </blockquote>
+                        </c:if>
                     </td>
                     <td><fmt:formatDate value="${wordRevisionEvent.calendar.time}" type="both" timeStyle="short" /></td>
                     <td>

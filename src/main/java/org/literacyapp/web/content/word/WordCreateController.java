@@ -2,9 +2,7 @@ package org.literacyapp.web.content.word;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
@@ -100,6 +98,7 @@ public class WordCreateController {
             WordRevisionEvent wordRevisionEvent = new WordRevisionEvent();
             wordRevisionEvent.setContributor(contributor);
             wordRevisionEvent.setCalendar(Calendar.getInstance());
+            wordRevisionEvent.setWord(word);
             wordRevisionEvent.setText(word.getText());
             wordRevisionEvent.setPhonetics(word.getPhonetics());
             wordRevisionEventDao.create(wordRevisionEvent);
@@ -108,8 +107,8 @@ public class WordCreateController {
                 String text = URLEncoder.encode(
                     contributor.getFirstName() + " just added a new Word:\n" + 
                     "• Language: \"" + word.getLocale().getLanguage() + "\"\n" + 
-                    "• Text: \"/" + word.getText() + "/\"\n" + 
-                    "• Phonetics (IPA): \"" + word.getPhonetics() + "\"\n" + 
+                    "• Text: \"" + word.getText() + "\"\n" + 
+                    "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" + 
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
                     String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
