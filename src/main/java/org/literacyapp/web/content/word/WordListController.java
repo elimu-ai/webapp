@@ -151,7 +151,7 @@ public class WordListController {
             // TODO: set phonetics
         } else if (locale == Locale.EN) {
             wordFive.setText("five");
-            wordFive.setPhonetics("faɪv");
+            wordFive.setPhonetics("fɑɪv");
         } else if (locale == Locale.ES) {
             wordFive.setText("cinco");
 //            wordFive.setPhonetics(TODO);
@@ -205,7 +205,7 @@ public class WordListController {
             // TODO: set phonetics
         } else if (locale == Locale.EN) {
             wordEight.setText("eight");
-            wordEight.setPhonetics("eɪt");
+            wordEight.setPhonetics("ɛɪt");
         } else if (locale == Locale.ES) {
             wordEight.setText("ocho");
 //            wordEight.setPhonetics(TODO);
@@ -223,7 +223,7 @@ public class WordListController {
             // TODO: set phonetics
         } else if (locale == Locale.EN) {
             wordNine.setText("nine");
-            wordNine.setPhonetics("naɪn");
+            wordNine.setPhonetics("nɑɪn");
         } else if (locale == Locale.ES) {
             wordNine.setText("nueve");
 //            wordNine.setPhonetics(TODO);

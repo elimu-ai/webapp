@@ -13,7 +13,10 @@
                 <div class="word card-panel">
                     <h4><c:out value="${word.text}" /></h4>
                     <p>/<c:out value="${word.phonetics}" />/</p>
+                    <p><fmt:message key="revision" />: ${word.revisionNumber}</p>
+                    
                     <div class="divider" style="margin: 1em 0;"></div>
+                    
                     <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>
             </div>

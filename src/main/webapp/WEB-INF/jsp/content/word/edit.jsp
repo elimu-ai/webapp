@@ -20,6 +20,30 @@
                 <div class="input-field col s12">
                     <form:label path="phonetics" cssErrorClass="error"><fmt:message key='phonetics' /> (IPA)</form:label>
                     <form:input path="phonetics" cssErrorClass="error" />
+                    <div id="allophonesContainer">
+                        <c:forEach var="allophone" items="${allophones}">
+                            <a href="#" class="chip">${allophone.valueIpa}</a>
+                        </c:forEach>
+                        <a href="#" class="chip">ˈ</a>
+                        <script>
+                            $(function() {
+                                // Append IPA value to text field
+                                $('#allophonesContainer .chip').click(function(event) {
+                                    console.info('#allophonesContainer .chip click');
+                                    event.preventDefault();
+                                    var valueIpa = $(this).html();
+                                    console.info('valueIpa: ' + valueIpa);
+                                    $('#phonetics').val($('#phonetics').val() + valueIpa);
+                                    $('#phonetics').focus();
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+                
+                <div class="input-field col s12">
+                    <textarea id="comment" name="comment" class="materialize-textarea" maxlength="255"><c:if test="${not empty param.comment}">${param.comment}</c:if></textarea>
+                    <label for="comment"><fmt:message key="comment.about.the.change" /></label>
                 </div>
             </div>
 
@@ -36,19 +60,30 @@
     <table class="bordered highlight">
         <thead>
             <th><fmt:message key="revision" /></th>
+            <th><fmt:message key="content" /></th>
             <th><fmt:message key="time" /></th>
             <th><fmt:message key="contributor" /></th>
         </thead>
         <tbody>
-            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
+            <c:forEach var="wordRevisionEvent" items="${wordRevisionEvents}" varStatus="status">
                 <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
-                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
+                    <td>${fn:length(wordRevisionEvents) - status.index}</td>
+                    <td>
+                        <fmt:message key='text' />: "${wordRevisionEvent.text}"<br />
+                        IPA: /${wordRevisionEvent.phonetics}/
+                        
+                        <c:if test="${not empty wordRevisionEvent.comment}">
+                            <blockquote>
+                                "<c:out value="${wordRevisionEvent.comment}" />"
+                            </blockquote>
+                        </c:if>
+                    </td>
+                    <td><fmt:formatDate value="${wordRevisionEvent.calendar.time}" type="both" timeStyle="short" /></td>
                     <td>
                         <a href="<spring:url value='/content/community/contributors' />" target="_blank">
                             <div class="chip">
-                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
+                                <img src="<spring:url value='${wordRevisionEvent.contributor.imageUrl}' />" alt="${wordRevisionEvent.contributor.firstName}" /> 
+                                <c:out value="${wordRevisionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordRevisionEvent.contributor.lastName}" />
                             </div>
                         </a>
                     </td>

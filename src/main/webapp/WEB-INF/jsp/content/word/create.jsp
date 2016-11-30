@@ -20,6 +20,25 @@
                 <div class="input-field col s12">
                     <form:label path="phonetics" cssErrorClass="error"><fmt:message key='phonetics' /> (IPA)</form:label>
                     <form:input path="phonetics" cssErrorClass="error" />
+                    <div id="allophonesContainer">
+                        <c:forEach var="allophone" items="${allophones}">
+                            <a href="#" class="chip">${allophone.valueIpa}</a>
+                        </c:forEach>
+                        <a href="#" class="chip">ˈ</a>
+                        <script>
+                            $(function() {
+                                // Append IPA value to text field
+                                $('#allophonesContainer .chip').click(function(event) {
+                                    console.info('#allophonesContainer .chip click');
+                                    event.preventDefault();
+                                    var valueIpa = $(this).html();
+                                    console.info('valueIpa: ' + valueIpa);
+                                    $('#phonetics').val($('#phonetics').val() + valueIpa);
+                                    $('#phonetics').focus();
+                                });
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
 

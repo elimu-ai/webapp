@@ -4,6 +4,7 @@
 <spring:hasBindErrors name="${modelAttribute}">
     <div id="errorPanel" class="card-panel red lighten-3">
         <c:forEach var="error" items="${errors.allErrors}">
+            <li>
             <c:set var="errorMessageFoundInPropertiesFile" value="false" />
             <c:forEach var="code" items="${error.codes}">
                 <c:set var="errorMessage"><fmt:message key="${code}" /></c:set>               
@@ -41,7 +42,7 @@
             <c:if test="${!errorMessageFoundInPropertiesFile}">
                 ${error}
             </c:if>
-            <br />
+            </li>
         </c:forEach>
     </div>
  </spring:hasBindErrors>

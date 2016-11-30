@@ -72,4 +72,5 @@
     <bean id="signOnEventDao" class="org.literacyapp.dao.jpa.SignOnEventDaoJpa" />
     <bean id="videoDao" class="org.literacyapp.dao.jpa.VideoDaoJpa" />
     <bean id="wordDao" class="org.literacyapp.dao.jpa.WordDaoJpa" />
+    <bean id="wordRevisionEventDao" class="org.literacyapp.dao.jpa.WordRevisionEventDaoJpa" />
 </beans>
