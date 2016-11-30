@@ -7,7 +7,6 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
-import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,8 +66,6 @@ public class AllophoneEditController {
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophone.setRevisionNumber(allophone.getRevisionNumber() + 1);
             allophoneDao.update(allophone);
-            
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
             
             return "redirect:/content/allophone/list";
         }

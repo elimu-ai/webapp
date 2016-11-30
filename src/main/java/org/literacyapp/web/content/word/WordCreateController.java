@@ -1,11 +1,15 @@
 package org.literacyapp.web.content.word;
 
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.dao.WordDao;
+import org.literacyapp.model.Contributor;
+import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Word;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +26,20 @@ public class WordCreateController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
+    public String handleRequest(Model model, HttpSession session) {
     	logger.info("handleRequest");
         
         Word word = new Word();
         model.addAttribute("word", word);
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+        model.addAttribute("allophones", allophones);
 
         return "content/word/create";
     }
@@ -48,6 +59,11 @@ public class WordCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);
+            
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
+            List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+            model.addAttribute("allophones", allophones);
+            
             return "content/word/create";
         } else {
             word.setText(word.getText().toLowerCase());
