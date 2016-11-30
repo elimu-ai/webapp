@@ -92,12 +92,50 @@ public class AllophoneListController {
                 {"ŋ","N"},
                 {"r","r"},
                 {"w","w"},
-                {"j","j"},
+                {"j","j"}
             };
         } else if (locale == Locale.ES) {
             // TODO
         } else if (locale == Locale.SW) {
-            // TODO
+            allophonesArray = new String[][] {
+                {"ɑ","A"},
+                {"ɛ","E"},
+                {"i","i"},
+                {"ɔ","O"},
+                {"u","u"},
+                {"m","m"},
+                {"mb","mb"},
+                {"ɓ","b_<"},
+                {"p","p"},
+                {"mv","mv"},
+                {"v","v"},
+                {"f","f"},
+                {"ð","D"},
+                {"θ","T"},
+                {"n","n"},
+                {"nd","nd"},
+                {"ɗ","d_<"},
+                {"t","t"},
+                {"nz","nz"},
+                {"z","z"},
+                {"s","s"},
+                {"ɾ","4"},
+                {"l","l"},
+                {"ɲ","J"},
+                {"ɲɟ","Jj\\"},
+                {"ʄ","j_<"},
+                {"tʃ","tS"},
+                {"ʃ","S"},
+                {"j","j"},
+                {"ŋ","N"},
+                {"ŋɡ","Nɡ"},
+                {"ɠ","g_<"},
+                {"k","k"},
+                {"ɣ","G"},
+                {"x","x"},
+                {"w","w"},
+                {"h","h"}
+            };
         }
         
         for (String[] allophoneRow : allophonesArray) {
