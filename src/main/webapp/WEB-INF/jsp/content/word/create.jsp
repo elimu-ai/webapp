@@ -24,7 +24,6 @@
                         <c:forEach var="allophone" items="${allophones}">
                             <a href="#" class="chip">${allophone.valueIpa}</a>
                         </c:forEach>
-                        <a href="#" class="chip">ˈ</a>
                         <script>
                             $(function() {
                                 // Append IPA value to text field
