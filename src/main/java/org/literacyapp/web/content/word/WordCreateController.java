@@ -91,7 +91,9 @@ public class WordCreateController {
             model.addAttribute("allophones", allophones);
             return "content/word/create";
         } else {
-            word.setText(word.getText().toLowerCase());
+            if (!"I".equals(word.getText())) {
+                word.setText(word.getText().toLowerCase());
+            }
             word.setTimeLastUpdate(Calendar.getInstance());
             wordDao.create(word);
  
