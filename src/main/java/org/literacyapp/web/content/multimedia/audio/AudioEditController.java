@@ -177,6 +177,20 @@ public class AudioEditController {
             }
         }
         
+        String numberIdParameter = request.getParameter("numberId");
+        logger.info("numberIdParameter: " + numberIdParameter);
+        if (StringUtils.isNotBlank(numberIdParameter)) {
+            Long numberId = Long.valueOf(numberIdParameter);
+            Number number = numberDao.read(numberId);
+            List<Number> numbers = audio.getNumbers();
+            logger.info("numbers.contains(number): " + numbers.contains(number));
+            if (!numbers.contains(number)) {
+                numbers.add(number);
+                audio.setNumbers(numbers);
+                audioDao.update(audio);
+            }
+        }
+        
         return "success";
     }
     

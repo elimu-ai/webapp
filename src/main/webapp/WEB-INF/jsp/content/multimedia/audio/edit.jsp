@@ -197,7 +197,7 @@
     </div>
     <c:forEach var="number" items="${audio.numbers}">
         <div class="chip" data-numberid="${number.id}">
-            ${number.text} 
+            ${number.value} 
             <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
                 <i class="material-icons">clear</i>
             </a>
@@ -206,7 +206,7 @@
     <select id="numberId">
         <option value="">-- <fmt:message key='add.number' /> --</option>
         <c:forEach var="number" items="${numbers}">
-            <option value="${number.id}"><c:out value="${number.text}" /></option>
+            <option value="${number.id}"><c:out value="${number.value}" /></option>
         </c:forEach>
     </select>
     <script>
