@@ -12,9 +12,11 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.AudioDao;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
+import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.Number;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.content.AudioFormat;
@@ -48,6 +50,9 @@ public class AudioEditController {
     
     @Autowired
     private NumberDao numberDao;
+    
+    @Autowired
+    private WordDao wordDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -68,6 +73,7 @@ public class AudioEditController {
         
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
+        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
 
         return "content/multimedia/audio/edit";
     }
@@ -130,6 +136,7 @@ public class AudioEditController {
             model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
             model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
+            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
             return "content/multimedia/audio/edit";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());
@@ -191,6 +198,20 @@ public class AudioEditController {
             }
         }
         
+        String wordIdParameter = request.getParameter("wordId");
+        logger.info("wordIdParameter: " + wordIdParameter);
+        if (StringUtils.isNotBlank(wordIdParameter)) {
+            Long wordId = Long.valueOf(wordIdParameter);
+            Word word = wordDao.read(wordId);
+            List<Word> words = audio.getWords();
+            logger.info("words.contains(word): " + words.contains(word));
+            if (!words.contains(word)) {
+                words.add(word);
+                audio.setWords(words);
+                audioDao.update(audio);
+            }
+        }
+        
         return "success";
     }
     
@@ -236,6 +257,25 @@ public class AudioEditController {
                 if (numberId.equals(existingNumber.getId())) {
                     numbers.remove(index);
                     audio.setNumbers(numbers);
+                    audioDao.update(audio);
+                    break;
+                }
+            }
+        }
+        
+        String wordIdParameter = request.getParameter("wordId");
+        logger.info("wordIdParameter: " + wordIdParameter);
+        if (StringUtils.isNotBlank(wordIdParameter)) {
+            Long wordId = Long.valueOf(wordIdParameter);
+            Word word = wordDao.read(wordId);
+            List<Word> words = audio.getWords();
+            logger.info("words.contains(word): " + words.contains(word));
+            for (int index = 0; index < words.size(); index++) {
+                Word existingWord = words.get(index);
+                logger.info("wordId.equals(existingWord.getId()): " + wordId.equals(existingWord.getId()));
+                if (wordId.equals(existingWord.getId())) {
+                    words.remove(index);
+                    audio.setWords(words);
                     audioDao.update(audio);
                     break;
                 }
