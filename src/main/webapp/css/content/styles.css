@@ -19,6 +19,10 @@ nav {
     width: 100%;
     text-align: center;
 }
+#videoEditPage .previewContainer #previewContentContainer {
+    top: 25%;
+    height: 53%;
+}
 .previewContainer #previewContent {
     position: relative;
     width: 90%;
