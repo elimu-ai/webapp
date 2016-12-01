@@ -1,7 +1,10 @@
 package org.literacyapp.rest.v1;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
+import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.content.Allophone;
@@ -34,12 +37,32 @@ public class JavaToGsonConverter {
             audioGson.setRevisionNumber(audio.getRevisionNumber());
             audioGson.setContentStatus(audio.getContentStatus());
             
-            audioGson.setFileUrl("/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase());
-            audioGson.setFileSize(audio.getBytes().length / 1024);
+            audioGson.setDownloadUrl("/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase());
+            audioGson.setDownloadSize(audio.getBytes().length / 1024);
             audioGson.setContentType(audio.getContentType());
-            audioGson.setAttributionUrl(audio.getAttributionUrl());
             audioGson.setLiteracySkills(audio.getLiteracySkills());
             audioGson.setNumeracySkills(audio.getNumeracySkills());
+            
+            List<LetterGson> letters = new ArrayList<>();
+            for (Letter letter : audio.getLetters()) {
+                LetterGson letterGson = getLetterGson(letter);
+                letters.add(letterGson);
+            }
+            audioGson.setLetters(letters);
+            
+            List<NumberGson> numbers = new ArrayList<>();
+            for (Number number : audio.getNumbers()) {
+                NumberGson numberGson = getNumberGson(number);
+                numbers.add(numberGson);
+            }
+            audioGson.setNumbers(numbers);
+            
+            List<WordGson> words = new ArrayList<>();
+            for (Word word : audio.getWords()) {
+                WordGson wordGson = getWordGson(word);
+                words.add(wordGson);
+            }
+            audioGson.setWords(words);
             
             audioGson.setTranscription(audio.getTranscription());
             audioGson.setAudioType(audio.getAudioFormat());
@@ -139,12 +162,32 @@ public class JavaToGsonConverter {
             imageGson.setRevisionNumber(image.getRevisionNumber());
             imageGson.setContentStatus(image.getContentStatus());
             
-            imageGson.setFileUrl("/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
-            imageGson.setFileSize(image.getBytes().length / 1024);
+            imageGson.setDownloadUrl("/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
+            imageGson.setDownloadSize(image.getBytes().length / 1024);
             imageGson.setContentType(image.getContentType());
-            imageGson.setAttributionUrl(image.getAttributionUrl());
             imageGson.setLiteracySkills(image.getLiteracySkills());
             imageGson.setNumeracySkills(image.getNumeracySkills());
+            
+            List<LetterGson> letters = new ArrayList<>();
+            for (Letter letter : image.getLetters()) {
+                LetterGson letterGson = getLetterGson(letter);
+                letters.add(letterGson);
+            }
+            imageGson.setLetters(letters);
+            
+            List<NumberGson> numbers = new ArrayList<>();
+            for (Number number : image.getNumbers()) {
+                NumberGson numberGson = getNumberGson(number);
+                numbers.add(numberGson);
+            }
+            imageGson.setNumbers(numbers);
+            
+            List<WordGson> words = new ArrayList<>();
+            for (Word word : image.getWords()) {
+                WordGson wordGson = getWordGson(word);
+                words.add(wordGson);
+            }
+            imageGson.setWords(words);
             
             imageGson.setTitle(image.getTitle());
             imageGson.setImageFormat(image.getImageFormat());
@@ -203,12 +246,32 @@ public class JavaToGsonConverter {
             videoGson.setRevisionNumber(video.getRevisionNumber());
             videoGson.setContentStatus(video.getContentStatus());
             
-            videoGson.setFileUrl("/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase());
-            videoGson.setFileSize(video.getBytes().length / 1024);
+            videoGson.setDownloadUrl("/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase());
+            videoGson.setDownloadSize(video.getBytes().length / 1024);
             videoGson.setContentType(video.getContentType());
-            videoGson.setAttributionUrl(video.getAttributionUrl());
             videoGson.setLiteracySkills(video.getLiteracySkills());
             videoGson.setNumeracySkills(video.getNumeracySkills());
+            
+            List<LetterGson> letters = new ArrayList<>();
+            for (Letter letter : video.getLetters()) {
+                LetterGson letterGson = getLetterGson(letter);
+                letters.add(letterGson);
+            }
+            videoGson.setLetters(letters);
+            
+            List<NumberGson> numbers = new ArrayList<>();
+            for (Number number : video.getNumbers()) {
+                NumberGson numberGson = getNumberGson(number);
+                numbers.add(numberGson);
+            }
+            videoGson.setNumbers(numbers);
+            
+            List<WordGson> words = new ArrayList<>();
+            for (Word word : video.getWords()) {
+                WordGson wordGson = getWordGson(word);
+                words.add(wordGson);
+            }
+            videoGson.setWords(words);
             
             videoGson.setTitle(video.getTitle());
             videoGson.setVideoFormat(video.getVideoFormat());
