@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.multimedia.video;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,13 +10,19 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.VideoDao;
+import org.literacyapp.dao.VideoRevisionEventDao;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Video;
+import org.literacyapp.model.contributor.VideoRevisionEvent;
 import org.literacyapp.model.enums.ContentLicense;
-import org.literacyapp.model.enums.content.ImageFormat;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.VideoFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.ImageHelper;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +43,9 @@ public class VideoCreateController {
     
     @Autowired
     private VideoDao videoDao;
+    
+    @Autowired
+    private VideoRevisionEventDao videoRevisionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -61,6 +71,8 @@ public class VideoCreateController {
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -137,6 +149,24 @@ public class VideoCreateController {
             video.setTitle(video.getTitle().toLowerCase());
             video.setTimeLastUpdate(Calendar.getInstance());
             videoDao.create(video);
+            
+            VideoRevisionEvent videoRevisionEvent = new VideoRevisionEvent();
+            videoRevisionEvent.setContributor(contributor);
+            videoRevisionEvent.setCalendar(Calendar.getInstance());
+            videoRevisionEvent.setVideo(video);
+            videoRevisionEvent.setTitle(video.getTitle());
+            videoRevisionEventDao.create(videoRevisionEvent);
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just added a new Video:\n" + 
+                    "• Language: \"" + video.getLocale().getLanguage() + "\"\n" + 
+                    "• Title: \"" + video.getTitle() + "\"\n" + 
+                    "See ") + "http://literacyapp.org/content/multimedia/video/edit/" + video.getId();
+                String iconUrl = contributor.getImageUrl();
+                String imageUrl = "http://literacyapp.org/content/multimedia/video/" + video.getId() + "/thumbnail.png";
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
+            }
             
             return "redirect:/content/multimedia/video/list#" + video.getId();
         }

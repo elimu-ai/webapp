@@ -112,7 +112,7 @@ public class WordCreateController {
                     "• Text: \"" + word.getText() + "\"\n" + 
                     "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" + 
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
-                    String iconUrl = contributor.getImageUrl();
+                String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }
             
