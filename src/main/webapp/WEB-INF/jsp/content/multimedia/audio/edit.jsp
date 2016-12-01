@@ -164,8 +164,9 @@
                 }
             });
             
-            $('.letterDeleteLink').on('click', function() {
+            $('.letterDeleteLink').on('click', function(event) {
                 console.info('.letterDeleteLink on click');
+                event.preventDefault();
                 var $link = $(this);
                 var letterId = $link.attr('data-letterid');
                 console.info('letterId: ' + letterId);
@@ -239,8 +240,9 @@
                 }
             });
             
-            $('.numberDeleteLink').on('click', function() {
+            $('.numberDeleteLink').on('click', function(event) {
                 console.info('.numberDeleteLink on click');
+                event.preventDefault();
                 var $link = $(this);
                 var numberId = $link.attr('data-numberid');
                 console.info('numberId: ' + numberId);
@@ -314,8 +316,9 @@
                 }
             });
             
-            $('.wordDeleteLink').on('click', function() {
+            $('.wordDeleteLink').on('click', function(event) {
                 console.info('.wordDeleteLink on click');
+                event.preventDefault();
                 var $link = $(this);
                 var wordId = $link.attr('data-wordid');
                 console.info('wordId: ' + wordId);
