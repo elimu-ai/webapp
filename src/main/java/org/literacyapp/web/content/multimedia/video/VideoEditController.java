@@ -12,12 +12,13 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.dao.VideoDao;
+import org.literacyapp.dao.VideoRevisionEventDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.Word;
-import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.content.multimedia.Video;
+import org.literacyapp.model.contributor.VideoRevisionEvent;
 import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.content.VideoFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
@@ -53,6 +54,9 @@ public class VideoEditController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private VideoRevisionEventDao videoRevisionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -70,6 +74,8 @@ public class VideoEditController {
         
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
+        
+        model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
         
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
@@ -132,6 +138,7 @@ public class VideoEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
+            model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
             model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
             model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
             model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
