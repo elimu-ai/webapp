@@ -190,4 +190,79 @@
             });
         });
     </script>
+    
+    <b><fmt:message key="numbers" /></b><br />
+    <div id="progressNumbers" class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+    <c:forEach var="number" items="${audio.numbers}">
+        <div class="chip" data-numberid="${number.id}">
+            ${number.text} 
+            <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
+                <i class="material-icons">clear</i>
+            </a>
+        </div>
+    </c:forEach>
+    <select id="numberId">
+        <option value="">-- <fmt:message key='add.number' /> --</option>
+        <c:forEach var="number" items="${numbers}">
+            <option value="${number.id}"><c:out value="${number.text}" /></option>
+        </c:forEach>
+    </select>
+    <script>
+        $(function() {
+            $('#numberId').on('change', function() {
+                console.info('#numberId on change');
+                var numberId = $(this).val();
+                console.info('numberId: ' + numberId);
+                var numberText = $(this).find('option[value="' + numberId + '"]').html();
+                console.info('numberText ' + numberText);
+                if (numberId != '') {
+                    $('#progressNumbers').show();
+                    
+                    var jqXHR = $.ajax({
+                        type: "POST",
+                        url: "<spring:url value='/content/multimedia/audio/edit/${audio.id}' />/add-content-label?numberId=" + numberId
+                    });
+                    jqXHR.done(function() {
+                        console.info('numberId ajax done');
+                        $('#progressNumbers').after('<div class="chip">' + numberText + '</div>');
+                    });
+                    jqXHR.fail(function() {
+                        console.info('numberId ajax error');
+                        
+                    });
+                    jqXHR.always(function() {
+                        console.info('numberId ajax always');
+                        $('#progressNumbers').hide();
+                    });
+                }
+            });
+            
+            $('.numberDeleteLink').on('click', function() {
+                console.info('.numberDeleteLink on click');
+                var $link = $(this);
+                var numberId = $link.attr('data-numberid');
+                console.info('numberId: ' + numberId);
+                $('#progressNumbers').show();
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<spring:url value='/content/multimedia/audio/edit/${audio.id}' />/remove-content-label?numberId=" + numberId
+                });
+                jqXHR.done(function() {
+                    console.info('numberId ajax done');
+                    $('.chip[data-numberid="' + numberId + '"]').remove();
+                });
+                jqXHR.fail(function() {
+                    console.info('numberId ajax error');
+
+                });
+                jqXHR.always(function() {
+                    console.info('numberId ajax always');
+                    $('#progressNumbers').hide();
+                });
+            });
+        });
+    </script>
 </content:aside>

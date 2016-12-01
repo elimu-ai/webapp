@@ -11,8 +11,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AudioDao;
 import org.literacyapp.dao.LetterDao;
+import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Letter;
+import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.content.AudioFormat;
@@ -43,6 +45,9 @@ public class AudioEditController {
     
     @Autowired
     private LetterDao letterDao;
+    
+    @Autowired
+    private NumberDao numberDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -62,6 +67,7 @@ public class AudioEditController {
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
+        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
 
         return "content/multimedia/audio/edit";
     }
@@ -123,6 +129,7 @@ public class AudioEditController {
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
+            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
             return "content/multimedia/audio/edit";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());
@@ -196,6 +203,25 @@ public class AudioEditController {
                 if (letterId.equals(existingLetter.getId())) {
                     letters.remove(index);
                     audio.setLetters(letters);
+                    audioDao.update(audio);
+                    break;
+                }
+            }
+        }
+        
+        String numberIdParameter = request.getParameter("numberId");
+        logger.info("numberIdParameter: " + numberIdParameter);
+        if (StringUtils.isNotBlank(numberIdParameter)) {
+            Long numberId = Long.valueOf(numberIdParameter);
+            Number number = numberDao.read(numberId);
+            List<Number> numbers = audio.getNumbers();
+            logger.info("numbers.contains(number): " + numbers.contains(number));
+            for (int index = 0; index < numbers.size(); index++) {
+                Number existingNumber = numbers.get(index);
+                logger.info("numberId.equals(existingNumber.getId()): " + numberId.equals(existingNumber.getId()));
+                if (numberId.equals(existingNumber.getId())) {
+                    numbers.remove(index);
+                    audio.setNumbers(numbers);
                     audioDao.update(audio);
                     break;
                 }
