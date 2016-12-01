@@ -1,7 +1,10 @@
 package org.literacyapp.web.content.multimedia.audio;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,8 +12,11 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AudioDao;
+import org.literacyapp.dao.LetterDao;
+import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.enums.ContentLicense;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.content.AudioFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
@@ -34,6 +40,9 @@ public class AudioCreateController {
     
     @Autowired
     private AudioDao audioDao;
+    
+    @Autowired
+    private LetterDao letterDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {

@@ -111,4 +111,83 @@
     <audio controls="true">
         <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
     </audio>
+    
+    <div class="divider" style="margin-top: 1em;"></div>
+    
+    <h5 class="center"><fmt:message key="content.labels" /></h5>
+    
+    <b><fmt:message key="letters" /></b><br />
+    <div id="progressLetters" class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+    <c:forEach var="letter" items="${audio.letters}">
+        <div class="chip" data-letterid="${letter.id}">
+            ${letter.text} 
+            <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
+                <i class="material-icons">clear</i>
+            </a>
+        </div>
+    </c:forEach>
+    <select id="letterId">
+        <option value="">-- <fmt:message key='add.letter' /> --</option>
+        <c:forEach var="letter" items="${letters}">
+            <option value="${letter.id}"><c:out value="${letter.text}" /></option>
+        </c:forEach>
+    </select>
+    <script>
+        $(function() {
+            $('#letterId').on('change', function() {
+                console.info('#letterId on change');
+                var letterId = $(this).val();
+                console.info('letterId: ' + letterId);
+                var letterText = $(this).find('option[value="' + letterId + '"]').html();
+                console.info('letterText ' + letterText);
+                if (letterId != '') {
+                    $('#progressLetters').show();
+                    
+                    var jqXHR = $.ajax({
+                        type: "POST",
+                        url: "<spring:url value='/content/multimedia/audio/edit/${audio.id}' />/add-content-label?letterId=" + letterId
+                    });
+                    jqXHR.done(function() {
+                        console.info('letterId ajax done');
+                        $('#progressLetters').after('<div class="chip">' + letterText + '</div>');
+                    });
+                    jqXHR.fail(function() {
+                        console.info('letterId ajax error');
+                        
+                    });
+                    jqXHR.always(function() {
+                        console.info('letterId ajax always');
+                        $('#progressLetters').hide();
+                    });
+                }
+            });
+            
+            $('.letterDeleteLink').on('click', function() {
+                console.info('.letterDeleteLink on click');
+                var $link = $(this);
+                var letterId = $link.attr('data-letterid');
+                console.info('letterId: ' + letterId);
+                $('#progressLetters').show();
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<spring:url value='/content/multimedia/audio/edit/${audio.id}' />/remove-content-label?letterId=" + letterId
+                });
+                jqXHR.done(function() {
+                    console.info('letterId ajax done');
+                    $('.chip[data-letterid="' + letterId + '"]').remove();
+                });
+                jqXHR.fail(function() {
+                    console.info('letterId ajax error');
+
+                });
+                jqXHR.always(function() {
+                    console.info('letterId ajax always');
+                    $('#progressLetters').hide();
+                });
+            });
+        });
+    </script>
 </content:aside>
