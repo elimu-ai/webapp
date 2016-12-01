@@ -91,7 +91,9 @@ public class WordCreateController {
             model.addAttribute("allophones", allophones);
             return "content/word/create";
         } else {
-            word.setText(word.getText().toLowerCase());
+            if (!"I".equals(word.getText())) {
+                word.setText(word.getText().toLowerCase());
+            }
             word.setTimeLastUpdate(Calendar.getInstance());
             wordDao.create(word);
  
@@ -114,7 +116,7 @@ public class WordCreateController {
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }
             
-            return "redirect:/content/word/list";
+            return "redirect:/content/word/list#" + word.getId();
         }
     }
 }

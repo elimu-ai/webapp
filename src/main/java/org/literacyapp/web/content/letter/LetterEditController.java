@@ -56,7 +56,7 @@ public class LetterEditController {
             letter.setRevisionNumber(letter.getRevisionNumber() + 1);
             letterDao.update(letter);
             
-            return "redirect:/content/letter/list";
+            return "redirect:/content/letter/list#" + letter.getId();
         }
     }
 }

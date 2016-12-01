@@ -10,6 +10,7 @@
         
         <c:forEach var="image" items="${images}">
             <div class="col s12 m6 l4">
+                <a name="${image.id}"></a>
                 <div class="image card">
                     <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
                     

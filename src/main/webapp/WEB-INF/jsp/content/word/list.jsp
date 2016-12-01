@@ -10,6 +10,7 @@
         
         <c:forEach var="word" items="${words}">
             <div class="col s12 m6 l4">
+                <a name="${word.id}"></a>
                 <div class="word card-panel">
                     <h4><c:out value="${word.text}" /></h4>
                     <p>/<c:out value="${word.phonetics}" />/</p>

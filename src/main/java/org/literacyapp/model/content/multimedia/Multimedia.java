@@ -1,5 +1,6 @@
 package org.literacyapp.model.content.multimedia;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -7,9 +8,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.literacyapp.model.content.Content;
+import org.literacyapp.model.content.Letter;
+import org.literacyapp.model.content.Number;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
@@ -37,6 +42,15 @@ public abstract class Multimedia extends Content {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<NumeracySkill> numeracySkills;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Letter> letters;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Number> numbers;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Word> words;
 
     public String getContentType() {
         return contentType;
@@ -76,5 +90,29 @@ public abstract class Multimedia extends Content {
 
     public void setNumeracySkills(Set<NumeracySkill> numeracySkills) {
         this.numeracySkills = numeracySkills;
+    }
+
+    public List<Letter> getLetters() {
+        return letters;
+    }
+
+    public void setLetters(List<Letter> letters) {
+        this.letters = letters;
+    }
+
+    public List<Number> getNumbers() {
+        return numbers;
+    }
+
+    public void setNumbers(List<Number> numbers) {
+        this.numbers = numbers;
+    }
+
+    public List<Word> getWords() {
+        return words;
+    }
+
+    public void setWords(List<Word> words) {
+        this.words = words;
     }
 }

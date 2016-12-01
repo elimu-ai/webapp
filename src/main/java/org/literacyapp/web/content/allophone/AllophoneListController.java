@@ -53,6 +53,7 @@ public class AllophoneListController {
             // TODO
         } else if (locale == Locale.EN) {
             allophonesArray = new String[][] {
+                {"ˈ","\""},
                 {"ɑ","A"},
                 {"ɔ","O"},
                 {"u","u"},
@@ -63,7 +64,7 @@ public class AllophoneListController {
                 {"ɪ","I"},
                 {"ʊ","U"},
                 {"ə","@"},
-                {"r̩","r_="},
+                {"r̩","r_="}, // TODO: use "r=" instead of "r_="?
                 {"aʊ","aU"},
                 {"ɔɪ","OI"},
                 {"əʊ","@U"},
@@ -76,7 +77,7 @@ public class AllophoneListController {
                 {"d","d"},
                 {"g","g"},
                 {"tʃ","tS"},
-                {"dʒ","dZ"},
+                {"dʒ","dZ"}, // TODO: use /ʤ/ instead of /dʒ/?
                 {"f","f"},
                 {"v","v"},
                 {"θ","T"},
@@ -98,6 +99,7 @@ public class AllophoneListController {
             // TODO
         } else if (locale == Locale.SW) {
             allophonesArray = new String[][] {
+                {"ˈ","\""},
                 {"ɑ","A"},
                 {"ɛ","E"},
                 {"i","i"},

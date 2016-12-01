@@ -137,4 +137,236 @@
             $('nav').css("background-color", "${image.dominantColor}");
         });
     </script>
+    
+    <div class="divider" style="margin-top: 1em;"></div>
+    
+    <h5 class="center"><fmt:message key="content.labels" /></h5>
+    
+    <b><fmt:message key="letters" /></b><br />
+    <div id="progressLetters" class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+    <c:forEach var="letter" items="${image.letters}">
+        <div class="chip" data-letterid="${letter.id}">
+            ${letter.text} 
+            <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
+                <i class="material-icons">clear</i>
+            </a>
+        </div>
+    </c:forEach>
+    <select id="letterId">
+        <option value="">-- <fmt:message key='add.letter' /> --</option>
+        <c:forEach var="letter" items="${letters}">
+            <option value="${letter.id}"><c:out value="${letter.text}" /></option>
+        </c:forEach>
+    </select>
+    <script>
+        $(function() {
+            $('#letterId').on('change', function() {
+                console.info('#letterId on change');
+                var letterId = $(this).val();
+                console.info('letterId: ' + letterId);
+                var letterText = $(this).find('option[value="' + letterId + '"]').html();
+                console.info('letterText ' + letterText);
+                if (letterId != '') {
+                    $('#progressLetters').show();
+                    
+                    var jqXHR = $.ajax({
+                        type: "POST",
+                        url: "<spring:url value='/content/multimedia/image/edit/${image.id}' />/add-content-label?letterId=" + letterId
+                    });
+                    jqXHR.done(function() {
+                        console.info('letterId ajax done');
+                        $('#progressLetters').after('<div class="chip">' + letterText + '</div>');
+                    });
+                    jqXHR.fail(function() {
+                        console.info('letterId ajax error');
+                        
+                    });
+                    jqXHR.always(function() {
+                        console.info('letterId ajax always');
+                        $('#progressLetters').hide();
+                    });
+                }
+            });
+            
+            $('.letterDeleteLink').on('click', function(event) {
+                console.info('.letterDeleteLink on click');
+                event.preventDefault();
+                var $link = $(this);
+                var letterId = $link.attr('data-letterid');
+                console.info('letterId: ' + letterId);
+                $('#progressLetters').show();
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<spring:url value='/content/multimedia/image/edit/${image.id}' />/remove-content-label?letterId=" + letterId
+                });
+                jqXHR.done(function() {
+                    console.info('letterId ajax done');
+                    $('.chip[data-letterid="' + letterId + '"]').remove();
+                });
+                jqXHR.fail(function() {
+                    console.info('letterId ajax error');
+
+                });
+                jqXHR.always(function() {
+                    console.info('letterId ajax always');
+                    $('#progressLetters').hide();
+                });
+            });
+        });
+    </script>
+    
+    <b><fmt:message key="numbers" /></b><br />
+    <div id="progressNumbers" class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+    <c:forEach var="number" items="${image.numbers}">
+        <div class="chip" data-numberid="${number.id}">
+            ${number.value} 
+            <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
+                <i class="material-icons">clear</i>
+            </a>
+        </div>
+    </c:forEach>
+    <select id="numberId">
+        <option value="">-- <fmt:message key='add.number' /> --</option>
+        <c:forEach var="number" items="${numbers}">
+            <option value="${number.id}"><c:out value="${number.value}" /></option>
+        </c:forEach>
+    </select>
+    <script>
+        $(function() {
+            $('#numberId').on('change', function() {
+                console.info('#numberId on change');
+                var numberId = $(this).val();
+                console.info('numberId: ' + numberId);
+                var numberText = $(this).find('option[value="' + numberId + '"]').html();
+                console.info('numberText ' + numberText);
+                if (numberId != '') {
+                    $('#progressNumbers').show();
+                    
+                    var jqXHR = $.ajax({
+                        type: "POST",
+                        url: "<spring:url value='/content/multimedia/image/edit/${image.id}' />/add-content-label?numberId=" + numberId
+                    });
+                    jqXHR.done(function() {
+                        console.info('numberId ajax done');
+                        $('#progressNumbers').after('<div class="chip">' + numberText + '</div>');
+                    });
+                    jqXHR.fail(function() {
+                        console.info('numberId ajax error');
+                        
+                    });
+                    jqXHR.always(function() {
+                        console.info('numberId ajax always');
+                        $('#progressNumbers').hide();
+                    });
+                }
+            });
+            
+            $('.numberDeleteLink').on('click', function(event) {
+                console.info('.numberDeleteLink on click');
+                event.preventDefault();
+                var $link = $(this);
+                var numberId = $link.attr('data-numberid');
+                console.info('numberId: ' + numberId);
+                $('#progressNumbers').show();
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<spring:url value='/content/multimedia/image/edit/${image.id}' />/remove-content-label?numberId=" + numberId
+                });
+                jqXHR.done(function() {
+                    console.info('numberId ajax done');
+                    $('.chip[data-numberid="' + numberId + '"]').remove();
+                });
+                jqXHR.fail(function() {
+                    console.info('numberId ajax error');
+
+                });
+                jqXHR.always(function() {
+                    console.info('numberId ajax always');
+                    $('#progressNumbers').hide();
+                });
+            });
+        });
+    </script>
+    
+    <b><fmt:message key="words" /></b><br />
+    <div id="progressWords" class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+    <c:forEach var="word" items="${image.words}">
+        <div class="chip" data-wordid="${word.id}">
+            ${word.text} 
+            <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
+                <i class="material-icons">clear</i>
+            </a>
+        </div>
+    </c:forEach>
+    <select id="wordId">
+        <option value="">-- <fmt:message key='add.word' /> --</option>
+        <c:forEach var="word" items="${words}">
+            <option value="${word.id}"><c:out value="${word.text}" /></option>
+        </c:forEach>
+    </select>
+    <script>
+        $(function() {
+            $('#wordId').on('change', function() {
+                console.info('#wordId on change');
+                var wordId = $(this).val();
+                console.info('wordId: ' + wordId);
+                var wordText = $(this).find('option[value="' + wordId + '"]').html();
+                console.info('wordText ' + wordText);
+                if (wordId != '') {
+                    $('#progressWords').show();
+                    
+                    var jqXHR = $.ajax({
+                        type: "POST",
+                        url: "<spring:url value='/content/multimedia/image/edit/${image.id}' />/add-content-label?wordId=" + wordId
+                    });
+                    jqXHR.done(function() {
+                        console.info('wordId ajax done');
+                        $('#progressWords').after('<div class="chip">' + wordText + '</div>');
+                    });
+                    jqXHR.fail(function() {
+                        console.info('wordId ajax error');
+                        
+                    });
+                    jqXHR.always(function() {
+                        console.info('wordId ajax always');
+                        $('#progressWords').hide();
+                    });
+                }
+            });
+            
+            $('.wordDeleteLink').on('click', function(event) {
+                console.info('.wordDeleteLink on click');
+                event.preventDefault();
+                var $link = $(this);
+                var wordId = $link.attr('data-wordid');
+                console.info('wordId: ' + wordId);
+                $('#progressWords').show();
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<spring:url value='/content/multimedia/image/edit/${image.id}' />/remove-content-label?wordId=" + wordId
+                });
+                jqXHR.done(function() {
+                    console.info('wordId ajax done');
+                    $('.chip[data-wordid="' + wordId + '"]').remove();
+                });
+                jqXHR.fail(function() {
+                    console.info('wordId ajax error');
+
+                });
+                jqXHR.always(function() {
+                    console.info('wordId ajax always');
+                    $('#progressWords').hide();
+                });
+            });
+        });
+    </script>
 </content:aside>

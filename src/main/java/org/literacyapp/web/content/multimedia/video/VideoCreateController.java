@@ -109,7 +109,7 @@ public class VideoCreateController {
             video.setTimeLastUpdate(Calendar.getInstance());
             videoDao.create(video);
             
-            return "redirect:/content/multimedia/video/list";
+            return "redirect:/content/multimedia/video/list#" + video.getId();
         }
     }
     

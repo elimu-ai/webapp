@@ -80,7 +80,7 @@ public class NumberCreateController {
             number.setTimeLastUpdate(Calendar.getInstance());
             numberDao.create(number);
             
-            return "redirect:/content/number/list";
+            return "redirect:/content/number/list#" + number.getId();
         }
     }
 }

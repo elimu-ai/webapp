@@ -126,7 +126,7 @@ public class ImageCreateController {
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
             
-            return "redirect:/content/multimedia/image/list";
+            return "redirect:/content/multimedia/image/list#" + image.getId();
         }
     }
     

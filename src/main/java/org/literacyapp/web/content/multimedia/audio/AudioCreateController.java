@@ -111,7 +111,7 @@ public class AudioCreateController {
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
             
-            return "redirect:/content/multimedia/audio/list";
+            return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }
     }
     

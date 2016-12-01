@@ -20,6 +20,7 @@
                     <c:forEach var="allophone" items="${allophones}">
                         <tr class="allophone">
                             <td style="font-size: 2em;">
+                                <a name="${allophone.id}"></a>
                                 /${allophone.valueIpa}/
                             </td>
                             <td style="font-size: 2em;">

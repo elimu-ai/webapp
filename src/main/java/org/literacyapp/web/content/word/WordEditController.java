@@ -99,7 +99,9 @@ public class WordEditController {
             model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
             return "content/word/edit";
         } else {
-            word.setText(word.getText().toLowerCase());
+            if (!"I".equals(word.getText())) {
+                word.setText(word.getText().toLowerCase());
+            }
             word.setTimeLastUpdate(Calendar.getInstance());
             word.setRevisionNumber(word.getRevisionNumber() + 1);
             wordDao.update(word);
@@ -127,7 +129,7 @@ public class WordEditController {
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }
             
-            return "redirect:/content/word/list";
+            return "redirect:/content/word/list#" + word.getId();
         }
     }
 }

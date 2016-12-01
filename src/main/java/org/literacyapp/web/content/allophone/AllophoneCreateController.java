@@ -68,7 +68,7 @@ public class AllophoneCreateController {
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophoneDao.create(allophone);
             
-            return "redirect:/content/allophone/list";
+            return "redirect:/content/allophone/list#" + allophone.getId();
         }
     }
 }
