@@ -275,6 +275,7 @@ public class JavaToGsonConverter {
             
             videoGson.setTitle(video.getTitle());
             videoGson.setVideoFormat(video.getVideoFormat());
+            videoGson.setThumbnailDownloadUrl("/video/" + video.getId() + "/thumbnail.png");
             
             return videoGson;
         }

@@ -61,7 +61,7 @@
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span><fmt:message key='file' /></span>
+                        <span><fmt:message key='file' /> (M4V/MP4)</span>
                         <form:input path="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
