@@ -10,6 +10,7 @@
         
         <c:forEach var="video" items="${videos}">
             <div class="col s12 m6 l4">
+                <a name="${video.id}"></a>
                 <div class="video card">
                     <video controls="true">
                         <source src="<spring:url value='/video/${video.id}.${fn:toLowerCase(video.videoFormat)}' />" />

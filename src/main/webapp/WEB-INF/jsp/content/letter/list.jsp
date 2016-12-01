@@ -10,6 +10,7 @@
         
         <c:forEach var="letter" items="${letters}">
             <div class="col s12 m6 l4">
+                <a name="${letter.id}"></a>
                 <div class="letter card-panel">
                     <h4><c:out value="${letter.text}" /></h4>
                     <p><fmt:message key="revision" />: ${letter.revisionNumber}</p>

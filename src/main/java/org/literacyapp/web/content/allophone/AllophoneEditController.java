@@ -67,7 +67,7 @@ public class AllophoneEditController {
             allophone.setRevisionNumber(allophone.getRevisionNumber() + 1);
             allophoneDao.update(allophone);
             
-            return "redirect:/content/allophone/list";
+            return "redirect:/content/allophone/list#" + allophone.getId();
         }
     }
 }

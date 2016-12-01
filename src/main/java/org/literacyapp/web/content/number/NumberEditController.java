@@ -83,7 +83,7 @@ public class NumberEditController {
             number.setRevisionNumber(number.getRevisionNumber() + 1);
             numberDao.update(number);
             
-            return "redirect:/content/number/list";
+            return "redirect:/content/number/list#" + number.getId();
         }
     }
 }

@@ -54,7 +54,7 @@ public class LetterCreateController {
             letter.setTimeLastUpdate(Calendar.getInstance());
             letterDao.create(letter);
             
-            return "redirect:/content/letter/list";
+            return "redirect:/content/letter/list#" + letter.getId();
         }
     }
 }

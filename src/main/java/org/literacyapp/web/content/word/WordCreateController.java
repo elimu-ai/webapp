@@ -116,7 +116,7 @@ public class WordCreateController {
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }
             
-            return "redirect:/content/word/list";
+            return "redirect:/content/word/list#" + word.getId();
         }
     }
 }

@@ -265,4 +265,79 @@
             });
         });
     </script>
+    
+    <b><fmt:message key="words" /></b><br />
+    <div id="progressWords" class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+    <c:forEach var="word" items="${audio.words}">
+        <div class="chip" data-wordid="${word.id}">
+            ${word.text} 
+            <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
+                <i class="material-icons">clear</i>
+            </a>
+        </div>
+    </c:forEach>
+    <select id="wordId">
+        <option value="">-- <fmt:message key='add.word' /> --</option>
+        <c:forEach var="word" items="${words}">
+            <option value="${word.id}"><c:out value="${word.text}" /></option>
+        </c:forEach>
+    </select>
+    <script>
+        $(function() {
+            $('#wordId').on('change', function() {
+                console.info('#wordId on change');
+                var wordId = $(this).val();
+                console.info('wordId: ' + wordId);
+                var wordText = $(this).find('option[value="' + wordId + '"]').html();
+                console.info('wordText ' + wordText);
+                if (wordId != '') {
+                    $('#progressWords').show();
+                    
+                    var jqXHR = $.ajax({
+                        type: "POST",
+                        url: "<spring:url value='/content/multimedia/audio/edit/${audio.id}' />/add-content-label?wordId=" + wordId
+                    });
+                    jqXHR.done(function() {
+                        console.info('wordId ajax done');
+                        $('#progressWords').after('<div class="chip">' + wordText + '</div>');
+                    });
+                    jqXHR.fail(function() {
+                        console.info('wordId ajax error');
+                        
+                    });
+                    jqXHR.always(function() {
+                        console.info('wordId ajax always');
+                        $('#progressWords').hide();
+                    });
+                }
+            });
+            
+            $('.wordDeleteLink').on('click', function() {
+                console.info('.wordDeleteLink on click');
+                var $link = $(this);
+                var wordId = $link.attr('data-wordid');
+                console.info('wordId: ' + wordId);
+                $('#progressWords').show();
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<spring:url value='/content/multimedia/audio/edit/${audio.id}' />/remove-content-label?wordId=" + wordId
+                });
+                jqXHR.done(function() {
+                    console.info('wordId ajax done');
+                    $('.chip[data-wordid="' + wordId + '"]').remove();
+                });
+                jqXHR.fail(function() {
+                    console.info('wordId ajax error');
+
+                });
+                jqXHR.always(function() {
+                    console.info('wordId ajax always');
+                    $('#progressWords').hide();
+                });
+            });
+        });
+    </script>
 </content:aside>

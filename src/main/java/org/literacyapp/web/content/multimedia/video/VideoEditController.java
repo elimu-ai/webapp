@@ -110,7 +110,7 @@ public class VideoEditController {
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
             
-            return "redirect:/content/multimedia/video/list";
+            return "redirect:/content/multimedia/video/list#" + video.getId();
         }
     }
     

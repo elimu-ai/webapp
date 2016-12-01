@@ -126,7 +126,7 @@ public class ImageEditController {
             image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
             
-            return "redirect:/content/multimedia/image/list";
+            return "redirect:/content/multimedia/image/list#" + image.getId();
         }
     }
     

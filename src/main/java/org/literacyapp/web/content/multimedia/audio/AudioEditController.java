@@ -137,7 +137,7 @@ public class AudioEditController {
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
             
-            return "redirect:/content/multimedia/audio/list";
+            return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }
     }
     
