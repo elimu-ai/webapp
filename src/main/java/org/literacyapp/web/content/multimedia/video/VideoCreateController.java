@@ -11,9 +11,11 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.VideoDao;
 import org.literacyapp.model.content.multimedia.Video;
 import org.literacyapp.model.enums.ContentLicense;
+import org.literacyapp.model.enums.content.ImageFormat;
 import org.literacyapp.model.enums.content.VideoFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
+import org.literacyapp.util.ImageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,6 +57,7 @@ public class VideoCreateController {
             HttpSession session,
             /*@Valid*/ Video video,
             @RequestParam("bytes") MultipartFile multipartFile,
+            @RequestParam("thumbnail") MultipartFile multipartFileThumbnail,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
@@ -91,6 +94,32 @@ public class VideoCreateController {
                     video.setBytes(bytes);
 
                     // TODO: convert to a default video format?
+                }
+            }
+            
+            byte[] bytesThumbnail = multipartFileThumbnail.getBytes();
+            if (multipartFileThumbnail.isEmpty() || (bytesThumbnail == null) || (bytesThumbnail.length == 0)) {
+                result.rejectValue("thumbnail", "NotNull");
+            } else {
+                String originalFileName = multipartFileThumbnail.getOriginalFilename();
+                logger.info("originalFileName: " + originalFileName);
+                if (!originalFileName.toLowerCase().endsWith(".png")) {
+                    result.rejectValue("thumbnail", "typeMismatch");
+                } else {
+                    video.setThumbnail(bytesThumbnail);
+
+                    int width = ImageHelper.getWidth(bytesThumbnail);
+                    logger.info("width: " + width + "px");
+
+                    if (width < ImageHelper.MINIMUM_WIDTH) {
+                        result.rejectValue("thumbnail", "image.too.small");
+                        video.setBytes(null);
+                    } else {
+                        if (width > ImageHelper.MINIMUM_WIDTH) {
+                            bytesThumbnail = ImageHelper.scaleImage(bytesThumbnail, ImageHelper.MINIMUM_WIDTH);
+                            video.setBytes(bytesThumbnail);
+                        }
+                    }
                 }
             }
         } catch (IOException e) {

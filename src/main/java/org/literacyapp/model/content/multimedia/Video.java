@@ -20,6 +20,11 @@ public class Video extends Multimedia {
     private byte[] bytes;
     
     @NotNull
+    @Lob
+    @Column(length=1048576) // 1MB
+    private byte[] thumbnail;
+    
+    @NotNull
     @Enumerated(EnumType.STRING)
     private VideoFormat videoFormat;
 
@@ -29,6 +34,14 @@ public class Video extends Multimedia {
 
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
+    }
+    
+    public byte[] getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(byte[] thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public VideoFormat getVideoFormat() {

@@ -64,4 +64,42 @@ public class VideoController {
             }
         }
     }
+    
+    @RequestMapping(value="/{videoId}/thumbnail.png", method = RequestMethod.GET)
+    public void handleThumbnailRequest(
+            Model model,
+            @PathVariable Long videoId,
+            HttpServletResponse response,
+            OutputStream outputStream) {
+        logger.info("handleThumbnailRequest");
+        
+        logger.info("videoId: " + videoId);
+        
+        Video video = videoDao.read(videoId);
+        
+        response.setContentType("image/png");
+        
+        byte[] bytes = video.getThumbnail();
+        response.setContentLength(bytes.length);
+        try {
+            outputStream.write(bytes);
+        } catch (EOFException ex) {
+            // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
+            logger.warn(ex);
+        } catch (IOException ex) {
+            logger.error(null, ex);
+        } finally {
+            try {
+                try {
+                    outputStream.flush();
+                    outputStream.close();
+                } catch (EOFException ex) {
+                    // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
+                    logger.warn(ex);
+                }
+            } catch (IOException ex) {
+                logger.error(null, ex);
+            }
+        }
+    }
 }
