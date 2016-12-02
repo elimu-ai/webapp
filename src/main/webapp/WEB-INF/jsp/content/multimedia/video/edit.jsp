@@ -83,19 +83,29 @@
     <table class="bordered highlight">
         <thead>
             <th><fmt:message key="revision" /></th>
+            <th><fmt:message key="content" /></th>
             <th><fmt:message key="time" /></th>
             <th><fmt:message key="contributor" /></th>
         </thead>
         <tbody>
-            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
+            <c:forEach var="videoRevisionEvent" items="${videoRevisionEvents}" varStatus="status">
                 <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
-                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
+                    <td>${fn:length(videoRevisionEvents) - status.index}</td>
+                    <td>
+                        <fmt:message key='title' />: "${videoRevisionEvent.title}"
+                        
+                        <c:if test="${not empty videoRevisionEvent.comment}">
+                            <blockquote>
+                                "<c:out value="${videoRevisionEvent.comment}" />"
+                            </blockquote>
+                        </c:if>
+                    </td>
+                    <td><fmt:formatDate value="${videoRevisionEvent.calendar.time}" type="both" timeStyle="short" /></td>
                     <td>
                         <a href="<spring:url value='/content/community/contributors' />" target="_blank">
                             <div class="chip">
-                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
+                                <img src="<spring:url value='${videoRevisionEvent.contributor.imageUrl}' />" alt="${videoRevisionEvent.contributor.firstName}" /> 
+                                <c:out value="${videoRevisionEvent.contributor.firstName}" />&nbsp;<c:out value="${videoRevisionEvent.contributor.lastName}" />
                             </div>
                         </a>
                     </td>

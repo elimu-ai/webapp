@@ -7,8 +7,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.literacyapp.model.content.Content;
@@ -43,14 +43,14 @@ public abstract class Multimedia extends Content {
     @Enumerated(EnumType.STRING)
     private Set<NumeracySkill> numeracySkills;
     
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Letter> letters;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Letter> letters;
     
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Number> numbers;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Number> numbers;
     
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Word> words;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Word> words;
 
     public String getContentType() {
         return contentType;
@@ -92,27 +92,27 @@ public abstract class Multimedia extends Content {
         this.numeracySkills = numeracySkills;
     }
 
-    public List<Letter> getLetters() {
+    public Set<Letter> getLetters() {
         return letters;
     }
 
-    public void setLetters(List<Letter> letters) {
+    public void setLetters(Set<Letter> letters) {
         this.letters = letters;
     }
 
-    public List<Number> getNumbers() {
+    public Set<Number> getNumbers() {
         return numbers;
     }
 
-    public void setNumbers(List<Number> numbers) {
+    public void setNumbers(Set<Number> numbers) {
         this.numbers = numbers;
     }
 
-    public List<Word> getWords() {
+    public Set<Word> getWords() {
         return words;
     }
 
-    public void setWords(List<Word> words) {
+    public void setWords(Set<Word> words) {
         this.words = words;
     }
 }
