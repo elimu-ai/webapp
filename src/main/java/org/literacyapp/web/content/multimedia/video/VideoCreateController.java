@@ -164,7 +164,7 @@ public class VideoCreateController {
                     "• Title: \"" + video.getTitle() + "\"\n" + 
                     "See ") + "http://literacyapp.org/content/multimedia/video/edit/" + video.getId();
                 String iconUrl = contributor.getImageUrl();
-                String imageUrl = "http://literacyapp.org/content/multimedia/video/" + video.getId() + "/thumbnail.png";
+                String imageUrl = "http://literacyapp.org/video/" + video.getId() + "/thumbnail.png";
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
             }
             
