@@ -227,10 +227,8 @@ public class AudioEditController {
             Long letterId = Long.valueOf(letterIdParameter);
             Letter letter = letterDao.read(letterId);
             Set<Letter> letters = audio.getLetters();
-            if (letters.contains(letter)) {
-                letters.remove(letter);
-                audioDao.update(audio);
-            }
+            letters.remove(letter);
+            audioDao.update(audio);
         }
         
         String numberIdParameter = request.getParameter("numberId");
@@ -239,10 +237,8 @@ public class AudioEditController {
             Long numberId = Long.valueOf(numberIdParameter);
             Number number = numberDao.read(numberId);
             Set<Number> numbers = audio.getNumbers();
-            if (numbers.contains(number)) {
-                numbers.remove(number);
-                audioDao.update(audio);
-            }
+            numbers.remove(number);
+            audioDao.update(audio);
         }
         
         String wordIdParameter = request.getParameter("wordId");
@@ -251,10 +247,8 @@ public class AudioEditController {
             Long wordId = Long.valueOf(wordIdParameter);
             Word word = wordDao.read(wordId);
             Set<Word> words = audio.getWords();
-            if (words.contains(word)) {
-                words.remove(word);
-                audioDao.update(audio);
-            }
+            words.remove(word);
+            audioDao.update(audio);
         }
         
         return "success";
