@@ -244,7 +244,7 @@ public class ImageEditController {
             while (iterator.hasNext()) {
                 Letter existingLetter = iterator.next();
                 if (existingLetter.getId().equals(letter.getId())) {
-                    letters.remove(existingLetter);
+                    iterator.remove();
                 }
             }
             imageDao.update(image);
@@ -260,7 +260,7 @@ public class ImageEditController {
             while (iterator.hasNext()) {
                 Number existingNumber = iterator.next();
                 if (existingNumber.getId().equals(number.getId())) {
-                    numbers.remove(existingNumber);
+                    iterator.remove();
                 }
             }
             imageDao.update(image);
@@ -276,7 +276,7 @@ public class ImageEditController {
             while (iterator.hasNext()) {
                 Word existingWord = iterator.next();
                 if (existingWord.getId().equals(word.getId())) {
-                    words.remove(existingWord);
+                    iterator.remove();
                 }
             }
             imageDao.update(image);

@@ -1,10 +1,8 @@
 package org.literacyapp.web.content.multimedia.audio;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -232,7 +230,7 @@ public class AudioEditController {
             while (iterator.hasNext()) {
                 Letter existingLetter = iterator.next();
                 if (existingLetter.getId().equals(letter.getId())) {
-                    letters.remove(existingLetter);
+                    iterator.remove();
                 }
             }
             audioDao.update(audio);
@@ -248,7 +246,7 @@ public class AudioEditController {
             while (iterator.hasNext()) {
                 Number existingNumber = iterator.next();
                 if (existingNumber.getId().equals(number.getId())) {
-                    numbers.remove(existingNumber);
+                    iterator.remove();
                 }
             }
             audioDao.update(audio);
@@ -264,7 +262,7 @@ public class AudioEditController {
             while (iterator.hasNext()) {
                 Word existingWord = iterator.next();
                 if (existingWord.getId().equals(word.getId())) {
-                    words.remove(existingWord);
+                    iterator.remove();
                 }
             }
             audioDao.update(audio);
