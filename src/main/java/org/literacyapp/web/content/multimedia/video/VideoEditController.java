@@ -235,7 +235,7 @@ public class VideoEditController {
             while (iterator.hasNext()) {
                 Letter existingLetter = iterator.next();
                 if (existingLetter.getId().equals(letter.getId())) {
-                    letters.remove(existingLetter);
+                    iterator.remove();
                 }
             }
             videoDao.update(video);
@@ -251,7 +251,7 @@ public class VideoEditController {
             while (iterator.hasNext()) {
                 Number existingNumber = iterator.next();
                 if (existingNumber.getId().equals(number.getId())) {
-                    numbers.remove(existingNumber);
+                    iterator.remove();
                 }
             }
             videoDao.update(video);
@@ -267,7 +267,7 @@ public class VideoEditController {
             while (iterator.hasNext()) {
                 Word existingWord = iterator.next();
                 if (existingWord.getId().equals(word.getId())) {
-                    words.remove(existingWord);
+                    iterator.remove();
                 }
             }
             videoDao.update(video);
