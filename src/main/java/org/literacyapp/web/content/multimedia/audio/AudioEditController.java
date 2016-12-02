@@ -1,8 +1,10 @@
 package org.literacyapp.web.content.multimedia.audio;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -175,11 +177,9 @@ public class AudioEditController {
         if (StringUtils.isNotBlank(letterIdParameter)) {
             Long letterId = Long.valueOf(letterIdParameter);
             Letter letter = letterDao.read(letterId);
-            List<Letter> letters = audio.getLetters();
-            logger.info("letters.contains(letter): " + letters.contains(letter));
+            Set<Letter> letters = audio.getLetters();
             if (!letters.contains(letter)) {
                 letters.add(letter);
-                audio.setLetters(letters);
                 audioDao.update(audio);
             }
         }
@@ -189,11 +189,9 @@ public class AudioEditController {
         if (StringUtils.isNotBlank(numberIdParameter)) {
             Long numberId = Long.valueOf(numberIdParameter);
             Number number = numberDao.read(numberId);
-            List<Number> numbers = audio.getNumbers();
-            logger.info("numbers.contains(number): " + numbers.contains(number));
+            Set<Number> numbers = audio.getNumbers();
             if (!numbers.contains(number)) {
                 numbers.add(number);
-                audio.setNumbers(numbers);
                 audioDao.update(audio);
             }
         }
@@ -203,11 +201,9 @@ public class AudioEditController {
         if (StringUtils.isNotBlank(wordIdParameter)) {
             Long wordId = Long.valueOf(wordIdParameter);
             Word word = wordDao.read(wordId);
-            List<Word> words = audio.getWords();
-            logger.info("words.contains(word): " + words.contains(word));
+            Set<Word> words = audio.getWords();
             if (!words.contains(word)) {
                 words.add(word);
-                audio.setWords(words);
                 audioDao.update(audio);
             }
         }
@@ -230,17 +226,10 @@ public class AudioEditController {
         if (StringUtils.isNotBlank(letterIdParameter)) {
             Long letterId = Long.valueOf(letterIdParameter);
             Letter letter = letterDao.read(letterId);
-            List<Letter> letters = audio.getLetters();
-            logger.info("letters.contains(letter): " + letters.contains(letter));
-            for (int index = 0; index < letters.size(); index++) {
-                Letter existingLetter = letters.get(index);
-                logger.info("letterId.equals(existingLetter.getId()): " + letterId.equals(existingLetter.getId()));
-                if (letterId.equals(existingLetter.getId())) {
-                    letters.remove(index);
-                    audio.setLetters(letters);
-                    audioDao.update(audio);
-                    break;
-                }
+            Set<Letter> letters = audio.getLetters();
+            if (letters.contains(letter)) {
+                letters.remove(letter);
+                audioDao.update(audio);
             }
         }
         
@@ -249,17 +238,10 @@ public class AudioEditController {
         if (StringUtils.isNotBlank(numberIdParameter)) {
             Long numberId = Long.valueOf(numberIdParameter);
             Number number = numberDao.read(numberId);
-            List<Number> numbers = audio.getNumbers();
-            logger.info("numbers.contains(number): " + numbers.contains(number));
-            for (int index = 0; index < numbers.size(); index++) {
-                Number existingNumber = numbers.get(index);
-                logger.info("numberId.equals(existingNumber.getId()): " + numberId.equals(existingNumber.getId()));
-                if (numberId.equals(existingNumber.getId())) {
-                    numbers.remove(index);
-                    audio.setNumbers(numbers);
-                    audioDao.update(audio);
-                    break;
-                }
+            Set<Number> numbers = audio.getNumbers();
+            if (numbers.contains(number)) {
+                numbers.remove(number);
+                audioDao.update(audio);
             }
         }
         
@@ -268,17 +250,10 @@ public class AudioEditController {
         if (StringUtils.isNotBlank(wordIdParameter)) {
             Long wordId = Long.valueOf(wordIdParameter);
             Word word = wordDao.read(wordId);
-            List<Word> words = audio.getWords();
-            logger.info("words.contains(word): " + words.contains(word));
-            for (int index = 0; index < words.size(); index++) {
-                Word existingWord = words.get(index);
-                logger.info("wordId.equals(existingWord.getId()): " + wordId.equals(existingWord.getId()));
-                if (wordId.equals(existingWord.getId())) {
-                    words.remove(index);
-                    audio.setWords(words);
-                    audioDao.update(audio);
-                    break;
-                }
+            Set<Word> words = audio.getWords();
+            if (words.contains(word)) {
+                words.remove(word);
+                audioDao.update(audio);
             }
         }
         

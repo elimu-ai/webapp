@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.multimedia.image;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import org.literacyapp.dao.NumberDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Letter;
+import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.ContentLicense;
@@ -183,47 +185,71 @@ public class ImageEditController {
         logger.info("id: " + id);
         Image image = imageDao.read(id);
         
-        String letterIdParameter = request.getParameter("letterId");
-        logger.info("letterIdParameter: " + letterIdParameter);
-        if (StringUtils.isNotBlank(letterIdParameter)) {
-            Long letterId = Long.valueOf(letterIdParameter);
-            Letter letter = letterDao.read(letterId);
-            List<Letter> letters = image.getLetters();
-            logger.info("letters.contains(letter): " + letters.contains(letter));
-            if (!letters.contains(letter)) {
-                letters.add(letter);
-                image.setLetters(letters);
-                imageDao.update(image);
-            }
-        }
-        
-        String numberIdParameter = request.getParameter("numberId");
-        logger.info("numberIdParameter: " + numberIdParameter);
-        if (StringUtils.isNotBlank(numberIdParameter)) {
-            Long numberId = Long.valueOf(numberIdParameter);
-            org.literacyapp.model.content.Number number = numberDao.read(numberId);
-            List<org.literacyapp.model.content.Number> numbers = image.getNumbers();
-            logger.info("numbers.contains(number): " + numbers.contains(number));
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-                image.setNumbers(numbers);
-                imageDao.update(image);
-            }
-        }
-        
-        String wordIdParameter = request.getParameter("wordId");
-        logger.info("wordIdParameter: " + wordIdParameter);
-        if (StringUtils.isNotBlank(wordIdParameter)) {
-            Long wordId = Long.valueOf(wordIdParameter);
-            Word word = wordDao.read(wordId);
-            List<Word> words = image.getWords();
-            logger.info("words.contains(word): " + words.contains(word));
-            if (!words.contains(word)) {
-                words.add(word);
-                image.setWords(words);
-                imageDao.update(image);
-            }
-        }
+//        String letterIdParameter = request.getParameter("letterId");
+//        logger.info("letterIdParameter: " + letterIdParameter);
+//        if (StringUtils.isNotBlank(letterIdParameter)) {
+//            Long letterId = Long.valueOf(letterIdParameter);
+//            Letter letter = letterDao.read(letterId);
+//            List<Letter> letters = new ArrayList<>();
+//            boolean isLetterAlreadyAdded = false;
+//            if ((image.getLetters() != null) && !image.getLetters().isEmpty()) {
+//                for (Letter existingLetter : image.getLetters()) {
+//                    letters.add(existingLetter);
+//                    if (letterId.equals(existingLetter.getId())) {
+//                        isLetterAlreadyAdded = true;
+//                    }
+//                }
+//            }
+//            if (!isLetterAlreadyAdded) {
+//                letters.add(letter);
+//            }
+//            image.setLetters(letters);
+//            imageDao.update(image);
+//        }
+//        
+//        String numberIdParameter = request.getParameter("numberId");
+//        logger.info("numberIdParameter: " + numberIdParameter);
+//        if (StringUtils.isNotBlank(numberIdParameter)) {
+//            Long numberId = Long.valueOf(numberIdParameter);
+//            org.literacyapp.model.content.Number number = numberDao.read(numberId);
+//            List<org.literacyapp.model.content.Number> numbers = new ArrayList<>();
+//            boolean isNumberAlreadyAdded = false;
+//            if ((image.getNumbers() != null) && !image.getNumbers().isEmpty()) {
+//                for (org.literacyapp.model.content.Number existingNumber : image.getNumbers()) {
+//                    numbers.add(existingNumber);
+//                    if (numberId.equals(existingNumber.getId())) {
+//                        isNumberAlreadyAdded = true;
+//                    }
+//                }
+//            }
+//            if (!isNumberAlreadyAdded) {
+//                numbers.add(number);
+//            }
+//            image.setNumbers(numbers);
+//            imageDao.update(image);
+//        }
+//        
+//        String wordIdParameter = request.getParameter("wordId");
+//        logger.info("wordIdParameter: " + wordIdParameter);
+//        if (StringUtils.isNotBlank(wordIdParameter)) {
+//            Long wordId = Long.valueOf(wordIdParameter);
+//            Word word = wordDao.read(wordId);
+//            List<Word> words = new ArrayList<>();
+//            boolean isWordAlreadyAdded = false;
+//            if ((image.getWords() != null) && !image.getWords().isEmpty()) {
+//                for (Word existingWord : image.getWords()) {
+//                    words.add(existingWord);
+//                    if (wordId.equals(existingWord.getId())) {
+//                        isWordAlreadyAdded = true;
+//                    }
+//                }
+//            }
+//            if (!isWordAlreadyAdded) {
+//                words.add(word);
+//            }
+//            image.setWords(words);
+//            imageDao.update(image);
+//        }
         
         return "success";
     }
@@ -238,62 +264,65 @@ public class ImageEditController {
         logger.info("id: " + id);
         Image image = imageDao.read(id);
         
-        String letterIdParameter = request.getParameter("letterId");
-        logger.info("letterIdParameter: " + letterIdParameter);
-        if (StringUtils.isNotBlank(letterIdParameter)) {
-            Long letterId = Long.valueOf(letterIdParameter);
-            Letter letter = letterDao.read(letterId);
-            List<Letter> letters = image.getLetters();
-            logger.info("letters.contains(letter): " + letters.contains(letter));
-            for (int index = 0; index < letters.size(); index++) {
-                Letter existingLetter = letters.get(index);
-                logger.info("letterId.equals(existingLetter.getId()): " + letterId.equals(existingLetter.getId()));
-                if (letterId.equals(existingLetter.getId())) {
-                    letters.remove(index);
-                    image.setLetters(letters);
-                    imageDao.update(image);
-                    break;
-                }
-            }
-        }
-        
-        String numberIdParameter = request.getParameter("numberId");
-        logger.info("numberIdParameter: " + numberIdParameter);
-        if (StringUtils.isNotBlank(numberIdParameter)) {
-            Long numberId = Long.valueOf(numberIdParameter);
-            org.literacyapp.model.content.Number number = numberDao.read(numberId);
-            List<org.literacyapp.model.content.Number> numbers = image.getNumbers();
-            logger.info("numbers.contains(number): " + numbers.contains(number));
-            for (int index = 0; index < numbers.size(); index++) {
-                org.literacyapp.model.content.Number existingNumber = numbers.get(index);
-                logger.info("numberId.equals(existingNumber.getId()): " + numberId.equals(existingNumber.getId()));
-                if (numberId.equals(existingNumber.getId())) {
-                    numbers.remove(index);
-                    image.setNumbers(numbers);
-                    imageDao.update(image);
-                    break;
-                }
-            }
-        }
-        
-        String wordIdParameter = request.getParameter("wordId");
-        logger.info("wordIdParameter: " + wordIdParameter);
-        if (StringUtils.isNotBlank(wordIdParameter)) {
-            Long wordId = Long.valueOf(wordIdParameter);
-            Word word = wordDao.read(wordId);
-            List<Word> words = image.getWords();
-            logger.info("words.contains(word): " + words.contains(word));
-            for (int index = 0; index < words.size(); index++) {
-                Word existingWord = words.get(index);
-                logger.info("wordId.equals(existingWord.getId()): " + wordId.equals(existingWord.getId()));
-                if (wordId.equals(existingWord.getId())) {
-                    words.remove(index);
-                    image.setWords(words);
-                    imageDao.update(image);
-                    break;
-                }
-            }
-        }
+//        String letterIdParameter = request.getParameter("letterId");
+//        logger.info("letterIdParameter: " + letterIdParameter);
+//        if (StringUtils.isNotBlank(letterIdParameter)) {
+//            List<Letter> letters = null;
+//            if ((image.getLetters() != null) && !image.getLetters().isEmpty()) {
+//                if (image.getLetters().size() > 1) {
+//                    letters = new ArrayList<>();
+//                    Long letterId = Long.valueOf(letterIdParameter);
+//                    for (Letter existingLetter : image.getLetters()) {
+//                        if (!letterId.equals(existingLetter.getId())) {
+//                            letters.add(existingLetter);
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            image.setLetters(letters);
+//            imageDao.update(image);
+//        }
+//        
+//        String numberIdParameter = request.getParameter("numberId");
+//        logger.info("numberIdParameter: " + numberIdParameter);
+//        if (StringUtils.isNotBlank(numberIdParameter)) {
+//            List<Number> numbers = null;
+//            if ((image.getNumbers() != null) && !image.getNumbers().isEmpty()) {
+//                if (image.getNumbers().size() > 1) {
+//                    numbers = new ArrayList<>();
+//                    Long numberId = Long.valueOf(numberIdParameter);
+//                    for (Number existingNumber : image.getNumbers()) {
+//                        if (!numberId.equals(existingNumber.getId())) {
+//                            numbers.add(existingNumber);
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            image.setNumbers(numbers);
+//            imageDao.update(image);
+//        }
+//        
+//        String wordIdParameter = request.getParameter("wordId");
+//        logger.info("wordIdParameter: " + wordIdParameter);
+//        if (StringUtils.isNotBlank(wordIdParameter)) {
+//            List<Word> words = null;
+//            if ((image.getWords() != null) && !image.getWords().isEmpty()) {
+//                if (image.getWords().size() > 1) {
+//                    words = new ArrayList<>();
+//                    Long wordId = Long.valueOf(wordIdParameter);
+//                    for (Word existingWord : image.getWords()) {
+//                        if (!wordId.equals(existingWord.getId())) {
+//                            words.add(existingWord);
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            image.setWords(words);
+//            imageDao.update(image);
+//        }
         
         return "success";
     }
