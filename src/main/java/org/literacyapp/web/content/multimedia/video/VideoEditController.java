@@ -1,9 +1,9 @@
 package org.literacyapp.web.content.multimedia.video;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -176,71 +176,41 @@ public class VideoEditController {
         logger.info("id: " + id);
         Video video = videoDao.read(id);
         
-//        String letterIdParameter = request.getParameter("letterId");
-//        logger.info("letterIdParameter: " + letterIdParameter);
-//        if (StringUtils.isNotBlank(letterIdParameter)) {
-//            Long letterId = Long.valueOf(letterIdParameter);
-//            Letter letter = letterDao.read(letterId);
-//            List<Letter> letters = new ArrayList<>();
-//            boolean isLetterAlreadyAdded = false;
-//            if ((video.getLetters() != null) && !video.getLetters().isEmpty()) {
-//                for (Letter existingLetter : video.getLetters()) {
-//                    letters.add(existingLetter);
-//                    if (letterId.equals(existingLetter.getId())) {
-//                        isLetterAlreadyAdded = true;
-//                    }
-//                }
-//            }
-//            if (!isLetterAlreadyAdded) {
-//                letters.add(letter);
-//            }
-//            video.setLetters(letters);
-//            videoDao.update(video);
-//        }
-//        
-//        String numberIdParameter = request.getParameter("numberId");
-//        logger.info("numberIdParameter: " + numberIdParameter);
-//        if (StringUtils.isNotBlank(numberIdParameter)) {
-//            Long numberId = Long.valueOf(numberIdParameter);
-//            org.literacyapp.model.content.Number number = numberDao.read(numberId);
-//            List<org.literacyapp.model.content.Number> numbers = new ArrayList<>();
-//            boolean isNumberAlreadyAdded = false;
-//            if ((video.getNumbers() != null) && !video.getNumbers().isEmpty()) {
-//                for (org.literacyapp.model.content.Number existingNumber : video.getNumbers()) {
-//                    numbers.add(existingNumber);
-//                    if (numberId.equals(existingNumber.getId())) {
-//                        isNumberAlreadyAdded = true;
-//                    }
-//                }
-//            }
-//            if (!isNumberAlreadyAdded) {
-//                numbers.add(number);
-//            }
-//            video.setNumbers(numbers);
-//            videoDao.update(video);
-//        }
-//        
-//        String wordIdParameter = request.getParameter("wordId");
-//        logger.info("wordIdParameter: " + wordIdParameter);
-//        if (StringUtils.isNotBlank(wordIdParameter)) {
-//            Long wordId = Long.valueOf(wordIdParameter);
-//            Word word = wordDao.read(wordId);
-//            List<Word> words = new ArrayList<>();
-//            boolean isWordAlreadyAdded = false;
-//            if ((video.getWords() != null) && !video.getWords().isEmpty()) {
-//                for (Word existingWord : video.getWords()) {
-//                    words.add(existingWord);
-//                    if (wordId.equals(existingWord.getId())) {
-//                        isWordAlreadyAdded = true;
-//                    }
-//                }
-//            }
-//            if (!isWordAlreadyAdded) {
-//                words.add(word);
-//            }
-//            video.setWords(words);
-//            videoDao.update(video);
-//        }
+        String letterIdParameter = request.getParameter("letterId");
+        logger.info("letterIdParameter: " + letterIdParameter);
+        if (StringUtils.isNotBlank(letterIdParameter)) {
+            Long letterId = Long.valueOf(letterIdParameter);
+            Letter letter = letterDao.read(letterId);
+            Set<Letter> letters = video.getLetters();
+            if (!letters.contains(letter)) {
+                letters.add(letter);
+                videoDao.update(video);
+            }
+        }
+        
+        String numberIdParameter = request.getParameter("numberId");
+        logger.info("numberIdParameter: " + numberIdParameter);
+        if (StringUtils.isNotBlank(numberIdParameter)) {
+            Long numberId = Long.valueOf(numberIdParameter);
+            Number number = numberDao.read(numberId);
+            Set<Number> numbers = video.getNumbers();
+            if (!numbers.contains(number)) {
+                numbers.add(number);
+                videoDao.update(video);
+            }
+        }
+        
+        String wordIdParameter = request.getParameter("wordId");
+        logger.info("wordIdParameter: " + wordIdParameter);
+        if (StringUtils.isNotBlank(wordIdParameter)) {
+            Long wordId = Long.valueOf(wordIdParameter);
+            Word word = wordDao.read(wordId);
+            Set<Word> words = video.getWords();
+            if (!words.contains(word)) {
+                words.add(word);
+                videoDao.update(video);
+            }
+        }
         
         return "success";
     }
@@ -255,65 +225,53 @@ public class VideoEditController {
         logger.info("id: " + id);
         Video video = videoDao.read(id);
         
-//        String letterIdParameter = request.getParameter("letterId");
-//        logger.info("letterIdParameter: " + letterIdParameter);
-//        if (StringUtils.isNotBlank(letterIdParameter)) {
-//            List<Letter> letters = null;
-//            if ((video.getLetters() != null) && !video.getLetters().isEmpty()) {
-//                if (video.getLetters().size() > 1) {
-//                    letters = new ArrayList<>();
-//                    Long letterId = Long.valueOf(letterIdParameter);
-//                    for (Letter existingLetter : video.getLetters()) {
-//                        if (!letterId.equals(existingLetter.getId())) {
-//                            letters.add(existingLetter);
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            video.setLetters(letters);
-//            videoDao.update(video);
-//        }
-//        
-//        String numberIdParameter = request.getParameter("numberId");
-//        logger.info("numberIdParameter: " + numberIdParameter);
-//        if (StringUtils.isNotBlank(numberIdParameter)) {
-//            List<Number> numbers = null;
-//            if ((video.getNumbers() != null) && !video.getNumbers().isEmpty()) {
-//                if (video.getNumbers().size() > 1) {
-//                    numbers = new ArrayList<>();
-//                    Long numberId = Long.valueOf(numberIdParameter);
-//                    for (Number existingNumber : video.getNumbers()) {
-//                        if (!numberId.equals(existingNumber.getId())) {
-//                            numbers.add(existingNumber);
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            video.setNumbers(numbers);
-//            videoDao.update(video);
-//        }
-//        
-//        String wordIdParameter = request.getParameter("wordId");
-//        logger.info("wordIdParameter: " + wordIdParameter);
-//        if (StringUtils.isNotBlank(wordIdParameter)) {
-//            List<Word> words = null;
-//            if ((video.getWords() != null) && !video.getWords().isEmpty()) {
-//                if (video.getWords().size() > 1) {
-//                    words = new ArrayList<>();
-//                    Long wordId = Long.valueOf(wordIdParameter);
-//                    for (Word existingWord : video.getWords()) {
-//                        if (!wordId.equals(existingWord.getId())) {
-//                            words.add(existingWord);
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            video.setWords(words);
-//            videoDao.update(video);
-//        }
+        String letterIdParameter = request.getParameter("letterId");
+        logger.info("letterIdParameter: " + letterIdParameter);
+        if (StringUtils.isNotBlank(letterIdParameter)) {
+            Long letterId = Long.valueOf(letterIdParameter);
+            Letter letter = letterDao.read(letterId);
+            Set<Letter> letters = video.getLetters();
+            Iterator<Letter> iterator = letters.iterator();
+            while (iterator.hasNext()) {
+                Letter existingLetter = iterator.next();
+                if (existingLetter.getId().equals(letter.getId())) {
+                    letters.remove(existingLetter);
+                }
+            }
+            videoDao.update(video);
+        }
+        
+        String numberIdParameter = request.getParameter("numberId");
+        logger.info("numberIdParameter: " + numberIdParameter);
+        if (StringUtils.isNotBlank(numberIdParameter)) {
+            Long numberId = Long.valueOf(numberIdParameter);
+            Number number = numberDao.read(numberId);
+            Set<Number> numbers = video.getNumbers();
+            Iterator<Number> iterator = numbers.iterator();
+            while (iterator.hasNext()) {
+                Number existingNumber = iterator.next();
+                if (existingNumber.getId().equals(number.getId())) {
+                    numbers.remove(existingNumber);
+                }
+            }
+            videoDao.update(video);
+        }
+        
+        String wordIdParameter = request.getParameter("wordId");
+        logger.info("wordIdParameter: " + wordIdParameter);
+        if (StringUtils.isNotBlank(wordIdParameter)) {
+            Long wordId = Long.valueOf(wordIdParameter);
+            Word word = wordDao.read(wordId);
+            Set<Word> words = video.getWords();
+            Iterator<Word> iterator = words.iterator();
+            while (iterator.hasNext()) {
+                Word existingWord = iterator.next();
+                if (existingWord.getId().equals(word.getId())) {
+                    words.remove(existingWord);
+                }
+            }
+            videoDao.update(video);
+        }
         
         return "success";
     }

@@ -3,6 +3,7 @@ package org.literacyapp.web.content.multimedia.audio;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
@@ -227,10 +228,14 @@ public class AudioEditController {
             Long letterId = Long.valueOf(letterIdParameter);
             Letter letter = letterDao.read(letterId);
             Set<Letter> letters = audio.getLetters();
-            if (letters.contains(letter)) {
-                letters.remove(letter);
-                audioDao.update(audio);
+            Iterator<Letter> iterator = letters.iterator();
+            while (iterator.hasNext()) {
+                Letter existingLetter = iterator.next();
+                if (existingLetter.getId().equals(letter.getId())) {
+                    letters.remove(existingLetter);
+                }
             }
+            audioDao.update(audio);
         }
         
         String numberIdParameter = request.getParameter("numberId");
@@ -239,10 +244,14 @@ public class AudioEditController {
             Long numberId = Long.valueOf(numberIdParameter);
             Number number = numberDao.read(numberId);
             Set<Number> numbers = audio.getNumbers();
-            if (numbers.contains(number)) {
-                numbers.remove(number);
-                audioDao.update(audio);
+            Iterator<Number> iterator = numbers.iterator();
+            while (iterator.hasNext()) {
+                Number existingNumber = iterator.next();
+                if (existingNumber.getId().equals(number.getId())) {
+                    numbers.remove(existingNumber);
+                }
             }
+            audioDao.update(audio);
         }
         
         String wordIdParameter = request.getParameter("wordId");
@@ -251,10 +260,14 @@ public class AudioEditController {
             Long wordId = Long.valueOf(wordIdParameter);
             Word word = wordDao.read(wordId);
             Set<Word> words = audio.getWords();
-            if (words.contains(word)) {
-                words.remove(word);
-                audioDao.update(audio);
+            Iterator<Word> iterator = words.iterator();
+            while (iterator.hasNext()) {
+                Word existingWord = iterator.next();
+                if (existingWord.getId().equals(word.getId())) {
+                    words.remove(existingWord);
+                }
             }
+            audioDao.update(audio);
         }
         
         return "success";
