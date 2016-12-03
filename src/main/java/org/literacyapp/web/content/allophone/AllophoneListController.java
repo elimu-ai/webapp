@@ -54,6 +54,7 @@ public class AllophoneListController {
         } else if (locale == Locale.EN) {
             allophonesArray = new String[][] {
                 {"ˈ","\""},
+                {"ˌ","%"},
                 {"ɑ","A"},
                 {"ɔ","O"},
                 {"u","u"},

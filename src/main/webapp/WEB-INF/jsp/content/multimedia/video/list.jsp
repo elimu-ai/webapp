@@ -24,6 +24,30 @@
                         <p><fmt:message key="revision" />: ${video.revisionNumber}</p>
                         <p><fmt:message key="literacy.skills" />: ${video.literacySkills}</p>
                         <p><fmt:message key="numeracy.skills" />: ${video.numeracySkills}</p>
+                        <p>
+                            <fmt:message key="letters" />: 
+                            <c:forEach var="letter" items="${video.letters}">
+                                <div class="chip">
+                                    ${letter.text}
+                                </div>
+                            </c:forEach>
+                        </p>
+                        <p>
+                            <fmt:message key="numbers" />: 
+                            <c:forEach var="number" items="${video.numbers}">
+                                <div class="chip">
+                                    ${number.value}
+                                </div>
+                            </c:forEach>
+                        </p>
+                        <p>
+                            <fmt:message key="words" />: 
+                            <c:forEach var="word" items="${video.words}">
+                                <div class="chip">
+                                    ${word.text}
+                                </div>
+                            </c:forEach>
+                        </p>
                         <div class="divider" style="margin: 1em 0;"></div>
                         <a class="editLink" href="<spring:url value='/content/multimedia/video/edit/${video.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>

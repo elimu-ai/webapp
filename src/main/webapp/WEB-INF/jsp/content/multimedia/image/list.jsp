@@ -17,6 +17,32 @@
                     <div class="card-content">
                         <h4>${image.title}</h4>
                         <p><fmt:message key="revision" />: ${image.revisionNumber}</p>
+                        <p><fmt:message key="literacy.skills" />: ${image.literacySkills}</p>
+                        <p><fmt:message key="numeracy.skills" />: ${image.numeracySkills}</p>
+                        <p>
+                            <fmt:message key="letters" />: 
+                            <c:forEach var="letter" items="${image.letters}">
+                                <div class="chip">
+                                    ${letter.text}
+                                </div>
+                            </c:forEach>
+                        </p>
+                        <p>
+                            <fmt:message key="numbers" />: 
+                            <c:forEach var="number" items="${image.numbers}">
+                                <div class="chip">
+                                    ${number.value}
+                                </div>
+                            </c:forEach>
+                        </p>
+                        <p>
+                            <fmt:message key="words" />: 
+                            <c:forEach var="word" items="${image.words}">
+                                <div class="chip">
+                                    ${word.text}
+                                </div>
+                            </c:forEach>
+                        </p>
                         <div class="divider" style="margin: 1em 0;"></div>
                         <a class="editLink" href="<spring:url value='/content/multimedia/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
