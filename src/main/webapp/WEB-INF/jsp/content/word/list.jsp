@@ -15,6 +15,7 @@
                     <h4><c:out value="${word.text}" /></h4>
                     <p>/<c:out value="${word.phonetics}" />/</p>
                     <p><fmt:message key="revision" />: ${word.revisionNumber}</p>
+                    <p><fmt:message key="frequency" />: ${word.usageCount}</p>
                     
                     <div class="divider" style="margin: 1em 0;"></div>
                     

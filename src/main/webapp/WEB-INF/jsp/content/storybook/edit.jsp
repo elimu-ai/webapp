@@ -41,3 +41,22 @@
         </form:form>
     </div>
 </content:section>
+
+<content:aside>
+    <h5 class="center"><fmt:message key="word.frequency" /></h5>
+    
+    <table class="bordered highlight">
+        <thead>
+            <th><fmt:message key="word" /></th>
+            <th><fmt:message key="frequency" /></th>
+        </thead>
+        <tbody>
+            <c:forEach var="wordFrequency" items="${wordFrequencyMap}">
+                <tr>
+                    <td>${wordFrequency.key}</td>
+                    <td>${wordFrequency.value}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</content:aside>

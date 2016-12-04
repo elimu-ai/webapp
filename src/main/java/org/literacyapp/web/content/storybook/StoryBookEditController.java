@@ -3,6 +3,7 @@ package org.literacyapp.web.content.storybook;
 import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Team;
 import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.util.WordFrequencyHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +43,9 @@ public class StoryBookEditController {
         
         StoryBook storyBook = storyBookDao.read(id);
         model.addAttribute("storyBook", storyBook);
+        
+        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
+        model.addAttribute("wordFrequencyMap", wordFrequencyMap);
 
         return "content/storybook/edit";
     }
@@ -63,6 +68,10 @@ public class StoryBookEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBook", storyBook);
+            
+            Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
+            model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+            
             return "content/storybook/edit";
         } else {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
