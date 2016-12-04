@@ -38,6 +38,17 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
             .setParameter("locale", locale)
             .getResultList();
     }
+    
+    @Override
+    public List<Word> readAllOrderedByUsage(Locale locale) throws DataAccessException {
+        return em.createQuery(
+            "SELECT w " +
+            "FROM Word w " +
+            "WHERE w.locale = :locale " +
+            "ORDER BY w.usageCount DESC, w.text")
+            .setParameter("locale", locale)
+            .getResultList();
+    }
 
     @Override
     public List<Word> readLatest(Locale locale) throws DataAccessException {

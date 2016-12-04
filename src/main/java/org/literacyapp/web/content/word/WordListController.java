@@ -39,7 +39,7 @@ public class WordListController {
             }
         }
         
-        List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
+        List<Word> words = wordDao.readAllOrderedByUsage(contributor.getLocale());
         model.addAttribute("words", words);
 
         return "content/word/list";
