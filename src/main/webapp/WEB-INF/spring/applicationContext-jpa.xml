@@ -70,6 +70,7 @@
     <bean id="letterDao" class="org.literacyapp.dao.jpa.LetterDaoJpa" />
     <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
     <bean id="signOnEventDao" class="org.literacyapp.dao.jpa.SignOnEventDaoJpa" />
+    <bean id="storyBookDao" class="org.literacyapp.dao.jpa.StoryBookDaoJpa" />
     <bean id="videoDao" class="org.literacyapp.dao.jpa.VideoDaoJpa" />
     <bean id="videoRevisionEventDao" class="org.literacyapp.dao.jpa.VideoRevisionEventDaoJpa" />
     <bean id="wordDao" class="org.literacyapp.dao.jpa.WordDaoJpa" />
