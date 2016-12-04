@@ -48,7 +48,32 @@ public class StoryBookListController {
     private List<StoryBook> generateStoryBooks(Locale locale) {
         List<StoryBook> storyBooks = new ArrayList<>();
         
-        // TODO
+        StoryBook storyBook = new StoryBook();
+        storyBook.setLocale(locale.EN);
+        storyBook.setTimeLastUpdate(Calendar.getInstance());
+        storyBook.setTitle("Too Small");
+        List<String> paragraphs = new ArrayList<>();
+        paragraphs.add("\"Mom,\" called Lebo. \"Come and look. These clothes are all too small for me!\"");
+        paragraphs.add("\"Let me see,\" said Mom.");
+        paragraphs.add("\"Look at my skirt. It's too small,\" said Lebo.");
+        paragraphs.add("\"Yes, it is,\" said Mom. \"Nomsa can have your skirt.\"");
+        paragraphs.add("\"Look at my jeans. They are too small,\" said Lebo.");
+        paragraphs.add("\"Yes, they are,\" said Mom. \"Nomsa can have your jeans.");
+        paragraphs.add("\"Look at my T-shirt. It's too small,\" said Lebo.");
+        paragraphs.add("\"Yes, it is,\" said Mom. \"Nomsa can have your T-shirt.");
+        paragraphs.add("\"Look at my jersey. It is too small,\" said Lebo.");
+        paragraphs.add("\"Yes, it is,\" said Mom. \"We will give your jersey to Nomsa.\"");
+        paragraphs.add("\"Look at my raincoat. It's too small,\" said Lebo.");
+        paragraphs.add("\"Yes, it is. Nomsa can have your raincoat,\" said Mom.");
+        paragraphs.add("\"Look at my socks. They are too small,\" said Lebo.");
+        paragraphs.add("\"Yes, they certainly are,\" said Mom. \"Nomsa can have your socks.\"");
+        paragraphs.add("\"Look at my shoes. They are too small,\" said Lebo.");
+        paragraphs.add("\"Yes, they are,\" said Mom. \"Nomsa can have your shoes.\"");
+        paragraphs.add("\"Now you have lots of clothes,\" said Lebo.");
+        paragraphs.add("\"Oh, no, I don't,\" said Nomsa.");
+        paragraphs.add("\"These clothes are all too BIG for me!\"");
+        storyBook.setParagraphs(paragraphs);
+        storyBooks.add(storyBook);
         
         return storyBooks;
     }
