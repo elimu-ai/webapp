@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="storybooks" /> (${fn:length(storybooks)})
+    <fmt:message key="storybooks" /> (${fn:length(storyBooks)})
 </content:title>
 
 <content:section cssId="storybookListPage">

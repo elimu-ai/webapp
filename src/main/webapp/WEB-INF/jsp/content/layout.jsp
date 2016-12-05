@@ -79,6 +79,10 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/word/list' />"><fmt:message key="words" /></a>
                             </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/storybook/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/storybook/list' />"><fmt:message key="storybooks" /></a>
+                            </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="audios" /></a>
@@ -146,6 +150,9 @@
                     </c:when>
                     <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')}">
                         $('nav').addClass('green');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/storybook/')}">
+                        $('nav').addClass('grey');
                     </c:when>
                     <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')}">
                         $('nav').addClass('blue');
