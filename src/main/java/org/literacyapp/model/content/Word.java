@@ -12,7 +12,7 @@ public class Word extends Content {
     @NotNull
     private String phonetics; // IPA
     
-    private Integer usageCount = 0; // Based on StoryBook content
+    private int usageCount; // Based on StoryBook content
 
     public String getText() {
         return text;
@@ -30,11 +30,11 @@ public class Word extends Content {
         this.phonetics = phonetics;
     }
 
-    public Integer getUsageCount() {
+    public int getUsageCount() {
         return usageCount;
     }
 
-    public void setUsageCount(Integer usageCount) {
+    public void setUsageCount(int usageCount) {
         this.usageCount = usageCount;
     }
 }
