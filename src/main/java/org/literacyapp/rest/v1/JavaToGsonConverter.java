@@ -295,6 +295,7 @@ public class JavaToGsonConverter {
             
             wordJson.setText(word.getText());
             wordJson.setPhonetics(word.getPhonetics());
+            wordJson.setUsageCount(word.getUsageCount());
             
             return wordJson;
         }
