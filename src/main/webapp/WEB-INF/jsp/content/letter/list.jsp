@@ -14,6 +14,7 @@
                 <div class="letter card-panel">
                     <h4><c:out value="${letter.text}" /></h4>
                     <p><fmt:message key="revision" />: ${letter.revisionNumber}</p>
+                    <p><fmt:message key="frequency" />: ${letter.usageCount}</p>
                     <div class="divider" style="margin: 1em 0;"></div>
                     <a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>

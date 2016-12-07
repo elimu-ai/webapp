@@ -209,6 +209,7 @@ public class JavaToGsonConverter {
             letterJson.setContentStatus(letter.getContentStatus());
             
             letterJson.setText(letter.getText());
+            letterJson.setUsageCount(letter.getUsageCount());
             
             return letterJson;
         }

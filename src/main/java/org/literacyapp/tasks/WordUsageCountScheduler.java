@@ -44,11 +44,12 @@ public class WordUsageCountScheduler {
                 
                 Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(storyBook);
                 for (String key : wordFrequencyMapForBook.keySet()) {
+                    int wordFrequency = wordFrequencyMapForBook.get(key);
                     String wordLowerCase = key.toLowerCase();
                     if (!wordFrequencyMap.containsKey(wordLowerCase)) {
-                        wordFrequencyMap.put(key, 1);
+                        wordFrequencyMap.put(wordLowerCase, wordFrequency);
                     } else {
-                        wordFrequencyMap.put(key, wordFrequencyMap.get(wordLowerCase) + 1);
+                        wordFrequencyMap.put(wordLowerCase, wordFrequencyMap.get(wordLowerCase) + wordFrequency);
                     }
                 }
             }

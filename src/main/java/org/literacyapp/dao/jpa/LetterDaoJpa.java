@@ -34,7 +34,7 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
             "SELECT l " +
             "FROM Letter l " +
             "WHERE l.locale = :locale " +
-            "ORDER BY l.text")
+            "ORDER BY l.usageCount DESC, l.text")
             .setParameter("locale", locale)
             .getResultList();
     }
