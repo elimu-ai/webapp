@@ -10,7 +10,6 @@ import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.util.LetterFrequencyHelper;
-import org.literacyapp.util.WordFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -29,8 +28,7 @@ public class LetterUsageCountScheduler {
     @Autowired
     private StoryBookDao storyBookDao;
     
-//    @Scheduled(cron="00 15 06 * * *") // At 06:15 every day
-    @Scheduled(cron="00 * * * * *")
+    @Scheduled(cron="00 15 06 * * *") // At 06:15 every day
     public synchronized void execute() {
         logger.info("execute");
         
