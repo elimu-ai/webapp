@@ -61,7 +61,7 @@ public class WordListController {
             // TODO: set phonetics
         } else if (locale == Locale.EN) {
             wordZero.setText("zero");
-            wordZero.setPhonetics("ˈzɪroʊ");
+            wordZero.setPhonetics("ˈzɪrɔʊ");
         } else if (locale == Locale.ES) {
             wordZero.setText("cero");
 //            wordZero.setPhonetics(TODO);

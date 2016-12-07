@@ -12,6 +12,8 @@ public class Letter extends Content {
     @Length(max = 1)
     @Column(length = 1)
     private String text;
+    
+    private int usageCount; // Based on StoryBook content
 
     public String getText() {
         return text;
@@ -19,5 +21,13 @@ public class Letter extends Content {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public int getUsageCount() {
+        return usageCount;
+    }
+
+    public void setUsageCount(int usageCount) {
+        this.usageCount = usageCount;
     }
 }
