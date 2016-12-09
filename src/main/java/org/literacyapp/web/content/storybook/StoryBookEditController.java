@@ -16,6 +16,7 @@ import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.GradeLevel;
 import org.literacyapp.model.enums.Team;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.util.WordFrequencyHelper;
@@ -44,6 +45,8 @@ public class StoryBookEditController {
         StoryBook storyBook = storyBookDao.read(id);
         model.addAttribute("storyBook", storyBook);
         
+        model.addAttribute("gradeLevels", GradeLevel.values());
+        
         Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
 
@@ -68,6 +71,8 @@ public class StoryBookEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBook", storyBook);
+            
+            model.addAttribute("gradeLevels", GradeLevel.values());
             
             Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
             model.addAttribute("wordFrequencyMap", wordFrequencyMap);

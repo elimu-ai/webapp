@@ -11,6 +11,7 @@ import org.literacyapp.dao.StoryBookDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.GradeLevel;
 import org.literacyapp.model.enums.Team;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -36,6 +37,8 @@ public class StoryBookCreateController {
         
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
+        
+        model.addAttribute("gradeLevels", GradeLevel.values());
 
         return "content/storybook/create";
     }
@@ -60,6 +63,7 @@ public class StoryBookCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("storybook", storyBook);
+            model.addAttribute("gradeLevels", GradeLevel.values());
             return "content/storybook/create";
         } else {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
