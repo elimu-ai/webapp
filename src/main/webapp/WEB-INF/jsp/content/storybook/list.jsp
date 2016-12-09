@@ -13,6 +13,7 @@
                 <a name="${storyBook.id}"></a>
                 <div class="storybook card-panel">
                     <h4><c:out value="${storyBook.title}" /></h4>
+                    <p><fmt:message key="grade.level" />: ${storyBook.gradeLevel}</p>
                     <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
                     
                     <div class="divider" style="margin: 1em 0;"></div>

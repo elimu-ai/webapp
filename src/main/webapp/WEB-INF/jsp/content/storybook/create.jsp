@@ -18,6 +18,16 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <select id="gradeLevel" name="gradeLevel">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="gradeLevel" items="${gradeLevels}">
+                            <option value="${gradeLevel}" <c:if test="${gradeLevel == storyBook.gradeLevel}">selected="selected"</c:if>><c:out value="${gradeLevel}" /></option>
+                        </c:forEach>
+                    </select>
+                    <label for="gradeLevel"><fmt:message key="grade.level" /></label>
+                </div>
+                
+                <div class="input-field col s12">
                     <form:label path="paragraphs" cssErrorClass="error"><fmt:message key='paragraphs' /></form:label>
                     <input name="paragraphs" type="text" />
                     <a id="addParagraphLink" class="btn" href="#">+</a>
