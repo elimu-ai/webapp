@@ -75,6 +75,7 @@ public class StoryBookCreateController {
                 String text = URLEncoder.encode(contributor.getFirstName() + " just added a new StoryBook:\n" + 
                     "• Language: \"" + storyBook.getLocale().getLanguage() + "\"\n" + 
                     "• Title: \"" + storyBook.getTitle() + "\"\n" + 
+                    "• Grade level: " + storyBook.getGradeLevel() + "\n" +
                     "• Paragraphs: " + storyBook.getParagraphs() + "\n" + 
                     "See ") + "http://literacyapp.org/content/storybook/edit/" + storyBook.getId();
                 String iconUrl = contributor.getImageUrl();

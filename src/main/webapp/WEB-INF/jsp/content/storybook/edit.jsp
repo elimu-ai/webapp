@@ -21,7 +21,7 @@
                     <select id="gradeLevel" name="gradeLevel">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="gradeLevel" items="${gradeLevels}">
-                            <option value="${gradeLevel}" <c:if test="${gradeLevel == storyBook.gradeLevel}">selected="selected"</c:if>><c:out value="${gradeLevel}" /></option>
+                            <option value="${gradeLevel}" <c:if test="${gradeLevel == storyBook.gradeLevel}">selected="selected"</c:if>><fmt:message key="grade.level.${gradeLevel}" /></option>
                         </c:forEach>
                     </select>
                     <label for="gradeLevel"><fmt:message key="grade.level" /></label>
