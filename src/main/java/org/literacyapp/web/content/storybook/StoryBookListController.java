@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.StoryBookDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.StoryBook;
+import org.literacyapp.model.enums.GradeLevel;
 import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +53,7 @@ public class StoryBookListController {
         storyBook.setLocale(locale.EN);
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setTitle("Too Small");
+        storyBook.setGradeLevel(GradeLevel.LEVEL3);
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look. These clothes are all too small for me!\"");
         paragraphs.add("\"Let me see,\" said Mom.");
