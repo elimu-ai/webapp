@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.Device;
+import org.literacyapp.model.Student;
 import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
@@ -13,6 +14,7 @@ import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.content.multimedia.Video;
 import org.literacyapp.model.gson.DeviceGson;
+import org.literacyapp.model.gson.StudentGson;
 import org.literacyapp.model.gson.content.NumberGson;
 import org.literacyapp.model.gson.content.WordGson;
 import org.literacyapp.model.gson.admin.ApplicationGson;
@@ -147,6 +149,20 @@ public class JavaToGsonConverter {
 //            }
             
             return deviceJson;
+        }
+    }
+    
+    public static StudentGson getStudentGson(Student student) {
+        if (student == null) {
+            return null;
+        } else {
+            StudentGson studentGson = new StudentGson();
+            
+            studentGson.setUniqueId(student.getUniqueId());
+//            studentGson.setAvatar(null);
+//            studentGson.setDevices(null);
+            
+            return studentGson;
         }
     }
     
