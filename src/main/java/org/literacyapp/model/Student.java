@@ -17,23 +17,25 @@ public class Student extends BaseEntity {
     @NotNull
     @Column(unique = true)
     private String uniqueId; // "<deviceId>_<Long>"
+    
+    @NotEmpty
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Device> devices;
+    
+    // TODO: avatar
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private Locale locale;
     
-    @NotEmpty
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Device> devices;
-
-    public Locale getLocale() {
-        return locale;
+    public String getUniqueId() {
+        return uniqueId;
     }
 
-    public void setLocale(Locale locale) {
-        this.locale = locale;
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
-
+    
     public Set<Device> getDevices() {
         return devices;
     }
@@ -42,11 +44,11 @@ public class Student extends BaseEntity {
         this.devices = devices;
     }
 
-    public String getUniqueId() {
-        return uniqueId;
+    public Locale getLocale() {
+        return locale;
     }
 
-    public void setUniqueId(String uniqueId) {
-        this.uniqueId = uniqueId;
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }

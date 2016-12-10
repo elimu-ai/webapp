@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -44,7 +44,7 @@ public class Device extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Locale locale;
     
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Device> devicesNearby = new HashSet<>();
 
     public String getDeviceId() {
