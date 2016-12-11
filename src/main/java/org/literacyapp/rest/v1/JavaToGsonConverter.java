@@ -159,6 +159,7 @@ public class JavaToGsonConverter {
             StudentGson studentGson = new StudentGson();
             
             studentGson.setUniqueId(student.getUniqueId());
+            studentGson.setTimeCreated(student.getTimeCreated());
 //            studentGson.setAvatar(null);
 //            studentGson.setDevices(null);
             

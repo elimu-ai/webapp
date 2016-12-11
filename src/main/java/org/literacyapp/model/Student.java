@@ -1,5 +1,6 @@
 package org.literacyapp.model;
 
+import java.util.Calendar;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.literacyapp.model.enums.Locale;
@@ -22,6 +25,10 @@ public class Student extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Device> devices;
     
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar timeCreated; // Time created on Device
+    
     // TODO: avatar
 
     @NotNull
@@ -34,6 +41,14 @@ public class Student extends BaseEntity {
 
     public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
+    }
+    
+    public Calendar getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(Calendar timeCreated) {
+        this.timeCreated = timeCreated;
     }
     
     public Set<Device> getDevices() {
