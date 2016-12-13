@@ -16,7 +16,7 @@ public class StoryBook extends Content {
     @NotNull
     private String title;
     
-//    @NotNull
+    @NotNull
     @Enumerated(EnumType.STRING)
     private GradeLevel gradeLevel;
     
