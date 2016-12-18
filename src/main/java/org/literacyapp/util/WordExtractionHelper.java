@@ -20,6 +20,8 @@ public class WordExtractionHelper {
             String word = paragraphPart
                     .replace(",", "")
                     .replace("\"", "")
+                    .replace("“", "")
+                    .replace("”", "")
                     .replace(".", "")
                     .replace("!", "")
                     .replace("?", "");
