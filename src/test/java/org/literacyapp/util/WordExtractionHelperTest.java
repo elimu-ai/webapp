@@ -55,4 +55,22 @@ public class WordExtractionHelperTest {
         assertThat(words.get(9), is("is"));
         assertThat(words.get(10), is("Selah"));
     }
+    
+    @Test
+    public void testGetWordsInsideQuotes() {
+        String paragraph = "I wanted to play the ball very much. I said, “Ah! Football.”";
+        List<String> words = WordExtractionHelper.getWords(paragraph);
+        assertThat(words.get(0), is("I"));
+        assertThat(words.get(1), is("wanted"));
+        assertThat(words.get(2), is("to"));
+        assertThat(words.get(3), is("play"));
+        assertThat(words.get(4), is("the"));
+        assertThat(words.get(5), is("ball"));
+        assertThat(words.get(6), is("very"));
+        assertThat(words.get(7), is("much"));
+        assertThat(words.get(8), is("I"));
+        assertThat(words.get(9), is("said"));
+        assertThat(words.get(10), is("Ah"));
+        assertThat(words.get(11), is("Football"));
+    }
 }
