@@ -179,6 +179,7 @@ public class AudioEditController {
             Set<Letter> letters = audio.getLetters();
             if (!letters.contains(letter)) {
                 letters.add(letter);
+                audio.setRevisionNumber(audio.getRevisionNumber() + 1);
                 audioDao.update(audio);
             }
         }
@@ -191,6 +192,7 @@ public class AudioEditController {
             Set<Number> numbers = audio.getNumbers();
             if (!numbers.contains(number)) {
                 numbers.add(number);
+                audio.setRevisionNumber(audio.getRevisionNumber() + 1);
                 audioDao.update(audio);
             }
         }
@@ -203,6 +205,7 @@ public class AudioEditController {
             Set<Word> words = audio.getWords();
             if (!words.contains(word)) {
                 words.add(word);
+                audio.setRevisionNumber(audio.getRevisionNumber() + 1);
                 audioDao.update(audio);
             }
         }
@@ -233,6 +236,7 @@ public class AudioEditController {
                     iterator.remove();
                 }
             }
+            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
         }
         
@@ -249,6 +253,7 @@ public class AudioEditController {
                     iterator.remove();
                 }
             }
+            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
         }
         
@@ -265,6 +270,7 @@ public class AudioEditController {
                     iterator.remove();
                 }
             }
+            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
         }
         

@@ -193,6 +193,7 @@ public class ImageEditController {
             Set<Letter> letters = image.getLetters();
             if (!letters.contains(letter)) {
                 letters.add(letter);
+                image.setRevisionNumber(image.getRevisionNumber() + 1);
                 imageDao.update(image);
             }
         }
@@ -205,6 +206,7 @@ public class ImageEditController {
             Set<Number> numbers = image.getNumbers();
             if (!numbers.contains(number)) {
                 numbers.add(number);
+                image.setRevisionNumber(image.getRevisionNumber() + 1);
                 imageDao.update(image);
             }
         }
@@ -217,6 +219,7 @@ public class ImageEditController {
             Set<Word> words = image.getWords();
             if (!words.contains(word)) {
                 words.add(word);
+                image.setRevisionNumber(image.getRevisionNumber() + 1);
                 imageDao.update(image);
             }
         }
@@ -247,6 +250,7 @@ public class ImageEditController {
                     iterator.remove();
                 }
             }
+            image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
         }
         
@@ -263,6 +267,7 @@ public class ImageEditController {
                     iterator.remove();
                 }
             }
+            image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
         }
         
@@ -279,6 +284,7 @@ public class ImageEditController {
                     iterator.remove();
                 }
             }
+            image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
         }
         
