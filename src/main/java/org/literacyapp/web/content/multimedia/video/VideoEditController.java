@@ -184,6 +184,7 @@ public class VideoEditController {
             Set<Letter> letters = video.getLetters();
             if (!letters.contains(letter)) {
                 letters.add(letter);
+                video.setRevisionNumber(video.getRevisionNumber() + 1);
                 videoDao.update(video);
             }
         }
@@ -196,6 +197,7 @@ public class VideoEditController {
             Set<Number> numbers = video.getNumbers();
             if (!numbers.contains(number)) {
                 numbers.add(number);
+                video.setRevisionNumber(video.getRevisionNumber() + 1);
                 videoDao.update(video);
             }
         }
@@ -208,6 +210,7 @@ public class VideoEditController {
             Set<Word> words = video.getWords();
             if (!words.contains(word)) {
                 words.add(word);
+                video.setRevisionNumber(video.getRevisionNumber() + 1);
                 videoDao.update(video);
             }
         }
@@ -238,6 +241,7 @@ public class VideoEditController {
                     iterator.remove();
                 }
             }
+            video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
         }
         
@@ -254,6 +258,7 @@ public class VideoEditController {
                     iterator.remove();
                 }
             }
+            video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
         }
         
@@ -270,6 +275,7 @@ public class VideoEditController {
                     iterator.remove();
                 }
             }
+            video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
         }
         
