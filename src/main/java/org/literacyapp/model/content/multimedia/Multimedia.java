@@ -52,9 +52,15 @@ public abstract class Multimedia extends Content {
     private Set<Letter> letters;
     
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            inverseJoinColumns = @JoinColumn(name = "numbers_id", unique = false)
+    )
     private Set<Number> numbers;
     
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            inverseJoinColumns = @JoinColumn(name = "words_id", unique = false)
+    )
     private Set<Word> words;
 
     public String getContentType() {
