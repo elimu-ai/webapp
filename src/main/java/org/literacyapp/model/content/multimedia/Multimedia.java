@@ -7,6 +7,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
@@ -44,6 +46,9 @@ public abstract class Multimedia extends Content {
     private Set<NumeracySkill> numeracySkills;
     
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            inverseJoinColumns = @JoinColumn(name = "letters_id", unique = false)
+    )
     private Set<Letter> letters;
     
     @ManyToMany(fetch = FetchType.EAGER)
