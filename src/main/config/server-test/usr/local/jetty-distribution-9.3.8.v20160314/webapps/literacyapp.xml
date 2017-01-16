@@ -37,5 +37,5 @@ This file is placed on the test server under jetty.home/contexts/
       <Item>sw.test.literacyapp.org</Item>
     </Array>
   </Set>
-  <Set name="maxFormContentSize">104857600</Set><!-- 100MB -->
+  <Set name="maxFormContentSize">209715200</Set><!-- 200MB -->
 </Configure>

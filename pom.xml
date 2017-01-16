@@ -52,7 +52,7 @@
                     <systemProperties>
                         <systemProperty>
                             <name>org.eclipse.jetty.server.Request.maxFormContentSize</name>
-                            <value>104857600</value><!-- 100MB -->
+                            <value>209715200</value><!-- 200MB -->
                         </systemProperty>
                     </systemProperties>
                 </configuration>
