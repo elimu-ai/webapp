@@ -1,5 +1,6 @@
 package org.literacyapp.tasks;
 
+import java.io.IOException;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -31,10 +32,15 @@ public class MailChimpScheduler {
         List<Contributor> contributors = contributorDao.readAll();
         logger.info("contributors.size(): " + contributors.size());
         for (Contributor contributor : contributors) {
-            // Check if contributor is already subscribed to the mailing list
-            String memberInfo = MailChimpApiHelper.getMemberInfo(contributor.getEmail());
-            if (StringUtils.isBlank(memberInfo)) {
-                MailChimpApiHelper.subscribeMember(contributor);
+            try {
+                // Check if contributor is already subscribed to the mailing list
+                String memberInfo = MailChimpApiHelper.getMemberInfo(contributor.getEmail());
+                if (StringUtils.isBlank(memberInfo)) {
+                    MailChimpApiHelper.subscribeMember(contributor);
+                }
+            } catch (IOException ex) {
+                logger.error(null, ex);
+                break;
             }
         }
         
@@ -55,10 +61,15 @@ public class MailChimpScheduler {
         List<Contributor> contributors = contributorDao.readAll();
         logger.info("contributors.size(): " + contributors.size());
         for (Contributor contributor : contributors) {
-            String memberInfo = MailChimpApiHelper.getMemberInfo(contributor.getEmail());
-            if (StringUtils.isNotBlank(memberInfo)) {
-                // Sync Contributor data with mailing list
-                MailChimpApiHelper.updateTeams(contributor.getEmail(), contributor.getTeams());
+            try {
+                String memberInfo = MailChimpApiHelper.getMemberInfo(contributor.getEmail());
+                if (StringUtils.isNotBlank(memberInfo)) {
+                    // Sync Contributor data with mailing list
+                    MailChimpApiHelper.updateTeams(contributor.getEmail(), contributor.getTeams());
+                }
+            } catch (IOException ex) {
+                logger.error(null, ex);
+                break;
             }
         }
         

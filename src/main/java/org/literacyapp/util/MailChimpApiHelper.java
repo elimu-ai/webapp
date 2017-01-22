@@ -38,7 +38,7 @@ public class MailChimpApiHelper {
      * 
      * @return {@code null} if a subscription was not found for the given e-mail.
      */
-    public static String getMemberInfo(String email) {
+    public static String getMemberInfo(String email) throws IOException {
         logger.info("getMemberInfo");
         
         String memberInfo = null;
@@ -61,8 +61,6 @@ public class MailChimpApiHelper {
                 memberInfo = bufferedReader.readLine();
             }
         } catch (MalformedURLException ex) {
-            logger.error(null, ex);
-        } catch (IOException ex) {
             logger.error(null, ex);
         }
         
