@@ -119,6 +119,8 @@ public class AudioCreateController {
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
             
+            // TODO: store RevisionEvent
+            
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
                     contributor.getFirstName() + " just added a new Audio:\n" + 

@@ -90,7 +90,7 @@
         <tbody>
             <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
                 <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
+                    <td>#${fn:length(contentCreationEvents) - status.index}</td>
                     <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
                     <td>
                         <a href="<spring:url value='/content/community/contributors' />" target="_blank">

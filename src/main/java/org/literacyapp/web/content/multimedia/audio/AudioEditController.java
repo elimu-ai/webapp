@@ -150,6 +150,8 @@ public class AudioEditController {
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
             
+            // TODO: store RevisionEvent
+            
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
                     contributor.getFirstName() + " just edited an Audio:\n" + 

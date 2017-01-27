@@ -68,6 +68,16 @@
                         <input class="file-path validate" type="text" />
                     </div>
                 </div>
+                
+                <div class="file-field input-field col s12">
+                    <div class="btn">
+                        <span><fmt:message key='thumbnail' /> (PNG)</span>
+                        <form:input path="thumbnail" type="file" />
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" />
+                    </div>
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
@@ -90,7 +100,7 @@
         <tbody>
             <c:forEach var="videoRevisionEvent" items="${videoRevisionEvents}" varStatus="status">
                 <tr>
-                    <td>${fn:length(videoRevisionEvents) - status.index}</td>
+                    <td>#${fn:length(videoRevisionEvents) - status.index}</td>
                     <td>
                         <fmt:message key='title' />: "${videoRevisionEvent.title}"
                         

@@ -12,11 +12,13 @@
             <div class="col s12 m6 l4">
                 <a name="${image.id}"></a>
                 <div class="image card">
-                    <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
+                    <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
+                        <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
+                    </a>
                     
                     <div class="card-content">
                         <h4>${image.title}</h4>
-                        <p><fmt:message key="revision" />: ${image.revisionNumber}</p>
+                        
                         <p><fmt:message key="literacy.skills" />: ${image.literacySkills}</p>
                         <p><fmt:message key="numeracy.skills" />: ${image.numeracySkills}</p>
                         <p>
@@ -43,6 +45,7 @@
                                 </div>
                             </c:forEach>
                         </p>
+                        <p><fmt:message key="revision" />: #${image.revisionNumber}</p>
                         <div class="divider" style="margin: 1em 0;"></div>
                         <a class="editLink" href="<spring:url value='/content/multimedia/image/edit/${image.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
