@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.multimedia.audio;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Set;
@@ -20,9 +21,13 @@ import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.enums.ContentLicense;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.AudioFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -144,6 +149,19 @@ public class AudioEditController {
             audio.setTimeLastUpdate(Calendar.getInstance());
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
+            
+            // TODO: store RevisionEvent
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just edited an Audio:\n" + 
+                    "• Language: \"" + audio.getLocale().getLanguage() + "\"\n" + 
+                    "• Transcription: \"" + audio.getTranscription() + "\"\n" + 
+                    "• Revision number: #" + audio.getRevisionNumber() + "\n" + 
+                    "See ") + "http://literacyapp.org/content/multimedia/audio/edit/" + audio.getId();
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
+            }
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

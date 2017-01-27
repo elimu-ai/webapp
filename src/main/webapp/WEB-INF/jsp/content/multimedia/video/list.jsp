@@ -21,7 +21,7 @@
                     
                     <div class="card-content">
                         <h4>"${video.title}"</h4>
-                        <p><fmt:message key="revision" />: ${video.revisionNumber}</p>
+                        
                         <p><fmt:message key="literacy.skills" />: ${video.literacySkills}</p>
                         <p><fmt:message key="numeracy.skills" />: ${video.numeracySkills}</p>
                         <p>
@@ -48,6 +48,7 @@
                                 </div>
                             </c:forEach>
                         </p>
+                        <p><fmt:message key="revision" />: #${video.revisionNumber}</p>
                         <div class="divider" style="margin: 1em 0;"></div>
                         <a class="editLink" href="<spring:url value='/content/multimedia/video/edit/${video.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>

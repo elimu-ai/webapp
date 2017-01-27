@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.multimedia.audio;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,11 +10,16 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AudioDao;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.enums.ContentLicense;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.AudioFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,6 +64,8 @@ public class AudioCreateController {
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
@@ -110,6 +118,18 @@ public class AudioCreateController {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
+            
+            // TODO: store RevisionEvent
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just added a new Audio:\n" + 
+                    "• Language: \"" + audio.getLocale().getLanguage() + "\"\n" + 
+                    "• Transcription: \"" + audio.getTranscription() + "\"\n" + 
+                    "See ") + "http://literacyapp.org/content/multimedia/audio/edit/" + audio.getId();
+                String iconUrl = contributor.getImageUrl();
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
+            }
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

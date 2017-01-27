@@ -27,7 +27,7 @@
                                 ${allophone.valueSampa}
                             </td>
                             <td>
-                                <p>${allophone.revisionNumber}</p>
+                                <p>#${allophone.revisionNumber}</p>
                             </td>
                             <td><a class="editLink" href="<spring:url value='/content/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>

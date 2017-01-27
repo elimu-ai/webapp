@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.multimedia.video;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Set;
@@ -20,10 +21,15 @@ import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Video;
+import org.literacyapp.model.contributor.VideoRevisionEvent;
 import org.literacyapp.model.enums.ContentLicense;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.VideoFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -149,6 +155,25 @@ public class VideoEditController {
             video.setTimeLastUpdate(Calendar.getInstance());
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
+            
+            VideoRevisionEvent videoRevisionEvent = new VideoRevisionEvent();
+            videoRevisionEvent.setContributor(contributor);
+            videoRevisionEvent.setCalendar(Calendar.getInstance());
+            videoRevisionEvent.setVideo(video);
+            videoRevisionEvent.setTitle(video.getTitle());
+            videoRevisionEventDao.create(videoRevisionEvent);
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just updated a Video:\n" + 
+                    "• Language: \"" + video.getLocale().getLanguage() + "\"\n" + 
+                    "• Title: \"" + video.getTitle() + "\"\n" + 
+                    "• Revision number: #" + video.getRevisionNumber() + "\n" + 
+                    "See ") + "http://literacyapp.org/content/multimedia/video/edit/" + video.getId();
+                String iconUrl = contributor.getImageUrl();
+                String imageUrl = "http://literacyapp.org/video/" + video.getId() + "/thumbnail.png";
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
+            }
             
             return "redirect:/content/multimedia/video/list#" + video.getId();
         }

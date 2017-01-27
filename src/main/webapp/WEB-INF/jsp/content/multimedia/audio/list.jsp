@@ -37,7 +37,7 @@
                                 ${audio.numeracySkills}
                             </td>
                             <td>
-                                <p>${audio.revisionNumber}</p>
+                                <p>#${audio.revisionNumber}</p>
                             </td>
                             <td><a class="editLink" href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
