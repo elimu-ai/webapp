@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.multimedia.image;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Set;
@@ -20,10 +21,14 @@ import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.ContentLicense;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.ImageFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.ImageHelper;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,6 +77,8 @@ public class ImageEditController {
         
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
+        
+//        model.addAttribute("imageRevisionEvents", imageRevisionEventDao.readAll(image));
         
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
@@ -158,6 +165,20 @@ public class ImageEditController {
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
+            
+            // TODO: store RevisionEvent
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just edited an Image:\n" + 
+                    "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
+                    "• Title: \"" + image.getTitle() + "\"\n" + 
+                    "• Revision number: #" + image.getRevisionNumber() + "\n" + 
+                    "See ") + "http://literacyapp.org/content/multimedia/image/edit/" + image.getId();
+                String iconUrl = contributor.getImageUrl();
+                String imageUrl = "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
+            }
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
         }

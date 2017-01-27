@@ -1,6 +1,7 @@
 package org.literacyapp.web.content.multimedia.image;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,13 +10,18 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
+import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.ContentLicense;
+import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Team;
 import org.literacyapp.model.enums.content.ImageFormat;
 import org.literacyapp.model.enums.content.LiteracySkill;
 import org.literacyapp.model.enums.content.NumeracySkill;
 import org.literacyapp.util.ImageColorHelper;
 import org.literacyapp.util.ImageHelper;
+import org.literacyapp.util.SlackApiHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +66,8 @@ public class ImageCreateController {
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -125,6 +133,19 @@ public class ImageCreateController {
             image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
+            
+            // TODO: store RevisionEvent
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just added a new Image:\n" + 
+                    "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
+                    "• Title: \"" + image.getTitle() + "\"\n" +
+                    "See ") + "http://literacyapp.org/content/multimedia/image/edit/" + image.getId();
+                String iconUrl = contributor.getImageUrl();
+                String imageUrl = "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
+                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
+            }
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
         }
