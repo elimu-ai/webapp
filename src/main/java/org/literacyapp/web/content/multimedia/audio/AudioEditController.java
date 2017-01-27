@@ -77,6 +77,8 @@ public class AudioEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
+//        model.addAttribute("audioRevisionEvents", audioRevisionEventDao.readAll(audio));
+        
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
