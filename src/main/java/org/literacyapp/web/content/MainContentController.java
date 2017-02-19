@@ -1,13 +1,26 @@
 package org.literacyapp.web.content;
 
 import java.security.Principal;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.ApplicationDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.admin.Application;
+import org.literacyapp.model.enums.admin.ApplicationStatus;
+import org.literacyapp.model.enums.content.LiteracySkill;
+import org.literacyapp.model.enums.content.NumeracySkill;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +31,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainContentController {
     
     private final Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private ApplicationDao applicationDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -42,6 +58,63 @@ public class MainContentController {
         } else if (contributor.getTimePerWeek() == null) {
             return "redirect:/content/contributor/edit-time";
         }
+        
+        // List count of active Android applications for each EGRA/EGMA skill
+        
+        List<Application> applications = applicationDao.readAllByStatus(contributor.getLocale(), ApplicationStatus.ACTIVE);
+        logger.info("applications.size(): " + applications.size());
+        
+        Map<LiteracySkill, Integer> literacySkillCountMap = new HashMap<>();
+        for (Application application : applications) {
+            for (LiteracySkill literacySkill : application.getLiteracySkills()) {
+                if (!literacySkillCountMap.containsKey(literacySkill)) {
+                    literacySkillCountMap.put(literacySkill, 1);
+                } else {
+                    int count = literacySkillCountMap.get(literacySkill);
+                    literacySkillCountMap.put(literacySkill, count + 1);
+                }
+            }
+        }
+        for (LiteracySkill literacySkill : LiteracySkill.values()) {
+            if (!literacySkillCountMap.containsKey(literacySkill)) {
+                literacySkillCountMap.put(literacySkill, 0);
+            }
+        }
+        model.addAttribute("literacySkillCountMap", literacySkillCountMap);
+        int maxLiteracySkillCount = 0;
+        Collection<Integer> literacySkillCountCollection = literacySkillCountMap.values();
+        for (int count : literacySkillCountCollection) {
+            if (count > maxLiteracySkillCount) {
+                maxLiteracySkillCount = count;
+            }
+        }
+        model.addAttribute("maxLiteracySkillCount", maxLiteracySkillCount);
+        
+        Map<NumeracySkill, Integer> numeracySkillCountMap = new HashMap<>();
+        for (Application application : applications) {
+            for (NumeracySkill numeracySkill : application.getNumeracySkills()) {
+                if (!numeracySkillCountMap.containsKey(numeracySkill)) {
+                    numeracySkillCountMap.put(numeracySkill, 1);
+                } else {
+                    int count = numeracySkillCountMap.get(numeracySkill);
+                    numeracySkillCountMap.put(numeracySkill, count + 1);
+                }
+            }
+        }
+        for (NumeracySkill numeracySkill : NumeracySkill.values()) {
+            if (!numeracySkillCountMap.containsKey(numeracySkill)) {
+                numeracySkillCountMap.put(numeracySkill, 0);
+            }
+        }
+        model.addAttribute("numeracySkillCountMap", numeracySkillCountMap);
+        int maxNumeracySkillCount = 0;
+        Collection<Integer> numeracySkillCountCollection = numeracySkillCountMap.values();
+        for (int count : numeracySkillCountCollection) {
+            if (count > maxNumeracySkillCount) {
+                maxNumeracySkillCount = count;
+            }
+        }
+        model.addAttribute("maxNumeracySkillCount", maxNumeracySkillCount);
     	
         return "content/main";
     }
