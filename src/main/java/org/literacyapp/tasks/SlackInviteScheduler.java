@@ -37,13 +37,14 @@ public class SlackInviteScheduler {
             return;
         }
         
+        JSONArray slackMembers = SlackApiHelper.getTeamMembers();
+        logger.info("slackMembers.length(): " + slackMembers.length());
+        
         List<Contributor> contributors = contributorDao.readAll();
         logger.info("contributors.size(): " + contributors.size());
         for (Contributor contributor : contributors) {
             // If the Contributor has already joined Slack, store the Slack id
             if (StringUtils.isBlank(contributor.getSlackId())) {
-                JSONArray slackMembers = SlackApiHelper.getTeamMembers();
-                logger.info("slackMembers.length(): " + slackMembers.length());
                 for (int i = 0; i < slackMembers.length(); i++) {
                     JSONObject member = slackMembers.getJSONObject(i);
                     String slackId = member.getString("id");
