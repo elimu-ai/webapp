@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -64,20 +65,14 @@ public class MainContentController {
         List<Application> applications = applicationDao.readAllByStatus(contributor.getLocale(), ApplicationStatus.ACTIVE);
         logger.info("applications.size(): " + applications.size());
         
-        Map<LiteracySkill, Integer> literacySkillCountMap = new HashMap<>();
+        Map<LiteracySkill, Integer> literacySkillCountMap = new LinkedHashMap<>();
+        for (LiteracySkill literacySkill : LiteracySkill.values()) {
+            literacySkillCountMap.put(literacySkill, 0);
+        }
         for (Application application : applications) {
             for (LiteracySkill literacySkill : application.getLiteracySkills()) {
-                if (!literacySkillCountMap.containsKey(literacySkill)) {
-                    literacySkillCountMap.put(literacySkill, 1);
-                } else {
-                    int count = literacySkillCountMap.get(literacySkill);
-                    literacySkillCountMap.put(literacySkill, count + 1);
-                }
-            }
-        }
-        for (LiteracySkill literacySkill : LiteracySkill.values()) {
-            if (!literacySkillCountMap.containsKey(literacySkill)) {
-                literacySkillCountMap.put(literacySkill, 0);
+                int count = literacySkillCountMap.get(literacySkill);
+                literacySkillCountMap.put(literacySkill, count + 1);
             }
         }
         model.addAttribute("literacySkillCountMap", literacySkillCountMap);
@@ -90,20 +85,14 @@ public class MainContentController {
         }
         model.addAttribute("maxLiteracySkillCount", maxLiteracySkillCount);
         
-        Map<NumeracySkill, Integer> numeracySkillCountMap = new HashMap<>();
+        Map<NumeracySkill, Integer> numeracySkillCountMap = new LinkedHashMap<>();
+        for (NumeracySkill numeracySkill : NumeracySkill.values()) {
+            numeracySkillCountMap.put(numeracySkill, 0);
+        }
         for (Application application : applications) {
             for (NumeracySkill numeracySkill : application.getNumeracySkills()) {
-                if (!numeracySkillCountMap.containsKey(numeracySkill)) {
-                    numeracySkillCountMap.put(numeracySkill, 1);
-                } else {
-                    int count = numeracySkillCountMap.get(numeracySkill);
-                    numeracySkillCountMap.put(numeracySkill, count + 1);
-                }
-            }
-        }
-        for (NumeracySkill numeracySkill : NumeracySkill.values()) {
-            if (!numeracySkillCountMap.containsKey(numeracySkill)) {
-                numeracySkillCountMap.put(numeracySkill, 0);
+                int count = numeracySkillCountMap.get(numeracySkill);
+                numeracySkillCountMap.put(numeracySkill, count + 1);
             }
         }
         model.addAttribute("numeracySkillCountMap", numeracySkillCountMap);
