@@ -208,6 +208,7 @@ public class JavaToGsonConverter {
             
             imageGson.setTitle(image.getTitle());
             imageGson.setImageFormat(image.getImageFormat());
+            imageGson.setDominantColor(image.getDominantColor());
             
             return imageGson;
         }
