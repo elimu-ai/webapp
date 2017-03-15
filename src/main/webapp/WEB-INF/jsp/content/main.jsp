@@ -4,33 +4,6 @@
 
 <content:section cssId="mainContentPage">
     <div class="section row">
-        <%-- Show number of apps in each EGRA/EGMA category --%>
-        <div class="row">            
-            <div class="col s12 m6">
-                <h5>APKs Covering EGRA Skills</h5>
-                
-                <c:forEach var="literacySkillCount" items="${literacySkillCountMap}">
-                    <fmt:message key="literacy.skill.${literacySkillCount.key}" /> (${literacySkillCount.value})<br />
-                    <div class="progress">
-                        <div class="determinate" style="width: ${literacySkillCount.value * 100 / maxLiteracySkillCount}%"></div>
-                    </div>
-                </c:forEach>
-            </div>
-
-            <div class="col s12 m6">
-                <h5>APKs Covering EGMA Skills</h5>
-                
-                <c:forEach var="numeracySkillCount" items="${numeracySkillCountMap}">
-                    <fmt:message key="numeracy.skill.${numeracySkillCount.key}" /> (${numeracySkillCount.value})<br />
-                    <div class="progress">
-                        <div class="determinate" style="width: ${numeracySkillCount.value * 100 / maxLiteracySkillCount}%"></div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-        
-        <hr />
-        
         <%-- TODO: show progress bar for each content type --%>
         
         <p>
