@@ -4,7 +4,7 @@
     <groupId>org.literacyapp</groupId>
     <artifactId>literacyapp-web</artifactId>
     <packaging>war</packaging>
-    <version>1.1.69-SNAPSHOT</version>
+    <version>1.1.69</version>
 
     <properties>
     	<java.version>1.8</java.version>
@@ -135,7 +135,7 @@
         <connection>scm:git:git@github.com:literacyapp-org/literacyapp-web.git</connection>
         <developerConnection>scm:git:git@github.com:literacyapp-org/literacyapp-web.git</developerConnection>
         <url>https://github.com/literacyapp-org/literacyapp-web</url>
-        <tag>HEAD</tag>
+        <tag>literacyapp-web-1.1.69</tag>
     </scm>
     <distributionManagement>
         <repository>
