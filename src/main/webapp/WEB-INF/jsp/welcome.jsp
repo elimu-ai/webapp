@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="frontpage.subtitle" />
+    <fmt:message key='one.ai.tutor.for.every.child'/>
 </content:title>
 
 <content:banner>
