@@ -87,6 +87,7 @@ public class JavaToGsonConverter {
             
             allophoneGson.setValueIpa(allophone.getValueIpa());
             allophoneGson.setValueSampa(allophone.getValueSampa());
+            allophoneGson.setUsageCount(allophone.getUsageCount());
             
             return allophoneGson;
         }
