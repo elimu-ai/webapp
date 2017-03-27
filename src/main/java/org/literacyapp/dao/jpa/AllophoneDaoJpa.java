@@ -55,4 +55,15 @@ public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements Allopho
             .setParameter("locale", locale)
             .getResultList();
     }
+    
+    @Override
+    public List<Allophone> readAllOrderedByUsage(Locale locale) throws DataAccessException {
+        return em.createQuery(
+            "SELECT a " +
+            "FROM Allophone a " +
+            "WHERE a.locale = :locale " +
+            "ORDER BY a.usageCount DESC, a.valueIpa")
+            .setParameter("locale", locale)
+            .getResultList();
+    }
 }

@@ -54,6 +54,8 @@ public class Allophone extends Content {
     
     @Enumerated(EnumType.STRING)
     private ConsonantVoicing consonantVoicing;
+    
+    private int usageCount; // Based on StoryBook content
 
     public String getValueIpa() {
         return valueIpa;
@@ -133,5 +135,13 @@ public class Allophone extends Content {
 
     public void setConsonantVoicing(ConsonantVoicing consonantVoicing) {
         this.consonantVoicing = consonantVoicing;
+    }
+
+    public int getUsageCount() {
+        return usageCount;
+    }
+
+    public void setUsageCount(int usageCount) {
+        this.usageCount = usageCount;
     }
 }

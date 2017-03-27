@@ -49,7 +49,7 @@ public class WordCreateController {
         model.addAttribute("word", word);
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         model.addAttribute("allophones", allophones);
 
         return "content/word/create";
@@ -69,7 +69,7 @@ public class WordCreateController {
         }
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         
         // Verify that only valid Allophones are used
         String allAllophonesCombined = "";
