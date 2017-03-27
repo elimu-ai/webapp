@@ -2,6 +2,7 @@ package org.literacyapp.web.content.allophone;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
@@ -137,8 +138,16 @@ public class AllophoneListController {
             }
         }
         
-        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         model.addAttribute("allophones", allophones);
+        
+        int maxUsageCount = 0;
+        for (Allophone allophone : allophones) {
+            if (allophone.getUsageCount() > maxUsageCount) {
+                maxUsageCount = allophone.getUsageCount();
+            }
+        }
+        model.addAttribute("maxUsageCount", maxUsageCount);
 
         return "content/allophone/list";
     }

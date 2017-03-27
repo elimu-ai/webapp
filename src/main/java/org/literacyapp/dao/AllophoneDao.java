@@ -13,4 +13,6 @@ public interface AllophoneDao extends GenericDao<Allophone> {
     Allophone readByValueSampa(Locale locale, String value) throws DataAccessException;
 
     List<Allophone> readAllOrdered(Locale locale) throws DataAccessException;
+    
+    List<Allophone> readAllOrderedByUsage(Locale locale) throws DataAccessException;
 }

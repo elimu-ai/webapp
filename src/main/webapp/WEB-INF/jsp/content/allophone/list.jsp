@@ -13,6 +13,7 @@
                 <thead>
                     <th><fmt:message key="ipa.value" /></th>
                     <th><fmt:message key="sampa.value" /></th>
+                    <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -25,6 +26,12 @@
                             </td>
                             <td style="font-size: 2em;">
                                 ${allophone.valueSampa}
+                            </td>
+                            <td>
+                                ${allophone.usageCount}<br />
+                                <div class="progress">
+                                    <div class="determinate" style="width: ${allophone.usageCount * 100 / maxUsageCount}%"></div>
+                                </div>
                             </td>
                             <td>
                                 <p>#${allophone.revisionNumber}</p>

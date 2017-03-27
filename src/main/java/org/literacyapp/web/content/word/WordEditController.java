@@ -2,9 +2,7 @@ package org.literacyapp.web.content.word;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -53,7 +51,7 @@ public class WordEditController {
         model.addAttribute("word", word);
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         model.addAttribute("allophones", allophones);
         
         model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
@@ -76,7 +74,7 @@ public class WordEditController {
         }
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrdered(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         
         // Verify that only valid Allophones are used
         String allAllophonesCombined = "";
