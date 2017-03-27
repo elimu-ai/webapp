@@ -85,7 +85,7 @@ public class WordListController {
 //            wordOne.setPhonetics(TODO);
         } else if (locale == Locale.SW) {
             wordOne.setText("moja");
-            wordOne.setPhonetics("ˈmɔja");
+            wordOne.setPhonetics("ˈmɔjɑ");
         }
         words.add(wordOne);
 
