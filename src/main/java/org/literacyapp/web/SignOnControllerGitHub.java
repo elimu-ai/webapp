@@ -16,16 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.scribejava.apis.GitHubApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
-import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.model.Verb;
-import com.github.scribejava.core.model.Verifier;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
 import org.apache.commons.lang.StringUtils;
 import org.literacyapp.dao.SignOnEventDao;
 import org.literacyapp.model.contributor.SignOnEvent;
@@ -110,19 +111,25 @@ public class SignOnControllerGitHub {
         if (!secretState.equals(state)) {
             return "redirect:/sign-on?error=state_mismatch";
         } else {
-            String verifierParam = request.getParameter("code");
-            logger.debug("verifierParam: " + verifierParam);
-            Verifier verifier = new Verifier(verifierParam);
+            String code = request.getParameter("code");
+            logger.debug("verifierParam: " + code);
             
-            Token accessToken = oAuth20Service.getAccessToken(verifier);
-            logger.debug("accessToken: " + accessToken);
+            String responseBody = null;
             
-            OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, oAuth20Service);
-            oAuth20Service.signRequest(accessToken, oAuthRequest);
-            Response response = oAuthRequest.send();
-            String responseBody = response.getBody();
-            logger.info("response.getCode(): " + response.getCode());
-            logger.info("response.getBody(): " + responseBody);
+            try {
+                OAuth2AccessToken accessToken = oAuth20Service.getAccessToken(code);
+                logger.debug("accessToken: " + accessToken);
+
+                OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
+                oAuth20Service.signRequest(accessToken, oAuthRequest);
+                Response response = oAuth20Service.execute(oAuthRequest);
+                responseBody = response.getBody();
+                logger.info("response.getCode(): " + response.getCode());
+                logger.info("response.getBody(): " + responseBody);
+            } catch (IOException | InterruptedException | ExecutionException ex) {
+                logger.error(null, ex);
+                return "redirect:/sign-on?login_error=" + ex.getMessage();
+            }
             
             Contributor contributor = new Contributor();
             contributor.setReferrer(CookieHelper.getReferrer(request));
