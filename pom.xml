@@ -329,7 +329,7 @@
             <!-- Used for sign-on via GitHub -->
             <groupId>com.github.scribejava</groupId>
             <artifactId>scribejava-apis</artifactId>
-            <version>2.2.2</version>
+            <version>4.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
