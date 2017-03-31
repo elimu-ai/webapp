@@ -115,7 +115,6 @@ public class SignOnControllerGitHub {
             logger.debug("verifierParam: " + code);
             
             String responseBody = null;
-            
             try {
                 OAuth2AccessToken accessToken = oAuth20Service.getAccessToken(code);
                 logger.debug("accessToken: " + accessToken);

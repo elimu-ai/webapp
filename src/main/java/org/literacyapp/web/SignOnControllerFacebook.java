@@ -1,10 +1,20 @@
 package org.literacyapp.web;
 
+import com.github.scribejava.apis.FacebookApi;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.exceptions.OAuthException;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuth20Service;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -22,15 +32,6 @@ import org.literacyapp.util.CookieHelper;
 import org.literacyapp.util.Mailer;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FacebookApi;
-import org.scribe.exceptions.OAuthException;
-import org.scribe.model.OAuthRequest;
-import org.scribe.model.Response;
-import org.scribe.model.Token;
-import org.scribe.model.Verb;
-import org.scribe.model.Verifier;
-import org.scribe.oauth.OAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,9 +44,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SignOnControllerFacebook {
 	
-    private OAuthService oAuthService;
-
-    private Token requestToken;
+    private OAuth20Service oAuth20Service;
 
     private Logger logger = Logger.getLogger(getClass());
     
@@ -72,16 +71,15 @@ public class SignOnControllerFacebook {
             baseUrl = "http://" + request.getServerName();
         }
 
-        oAuthService = new ServiceBuilder()
-                .provider(FacebookApi.class)
+        oAuth20Service = new ServiceBuilder()
                 .apiKey(apiKey)
                 .apiSecret(apiSecret)
                 .callback(baseUrl + "/sign-on/facebook/callback")
                 .scope("email,user_about_me") // https://developers.facebook.com/docs/facebook-login/permissions
-                .build();
+                .build(FacebookApi.instance());
 
         logger.info("Fetching the Authorization URL...");
-        String authorizationUrl = oAuthService.getAuthorizationUrl(requestToken);
+        String authorizationUrl = oAuth20Service.getAuthorizationUrl();
         logger.info("Got the Authorization URL!");
 
         return "redirect:" + authorizationUrl;
@@ -96,21 +94,22 @@ public class SignOnControllerFacebook {
         } else if (request.getParameter("error") != null) {
             return "redirect:/sign-on?error=" + request.getParameter("error");
         } else {
-            String verifierParam = request.getParameter("code");
-            logger.debug("verifierParam: " + verifierParam);
-            Verifier verifier = new Verifier(verifierParam);
+            String code = request.getParameter("code");
+            logger.debug("code: " + code);
+            
             String responseBody = null;
             try {
-                Token accessToken = oAuthService.getAccessToken(requestToken, verifier);
+                OAuth2AccessToken accessToken = oAuth20Service.getAccessToken(code);
                 logger.debug("accessToken: " + accessToken);
 
-                OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, "https://graph.facebook.com/me?fields=id,email,name,first_name,last_name,gender,link,picture,birthday,age_range,bio,education,work,timezone,hometown,location,friends");
-                oAuthService.signRequest(accessToken, oAuthRequest);
-                Response response = oAuthRequest.send();
+                String fields = "?fields=id,email,name,first_name,last_name,gender,link,picture,birthday,age_range,education,work,timezone,hometown,location,friends";
+                OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, "https://graph.facebook.com/v2.8/me" + fields);
+                oAuth20Service.signRequest(accessToken, oAuthRequest);
+                Response response = oAuth20Service.execute(oAuthRequest);
                 responseBody = response.getBody();
                 logger.info("response.getCode(): " + response.getCode());
                 logger.info("response.getBody(): " + responseBody);
-            } catch (OAuthException e) {
+            } catch (InterruptedException | ExecutionException | IOException e) {
                 logger.error(null, e);
                 return "redirect:/sign-on?login_error=" + e.getMessage();
             }
