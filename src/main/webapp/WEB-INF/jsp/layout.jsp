@@ -28,8 +28,8 @@
 
                 <%-- CSS --%>
                 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-                <%--<link rel="stylesheet" href="<spring:url value='/css/materialize.min-0.97.6.css' />" />--%>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
+                <%--<link rel="stylesheet" href="<spring:url value='/css/materialize.min-0.97.8.css' />" />--%>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" />
                 <link rel="stylesheet" href="<spring:url value='/css/styles.css?version=' /><content:getversion />" />
             </head>
 
@@ -79,9 +79,21 @@
 
                 <div id="${cssId}" class="container <c:if test="${cssClass != null}">${cssClass}</c:if>">
                     <div class="section row">
-                        <div class="col s12">
-                            <content:getsection />
-                        </div>
+                        <c:choose>
+                            <c:when test="${!hasAside}">
+                                <div class="col s12">
+                                    <content:getsection />
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="col s12 m8">
+                                    <content:getsection />
+                                </div>
+                                <div class="col s12 m4">
+                                    <content:getaside />
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
 
