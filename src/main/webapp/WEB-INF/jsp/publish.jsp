@@ -51,12 +51,19 @@
         </li>
         <li>
             <b>What languages should the app/game support?</b><br />
-            The app/game should support either English, Swahili or both.<br />
+            The app/game should support either English, Swahili or both. Our target 
+            users are Swahili-speaking children aged 7-10 living in Tanzania and Kenya.<br />
             <br />
         </li>
         <li>
             <b>Do I have to submit one APK file per language?</b><br />
             If the code is the same for all languages, you only need to submit one APK file.<br />
+            <br />
+        </li>
+        <li>
+            <b>What content should I use in my app?</b><br />
+            We offer a content provider library that will automatically provide educational content 
+            matching the current skill level of each child.<br />
             <br />
         </li>
         <li>
