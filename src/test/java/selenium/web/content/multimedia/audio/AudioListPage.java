@@ -14,8 +14,8 @@ public class AudioListPage {
 
     private WebDriver driver;
     
-    @FindBy(className = "image")
-    private List<WebElement> images;
+    @FindBy(className = "audio")
+    private List<WebElement> audios;
     
     @FindBy(className = "btn-floating")
     private WebElement addButton;
@@ -30,12 +30,12 @@ public class AudioListPage {
     }
     
     public int getListCount() {
-        return images.size();
+        return audios.size();
     }
     
     public void clickRandomEditLink() {
-        int randomIndex = (int) (Math.random() * images.size());
-        WebElement randomElement = images.get(randomIndex);
+        int randomIndex = (int) (Math.random() * audios.size());
+        WebElement randomElement = audios.get(randomIndex);
         WebElement editLink = randomElement.findElement(By.className("editLink"));
         editLink.click();
     }
