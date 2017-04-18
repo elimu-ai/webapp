@@ -15,6 +15,18 @@
         57 million children in developing countries who are currently out of school.
     </p>
     
+    <div class="row section">
+        <div class="col s12 m4">
+            <img src="<spring:url value='/img/publish-nya.png' />" alt="Nya's Space Quest" />
+        </div>
+        <div class="col s12 m4">
+            <img src="<spring:url value='/img/publish-literacyapp.png' />" alt="LiteracyApp" />
+        </div>
+        <div class="col s12 m4">
+            <img src="<spring:url value='/img/publish-literacyapp2.png' />" alt="LiteracyApp" />
+        </div>
+    </div>
+    
     <p>
         <i class="left material-icons medium">grade</i>
         For each literacy and numeracy skill our machine learning algorithms detect the apps that are most 
