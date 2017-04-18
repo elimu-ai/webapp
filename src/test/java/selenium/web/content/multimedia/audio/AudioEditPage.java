@@ -55,7 +55,9 @@ public class AudioEditPage {
         
         WebElement wordLabel = driver.findElement(By.cssSelector("[data-wordvalue=\"" + word + "\"]"));
         WebElement wordDeleteLink = wordLabel.findElement(By.className("wordDeleteLink"));
-        wordDeleteLink.click();
+//        wordDeleteLink.click();
+        // Hack to enable Firefox to click the delete icon
+        wordDeleteLink.findElement(By.className("material-icons")).click();
         
         // Wait for the Ajax call to complete
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
