@@ -14,8 +14,8 @@ public class VideoListPage {
 
     private WebDriver driver;
     
-    @FindBy(className = "image")
-    private List<WebElement> images;
+    @FindBy(className = "video")
+    private List<WebElement> videos;
     
     @FindBy(className = "btn-floating")
     private WebElement addButton;
@@ -30,12 +30,12 @@ public class VideoListPage {
     }
     
     public int getListCount() {
-        return images.size();
+        return videos.size();
     }
     
     public void clickRandomEditLink() {
-        int randomIndex = (int) (Math.random() * images.size());
-        WebElement randomElement = images.get(randomIndex);
+        int randomIndex = (int) (Math.random() * videos.size());
+        WebElement randomElement = videos.get(randomIndex);
         WebElement editLink = randomElement.findElement(By.className("editLink"));
         editLink.click();
     }

@@ -331,7 +331,7 @@
                     });
                     jqXHR.done(function() {
                         console.info('wordId ajax done');
-                        $('#progressWords').after('<div class="chip">' + wordText + '</div>');
+                        $('#wordLabelContainer').append('<div class="chip">' + wordText + '</div>');
                     });
                     jqXHR.fail(function() {
                         console.info('wordId ajax error');

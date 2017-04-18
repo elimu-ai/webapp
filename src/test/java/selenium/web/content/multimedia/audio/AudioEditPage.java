@@ -43,7 +43,7 @@ public class AudioEditPage {
         int numberOfWordLabelsBefore = driver.findElements(By.cssSelector("#wordLabelContainer > .chip")).size();
         
         Select select = new Select(driver.findElement(By.id("wordId")));
-        select.selectByValue(word);
+        select.selectByVisibleText(word);
         
         // Wait for the Ajax call to complete
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
