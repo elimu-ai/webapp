@@ -120,14 +120,16 @@
     <div id="progressLetters" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
-    <c:forEach var="letter" items="${audio.letters}">
-        <div class="chip" data-letterid="${letter.id}">
-            ${letter.text} 
-            <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
-                <i class="material-icons">clear</i>
-            </a>
-        </div>
-    </c:forEach>
+    <div id="letterLabelContainer">
+        <c:forEach var="letter" items="${audio.letters}">
+            <div class="chip" data-letterid="${letter.id}">
+                ${letter.text} 
+                <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
+                    <i class="material-icons">clear</i>
+                </a>
+            </div>
+        </c:forEach>
+    </div>
     <select id="letterId" class="browser-default">
         <option value="">-- <fmt:message key='add.letter' /> --</option>
         <c:forEach var="letter" items="${letters}">
@@ -151,7 +153,7 @@
                     });
                     jqXHR.done(function() {
                         console.info('letterId ajax done');
-                        $('#progressLetters').after('<div class="chip">' + letterText + '</div>');
+                        $('#letterLabelContainer').append('<div class="chip">' + letterText + '</div>');
                     });
                     jqXHR.fail(function() {
                         console.info('letterId ajax error');
@@ -196,14 +198,16 @@
     <div id="progressNumbers" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
-    <c:forEach var="number" items="${audio.numbers}">
-        <div class="chip" data-numberid="${number.id}">
-            ${number.value} 
-            <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
-                <i class="material-icons">clear</i>
-            </a>
-        </div>
-    </c:forEach>
+    <div id="numberLabelContainer">
+        <c:forEach var="number" items="${audio.numbers}">
+            <div class="chip" data-numberid="${number.id}">
+                ${number.value} 
+                <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
+                    <i class="material-icons">clear</i>
+                </a>
+            </div>
+        </c:forEach>
+    </div>
     <select id="numberId" class="browser-default">
         <option value="">-- <fmt:message key='add.number' /> --</option>
         <c:forEach var="number" items="${numbers}">
@@ -227,7 +231,7 @@
                     });
                     jqXHR.done(function() {
                         console.info('numberId ajax done');
-                        $('#progressNumbers').after('<div class="chip">' + numberText + '</div>');
+                        $('#numberLabelContainer').append('<div class="chip">' + numberText + '</div>');
                     });
                     jqXHR.fail(function() {
                         console.info('numberId ajax error');
