@@ -36,7 +36,8 @@ public class VideoEditTest {
             VideoEditPage videoEditPage = PageFactory.initElements(driver, VideoEditPage.class);
             videoEditPage.submitForm();
 
-            PageFactory.initElements(driver, VideoListPage.class);
+            // TODO
+//            PageFactory.initElements(driver, VideoListPage.class);
         }
     }
 }
