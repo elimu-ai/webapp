@@ -161,7 +161,7 @@
             </a>
         </div>
     </c:forEach>
-    <select id="letterId">
+    <select id="letterId" class="browser-default">
         <option value="">-- <fmt:message key='add.letter' /> --</option>
         <c:forEach var="letter" items="${letters}">
             <option value="${letter.id}"><c:out value="${letter.text}" /></option>
@@ -237,7 +237,7 @@
             </a>
         </div>
     </c:forEach>
-    <select id="numberId">
+    <select id="numberId" class="browser-default">
         <option value="">-- <fmt:message key='add.number' /> --</option>
         <c:forEach var="number" items="${numbers}">
             <option value="${number.id}"><c:out value="${number.value}" /></option>
@@ -305,15 +305,17 @@
     <div id="progressWords" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
-    <c:forEach var="word" items="${video.words}">
-        <div class="chip" data-wordid="${word.id}">
-            ${word.text} 
-            <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
-                <i class="material-icons">clear</i>
-            </a>
-        </div>
-    </c:forEach>
-    <select id="wordId">
+    <div id="wordLabelContainer">
+        <c:forEach var="word" items="${video.words}">
+            <div class="chip" data-wordid="${word.id}" data-wordvalue="${word.text}">
+                ${word.text} 
+                <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
+                    <i class="material-icons">clear</i>
+                </a>
+            </div>
+        </c:forEach>
+    </div>
+    <select id="wordId" class="browser-default">
         <option value="">-- <fmt:message key='add.word' /> --</option>
         <c:forEach var="word" items="${words}">
             <option value="${word.id}"><c:out value="${word.text}" /></option>
