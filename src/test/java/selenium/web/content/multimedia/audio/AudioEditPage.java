@@ -5,6 +5,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
@@ -36,5 +37,28 @@ public class AudioEditPage {
     
     public void submitForm() {
         submitButton.click();
+    }
+    
+    public void addWordLabel(String word) {
+        int numberOfWordLabelsBefore = driver.findElements(By.cssSelector("#wordLabelContainer > .chip")).size();
+        
+        Select select = new Select(driver.findElement(By.id("wordId")));
+        select.selectByValue(word);
+        
+        // Wait for the Ajax call to complete
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#wordLabelContainer > .chip"), numberOfWordLabelsBefore + 1));
+    }
+    
+    public void removeWordLabel(String word) {
+        int numberOfWordLabelsBefore = driver.findElements(By.cssSelector("#wordLabelContainer > .chip")).size();
+        
+        WebElement wordLabel = driver.findElement(By.cssSelector("[data-wordvalue=\"" + word + "\"]"));
+        WebElement wordDeleteLink = wordLabel.findElement(By.className("wordDeleteLink"));
+        wordDeleteLink.click();
+        
+        // Wait for the Ajax call to complete
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#wordLabelContainer > .chip"), numberOfWordLabelsBefore - 1));
     }
 }
