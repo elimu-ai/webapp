@@ -4,6 +4,21 @@
 
 <content:section cssId="wordEditPage">
     <h4><content:gettitle /></h4>
+    
+    <c:choose>
+        <c:when test="${empty audio}">
+            <div class="card-panel amber lighten-3">
+                <b>Warning:</b> This word has no corresponding audio.
+                <a href="<spring:url value='/content/multimedia/audio/create?transcription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <audio controls="true" autoplay="true">
+                <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
+            </audio>
+        </c:otherwise>
+    </c:choose>
+    
     <div class="card-panel">
         <form:form modelAttribute="word">
             <tag:formErrors modelAttribute="word" />
