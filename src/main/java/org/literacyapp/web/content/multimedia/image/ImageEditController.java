@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.AudioDao;
 import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
@@ -19,6 +20,7 @@ import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
+import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
@@ -60,6 +62,9 @@ public class ImageEditController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private AudioDao audioDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -83,6 +88,9 @@ public class ImageEditController {
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+        
+        Audio audio = audioDao.read(image.getTitle(), contributor.getLocale());
+        model.addAttribute("audio", audio);
 
         return "content/multimedia/image/edit";
     }
@@ -159,6 +167,8 @@ public class ImageEditController {
             model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
             model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
             model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+            Audio audio = audioDao.read(image.getTitle(), contributor.getLocale());
+            model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";
         } else {
             image.setTitle(image.getTitle().toLowerCase());
