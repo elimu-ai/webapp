@@ -10,13 +10,16 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
+import org.literacyapp.dao.AudioDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.dao.WordRevisionEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Word;
+import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.contributor.WordRevisionEvent;
 import org.literacyapp.model.enums.Environment;
+import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.Team;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -42,6 +45,9 @@ public class WordEditController {
     
     @Autowired
     private WordRevisionEventDao wordRevisionEventDao;
+    
+    @Autowired
+    private AudioDao audioDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id, HttpSession session) {
@@ -55,6 +61,9 @@ public class WordEditController {
         model.addAttribute("allophones", allophones);
         
         model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
+        
+        Audio audio = audioDao.read(word.getText(), contributor.getLocale());
+        model.addAttribute("audio", audio);
 
         return "content/word/edit";
     }
@@ -95,6 +104,8 @@ public class WordEditController {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
             model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
+            Audio audio = audioDao.read(word.getText(), contributor.getLocale());
+            model.addAttribute("audio", audio);
             return "content/word/edit";
         } else {
             if (!"I".equals(word.getText())) {
