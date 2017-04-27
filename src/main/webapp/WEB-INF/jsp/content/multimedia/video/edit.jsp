@@ -128,22 +128,14 @@
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
     
-    <%--<div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="valign-wrapper" 
-                 style="
-                    background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />);
-                 ">
-                <video controls="true">
-                    <source src="<spring:url value='/video/${video.id}.${fn:toLowerCase(video.videoFormat)}' />" />
-                </video>
+    <div class="video card">
+        <a class="valign-wrapper" href="<spring:url value='/video/${video.id}.${fn:toLowerCase(video.videoFormat)}' />" target="_blank">
+            <div style="position: absolute; width: 100%; text-align: center;">
+                <i class="material-icons" style=" background-color: rgba(0,0,0, 0.2); color: rgba(255,255,255, 0.8); padding: 0.5rem; font-size: 3em; border-width: 2px; border-color: rgba(255,255,255, 0.8); border-style: solid; border-radius: 50%;">play_arrow</i>
             </div>
-        </div>
-    </div>--%>
-    <video controls="true">
-        <source src="<spring:url value='/video/${video.id}.${fn:toLowerCase(video.videoFormat)}' />" />
-    </video>
+            <img src="<spring:url value='/video/${video.id}/thumbnail.png' />" alt="${video.title}" />
+        </a>
+    </div>
     
     <div class="divider" style="margin-top: 1em;"></div>
     
