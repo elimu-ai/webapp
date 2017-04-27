@@ -136,4 +136,23 @@
             };
         });
     </script>
+    
+    <div class="divider" style="margin-top: 1em;"></div>
+    
+    <h5 class="center"><fmt:message key="labeled.content" /></h5>
+    
+    <b><fmt:message key="audios" /></b><br />
+    <br />
+    
+    <b><fmt:message key="images" /></b><br />
+    <div id="labeledImages">
+        <c:forEach var="image" items="${labeledImages}">
+            <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
+                <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
+            </a>
+        </c:forEach>
+    </div>
+    <br />
+    
+    <b><fmt:message key="videos" /></b><br />
 </content:aside>

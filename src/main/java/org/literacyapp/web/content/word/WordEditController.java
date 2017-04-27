@@ -11,12 +11,14 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.dao.AudioDao;
+import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.dao.WordRevisionEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Audio;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.WordRevisionEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Locale;
@@ -48,6 +50,9 @@ public class WordEditController {
     
     @Autowired
     private AudioDao audioDao;
+    
+    @Autowired
+    private ImageDao imageDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id, HttpSession session) {
@@ -64,6 +69,12 @@ public class WordEditController {
         
         Audio audio = audioDao.read(word.getText(), contributor.getLocale());
         model.addAttribute("audio", audio);
+        
+        // Look up Multimedia content that has been labeled with this Word
+        List<Image> labeledImages = imageDao.readAllLabeled(word, contributor.getLocale());
+        // TODO: labeled Audios
+        model.addAttribute("labeledImages", labeledImages);
+        // TODO: labeled Videos
 
         return "content/word/edit";
     }

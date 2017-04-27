@@ -48,3 +48,7 @@ nav {
     padding-top: 4rem;
     letter-spacing: .5rem;
 }
+
+#labeledImages img {
+    width: 50%;
+}

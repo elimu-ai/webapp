@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.dao.ImageDao;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.enums.Locale;
 
 public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
@@ -36,6 +37,19 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
             "FROM Image i " +
             "WHERE i.locale = :locale " +
             "ORDER BY i.title")
+            .setParameter("locale", locale)
+            .getResultList();
+    }
+
+    @Override
+    public List<Image> readAllLabeled(Word word, Locale locale) throws DataAccessException {
+        return em.createQuery(
+            "SELECT i " +
+            "FROM Image i " +
+            "WHERE :word MEMBER OF i.words " + 
+            "AND i.locale = :locale " +
+            "ORDER BY i.title")
+            .setParameter("word", word)
             .setParameter("locale", locale)
             .getResultList();
     }
