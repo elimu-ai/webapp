@@ -3,6 +3,8 @@ package org.literacyapp.web.content.multimedia.image;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +12,9 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ImageDao;
+import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
@@ -42,6 +46,9 @@ public class ImageCreateController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private WordDao wordDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -145,6 +152,17 @@ public class ImageCreateController {
                 String iconUrl = contributor.getImageUrl();
                 String imageUrl = "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
+            }
+            
+            // Label Image with Word of matching title
+            Word matchingWord = wordDao.readByText(contributor.getLocale(), image.getTitle());
+            if (matchingWord != null) {
+                Set<Word> labeledWords = new HashSet<>();
+                if (!labeledWords.contains(matchingWord)) {
+                    labeledWords.add(matchingWord);
+                    image.setWords(labeledWords);
+                    imageDao.update(image);
+                }
             }
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
