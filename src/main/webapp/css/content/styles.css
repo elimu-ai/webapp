@@ -49,6 +49,9 @@ nav {
     letter-spacing: .5rem;
 }
 
-#labeledImages img {
-    width: 50%;
+#labeledAudios img,
+#labeledImages img,
+#labeledVideos img {
+    width: 47%;
+    margin-right: 2%;
 }

@@ -2,18 +2,22 @@ package org.literacyapp.web.content.word;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
+import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.dao.WordRevisionEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Word;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.WordRevisionEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Team;
@@ -40,6 +44,9 @@ public class WordCreateController {
     
     @Autowired
     private WordRevisionEventDao wordRevisionEventDao;
+    
+    @Autowired
+    private ImageDao imageDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, HttpSession session) {
@@ -114,6 +121,17 @@ public class WordCreateController {
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
+            }
+            
+            // Label Image with Word of matching title
+            Image matchingImage = imageDao.read(word.getText(), word.getLocale());
+            if (matchingImage != null) {
+                Set<Word> labeledWords = matchingImage.getWords();
+                if (!labeledWords.contains(word)) {
+                    labeledWords.add(word);
+                    matchingImage.setWords(labeledWords);
+                    imageDao.update(matchingImage);
+                }
             }
             
             return "redirect:/content/word/list#" + word.getId();
