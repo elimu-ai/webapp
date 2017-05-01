@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -60,6 +61,8 @@ public class MailChimpApiHelper {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 memberInfo = bufferedReader.readLine();
             }
+        } catch (ConnectException ex) {
+            logger.warn(null, ex);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         }
