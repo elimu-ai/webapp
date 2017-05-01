@@ -62,6 +62,7 @@ public class MailChimpApiHelper {
                 memberInfo = bufferedReader.readLine();
             }
         } catch (ConnectException ex) {
+            // Ignore "Connection timed out"
             logger.warn(null, ex);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
@@ -119,6 +120,9 @@ public class MailChimpApiHelper {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String response = bufferedReader.readLine();
             logger.info("response: " + response);
+        } catch (ConnectException ex) {
+            // Ignore "Connection timed out"
+            logger.warn(null, ex);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
@@ -187,6 +191,9 @@ public class MailChimpApiHelper {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String response = bufferedReader.readLine();
             logger.info("response: " + response);
+        } catch (ConnectException ex) {
+            // Ignore "Connection timed out"
+            logger.warn(null, ex);
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
