@@ -47,7 +47,7 @@
         <servlet-name>default</servlet-name>
         <url-pattern>/static/audio/*</url-pattern>
         <url-pattern>/static/css/*</url-pattern>
-        <url-pattern>/js/*</url-pattern>
+        <url-pattern>/static/js/*</url-pattern>
         <url-pattern>/img/*</url-pattern>
     </servlet-mapping>
     <servlet>
