@@ -17,7 +17,6 @@ public class Number extends Content {
     private String symbol;
     
     @Deprecated
-    @NotNull
     @OneToOne
     private Word word;
     
@@ -41,10 +40,12 @@ public class Number extends Content {
         this.symbol = symbol;
     }
 
+    @Deprecated
     public Word getWord() {
         return word;
     }
 
+    @Deprecated
     public void setWord(Word word) {
         this.word = word;
     }
