@@ -23,14 +23,47 @@
                     <form:input path="value" cssErrorClass="error" type="number" />
                 </div>
                 
-                <div class="input-field col s12">
-                    <select id="word" name="word">
+                <%-- TODO: remove once the database has been updated --%>
+                <input name="word" type="hidden" value="${number.word.id}" />
+                
+                <div class="col s12">
+                    <label><fmt:message key="number.words" /></label>
+                    <div id="numberWordsContainer">
+                        <c:forEach var="word" items="${number.words}">
+                            <input name="words" type="hidden" value="${word.id}" />
+                            <div class="chip" data-wordid="${word.id}" data-wordvalue="${word.text}">
+                                ${word.text} 
+                                <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
+                                    <i class="material-icons">clear</i>
+                                </a>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    
+                    <select id="numberWords" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="word" items="${words}">
-                            <option value="${word.id}" <c:if test="${word.id == number.word.id}">selected="selected"</c:if>><c:out value="${word.text}" /></option>
+                            <option value="${word.id}"><c:out value="${word.text}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="word"><fmt:message key="number.word" /></label>
+                    <script>
+                        $(function() {
+                            $('#numberWords').on("change", function() {
+                                console.log('#numberWords on change');
+                                
+                                var wordId = $(this).val();
+                                console.log('wordId: ' + wordId);
+                                var wordText = $(this).find('option[value="' + wordId + '"]').text();
+                                console.log('wordText: ' + wordText);
+                                if (wordId != "") {
+                                    $('#numberWordsContainer').append('<input name="words" type="hidden" value="' + wordId + '" />');
+                                    $('#numberWordsContainer').append('<div class="chip">' + wordText + '</div>');
+                                    $(this).val("");
+                                }
+                            });
+                        });
+                    </script>
+                    
                     <a href="<spring:url value='/content/word/create' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
