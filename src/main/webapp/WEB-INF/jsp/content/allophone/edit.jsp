@@ -21,6 +21,16 @@
                     <form:label path="valueSampa" cssErrorClass="error"><fmt:message key='value' /> (X-SAMPA)</form:label>
                     <form:input path="valueSampa" cssErrorClass="error" />
                 </div>
+                
+                <div class="input-field col s12">
+                    <select id="soundType" name="soundType">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="soundType" items="${soundTypes}">
+                            <option value="${soundType}" <c:if test="${soundType == allophone.soundType}">selected="selected"</c:if>><c:out value="${soundType}" /></option>
+                        </c:forEach>
+                    </select>
+                    <label for="soundType"><fmt:message key="sound.type" /></label>
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
