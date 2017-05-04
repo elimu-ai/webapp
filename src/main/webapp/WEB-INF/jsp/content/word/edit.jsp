@@ -37,7 +37,10 @@
                     <form:input path="phonetics" cssErrorClass="error" />
                     <div id="allophonesContainer">
                         <c:forEach var="allophone" items="${allophones}">
-                            <a href="#" class="chip">${allophone.valueIpa}</a>
+                            <a href="#" class="allophone chip" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
+                            <audio id="audio_sampa_${allophone.valueSampa}">
+                                <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+                            </audio>
                         </c:forEach>
                         <script>
                             $(function() {
@@ -49,6 +52,17 @@
                                     console.info('valueIpa: ' + valueIpa);
                                     $('#phonetics').val($('#phonetics').val() + valueIpa);
                                     $('#phonetics').focus();
+                                });
+                                
+                                // Play sound when hovering its IPA value
+                                $('.allophone').mouseenter(function() {
+                                    console.info('.allophone mouseenter');
+                                    
+                                    var valueSampa = $(this).attr('data-valuesampa');
+                                    console.info('valueSampa: ' + valueSampa);
+                                    
+                                    var audio = $('#audio_sampa_' + valueSampa);
+                                    audio[0].play();
                                 });
                             });
                         </script>
