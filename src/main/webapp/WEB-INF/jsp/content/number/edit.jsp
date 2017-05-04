@@ -23,9 +23,6 @@
                     <form:input path="value" cssErrorClass="error" type="number" />
                 </div>
                 
-                <%-- TODO: remove once the database has been updated --%>
-                <input name="word" type="hidden" value="${number.word.id}" />
-                
                 <div class="col s12">
                     <label><fmt:message key="number.words" /></label>
                     <div id="numberWordsContainer">
