@@ -24,14 +24,14 @@ body {
 
 #index-banner {
     background-color: rgba(0,0,0, .5);
-    background-image: url(../img/banner-en.jpg);
+    background-image: url(../../img/banner-en.jpg);
     background-size: cover;
 }
 html[lang="ar"] #index-banner {
-    background-image: url(../img/banner-ar.jpg);
+    background-image: url(../../img/banner-ar.jpg);
 }
 html[lang="es"] #index-banner {
-    background-image: url(../img/banner-es.jpg);
+    background-image: url(../../img/banner-es.jpg);
 }
 
 .container > .section {

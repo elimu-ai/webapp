@@ -28,9 +28,9 @@
 
                 <%-- CSS --%>
                 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-                <%--<link rel="stylesheet" href="<spring:url value='/css/materialize.min-0.97.6.css' />" />--%>
+                <%--<link rel="stylesheet" href="<spring:url value='/static/css/materialize.min-0.97.6.css' />" />--%>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
-                <link rel="stylesheet" href="<spring:url value='/css/styles.css?version=' /><content:getversion />" />
+                <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
             </head>
 
             <body>
@@ -189,9 +189,9 @@
                 </c:if>
 
                 <%-- JavaScripts --%>
-                <script src="<spring:url value='/js/jquery-2.1.4.min.js' />"></script>
+                <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-                <script src="<spring:url value='/js/init.js' />"></script>
+                <script src="<spring:url value='/static/js/init.js' />"></script>
                 <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
                 <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
 

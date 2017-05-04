@@ -97,14 +97,14 @@ public class JavaToGsonConverter {
         if (application == null) {
             return null;
         } else {
-            ApplicationGson applicationJson = new ApplicationGson();
-            applicationJson.setId(application.getId());
-            applicationJson.setLocale(application.getLocale());
-            applicationJson.setPackageName(application.getPackageName());
-            applicationJson.setLiteracySkills(application.getLiteracySkills());
-            applicationJson.setNumeracySkills(application.getNumeracySkills());
-            applicationJson.setApplicationStatus(application.getApplicationStatus());
-            return applicationJson;
+            ApplicationGson applicationGson = new ApplicationGson();
+            applicationGson.setId(application.getId());
+            applicationGson.setLocale(application.getLocale());
+            applicationGson.setPackageName(application.getPackageName());
+            applicationGson.setLiteracySkills(application.getLiteracySkills());
+            applicationGson.setNumeracySkills(application.getNumeracySkills());
+            applicationGson.setApplicationStatus(application.getApplicationStatus());
+            return applicationGson;
         }
     }
     
@@ -129,14 +129,14 @@ public class JavaToGsonConverter {
         if (device == null) {
             return null;
         } else {
-            DeviceGson deviceJson = new DeviceGson();
+            DeviceGson deviceGson = new DeviceGson();
             
-            deviceJson.setId(device.getId());
-            deviceJson.setDeviceId(device.getDeviceId());
-//            deviceJson.setDeviceModel(device.getDeviceModel());
-//            deviceJson.setTimeRegistered(device.getTimeRegistered());
-//            deviceJson.setOsVersion(device.getOsVersion());
-//            deviceJson.setLocale(device.getLocale());
+            deviceGson.setId(device.getId());
+            deviceGson.setDeviceId(device.getDeviceId());
+//            deviceGson.setDeviceModel(device.getDeviceModel());
+//            deviceGson.setTimeRegistered(device.getTimeRegistered());
+//            deviceGson.setOsVersion(device.getOsVersion());
+//            deviceGson.setLocale(device.getLocale());
 //            
 //            Set<DeviceGson> devicesNearby = new HashSet<DeviceGson>();
 //            for (Device deviceNearby : device.getDevicesNearby()) {
@@ -146,10 +146,10 @@ public class JavaToGsonConverter {
 //                }
 //            }
 //            if (!devicesNearby.isEmpty()) {
-//                deviceJson.setDevicesNearby(devicesNearby);
+//                deviceGson.setDevicesNearby(devicesNearby);
 //            }
             
-            return deviceJson;
+            return deviceGson;
         }
     }
     
@@ -219,38 +219,45 @@ public class JavaToGsonConverter {
         if (letter == null) {
             return null;
         } else {
-            LetterGson letterJson = new LetterGson();
+            LetterGson letterGson = new LetterGson();
             
-            letterJson.setId(letter.getId());
-            letterJson.setLocale(letter.getLocale());
-            letterJson.setTimeLastUpdate(letter.getTimeLastUpdate());
-            letterJson.setRevisionNumber(letter.getRevisionNumber());
-            letterJson.setContentStatus(letter.getContentStatus());
+            letterGson.setId(letter.getId());
+            letterGson.setLocale(letter.getLocale());
+            letterGson.setTimeLastUpdate(letter.getTimeLastUpdate());
+            letterGson.setRevisionNumber(letter.getRevisionNumber());
+            letterGson.setContentStatus(letter.getContentStatus());
             
-            letterJson.setText(letter.getText());
-            letterJson.setUsageCount(letter.getUsageCount());
+            letterGson.setText(letter.getText());
+            letterGson.setUsageCount(letter.getUsageCount());
             
-            return letterJson;
+            return letterGson;
         }
     }
     
-    public static NumberGson getNumberGson(org.literacyapp.model.content.Number number) {
+    public static NumberGson getNumberGson(Number number) {
         if (number == null) {
             return null;
         } else {
-            NumberGson numberJson = new NumberGson();
+            NumberGson numberGson = new NumberGson();
             
-            numberJson.setId(number.getId());
-            numberJson.setLocale(number.getLocale());
-            numberJson.setTimeLastUpdate(number.getTimeLastUpdate());
-            numberJson.setRevisionNumber(number.getRevisionNumber());
-            numberJson.setContentStatus(number.getContentStatus());
+            numberGson.setId(number.getId());
+            numberGson.setLocale(number.getLocale());
+            numberGson.setTimeLastUpdate(number.getTimeLastUpdate());
+            numberGson.setRevisionNumber(number.getRevisionNumber());
+            numberGson.setContentStatus(number.getContentStatus());
             
-            numberJson.setValue(number.getValue());
-            numberJson.setSymbol(number.getSymbol());
-            numberJson.setWord(getWordGson(number.getWord()));
+            numberGson.setValue(number.getValue());
+            numberGson.setSymbol(number.getSymbol());
+            numberGson.setWord(getWordGson(number.getWord()));
             
-            return numberJson;
+            List<WordGson> words = new ArrayList<>();
+            for (Word word : number.getWords()) {
+                WordGson wordGson = getWordGson(word);
+                words.add(wordGson);
+            }
+            numberGson.setWords(words);
+            
+            return numberGson;
         }
     }
     
@@ -305,19 +312,19 @@ public class JavaToGsonConverter {
         if (word == null) {
             return null;
         } else {
-            WordGson wordJson = new WordGson();
+            WordGson wordGson = new WordGson();
             
-            wordJson.setId(word.getId());
-            wordJson.setLocale(word.getLocale());
-            wordJson.setTimeLastUpdate(word.getTimeLastUpdate());
-            wordJson.setRevisionNumber(word.getRevisionNumber());
-            wordJson.setContentStatus(word.getContentStatus());
+            wordGson.setId(word.getId());
+            wordGson.setLocale(word.getLocale());
+            wordGson.setTimeLastUpdate(word.getTimeLastUpdate());
+            wordGson.setRevisionNumber(word.getRevisionNumber());
+            wordGson.setContentStatus(word.getContentStatus());
             
-            wordJson.setText(word.getText());
-            wordJson.setPhonetics(word.getPhonetics());
-            wordJson.setUsageCount(word.getUsageCount());
+            wordGson.setText(word.getText());
+            wordGson.setPhonetics(word.getPhonetics());
+            wordGson.setUsageCount(word.getUsageCount());
             
-            return wordJson;
+            return wordGson;
         }
     }
 }
