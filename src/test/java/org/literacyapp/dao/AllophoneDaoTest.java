@@ -1,47 +1,60 @@
 package org.literacyapp.dao;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.literacyapp.model.content.Number;
-import org.literacyapp.model.content.Word;
+import org.literacyapp.model.content.Allophone;
+import org.literacyapp.model.enums.Locale;
+import org.literacyapp.model.enums.content.allophone.SoundType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml")
-public class NumberDaoTest {
+public class AllophoneDaoTest {
     
     private Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private NumberDao numberDao;
-    
-    @Autowired
-    private WordDao wordDao;
+    private AllophoneDao allophoneDao;
     
     @Test
-    public void testStoreWithMultipleNumberWords() {
-        Word word1 = new Word();
-        wordDao.create(word1);
+    public void testStoreSoundType() {
+        Locale locale = Locale.values()[(int) (Math.random() * Locale.values().length)];
+        logger.info("locale: " + locale);
         
-        Word word2 = new Word();
-        wordDao.create(word2);
+        Allophone allophone = new Allophone();
+        allophone.setLocale(locale);
+        allophone.setValueIpa("ɛ");
+        allophone.setValueSampa("E");
+        allophone.setSoundType(SoundType.VOWEL);
+        allophoneDao.create(allophone);
         
-        List<Word> numberWords = new ArrayList<>();
-        numberWords.add(word1);
-        numberWords.add(word2);
+        assertThat(allophoneDao.readByValueSampa(locale, "E").getSoundType(), is(SoundType.VOWEL));
+    }
+    
+    @Test
+    public void testLowerCaseVsUpperCase() {
+        Locale locale = Locale.values()[(int) (Math.random() * Locale.values().length)];
+        logger.info("locale: " + locale);
         
-        Number number = new Number();
-        number.setWords(numberWords);
-        numberDao.create(number);
+        Allophone allophoneLowerCaseT = new Allophone();
+        allophoneLowerCaseT.setLocale(locale);
+        allophoneLowerCaseT.setValueIpa("t");
+        allophoneLowerCaseT.setValueSampa("t");
+        allophoneDao.create(allophoneLowerCaseT);
         
-        assertThat(number.getWords().size(), is(2));
+        Allophone allophoneUpperCaseT = new Allophone();
+        allophoneUpperCaseT.setLocale(locale);
+        allophoneUpperCaseT.setValueIpa("θ");
+        allophoneUpperCaseT.setValueSampa("T");
+        allophoneDao.create(allophoneUpperCaseT);
+        
+        assertThat(allophoneDao.readByValueSampa(locale, "t").getValueSampa(), is("t"));
+        assertThat(allophoneDao.readByValueSampa(locale, "T").getValueSampa(), is("T"));
     }
 }
