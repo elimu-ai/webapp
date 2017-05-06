@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
+import org.literacyapp.dao.AudioDao;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.dao.StoryBookDao;
@@ -39,6 +40,9 @@ public class MainContentController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private AudioDao audioDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -68,6 +72,7 @@ public class MainContentController {
         model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
         model.addAttribute("wordCount", wordDao.readCount(contributor.getLocale()));
         model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLocale()));
+        model.addAttribute("audioCount", audioDao.readCount(contributor.getLocale()));
     	
         return "content/main";
     }

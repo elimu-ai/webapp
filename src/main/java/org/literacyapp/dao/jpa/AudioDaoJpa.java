@@ -39,4 +39,14 @@ public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
             .setParameter("locale", locale)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Locale locale) throws DataAccessException {
+        return (Long) em.createQuery(
+                "SELECT COUNT(a) " +
+                "FROM Audio a " +
+                "WHERE a.locale = :locale")
+                .setParameter("locale", locale)
+                .getSingleResult();
+    }
 }
