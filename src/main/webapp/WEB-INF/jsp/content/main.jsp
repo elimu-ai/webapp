@@ -54,7 +54,9 @@
             </div>
         </div>
         
-        <h5><fmt:message key="multimedia" /></h5>
+        <div class="col s12">
+            <h5><fmt:message key="multimedia" /></h5>
+        </div>
         
         <div class="col s12 m6">
             <div class="card blue-grey darken-1">
@@ -74,6 +76,17 @@
                 </div>
                 <div class="card-action">
                     <a href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="view.list" /> (${imageCount})</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title"><i class="material-icons">movie</i> <fmt:message key="videos" /></span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="view.list" /> (${videoCount})</a>
                 </div>
             </div>
         </div>

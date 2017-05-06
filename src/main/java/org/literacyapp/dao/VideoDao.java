@@ -12,4 +12,6 @@ public interface VideoDao extends GenericDao<Video> {
     Video read(String title, Locale locale) throws DataAccessException;
 
     List<Video> readAllOrdered(Locale locale) throws DataAccessException;
+    
+    Long readCount(Locale locale) throws DataAccessException;
 }

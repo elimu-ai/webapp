@@ -13,6 +13,7 @@ import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.dao.StoryBookDao;
+import org.literacyapp.dao.VideoDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,9 @@ public class MainContentController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private VideoDao videoDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -78,6 +82,7 @@ public class MainContentController {
         model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLocale()));
         model.addAttribute("audioCount", audioDao.readCount(contributor.getLocale()));
         model.addAttribute("imageCount", imageDao.readCount(contributor.getLocale()));
+        model.addAttribute("videoCount", videoDao.readCount(contributor.getLocale()));
     	
         return "content/main";
     }
