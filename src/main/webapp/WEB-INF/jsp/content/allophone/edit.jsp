@@ -11,6 +11,7 @@
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
                 <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
+                <form:hidden path="usageCount" value="${allophone.usageCount}" />
                 
                 <div class="input-field col s12">
                     <form:label path="valueIpa" cssErrorClass="error"><fmt:message key='value' /> (IPA)</form:label>
@@ -69,6 +70,12 @@
 
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
+    
+    <audio controls="true" autoplay="true">
+        <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+    </audio>
+    
+    <div class="divider" style="margin: 1em 0;"></div>
     
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />

@@ -11,15 +11,23 @@
         <c:if test="${not empty allophones}">
             <table class="bordered highlight">
                 <thead>
+                    <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="ipa.value" /></th>
                     <th><fmt:message key="sampa.value" /></th>
-                    <th><fmt:message key="frequency" /></th>
+                    <th><fmt:message key="sound.type" /></th>
+                    <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="allophone" items="${allophones}">
                         <tr class="allophone">
+                            <td>
+                                ${allophone.usageCount}<br />
+                                <div class="progress">
+                                    <div class="determinate" style="width: ${allophone.usageCount * 100 / maxUsageCount}%"></div>
+                                </div>
+                            </td>
                             <td style="font-size: 2em;">
                                 <a name="${allophone.id}"></a>
                                 /${allophone.valueIpa}/
@@ -28,10 +36,12 @@
                                 ${allophone.valueSampa}
                             </td>
                             <td>
-                                ${allophone.usageCount}<br />
-                                <div class="progress">
-                                    <div class="determinate" style="width: ${allophone.usageCount * 100 / maxUsageCount}%"></div>
-                                </div>
+                                ${allophone.soundType}
+                            </td>
+                            <td>
+                                <audio controls="true">
+                                    <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+                                </audio>
                             </td>
                             <td>
                                 <p>#${allophone.revisionNumber}</p>

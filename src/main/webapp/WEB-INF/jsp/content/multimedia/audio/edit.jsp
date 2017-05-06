@@ -108,7 +108,7 @@
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
     
-    <audio controls="true">
+    <audio controls="true" autoplay="true">
         <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
     </audio>
     
