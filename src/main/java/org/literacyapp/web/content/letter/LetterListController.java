@@ -10,6 +10,7 @@ import org.literacyapp.dao.LetterDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.enums.Locale;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,8 @@ public class LetterListController {
         // To ease development/testing, auto-generate Letters
         List<Letter> lettersGenerated = generateLetters(contributor.getLocale());
         for (Letter letter : lettersGenerated) {
-            Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
+            logger.info("letter.getText(): " + letter.getText());
+            Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText(), EnvironmentContextLoaderListener.env);
             if (existingLetter == null) {
                 letterDao.create(letter);
             }

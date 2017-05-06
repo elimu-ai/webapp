@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.model.content.Letter;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,7 @@ public class LetterEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
+        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText(), EnvironmentContextLoaderListener.env);
         if ((existingLetter != null) && !existingLetter.getId().equals(letter.getId())) {
             result.rejectValue("text", "NonUnique");
         }
