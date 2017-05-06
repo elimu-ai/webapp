@@ -18,4 +18,6 @@ public interface ImageDao extends GenericDao<Image> {
      * Fetch all Images that have been labeled by a Word.
      */
     List<Image> readAllLabeled(Word word, Locale locale) throws DataAccessException;
+    
+    Long readCount(Locale locale) throws DataAccessException;
 }

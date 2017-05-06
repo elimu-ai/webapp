@@ -12,4 +12,6 @@ public interface LetterDao extends GenericDao<Letter> {
     Letter readByText(Locale locale, String text) throws DataAccessException;
     
     List<Letter> readAllOrdered(Locale locale) throws DataAccessException;
+    
+    Long readCount(Locale locale) throws DataAccessException;
 }

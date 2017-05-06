@@ -38,4 +38,14 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
             .setParameter("locale", locale)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Locale locale) throws DataAccessException {
+        return (Long) em.createQuery(
+                "SELECT COUNT(l) " +
+                "FROM Letter l " +
+                "WHERE l.locale = :locale")
+                .setParameter("locale", locale)
+                .getSingleResult();
+    }
 }

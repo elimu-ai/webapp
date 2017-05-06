@@ -8,6 +8,13 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
+import org.literacyapp.dao.AudioDao;
+import org.literacyapp.dao.ImageDao;
+import org.literacyapp.dao.LetterDao;
+import org.literacyapp.dao.NumberDao;
+import org.literacyapp.dao.StoryBookDao;
+import org.literacyapp.dao.VideoDao;
+import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +30,27 @@ public class MainContentController {
     
     @Autowired
     private ApplicationDao applicationDao;
+    
+    @Autowired
+    private NumberDao numberDao;
+    
+    @Autowired
+    private LetterDao letterDao;
+    
+    @Autowired
+    private WordDao wordDao;
+    
+    @Autowired
+    private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private AudioDao audioDao;
+    
+    @Autowired
+    private ImageDao imageDao;
+    
+    @Autowired
+    private VideoDao videoDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -47,6 +75,14 @@ public class MainContentController {
         } else if (contributor.getTimePerWeek() == null) {
             return "redirect:/content/contributor/edit-time";
         }
+        
+        model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
+        model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
+        model.addAttribute("wordCount", wordDao.readCount(contributor.getLocale()));
+        model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLocale()));
+        model.addAttribute("audioCount", audioDao.readCount(contributor.getLocale()));
+        model.addAttribute("imageCount", imageDao.readCount(contributor.getLocale()));
+        model.addAttribute("videoCount", videoDao.readCount(contributor.getLocale()));
     	
         return "content/main";
     }

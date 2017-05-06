@@ -53,4 +53,14 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
             .setParameter("locale", locale)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Locale locale) throws DataAccessException {
+        return (Long) em.createQuery(
+                "SELECT COUNT(i) " +
+                "FROM Image i " +
+                "WHERE i.locale = :locale")
+                .setParameter("locale", locale)
+                .getSingleResult();
+    }
 }
