@@ -10,6 +10,7 @@ import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.util.LetterFrequencyHelper;
+import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,7 @@ public class LetterUsageCountScheduler {
             
             for (String key : letterFrequencyMap.keySet()) {
                 String letterLowerCase = key.toLowerCase();
-                Letter letter = letterDao.readByText(locale, letterLowerCase);
+                Letter letter = letterDao.readByText(locale, letterLowerCase, EnvironmentContextLoaderListener.env);
                 if (letter != null) {
                     letter.setUsageCount(letterFrequencyMap.get(letterLowerCase));
                     letterDao.update(letter);
