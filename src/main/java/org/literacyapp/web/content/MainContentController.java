@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
+import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,9 @@ public class MainContentController {
     
     @Autowired
     private LetterDao letterDao;
+    
+    @Autowired
+    private WordDao wordDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -58,7 +62,7 @@ public class MainContentController {
         
         model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
         model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
-        
+        model.addAttribute("wordCount", wordDao.readCount(contributor.getLocale()));
     	
         return "content/main";
     }

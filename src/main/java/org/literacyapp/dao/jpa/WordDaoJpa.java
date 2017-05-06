@@ -61,4 +61,14 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
             .setMaxResults(10)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Locale locale) throws DataAccessException {
+        return (Long) em.createQuery(
+                "SELECT COUNT(w) " +
+                "FROM Word w " +
+                "WHERE w.locale = :locale")
+                .setParameter("locale", locale)
+                .getSingleResult();
+    }
 }
