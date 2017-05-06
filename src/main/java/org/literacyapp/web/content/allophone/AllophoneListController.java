@@ -131,6 +131,7 @@ public class AllophoneListController {
         // To ease development/testing, auto-generate Allophones
         List<Allophone> allophonesGenerated = generateAllophones(contributor.getLocale());
         for (Allophone allophone : allophonesGenerated) {
+            logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/, allophone.getValueSampa(): " + allophone.getValueSampa());
             Allophone existingAllophone = allophoneDao.readByValueIpa(contributor.getLocale(), allophone.getValueIpa());
             if (existingAllophone == null) {
                 allophoneDao.create(allophone);
