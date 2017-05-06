@@ -70,6 +70,12 @@
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
     
+    <audio controls="true" autoplay="true">
+        <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+    </audio>
+    
+    <div class="divider" style="margin-top: 1em;"></div>
+    
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
         <div id="previewContentContainer">
