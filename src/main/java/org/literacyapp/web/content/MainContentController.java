@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
+import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class MainContentController {
     
     @Autowired
     private ApplicationDao applicationDao;
+    
+    @Autowired
+    private NumberDao numberDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -47,6 +51,9 @@ public class MainContentController {
         } else if (contributor.getTimePerWeek() == null) {
             return "redirect:/content/contributor/edit-time";
         }
+        
+        model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
+        
     	
         return "content/main";
     }

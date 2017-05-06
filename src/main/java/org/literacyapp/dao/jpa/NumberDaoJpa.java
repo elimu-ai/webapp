@@ -38,4 +38,14 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
             .setParameter("locale", locale)
             .getResultList();
     }
+
+    @Override
+    public Long readCount(Locale locale) throws DataAccessException {
+        return (Long) em.createQuery(
+                "SELECT COUNT(n) " +
+                "FROM Number n " +
+                "WHERE n.locale = :locale")
+                .setParameter("locale", locale)
+                .getSingleResult();
+    }
 }
