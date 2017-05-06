@@ -38,4 +38,14 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
             .setParameter("locale", locale)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Locale locale) throws DataAccessException {
+        return (Long) em.createQuery(
+                "SELECT COUNT(s) " +
+                "FROM StoryBook s " +
+                "WHERE s.locale = :locale")
+                .setParameter("locale", locale)
+                .getSingleResult();
+    }
 }

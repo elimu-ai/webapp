@@ -43,6 +43,17 @@
             </div>
         </div>
         
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
+                </div>
+            </div>
+        </div>
+        
         <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
             <a class="btn-floating btn-large red" title="Add content">
                 <i class="large material-icons">add</i>
