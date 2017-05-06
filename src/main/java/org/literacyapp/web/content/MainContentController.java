@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.ApplicationDao;
+import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.model.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class MainContentController {
     
     @Autowired
     private NumberDao numberDao;
+    
+    @Autowired
+    private LetterDao letterDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -53,6 +57,7 @@ public class MainContentController {
         }
         
         model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
+        model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
         
     	
         return "content/main";

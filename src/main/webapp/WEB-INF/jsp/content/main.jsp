@@ -21,6 +21,17 @@
             </div>
         </div>
         
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title"><i class="material-icons">text_format</i> <fmt:message key="letters" /></span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/content/letter/list' />"><fmt:message key="view.list" /> (${letterCount})</a>
+                </div>
+            </div>
+        </div>
+        
         <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
             <a class="btn-floating btn-large red" title="Add content">
                 <i class="large material-icons">add</i>
