@@ -26,6 +26,9 @@ public class LetterFrequencyHelperTest {
         assertThat(letterFrequencyMap.get("m"), is(2));
         assertThat(letterFrequencyMap.get("b"), is(1));
         assertThat(letterFrequencyMap.get("c"), is(1));
+        assertThat(letterFrequencyMap.get("n"), is(1));
         assertThat(letterFrequencyMap.get("C"), is(1));
+        assertThat(letterFrequencyMap.get("L"), is(1));
+        assertThat(letterFrequencyMap.get("M"), is(1));
     }
 }

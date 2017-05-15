@@ -15,7 +15,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Iterates all StoryBooks and calculates the frequency of each letter.
+ * Iterates all StoryBooks and calculates the frequency of each letter. Lower-case 
+ * and upper-case variants are considered as two different letters, e.g. 'a' and 'A'.
  */
 @Service
 public class LetterUsageCountScheduler {
@@ -44,12 +45,12 @@ public class LetterUsageCountScheduler {
                 
                 Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(storyBook);
                 for (String key : letterFrequencyMapForBook.keySet()) {
+                    String letterText = key;
                     int letterFrequency = letterFrequencyMapForBook.get(key);
-                    String letterLowerCase = key.toLowerCase();
-                    if (!letterFrequencyMap.containsKey(letterLowerCase)) {
-                        letterFrequencyMap.put(letterLowerCase, letterFrequency);
+                    if (!letterFrequencyMap.containsKey(letterText)) {
+                        letterFrequencyMap.put(letterText, letterFrequency);
                     } else {
-                        letterFrequencyMap.put(letterLowerCase, letterFrequencyMap.get(letterLowerCase) + letterFrequency);
+                        letterFrequencyMap.put(letterText, letterFrequencyMap.get(letterText) + letterFrequency);
                     }
                 }
             }
@@ -57,11 +58,11 @@ public class LetterUsageCountScheduler {
             logger.info("letterFrequencyMap: " + letterFrequencyMap);
             
             for (String key : letterFrequencyMap.keySet()) {
-                String letterLowerCase = key.toLowerCase();
-                Letter letter = letterDao.readByText(locale, letterLowerCase);
-                if (letter != null) {
-                    letter.setUsageCount(letterFrequencyMap.get(letterLowerCase));
-                    letterDao.update(letter);
+                String letterText = key;
+                Letter existingLetter = letterDao.readByText(locale, letterText);
+                if (existingLetter != null) {
+                    existingLetter.setUsageCount(letterFrequencyMap.get(letterText));
+                    letterDao.update(existingLetter);
                 }
             }
         }

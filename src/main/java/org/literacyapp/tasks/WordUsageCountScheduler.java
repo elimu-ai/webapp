@@ -15,7 +15,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Iterates all StoryBooks and calculates the frequency of each word.
+ * Iterates all StoryBooks and calculates the frequency of each word. Does not 
+ * separate words with differing upper-case and lower-case letters.
  */
 @Service
 public class WordUsageCountScheduler {
