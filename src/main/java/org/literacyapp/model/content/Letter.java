@@ -13,7 +13,11 @@ public class Letter extends Content {
     @Column(length = 1)
     private String text;
     
-    private int usageCount; // Based on StoryBook content
+    @Length(max = 1)
+    @Column(length = 1)
+    private String braille;
+    
+    private int usageCount; // Based on StoryBook content (all difficulty levels)
 
     public String getText() {
         return text;
@@ -21,6 +25,14 @@ public class Letter extends Content {
 
     public void setText(String text) {
         this.text = text;
+    }
+    
+    public String getBraille() {
+        return braille;
+    }
+
+    public void setBraille(String braille) {
+        this.braille = braille;
     }
 
     public int getUsageCount() {

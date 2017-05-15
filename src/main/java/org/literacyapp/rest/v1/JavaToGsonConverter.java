@@ -229,6 +229,7 @@ public class JavaToGsonConverter {
             letterGson.setContentStatus(letter.getContentStatus());
             
             letterGson.setText(letter.getText());
+            letterGson.setBraille(letter.getBraille());
             letterGson.setUsageCount(letter.getUsageCount());
             
             return letterGson;

@@ -16,6 +16,11 @@
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
+                
+                <div class="input-field col s12">
+                    <form:label path="braille" cssErrorClass="error">Braille</form:label>
+                    <form:input path="braille" cssErrorClass="error" />
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
