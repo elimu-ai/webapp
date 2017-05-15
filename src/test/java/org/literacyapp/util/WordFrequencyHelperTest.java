@@ -22,6 +22,7 @@ public class WordFrequencyHelperTest {
         assertThat(wordFrequencyMap.get("Lebo"), is(2));
         assertThat(wordFrequencyMap.get("too"), is(2));
         assertThat(wordFrequencyMap.get("small"), is(2));
+        assertThat(wordFrequencyMap.get("Mom"), is(1));
         assertThat(wordFrequencyMap.get("called"), is(1));
     }
 }
