@@ -243,7 +243,205 @@ public class LetterListController {
 //            letterAUpperCase.setUsageCount();
             letters.add(letterAUpperCase);
             
+            Letter letterBUpperCase = new Letter();
+            letterBUpperCase.setLocale(locale);
+            letterBUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterBUpperCase.setText("B");
+            letterBUpperCase.setBraille("⠃");
+//            letterBUpperCase.setUsageCount();
+            letters.add(letterBUpperCase);
             
+            Letter letterCUpperCase = new Letter();
+            letterCUpperCase.setLocale(locale);
+            letterCUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterCUpperCase.setText("C");
+            letterCUpperCase.setBraille("⠉");
+//            letterCUpperCase.setUsageCount();
+            letters.add(letterCUpperCase);
+            
+            Letter letterDUpperCase = new Letter();
+            letterDUpperCase.setLocale(locale);
+            letterDUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterDUpperCase.setText("D");
+            letterDUpperCase.setBraille("⠙");
+//            letterDUpperCase.setUsageCount();
+            letters.add(letterDUpperCase);
+            
+            Letter letterEUpperCase = new Letter();
+            letterEUpperCase.setLocale(locale);
+            letterEUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterEUpperCase.setText("E");
+            letterEUpperCase.setBraille("⠑");
+//            letterEUpperCase.setUsageCount();
+            letters.add(letterEUpperCase);
+            
+            Letter letterFUpperCase = new Letter();
+            letterFUpperCase.setLocale(locale);
+            letterFUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterFUpperCase.setText("F");
+            letterFUpperCase.setBraille("⠋");
+//            letterFUpperCase.setUsageCount();
+            letters.add(letterFUpperCase);
+            
+            Letter letterGUpperCase = new Letter();
+            letterGUpperCase.setLocale(locale);
+            letterGUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterGUpperCase.setText("G");
+            letterGUpperCase.setBraille("⠛");
+//            letterGUpperCase.setUsageCount();
+            letters.add(letterGUpperCase);
+            
+            Letter letterHUpperCase = new Letter();
+            letterHUpperCase.setLocale(locale);
+            letterHUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterHUpperCase.setText("H");
+            letterHUpperCase.setBraille("⠓");
+//            letterHUpperCase.setUsageCount();
+            letters.add(letterHUpperCase);
+            
+            Letter letterIUpperCase = new Letter();
+            letterIUpperCase.setLocale(locale);
+            letterIUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterIUpperCase.setText("I");
+            letterIUpperCase.setBraille("⠊");
+//            letterIUpperCase.setUsageCount();
+            letters.add(letterIUpperCase);
+            
+            Letter letterJUpperCase = new Letter();
+            letterJUpperCase.setLocale(locale);
+            letterJUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterJUpperCase.setText("J");
+            letterJUpperCase.setBraille("⠚");
+//            letterJUpperCase.setUsageCount();
+            letters.add(letterJUpperCase);
+            
+            Letter letterKUpperCase = new Letter();
+            letterKUpperCase.setLocale(locale);
+            letterKUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterKUpperCase.setText("K");
+            letterKUpperCase.setBraille("⠅");
+//            letterKUpperCase.setUsageCount();
+            letters.add(letterKUpperCase);
+            
+            Letter letterLUpperCase = new Letter();
+            letterLUpperCase.setLocale(locale);
+            letterLUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterLUpperCase.setText("L");
+            letterLUpperCase.setBraille("⠇");
+//            letterLUpperCase.setUsageCount();
+            letters.add(letterLUpperCase);
+            
+            Letter letterMUpperCase = new Letter();
+            letterMUpperCase.setLocale(locale);
+            letterMUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterMUpperCase.setText("M");
+            letterMUpperCase.setBraille("⠍");
+//            letterMUpperCase.setUsageCount();
+            letters.add(letterMUpperCase);
+            
+            Letter letterNUpperCase = new Letter();
+            letterNUpperCase.setLocale(locale);
+            letterNUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterNUpperCase.setText("N");
+            letterNUpperCase.setBraille("⠝");
+//            letterNUpperCase.setUsageCount();
+            letters.add(letterNUpperCase);
+            
+            Letter letterOUpperCase = new Letter();
+            letterOUpperCase.setLocale(locale);
+            letterOUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterOUpperCase.setText("O");
+            letterOUpperCase.setBraille("⠕");
+//            letterOUpperCase.setUsageCount();
+            letters.add(letterOUpperCase);
+            
+            Letter letterPUpperCase = new Letter();
+            letterPUpperCase.setLocale(locale);
+            letterPUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterPUpperCase.setText("P");
+            letterPUpperCase.setBraille("⠏");
+//            letterPUpperCase.setUsageCount();
+            letters.add(letterPUpperCase);
+            
+            Letter letterQUpperCase = new Letter();
+            letterQUpperCase.setLocale(locale);
+            letterQUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterQUpperCase.setText("Q");
+            letterQUpperCase.setBraille("⠟");
+//            letterQUpperCase.setUsageCount();
+            letters.add(letterQUpperCase);
+            
+            Letter letterRUpperCase = new Letter();
+            letterRUpperCase.setLocale(locale);
+            letterRUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterRUpperCase.setText("R");
+            letterRUpperCase.setBraille("⠗");
+//            letterRUpperCase.setUsageCount();
+            letters.add(letterRUpperCase);
+            
+            Letter letterSUpperCase = new Letter();
+            letterSUpperCase.setLocale(locale);
+            letterSUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterSUpperCase.setText("S");
+            letterSUpperCase.setBraille("⠎");
+//            letterSUpperCase.setUsageCount();
+            letters.add(letterSUpperCase);
+            
+            Letter letterTUpperCase = new Letter();
+            letterTUpperCase.setLocale(locale);
+            letterTUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterTUpperCase.setText("T");
+            letterTUpperCase.setBraille("⠞");
+//            letterTUpperCase.setUsageCount();
+            letters.add(letterTUpperCase);
+            
+            Letter letterUUpperCase = new Letter();
+            letterUUpperCase.setLocale(locale);
+            letterUUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterUUpperCase.setText("U");
+            letterUUpperCase.setBraille("⠥");
+//            letterUUpperCase.setUsageCount();
+            letters.add(letterUUpperCase);
+            
+            Letter letterVUpperCase = new Letter();
+            letterVUpperCase.setLocale(locale);
+            letterVUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterVUpperCase.setText("V");
+            letterVUpperCase.setBraille("⠧");
+//            letterVUpperCase.setUsageCount();
+            letters.add(letterVUpperCase);
+            
+            Letter letterWUpperCase = new Letter();
+            letterWUpperCase.setLocale(locale);
+            letterWUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterWUpperCase.setText("W");
+            letterWUpperCase.setBraille("⠺");
+//            letterWUpperCase.setUsageCount();
+            letters.add(letterWUpperCase);
+            
+            Letter letterXUpperCase = new Letter();
+            letterXUpperCase.setLocale(locale);
+            letterXUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterXUpperCase.setText("X");
+            letterXUpperCase.setBraille("⠭");
+//            letterXUpperCase.setUsageCount();
+            letters.add(letterXUpperCase);
+            
+            Letter letterYUpperCase = new Letter();
+            letterYUpperCase.setLocale(locale);
+            letterYUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterYUpperCase.setText("Y");
+            letterYUpperCase.setBraille("⠽");
+//            letterYUpperCase.setUsageCount();
+            letters.add(letterYUpperCase);
+            
+            Letter letterZUpperCase = new Letter();
+            letterZUpperCase.setLocale(locale);
+            letterZUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterZUpperCase.setText("Z");
+            letterZUpperCase.setBraille("⠵");
+//            letterZUpperCase.setUsageCount();
+            letters.add(letterZUpperCase);
             
         } else if (locale == Locale.ES) {
 //            letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"));
