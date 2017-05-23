@@ -56,7 +56,7 @@
                                 </c:otherwise>
                             </c:choose>
                             <td class="${spellingConsistencyColor}">
-                                ${word.spellingConsistency}
+                                <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
                             </td>
                             <td>
                                 ${word.wordType}

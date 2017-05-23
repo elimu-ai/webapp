@@ -75,7 +75,7 @@
                     <select id="spellingConsistency" name="spellingConsistency">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="spellingConsistency" items="${spellingConsistencies}">
-                            <option value="${spellingConsistency}" <c:if test="${spellingConsistency == word.spellingConsistency}">selected="selected"</c:if>>${spellingConsistency}</option>
+                            <option value="${spellingConsistency}" <c:if test="${spellingConsistency == word.spellingConsistency}">selected="selected"</c:if>><fmt:message key="spelling.consistency.${spellingConsistency}" /></option>
                         </c:forEach>
                     </select>
                     <label for="spellingConsistency"><fmt:message key="spelling.consistency" /></label>
