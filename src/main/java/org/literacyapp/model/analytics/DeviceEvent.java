@@ -18,7 +18,7 @@ public abstract class DeviceEvent extends BaseEntity {
     
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar calendar;
+    private Calendar calendar; // TODO: rename to "time"
 
     public Calendar getCalendar() {
         return calendar;

@@ -8,6 +8,8 @@ import org.literacyapp.model.Student;
 import org.literacyapp.model.content.Number;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
+import org.literacyapp.model.analytics.LetterLearningEvent;
+import org.literacyapp.model.analytics.NumberLearningEvent;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.multimedia.Audio;
@@ -19,6 +21,8 @@ import org.literacyapp.model.gson.content.NumberGson;
 import org.literacyapp.model.gson.content.WordGson;
 import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
+import org.literacyapp.model.gson.analytics.LetterLearningEventGson;
+import org.literacyapp.model.gson.analytics.NumberLearningEventGson;
 import org.literacyapp.model.gson.content.AllophoneGson;
 import org.literacyapp.model.gson.content.LetterGson;
 import org.literacyapp.model.gson.content.multimedia.AudioGson;
@@ -328,6 +332,44 @@ public class JavaToGsonConverter {
             wordGson.setWordType(word.getWordType());
             
             return wordGson;
+        }
+    }
+    
+    public static LetterLearningEventGson getLetterLearningEventGson(LetterLearningEvent letterLearningEvent) {
+        if (letterLearningEvent == null) {
+            return null;
+        } else {
+            LetterLearningEventGson letterLearningEventGson = new LetterLearningEventGson();
+            
+            letterLearningEventGson.setId(letterLearningEvent.getId());
+            letterLearningEventGson.setDevice(getDeviceGson(letterLearningEvent.getDevice()));
+            letterLearningEventGson.setTime(letterLearningEventGson.getTime());
+            
+            letterLearningEventGson.setApplication(getApplicationGson(letterLearningEvent.getApplication()));
+            letterLearningEventGson.setStudent(getStudentGson(letterLearningEvent.getStudent()));
+            
+            letterLearningEventGson.setLetter(getLetterGson(letterLearningEvent.getLetter()));
+            
+            return letterLearningEventGson;
+        }
+    }
+    
+    public static NumberLearningEventGson getNumberLearningEventGson(NumberLearningEvent numberLearningEvent) {
+        if (numberLearningEvent == null) {
+            return null;
+        } else {
+            NumberLearningEventGson numberLearningEventGson = new NumberLearningEventGson();
+            
+            numberLearningEventGson.setId(numberLearningEvent.getId());
+            numberLearningEventGson.setDevice(getDeviceGson(numberLearningEvent.getDevice()));
+            numberLearningEventGson.setTime(numberLearningEventGson.getTime());
+            
+            numberLearningEventGson.setApplication(getApplicationGson(numberLearningEvent.getApplication()));
+            numberLearningEventGson.setStudent(getStudentGson(numberLearningEvent.getStudent()));
+            
+            numberLearningEventGson.setNumber(getNumberGson(numberLearningEvent.getNumber()));
+            
+            return numberLearningEventGson;
         }
     }
 }
