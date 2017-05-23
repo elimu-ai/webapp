@@ -53,6 +53,28 @@
                         </script>
                     </div>
                 </div>
+                
+                <p>&nbsp;</p>
+                
+                <div class="input-field col s12">
+                    <select id="spellingConsistency" name="spellingConsistency">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="spellingConsistency" items="${spellingConsistencies}">
+                            <option value="${spellingConsistency}" <c:if test="${spellingConsistency == word.spellingConsistency}">selected="selected"</c:if>>${spellingConsistency}</option>
+                        </c:forEach>
+                    </select>
+                    <label for="spellingConsistency"><fmt:message key="spelling.consistency" /></label>
+                </div>
+                
+                <div class="input-field col s12">
+                    <select id="wordType" name="wordType">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="wordType" items="${wordTypes}">
+                            <option value="${wordType}" <c:if test="${wordType == word.wordType}">selected="selected"</c:if>>${wordType}</option>
+                        </c:forEach>
+                    </select>
+                    <label for="wordType"><fmt:message key="word.type" /></label>
+                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">

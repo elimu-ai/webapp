@@ -22,6 +22,7 @@ import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.WordRevisionEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.model.enums.content.SpellingConsistency;
 import org.literacyapp.model.enums.content.WordType;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -66,6 +67,8 @@ public class WordEditController {
         model.addAttribute("allophones", allophones);
         
         model.addAttribute("wordTypes", WordType.values());
+        
+        model.addAttribute("spellingConsistencies", SpellingConsistency.values());
         
         model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
         
@@ -117,6 +120,7 @@ public class WordEditController {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
             model.addAttribute("wordTypes", WordType.values());
+            model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
             Audio audio = audioDao.read(word.getText(), contributor.getLocale());
             model.addAttribute("audio", audio);
@@ -142,12 +146,13 @@ public class WordEditController {
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
-                    contributor.getFirstName() + " just updated a Word:\n" + 
-                    "• Language: \"" + word.getLocale().getLanguage() + "\"\n" +  
-                    "• Text: \"" + word.getText() + "\"\n" + 
-                    "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" + 
-                    "• Word type: " + word.getWordType() + "\n" + 
-                    "• Comment: \"" + wordRevisionEvent.getComment() + "\"\n" +         
+                    contributor.getFirstName() + " just updated a Word:\n" +
+                    "• Language: \"" + word.getLocale().getLanguage() + "\"\n" +
+                    "• Text: \"" + word.getText() + "\"\n" +
+                    "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" +
+                    "• Word type: " + word.getWordType() + "\n" +
+                    "• Spelling consistency: " + word.getSpellingConsistency() + "\n" +
+                    "• Comment: \"" + wordRevisionEvent.getComment() + "\"\n" +    
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);

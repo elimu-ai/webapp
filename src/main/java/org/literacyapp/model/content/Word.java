@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
+import org.literacyapp.model.enums.content.SpellingConsistency;
 import org.literacyapp.model.enums.content.WordType;
 
 @Entity
@@ -19,6 +20,9 @@ public class Word extends Content {
     
     @Enumerated(EnumType.STRING)
     private WordType wordType;
+    
+    @Enumerated(EnumType.STRING)
+    private SpellingConsistency spellingConsistency;
 
     public String getText() {
         return text;
@@ -50,5 +54,13 @@ public class Word extends Content {
 
     public void setWordType(WordType wordType) {
         this.wordType = wordType;
+    }
+
+    public SpellingConsistency getSpellingConsistency() {
+        return spellingConsistency;
+    }
+
+    public void setSpellingConsistency(SpellingConsistency spellingConsistency) {
+        this.spellingConsistency = spellingConsistency;
     }
 }
