@@ -325,6 +325,7 @@ public class JavaToGsonConverter {
             wordGson.setText(word.getText());
             wordGson.setPhonetics(word.getPhonetics());
             wordGson.setUsageCount(word.getUsageCount());
+            wordGson.setWordType(word.getWordType());
             
             return wordGson;
         }

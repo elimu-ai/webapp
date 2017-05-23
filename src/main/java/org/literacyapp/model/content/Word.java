@@ -1,7 +1,10 @@
 package org.literacyapp.model.content;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
+import org.literacyapp.model.enums.content.WordType;
 
 @Entity
 public class Word extends Content {
@@ -13,6 +16,9 @@ public class Word extends Content {
     private String phonetics; // IPA
     
     private int usageCount; // Based on StoryBook content
+    
+    @Enumerated(EnumType.STRING)
+    private WordType wordType;
 
     public String getText() {
         return text;
@@ -36,5 +42,13 @@ public class Word extends Content {
 
     public void setUsageCount(int usageCount) {
         this.usageCount = usageCount;
+    }
+
+    public WordType getWordType() {
+        return wordType;
+    }
+
+    public void setWordType(WordType wordType) {
+        this.wordType = wordType;
     }
 }
