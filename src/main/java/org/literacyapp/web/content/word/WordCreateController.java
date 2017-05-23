@@ -21,6 +21,7 @@ import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.WordRevisionEvent;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.model.enums.content.WordType;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,8 @@ public class WordCreateController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         model.addAttribute("allophones", allophones);
+        
+        model.addAttribute("wordTypes", WordType.values());
 
         return "content/word/create";
     }
@@ -96,6 +99,7 @@ public class WordCreateController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
+            model.addAttribute("wordTypes", WordType.values());
             return "content/word/create";
         } else {
             if (!"I".equals(word.getText())) {
@@ -118,6 +122,7 @@ public class WordCreateController {
                     "• Language: \"" + word.getLocale().getLanguage() + "\"\n" + 
                     "• Text: \"" + word.getText() + "\"\n" + 
                     "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" + 
+                    "• Word type: " + word.getWordType() + "\n" + 
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);

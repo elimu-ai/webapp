@@ -69,6 +69,18 @@
                     </div>
                 </div>
                 
+                <p>&nbsp;</p>
+                
+                <div class="input-field col s12">
+                    <select id="wordType" name="wordType">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="wordType" items="${wordTypes}">
+                            <option value="${wordType}" <c:if test="${wordType == word.wordType}">selected="selected"</c:if>>${wordType}</option>
+                        </c:forEach>
+                    </select>
+                    <label for="wordType"><fmt:message key="word.type" /></label>
+                </div>
+                
                 <div class="input-field col s12">
                     <textarea id="comment" name="comment" class="materialize-textarea" maxlength="255"><c:if test="${not empty param.comment}">${param.comment}</c:if></textarea>
                     <label for="comment"><fmt:message key="comment.about.the.change" /></label>

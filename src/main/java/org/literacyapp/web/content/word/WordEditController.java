@@ -21,8 +21,8 @@ import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.WordRevisionEvent;
 import org.literacyapp.model.enums.Environment;
-import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.model.enums.content.WordType;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +64,8 @@ public class WordEditController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         model.addAttribute("allophones", allophones);
+        
+        model.addAttribute("wordTypes", WordType.values());
         
         model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
         
@@ -114,6 +116,7 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
+            model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
             Audio audio = audioDao.read(word.getText(), contributor.getLocale());
             model.addAttribute("audio", audio);
@@ -143,6 +146,7 @@ public class WordEditController {
                     "• Language: \"" + word.getLocale().getLanguage() + "\"\n" +  
                     "• Text: \"" + word.getText() + "\"\n" + 
                     "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" + 
+                    "• Word type: " + word.getWordType() + "\n" + 
                     "• Comment: \"" + wordRevisionEvent.getComment() + "\"\n" +         
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
                 String iconUrl = contributor.getImageUrl();

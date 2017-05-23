@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.literacyapp.model.Student;
 import org.literacyapp.model.admin.Application;
 
+@Deprecated
 @Entity
 public class UsageEvent extends DeviceEvent {
     
