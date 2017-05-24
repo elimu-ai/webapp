@@ -60,6 +60,7 @@
 
     <!-- DAOs that will be autowired -->
     <bean id="applicationDao" class="org.literacyapp.dao.jpa.ApplicationDaoJpa" />
+    <bean id="applicationOpenedEventDao" class="org.literacyapp.dao.jpa.ApplicationOpenedEventDaoJpa" />
     <bean id="applicationVersionDao" class="org.literacyapp.dao.jpa.ApplicationVersionDaoJpa" />
     <bean id="allophoneDao" class="org.literacyapp.dao.jpa.AllophoneDaoJpa" />
     <bean id="audioDao" class="org.literacyapp.dao.jpa.AudioDaoJpa" />
