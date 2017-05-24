@@ -61,7 +61,7 @@ public class ApplicationOpenedEventDaoTest {
     @Test
     public void testReadAllByDevice() {
         Device device = new Device();
-        device.setDeviceId("aaabbbccc111222333");
+        device.setDeviceId("bcaef51200ac6d92bdd81");
         deviceDao.create(device);
         
         List<ApplicationOpenedEvent> applicationOpenedEvents = applicationOpenedEventDao.readAll(device);
@@ -104,7 +104,7 @@ public class ApplicationOpenedEventDaoTest {
     @Test
     public void testReadAllByStudent() {
         Student student1 = new Student();
-        student1.setUniqueId("aaabbbccc111222333_1");
+        student1.setUniqueId("bcaef51200ac6d92bdd81_1");
         studentDao.create(student1);
         
         List<ApplicationOpenedEvent> applicationOpenedEvents = applicationOpenedEventDao.readAll(student1);
@@ -120,17 +120,17 @@ public class ApplicationOpenedEventDaoTest {
         
         applicationOpenedEvents = applicationOpenedEventDao.readAll(student1);
         assertThat(applicationOpenedEvents.size(), is(2));
-        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("aaabbbccc111222333_1"));
-        assertThat(applicationOpenedEvents.get(1).getStudent().getUniqueId(), is("aaabbbccc111222333_1"));
+        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_1"));
+        assertThat(applicationOpenedEvents.get(1).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_1"));
         
         Student student2 = new Student();
-        student2.setUniqueId("aaabbbccc111222333_2");
+        student2.setUniqueId("bcaef51200ac6d92bdd81_2");
         studentDao.create(student2);
         
         applicationOpenedEvents = applicationOpenedEventDao.readAll(student1);
         assertThat(applicationOpenedEvents.size(), is(2));
-        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("aaabbbccc111222333_1"));
-        assertThat(applicationOpenedEvents.get(1).getStudent().getUniqueId(), is("aaabbbccc111222333_1"));
+        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_1"));
+        assertThat(applicationOpenedEvents.get(1).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_1"));
         
         applicationOpenedEvents = applicationOpenedEventDao.readAll(student2);
         assertThat(applicationOpenedEvents.size(), is(0));
@@ -141,12 +141,12 @@ public class ApplicationOpenedEventDaoTest {
         
         applicationOpenedEvents = applicationOpenedEventDao.readAll(student2);
         assertThat(applicationOpenedEvents.size(), is(1));
-        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("aaabbbccc111222333_2"));
+        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_2"));
         
         applicationOpenedEvents = applicationOpenedEventDao.readAll();
         assertThat(applicationOpenedEvents.size(), is(3));
-        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("aaabbbccc111222333_1"));
-        assertThat(applicationOpenedEvents.get(1).getStudent().getUniqueId(), is("aaabbbccc111222333_1"));
-        assertThat(applicationOpenedEvents.get(2).getStudent().getUniqueId(), is("aaabbbccc111222333_2"));
+        assertThat(applicationOpenedEvents.get(0).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_1"));
+        assertThat(applicationOpenedEvents.get(1).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_1"));
+        assertThat(applicationOpenedEvents.get(2).getStudent().getUniqueId(), is("bcaef51200ac6d92bdd81_2"));
     }
 }

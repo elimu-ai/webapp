@@ -69,6 +69,7 @@
     <bean id="deviceDao" class="org.literacyapp.dao.jpa.DeviceDaoJpa" />
     <bean id="imageDao" class="org.literacyapp.dao.jpa.ImageDaoJpa" />
     <bean id="letterDao" class="org.literacyapp.dao.jpa.LetterDaoJpa" />
+    <bean id="letterLearningEventDao" class="org.literacyapp.dao.jpa.LetterLearningEventDaoJpa" />
     <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
     <bean id="signOnEventDao" class="org.literacyapp.dao.jpa.SignOnEventDaoJpa" />
     <bean id="storyBookDao" class="org.literacyapp.dao.jpa.StoryBookDaoJpa" />

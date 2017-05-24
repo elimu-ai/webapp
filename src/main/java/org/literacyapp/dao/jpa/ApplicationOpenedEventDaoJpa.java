@@ -42,7 +42,7 @@ public class ApplicationOpenedEventDaoJpa extends GenericDaoJpa<ApplicationOpene
             "ORDER BY event.calendar DESC")
             .setParameter("application", application)
             .getResultList();
-    }   
+    }
     
     @Override
     public List<ApplicationOpenedEvent> readAll(Student student) throws DataAccessException {
@@ -53,5 +53,5 @@ public class ApplicationOpenedEventDaoJpa extends GenericDaoJpa<ApplicationOpene
             "ORDER BY event.calendar DESC")
             .setParameter("student", student)
             .getResultList();
-    }   
+    }
 }
