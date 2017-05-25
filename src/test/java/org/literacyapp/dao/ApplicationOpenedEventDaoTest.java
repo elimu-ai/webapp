@@ -80,25 +80,23 @@ public class ApplicationOpenedEventDaoTest {
     
     @Test
     public void testReadAllByApplication() {
-        Application application = new Application();
-        application.setPackageName("org.literacyapp");
-        applicationDao.create(application);
+        String packageName = "org.literacyapp";
         
-        List<ApplicationOpenedEvent> applicationOpenedEvents = applicationOpenedEventDao.readAll(application);
+        List<ApplicationOpenedEvent> applicationOpenedEvents = applicationOpenedEventDao.readAll(packageName);
         assertThat(applicationOpenedEvents.size(), is(0));
         
         ApplicationOpenedEvent applicationOpenedEvent1 = new ApplicationOpenedEvent();
-        applicationOpenedEvent1.setApplication(application);
+        applicationOpenedEvent1.setPackageName(packageName);
         applicationOpenedEventDao.create(applicationOpenedEvent1);
         
         ApplicationOpenedEvent applicationOpenedEvent2 = new ApplicationOpenedEvent();
-        applicationOpenedEvent2.setApplication(application);
+        applicationOpenedEvent2.setPackageName(packageName);
         applicationOpenedEventDao.create(applicationOpenedEvent2);
         
-        applicationOpenedEvents = applicationOpenedEventDao.readAll(application);
+        applicationOpenedEvents = applicationOpenedEventDao.readAll(packageName);
         assertThat(applicationOpenedEvents.size(), is(2));
-        assertThat(applicationOpenedEvents.get(0).getApplication().getPackageName(), is("org.literacyapp"));
-        assertThat(applicationOpenedEvents.get(1).getApplication().getPackageName(), is("org.literacyapp"));
+        assertThat(applicationOpenedEvents.get(0).getPackageName(), is("org.literacyapp"));
+        assertThat(applicationOpenedEvents.get(1).getPackageName(), is("org.literacyapp"));
     }
     
     @Test

@@ -45,6 +45,17 @@ public class ApplicationOpenedEventDaoJpa extends GenericDaoJpa<ApplicationOpene
     }
     
     @Override
+    public List<ApplicationOpenedEvent> readAll(String packageName) throws DataAccessException {
+        return em.createQuery(
+            "SELECT event " +
+            "FROM ApplicationOpenedEvent event " +
+            "WHERE event.packageName = :packageName " +
+            "ORDER BY event.calendar DESC")
+            .setParameter("packageName", packageName)
+            .getResultList();
+    }
+    
+    @Override
     public List<ApplicationOpenedEvent> readAll(Student student) throws DataAccessException {
         return em.createQuery(
             "SELECT event " +
