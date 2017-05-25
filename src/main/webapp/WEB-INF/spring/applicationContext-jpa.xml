@@ -71,6 +71,7 @@
     <bean id="letterDao" class="org.literacyapp.dao.jpa.LetterDaoJpa" />
     <bean id="letterLearningEventDao" class="org.literacyapp.dao.jpa.LetterLearningEventDaoJpa" />
     <bean id="numberDao" class="org.literacyapp.dao.jpa.NumberDaoJpa" />
+    <bean id="numberLearningEventDao" class="org.literacyapp.dao.jpa.NumberLearningEventDaoJpa" />
     <bean id="signOnEventDao" class="org.literacyapp.dao.jpa.SignOnEventDaoJpa" />
     <bean id="storyBookDao" class="org.literacyapp.dao.jpa.StoryBookDaoJpa" />
     <bean id="studentDao" class="org.literacyapp.dao.jpa.StudentDaoJpa" />

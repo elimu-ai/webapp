@@ -17,5 +17,7 @@ public interface ApplicationOpenedEventDao extends GenericDao<ApplicationOpenedE
     
     List<ApplicationOpenedEvent> readAll(Application application) throws DataAccessException;
     
+    List<ApplicationOpenedEvent> readAll(String packageName) throws DataAccessException;
+    
     List<ApplicationOpenedEvent> readAll(Student student) throws DataAccessException;
 }
