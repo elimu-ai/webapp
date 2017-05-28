@@ -10,6 +10,7 @@ import org.literacyapp.model.content.Word;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.analytics.LetterLearningEvent;
 import org.literacyapp.model.analytics.NumberLearningEvent;
+import org.literacyapp.model.analytics.VideoLearningEvent;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.multimedia.Audio;
@@ -23,6 +24,7 @@ import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
 import org.literacyapp.model.gson.analytics.LetterLearningEventGson;
 import org.literacyapp.model.gson.analytics.NumberLearningEventGson;
+import org.literacyapp.model.gson.analytics.VideoLearningEventGson;
 import org.literacyapp.model.gson.content.AllophoneGson;
 import org.literacyapp.model.gson.content.LetterGson;
 import org.literacyapp.model.gson.content.multimedia.AudioGson;
@@ -370,6 +372,25 @@ public class JavaToGsonConverter {
             numberLearningEventGson.setNumber(getNumberGson(numberLearningEvent.getNumber()));
             
             return numberLearningEventGson;
+        }
+    }
+    
+    public static VideoLearningEventGson getVideoLearningEventGson(VideoLearningEvent videoLearningEvent) {
+        if (videoLearningEvent == null) {
+            return null;
+        } else {
+            VideoLearningEventGson videoLearningEventGson = new VideoLearningEventGson();
+            
+            videoLearningEventGson.setId(videoLearningEvent.getId());
+            videoLearningEventGson.setDevice(getDeviceGson(videoLearningEvent.getDevice()));
+            videoLearningEventGson.setTime(videoLearningEventGson.getTime());
+            
+            videoLearningEventGson.setApplication(getApplicationGson(videoLearningEvent.getApplication()));
+            videoLearningEventGson.setStudent(getStudentGson(videoLearningEvent.getStudent()));
+            
+            videoLearningEventGson.setVideo(getVideoGson(videoLearningEvent.getVideo()));
+            
+            return videoLearningEventGson;
         }
     }
 }
