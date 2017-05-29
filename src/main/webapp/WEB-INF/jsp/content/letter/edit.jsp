@@ -11,6 +11,7 @@
             <div class="row">
                 <form:hidden path="locale" value="${letter.locale}" />
                 <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
+                <form:hidden path="usageCount" value="${letter.usageCount}" />
                 
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
