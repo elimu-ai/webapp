@@ -41,6 +41,14 @@ public class WordListController {
         
         List<Word> words = wordDao.readAllOrderedByUsage(contributor.getLocale());
         model.addAttribute("words", words);
+        
+        int maxUsageCount = 0;
+        for (Word word : words) {
+            if (word.getUsageCount() > maxUsageCount) {
+                maxUsageCount = word.getUsageCount();
+            }
+        }
+        model.addAttribute("maxUsageCount", maxUsageCount);
 
         return "content/word/list";
     }
