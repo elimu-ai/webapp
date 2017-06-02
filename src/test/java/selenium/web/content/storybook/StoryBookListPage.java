@@ -1,4 +1,4 @@
-package selenium.web.content.multimedia.image;
+package selenium.web.content.storybook;
 
 import java.util.List;
 import org.openqa.selenium.By;
@@ -10,32 +10,32 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
 
-public class ImageListPage {
+public class StoryBookListPage {
 
     private WebDriver driver;
     
-    @FindBy(className = "image")
-    private List<WebElement> images;
+    @FindBy(className = "storyBook")
+    private List<WebElement> storyBooks;
     
     @FindBy(className = "btn-floating")
     private WebElement addButton;
 
-    public ImageListPage(WebDriver driver) {
+    public StoryBookListPage(WebDriver driver) {
         this.driver = driver;
         
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("imageListPage")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("storyBookListPage")));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
     
     public int getListCount() {
-        return images.size();
+        return storyBooks.size();
     }
     
     public void clickRandomEditLink() {
-        int randomIndex = (int) (Math.random() * images.size());
-        WebElement randomElement = images.get(randomIndex);
+        int randomIndex = (int) (Math.random() * storyBooks.size());
+        WebElement randomElement = storyBooks.get(randomIndex);
         WebElement editLink = randomElement.findElement(By.className("editLink"));
         editLink.click();
     }

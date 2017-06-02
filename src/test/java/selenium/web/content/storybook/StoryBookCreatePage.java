@@ -1,4 +1,4 @@
-package selenium.web.content.multimedia.image;
+package selenium.web.content.storybook;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import selenium.ErrorHelper;
 
-public class ImageCreatePage {
+public class StoryBookCreatePage {
 
     private WebDriver driver;
     
@@ -17,11 +17,11 @@ public class ImageCreatePage {
     
     private WebElement submitButton;
 
-    public ImageCreatePage(WebDriver driver) {
+    public StoryBookCreatePage(WebDriver driver) {
         this.driver = driver;
         
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("imageCreatePage")));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("storyBookCreatePage")));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }

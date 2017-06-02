@@ -1,4 +1,4 @@
-package selenium.web.content.multimedia.image;
+package selenium.web.content.storybook;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
@@ -16,7 +16,7 @@ import selenium.DomainHelper;
 import selenium.ScreenshotOnFailureRule;
 import selenium.SignOnHelper;
 
-public class ImageCreateTest {
+public class StoryBookCreateTest {
 
     @Rule
     public MethodRule methodRule = new ScreenshotOnFailureRule();
@@ -27,16 +27,16 @@ public class ImageCreateTest {
     public void setUp() {
         driver = new FirefoxDriver();
         SignOnHelper.signOnRole(driver, Role.CONTRIBUTOR);
-        driver.get(DomainHelper.getBaseUrl() + "/content/multimedia/image/list");
+        driver.get(DomainHelper.getBaseUrl() + "/content/storybook/list");
     }
 
     @Test
     public void testSubmitEmptyForm() {
-    	ImageListPage imageListPage = PageFactory.initElements(driver, ImageListPage.class);
-        imageListPage.clickAddButton();
+    	StoryBookListPage storyBookListPage = PageFactory.initElements(driver, StoryBookListPage.class);
+        storyBookListPage.clickAddButton();
         
-        ImageCreatePage imageCreatePage = PageFactory.initElements(driver, ImageCreatePage.class);
-        imageCreatePage.submitForm();
-        assertThat(imageCreatePage.isErrorMessageDisplayed(), is(true));
+        StoryBookCreatePage storyBookCreatePage = PageFactory.initElements(driver, StoryBookCreatePage.class);
+        storyBookCreatePage.submitForm();
+        assertThat(storyBookCreatePage.isErrorMessageDisplayed(), is(true));
     }
 }
