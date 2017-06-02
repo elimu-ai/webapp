@@ -2,7 +2,7 @@
     <fmt:message key="storybooks" /> (${fn:length(storyBooks)})
 </content:title>
 
-<content:section cssId="storybookListPage">
+<content:section cssId="storyBookListPage">
     <div class="section row">
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
