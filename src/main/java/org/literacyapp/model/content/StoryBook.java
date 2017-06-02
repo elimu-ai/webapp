@@ -39,6 +39,8 @@ public class StoryBook extends Content {
     @NotEmpty
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> paragraphs;
+    
+    // TODO: add pages
 
     public String getTitle() {
         return title;
