@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.GradeLevel;
 
 @Entity
@@ -15,6 +17,10 @@ public class StoryBook extends Content {
 
     @NotNull
     private String title;
+    
+    @NotNull
+    @ManyToOne
+    private Image coverImage;
     
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -30,6 +36,14 @@ public class StoryBook extends Content {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public Image getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(Image coverImage) {
+        this.coverImage = coverImage;
     }
 
     public List<String> getParagraphs() {

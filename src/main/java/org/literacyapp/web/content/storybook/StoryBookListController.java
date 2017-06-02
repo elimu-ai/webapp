@@ -5,9 +5,11 @@ import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.StoryBookDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.StoryBook;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.GradeLevel;
 import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class StoryBookListController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private ImageDao imageDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, HttpSession session) {
@@ -36,6 +41,7 @@ public class StoryBookListController {
         for (StoryBook storyBook : storyBooksGenerated) {
             StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getLocale(), storyBook.getTitle());
             if (existingStoryBook == null) {
+                
                 storyBookDao.create(storyBook);
             }
         }
@@ -53,6 +59,8 @@ public class StoryBookListController {
         storyBook.setLocale(locale.EN);
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setTitle("Too Small");
+        Image coverImage = imageDao.read("M_ASP_55_Too_small_Page_02_Image_0001", locale);
+        storyBook.setCoverImage(coverImage);
         storyBook.setGradeLevel(GradeLevel.LEVEL3);
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look. These clothes are all too small for me!\"");

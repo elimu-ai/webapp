@@ -27,6 +27,21 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <select id="coverImage" name="coverImage">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="coverImage" items="${coverImages}">
+                            <option value="${coverImage.id}" <c:if test="${coverImage.id == storyBook.coverImage.id}">selected="selected"</c:if>>${coverImage.title}</option>
+                        </c:forEach>
+                    </select>
+                    <label for="coverImage"><fmt:message key="cover.image" /></label>
+                    <c:if test="${not empty storyBook.coverImage}">
+                        <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
+                    </c:if>
+                </div>
+                
+                <p>&nbsp;</p>
+                
+                <div class="input-field col s12">
                     <form:label path="paragraphs" cssErrorClass="error"><fmt:message key='paragraphs' /></form:label>
                     <c:forEach var="paragraph" items="${storyBook.paragraphs}">
                         <input name="paragraphs" type="text" value="<c:out value='${paragraph}' />" />
