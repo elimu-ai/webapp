@@ -13,6 +13,7 @@ import org.literacyapp.model.analytics.NumberLearningEvent;
 import org.literacyapp.model.analytics.VideoLearningEvent;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Letter;
+import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.content.multimedia.Video;
@@ -27,6 +28,7 @@ import org.literacyapp.model.gson.analytics.NumberLearningEventGson;
 import org.literacyapp.model.gson.analytics.VideoLearningEventGson;
 import org.literacyapp.model.gson.content.AllophoneGson;
 import org.literacyapp.model.gson.content.LetterGson;
+import org.literacyapp.model.gson.content.StoryBookGson;
 import org.literacyapp.model.gson.content.multimedia.AudioGson;
 import org.literacyapp.model.gson.content.multimedia.ImageGson;
 import org.literacyapp.model.gson.content.multimedia.VideoGson;
@@ -266,6 +268,28 @@ public class JavaToGsonConverter {
             numberGson.setWords(words);
             
             return numberGson;
+        }
+    }
+    
+    public static StoryBookGson getStoryBookGson(StoryBook storyBook) {
+        if (storyBook == null) {
+            return null;
+        } else {
+            StoryBookGson storyBookGson = new StoryBookGson();
+            
+            storyBookGson.setId(storyBook.getId());
+            storyBookGson.setLocale(storyBook.getLocale());
+            storyBookGson.setTimeLastUpdate(storyBook.getTimeLastUpdate());
+            storyBookGson.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookGson.setContentStatus(storyBook.getContentStatus());
+            
+            storyBookGson.setTitle(storyBook.getTitle());
+            storyBookGson.setCoverImage(getImageGson(storyBook.getCoverImage()));
+            storyBookGson.setGradeLevel(storyBook.getGradeLevel());
+            
+            // TODO: add pages
+            
+            return storyBookGson;
         }
     }
     
