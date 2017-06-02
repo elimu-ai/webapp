@@ -12,6 +12,7 @@ import org.literacyapp.dao.StoryBookDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.content.multimedia.Image;
+import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.GradeLevel;
 import org.literacyapp.model.enums.Team;
@@ -45,6 +46,8 @@ public class StoryBookCreateController {
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
         
+        model.addAttribute("contentLicenses", ContentLicense.values());
+        
         List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
         model.addAttribute("coverImages", coverImages);
         
@@ -73,6 +76,8 @@ public class StoryBookCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("storybook", storyBook);
+            
+            model.addAttribute("contentLicenses", ContentLicense.values());
             
             List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
             model.addAttribute("coverImages", coverImages);

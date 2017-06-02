@@ -18,6 +18,22 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <select id="contentLicense" name="contentLicense">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="contentLicense" items="${contentLicenses}">
+                            <option value="${contentLicense}" <c:if test="${contentLicense == storybook.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
+                        </c:forEach>
+                    </select>
+                    <label for="contentLicense"><fmt:message key="content.license" /></label>
+                </div>
+                
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">link</i>
+                    <form:label path="attributionUrl" cssErrorClass="error"><fmt:message key='attribution.url' /></form:label>
+                    <form:input path="attributionUrl" cssErrorClass="error" type="url" />
+                </div>
+                
+                <div class="input-field col s12">
                     <select id="gradeLevel" name="gradeLevel">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="gradeLevel" items="${gradeLevels}">

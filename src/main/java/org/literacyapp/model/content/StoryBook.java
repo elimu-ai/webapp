@@ -1,6 +1,7 @@
 package org.literacyapp.model.content;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,8 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.literacyapp.model.content.multimedia.Image;
+import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.GradeLevel;
 
 @Entity
@@ -17,6 +20,13 @@ public class StoryBook extends Content {
 
     @NotNull
     private String title;
+    
+    @Enumerated(EnumType.STRING)
+    private ContentLicense contentLicense;
+    
+    @Length(max = 1000)
+    @Column(length = 1000)
+    private String attributionUrl;
     
     @NotNull
     @ManyToOne
@@ -36,6 +46,22 @@ public class StoryBook extends Content {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public ContentLicense getContentLicense() {
+        return contentLicense;
+    }
+
+    public void setContentLicense(ContentLicense contentLicense) {
+        this.contentLicense = contentLicense;
+    }
+
+    public String getAttributionUrl() {
+        return attributionUrl;
+    }
+
+    public void setAttributionUrl(String attributionUrl) {
+        this.attributionUrl = attributionUrl;
     }
     
     public Image getCoverImage() {
