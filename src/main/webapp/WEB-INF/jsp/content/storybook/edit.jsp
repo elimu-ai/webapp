@@ -10,7 +10,7 @@
 
             <div class="row">
                 <form:hidden path="locale" value="${contributor.locale}" />
-                <form:hidden path="revisionNumber" value="${storybook.revisionNumber}" />
+                <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
                 
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
@@ -21,7 +21,7 @@
                     <select id="contentLicense" name="contentLicense">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
-                            <option value="${contentLicense}" <c:if test="${contentLicense.id == storybook.contentLicense.id}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
+                            <option value="${contentLicense}" <c:if test="${contentLicense == storyBook.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
                     <label for="contentLicense"><fmt:message key="content.license" /></label>
