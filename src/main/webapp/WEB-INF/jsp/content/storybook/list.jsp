@@ -11,7 +11,7 @@
         <c:forEach var="storyBook" items="${storyBooks}">
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
-                <div class="storybook card">
+                <div class="storyBook card">
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
                         <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
                     </a>
