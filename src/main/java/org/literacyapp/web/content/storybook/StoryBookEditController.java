@@ -11,10 +11,12 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
+import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.StoryBookDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.StoryBook;
+import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.GradeLevel;
 import org.literacyapp.model.enums.Team;
@@ -37,13 +39,21 @@ public class StoryBookEditController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private ImageDao imageDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id, HttpSession session) {
     	logger.info("handleRequest");
         
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        
         StoryBook storyBook = storyBookDao.read(id);
         model.addAttribute("storyBook", storyBook);
+        
+        List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
+        model.addAttribute("coverImages", coverImages);
         
         model.addAttribute("gradeLevels", GradeLevel.values());
         
@@ -71,6 +81,9 @@ public class StoryBookEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBook", storyBook);
+            
+            List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
+            model.addAttribute("coverImages", coverImages);
             
             model.addAttribute("gradeLevels", GradeLevel.values());
             
