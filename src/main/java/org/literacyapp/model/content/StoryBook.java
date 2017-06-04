@@ -8,6 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -37,6 +38,7 @@ public class StoryBook extends Content {
     private GradeLevel gradeLevel;
     
     @NotEmpty
+    @OrderColumn
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> paragraphs;
     
