@@ -1,5 +1,6 @@
 package org.literacyapp.dao;
 
+import java.util.Calendar;
 import java.util.List;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.Student;
@@ -10,7 +11,9 @@ import org.literacyapp.model.enums.Locale;
 import org.springframework.dao.DataAccessException;
 
 public interface ApplicationOpenedEventDao extends GenericDao<ApplicationOpenedEvent> {
-	
+    
+    ApplicationOpenedEvent read(Device device, Calendar time, String packageName) throws DataAccessException;
+    
     List<ApplicationOpenedEvent> readAll(Locale locale) throws DataAccessException;
     
     List<ApplicationOpenedEvent> readAll(Device device) throws DataAccessException;
