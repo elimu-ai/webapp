@@ -35,7 +35,7 @@ public class EventLineHelper {
             if (eventLineValue.startsWith("time:")) {
                 String timeAsString = eventLineValue.replace("time:", "");
                 long timeInMillis = Long.parseLong(timeAsString);
-                calendar = Calendar.getInstance(TimeZone.getTimeZone("Africa/Nairobi"));
+                calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(timeInMillis);
             }
         }
