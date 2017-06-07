@@ -1,6 +1,8 @@
 package org.literacyapp.dao.jpa;
 
+import java.util.Calendar;
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.literacyapp.dao.ApplicationOpenedEventDao;
 import org.literacyapp.model.Device;
 import org.literacyapp.model.Student;
@@ -10,6 +12,25 @@ import org.literacyapp.model.enums.Locale;
 import org.springframework.dao.DataAccessException;
 
 public class ApplicationOpenedEventDaoJpa extends GenericDaoJpa<ApplicationOpenedEvent> implements ApplicationOpenedEventDao {
+    
+    @Override
+    public ApplicationOpenedEvent read(Device device, Calendar time, String packageName) throws DataAccessException {
+        try {
+            return (ApplicationOpenedEvent) em.createQuery(
+                "SELECT event " +
+                "FROM ApplicationOpenedEvent event " +
+                "WHERE event.device = :device " +
+                "AND event.calendar = :time" + 
+                "AND event.packageName = :packageName")
+                .setParameter("device", device)
+                .setParameter("time", time)
+                .setParameter("packageName", packageName)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("ApplicationOpenedEvent on device " + device.getDeviceId() + " (" + device.getLocale() + "), at " + time.getTime() + " for " + packageName + " was not found");
+            return null;
+        }
+    }
 
     @Override
     public List<ApplicationOpenedEvent> readAll(Locale locale) throws DataAccessException {
