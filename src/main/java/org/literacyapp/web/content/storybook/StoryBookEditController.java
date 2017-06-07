@@ -21,6 +21,7 @@ import org.literacyapp.model.enums.ContentLicense;
 import org.literacyapp.model.enums.Environment;
 import org.literacyapp.model.enums.GradeLevel;
 import org.literacyapp.model.enums.Team;
+import org.literacyapp.util.LetterFrequencyHelper;
 import org.literacyapp.util.SlackApiHelper;
 import org.literacyapp.util.WordFrequencyHelper;
 import org.literacyapp.web.context.EnvironmentContextLoaderListener;
@@ -62,7 +63,10 @@ public class StoryBookEditController {
         
         Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
-
+        
+        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(storyBook);
+        model.addAttribute("letterFrequencyMap", letterFrequencyMap);
+        
         return "content/storybook/edit";
     }
     
@@ -94,6 +98,9 @@ public class StoryBookEditController {
             
             Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
             model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+            
+            Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(storyBook);
+            model.addAttribute("letterFrequencyMap", letterFrequencyMap);
             
             return "content/storybook/edit";
         } else {
