@@ -2,6 +2,7 @@ package org.literacyapp.util;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -19,8 +20,8 @@ public class EventLineHelperTest {
     @Test
     public void testGetTime() {
         String applicationOpenedEventLine = "id:163|deviceId:2312aff4939750ea|time:1496843219926|packageName:nyaqd.literacyapp.org|studentId:2312aff4939750ea_4";
-        Calendar calendar = EventLineHelper.getTime(applicationOpenedEventLine);
-        assertThat(calendar.getTime().toString(), is("Wed Jun 07 15:46:59 CEST 2017"));
+        Calendar timeOfEvent = EventLineHelper.getTime(applicationOpenedEventLine);
+        assertThat(timeOfEvent.getTime().toString(), is("Wed Jun 07 15:46:59 CEST 2017"));
     }
     
     @Test

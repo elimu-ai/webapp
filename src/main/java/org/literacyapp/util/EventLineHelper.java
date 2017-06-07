@@ -1,6 +1,7 @@
 package org.literacyapp.util;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 /**
  * Expected format: id:163|deviceId:2312aff4939750ea|time:1496843219926|packageName:nyaqd.literacyapp.org|studentId:2312aff4939750ea_4
@@ -34,7 +35,7 @@ public class EventLineHelper {
             if (eventLineValue.startsWith("time:")) {
                 String timeAsString = eventLineValue.replace("time:", "");
                 long timeInMillis = Long.parseLong(timeAsString);
-                calendar = Calendar.getInstance();
+                calendar = Calendar.getInstance(TimeZone.getTimeZone("Africa/Nairobi"));
                 calendar.setTimeInMillis(timeInMillis);
             }
         }
