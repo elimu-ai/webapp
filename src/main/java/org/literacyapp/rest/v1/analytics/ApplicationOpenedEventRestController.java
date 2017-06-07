@@ -47,6 +47,18 @@ public class ApplicationOpenedEventRestController {
                 List<String> lines = IOUtils.readLines(reader);
                 logger.info("lines.size(): " + lines.size());
                 reader.close();
+                
+                for (String eventLine : lines) {
+                    logger.info("eventLine: " + eventLine);
+                    
+                    String[] eventLineValues = eventLine.split("|");
+                    logger.info("eventLineValues: " + eventLineValues);
+                    
+                    for (String eventLineValue : eventLineValues) {
+                        logger.info("eventLineValue: " + eventLineValue);
+                        
+                    }
+                }
             } catch (IOException ex) {
                 logger.error(null, ex);
             }
