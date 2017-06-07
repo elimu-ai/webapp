@@ -20,7 +20,7 @@ public class ApplicationOpenedEventDaoJpa extends GenericDaoJpa<ApplicationOpene
                 "SELECT event " +
                 "FROM ApplicationOpenedEvent event " +
                 "WHERE event.device = :device " +
-                "AND event.calendar = :time" + 
+                "AND event.calendar = :time " + 
                 "AND event.packageName = :packageName")
                 .setParameter("device", device)
                 .setParameter("time", time)
