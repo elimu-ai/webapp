@@ -44,7 +44,7 @@
                         
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="usage.activity" /></b></li>
-                        <li><a href="<spring:url value='/analytics/event/list' />"><i class="material-icons left">timeline</i><fmt:message key="events" /></a></li>
+                        <li><a href="<spring:url value='/analytics/application-opened-event/list' />"><i class="material-icons left">timeline</i><fmt:message key="application.opened.events" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/analytics' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
