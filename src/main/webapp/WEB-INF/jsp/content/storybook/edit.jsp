@@ -99,4 +99,23 @@
             </c:forEach>
         </tbody>
     </table>
+    
+    <p>&nbsp;</p>
+    
+    <h5 class="center"><fmt:message key="letter.frequency" /></h5>
+    
+    <table class="bordered highlight">
+        <thead>
+            <th><fmt:message key="letter" /></th>
+            <th><fmt:message key="frequency" /></th>
+        </thead>
+        <tbody>
+            <c:forEach var="letterFrequency" items="${letterFrequencyMap}">
+                <tr>
+                    <td>${letterFrequency.key}</td>
+                    <td>${letterFrequency.value}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </content:aside>
