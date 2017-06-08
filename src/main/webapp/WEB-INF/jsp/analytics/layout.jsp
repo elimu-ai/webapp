@@ -22,6 +22,8 @@
         <%--<script src="<spring:url value='/static/js/materialize.min-0.97.6.js' />"></script>--%>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
+        <script src="<spring:url value='/static/js/chartist.min.js' />"></script>
+        <script src="<spring:url value='/static/js/script.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
         <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
     </head>

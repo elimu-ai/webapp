@@ -33,6 +33,23 @@
                 <div class="card-content white-text">
                     <span class="card-title"><i class="material-icons">timeline</i> <fmt:message key="application.opened.events" /></span>
                     <p>Diagrams displaying applications opened on the devices.</p>
+
+                            <div class="content">
+                                <div id="chartActivity" class="ct-chart"></div>
+
+                                <div class="footer">
+                                    <div class="legend">
+                                        <i class="fa fa-circle text-info"></i> Tanzania
+                                        <i class="fa fa-circle text-danger"></i> Kenya
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-check"></i> Data information certified
+                                    </div>
+                                </div>
+                            </div>
+
+
                 </div>
                 <div class="card-action">
                     <a href="<spring:url value='/analytics/application-opened-event/list' />"><fmt:message key="view.events" /></a>
