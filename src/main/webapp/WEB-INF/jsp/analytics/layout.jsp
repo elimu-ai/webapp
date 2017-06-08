@@ -16,7 +16,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
         <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
         <link rel="stylesheet" href="<spring:url value='/static/css/analytics/styles.css?version=' /><content:getversion />" />
-        
+        <link rel="stylesheet" href="<spring:url value='/static/css/analytics/chartist.min.css?version=' /><content:getversion />" />
+ 
         <%-- JavaScripts --%>
         <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
         <%--<script src="<spring:url value='/static/js/materialize.min-0.97.6.js' />"></script>--%>
@@ -119,4 +120,14 @@
             </div>
         </div>
     </body>
+
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+        });
+    </script>
+
 </html>
