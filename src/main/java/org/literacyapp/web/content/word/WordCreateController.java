@@ -12,10 +12,12 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.dao.ImageDao;
+import org.literacyapp.dao.SyllableDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.dao.WordRevisionEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
+import org.literacyapp.model.content.Syllable;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.contributor.WordRevisionEvent;
@@ -49,6 +51,9 @@ public class WordCreateController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private SyllableDao syllableDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, HttpSession session) {
@@ -142,6 +147,12 @@ public class WordCreateController {
                     matchingImage.setWords(labeledWords);
                     imageDao.update(matchingImage);
                 }
+            }
+            
+            // Delete syllables that are actual words
+            Syllable syllable = syllableDao.readByText(contributor.getLocale(), word.getText());
+            if (syllable != null) {
+                syllableDao.delete(syllable);
             }
             
             return "redirect:/content/word/list#" + word.getId();

@@ -12,10 +12,12 @@ import org.apache.log4j.Logger;
 import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.dao.AudioDao;
 import org.literacyapp.dao.ImageDao;
+import org.literacyapp.dao.SyllableDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.dao.WordRevisionEventDao;
 import org.literacyapp.model.Contributor;
 import org.literacyapp.model.content.Allophone;
+import org.literacyapp.model.content.Syllable;
 import org.literacyapp.model.content.Word;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.content.multimedia.Image;
@@ -54,6 +56,9 @@ public class WordEditController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private SyllableDao syllableDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id, HttpSession session) {
@@ -156,6 +161,12 @@ public class WordEditController {
                     "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
+            }
+            
+            // Delete syllables that are actual words
+            Syllable syllable = syllableDao.readByText(contributor.getLocale(), word.getText());
+            if (syllable != null) {
+                syllableDao.delete(syllable);
             }
             
             return "redirect:/content/word/list#" + word.getId();
