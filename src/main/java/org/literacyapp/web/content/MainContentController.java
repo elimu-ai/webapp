@@ -13,6 +13,7 @@ import org.literacyapp.dao.ImageDao;
 import org.literacyapp.dao.LetterDao;
 import org.literacyapp.dao.NumberDao;
 import org.literacyapp.dao.StoryBookDao;
+import org.literacyapp.dao.SyllableDao;
 import org.literacyapp.dao.VideoDao;
 import org.literacyapp.dao.WordDao;
 import org.literacyapp.model.Contributor;
@@ -36,6 +37,9 @@ public class MainContentController {
     
     @Autowired
     private LetterDao letterDao;
+    
+    @Autowired
+    private SyllableDao syllableDao;
     
     @Autowired
     private WordDao wordDao;
@@ -78,6 +82,7 @@ public class MainContentController {
         
         model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
         model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
+        model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLocale()));
         model.addAttribute("wordCount", wordDao.readCount(contributor.getLocale()));
         model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLocale()));
         model.addAttribute("audioCount", audioDao.readCount(contributor.getLocale()));
