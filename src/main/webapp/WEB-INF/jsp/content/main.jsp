@@ -35,6 +35,17 @@
         <div class="col s12 m6">
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
+                    <span class="card-title"><i class="material-icons">queue_music</i> <fmt:message key="syllables" /></span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/content/syllable/list' />"><fmt:message key="view.list" /> (${syllableCount})</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
                     <span class="card-title"><i class="material-icons">sms</i> <fmt:message key="words" /></span>
                 </div>
                 <div class="card-action">
@@ -98,6 +109,7 @@
             <ul>
                 <li><a href="<spring:url value='/content/number/create' />" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="110" data-tooltip="<fmt:message key="add.number" />"><i class="material-icons">looks_one</i></a></li>
                 <li><a href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large purple darken-1 tooltipped" data-position="left" data-delay="100" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">text_format</i></a></li>
+                <li><a href="<spring:url value='/content/syllable/create' />" class="btn-floating btn-large indigo darken-1 tooltipped" data-position="left" data-delay="100" data-tooltip="<fmt:message key="add.syllable" />"><i class="material-icons">queue_music</i></a></li>
                 <li><a href="<spring:url value='/content/word/create' />" class="btn-floating btn-large green tooltipped" data-position="left" data-delay="90" data-tooltip="<fmt:message key="add.word" />"><i class="material-icons">sms</i></a></li>
                 <li><a href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large grey tooltipped" data-position="left" data-delay="80" data-tooltip="<fmt:message key="add.storybook" />"><i class="material-icons">book</i></a></li>
                 <li><a href="<spring:url value='/content/multimedia/audio/create' />" class="btn-floating btn-large blue tooltipped" data-position="left" data-delay="70" data-tooltip="<fmt:message key="add.audio" />"><i class="material-icons">audiotrack</i></a></li>
