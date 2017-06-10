@@ -31,7 +31,7 @@ public class SyllableHelper {
             logger.info("hyphenatedWord: " + hyphenatedWord);
             String[] syllableArray = hyphenatedWord.split("­");
             for (String syllable : syllableArray) {
-                syllables.add(syllable);
+                syllables.add(syllable.toLowerCase());
             }
             
             // TODO: extract Consonants/Vocals

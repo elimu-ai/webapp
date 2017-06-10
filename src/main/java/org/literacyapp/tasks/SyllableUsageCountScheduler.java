@@ -1,5 +1,6 @@
 package org.literacyapp.tasks;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class SyllableUsageCountScheduler {
     @Autowired
     private StoryBookDao storyBookDao;
     
-    @Scheduled(cron="00 15 19 * * *") // At 19:15 every day
+    @Scheduled(cron="00 30 07 * * *") // At 07:30 every morning
     public synchronized void execute() {
         logger.info("execute");
         
@@ -60,7 +61,13 @@ public class SyllableUsageCountScheduler {
             for (String key : syllableFrequencyMap.keySet()) {
                 String syllableText = key;
                 Syllable existingSyllable = syllableDao.readByText(locale, syllableText);
-                if (existingSyllable != null) {
+                if (existingSyllable == null) {
+                    Syllable syllable = new Syllable();
+                    syllable.setLocale(locale);
+                    syllable.setTimeLastUpdate(Calendar.getInstance());
+                    syllable.setText(syllableText);
+                    syllableDao.create(syllable);
+                } else {
                     existingSyllable.setUsageCount(syllableFrequencyMap.get(syllableText));
                     syllableDao.update(existingSyllable);
                 }

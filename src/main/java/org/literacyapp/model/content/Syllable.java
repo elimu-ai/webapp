@@ -9,8 +9,6 @@ import org.hibernate.validator.constraints.Length;
 public class Syllable extends Content {
 
     @NotNull
-    @Length(max = 1)
-    @Column(length = 1)
     private String text;
     
     private int usageCount; // Based on StoryBook content (all difficulty levels)

@@ -1,13 +1,19 @@
 package org.literacyapp.web.content.syllable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.StoryBookDao;
 import org.literacyapp.dao.SyllableDao;
 import org.literacyapp.model.Contributor;
+import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.content.Syllable;
 import org.literacyapp.model.enums.Locale;
+import org.literacyapp.util.SyllableFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +28,9 @@ public class SyllableListController {
     
     @Autowired
     private SyllableDao syllableDao;
+    
+    @Autowired
+    private StoryBookDao storyBookDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, HttpSession session) {
@@ -40,9 +49,56 @@ public class SyllableListController {
         }
         
         List<Syllable> syllables = syllableDao.readAllOrdered(contributor.getLocale());
+        logger.info("syllables.size(): " + syllables.size());
+        if (syllables.isEmpty()) {
+            triggerTaskCode(contributor.getLocale());
+            syllables = syllableDao.readAllOrdered(contributor.getLocale());
+        }
         model.addAttribute("syllables", syllables);
 
         return "content/syllable/list";
+    }
+    
+    // TODO: remove once task has executed at least once successfully
+    private void triggerTaskCode(Locale locale) {
+        logger.info("Calculating usage count for Syllables with locale " + locale);
+            
+        Map<String, Integer> syllableFrequencyMap = new HashMap<>();
+
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered(locale);
+        logger.info("storyBooks.size(): " + storyBooks.size());
+        for (StoryBook storyBook : storyBooks) {
+            logger.info("storyBook.getTitle(): " + storyBook.getTitle());
+
+            Map<String, Integer> syllableFrequencyMapForBook = SyllableFrequencyHelper.getSyllableFrequency(storyBook);
+            for (String key : syllableFrequencyMapForBook.keySet()) {
+                String syllableText = key;
+                int syllableFrequency = syllableFrequencyMapForBook.get(key);
+                if (!syllableFrequencyMap.containsKey(syllableText)) {
+                    syllableFrequencyMap.put(syllableText, syllableFrequency);
+                } else {
+                    syllableFrequencyMap.put(syllableText, syllableFrequencyMap.get(syllableText) + syllableFrequency);
+                }
+            }
+        }
+
+        logger.info("syllableFrequencyMap: " + syllableFrequencyMap);
+
+        for (String key : syllableFrequencyMap.keySet()) {
+            String syllableText = key;
+            logger.info("syllableText: " + syllableText);
+            Syllable existingSyllable = syllableDao.readByText(locale, syllableText);
+            if (existingSyllable == null) {
+                Syllable syllable = new Syllable();
+                syllable.setLocale(locale);
+                syllable.setTimeLastUpdate(Calendar.getInstance());
+                syllable.setText(syllableText);
+                syllableDao.create(syllable);
+            } else {
+                existingSyllable.setUsageCount(syllableFrequencyMap.get(syllableText));
+                syllableDao.update(existingSyllable);
+            }
+        }
     }
     
     private List<Syllable> generateSyllables(Locale locale) {

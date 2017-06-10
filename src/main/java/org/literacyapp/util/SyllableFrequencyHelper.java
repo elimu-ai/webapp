@@ -7,26 +7,30 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.apache.log4j.Logger;
 import org.literacyapp.model.content.StoryBook;
 import org.literacyapp.model.content.Word;
 
 public class SyllableFrequencyHelper {
+    
+    private static final Logger logger = Logger.getLogger(SyllableFrequencyHelper.class);
 
-    /**
-     * Note: upper-case and lower-case syllables are considered different syllables.
-     * E.g. 'A' and 'a'.
-     */
     public static Map<String, Integer> getSyllableFrequency(StoryBook storyBook) {
         Map<String, Integer> syllableFrequencyMap = new HashMap<>();
         
         List<String> paragraphs = storyBook.getParagraphs();
         for (String paragraph : paragraphs) {
+            logger.info("paragraph: " + paragraph);
             List<String> words = WordExtractionHelper.getWords(paragraph);
             for (String wordInParagraph : words) {
+                logger.info("wordInParagraph: " + wordInParagraph);
                 Word word = new Word();
+                word.setLocale(storyBook.getLocale());
                 word.setText(wordInParagraph);
                 List<String> syllables = SyllableHelper.getSyllables(word);
+                logger.info("syllables.size(): " + syllables.size());
                 for (String syllable : syllables) {
+                    logger.info("syllable: " + syllable);
                     if (!syllableFrequencyMap.containsKey(syllable)) {
                         syllableFrequencyMap.put(syllable, 1);
                     } else {
