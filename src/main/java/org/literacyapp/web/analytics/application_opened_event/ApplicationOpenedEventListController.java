@@ -62,8 +62,19 @@ public class ApplicationOpenedEventListController {
         List<ApplicationOpenedEvent> applicationOpenedEvents = new ArrayList<>();
         
         String[] eventFiles = new String[] {
+            "application_opened_events_2017-05-25.log",
             "application_opened_events_2017-05-27.log",
-            "application_opened_events_2017-05-28.log"
+            "application_opened_events_2017-05-28.log",
+            "application_opened_events_2017-05-29.log",
+            "application_opened_events_2017-05-30.log",
+            "application_opened_events_2017-06-02.log",
+            "application_opened_events_2017-06-03.log",
+            "application_opened_events_2017-06-04.log",
+            "application_opened_events_2017-06-05.log",
+            "application_opened_events_2017-06-06.log",
+            "application_opened_events_2017-06-07.log",
+            "application_opened_events_2017-06-08.log",
+            "application_opened_events_2017-06-09.log",
         };
         for (String eventFile : eventFiles) {
             logger.info("eventFile: " + eventFile);
