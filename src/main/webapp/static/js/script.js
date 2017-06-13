@@ -292,3 +292,80 @@ var option = {
 
 chartbarstudentperf.setOption(option); 
 
+
+
+//application event open
+ // 'JSON' data included as above
+//data = '[{"blue" : "is ok", "red" : "is my fave color"}]';
+
+
+//pie graph 
+
+// based on prepared DOM, initialize echarts instance
+var applicationopenevent = echarts.init(document.getElementById('application-open-event'));
+//alert(applicationopenevent)
+var option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['nya','lighting','calculator','chat','literacyapp']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: false},
+            dataView : {show: false, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['0:00', '4:00', '8:00', '12:00', '16:00', '20:00', '24:00']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'nya',
+            type:'line',
+            stack: 'total',
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'lighting',
+            type:'line',
+            stack: 'total',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'calculator',
+            type:'line',
+            stack: 'total',
+            data:[150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name:'chat',
+            type:'line',
+            stack: 'total',
+            data:[220, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'literacyapp',
+            type:'line',
+            stack: 'total',
+            data:[220, 332, 401, 434, 290, 430, 420]
+        }
+    ]
+};    
+applicationopenevent.setOption(option);
+
