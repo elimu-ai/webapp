@@ -16,15 +16,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
         <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
         <link rel="stylesheet" href="<spring:url value='/static/css/analytics/styles.css?version=' /><content:getversion />" />
-        <link rel="stylesheet" href="<spring:url value='/static/css/analytics/chartist.min.css?version=' /><content:getversion />" />
- 
+        
         <%-- JavaScripts --%>
         <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
         <%--<script src="<spring:url value='/static/js/materialize.min-0.97.6.js' />"></script>--%>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
-        <script src="<spring:url value='/static/js/chartist.min.js' />"></script>
-        <script src="<spring:url value='/static/js/script.js' />"></script>
+
+        <script src="<spring:url value='/static/js/echarts.js' />"></script>
+        <script src="<spring:url value='/static/js/echarts-all-english-v2.js' />"></script>
+ 
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
         <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
     </head>
@@ -122,12 +123,6 @@
     </body>
 
 
-        <script type="text/javascript">
-        $(document).ready(function(){
 
-            demo.initChartist();
-
-        });
-    </script>
-
+<script src="<spring:url value='/static/js/script.js' />"></script>
 </html>
