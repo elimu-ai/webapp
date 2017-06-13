@@ -51,6 +51,7 @@
                         <li class="grey-text"><b><fmt:message key="application.content" /></b></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
+                        <li><a href="<spring:url value='/content/syllable/list' />"><i class="material-icons left">queue_music</i><fmt:message key="syllables" /></a></li>
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
                         <li><a href="<spring:url value='/content/storybook/list' />"><i class="material-icons left">book</i><fmt:message key="storybooks" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
@@ -147,6 +148,9 @@
                     </c:when>
                     <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter/')}">
                         $('nav').addClass('purple');
+                    </c:when>
+                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/syllable/')}">
+                        $('nav').addClass('indigo');
                     </c:when>
                     <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')}">
                         $('nav').addClass('green');
