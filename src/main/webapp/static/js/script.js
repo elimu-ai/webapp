@@ -210,3 +210,85 @@ var option = {
 
 
 chartbarstudentloc.setOption(option); 
+
+
+
+
+// based on prepared DOM, initialize echarts instance
+var chartbarstudentperf = echarts.init(document.getElementById('chart-line-student-perf'));
+var option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['voltair','handwriting','calculator','walezi']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            data : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'voltair',
+            type:'bar',
+            data:[88, 77, 66, 55.2, 65.6, 76.7, 95.6, 62.2, 82.6, 80.0, 68.4, 97.3],
+            markLine : {
+                data : [
+                    {type : 'average', name: 'average'}
+                ]
+            }
+        },
+        {
+            name:'handwriting',
+            type:'bar',
+            data:[78, 67, 56, 85.2, 75.6, 77.7, 85.6, 52.2, 81.6, 70.0, 78.4, 99.3],
+            markLine : {
+                data : [
+                    {type : 'average', name : 'average'}
+                ]
+            }
+        },
+        {
+            name:'calculator',
+            type:'bar',
+            data:[98, 67, 86, 59.2, 95.6, 86.7, 55.6, 72.2, 32.6, 70.0, 69.4, 67.3],
+            markLine : {
+                data : [
+                    {type : 'average', name : 'average'}
+                ]
+            }
+        },
+        {
+            name:'walezi',
+            type:'bar',
+            data:[78, 57, 36, 51.2, 45.6, 26.7, 45.6, 52.2, 72.6, 50.0, 48.4, 37.3],
+            markLine : {
+                data : [
+                    {type : 'average', name : 'average'}
+                ]
+            }
+        }
+    ]
+};
+
+
+chartbarstudentperf.setOption(option); 
+

@@ -51,5 +51,20 @@
         </div>
         
 
+        <div class="col s12 m6">
+            <div class="card darken-1">
+                <div class="card-content black-text">
+                    <span class="card-title"><i class="material-icons">school</i> <fmt:message key="students" /></span>
+                    <p>Performance of student across applications.</p>
+                        <div id="chart-line-student-perf" class="echart"></div>
+                </div>
+                
+                <div class="card-action">
+                    <a href="<spring:url value='/analytics/student/list' />"><fmt:message key="view.list" /></a>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </content:section>
