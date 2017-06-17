@@ -14,6 +14,7 @@ import org.literacyapp.model.analytics.VideoLearningEvent;
 import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Letter;
 import org.literacyapp.model.content.StoryBook;
+import org.literacyapp.model.content.Syllable;
 import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.content.multimedia.Image;
 import org.literacyapp.model.content.multimedia.Video;
@@ -29,6 +30,7 @@ import org.literacyapp.model.gson.analytics.VideoLearningEventGson;
 import org.literacyapp.model.gson.content.AllophoneGson;
 import org.literacyapp.model.gson.content.LetterGson;
 import org.literacyapp.model.gson.content.StoryBookGson;
+import org.literacyapp.model.gson.content.SyllableGson;
 import org.literacyapp.model.gson.content.multimedia.AudioGson;
 import org.literacyapp.model.gson.content.multimedia.ImageGson;
 import org.literacyapp.model.gson.content.multimedia.VideoGson;
@@ -337,6 +339,25 @@ public class JavaToGsonConverter {
             videoGson.setThumbnailDownloadUrl("/video/" + video.getId() + "/thumbnail.png");
             
             return videoGson;
+        }
+    }
+    
+    public static SyllableGson getSyllableGson(Syllable syllable) {
+        if (syllable == null) {
+            return null;
+        } else {
+            SyllableGson syllableGson = new SyllableGson();
+            
+            syllableGson.setId(syllable.getId());
+            syllableGson.setLocale(syllable.getLocale());
+            syllableGson.setTimeLastUpdate(syllable.getTimeLastUpdate());
+            syllableGson.setRevisionNumber(syllable.getRevisionNumber());
+            syllableGson.setContentStatus(syllable.getContentStatus());
+            
+            syllableGson.setText(syllable.getText());
+            syllableGson.setUsageCount(syllable.getUsageCount());
+            
+            return syllableGson;
         }
     }
     
