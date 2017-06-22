@@ -377,6 +377,7 @@ public class JavaToGsonConverter {
             wordGson.setPhonetics(word.getPhonetics());
             wordGson.setUsageCount(word.getUsageCount());
             wordGson.setWordType(word.getWordType());
+            wordGson.setSpellingConsistency(word.getSpellingConsistency());
             
             return wordGson;
         }
