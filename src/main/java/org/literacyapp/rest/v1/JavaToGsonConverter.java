@@ -239,6 +239,7 @@ public class JavaToGsonConverter {
             letterGson.setContentStatus(letter.getContentStatus());
             
             letterGson.setText(letter.getText());
+            letterGson.setAllophone(getAllophoneGson(letter.getAllophone()));
             letterGson.setBraille(letter.getBraille());
             letterGson.setUsageCount(letter.getUsageCount());
             
@@ -270,6 +271,59 @@ public class JavaToGsonConverter {
             numberGson.setWords(words);
             
             return numberGson;
+        }
+    }
+    
+    public static SyllableGson getSyllableGson(Syllable syllable) {
+        if (syllable == null) {
+            return null;
+        } else {
+            SyllableGson syllableGson = new SyllableGson();
+            
+            syllableGson.setId(syllable.getId());
+            syllableGson.setLocale(syllable.getLocale());
+            syllableGson.setTimeLastUpdate(syllable.getTimeLastUpdate());
+            syllableGson.setRevisionNumber(syllable.getRevisionNumber());
+            syllableGson.setContentStatus(syllable.getContentStatus());
+            
+            syllableGson.setText(syllable.getText());
+            List<AllophoneGson> allophones = new ArrayList<>();
+            for (Allophone allophone : syllable.getAllophones()) {
+                AllophoneGson allophoneGson = getAllophoneGson(allophone);
+                allophones.add(allophoneGson);
+            }
+            syllableGson.setAllophones(allophones);
+            syllableGson.setUsageCount(syllable.getUsageCount());
+            
+            return syllableGson;
+        }
+    }
+    
+    public static WordGson getWordGson(Word word) {
+        if (word == null) {
+            return null;
+        } else {
+            WordGson wordGson = new WordGson();
+            
+            wordGson.setId(word.getId());
+            wordGson.setLocale(word.getLocale());
+            wordGson.setTimeLastUpdate(word.getTimeLastUpdate());
+            wordGson.setRevisionNumber(word.getRevisionNumber());
+            wordGson.setContentStatus(word.getContentStatus());
+            
+            wordGson.setText(word.getText());
+            wordGson.setPhonetics(word.getPhonetics());
+            List<AllophoneGson> allophones = new ArrayList<>();
+            for (Allophone allophone : word.getAllophones()) {
+                AllophoneGson allophoneGson = getAllophoneGson(allophone);
+                allophones.add(allophoneGson);
+            }
+            wordGson.setAllophones(allophones);
+            wordGson.setUsageCount(word.getUsageCount());
+            wordGson.setWordType(word.getWordType());
+            wordGson.setSpellingConsistency(word.getSpellingConsistency());
+            
+            return wordGson;
         }
     }
     
@@ -339,59 +393,6 @@ public class JavaToGsonConverter {
             videoGson.setThumbnailDownloadUrl("/video/" + video.getId() + "/thumbnail.png");
             
             return videoGson;
-        }
-    }
-    
-    public static SyllableGson getSyllableGson(Syllable syllable) {
-        if (syllable == null) {
-            return null;
-        } else {
-            SyllableGson syllableGson = new SyllableGson();
-            
-            syllableGson.setId(syllable.getId());
-            syllableGson.setLocale(syllable.getLocale());
-            syllableGson.setTimeLastUpdate(syllable.getTimeLastUpdate());
-            syllableGson.setRevisionNumber(syllable.getRevisionNumber());
-            syllableGson.setContentStatus(syllable.getContentStatus());
-            
-            syllableGson.setText(syllable.getText());
-            List<AllophoneGson> allophones = new ArrayList<>();
-            for (Allophone allophone : syllable.getAllophones()) {
-                AllophoneGson allophoneGson = getAllophoneGson(allophone);
-                allophones.add(allophoneGson);
-            }
-            syllableGson.setAllophones(allophones);
-            syllableGson.setUsageCount(syllable.getUsageCount());
-            
-            return syllableGson;
-        }
-    }
-    
-    public static WordGson getWordGson(Word word) {
-        if (word == null) {
-            return null;
-        } else {
-            WordGson wordGson = new WordGson();
-            
-            wordGson.setId(word.getId());
-            wordGson.setLocale(word.getLocale());
-            wordGson.setTimeLastUpdate(word.getTimeLastUpdate());
-            wordGson.setRevisionNumber(word.getRevisionNumber());
-            wordGson.setContentStatus(word.getContentStatus());
-            
-            wordGson.setText(word.getText());
-            wordGson.setPhonetics(word.getPhonetics());
-            List<AllophoneGson> allophones = new ArrayList<>();
-            for (Allophone allophone : word.getAllophones()) {
-                AllophoneGson allophoneGson = getAllophoneGson(allophone);
-                allophones.add(allophoneGson);
-            }
-            wordGson.setAllophones(allophones);
-            wordGson.setUsageCount(word.getUsageCount());
-            wordGson.setWordType(word.getWordType());
-            wordGson.setSpellingConsistency(word.getSpellingConsistency());
-            
-            return wordGson;
         }
     }
     

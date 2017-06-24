@@ -2,6 +2,7 @@ package org.literacyapp.model.content;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
@@ -12,6 +13,10 @@ public class Letter extends Content {
     @Length(max = 1)
     @Column(length = 1)
     private String text;
+    
+    @NotNull
+    @ManyToOne
+    private Allophone allophone;
     
     @Length(max = 1)
     @Column(length = 1)
@@ -25,6 +30,14 @@ public class Letter extends Content {
 
     public void setText(String text) {
         this.text = text;
+    }
+    
+    public Allophone getAllophone() {
+        return allophone;
+    }
+
+    public void setAllophone(Allophone allophone) {
+        this.allophone = allophone;
     }
     
     public String getBraille() {
