@@ -355,6 +355,12 @@ public class JavaToGsonConverter {
             syllableGson.setContentStatus(syllable.getContentStatus());
             
             syllableGson.setText(syllable.getText());
+            List<AllophoneGson> allophones = new ArrayList<>();
+            for (Allophone allophone : syllable.getAllophones()) {
+                AllophoneGson allophoneGson = getAllophoneGson(allophone);
+                allophones.add(allophoneGson);
+            }
+            syllableGson.setAllophones(allophones);
             syllableGson.setUsageCount(syllable.getUsageCount());
             
             return syllableGson;
@@ -375,14 +381,12 @@ public class JavaToGsonConverter {
             
             wordGson.setText(word.getText());
             wordGson.setPhonetics(word.getPhonetics());
-            
             List<AllophoneGson> allophones = new ArrayList<>();
             for (Allophone allophone : word.getAllophones()) {
                 AllophoneGson allophoneGson = getAllophoneGson(allophone);
                 allophones.add(allophoneGson);
             }
             wordGson.setAllophones(allophones);
-            
             wordGson.setUsageCount(word.getUsageCount());
             wordGson.setWordType(word.getWordType());
             wordGson.setSpellingConsistency(word.getSpellingConsistency());
@@ -390,6 +394,7 @@ public class JavaToGsonConverter {
             return wordGson;
         }
     }
+    
     
     public static LetterLearningEventGson getLetterLearningEventGson(LetterLearningEvent letterLearningEvent) {
         if (letterLearningEvent == null) {
