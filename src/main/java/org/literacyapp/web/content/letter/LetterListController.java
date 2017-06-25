@@ -47,6 +47,14 @@ public class LetterListController {
         
         List<Letter> letters = letterDao.readAllOrdered(contributor.getLocale());
         model.addAttribute("letters", letters);
+        
+        int maxUsageCount = 0;
+        for (Letter letter : letters) {
+            if (letter.getUsageCount() > maxUsageCount) {
+                maxUsageCount = letter.getUsageCount();
+            }
+        }
+        model.addAttribute("maxUsageCount", maxUsageCount);
 
         return "content/letter/list";
     }

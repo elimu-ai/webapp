@@ -152,6 +152,7 @@ public class AllophoneListController {
         return "content/allophone/list";
     }
     
+    // TODO: add SoundType to each Allophone
     private List<Allophone> generateAllophones(Locale locale) {
         List<Allophone> allophones = new ArrayList<>();
         

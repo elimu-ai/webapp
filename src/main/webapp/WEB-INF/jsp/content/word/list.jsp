@@ -29,7 +29,7 @@
                                 </div>
                             </td>
                             <td>
-                                ${word.text}
+                                "${word.text}"
                             </td>
                             <td>
                                 <a name="${word.id}"></a>
