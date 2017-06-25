@@ -35,6 +35,21 @@
                                 </a>
                             </div>
                         </c:forEach>
+                        <script>
+                            $(function() {
+                                $('.wordDeleteLink').on("click", function() {
+                                    console.log('.wordDeleteLink on click');
+                                    
+                                    var wordId = $(this).attr("data-wordid");
+                                    console.log('wordId: ' + wordId);
+                                    
+                                    $(this).parent().remove();
+                                    
+                                    var $hiddenInput = $('input[name="words"][value="' + wordId + '"]');
+                                    $hiddenInput.remove();
+                                });
+                            });
+                        </script>
                     </div>
 
                     <select id="numberWords" class="browser-default" style="margin: 0.5em 0;">
