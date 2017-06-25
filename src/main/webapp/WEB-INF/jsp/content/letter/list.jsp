@@ -7,20 +7,53 @@
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
-        
-        <c:forEach var="letter" items="${letters}">
-            <div class="col s12 m6 l4">
-                <a name="${letter.id}"></a>
-                <div class="letter card-panel">
-                    <h4><c:out value="${letter.text}" /></h4>
-                    
-                    <p><fmt:message key="frequency" />: ${letter.usageCount}</p>
-                    <p><fmt:message key="revision" />: #${letter.revisionNumber}</p>
-                    <div class="divider" style="margin: 1em 0;"></div>
-                    <a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
-                </div>
-            </div>
-        </c:forEach>
+    
+        <c:if test="${not empty letters}">
+            <table class="bordered highlight">
+                <thead>
+                    <th><fmt:message key="frequency" /></th>
+                    <th><fmt:message key="letter" /></th>
+                    <th><fmt:message key="phonetics" /></th>
+                    <th>Braille</th>
+                    <th><fmt:message key="audio" /></th>
+                    <th><fmt:message key="revision" /></th>
+                    <th><fmt:message key="edit" /></th>
+                </thead>
+                <tbody>
+                    <c:forEach var="letter" items="${letters}">
+                        <tr class="letter">
+                            <td>
+                                ${letter.usageCount}<br />
+                                <div class="progress">
+                                    <div class="determinate" style="width: ${letter.usageCount * 100 / maxUsageCount}%"></div>
+                                </div>
+                            </td>
+                            <td style="font-size: 2em;">
+                                <a name="${letter.id}"></a>
+                                ${letter.text}
+                            </td>
+                            <td>
+                                /<c:forEach var="allophone" items="${letter.allophones}">
+                                    ${allophone.valueIpa} 
+                                </c:forEach>/
+                            </td>
+                            <td>
+                                ${letter.braille}
+                            </td>
+                            <td>
+                                <audio controls="true">
+                                    <source src="<spring:url value='/static/audio/${locale.language}/sampa_${letter.text}.wav' />" />
+                                </audio>
+                            </td>
+                            <td>
+                                <p>#${letter.revisionNumber}</p>
+                            </td>
+                            <td><a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />"><span class="material-icons">edit</span></a></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
