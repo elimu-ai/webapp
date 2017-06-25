@@ -1,9 +1,9 @@
 package org.literacyapp.model.content;
 
 import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +15,7 @@ public class Syllable extends Content {
     
 //    @NotEmpty
     @OrderColumn
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
     
     private int usageCount; // Based on StoryBook content (all difficulty levels)

@@ -239,7 +239,12 @@ public class JavaToGsonConverter {
             letterGson.setContentStatus(letter.getContentStatus());
             
             letterGson.setText(letter.getText());
-            letterGson.setAllophone(getAllophoneGson(letter.getAllophone()));
+            List<AllophoneGson> allophones = new ArrayList<>();
+            for (Allophone allophone : letter.getAllophones()) {
+                AllophoneGson allophoneGson = getAllophoneGson(allophone);
+                allophones.add(allophoneGson);
+            }
+            letterGson.setAllophones(allophones);
             letterGson.setBraille(letter.getBraille());
             letterGson.setUsageCount(letter.getUsageCount());
             
