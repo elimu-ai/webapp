@@ -1,11 +1,15 @@
 package org.literacyapp.web.content.letter;
 
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.dao.LetterDao;
+import org.literacyapp.model.Contributor;
+import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Letter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +27,24 @@ public class LetterEditController {
     
     @Autowired
     private LetterDao letterDao;
+    
+    @Autowired
+    private AllophoneDao allophoneDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id) {
+    public String handleRequest(
+            HttpSession session,
+            Model model, 
+            @PathVariable Long id) {
     	logger.info("handleRequest");
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         Letter letter = letterDao.read(id);
         model.addAttribute("letter", letter);
+        
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        model.addAttribute("allophones", allophones);
 
         return "content/letter/edit";
     }
@@ -42,6 +57,8 @@ public class LetterEditController {
             Model model) {
     	logger.info("handleSubmit");
         
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        
         Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
         if ((existingLetter != null) && !existingLetter.getId().equals(letter.getId())) {
             result.rejectValue("text", "NonUnique");
@@ -49,6 +66,10 @@ public class LetterEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
+            
+            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+            model.addAttribute("allophones", allophones);
+            
             return "content/letter/edit";
         } else {
             letter.setTimeLastUpdate(Calendar.getInstance());

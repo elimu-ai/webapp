@@ -1,11 +1,15 @@
 package org.literacyapp.web.content.letter;
 
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.literacyapp.dao.AllophoneDao;
 import org.literacyapp.dao.LetterDao;
+import org.literacyapp.model.Contributor;
+import org.literacyapp.model.content.Allophone;
 import org.literacyapp.model.content.Letter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +26,23 @@ public class LetterCreateController {
     
     @Autowired
     private LetterDao letterDao;
+    
+    @Autowired
+    private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
+    public String handleRequest(
+            HttpSession session,
+            Model model) {
     	logger.info("handleRequest");
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         Letter letter = new Letter();
         model.addAttribute("letter", letter);
+        
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        model.addAttribute("allophones", allophones);
 
         return "content/letter/create";
     }
@@ -41,6 +55,8 @@ public class LetterCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        
         Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
         if (existingLetter != null) {
             result.rejectValue("text", "NonUnique");
@@ -48,6 +64,10 @@ public class LetterCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
+            
+            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+            model.addAttribute("allophones", allophones);
+            
             return "content/letter/create";
         } else {
             letter.setTimeLastUpdate(Calendar.getInstance());

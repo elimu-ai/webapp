@@ -1,14 +1,13 @@
 package org.literacyapp.model.content;
 
 import java.util.List;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.literacyapp.model.enums.content.SpellingConsistency;
 import org.literacyapp.model.enums.content.WordType;
 
@@ -24,7 +23,7 @@ public class Word extends Content {
     
 //    @NotEmpty
     @OrderColumn
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
     
     private int usageCount; // Based on StoryBook content

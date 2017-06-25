@@ -47,14 +47,6 @@
                                     
                                     var $hiddenInput = $('input[name="words"][value="' + wordId + '"]');
                                     $hiddenInput.remove();
-
-//                                    var wordText = $(this).find('option[value="' + wordId + '"]').text();
-//                                    console.log('wordText: ' + wordText);
-//                                    if (wordId != "") {
-//                                        $('#numberWordsContainer').append('<input name="words" type="hidden" value="' + wordId + '" />');
-//                                        $('#numberWordsContainer').append('<div class="chip">' + wordText + '</div>');
-//                                        $(this).val("");
-//                                    }
                                 });
                             });
                         </script>
