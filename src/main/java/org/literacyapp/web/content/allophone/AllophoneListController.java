@@ -66,8 +66,8 @@ public class AllophoneListController {
         {"r","r"},
         {"w","w"},
         {"j","j"},
-        {"ˈ","\""},
-        {"ˌ","%"}
+        {"ˈ","\""}, // TODO: set isDiacritic = true
+        {"ˌ","%"} // TODO: set isDiacritic = true
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
@@ -114,7 +114,7 @@ public class AllophoneListController {
         {"x","x"},
         {"w","w"},
         {"h","h"},
-        {"ˈ","\""}
+        {"ˈ","\""} // TODO: set isDiacritic = true
     };
     
     private final Logger logger = Logger.getLogger(getClass());

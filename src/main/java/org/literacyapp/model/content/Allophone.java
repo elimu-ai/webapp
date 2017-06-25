@@ -31,6 +31,8 @@ public class Allophone extends Content {
     @Column(length = 3)
     private String valueSampa; // X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet
     
+    private boolean isDiacritic;
+    
     @Enumerated(EnumType.STRING)
     private SoundType soundType;
     
@@ -73,6 +75,14 @@ public class Allophone extends Content {
         this.valueSampa = valueSampa;
     }
 
+    public boolean isIsDiacritic() {
+        return isDiacritic;
+    }
+
+    public void setIsDiacritic(boolean isDiacritic) {
+        this.isDiacritic = isDiacritic;
+    }
+    
     public SoundType getSoundType() {
         return soundType;
     }
