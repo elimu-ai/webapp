@@ -515,7 +515,410 @@ public class LetterListController {
         } else if (locale == Locale.SW) {
 //            letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","w","y","z"));
             
-            // TODO
+            Letter letterA = new Letter();
+            letterA.setLocale(locale);
+            letterA.setTimeLastUpdate(Calendar.getInstance());
+            letterA.setText("a");
+            letterA.setAllophones(getAllophones(locale, "ɑ"));
+            letterA.setUsageCount(994);
+            letters.add(letterA);
+            
+            Letter letterI = new Letter();
+            letterI.setLocale(locale);
+            letterI.setTimeLastUpdate(Calendar.getInstance());
+            letterI.setText("i");
+            letterI.setAllophones(getAllophones(locale, "i"));
+            letterI.setUsageCount(608);
+            letters.add(letterI);
+            
+            Letter letterU = new Letter();
+            letterU.setLocale(locale);
+            letterU.setTimeLastUpdate(Calendar.getInstance());
+            letterU.setText("u");
+            letterU.setAllophones(getAllophones(locale, "u"));
+            letterU.setUsageCount(393);
+            letters.add(letterU);
+            
+            Letter letterN = new Letter();
+            letterN.setLocale(locale);
+            letterN.setTimeLastUpdate(Calendar.getInstance());
+            letterN.setText("n");
+            letterN.setAllophones(getAllophones(locale, "n"));
+            letterN.setUsageCount(334);
+            letters.add(letterN);
+            
+            Letter letterK = new Letter();
+            letterK.setLocale(locale);
+            letterK.setTimeLastUpdate(Calendar.getInstance());
+            letterK.setText("k");
+            letterK.setAllophones(getAllophones(locale, "k"));
+            letterK.setUsageCount(305);
+            letters.add(letterK);
+            
+            Letter letterE = new Letter();
+            letterE.setLocale(locale);
+            letterE.setTimeLastUpdate(Calendar.getInstance());
+            letterE.setText("e");
+            letterE.setAllophones(getAllophones(locale, "ɛ"));
+            letterE.setUsageCount(270);
+            letters.add(letterE);
+            
+            Letter letterL = new Letter();
+            letterL.setLocale(locale);
+            letterL.setTimeLastUpdate(Calendar.getInstance());
+            letterL.setText("l");
+            letterL.setAllophones(getAllophones(locale, "l"));
+            letterL.setUsageCount(269);
+            letters.add(letterL);
+            
+            Letter letterM = new Letter();
+            letterM.setLocale(locale);
+            letterM.setTimeLastUpdate(Calendar.getInstance());
+            letterM.setText("m");
+            letterM.setAllophones(getAllophones(locale, "m"));
+            letterM.setUsageCount(224);
+            letters.add(letterM);
+            
+            Letter letterW = new Letter();
+            letterW.setLocale(locale);
+            letterW.setTimeLastUpdate(Calendar.getInstance());
+            letterW.setText("w");
+            letterW.setAllophones(getAllophones(locale, "w"));
+            letterW.setUsageCount(190);
+            letters.add(letterW);
+            
+            Letter letterO = new Letter();
+            letterO.setLocale(locale);
+            letterO.setTimeLastUpdate(Calendar.getInstance());
+            letterO.setText("o");
+            letterO.setAllophones(getAllophones(locale, "ɔ"));
+            letterO.setUsageCount(159);
+            letters.add(letterO);
+            
+            Letter letterB = new Letter();
+            letterB.setLocale(locale);
+            letterB.setTimeLastUpdate(Calendar.getInstance());
+            letterB.setText("b");
+            letterB.setAllophones(getAllophones(locale, "ɓ"));
+            letterB.setUsageCount(130);
+            letters.add(letterB);
+            
+            Letter letterS = new Letter();
+            letterS.setLocale(locale);
+            letterS.setTimeLastUpdate(Calendar.getInstance());
+            letterS.setText("s");
+            letterS.setAllophones(getAllophones(locale, "s"));
+            letterS.setUsageCount(110);
+            letters.add(letterS);
+            
+            Letter letterT = new Letter();
+            letterT.setLocale(locale);
+            letterT.setTimeLastUpdate(Calendar.getInstance());
+            letterT.setText("t");
+            letterT.setAllophones(getAllophones(locale, "t"));
+            letterT.setUsageCount(108);
+            letters.add(letterT);
+            
+            Letter letterH = new Letter();
+            letterH.setLocale(locale);
+            letterH.setTimeLastUpdate(Calendar.getInstance());
+            letterH.setText("h");
+            letterH.setAllophones(getAllophones(locale, "h"));
+            letterH.setUsageCount(97);
+            letters.add(letterH);
+            
+            Letter letterG = new Letter();
+            letterG.setLocale(locale);
+            letterG.setTimeLastUpdate(Calendar.getInstance());
+            letterG.setText("g");
+            letterG.setAllophones(getAllophones(locale, "ɠ"));
+            letterG.setUsageCount(96);
+            letters.add(letterG);
+            
+            Letter letterR = new Letter();
+            letterR.setLocale(locale);
+            letterR.setTimeLastUpdate(Calendar.getInstance());
+            letterR.setText("r");
+            letterR.setAllophones(getAllophones(locale, "ɾ"));
+            letterR.setUsageCount(52);
+            letters.add(letterR);
+            
+            Letter letterD = new Letter();
+            letterD.setLocale(locale);
+            letterD.setTimeLastUpdate(Calendar.getInstance());
+            letterD.setText("d");
+            letterD.setAllophones(getAllophones(locale, "d"));
+            letterD.setUsageCount(80);
+            letters.add(letterD);
+            
+            Letter letterY = new Letter();
+            letterY.setLocale(locale);
+            letterY.setTimeLastUpdate(Calendar.getInstance());
+            letterY.setText("y");
+            letterY.setAllophones(getAllophones(locale, "j"));
+            letterY.setUsageCount(77);
+            letters.add(letterY);
+            
+            Letter letterP = new Letter();
+            letterP.setLocale(locale);
+            letterP.setTimeLastUpdate(Calendar.getInstance());
+            letterP.setText("p");
+            letterP.setAllophones(getAllophones(locale, "p"));
+            letterP.setUsageCount(64);
+            letters.add(letterP);
+            
+            Letter letterZ = new Letter();
+            letterZ.setLocale(locale);
+            letterZ.setTimeLastUpdate(Calendar.getInstance());
+            letterZ.setText("z");
+            letterZ.setAllophones(getAllophones(locale, "z"));
+            letterZ.setUsageCount(64);
+            letters.add(letterZ);
+            
+            Letter letterJ = new Letter();
+            letterJ.setLocale(locale);
+            letterJ.setTimeLastUpdate(Calendar.getInstance());
+            letterJ.setText("j");
+            letterJ.setAllophones(getAllophones(locale, "ʄ"));
+            letterJ.setUsageCount(39);
+            letters.add(letterJ);
+            
+            Letter letterF = new Letter();
+            letterF.setLocale(locale);
+            letterF.setTimeLastUpdate(Calendar.getInstance());
+            letterF.setText("f");
+            letterF.setAllophones(getAllophones(locale, "f"));
+            letterF.setUsageCount(23);
+            letters.add(letterF);
+            
+//            // TODO: replace 'c' with 'ch'?
+//            Letter letterC = new Letter();
+//            letterC.setLocale(locale);
+//            letterC.setTimeLastUpdate(Calendar.getInstance());
+//            letterC.setText("c");
+//            letterC.setAllophones(getAllophones(locale, "tʃ"));
+//            letterC.setUsageCount(21);
+//            letters.add(letterC);
+            
+            Letter letterV = new Letter();
+            letterV.setLocale(locale);
+            letterV.setTimeLastUpdate(Calendar.getInstance());
+            letterV.setText("v");
+            letterV.setAllophones(getAllophones(locale, "v"));
+            letterV.setUsageCount(17);
+            letters.add(letterV);
+            
+            
+            
+            
+            Letter letterNUpperCase = new Letter();
+            letterNUpperCase.setLocale(locale);
+            letterNUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterNUpperCase.setText("N");
+            letterNUpperCase.setAllophones(getAllophones(locale, "n"));
+            letterNUpperCase.setBraille("⠝");
+            letterNUpperCase.setUsageCount(43);
+            letters.add(letterNUpperCase);
+            
+            Letter letterMUpperCase = new Letter();
+            letterMUpperCase.setLocale(locale);
+            letterMUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterMUpperCase.setText("M");
+            letterMUpperCase.setAllophones(getAllophones(locale, "m"));
+            letterMUpperCase.setBraille("⠍");
+            letterMUpperCase.setUsageCount(34);
+            letters.add(letterMUpperCase);
+            
+            Letter letterPUpperCase = new Letter();
+            letterPUpperCase.setLocale(locale);
+            letterPUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterPUpperCase.setText("P");
+            letterPUpperCase.setAllophones(getAllophones(locale, "p"));
+            letterPUpperCase.setBraille("⠏");
+            letterPUpperCase.setUsageCount(15);
+            letters.add(letterPUpperCase);
+            
+            Letter letterAUpperCase = new Letter();
+            letterAUpperCase.setLocale(locale);
+            letterAUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterAUpperCase.setText("A");
+            letterAUpperCase.setAllophones(getAllophones(locale, "ɑ"));
+            letterAUpperCase.setBraille("⠁");
+            letterAUpperCase.setUsageCount(13);
+            letters.add(letterAUpperCase);
+            
+            Letter letterTUpperCase = new Letter();
+            letterTUpperCase.setLocale(locale);
+            letterTUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterTUpperCase.setText("T");
+            letterTUpperCase.setAllophones(getAllophones(locale, "t"));
+            letterTUpperCase.setBraille("⠞");
+            letterTUpperCase.setUsageCount(13);
+            letters.add(letterTUpperCase);
+            
+            Letter letterBUpperCase = new Letter();
+            letterBUpperCase.setLocale(locale);
+            letterBUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterBUpperCase.setText("B");
+            letterBUpperCase.setAllophones(getAllophones(locale, "b"));
+            letterBUpperCase.setBraille("⠃");
+            letterBUpperCase.setUsageCount(12);
+            letters.add(letterBUpperCase);
+            
+            Letter letterEUpperCase = new Letter();
+            letterEUpperCase.setLocale(locale);
+            letterEUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterEUpperCase.setText("E");
+            letterEUpperCase.setAllophones(getAllophones(locale, "ɛ"));
+            letterEUpperCase.setBraille("⠑");
+            letterEUpperCase.setUsageCount(12);
+            letters.add(letterEUpperCase);
+            
+            Letter letterKUpperCase = new Letter();
+            letterKUpperCase.setLocale(locale);
+            letterKUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterKUpperCase.setText("K");
+            letterKUpperCase.setAllophones(getAllophones(locale, "k"));
+            letterKUpperCase.setBraille("⠅");
+            letterKUpperCase.setUsageCount(12);
+            letters.add(letterKUpperCase);
+            
+            Letter letterSUpperCase = new Letter();
+            letterSUpperCase.setLocale(locale);
+            letterSUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterSUpperCase.setText("S");
+            letterSUpperCase.setAllophones(getAllophones(locale, "s"));
+            letterSUpperCase.setBraille("⠎");
+            letterSUpperCase.setUsageCount(11);
+            letters.add(letterSUpperCase);
+            
+            Letter letterUUpperCase = new Letter();
+            letterUUpperCase.setLocale(locale);
+            letterUUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterUUpperCase.setText("U");
+            letterUUpperCase.setAllophones(getAllophones(locale, "u"));
+            letterUUpperCase.setBraille("⠥");
+            letterUUpperCase.setUsageCount(10);
+            letters.add(letterUUpperCase);
+            
+            Letter letterWUpperCase = new Letter();
+            letterWUpperCase.setLocale(locale);
+            letterWUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterWUpperCase.setText("W");
+            letterWUpperCase.setAllophones(getAllophones(locale, "w"));
+            letterWUpperCase.setBraille("⠺");
+            letterWUpperCase.setUsageCount(10);
+            letters.add(letterWUpperCase);
+            
+            Letter letterFUpperCase = new Letter();
+            letterFUpperCase.setLocale(locale);
+            letterFUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterFUpperCase.setText("F");
+            letterFUpperCase.setAllophones(getAllophones(locale, "f"));
+            letterFUpperCase.setBraille("⠋");
+            letterFUpperCase.setUsageCount(9);
+            letters.add(letterFUpperCase);
+            
+            Letter letterLUpperCase = new Letter();
+            letterLUpperCase.setLocale(locale);
+            letterLUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterLUpperCase.setText("L");
+            letterLUpperCase.setAllophones(getAllophones(locale, "l"));
+            letterLUpperCase.setBraille("⠇");
+            letterLUpperCase.setUsageCount(8);
+            letters.add(letterLUpperCase);
+            
+            Letter letterHUpperCase = new Letter();
+            letterHUpperCase.setLocale(locale);
+            letterHUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterHUpperCase.setText("H");
+            letterHUpperCase.setAllophones(getAllophones(locale, "h"));
+            letterHUpperCase.setBraille("⠓");
+            letterHUpperCase.setUsageCount(7);
+            letters.add(letterHUpperCase);
+            
+            Letter letterJUpperCase = new Letter();
+            letterJUpperCase.setLocale(locale);
+            letterJUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterJUpperCase.setText("J");
+            letterJUpperCase.setAllophones(getAllophones(locale, "ʄ"));
+            letterJUpperCase.setBraille("⠚");
+            letterJUpperCase.setUsageCount(6);
+            letters.add(letterJUpperCase);
+            
+            Letter letterDUpperCase = new Letter();
+            letterDUpperCase.setLocale(locale);
+            letterDUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterDUpperCase.setText("D");
+            letterDUpperCase.setAllophones(getAllophones(locale, "d"));
+            letterDUpperCase.setBraille("⠙");
+            letterDUpperCase.setUsageCount(4);
+            letters.add(letterDUpperCase);
+            
+            Letter letterYUpperCase = new Letter();
+            letterYUpperCase.setLocale(locale);
+            letterYUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterYUpperCase.setText("Y");
+            letterYUpperCase.setAllophones(getAllophones(locale, "j"));
+            letterYUpperCase.setBraille("⠽");
+            letterYUpperCase.setUsageCount(3);
+            letters.add(letterYUpperCase);
+            
+            Letter letterIUpperCase = new Letter();
+            letterIUpperCase.setLocale(locale);
+            letterIUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterIUpperCase.setText("I");
+            letterIUpperCase.setAllophones(getAllophones(locale, "i"));
+            letterIUpperCase.setBraille("⠊");
+            letterIUpperCase.setUsageCount(2);
+            letters.add(letterIUpperCase);
+            
+            Letter letterGUpperCase = new Letter();
+            letterGUpperCase.setLocale(locale);
+            letterGUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterGUpperCase.setText("G");
+            letterGUpperCase.setAllophones(getAllophones(locale, "ɠ"));
+            letterGUpperCase.setBraille("⠛");
+            letterGUpperCase.setUsageCount(1);
+            letters.add(letterGUpperCase);
+            
+            Letter letterRUpperCase = new Letter();
+            letterRUpperCase.setLocale(locale);
+            letterRUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterRUpperCase.setText("R");
+            letterRUpperCase.setAllophones(getAllophones(locale, "ɾ"));
+            letterRUpperCase.setBraille("⠗");
+            letterRUpperCase.setUsageCount(1);
+            letters.add(letterRUpperCase);
+            
+            Letter letterVUpperCase = new Letter();
+            letterVUpperCase.setLocale(locale);
+            letterVUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterVUpperCase.setText("V");
+            letterVUpperCase.setAllophones(getAllophones(locale, "v"));
+            letterVUpperCase.setBraille("⠧");
+            letterVUpperCase.setUsageCount(1);
+            letters.add(letterVUpperCase);
+            
+            // TODO: replace 'C' with 'CH' and/or 'Ch'?
+            
+            Letter letterOUpperCase = new Letter();
+            letterOUpperCase.setLocale(locale);
+            letterOUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterOUpperCase.setText("O");
+            letterOUpperCase.setAllophones(getAllophones(locale, "ɔ"));
+            letterOUpperCase.setBraille("⠕");
+            letterOUpperCase.setUsageCount(0);
+            letters.add(letterOUpperCase);
+            
+            Letter letterZUpperCase = new Letter();
+            letterZUpperCase.setLocale(locale);
+            letterZUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterZUpperCase.setText("Z");
+            letterZUpperCase.setAllophones(getAllophones(locale, "z"));
+            letterZUpperCase.setBraille("⠵");
+            letterZUpperCase.setUsageCount(0);
+            letters.add(letterZUpperCase);
         }
         
         return letters;

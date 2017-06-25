@@ -38,7 +38,9 @@
                                 </c:forEach>/
                             </td>
                             <td>
-                                ${letter.braille}
+                                <span style="border: 1px solid rgba(0,0,0, 0.20); padding: 0.5em;">
+                                    ${letter.braille}
+                                </span>
                             </td>
                             <td>
                                 <audio controls="true">
