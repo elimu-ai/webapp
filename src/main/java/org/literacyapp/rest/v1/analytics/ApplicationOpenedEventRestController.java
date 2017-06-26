@@ -15,13 +15,14 @@ import org.literacyapp.model.Device;
 import org.literacyapp.model.analytics.ApplicationOpenedEvent;
 import org.literacyapp.util.EventLineHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/rest/v1/analytics/application-opened-event")
+@RequestMapping(value = "/rest/v1/analytics/application-opened-event", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ApplicationOpenedEventRestController {
     
     private Logger logger = Logger.getLogger(getClass());
