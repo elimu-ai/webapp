@@ -647,7 +647,7 @@ public class LetterListController {
             letterD.setLocale(locale);
             letterD.setTimeLastUpdate(Calendar.getInstance());
             letterD.setText("d");
-            letterD.setAllophones(getAllophones(locale, "d"));
+            letterD.setAllophones(getAllophones(locale, "ɗ"));
             letterD.setUsageCount(80);
             letters.add(letterD);
             
@@ -709,8 +709,6 @@ public class LetterListController {
             letters.add(letterV);
             
             
-            
-            
             Letter letterNUpperCase = new Letter();
             letterNUpperCase.setLocale(locale);
             letterNUpperCase.setTimeLastUpdate(Calendar.getInstance());
@@ -760,7 +758,7 @@ public class LetterListController {
             letterBUpperCase.setLocale(locale);
             letterBUpperCase.setTimeLastUpdate(Calendar.getInstance());
             letterBUpperCase.setText("B");
-            letterBUpperCase.setAllophones(getAllophones(locale, "b"));
+            letterBUpperCase.setAllophones(getAllophones(locale, "ɓ"));
             letterBUpperCase.setBraille("⠃");
             letterBUpperCase.setUsageCount(12);
             letters.add(letterBUpperCase);
@@ -850,7 +848,7 @@ public class LetterListController {
             letterDUpperCase.setLocale(locale);
             letterDUpperCase.setTimeLastUpdate(Calendar.getInstance());
             letterDUpperCase.setText("D");
-            letterDUpperCase.setAllophones(getAllophones(locale, "d"));
+            letterDUpperCase.setAllophones(getAllophones(locale, "ɗ"));
             letterDUpperCase.setBraille("⠙");
             letterDUpperCase.setUsageCount(4);
             letters.add(letterDUpperCase);
