@@ -10,13 +10,14 @@ import org.literacyapp.model.Device;
 import org.literacyapp.model.enums.Locale;
 import org.literacyapp.model.gson.DeviceGson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/v1/device")
+@RequestMapping(value = "/rest/v1/device", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DeviceRestController {
     
     private Logger logger = Logger.getLogger(getClass());

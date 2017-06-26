@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/v1/content/allophone")
+@RequestMapping(value = "/rest/v1/content/allophone", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AllophoneRestController {
     
     private Logger logger = Logger.getLogger(getClass());
@@ -25,7 +25,7 @@ public class AllophoneRestController {
     @Autowired
     private AllophoneDao allophoneDao;
     
-    @RequestMapping(value = "/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping("/list")
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,

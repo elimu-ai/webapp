@@ -12,18 +12,18 @@ import org.literacyapp.dao.ApplicationVersionDao;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.admin.ApplicationVersion;
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.admin.ApplicationStatus;
 import org.literacyapp.model.gson.admin.ApplicationGson;
 import org.literacyapp.model.gson.admin.ApplicationVersionGson;
 import org.literacyapp.rest.v1.ChecksumHelper;
 import org.literacyapp.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/v1/admin/application")
+@RequestMapping(value = "/rest/v1/admin/application", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ApplicationRestController {
     
     private Logger logger = Logger.getLogger(getClass());

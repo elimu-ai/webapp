@@ -7,6 +7,7 @@ import org.literacyapp.dao.ApplicationDao;
 import org.literacyapp.model.admin.Application;
 import org.literacyapp.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * newest LiteracyApp APK file uploaded to the website.
  */
 @RestController
-@RequestMapping("/rest/v1/version")
+@RequestMapping(value = "/rest/v1/version", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class VersionRestController {
     
     public static final Integer NEWEST_VERSION_APPSTORE = 1001008; // 1.1.8 (2016-11-12)

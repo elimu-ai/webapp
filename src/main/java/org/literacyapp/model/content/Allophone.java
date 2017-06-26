@@ -4,8 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
+import org.literacyapp.model.content.multimedia.Audio;
 import org.literacyapp.model.enums.content.allophone.ConsonantPlace;
 import org.literacyapp.model.enums.content.allophone.ConsonantType;
 import org.literacyapp.model.enums.content.allophone.ConsonantVoicing;
@@ -30,6 +33,10 @@ public class Allophone extends Content {
     @Length(max = 3)
     @Column(length = 3)
     private String valueSampa; // X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet
+    
+//    @NotNull
+    @OneToOne
+    private Audio audio;
     
     private boolean diacritic;
     
@@ -73,6 +80,14 @@ public class Allophone extends Content {
 
     public void setValueSampa(String valueSampa) {
         this.valueSampa = valueSampa;
+    }
+    
+    public Audio getAudio() {
+        return audio;
+    }
+
+    public void setAudio(Audio audio) {
+        this.audio = audio;
     }
 
     public boolean isDiacritic() {
