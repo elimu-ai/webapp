@@ -10,7 +10,7 @@
     </p>
     
     <p>
-        We are building a platform of educational apps and games that will teach a child to read, write and perform 
+        We are building a platform of educational apps and games that teaches a child to read, write and perform 
         arithmetic fully autonomously and without the aid of a teacher. This will help bring literacy to more than 
         57 million children in developing countries who are currently out of school.
     </p>
