@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key='one.ai.tutor.for.every.child'/>
+    <fmt:message key='free.quality.education.for.every.child' />
 </content:title>
 
 <content:banner>
@@ -8,15 +8,15 @@
     <br />
     <br />
     <div class="row center">
-        <h1 class="header center white-text">Literacy<span>App</span></h1>
+        <h1 class="header center white-text">elimu<span>.ai</span></h1>
     </div>
     <div class="row center">
         <div class="col s3">&nbsp;</div>
-        <h5 class="header col s6 light white-text"><fmt:message key="one.ai.tutor.for.every.child" /></h5>
+        <h5 class="header col s6 light white-text"><fmt:message key="free.quality.education.for.every.child" /></h5>
         <div class="col s3">&nbsp;</div>
     </div>
     <div class="row center">
-      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light green"><fmt:message key="join.now" /></a>
+      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
     </div>
     <br />
 </content:banner>
@@ -39,8 +39,8 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h5 class="center"><fmt:message key="solution" /></h5>
 
-              <p class="light center"><fmt:message key="we.build.open.source.tablet.software" /></p>
-              <p class="light center"><fmt:message key="source.code" />: <a href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
+              <p class="light center"><fmt:message key="we.build.tablet.based.software" /></p>
+              <p class="light center"><fmt:message key="source.code" />: <a href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a></p>
             </div>
           </div>
 
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="row center">
-            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light green"><fmt:message key="join.now" /></a>
+            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
         </div>
     </div>
 </content:section>

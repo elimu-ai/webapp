@@ -40,7 +40,7 @@
                 <version>${jetty.version}</version>
                 <configuration>
                     <webApp>
-                        <contextPath>/literacyapp-webapp</contextPath>
+                        <contextPath>/webapp</contextPath>
                     </webApp>
 <!--                     <scanIntervalSeconds>60</scanIntervalSeconds> -->
                     <connectors>
