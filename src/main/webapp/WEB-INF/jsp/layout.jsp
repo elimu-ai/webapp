@@ -20,7 +20,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
                 <%-- Google will only display the first 150 characters of the meta description in SERPs. --%>
-                <meta name="description" content="<fmt:message key='one.ai.tutor.for.every.child'/>" />
+                <meta name="description" content="<fmt:message key='free.quality.education.for.every.child' />" />
                 <link rel="shortcut icon" href="<spring:url value='/img/favicon.ico' />" />
 
                 <meta property="og:image" content="http://${pageContext.request.serverName}/img/logo-256x256.png" />
@@ -34,17 +34,12 @@
             </head>
 
             <body>
-                <a href="https://github.com/literacyapp-org">
-                    <img style="position: absolute; top: 0; right: 0; border: 0;" 
-                         src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" 
-                         alt="Fork me on GitHub" 
-                         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png">
-                </a>
+                <a href="https://github.com/elimu-ai"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
                 
                 <nav class="purple darken-4">
                     <div class="nav-wrapper container">
                         <a id="logo-container" href="<spring:url value='/' />" class="brand-logo">
-                            <img src="<spring:url value='/img/logo-208x208.png' />" alt="LiteracyApp" />
+                            <img src="<spring:url value='/img/logo-208x208.png' />" alt="elimu.ai" />
                             elimu<span>.ai</span>
                         </a>
                         <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
@@ -102,9 +97,9 @@
                       <div class="container">
                         <div class="row">
                           <div class="col l6 s12">
-                            <h5 class="white-text"><fmt:message key="about" /> LiteracyApp</h5>
-                            <p class="grey-text text-lighten-4"><fmt:message key="we.build.open.source.tablet.software" /></p>
-                            <p class="grey-text text-lighten-4"><fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
+                            <h5 class="white-text"><fmt:message key="about" /> elimu.ai</h5>
+                            <p class="grey-text text-lighten-4"><fmt:message key="we.build.tablet.based.software" /></p>
+                            <p class="grey-text text-lighten-4"><fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a></p>
                           </div>
                           <div class="col l3 s12">
                             <h5 class="white-text"><fmt:message key="join.the.community" /></h5>
@@ -118,11 +113,11 @@
                           <div class="col l2 s12 right">
                             <h5 class="white-text"><fmt:message key="connect" /></h5>
                             <ul>
-                                <li><a class="white-text" href="http://blog.literacyapp.org" target="_blank"><fmt:message key="blog" /></a></li>
-                                <li><a class="white-text" href="https://twitter.com/literacyapp" target="_blank">Twitter</a></li>
-                                <li><a class="white-text" href="https://www.facebook.com/literacyapp" target="_blank">Facebook</a></li>
-                                <li><a class="white-text" href="https://plus.google.com/+LiteracyAppOrgCommunity" target="_blank">Google+</a></li>
-                                <li><a class="white-text" href="https://www.linkedin.com/company/literacyapp-org" target="_blank">LinkedIn</a></li>
+                                <li><a class="white-text" href="https://blog.elimu.ai" target="_blank"><fmt:message key="blog" /></a></li>
+                                <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
+                                <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
+                                <li><a class="white-text" href="https://plus.google.com/u/0/100080736050421577958" target="_blank">Google+</a></li>
+                                <li><a class="white-text" href="https://www.linkedin.com/company-beta/18149859" target="_blank">LinkedIn</a></li>
                             </ul>
                           </div>
                         </div>
@@ -153,30 +148,30 @@
                                           </a>
                                       </c:when>
                                       <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                          <a class="white-text" href="http://en.test.literacyapp.org">
+                                          <a class="white-text" href="http://en.test.elimu.ai">
                                               English
                                           </a> | 
-                                          <a class="white-text" href="http://es.test.literacyapp.org">
+                                          <a class="white-text" href="http://es.test.elimu.ai">
                                               Español
                                           </a> | 
-                                          <a class="white-text" href="http://ar.test.literacyapp.org">
+                                          <a class="white-text" href="http://ar.test.elimu.ai">
                                               العربية
                                           </a> | 
-                                          <a class="white-text" href="http://sw.test.literacyapp.org">
+                                          <a class="white-text" href="http://sw.test.elimu.ai">
                                               Kiswahili
                                           </a>
                                       </c:when>
                                       <c:otherwise>
-                                          <a class="white-text" href="http://en.literacyapp.org">
+                                          <a class="white-text" href="http://en.elimu.ai">
                                               English
                                           </a> | 
-                                          <a class="white-text" href="http://es.literacyapp.org">
+                                          <a class="white-text" href="http://es.elimu.ai">
                                               Español
                                           </a> | 
-                                          <a class="white-text" href="http://ar.literacyapp.org">
+                                          <a class="white-text" href="http://ar.elimu.ai">
                                               العربية
                                           </a> | 
-                                          <a class="white-text" href="http://sw.literacyapp.org">
+                                          <a class="white-text" href="http://sw.elimu.ai">
                                               Kiswahili
                                           </a>
                                       </c:otherwise>

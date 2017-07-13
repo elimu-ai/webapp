@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key='one.ai.tutor.for.every.child'/>
+    <fmt:message key='free.quality.education.for.every.child' />
 </content:title>
 
 <content:banner>
@@ -12,7 +12,7 @@
     </div>
     <div class="row center">
         <div class="col s3">&nbsp;</div>
-        <h5 class="header col s6 light white-text"><fmt:message key="one.ai.tutor.for.every.child" /></h5>
+        <h5 class="header col s6 light white-text"><fmt:message key="free.quality.education.for.every.child" /></h5>
         <div class="col s3">&nbsp;</div>
     </div>
     <div class="row center">
@@ -39,8 +39,8 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h5 class="center"><fmt:message key="solution" /></h5>
 
-              <p class="light center"><fmt:message key="we.build.open.source.tablet.software" /></p>
-              <p class="light center"><fmt:message key="source.code" />: <a href="https://github.com/literacyapp-org"><fmt:message key="github.repository" /></a></p>
+              <p class="light center"><fmt:message key="we.build.tablet.based.software" /></p>
+              <p class="light center"><fmt:message key="source.code" />: <a href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a></p>
             </div>
           </div>
 
