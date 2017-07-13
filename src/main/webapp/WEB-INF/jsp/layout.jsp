@@ -102,7 +102,7 @@
                             <p class="grey-text text-lighten-4"><fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a></p>
                           </div>
                           <div class="col l3 s12">
-                            <h5 class="white-text"><fmt:message key="join.the.community" /></h5>
+                            <h5 class="white-text"><fmt:message key="mailing.list" /></h5>
                             <p class="grey-text text-lighten-4">
                                 <fmt:message key="sign.up.to.our.mailing.list.to..." />
                             </p>
@@ -113,11 +113,12 @@
                           <div class="col l2 s12 right">
                             <h5 class="white-text"><fmt:message key="connect" /></h5>
                             <ul>
-                                <li><a class="white-text" href="https://blog.elimu.ai" target="_blank"><fmt:message key="blog" /></a></li>
+                                <li><a class="white-text" href="mailto:info@elimu.ai">info@elimu.ai</a></li>
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
                                 <li><a class="white-text" href="https://plus.google.com/u/0/100080736050421577958" target="_blank">Google+</a></li>
                                 <li><a class="white-text" href="https://www.linkedin.com/company-beta/18149859" target="_blank">LinkedIn</a></li>
+                                <li><a class="white-text" href="https://blog.elimu.ai" target="_blank"><fmt:message key="blog" /></a></li>
                             </ul>
                           </div>
                         </div>
@@ -189,11 +190,6 @@
                 <script src="<spring:url value='/static/js/init.js' />"></script>
                 <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
                 <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
-
-                <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/') && !fn:contains(pageContext.request.requestURI, '/jsp/analytics/') && !fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
-                    <%-- HelpScout Beacon --%>
-                    <script>!function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!1,baseUrl:""},contact:{enabled:!0,formId:"317454f3-8c8e-11e5-9e75-0a7d6919297d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});</script>
-                </c:if>
             </body>
         </html>
     </c:otherwise>
