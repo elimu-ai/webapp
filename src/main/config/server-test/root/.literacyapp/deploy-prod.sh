@@ -1,4 +1,4 @@
-WARFILE=/var/lib/jenkins/jobs/literacyapp-web-2-precompile-jsps/workspace/target/literacyapp-SNAPSHOT.war
+WARFILE=/var/lib/jenkins/jobs/webapp-2-precompile-jsps/workspace/target/literacyapp-SNAPSHOT.war
 PROD_SERVER=malta2253
 echo "Copying latest WAR file to prod server '$PROD_SERVER'... ($WARFILE)"
 echo "Time stamp: $(stat -c %y $WARFILE)"
