@@ -97,7 +97,7 @@ public class StoryBookCreateController {
                     "• Title: \"" + storyBook.getTitle() + "\"\n" + 
                     "• Grade level: " + storyBook.getGradeLevel() + "\n" +
                     "• Paragraphs: " + storyBook.getParagraphs() + "\n" + 
-                    "See ") + "http://literacyapp.org/content/storybook/edit/" + storyBook.getId();
+                    "See ") + "http://elimu.ai/content/storybook/edit/" + storyBook.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }

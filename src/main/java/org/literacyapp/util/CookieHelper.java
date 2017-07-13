@@ -30,7 +30,7 @@ public class CookieHelper {
         }
         logger.info("Storing cookie 'referrerLiteracyApp': " + referrer);
         Cookie cookie = new Cookie("referrerLiteracyApp", referrer);
-        cookie.setDomain(".literacyapp.org");
+        cookie.setDomain(".elimu.ai");
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 30 * 8); // 6 months
         response.addCookie(cookie);
@@ -51,7 +51,7 @@ public class CookieHelper {
     public static void storeSourceCookie(HttpServletResponse response, String value)  {
         logger.info("Storing cookie 'utmSourceLiteracyApp': " + value);
         Cookie cookie = new Cookie("utmSourceLiteracyApp", value);
-        cookie.setDomain(".literacyapp.org");
+        cookie.setDomain(".elimu.ai");
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 30 * 8); // 6 months
         response.addCookie(cookie);
@@ -72,7 +72,7 @@ public class CookieHelper {
     public static void storeMediumCookie(HttpServletResponse response, String value)  {
         logger.info("Storing cookie 'utmMediumLiteracyApp': " + value);
         Cookie cookie = new Cookie("utmMediumLiteracyApp", value);
-        cookie.setDomain(".literacyapp.org");
+        cookie.setDomain(".elimu.ai");
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 30 * 8); // 6 months
         response.addCookie(cookie);
@@ -93,7 +93,7 @@ public class CookieHelper {
     public static void storeCampaignCookie(HttpServletResponse response, String value)  {
         logger.info("Storing cookie 'utmCampaignLiteracyApp': " + value);
         Cookie cookie = new Cookie("utmCampaignLiteracyApp", value);
-        cookie.setDomain(".literacyapp.org");
+        cookie.setDomain(".elimu.ai");
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 30 * 8); // 6 months
         response.addCookie(cookie);
@@ -113,7 +113,7 @@ public class CookieHelper {
     public static void storeTermCookie(HttpServletResponse response, String value)  {
         logger.info("Storing cookie 'utmTermLiteracyApp': " + value);
         Cookie cookie = new Cookie("utmTermLiteracyApp", value);
-        cookie.setDomain(".literacyapp.org");
+        cookie.setDomain(".elimu.ai");
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 30 * 8); // 6 months
         response.addCookie(cookie);
@@ -133,7 +133,7 @@ public class CookieHelper {
     public static void storeIdCookie(HttpServletResponse response, String value)  {
         logger.info("Storing cookie 'referralIdLiteracyApp': " + value);
         Cookie cookie = new Cookie("referralIdLiteracyApp", value);
-        cookie.setDomain(".literacyapp.org");
+        cookie.setDomain(".elimu.ai");
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 30 * 8); // 6 months
         response.addCookie(cookie);

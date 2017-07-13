@@ -162,9 +162,9 @@ public class VideoCreateController {
                     contributor.getFirstName() + " just added a new Video:\n" + 
                     "• Language: \"" + video.getLocale().getLanguage() + "\"\n" + 
                     "• Title: \"" + video.getTitle() + "\"\n" + 
-                    "See ") + "http://literacyapp.org/content/multimedia/video/edit/" + video.getId();
+                    "See ") + "http://elimu.ai/content/multimedia/video/edit/" + video.getId();
                 String iconUrl = contributor.getImageUrl();
-                String imageUrl = "http://literacyapp.org/video/" + video.getId() + "/thumbnail.png";
+                String imageUrl = "http://elimu.ai/video/" + video.getId() + "/thumbnail.png";
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
             }
             

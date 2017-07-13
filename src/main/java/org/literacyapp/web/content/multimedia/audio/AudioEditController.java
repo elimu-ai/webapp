@@ -160,7 +160,7 @@ public class AudioEditController {
                     "• Language: \"" + audio.getLocale().getLanguage() + "\"\n" + 
                     "• Transcription: \"" + audio.getTranscription() + "\"\n" + 
                     "• Revision number: #" + audio.getRevisionNumber() + "\n" + 
-                    "See ") + "http://literacyapp.org/content/multimedia/audio/edit/" + audio.getId();
+                    "See ") + "http://elimu.ai/content/multimedia/audio/edit/" + audio.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }

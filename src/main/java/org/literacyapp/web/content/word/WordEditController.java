@@ -158,7 +158,7 @@ public class WordEditController {
                     "• Word type: " + word.getWordType() + "\n" +
                     "• Spelling consistency: " + word.getSpellingConsistency() + "\n" +
                     "• Comment: \"" + wordRevisionEvent.getComment() + "\"\n" +    
-                    "See ") + "http://literacyapp.org/content/word/edit/" + word.getId();
+                    "See ") + "http://elimu.ai/content/word/edit/" + word.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }

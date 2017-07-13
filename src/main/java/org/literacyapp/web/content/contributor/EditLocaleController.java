@@ -61,7 +61,7 @@ public class EditLocaleController {
                 String text = URLEncoder.encode(
                         contributor.getFirstName() + " just updated his/her language:\n" + 
                          "\"" + contributor.getLocale().getLanguage() + "\"\n" +
-                        "See ") + "http://literacyapp.org/content/community/contributors";
+                        "See ") + "http://elimu.ai/content/community/contributors";
                 String iconUrl = contributor.getImageUrl();
 //                SlackApiHelper.postMessage(null, text, iconUrl, null);
             }

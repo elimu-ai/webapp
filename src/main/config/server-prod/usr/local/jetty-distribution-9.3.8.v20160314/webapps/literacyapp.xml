@@ -38,11 +38,11 @@ This file is placed on the prod server under jetty.home/contexts/
   </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
-      <Item>literacyapp.org</Item>
-      <Item>ar.literacyapp.org</Item>
-      <Item>en.literacyapp.org</Item>
-      <Item>es.literacyapp.org</Item>
-      <Item>sw.literacyapp.org</Item>
+      <Item>elimu.ai</Item>
+      <Item>ar.elimu.ai</Item>
+      <Item>en.elimu.ai</Item>
+      <Item>es.elimu.ai</Item>
+      <Item>sw.elimu.ai</Item>
     </Array>
   </Set>
   <Set name="maxFormContentSize">209715200</Set><!-- 200MB -->
