@@ -51,7 +51,7 @@ public class EditTimeController {
             String text = URLEncoder.encode(
                     contributor.getFirstName() + " just updated his/her available time:\n" + 
                     contributor.getTimePerWeek() + " minutes per week\n" +
-                    "See ") + "http://literacyapp.org/content/community/contributors";
+                    "See ") + "http://elimu.ai/content/community/contributors";
             String iconUrl = contributor.getImageUrl();
             SlackApiHelper.postMessage(null, text, iconUrl, null);
         }

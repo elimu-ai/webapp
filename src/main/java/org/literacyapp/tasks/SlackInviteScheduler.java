@@ -98,7 +98,7 @@ public class SlackInviteScheduler {
                         if (isResponseOk) {
                             // Send welcome e-mail specific to the team
                             String to = contributor.getEmail();
-                            String from = "LiteracyApp <info@literacyapp.org>";
+                            String from = "LiteracyApp <info@elimu.ai>";
                             Locale locale = new Locale("en");
                             String teamName = messageSource.getMessage("team." + team, null, locale);
                             String subject = "You joined the " + teamName + " team";

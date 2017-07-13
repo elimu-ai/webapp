@@ -7,7 +7,7 @@
         <h2><content:gettitle /></h2>
         
         <h3>API Endpoint</h3>
-        <p>http://literacyapp.org/rest/v1</p>
+        <p>http://elimu.ai/rest/v1</p>
         
         
         <h3>Admin</h3>

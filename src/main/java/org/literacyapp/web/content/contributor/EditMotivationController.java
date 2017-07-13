@@ -65,7 +65,7 @@ public class EditMotivationController {
                 String text = URLEncoder.encode(
                         contributor.getFirstName() + " just updated his/her personal motivation:\n" + 
                         "> \"" + contributor.getMotivation() + "\"\n" +
-                        "See ") + "http://literacyapp.org/content/community/contributors";
+                        "See ") + "http://elimu.ai/content/community/contributors";
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(null, text, iconUrl, null);
             }

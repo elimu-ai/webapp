@@ -51,10 +51,10 @@ public class SignOnControllerOffline {
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             // Create and store test user in database
-            Contributor contributor = contributorDao.read("test@literacyapp.org");
+            Contributor contributor = contributorDao.read("test@elimu.ai");
             if (contributor == null) {
                 contributor = new Contributor();
-                contributor.setEmail("test@literacyapp.org");
+                contributor.setEmail("test@elimu.ai");
                 contributor.setFirstName("Test");
                 contributor.setLastName("Contributor");
                 contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));

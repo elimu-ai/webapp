@@ -87,7 +87,7 @@ public class AllophoneCreateController {
                     "• IPA: /" + allophone.getValueIpa() + "/\n" + 
                     "• X-SAMPA: \"" + allophone.getValueSampa() + "\"\n" + 
                     "• Sound type: \"" + allophone.getSoundType() + "\"\n" +         
-                    "See ") + "http://literacyapp.org/content/allophone/edit/" + allophone.getId();
+                    "See ") + "http://elimu.ai/content/allophone/edit/" + allophone.getId();
                 String iconUrl = contributor.getImageUrl();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
             }

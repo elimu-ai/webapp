@@ -184,9 +184,9 @@ public class ImageEditController {
                     "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
                     "• Title: \"" + image.getTitle() + "\"\n" + 
                     "• Revision number: #" + image.getRevisionNumber() + "\n" + 
-                    "See ") + "http://literacyapp.org/content/multimedia/image/edit/" + image.getId();
+                    "See ") + "http://elimu.ai/content/multimedia/image/edit/" + image.getId();
                 String iconUrl = contributor.getImageUrl();
-                String imageUrl = "http://literacyapp.org/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
+                String imageUrl = "http://elimu.ai/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
                 SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
             }
             

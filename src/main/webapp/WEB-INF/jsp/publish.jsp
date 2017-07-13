@@ -47,7 +47,7 @@
     </ol>
     
     <p>
-        If you have any questions, contact us at info@literacyapp.org or in our <a href="<spring:url value='/sign-on' />">Slack channel</a>.
+        If you have any questions, contact us at info@elimu.ai or in our <a href="<spring:url value='/sign-on' />">Slack channel</a>.
     </p>
 </content:section>
 

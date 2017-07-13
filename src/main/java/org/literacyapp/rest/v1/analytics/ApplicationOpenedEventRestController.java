@@ -53,7 +53,7 @@ public class ApplicationOpenedEventRestController {
                 
                 for (String eventLine : lines) {
                     logger.info("eventLine: " + eventLine);
-                    // Expected format: id:163|deviceId:2312aff4939750ea|time:1496843219926|packageName:nyaqd.literacyapp.org|studentId:2312aff4939750ea_4
+                    // Expected format: id:163|deviceId:2312aff4939750ea|time:1496843219926|packageName:org.literacyapp.nyaqd|studentId:2312aff4939750ea_4
                     
                     String deviceId = EventLineHelper.getDeviceId(eventLine);
                     Device device = deviceDao.read(deviceId);

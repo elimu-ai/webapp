@@ -52,7 +52,7 @@ public class SignOnControllerSelenium {
         logger.info("role: " + role);
         
         Contributor contributor = new Contributor();
-        contributor.setEmail("info+role-" + role + "@literacyapp.org");
+        contributor.setEmail("info+role-" + role + "@elimu.ai");
         contributor.setRoles(new HashSet<>(Arrays.asList(role)));
         contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setFirstName("TestRole");

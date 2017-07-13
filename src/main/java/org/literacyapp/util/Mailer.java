@@ -21,7 +21,7 @@ public class Mailer {
     
     private static final Logger logger = Logger.getLogger(Mailer.class);
     
-    private static final String ADMIN_EMAIL = "info@literacyapp.org";
+    private static final String ADMIN_EMAIL = "info@elimu.ai";
     
     public static void sendPlainText(String to, String cc, String from, String subject, String text) {
         logger.info("sendPlainText");

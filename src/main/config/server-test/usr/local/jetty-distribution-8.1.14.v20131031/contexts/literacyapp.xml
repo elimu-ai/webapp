@@ -34,11 +34,11 @@ This file is placed on the test server under jetty.home/contexts/
   </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
-      <Item>test.literacyapp.org</Item>
-      <Item>ar.test.literacyapp.org</Item>
-      <Item>en.test.literacyapp.org</Item>
-      <Item>es.test.literacyapp.org</Item>
-      <Item>sw.test.literacyapp.org</Item>
+      <Item>test.elimu.ai</Item>
+      <Item>ar.test.elimu.ai</Item>
+      <Item>en.test.elimu.ai</Item>
+      <Item>es.test.elimu.ai</Item>
+      <Item>sw.test.elimu.ai</Item>
     </Array>
   </Set>
   <Set name="maxFormContentSize">209715200</Set><!-- 200MB -->

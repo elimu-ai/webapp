@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 /**
- * Expected format: id:163|deviceId:2312aff4939750ea|time:1496843219926|packageName:nyaqd.literacyapp.org|studentId:2312aff4939750ea_4
+ * Expected format: id:163|deviceId:2312aff4939750ea|time:1496843219926|packageName:ai.elimu.nyaqd|studentId:2312aff4939750ea_4
  */
 public class EventLineHelper {
     

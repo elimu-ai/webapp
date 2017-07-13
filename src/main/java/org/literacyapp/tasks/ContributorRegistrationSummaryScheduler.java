@@ -40,13 +40,13 @@ public class ContributorRegistrationSummaryScheduler {
             for (Contributor contributor : contributorDao.readAll()) {
                 String baseUrl = "http://localhost:8080/literacyapp-webapp";
                 if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-                    baseUrl = "http://test.literacyapp.org";
+                    baseUrl = "http://test.elimu.ai";
                 } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                    baseUrl = "http://literacyapp.org";
+                    baseUrl = "http://elimu.ai";
                 }
                 
                 String to = contributor.getEmail();
-                String from = "LiteracyApp <info@literacyapp.org>";
+                String from = "LiteracyApp <info@elimu.ai>";
                 Locale locale = new Locale("en");
                 String subject = contributorsRegisteredRecently.get(0).getFirstName() + " " + contributorsRegisteredRecently.get(0).getLastName() + " joined the community";
                 String title = subject;
