@@ -28,7 +28,7 @@ public class EventLineHelperTest {
     public void testGetPackageName() {
         String applicationOpenedEventLine = "id:163|deviceId:2312aff4939750ea|time:1496843219926|packageName:ai.elimu.nyaqd|studentId:2312aff4939750ea_4";
         String deviceId = EventLineHelper.getPackageName(applicationOpenedEventLine);
-        assertThat(deviceId, is("nyaqd.elimu.ai"));
+        assertThat(deviceId, is("ai.elimu.nyaqd"));
     }
     
     @Test
