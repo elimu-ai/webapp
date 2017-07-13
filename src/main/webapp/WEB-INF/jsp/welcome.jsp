@@ -8,7 +8,7 @@
     <br />
     <br />
     <div class="row center">
-        <h1 class="header center white-text">Literacy<span>App</span></h1>
+        <h1 class="header center white-text">elimu<span>.ai</span></h1>
     </div>
     <div class="row center">
         <div class="col s3">&nbsp;</div>
@@ -16,7 +16,7 @@
         <div class="col s3">&nbsp;</div>
     </div>
     <div class="row center">
-      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light green"><fmt:message key="join.now" /></a>
+      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
     </div>
     <br />
 </content:banner>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="row center">
-            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light green"><fmt:message key="join.now" /></a>
+            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
         </div>
     </div>
 </content:section>

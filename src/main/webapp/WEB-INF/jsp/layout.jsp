@@ -13,7 +13,7 @@
         <html lang="${locale.language}">
             <head>
                 <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
-                <title><content:gettitle /> | LiteracyApp.org</title>
+                <title><content:gettitle /> | elimu.ai</title>
 
                 <meta charset="UTF-8" />
 
@@ -41,11 +41,11 @@
                          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png">
                 </a>
                 
-                <nav class="black lighten-1">
+                <nav class="purple darken-4">
                     <div class="nav-wrapper container">
                         <a id="logo-container" href="<spring:url value='/' />" class="brand-logo">
                             <img src="<spring:url value='/img/logo-208x208.png' />" alt="LiteracyApp" />
-                            Literacy<span>App</span>
+                            elimu<span>.ai</span>
                         </a>
                         <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
                             <ul class="right hide-on-med-and-down">
@@ -98,7 +98,7 @@
                 </div>
 
                 <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
-                    <footer class="page-footer green lighten-1">
+                    <footer class="page-footer purple lighten-1">
                       <div class="container">
                         <div class="row">
                           <div class="col l6 s12">
@@ -111,7 +111,7 @@
                             <p class="grey-text text-lighten-4">
                                 <fmt:message key="sign.up.to.our.mailing.list.to..." />
                             </p>
-                            <a class="btn waves-effect waves-light green lighten-2" target="_blank" href="http://eepurl.com/bGihkr">
+                            <a class="btn waves-effect waves-light purple lighten-2" target="_blank" href="http://eepurl.com/bGihkr">
                                 <fmt:message key="subscribe" /><i class="material-icons right">mail</i>
                             </a>
                           </div>
