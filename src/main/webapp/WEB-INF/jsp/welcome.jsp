@@ -61,11 +61,9 @@
           </div>
         </div>
     </div>
-
-    <div class="divider"></div>
             
     <div class="section">
-        <div class="row">
+        <%--<div class="row">
             <div class="col s12 m4 offset-m4">
                 <div class="card small">
                   <div class="card-image">
@@ -82,14 +80,38 @@
                   </div>
                 </div>
             </div>
-        </div>
+        </div>--%>
         <div class="row center">
             <div class="video-container">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/3Dnn7NFQPbQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe>
             </div>
         </div>
-        <div class="row center">
+        <%--<div class="row center">
             <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
+        </div>--%>
+    </div>
+    
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m4 offset-m4 center">
+                <h5 class="center"><fmt:message key="donate" /></h5>
+                
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="6FRDJF8PK9UHY">
+                    <table>
+                    <tr><td><input type="hidden" name="on0" value="elimu.ai contribution">Contribute by helping us cover our monthly recurring costs:</td></tr><tr><td><select name="os0">
+                            <option value="Option 1">Option 1 : €5.00 EUR - monthly</option>
+                            <option value="Option 2">Option 2 : €10.00 EUR - monthly</option>
+                            <option value="Option 3">Option 3 : €20.00 EUR - monthly</option>
+                            <option value="Option 4">Option 4 : €40.00 EUR - monthly</option>
+                    </select> </td></tr>
+                    </table>
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
         </div>
     </div>
 </content:section>
