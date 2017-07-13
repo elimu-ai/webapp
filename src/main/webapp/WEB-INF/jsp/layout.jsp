@@ -102,7 +102,7 @@
                             <p class="grey-text text-lighten-4"><fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a></p>
                           </div>
                           <div class="col l3 s12">
-                            <h5 class="white-text"><fmt:message key="join.the.community" /></h5>
+                            <h5 class="white-text"><fmt:message key="mailing.list" /></h5>
                             <p class="grey-text text-lighten-4">
                                 <fmt:message key="sign.up.to.our.mailing.list.to..." />
                             </p>
@@ -113,11 +113,12 @@
                           <div class="col l2 s12 right">
                             <h5 class="white-text"><fmt:message key="connect" /></h5>
                             <ul>
-                                <li><a class="white-text" href="https://blog.elimu.ai" target="_blank"><fmt:message key="blog" /></a></li>
+                                <li><a class="white-text" href="mailto:info@elimu.ai">info@elimu.ai</a></li>
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
                                 <li><a class="white-text" href="https://plus.google.com/u/0/100080736050421577958" target="_blank">Google+</a></li>
                                 <li><a class="white-text" href="https://www.linkedin.com/company-beta/18149859" target="_blank">LinkedIn</a></li>
+                                <li><a class="white-text" href="https://blog.elimu.ai" target="_blank"><fmt:message key="blog" /></a></li>
                             </ul>
                           </div>
                         </div>
