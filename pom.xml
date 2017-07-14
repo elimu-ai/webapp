@@ -120,12 +120,12 @@
         <maven>3.2.2</maven>
     </prerequisites>
     <name>literacyapp-web</name>
-    <url>http://localhost:8080/literacyapp-webapp</url>
+    <url>http://localhost:8080/webapp</url>
 
     <!-- Environment Settings -->
     <issueManagement>
         <system>Trello</system>
-        <url>https://trello.com/b/les4HgKG/team-development</url>
+        <url>https://trello.com/elimuai_public</url>
     </issueManagement>
     <ciManagement>
         <system>Travis CI</system>

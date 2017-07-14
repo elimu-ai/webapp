@@ -70,7 +70,7 @@ public class SignOnControllerGitHub {
         
         String apiKey = "75ab65504795daf525f5";
         String apiSecret = "4f6eba014e102f0ed48334de77dffc12c4d1f1d6";
-        String baseUrl = "http://localhost:8080/literacyapp-webapp";
+        String baseUrl = "http://localhost:8080/webapp";
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             apiKey = "57aad0f85f09ef18d8e6";
             apiSecret = ConfigHelper.getProperty("github.api.secret");

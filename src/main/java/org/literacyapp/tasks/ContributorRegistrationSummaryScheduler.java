@@ -38,7 +38,7 @@ public class ContributorRegistrationSummaryScheduler {
         if (!contributorsRegisteredRecently.isEmpty()) {
             // Send summary to existing Contributors
             for (Contributor contributor : contributorDao.readAll()) {
-                String baseUrl = "http://localhost:8080/literacyapp-webapp";
+                String baseUrl = "http://localhost:8080/webapp";
                 if (EnvironmentContextLoaderListener.env == Environment.TEST) {
                     baseUrl = "http://test.elimu.ai";
                 } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {

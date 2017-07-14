@@ -9,17 +9,9 @@ body {
     background: #EEE;
 }
 
-#logo-container {
-    font-weight: 300;
-}
-#logo-container span {
-    font-weight: 200;
-}
 #logo-container img {
-    max-height: 1.15em;
-    vertical-align: text-top;
-    background-color: #FFF;
-    border-radius: 50%
+    max-height: 1.2em;
+    vertical-align: text-bottom;
 }
 
 #index-banner {
@@ -39,6 +31,7 @@ html[lang="es"] #index-banner {
 }
 
 .container h1 {
+    font-family: "Amaranth";
     text-shadow: 1px 1px rgba(0,0,0, .8), 
         0 -1rem 3rem rgba(0,0,0, .8), 
         2rem 0 3rem rgba(0,0,0, .8), 

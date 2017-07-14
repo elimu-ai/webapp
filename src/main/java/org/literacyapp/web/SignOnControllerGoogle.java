@@ -59,15 +59,15 @@ public class SignOnControllerGoogle {
     public String handleAuthorization(HttpServletRequest request) throws IOException {
         logger.info("handleAuthorization");
 		
-        String apiKey = "771733326473-ntau0rkb03ca30n8vueps8hdpp38rr1b.apps.googleusercontent.com";
-        String apiSecret = "gkwT-kW54bD59t4X0DQEDleC";
-        String baseUrl = "http://localhost:8080/literacyapp-webapp";
+        String apiKey = "108974530651-3g9r40r5s7it6p9vjh2e2eplgmm1to0d.apps.googleusercontent.com";
+        String apiSecret = "mGlUmzxL2eP69HdVmPKtVLR7";
+        String baseUrl = "http://localhost:8080/webapp";
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-            apiKey = "771733326473-rptbjt86j8t68upo2po2itgrlu8r9mn4.apps.googleusercontent.com";
+            apiKey = "108974530651-fskde869tac7imherk2k516shfuvij76.apps.googleusercontent.com";
             apiSecret = ConfigHelper.getProperty("google.api.secret");
             baseUrl = "http://" + request.getServerName();
         } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-            apiKey = "771733326473-fpcd8jd0561ekbdi7ut6ej2df2ud2tua.apps.googleusercontent.com";
+            apiKey = "108974530651-k68pccps2jb88fllofpcf8ht356v08e4.apps.googleusercontent.com";
             apiSecret = ConfigHelper.getProperty("google.api.secret");
             baseUrl = "http://" + request.getServerName();
         }

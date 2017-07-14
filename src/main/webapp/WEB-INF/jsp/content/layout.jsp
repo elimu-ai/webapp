@@ -32,7 +32,7 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li>
                             <a href="<spring:url value='/content' />">
-                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x52.png' />" alt="LiteracyApp" />
+                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x78.png' />" alt="LiteracyApp" />
                             </a>
                         </li>
                         
