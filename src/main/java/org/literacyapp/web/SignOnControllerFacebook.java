@@ -60,7 +60,7 @@ public class SignOnControllerFacebook {
 		
         String apiKey = "1130171497015759";
         String apiSecret = "d8b49268dacd1e29eca82de8edd88c1c";
-        String baseUrl = "http://localhost:8080/literacyapp-webapp";
+        String baseUrl = "http://localhost:8080/webapp";
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             apiKey = "1130170237015885";
             apiSecret = ConfigHelper.getProperty("facebook.api.secret");

@@ -8,12 +8,12 @@
     <br />
     <br />
     <div class="row center">
-        <h1 class="header center white-text">elimu<span>.ai</span></h1>
+        <h1 class="header center white-text">elimu<span style="color: #A59ADD;">.ai</span></h1>
     </div>
     <div class="row center">
-        <div class="col s3">&nbsp;</div>
-        <h5 class="header col s6 light white-text"><fmt:message key="free.quality.education.for.every.child" /></h5>
-        <div class="col s3">&nbsp;</div>
+        <div class="col s2 m3 l4">&nbsp;</div>
+        <h5 class="header col s8 m6 l4 light white-text"><fmt:message key="free.quality.education.for.every.child" /></h5>
+        <div class="col s2 m3 l4">&nbsp;</div>
     </div>
     <div class="row center">
       <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
