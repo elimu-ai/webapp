@@ -1,15 +1,15 @@
-![logo-text-256x52](https://cloud.githubusercontent.com/assets/15718174/16346977/75b2f3b8-3a4a-11e6-85a0-2c3b6742b8a9.png)
+![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/28230075-c42d3e8e-68e5-11e7-8d97-c99d9c7c322e.png)
 
 Web application: http://elimu.ai
 
 ## Run application locally
-See Wiki: [Project Configuration](https://github.com/literacyapp-org/literacyapp-web/wiki/Project-Configuration)
+See Wiki: [Project Configuration](https://github.com/elimu-ai/webapp/wiki/Project-Configuration)
 
 ## Continuous integration
-[![Build Status](https://travis-ci.org/literacyapp-org/literacyapp-web.svg)](https://travis-ci.org/literacyapp-org/literacyapp-web)
+[![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
 
 ## Issue management
-See https://github.com/literacyapp-org/literacyapp-web/projects
+See https://github.com/elimu-ai/webapp/projects
 
 ## Chat
 [Slack](https://elimu-ai.slack.com/messages/team-development) (register at http://elimu.ai/sign-on to receive an invite)
