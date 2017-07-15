@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.util.JsonLoader;
+import ai.elimu.util.JsonLoader;
 import selenium.DomainHelper;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;

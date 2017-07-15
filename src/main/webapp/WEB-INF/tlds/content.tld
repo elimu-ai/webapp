@@ -20,11 +20,10 @@
          <listener-class>com.mycompany.TagLibListener</listener-class> 
      </listener>
    -->
-   
   <tag>
     <name>banner</name>
     <body-content>scriptless</body-content>
-    <tag-class>org.literacyapp.web.tags.BannerTag</tag-class>
+    <tag-class>ai.elimu.web.tags.BannerTag</tag-class>
     <description>
         The content:banner tag is used to define banner contant placed above 
         the main section content. The content within this tag is placed inside 
@@ -34,17 +33,16 @@
   <tag>
     <name>getbanner</name>
     <body-content>empty</body-content>
-    <tag-class>org.literacyapp.web.tags.GetBannerTag</tag-class>
+    <tag-class>ai.elimu.web.tags.GetBannerTag</tag-class>
     <description>
         The content:getbanner tag displays the body content of the 
         content:banner tag.
     </description>
   </tag>
-  
   <tag>
     <name>section</name>
     <body-content>scriptless</body-content>
-    <tag-class>org.literacyapp.web.tags.SectionTag</tag-class>
+    <tag-class>ai.elimu.web.tags.SectionTag</tag-class>
     <description>
            The content:section tag is used to define the content of the current
            page. The content within this tag is placed inside the HTML 
@@ -69,17 +67,16 @@
   <tag>
     <name>getsection</name>
     <body-content>empty</body-content>
-    <tag-class>org.literacyapp.web.tags.GetSectionTag</tag-class>
+    <tag-class>ai.elimu.web.tags.GetSectionTag</tag-class>
     <description>
            The content:getsection tag displays the body content of the 
            content:section tag.
         </description>
   </tag>
-  
   <tag>
     <name>aside</name>
     <body-content>scriptless</body-content>
-    <tag-class>org.literacyapp.web.tags.AsideTag</tag-class>
+    <tag-class>ai.elimu.web.tags.AsideTag</tag-class>
     <description>
            The content:aside tag is used to define the content of the current
            page. The content within this tag is placed inside the HTML 
@@ -96,17 +93,16 @@
   <tag>
     <name>getaside</name>
     <body-content>empty</body-content>
-    <tag-class>org.literacyapp.web.tags.GetAsideTag</tag-class>
+    <tag-class>ai.elimu.web.tags.GetAsideTag</tag-class>
     <description>
            The content:getaside tag displays the body content of the 
            content:aside tag.
         </description>
   </tag>
-  
   <tag>
     <name>title</name>
     <body-content>scriptless</body-content>
-    <tag-class>org.literacyapp.web.tags.TitleTag</tag-class>
+    <tag-class>ai.elimu.web.tags.TitleTag</tag-class>
     <description>
            The content:title tag is used to define the title of the current
            page. The text within this tag is placed in the title element
@@ -116,17 +112,16 @@
   <tag>
     <name>gettitle</name>
     <body-content>empty</body-content>
-    <tag-class>org.literacyapp.web.tags.GetTitleTag</tag-class>
+    <tag-class>ai.elimu.web.tags.GetTitleTag</tag-class>
     <description>
             The content:gettitle tag displays the body content of the 
             content:title tag.
         </description>
   </tag>
-  
   <tag>
     <name>getversion</name>
     <body-content>empty</body-content>
-    <tag-class>org.literacyapp.web.tags.GetVersionTag</tag-class>
+    <tag-class>ai.elimu.web.tags.GetVersionTag</tag-class>
     <description>
             The content:getversion tag display the application version
         </description>
