@@ -7,9 +7,9 @@ import org.json.JSONObject;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.literacyapp.model.enums.Locale;
-import org.literacyapp.rest.v1.ChecksumHelper;
-import org.literacyapp.rest.v1.VersionRestController;
-import org.literacyapp.util.JsonLoader;
+import ai.elimu.rest.v1.ChecksumHelper;
+import ai.elimu.rest.v1.VersionRestController;
+import ai.elimu.util.JsonLoader;
 import selenium.DomainHelper;
 
 public class ApplicationRestControllerTest {

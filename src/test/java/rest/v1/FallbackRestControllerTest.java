@@ -2,7 +2,7 @@ package rest.v1;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.literacyapp.util.JsonLoader;
+import ai.elimu.util.JsonLoader;
 import selenium.DomainHelper;
 
 public class FallbackRestControllerTest {
