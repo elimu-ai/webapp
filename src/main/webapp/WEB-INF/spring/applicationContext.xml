@@ -23,12 +23,12 @@
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
-                <bean class="org.literacyapp.logic.converters.StringToAllophoneConverter" />
-                <bean class="org.literacyapp.logic.converters.StringToApplicationConverter" />
-                <bean class="org.literacyapp.logic.converters.StringToContributorConverter" />
-                <bean class="org.literacyapp.logic.converters.StringToNullConverter" />
-                <bean class="org.literacyapp.logic.converters.StringToWordConverter" />
-                <bean class="org.literacyapp.logic.converters.StringToImageConverter" />
+                <bean class="ai.elimu.logic.converters.StringToAllophoneConverter" />
+                <bean class="ai.elimu.logic.converters.StringToApplicationConverter" />
+                <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
+                <bean class="ai.elimu.logic.converters.StringToNullConverter" />
+                <bean class="ai.elimu.logic.converters.StringToWordConverter" />
+                <bean class="ai.elimu.logic.converters.StringToImageConverter" />
             </list>
         </property>
     </bean>
@@ -43,7 +43,7 @@
              - is to propagate all exceptions to the servlet container: this will happen
              - here with all other types of exceptions.
      -->
-    <bean id="exceptionResolver" class="org.literacyapp.web.servlet.CustomSimpleMappingExceptionResolver">
+    <bean id="exceptionResolver" class="ai.elimu.web.servlet.CustomSimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
                 <prop key="org.springframework.web.servlet.PageNotFound">error/page-not-found</prop>
@@ -104,9 +104,9 @@
     <mvc:interceptors>
         <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" 
               p:paramName="lang" />
-        <bean class="org.literacyapp.web.servlet.i18n.LocaleChangeInterceptor" />
+        <bean class="ai.elimu.web.servlet.i18n.LocaleChangeInterceptor" />
     </mvc:interceptors>
     
-    <bean id="localeResolver" class="org.literacyapp.web.servlet.i18n.DomainLocaleResolver"
+    <bean id="localeResolver" class="ai.elimu.web.servlet.i18n.DomainLocaleResolver"
           p:defaultLocale="en_US" />
 </beans>
