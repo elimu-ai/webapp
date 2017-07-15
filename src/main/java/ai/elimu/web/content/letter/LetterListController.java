@@ -10,7 +10,7 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

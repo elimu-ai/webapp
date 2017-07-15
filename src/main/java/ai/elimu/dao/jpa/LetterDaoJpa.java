@@ -7,7 +7,7 @@ import ai.elimu.dao.LetterDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Letter;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
 

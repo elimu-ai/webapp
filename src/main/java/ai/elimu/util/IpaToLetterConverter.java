@@ -1,6 +1,6 @@
 package ai.elimu.util;
 
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class IpaToLetterConverter {
 

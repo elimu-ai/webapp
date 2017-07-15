@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.model.Contributor;
-import org.literacyapp.model.enums.Environment;
+import ai.elimu.model.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 

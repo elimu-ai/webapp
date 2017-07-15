@@ -8,7 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.Contributor;
-import org.literacyapp.model.enums.Environment;
+import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Team;
 import ai.elimu.util.Mailer;
 import ai.elimu.util.SlackApiHelper;

@@ -7,7 +7,7 @@ import ai.elimu.dao.StoryBookDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.StoryBook;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBookDao {
 

@@ -5,7 +5,7 @@ import ai.elimu.model.content.multimedia.Video;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public interface VideoDao extends GenericDao<Video> {
 	

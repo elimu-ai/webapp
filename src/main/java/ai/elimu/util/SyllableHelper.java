@@ -12,7 +12,7 @@ import net.davidashen.text.Hyphenator;
 import net.davidashen.util.ErrorHandler;
 import org.apache.log4j.Logger;
 import ai.elimu.model.content.Word;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class SyllableHelper {
     

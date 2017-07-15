@@ -9,14 +9,14 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.multimedia.Audio;
-import org.literacyapp.model.enums.content.allophone.ConsonantPlace;
-import org.literacyapp.model.enums.content.allophone.ConsonantType;
-import org.literacyapp.model.enums.content.allophone.ConsonantVoicing;
-import org.literacyapp.model.enums.content.allophone.LipRounding;
-import org.literacyapp.model.enums.content.allophone.SoundType;
-import org.literacyapp.model.enums.content.allophone.VowelFrontness;
-import org.literacyapp.model.enums.content.allophone.VowelHeight;
-import org.literacyapp.model.enums.content.allophone.VowelLength;
+import ai.elimu.model.enums.content.allophone.ConsonantPlace;
+import ai.elimu.model.enums.content.allophone.ConsonantType;
+import ai.elimu.model.enums.content.allophone.ConsonantVoicing;
+import ai.elimu.model.enums.content.allophone.LipRounding;
+import ai.elimu.model.enums.content.allophone.SoundType;
+import ai.elimu.model.enums.content.allophone.VowelFrontness;
+import ai.elimu.model.enums.content.allophone.VowelHeight;
+import ai.elimu.model.enums.content.allophone.VowelLength;
 
 /**
  * Speech sound

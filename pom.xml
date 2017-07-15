@@ -9,7 +9,7 @@
     <properties>
     	<java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <literacyapp.model.version>1.1.56</literacyapp.model.version>
+        <model.version>1.1.58</model.version>
         <hibernate.version>4.3.9.Final</hibernate.version>
         <jetty.version>8.1.14.v20131031</jetty.version>
         <spring.version>4.2.6.RELEASE</spring.version>
@@ -254,9 +254,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.literacyapp</groupId>
-            <artifactId>literacyapp-model</artifactId>
-            <version>${literacyapp.model.version}</version>
+            <groupId>ai.elimu</groupId>
+            <artifactId>model</artifactId>
+            <version>${model.version}</version>
         </dependency>
         
         <dependency>

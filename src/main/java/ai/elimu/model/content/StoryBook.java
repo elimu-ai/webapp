@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import org.literacyapp.model.enums.GradeLevel;
+import ai.elimu.model.enums.GradeLevel;
 
 @Entity
 public class StoryBook extends Content {

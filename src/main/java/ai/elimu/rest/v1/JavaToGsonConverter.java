@@ -18,22 +18,22 @@ import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
-import org.literacyapp.model.gson.DeviceGson;
-import org.literacyapp.model.gson.StudentGson;
-import org.literacyapp.model.gson.content.NumberGson;
-import org.literacyapp.model.gson.content.WordGson;
-import org.literacyapp.model.gson.admin.ApplicationGson;
-import org.literacyapp.model.gson.admin.ApplicationVersionGson;
-import org.literacyapp.model.gson.analytics.LetterLearningEventGson;
-import org.literacyapp.model.gson.analytics.NumberLearningEventGson;
-import org.literacyapp.model.gson.analytics.VideoLearningEventGson;
-import org.literacyapp.model.gson.content.AllophoneGson;
-import org.literacyapp.model.gson.content.LetterGson;
-import org.literacyapp.model.gson.content.StoryBookGson;
-import org.literacyapp.model.gson.content.SyllableGson;
-import org.literacyapp.model.gson.content.multimedia.AudioGson;
-import org.literacyapp.model.gson.content.multimedia.ImageGson;
-import org.literacyapp.model.gson.content.multimedia.VideoGson;
+import ai.elimu.model.gson.DeviceGson;
+import ai.elimu.model.gson.StudentGson;
+import ai.elimu.model.gson.content.NumberGson;
+import ai.elimu.model.gson.content.WordGson;
+import ai.elimu.model.gson.admin.ApplicationGson;
+import ai.elimu.model.gson.admin.ApplicationVersionGson;
+import ai.elimu.model.gson.analytics.LetterLearningEventGson;
+import ai.elimu.model.gson.analytics.NumberLearningEventGson;
+import ai.elimu.model.gson.analytics.VideoLearningEventGson;
+import ai.elimu.model.gson.content.AllophoneGson;
+import ai.elimu.model.gson.content.LetterGson;
+import ai.elimu.model.gson.content.StoryBookGson;
+import ai.elimu.model.gson.content.SyllableGson;
+import ai.elimu.model.gson.content.multimedia.AudioGson;
+import ai.elimu.model.gson.content.multimedia.ImageGson;
+import ai.elimu.model.gson.content.multimedia.VideoGson;
 
 public class JavaToGsonConverter {
     

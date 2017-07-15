@@ -18,7 +18,7 @@ import ai.elimu.model.Device;
 import ai.elimu.model.Student;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.test.context.ContextConfiguration;

@@ -10,7 +10,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.util.PhoneticsHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;

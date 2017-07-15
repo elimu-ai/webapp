@@ -11,7 +11,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.SignOnEventDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.contributor.SignOnEvent;
-import org.literacyapp.model.enums.Environment;
+import ai.elimu.model.enums.Environment;
 import ai.elimu.util.Mailer;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;

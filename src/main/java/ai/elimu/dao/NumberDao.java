@@ -3,7 +3,7 @@ package ai.elimu.dao;
 import java.util.List;
 
 import ai.elimu.model.content.Number;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 import org.springframework.dao.DataAccessException;
 

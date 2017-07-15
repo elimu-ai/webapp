@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.model.content.Word;
-import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.content.allophone.SoundType;
+import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.web.content.allophone.AllophoneListController;
 
 public class PhoneticsHelper {

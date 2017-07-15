@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
 

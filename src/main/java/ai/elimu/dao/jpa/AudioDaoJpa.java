@@ -8,7 +8,7 @@ import ai.elimu.dao.AudioDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.multimedia.Audio;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
 

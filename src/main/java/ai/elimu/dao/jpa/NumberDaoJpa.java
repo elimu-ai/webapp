@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Number;
 import ai.elimu.dao.NumberDao;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
 
