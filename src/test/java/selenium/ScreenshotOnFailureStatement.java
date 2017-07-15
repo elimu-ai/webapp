@@ -21,7 +21,7 @@ public class ScreenshotOnFailureStatement extends Statement {
      * The URL pointing to the folder at the Jenkins server in which the target
      * folder of the project is located.
      */
-    private static final String JENKINS_URL = "http://jenkins.educativo.eu:8080/job/literacyapp-web-4-regression-testing/ws/";
+    private static final String JENKINS_URL = "http://jenkins.educativo.eu:8080/job/webapp-4-regression-testing/ws/";
     
     private final Logger logger = Logger.getLogger(ScreenshotOnFailureStatement.class);
 
