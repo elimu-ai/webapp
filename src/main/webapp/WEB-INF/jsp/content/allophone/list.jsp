@@ -55,6 +55,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/allophone/create' />" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.allophone" />"><i class="material-icons">record_voice_over</i></a>
+        <a href="<spring:url value='/content/allophone/create' />" class="btn-floating btn-large purple tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.allophone" />"><i class="material-icons">record_voice_over</i></a>
     </div>
 </content:section>

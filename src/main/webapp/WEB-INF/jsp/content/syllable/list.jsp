@@ -4,9 +4,9 @@
 
 <content:section cssId="syllableListPage">
     <div class="section row">
-        <p>
+        <%--<p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
-        </p>
+        </p>--%>
         
         <c:forEach var="syllable" items="${syllables}">
             <div class="col s12 m6 l4">
@@ -23,7 +23,7 @@
         </c:forEach>
     </div>
     
-    <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/syllable/create' />" class="btn-floating btn-large indigo tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.syllable" />"><i class="material-icons">queue_music</i></a>
-    </div>
+    <%--<div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
+        <a href="<spring:url value='/content/syllable/create' />" class="btn-floating btn-large green tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.syllable" />"><i class="material-icons">queue_music</i></a>
+    </div>--%>
 </content:section>
