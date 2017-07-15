@@ -6,7 +6,7 @@ import ai.elimu.model.Device;
 import ai.elimu.model.Student;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.analytics.ApplicationOpenedEvent;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 import org.springframework.dao.DataAccessException;
 

@@ -10,10 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.Contributor;
-import org.literacyapp.model.enums.content.LiteracySkill;
-import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.content.NumeracySkill;
-import org.literacyapp.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.enums.content.LiteracySkill;
+import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.model.enums.admin.ApplicationStatus;
 
 @Entity
 public class Application extends BaseEntity {

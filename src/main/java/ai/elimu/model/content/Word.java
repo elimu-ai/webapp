@@ -8,8 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.content.SpellingConsistency;
-import org.literacyapp.model.enums.content.WordType;
+import ai.elimu.model.enums.content.SpellingConsistency;
+import ai.elimu.model.enums.content.WordType;
 
 @Entity
 public class Word extends Content {

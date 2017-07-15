@@ -7,7 +7,7 @@ import ai.elimu.dao.DeviceDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.Device;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class DeviceDaoJpa extends GenericDaoJpa<Device> implements DeviceDao {
 

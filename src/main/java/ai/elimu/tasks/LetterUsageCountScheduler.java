@@ -8,7 +8,7 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.util.LetterFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

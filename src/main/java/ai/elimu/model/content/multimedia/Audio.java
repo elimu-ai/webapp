@@ -6,7 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.content.AudioFormat;
+import ai.elimu.model.enums.content.AudioFormat;
 
 @Entity
 public class Audio extends Multimedia {

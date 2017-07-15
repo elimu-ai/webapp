@@ -22,7 +22,7 @@ import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.ServletContextResourceLoader;
 
-import org.literacyapp.model.enums.Environment;
+import ai.elimu.model.enums.Environment;
 
 /**
  * Use {@code WebApplicationContextUtils.getWebApplicationContext(servletContext)}

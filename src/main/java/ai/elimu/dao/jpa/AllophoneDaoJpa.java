@@ -7,7 +7,7 @@ import ai.elimu.model.content.Allophone;
 
 import org.springframework.dao.DataAccessException;
 
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements AllophoneDao {
 

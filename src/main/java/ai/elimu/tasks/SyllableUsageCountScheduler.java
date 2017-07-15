@@ -11,7 +11,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.util.SyllableFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

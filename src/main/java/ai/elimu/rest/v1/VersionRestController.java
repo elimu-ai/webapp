@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

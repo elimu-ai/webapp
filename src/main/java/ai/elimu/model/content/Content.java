@@ -8,8 +8,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import org.literacyapp.model.enums.Locale;
-import org.literacyapp.model.enums.content.ContentStatus;
+import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.content.ContentStatus;
 
 /**
  * Parent class for different types of educational content.

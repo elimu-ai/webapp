@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import org.apache.log4j.Logger;
-import org.literacyapp.model.enums.Environment;
+import ai.elimu.model.enums.Environment;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 

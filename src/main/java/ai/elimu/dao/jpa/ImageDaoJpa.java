@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.model.content.Word;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
 

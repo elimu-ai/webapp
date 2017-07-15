@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 @Entity
 public class Device extends BaseEntity {

@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import ai.elimu.model.content.StoryBook;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class SyllableFrequencyHelperTest {
 

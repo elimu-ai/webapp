@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.Contributor;
-import org.literacyapp.model.enums.Environment;
+import ai.elimu.model.enums.Environment;
 import ai.elimu.util.MailChimpApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;

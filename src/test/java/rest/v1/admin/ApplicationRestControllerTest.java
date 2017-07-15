@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.rest.v1.ChecksumHelper;
 import ai.elimu.rest.v1.VersionRestController;
 import ai.elimu.util.JsonLoader;

@@ -7,7 +7,7 @@ import ai.elimu.dao.SyllableDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Syllable;
-import org.literacyapp.model.enums.Locale;
+import ai.elimu.model.enums.Locale;
 
 public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableDao {
 

@@ -30,7 +30,7 @@ import java.util.logging.Level;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.SignOnEventDao;
 import ai.elimu.model.contributor.SignOnEvent;
-import org.literacyapp.model.enums.Environment;
+import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.CookieHelper;
