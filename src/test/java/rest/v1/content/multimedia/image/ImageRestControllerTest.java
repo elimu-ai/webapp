@@ -25,7 +25,7 @@ public class ImageRestControllerTest {
     public void testList_success() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/content/multimedia/image/list" +
                 "?deviceId=abc123" + 
-                "&applicationId=org.literacyapp" + 
+                "&applicationId=ai.elimu.contentprovider" + 
                 "&locale=" + Locale.EN);
         logger.info("jsonResponse: " + jsonResponse);
         JSONObject jsonObject = new JSONObject(jsonResponse);

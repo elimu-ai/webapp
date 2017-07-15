@@ -68,7 +68,7 @@ public class LetterLearningEventDaoTest {
     @Test
     public void testReadAllByApplication() {
         Application application = new Application();
-        application.setPackageName("org.literacyapp");
+        application.setPackageName("ai.elimu.handwriting");
         applicationDao.create(application);
         
         List<LetterLearningEvent> letterLearningEvents = letterLearningEventDao.readAll(application);
@@ -80,7 +80,7 @@ public class LetterLearningEventDaoTest {
         
         letterLearningEvents = letterLearningEventDao.readAll(application);
         assertThat(letterLearningEvents.size(), is(1));
-        assertThat(letterLearningEvents.get(0).getApplication().getPackageName(), is("org.literacyapp"));
+        assertThat(letterLearningEvents.get(0).getApplication().getPackageName(), is("ai.elimu.handwriting"));
     }
     
     @Test

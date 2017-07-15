@@ -33,7 +33,7 @@
         </property>
     </bean>
 
-    <context:component-scan base-package="org.literacyapp" />
+    <context:component-scan base-package="ai.elimu" />
 
     <task:annotation-driven />
 

@@ -84,7 +84,7 @@ public class ApplicationOpenedEventDaoTest {
     
     @Test
     public void testReadAllByApplication() {
-        String packageName = "org.literacyapp";
+        String packageName = "ai.elimu.handwriting";
         
         List<ApplicationOpenedEvent> applicationOpenedEvents = applicationOpenedEventDao.readAll(packageName);
         assertThat(applicationOpenedEvents.size(), is(0));
@@ -99,8 +99,8 @@ public class ApplicationOpenedEventDaoTest {
         
         applicationOpenedEvents = applicationOpenedEventDao.readAll(packageName);
         assertThat(applicationOpenedEvents.size(), is(2));
-        assertThat(applicationOpenedEvents.get(0).getPackageName(), is("org.literacyapp"));
-        assertThat(applicationOpenedEvents.get(1).getPackageName(), is("org.literacyapp"));
+        assertThat(applicationOpenedEvents.get(0).getPackageName(), is("ai.elimu.handwriting"));
+        assertThat(applicationOpenedEvents.get(1).getPackageName(), is("ai.elimu.handwriting"));
     }
     
     @Test
