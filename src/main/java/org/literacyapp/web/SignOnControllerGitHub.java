@@ -41,7 +41,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * See https://github.com/organizations/literacyapp-org/settings/applications
+ * See https://github.com/organizations/elimu-ai/settings/applications
  * See https://developer.github.com/v3/oauth/#web-application-flow
  */
 @Controller
@@ -198,12 +198,12 @@ public class SignOnControllerGitHub {
                 
                 // Send welcome e-mail
                 String to = contributor.getEmail();
-                String from = "LiteracyApp <info@elimu.ai>";
+                String from = "elimu.ai <info@elimu.ai>";
                 String subject = "Welcome to the community";
                 String title = "Welcome!";
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
                 String htmlText = "<p>Hi, " + firstName + "</p>";
-                htmlText += "<p>Thank you very much for registering as a contributor to the LiteracyApp community. We are glad to see you join us!</p>";
+                htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai community. We are glad to see you join us!</p>";
                 htmlText += "<p>With your help, this is what we aim to achieve:</p>";
                 htmlText += "<p><blockquote>\"We build open source tablet software that teaches a child to read, write, and perform arithmetic <i>fully autonomously</i> and without the aid of a teacher. This will help bring literacy to over 57 million children currently out of school.\"</blockquote></p>";
                 htmlText += "<p><img src=\"http://elimu.ai/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";

@@ -2,7 +2,7 @@
 <html lang="${locale.language}">
     <head>
         <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
-        <title><content:gettitle /> | LiteracyApp.org</title>
+        <title><content:gettitle /> | elimu.ai</title>
 
         <meta charset="UTF-8" />
 
@@ -32,14 +32,14 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li>
                             <a href="<spring:url value='/content' />">
-                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x78.png' />" alt="LiteracyApp" />
+                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x78.png' />" alt="elimu.ai" />
                             </a>
                         </li>
                         
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="community" /></b></li>
                         <li><a href="<spring:url value='/content/community/contributors' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
-                        <li><a href="https://literacyapp.slack.com" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
+                        <li><a href="https://gitter.im/elimu-ai" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
                         <li><a href="<spring:url value='/content/community/issue-management' />"><i class="material-icons left">assignment</i><fmt:message key="issue.management" /></a></li>
                         
                         <li class="divider"></li>

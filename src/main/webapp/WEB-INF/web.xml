@@ -52,7 +52,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>dispatcher</servlet-name>
-        <servlet-class>org.literacyapp.web.servlet.LiteracyAppDispatcherServlet</servlet-class>
+        <servlet-class>org.literacyapp.web.servlet.CustomDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
