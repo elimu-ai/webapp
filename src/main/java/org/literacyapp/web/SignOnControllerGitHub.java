@@ -41,7 +41,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * See https://github.com/organizations/literacyapp-org/settings/applications
+ * See https://github.com/organizations/elimu-ai/settings/applications
  * See https://developer.github.com/v3/oauth/#web-application-flow
  */
 @Controller

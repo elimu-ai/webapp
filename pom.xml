@@ -129,12 +129,12 @@
     </issueManagement>
     <ciManagement>
         <system>Travis CI</system>
-        <url>https://travis-ci.org/literacyapp-org/webapp</url>
+        <url>https://travis-ci.org/elimu-ai/webapp</url>
     </ciManagement>
     <scm>
-        <connection>scm:git:git@github.com:literacyapp-org/webapp.git</connection>
-        <developerConnection>scm:git:git@github.com:literacyapp-org/webapp.git</developerConnection>
-        <url>https://github.com/literacyapp-org/webapp</url>
+        <connection>scm:git:git@github.com:elimu-ai/webapp.git</connection>
+        <developerConnection>scm:git:git@github.com:elimu-ai/webapp.git</developerConnection>
+        <url>https://github.com/elimu-ai/webapp</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>

@@ -112,7 +112,7 @@ public class SlackInviteScheduler {
                             // Team-specific content
                             if (team == Team.DEVELOPMENT) {
                                 htmlText += "<h2>GitHub</h2>";
-                                htmlText += "<p>The source code of the project is located at https://github.com/literacyapp-org</p>";
+                                htmlText += "<p>The source code of the project is located at https://github.com/elimu-ai</p>";
                                 htmlText += "<p>Please send us your GitHub username so that we can add you as a GitHub team member. Either send your username by replying to this e-mail or posting it at the Slack channel (see below).</p>";
                                 htmlText += "<p>If you don't yet have a GitHub user, you can create one here: https://github.com/join</p>";
                                 htmlText += "<p>Are you new to GitHub? See https://guides.github.com/introduction/flow</p>";
