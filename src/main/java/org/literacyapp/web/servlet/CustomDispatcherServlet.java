@@ -5,7 +5,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import org.literacyapp.util.db.migration.DbMigrationHelper;
 
-public class LiteracyAppDispatcherServlet extends DispatcherServlet {
+public class CustomDispatcherServlet extends DispatcherServlet {
 
     @Override
     protected WebApplicationContext initWebApplicationContext() {

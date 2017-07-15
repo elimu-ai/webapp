@@ -30,7 +30,7 @@ public class MailChimpApiHelper {
     // https://us12.admin.mailchimp.com/account/api/
     private static final String API_KEY = ConfigHelper.getProperty("mailchimp.api.key");
     
-    private static final String LIST_ID = "97b79a9d90"; // "LiteracyApp"
+    private static final String LIST_ID = "97b79a9d90"; // "elimu.ai"
     
     private static Logger logger = Logger.getLogger(MailChimpApiHelper.class);
     

@@ -20,10 +20,10 @@
             <img src="<spring:url value='/img/publish-nya.png' />" alt="Nya's Space Quest" />
         </div>
         <div class="col s12 m4">
-            <img src="<spring:url value='/img/publish-literacyapp.png' />" alt="LiteracyApp" />
+            <img src="<spring:url value='/img/publish-literacyapp.png' />" alt="elimu.ai" />
         </div>
         <div class="col s12 m4">
-            <img src="<spring:url value='/img/publish-literacyapp2.png' />" alt="LiteracyApp" />
+            <img src="<spring:url value='/img/publish-literacyapp2.png' />" alt="elimu.ai" />
         </div>
     </div>
     

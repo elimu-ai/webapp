@@ -2,7 +2,7 @@
 <html lang="${locale.language}">
     <head>
         <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
-        <title><content:gettitle /> | LiteracyApp.org</title>
+        <title><content:gettitle /> | elimu.ai</title>
 
         <meta charset="UTF-8" />
 
@@ -33,7 +33,7 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li>
                             <a href="<spring:url value='/admin' />">
-                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x52.png' />" alt="LiteracyApp" />
+                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x52.png' />" alt="elimu.ai" />
                             </a>
                         </li>
                         

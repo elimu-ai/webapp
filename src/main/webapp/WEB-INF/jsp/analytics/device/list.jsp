@@ -6,7 +6,7 @@
     <div class="section row">
         <c:if test="${empty devices}">
             <p>No devices have been registered.</p>
-            <p>Remember to install the <a href="https://github.com/elimu-ai/literacyapp-appstore" target="_blank">LiteracyApp Appstore</a> application on the tablet(s).</p>
+            <p>Remember to install the <a href="https://github.com/elimu-ai/literacyapp-appstore" target="_blank">elimu.ai Appstore</a> application on the tablet(s).</p>
         </c:if>
         <c:if test="${not empty devices}">
             <table class="bordered highlight">

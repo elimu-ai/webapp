@@ -46,16 +46,16 @@ public class ContributorRegistrationSummaryScheduler {
                 }
                 
                 String to = contributor.getEmail();
-                String from = "LiteracyApp <info@elimu.ai>";
+                String from = "elimu.ai <info@elimu.ai>";
                 Locale locale = new Locale("en");
                 String subject = contributorsRegisteredRecently.get(0).getFirstName() + " " + contributorsRegisteredRecently.get(0).getLastName() + " joined the community";
                 String title = subject;
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
                 String htmlText = "<p>Hi, " + firstName + "</p>";
                 if (contributorsRegisteredRecently.size() == 1) {
-                    htmlText += "<p>A new contributor joined the LiteracyApp community:</p>";
+                    htmlText += "<p>A new contributor joined the elimu.ai community:</p>";
                 } else {
-                    htmlText += "<p>New contributors joined the LiteracyApp community:</p>";
+                    htmlText += "<p>New contributors joined the elimu.ai community:</p>";
                 }
                 
                 int counter = 0;

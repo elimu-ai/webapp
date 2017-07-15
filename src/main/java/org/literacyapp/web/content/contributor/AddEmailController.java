@@ -75,14 +75,14 @@ public class AddEmailController {
         if (isRedirectFromRegistrationPage) {
             // Send welcome e-mail
             String to = contributor.getEmail();
-            String from = "LiteracyApp <info@elimu.ai>";
+            String from = "elimu.ai <info@elimu.ai>";
             String subject = "Welcome to the community";
             String title = "Welcome!";
             String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
             String htmlText = "<p>Hi, " + firstName + "</p>";
-            htmlText += "<p>Thank you very much for registering as a contributor to the LiteracyApp community. We are glad to see you join us!</p>";
+            htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai community. We are glad to see you join us!</p>";
             htmlText += "<p>With your help, this is what we aim to achieve:</p>";
-            htmlText += "<p><blockquote>\"The mission of the LiteracyApp project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
+            htmlText += "<p><blockquote>\"The mission of the elimu.ai project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
             htmlText += "<p><img src=\"http://elimu.ai/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
             htmlText += "<h2>Chat</h2>";
             htmlText += "<p>Within the next hour, we will send you an invite to join our Slack channel (to " + contributor.getEmail() + "). There you can chat with the other community members.</p>";

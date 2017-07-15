@@ -6,7 +6,7 @@
     <div class="section row">
         <c:if test="${empty applicationOpenedEvents}">
             <p>No ApplicationOpenedEvents have been registered.</p>
-            <p>Remember to install the <a href="https://github.com/elimu-ai/literacyapp-analytics" target="_blank">LiteracyApp Analytics</a> application on the tablet(s).</p>
+            <p>Remember to install the <a href="https://github.com/elimu-ai/literacyapp-analytics" target="_blank">elimu.ai Analytics</a> application on the tablet(s).</p>
         </c:if>
         <c:if test="${not empty applicationOpenedEvents}">
             <table class="bordered highlight">

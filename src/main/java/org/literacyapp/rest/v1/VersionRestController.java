@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The responsibility of this controller is to return the version code of the 
- * newest LiteracyApp APK file uploaded to the website.
+ * newest elimu.ai APK file uploaded to the website.
  */
 @RestController
 @RequestMapping(value = "/rest/v1/version", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
