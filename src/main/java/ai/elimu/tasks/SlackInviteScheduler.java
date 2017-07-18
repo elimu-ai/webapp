@@ -119,10 +119,10 @@ public class SlackInviteScheduler {
                             }
                             
                             htmlText += "<h2>Slack channel</h2>";
-                            htmlText += "<p>We just added you to the Slack channel <a href=\"https://literacyapp.slack.com/messages/" + team.getSlackChannelName() + "\">#" + team.getSlackChannelName() + "</a></p>";
+                            htmlText += "<p>We just added you to the Slack channel <a href=\"https://elimu-ai.slack.com/messages/" + team.getSlackChannelName() + "\">#" + team.getSlackChannelName() + "</a></p>";
                             htmlText += "<p>To chat with the other team members, click the button below:</p>";
                             String buttonText = "Go to Slack channel";
-                            String buttonUrl = "https://literacyapp.slack.com/messages/" + team.getSlackChannelName();
+                            String buttonUrl = "https://elimu-ai.slack.com/messages/" + team.getSlackChannelName();
                             Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, buttonText, buttonUrl);
                         }
                     } /*else {

@@ -1,5 +1,5 @@
 body {
-    background-image: url(../../../img/xprize-background.jpg);
+    background-image: url(../../../img/background.jpg);
 }
 
 nav {
@@ -27,8 +27,8 @@ nav {
     position: relative;
     width: 90%;
     margin: -2% 10% 0 0;
-    height: 100%; 
-    display: inline-block; 
+    height: 100%;
+    display: inline-block;
     font-size: 5em;
     background-repeat: no-repeat;
     background-size: contain;
