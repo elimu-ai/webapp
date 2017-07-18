@@ -18,7 +18,7 @@ import ai.elimu.model.enums.Team;
 
 public class SlackApiHelper {
     
-    private static final String BASE_URL = "https://literacyapp.slack.com/api";
+    private static final String BASE_URL = "https://elimu-ai.slack.com/api";
     
     // https://api.slack.com/docs/oauth-test-tokens
     private static final String API_TOKEN = ConfigHelper.getProperty("slack.api.token");
