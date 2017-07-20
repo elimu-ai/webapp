@@ -16,7 +16,7 @@
         <div class="col s2 m3 l4">&nbsp;</div>
     </div>
     <div class="row center">
-      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
+      <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light deep-purple lighten-2"><fmt:message key="join.now" /></a>
     </div>
     <br />
 </content:banner>

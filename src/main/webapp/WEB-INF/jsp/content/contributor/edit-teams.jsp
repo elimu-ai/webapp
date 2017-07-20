@@ -27,7 +27,7 @@
                     </p>
                 </c:forEach>
 
-                <button id="submitButton" class="btn purple waves-effect waves-light" type="submit">
+                <button id="submitButton" class="btn deep-purple lighten-1 waves-effect waves-light" type="submit">
                     <fmt:message key="save" /> <i class="material-icons right">send</i>
                 </button>
             </form>
