@@ -27,7 +27,7 @@ public class ErrorPageTest {
 
     @Test
     public void testHttp403() {
-        driver.get(DomainHelper.getBaseUrl() + "/img");
+        driver.get(DomainHelper.getBaseUrl() + "/static/img");
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
         
         ErrorPage errorPage = PageFactory.initElements(driver, ErrorPage.class);
