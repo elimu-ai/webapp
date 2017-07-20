@@ -11,7 +11,7 @@
         <c:if test="${not empty applicationOpenedEvents}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="id" /></th>
+                    <th>id</th>
                     <th><fmt:message key="device.id" /></th>
                     <th><fmt:message key="time.registered" /></th>
                     <th><fmt:message key="package.name" /></th>

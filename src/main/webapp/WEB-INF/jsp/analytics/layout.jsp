@@ -27,7 +27,7 @@
     </head>
 
     <body>
-        <nav class="purple">
+        <nav class="deep-purple lighten-1">
             <div class="row nav-wrapper">
                 <div class="col s1">
                     <ul id="nav-mobile" class="side-nav">

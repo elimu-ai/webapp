@@ -103,7 +103,7 @@
         </div>
         
         <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-            <a class="btn-floating btn-large purple" title="Add content">
+            <a class="btn-floating btn-large deep-purple lighten-1" title="Add content">
                 <i class="large material-icons">add</i>
             </a>
             <ul>
