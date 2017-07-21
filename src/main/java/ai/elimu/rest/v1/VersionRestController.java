@@ -13,16 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The responsibility of this controller is to return the version code of the 
- * newest elimu.ai APK file uploaded to the website.
+ * The responsibility of this controller is to return the latest version code of  
+ * the applications that are using the webapp's REST API.
  */
 @RestController
 @RequestMapping(value = "/rest/v1/version", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class VersionRestController {
     
     public static final Integer NEWEST_VERSION_APPSTORE = 1001008; // 1.1.8 (2016-11-12)
-    public static final Integer NEWEST_VERSION_LITERACYAPP = 1001006; // 1.1.6 (2016-08-07)
-    public static final Integer NEWEST_VERSION_CHAT = 1001002; // 1.1.2 (2016-08-08)
+    public static final Integer NEWEST_VERSION_CONTENT_PROVIDER = 1001006; // 1.1.6 (2016-08-07)
     
     public static final Integer MINIMUM_OS_VERSION = 21; // Android 5.0
     
@@ -43,14 +42,16 @@ public class VersionRestController {
         logger.info("request.getQueryString(): " + request.getQueryString());
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
-        Application application = applicationDao.readByPackageName(locale, "org.literacyapp");
-        if (application != null) {
+        Application appStoreApplication = applicationDao.readByPackageName(locale, "ai.elimu.appstore");
+        if (appStoreApplication != null) {
             // TODO: fetch dynamically from Application/ApplicationVersion
         }
         
+        // TODO: fetch version of ContentProvider
+        
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("result", "success");
-        jsonObject.put("newestVersion", NEWEST_VERSION_LITERACYAPP);
+        jsonObject.put("newestVersion", NEWEST_VERSION_CONTENT_PROVIDER);
         jsonObject.put("minOsVersion", MINIMUM_OS_VERSION);
         logger.info("jsonObject: " + jsonObject);
         return jsonObject.toString();

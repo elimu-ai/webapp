@@ -17,21 +17,20 @@
     
     <div class="row section">
         <div class="col s12 m4">
-            <img src="<spring:url value='/img/publish-nya.png' />" alt="Nya's Space Quest" />
+            <img src="<spring:url value='/static/img/publish-nya.png' />" alt="Nya's Space Quest" />
         </div>
         <div class="col s12 m4">
-            <img src="<spring:url value='/img/publish-literacyapp.png' />" alt="elimu.ai" />
+            <img src="<spring:url value='/static/img/publish-literacyapp.png' />" alt="elimu.ai" />
         </div>
         <div class="col s12 m4">
-            <img src="<spring:url value='/img/publish-literacyapp2.png' />" alt="elimu.ai" />
+            <img src="<spring:url value='/static/img/publish-literacyapp2.png' />" alt="elimu.ai" />
         </div>
     </div>
     
     <p>
         <i class="left material-icons medium">grade</i>
         For each literacy and numeracy skill our machine learning algorithms detect the apps that are most 
-        effective at teaching the children. The best-performing apps are then automatically promoted and 
-        the developers rewarded.
+        effective at teaching the children. The best-performing apps are then automatically promoted.
     </p>
     
     <h4><fmt:message key="instructions" /></h4>
