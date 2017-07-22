@@ -21,12 +21,10 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.SignOnEventDao;
 import ai.elimu.model.contributor.SignOnEvent;
@@ -35,7 +33,6 @@ import ai.elimu.model.enums.Provider;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.CookieHelper;
 import ai.elimu.util.Mailer;
-import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -208,26 +205,10 @@ public class SignOnControllerGitHub {
                 htmlText += "<p><blockquote>\"We build open source tablet software that teaches a child to read, write, and perform arithmetic <i>fully autonomously</i> and without the aid of a teacher. This will help bring literacy to over 57 million children currently out of school.\"</blockquote></p>";
                 htmlText += "<p><img src=\"http://elimu.ai/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
-                htmlText += "<p>Within the next hour, we will send you an invite to join our Slack channel (to " + contributor.getEmail() + "). There you can chat with the other community members.</p>";
+                htmlText += "<p>At https://gitter.im/elimu-ai/Lobby you can chat with the other community members.</p>";
                 htmlText += "<h2>Feedback</h2>";
-                htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in Slack.</p>";
+                htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in the Gitter chat room.</p>";
                 Mailer.sendHtml(to, null, from, subject, title, htmlText);
-                
-                if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                    // Post notification in Slack
-                    String name = "";
-                    if (StringUtils.isNotBlank(contributor.getFirstName())) {
-                        name += "(";
-                        name += contributor.getFirstName();
-                        if (StringUtils.isNotBlank(contributor.getLastName())) {
-                            name += " " + contributor.getLastName();
-                        }
-                        name += ")";
-                    }
-                    String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://elimu.ai/content/community/contributors";
-                    String iconUrl = contributor.getImageUrl();
-                    SlackApiHelper.postMessage(null, text, iconUrl, null);
-                }
             } else {
                 // Contributor already exists in database
                 

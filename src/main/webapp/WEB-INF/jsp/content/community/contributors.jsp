@@ -11,8 +11,8 @@
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4"><c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /><i class="material-icons right">more_vert</i></span>
-                    <c:if test="${not empty contributor.slackId}">
-                        <p><a href="https://elimu-ai.slack.com" target="_blank"><i class="material-icons left">chat_bubble_outline</i>Chat with <c:out value="${contributor.firstName}" /> on Slack</a></p>
+                    <c:if test="${not empty contributor.gitterId}">
+                        <p><a href="https://gitter.im/elimu-ai/Lobby" target="_blank"><i class="material-icons left">chat_bubble_outline</i>Chat with <c:out value="${contributor.firstName}" /> on Gitter</a></p>
                     </c:if>
                 </div>
 

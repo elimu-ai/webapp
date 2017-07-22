@@ -1,7 +1,6 @@
 package ai.elimu.web.content.multimedia.video;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +14,10 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.contributor.VideoRevisionEvent;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.content.VideoFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.util.ImageHelper;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -156,17 +151,6 @@ public class VideoCreateController {
             videoRevisionEvent.setVideo(video);
             videoRevisionEvent.setTitle(video.getTitle());
             videoRevisionEventDao.create(videoRevisionEvent);
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(
-                    contributor.getFirstName() + " just added a new Video:\n" + 
-                    "• Language: \"" + video.getLocale().getLanguage() + "\"\n" + 
-                    "• Title: \"" + video.getTitle() + "\"\n" + 
-                    "See ") + "http://elimu.ai/content/multimedia/video/edit/" + video.getId();
-                String iconUrl = contributor.getImageUrl();
-                String imageUrl = "http://elimu.ai/video/" + video.getId() + "/thumbnail.png";
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
-            }
             
             return "redirect:/content/multimedia/video/list#" + video.getId();
         }

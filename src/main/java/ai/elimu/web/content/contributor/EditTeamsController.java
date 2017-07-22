@@ -1,6 +1,5 @@
 package ai.elimu.web.content.contributor;
 
-import java.net.URLEncoder;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -8,10 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.Contributor;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Team;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,15 +54,6 @@ public class EditTeamsController {
             contributor.setTeams(teams);
             contributorDao.update(contributor);
             session.setAttribute("contributor", contributor);
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(
-                        contributor.getFirstName() + " just updated his/her team(s):\n" + 
-                        contributor.getTeams() + "\n" + 
-                        "See ") + "http://elimu.ai/content/community/contributors";
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(null, text, iconUrl, null);
-            }
             
             return "redirect:/content";
         }
