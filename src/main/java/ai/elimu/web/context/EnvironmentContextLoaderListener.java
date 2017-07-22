@@ -113,9 +113,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 if (env == Environment.PROD) {
                     String mailChimpApiKey = (String) servletContext.getAttribute("mailchimp_api_key");
                     PROPERTIES.put("mailchimp.api.key", mailChimpApiKey);
-                    
-                    String slackApiToken = (String) servletContext.getAttribute("slack_api_token");
-                    PROPERTIES.put("slack.api.token", slackApiToken);
                 }
                 
                 String appstoreSecret = (String) servletContext.getAttribute("appstore_secret");

@@ -1,7 +1,6 @@
 package ai.elimu.web.content.multimedia.image;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,15 +16,11 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -142,17 +137,6 @@ public class ImageCreateController {
             imageDao.create(image);
             
             // TODO: store RevisionEvent
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(
-                    contributor.getFirstName() + " just added a new Image:\n" + 
-                    "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
-                    "• Title: \"" + image.getTitle() + "\"\n" +
-                    "See ") + "http://elimu.ai/content/multimedia/image/edit/" + image.getId();
-                String iconUrl = contributor.getImageUrl();
-                String imageUrl = "http://elimu.ai/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, imageUrl);
-            }
             
             // Label Image with Word of matching title
             Word matchingWord = wordDao.readByText(contributor.getLocale(), image.getTitle());

@@ -36,8 +36,6 @@ public class Contributor extends BaseEntity {
     
     private String usernameGitHub;
     
-    private String slackId;
-    
     private String imageUrl;
     
     private String firstName;
@@ -130,14 +128,6 @@ public class Contributor extends BaseEntity {
 
     public void setUsernameGitHub(String usernameGitHub) {
         this.usernameGitHub = usernameGitHub;
-    }
-    
-    public String getSlackId() {
-        return slackId;
-    }
-
-    public void setSlackId(String slackId) {
-        this.slackId = slackId;
     }
     
     public String getImageUrl() {

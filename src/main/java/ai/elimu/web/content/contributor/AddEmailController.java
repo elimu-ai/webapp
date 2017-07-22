@@ -1,6 +1,5 @@
 package ai.elimu.web.content.contributor;
 
-import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
@@ -11,10 +10,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.SignOnEventDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.contributor.SignOnEvent;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.util.Mailer;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,26 +81,10 @@ public class AddEmailController {
             htmlText += "<p><blockquote>\"The mission of the elimu.ai project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
             htmlText += "<p><img src=\"http://elimu.ai/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
             htmlText += "<h2>Chat</h2>";
-            htmlText += "<p>Within the next hour, we will send you an invite to join our Slack channel (to " + contributor.getEmail() + "). There you can chat with the other community members.</p>";
+            htmlText += "<p>At https://gitter.im/elimu-ai/Lobby you can chat with the other community members.</p>";
             htmlText += "<h2>Feedback</h2>";
-            htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in Slack.</p>";
+            htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in the Gitter chat room.</p>";
             Mailer.sendHtml(to, null, from, subject, title, htmlText);
-
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                // Post notification in Slack
-                String name = "";
-                if (StringUtils.isNotBlank(contributor.getFirstName())) {
-                    name += "(";
-                    name += contributor.getFirstName();
-                    if (StringUtils.isNotBlank(contributor.getLastName())) {
-                        name += " " + contributor.getLastName();
-                    }
-                    name += ")";
-                }
-                String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://elimu.ai/content/community/contributors";
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(null, text, iconUrl, null);
-            }
         }
     	
         return "redirect:/content";

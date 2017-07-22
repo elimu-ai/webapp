@@ -1,30 +1,22 @@
 package ai.elimu.web.content.storybook;
 
-import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.Contributor;
-import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.GradeLevel;
-import ai.elimu.model.enums.Team;
 import ai.elimu.util.LetterFrequencyHelper;
-import ai.elimu.util.SlackApiHelper;
 import ai.elimu.util.WordFrequencyHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,17 +101,6 @@ public class StoryBookEditController {
             storyBookDao.update(storyBook);
             
             // TODO: store RevisionEvent
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(contributor.getFirstName() + " just edited a StoryBook:\n" + 
-                    "• Language: \"" + storyBook.getLocale().getLanguage() + "\"\n" + 
-                    "• Title: \"" + storyBook.getTitle() + "\"\n" + 
-                    "• Grade level: " + storyBook.getGradeLevel() + "\n" +
-                    "• Paragraphs: " + storyBook.getParagraphs() + "\n" + 
-                    "See ") + "http://elimu.ai/content/storybook/edit/" + storyBook.getId();
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
-            }
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

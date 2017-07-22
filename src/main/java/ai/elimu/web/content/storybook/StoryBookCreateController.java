@@ -1,6 +1,5 @@
 package ai.elimu.web.content.storybook;
 
-import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -13,11 +12,7 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.GradeLevel;
-import ai.elimu.model.enums.Team;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -90,17 +85,6 @@ public class StoryBookCreateController {
             storybookDao.create(storyBook);
             
             // TODO: store RevisionEvent
- 
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(contributor.getFirstName() + " just added a new StoryBook:\n" + 
-                    "• Language: \"" + storyBook.getLocale().getLanguage() + "\"\n" + 
-                    "• Title: \"" + storyBook.getTitle() + "\"\n" + 
-                    "• Grade level: " + storyBook.getGradeLevel() + "\n" +
-                    "• Paragraphs: " + storyBook.getParagraphs() + "\n" + 
-                    "See ") + "http://elimu.ai/content/storybook/edit/" + storyBook.getId();
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
-            }
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

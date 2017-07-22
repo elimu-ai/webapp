@@ -1,6 +1,5 @@
 package ai.elimu.web.content.allophone;
 
-import java.net.URLEncoder;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -10,11 +9,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.content.allophone.SoundType;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -79,18 +74,6 @@ public class AllophoneCreateController {
         } else {
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophoneDao.create(allophone);
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String text = URLEncoder.encode(
-                    contributor.getFirstName() + " just created an Allophone:\n" + 
-                    "• Language: \"" + allophone.getLocale().getLanguage() + "\"\n" +  
-                    "• IPA: /" + allophone.getValueIpa() + "/\n" + 
-                    "• X-SAMPA: \"" + allophone.getValueSampa() + "\"\n" + 
-                    "• Sound type: \"" + allophone.getSoundType() + "\"\n" +         
-                    "See ") + "http://elimu.ai/content/allophone/edit/" + allophone.getId();
-                String iconUrl = contributor.getImageUrl();
-                SlackApiHelper.postMessage(Team.CONTENT_CREATION, text, iconUrl, null);
-            }
             
             return "redirect:/content/allophone/list#" + allophone.getId();
         }

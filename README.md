@@ -6,13 +6,13 @@ Web application: http://elimu.ai
 See Wiki: [Project Configuration](https://github.com/elimu-ai/webapp/wiki/Project-Configuration)
 
 ## Continuous integration
-[![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
+Travis: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
 
 ## Issue management
-See https://github.com/elimu-ai/webapp/projects
+See https://github.com/elimu-ai/webapp/projects and https://trello.com/elimuai_public
 
 ## Chat
-[Slack](https://elimu-ai.slack.com/messages/team-development) (register at http://elimu.ai/sign-on to receive an invite)
+See https://gitter.im/elimu-ai/Lobby
 
 ## Mailing list
 Sign up at http://eepurl.com/bGihkr
