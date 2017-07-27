@@ -12,6 +12,7 @@
             
             <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
             <intercept-url pattern="/analytics/**" access="hasRole('ROLE_ANALYST')" />
+            <intercept-url pattern="/apps/**" access="hasRole('ROLE_PROJECT_MANAGER')" />
             <intercept-url pattern="/content/**" access="hasRole('ROLE_CONTRIBUTOR')" />
             
             <logout logout-success-url="/?sign_out" />
