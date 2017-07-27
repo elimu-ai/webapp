@@ -7,7 +7,7 @@
     
     <div class="col l6 offset-l3">
         <div class="previewContainer valignwrapper" style="position: relative;">
-            <img src="<spring:url value='/img/device-nexus-5.png' />" alt="<fmt:message key="preview" />" />
+            <img src="<spring:url value='/static/img/device-nexus-5.png' />" alt="<fmt:message key="preview" />" />
             <div id="previewContentContainer" style="position: absolute; top: 15.15%; height: 66.75%; width: 100%; text-align: center;">
                 <div id="previewContent" class="valign-wrapper" 
                      style="
