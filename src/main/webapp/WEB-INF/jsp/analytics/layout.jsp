@@ -8,7 +8,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="shortcut icon" href="<spring:url value='/img/favicon.ico' />" />
+        <link rel="shortcut icon" href="<spring:url value='/static/img/favicon.ico' />" />
         
         <%-- CSS --%>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -33,7 +33,7 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li>
                             <a href="<spring:url value='/analytics' />">
-                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/img/logo-text-256x78.png' />" alt="elimu.ai" />
+                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
                             </a>
                         </li>
                         

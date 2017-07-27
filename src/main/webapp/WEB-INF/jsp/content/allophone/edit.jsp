@@ -78,7 +78,7 @@
     <div class="divider" style="margin: 1em 0;"></div>
     
     <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
+        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
         <div id="previewContentContainer">
             <div id="previewContent" class="previewContentGrapheme">
 

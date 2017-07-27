@@ -148,7 +148,7 @@
     <h5 class="center"><fmt:message key="preview" /></h5>
     
     <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
+        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
         <div id="previewContentContainer">
             <div id="previewContent" class="previewContentGrapheme">
 

@@ -21,10 +21,10 @@
 
                 <%-- Google will only display the first 150 characters of the meta description in SERPs. --%>
                 <meta name="description" content="<fmt:message key='free.quality.education.for.every.child' />" />
-                <link rel="shortcut icon" href="<spring:url value='/img/favicon.ico' />" />
+                <link rel="shortcut icon" href="<spring:url value='/static/img/favicon.ico' />" />
 
-                <meta property="og:image" content="http://${pageContext.request.serverName}/img/logo-256x256.png" />
-                <meta property="twitter:image" content="http://${pageContext.request.serverName}/img/logo-256x256.png" />
+                <meta property="og:image" content="http://${pageContext.request.serverName}/static/img/logo-256x256.png" />
+                <meta property="twitter:image" content="http://${pageContext.request.serverName}/static/img/logo-256x256.png" />
 
                 <%-- CSS --%>
                 <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -40,7 +40,7 @@
                 <nav class="deep-purple lighten-1">
                     <div class="nav-wrapper container">
                         <a id="logo-container" href="<spring:url value='/' />" class="brand-logo">
-                            <img src="<spring:url value='/img/logo-text-256x77.png' />" alt="elimu.ai" />
+                            <img src="<spring:url value='/static/img/logo-text-256x77.png' />" alt="elimu.ai" />
                         </a>
                         <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
                             <ul class="right hide-on-med-and-down">
