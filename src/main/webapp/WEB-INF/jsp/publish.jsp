@@ -11,8 +11,8 @@
     
     <p>
         We are building a platform of educational apps and games that teaches a child to read, write and perform 
-        arithmetic fully autonomously and without the aid of a teacher. This will help bring literacy to more than 
-        57 million children in developing countries who are currently out of school.
+        arithmetic fully autonomously and without the aid of a teacher. This will help bring literacy to the 
+        millions of children in developing countries who are currently out of school.
     </p>
     
     <div class="row section">
@@ -63,7 +63,8 @@
         <li>
             <b>What languages should the app/game support?</b><br />
             The app/game should support either English, Swahili or both. Our target 
-            users are Swahili-speaking children aged 7-10 living in Tanzania and Kenya.<br />
+            users are Swahili-speaking children aged 7-10 living in Tanzania and Kenya. 
+            And we continuously add support for more languages.<br />
             <br />
         </li>
         <li>
@@ -73,7 +74,7 @@
         </li>
         <li>
             <b>What content should I use in my app?</b><br />
-            We offer a content provider library that will automatically provide educational content 
+            We offer a <a href="https://github.com/elimu-ai/authentication/tree/master/contentprovider">content provider library</a> that will automatically provide educational content 
             matching the current skill level of each child.<br />
             <br />
         </li>
