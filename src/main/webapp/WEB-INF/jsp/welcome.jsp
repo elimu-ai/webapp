@@ -67,7 +67,7 @@
             <div class="col s12 m4 offset-m4">
                 <div class="card small">
                   <div class="card-image">
-                    <img src="<spring:url value='/static/img/banner-en.jpg' />" alt="Global Learning XPRIZE" />
+                    <img src="<spring:url value='/static/static/img/banner-en.jpg' />" alt="Global Learning XPRIZE" />
                     <span class="card-title">Global Learning XPRIZE</span>
                   </div>
                   <div class="card-content">
