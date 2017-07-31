@@ -79,7 +79,7 @@ public class AddEmailController {
             htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai community. We are glad to see you join us!</p>";
             htmlText += "<p>With your help, this is what we aim to achieve:</p>";
             htmlText += "<p><blockquote>\"The mission of the elimu.ai project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
-            htmlText += "<p><img src=\"http://elimu.ai/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
+            htmlText += "<p><img src=\"http://elimu.ai/static/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
             htmlText += "<h2>Chat</h2>";
             htmlText += "<p>At https://gitter.im/elimu-ai/Lobby you can chat with the other community members.</p>";
             htmlText += "<h2>Feedback</h2>";
