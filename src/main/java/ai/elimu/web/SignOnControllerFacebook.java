@@ -167,13 +167,18 @@ public class SignOnControllerFacebook {
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
                 String htmlText = "<p>Hi, " + firstName + "</p>";
                 htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai community. We are glad to see you join us!</p>";
+                htmlText += "<h2>Purpose</h2>";
+                htmlText += "<p>The purpose of elimu.ai is to provide <i>every child</i> with access to quality basic education.</p>";
+                htmlText += "<h2>Why?</h2>";
+                htmlText += "<p>The word “elimu” is Swahili for “education”. We believe that a free quality education is the right of every child no matter her social or geographical background.</p>";
+                htmlText += "<h2>How?</h2>";
                 htmlText += "<p>With your help, this is what we aim to achieve:</p>";
-                htmlText += "<p><blockquote>\"We build open source tablet software that teaches a child to read, write, and perform arithmetic <i>fully autonomously</i> and without the aid of a teacher. This will help bring literacy to over 57 million children currently out of school.\"</blockquote></p>";
+                htmlText += "<p><blockquote>\"We build tablet-based software that teaches a child to read, write and calculate fully autonomously, without guidance from qualified teachers.\"</blockquote></p>";
                 htmlText += "<p><img src=\"http://elimu.ai/static/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
                 htmlText += "<p>At https://gitter.im/elimu-ai/Lobby you can chat with the other community members.</p>";
                 htmlText += "<h2>Feedback</h2>";
-                htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in the Gitter chat room.</p>";
+                htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or by messaging us in the Gitter chat room.</p>";
                 Mailer.sendHtml(to, null, from, subject, title, htmlText);
             } else {
                 // Contributor already exists in database
