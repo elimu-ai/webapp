@@ -164,7 +164,7 @@ public class SignOnControllerGoogle {
                 htmlText += "<h2>Purpose</h2>";
                 htmlText += "<p>The purpose of elimu.ai is to provide <i>every child</i> with access to quality basic education.</p>";
                 htmlText += "<h2>Why?</h2>";
-                htmlText += "<p>The word “elimu” is Swahili for “education”. We believe that a free quality education is the right of every child no matter her social or geographical background.</p>";
+                htmlText += "<p>The word \"elimu\" is Swahili for \"education\". We believe that a free quality education is the right of every child no matter her social or geographical background.</p>";
                 htmlText += "<h2>How?</h2>";
                 htmlText += "<p>With your help, this is what we aim to achieve:</p>";
                 htmlText += "<p><blockquote>\"We build tablet-based software that teaches a child to read, write and calculate fully autonomously, without guidance from qualified teachers.\"</blockquote></p>";
