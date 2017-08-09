@@ -70,6 +70,7 @@
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
     <bean id="letterLearningEventDao" class="ai.elimu.dao.jpa.LetterLearningEventDaoJpa" />
+    <bean id="licenseDao" class="ai.elimu.dao.jpa.LicenseDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
     <bean id="numberLearningEventDao" class="ai.elimu.dao.jpa.NumberLearningEventDaoJpa" />
     <bean id="signOnEventDao" class="ai.elimu.dao.jpa.SignOnEventDaoJpa" />
