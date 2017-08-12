@@ -14,6 +14,7 @@ import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
+import ai.elimu.model.enums.Team;
 import ai.elimu.util.CookieHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/sign-on")
-public class SignOnControllerOffline {
+public class SignOnController {
 
     private Logger logger = Logger.getLogger(getClass());
     
@@ -35,8 +36,10 @@ public class SignOnControllerOffline {
     private SignOnEventDao signOnEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(ModelMap model, HttpServletRequest request) {
+    public String handleRequest(ModelMap model) {
     	logger.debug("handleRequest");
+        
+        model.addAttribute("teams", Team.values());
     	
         return "sign-on";
     }

@@ -28,7 +28,7 @@
     </div>
     
     <p>
-        <i class="left material-icons medium">grade</i>
+        <i class="left material-icons medium deep-purple-text">grade</i>
         For each literacy and numeracy skill our machine learning algorithms detect the apps that are most 
         effective at teaching the children. The best-performing apps are then automatically promoted.
     </p>
@@ -46,7 +46,7 @@
     </ol>
     
     <p>
-        If you have any questions, contact us at info@elimu.ai or at <a href="https://gitter.im/elimu-ai/Lobby">Gitter</a>.
+        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our <a href="https://gitter.im/elimu-ai/Lobby">chat room</a>.
     </p>
 </content:section>
 
@@ -62,8 +62,8 @@
         </li>
         <li>
             <b>What languages should the app/game support?</b><br />
-            The app/game should support either English, Swahili or both. Our target 
-            users are Swahili-speaking children aged 7-10 living in Tanzania and Kenya. 
+            The app/game should support either English, Swahili or both. Our initial target 
+            users are Swahili-speaking children aged 5-10 living in Tanzania and Kenya. 
             And we continuously add support for more languages.<br />
             <br />
         </li>
@@ -80,13 +80,13 @@
         </li>
         <li>
             <b>Is Internet access allowed?</b><br />
-            No, the tablets will be used in areas where there is little or no Internet access, 
+            No, the tablets will in many cases be used in areas where there is little or no Internet access, 
             so all software has to work offline.<br />
             <br />
         </li>
         <li>
             <b>What devices are being used?</b><br />
-            We are building our software for tablets with 7" - 10" displays installed with  
+            We are building our software for tablets with 7"-10" displays installed with  
             Android API 21 (5.0) or higher.<br />
             <br />
         </li>
