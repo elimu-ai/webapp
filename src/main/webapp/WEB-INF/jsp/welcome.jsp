@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key='free.quality.education.for.every.child' />
+    <fmt:message key='free.quality.education.for.every.child.title' />
 </content:title>
 
 <content:banner>
