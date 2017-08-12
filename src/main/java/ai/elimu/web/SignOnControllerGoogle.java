@@ -171,9 +171,7 @@ public class SignOnControllerGoogle {
                 htmlText += "<p><img src=\"http://elimu.ai/static/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
                 htmlText += "<p>At https://gitter.im/elimu-ai/Lobby you can chat with the other community members.</p>";
-                htmlText += "<h2>Feedback</h2>";
-                htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or by messaging us in the Gitter chat room.</p>";
-                Mailer.sendHtml(to, null, from, subject, title, htmlText);
+                Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "https://gitter.im/elimu-ai/Lobby");
             } else {
                 // Contributor already exists in database
                 
