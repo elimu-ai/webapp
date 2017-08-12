@@ -32,6 +32,13 @@
                 <%--<link rel="stylesheet" href="<spring:url value='/static/css/materialize.min-0.97.6.css' />" />--%>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
                 <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
+                
+                <%-- JavaScripts --%>
+                <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+                <script src="<spring:url value='/static/js/init.js' />"></script>
+                <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
+                <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
             </head>
 
             <body>
@@ -98,22 +105,26 @@
                         <div class="row">
                           <div class="col l6 s12">
                             <h5 class="white-text"><fmt:message key="about" /> elimu.ai</h5>
-                            <p class="grey-text text-lighten-4"><fmt:message key="we.build.tablet.based.software" /></p>
-                            <p class="grey-text text-lighten-4"><fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a></p>
+                            <p class="grey-text text-lighten-2"><fmt:message key="we.are.an.open.community.with" /></p>
+                            <p class="grey-text text-lighten-2"><fmt:message key="we.build.tablet.based.software.which.is.open.source" />
+                            <a class="white-text" href="<spring:url value='/publish' />"><fmt:message key="read.more" />...</a></p>
                           </div>
-                          <div class="col l3 s12">
-                            <h5 class="white-text"><fmt:message key="mailing.list" /></h5>
-                            <p class="grey-text text-lighten-4">
-                                <fmt:message key="sign.up.to.our.mailing.list.to..." />
+                          <div class="col l3 offset-l1 s12 ">
+                            <h5 class="white-text"><fmt:message key="contact.us" /></h5>
+                            <p class="grey-text text-lighten-2">
+                                Send us an <a class="white-text" href="mailto:info@elimu.ai"><fmt:message key="email" /></a> 
+                                or talk with us directly in our chat room:
                             </p>
-                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="http://eepurl.com/bGihkr">
-                                <fmt:message key="subscribe" /><i class="material-icons right">mail</i>
+                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://gitter.im/elimu-ai/Lobby">
+                                <fmt:message key="open.chat" /><i class="material-icons right">forum</i>
                             </a>
+                            <%--<p class="grey-text text-lighten-4">
+                                <fmt:message key="mailing.list" />: <a class="white-text" href="http://eepurl.com/bGihkr" target="_blank"><fmt:message key="subscribe" /></a>
+                            </p>--%>
                           </div>
-                          <div class="col l2 s12 right">
-                            <h5 class="white-text"><fmt:message key="connect" /></h5>
+                          <div class="col l2 s12">
+                            <h5 class="white-text"><fmt:message key="social.media" /></h5>
                             <ul>
-                                <li><a class="white-text" href="mailto:info@elimu.ai">info@elimu.ai</a></li>
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
                                 <li><a class="white-text" href="https://plus.google.com/u/0/100080736050421577958" target="_blank">Google+</a></li>
@@ -126,70 +137,39 @@
                     <div class="footer-copyright">
                       <div class="container">
                           <div class="row">
-                              <div class="col s6">
+                              <div class="col s12">
                                   <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">
                                       Apache License, 2.0
-                                  </a>
-                              </div>
-                              <div class="col s6">
-                                  <fmt:message key="switch.language" />: 
-                                  <c:choose>
-                                      <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
-                                          <a class="white-text" href="<spring:url value='/?lang=en' />">
-                                              English
-                                          </a> | 
-                                          <a class="white-text" href="<spring:url value='/?lang=es' />">
-                                              Español
-                                          </a> | 
-                                          <a class="white-text" href="<spring:url value='/?lang=ar' />">
-                                              العربية
-                                          </a> | 
-                                          <a class="white-text" href="<spring:url value='/?lang=sw' />">
-                                              Kiswahili
-                                          </a>
-                                      </c:when>
-                                      <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                          <a class="white-text" href="http://en.test.elimu.ai">
-                                              English
-                                          </a> | 
-                                          <a class="white-text" href="http://es.test.elimu.ai">
-                                              Español
-                                          </a> | 
-                                          <a class="white-text" href="http://ar.test.elimu.ai">
-                                              العربية
-                                          </a> | 
-                                          <a class="white-text" href="http://sw.test.elimu.ai">
-                                              Kiswahili
-                                          </a>
-                                      </c:when>
-                                      <c:otherwise>
-                                          <a class="white-text" href="http://en.elimu.ai">
-                                              English
-                                          </a> | 
-                                          <a class="white-text" href="http://es.elimu.ai">
-                                              Español
-                                          </a> | 
-                                          <a class="white-text" href="http://ar.elimu.ai">
-                                              العربية
-                                          </a> | 
-                                          <a class="white-text" href="http://sw.elimu.ai">
-                                              Kiswahili
-                                          </a>
-                                      </c:otherwise>
-                                  </c:choose>
+                                  </a> &nbsp; | &nbsp; 
+                                  <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a>
+                                   &nbsp; | &nbsp; 
+                                   <fmt:message key="languages.supported.by.the.platform" />: 
+                                    <c:choose>
+                                        <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
+                                            <a class="white-text" href="<spring:url value='/?lang=en' />" title="English">en</a>
+                                            <a class="white-text" href="<spring:url value='/?lang=es' />" title="Español">es</a>
+                                            <a class="white-text" href="<spring:url value='/?lang=ar' />" title="العربية">ar</a>
+                                            <a class="white-text" href="<spring:url value='/?lang=sw' />" title="Kiswahili">sw</a>
+                                        </c:when>
+                                        <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
+                                            <a class="white-text" href="http://en.test.elimu.ai" title="English">en</a>
+                                            <a class="white-text" href="http://es.test.elimu.ai" title="Español">es</a>
+                                            <a class="white-text" href="http://ar.test.elimu.ai" title="العربية">ar</a>
+                                            <a class="white-text" href="http://sw.test.elimu.ai" title="Kiswahili">sw</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="white-text" href="http://test.elimu.ai" title="English">en</a>
+                                            <a class="white-text" href="http://test.elimu.ai" title="Español">es</a>
+                                            <a class="white-text" href="http://test.elimu.ai" title="العربية">ar</a>
+                                            <a class="white-text" href="http://test.elimu.ai" title="Kiswahili">sw</a>
+                                        </c:otherwise>
+                                    </c:choose>
                               </div>
                           </div>
                       </div>
                     </div>
                   </footer>
                 </c:if>
-
-                <%-- JavaScripts --%>
-                <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-                <script src="<spring:url value='/static/js/init.js' />"></script>
-                <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
-                <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
             </body>
         </html>
     </c:otherwise>
