@@ -106,7 +106,7 @@
             <div class="col s12 m3">
                 <div class="icon-block center">
                     <h2><i class="material-icons medium blue-grey-text">redeem</i></h2>
-                    <h4>1. <fmt:message key="donate.money" /></h4>
+                    <h4><fmt:message key="donate.money" /></h4>
 
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                         <input type="hidden" name="cmd" value="_s-xclick">
@@ -138,7 +138,7 @@
             <div class="col s12 offset-m1 m5 z-depth-2 white center">
                 <div class="icon-block" style="padding: 1em;">
                   <h2><i class="material-icons large deep-purple-text">group</i></h2>
-                  <h4>2. <fmt:message key="join.a.team" /></h4>
+                  <h4><fmt:message key="join.a.team" /></h4>
                   
                   <p>
                       We need help from both technical and non-technical people. 
@@ -157,7 +157,7 @@
             <div class="col s12 offset-m1 m2 center">
                 <div class="icon-block">
                   <h2><i class="material-icons medium">record_voice_over</i></h2>
-                  <h4>3. <fmt:message key="spread.the.word" /></h4>
+                  <h4><fmt:message key="spread.the.word" /></h4>
                   
                   <p>Follow us on social media and share our work with your friends.</p>
                 </div>
