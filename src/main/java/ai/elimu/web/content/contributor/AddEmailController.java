@@ -81,9 +81,9 @@ public class AddEmailController {
             htmlText += "<p><blockquote>\"The mission of the elimu.ai project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
             htmlText += "<p><img src=\"http://elimu.ai/static/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
             htmlText += "<h2>Chat</h2>";
-            htmlText += "<p>At https://gitter.im/elimu-ai/Lobby you can chat with the other community members.</p>";
+            htmlText += "<p>At https://elimu-ai.herokuapp.com you can chat with the other community members.</p>";
             htmlText += "<h2>Feedback</h2>";
-            htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in the Gitter chat room.</p>";
+            htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in the Slack chat room.</p>";
             Mailer.sendHtml(to, null, from, subject, title, htmlText);
         }
     	
