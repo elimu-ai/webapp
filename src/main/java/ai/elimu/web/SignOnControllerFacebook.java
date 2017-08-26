@@ -176,8 +176,8 @@ public class SignOnControllerFacebook {
                 htmlText += "<p><blockquote>\"We build tablet-based software that teaches a child to read, write and calculate fully autonomously, without guidance from qualified teachers.\"</blockquote></p>";
                 htmlText += "<p><img src=\"http://elimu.ai/static/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
-                htmlText += "<p>At https://gitter.im/elimu-ai/Lobby you can chat with the other community members.</p>";
-                Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "https://gitter.im/elimu-ai/Lobby");
+                htmlText += "<p>At https://elimu-ai.herokuapp.com you can chat with the other community members.</p>";
+                Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "https://elimu-ai.herokuapp.com");
             } else {
                 // Contributor already exists in database
                 

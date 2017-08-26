@@ -12,7 +12,7 @@ Travis: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://tra
 See https://github.com/elimu-ai/webapp/projects and https://trello.com/elimuai_public
 
 ## Chat
-See https://gitter.im/elimu-ai/Lobby
+See https://elimu-ai.herokuapp.com
 
 ## Mailing list
 Sign up at http://eepurl.com/bGihkr

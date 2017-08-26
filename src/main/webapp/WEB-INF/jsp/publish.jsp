@@ -46,7 +46,7 @@
     </ol>
     
     <p>
-        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our <a href="https://gitter.im/elimu-ai/Lobby">chat room</a>.
+        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our <a href="https://elimu-ai.herokuapp.com">chat room</a>.
     </p>
 </content:section>
 
