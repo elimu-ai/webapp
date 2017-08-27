@@ -6,8 +6,7 @@
     <h5>Trello</h5>
     <p>
         For high-level planning, each team has its own Trello board: 
-        <a href="https://trello.com/elimuai_public" target="_blank">https://trello.com/elimuai_public</a> 
-        (you must be signed in with a Trello account to see the boards).
+        <a href="https://trello.com/elimuai_public" target="_blank">https://trello.com/elimuai_public</a>
     </p>
     
     <h5>GitHub</h5>
