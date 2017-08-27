@@ -1,4 +1,4 @@
-package ai.elimu.rest.v1.admin;
+package ai.elimu.rest.v1.application;
 
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/rest/v1/admin/application", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v1/application", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ApplicationRestController {
     
     private Logger logger = Logger.getLogger(getClass());
