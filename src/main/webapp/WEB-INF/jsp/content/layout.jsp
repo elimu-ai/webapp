@@ -39,7 +39,7 @@
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="community" /></b></li>
                         <li><a href="<spring:url value='/content/community/contributors' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
-                        <li><a href="https://elimu-ai.herokuapp.com" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
+                        <li><a href="http://slack.elimu.ai" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
                         <li><a href="<spring:url value='/content/community/issue-management' />"><i class="material-icons left">assignment</i><fmt:message key="issue.management" /></a></li>
                         
                         <li class="divider"></li>
