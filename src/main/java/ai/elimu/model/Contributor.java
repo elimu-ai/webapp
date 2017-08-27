@@ -15,6 +15,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.Role;
 import ai.elimu.model.enums.Team;
+import ai.elimu.model.project.Project;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Contributor extends BaseEntity {
@@ -27,6 +29,9 @@ public class Contributor extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+    
+    @ManyToOne
+    private Project project;
     
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -88,6 +93,14 @@ public class Contributor extends BaseEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public Calendar getRegistrationTime() {
