@@ -1,4 +1,4 @@
-package rest.v1.admin;
+package rest.v1.application;
 
 import org.apache.log4j.Logger;
 import static org.hamcrest.CoreMatchers.is;
@@ -18,14 +18,14 @@ public class ApplicationRestControllerTest {
 
     @Test(expected = JSONException.class)
     public void testList_missingParameters() {
-    	String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/admin/application/list");
+    	String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/application/list");
         logger.info("jsonResponse: " + jsonResponse);
         JSONObject jsonObject = new JSONObject(jsonResponse);
     }
     
     @Test
     public void testList_success() {
-        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/admin/application/list" +
+        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/application/list" +
                 "?deviceId=abcdef123456" + 
                 "&checksum=c0e08c173958ce4f1624068b131e3c59" + 
                 "&locale=" + Locale.EN + 
