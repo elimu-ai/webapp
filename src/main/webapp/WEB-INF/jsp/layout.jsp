@@ -115,7 +115,7 @@
                                 Send us an <a class="white-text" href="mailto:info@elimu.ai"><fmt:message key="email" /></a> 
                                 or talk with us directly in our chat room:
                             </p>
-                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://elimu-ai.herokuapp.com">
+                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="http://slack.elimu.ai">
                                 <fmt:message key="open.chat" /><i class="material-icons right">forum</i>
                             </a>
                             <%--<p class="grey-text text-lighten-4">
