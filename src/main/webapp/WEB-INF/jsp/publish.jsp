@@ -86,7 +86,7 @@
         </li>
         <li>
             <b>What devices are being used?</b><br />
-            We are building our software for tablets with 7"-10" displays installed with  
+            We are building our software for tablets with 5"-10" displays installed with  
             Android API 21 (5.0) or higher.<br />
             <br />
         </li>
