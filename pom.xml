@@ -141,13 +141,13 @@
         <repository>
             <id>archiva.internal</id>
             <name>Internal Release Repository</name>
-            <url>http://archiva.educativo.eu:8081/repository/internal/</url>
+            <url>http://maven.elimu.ai:8081/repository/internal/</url>
         </repository>
     </distributionManagement>
     <repositories>
         <repository>
             <id>archiva.internal</id>
-            <url>http://archiva.educativo.eu:8081/repository/internal/</url>
+            <url>http://maven.elimu.ai:8081/repository/internal/</url>
         </repository>
         <repository>
             <id>JBoss Repository</id>
