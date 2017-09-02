@@ -1,13 +1,11 @@
 package ai.elimu.web.admin.project;
 
-import java.util.Calendar;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.dao.ProjectDao;
+import ai.elimu.model.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,55 +20,37 @@ public class ProjectCreateController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private LetterDao letterDao;
-    
-    @Autowired
-    private AllophoneDao allophoneDao;
+    private ProjectDao projectDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(
-            HttpSession session,
-            Model model) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        
-        Letter letter = new Letter();
-        model.addAttribute("letter", letter);
-        
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
-        model.addAttribute("allophones", allophones);
+        Project project = new Project();
+        model.addAttribute("project", project);
 
-        return "content/letter/create";
+        return "admin/project/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
-            @Valid Letter letter,
+            @Valid Project project,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        
-        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
-        if (existingLetter != null) {
+        Project existingProject = projectDao.read(project.getName());
+        if (existingProject != null) {
             result.rejectValue("text", "NonUnique");
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("letter", letter);
-            
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
-            model.addAttribute("allophones", allophones);
-            
-            return "content/letter/create";
+            model.addAttribute("project", project);
+            return "admin/project/create";
         } else {
-            letter.setTimeLastUpdate(Calendar.getInstance());
-            letterDao.create(letter);
-            
-            return "redirect:/content/letter/list#" + letter.getId();
+            projectDao.create(project);
+            return "redirect:/admin/project/list#" + project.getId();
         }
     }
 }
