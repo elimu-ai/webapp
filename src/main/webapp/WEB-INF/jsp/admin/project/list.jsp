@@ -8,12 +8,20 @@
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="name" /></th>
+                    <th><fmt:message key="managers" /></th>
+                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="project" items="${projects}">
                         <tr class="project">
                             <td>
                                 ${project.name}
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <a class="editLink" href="<spring:url value='/admin/project/edit/${project.id}' />"><span class="material-icons">edit</span></a>
                             </td>
                         </tr>
                     </c:forEach>
