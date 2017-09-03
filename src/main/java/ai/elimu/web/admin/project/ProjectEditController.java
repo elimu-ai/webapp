@@ -74,22 +74,24 @@ public class ProjectEditController {
         } else {
             projectDao.update(project);
             
-            // Send invitation e-mail to newly added managers
-            for (Contributor manager : project.getManagers()) {
-                if ((existingProject.getManagers() == null) || !existingProject.getManagers().contains(manager)) {
-                    String to = manager.getEmail();
-                    String from = "elimu.ai <info@elimu.ai>";
-                    String subject = "You have been added as a manager";
-                    String title = project.getName();
-                    String firstName = StringUtils.isBlank(manager.getFirstName()) ? "" : manager.getFirstName();
-                    String htmlText = "<p>Hi, " + firstName + "</p>";
-                    htmlText += "<p>" + contributor.getFirstName() + " has added you as a manager of the \"" + project.getName() + "\" project.</p>";
-                    htmlText += "<p>To create a new app collection, click the button below:</p>";
-                    String buttonUrl = "http://elimu.ai/project";
-                    if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-                        buttonUrl = "http://test.elimu.ai/project";
+            if (project.getManagers() != null) {
+                // Send invitation e-mail to newly added managers
+                for (Contributor manager : project.getManagers()) {
+                    if ((existingProject.getManagers() == null) || !existingProject.getManagers().contains(manager)) {
+                        String to = manager.getEmail();
+                        String from = "elimu.ai <info@elimu.ai>";
+                        String subject = "You have been added as a manager";
+                        String title = project.getName();
+                        String firstName = StringUtils.isBlank(manager.getFirstName()) ? "" : manager.getFirstName();
+                        String htmlText = "<p>Hi, " + firstName + "</p>";
+                        htmlText += "<p>" + contributor.getFirstName() + " has added you as a manager of the \"" + project.getName() + "\" project.</p>";
+                        htmlText += "<p>To create a new app collection, click the button below:</p>";
+                        String buttonUrl = "http://elimu.ai/project";
+                        if (EnvironmentContextLoaderListener.env == Environment.TEST) {
+                            buttonUrl = "http://test.elimu.ai/project";
+                        }
+                        Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open project", buttonUrl);
                     }
-                    Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open project", buttonUrl);
                 }
             }
             

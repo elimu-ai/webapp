@@ -19,9 +19,12 @@
                     <div id="managersContainer">
                         <c:forEach var="manager" items="${project.managers}">
                             <input name="managers" type="hidden" value="${manager.id}" />
-                            <div class="chip" data-managerid="${manager.id}" data-managervalue="${manager.email}">
-                                ${manager.email} 
-                            </div>
+                            <a href="<spring:url value='/content/community/contributors' />" target="_blank">
+                                <div class="chip">
+                                    <img src="<spring:url value='${manager.imageUrl}' />" alt="${manager.firstName}" /> 
+                                    <c:out value="${manager.firstName}" />&nbsp;<c:out value="${manager.lastName}" />
+                                </div>
+                            </a>
                         </c:forEach>
                     </div>
 
