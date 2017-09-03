@@ -132,6 +132,11 @@
                         <input type="submit" class="btn waves-effect waves-light blue-grey" value="Donate via PayPal" />
                         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                     </form>
+                    
+                    <br />
+                    <div style="margin-left: 0.55em;">
+                        <a class="coinbase-button" data-code="3965864fb5a2e5a668e6b8385fc4d9de" data-button-style="custom_large" href="https://www.coinbase.com/checkouts/3965864fb5a2e5a668e6b8385fc4d9de">Donate Bitcoins</a><script src="https://www.coinbase.com/assets/button.js" type="text/javascript"></script>
+                    </div>
                 </div>
             </div>
                   
