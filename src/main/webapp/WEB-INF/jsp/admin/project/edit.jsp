@@ -13,9 +13,43 @@
                     <form:label path="name" cssErrorClass="error"><fmt:message key='name' /></form:label>
                     <form:input path="name" cssErrorClass="error" />
                 </div>
-            </div>
                 
-            <%-- TODO: add project managers --%>
+                <div class="col s12">
+                    <label><fmt:message key="managers" /></label>
+                    <div id="managersContainer">
+                        <c:forEach var="manager" items="${project.managers}">
+                            <input name="managers" type="hidden" value="${manager.id}" />
+                            <div class="chip" data-managerid="${manager.id}" data-managervalue="${manager.email}">
+                                ${manager.email} 
+                            </div>
+                        </c:forEach>
+                    </div>
+
+                    <select id="managers" class="browser-default" style="margin: 0.5em 0;">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="manager" items="${managers}">
+                            <option value="${manager.id}"><c:out value="${manager.firstName}" />&nbsp;<c:out value="${manager.lastName}" /> &lt;<c:out value="${manager.email}" />&gt;</option>
+                        </c:forEach>
+                    </select>
+                    <script>
+                        $(function() {
+                            $('#managers').on("change", function() {
+                                console.log('#managers on change');
+
+                                var managerId = $(this).val();
+                                console.log('managerId: ' + managerId);
+                                var managerEmail = $(this).find('option[value="' + managerId + '"]').text();
+                                console.log('managerEmail ' + managerEmail);
+                                if (managerId != "") {
+                                    $('#managersContainer').append('<input name="managers" type="hidden" value="' + managerId + '" />');
+                                    $('#managersContainer').append('<div class="chip">' + managerEmail + '</div>');
+                                    $(this).val("");
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
 
             <button id="submitButton" class="btn deep-purple lighten-1 waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>

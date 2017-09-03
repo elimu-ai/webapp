@@ -18,7 +18,14 @@
                                 ${project.name}
                             </td>
                             <td>
-                                
+                                <c:forEach var="manager" items="${project.managers}">
+                                    <a href="<spring:url value='/content/community/contributors' />" target="_blank">
+                                        <div class="chip">
+                                            <img src="<spring:url value='${manager.imageUrl}' />" alt="${manager.firstName}" /> 
+                                            <c:out value="${manager.firstName}" />&nbsp;<c:out value="${manager.lastName}" />
+                                        </div>
+                                    </a>
+                                </c:forEach>
                             </td>
                             <td>
                                 <a class="editLink" href="<spring:url value='/admin/project/edit/${project.id}' />"><span class="material-icons">edit</span></a>
