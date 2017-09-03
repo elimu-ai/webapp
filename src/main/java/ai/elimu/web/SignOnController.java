@@ -60,7 +60,7 @@ public class SignOnController {
                 contributor.setEmail("test@elimu.ai");
                 contributor.setFirstName("Test");
                 contributor.setLastName("Contributor");
-                contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
+                contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR, Role.PROJECT_MANAGER)));
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributorDao.create(contributor);
             }

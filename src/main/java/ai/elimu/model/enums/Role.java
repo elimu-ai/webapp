@@ -4,5 +4,6 @@ public enum Role {
     
     CONTRIBUTOR,
     ADMIN,
-    ANALYST
+    ANALYST,
+    PROJECT_MANAGER
 }

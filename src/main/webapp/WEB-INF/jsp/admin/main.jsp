@@ -39,5 +39,17 @@
                 </div>
             </div>
         </div>
+        
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title"><i class="material-icons">playlist_add</i> <fmt:message key="projects" /></span>
+                    <p>List of custom projects</p>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/admin/project/list' />"><fmt:message key="view.list" /></a>
+                </div>
+            </div>
+        </div>
     </div>
 </content:section>
