@@ -14,7 +14,7 @@
         <jetty.version>8.1.14.v20131031</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/mortbay/jetty/ -->
         <spring.version>4.2.9.RELEASE</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>3.2.9.RELEASE</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
-        <surefire-plugin.version>2.19.1</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
+        <surefire-plugin.version>2.20</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
     </properties>
 
     <!-- Build settings -->
