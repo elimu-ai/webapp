@@ -12,7 +12,7 @@
         <model.version>1.1.58</model.version>
         <hibernate.version>4.3.11.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate -->
         <jetty.version>8.1.14.v20131031</jetty.version>
-        <spring.version>4.2.6.RELEASE</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework -->
+        <spring.version>4.2.9.RELEASE</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework -->
         <spring.security.version>3.2.9.RELEASE</spring.security.version>
         <surefire-plugin.version>2.19.1</surefire-plugin.version>
     </properties>
