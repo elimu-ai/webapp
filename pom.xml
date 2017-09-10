@@ -79,7 +79,7 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
+                <artifactId>maven-javadoc-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-javadoc-plugin/ -->
                 <version>2.10.3</version>
                 <configuration>
                     <skip>true</skip>
@@ -126,7 +126,7 @@
     <!-- Environment Settings -->
     <issueManagement>
         <system>Trello</system>
-        <url>https://trello.com/elimuai_public</url>
+        <url>https://github.com/elimu-ai/webapp/projects</url>
     </issueManagement>
     <ciManagement>
         <system>Travis CI</system>
@@ -234,7 +234,7 @@
                     </plugin>
                     <plugin>
                     	<groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
+                        <artifactId>maven-war-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-war-plugin/ -->
                         <version>2.6</version>
                         <configuration>
                             <webXml>${basedir}/target/web.xml</webXml>
@@ -262,7 +262,7 @@
         
         <dependency>
             <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
+            <artifactId>commons-fileupload</artifactId> <!-- https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/ -->
             <version>1.3.1</version>
         </dependency>
         
@@ -323,8 +323,8 @@
         <dependency>
             <!-- Used for sign-on via Facebook/Google -->
             <groupId>org.scribe</groupId>
-            <artifactId>scribe</artifactId>
-            <version>1.3.5</version>
+            <artifactId>scribe</artifactId> <!-- https://repo.maven.apache.org/maven2/org/scribe/scribe/ -->
+            <version>1.3.7</version>
         </dependency>
         <dependency>
             <!-- Used for sign-on via GitHub -->
@@ -358,7 +358,7 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.8.9  </version>
+            <version>1.8.9</version>
         </dependency>
 
         <dependency>
@@ -393,12 +393,6 @@
             <artifactId>commons-validator</artifactId>
             <version>1.5.1</version>
         </dependency>
-
-        <!--<dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.7</version>
-        </dependency>-->
 
         <dependency>
             <groupId>org.imgscalr</groupId>
