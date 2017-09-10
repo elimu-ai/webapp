@@ -10,7 +10,9 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.Project;
 import ai.elimu.util.Mailer;
+import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import java.net.URLEncoder;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +96,14 @@ public class ProjectEditController {
                     }
                 }
             }
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                 String text = URLEncoder.encode(
+                         contributor.getFirstName() + " just edited a project: " + project.getName()
+                 );
+                 String iconUrl = contributor.getImageUrl();
+                 SlackApiHelper.postMessage("G6UR7UH2S", text, iconUrl, null);
+             }
             
             return "redirect:/admin/project/list#" + project.getId();
         }

@@ -13,7 +13,12 @@ import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.Contributor;
+import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.util.SlackApiHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import java.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -121,6 +126,17 @@ public class ApplicationVersionCreateController {
             if (application.getApplicationStatus() == ApplicationStatus.MISSING_APK) {
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
                 applicationDao.update(application);
+            }
+            
+            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                 String text = URLEncoder.encode(
+                         contributor.getFirstName() + " just uploaded a new APK version:\n" + 
+                         "• Language: " + applicationVersion.getApplication().getLocale().getLanguage() + "\n" + 
+                         "• Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"\n" + 
+                         "• Version: " + applicationVersion.getVersionCode() + "\n" +
+                         "• Start command: " + applicationVersion.getStartCommand());
+                 String iconUrl = contributor.getImageUrl();
+                 SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.DEVELOPMENT), text, iconUrl, null);
             }
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();

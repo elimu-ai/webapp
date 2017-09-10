@@ -19,7 +19,9 @@ import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.CookieHelper;
 import ai.elimu.util.Mailer;
+import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import java.net.URLEncoder;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.Google2Api;
 import org.scribe.exceptions.OAuthException;
@@ -172,6 +174,22 @@ public class SignOnControllerGoogle {
                 htmlText += "<h2>Chat</h2>";
                 htmlText += "<p>At http://slack.elimu.ai you can chat with the other community members.</p>";
                 Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "http://slack.elimu.ai");
+                
+                if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                     // Post notification in Slack
+                     String name = "";
+                     if (StringUtils.isNotBlank(contributor.getFirstName())) {
+                         name += "(";
+                         name += contributor.getFirstName();
+                         if (StringUtils.isNotBlank(contributor.getLastName())) {
+                             name += " " + contributor.getLastName();
+                         }
+                         name += ")";
+                     }
+                     String text = URLEncoder.encode("A new contributor " + name + " just joined the community: ") + "http://elimu.ai/content/community/contributors";
+                     String iconUrl = contributor.getImageUrl();
+                     SlackApiHelper.postMessage(null, text, iconUrl, null);
+                 }
             } else {
                 // Contributor already exists in database
                 
