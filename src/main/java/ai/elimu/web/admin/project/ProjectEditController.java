@@ -93,6 +93,14 @@ public class ProjectEditController {
                             buttonUrl = "http://test.elimu.ai/project";
                         }
                         Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open project", buttonUrl);
+                        
+                        if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+                            String text = URLEncoder.encode(
+                                    contributor.getFirstName() + " just added a project manager to \"" + project.getName() + "\": " + manager.getFirstName() + " " + manager.getLastName()
+                            );
+                            String iconUrl = manager.getImageUrl();
+                            SlackApiHelper.postMessage("G6UR7UH2S", text, iconUrl, null);
+                        }
                     }
                 }
             }
@@ -103,7 +111,7 @@ public class ProjectEditController {
                  );
                  String iconUrl = contributor.getImageUrl();
                  SlackApiHelper.postMessage("G6UR7UH2S", text, iconUrl, null);
-             }
+            }
             
             return "redirect:/admin/project/list#" + project.getId();
         }
