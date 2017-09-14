@@ -66,11 +66,15 @@ public class SlackApiHelper {
             channelId = getChannelId(null);
         }
         
-        String iconUrlParameter = "";
-        if (StringUtils.isNotBlank(iconUrl)) {
-            iconUrlParameter = "&icon_url=" + iconUrl;
-        }
-        
+//        String iconUrlParameter = "";
+//        if (StringUtils.isNotBlank(iconUrl)) {
+//            iconUrlParameter = "&icon_url=" + iconUrl;
+//        } else {
+//            iconUrlParameter = "&icon_emoji=%3Aauni%3A";
+//        }
+        // Fall-back to emoji to avoid "404 File Not Found" when avatar cannot be reached
+        String iconUrlParameter = "&icon_emoji=%3Aauni%3A";
+
         String imageUrlParameter = "";
         if (StringUtils.isNotBlank(imageUrl)) {
             JSONArray attachments = new JSONArray();
