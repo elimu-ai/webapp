@@ -60,7 +60,7 @@ public class ProjectCreateController {
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                  Contributor contributor = (Contributor) session.getAttribute("contributor");
                  String text = URLEncoder.encode(
-                         contributor.getFirstName() + " just added a new project: " + project.getName()
+                         contributor.getFirstName() + " just added a new project: \"" + project.getName() + "\""
                  );
                  String iconUrl = contributor.getImageUrl();
                  SlackApiHelper.postMessage("G6UR7UH2S", text, iconUrl, null);
