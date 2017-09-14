@@ -98,7 +98,7 @@ public class ProjectEditController {
                             String text = URLEncoder.encode(
                                     contributor.getFirstName() + " just added a project manager to \"" + project.getName() + "\": " + manager.getFirstName() + " " + manager.getLastName()
                             );
-                            String iconUrl = contributor.getImageUrl();
+                            String iconUrl = manager.getImageUrl();
                             SlackApiHelper.postMessage("G6UR7UH2S", text, iconUrl, null);
                         }
                     }
