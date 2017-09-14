@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.ProjectDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Role;
 import ai.elimu.model.project.Project;
 import ai.elimu.util.Mailer;
 import ai.elimu.util.SlackApiHelper;
@@ -80,6 +81,12 @@ public class ProjectEditController {
                 // Send invitation e-mail to newly added managers
                 for (Contributor manager : project.getManagers()) {
                     if ((existingProject.getManagers() == null) || !existingProject.getManagers().contains(manager)) {
+                        // Update role so that the contributor can access the /project page
+                        if (!manager.getRoles().contains(Role.PROJECT_MANAGER)) {
+                            manager.getRoles().add(Role.PROJECT_MANAGER);
+                            contributorDao.update(manager);
+                        }
+                        
                         String to = manager.getEmail();
                         String from = "elimu.ai <info@elimu.ai>";
                         String subject = "You have been added as a manager";
@@ -107,7 +114,7 @@ public class ProjectEditController {
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                  String text = URLEncoder.encode(
-                         contributor.getFirstName() + " just edited a project: " + project.getName()
+                         contributor.getFirstName() + " just edited a project: \"" + project.getName() + "\""
                  );
                  String iconUrl = contributor.getImageUrl();
                  SlackApiHelper.postMessage("G6UR7UH2S", text, iconUrl, null);
