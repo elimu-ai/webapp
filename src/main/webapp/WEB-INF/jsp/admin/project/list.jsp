@@ -2,7 +2,7 @@
     <fmt:message key="projects" /> (${fn:length(projects)})
 </content:title>
 
-<content:section cssId="projectListPage">
+<content:section cssId="adminProjectListPage">
     <div class="section row">
         <c:if test="${not empty projects}">
             <table class="bordered highlight">
@@ -15,7 +15,9 @@
                     <c:forEach var="project" items="${projects}">
                         <tr class="project">
                             <td>
-                                ${project.name}
+                                <a href="<spring:url value='/project/${project.id}' />">
+                                    ${project.name}
+                                </a>
                             </td>
                             <td>
                                 <c:forEach var="manager" items="${project.managers}">

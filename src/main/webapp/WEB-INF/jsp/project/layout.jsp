@@ -32,33 +32,21 @@
                 <div class="col s1">
                     <ul id="nav-mobile" class="side-nav">
                         <li>
-                            <a href="<spring:url value='/admin' />">
+                            <a href="<spring:url value='/project' />">
                                 <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
                             </a>
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="applications" /></b></li>
-                        <li><a href="<spring:url value='/admin/application/list' />"><i class="material-icons left">android</i><fmt:message key="applications" /></a></li>
-                        
-                        <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="contributors" /></b></li>
-                        <li><a href="<spring:url value='/admin/contributor/list' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
-                        <li><a href="<spring:url value='/admin/sign-on-event/list' />"><i class="material-icons left">timeline</i><fmt:message key="sign.on.events" /></a></li>
+                        <li class="grey-text"><b><fmt:message key="projects" /></b></li>
+                        <c:forEach var="project" items="${projects}">
+                            <li><a href="<spring:url value='/project/${project.id}' />"><%--<i class="material-icons left">playlist_add</i>--%><c:out value="${project.name}" /></li>
+                        </c:forEach>
                     </ul>
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
-                    <a href="<spring:url value='/admin' />" class="breadcrumb"><fmt:message key="administration" /></a>
-                    <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
-                        <c:choose>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')
-                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/admin/application/list' />"><fmt:message key="applications" /></a>
-                            </c:when>
-                        </c:choose>
-                        <a class="breadcrumb"><content:gettitle /></a>
-                    </c:if>
+                    <a class="breadcrumb"><content:gettitle /></a>
                 </div>
                 <div class="col s6">
                     <ul class="right">
@@ -94,18 +82,6 @@
                 </div>
             </div>
         </nav>
-        <script>
-            $(function() {
-                <c:choose>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application-version/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                </c:choose>
-            });
-        </script>
                     
         <c:if test="${hasBanner}">
             <div class="section no-pad-bot" id="index-banner">

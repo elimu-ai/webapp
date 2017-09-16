@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/project/list")
-public class ProjectListController {
+public class AdminProjectListController {
 
     private final Logger logger = Logger.getLogger(getClass());
     

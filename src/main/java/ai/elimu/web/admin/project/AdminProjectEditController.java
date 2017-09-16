@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/project/edit")
-public class ProjectEditController {
+public class AdminProjectEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
     

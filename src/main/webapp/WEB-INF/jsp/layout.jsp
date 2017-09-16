@@ -8,6 +8,9 @@
     <c:when test="${fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
         <%@ include file="/WEB-INF/jsp/content/layout.jsp" %>
     </c:when>
+    <c:when test="${fn:contains(pageContext.request.requestURI, '/jsp/project/')}">
+        <%@ include file="/WEB-INF/jsp/project/layout.jsp" %>
+    </c:when>
     <c:otherwise>
         <!DOCTYPE html>
         <html lang="${locale.language}">
