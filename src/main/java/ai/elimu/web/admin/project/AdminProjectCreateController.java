@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/project/create")
-public class ProjectCreateController {
+public class AdminProjectCreateController {
     
     private final Logger logger = Logger.getLogger(getClass());
     

@@ -2,7 +2,7 @@
     <fmt:message key="edit.project" />
 </content:title>
 
-<content:section cssId="projectCreatePage">
+<content:section cssId="adminProjectCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="project">
