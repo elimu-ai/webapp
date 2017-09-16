@@ -44,6 +44,10 @@
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
+                    <c:if test="${not empty project}">
+                        <a href="<spring:url value='/project' />" class="breadcrumb"><fmt:message key="projects" /></a>
+                        <a href="<spring:url value='/project/${project.id}' />" class="breadcrumb"><c:out value="${project.name}" /></a>
+                    </c:if>
                     <a class="breadcrumb"><content:gettitle /></a>
                 </div>
                 <div class="col s6">

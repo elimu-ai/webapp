@@ -27,8 +27,7 @@ public class AppCategoryListController {
         
         logger.info("projectId: " + projectId);
         Project project = projectDao.read(projectId);
-        logger.info("project: " + project);
-        
+        model.addAttribute("project", project);
         
         return "project/app-category/list";
     }
