@@ -43,7 +43,7 @@
         <div class="col s12 m6">
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
-                    <span class="card-title"><%--<i class="material-icons">playlist_add</i> --%><fmt:message key="projects" /></span>
+                    <span class="card-title"><i class="material-icons">list</i> <fmt:message key="projects" /></span>
                     <p>List of custom projects</p>
                 </div>
                 <div class="card-action">
