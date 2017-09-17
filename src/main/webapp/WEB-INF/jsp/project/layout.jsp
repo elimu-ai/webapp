@@ -38,14 +38,16 @@
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="projects" /></b></li>
-                        <c:forEach var="project" items="${projects}">
-                            <li><a href="<spring:url value='/project/${project.id}' />"><%--<i class="material-icons left">playlist_add</i>--%><c:out value="${project.name}" /></li>
-                        </c:forEach>
+                        <li class="grey-text"><b><fmt:message key="custom.projects" /></b></li>
+                        <li><a href="<spring:url value='/project' />"><i class="material-icons left">list</i> <fmt:message key="projects" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
+                    <c:if test="${not empty project}">
+                        <a href="<spring:url value='/project' />" class="breadcrumb"><fmt:message key="projects" /></a>
+                        <a href="<spring:url value='/project/${project.id}' />" class="breadcrumb"><c:out value="${project.name}" /></a>
+                    </c:if>
                     <a class="breadcrumb"><content:gettitle /></a>
                 </div>
                 <div class="col s6">
