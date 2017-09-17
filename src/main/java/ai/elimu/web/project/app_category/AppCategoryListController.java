@@ -1,4 +1,4 @@
-package ai.elimu.web.project.appcategory;
+package ai.elimu.web.project.app_category;
 
 import ai.elimu.dao.ProjectDao;
 import ai.elimu.model.Contributor;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/project/{projectId}/app-category/")
+@RequestMapping("/project/{projectId}/app-category")
 public class AppCategoryListController {
     
     private final Logger logger = Logger.getLogger(getClass());
