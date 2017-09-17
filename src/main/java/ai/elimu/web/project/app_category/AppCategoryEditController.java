@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/project/{projectId}/app-category/create")
-public class AppCategoryCreateController {
+@RequestMapping("/project/{projectId}/app-category/edit")
+public class AppCategoryEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
@@ -34,21 +34,21 @@ public class AppCategoryCreateController {
     @Autowired
     private AppCategoryDao appCategoryDao;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(@PathVariable Long projectId, Model model, HttpSession session) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String handleRequest(@PathVariable Long projectId, @PathVariable Long id, Model model, HttpSession session) {
     	logger.info("handleRequest");
         
         // Needed by breadcrumbs
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
         
-        AppCategory appCategory = new AppCategory();
+        AppCategory appCategory = appCategoryDao.read(id);
         model.addAttribute("appCategory", appCategory);
 
-        return "project/app-category/create";
+        return "project/app-category/edit";
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
             @PathVariable Long projectId,
@@ -61,7 +61,7 @@ public class AppCategoryCreateController {
         Project project = projectDao.read(projectId);
         List<AppCategory> existingAppCategories = project.getAppCategories();
         for (AppCategory existingAppCategory : existingAppCategories) {
-            if (existingAppCategory.getName().equals(appCategory.getName())) {
+            if (existingAppCategory.getName().equals(appCategory.getName()) && !existingAppCategory.getId().equals(appCategory.getId())) {
                 result.rejectValue("name", "NonUnique");
                 break;
             }
@@ -70,17 +70,15 @@ public class AppCategoryCreateController {
         if (result.hasErrors()) {
             model.addAttribute("project", project);
             model.addAttribute("appCategory", appCategory);
-            return "project/app-category/create";
+            return "project/app-category/edit";
         } else {
-            appCategoryDao.create(appCategory);
-            project.getAppCategories().add(appCategory);
-            projectDao.update(project);
+            appCategoryDao.update(appCategory);
 
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 // Notify project members in Slack
                 Contributor contributor = (Contributor) session.getAttribute("contributor");
                 String text = URLEncoder.encode(
-                    contributor.getFirstName() + " just added a new App Category:\n" +
+                    contributor.getFirstName() + " just updated an App Category:\n" +
                     "• Project: \"" + project.getName() + "\"\n" +
                     "• App Category: \"" + appCategory.getName() + "\"\n" +
                     "See ") + "http://elimu.ai/project/" + project.getId();

@@ -11,6 +11,7 @@
         <c:forEach var="appCategory" items="${project.appCategories}">
             <div class="col s12 card-panel" style="padding: 1em;">
                 <c:out value="${appCategory.name}" />
+                <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/edit/${appCategory.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
             </div>
         </c:forEach>
     </div>

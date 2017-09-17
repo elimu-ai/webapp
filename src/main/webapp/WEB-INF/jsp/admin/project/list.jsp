@@ -4,6 +4,10 @@
 
 <content:section cssId="adminProjectListPage">
     <div class="section row">
+        <p>
+            <fmt:message key="to.add.new.content.click.the.button.below" />
+        </p>
+        
         <c:if test="${not empty projects}">
             <table class="bordered highlight">
                 <thead>
