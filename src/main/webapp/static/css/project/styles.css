@@ -1,0 +1,11 @@
+body {
+    background-image: url(../../../static/img/background.jpg);
+}
+
+[draggable="true"] {
+    cursor: move;
+}
+
+.dragStarted {
+    opacity: 0.5;
+}
