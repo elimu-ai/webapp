@@ -1,7 +1,6 @@
 package ai.elimu.web.project.app_category;
 
 import ai.elimu.dao.ProjectDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.project.Project;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
