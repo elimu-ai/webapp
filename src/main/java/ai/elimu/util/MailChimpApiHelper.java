@@ -43,7 +43,7 @@ public class MailChimpApiHelper {
         logger.info("getMemberInfo");
         
         String memberInfo = null;
-        
+         
         try {
             String emailMd5Hash = DigestUtils.md5Hex(email);
             URL url = new URL (BASE_URL + "/lists/" + LIST_ID + "/members/" + emailMd5Hash);
