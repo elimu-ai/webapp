@@ -19,8 +19,8 @@ public class WelcomePageTest {
     private WebDriver driver;
 
     @Before
-    public void setUp() {
-        driver = new FirefoxDriver();
+    public void setUp() { 	
+    	driver = new FirefoxDriver();    		
         driver.get(DomainHelper.getBaseUrl());
     }
 
