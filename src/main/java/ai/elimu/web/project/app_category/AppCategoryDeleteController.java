@@ -2,6 +2,7 @@ package ai.elimu.web.project.app_category;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,9 +36,16 @@ private final Logger logger = Logger.getLogger(getClass());
         
         AppCategory appCategory = appCategoryDao.read(id);
         model.addAttribute("appCategory", appCategory);
-        appCategoryDao.delete(appCategory);
+        
+        try {
 
-        return "redirect:/project/app-category/list";
+            appCategoryDao.delete(appCategory);
+            return "redirect:/project/app-category/list";
+        } catch (DataAccessException dae) {
+        	// TODO implement error message
+        	// return error message
+        	return "redirect:/project/app-category/list";
+        }
     }
 
 }
