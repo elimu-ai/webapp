@@ -36,7 +36,7 @@ private final Logger logger = Logger.getLogger(getClass());
         AppCategory appCategory = appCategoryDao.read(id);
         model.addAttribute("appCategory", appCategory);
 
-            appCategoryDao.delete(appCategory);
-            return "redirect:/project/app-category/list";
+        appCategoryDao.delete(appCategory);
+        return "redirect:/project/app-category/list";
     }
 }
