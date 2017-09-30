@@ -29,11 +29,8 @@ private final Logger logger = Logger.getLogger(getClass());
         AppCategory appCategory = appCategoryDao.read(id);
 		appCategoryDao.delete(appCategory);
 
-<<<<<<< HEAD
-            return "redirect:/project/app-category/list";
-=======
         appCategoryDao.delete(appCategory);
         return "redirect:/project/app-category/list";
->>>>>>> 9a937c38e2735f9dc420eedbb7c3f696b0a01e91
+
     }
 }
