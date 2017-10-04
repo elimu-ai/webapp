@@ -18,6 +18,7 @@
             <button id="submitButton" class="btn deep-purple lighten-1 waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
+            <a href="<spring:url value='/project/${project.id}/app-category/delete/${appCategory.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
 </content:section>

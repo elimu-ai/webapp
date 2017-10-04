@@ -20,7 +20,7 @@ private final Logger logger = Logger.getLogger(getClass());
     @Autowired
     private AppCategoryDao appCategoryDao;
     
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long projectId, @PathVariable Long id) {
         
 		logger.info("handleRequest");
