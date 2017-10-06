@@ -60,6 +60,7 @@
 
     <!-- DAOs that will be autowired -->
     <bean id="appCategoryDao" class="ai.elimu.dao.jpa.AppCategoryDaoJpa" />
+    <bean id="appGroupDao" class="ai.elimu.dao.jpa.AppGroupDaoJpa" />
     <bean id="applicationDao" class="ai.elimu.dao.jpa.ApplicationDaoJpa" />
     <bean id="applicationOpenedEventDao" class="ai.elimu.dao.jpa.ApplicationOpenedEventDaoJpa" />
     <bean id="applicationVersionDao" class="ai.elimu.dao.jpa.ApplicationVersionDaoJpa" />

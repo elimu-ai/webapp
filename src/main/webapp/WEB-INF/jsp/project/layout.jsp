@@ -48,6 +48,9 @@
                         <a href="<spring:url value='/project' />" class="breadcrumb"><fmt:message key="projects" /></a>
                         <a href="<spring:url value='/project/${project.id}' />" class="breadcrumb"><c:out value="${project.name}" /></a>
                     </c:if>
+                    <c:if test="${not empty appCategory}">
+                        <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/list' />" class="breadcrumb"><c:out value="${appCategory.name}" /></a>
+                    </c:if>
                     <a class="breadcrumb"><content:gettitle /></a>
                 </div>
                 <div class="col s6">
