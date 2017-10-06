@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class AppGroup extends BaseEntity {
