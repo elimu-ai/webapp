@@ -15,7 +15,9 @@
                     ondragover="allowDrop(event)"
                     ondragleave="cancelDrop(event)"
                     ondrop="drop(event)">
-                <c:out value="${appCategory.name}" />
+                <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/list' />">
+                    <c:out value="${appCategory.name}" />
+                </a>
                 <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/edit/${appCategory.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
             </div>
         </c:forEach>

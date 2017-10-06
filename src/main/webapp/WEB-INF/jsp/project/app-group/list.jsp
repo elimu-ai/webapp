@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="app.groups" /> (${fn:length(project.appGroups)})
+    <fmt:message key="app.groups" /> (${fn:length(appCategory.appGroups)})
 </content:title>
 
 <content:section cssId="appGroupListPage">
@@ -8,15 +8,15 @@
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
         
-        <c:forEach var="appGroup" items="${project.appGroups}">
+        <c:forEach var="appGroup" items="${appCategory.appGroups}">
             <div class="col s12 card-panel appGroup" data-id="${appGroup.id}" style="padding: 1em;">
-                <c:out value="${appGroup.name}" />
-                <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
+                appGroup.id: <c:out value="${appGroup.id}" />
+                <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/edit' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
             </div>
         </c:forEach>
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/create' />" class="btn-floating btn-large deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.app.category" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/create' />" class="btn-floating btn-large deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.app.group" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>
