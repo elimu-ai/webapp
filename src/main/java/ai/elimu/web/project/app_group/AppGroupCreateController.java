@@ -15,6 +15,7 @@ import ai.elimu.model.project.Project;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,10 +72,20 @@ public class AppGroupCreateController {
         
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
+        
         AppCategory appCategory = appCategoryDao.read(appCategoryId);
         model.addAttribute("appCategory", appCategory);
         
-        // TODO: validate
+        List<AppGroup> appGroups = appCategory.getAppGroups();
+        if (!appGroups.isEmpty()) {
+            // Do not allow creation of a new AppGroup if an empty one already exists
+            for (AppGroup existingAppGroup : appGroups) {
+                if (existingAppGroup.getApplications().isEmpty()) {
+                    result.reject("EmptyAppGroup");
+                    break;
+                }
+            }
+        }
         
         if (result.hasErrors()) {
             model.addAttribute("appGroup", appGroup);
@@ -92,7 +103,7 @@ public class AppGroupCreateController {
                     contributor.getFirstName() + " just added a new App Group:\n" +
                     "• Project: \"" + project.getName() + "\"\n" +
                     "• App Category: \"" + appCategory.getName() + "\"\n" +
-                    "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId();
+                    "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/list";
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
             
