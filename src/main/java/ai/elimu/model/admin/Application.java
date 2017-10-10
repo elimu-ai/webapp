@@ -14,6 +14,7 @@ import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.project.Project;
 
 @Entity
 public class Application extends BaseEntity {
@@ -40,6 +41,9 @@ public class Application extends BaseEntity {
     @NotNull
     @ManyToOne
     private Contributor contributor;
+    
+    @ManyToOne
+    private Project project;
 
     public Locale getLocale() {
         return locale;
@@ -87,5 +91,13 @@ public class Application extends BaseEntity {
 
     public void setContributor(Contributor contributor) {
         this.contributor = contributor;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

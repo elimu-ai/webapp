@@ -19,7 +19,8 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
                 "SELECT a " +
                 "FROM Application a " +
                 "WHERE a.locale = :locale " +
-                "AND a.packageName = :packageName")
+                "AND a.packageName = :packageName " +
+                "AND a.project IS EMPTY")
                 .setParameter("locale", locale)
                 .setParameter("packageName", packageName)
                 .getSingleResult();
@@ -35,6 +36,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             "SELECT a " +
             "FROM Application a " +
             "WHERE a.locale = :locale " +
+            "AND a.project IS EMPTY " +
             "ORDER BY a.packageName")
             .setParameter("locale", locale)
             .getResultList();
@@ -47,6 +49,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             "FROM Application a " +
             "WHERE a.locale = :locale " +
             "AND a.applicationStatus = :applicationStatus " +
+            "AND a.project IS EMPTY " +
             "ORDER BY a.packageName")
             .setParameter("locale", locale)
             .setParameter("applicationStatus", applicationStatus)
