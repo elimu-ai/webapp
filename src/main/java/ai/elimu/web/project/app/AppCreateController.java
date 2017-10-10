@@ -157,6 +157,7 @@ public class AppCreateController {
             application.setPackageName(packageName);
             application.setApplicationStatus(ApplicationStatus.ACTIVE);
             application.setContributor(contributor);
+            application.setProject(project);
             applicationDao.create(application);
             
             applicationVersion.setApplication(application);
