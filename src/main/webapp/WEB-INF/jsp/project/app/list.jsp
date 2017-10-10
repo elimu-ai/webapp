@@ -12,17 +12,24 @@
             <thead>
                 <th><fmt:message key="package.name" /></th>
                 <th><fmt:message key="status" /></th>
+                <th><fmt:message key="contributor" /></th>
             </thead>
             <tbody>
                 <c:forEach var="application" items="${appGroup.applications}">
                     <tr class="application">
                         <td>
-                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/application/${application.id}/edit' />">
-                                ${application.packageName}
+                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/${application.id}/edit' />">
+                                <i class="material-icons left">android</i>${application.packageName}
                             </a>
                         </td>
                         <td>
                             ${application.applicationStatus}
+                        </td>
+                        <td>
+                            <div class="chip">
+                                <img src="<spring:url value='${application.contributor.imageUrl}' />" alt="${application.contributor.firstName}" /> 
+                                <c:out value="${application.contributor.firstName}" />&nbsp;<c:out value="${application.contributor.lastName}" />
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>
