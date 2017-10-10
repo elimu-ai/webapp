@@ -19,7 +19,7 @@ public class ApplicationVersion extends BaseEntity {
     
     @NotNull
     @Lob
-    @Column(length=209715200) // 200MB
+    @Column(length=524288000) // 500MB
     private byte[] bytes;
     
     @NotNull
