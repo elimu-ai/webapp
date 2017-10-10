@@ -19,11 +19,21 @@
                     <b><c:out value="${appCategory.name}" /></b>
                 </a>
                 <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/edit/${appCategory.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
+                <br />
                 
                 <%-- List AppGroups --%>
                 <c:forEach var="appGroup" items="${appCategory.appGroups}">
-                    <div>
-                        appGroup.id: ${appGroup.id}
+                    <br />
+                    <div style="padding: 1em; background: #FAFAFA; border: 1px solid #DDD;">
+                        <%-- List Applications --%>
+                        <c:forEach var="application" items="${appGroup.applications}">
+                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/application/${application.id}/edit' />">
+                                <div class="chip">
+                                    <i class="material-icons left">android</i>${application.packageName}
+                                </div>
+                                <%-- TODO: replace with app icon --%>
+                            </a>&nbsp;
+                        </c:forEach>
                     </div>
                 </c:forEach>
             </div>

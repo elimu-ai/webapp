@@ -441,6 +441,12 @@
             <artifactId>texhyphj</artifactId>
             <version>1.2</version>
         </dependency>
+        
+        <dependency>
+            <groupId>net.dongliu</groupId>
+            <artifactId>apk-parser</artifactId>
+            <version>2.2.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
