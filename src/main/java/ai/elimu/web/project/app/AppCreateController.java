@@ -169,10 +169,10 @@ public class AppCreateController {
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                  String text = URLEncoder.encode(
                          contributor.getFirstName() + " just uploaded a new Application:\n" + 
-                         "• Project: " + project.getName() + "\n" + 
-                         "• App category: " + appCategory.getName() + "\n" + 
+                         "• Project: \"" + project.getName() + "\"\n" +
+                         "• App Category: \"" + appCategory.getName() + "\"\n" +
                          "• Package name: \"" + application.getPackageName() + "\"\n" + 
-                         "• Version code: " + applicationVersion.getVersionCode() + "\"\n" +
+                         "• Version code: " + applicationVersion.getVersionCode() + "\n" +
                         "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/list";
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
