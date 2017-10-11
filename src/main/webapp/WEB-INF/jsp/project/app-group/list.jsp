@@ -10,8 +10,22 @@
         
         <c:forEach var="appGroup" items="${appCategory.appGroups}">
             <div class="col s12 card-panel appGroup" data-id="${appGroup.id}" style="padding: 1em;">
-                appGroup.id: <c:out value="${appGroup.id}" />
+                <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/list' />">
+                    <fmt:message key="group" /> #${appGroup.id}
+                </a>
                 <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/edit' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
+                <br />
+                <br />
+                
+                <%-- List Applications --%>
+                <c:forEach var="application" items="${appGroup.applications}">
+                    <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/application/${application.id}/edit' />">
+                        <div class="chip">
+                            <i class="material-icons left">android</i>${application.packageName}
+                        </div>
+                        <%-- TODO: replace with app icon --%>
+                    </a>&nbsp;
+                </c:forEach>
             </div>
         </c:forEach>
     </div>

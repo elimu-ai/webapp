@@ -37,5 +37,5 @@ This file is placed on the test server under jetty.home/contexts/
       <Item>sw.test.elimu.ai</Item>
     </Array>
   </Set>
-  <Set name="maxFormContentSize">209715200</Set><!-- 200MB -->
+  <Set name="maxFormContentSize">524288000</Set><!-- 500MB -->
 </Configure>
