@@ -13,10 +13,6 @@ public class AppCollection extends BaseEntity {
     @OrderColumn
     @OneToMany(fetch = FetchType.EAGER)
     private List<AppCategory> appCategories;
-    
-    @OrderColumn
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<License> licenses;
 
     public List<AppCategory> getAppCategories() {
         return appCategories;
@@ -24,13 +20,5 @@ public class AppCollection extends BaseEntity {
 
     public void setAppCategories(List<AppCategory> appCategories) {
         this.appCategories = appCategories;
-    }
-
-    public List<License> getLicenses() {
-        return licenses;
-    }
-
-    public void setLicenses(List<License> licenses) {
-        this.licenses = licenses;
     }
 }
