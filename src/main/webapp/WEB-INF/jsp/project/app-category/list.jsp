@@ -3,7 +3,7 @@
 </content:title>
 
 <content:section cssId="appCategoryListPage">
-    <div class="section row">
+    <div class="section row" style="padding-right: 2em;">
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
@@ -16,12 +16,11 @@
                     ondragleave="cancelDrop(event)"
                     ondrop="drop(event)">
                 <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/list' />">
-                    <b><c:out value="${appCategory.name}" /></b>
+                    <h5><c:out value="${appCategory.name}" /></h5>
                 </a>
                 <%--
                 <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/edit/${appCategory.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
                 --%>
-                <br />
                 
                 <%-- List AppGroups --%>
                 <c:forEach var="appGroup" items="${appCategory.appGroups}">
@@ -97,3 +96,34 @@
         <a href="<spring:url value='/project/${project.id}/app-category/create' />" class="btn-floating btn-large deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.app.category" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>
+
+<c:if test="${not empty project.appCategories}">
+    <content:aside>
+        <h5 class="center"><fmt:message key="app.collections" /></h5>
+
+        <table class="bordered highlight">
+            <thead>
+                <th><fmt:message key="name" /></th>
+                <th><fmt:message key="app.categories" /></th>
+            </thead>
+            <tbody>
+                <c:forEach var="appCollection" items="${appCollections}">
+                    <tr class="appCollection">
+                        <td>
+                            <c:out value="${appCollection.name}" />
+                        </td>
+                        <td>
+                            ${fn:length(appCollection.appCategories)}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
+        <p></p>
+
+        <a href="<spring:url value='/project/${project.id}/app-collection/create' />" class="btn waves-effect grey lighten-5 waves-grey grey-text">
+            <fmt:message key="add.app.collection" />
+        </a>
+    </content:aside>
+</c:if>
