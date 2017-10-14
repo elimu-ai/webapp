@@ -140,7 +140,7 @@ public class AppCreateController {
                 applicationVersion.setContentType(contentType);
                 applicationVersion.setVersionCode(versionCode);
                 applicationVersion.setVersionName(versionName);
-                // TODO: set label
+                applicationVersion.setLabel(label);
                 // TODO: set icon
                 // TODO: set minSdkVersion
                 applicationVersion.setTimeUploaded(Calendar.getInstance());
