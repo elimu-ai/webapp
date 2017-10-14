@@ -10,6 +10,7 @@
         
         <table class="bordered highlight">
             <thead>
+                <th><fmt:message key="icon" /></th>
                 <th><fmt:message key="package.name" />/<br /><fmt:message key="label" /></th>
                 <th><fmt:message key="version.code" /></th>
                 <th><fmt:message key="version.name" /></th>
@@ -21,8 +22,18 @@
                 <c:forEach var="application" items="${appGroup.applications}">
                     <tr class="application">
                         <td>
+                            <c:choose>
+                                <c:when test="${not empty application.latestApplicationVersion.icon}">
+                                    <img src="<spring:url value='/project/app-version/${application.latestApplicationVersion.id}/icon.png' />" alt="${application.packageName}" style="width: 3em; height: 3em;" />
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<spring:url value='/static/img/project/ic_launcher_round.png' />" alt="${application.packageName}" style="width: 3em; height: 3em;" />
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>
                             <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/${application.id}/edit' />">
-                                <i class="material-icons left">android</i>${application.packageName}
+                                ${application.packageName}
                             </a><br />
                             ${application.latestApplicationVersion.label}
                         </td>
