@@ -15,6 +15,7 @@ import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.project.Project;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Application extends BaseEntity {
@@ -41,6 +42,10 @@ public class Application extends BaseEntity {
     @NotNull
     @ManyToOne
     private Contributor contributor;
+    
+//    @NotNull
+    @OneToOne
+    private ApplicationVersion latestApplicationVersion;
     
     @ManyToOne
     private Project project;
@@ -93,6 +98,14 @@ public class Application extends BaseEntity {
         this.contributor = contributor;
     }
 
+    public ApplicationVersion getLatestApplicationVersion() {
+        return latestApplicationVersion;
+    }
+
+    public void setLatestApplicationVersion(ApplicationVersion latestApplicationVersion) {
+        this.latestApplicationVersion = latestApplicationVersion;
+    }
+    
     public Project getProject() {
         return project;
     }

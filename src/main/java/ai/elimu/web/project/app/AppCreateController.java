@@ -130,15 +130,19 @@ public class AppCreateController {
                 String versionName = apkMeta.getVersionName();
                 logger.info("versionName: " + versionName);
                 
+                String minSdkVersion = apkMeta.getMinSdkVersion();
+                logger.info("minSdkVersion: " + minSdkVersion);
+                
                 // Check if Application already exists in the same AppCategory
                 // TODO
                 
                 applicationVersion.setBytes(bytes);
                 applicationVersion.setContentType(contentType);
                 applicationVersion.setVersionCode(versionCode);
-                // TODO: set versionName
+                applicationVersion.setVersionName(versionName);
                 // TODO: set label
                 // TODO: set icon
+                // TODO: set minSdkVersion
                 applicationVersion.setTimeUploaded(Calendar.getInstance());
                 applicationVersion.setContributor(contributor);
             } catch (IOException ex) {
@@ -162,6 +166,9 @@ public class AppCreateController {
             
             applicationVersion.setApplication(application);
             applicationVersionDao.create(applicationVersion);
+            
+            application.setLatestApplicationVersion(applicationVersion);
+            applicationDao.update(application);
             
             appGroup.getApplications().add(application);
             appGroupDao.update(appGroup);
