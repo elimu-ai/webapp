@@ -124,6 +124,9 @@ public class AppCreateController {
                 String label = apkMeta.getLabel();
                 logger.info("label: " + label);
                 
+                byte[] icon = byteArrayApkFile.getIconFile().getData();
+                logger.info("icon.length: " + (icon.length / 1024) + "kB");
+                
                 Integer versionCode = apkMeta.getVersionCode().intValue();
                 logger.info("versionCode: " + versionCode);
                 
@@ -141,7 +144,7 @@ public class AppCreateController {
                 applicationVersion.setVersionCode(versionCode);
                 applicationVersion.setVersionName(versionName);
                 applicationVersion.setLabel(label);
-                // TODO: set icon
+                applicationVersion.setIcon(icon);
                 // TODO: set minSdkVersion
                 applicationVersion.setTimeUploaded(Calendar.getInstance());
                 applicationVersion.setContributor(contributor);

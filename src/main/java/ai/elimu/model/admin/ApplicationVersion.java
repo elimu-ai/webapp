@@ -34,6 +34,11 @@ public class ApplicationVersion extends BaseEntity {
     @NotNull
     private String label;
     
+    @NotNull
+    @Lob
+    @Column(length=512000) // 1MB
+    private byte[] icon;
+    
     // TODO: minSdk
     
     private String startCommand; // "adb shell <command>"
@@ -91,6 +96,14 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+    
+    public byte[] getIcon() {
+        return icon;
+    }
+
+    public void setIcon(byte[] icon) {
+        this.icon = icon;
     }
     
     public String getStartCommand() {
