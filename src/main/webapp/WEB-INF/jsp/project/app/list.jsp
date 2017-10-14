@@ -11,6 +11,9 @@
         <table class="bordered highlight">
             <thead>
                 <th><fmt:message key="package.name" /></th>
+                <th><fmt:message key="version.code" /></th>
+                <th><fmt:message key="version.name" /></th>
+                <th><fmt:message key="file.size" /></th>
                 <th><fmt:message key="status" /></th>
                 <th><fmt:message key="contributor" /></th>
             </thead>
@@ -21,6 +24,15 @@
                             <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/${application.id}/edit' />">
                                 <i class="material-icons left">android</i>${application.packageName}
                             </a>
+                        </td>
+                        <td>
+                            ${application.latestApplicationVersion.versionCode}
+                        </td>
+                        <td>
+                            ${application.latestApplicationVersion.versionName}
+                        </td>
+                        <td>
+                            <fmt:formatNumber value="${fn:length(application.latestApplicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB
                         </td>
                         <td>
                             ${application.applicationStatus}
@@ -38,6 +50,6 @@
     </div>
                 
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/create' />" class="btn-floating btn-large deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.application" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/create' />" class="btn-floating btn-large deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.application" />"><i class="material-icons">android</i></a>
     </div>
 </content:section>

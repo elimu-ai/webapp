@@ -19,6 +19,8 @@ import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
+import net.dongliu.apk.parser.ByteArrayApkFile;
+import net.dongliu.apk.parser.bean.ApkMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,7 +105,14 @@ public class ApplicationVersionCreateController {
                     logger.info("File size: " + (bytes.length / 1024 / 1024) + "MB");
                     applicationVersion.setBytes(bytes);
                     
-                    // TODO: auto-detect packageName, versionCode, minSdk, app name, app icon
+                    ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
+                    ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
+                    
+                    String versionName = apkMeta.getVersionName();
+                    logger.info("versionName: " + versionName);
+                    applicationVersion.setVersionName(versionName);
+                    
+                    // TODO: auto-detect packageName, versionCode, minSdk, label, icon
                 } else {
                     result.rejectValue("bytes", "NotNull");
                 }
@@ -121,12 +130,14 @@ public class ApplicationVersionCreateController {
             applicationVersion.setTimeUploaded(Calendar.getInstance());
             applicationVersionDao.create(applicationVersion);
             
-            // If first APK file, change status of application to "ACTIVE"
+            // Update the Application entity to reflect the latest changes
             Application application = applicationVersion.getApplication();
             if (application.getApplicationStatus() == ApplicationStatus.MISSING_APK) {
+                // If first APK file, change status of application to "ACTIVE"
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
-                applicationDao.update(application);
             }
+            application.setLatestApplicationVersion(applicationVersion);
+            applicationDao.update(application);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                  String text = URLEncoder.encode(

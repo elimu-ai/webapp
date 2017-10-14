@@ -41,6 +41,7 @@
                         <table class="bordered highlight">
                             <thead>
                                 <th><fmt:message key="version.code" /></th>
+                                <th><fmt:message key="version.name" /></th>
                                 <th><fmt:message key="file.size" /></th>
                                 <th><fmt:message key="start.command" /></th>
                                 <th><fmt:message key="time.uploaded" /></th>
@@ -50,6 +51,7 @@
                                 <c:forEach var="applicationVersion" items="${applicationVersions}">
                                     <tr>
                                         <td>${applicationVersion.versionCode}</td>
+                                        <td>${applicationVersion.versionName}</td>
                                         <td><fmt:formatNumber value="${fn:length(applicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB</td>
                                         <td><c:out value="${applicationVersion.startCommand}" /></td>
                                         <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
