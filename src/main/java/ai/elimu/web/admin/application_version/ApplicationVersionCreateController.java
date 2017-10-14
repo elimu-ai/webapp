@@ -112,7 +112,11 @@ public class ApplicationVersionCreateController {
                     logger.info("versionName: " + versionName);
                     applicationVersion.setVersionName(versionName);
                     
-                    // TODO: auto-detect packageName, versionCode, minSdk, label, icon
+                    String label = apkMeta.getLabel();
+                    logger.info("label: " + label);
+                    applicationVersion.setLabel(label);
+                    
+                    // TODO: auto-detect packageName, versionCode, minSdk, icon
                 } else {
                     result.rejectValue("bytes", "NotNull");
                 }

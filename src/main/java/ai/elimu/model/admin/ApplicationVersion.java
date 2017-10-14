@@ -31,6 +31,9 @@ public class ApplicationVersion extends BaseEntity {
     @NotNull
     private String versionName;
     
+    @NotNull
+    private String label;
+    
     // TODO: minSdk
     
     private String startCommand; // "adb shell <command>"
@@ -80,6 +83,14 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setVersionName(String versionName) {
         this.versionName = versionName;
+    }
+    
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
     
     public String getStartCommand() {

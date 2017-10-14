@@ -10,7 +10,7 @@
         
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="package.name" /></th>
+                <th><fmt:message key="package.name" />/<br /><fmt:message key="label" /></th>
                 <th><fmt:message key="version.code" /></th>
                 <th><fmt:message key="version.name" /></th>
                 <th><fmt:message key="file.size" /></th>
@@ -23,7 +23,8 @@
                         <td>
                             <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/${application.id}/edit' />">
                                 <i class="material-icons left">android</i>${application.packageName}
-                            </a>
+                            </a><br />
+                            ${application.latestApplicationVersion.label}
                         </td>
                         <td>
                             ${application.latestApplicationVersion.versionCode}
