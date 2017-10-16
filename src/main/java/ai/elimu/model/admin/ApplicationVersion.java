@@ -19,7 +19,7 @@ public class ApplicationVersion extends BaseEntity {
     
     @NotNull
     @Lob
-    @Column(length=209715200) // 200MB
+    @Column(length=524288000) // 500MB
     private byte[] bytes;
     
     @NotNull
@@ -27,6 +27,17 @@ public class ApplicationVersion extends BaseEntity {
     
     @NotNull
     private Integer versionCode;
+    
+    @NotNull
+    private String versionName;
+    
+    @NotNull
+    private String label;
+    
+    @NotNull
+    @Lob
+    @Column(length=512000) // 1MB
+    private byte[] icon;
     
     // TODO: minSdk
     
@@ -69,6 +80,30 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setVersionCode(Integer versionCode) {
         this.versionCode = versionCode;
+    }
+    
+    public String getVersionName() {
+        return versionName;
+    }
+
+    public void setVersionName(String versionName) {
+        this.versionName = versionName;
+    }
+    
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+    
+    public byte[] getIcon() {
+        return icon;
+    }
+
+    public void setIcon(byte[] icon) {
+        this.icon = icon;
     }
     
     public String getStartCommand() {
