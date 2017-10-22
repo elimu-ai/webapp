@@ -96,6 +96,12 @@ public class SlackInviteScheduler {
                     }
                     
                     if (contributor.getTeams().contains(team)) {
+                        // To prevent exceeded rate limit, wait 1 second between each API call to the Slack API
+                        // See https://api.slack.com/docs/rate-limits
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {}
+
                         boolean isResponseOk = SlackApiHelper.inviteToChannel(contributor, team);
                         if (isResponseOk) {
                             // Send welcome e-mail specific to the team
