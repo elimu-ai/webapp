@@ -121,8 +121,8 @@ public class SlackApiHelper {
     /**
      * https://api.slack.com/methods/users.list
      */
-    public static JSONArray getTeamMembers() {
-        logger.info("getTeamUsers");
+    public static JSONArray getUserList() {
+        logger.info("getUserList");
         
         JSONArray members = null;
         
