@@ -60,10 +60,10 @@ public class SlackApiHelper {
     public static boolean postMessage(String channelId, String text, String iconUrl, String imageUrl) {
         logger.info("getTeamUsers");
         
-        // To prevent exceeded rate limit, wait 1 second between each API call to the Slack API
+        // To prevent exceeded rate limit, wait 1.5 seconds between each API call to the Slack API
         // See https://api.slack.com/docs/rate-limits
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         } catch (InterruptedException ex) {}
         
         boolean isResponseOk = false;
@@ -130,10 +130,10 @@ public class SlackApiHelper {
     public static JSONArray getUserList() {
         logger.info("getUserList");
         
-        // To prevent exceeded rate limit, wait 1 second between each API call to the Slack API
+        // To prevent exceeded rate limit, wait 1.5 seconds between each API call to the Slack API
         // See https://api.slack.com/docs/rate-limits
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         } catch (InterruptedException ex) {}
         
         JSONArray members = null;
@@ -177,10 +177,10 @@ public class SlackApiHelper {
     public static boolean sendMemberInvite(Contributor contributor) {
         logger.info("sendMemberInvite");
         
-        // To prevent exceeded rate limit, wait 1 second between each API call to the Slack API
+        // To prevent exceeded rate limit, wait 1.5 seconds between each API call to the Slack API
         // See https://api.slack.com/docs/rate-limits
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         } catch (InterruptedException ex) {}
         
         boolean isResponseOk = false;
@@ -235,10 +235,10 @@ public class SlackApiHelper {
     public static boolean inviteToChannel(Contributor contributor, Team team) {
         logger.info("inviteToChannel");
         
-        // To prevent exceeded rate limit, wait 1 second between each API call to the Slack API
+        // To prevent exceeded rate limit, wait 1.5 seconds between each API call to the Slack API
         // See https://api.slack.com/docs/rate-limits
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         } catch (InterruptedException ex) {}
         
         boolean isResponseOk = false;
@@ -288,10 +288,10 @@ public class SlackApiHelper {
     public static boolean kickFromChannel(Contributor contributor, Team team) {
         logger.info("kickFromChannel");
         
-        // To prevent exceeded rate limit, wait 1 second between each API call to the Slack API
+        // To prevent exceeded rate limit, wait 1.5 seconds between each API call to the Slack API
         // See https://api.slack.com/docs/rate-limits
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         } catch (InterruptedException ex) {}
         
         boolean isResponseOk = false;
