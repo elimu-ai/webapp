@@ -1,14 +1,17 @@
 package ai.elimu.model.project;
 
-import ai.elimu.model.BaseEntity;
-import ai.elimu.model.Contributor;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
+
+import ai.elimu.model.BaseEntity;
+import ai.elimu.model.Contributor;
 
 @Entity
 public class Project extends BaseEntity {
@@ -16,13 +19,11 @@ public class Project extends BaseEntity {
     @NotNull
     private String name;
     
-    @OrderColumn
-    @ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
     private List<Contributor> managers;
     
-    @OrderColumn
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<AppCategory> appCategories;
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<AppCategory> appCategories = new ArrayList<AppCategory>();
 
     public String getName() {
         return name;

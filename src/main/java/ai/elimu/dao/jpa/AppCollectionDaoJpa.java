@@ -1,14 +1,19 @@
 package ai.elimu.dao.jpa;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.dao.DataAccessException;
+
 import ai.elimu.dao.AppCollectionDao;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.Project;
-import java.util.List;
-import org.springframework.dao.DataAccessException;
 
 public class AppCollectionDaoJpa extends GenericDaoJpa<AppCollection> implements AppCollectionDao {
 
     @Override
+	@Transactional
     public List<AppCollection> readAll(Project project) throws DataAccessException {
         return em.createQuery(
             "SELECT ac " +

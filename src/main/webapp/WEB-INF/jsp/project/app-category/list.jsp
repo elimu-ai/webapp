@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="app.categories" /> (${fn:length(project.appCategories)})
+   <fmt:message key="app.categories" /> (${fn:length(project.appCategories)}) 
 </content:title>
 
 <content:section cssId="appCategoryListPage">
@@ -18,9 +18,8 @@
                 <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/list' />">
                     <h5><c:out value="${appCategory.name}" /></h5>
                 </a>
-                <%--
+            
                 <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/edit/${appCategory.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
-                --%>
                 
                 <%-- List AppGroups --%>
                 <c:forEach var="appGroup" items="${appCategory.appGroups}">
@@ -72,7 +71,7 @@
             function drop(event) {
                 console.info("drop");
                 
-                event.preventDefault();
+                event.preventDefault();   </c
                 
                 var appCategoryArray = "[";
                 $(".appCategory").each(function(index) {
