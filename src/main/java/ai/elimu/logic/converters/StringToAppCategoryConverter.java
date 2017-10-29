@@ -12,15 +12,15 @@ public class StringToAppCategoryConverter implements Converter<String, AppCatego
     private AppCategoryDao appCategoryDao;
     
     /**
-     * Convert AppCategory id to AppCategory
+     * Convert AppCategory id to AppCategory entity
      */
     public AppCategory convert(String id) {
         if (StringUtils.isBlank(id)) {
             return null;
         } else {
             Long appCategoryId = Long.parseLong(id);
-            AppCategory application = appCategoryDao.read(appCategoryId);
-            return application;
+            AppCategory appCategory = appCategoryDao.read(appCategoryId);
+            return appCategory;
         }
     }
 }

@@ -12,7 +12,7 @@ public class StringToWordConverter implements Converter<String, Word> {
     private WordDao wordDao;
     
     /**
-     * Convert Word id to Word
+     * Convert Word id to Word entity
      */
     public Word convert(String id) {
         if (StringUtils.isBlank(id)) {

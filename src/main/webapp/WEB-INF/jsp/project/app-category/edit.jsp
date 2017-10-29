@@ -7,6 +7,10 @@
     <div class="card-panel">
         <form:form modelAttribute="appCategory">
             <tag:formErrors modelAttribute="appCategory" />
+            
+            <c:forEach var="appGroup" items="${appCategory.appGroups}">
+                <form:hidden path="appGroups" value="${appGroup.id}" />
+            </c:forEach>
 
             <div class="row">
                 <div class="input-field col s12">
