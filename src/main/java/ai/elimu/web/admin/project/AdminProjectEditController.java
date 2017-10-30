@@ -77,16 +77,25 @@ public class AdminProjectEditController {
         } else {
             projectDao.update(project);
             
+            // Send invitation e-mail to newly added managers
             if (project.getManagers() != null) {
-                // Send invitation e-mail to newly added managers
                 for (Contributor manager : project.getManagers()) {
-                    if ((existingProject.getManagers() == null) || !existingProject.getManagers().contains(manager)) {
-                        // Update role so that the contributor can access the /project page
-                        if (!manager.getRoles().contains(Role.PROJECT_MANAGER)) {
-                            manager.getRoles().add(Role.PROJECT_MANAGER);
-                            contributorDao.update(manager);
+                    boolean isManagerAddedAlready = false;
+                    if ((existingProject != null) && (existingProject.getManagers() != null)) {
+                        for (Contributor existingManager : existingProject.getManagers()) {
+                            if (existingManager.getId().equals(manager.getId())) {
+                                isManagerAddedAlready = true;
+                                break;
+                            }
                         }
-                        
+                    }
+                    logger.info("isManagerAddedAlready: " + isManagerAddedAlready + ", manager.getEmail(): " + manager.getEmail());
+                    if (!isManagerAddedAlready) {
+                        // Update role so that the contributor can access the /project page
+                        manager.getRoles().add(Role.PROJECT_MANAGER);
+                        contributorDao.update(manager);
+
+                        // Send inviation e-mail
                         String to = manager.getEmail();
                         String from = "elimu.ai <info@elimu.ai>";
                         String subject = "You have been added as a manager";
@@ -101,6 +110,7 @@ public class AdminProjectEditController {
                         }
                         Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open project", buttonUrl);
                         
+                        // Notify Slack channel
                         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                             String text = URLEncoder.encode(
                                     contributor.getFirstName() + " just added a project manager to \"" + project.getName() + "\": " + manager.getFirstName() + " " + manager.getLastName()

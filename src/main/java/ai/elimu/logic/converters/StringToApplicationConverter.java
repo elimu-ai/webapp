@@ -12,7 +12,7 @@ public class StringToApplicationConverter implements Converter<String, Applicati
     private ApplicationDao applicationDao;
     
     /**
-     * Convert Application id to Application
+     * Convert Application id to Application entity
      */
     public Application convert(String id) {
         if (StringUtils.isBlank(id)) {

@@ -26,6 +26,7 @@
                 <bean class="ai.elimu.logic.converters.StringToAllophoneConverter" />
                 <bean class="ai.elimu.logic.converters.StringToApplicationConverter" />
                 <bean class="ai.elimu.logic.converters.StringToAppCategoryConverter" />
+                <bean class="ai.elimu.logic.converters.StringToAppGroupConverter" />
                 <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
                 <bean class="ai.elimu.logic.converters.StringToProjectConverter" />
