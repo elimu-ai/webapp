@@ -31,41 +31,43 @@ public class SlackInviteScheduler {
     
     @Scheduled(cron="00 30 * * * *") // 30 past every hour
     public synchronized void executeInvite() {
-        logger.info("executeImport");
+        logger.info("executeInvite");
         
         if (EnvironmentContextLoaderListener.env != Environment.PROD) {
             return;
         }
         
-        JSONArray slackMembers = SlackApiHelper.getTeamMembers();
-        logger.info("slackMembers.length(): " + slackMembers.length());
-        
-        List<Contributor> contributors = contributorDao.readAll();
-        logger.info("contributors.size(): " + contributors.size());
-        for (Contributor contributor : contributors) {
-            // If the Contributor has already joined Slack, store the Slack id
-            if (StringUtils.isBlank(contributor.getSlackId())) {
-                for (int i = 0; i < slackMembers.length(); i++) {
-                    JSONObject member = slackMembers.getJSONObject(i);
-                    String slackId = member.getString("id");
-                    JSONObject memberProfile = member.getJSONObject("profile");
-                    if (!memberProfile.isNull("email")) {
-                        String email = memberProfile.getString("email");
-                        if (contributor.getEmail().equals(email)) {
-                            contributor.setSlackId(slackId);
-                            contributorDao.update(contributor);
+        JSONArray slackMembers = SlackApiHelper.getUserList();
+        if (slackMembers != null) {
+            logger.info("slackMembers.length(): " + slackMembers.length());
+
+            List<Contributor> contributors = contributorDao.readAll();
+            logger.info("contributors.size(): " + contributors.size());
+            for (Contributor contributor : contributors) {
+                // If the Contributor has already joined Slack, store the Slack id
+                if (StringUtils.isBlank(contributor.getSlackId())) {
+                    for (int i = 0; i < slackMembers.length(); i++) {
+                        JSONObject member = slackMembers.getJSONObject(i);
+                        String slackId = member.getString("id");
+                        JSONObject memberProfile = member.getJSONObject("profile");
+                        if (!memberProfile.isNull("email")) {
+                            String email = memberProfile.getString("email");
+                            if (contributor.getEmail().equals(email)) {
+                                contributor.setSlackId(slackId);
+                                contributorDao.update(contributor);
+                            }
                         }
                     }
                 }
-            }
-            
-            // If the Contributor has not already joined Slack, send an invite
-            if (StringUtils.isBlank(contributor.getSlackId())) {
-                SlackApiHelper.sendMemberInvite(contributor);
+
+                // If the Contributor has not already joined Slack, send an invite
+                if (StringUtils.isBlank(contributor.getSlackId())) {
+                    SlackApiHelper.sendMemberInvite(contributor);
+                }
             }
         }
         
-        logger.info("executeImport complete");
+        logger.info("executeInvite complete");
     }
     
     /**
@@ -94,6 +96,12 @@ public class SlackInviteScheduler {
                     }
                     
                     if (contributor.getTeams().contains(team)) {
+                        // To prevent exceeded rate limit, wait 1 second between each API call to the Slack API
+                        // See https://api.slack.com/docs/rate-limits
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException ex) {}
+
                         boolean isResponseOk = SlackApiHelper.inviteToChannel(contributor, team);
                         if (isResponseOk) {
                             // Send welcome e-mail specific to the team

@@ -12,7 +12,7 @@ public class StringToImageConverter implements Converter<String, Image> {
     private ImageDao imageDao;
     
     /**
-     * Convert Image id to Image
+     * Convert Image id to Image entity
      */
     public Image convert(String id) {
         if (StringUtils.isBlank(id)) {

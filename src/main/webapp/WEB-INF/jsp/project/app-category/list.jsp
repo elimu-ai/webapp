@@ -15,24 +15,28 @@
                     ondragover="allowDrop(event)"
                     ondragleave="cancelDrop(event)"
                     ondrop="drop(event)">
+                
+                <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/edit/${appCategory.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
+                
                 <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/list' />">
                     <h5><c:out value="${appCategory.name}" /></h5>
                 </a>
-                <%--
-                <a class="editLink right" href="<spring:url value='/project/${project.id}/app-category/edit/${appCategory.id}' />"><span class="material-icons" style="vertical-align: bottom;">edit</span> <fmt:message key="edit" /></a>
-                --%>
                 
                 <%-- List AppGroups --%>
                 <c:forEach var="appGroup" items="${appCategory.appGroups}">
                     <br />
-                    <div style="padding: 1em; background: #FAFAFA; border: 1px solid #DDD;">
+                    <div style="padding: 1em; background: #FAFAFA;">
                         <%-- List Applications --%>
                         <c:forEach var="application" items="${appGroup.applications}">
-                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/application/${application.id}/edit' />">
-                                <div class="chip">
-                                    <i class="material-icons left">android</i>${application.packageName}
-                                </div>
-                                <%-- TODO: replace with app icon --%>
+                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/application/${application.id}/edit' />" title="${application.packageName} (${application.latestApplicationVersion.label})">
+                                <c:choose>
+                                    <c:when test="${not empty application.latestApplicationVersion.icon}">
+                                        <img src="<spring:url value='/project/app-version/${application.latestApplicationVersion.id}/icon.png' />" alt="${application.packageName}" style="width: 3em; height: 3em;" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="<spring:url value='/static/img/project/ic_launcher_round.png' />" alt="${application.latestApplicationVersion.label}" style="width: 3em; height: 3em;" />
+                                    </c:otherwise>
+                                </c:choose>
                             </a>&nbsp;
                         </c:forEach>
                     </div>

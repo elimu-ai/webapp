@@ -19,6 +19,8 @@
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
                     <form:hidden path="packageName" value="${application.packageName}" />
+                    <br />
+                    <fmt:message key='label' />: "${application.latestApplicationVersion.label}"
                 </div>
                 <div class="input-field col s6">
                     <select id="applicationStatus" name="applicationStatus">
@@ -41,6 +43,8 @@
                         <table class="bordered highlight">
                             <thead>
                                 <th><fmt:message key="version.code" /></th>
+                                <th><fmt:message key="version.name" /></th>
+                                <th><fmt:message key="label" /></th>
                                 <th><fmt:message key="file.size" /></th>
                                 <th><fmt:message key="start.command" /></th>
                                 <th><fmt:message key="time.uploaded" /></th>
@@ -50,6 +54,8 @@
                                 <c:forEach var="applicationVersion" items="${applicationVersions}">
                                     <tr>
                                         <td>${applicationVersion.versionCode}</td>
+                                        <td>${applicationVersion.versionName}</td>
+                                        <td>${applicationVersion.label}</td>
                                         <td><fmt:formatNumber value="${fn:length(applicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB</td>
                                         <td><c:out value="${applicationVersion.startCommand}" /></td>
                                         <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>

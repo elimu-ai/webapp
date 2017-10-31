@@ -124,11 +124,17 @@ public class AppCreateController {
                 String label = apkMeta.getLabel();
                 logger.info("label: " + label);
                 
+                byte[] icon = byteArrayApkFile.getIconFile().getData();
+                logger.info("icon.length: " + (icon.length / 1024) + "kB");
+                
                 Integer versionCode = apkMeta.getVersionCode().intValue();
                 logger.info("versionCode: " + versionCode);
                 
                 String versionName = apkMeta.getVersionName();
                 logger.info("versionName: " + versionName);
+                
+                String minSdkVersion = apkMeta.getMinSdkVersion();
+                logger.info("minSdkVersion: " + minSdkVersion);
                 
                 // Check if Application already exists in the same AppCategory
                 // TODO
@@ -136,9 +142,10 @@ public class AppCreateController {
                 applicationVersion.setBytes(bytes);
                 applicationVersion.setContentType(contentType);
                 applicationVersion.setVersionCode(versionCode);
-                // TODO: set versionName
-                // TODO: set label
-                // TODO: set icon
+                applicationVersion.setVersionName(versionName);
+                applicationVersion.setLabel(label);
+                applicationVersion.setIcon(icon);
+                // TODO: set minSdkVersion
                 applicationVersion.setTimeUploaded(Calendar.getInstance());
                 applicationVersion.setContributor(contributor);
             } catch (IOException ex) {
@@ -162,6 +169,9 @@ public class AppCreateController {
             
             applicationVersion.setApplication(application);
             applicationVersionDao.create(applicationVersion);
+            
+            application.setLatestApplicationVersion(applicationVersion);
+            applicationDao.update(application);
             
             appGroup.getApplications().add(application);
             appGroupDao.update(appGroup);
