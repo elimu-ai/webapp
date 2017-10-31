@@ -12,7 +12,7 @@ public class StringToProjectConverter implements Converter<String, Project> {
     private ProjectDao projectDao;
     
     /**
-     * Convert Project id to Project
+     * Convert Project id to Project entity
      */
     public Project convert(String id) {
         if (StringUtils.isBlank(id)) {

@@ -12,7 +12,7 @@ public class StringToAllophoneConverter implements Converter<String, Allophone> 
     private AllophoneDao allophoneDao;
     
     /**
-     * Convert Allophone id to Allophone
+     * Convert Allophone id to Allophone entity
      */
     public Allophone convert(String id) {
         if (StringUtils.isBlank(id)) {

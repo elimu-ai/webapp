@@ -12,7 +12,7 @@ public class StringToContributorConverter implements Converter<String, Contribut
     private ContributorDao contributorDao;
     
     /**
-     * Convert Contributor id to Contributor
+     * Convert Contributor id to Contributor entity
      */
     public Contributor convert(String id) {
         if (StringUtils.isBlank(id)) {
