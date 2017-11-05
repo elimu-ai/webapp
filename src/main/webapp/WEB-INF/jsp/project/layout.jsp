@@ -54,6 +54,9 @@
                     <c:if test="${not empty appGroup}">
                         <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/list' />" class="breadcrumb"><fmt:message key="group" /> #${appGroup.id}</a>
                     </c:if>
+                    <c:if test="${not empty appCollection}">
+                        <a href="<spring:url value='/project/${project.id}' />" class="breadcrumb"><c:out value="${appCollection.name}" /></a>
+                    </c:if>
                     <a class="breadcrumb"><content:gettitle /></a>
                 </div>
                 <div class="col s3">

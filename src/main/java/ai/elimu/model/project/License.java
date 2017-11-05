@@ -14,6 +14,16 @@ public class License extends BaseEntity {
     @NotNull
     private String licenseNumber;
     
+    // TODO: maximum number of devices
+    
+    // TODO: expiry date
+    
+    // TODO: firstName
+    
+    // TODO: lastName
+    
+    // TODO: company name
+    
     @NotNull
     @OneToOne
     private AppCollection appCollection;
