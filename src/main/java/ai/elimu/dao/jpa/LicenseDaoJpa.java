@@ -2,10 +2,12 @@ package ai.elimu.dao.jpa;
 
 import javax.persistence.NoResultException;
 import ai.elimu.dao.LicenseDao;
+import ai.elimu.model.project.AppCollection;
 
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.project.License;
+import java.util.List;
 
 public class LicenseDaoJpa extends GenericDaoJpa<License> implements LicenseDao {
     
@@ -24,5 +26,15 @@ public class LicenseDaoJpa extends GenericDaoJpa<License> implements LicenseDao 
             logger.warn("License for " + licenseEmail + " was not found");
             return null;
         }
+    }
+
+    @Override
+    public List<License> readAll(AppCollection appCollection) throws DataAccessException {
+        return em.createQuery(
+            "SELECT l " +
+            "FROM License l " +
+            "WHERE l.appCollection = :appCollection")
+            .setParameter("appCollection", appCollection)
+            .getResultList();
     }
 }

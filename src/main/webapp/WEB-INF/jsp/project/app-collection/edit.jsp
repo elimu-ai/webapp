@@ -42,3 +42,30 @@
         </form:form>
     </div>
 </content:section>
+
+<content:aside>
+    <h5 class="center"><fmt:message key="licenses" /></h5>
+
+    <table class="bordered highlight">
+        <thead>
+            <th><fmt:message key="email" /></th>
+        </thead>
+        <tbody>
+            <c:forEach var="license" items="${licenses}">
+                <tr class="license">
+                    <td>
+                        <a href="<spring:url value='/project/${project.id}/app-collection/${appCollection.id}/license/edit/${license.id}' />">
+                            <c:out value="${license.licenseEmail}" />
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+
+    <p></p>
+
+    <a href="<spring:url value='/project/${project.id}/app-collection/${appCollection.id}/license/create' />" class="btn waves-effect grey lighten-5 waves-grey grey-text">
+        <fmt:message key="add.license" />
+    </a>
+</content:aside>

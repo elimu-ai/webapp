@@ -1,4 +1,4 @@
-package ai.elimu.web.project.app_collection;
+package ai.elimu.web.project.license;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/project/{projectId}/app-collection/edit")
-public class AppCollectionEditController {
+@RequestMapping("/project/{projectId}/app-collection/{appCollectionId}/license/create")
+public class LicenseCreateController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
@@ -39,11 +39,11 @@ public class AppCollectionEditController {
     @Autowired
     private LicenseDao licenseDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
-            @PathVariable Long projectId,
-            @PathVariable Long id,
-            Model model,
+            @PathVariable Long projectId, 
+            @PathVariable Long appCollectionId, 
+            Model model, 
             HttpSession session
     ) {
     	logger.info("handleRequest");
@@ -52,57 +52,61 @@ public class AppCollectionEditController {
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
         
-        AppCollection appCollection = appCollectionDao.read(id);
+        AppCollection appCollection = appCollectionDao.read(appCollectionId);
         model.addAttribute("appCollection", appCollection);
         
-        List<License> licenses = licenseDao.readAll(appCollection);
-        model.addAttribute("licenses", licenses);
+        License license = new License();
+        license.setAppCollection(appCollection);
+        model.addAttribute("license", license);
 
-        return "project/app-collection/edit";
+        return "project/license/create";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
             @PathVariable Long projectId,
-            @Valid AppCollection appCollection,
+            @PathVariable Long appCollectionId,
+            @Valid License license,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        // Disallow app collections with identical name
+        // Needed by breadcrumbs and Slack post
         Project project = projectDao.read(projectId);
-        List<AppCollection> existingAppCollections = appCollectionDao.readAll(project);
-        for (AppCollection existingAppCollection : existingAppCollections) {
-            if (existingAppCollection.getName().equals(appCollection.getName()) && !existingAppCollection.getId().equals(appCollection.getId())) {
+        model.addAttribute("project", project);
+        
+        AppCollection appCollection = appCollectionDao.read(appCollectionId);
+        model.addAttribute("appCollection", appCollection);
+        
+        // Disallow Licenses with identical e-mail
+        List<License> existingLicenses = licenseDao.readAll(appCollection);
+        for (License existingLicence : existingLicenses) {
+            if (existingLicence.getLicenseEmail().equals(license.getLicenseEmail())) {
                 result.rejectValue("name", "NonUnique");
                 break;
             }
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("project", project);
-            
-            model.addAttribute("appCollection", appCollection);
-            
-            List<License> licenses = licenseDao.readAll(appCollection);
-            model.addAttribute("licenses", licenses);
-            
-            return "project/app-collection/edit";
+            model.addAttribute("license", license);
+            return "project/license/create";
         } else {
-            appCollectionDao.update(appCollection);
+            licenseDao.create(license);
 
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 // Notify project members in Slack
                 Contributor contributor = (Contributor) session.getAttribute("contributor");
-                String text = URLEncoder.encode(contributor.getFirstName() + " just updated an App Collection:\n" +
+                String text = URLEncoder.encode(
+                    contributor.getFirstName() + " just added a new License:\n" +
                     "• Project: \"" + project.getName() + "\"\n" +
                     "• App Collection: \"" + appCollection.getName() + "\"\n" +
+                    "• E-mail: \"" + license.getLicenseEmail() + "\"\n" +
                     "See ") + "http://elimu.ai/project/" + project.getId() + "/app-collection/edit/" + appCollection.getId();
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
             
-            return "redirect:/project/" + project.getId();
+            return "redirect:/project/" + project.getId() + "/app-collection/edit/" + appCollection.getId();
         }
     }
 }
