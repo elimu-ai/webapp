@@ -5,11 +5,12 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AppCollectionDao;
+import ai.elimu.dao.LicenseDao;
 import ai.elimu.dao.ProjectDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
-import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppCollection;
+import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -34,6 +35,9 @@ public class AppCollectionEditController {
     
     @Autowired
     private AppCollectionDao appCollectionDao;
+    
+    @Autowired
+    private LicenseDao licenseDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -50,6 +54,9 @@ public class AppCollectionEditController {
         
         AppCollection appCollection = appCollectionDao.read(id);
         model.addAttribute("appCollection", appCollection);
+        
+        List<License> licenses = licenseDao.readAll(appCollection);
+        model.addAttribute("licenses", licenses);
 
         return "project/app-collection/edit";
     }
@@ -75,7 +82,12 @@ public class AppCollectionEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("project", project);
+            
             model.addAttribute("appCollection", appCollection);
+            
+            List<License> licenses = licenseDao.readAll(appCollection);
+            model.addAttribute("licenses", licenses);
+            
             return "project/app-collection/edit";
         } else {
             appCollectionDao.update(appCollection);

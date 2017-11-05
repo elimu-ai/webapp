@@ -3,6 +3,7 @@ package ai.elimu.model.project;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
+import javax.persistence.OneToOne;
 
 @Entity
 public class License extends BaseEntity {
@@ -13,7 +14,9 @@ public class License extends BaseEntity {
     @NotNull
     private String licenseNumber;
     
-    // TODO: app collection
+    @NotNull
+    @OneToOne
+    private AppCollection appCollection;
 
     public String getLicenseEmail() {
         return licenseEmail;
@@ -29,5 +32,13 @@ public class License extends BaseEntity {
 
     public void setLicenseNumber(String licenseNumber) {
         this.licenseNumber = licenseNumber;
+    }
+
+    public AppCollection getAppCollection() {
+        return appCollection;
+    }
+
+    public void setAppCollection(AppCollection appCollection) {
+        this.appCollection = appCollection;
     }
 }
