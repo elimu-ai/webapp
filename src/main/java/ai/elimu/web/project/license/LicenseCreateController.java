@@ -12,6 +12,7 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
+import ai.elimu.util.Mailer;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
@@ -93,6 +94,9 @@ public class LicenseCreateController {
             return "project/license/create";
         } else {
             licenseDao.create(license);
+            
+            // Send license information via e-mail
+            sendLicenseInEmail(license);
 
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 // Notify project members in Slack
@@ -108,5 +112,30 @@ public class LicenseCreateController {
             
             return "redirect:/project/" + project.getId() + "/app-collection/edit/" + appCollection.getId();
         }
+    }
+    
+    private void sendLicenseInEmail(License license) {
+        String to = license.getLicenseEmail();
+        String from = "elimu.ai <info@elimu.ai>";
+        String subject = "License number";
+        String title = "Your license is ready!";
+        String firstName = ""; // TODO: store firstName/lastName when generating a new License
+        String htmlText = "<p>Hi, " + firstName + "</p>";
+        htmlText += "<p>We have prepared a license number for you so that you can download and use our software.</p>";
+        htmlText += "<h2>License Details</h2>";
+        htmlText += "<p>";
+            htmlText += "E-mail: " + license.getLicenseEmail() + "<br />";
+            htmlText += "Number: " + license.getLicenseNumber()+ "<br />";
+        htmlText += "</p>";
+        htmlText += "<h2>How to Start?</h2>";
+        htmlText += "<ol>";
+            htmlText += "<li>Install our Appstore application</li>";
+            htmlText += "<li>Open Appstore and type your e-mail + license number</li>";
+            htmlText += "<li>Download apps</li>";
+        htmlText += "</ul>";
+        htmlText += "<h2>Download Appstore</h2>";
+        htmlText += "<p>At https://github.com/elimu-ai/appstore/releases you can download the latest version of our Appstore "
+                + "application which helps you download the entire collection of educational Android apps. Start by clicking the button below:</p>";
+        Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Download APK", "https://github.com/elimu-ai/appstore/releases");
     }
 }
