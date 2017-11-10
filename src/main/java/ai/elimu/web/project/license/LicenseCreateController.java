@@ -132,7 +132,7 @@ public class LicenseCreateController {
             htmlText += "<li>Install our Appstore application</li>";
             htmlText += "<li>Open Appstore and type your e-mail + license number</li>";
             htmlText += "<li>Download apps</li>";
-        htmlText += "</ul>";
+        htmlText += "</ol>";
         htmlText += "<h2>Download Appstore</h2>";
         htmlText += "<p>At https://github.com/elimu-ai/appstore/releases you can download the latest version of our Appstore "
                 + "application which helps you download the entire collection of educational Android apps. Start by clicking the button below:</p>";
