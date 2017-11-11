@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.AppCollectionDao;
 import ai.elimu.dao.LicenseDao;
 import ai.elimu.dao.ProjectDao;
+import ai.elimu.logic.LicenseGenerator;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCollection;
@@ -57,6 +58,7 @@ public class LicenseCreateController {
         model.addAttribute("appCollection", appCollection);
         
         License license = new License();
+        license.setLicenseNumber(LicenseGenerator.generateLicenseNumber());
         license.setAppCollection(appCollection);
         model.addAttribute("license", license);
 
@@ -132,7 +134,7 @@ public class LicenseCreateController {
             htmlText += "<li>Install our Appstore application</li>";
             htmlText += "<li>Open Appstore and type your e-mail + license number</li>";
             htmlText += "<li>Download apps</li>";
-        htmlText += "</ul>";
+        htmlText += "</ol>";
         htmlText += "<h2>Download Appstore</h2>";
         htmlText += "<p>At https://github.com/elimu-ai/appstore/releases you can download the latest version of our Appstore "
                 + "application which helps you download the entire collection of educational Android apps. Start by clicking the button below:</p>";
