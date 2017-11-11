@@ -1,9 +1,9 @@
 # REST API Reference (v1)
 
-1. [API Endpoint](#API-Endpoint)
-2. [Analytics](#Analytics)
-3. [Content](#Content)
-4. [Custom Project](#Custom-Project)
+1. [API Endpoint](#api-endpoint)
+2. [Analytics](#analytics)
+3. [Content](#content)
+4. [Custom Project](#custom-project)
 
 
 ## API Endpoint
