@@ -13,14 +13,30 @@ public class LicenseGenerator {
     
     private static final String GROUP_SEPARATOR = "-";
     
-    private static final String[] VALID_LETTERS = new String[]{"a", "b", "c", "d", "e", "f"};
+    /**
+     * Ambiguous characters '0' an '1' are not included.
+     */
+    private static final String VALID_CHARACTERS = "abcdef23456789";
     
-    private static final int[] VALID_NUMBERS = new int[]{2, 3, 4, 5, 6, 7, 8, 9};
-    
+    /**
+     * Generate license number on the format "bddf-d8f4-2adf-a365".
+     */
     public static String generateLicenseNumber() {
-        String licenseNumber = null;
+        String licenseNumber = "";
         
-        // TODO
+        for (int i = 0; i < LICENSE_LENGTH; i++) {
+            // Add separator for increased readability
+            if (i < VALID_CHARACTERS.length()) {
+                // Add separator between every group of 4 characters
+                if ((i > 0) && (i % 4 == 0)) {
+                    licenseNumber += "-";
+                }
+            }
+            
+            int randomIndex = (int) (Math.random() * VALID_CHARACTERS.length());
+            String randomCharacter = VALID_CHARACTERS.substring(randomIndex, randomIndex + 1);
+            licenseNumber += randomCharacter;
+        }
         
         return licenseNumber;
     }
