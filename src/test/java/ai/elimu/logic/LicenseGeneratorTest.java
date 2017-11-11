@@ -8,7 +8,7 @@ import org.junit.Test;
 public class LicenseGeneratorTest {
 
     @Test
-    public void testGetDeviceId() {
+    public void testGenerateLicenseNumber() {
         String licenseNumber = LicenseGenerator.generateLicenseNumber();
         assertThat(licenseNumber.length(), is(20));
     }
