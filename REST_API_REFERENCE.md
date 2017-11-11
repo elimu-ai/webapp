@@ -36,8 +36,11 @@ HTTP GET
 ```
 
 Example response:
-```
-TODO
+```json
+{
+    "result": "success",
+    "appCollectionId": 12
+}
 ```
 
 ### AppCollection
