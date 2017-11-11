@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.AppCollectionDao;
 import ai.elimu.dao.LicenseDao;
 import ai.elimu.dao.ProjectDao;
+import ai.elimu.logic.LicenseGenerator;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCollection;
@@ -57,6 +58,7 @@ public class LicenseCreateController {
         model.addAttribute("appCollection", appCollection);
         
         License license = new License();
+        license.setLicenseNumber(LicenseGenerator.generateLicenseNumber());
         license.setAppCollection(appCollection);
         model.addAttribute("license", license);
 
