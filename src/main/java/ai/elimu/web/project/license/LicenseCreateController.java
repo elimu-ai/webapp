@@ -86,7 +86,7 @@ public class LicenseCreateController {
         List<License> existingLicenses = licenseDao.readAll(appCollection);
         for (License existingLicence : existingLicenses) {
             if (existingLicence.getLicenseEmail().equals(license.getLicenseEmail())) {
-                result.rejectValue("name", "NonUnique");
+                result.rejectValue("licenseEmail", "NonUnique");
                 break;
             }
         }
