@@ -35,6 +35,10 @@ TODO
 
 URL: `/project/license`
 
+Arguments:  
+  * licenseEmail: String 
+  * licenseNumber: String
+
 Example request:
 ```
 HTTP GET
@@ -52,6 +56,10 @@ Example response:
 ### AppCollection
 
 URL: `/project/app-collection`
+
+Arguments:  
+  * licenseEmail: String 
+  * licenseNumber: String
 
 Example request:
 ```
