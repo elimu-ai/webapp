@@ -18,6 +18,7 @@ import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +79,14 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-motivation";
         } else if (contributor.getTimePerWeek() == null) {
             return "redirect:/content/contributor/edit-time";
+        } else {
+            // Redirect to originally requested URL
+            DefaultSavedRequest defaultSavedRequest = (DefaultSavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
+            logger.info("defaultSavedRequest: " + defaultSavedRequest);
+            if (defaultSavedRequest != null) {
+                logger.info("Redirecting to " + defaultSavedRequest.getServletPath());
+                return "redirect:" + defaultSavedRequest.getServletPath();
+            }
         }
         
         model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
