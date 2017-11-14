@@ -63,30 +63,37 @@ public class AppCollectionRestController {
             jsonObject.put("result", "error");
             jsonObject.put("description", "Invalid license");
         } else {
-            JSONArray applications = new JSONArray();
-            
-            AppCollection appCollection = license.getAppCollection();
-            for (AppCategory appCategory : appCollection.getAppCategories()) {
-                for (AppGroup appGroup : appCategory.getAppGroups()) {
-                    for (Application application : appGroup.getApplications()) {
-                        ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
+            AppCollection appCollection = appCollectionDao.read(appCollectionId);
+            if (appCollection == null) {
+                jsonObject.put("result", "error");
+                jsonObject.put("description", "AppCollection not found");
+            } else {
+                // TODO: verify that the AppCollection matches the one associated with the provided License
+                
+                JSONArray applications = new JSONArray();
+                
+                for (AppCategory appCategory : appCollection.getAppCategories()) {
+                    for (AppGroup appGroup : appCategory.getAppGroups()) {
+                        for (Application application : appGroup.getApplications()) {
+                            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
 
-                        // Fetch the Application's ApplicationVersions
-                        List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
-                        for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
-                            ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
-                            applicationVersions.add(applicationVersionGson);
+                            // Fetch the Application's ApplicationVersions
+                            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+                            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
+                                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                                applicationVersions.add(applicationVersionGson);
+                            }
+                            applicationGson.setApplicationVersions(applicationVersions);
+
+                            String json = new Gson().toJson(applicationGson);
+                            applications.put(new JSONObject(json));
                         }
-                        applicationGson.setApplicationVersions(applicationVersions);
-                        
-                        String json = new Gson().toJson(applicationGson);
-                        applications.put(new JSONObject(json));
                     }
                 }
+
+                jsonObject.put("result", "success");
+                jsonObject.put("applications", applications);
             }
-            
-            jsonObject.put("result", "success");
-            jsonObject.put("applications", applications);
         }
         
         logger.info("jsonObject: " + jsonObject);
