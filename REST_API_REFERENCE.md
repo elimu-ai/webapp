@@ -55,7 +55,7 @@ Example response:
 
 ### AppCollection
 
-URL: `/project/app-collection`
+URL: `/project/app-collections/{appCollectionId}/applications`
 
 Arguments:  
   * licenseEmail: String 
@@ -64,19 +64,17 @@ Arguments:
 Example request:
 ```
 HTTP GET
-/project/app-collection/12?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
+/project/app-collections/12/applications?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
 ```
 
 Example response:
 ```json
 {
     "result": "success",
-    "appCollection": {
-        "appCategories": [
-            { ... },
-            { ... },
-            { ... }
-        ]
-    }
+    "applications": [
+        { ... },
+        { ... },
+        { ... }
+    ]
 }
 ```
