@@ -89,14 +89,14 @@ public class WordCreateController {
         List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         
         // Verify that only valid Allophones are used
-        String allAllophonesCombined = "";
+        StringBuilder allAllophonesCombined = new StringBuilder("");
         for (Allophone allophone : allophones) {
-            allAllophonesCombined += allophone.getValueIpa();
+            allAllophonesCombined.append(allophone.getValueIpa());
         }
         if (StringUtils.isNotBlank(word.getPhonetics())) {
             for (char allophoneCharacter : word.getPhonetics().toCharArray()) {
                 String allophone = String.valueOf(allophoneCharacter);
-                if (!allAllophonesCombined.contains(allophone)) {
+                if (!allAllophonesCombined.toString().contains(allophone)) {
                     result.rejectValue("phonetics", "Invalid");
                     break;
                 }

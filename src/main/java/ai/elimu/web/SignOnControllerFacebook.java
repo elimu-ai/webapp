@@ -10,6 +10,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 import javax.servlet.http.HttpServletRequest;
@@ -152,7 +153,7 @@ public class SignOnControllerFacebook {
                 if (StringUtils.isNotBlank(contributor.getEmail()) && contributor.getEmail().endsWith("@elimu.ai")) {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 } else {
-                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+                    contributor.setRoles(new HashSet<>(Collections.singletonList(Role.CONTRIBUTOR)));
                 }
                 if (contributor.getEmail() == null) {
                     request.getSession().setAttribute("contributor", contributor);

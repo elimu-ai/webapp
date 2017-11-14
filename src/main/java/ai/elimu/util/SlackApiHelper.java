@@ -113,8 +113,6 @@ public class SlackApiHelper {
             logger.info("response: " + response);
             JSONObject jSONObject = new JSONObject(response);
             isResponseOk = jSONObject.getBoolean("ok");
-        } catch (MalformedURLException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         } catch (JSONException ex) {
@@ -160,8 +158,6 @@ public class SlackApiHelper {
             if (jsonObject.has("members")) {
                 members = jsonObject.getJSONArray("members");
             }
-        } catch (MalformedURLException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         }
@@ -184,12 +180,12 @@ public class SlackApiHelper {
         boolean isResponseOk = false;
         
         String response = null;
-        
+
         String firstNameParam = "";
         if (StringUtils.isNotBlank(contributor.getFirstName())) {
             firstNameParam += "&first_name=" + URLEncoder.encode(contributor.getFirstName());
         }
-        
+
         String lastNameParam = "";
         if (StringUtils.isNotBlank(contributor.getLastName())) {
             lastNameParam += "&last_name=" + URLEncoder.encode(contributor.getLastName());
@@ -200,7 +196,7 @@ public class SlackApiHelper {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
-            
+
             int responseCode = connection.getResponseCode();
             logger.info("responseCode: " + responseCode);
             InputStream inputStream = null;
@@ -214,14 +210,12 @@ public class SlackApiHelper {
             logger.info("response: " + response);
             JSONObject jSONObject = new JSONObject(response);
             isResponseOk = jSONObject.getBoolean("ok");
-        } catch (MalformedURLException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         } catch (JSONException ex) {
             logger.error("response: " + response, ex);
         }
-        
+
         return isResponseOk;
     }
     
@@ -267,8 +261,6 @@ public class SlackApiHelper {
             if (isResponseOk) {
                 logger.info("Invited " + contributor.getEmail() + " to channel " + channelId);
             }
-        } catch (MalformedURLException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         } catch (JSONException ex) {
@@ -320,8 +312,6 @@ public class SlackApiHelper {
             if (isResponseOk) {
                 logger.info("Removed " + contributor.getEmail() + " from channel " + channelId);
             }
-        } catch (MalformedURLException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         } catch (JSONException ex) {

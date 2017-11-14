@@ -22,6 +22,7 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
@@ -186,7 +187,7 @@ public class SignOnControllerGitHub {
                 if (StringUtils.isNotBlank(contributor.getEmail()) && contributor.getEmail().endsWith("@elimu.ai")) {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 } else {
-                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+                    contributor.setRoles(new HashSet<>(Collections.singletonList(Role.CONTRIBUTOR)));
                 }
                 if (contributor.getEmail() == null) {
                     request.getSession().setAttribute("contributor", contributor);

@@ -19,8 +19,7 @@ public class StringToWordConverter implements Converter<String, Word> {
             return null;
         } else {
             Long wordId = Long.parseLong(id);
-            Word word = wordDao.read(wordId);
-            return word;
+            return wordDao.read(wordId);
         }
     }
 }

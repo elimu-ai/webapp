@@ -259,13 +259,7 @@ public class VideoEditController {
             Long letterId = Long.valueOf(letterIdParameter);
             Letter letter = letterDao.read(letterId);
             Set<Letter> letters = video.getLetters();
-            Iterator<Letter> iterator = letters.iterator();
-            while (iterator.hasNext()) {
-                Letter existingLetter = iterator.next();
-                if (existingLetter.getId().equals(letter.getId())) {
-                    iterator.remove();
-                }
-            }
+            letters.removeIf(existingLetter -> existingLetter.getId().equals(letter.getId()));
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
         }
@@ -276,13 +270,7 @@ public class VideoEditController {
             Long numberId = Long.valueOf(numberIdParameter);
             Number number = numberDao.read(numberId);
             Set<Number> numbers = video.getNumbers();
-            Iterator<Number> iterator = numbers.iterator();
-            while (iterator.hasNext()) {
-                Number existingNumber = iterator.next();
-                if (existingNumber.getId().equals(number.getId())) {
-                    iterator.remove();
-                }
-            }
+            numbers.removeIf(existingNumber -> existingNumber.getId().equals(number.getId()));
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
         }
@@ -293,13 +281,7 @@ public class VideoEditController {
             Long wordId = Long.valueOf(wordIdParameter);
             Word word = wordDao.read(wordId);
             Set<Word> words = video.getWords();
-            Iterator<Word> iterator = words.iterator();
-            while (iterator.hasNext()) {
-                Word existingWord = iterator.next();
-                if (existingWord.getId().equals(word.getId())) {
-                    iterator.remove();
-                }
-            }
+            words.removeIf(existingWord -> existingWord.getId().equals(word.getId()));
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
         }

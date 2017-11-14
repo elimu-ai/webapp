@@ -46,12 +46,7 @@ public class SyllableFrequencyHelper {
     private static Map<String, Integer> sortByValue(Map<String, Integer> map) {
         List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(map.entrySet());
 
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-            
-            public int compare(Map.Entry<String, Integer> m1, Map.Entry<String, Integer> m2) {
-                return (m2.getValue()).compareTo(m1.getValue());
-            }
-        });
+        list.sort((m1, m2) -> (m2.getValue()).compareTo(m1.getValue()));
     	
         Map<String, Integer> result = new LinkedHashMap<String, Integer>();
         for (Map.Entry<String, Integer> entry : list) {

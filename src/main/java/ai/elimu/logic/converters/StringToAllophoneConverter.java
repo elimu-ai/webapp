@@ -19,8 +19,7 @@ public class StringToAllophoneConverter implements Converter<String, Allophone> 
             return null;
         } else {
             Long allophoneId = Long.parseLong(id);
-            Allophone allophone = allophoneDao.read(allophoneId);
-            return allophone;
+            return allophoneDao.read(allophoneId);
         }
     }
 }

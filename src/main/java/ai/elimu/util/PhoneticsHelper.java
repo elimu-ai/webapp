@@ -72,7 +72,7 @@ public class PhoneticsHelper {
             // TODO
         } else if (locale == Locale.EN) {
             if ("i".equals(ipaValue)) {
-                return soundType.VOWEL;
+                return SoundType.VOWEL;
             } else if ("t".equals(ipaValue)) {
                 return SoundType.CONSONANT;
             } else if ("ð".equals(ipaValue)) {

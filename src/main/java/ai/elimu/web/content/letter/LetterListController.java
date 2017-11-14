@@ -61,8 +61,7 @@ public class LetterListController {
     
     private List<Letter> generateLetters(Locale locale) {
         List<Letter> letters = new ArrayList<>();
-        
-        List<String> letterStringArray = new ArrayList<>();
+
         if (locale == Locale.AR) {
             // TODO
         } else if (locale == Locale.EN) {

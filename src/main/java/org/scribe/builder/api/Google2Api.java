@@ -35,22 +35,18 @@ public class Google2Api extends DefaultApi20 {
     
     @Override
     public AccessTokenExtractor getAccessTokenExtractor() {
-        return new AccessTokenExtractor() {
-            
-            @Override
-            public Token extract(String response) {
-                Preconditions.checkEmptyString(response, "Response body is incorrect. Can't extract a token from an empty string");
+        return response -> {
+            Preconditions.checkEmptyString(response, "Response body is incorrect. Can't extract a token from an empty string");
 
-                Matcher matcher = Pattern.compile("\"access_token\" : \"([^&\"]+)\"").matcher(response);
-                if (matcher.find())
-                {
-                  String token = OAuthEncoder.decode(matcher.group(1));
-                  return new Token(token, "", response);
-                } 
-                else
-                {
-                  throw new OAuthException("Response body is incorrect. Can't extract a token from this: '" + response + "'", null);
-                }
+            Matcher matcher = Pattern.compile("\"access_token\" : \"([^&\"]+)\"").matcher(response);
+            if (matcher.find())
+            {
+              String token = OAuthEncoder.decode(matcher.group(1));
+              return new Token(token, "", response);
+            }
+            else
+            {
+              throw new OAuthException("Response body is incorrect. Can't extract a token from this: '" + response + "'", null);
             }
         };
     }

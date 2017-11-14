@@ -80,8 +80,6 @@ public class SyllableHelper {
         File file = new File(url.getFile());
         try {
             hyphenator.loadTable(new BufferedInputStream(new FileInputStream(file)));
-        } catch (FileNotFoundException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         }

@@ -55,10 +55,9 @@ public class SyllableListController {
     }
     
     private List<Syllable> generateSyllables(Locale locale) {
-        List<Syllable> syllables = new ArrayList<>();
-        
+
         // TODO
         
-        return syllables;
+        return new ArrayList<>();
     }
 }

@@ -3,6 +3,7 @@ package ai.elimu.web;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
@@ -151,7 +152,7 @@ public class SignOnControllerGoogle {
                 if (contributor.getEmail().endsWith("@elimu.ai")) {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 } else {
-                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+                    contributor.setRoles(new HashSet<>(Collections.singletonList(Role.CONTRIBUTOR)));
                 }
                 contributorDao.create(contributor);
                 

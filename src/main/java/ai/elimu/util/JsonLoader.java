@@ -1,5 +1,7 @@
 package ai.elimu.util;
 
+import org.apache.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import org.apache.log4j.Logger;
 
 public class JsonLoader {
     
@@ -19,7 +20,7 @@ public class JsonLoader {
 
         logger.info("Downloading from " + urlValue);
 
-        String jsonResponse = null;
+        StringBuilder jsonResponse = null;
 
         try {
             URL url = new URL(urlValue);
@@ -41,9 +42,9 @@ public class JsonLoader {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 if (jsonResponse == null) {
-                    jsonResponse = "";
+                    jsonResponse = new StringBuilder();
                 }
-                jsonResponse += line;
+                jsonResponse.append(line);
             }
         } catch (MalformedURLException e) {
             logger.error("MalformedURLException", e);
@@ -53,6 +54,6 @@ public class JsonLoader {
             logger.error("IOException", e);
         }
 
-        return jsonResponse;
+        return (jsonResponse == null) ? null : jsonResponse.toString();
     }
 }

@@ -56,7 +56,7 @@ public class StoryBookListController {
         List<StoryBook> storyBooks = new ArrayList<>();
         
         StoryBook storyBook = new StoryBook();
-        storyBook.setLocale(locale.EN);
+        storyBook.setLocale(Locale.EN);
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setTitle("Too Small");
         Image coverImage = imageDao.read("M_ASP_55_Too_small_Page_02_Image_0001", locale);

@@ -199,12 +199,8 @@ public class MMCQ
 
         public int[] map(int[] color)
         {
-            int numVBoxes = vboxes.size();
-            for (int i = 0; i < numVBoxes; i++)
-            {
-                VBox vbox = vboxes.get(i);
-                if (vbox.contains(color))
-                {
+            for (VBox vbox : vboxes) {
+                if (vbox.contains(color)) {
                     return vbox.avg(false);
                 }
             }
@@ -217,15 +213,12 @@ public class MMCQ
             double d2;
             int[] pColor = null;
 
-            int numVBoxes = vboxes.size();
-            for (int i = 0; i < numVBoxes; i++)
-            {
-                int[] vbColor = vboxes.get(i).avg(false);
+            for (VBox vboxe : vboxes) {
+                int[] vbColor = vboxe.avg(false);
                 d2 = Math.sqrt(Math.pow(color[0] - vbColor[0], 2)
                         + Math.pow(color[1] - vbColor[1], 2)
                         + Math.pow(color[2] - vbColor[2], 2));
-                if (d2 < d1)
-                {
+                if (d2 < d1) {
                     d1 = d2;
                     pColor = vbColor;
                 }
@@ -245,9 +238,7 @@ public class MMCQ
         int index, rval, gval, bval;
 
         int numPixels = pixels.length;
-        for (int i = 0; i < numPixels; i++)
-        {
-            int[] pixel = pixels[i];
+        for (int[] pixel : pixels) {
             rval = pixel[0] >> RSHIFT;
             gval = pixel[1] >> RSHIFT;
             bval = pixel[2] >> RSHIFT;
@@ -267,37 +258,26 @@ public class MMCQ
 
         // find min/max
         int numPixels = pixels.length;
-        for (int i = 0; i < numPixels; i++)
-        {
-            int[] pixel = pixels[i];
+        for (int[] pixel : pixels) {
             rval = pixel[0] >> RSHIFT;
             gval = pixel[1] >> RSHIFT;
             bval = pixel[2] >> RSHIFT;
 
-            if (rval < rmin)
-            {
+            if (rval < rmin) {
                 rmin = rval;
-            }
-            else if (rval > rmax)
-            {
+            } else if (rval > rmax) {
                 rmax = rval;
             }
 
-            if (gval < gmin)
-            {
+            if (gval < gmin) {
                 gmin = gval;
-            }
-            else if (gval > gmax)
-            {
+            } else if (gval > gmax) {
                 gmax = gval;
             }
 
-            if (bval < bmin)
-            {
+            if (bval < bmin) {
                 bmin = bval;
-            }
-            else if (bval > bmax)
-            {
+            } else if (bval > bmax) {
                 bmax = bval;
             }
         }
@@ -509,7 +489,7 @@ public class MMCQ
 
         // Re-sort by the product of pixel occupancy times the size in color
         // space.
-        Collections.sort(pq, COMPARATOR_PRODUCT);
+        pq.sort(COMPARATOR_PRODUCT);
 
         // next set - generate the median cuts using the (npix * vol) sorting.
         iter(pq, COMPARATOR_PRODUCT, maxcolors - pq.size(), histo);
@@ -545,7 +525,7 @@ public class MMCQ
             vbox = lh.get(lh.size() - 1);
             if (vbox.count(false) == 0)
             {
-                Collections.sort(lh, comparator);
+                lh.sort(comparator);
                 niters++;
                 continue;
             }
@@ -568,7 +548,7 @@ public class MMCQ
                 lh.add(vbox2);
                 ncolors++;
             }
-            Collections.sort(lh, comparator);
+            lh.sort(comparator);
 
             if (ncolors >= target)
             {
@@ -581,34 +561,22 @@ public class MMCQ
         }
     }
 
-    private static final Comparator<VBox> COMPARATOR_COUNT = new Comparator<VBox>()
-    {
-        @Override
-        public int compare(VBox a, VBox b)
+    private static final Comparator<VBox> COMPARATOR_COUNT = Comparator.comparingInt(a -> a.count(false));
+
+    private static final Comparator<VBox> COMPARATOR_PRODUCT = (a, b) -> {
+        int aCount = a.count(false);
+        int bCount = b.count(false);
+        int aVolume = a.volume(false);
+        int bVolume = b.volume(false);
+
+        // If count is 0 for both (or the same), sort by volume
+        if (aCount == bCount)
         {
-            return a.count(false) - b.count(false);
+            return aVolume - bVolume;
         }
-    };
 
-    private static final Comparator<VBox> COMPARATOR_PRODUCT = new Comparator<VBox>()
-    {
-        @Override
-        public int compare(VBox a, VBox b)
-        {
-            int aCount = a.count(false);
-            int bCount = b.count(false);
-            int aVolume = a.volume(false);
-            int bVolume = b.volume(false);
-
-            // If count is 0 for both (or the same), sort by volume
-            if (aCount == bCount)
-            {
-                return aVolume - bVolume;
-            }
-
-            // Otherwise sort by products
-            return aCount * aVolume - bCount * bVolume;
-        }
+        // Otherwise sort by products
+        return aCount * aVolume - bCount * bVolume;
     };
 
 }

@@ -16,8 +16,7 @@ public class EventLineHelper {
         String deviceId = null;
         
         String[] eventLineValues = getEventLineValues(eventLine);
-        for (int i = 0; i < eventLineValues.length; i++) {
-            String eventLineValue = eventLineValues[i];
+        for (String eventLineValue : eventLineValues) {
             if (eventLineValue.startsWith("deviceId:")) {
                 deviceId = eventLineValue.replace("deviceId:", "");
             }
@@ -30,8 +29,7 @@ public class EventLineHelper {
         Calendar calendar = null;
         
         String[] eventLineValues = getEventLineValues(eventLine);
-        for (int i = 0; i < eventLineValues.length; i++) {
-            String eventLineValue = eventLineValues[i];
+        for (String eventLineValue : eventLineValues) {
             if (eventLineValue.startsWith("time:")) {
                 String timeAsString = eventLineValue.replace("time:", "");
                 long timeInMillis = Long.parseLong(timeAsString);
@@ -47,8 +45,7 @@ public class EventLineHelper {
         String packageName = null;
         
         String[] eventLineValues = getEventLineValues(eventLine);
-        for (int i = 0; i < eventLineValues.length; i++) {
-            String eventLineValue = eventLineValues[i];
+        for (String eventLineValue : eventLineValues) {
             if (eventLineValue.startsWith("packageName:")) {
                 packageName = eventLineValue.replace("packageName:", "");
             }
@@ -61,8 +58,7 @@ public class EventLineHelper {
         String uniqueStudentId = null;
         
         String[] eventLineValues = getEventLineValues(eventLine);
-        for (int i = 0; i < eventLineValues.length; i++) {
-            String eventLineValue = eventLineValues[i];
+        for (String eventLineValue : eventLineValues) {
             if (eventLineValue.startsWith("studentId:")) {
                 uniqueStudentId = eventLineValue.replace("studentId:", "");
             }

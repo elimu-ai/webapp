@@ -40,8 +40,7 @@ public class ImageColorHelper {
         {
             return null;
         }
-        int[] dominantColor = palette[0];
-        return dominantColor;
+        return palette[0];
     }
 
     /**
@@ -60,8 +59,7 @@ public class ImageColorHelper {
         {
             return null;
         }
-        int[] dominantColor = palette[0];
-        return dominantColor;
+        return palette[0];
     }
 
     /**
@@ -91,8 +89,7 @@ public class ImageColorHelper {
         {
             return null;
         }
-        int[] dominantColor = palette[0];
-        return dominantColor;
+        return palette[0];
     }
 
     /**
@@ -203,8 +200,7 @@ public class ImageColorHelper {
 
         // Send array to quantize function which clusters values using median
         // cut algorithm
-        MMCQ.CMap cmap = MMCQ.quantize(pixelArray, colorCount);
-        return cmap;
+        return MMCQ.quantize(pixelArray, colorCount);
     }
 
     /**

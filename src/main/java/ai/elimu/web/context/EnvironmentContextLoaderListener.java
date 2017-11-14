@@ -122,8 +122,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 PROPERTIES.put("appstore.secret", appstoreSecret);
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
-            } catch (FileNotFoundException ex) {
-                logger.error(null, ex);
             } catch (IOException ex) {
                 logger.error(null, ex);
             } finally {
@@ -138,13 +136,10 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
 
             PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
             propertyPlaceholderConfigurer.setProperties(PROPERTIES);
-            applicationContext.addBeanFactoryPostProcessor(new BeanFactoryPostProcessor() {
-                @Override
-                public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-                    PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
-                    propertyPlaceholderConfigurer.setProperties(PROPERTIES);
-                    propertyPlaceholderConfigurer.postProcessBeanFactory(configurableListableBeanFactory);
-                }
+            applicationContext.addBeanFactoryPostProcessor(configurableListableBeanFactory -> {
+                PropertyPlaceholderConfigurer propertyPlaceholderConfigurer1 = new PropertyPlaceholderConfigurer();
+                propertyPlaceholderConfigurer1.setProperties(PROPERTIES);
+                propertyPlaceholderConfigurer1.postProcessBeanFactory(configurableListableBeanFactory);
             });
         }
 
