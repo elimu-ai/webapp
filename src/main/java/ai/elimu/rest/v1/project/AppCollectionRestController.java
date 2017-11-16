@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Returns the {@link AppCollection} for a given {@link License}.
+ * <p />
+ * See https://github.com/elimu-ai/webapp/blob/master/REST_API_REFERENCE.md#appcollection
  */
 @RestController
 @RequestMapping(value = "/rest/v1/project/app-collections/{appCollectionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
