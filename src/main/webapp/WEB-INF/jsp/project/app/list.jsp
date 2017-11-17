@@ -22,29 +22,22 @@
                 <c:forEach var="application" items="${appGroup.applications}">
                     <tr class="application">
                         <td>
-                            <c:choose>
-                                <c:when test="${not empty application.latestApplicationVersion.icon}">
-                                    <img src="<spring:url value='/project/app-version/${application.latestApplicationVersion.id}/icon.png' />" alt="${application.packageName}" style="width: 3em; height: 3em;" />
-                                </c:when>
-                                <c:otherwise>
-                                    <img src="<spring:url value='/static/img/project/ic_launcher_round.png' />" alt="${application.packageName}" style="width: 3em; height: 3em;" />
-                                </c:otherwise>
-                            </c:choose>
+                            <img src="<spring:url value='/static/img/project/ic_launcher_round.png' />" alt="${application.packageName}" style="width: 3em; height: 3em;" />
                         </td>
                         <td>
                             <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/${application.id}/edit' />">
                                 ${application.packageName}
                             </a><br />
-                            ${application.latestApplicationVersion.label}
+                            label...
                         </td>
                         <td>
-                            ${application.latestApplicationVersion.versionCode}
+                            versionCode...
                         </td>
                         <td>
-                            ${application.latestApplicationVersion.versionName}
+                            versionName...
                         </td>
                         <td>
-                            <fmt:formatNumber value="${application.latestApplicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB
+                            fileSizeInKb...
                         </td>
                         <td>
                             ${application.applicationStatus}

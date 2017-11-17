@@ -19,8 +19,6 @@
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
                     <form:hidden path="packageName" value="${application.packageName}" />
-                    <br />
-                    <fmt:message key='label' />: "${application.latestApplicationVersion.label}"
                 </div>
                 <div class="input-field col s6">
                     <select id="applicationStatus" name="applicationStatus">

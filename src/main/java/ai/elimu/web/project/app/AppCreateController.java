@@ -173,9 +173,6 @@ public class AppCreateController {
             applicationVersion.setApplication(application);
             applicationVersionDao.create(applicationVersion);
             
-            application.setLatestApplicationVersion(applicationVersion);
-            applicationDao.update(application);
-            
             appGroup.getApplications().add(application);
             appGroupDao.update(appGroup);
             

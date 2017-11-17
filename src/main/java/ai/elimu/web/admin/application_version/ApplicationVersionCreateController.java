@@ -147,7 +147,6 @@ public class ApplicationVersionCreateController {
                 // If first APK file, change status of application to "ACTIVE"
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
             }
-            application.setLatestApplicationVersion(applicationVersion);
             applicationDao.update(application);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
