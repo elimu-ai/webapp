@@ -7,6 +7,7 @@ import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
+import ai.elimu.model.gson.project.AppCollectionGson;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.AppGroup;
@@ -47,13 +48,49 @@ public class AppCollectionRestController {
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
     
+    @RequestMapping(method = RequestMethod.GET)
+    public String get(
+            HttpServletRequest request,
+            @PathVariable Long appCollectionId,
+            @RequestParam String licenseEmail,
+            @RequestParam String licenseNumber) {
+        logger.info("get");
+        
+        logger.info("request.getQueryString(): " + request.getQueryString());
+        logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
+        
+        JSONObject jsonObject = new JSONObject();
+        
+        License license = licenseDao.read(licenseEmail, licenseNumber);
+        if (license == null) {
+            jsonObject.put("result", "error");
+            jsonObject.put("description", "Invalid license");
+        } else {
+            AppCollection appCollection = appCollectionDao.read(appCollectionId);
+            if (appCollection == null) {
+                jsonObject.put("result", "error");
+                jsonObject.put("description", "AppCollection not found");
+            } else {
+                // TODO: verify that the AppCollection matches the one associated with the provided License
+                
+                AppCollectionGson appCollectionGson = JavaToGsonConverter.getAppCollectionGson(appCollection);
+                
+                jsonObject.put("result", "success");
+                jsonObject.put("appCollection", new Gson().toJson(appCollectionGson));
+            }
+        }
+        
+        logger.info("jsonObject: " + jsonObject);
+        return jsonObject.toString();
+    }
+    
     @RequestMapping(value = "/applications", method = RequestMethod.GET)
     public String getApplications(
             HttpServletRequest request,
             @PathVariable Long appCollectionId,
             @RequestParam String licenseEmail,
             @RequestParam String licenseNumber) {
-        logger.info("read");
+        logger.info("getApplications");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
