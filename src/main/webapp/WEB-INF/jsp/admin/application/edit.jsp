@@ -56,7 +56,7 @@
                                         <td>${applicationVersion.versionCode}</td>
                                         <td>${applicationVersion.versionName}</td>
                                         <td>${applicationVersion.label}</td>
-                                        <td><fmt:formatNumber value="${fn:length(applicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB</td>
+                                        <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
                                         <td><c:out value="${applicationVersion.startCommand}" /></td>
                                         <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
                                         <td>

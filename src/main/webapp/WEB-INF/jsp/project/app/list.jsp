@@ -44,7 +44,7 @@
                             ${application.latestApplicationVersion.versionName}
                         </td>
                         <td>
-                            <fmt:formatNumber value="${fn:length(application.latestApplicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB
+                            <fmt:formatNumber value="${application.latestApplicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB
                         </td>
                         <td>
                             ${application.applicationStatus}
