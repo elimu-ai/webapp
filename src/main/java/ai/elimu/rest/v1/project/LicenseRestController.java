@@ -2,14 +2,13 @@ package ai.elimu.rest.v1.project;
 
 import ai.elimu.dao.LicenseDao;
 import ai.elimu.model.project.License;
-import ai.elimu.rest.v1.JavaToGsonConverter;
-import com.google.gson.Gson;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +24,7 @@ public class LicenseRestController {
     @Autowired
     private LicenseDao licenseDao;
     
-    @RequestMapping("/read")
+    @RequestMapping(method = RequestMethod.GET)
     public String read(
             HttpServletRequest request,
             @RequestParam String licenseEmail,
@@ -40,9 +39,7 @@ public class LicenseRestController {
         License license = licenseDao.read(licenseEmail, licenseNumber);
         if (license != null) {
             jsonObject.put("result", "success");
-//            LicenseGson licenseGson = JavaToGsonConverter.getLicenseGson(license);
-//            jsonObject.put("license", new Gson().toJson(licenseGson));
-//            jsonObject.put("locale", ...); // TODO
+            jsonObject.put("appCollectionId", license.getAppCollection().getId());
         } else {
             jsonObject.put("result", "error");
             jsonObject.put("description", "Invalid license");

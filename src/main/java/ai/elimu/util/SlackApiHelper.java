@@ -157,15 +157,13 @@ public class SlackApiHelper {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             response = bufferedReader.readLine();
             JSONObject jsonObject = new JSONObject(response);
-            members = jsonObject.getJSONArray("members");
+            if (jsonObject.has("members")) {
+                members = jsonObject.getJSONArray("members");
+            }
         } catch (MalformedURLException ex) {
             logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
-        } catch (JSONException ex) {
-            logger.error("response: " + response, ex);
-            // TODO: handle "{"ok":false,"error":"ratelimited"}"
-            // See https://api.slack.com/docs/rate-limits
         }
         
         return members;

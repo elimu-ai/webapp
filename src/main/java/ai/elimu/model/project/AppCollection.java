@@ -4,8 +4,8 @@ import ai.elimu.model.BaseEntity;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -22,7 +22,7 @@ public class AppCollection extends BaseEntity {
     
     @NotEmpty
     @OrderColumn
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<AppCategory> appCategories;
     
     public Project getProject() {

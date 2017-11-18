@@ -107,7 +107,9 @@
                 <c:forEach var="appCollection" items="${appCollections}">
                     <tr class="appCollection">
                         <td>
-                            <c:out value="${appCollection.name}" />
+                            <a href="<spring:url value='/project/${project.id}/app-collection/edit/${appCollection.id}' />">
+                                <c:out value="${appCollection.name}" />
+                            </a>
                         </td>
                         <td>
                             ${fn:length(appCollection.appCategories)}
