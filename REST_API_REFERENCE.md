@@ -55,7 +55,9 @@ Example response:
 
 ### AppCollection
 
-URL: `/project/app-collection`
+#### Read
+
+URL: `/project/app-collections/{appCollectionId}`
 
 Arguments:  
   * licenseEmail: String 
@@ -64,7 +66,7 @@ Arguments:
 Example request:
 ```
 HTTP GET
-/project/app-collection/12?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
+/project/app-collections/12?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
 ```
 
 Example response:
@@ -73,10 +75,48 @@ Example response:
     "result": "success",
     "appCollection": {
         "appCategories": [
-            { ... },
+            {
+                "appGroups": [
+                    {
+                        "applications": [
+                            { ... },
+                            { ... },
+                            { ... }
+                        ]
+                    },
+                    { ... },
+                    { ... }
+                ]
+            },
             { ... },
             { ... }
         ]
     }
+}
+```
+
+#### Read Applications
+
+URL: `/project/app-collections/{appCollectionId}/applications`
+
+Arguments:  
+  * licenseEmail: String 
+  * licenseNumber: String
+
+Example request:
+```
+HTTP GET
+/project/app-collections/12/applications?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
+```
+
+Example response:
+```json
+{
+    "result": "success",
+    "applications": [
+        { ... },
+        { ... },
+        { ... }
+    ]
 }
 ```
