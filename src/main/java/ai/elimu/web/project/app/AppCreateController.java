@@ -109,7 +109,9 @@ public class AppCreateController {
         } else {
             try {
                 byte[] bytes = multipartFile.getBytes();
-                logger.info("bytes.length: " + (bytes.length / 1024 / 1024) + "MB");
+                
+                Integer fileSizeInKb = bytes.length / 1024;
+                logger.info("fileSizeInKb: " + fileSizeInKb + " (" + (fileSizeInKb / 1024) + "MB)");
                 
                 String contentType = multipartFile.getContentType();
                 logger.info("contentType: " + contentType);
@@ -140,6 +142,7 @@ public class AppCreateController {
                 // TODO
                 
                 applicationVersion.setBytes(bytes);
+                applicationVersion.setFileSizeInKb(fileSizeInKb);
                 applicationVersion.setContentType(contentType);
                 applicationVersion.setVersionCode(versionCode);
                 applicationVersion.setVersionName(versionName);
@@ -169,9 +172,6 @@ public class AppCreateController {
             
             applicationVersion.setApplication(application);
             applicationVersionDao.create(applicationVersion);
-            
-            application.setLatestApplicationVersion(applicationVersion);
-            applicationDao.update(application);
             
             appGroup.getApplications().add(application);
             appGroupDao.update(appGroup);

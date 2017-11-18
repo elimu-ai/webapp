@@ -17,10 +17,20 @@ public class ApplicationVersion extends BaseEntity {
     @ManyToOne
     private Application application;
     
+    /**
+     * Do not use this property to calculate the size of the APK file. Instead, use the 
+     * {@link #fileSizeInKb} property.
+     */
     @NotNull
     @Lob
     @Column(length=524288000) // 500MB
     private byte[] bytes;
+    
+    /**
+     * This property is used to prevent calls to {@link #bytes} just to get the size of the APK file.
+     */
+    @NotNull
+    private Integer fileSizeInKb;
     
     @NotNull
     private String contentType;
@@ -64,6 +74,14 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
+    }
+    
+    public Integer getFileSizeInKb() {
+        return fileSizeInKb;
+    }
+
+    public void setFileSizeInKb(Integer fileSizeInKb) {
+        this.fileSizeInKb = fileSizeInKb;
     }
     
     public String getContentType() {
