@@ -1,4 +1,4 @@
-package rest.v1.project.license;
+package rest.v1.project;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
