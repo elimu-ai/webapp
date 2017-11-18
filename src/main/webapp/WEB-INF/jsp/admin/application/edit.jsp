@@ -19,8 +19,6 @@
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
                     <form:hidden path="packageName" value="${application.packageName}" />
-                    <br />
-                    <fmt:message key='label' />: "${application.latestApplicationVersion.label}"
                 </div>
                 <div class="input-field col s6">
                     <select id="applicationStatus" name="applicationStatus">
@@ -56,7 +54,7 @@
                                         <td>${applicationVersion.versionCode}</td>
                                         <td>${applicationVersion.versionName}</td>
                                         <td>${applicationVersion.label}</td>
-                                        <td><fmt:formatNumber value="${fn:length(applicationVersion.bytes) / 1024 / 1024}" maxFractionDigits="2" />MB</td>
+                                        <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
                                         <td><c:out value="${applicationVersion.startCommand}" /></td>
                                         <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
                                         <td>
