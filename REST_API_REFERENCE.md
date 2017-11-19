@@ -5,6 +5,8 @@
 3. [Application](#application)
 4. [Content](#content)
 5. [Custom Project](#custom-project)
+   * [License](#license)
+   * [AppCollection](#appcollection)
 
 
 ## API Endpoint
@@ -33,7 +35,7 @@ TODO
 
 #### Read
 
-URL: `/project/license`
+URL: `/project/licenses`
 
 Arguments:  
   * licenseEmail: String 
@@ -42,7 +44,7 @@ Arguments:
 Example request:
 ```
 HTTP GET
-/project/license?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
+/project/licenses?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
 ```
 
 Example response:
