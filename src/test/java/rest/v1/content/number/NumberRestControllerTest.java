@@ -18,7 +18,7 @@ public class NumberRestControllerTest {
     public void testList_missingParameters() {
     	String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/content/number/list");
         logger.info("jsonResponse: " + jsonResponse);
-        JSONObject jsonObject = new JSONObject(jsonResponse);
+        new JSONObject(jsonResponse);
     }
     
     @Test

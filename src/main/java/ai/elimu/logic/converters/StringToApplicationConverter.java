@@ -19,8 +19,7 @@ public class StringToApplicationConverter implements Converter<String, Applicati
             return null;
         } else {
             Long applicationId = Long.parseLong(id);
-            Application application = applicationDao.read(applicationId);
-            return application;
+            return applicationDao.read(applicationId);
         }
     }
 }

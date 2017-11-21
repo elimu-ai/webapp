@@ -18,7 +18,7 @@ public class VideoRestControllerTest {
     public void testList_missingParameters() {
     	String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/content/multimedia/video/list");
         logger.info("jsonResponse: " + jsonResponse);
-        JSONObject jsonObject = new JSONObject(jsonResponse);
+        new JSONObject(jsonResponse);
     }
     
     @Test

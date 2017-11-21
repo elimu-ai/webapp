@@ -19,8 +19,7 @@ public class StringToProjectConverter implements Converter<String, Project> {
             return null;
         } else {
             Long projectId = Long.parseLong(id);
-            Project project = projectDao.read(projectId);
-            return project;
+            return projectDao.read(projectId);
         }
     }
 }

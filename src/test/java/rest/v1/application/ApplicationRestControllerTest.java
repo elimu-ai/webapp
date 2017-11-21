@@ -20,7 +20,7 @@ public class ApplicationRestControllerTest {
     public void testList_missingParameters() {
     	String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/application/list");
         logger.info("jsonResponse: " + jsonResponse);
-        JSONObject jsonObject = new JSONObject(jsonResponse);
+        new JSONObject(jsonResponse);
     }
     
     @Test

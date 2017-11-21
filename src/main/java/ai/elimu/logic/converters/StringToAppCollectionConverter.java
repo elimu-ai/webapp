@@ -19,8 +19,7 @@ public class StringToAppCollectionConverter implements Converter<String, AppColl
             return null;
         } else {
             Long appCollectionId = Long.parseLong(id);
-            AppCollection appCollection = appCollectionDao.read(appCollectionId);
-            return appCollection;
+            return appCollectionDao.read(appCollectionId);
         }
     }
 }

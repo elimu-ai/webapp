@@ -19,8 +19,7 @@ public class StringToContributorConverter implements Converter<String, Contribut
             return null;
         } else {
             Long contributorId = Long.parseLong(id);
-            Contributor contributor = contributorDao.read(contributorId);
-            return contributor;
+            return contributorDao.read(contributorId);
         }
     }
 }

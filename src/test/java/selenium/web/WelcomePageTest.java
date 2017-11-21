@@ -26,6 +26,6 @@ public class WelcomePageTest {
 
     @Test
     public void testWelcomePage() {
-    	WelcomePage welcomePage = PageFactory.initElements(driver, WelcomePage.class);
+    	PageFactory.initElements(driver, WelcomePage.class);
     }
 }
