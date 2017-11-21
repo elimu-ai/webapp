@@ -40,6 +40,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
                 "WHERE a.packageName = :packageName " +
                 "AND a.project = :project")
                 .setParameter("project", project)
+                    .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
             logger.warn("Application with packageName \"" + packageName + "\" was not found for Project " + project.getId());
