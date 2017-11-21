@@ -1,10 +1,12 @@
 package ai.elimu.rest.v1.project;
 
 import ai.elimu.dao.AppCollectionDao;
+import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.dao.LicenseDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
 import ai.elimu.model.gson.project.AppCollectionGson;
@@ -44,6 +46,9 @@ public class AppCollectionRestController {
     
     @Autowired
     private AppCollectionDao appCollectionDao;
+    
+    @Autowired
+    private ApplicationDao applicationDao;
     
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
@@ -111,6 +116,8 @@ public class AppCollectionRestController {
                 
                 JSONArray applications = new JSONArray();
                 
+                addInfrastructureApps(applications);
+                
                 for (AppCategory appCategory : appCollection.getAppCategories()) {
                     for (AppGroup appGroup : appCategory.getAppGroups()) {
                         for (Application application : appGroup.getApplications()) {
@@ -137,5 +144,62 @@ public class AppCollectionRestController {
         
         logger.info("jsonObject: " + jsonObject);
         return jsonObject.toString();
+    }
+    
+    /**
+     * As AppCollections in Custom Projects do not include all the Applications from the open source 
+     * version, some apps are required to form the basic infrastructure.
+     */
+    private void addInfrastructureApps(JSONArray applications) {
+        // Appstore
+        Application applicationAppstore = applicationDao.readByPackageName(Locale.EN, "ai.elimu.appstore");
+        if (applicationAppstore != null) {
+            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(applicationAppstore);
+
+            // Fetch the Application's ApplicationVersions
+            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(applicationAppstore)) {
+                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                applicationVersions.add(applicationVersionGson);
+            }
+            applicationGson.setApplicationVersions(applicationVersions);
+
+            String json = new Gson().toJson(applicationGson);
+            applications.put(new JSONObject(json));
+        }
+        
+        // Analytics
+        Application applicationAnalytics = applicationDao.readByPackageName(Locale.EN, "ai.elimu.analytics");
+        if (applicationAnalytics != null) {
+            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(applicationAnalytics);
+
+            // Fetch the Application's ApplicationVersions
+            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(applicationAnalytics)) {
+                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                applicationVersions.add(applicationVersionGson);
+            }
+            applicationGson.setApplicationVersions(applicationVersions);
+
+            String json = new Gson().toJson(applicationGson);
+            applications.put(new JSONObject(json));
+        }
+        
+        // Custom Launcher
+        Application applicationCustomLauncher = applicationDao.readByPackageName(Locale.EN, "ai.elimu.launcher_custom");
+        if (applicationCustomLauncher != null) {
+            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(applicationCustomLauncher);
+
+            // Fetch the Application's ApplicationVersions
+            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(applicationCustomLauncher)) {
+                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                applicationVersions.add(applicationVersionGson);
+            }
+            applicationGson.setApplicationVersions(applicationVersions);
+
+            String json = new Gson().toJson(applicationGson);
+            applications.put(new JSONObject(json));
+        }
     }
 }
