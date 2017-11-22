@@ -28,9 +28,7 @@ public class ChecksumHelper {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             byte[] md5AsBytes = messageDigest.digest(input.getBytes("UTF-8"));
             checksum = new BigInteger(1, md5AsBytes).toString(16);
-        } catch (NoSuchAlgorithmException e) {
-            logger.error(e);
-        } catch (UnsupportedEncodingException e) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             logger.error(e);
         }
 

@@ -2,6 +2,7 @@ package ai.elimu.web;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,12 +54,12 @@ public class SignOnControllerSelenium {
         
         Contributor contributor = new Contributor();
         contributor.setEmail("info+role-" + role + "@elimu.ai");
-        contributor.setRoles(new HashSet<>(Arrays.asList(role)));
+        contributor.setRoles(new HashSet<>(Collections.singletonList(role)));
         contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setFirstName("TestRole");
         contributor.setLastName(role.toString());
         contributor.setLocale(Locale.EN);
-        contributor.setTeams(new HashSet<>(Arrays.asList(Team.TESTING)));
+        contributor.setTeams(new HashSet<>(Collections.singletonList(Team.TESTING)));
         contributor.setMotivation("Regression testing as " + role);
 				
         Contributor existingContributor = contributorDao.read(contributor.getEmail());

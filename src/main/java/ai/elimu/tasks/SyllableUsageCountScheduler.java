@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
  * Iterates all StoryBooks and calculates the frequency of each syllable. Lower-case 
  * and upper-case variants are considered as two different syllables, e.g. 'a' and 'A'.
  */
+@SuppressWarnings("SpringAutowiredFieldsWarningInspection")
 @Service
 public class SyllableUsageCountScheduler {
     
@@ -50,9 +51,8 @@ public class SyllableUsageCountScheduler {
                 logger.info("storyBook.getTitle(): " + storyBook.getTitle());
                 
                 Map<String, Integer> syllableFrequencyMapForBook = SyllableFrequencyHelper.getSyllableFrequency(storyBook);
-                for (String key : syllableFrequencyMapForBook.keySet()) {
-                    String syllableText = key;
-                    int syllableFrequency = syllableFrequencyMapForBook.get(key);
+                for (String syllableText : syllableFrequencyMapForBook.keySet()) {
+                    int syllableFrequency = syllableFrequencyMapForBook.get(syllableText);
                     if (!syllableFrequencyMap.containsKey(syllableText)) {
                         syllableFrequencyMap.put(syllableText, syllableFrequency);
                     } else {
@@ -63,9 +63,8 @@ public class SyllableUsageCountScheduler {
             
             logger.info("syllableFrequencyMap: " + syllableFrequencyMap);
             
-            for (String key : syllableFrequencyMap.keySet()) {
-                String syllableText = key;
-                
+            for (String syllableText : syllableFrequencyMap.keySet()) {
+
                 // Skip syllables that are actual words
                 // TODO: add logic to Word editing
                 Word word = wordDao.readByText(locale, syllableText);

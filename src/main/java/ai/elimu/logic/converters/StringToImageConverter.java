@@ -19,8 +19,7 @@ public class StringToImageConverter implements Converter<String, Image> {
             return null;
         } else {
             Long imageId = Long.parseLong(id);
-            Image word = imageDao.read(imageId);
-            return word;
+            return imageDao.read(imageId);
         }
     }
 }

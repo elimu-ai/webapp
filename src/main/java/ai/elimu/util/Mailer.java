@@ -79,7 +79,7 @@ public class Mailer {
             mimeMessageHelper.setBcc(ADMIN_EMAIL);
             mimeMessageHelper.setSubject(subject);
             
-            String html = "";
+            StringBuilder html = new StringBuilder("");
             
             ResourceLoader resourceLoader = new ClassRelativeResourceLoader(Mailer.class);
             logger.info("Loading file email_template.html...");
@@ -101,7 +101,7 @@ public class Mailer {
                         line = line.replace("${text}", text);
                     }
                     
-                    html += line;
+                    html.append(line);
                 }
             } catch (IOException ex) {
                 logger.error(null, ex);
@@ -129,7 +129,7 @@ public class Mailer {
                 }
             }
             
-            mimeMessageHelper.setText(text, html);
+            mimeMessageHelper.setText(text, html.toString());
             
             logger.info("Sending MIME message to " + to + " with subject \"" + subject + "\"...");
             logger.info("title: " + title);
@@ -167,7 +167,7 @@ public class Mailer {
             mimeMessageHelper.setBcc(ADMIN_EMAIL);
             mimeMessageHelper.setSubject(subject);
             
-            String html = "";
+            StringBuilder html = new StringBuilder("");
             
             ResourceLoader resourceLoader = new ClassRelativeResourceLoader(Mailer.class);
             logger.info("Loading file email_template_button.html...");
@@ -197,7 +197,7 @@ public class Mailer {
                         line = line.replace("${buttonUrl}", buttonUrl);
                     }
                     
-                    html += line;
+                    html.append(line);
                 }
             } catch (IOException ex) {
                 logger.error(null, ex);
@@ -225,7 +225,7 @@ public class Mailer {
                 }
             }
             
-            mimeMessageHelper.setText(text, html);
+            mimeMessageHelper.setText(text, html.toString());
             
             logger.info("Sending MIME message to " + to + " with subject \"" + subject + "\"...");
             logger.info("title: " + title);

@@ -22,22 +22,22 @@ public class LicenseGenerator {
      * Generate license number on the format "bddf-d8f4-2adf-a365".
      */
     public static String generateLicenseNumber() {
-        String licenseNumber = "";
+        StringBuilder licenseNumber = new StringBuilder("");
         
         for (int i = 0; i < LICENSE_LENGTH; i++) {
             // Add separator for increased readability
             if (i < VALID_CHARACTERS.length()) {
                 // Add separator between every group of 4 characters
                 if ((i > 0) && (i % 4 == 0)) {
-                    licenseNumber += "-";
+                    licenseNumber.append("-");
                 }
             }
             
             int randomIndex = (int) (Math.random() * VALID_CHARACTERS.length());
             String randomCharacter = VALID_CHARACTERS.substring(randomIndex, randomIndex + 1);
-            licenseNumber += randomCharacter;
+            licenseNumber.append(randomCharacter);
         }
         
-        return licenseNumber;
+        return licenseNumber.toString();
     }
 }

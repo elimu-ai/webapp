@@ -123,8 +123,6 @@ public class MailChimpApiHelper {
         } catch (ConnectException ex) {
             // Ignore "Connection timed out"
             logger.warn(null, ex);
-        } catch (MalformedURLException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         }
@@ -194,8 +192,6 @@ public class MailChimpApiHelper {
         } catch (ConnectException ex) {
             // Ignore "Connection timed out"
             logger.warn(null, ex);
-        } catch (MalformedURLException ex) {
-            logger.error(null, ex);
         } catch (IOException ex) {
             logger.error(null, ex);
         }

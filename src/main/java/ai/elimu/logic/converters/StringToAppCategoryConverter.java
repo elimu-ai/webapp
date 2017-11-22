@@ -19,8 +19,7 @@ public class StringToAppCategoryConverter implements Converter<String, AppCatego
             return null;
         } else {
             Long appCategoryId = Long.parseLong(id);
-            AppCategory appCategory = appCategoryDao.read(appCategoryId);
-            return appCategory;
+            return appCategoryDao.read(appCategoryId);
         }
     }
 }

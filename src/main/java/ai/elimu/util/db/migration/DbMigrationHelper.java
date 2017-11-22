@@ -63,7 +63,7 @@ public class DbMigrationHelper {
                         
                         File sqlFile = new File(url.getFile());
                         
-                        String script = "";
+                        StringBuilder script = new StringBuilder("");
                         
                         try {
                             Scanner scanner = new Scanner(sqlFile);
@@ -75,7 +75,7 @@ public class DbMigrationHelper {
                                 logger.info("Executing sql: " + sql);
                                 dbMigrationDao.executeMigration(sql);
                                 
-                                script += sql + "\n";
+                                script.append(sql).append("\n");
                             }
                             scanner.close();
                         } catch (FileNotFoundException ex) {
@@ -84,7 +84,7 @@ public class DbMigrationHelper {
                         
                         DbMigration dbMigration = new DbMigration();
                         dbMigration.setVersion(scriptVersion);
-                        dbMigration.setScript(script);
+                        dbMigration.setScript(script.toString());
                         dbMigration.setCalendar(Calendar.getInstance());
                         dbMigrationDao.create(dbMigration);
                     }

@@ -119,8 +119,6 @@ public class ApplicationOpenedEventListController {
                         applicationOpenedEvents.add(applicationOpenedEvent);
                     }
                 }
-            } catch (FileNotFoundException ex) {
-                logger.error(null, ex);
             } catch (IOException ex) {
                 logger.error(null, ex);
             }

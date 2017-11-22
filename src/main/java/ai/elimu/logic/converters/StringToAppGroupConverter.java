@@ -19,8 +19,7 @@ public class StringToAppGroupConverter implements Converter<String, AppGroup> {
             return null;
         } else {
             Long appGroupId = Long.parseLong(id);
-            AppGroup appGroup = appGroupDao.read(appGroupId);
-            return appGroup;
+            return appGroupDao.read(appGroupId);
         }
     }
 }

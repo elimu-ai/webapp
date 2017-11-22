@@ -68,7 +68,7 @@ public class ScreenshotOnFailureStatement extends Statement {
 
     /**
      * This method must be called <b>after</b> {@code base.evaluate();}. If it
-     * is called before, the {@WebDriver} object will not have been instantiated
+     * is called before, the {@link WebDriver} object will not have been instantiated
      * yet.
      */
     private WebDriver getDriver() {
@@ -79,9 +79,7 @@ public class ScreenshotOnFailureStatement extends Statement {
                 field.setAccessible(true);
                 try {
                     driver = (WebDriver) field.get(target);
-                } catch (IllegalArgumentException ex) {
-                    logger.error(null, ex);
-                } catch (IllegalAccessException ex) {
+                } catch (IllegalArgumentException | IllegalAccessException ex) {
                     logger.error(null, ex);
                 }
             }

@@ -44,9 +44,8 @@ public class LetterUsageCountScheduler {
                 logger.info("storyBook.getTitle(): " + storyBook.getTitle());
                 
                 Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(storyBook);
-                for (String key : letterFrequencyMapForBook.keySet()) {
-                    String letterText = key;
-                    int letterFrequency = letterFrequencyMapForBook.get(key);
+                for (String letterText : letterFrequencyMapForBook.keySet()) {
+                    int letterFrequency = letterFrequencyMapForBook.get(letterText);
                     if (!letterFrequencyMap.containsKey(letterText)) {
                         letterFrequencyMap.put(letterText, letterFrequency);
                     } else {
@@ -57,8 +56,7 @@ public class LetterUsageCountScheduler {
             
             logger.info("letterFrequencyMap: " + letterFrequencyMap);
             
-            for (String key : letterFrequencyMap.keySet()) {
-                String letterText = key;
+            for (String letterText : letterFrequencyMap.keySet()) {
                 Letter existingLetter = letterDao.readByText(locale, letterText);
                 if (existingLetter != null) {
                     existingLetter.setUsageCount(letterFrequencyMap.get(letterText));

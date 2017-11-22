@@ -15,8 +15,7 @@ public class WordExtractionHelper {
         
         paragraph = paragraph.trim();
         String[] paragraphParts = paragraph.split(" ");
-        for (int i = 0; i < paragraphParts.length; i++) {
-            String paragraphPart = paragraphParts[i];
+        for (String paragraphPart : paragraphParts) {
             String word = paragraphPart
                     .replace(",", "")
                     .replace("\"", "")

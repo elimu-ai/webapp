@@ -49,13 +49,12 @@ public class ContributorRegistrationSummaryScheduler {
                 String from = "elimu.ai <info@elimu.ai>";
                 Locale locale = new Locale("en");
                 String subject = contributorsRegisteredRecently.get(0).getFirstName() + " " + contributorsRegisteredRecently.get(0).getLastName() + " joined the community";
-                String title = subject;
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
-                String htmlText = "<p>Hi, " + firstName + "</p>";
+                StringBuilder htmlText = new StringBuilder("<p>Hi, " + firstName + "</p>");
                 if (contributorsRegisteredRecently.size() == 1) {
-                    htmlText += "<p>A new contributor joined the elimu.ai community:</p>";
+                    htmlText.append("<p>A new contributor joined the elimu.ai community:</p>");
                 } else {
-                    htmlText += "<p>New contributors joined the elimu.ai community:</p>";
+                    htmlText.append("<p>New contributors joined the elimu.ai community:</p>");
                 }
                 
                 int counter = 0;
@@ -68,28 +67,28 @@ public class ContributorRegistrationSummaryScheduler {
                         continue;
                     }
                     
-                    htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
-                    htmlText += "<p>" + contributorRegisteredRecently.getFirstName() + " " + contributorRegisteredRecently.getLastName() + "</p>";
+                    htmlText.append("<hr style=\"border-color: #CCC; border-top: 0;\" />");
+                    htmlText.append("<p>").append(contributorRegisteredRecently.getFirstName()).append(" ").append(contributorRegisteredRecently.getLastName()).append("</p>");
                     if (StringUtils.isNotBlank(contributorRegisteredRecently.getImageUrl())) {
-                        htmlText += "<img src=\"" + contributorRegisteredRecently.getImageUrl() + "\" alt=\"\" style=\"max-height: 5em; border-radius: 50%;\">";
+                        htmlText.append("<img src=\"").append(contributorRegisteredRecently.getImageUrl()).append("\" alt=\"\" style=\"max-height: 5em; border-radius: 50%;\">");
                     }
-                    htmlText += "<p>Language: " + messageSource.getMessage("language." + contributorRegisteredRecently.getLocale().getLanguage(), null, locale) + "</p>";
-                    htmlText += "<p>Teams: " + contributorRegisteredRecently.getTeams() + "</p>";
-                    htmlText += "<p>Personal motivation:</p>";
-                    htmlText += "<p><blockquote>\"" + contributorRegisteredRecently.getMotivation() + "\"</blockquote></p>";
+                    htmlText.append("<p>Language: ").append(messageSource.getMessage("language." + contributorRegisteredRecently.getLocale().getLanguage(), null, locale)).append("</p>");
+                    htmlText.append("<p>Teams: ").append(contributorRegisteredRecently.getTeams()).append("</p>");
+                    htmlText.append("<p>Personal motivation:</p>");
+                    htmlText.append("<p><blockquote>\"").append(contributorRegisteredRecently.getMotivation()).append("\"</blockquote></p>");
                     
                     if (++counter == 5) {
                         break;
                     }
                 }
                 
-                htmlText += "<hr style=\"border-color: #CCC; border-top: 0;\" />";
-                htmlText += "<p>Do you want to learn more about the new (and existing) contributors?</p>";
+                htmlText.append("<hr style=\"border-color: #CCC; border-top: 0;\" />");
+                htmlText.append("<p>Do you want to learn more about the new (and existing) contributors?</p>");
                 String buttonText = "See complete list of contributors";
                 String buttonUrl = baseUrl + "/content/community/contributors";
                 
                 if (counter > 0) {
-                    Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, buttonText, buttonUrl);
+                    Mailer.sendHtmlWithButton(to, null, from, subject, subject, htmlText.toString(), buttonText, buttonUrl);
                 }
             }
         }
