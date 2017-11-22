@@ -9,7 +9,6 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.model.project.Project;
 
 public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements ApplicationDao {
     
@@ -27,23 +26,6 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
                 .getSingleResult();
         } catch (NoResultException e) {
             logger.warn("Application with packageName \"" + packageName + "\" was not found for locale " + locale);
-            return null;
-        }
-    }
-    
-    @Override
-    public Application readByPackageName(Project project, String packageName) throws DataAccessException {
-        try {
-            return (Application) em.createQuery(
-                "SELECT a " +
-                "FROM Application a " +
-                "WHERE a.packageName = :packageName " +
-                "AND a.project = :project")
-                .setParameter("project", project)
-                    .setParameter("packageName", packageName)
-                .getSingleResult();
-        } catch (NoResultException e) {
-            logger.warn("Application with packageName \"" + packageName + "\" was not found for Project " + project.getId());
             return null;
         }
     }

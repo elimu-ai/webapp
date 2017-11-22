@@ -19,7 +19,6 @@ import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.project.License;
-import ai.elimu.model.project.Project;
 import org.apache.http.util.TextUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +53,7 @@ public class ApkController {
             // Custom Project
             @RequestParam(required = false) String licenseEmail,
             @RequestParam(required = false) String licenseNumber,
+            @RequestParam(required = false) Long applicationId,
             
             HttpServletRequest request,
             HttpServletResponse response,
@@ -79,8 +79,8 @@ public class ApkController {
             // Custom Project
             License license = licenseDao.read(licenseEmail, licenseNumber);
             if (license != null) {
-                Project project = license.getAppCollection().getProject();
-                application = applicationDao.readByPackageName(project, packageName);
+                // TODO: fetch Application based on License instead of additional applicationId parameter
+                application = applicationDao.read(applicationId);
             }
         }
         ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);
