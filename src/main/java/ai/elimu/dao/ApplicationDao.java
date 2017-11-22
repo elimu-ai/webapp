@@ -5,15 +5,12 @@ import ai.elimu.model.admin.Application;
 
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.model.project.Project;
 
 import org.springframework.dao.DataAccessException;
 
 public interface ApplicationDao extends GenericDao<Application> {
     
     Application readByPackageName(Locale locale, String packageName) throws DataAccessException;
-    
-    Application readByPackageName(Project project, String packageName) throws DataAccessException;
 
     List<Application> readAll(Locale locale) throws DataAccessException;
     
