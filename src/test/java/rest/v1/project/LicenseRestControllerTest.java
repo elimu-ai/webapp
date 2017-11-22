@@ -1,4 +1,4 @@
-package rest.v1.project.license;
+package rest.v1.project;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -14,7 +14,7 @@ public class LicenseRestControllerTest {
     
     @Test
     public void testRead() {
-        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/project/license" +
+        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/project/licenses" +
                 "?licenseEmail=info%2Btest@elimu.ai" + 
                 "&licenseNumber=b3fb-5e67-98f8-984a");
         logger.info("jsonResponse: " + jsonResponse);
@@ -27,7 +27,7 @@ public class LicenseRestControllerTest {
     
     @Test
     public void testRead_invalid() {
-        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/project/license" +
+        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/project/licenses" +
                 "?licenseEmail=info@elimu.ai" + 
                 "&licenseNumber=bddf-d8f4-2adf-a365");
         logger.info("jsonResponse: " + jsonResponse);

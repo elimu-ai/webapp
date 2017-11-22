@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Checks if a license number is valid.
  */
 @RestController
-@RequestMapping(value = "/rest/v1/project/license", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v1/project/licenses", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class LicenseRestController {
     
     private Logger logger = Logger.getLogger(getClass());

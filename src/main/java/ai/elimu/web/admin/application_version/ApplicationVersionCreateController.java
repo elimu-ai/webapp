@@ -102,8 +102,11 @@ public class ApplicationVersionCreateController {
                     logger.info("contentType: " + contentType);
                     applicationVersion.setContentType(contentType);
                     
-                    logger.info("File size: " + (bytes.length / 1024 / 1024) + "MB");
                     applicationVersion.setBytes(bytes);
+                    
+                    Integer fileSizeInKb = bytes.length / 1024;
+                    logger.info("fileSizeInKb: " + fileSizeInKb + " (" + (fileSizeInKb / 1024) + "MB)");
+                    applicationVersion.setFileSizeInKb(fileSizeInKb);
                     
                     ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
                     ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
@@ -144,7 +147,6 @@ public class ApplicationVersionCreateController {
                 // If first APK file, change status of application to "ACTIVE"
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
             }
-            application.setLatestApplicationVersion(applicationVersion);
             applicationDao.update(application);
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {

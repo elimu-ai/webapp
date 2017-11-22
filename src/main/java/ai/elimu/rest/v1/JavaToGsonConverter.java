@@ -34,7 +34,17 @@ import ai.elimu.model.gson.content.SyllableGson;
 import ai.elimu.model.gson.content.multimedia.AudioGson;
 import ai.elimu.model.gson.content.multimedia.ImageGson;
 import ai.elimu.model.gson.content.multimedia.VideoGson;
+import ai.elimu.model.gson.project.AppCategoryGson;
+import ai.elimu.model.gson.project.AppCollectionGson;
+import ai.elimu.model.gson.project.AppGroupGson;
+import ai.elimu.model.project.AppCategory;
+import ai.elimu.model.project.AppCollection;
+import ai.elimu.model.project.AppGroup;
 
+/**
+ * Convert classes from JPA/Hibernate format to POJO format, so that they can be serialized into 
+ * JSON and transferred to Android applications that are connecting via the REST API.
+ */
 public class JavaToGsonConverter {
     
     public static AudioGson getAudioGson(Audio audio) {
@@ -106,6 +116,55 @@ public class JavaToGsonConverter {
         }
     }
     
+    public static AppCollectionGson getAppCollectionGson(AppCollection appCollection) {
+        if (appCollection == null) {
+            return null;
+        } else {
+            AppCollectionGson appCollectionGson = new AppCollectionGson();
+            appCollectionGson.setId(appCollection.getId());
+            List<AppCategoryGson> appCategories = new ArrayList<>();
+            for (AppCategory appCategory : appCollection.getAppCategories()) {
+                AppCategoryGson appCategoryGson = getAppCategoryGson(appCategory);
+                appCategories.add(appCategoryGson);
+            }
+            appCollectionGson.setAppCategories(appCategories);
+            return appCollectionGson;
+        }
+    }
+    
+    public static AppCategoryGson getAppCategoryGson(AppCategory appCategory) {
+        if (appCategory == null) {
+            return null;
+        } else {
+            AppCategoryGson appCategoryGson = new AppCategoryGson();
+            appCategoryGson.setId(appCategory.getId());
+            appCategoryGson.setName(appCategory.getName());
+            List<AppGroupGson> appGroups = new ArrayList<>();
+            for (AppGroup appGroup : appCategory.getAppGroups()) {
+                AppGroupGson appGroupGson = getAppGroupGson(appGroup);
+                appGroups.add(appGroupGson);
+            }
+            appCategoryGson.setAppGroups(appGroups);
+            return appCategoryGson;
+        }
+    }
+    
+    public static AppGroupGson getAppGroupGson(AppGroup appGroup) {
+        if (appGroup == null) {
+            return null;
+        } else {
+            AppGroupGson appGroupGson = new AppGroupGson();
+            appGroupGson.setId(appGroup.getId());
+            List<ApplicationGson> applications = new ArrayList<>();
+            for (Application application : appGroup.getApplications()) {
+                ApplicationGson applicationGson = getApplicationGson(application);
+                applications.add(applicationGson);
+            }
+            appGroupGson.setApplications(applications);
+            return appGroupGson;
+        }
+    }
+    
     public static ApplicationGson getApplicationGson(Application application) {
         if (application == null) {
             return null;
@@ -128,7 +187,7 @@ public class JavaToGsonConverter {
             ApplicationVersionGson applicationVersionGson = new ApplicationVersionGson();
             applicationVersionGson.setId(applicationVersion.getId());
             applicationVersionGson.setApplication(getApplicationGson(applicationVersion.getApplication()));
-            applicationVersionGson.setFileSizeInKb(applicationVersion.getBytes().length / 1024);
+            applicationVersionGson.setFileSizeInKb(applicationVersion.getFileSizeInKb());
             applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
             applicationVersionGson.setContentType(applicationVersion.getContentType());
             applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());

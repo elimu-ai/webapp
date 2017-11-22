@@ -5,6 +5,8 @@
 3. [Application](#application)
 4. [Content](#content)
 5. [Custom Project](#custom-project)
+   * [License](#license)
+   * [AppCollection](#appcollection)
 
 
 ## API Endpoint
@@ -33,7 +35,7 @@ TODO
 
 #### Read
 
-URL: `/project/license`
+URL: `/project/licenses`
 
 Arguments:  
   * licenseEmail: String 
@@ -42,7 +44,7 @@ Arguments:
 Example request:
 ```
 HTTP GET
-/project/license?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
+/project/licenses?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
 ```
 
 Example response:
@@ -55,7 +57,9 @@ Example response:
 
 ### AppCollection
 
-URL: `/project/app-collection`
+#### Read
+
+URL: `/project/app-collections/{appCollectionId}`
 
 Arguments:  
   * licenseEmail: String 
@@ -64,7 +68,7 @@ Arguments:
 Example request:
 ```
 HTTP GET
-/project/app-collection/12?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
+/project/app-collections/12?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
 ```
 
 Example response:
@@ -73,10 +77,48 @@ Example response:
     "result": "success",
     "appCollection": {
         "appCategories": [
-            { ... },
+            {
+                "appGroups": [
+                    {
+                        "applications": [
+                            { ... },
+                            { ... },
+                            { ... }
+                        ]
+                    },
+                    { ... },
+                    { ... }
+                ]
+            },
             { ... },
             { ... }
         ]
     }
+}
+```
+
+#### Read Applications
+
+URL: `/project/app-collections/{appCollectionId}/applications`
+
+Arguments:  
+  * licenseEmail: String 
+  * licenseNumber: String
+
+Example request:
+```
+HTTP GET
+/project/app-collections/12/applications?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
+```
+
+Example response:
+```json
+{
+    "result": "success",
+    "applications": [
+        { ... },
+        { ... },
+        { ... }
+    ]
 }
 ```
