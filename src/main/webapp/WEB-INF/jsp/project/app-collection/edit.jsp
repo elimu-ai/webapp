@@ -55,7 +55,7 @@
                 <tr class="license">
                     <td>
                         <a href="<spring:url value='/project/${project.id}/app-collection/${appCollection.id}/license/edit/${license.id}' />">
-                            <c:out value="${license.licenseEmail}" />
+                            <c:out value="${license.licenseEmail}" /> - <c:out value="${license.licenseNumber}" />
                         </a>
                     </td>
                 </tr>
