@@ -20,6 +20,7 @@ import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
@@ -143,6 +144,7 @@ public class AppCreateController {
                 
                 applicationVersion.setBytes(bytes);
                 applicationVersion.setFileSizeInKb(fileSizeInKb);
+                applicationVersion.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
                 applicationVersion.setContentType(contentType);
                 applicationVersion.setVersionCode(versionCode);
                 applicationVersion.setVersionName(versionName);

@@ -32,6 +32,12 @@ public class ApplicationVersion extends BaseEntity {
     @NotNull
     private Integer fileSizeInKb;
     
+    /**
+     * MD5 checksum of the APK file.
+     */
+    @NotNull
+    private String checksumMd5;
+    
     @NotNull
     private String contentType;
     
@@ -82,6 +88,14 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setFileSizeInKb(Integer fileSizeInKb) {
         this.fileSizeInKb = fileSizeInKb;
+    }
+    
+    public String getChecksumMd5() {
+        return checksumMd5;
+    }
+
+    public void setChecksumMd5(String checksumMd5) {
+        this.checksumMd5 = checksumMd5;
     }
     
     public String getContentType() {
