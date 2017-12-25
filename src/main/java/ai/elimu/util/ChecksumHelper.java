@@ -28,7 +28,7 @@ public class ChecksumHelper {
             return null;
         }
 
-        byte[] buffer = new byte[8192];
+        byte[] buffer = new byte[8192]; // 8MB (8 x 1024)
         int bytesRead;
         try {
             while ((bytesRead = inputStream.read(buffer)) > 0) {
