@@ -16,6 +16,7 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
@@ -107,6 +108,10 @@ public class ApplicationVersionCreateController {
                     Integer fileSizeInKb = bytes.length / 1024;
                     logger.info("fileSizeInKb: " + fileSizeInKb + " (" + (fileSizeInKb / 1024) + "MB)");
                     applicationVersion.setFileSizeInKb(fileSizeInKb);
+                    
+                    String checksumMd5 = ChecksumHelper.calculateMD5(bytes);
+                    logger.info("checksumMd5: " + checksumMd5);
+                    applicationVersion.setChecksumMd5(checksumMd5);
                     
                     ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
                     ApkMeta apkMeta = byteArrayApkFile.getApkMeta();

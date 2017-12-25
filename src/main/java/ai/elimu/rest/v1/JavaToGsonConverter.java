@@ -189,6 +189,7 @@ public class JavaToGsonConverter {
             applicationVersionGson.setApplication(getApplicationGson(applicationVersion.getApplication()));
             applicationVersionGson.setFileSizeInKb(applicationVersion.getFileSizeInKb());
             applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
+            applicationVersionGson.setChecksumMd5(applicationVersion.getChecksumMd5());
             applicationVersionGson.setContentType(applicationVersion.getContentType());
             applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());
             applicationVersionGson.setStartCommand(applicationVersion.getStartCommand());
