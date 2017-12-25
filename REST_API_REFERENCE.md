@@ -50,12 +50,39 @@ HTTP GET
 Example response:
 ```json
 {
-    "result": "success",
-    "applications": [
-        { ... },
-        { ... },
-        { ... }
-    ]
+	"result": "success",
+	"applications": [{
+		"applicationVersions": [{
+			"application": {
+				"applicationStatus": "ACTIVE",
+				"numeracySkills": [],
+				"packageName": "ai.elimu.analytics",
+				"id": 9,
+				"locale": "EN",
+				"literacySkills": []
+			},
+			"fileSizeInKb": 1392,
+			"timeUploaded": {
+				"month": 9,
+				"year": 2017,
+				"dayOfMonth": 1,
+				"hourOfDay": 18,
+				"minute": 30,
+				"second": 7
+			},
+			"fileUrl": "/apk/ai.elimu.analytics-2000000.apk",
+			"id": 10,
+			"checksumMd5": "d991c36b6990a4b04e8f28efcf56e3b7",
+			"contentType": "application/octet-stream",
+			"versionCode": 2000000
+		}],
+		"applicationStatus": "ACTIVE",
+		"numeracySkills": [],
+		"packageName": "ai.elimu.analytics",
+		"id": 9,
+		"locale": "EN",
+		"literacySkills": []
+	}]
 }
 ```
 
