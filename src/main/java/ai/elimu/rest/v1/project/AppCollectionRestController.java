@@ -79,9 +79,10 @@ public class AppCollectionRestController {
                 // TODO: verify that the AppCollection matches the one associated with the provided License
                 
                 AppCollectionGson appCollectionGson = JavaToGsonConverter.getAppCollectionGson(appCollection);
+                String appCollectionJson = new Gson().toJson(appCollectionGson);
                 
                 jsonObject.put("result", "success");
-                jsonObject.put("appCollection", new Gson().toJson(appCollectionGson));
+                jsonObject.put("appCollection", new JSONObject(appCollectionJson));
             }
         }
         
