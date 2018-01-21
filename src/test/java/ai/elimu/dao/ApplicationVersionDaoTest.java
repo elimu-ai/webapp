@@ -1,0 +1,36 @@
+package ai.elimu.dao;
+
+import ai.elimu.model.admin.Application;
+import ai.elimu.model.admin.ApplicationVersion;
+import org.apache.log4j.Logger;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml")
+public class ApplicationVersionDaoTest {
+    
+    private Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private ApplicationDao applicationDao;
+    
+    @Autowired
+    private ApplicationVersionDao applicationVersionDao;
+    
+    @Test
+    public void testCacheable() {
+        Application application = new Application();
+        applicationDao.create(application);
+        
+        List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
+        assertThat(applicationVersions.isEmpty(), is(true));
+    }
+}

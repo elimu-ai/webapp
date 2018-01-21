@@ -17,6 +17,7 @@ import ai.elimu.model.project.License;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import com.google.gson.Gson;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
@@ -108,6 +109,8 @@ public class AppCollectionRestController {
             jsonObject.put("result", "error");
             jsonObject.put("description", "Invalid license");
         } else {
+            Date dateStart = new Date();
+            logger.info("appCollectionDao.read(" + appCollectionId + ") - " + dateStart);
             AppCollection appCollection = appCollectionDao.read(appCollectionId);
             if (appCollection == null) {
                 jsonObject.put("result", "error");
@@ -126,7 +129,9 @@ public class AppCollectionRestController {
 
                             // Fetch the Application's ApplicationVersions
                             List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+                            logger.info("applicationVersionDao.readAll(" + application.getPackageName() + ") - " + new Date());
                             for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
+                                logger.info("applicationVersion: " + applicationVersion.getVersionCode() + " - " + new Date());
                                 ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
                                 applicationVersions.add(applicationVersionGson);
                             }
@@ -141,6 +146,9 @@ public class AppCollectionRestController {
                 jsonObject.put("result", "success");
                 jsonObject.put("applications", applications);
             }
+            Date dateEnd = new Date();
+            long duration = dateEnd.getTime() - dateStart.getTime();
+            logger.info("duration: " + (duration / 1000) + " seconds");
         }
         
         logger.info("jsonObject: " + jsonObject);
