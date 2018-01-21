@@ -59,7 +59,8 @@ public class ApplicationRestController {
             return jsonObject.toString();
         } else {        
             JSONArray applications = new JSONArray();
-            logger.info("applicationDao.readAll(" + locale + ") - " + new Date());
+            Date dateStart = new Date();
+            logger.info("applicationDao.readAll(" + locale + ") - " + dateStart);
             for (Application application : applicationDao.readAll(locale)) {
                 ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
 
@@ -77,6 +78,10 @@ public class ApplicationRestController {
 
             jsonObject.put("result", "success");
             jsonObject.put("applications", applications);
+            
+            Date dateEnd = new Date();
+            long duration = dateEnd.getTime() - dateStart.getTime();
+            logger.info("duration: " + (duration / 1000) + " seconds");
 
             logger.info("jsonObject: " + jsonObject);
             return jsonObject.toString();
