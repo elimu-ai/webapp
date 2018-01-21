@@ -5,7 +5,6 @@ import javax.persistence.NoResultException;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import org.springframework.cache.annotation.Cacheable;
 
 import org.springframework.dao.DataAccessException;
 
@@ -28,7 +27,6 @@ public class ApplicationVersionDaoJpa extends GenericDaoJpa<ApplicationVersion> 
         }
     }
     
-    @Cacheable("applicationVersions")
     @Override
     public List<ApplicationVersion> readAll(Application application) throws DataAccessException {
         return em.createQuery(
