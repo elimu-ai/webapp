@@ -121,7 +121,8 @@
     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
         <property name="caches">
             <set>
-                <bean name="applicationJsonArrays" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
+                <bean name="applications" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
+                <bean name="applicationsInAppCollection" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
             </set>
         </property>
     </bean>
