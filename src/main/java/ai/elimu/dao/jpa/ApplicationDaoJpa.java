@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.admin.ApplicationStatus;
+import org.springframework.cache.annotation.Cacheable;
 
 public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements ApplicationDao {
     
@@ -30,6 +31,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
         }
     }
 
+    @Cacheable("applications")
     @Override
     public List<Application> readAll(Locale locale) throws DataAccessException {
         return em.createQuery(

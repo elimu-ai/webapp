@@ -16,6 +16,7 @@ import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
 import ai.elimu.rest.v1.ChecksumHelper;
 import ai.elimu.rest.v1.JavaToGsonConverter;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,11 +59,14 @@ public class ApplicationRestController {
             return jsonObject.toString();
         } else {        
             JSONArray applications = new JSONArray();
+            logger.info("applicationDao.readAll(" + locale + ") - " + new Date());
             for (Application application : applicationDao.readAll(locale)) {
                 ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
 
                 List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
+                logger.info("applicationVersionDao.readAll(" + application.getPackageName() + ") - " + new Date());
                 for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
+                    logger.info("applicationVersion: " + applicationVersion.getVersionCode() + " - " + new Date());
                     ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
                     applicationVersions.add(applicationVersionGson);
                 }
