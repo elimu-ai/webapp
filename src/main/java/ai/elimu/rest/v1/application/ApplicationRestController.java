@@ -1,25 +1,13 @@
 package ai.elimu.rest.v1.application;
 
-import com.google.gson.Gson;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import ai.elimu.dao.ApplicationDao;
-import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.Locale;
-import ai.elimu.model.gson.admin.ApplicationGson;
-import ai.elimu.model.gson.admin.ApplicationVersionGson;
 import ai.elimu.rest.v1.ChecksumHelper;
-import ai.elimu.rest.v1.JavaToGsonConverter;
-import java.util.Calendar;
-import java.util.Date;
+import ai.elimu.service.JsonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,10 +20,7 @@ public class ApplicationRestController {
     private Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private ApplicationDao applicationDao;
-    
-    @Autowired
-    private ApplicationVersionDao applicationVersionDao;
+    private JsonService jsonService;
     
     @RequestMapping("/list")
     public String list(
@@ -60,7 +45,7 @@ public class ApplicationRestController {
             jsonObject.put("description", "Incorrect checksum: " + checksum);
             return jsonObject.toString();
         } else {        
-            JSONArray applications = getApplicationJsonArray(locale);
+            JSONArray applications = jsonService.getApplications(locale);
 
             jsonObject.put("result", "success");
             jsonObject.put("applications", applications);
@@ -68,33 +53,5 @@ public class ApplicationRestController {
             logger.info("jsonObject: " + jsonObject);
             return jsonObject.toString();
         }
-    }
-    
-    @Cacheable("applicationJsonArrays")
-    private JSONArray getApplicationJsonArray(Locale locale) {
-        logger.info("getApplicationJsonArray");
-        
-        Date dateStart = new Date();
-        
-        JSONArray applications = new JSONArray();
-        for (Application application : applicationDao.readAll(locale)) {
-            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
-
-            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
-            logger.info("applicationVersionDao.readAll(" + application.getPackageName() + ") - " + new Date());
-            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
-                logger.info("applicationVersion: " + applicationVersion.getVersionCode() + " - " + new Date());
-                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
-                applicationVersions.add(applicationVersionGson);
-            }
-            applicationGson.setApplicationVersions(applicationVersions);
-            String json = new Gson().toJson(applicationGson);
-            applications.put(new JSONObject(json));
-        }
-        
-        Date dateEnd = new Date();
-        logger.info("Duration: " + (dateEnd.getTime() - dateStart.getTime()) + " ms");
-        
-        return applications;
     }
 }
