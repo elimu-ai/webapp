@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,11 @@ public class JsonService {
         return applications;
     }
     
+    @CacheEvict("applications")
+    public void refreshApplications(Locale locale) {
+        logger.info("refreshApplications");
+    }
+    
     @Cacheable(value = "applicationsInAppCollection", key = "#appCollection.id")
     public JSONArray getApplications(AppCollection appCollection) {
         logger.info("getApplications_appCollection");
@@ -74,7 +80,7 @@ public class JsonService {
         Date dateStart = new Date();
         
         JSONArray applications = new JSONArray();
-                
+        
         addInfrastructureApps(applications);
 
         for (AppCategory appCategory : appCollection.getAppCategories()) {
@@ -102,6 +108,17 @@ public class JsonService {
         logger.info("getApplicationVersions duration: " + (dateEnd.getTime() - dateStart.getTime()) + " ms");
         
         return applications;
+    }
+    
+    @CacheEvict(value = "applicationsInAppCollection", key = "#appCollection.id")
+    public void refreshApplicationsInAppCollection(AppCollection appCollection) {
+        logger.info("refreshApplicationsInAppCollection (#appCollection.id)");
+    }
+    
+    @Deprecated
+    @CacheEvict(value = "applicationsInAppCollection", allEntries = true)
+    public void refreshApplicationsInAppCollection() {
+        logger.info("refreshApplicationsInAppCollection");
     }
     
     /**
