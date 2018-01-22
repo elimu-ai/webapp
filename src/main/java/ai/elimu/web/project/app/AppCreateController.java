@@ -20,6 +20,7 @@ import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
+import ai.elimu.service.JsonService;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -44,6 +45,9 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 public class AppCreateController {
     
     private final Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private JsonService jsonService;
     
     @Autowired
     private ProjectDao projectDao;
@@ -177,6 +181,10 @@ public class AppCreateController {
             
             appGroup.getApplications().add(application);
             appGroupDao.update(appGroup);
+            
+            // Refresh REST API cache
+//            jsonService.refreshApplicationsInAppCollection(appCollection);
+            jsonService.refreshApplicationsInAppCollection();
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                  String text = URLEncoder.encode(
