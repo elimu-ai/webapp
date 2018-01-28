@@ -36,7 +36,11 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             "SELECT a " +
             "FROM Application a " +
             "WHERE a.locale = :locale " +
+            
+            // Exclude applications belonging to custom Projects
             "AND a.project IS EMPTY " +
+            "AND a.packageName != 'ai.elimu.launcher_custom' " +
+            
             "ORDER BY a.packageName")
             .setParameter("locale", locale)
             .getResultList();
@@ -49,7 +53,11 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             "FROM Application a " +
             "WHERE a.locale = :locale " +
             "AND a.applicationStatus = :applicationStatus " +
+            
+            // Exclude applications belonging to custom Projects
             "AND a.project IS EMPTY " +
+            "AND a.packageName != 'ai.elimu.launcher_custom' " +
+            
             "ORDER BY a.packageName")
             .setParameter("locale", locale)
             .setParameter("applicationStatus", applicationStatus)
