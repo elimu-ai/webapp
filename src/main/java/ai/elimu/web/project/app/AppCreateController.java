@@ -128,6 +128,12 @@ public class AppCreateController {
                 packageName = apkMeta.getPackageName();
                 logger.info("packageName: " + packageName);
                 
+                // Verify that an Application with identical packageName has not already been uploaded withing the same Project
+                Application existingApplication = applicationDao.readByPackageName(project, packageName);
+                if (existingApplication != null) {
+                    result.rejectValue("application", "NonUnique", new String[] {"application"}, null);
+                }
+                
                 String label = apkMeta.getLabel();
                 logger.info("label: " + label);
                 

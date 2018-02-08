@@ -13,22 +13,22 @@
                         <c:when test="${fn:length(error.arguments) == 3}">
                             <fmt:message key="${code}">
                                 <fmt:param><fmt:message key="${error.field}" /></fmt:param>
+                                <fmt:param>${error.arguments[0]}</fmt:param>
                                 <fmt:param>${error.arguments[1]}</fmt:param>
                                 <fmt:param>${error.arguments[2]}</fmt:param>
-                                <fmt:param>${error.arguments[3]}</fmt:param>
                             </fmt:message>
                         </c:when>
                         <c:when test="${fn:length(error.arguments) == 2}">
                             <fmt:message key="${code}">
                                 <fmt:param><fmt:message key="${error.field}" /></fmt:param>
+                                <fmt:param>${error.arguments[0]}</fmt:param>
                                 <fmt:param>${error.arguments[1]}</fmt:param>
-                                <fmt:param>${error.arguments[2]}</fmt:param>
                             </fmt:message>
                         </c:when>
                         <c:when test="${fn:length(error.arguments) == 1}">
                             <fmt:message key="${code}">
                                 <fmt:param><fmt:message key="${error.field}" /></fmt:param>
-                                <fmt:param>${error.arguments[1]}</fmt:param>
+                                <fmt:param>${error.arguments[0]}</fmt:param>
                             </fmt:message>
                         </c:when>
                         <c:otherwise>
