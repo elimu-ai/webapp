@@ -23,7 +23,7 @@ public class ApplicationVersion extends BaseEntity {
      */
     @NotNull
     @Lob
-    @Column(length=524288000) // 500MB
+    @Column(length=1073741824) // 1024MB
     private byte[] bytes;
     
     /**
