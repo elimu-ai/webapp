@@ -27,6 +27,7 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,6 +70,7 @@ public class AppCreateController {
             @PathVariable Long projectId,
             @PathVariable Long appCategoryId,
             @PathVariable Long appGroupId,
+            @RequestParam(required = false) Long applicationId,
             Model model
     ) {
     	logger.info("handleRequest");
@@ -83,6 +85,13 @@ public class AppCreateController {
         model.addAttribute("appGroup", appGroup);
         
         ApplicationVersion applicationVersion = new ApplicationVersion();
+        
+        logger.info("applicationId: " + applicationId);
+        if (applicationId != null) {
+            Application application = applicationDao.read(applicationId);
+            applicationVersion.setApplication(application);
+        }
+        
         model.addAttribute("applicationVersion", applicationVersion);
 
         return "project/app/create";
