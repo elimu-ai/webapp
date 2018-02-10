@@ -43,7 +43,7 @@
                     </ul>
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
-                <div class="col s8">
+                <div class="col s7">
                     <c:if test="${not empty project}">
                         <a href="<spring:url value='/project' />" class="breadcrumb"><fmt:message key="projects" /></a>
                         <a href="<spring:url value='/project/${project.id}' />" class="breadcrumb"><c:out value="${project.name}" /></a>
@@ -59,7 +59,7 @@
                     </c:if>
                     <a class="breadcrumb"><content:gettitle /></a>
                 </div>
-                <div class="col s3">
+                <div class="col s4">
                     <ul class="right">
                         <a class="dropdown-button" data-activates="contributorDropdown" data-beloworigin="true" >
                             <div class="chip">
