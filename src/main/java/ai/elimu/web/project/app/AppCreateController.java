@@ -226,8 +226,9 @@ public class AppCreateController {
             jsonService.refreshApplicationsInAppCollection();
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                 String text = URLEncoder.encode(
-                         contributor.getFirstName() + " just uploaded a new Application:\n" + 
+                String applicationDescription = !isUpdateOfExistingApplication ? "Application" : "APK version";
+                String text = URLEncoder.encode(
+                         contributor.getFirstName() + " just uploaded a new " + applicationDescription + ":\n" + 
                          "• Project: \"" + project.getName() + "\"\n" +
                          "• App Category: \"" + appCategory.getName() + "\"\n" +
                          "• Package name: \"" + application.getPackageName() + "\"\n" + 
