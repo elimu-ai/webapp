@@ -8,6 +8,13 @@
         <form:form modelAttribute="applicationVersion" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="applicationVersion" />
             
+            <c:if test="${not empty applicationVersion.application}">
+                <p>
+                    <fmt:message key='package.name' />: ${applicationVersion.application.packageName}
+                </p>
+                <form:hidden path="application" value="${applicationVersion.application.id}" />
+            </c:if>
+            
             <div style="padding: 3em 0;">
                 <div class="col s6 offset-s3" style="padding: 3em; background: #F4F4F4; border: 2px dashed #CCC;">
                     <p class="center grey-text">

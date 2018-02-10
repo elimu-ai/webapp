@@ -27,7 +27,6 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -114,6 +113,9 @@ public class AppCreateController {
         AppCategory appCategory = appCategoryDao.read(appCategoryId);
         AppGroup appGroup = appGroupDao.read(appGroupId);
         
+        boolean isUpdateOfExistingApplication = applicationVersion.getApplication() != null;
+        logger.info("isUpdateOfExistingApplication: " + isUpdateOfExistingApplication);
+        
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         String packageName = null;
@@ -136,11 +138,17 @@ public class AppCreateController {
                 
                 packageName = apkMeta.getPackageName();
                 logger.info("packageName: " + packageName);
+                if (isUpdateOfExistingApplication) {
+                    // Verify that the packageName of the new APK matches that of the Application
+                    // TODO
+                }
                 
-                // Verify that an Application with identical packageName has not already been uploaded withing the same Project
-                Application existingApplication = applicationDao.readByPackageName(project, packageName);
-                if (existingApplication != null) {
-                    result.rejectValue("application", "NonUnique", new String[] {"application"}, null);
+                if (!isUpdateOfExistingApplication) {
+                    // Verify that an Application with identical packageName has not already been uploaded withing the same Project
+                    Application existingApplication = applicationDao.readByPackageName(project, packageName);
+                    if (existingApplication != null) {
+                        result.rejectValue("application", "NonUnique", new String[] {"application"}, null);
+                    }
                 }
                 
                 String label = apkMeta.getLabel();
@@ -151,6 +159,10 @@ public class AppCreateController {
                 
                 Integer versionCode = apkMeta.getVersionCode().intValue();
                 logger.info("versionCode: " + versionCode);
+                if (isUpdateOfExistingApplication) {
+                    // Verify that the versionCode of the new APK is higher than the previous one
+                    // TODO
+                }
                 
                 String versionName = apkMeta.getVersionName();
                 logger.info("versionName: " + versionName);
@@ -183,19 +195,31 @@ public class AppCreateController {
             model.addAttribute("appGroup", appGroup);
             return "project/app/create";
         } else {
-            Application application = new Application();
-            application.setLocale(contributor.getLocale()); // TODO: Add Locale to each Project?
-            application.setPackageName(packageName);
-            application.setApplicationStatus(ApplicationStatus.ACTIVE);
-            application.setContributor(contributor);
-            application.setProject(project);
-            applicationDao.create(application);
-            
-            applicationVersion.setApplication(application);
-            applicationVersionDao.create(applicationVersion);
-            
-            appGroup.getApplications().add(application);
-            appGroupDao.update(appGroup);
+            Application application = applicationVersion.getApplication();
+            logger.info("application: " + application);
+            if (application == null) {
+                // First-time upload for packageName
+                
+                // Create new Application
+                application = new Application();
+                application.setLocale(contributor.getLocale()); // TODO: Add Locale to each Project?
+                application.setPackageName(packageName);
+                application.setApplicationStatus(ApplicationStatus.ACTIVE);
+                application.setContributor(contributor);
+                application.setProject(project);
+                applicationDao.create(application);
+
+                applicationVersion.setApplication(application);
+                applicationVersionDao.create(applicationVersion);
+
+                appGroup.getApplications().add(application);
+                appGroupDao.update(appGroup);
+            } else {
+                // Update of existing packageName previously uploaded
+                
+                // Create new ApplicationVersion for the existing Application
+                applicationVersionDao.create(applicationVersion);
+            }
             
             // Refresh REST API cache
 //            jsonService.refreshApplicationsInAppCollection(appCollection);
@@ -212,7 +236,11 @@ public class AppCreateController {
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
             
-            return "redirect:/project/{projectId}/app-category/{appCategoryId}/app-group/{appGroupId}/app/list#" + application.getId();
+            if (!isUpdateOfExistingApplication) {
+                return "redirect:/project/{projectId}/app-category/{appCategoryId}/app-group/{appGroupId}/app/list#" + application.getId();
+            } else {
+                return "redirect:/project/{projectId}/app-category/{appCategoryId}/app-group/{appGroupId}/app/" + application.getId() + "/edit";
+            }
         }
     }
     
