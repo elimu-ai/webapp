@@ -25,6 +25,7 @@ import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
+import java.util.List;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,18 +139,6 @@ public class AppCreateController {
                 
                 packageName = apkMeta.getPackageName();
                 logger.info("packageName: " + packageName);
-                if (isUpdateOfExistingApplication) {
-                    // Verify that the packageName of the new APK matches that of the Application
-                    // TODO
-                }
-                
-                if (!isUpdateOfExistingApplication) {
-                    // Verify that an Application with identical packageName has not already been uploaded withing the same Project
-                    Application existingApplication = applicationDao.readByPackageName(project, packageName);
-                    if (existingApplication != null) {
-                        result.rejectValue("application", "NonUnique", new String[] {"application"}, null);
-                    }
-                }
                 
                 String label = apkMeta.getLabel();
                 logger.info("label: " + label);
@@ -159,10 +148,6 @@ public class AppCreateController {
                 
                 Integer versionCode = apkMeta.getVersionCode().intValue();
                 logger.info("versionCode: " + versionCode);
-                if (isUpdateOfExistingApplication) {
-                    // Verify that the versionCode of the new APK is higher than the previous one
-                    // TODO
-                }
                 
                 String versionName = apkMeta.getVersionName();
                 logger.info("versionName: " + versionName);
@@ -184,6 +169,32 @@ public class AppCreateController {
                 // TODO: set minSdkVersion
                 applicationVersion.setTimeUploaded(Calendar.getInstance());
                 applicationVersion.setContributor(contributor);
+                
+                if (isUpdateOfExistingApplication) {
+                    // Verify that the packageName of the APK update matches that of the Application
+                    if (!applicationVersion.getApplication().getPackageName().equals(packageName)) {
+                        result.rejectValue("application", "NonUnique");
+                    }
+                }
+                
+                if (!isUpdateOfExistingApplication) {
+                    // Verify that an Application with identical packageName has not already been uploaded withing the same Project
+                    Application existingApplication = applicationDao.readByPackageName(project, packageName);
+                    if (existingApplication != null) {
+                        result.rejectValue("application", "NonUnique", new String[] {"application"}, null);
+                    }
+                }
+                
+                if (isUpdateOfExistingApplication) {
+                    // Verify that the versionCode is higher than previous ones
+                    List<ApplicationVersion> existingApplicationVersions = applicationVersionDao.readAll(applicationVersion.getApplication());
+                    for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
+                        if (existingApplicationVersion.getVersionCode() >= applicationVersion.getVersionCode()) {
+                            result.rejectValue("versionCode", "TooLow");
+                            break;
+                        }
+                    }
+                }
             } catch (IOException ex) {
                 logger.error(ex);
             }
@@ -226,13 +237,14 @@ public class AppCreateController {
             jsonService.refreshApplicationsInAppCollection();
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                 String text = URLEncoder.encode(
-                         contributor.getFirstName() + " just uploaded a new Application:\n" + 
+                String applicationDescription = !isUpdateOfExistingApplication ? "Application" : "APK version";
+                String text = URLEncoder.encode(
+                         contributor.getFirstName() + " just uploaded a new " + applicationDescription + ":\n" + 
                          "• Project: \"" + project.getName() + "\"\n" +
                          "• App Category: \"" + appCategory.getName() + "\"\n" +
                          "• Package name: \"" + application.getPackageName() + "\"\n" + 
                          "• Version code: " + applicationVersion.getVersionCode() + "\n" +
-                        "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/list";
+                        "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
             
