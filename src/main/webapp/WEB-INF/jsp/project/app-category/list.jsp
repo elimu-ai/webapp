@@ -28,7 +28,7 @@
                     <div style="padding: 1em; background: #FAFAFA;">
                         <%-- List Applications --%>
                         <c:forEach var="application" items="${appGroup.applications}">
-                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/application/${application.id}/edit' />" title="${application.packageName}">
+                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/${application.id}/edit' />" title="${application.packageName}">
                                 ${application.packageName}
                             </a>&nbsp;
                         </c:forEach>
