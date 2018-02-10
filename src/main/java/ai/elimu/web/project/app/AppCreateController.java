@@ -232,7 +232,7 @@ public class AppCreateController {
                          "• App Category: \"" + appCategory.getName() + "\"\n" +
                          "• Package name: \"" + application.getPackageName() + "\"\n" + 
                          "• Version code: " + applicationVersion.getVersionCode() + "\n" +
-                        "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/list";
+                        "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
             
