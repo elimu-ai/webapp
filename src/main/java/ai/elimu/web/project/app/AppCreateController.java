@@ -171,8 +171,10 @@ public class AppCreateController {
                 applicationVersion.setContributor(contributor);
                 
                 if (isUpdateOfExistingApplication) {
-                    // Verify that the packageName of the new APK matches that of the Application
-                    // TODO
+                    // Verify that the packageName of the APK update matches that of the Application
+                    if (!applicationVersion.getApplication().getPackageName().equals(packageName)) {
+                        result.rejectValue("application", "NonUnique");
+                    }
                 }
                 
                 if (!isUpdateOfExistingApplication) {
