@@ -68,8 +68,11 @@ public class ApkController {
         // TODO: validate checksum
         
         // See AppCollectionRestController#addInfrastructureApps
-        boolean isInfrastructureApp = "ai.elimu.appstore".equals(packageName) 
+        boolean isInfrastructureApp = 
+                   "ai.elimu.appstore".equals(packageName) 
+                || "ai.elimu.appstore_custom".equals(packageName) 
                 || "ai.elimu.analytics".equals(packageName) 
+                || "ai.elimu.launcher".equals(packageName)
                 || "ai.elimu.launcher_custom".equals(packageName);
         
         Application application = null;

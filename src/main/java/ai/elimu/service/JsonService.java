@@ -73,6 +73,9 @@ public class JsonService {
         logger.info("refreshApplications");
     }
     
+    /**
+     * Returns app collection for custom project.
+     */
     @Cacheable(value = "applicationsInAppCollection", key = "#appCollection.id")
     public JSONArray getApplications(AppCollection appCollection) {
         logger.info("getApplications_appCollection");
@@ -129,7 +132,7 @@ public class JsonService {
         logger.info("addInfrastructureApps");
         
         // Appstore
-        Application applicationAppstore = applicationDao.readByPackageName(Locale.EN, "ai.elimu.appstore");
+        Application applicationAppstore = applicationDao.readByPackageName(Locale.EN, "ai.elimu.appstore_custom");
         if (applicationAppstore != null) {
             ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(applicationAppstore);
 
@@ -163,13 +166,13 @@ public class JsonService {
         }
         
         // Custom Launcher
-        Application applicationCustomLauncher = applicationDao.readByPackageName(Locale.EN, "ai.elimu.launcher_custom");
-        if (applicationCustomLauncher != null) {
-            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(applicationCustomLauncher);
+        Application applicationLauncher = applicationDao.readByPackageName(Locale.EN, "ai.elimu.launcher_custom");
+        if (applicationLauncher != null) {
+            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(applicationLauncher);
 
             // Fetch the Application's ApplicationVersions
             List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
-            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(applicationCustomLauncher)) {
+            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(applicationLauncher)) {
                 ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
                 applicationVersions.add(applicationVersionGson);
             }

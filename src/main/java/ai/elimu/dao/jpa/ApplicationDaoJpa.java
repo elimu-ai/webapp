@@ -57,6 +57,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             
             // Exclude applications belonging to custom Projects
             "AND a.project IS EMPTY " +
+            "AND a.packageName != 'ai.elimu.appstore_custom' " +
             "AND a.packageName != 'ai.elimu.launcher_custom' " +
             
             "ORDER BY a.packageName")
@@ -72,7 +73,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             "WHERE a.locale = :locale " +
             "AND a.applicationStatus = :applicationStatus " +
             
-            // Exclude applications belonging to custom Projects
+            // Exclude applications belonging to custom Projects (except infrastructure apps)
             "AND a.project IS EMPTY " +
             
             "ORDER BY a.packageName")
