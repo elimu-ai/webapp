@@ -215,16 +215,19 @@ public class AppCreateController {
                 application = new Application();
                 application.setLocale(contributor.getLocale()); // TODO: Add Locale to each Project?
                 application.setPackageName(packageName);
-                application.setApplicationStatus(ApplicationStatus.ACTIVE);
+                application.setApplicationStatus(ApplicationStatus.MISSING_APK);
                 application.setContributor(contributor);
                 application.setProject(project);
                 applicationDao.create(application);
+                
+                appGroup.getApplications().add(application);
+                appGroupDao.update(appGroup);
 
                 applicationVersion.setApplication(application);
                 applicationVersionDao.create(applicationVersion);
-
-                appGroup.getApplications().add(application);
-                appGroupDao.update(appGroup);
+                
+                application.setApplicationStatus(ApplicationStatus.ACTIVE);
+                applicationDao.update(application);
             } else {
                 // Update of existing packageName previously uploaded
                 
