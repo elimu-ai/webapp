@@ -4,6 +4,8 @@ import ai.elimu.model.BaseEntity;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderColumn;
@@ -23,6 +25,9 @@ public class AppCollection extends BaseEntity {
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            inverseJoinColumns = @JoinColumn(name = "appCategories_id", unique = false)
+    )
     private List<AppCategory> appCategories;
     
     public Project getProject() {
