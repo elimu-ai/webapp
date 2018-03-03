@@ -14,6 +14,8 @@ public class AppCategory extends BaseEntity {
     @NotNull
     private String name;
     
+    private String backgroundColor; // Expected format: "250,250,250" (RBG)
+    
     @OrderColumn
     @OneToMany(fetch = FetchType.EAGER)
     private List<AppGroup> appGroups;
@@ -24,6 +26,14 @@ public class AppCategory extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 
     public List<AppGroup> getAppGroups() {
