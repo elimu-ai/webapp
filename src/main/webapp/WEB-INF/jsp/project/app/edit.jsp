@@ -14,13 +14,15 @@
             <tag:formErrors modelAttribute="application" />
 
             <div class="row">
-                <form:hidden path="locale" value="${contributor.locale}" />
-                <form:hidden path="contributor" value="${contributor.id}" />
+                <form:hidden path="id" value="${application.id}" />
+                <form:hidden path="locale" value="${application.locale}" />
+                <form:hidden path="contributor" value="${application.contributor.id}" />
+                <form:hidden path="project" value="${application.project.id}" />
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
                     <form:hidden path="packageName" value="${application.packageName}" />
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                     <select id="applicationStatus" name="applicationStatus">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="applicationStatus" items="${applicationStatuses}">
@@ -28,6 +30,25 @@
                         </c:forEach>
                     </select>
                     <label for="applicationStatus"><fmt:message key="status" /></label>
+                </div>
+                <div class="input-field col s2">
+                    <button id="submitButton" disabled="disabled" class="btn disabled deep-purple lighten-1 waves-effect waves-light" type="submit">
+                        <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                    </button>
+                    <script>
+                        $(function() {
+                            $('#applicationStatus').on("change", function() {
+                                console.info('applicationStatus on change');
+                                
+                                var applicationStatus = $(this).val();
+                                console.info('applicationStatus: ' + applicationStatus);
+                                if (applicationStatus == "DELETED") {
+                                    $('#submitButton').removeAttr("disabled");
+                                    $('#submitButton').removeClass("disabled");
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             </div>
             
