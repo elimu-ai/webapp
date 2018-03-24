@@ -193,6 +193,7 @@ public class JavaToGsonConverter {
             applicationVersionGson.setContentType(applicationVersion.getContentType());
             applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());
             applicationVersionGson.setVersionName(applicationVersion.getVersionName());
+            applicationVersionGson.setLabel(applicationVersion.getLabel());
             applicationVersionGson.setStartCommand(applicationVersion.getStartCommand());
             applicationVersionGson.setTimeUploaded(applicationVersion.getTimeUploaded());
             return applicationVersionGson;
