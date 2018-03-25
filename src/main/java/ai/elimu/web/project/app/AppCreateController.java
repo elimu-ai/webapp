@@ -152,7 +152,7 @@ public class AppCreateController {
                 String versionName = apkMeta.getVersionName();
                 logger.info("versionName: " + versionName);
                 
-                String minSdkVersion = apkMeta.getMinSdkVersion();
+                Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
                 logger.info("minSdkVersion: " + minSdkVersion);
                 
                 // Check if Application already exists in the same AppCategory
@@ -165,8 +165,8 @@ public class AppCreateController {
                 applicationVersion.setVersionCode(versionCode);
                 applicationVersion.setVersionName(versionName);
                 applicationVersion.setLabel(label);
+                applicationVersion.setMinSdkVersion(minSdkVersion);
                 applicationVersion.setIcon(icon);
-                // TODO: set minSdkVersion
                 applicationVersion.setTimeUploaded(Calendar.getInstance());
                 applicationVersion.setContributor(contributor);
                 
