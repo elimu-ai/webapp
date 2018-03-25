@@ -128,11 +128,13 @@ public class ApplicationVersionCreateController {
                     logger.info("label: " + label);
                     applicationVersion.setLabel(label);
                     
+                    Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
+                    logger.info("minSdkVersion: " + minSdkVersion);
+                    applicationVersion.setMinSdkVersion(minSdkVersion);
+                    
                     byte[] icon = byteArrayApkFile.getIconFile().getData();
                     logger.info("icon.length: " + (icon.length / 1024) + "kB");
                     applicationVersion.setIcon(icon);
-                    
-                    // TODO: auto-detect packageName, versionCode, minSdk
                 } else {
                     result.rejectValue("bytes", "NotNull");
                 }
