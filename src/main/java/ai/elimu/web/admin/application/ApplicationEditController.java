@@ -14,6 +14,7 @@ import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.service.JsonService;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
@@ -30,6 +31,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ApplicationEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private JsonService jsonService;
     
     @Autowired
     private ApplicationDao applicationDao;
@@ -81,6 +85,18 @@ public class ApplicationEditController {
             return "admin/application/edit";
         } else {
             applicationDao.update(application);
+            
+            // Refresh REST API cache
+            jsonService.refreshApplications(application.getLocale());
+            boolean isInfrastructureApp = 
+                   "ai.elimu.appstore".equals(application.getPackageName()) 
+                || "ai.elimu.appstore_custom".equals(application.getPackageName()) 
+                || "ai.elimu.analytics".equals(application.getPackageName()) 
+                || "ai.elimu.launcher".equals(application.getPackageName()) 
+                || "ai.elimu.launcher_custom".equals(application.getPackageName());
+            if (isInfrastructureApp) {
+                jsonService.refreshApplicationsInAppCollection();
+            }
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                  Contributor contributor = (Contributor) session.getAttribute("contributor");
