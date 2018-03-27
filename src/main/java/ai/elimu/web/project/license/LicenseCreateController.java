@@ -10,6 +10,7 @@ import ai.elimu.dao.ProjectDao;
 import ai.elimu.logic.LicenseGenerator;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
@@ -98,11 +99,11 @@ public class LicenseCreateController {
             licenseDao.create(license);
             
             // Send license information via e-mail
-            sendLicenseInEmail(license);
+            Contributor contributor = (Contributor) session.getAttribute("contributor");
+            sendLicenseInEmail(license, contributor);
 
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 // Notify project members in Slack
-                Contributor contributor = (Contributor) session.getAttribute("contributor");
                 String text = URLEncoder.encode(
                     contributor.getFirstName() + " just added a new License:\n" +
                     "• Project: \"" + project.getName() + "\"\n" +
@@ -116,28 +117,55 @@ public class LicenseCreateController {
         }
     }
     
-    private void sendLicenseInEmail(License license) {
+    /**
+     * Sends an e-mail with the License details necessary to be able to use the Appstore application for downloading 
+     * an AppCollection.
+     * 
+     * @param license The License to send in the e-mail
+     * @param contributor The project manager who generated the License
+     */
+    private void sendLicenseInEmail(License license, Contributor projectManager) {
+        logger.info("sendLicenseInEmail");
+        
+        AppCollection appCollection = license.getAppCollection();
+        
         String to = license.getLicenseEmail();
         String from = "elimu.ai <info@elimu.ai>";
         String subject = "License number";
-        String title = "Your license is ready!";
+        String title = "Your license is ready! - " + appCollection.getName();
         String firstName = ""; // TODO: store firstName/lastName when generating a new License
+        
         String htmlText = "<p>Hi, " + firstName + "</p>";
         htmlText += "<p>We have prepared a license number for you so that you can download and use our software.</p>";
+        
         htmlText += "<h2>License Details</h2>";
         htmlText += "<p>";
             htmlText += "E-mail: " + license.getLicenseEmail() + "<br />";
             htmlText += "Number: " + license.getLicenseNumber()+ "<br />";
         htmlText += "</p>";
+        
+        htmlText += "<h2>App Collection</h2>";
+        htmlText += "<p>This license is valid for the app collection \"" + appCollection.getName() + "\", which "
+                + "contains the following app categories:</p>";
+        htmlText += "<ul>";
+        for (AppCategory appCategory : appCollection.getAppCategories()) {
+            htmlText += "<li>" + appCategory.getName() + "</li>";
+        }
+        htmlText += "</ul>";
+        
         htmlText += "<h2>How to Start?</h2>";
         htmlText += "<ol>";
             htmlText += "<li>Install our Appstore application</li>";
             htmlText += "<li>Open Appstore and type your e-mail + license number</li>";
             htmlText += "<li>Download apps</li>";
         htmlText += "</ol>";
+        
         htmlText += "<h2>Download Appstore</h2>";
         htmlText += "<p>At https://github.com/elimu-ai/appstore/releases you can download the latest version of our Appstore "
-                + "application which helps you download the entire collection of educational Android apps. Start by clicking the button below:</p>";
-        Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Download APK", "https://github.com/elimu-ai/appstore/releases");
+                + "application which helps you download the entire collection of educational Android apps.</p>";
+        htmlText += "<p>Make sure you download the file named \"ai.elimu.appstore<b>_custom</b>-&lt;version&gt;.apk\".</p>";
+        htmlText += "<p>Start by clicking the button below:</p>";
+        
+        Mailer.sendHtmlWithButton(to, projectManager.getEmail(), from, subject, title, htmlText, "Download APK", "https://github.com/elimu-ai/appstore/releases");
     }
 }
