@@ -127,6 +127,8 @@ public class ProjectListController {
         license1.setAppCollection(appCollection1);
         license1.setLicenseEmail("info@elimu.ai");
         license1.setLicenseNumber("bddf-d8f4-2adf-a365");
+        license1.setFirstName("Test");
+        license1.setLastName("Contributor");
         licenseDao.create(license1);
         
         return projects;
