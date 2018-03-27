@@ -18,11 +18,13 @@ public class License extends BaseEntity {
     
     // TODO: expiry date
     
-    // TODO: firstName
+    @NotNull
+    private String firstName;
     
-    // TODO: lastName
+    @NotNull
+    private String lastName;
     
-    // TODO: company name
+    private String organization;
     
     @NotNull
     @OneToOne
@@ -50,5 +52,29 @@ public class License extends BaseEntity {
 
     public void setAppCollection(AppCollection appCollection) {
         this.appCollection = appCollection;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 }

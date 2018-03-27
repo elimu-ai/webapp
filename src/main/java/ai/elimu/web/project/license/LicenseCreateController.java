@@ -19,6 +19,7 @@ import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -133,7 +134,7 @@ public class LicenseCreateController {
         String from = "elimu.ai <info@elimu.ai>";
         String subject = "License number - " + appCollection.getName();
         String title = "Your license is ready!";
-        String firstName = ""; // TODO: store firstName/lastName when generating a new License
+        String firstName = license.getFirstName();
         
         String htmlText = "<p>Hi, " + firstName + "</p>";
         htmlText += "<p>We have prepared a license number for you so that you can download and use our software.</p>";
@@ -141,7 +142,12 @@ public class LicenseCreateController {
         htmlText += "<h2>License Details</h2>";
         htmlText += "<p>";
             htmlText += "E-mail: " + license.getLicenseEmail() + "<br />";
-            htmlText += "Number: " + license.getLicenseNumber()+ "<br />";
+            htmlText += "Number: " + license.getLicenseNumber() + "<br />";
+            htmlText += "First name: " + license.getFirstName() + "<br />";
+            htmlText += "Last name: " + license.getLastName() + "<br />";
+            if (!StringUtils.isBlank(license.getOrganization())) {
+                htmlText += "Organization: " + license.getOrganization() + "<br />";
+            }
         htmlText += "</p>";
         
         htmlText += "<h2>App Collection</h2> - " + appCollection.getName();
