@@ -131,8 +131,8 @@ public class LicenseCreateController {
         
         String to = license.getLicenseEmail();
         String from = "elimu.ai <info@elimu.ai>";
-        String subject = "License number";
-        String title = "Your license is ready! - " + appCollection.getName();
+        String subject = "License number - " + appCollection.getName();
+        String title = "Your license is ready!";
         String firstName = ""; // TODO: store firstName/lastName when generating a new License
         
         String htmlText = "<p>Hi, " + firstName + "</p>";
@@ -144,7 +144,7 @@ public class LicenseCreateController {
             htmlText += "Number: " + license.getLicenseNumber()+ "<br />";
         htmlText += "</p>";
         
-        htmlText += "<h2>App Collection</h2>";
+        htmlText += "<h2>App Collection</h2> - " + appCollection.getName();
         htmlText += "<p>This license is valid for the app collection \"" + appCollection.getName() + "\", which "
                 + "contains the following app categories:</p>";
         htmlText += "<ul>";
@@ -163,8 +163,8 @@ public class LicenseCreateController {
         htmlText += "<h2>Download Appstore</h2>";
         htmlText += "<p>At https://github.com/elimu-ai/appstore/releases you can download the latest version of our Appstore "
                 + "application which helps you download the entire collection of educational Android apps.</p>";
-        htmlText += "<p>Make sure you download the file named \"ai.elimu.appstore<b>_custom</b>-&lt;version&gt;.apk\".</p>";
-        htmlText += "<p>Start by clicking the button below:</p>";
+        htmlText += "<p>Make sure you download the file named \"ai.elimu.appstore<b>_custom</b>-&lt;version&gt;.apk\". "
+                + "Start by clicking the button below:</p>";
         
         Mailer.sendHtmlWithButton(to, projectManager.getEmail(), from, subject, title, htmlText, "Download APK", "https://github.com/elimu-ai/appstore/releases");
     }
