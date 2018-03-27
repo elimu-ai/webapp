@@ -143,14 +143,16 @@ public class LicenseCreateController {
         htmlText += "<p>";
             htmlText += "E-mail: " + license.getLicenseEmail() + "<br />";
             htmlText += "Number: " + license.getLicenseNumber() + "<br />";
+        htmlText += "</p>";
+        htmlText += "<p>";
             htmlText += "First name: " + license.getFirstName() + "<br />";
             htmlText += "Last name: " + license.getLastName() + "<br />";
-            if (!StringUtils.isBlank(license.getOrganization())) {
-                htmlText += "Organization: " + license.getOrganization() + "<br />";
-            }
+        if (!StringUtils.isBlank(license.getOrganization())) {
+            htmlText += "Organization: " + license.getOrganization() + "<br />";
+        }
         htmlText += "</p>";
         
-        htmlText += "<h2>App Collection</h2> - " + appCollection.getName();
+        htmlText += "<h2>App Collection - " + appCollection.getName() + "</h2>";
         htmlText += "<p>This license is valid for the app collection \"" + appCollection.getName() + "\", which "
                 + "contains the following app categories:</p>";
         htmlText += "<ul>";
