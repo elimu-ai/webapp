@@ -110,6 +110,10 @@ public class LicenseCreateController {
                     "• Project: \"" + project.getName() + "\"\n" +
                     "• App Collection: \"" + appCollection.getName() + "\"\n" +
                     "• E-mail: \"" + license.getLicenseEmail() + "\"\n" +
+                    "• Number: \"" + license.getLicenseNumber() + "\"\n" +
+                    "• First name: \"" + license.getFirstName() + "\"\n" +
+                    "• Last name: \"" + license.getLastName() + "\"\n" +
+                    (StringUtils.isBlank(license.getOrganization()) ? "" : "• Organization: \"" + license.getOrganization() + "\"\n") +
                     "See ") + "http://elimu.ai/project/" + project.getId() + "/app-collection/edit/" + appCollection.getId();
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
