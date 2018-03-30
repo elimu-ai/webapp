@@ -12,6 +12,7 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
+import ai.elimu.service.JsonService;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
@@ -29,6 +30,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AppCollectionEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private JsonService jsonService;
     
     @Autowired
     private ProjectDao projectDao;
@@ -91,6 +95,10 @@ public class AppCollectionEditController {
             return "project/app-collection/edit";
         } else {
             appCollectionDao.update(appCollection);
+            
+            // Refresh REST API cache
+//            jsonService.refreshApplicationsInAppCollection(appCollection);
+            jsonService.refreshApplicationsInAppCollection();
 
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 // Notify project members in Slack
