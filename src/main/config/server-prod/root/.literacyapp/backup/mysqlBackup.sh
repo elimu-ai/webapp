@@ -9,7 +9,7 @@ if [ ! -d "database" ]; then
     echo "directory '$(pwd)/database' was created"
 fi
 
-mysqldump -c -u literacyapp-user -p ************ literacyapp > database/literacyapp_`date +%Y"-"%m"-"%d`.sql
+mysqldump -c -u literacyapp-user -p************ literacyapp > database/literacyapp_`date +%Y"-"%m"-"%d`.sql
 
 # Copy the backup to the test server
 DUMP_FILE=/root/.literacyapp/backup/database/literacyapp_`date +%Y"-"%m"-"%d`.sql
