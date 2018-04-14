@@ -20,6 +20,6 @@ echo "Copying to luna344:$DUMP_FILE_TEST"
 scp $DUMP_FILE root@luna344:$DUMP_FILE_TEST
 echo "Copy complete"
 
-# Remove files older than 7 days
-find database -type f -mtime +6 -exec rm {} \;
+# Remove files older than 5 days
+find database -type f -mtime +4 -exec rm {} \;
 
