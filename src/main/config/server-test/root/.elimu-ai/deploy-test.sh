@@ -3,10 +3,11 @@ echo "JAVA_OPTIONS: $JAVA_OPTIONS"
 echo "Stopping test server..."
 $JETTY_HOME/bin/jetty.sh stop
 
-WARFILE=/var/lib/jenkins/jobs/webapp-2-precompile-jsps/workspace/target/literacyapp-SNAPSHOT.war
+WARFILE=/var/lib/jenkins/jobs/webapp-2-precompile-jsps/workspace/target/webapp-SNAPSHOT.war
 echo "Deploying latest WAR file... ($WARFILE)"
 echo "Time stamp: $(stat -c %y $WARFILE)"
-cp $WARFILE $JETTY_HOME/webapps/literacyapp.war
+echo "File size: $(($(stat -c %s $WARFILE)/1024/1024)) MB"
+cp $WARFILE $JETTY_HOME/webapps/webapp.war
 
 echo "Starting test server..."
 $JETTY_HOME/bin/jetty.sh start

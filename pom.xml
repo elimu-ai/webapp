@@ -19,7 +19,7 @@
 
     <!-- Build settings -->
     <build>
-        <finalName>literacyapp-SNAPSHOT</finalName>
+        <finalName>webapp-SNAPSHOT</finalName>
         <plugins>
             <plugin>
             	<groupId>org.apache.maven.plugins</groupId>
