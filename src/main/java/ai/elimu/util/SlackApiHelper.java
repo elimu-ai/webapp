@@ -79,7 +79,7 @@ public class SlackApiHelper {
 //            iconUrlParameter = "&icon_emoji=%3Aauni%3A";
 //        }
         // Fall-back to emoji to avoid "404 File Not Found" when avatar cannot be reached
-        String iconUrlParameter = "&icon_emoji=%3Aauni%3A";
+        String iconUrlParameter = "&icon_emoji=%3Anya%3A";
 
         String imageUrlParameter = "";
         if (StringUtils.isNotBlank(imageUrl)) {
@@ -94,7 +94,7 @@ public class SlackApiHelper {
         String response = null;
         
         try {
-            URL url = new URL (BASE_URL + "/chat.postMessage?token=" + API_TOKEN + "&as_user=false" + "&username=elimu.ai" + "&unfurl_links=false" + "&channel=" + channelId + "&text=" + text + iconUrlParameter + imageUrlParameter);
+            URL url = new URL (BASE_URL + "/chat.postMessage?token=" + API_TOKEN + "&as_user=false" + "&username=Nya" + "&unfurl_links=false" + "&channel=" + channelId + "&text=" + text + iconUrlParameter + imageUrlParameter);
             logger.info("url: " + url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
