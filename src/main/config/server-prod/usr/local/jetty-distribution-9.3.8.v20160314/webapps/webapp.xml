@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
 
-<!-- ==================================================================
-This file is placed on the test server under jetty.home/contexts/
-===================================================================== -->
+<!-- ============================================================
+This file is placed on the prod server under jetty.home/contexts/
+================================================================= -->
 
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
   <Set name="contextPath">/</Set>
-  <Set name="war"><SystemProperty name="jetty.home"/>/webapps/literacyapp.war</Set>
+  <Set name="war"><SystemProperty name="jetty.home"/>/webapps/webapp.war</Set>
   <Call name="setAttribute">
     <Arg>env</Arg>
-    <Arg>TEST</Arg>
+    <Arg>PROD</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_password</Arg>
@@ -29,16 +29,24 @@ This file is placed on the test server under jetty.home/contexts/
     <Arg>************</Arg>
   </Call>
   <Call name="setAttribute">
+    <Arg>mailchimp_api_key</Arg>
+    <Arg>************</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>slack_api_token</Arg>
+    <Arg>************</Arg>
+  </Call>
+  <Call name="setAttribute">
     <Arg>appstore_secret</Arg>
     <Arg>************</Arg>
   </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
-      <Item>test.elimu.ai</Item>
-      <Item>ar.test.elimu.ai</Item>
-      <Item>en.test.elimu.ai</Item>
-      <Item>es.test.elimu.ai</Item>
-      <Item>sw.test.elimu.ai</Item>
+      <Item>elimu.ai</Item>
+      <Item>ar.elimu.ai</Item>
+      <Item>en.elimu.ai</Item>
+      <Item>es.elimu.ai</Item>
+      <Item>sw.elimu.ai</Item>
     </Array>
   </Set>
   <Set name="maxFormContentSize">1073741824</Set><!-- 1024MB -->

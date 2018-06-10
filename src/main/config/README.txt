@@ -8,11 +8,11 @@ on the test/prod server.
 When modifying these files on the test/prod server, remember to update the 
 corresponding files in this project.
 
-For documentation of how to install Jetty/MySQL, see Google Drive.
+For documentation of how to install Jetty/MySQL, see the Wiki.
 
 To configure the web application to run on a new server, perform the following:
 
-    1. Add context file literacyapp.xml to:
+    1. Add context file webapp.xml to:
         1.1. Jetty: 8: <Jetty installation path>/contexts/
         1.2. Jetty: 9: <Jetty installation path>/webapps/
     2. Create database:
@@ -23,4 +23,4 @@ To configure the web application to run on a new server, perform the following:
         3.2 Add mysqlBackup.cron to crontab
 
 Scripts for deployment to production are located in 
-server-test/root/.literacyapp (deploy-test.sh and deploy-prod.sh)
+server-test/root/.elimu-ai (deploy-test.sh and deploy-prod.sh)
