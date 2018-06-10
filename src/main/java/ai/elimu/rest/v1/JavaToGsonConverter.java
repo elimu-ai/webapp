@@ -173,6 +173,7 @@ public class JavaToGsonConverter {
             applicationGson.setId(application.getId());
             applicationGson.setLocale(application.getLocale());
             applicationGson.setPackageName(application.getPackageName());
+            applicationGson.setInfrastructural(application.isInfrastructural());
             applicationGson.setLiteracySkills(application.getLiteracySkills());
             applicationGson.setNumeracySkills(application.getNumeracySkills());
             applicationGson.setApplicationStatus(application.getApplicationStatus());

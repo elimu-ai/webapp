@@ -30,78 +30,105 @@
                     <label for="applicationStatus"><fmt:message key="status" /></label>
                 </div>
             </div>
-            
+                
             <div class="row">
                 <div class="col s12">
-                    <h5><fmt:message key="application.versions" /></h5>
-                    <p>
-                        <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">file_upload</i><fmt:message key='upload.new.apk.file' /></a>
-                    </p>
-                    <c:if test="${not empty applicationVersions}">
-                        <table class="bordered highlight">
-                            <thead>
-                                <th><fmt:message key="version.code" /></th>
-                                <th><fmt:message key="version.name" /></th>
-                                <th><fmt:message key="label" /></th>
-                                <th><fmt:message key="file.size" /></th>
-                                <th><fmt:message key="start.command" /></th>
-                                <th><fmt:message key="time.uploaded" /></th>
-                                <th><fmt:message key="contributor" /></th>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="applicationVersion" items="${applicationVersions}">
-                                    <tr>
-                                        <td>${applicationVersion.versionCode}</td>
-                                        <td>${applicationVersion.versionName}</td>
-                                        <td>${applicationVersion.label}</td>
-                                        <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
-                                        <td><c:out value="${applicationVersion.startCommand}" /></td>
-                                        <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
-                                        <td>
-                                            <div class="chip">
-                                                <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
-                                                <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </c:if>
+                    <label><fmt:message key="app.type" /></label><br />
+                    <input type="checkbox" name="infrastructural" id="infrastructural" value="on" <c:if test="${application.infrastructural}">checked="checked"</c:if> />
+                    <label for="infrastructural">
+                        <fmt:message key="infrastructural" />
+                    </label>
+                    <script>
+                        $(function() {
+                            $('#infrastructural').on('change', function() {
+                                console.info('#infrastructural on change');
+                                
+                                if ($(this).is(':checked')) {
+                                    $('#skillsContainer').fadeOut();
+                                } else {
+                                    $('#skillsContainer').fadeIn();
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             </div>
             
-            <div class="row">
-                <div class="col s12 m6">
-                    <h5><fmt:message key="literacy.skills" /></h5>
-                    <blockquote>
-                        What <i>literacy</i> skill(s) does the application teach?
-                    </blockquote>
-                    <c:forEach var="literacySkill" items="${literacySkills}">
-                        <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(application.literacySkills, literacySkill)}">checked="checked"</c:if> />
-                        <label for="${literacySkill}">
-                            <fmt:message key="literacy.skill.${literacySkill}" />
-                        </label><br />
-                    </c:forEach>
-                </div>
+            <div id="skillsContainer" <c:if test="${application.infrastructural}">style="display: none;"</c:if>>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <h5><fmt:message key="literacy.skills" /></h5>
+                        <blockquote>
+                            What <i>literacy</i> skill(s) does the application teach?
+                        </blockquote>
+                        <c:forEach var="literacySkill" items="${literacySkills}">
+                            <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(application.literacySkills, literacySkill)}">checked="checked"</c:if> />
+                            <label for="${literacySkill}">
+                                <fmt:message key="literacy.skill.${literacySkill}" />
+                            </label><br />
+                        </c:forEach>
+                    </div>
 
-                <div class="col s12 m6">
-                    <h5><fmt:message key="numeracy.skills" /></h5>
-                    <blockquote>
-                        What <i>numeracy</i> skill(s) does the application teach?
-                    </blockquote>
-                    <c:forEach var="numeracySkill" items="${numeracySkills}">
-                        <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(application.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
-                        <label for="${numeracySkill}">
-                            <fmt:message key="numeracy.skill.${numeracySkill}" />
-                        </label><br />
-                    </c:forEach>
+                    <div class="col s12 m6">
+                        <h5><fmt:message key="numeracy.skills" /></h5>
+                        <blockquote>
+                            What <i>numeracy</i> skill(s) does the application teach?
+                        </blockquote>
+                        <c:forEach var="numeracySkill" items="${numeracySkills}">
+                            <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(application.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
+                            <label for="${numeracySkill}">
+                                <fmt:message key="numeracy.skill.${numeracySkill}" />
+                            </label><br />
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
 
             <button id="submitButton" class="btn green waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
-        </form:form>
+        </form:form>    
+    </div>
+    
+    <div class="card-panel">    
+        <div class="row">
+            <div class="col s12">
+                <h5><fmt:message key="application.versions" /></h5>
+                <p>
+                    <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">file_upload</i><fmt:message key='upload.new.apk.file' /></a>
+                </p>
+                <c:if test="${not empty applicationVersions}">
+                    <table class="bordered highlight">
+                        <thead>
+                            <th><fmt:message key="version.code" /></th>
+                            <th><fmt:message key="version.name" /></th>
+                            <th><fmt:message key="label" /></th>
+                            <th><fmt:message key="file.size" /></th>
+                            <th>minSdkVersion</th>
+                            <th><fmt:message key="time.uploaded" /></th>
+                            <th><fmt:message key="contributor" /></th>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="applicationVersion" items="${applicationVersions}">
+                                <tr>
+                                    <td>${applicationVersion.versionCode}</td>
+                                    <td>${applicationVersion.versionName}</td>
+                                    <td>${applicationVersion.label}</td>
+                                    <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
+                                    <td><c:out value="${applicationVersion.minSdkVersion}" /></td>
+                                    <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
+                                    <td>
+                                        <div class="chip">
+                                            <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
+                                            <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:if>
+            </div>
+        </div>
     </div>
 </content:section>
