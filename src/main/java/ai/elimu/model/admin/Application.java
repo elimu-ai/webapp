@@ -26,6 +26,8 @@ public class Application extends BaseEntity {
     @NotNull
     private String packageName;
     
+    private boolean infrastructural;
+    
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<LiteracySkill> literacySkills;
@@ -59,6 +61,14 @@ public class Application extends BaseEntity {
 
     public void setPackageName(String packageName) {
         this.packageName = packageName;
+    }
+    
+    public boolean isInfrastructural() {
+        return infrastructural;
+    }
+
+    public void setInfrastructural(boolean infrastructural) {
+        this.infrastructural = infrastructural;
     }
 
     public Set<LiteracySkill> getLiteracySkills() {
