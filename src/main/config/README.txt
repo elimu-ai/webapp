@@ -23,4 +23,4 @@ To configure the web application to run on a new server, perform the following:
         3.2 Add mysqlBackup.cron to crontab
 
 Scripts for deployment to production are located in 
-server-test/root/.literacyapp (deploy-test.sh and deploy-prod.sh)
+server-test/root/.elimu-ai (deploy-test.sh and deploy-prod.sh)
