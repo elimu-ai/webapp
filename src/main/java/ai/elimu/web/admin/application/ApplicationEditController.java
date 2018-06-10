@@ -88,13 +88,7 @@ public class ApplicationEditController {
             
             // Refresh REST API cache
             jsonService.refreshApplications(application.getLocale());
-            boolean isInfrastructureApp = 
-                   "ai.elimu.appstore".equals(application.getPackageName()) 
-                || "ai.elimu.appstore_custom".equals(application.getPackageName()) 
-                || "ai.elimu.analytics".equals(application.getPackageName()) 
-                || "ai.elimu.launcher".equals(application.getPackageName()) 
-                || "ai.elimu.launcher_custom".equals(application.getPackageName());
-            if (isInfrastructureApp) {
+            if (application.isInfrastructural()) {
                 jsonService.refreshApplicationsInAppCollection();
             }
             
