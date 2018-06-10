@@ -177,6 +177,7 @@ public class JavaToGsonConverter {
             applicationGson.setLiteracySkills(application.getLiteracySkills());
             applicationGson.setNumeracySkills(application.getNumeracySkills());
             applicationGson.setApplicationStatus(application.getApplicationStatus());
+            applicationGson.setAppGroup(getAppGroupGson(application.getAppGroup()));
             return applicationGson;
         }
     }

@@ -116,6 +116,7 @@ public class AppEditController {
             
             return "project/app/edit";
         } else {
+            application.setAppGroup(appGroup); // TODO: remove when migration from Project to AppGroup is complete
             applicationDao.update(application);
 
             if (application.getApplicationStatus() == ApplicationStatus.DELETED) {
@@ -136,6 +137,7 @@ public class AppEditController {
                              contributor.getFirstName() + " just deleted an Application:\n" + 
                              "• Project: \"" + project.getName() + "\"\n" +
                              "• App Category: \"" + appCategory.getName() + "\"\n" +
+                             "• AppGroup: #" + appGroup.getId() + "\n" +
                              "• Package name: \"" + application.getPackageName() + "\"\n" + 
                             "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";
                     SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);

@@ -218,6 +218,7 @@ public class AppCreateController {
                 application.setApplicationStatus(ApplicationStatus.MISSING_APK);
                 application.setContributor(contributor);
                 application.setProject(project);
+                application.setAppGroup(appGroup);
                 applicationDao.create(application);
                 
                 appGroup.getApplications().add(application);
@@ -245,6 +246,7 @@ public class AppCreateController {
                          contributor.getFirstName() + " just uploaded a new " + applicationDescription + ":\n" + 
                          "• Project: \"" + project.getName() + "\"\n" +
                          "• App Category: \"" + appCategory.getName() + "\"\n" +
+                         "• AppGroup: #" + appGroup.getId() + "\n" +
                          "• Package name: \"" + application.getPackageName() + "\"\n" + 
                          "• Version code: " + applicationVersion.getVersionCode() + "\n" +
                         "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";

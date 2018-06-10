@@ -14,6 +14,7 @@ import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
 
 @Entity
@@ -44,8 +45,15 @@ public class Application extends BaseEntity {
     @ManyToOne
     private Contributor contributor;
     
+    @Deprecated // Use AppGroup instead
     @ManyToOne
     private Project project;
+    
+    /**
+     * This will only be set if the Application belongs to a custom Project.
+     */
+    @ManyToOne
+    private AppGroup appGroup;
 
     public Locale getLocale() {
         return locale;
@@ -103,11 +111,21 @@ public class Application extends BaseEntity {
         this.contributor = contributor;
     }
     
+    @Deprecated
     public Project getProject() {
         return project;
     }
 
+    @Deprecated
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public AppGroup getAppGroup() {
+        return appGroup;
+    }
+
+    public void setAppGroup(AppGroup appGroup) {
+        this.appGroup = appGroup;
     }
 }
