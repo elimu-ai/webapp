@@ -155,12 +155,12 @@ public class JavaToGsonConverter {
         } else {
             AppGroupGson appGroupGson = new AppGroupGson();
             appGroupGson.setId(appGroup.getId());
-            List<ApplicationGson> applications = new ArrayList<>();
-            for (Application application : appGroup.getApplications()) {
-                ApplicationGson applicationGson = getApplicationGson(application);
-                applications.add(applicationGson);
-            }
-            appGroupGson.setApplications(applications);
+//            List<ApplicationGson> applications = new ArrayList<>();
+//            for (Application application : appGroup.getApplications()) {
+//                ApplicationGson applicationGson = getApplicationGson(application);
+//                applications.add(applicationGson);
+//            }
+//            appGroupGson.setApplications(applications);
             return appGroupGson;
         }
     }
