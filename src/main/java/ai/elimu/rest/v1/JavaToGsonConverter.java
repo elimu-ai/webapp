@@ -139,12 +139,13 @@ public class JavaToGsonConverter {
             AppCategoryGson appCategoryGson = new AppCategoryGson();
             appCategoryGson.setId(appCategory.getId());
             appCategoryGson.setName(appCategory.getName());
-            List<AppGroupGson> appGroups = new ArrayList<>();
-            for (AppGroup appGroup : appCategory.getAppGroups()) {
-                AppGroupGson appGroupGson = getAppGroupGson(appGroup);
-                appGroups.add(appGroupGson);
-            }
-            appCategoryGson.setAppGroups(appGroups);
+            appCategoryGson.setBackgroundColor(appCategory.getBackgroundColor());
+//            List<AppGroupGson> appGroups = new ArrayList<>();
+//            for (AppGroup appGroup : appCategory.getAppGroups()) {
+//                AppGroupGson appGroupGson = getAppGroupGson(appGroup);
+//                appGroups.add(appGroupGson);
+//            }
+//            appCategoryGson.setAppGroups(appGroups);
             return appCategoryGson;
         }
     }
@@ -155,6 +156,7 @@ public class JavaToGsonConverter {
         } else {
             AppGroupGson appGroupGson = new AppGroupGson();
             appGroupGson.setId(appGroup.getId());
+            appGroupGson.setAppCategory(getAppCategoryGson(appGroup.getAppCategory()));
 //            List<ApplicationGson> applications = new ArrayList<>();
 //            for (Application application : appGroup.getApplications()) {
 //                ApplicationGson applicationGson = getApplicationGson(application);
