@@ -95,6 +95,7 @@ public class AppGroupCreateController {
             model.addAttribute("appGroup", appGroup);
             return "project/app-group/create";
         } else {
+            appGroup.setAppCategory(appCategory);
             appGroupDao.create(appGroup);
             
             appCategory.getAppGroups().add(appGroup);
