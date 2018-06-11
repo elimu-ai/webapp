@@ -110,6 +110,7 @@ public class ProjectListController {
         projectDao.update(project1);
         
         AppGroup appGroup1 = new AppGroup();
+        appGroup1.setAppCategory(appCategory1);
         appGroupDao.create(appGroup1);
         
         List<AppGroup> appGroups = new ArrayList<>();
