@@ -140,12 +140,12 @@ public class JavaToGsonConverter {
             appCategoryGson.setId(appCategory.getId());
             appCategoryGson.setName(appCategory.getName());
             appCategoryGson.setBackgroundColor(appCategory.getBackgroundColor());
-//            List<AppGroupGson> appGroups = new ArrayList<>();
-//            for (AppGroup appGroup : appCategory.getAppGroups()) {
-//                AppGroupGson appGroupGson = getAppGroupGson(appGroup);
-//                appGroups.add(appGroupGson);
-//            }
-//            appCategoryGson.setAppGroups(appGroups);
+            List<AppGroupGson> appGroups = new ArrayList<>();
+            for (AppGroup appGroup : appCategory.getAppGroups()) {
+                AppGroupGson appGroupGson = getAppGroupGson(appGroup);
+                appGroups.add(appGroupGson);
+            }
+            appCategoryGson.setAppGroups(appGroups);
             return appCategoryGson;
         }
     }
@@ -156,13 +156,12 @@ public class JavaToGsonConverter {
         } else {
             AppGroupGson appGroupGson = new AppGroupGson();
             appGroupGson.setId(appGroup.getId());
-            appGroupGson.setAppCategory(getAppCategoryGson(appGroup.getAppCategory()));
-//            List<ApplicationGson> applications = new ArrayList<>();
-//            for (Application application : appGroup.getApplications()) {
-//                ApplicationGson applicationGson = getApplicationGson(application);
-//                applications.add(applicationGson);
-//            }
-//            appGroupGson.setApplications(applications);
+            List<ApplicationGson> applications = new ArrayList<>();
+            for (Application application : appGroup.getApplications()) {
+                ApplicationGson applicationGson = getApplicationGson(application);
+                applications.add(applicationGson);
+            }
+            appGroupGson.setApplications(applications);
             return appGroupGson;
         }
     }
@@ -179,7 +178,6 @@ public class JavaToGsonConverter {
             applicationGson.setLiteracySkills(application.getLiteracySkills());
             applicationGson.setNumeracySkills(application.getNumeracySkills());
             applicationGson.setApplicationStatus(application.getApplicationStatus());
-            applicationGson.setAppGroup(getAppGroupGson(application.getAppGroup()));
             return applicationGson;
         }
     }
