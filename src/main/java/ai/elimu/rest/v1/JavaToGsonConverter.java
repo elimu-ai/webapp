@@ -178,6 +178,11 @@ public class JavaToGsonConverter {
             applicationGson.setLiteracySkills(application.getLiteracySkills());
             applicationGson.setNumeracySkills(application.getNumeracySkills());
             applicationGson.setApplicationStatus(application.getApplicationStatus());
+            if (application.getAppGroup() != null) {
+                // Custom Project
+                applicationGson.setName(application.getAppGroup().getAppCategory().getName());
+                applicationGson.setBackgroundColor(application.getAppGroup().getAppCategory().getBackgroundColor());
+            }
             return applicationGson;
         }
     }
