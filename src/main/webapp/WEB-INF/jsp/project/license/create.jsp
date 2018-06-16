@@ -22,11 +22,6 @@
                     <form:input path="licenseEmail" cssErrorClass="error" />
                 </div>
                 
-                <div class="input-field col s12 disabled">
-                    <form:label path="licenseNumber" cssErrorClass="error"><fmt:message key='license.number' /> *</form:label>
-                    <form:input path="licenseNumber" cssErrorClass="error" />
-                </div>
-                
                 <div class="input-field col s12">
                     <form:label path="firstName" cssErrorClass="error"><fmt:message key='first.name' /> *</form:label>
                     <form:input path="firstName" cssErrorClass="error" />
