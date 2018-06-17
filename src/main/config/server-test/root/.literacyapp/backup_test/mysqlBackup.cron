@@ -5,3 +5,6 @@ MAILTO=group-development@elimu.ai
 
 # minute hour day month weekday command
 00 04 * * * /root/.literacyapp/backup_test/mysqlBackup.sh
+
+# minute hour day month weekday command
+30 04 * * * /root/.literacyapp/backup_prod/removeOldBackups.sh
