@@ -61,6 +61,7 @@ public class LicenseCreateController {
         
         License license = new License();
         license.setAppCollection(appCollection);
+        license.setLicenseNumber(LicenseGenerator.generateLicenseNumber());
         model.addAttribute("license", license);
 
         return "project/license/create";
@@ -96,7 +97,6 @@ public class LicenseCreateController {
             model.addAttribute("license", license);
             return "project/license/create";
         } else {
-            license.setLicenseNumber(LicenseGenerator.generateLicenseNumber());
             licenseDao.create(license);
             
             // Send license information via e-mail

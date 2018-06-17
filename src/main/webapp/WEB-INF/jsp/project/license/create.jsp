@@ -15,6 +15,7 @@
             <tag:formErrors modelAttribute="license" />
             
             <form:hidden path="appCollection" value="${license.appCollection.id}" />
+            <form:hidden path="licenseNumber" value="${license.licenseNumber}" />
 
             <div class="row">
                 <div class="input-field col s12">
