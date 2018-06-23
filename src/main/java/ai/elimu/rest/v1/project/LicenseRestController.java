@@ -1,6 +1,6 @@
 package ai.elimu.rest.v1.project;
 
-import ai.elimu.dao.LicenseDao;
+import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.model.project.License;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;

@@ -27,14 +27,16 @@
             <list>
                 <bean class="ai.elimu.logic.converters.StringToAllophoneConverter" />
                 <bean class="ai.elimu.logic.converters.StringToApplicationConverter" />
-                <bean class="ai.elimu.logic.converters.StringToAppCategoryConverter" />
-                <bean class="ai.elimu.logic.converters.StringToAppCollectionConverter" />
-                <bean class="ai.elimu.logic.converters.StringToAppGroupConverter" />
                 <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
-                <bean class="ai.elimu.logic.converters.StringToProjectConverter" />
                 <bean class="ai.elimu.logic.converters.StringToWordConverter" />
                 <bean class="ai.elimu.logic.converters.StringToImageConverter" />
+                
+                <!-- Custom Project -->
+                <bean class="ai.elimu.logic.converters.project.StringToAppCategoryConverter" />
+                <bean class="ai.elimu.logic.converters.project.StringToAppCollectionConverter" />
+                <bean class="ai.elimu.logic.converters.project.StringToAppGroupConverter" />
+                <bean class="ai.elimu.logic.converters.project.StringToProjectConverter" />
             </list>
         </property>
     </bean>

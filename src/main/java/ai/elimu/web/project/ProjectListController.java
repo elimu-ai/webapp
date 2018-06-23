@@ -1,10 +1,10 @@
 package ai.elimu.web.project;
 
-import ai.elimu.dao.AppCategoryDao;
-import ai.elimu.dao.AppCollectionDao;
-import ai.elimu.dao.AppGroupDao;
-import ai.elimu.dao.LicenseDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.AppCategoryDao;
+import ai.elimu.dao.project.AppCollectionDao;
+import ai.elimu.dao.project.AppGroupDao;
+import ai.elimu.dao.project.LicenseDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCategory;

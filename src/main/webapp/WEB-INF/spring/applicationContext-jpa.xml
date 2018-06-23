@@ -59,9 +59,6 @@
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
     <!-- DAOs that will be autowired -->
-    <bean id="appCategoryDao" class="ai.elimu.dao.jpa.AppCategoryDaoJpa" />
-    <bean id="appCollectionDao" class="ai.elimu.dao.jpa.AppCollectionDaoJpa" />
-    <bean id="appGroupDao" class="ai.elimu.dao.jpa.AppGroupDaoJpa" />
     <bean id="applicationDao" class="ai.elimu.dao.jpa.ApplicationDaoJpa" />
     <bean id="applicationOpenedEventDao" class="ai.elimu.dao.jpa.ApplicationOpenedEventDaoJpa" />
     <bean id="applicationVersionDao" class="ai.elimu.dao.jpa.ApplicationVersionDaoJpa" />
@@ -73,10 +70,8 @@
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
     <bean id="letterLearningEventDao" class="ai.elimu.dao.jpa.LetterLearningEventDaoJpa" />
-    <bean id="licenseDao" class="ai.elimu.dao.jpa.LicenseDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
     <bean id="numberLearningEventDao" class="ai.elimu.dao.jpa.NumberLearningEventDaoJpa" />
-    <bean id="projectDao" class="ai.elimu.dao.jpa.ProjectDaoJpa" />
     <bean id="signOnEventDao" class="ai.elimu.dao.jpa.SignOnEventDaoJpa" />
     <bean id="storyBookDao" class="ai.elimu.dao.jpa.StoryBookDaoJpa" />
     <bean id="studentDao" class="ai.elimu.dao.jpa.StudentDaoJpa" />
@@ -85,4 +80,11 @@
     <bean id="videoRevisionEventDao" class="ai.elimu.dao.jpa.VideoRevisionEventDaoJpa" />
     <bean id="wordDao" class="ai.elimu.dao.jpa.WordDaoJpa" />
     <bean id="wordRevisionEventDao" class="ai.elimu.dao.jpa.WordRevisionEventDaoJpa" />
+    
+    <!-- DAOs that will be autowired (Custom Project) -->
+    <bean id="appCategoryDao" class="ai.elimu.dao.project.jpa.AppCategoryDaoJpa" />
+    <bean id="appCollectionDao" class="ai.elimu.dao.project.jpa.AppCollectionDaoJpa" />
+    <bean id="appGroupDao" class="ai.elimu.dao.project.jpa.AppGroupDaoJpa" />
+    <bean id="licenseDao" class="ai.elimu.dao.project.jpa.LicenseDaoJpa" />
+    <bean id="projectDao" class="ai.elimu.dao.project.jpa.ProjectDaoJpa" />
 </beans>
