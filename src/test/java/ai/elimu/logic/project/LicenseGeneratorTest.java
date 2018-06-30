@@ -1,5 +1,6 @@
-package ai.elimu.logic;
+package ai.elimu.logic.project;
 
+import ai.elimu.logic.project.LicenseGenerator;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
