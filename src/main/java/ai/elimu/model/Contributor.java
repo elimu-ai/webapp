@@ -30,6 +30,9 @@ public class Contributor extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
     
+    /**
+     * This will only be set if the Contributor is a Project manager: {@link Project#managers}.
+     */
     @ManyToOne
     private Project project;
     

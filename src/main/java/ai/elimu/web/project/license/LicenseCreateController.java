@@ -4,9 +4,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
-import ai.elimu.dao.AppCollectionDao;
-import ai.elimu.dao.LicenseDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.AppCollectionDao;
+import ai.elimu.dao.project.LicenseDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.logic.LicenseGenerator;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;

@@ -1,7 +1,7 @@
 package ai.elimu.web.project.app_category;
 
-import ai.elimu.dao.AppCollectionDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.AppCollectionDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.Project;
 import java.util.List;

@@ -1,7 +1,7 @@
 package ai.elimu.rest.v1.project;
 
-import ai.elimu.dao.AppCollectionDao;
-import ai.elimu.dao.LicenseDao;
+import ai.elimu.dao.project.AppCollectionDao;
+import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.model.gson.project.AppCollectionGson;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;

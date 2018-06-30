@@ -4,8 +4,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
-import ai.elimu.dao.AppCategoryDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.AppCategoryDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCategory;

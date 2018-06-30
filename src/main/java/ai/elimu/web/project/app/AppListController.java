@@ -1,8 +1,8 @@
 package ai.elimu.web.project.app;
 
-import ai.elimu.dao.AppCategoryDao;
-import ai.elimu.dao.AppGroupDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.AppCategoryDao;
+import ai.elimu.dao.project.AppGroupDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;

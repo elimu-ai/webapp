@@ -1,7 +1,7 @@
 package ai.elimu.web.project.app_group;
 
-import ai.elimu.dao.AppCategoryDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.AppCategoryDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.Project;
 import javax.servlet.http.HttpSession;

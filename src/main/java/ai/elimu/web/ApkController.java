@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.dao.LicenseDao;
+import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.Locale;
@@ -67,7 +67,7 @@ public class ApkController {
         
         // TODO: validate checksum
         
-        // See AppCollectionRestController#addInfrastructureApps
+        // See JsonService#addInfrastructureApps
         boolean isInfrastructureApp = 
                    "ai.elimu.appstore".equals(packageName) 
                 || "ai.elimu.appstore_custom".equals(packageName) 

@@ -1,5 +1,6 @@
-package ai.elimu.dao;
+package ai.elimu.dao.project;
 
+import ai.elimu.dao.project.LicenseDao;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
