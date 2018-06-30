@@ -1,12 +1,12 @@
 package ai.elimu.web.project.app;
 
-import ai.elimu.dao.AppCategoryDao;
-import ai.elimu.dao.AppGroupDao;
+import ai.elimu.dao.project.AppCategoryDao;
+import ai.elimu.dao.project.AppGroupDao;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;

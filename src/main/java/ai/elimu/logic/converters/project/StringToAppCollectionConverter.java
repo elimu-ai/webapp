@@ -1,6 +1,6 @@
-package ai.elimu.logic.converters;
+package ai.elimu.logic.converters.project;
 
-import ai.elimu.dao.AppCollectionDao;
+import ai.elimu.dao.project.AppCollectionDao;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.model.project.AppCollection;
 import org.springframework.beans.factory.annotation.Autowired;

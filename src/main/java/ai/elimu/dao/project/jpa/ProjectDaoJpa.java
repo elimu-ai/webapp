@@ -1,7 +1,8 @@
-package ai.elimu.dao.jpa;
+package ai.elimu.dao.project.jpa;
 
+import ai.elimu.dao.jpa.GenericDaoJpa;
 import javax.persistence.NoResultException;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.Contributor;
 
 import org.springframework.dao.DataAccessException;

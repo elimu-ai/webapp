@@ -1,6 +1,6 @@
 package ai.elimu.web.admin.project;
 
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.project.Project;
 import java.util.List;
 import javax.servlet.http.HttpSession;

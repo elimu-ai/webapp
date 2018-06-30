@@ -1,5 +1,7 @@
-package ai.elimu.dao;
+package ai.elimu.dao.project;
 
+import ai.elimu.dao.project.ProjectDao;
+import ai.elimu.dao.project.AppCategoryDao;
 import java.util.List;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;

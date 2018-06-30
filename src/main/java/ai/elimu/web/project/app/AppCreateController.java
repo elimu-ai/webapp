@@ -1,7 +1,7 @@
 package ai.elimu.web.project.app;
 
-import ai.elimu.dao.AppCategoryDao;
-import ai.elimu.dao.AppGroupDao;
+import ai.elimu.dao.project.AppCategoryDao;
+import ai.elimu.dao.project.AppGroupDao;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.ServletException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.dao.ProjectDao;
+import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.Contributor;

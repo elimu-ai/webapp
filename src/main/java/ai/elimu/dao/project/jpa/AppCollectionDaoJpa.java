@@ -1,6 +1,7 @@
-package ai.elimu.dao.jpa;
+package ai.elimu.dao.project.jpa;
 
-import ai.elimu.dao.AppCollectionDao;
+import ai.elimu.dao.jpa.GenericDaoJpa;
+import ai.elimu.dao.project.AppCollectionDao;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.Project;
 import java.util.List;

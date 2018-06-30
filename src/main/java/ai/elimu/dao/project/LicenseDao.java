@@ -1,5 +1,6 @@
-package ai.elimu.dao;
+package ai.elimu.dao.project;
 
+import ai.elimu.dao.GenericDao;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import java.util.List;
