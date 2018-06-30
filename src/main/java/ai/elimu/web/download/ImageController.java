@@ -1,4 +1,4 @@
-package ai.elimu.web;
+package ai.elimu.web.download;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
-import ai.elimu.dao.AudioDao;
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.dao.ImageDao;
+import ai.elimu.model.content.multimedia.Image;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/audio")
-public class AudioController {
+@RequestMapping("/image")
+public class ImageController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private AudioDao audioDao;
+    private ImageDao imageDao;
     
-    @RequestMapping(value="/{audioId}.{audioFormat}", method = RequestMethod.GET)
+    @RequestMapping(value="/{imageId}.{imageFormat}", method = RequestMethod.GET)
     public void handleRequest(
             Model model,
-            @PathVariable Long audioId,
-            @PathVariable String audioFormat,
+            @PathVariable Long imageId,
+            @PathVariable String imageFormat,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
-        logger.info("audioId: " + audioId);
-        logger.info("audioFormat: " + audioFormat);
+        logger.info("imageId: " + imageId);
+        logger.info("imageFormat: " + imageFormat);
         
-        Audio audio = audioDao.read(audioId);
+        Image image = imageDao.read(imageId);
         
-        response.setContentType(audio.getContentType());
+        response.setContentType(image.getContentType());
         
-        byte[] bytes = audio.getBytes();
+        byte[] bytes = image.getBytes();
         response.setContentLength(bytes.length);
         try {
             outputStream.write(bytes);

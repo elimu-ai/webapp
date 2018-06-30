@@ -1,4 +1,4 @@
-package ai.elimu.web;
+package ai.elimu.web.download;
 
 import java.io.EOFException;
 import java.io.IOException;
