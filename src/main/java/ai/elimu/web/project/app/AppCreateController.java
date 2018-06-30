@@ -20,7 +20,7 @@ import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
-import ai.elimu.service.JsonService;
+import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -48,7 +48,7 @@ public class AppCreateController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private JsonService jsonService;
+    private ProjectJsonService projectJsonService;
     
     @Autowired
     private ProjectDao projectDao;
@@ -237,8 +237,8 @@ public class AppCreateController {
             }
             
             // Refresh REST API cache
-//            jsonService.refreshApplicationsInAppCollection(appCollection);
-            jsonService.refreshApplicationsInAppCollection();
+//            projectJsonService.refreshApplicationsInAppCollection(appCollection);
+            projectJsonService.refreshApplicationsInAppCollection();
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String applicationDescription = !isUpdateOfExistingApplication ? "Application" : "APK version";
