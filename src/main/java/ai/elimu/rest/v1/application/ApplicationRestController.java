@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.rest.v1.ChecksumHelper;
-import ai.elimu.service.JsonService;
+import ai.elimu.rest.service.JsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

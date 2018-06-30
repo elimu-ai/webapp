@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.project.AppCollectionDao;
 import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.dao.project.ProjectDao;
-import ai.elimu.logic.LicenseGenerator;
+import ai.elimu.logic.project.LicenseGenerator;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCategory;

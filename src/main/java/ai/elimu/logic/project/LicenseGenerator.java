@@ -1,4 +1,4 @@
-package ai.elimu.logic;
+package ai.elimu.logic.project;
 
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.Project;

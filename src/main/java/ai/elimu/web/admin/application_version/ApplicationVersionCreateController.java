@@ -16,7 +16,8 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.service.JsonService;
+import ai.elimu.rest.service.JsonService;
+import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -43,6 +44,9 @@ public class ApplicationVersionCreateController {
     
     @Autowired
     private JsonService jsonService;
+    
+    @Autowired
+    private ProjectJsonService projectJsonService;
     
     @Autowired
     private ApplicationDao applicationDao;
@@ -163,7 +167,7 @@ public class ApplicationVersionCreateController {
             // Refresh REST API cache
             jsonService.refreshApplications(application.getLocale());
             if (application.isInfrastructural()) {
-                jsonService.refreshApplicationsInAppCollection();
+                projectJsonService.refreshApplicationsInAppCollection();
             }
             
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {

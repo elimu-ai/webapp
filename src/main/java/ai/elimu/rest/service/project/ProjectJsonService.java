@@ -1,4 +1,4 @@
-package ai.elimu.service;
+package ai.elimu.rest.service.project;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
  * intermediate service is used. See https://stackoverflow.com/a/48168762
  */
 @Service
-public class JsonService {
+public class ProjectJsonService {
     
     private Logger logger = Logger.getLogger(getClass());
     
@@ -39,39 +39,6 @@ public class JsonService {
     
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
-    
-    @Cacheable("applications")
-    public JSONArray getApplications(Locale locale) {
-        logger.info("getApplications");
-        
-        Date dateStart = new Date();
-        
-        JSONArray applications = new JSONArray();
-        for (Application application : applicationDao.readAll(locale)) {
-            ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
-
-            List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
-            logger.info("applicationVersionDao.readAll(" + application.getPackageName() + ") - " + new Date());
-            for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
-                logger.info("applicationVersion: " + applicationVersion.getVersionCode() + " - " + new Date());
-                ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
-                applicationVersions.add(applicationVersionGson);
-            }
-            applicationGson.setApplicationVersions(applicationVersions);
-            String json = new Gson().toJson(applicationGson);
-            applications.put(new JSONObject(json));
-        }
-        
-        Date dateEnd = new Date();
-        logger.info("getApplications duration: " + (dateEnd.getTime() - dateStart.getTime()) + " ms");
-        
-        return applications;
-    }
-    
-    @CacheEvict("applications")
-    public void refreshApplications(Locale locale) {
-        logger.info("refreshApplications");
-    }
     
     /**
      * Returns app collection for custom project.
@@ -126,7 +93,7 @@ public class JsonService {
     
     /**
      * As AppCollections in Custom Projects do not include all the Applications from the open source 
-     * version, some apps are required to form the basic infrastructure.
+     * version, some additional apps are required to form the basic infrastructure.
      */
     private void addInfrastructureApps(JSONArray applications) {
         logger.info("addInfrastructureApps");

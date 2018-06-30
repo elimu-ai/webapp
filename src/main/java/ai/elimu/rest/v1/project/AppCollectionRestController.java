@@ -6,7 +6,7 @@ import ai.elimu.model.gson.project.AppCollectionGson;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import ai.elimu.rest.v1.JavaToGsonConverter;
-import ai.elimu.service.JsonService;
+import ai.elimu.rest.service.project.ProjectJsonService;
 import com.google.gson.Gson;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
@@ -38,7 +38,7 @@ public class AppCollectionRestController {
     private AppCollectionDao appCollectionDao;
     
     @Autowired
-    private JsonService jsonService;
+    private ProjectJsonService projectJsonService;
     
     @RequestMapping(method = RequestMethod.GET)
     public String get(
@@ -102,7 +102,7 @@ public class AppCollectionRestController {
             } else {
                 // TODO: verify that the AppCollection matches the one associated with the provided License
                 
-                JSONArray applications = jsonService.getApplications(appCollection);
+                JSONArray applications = projectJsonService.getApplications(appCollection);
 
                 jsonObject.put("result", "success");
                 jsonObject.put("applications", applications);

@@ -1,4 +1,4 @@
-package ai.elimu.web;
+package ai.elimu.web.download;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.Locale;
-import ai.elimu.model.project.License;
-import org.apache.http.util.TextUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,9 +32,6 @@ public class ApkController {
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
     
-    @Autowired
-    private LicenseDao licenseDao;
-    
     @RequestMapping(value="/{packageName}-{versionCode}.apk", method = RequestMethod.GET)
     public void handleRequest(
             @PathVariable String packageName,
@@ -49,11 +43,6 @@ public class ApkController {
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
             @RequestParam Integer appVersionCode,
-            
-            // Custom Project
-            @RequestParam(required = false) String licenseEmail,
-            @RequestParam(required = false) String licenseNumber,
-            @RequestParam(required = false) Long applicationId,
             
             HttpServletRequest request,
             HttpServletResponse response,
@@ -67,26 +56,11 @@ public class ApkController {
         
         // TODO: validate checksum
         
-        // See JsonService#addInfrastructureApps
-        boolean isInfrastructureApp = 
-                   "ai.elimu.appstore".equals(packageName) 
-                || "ai.elimu.appstore_custom".equals(packageName) 
-                || "ai.elimu.analytics".equals(packageName) 
-                || "ai.elimu.launcher".equals(packageName)
-                || "ai.elimu.launcher_custom".equals(packageName);
+        Application application = applicationDao.readByPackageName(locale, packageName);
+        logger.info("application: " + application);
         
-        Application application = null;
-        if (TextUtils.isBlank(licenseEmail) || isInfrastructureApp) {
-            application = applicationDao.readByPackageName(locale, packageName);
-        } else {
-            // Custom Project
-            License license = licenseDao.read(licenseEmail, licenseNumber);
-            if (license != null) {
-                // TODO: fetch Application based on License instead of additional applicationId parameter
-                application = applicationDao.read(applicationId);
-            }
-        }
         ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);
+        logger.info("applicationVersion: " + applicationVersion);
         
         response.setContentType(applicationVersion.getContentType());
         

@@ -54,6 +54,10 @@ public class Application extends BaseEntity {
      */
     @ManyToOne
     private AppGroup appGroup;
+    
+    public boolean isBelongingToCustomProject() {
+        return appGroup != null;
+    }
 
     public Locale getLocale() {
         return locale;
