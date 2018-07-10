@@ -120,46 +120,6 @@ Example response:
 
 ### AppCollection
 
-#### Read
-
-URL: `/project/app-collections/{appCollectionId}`
-
-Arguments:  
-  * licenseEmail: String 
-  * licenseNumber: String
-
-Example request:
-```
-HTTP GET
-/project/app-collections/12?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
-```
-
-Example response:
-```json
-{
-    "result": "success",
-    "appCollection": {
-        "appCategories": [
-            {
-                "appGroups": [
-                    {
-                        "applications": [
-                            { ... },
-                            { ... },
-                            { ... }
-                        ]
-                    },
-                    { ... },
-                    { ... }
-                ]
-            },
-            { ... },
-            { ... }
-        ]
-    }
-}
-```
-
 #### Read Applications
 
 URL: `/project/app-collections/{appCollectionId}/applications`
