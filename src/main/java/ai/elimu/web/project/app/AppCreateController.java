@@ -42,6 +42,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
+/**
+ * This controller handles both creation of new {@link Application}s as well as updates of existing {@link Application}s.
+ */
 @Controller
 @RequestMapping("/project/{projectId}/app-category/{appCategoryId}/app-group/{appGroupId}/app/create")
 public class AppCreateController {
@@ -217,7 +220,7 @@ public class AppCreateController {
                 application = new Application();
                 application.setLocale(contributor.getLocale()); // TODO: Add Locale to each Project?
                 application.setPackageName(packageName);
-                application.setApplicationStatus(ApplicationStatus.MISSING_APK);
+                application.setApplicationStatus(ApplicationStatus.MISSING_APK); // Will be changed to "ApplicationStatus.ACTIVE" once the corresponding ApplicationVersion has been approved
                 application.setContributor(contributor);
                 application.setProject(project);
                 application.setAppGroup(appGroup);
@@ -228,9 +231,6 @@ public class AppCreateController {
 
                 applicationVersion.setApplication(application);
                 applicationVersionDao.create(applicationVersion);
-                
-                application.setApplicationStatus(ApplicationStatus.ACTIVE);
-                applicationDao.update(application);
             } else {
                 // Update of existing packageName previously uploaded
                 
