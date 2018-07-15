@@ -15,7 +15,35 @@
                 <form:hidden path="application" value="${applicationVersion.application.id}" />
             </c:if>
             
-            <div style="padding: 3em 0;">
+            <div class="row">
+                <div class="col s12">
+                    <blockquote>
+                        Once an APK file has been uploaded, reviewed and approved, it will become available for download via the <a href="https://github.com/elimu-ai/appstore" target="_blank">Appstore</a>.<br />
+                        <b>Note:</b> APKs without measurement of <a href="<spring:url value='/publish' />" target="_blank">learning events</a> will not be approved.
+                    </blockquote>
+                    
+                    <label>Event tracking</label><br />
+                    <input type="checkbox" name="eventTrackingAdded" id="eventTrackingAdded" value="on" />
+                    <label for="eventTrackingAdded">
+                        Event tracking has been added to the APK
+                    </label>
+                    <script>
+                        $(function() {
+                            $('#eventTrackingAdded').on('change', function() {
+                                console.info('#eventTrackingAdded on change');
+                                
+                                if ($(this).is(':checked')) {
+                                    $('#fileUploadContainer').fadeIn();
+                                } else {
+                                    $('#fileUploadContainer').fadeOut();
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            
+            <div id="fileUploadContainer" style="padding: 3em 0; display: none;">
                 <div class="col s6 offset-s3" style="padding: 3em; background: #F4F4F4; border: 2px dashed #CCC;">
                     <p class="center grey-text">
                         <fmt:message key="drop.your.apk.here.or.select.a.file" />
