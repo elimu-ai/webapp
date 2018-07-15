@@ -17,6 +17,7 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
@@ -169,6 +170,7 @@ public class AppCreateController {
                 applicationVersion.setIcon(icon);
                 applicationVersion.setTimeUploaded(Calendar.getInstance());
                 applicationVersion.setContributor(contributor);
+                applicationVersion.setApplicationVersionStatus(ApplicationVersionStatus.PENDING_APPROVAL);
                 
                 if (isUpdateOfExistingApplication) {
                     // Verify that the packageName of the APK update matches that of the Application

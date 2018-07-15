@@ -16,6 +16,7 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.rest.service.JsonService;
 import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
@@ -153,6 +154,7 @@ public class ApplicationVersionCreateController {
         } else {
             Contributor contributor = (Contributor) session.getAttribute("contributor");
             applicationVersion.setContributor(contributor);
+            applicationVersion.setApplicationVersionStatus(ApplicationVersionStatus.APPROVED);
             applicationVersion.setTimeUploaded(Calendar.getInstance());
             applicationVersionDao.create(applicationVersion);
             
