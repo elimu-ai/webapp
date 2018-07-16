@@ -100,22 +100,24 @@
                 <c:if test="${not empty applicationVersions}">
                     <table class="bordered highlight">
                         <thead>
+                            <th><fmt:message key="label" /></th>
                             <th><fmt:message key="version.code" /></th>
                             <th><fmt:message key="version.name" /></th>
-                            <th><fmt:message key="label" /></th>
                             <th><fmt:message key="file.size" /></th>
                             <th>minSdkVersion</th>
+                            <th><fmt:message key="status" /></th>
                             <th><fmt:message key="time.uploaded" /></th>
                             <th><fmt:message key="contributor" /></th>
                         </thead>
                         <tbody>
                             <c:forEach var="applicationVersion" items="${applicationVersions}">
                                 <tr>
+                                    <td>${applicationVersion.label}</td>
                                     <td>${applicationVersion.versionCode}</td>
                                     <td>${applicationVersion.versionName}</td>
-                                    <td>${applicationVersion.label}</td>
                                     <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
                                     <td><c:out value="${applicationVersion.minSdkVersion}" /></td>
+                                    <td>${applicationVersion.applicationVersionStatus}</td>
                                     <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
                                     <td>
                                         <div class="chip">

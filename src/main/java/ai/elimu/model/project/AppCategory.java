@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class AppCategory extends BaseEntity {
     
+    // TODO: add "project"
+    
     @NotNull
     private String name;
     
