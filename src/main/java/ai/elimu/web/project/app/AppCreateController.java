@@ -23,12 +23,14 @@ import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
 import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.Mailer;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.net.URLEncoder;
 import java.util.List;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -245,15 +247,35 @@ public class AppCreateController {
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String applicationDescription = !isUpdateOfExistingApplication ? "Application" : "APK version";
                 String text = URLEncoder.encode(
-                         contributor.getFirstName() + " just uploaded a new " + applicationDescription + ":\n" + 
-                         "• Project: \"" + project.getName() + "\"\n" +
-                         "• App Category: \"" + appCategory.getName() + "\"\n" +
-                         "• AppGroup: #" + appGroup.getId() + "\n" +
-                         "• Package name: \"" + application.getPackageName() + "\"\n" + 
-                         "• Version code: " + applicationVersion.getVersionCode() + "\n" +
+                        contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new " + applicationDescription + ":\n" + 
+                        "• Project: \"" + project.getName() + "\"\n" +
+                        "• App Category: \"" + appCategory.getName() + "\"\n" +
+                        "• AppGroup: #" + appGroup.getId() + "\n" +
+                        "• Package name: \"" + application.getPackageName() + "\"\n" + 
+                        "• Version code: " + applicationVersion.getVersionCode() + "\n" +
+                        "• APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"\n" +
+                        "Once the APK has been reviewed and approved, it will become available for download via the Appstore.\n" +
                         "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";
                 SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
             }
+            
+            // Send notification e-mail to admin with a reminder to review the APK
+            String to = "elimu.ai <info@elimu.ai>";
+            String from = "elimu.ai <info@elimu.ai>";
+            String subject = "[" + project.getName() + "] A new APK version has been uploaded";
+            String title = application.getPackageName() + " " + applicationVersion.getVersionCode();
+            String htmlText = "<p>" + contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new APK version</p>";
+            htmlText += "<ul>";
+                htmlText += "<li>Project: \"" + project.getName() + "\"</li>";
+                htmlText += "<li>App Category: \"" + appCategory.getName() + "\"</li>";
+                htmlText += "<li>AppGroup: #" + appGroup.getId() + "</li>";
+                htmlText += "<li>Package name: \"" + application.getPackageName() + "\"</li>";
+                htmlText += "<li>Version code: " + applicationVersion.getVersionCode() + "</li>";
+                htmlText += "<li>APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"</li>";
+            htmlText += "</ul>";
+            htmlText += "<h2>APK Review</h2>";
+            htmlText += "<p>To review the APK, go to http://elimu.ai/project/pending-apk-reviews</p>";
+            Mailer.sendHtml(to, null, from, subject, title, htmlText);
             
             if (!isUpdateOfExistingApplication) {
                 return "redirect:/project/{projectId}/app-category/{appCategoryId}/app-group/{appGroupId}/app/list#" + application.getId();
