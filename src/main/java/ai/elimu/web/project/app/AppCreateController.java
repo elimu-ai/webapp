@@ -263,7 +263,7 @@ public class AppCreateController {
             String to = "elimu.ai <info@elimu.ai>";
             String from = "elimu.ai <info@elimu.ai>";
             String subject = "[" + project.getName() + "] A new APK version has been uploaded";
-            String title = application.getPackageName() + " " + applicationVersion.getVersionCode();
+            String title = application.getPackageName() + ", versionCode: " + applicationVersion.getVersionCode();
             String htmlText = "<p>" + contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new APK version</p>";
             htmlText += "<ul>";
                 htmlText += "<li>Project: \"" + project.getName() + "\"</li>";
@@ -274,7 +274,7 @@ public class AppCreateController {
                 htmlText += "<li>APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"</li>";
             htmlText += "</ul>";
             htmlText += "<h2>APK Review</h2>";
-            htmlText += "<p>To review the APK, go to http://elimu.ai/project/pending-apk-reviews</p>";
+            htmlText += "<p>To review the APK, go to http://elimu.ai/project/apk-reviews</p>";
             Mailer.sendHtml(to, null, from, subject, title, htmlText);
             
             if (!isUpdateOfExistingApplication) {
