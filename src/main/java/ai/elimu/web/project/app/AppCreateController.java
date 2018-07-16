@@ -30,7 +30,6 @@ import java.net.URLEncoder;
 import java.util.List;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -276,7 +275,7 @@ public class AppCreateController {
                 htmlText += "<li>APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"</li>";
             htmlText += "</ul>";
             htmlText += "<h2>APK Review</h2>";
-            htmlText += "<p>To review the APK, go to http://elimu.ai/project/apk-reviews</p>";
+            htmlText += "<p>To review the APK, go to http://elimu.ai/admin/project/apk-reviews</p>";
             Mailer.sendHtml(to, null, from, subject, title, htmlText);
             
             if (!isUpdateOfExistingApplication) {
