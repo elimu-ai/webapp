@@ -20,7 +20,7 @@ public class DbMigrationHelper {
 
     private DbMigrationDao dbMigrationDao;
     
-    public void performDatabaseMigration(WebApplicationContext wac) {
+    public synchronized void performDatabaseMigration(WebApplicationContext wac) {
         logger.info("performDatabaseMigration");
         
         dbMigrationDao = (DbMigrationDao) wac.getBean("dbMigrationDao");
