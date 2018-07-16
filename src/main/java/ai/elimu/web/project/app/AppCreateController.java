@@ -253,6 +253,7 @@ public class AppCreateController {
                         "• AppGroup: #" + appGroup.getId() + "\n" +
                         "• Package name: \"" + application.getPackageName() + "\"\n" + 
                         "• Version code: " + applicationVersion.getVersionCode() + "\n" +
+                        "• Version name: \"" + applicationVersion.getVersionName()+ "\"\n" +
                         "• APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"\n" +
                         "Once the APK has been reviewed and approved, it will become available for download via the Appstore.\n" +
                         "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";
@@ -263,14 +264,15 @@ public class AppCreateController {
             String to = "elimu.ai <info@elimu.ai>";
             String from = "elimu.ai <info@elimu.ai>";
             String subject = "[" + project.getName() + "] A new APK version has been uploaded";
-            String title = application.getPackageName() + ", versionCode: " + applicationVersion.getVersionCode();
-            String htmlText = "<p>" + contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new APK version</p>";
+            String title = application.getPackageName() + " (" + applicationVersion.getVersionCode() + ")";
+            String htmlText = "<p>" + contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new APK version:</p>";
             htmlText += "<ul>";
                 htmlText += "<li>Project: \"" + project.getName() + "\"</li>";
                 htmlText += "<li>App Category: \"" + appCategory.getName() + "\"</li>";
                 htmlText += "<li>AppGroup: #" + appGroup.getId() + "</li>";
                 htmlText += "<li>Package name: \"" + application.getPackageName() + "\"</li>";
                 htmlText += "<li>Version code: " + applicationVersion.getVersionCode() + "</li>";
+                htmlText += "<li>Version name: " + applicationVersion.getVersionName()+ "</li>";
                 htmlText += "<li>APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"</li>";
             htmlText += "</ul>";
             htmlText += "<h2>APK Review</h2>";
