@@ -5,6 +5,7 @@ import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
 import ai.elimu.model.project.AppCategory;
@@ -62,9 +63,11 @@ public class ProjectJsonService {
                     List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
                     logger.info("applicationVersionDao.readAll(" + application.getPackageName() + ") - " + new Date());
                     for (ApplicationVersion applicationVersion : applicationVersionDao.readAll(application)) {
-                        logger.info("applicationVersion: " + applicationVersion.getVersionCode() + " - " + new Date());
-                        ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
-                        applicationVersions.add(applicationVersionGson);
+                        logger.info("applicationVersion.getVersionCode(): " + applicationVersion.getVersionCode() + ", applicationVersion.getApplicationVersionStatus(): " + applicationVersion.getApplicationVersionStatus());
+                        if (applicationVersion.getApplicationVersionStatus() == ApplicationVersionStatus.APPROVED) {
+                            ApplicationVersionGson applicationVersionGson = JavaToGsonConverter.getApplicationVersionGson(applicationVersion);
+                            applicationVersions.add(applicationVersionGson);
+                        }
                     }
                     applicationGson.setApplicationVersions(applicationVersions);
 

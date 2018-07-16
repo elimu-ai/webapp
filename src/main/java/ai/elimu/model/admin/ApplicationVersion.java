@@ -10,12 +10,23 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.Contributor;
+import ai.elimu.model.enums.admin.ApplicationVersionStatus;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class ApplicationVersion extends BaseEntity {
     
     @ManyToOne
     private Application application;
+    
+    /**
+     * An {@link Application}'s status cannot be set to {@link ApplicationStatus.ACTIVE} until the {@link Application}
+     * has at least one approved {@link ApplicationVersion}.
+     */
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ApplicationVersionStatus applicationVersionStatus;
     
     /**
      * Do not use this property to calculate the size of the APK file. Instead, use the 
@@ -73,6 +84,14 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+    
+    public ApplicationVersionStatus getApplicationVersionStatus() {
+        return applicationVersionStatus;
+    }
+
+    public void setApplicationVersionStatus(ApplicationVersionStatus applicationVersionStatus) {
+        this.applicationVersionStatus = applicationVersionStatus;
     }
     
     public byte[] getBytes() {
