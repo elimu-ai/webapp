@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Returns the {@link Application}s for a given {@link License}.
- * <p />
+ * <p>
  * See https://github.com/elimu-ai/webapp/blob/master/REST_API_REFERENCE.md#appcollection
  */
 @RestController

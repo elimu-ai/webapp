@@ -48,6 +48,7 @@
                 </div>
                 <div class="card-action">
                     <a href="<spring:url value='/admin/project/list' />"><fmt:message key="view.list" /></a>
+                    <a href="<spring:url value='/admin/project/apk-reviews' />">View pending APK reviews</a>
                 </div>
             </div>
         </div>

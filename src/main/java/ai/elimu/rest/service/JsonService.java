@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Used as layer between Controllers and DAOs in order to enable usage of caching.
- * <p />
+ * <p>
  * Spring caching feature works over AOP proxies, thus internal calls to cached methods don't work. That's why this 
  * intermediate service is used. See https://stackoverflow.com/a/48168762
  */

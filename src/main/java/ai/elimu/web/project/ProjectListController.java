@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * List custom projects.
- * <p />
+ * <p>
  * Only projects where the current contributer is added as a manager will be listed.
  */
 @Controller

@@ -30,7 +30,6 @@ import java.net.URLEncoder;
 import java.util.List;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -244,6 +243,7 @@ public class AppCreateController {
 //            projectJsonService.refreshApplicationsInAppCollection(appCollection);
             projectJsonService.refreshApplicationsInAppCollection();
             
+            // Post upload notification in Slack
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String applicationDescription = !isUpdateOfExistingApplication ? "Application" : "APK version";
                 String text = URLEncoder.encode(
@@ -253,6 +253,7 @@ public class AppCreateController {
                         "• AppGroup: #" + appGroup.getId() + "\n" +
                         "• Package name: \"" + application.getPackageName() + "\"\n" + 
                         "• Version code: " + applicationVersion.getVersionCode() + "\n" +
+                        "• Version name: \"" + applicationVersion.getVersionName()+ "\"\n" +
                         "• APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"\n" +
                         "Once the APK has been reviewed and approved, it will become available for download via the Appstore.\n" +
                         "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";
@@ -263,18 +264,19 @@ public class AppCreateController {
             String to = "elimu.ai <info@elimu.ai>";
             String from = "elimu.ai <info@elimu.ai>";
             String subject = "[" + project.getName() + "] A new APK version has been uploaded";
-            String title = application.getPackageName() + " " + applicationVersion.getVersionCode();
-            String htmlText = "<p>" + contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new APK version</p>";
+            String title = application.getPackageName() + " (" + applicationVersion.getVersionCode() + ")";
+            String htmlText = "<p>" + contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new APK version:</p>";
             htmlText += "<ul>";
                 htmlText += "<li>Project: \"" + project.getName() + "\"</li>";
                 htmlText += "<li>App Category: \"" + appCategory.getName() + "\"</li>";
                 htmlText += "<li>AppGroup: #" + appGroup.getId() + "</li>";
                 htmlText += "<li>Package name: \"" + application.getPackageName() + "\"</li>";
                 htmlText += "<li>Version code: " + applicationVersion.getVersionCode() + "</li>";
-                htmlText += "<li>APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"</li>";
+                htmlText += "<li>Version name: \"" + applicationVersion.getVersionName()+ "\"</li>";
+                htmlText += "<li>APK status: " + applicationVersion.getApplicationVersionStatus() + "</li>";
             htmlText += "</ul>";
             htmlText += "<h2>APK Review</h2>";
-            htmlText += "<p>To review the APK, go to http://elimu.ai/project/pending-apk-reviews</p>";
+            htmlText += "<p>To review the APK, go to http://elimu.ai/admin/project/apk-reviews</p>";
             Mailer.sendHtml(to, null, from, subject, title, htmlText);
             
             if (!isUpdateOfExistingApplication) {
