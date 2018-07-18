@@ -243,6 +243,7 @@ public class AppCreateController {
 //            projectJsonService.refreshApplicationsInAppCollection(appCollection);
             projectJsonService.refreshApplicationsInAppCollection();
             
+            // Post upload notification in Slack
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String applicationDescription = !isUpdateOfExistingApplication ? "Application" : "APK version";
                 String text = URLEncoder.encode(
@@ -271,8 +272,8 @@ public class AppCreateController {
                 htmlText += "<li>AppGroup: #" + appGroup.getId() + "</li>";
                 htmlText += "<li>Package name: \"" + application.getPackageName() + "\"</li>";
                 htmlText += "<li>Version code: " + applicationVersion.getVersionCode() + "</li>";
-                htmlText += "<li>Version name: " + applicationVersion.getVersionName()+ "</li>";
-                htmlText += "<li>APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"</li>";
+                htmlText += "<li>Version name: \"" + applicationVersion.getVersionName()+ "\"</li>";
+                htmlText += "<li>APK status: " + applicationVersion.getApplicationVersionStatus() + "</li>";
             htmlText += "</ul>";
             htmlText += "<h2>APK Review</h2>";
             htmlText += "<p>To review the APK, go to http://elimu.ai/admin/project/apk-reviews</p>";
