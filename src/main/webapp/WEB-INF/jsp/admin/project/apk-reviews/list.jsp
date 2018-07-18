@@ -19,9 +19,10 @@
                                 <th><fmt:message key="package.name" /></th>
                                 <th><fmt:message key="version.code" /></th>
                                 <th><fmt:message key="file.size" /></th>
-                                <th><fmt:message key="status" /></th>
                                 <th><fmt:message key="time.uploaded" /></th>
                                 <th><fmt:message key="contributor" /></th>
+                                <th><fmt:message key="status" /></th>
+                                <th><fmt:message key="review" /></th>
                             </thead>
                             <tbody>
                                 <c:forEach var="applicationVersion" items="${applicationVersions}">
@@ -33,13 +34,18 @@
                                         </td>
                                         <td>${applicationVersion.versionCode}</td>
                                         <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
-                                        <td>${applicationVersion.applicationVersionStatus}</td>
                                         <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
                                         <td>
                                             <div class="chip">
                                                 <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
                                                 <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
                                             </div>
+                                        </td>
+                                        <td>${applicationVersion.applicationVersionStatus}</td>
+                                        <td>
+                                            <a href="<spring:url value='/admin/project/apk-reviews/${applicationVersion.id}' />">
+                                                <i class="material-icons" style="vertical-align: bottom;">how_to_reg</i> <fmt:message key="initiate.review" />
+                                            </a>
                                         </td>
                                     </tr>
                                 </c:forEach>
