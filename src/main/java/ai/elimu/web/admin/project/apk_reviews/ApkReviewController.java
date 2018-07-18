@@ -1,10 +1,13 @@
 package ai.elimu.web.admin.project.apk_reviews;
 
+import ai.elimu.dao.ApplicationDao;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.Contributor;
+import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.util.Mailer;
 import ai.elimu.util.SlackApiHelper;
@@ -34,13 +37,16 @@ public class ApkReviewController {
     
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
+    
+    @Autowired
+    private ApplicationDao applicationDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String get(
+    public String handleRequest(
             @PathVariable Long applicationVersionId,
             Model model
     ) {
-    	logger.info("get");
+    	logger.info("handleRequest");
         
         ApplicationVersion applicationVersion = applicationVersionDao.read(applicationVersionId);
         model.addAttribute("applicationVersion", applicationVersion);
@@ -54,13 +60,13 @@ public class ApkReviewController {
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String post(
+    public String handleSubmit(
             @PathVariable Long applicationVersionId,
             @RequestParam ApplicationVersionStatus applicationVersionStatus,
             @RequestParam String comment,
             Model model
     ) {
-    	logger.info("post");
+    	logger.info("handleSubmit");
         
         logger.info("applicationVersionStatus: " + applicationVersionStatus);
         if (applicationVersionStatus == null) {
@@ -78,6 +84,16 @@ public class ApkReviewController {
         ApplicationVersion applicationVersion = applicationVersionDao.read(applicationVersionId);
         applicationVersion.setApplicationVersionStatus(applicationVersionStatus);
         applicationVersionDao.update(applicationVersion);
+        
+        if (applicationVersionStatus == ApplicationVersionStatus.APPROVED) {
+            // Update status of corresponding Application
+            Application application = applicationVersion.getApplication();
+            logger.info("application.getApplicationStatus(): " + application.getApplicationStatus());
+            if (application.getApplicationStatus() != ApplicationStatus.ACTIVE) {
+                application.setApplicationStatus(ApplicationStatus.ACTIVE);
+                applicationDao.update(application);
+            }
+        }
         
         // Post review result in Slack
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
