@@ -8,6 +8,8 @@
         <form:form modelAttribute="appCategory">
             <tag:formErrors modelAttribute="appCategory" />
             
+            <form:hidden path="project" value="${appCategory.project.id}" />
+            
             <c:forEach var="appGroup" items="${appCategory.appGroups}">
                 <form:hidden path="appGroups" value="${appGroup.id}" />
             </c:forEach>

@@ -101,6 +101,7 @@ public class ProjectListController {
         projects.add(project1);
         
         AppCategory appCategory1 = new AppCategory();
+        appCategory1.setProject(project1);
         appCategory1.setName("App category #1");
         appCategoryDao.create(appCategory1);
         

@@ -48,6 +48,7 @@ public class AppCategoryCreateController {
         model.addAttribute("project", project);
         
         AppCategory appCategory = new AppCategory();
+        appCategory.setProject(project);
         model.addAttribute("appCategory", appCategory);
 
         return "project/app-category/create";
