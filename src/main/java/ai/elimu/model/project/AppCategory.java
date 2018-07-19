@@ -4,6 +4,7 @@ import ai.elimu.model.BaseEntity;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
@@ -11,7 +12,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class AppCategory extends BaseEntity {
     
-    // TODO: add "project"
+    @NotNull
+    @ManyToOne
+    private Project project;
     
     @NotNull
     private String name;
@@ -21,6 +24,14 @@ public class AppCategory extends BaseEntity {
     @OrderColumn
     @OneToMany(fetch = FetchType.EAGER)
     private List<AppGroup> appGroups;
+    
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     public String getName() {
         return name;

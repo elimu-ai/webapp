@@ -7,6 +7,8 @@
     <div class="card-panel">
         <form:form modelAttribute="appCategory">
             <tag:formErrors modelAttribute="appCategory" />
+            
+            <form:hidden path="project" value="${appCategory.project.id}" />
 
             <div class="row">
                 <div class="input-field col s12">
