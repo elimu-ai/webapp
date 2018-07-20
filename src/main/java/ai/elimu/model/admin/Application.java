@@ -15,7 +15,6 @@ import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.project.AppGroup;
-import ai.elimu.model.project.Project;
 
 @Entity
 public class Application extends BaseEntity {
@@ -44,10 +43,6 @@ public class Application extends BaseEntity {
     @NotNull
     @ManyToOne
     private Contributor contributor;
-    
-    @Deprecated // Use AppGroup instead
-    @ManyToOne
-    private Project project;
     
     /**
      * This will only be set if the Application belongs to a custom Project.
@@ -113,16 +108,6 @@ public class Application extends BaseEntity {
 
     public void setContributor(Contributor contributor) {
         this.contributor = contributor;
-    }
-    
-    @Deprecated
-    public Project getProject() {
-        return project;
-    }
-
-    @Deprecated
-    public void setProject(Project project) {
-        this.project = project;
     }
 
     public AppGroup getAppGroup() {

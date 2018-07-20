@@ -20,7 +20,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <a href="<spring:url value="/project/${applicationVersion.application.project.id}/app-category/${applicationVersion.application.appGroup.appCategory.id}/app-group/${applicationVersion.application.appGroup.id}/app/${applicationVersion.application.id}/edit" />">
+                                <a href="<spring:url value="/project/${applicationVersion.application.appGroup.appCategory.project.id}/app-category/${applicationVersion.application.appGroup.appCategory.id}/app-group/${applicationVersion.application.appGroup.id}/app/${applicationVersion.application.id}/edit" />">
                                     ${applicationVersion.application.packageName}
                                 </a>
                             </td>
