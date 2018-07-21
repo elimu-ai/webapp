@@ -39,7 +39,7 @@
         <li>Select <b>one</b> literacy/numeracy skill that your app/game will be teaching</li>
         <li>Create a new repository for the project on GitHub</li>
         <li>Upload the source code (we will perform code reviews of your pull requests)</li>
-        <li>Add <a href="https://github.com/elimu-ai/analytics/tree/master/eventtracker">event tracking</a> to the source code</li>
+        <li>Add <a href="https://github.com/elimu-ai/analytics/tree/master/eventtracker">learning event tracking</a> to the source code</li>
         <li>Add build and release instructions for generating APK files</li>
         <li>Once quality approved, we release the app and initiate usage data collection</li>
         <li>Analyze usage data and update the software as needed</li>
