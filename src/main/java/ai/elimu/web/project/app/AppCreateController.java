@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
+import ai.elimu.dao.project.ProjectApplicationDao;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
@@ -66,6 +67,9 @@ public class AppCreateController {
     
     @Autowired
     private ApplicationDao applicationDao;
+    
+    @Autowired
+    private ProjectApplicationDao projectApplicationDao;
     
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
@@ -185,7 +189,7 @@ public class AppCreateController {
                 
                 if (!isUpdateOfExistingApplication) {
                     // Verify that an Application with identical packageName has not already been uploaded withing the same Project
-                    Application existingApplication = applicationDao.readByPackageName(project, packageName);
+                    Application existingApplication = projectApplicationDao.readByPackageName(project, packageName);
                     if (existingApplication != null) {
                         result.rejectValue("application", "NonUnique", new String[] {"application"}, null);
                     }
