@@ -99,7 +99,7 @@ public class ApkReviewController {
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             String text = URLEncoder.encode(
                     applicationVersion.getContributor().getFirstName() + ", your APK upload has been reviewed:\n" + 
-                    "• Project: \"" + applicationVersion.getApplication().getProject().getName() + "\"\n" +
+                    "• Project: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getName() + "\"\n" +
                     "• App Category: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getName() + "\"\n" +
                     "• AppGroup: #" + applicationVersion.getApplication().getAppGroup().getId() + "\n" +
                     "• Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"\n" + 
@@ -107,20 +107,20 @@ public class ApkReviewController {
                     "• Version name: \"" + applicationVersion.getVersionName()+ "\"\n" +
                     "• New APK status: " + applicationVersion.getApplicationVersionStatus() + "\n" +
                     "• Comment: \"" + (StringUtils.isBlank(comment) ? "" : comment) + "\"\n" +
-                    "See ") + "http://elimu.ai/project/" + applicationVersion.getApplication().getProject().getId() + "/app-category/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getId() + "/app-group/" + applicationVersion.getApplication().getAppGroup().getId() + "/app/" + applicationVersion.getApplication().getId() + "/edit";
+                    "See ") + "http://elimu.ai/project/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getId() + "/app-category/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getId() + "/app-group/" + applicationVersion.getApplication().getAppGroup().getId() + "/app/" + applicationVersion.getApplication().getId() + "/edit";
             SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
         }
         
         // Send review result via e-mail
         String to = applicationVersion.getContributor().getEmail();
         String from = "elimu.ai <info@elimu.ai>";
-        String subject = "[" + applicationVersion.getApplication().getProject().getName() + "] Your APK upload has been reviewed";
+        String subject = "[" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getName() + "] Your APK upload has been reviewed";
         String title = "APK review complete";
         String firstName = StringUtils.isBlank(applicationVersion.getContributor().getFirstName()) ? "" : applicationVersion.getContributor().getFirstName();
         String htmlText = "<p>Hi, " + firstName + "</p>";
         htmlText += "<p>Your APK upload has been reviewed:</p>";
         htmlText += "<ul>";
-            htmlText += "<li>Project: \"" + applicationVersion.getApplication().getProject().getName() + "\"</li>";
+            htmlText += "<li>Project: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getName() + "\"</li>";
             htmlText += "<li>App Category: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getName() + "\"</li>";
             htmlText += "<li>AppGroup: #" + applicationVersion.getApplication().getAppGroup().getId() + "</li>";
             htmlText += "<li>Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"</li>";
@@ -130,7 +130,7 @@ public class ApkReviewController {
             htmlText += "<li>Comment: \"" + (StringUtils.isBlank(comment) ? "" : comment) + "\"</li>";
         htmlText += "</ul>";
         htmlText += "<h2>Application</h2>";
-        htmlText += "<p>See http://elimu.ai/project/" + applicationVersion.getApplication().getProject().getId() + "/app-category/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getId() + "/app-group/" + applicationVersion.getApplication().getAppGroup().getId() + "/app/" + applicationVersion.getApplication().getId() + "/edit</p>";
+        htmlText += "<p>See http://elimu.ai/project/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getId() + "/app-category/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getId() + "/app-group/" + applicationVersion.getApplication().getAppGroup().getId() + "/app/" + applicationVersion.getApplication().getId() + "/edit</p>";
         Mailer.sendHtml(to, null, from, subject, title, htmlText);
         
         return "redirect:/admin/project/apk-reviews";

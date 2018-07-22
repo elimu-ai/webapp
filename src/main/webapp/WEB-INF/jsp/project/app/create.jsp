@@ -22,10 +22,10 @@
                         <b>Note:</b> APKs without measurement of <a href="<spring:url value='/publish' />" target="_blank">learning events</a> will not be approved.
                     </blockquote>
                     
-                    <label>Event tracking</label><br />
+                    <label>Learning event tracking</label><br />
                     <input type="checkbox" name="eventTrackingAdded" id="eventTrackingAdded" value="on" />
                     <label for="eventTrackingAdded">
-                        Event tracking has been added to the APK
+                        Learning event tracking has been added to the APK
                     </label>
                     <script>
                         $(function() {

@@ -9,7 +9,6 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.model.project.Project;
 
 public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements ApplicationDao {
     
@@ -21,30 +20,12 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
                 "FROM Application a " +
                 "WHERE a.locale = :locale " +
                 "AND a.packageName = :packageName " +
-                "AND a.project IS EMPTY") // TODO: move code related to custom project into separate file
+                "AND a.appGroup IS EMPTY") // TODO: move code related to custom project into separate file
                 .setParameter("locale", locale)
                 .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
             logger.warn("Application with packageName \"" + packageName + "\" was not found for locale " + locale, e);
-            return null;
-        }
-    }
-    
-    @Deprecated // TODO: move code related to custom project into separate file
-    @Override
-    public Application readByPackageName(Project project, String packageName) throws DataAccessException {
-        try {
-            return (Application) em.createQuery(
-                "SELECT a " +
-                "FROM Application a " +
-                "WHERE a.project = :project " + // TODO: move code related to custom project into separate file
-                "AND a.packageName = :packageName")
-                .setParameter("project", project)
-                .setParameter("packageName", packageName)
-                .getSingleResult();
-        } catch (NoResultException e) {
-            logger.warn("Application with packageName \"" + packageName + "\" was not found for project " + project.getId() + " (" + project.getName() + ")", e);
             return null;
         }
     }
@@ -57,7 +38,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             "WHERE a.locale = :locale " +
             
             // Exclude applications belonging to custom Projects
-            "AND a.project IS EMPTY " + // TODO: move code related to custom project into separate file
+            "AND a.appGroup IS EMPTY " + // TODO: move code related to custom project into separate file
             "AND a.packageName != 'ai.elimu.appstore_custom' " +
             "AND a.packageName != 'ai.elimu.launcher_custom' " +
             
@@ -75,7 +56,7 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
             "AND a.applicationStatus = :applicationStatus " +
             
             // Exclude applications belonging to custom Projects (except infrastructure apps)
-            "AND a.project IS EMPTY " + // TODO: move code related to custom project into separate file
+            "AND a.appGroup IS EMPTY " + // TODO: move code related to custom project into separate file
             
             "ORDER BY a.packageName")
             .setParameter("locale", locale)

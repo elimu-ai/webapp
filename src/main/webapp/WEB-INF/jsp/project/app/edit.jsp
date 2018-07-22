@@ -17,7 +17,6 @@
                 <form:hidden path="id" value="${application.id}" />
                 <form:hidden path="locale" value="${application.locale}" />
                 <form:hidden path="contributor" value="${application.contributor.id}" />
-                <form:hidden path="project" value="${application.project.id}" />
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
                     <form:hidden path="packageName" value="${application.packageName}" />

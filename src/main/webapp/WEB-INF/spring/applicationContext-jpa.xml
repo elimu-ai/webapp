@@ -87,4 +87,5 @@
     <bean id="appGroupDao" class="ai.elimu.dao.project.jpa.AppGroupDaoJpa" />
     <bean id="licenseDao" class="ai.elimu.dao.project.jpa.LicenseDaoJpa" />
     <bean id="projectDao" class="ai.elimu.dao.project.jpa.ProjectDaoJpa" />
+    <bean id="projectApplicationDao" class="ai.elimu.dao.project.jpa.ProjectApplicationDaoJpa" />
 </beans>
