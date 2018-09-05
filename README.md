@@ -12,7 +12,7 @@ See https://github.com/elimu-ai/webapp/blob/master/CONTRIBUTING.md
 Travis: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
 
 ## Issue management
-See https://github.com/elimu-ai/webapp/projects and https://trello.com/elimuai_public
+See https://github.com/elimu-ai/webapp/projects
 
 ## Chat
 See http://slack.elimu.ai
