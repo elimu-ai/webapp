@@ -3,7 +3,7 @@
 Web application: http://elimu.ai
 
 ## Run application locally
-See Wiki: [Project Configuration](https://github.com/elimu-ai/webapp/wiki/Project-Configuration)
+See https://github.com/elimu-ai/webapp/blob/master/INSTALL.md
 
 ## Contributing guidelines
 See https://github.com/elimu-ai/webapp/blob/master/CONTRIBUTING.md
