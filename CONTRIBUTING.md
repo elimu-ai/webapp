@@ -24,6 +24,7 @@ for each commit to make it easier for future contributors to understand each cod
 request needs at least one approved review in order to be merged. When assigning reviewers, add one or more of the project's 
 maintainers:
 
+   * nya-elimuai
    * jo-elimuai
    * sladomic
    
