@@ -161,10 +161,10 @@
                                             <a class="white-text" href="http://sw.test.elimu.ai" title="Kiswahili">sw</a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a class="white-text" href="http://test.elimu.ai" title="English">en</a>
-                                            <a class="white-text" href="http://test.elimu.ai" title="Español">es</a>
-                                            <a class="white-text" href="http://test.elimu.ai" title="العربية">ar</a>
-                                            <a class="white-text" href="http://test.elimu.ai" title="Kiswahili">sw</a>
+                                            <a class="white-text" href="http://en.elimu.ai" title="English">en</a>
+                                            <a class="white-text" href="http://es.elimu.ai" title="Español">es</a>
+                                            <a class="white-text" href="http://ar.elimu.ai" title="العربية">ar</a>
+                                            <a class="white-text" href="http://sw.elimu.ai" title="Kiswahili">sw</a>
                                         </c:otherwise>
                                     </c:choose>
                               </div>
