@@ -5,10 +5,13 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.contributor.VideoRevisionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
@@ -67,20 +70,7 @@ public class VideoEditController extends AbstractMultimediaEditController<Video>
         Contributor contributor = (Contributor) session.getAttribute("contributor");
 
         Video video = videoDao.read(id);
-        model.addAttribute("video", video);
-
-        model.addAttribute("contentLicenses", ContentLicense.values());
-
-        model.addAttribute("literacySkills", LiteracySkill.values());
-        model.addAttribute("numeracySkills", NumeracySkill.values());
-
-        model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
-
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
-
-        return "content/multimedia/video/edit";
+        return setModel(model, video, contributor.getLocale());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
@@ -104,56 +94,20 @@ public class VideoEditController extends AbstractMultimediaEditController<Video>
         }
 
         try {
-            byte[] bytes = multipartFile.getBytes();
-            if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
-                result.rejectValue("bytes", "NotNull");
-            } else {
-                String originalFileName = multipartFile.getOriginalFilename();
-                logger.info("originalFileName: " + originalFileName);
-                if (originalFileName.toLowerCase().endsWith(".m4v")) {
-                    video.setVideoFormat(VideoFormat.M4V);
-                } else if (originalFileName.toLowerCase().endsWith(".mp4")) {
-                    video.setVideoFormat(VideoFormat.MP4);
-                } else {
-                    result.rejectValue("bytes", "typeMismatch");
-                }
-
-                if (video.getVideoFormat() != null) {
-                    String contentType = multipartFile.getContentType();
-                    logger.info("contentType: " + contentType);
-                    video.setContentType(contentType);
-
-                    video.setBytes(bytes);
-
-                    // TODO: convert to a default video format?
-                }
-            }
+            setFormat(video, multipartFile, result);
         } catch (IOException e) {
             logger.error(e);
         }
 
         if (result.hasErrors()) {
-            model.addAttribute("video", video);
-            model.addAttribute("contentLicenses", ContentLicense.values());
-            model.addAttribute("literacySkills", LiteracySkill.values());
-            model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
-            return "content/multimedia/video/edit";
+            return setModel(model, video, contributor.getLocale());
         } else {
             video.setTitle(video.getTitle().toLowerCase());
             video.setTimeLastUpdate(Calendar.getInstance());
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
 
-            VideoRevisionEvent videoRevisionEvent = new VideoRevisionEvent();
-            videoRevisionEvent.setContributor(contributor);
-            videoRevisionEvent.setCalendar(Calendar.getInstance());
-            videoRevisionEvent.setVideo(video);
-            videoRevisionEvent.setTitle(video.getTitle());
-            videoRevisionEventDao.create(videoRevisionEvent);
+            videoRevisionEventDao.create(createeVideoRevisionEvent(video,contributor));
 
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
                 String text = URLEncoder.encode(
@@ -162,9 +116,8 @@ public class VideoEditController extends AbstractMultimediaEditController<Video>
                                 "• Title: \"" + video.getTitle() + "\"\n" +
                                 "• Revision number: #" + video.getRevisionNumber() + "\n" +
                                 "See ") + "http://elimu.ai/content/multimedia/video/edit/" + video.getId();
-                String iconUrl = contributor.getImageUrl();
                 String imageUrl = "http://elimu.ai/video/" + video.getId() + "/thumbnail.png";
-                SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.CONTENT_CREATION), text, iconUrl, imageUrl);
+                postMessageOnSlack(text, contributor.getImageUrl(), imageUrl);
             }
 
             return "redirect:/content/multimedia/video/list#" + video.getId();
@@ -183,55 +136,12 @@ public class VideoEditController extends AbstractMultimediaEditController<Video>
         binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
 
-    @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
-    @ResponseBody
-    public String handleAddContentLabelRequest(
-            HttpServletRequest request,
-            @PathVariable Long id) {
-        logger.info("handleAddContentLabelRequest");
-
-        logger.info("id: " + id);
-        Video video = videoDao.read(id);
-
-        String letterIdParameter = request.getParameter("letterId");
-        logger.info("letterIdParameter: " + letterIdParameter);
-        if (StringUtils.isNotBlank(letterIdParameter)) {
-            Long letterId = Long.valueOf(letterIdParameter);
-            Letter letter = letterDao.read(letterId);
-            Set<Letter> letters = video.getLetters();
-            if (!letters.contains(letter)) {
-                letters.add(letter);
-                video.setRevisionNumber(video.getRevisionNumber() + 1);
-                videoDao.update(video);
-            }
-        }
-
-        String numberIdParameter = request.getParameter("numberId");
-        logger.info("numberIdParameter: " + numberIdParameter);
-        if (StringUtils.isNotBlank(numberIdParameter)) {
-            Long numberId = Long.valueOf(numberIdParameter);
-            Number number = numberDao.read(numberId);
-            Set<Number> numbers = video.getNumbers();
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-                video.setRevisionNumber(video.getRevisionNumber() + 1);
-                videoDao.update(video);
-            }
-        }
-
-        String wordIdParameter = request.getParameter("wordId");
-        logger.info("wordIdParameter: " + wordIdParameter);
-        if (StringUtils.isNotBlank(wordIdParameter)) {
-            Long wordId = Long.valueOf(wordIdParameter);
-            Word word = wordDao.read(wordId);
-            Set<Word> words = video.getWords();
-            if (!words.contains(word)) {
-                words.add(word);
-                video.setRevisionNumber(video.getRevisionNumber() + 1);
-                videoDao.update(video);
-            }
-        }
-
-        return "success";
+    protected String setModel(Model model, Video video, Locale locale) {
+        model.addAttribute("video", video);
+        addContentLicensesLiteracySkillsNumeracySkills(model);
+        model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
+        addLettersNumbersWords(model, locale);
+        return "content/multimedia/video/edit";
     }
+
 }

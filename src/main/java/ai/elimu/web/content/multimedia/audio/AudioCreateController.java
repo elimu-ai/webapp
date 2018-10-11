@@ -5,6 +5,8 @@ import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import ai.elimu.web.content.multimedia.AbstractMultimediaController;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -19,7 +21,9 @@ import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.util.SlackApiHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+
 import java.net.URLEncoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,28 +38,26 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
 @RequestMapping("/content/multimedia/audio/create")
-public class AudioCreateController {
-    
+public class AudioCreateController extends AbstractMultimediaController {
+
     private final Logger logger = Logger.getLogger(getClass());
-    
+
     @Autowired
     private AudioDao audioDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
-        
+        logger.info("handleRequest");
+
         Audio audio = new Audio();
+
         model.addAttribute("audio", audio);
-        
-        model.addAttribute("contentLicenses", ContentLicense.values());
-        
-        model.addAttribute("literacySkills", LiteracySkill.values());
-        model.addAttribute("numeracySkills", NumeracySkill.values());
+
+        addContentLicensesLiteracySkillsNumeracySkills(model);
 
         return "content/multimedia/audio/create";
     }
-    
+
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpSession session,
@@ -63,10 +65,10 @@ public class AudioCreateController {
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
-        
+        logger.info("handleSubmit");
+
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        
+
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
         } else {
@@ -75,66 +77,36 @@ public class AudioCreateController {
                 result.rejectValue("transcription", "NonUnique");
             }
         }
-        
+
         try {
-            byte[] bytes = multipartFile.getBytes();
-            if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
-                result.rejectValue("bytes", "NotNull");
-            } else {
-                String originalFileName = multipartFile.getOriginalFilename();
-                logger.info("originalFileName: " + originalFileName);
-                if (originalFileName.toLowerCase().endsWith(".mp3")) {
-                    audio.setAudioFormat(AudioFormat.MP3);
-                } else if (originalFileName.toLowerCase().endsWith(".ogg")) {
-                    audio.setAudioFormat(AudioFormat.OGG);
-                } else if (originalFileName.toLowerCase().endsWith(".wav")) {
-                    audio.setAudioFormat(AudioFormat.WAV);
-                } else {
-                    result.rejectValue("bytes", "typeMismatch");
-                }
-
-                if (audio.getAudioFormat() != null) {
-                    String contentType = multipartFile.getContentType();
-                    logger.info("contentType: " + contentType);
-                    audio.setContentType(contentType);
-
-                    audio.setBytes(bytes);
-
-                    // TODO: convert to a default audio format?
-                }
-            }
+            setFormat(audio,multipartFile,result);
         } catch (IOException e) {
             logger.error(e);
         }
-        
+
         if (result.hasErrors()) {
-            model.addAttribute("contentLicenses", ContentLicense.values());
-            
-            model.addAttribute("literacySkills", LiteracySkill.values());
-            model.addAttribute("numeracySkills", NumeracySkill.values());
-            
+            addContentLicensesLiteracySkillsNumeracySkills(model);
             return "content/multimedia/audio/create";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
-            
+
             // TODO: store RevisionEvent
-            
+
             if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                 String text = URLEncoder.encode(
-                     contributor.getFirstName() + " just added a new Audio:\n" + 
-                     "• Language: \"" + audio.getLocale().getLanguage() + "\"\n" + 
-                     "• Transcription: \"" + audio.getTranscription() + "\"\n" + 
-                     "See ") + "http://elimu.ai/content/multimedia/audio/edit/" + audio.getId();
-                 String iconUrl = contributor.getImageUrl();
-                 SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.CONTENT_CREATION), text, iconUrl, null);
-             }
-            
+                String text = URLEncoder.encode(
+                        contributor.getFirstName() + " just added a new Audio:\n" +
+                                "• Language: \"" + audio.getLocale().getLanguage() + "\"\n" +
+                                "• Transcription: \"" + audio.getTranscription() + "\"\n" +
+                                "See ") + "http://elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+                postMessageOnSlack(text, contributor.getImageUrl(), null);
+            }
+
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }
     }
-    
+
     /**
      * See http://www.mkyong.com/spring-mvc/spring-mvc-failed-to-convert-property-value-in-file-upload-form/
      * <p></p>
@@ -143,7 +115,7 @@ public class AudioCreateController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
 }

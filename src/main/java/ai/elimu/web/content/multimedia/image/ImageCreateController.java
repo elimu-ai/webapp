@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import ai.elimu.web.content.multimedia.AbstractMultimediaController;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -40,8 +42,7 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
 @RequestMapping("/content/multimedia/image/create")
-public class ImageCreateController {
-    
+public class ImageCreateController extends AbstractMultimediaController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
@@ -56,11 +57,8 @@ public class ImageCreateController {
         
         Image image = new Image();
         model.addAttribute("image", image);
-        
-        model.addAttribute("contentLicenses", ContentLicense.values());
-        
-        model.addAttribute("literacySkills", LiteracySkill.values());
-        model.addAttribute("numeracySkills", NumeracySkill.values());
+
+        addContentLicensesLiteracySkillsNumeracySkills(model);
 
         return "content/multimedia/image/create";
     }
@@ -86,53 +84,13 @@ public class ImageCreateController {
         }
         
         try {
-            byte[] bytes = multipartFile.getBytes();
-            if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
-                result.rejectValue("bytes", "NotNull");
-            } else {
-                String originalFileName = multipartFile.getOriginalFilename();
-                logger.info("originalFileName: " + originalFileName);
-                if (originalFileName.toLowerCase().endsWith(".png")) {
-                    image.setImageFormat(ImageFormat.PNG);
-                } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
-                    image.setImageFormat(ImageFormat.JPG);
-                } else if (originalFileName.toLowerCase().endsWith(".gif")) {
-                    image.setImageFormat(ImageFormat.GIF);
-                } else {
-                    result.rejectValue("bytes", "typeMismatch");
-                }
-
-                if (image.getImageFormat() != null) {
-                    String contentType = multipartFile.getContentType();
-                    logger.info("contentType: " + contentType);
-                    image.setContentType(contentType);
-
-                    image.setBytes(bytes);
-
-                    if (image.getImageFormat() != ImageFormat.GIF) {
-                        int width = ImageHelper.getWidth(bytes);
-                        logger.info("width: " + width + "px");
-
-                        if (width < ImageHelper.MINIMUM_WIDTH) {
-                            result.rejectValue("bytes", "image.too.small");
-                            image.setBytes(null);
-                        } else {
-                            if (width > ImageHelper.MINIMUM_WIDTH) {
-                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
-                                image.setBytes(bytes);
-                            }
-                        }
-                    }
-                }
-            }
+            setFormat(image,multipartFile,result);
         } catch (IOException e) {
             logger.error(e);
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("contentLicenses", ContentLicense.values());
-            model.addAttribute("literacySkills", LiteracySkill.values());
-            model.addAttribute("numeracySkills", NumeracySkill.values());
+            addContentLicensesLiteracySkillsNumeracySkills(model);
             return "content/multimedia/image/create";
         } else {
             image.setTitle(image.getTitle().toLowerCase());
@@ -160,9 +118,8 @@ public class ImageCreateController {
                      "• Language: \"" + image.getLocale().getLanguage() + "\"\n" + 
                      "• Title: \"" + image.getTitle() + "\"\n" +
                      "See ") + "http://elimu.ai/content/multimedia/image/edit/" + image.getId();
-                 String iconUrl = contributor.getImageUrl();
                  String imageUrl = "http://elimu.ai/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
-                 SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.CONTENT_CREATION), text, iconUrl, imageUrl);
+                 postMessageOnSlack(text,contributor.getImageUrl(),imageUrl);
             }
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
