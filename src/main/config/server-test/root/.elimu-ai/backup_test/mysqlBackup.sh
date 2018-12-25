@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Navigate to the "backup" directory of the application
-cd /root/.literacyapp/backup_test/
+# Navigate to the backup directory of the web application
+cd /root/.elimu-ai/backup_test/
 
 # Create directory 'database' if it does not already exist
 if [ ! -d "database" ]; then

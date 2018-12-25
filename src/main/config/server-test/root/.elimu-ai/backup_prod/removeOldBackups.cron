@@ -4,5 +4,4 @@
 MAILTO=info+crontab@elimu.ai
 
 # minute hour day month weekday command
-30 04 * * * /root/.literacyapp/backup_prod/removeOldBackups.sh
-
+30 04 * * * /root/.elimu-ai/backup_prod/removeOldBackups.sh

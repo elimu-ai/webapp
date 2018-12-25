@@ -19,8 +19,8 @@ To configure the web application to run on a new server, perform the following:
         2.1 Execute commands in literacyapp.sql
         2.2 Import existing database (if any): SOURCE literacyapp-<date>.sql
     3. Configure CRON job for backup of database:
-        3.1 Upload the files in /root/.literacyapp/backup/
+        3.1 Upload the files in /root/.elimu-ai/backup_<env>/
         3.2 Add mysqlBackup.cron to crontab
 
 Scripts for deployment to production are located in 
-server-test/root/.elimu-ai (deploy-test.sh and deploy-prod.sh)
+server-test/root/.elimu-ai/ (deploy-test.sh and deploy-prod.sh)
