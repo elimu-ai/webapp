@@ -16,8 +16,8 @@ DUMP_FILE=/root/.literacyapp/backup/database/literacyapp_`date +%Y"-"%m"-"%d`.sq
 echo "Copying latest DUMP file to test server... ($DUMP_FILE)"
 echo "Time stamp: $(stat -c %y $DUMP_FILE)"
 DUMP_FILE_TEST=/root/.literacyapp/backup_prod/database/literacyapp_`date +%Y"-"%m"-"%d`.sql
-echo "Copying to luna344:$DUMP_FILE_TEST"
-scp $DUMP_FILE root@luna344:$DUMP_FILE_TEST
+echo "Copying to test.elimu.ai:$DUMP_FILE_TEST"
+scp $DUMP_FILE root@test.elimu.ai:$DUMP_FILE_TEST
 echo "Copy complete"
 
 # Remove files older than 5 days
