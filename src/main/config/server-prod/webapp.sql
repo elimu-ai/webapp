@@ -1,5 +1,5 @@
 # mysql -u root -p
-# mysql> SOURCE literacyapp.sql;
+# mysql> SOURCE webapp.sql;
 
 CREATE DATABASE `literacyapp` CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `literacyapp`;

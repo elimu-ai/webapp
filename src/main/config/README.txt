@@ -16,8 +16,8 @@ To configure the web application to run on a new server, perform the following:
         1.1. Jetty: 8: <Jetty installation path>/contexts/
         1.2. Jetty: 9: <Jetty installation path>/webapps/
     2. Create database:
-        2.1 Execute commands in literacyapp.sql
-        2.2 Import existing database (if any): SOURCE literacyapp-<date>.sql
+        2.1 Execute commands in webapp.sql
+        2.2 Import existing database (if any): SOURCE webapp-<date>.sql
     3. Configure CRON job for backup of database:
         3.1 Upload the files in /root/.elimu-ai/backup_<env>/
         3.2 Add mysqlBackup.cron to crontab

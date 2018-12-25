@@ -9,7 +9,7 @@ if [ ! -d "database" ]; then
     echo "directory '$(pwd)/database' was created"
 fi
 
-mysqldump -c -u literacyapp-user -p************ literacyapp > database/literacyapp_`date +%Y"-"%m"-"%d`.sql
+mysqldump -c -u literacyapp-user -p************ literacyapp > database/webapp_`date +%Y"-"%m"-"%d`.sql
 
 # Remove files older than 15 days
 find database -type f -mtime +14 -exec rm {} \;
