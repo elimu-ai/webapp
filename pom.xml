@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>1.2.11</model.version> <!-- https://github.com/elimu-ai/model/releases -->
         <hibernate.version>4.3.11.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
-        <jetty.version>8.1.14.v20131031</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/mortbay/jetty/ -->
+        <jetty.version>8.1.16.v20140903</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/mortbay/jetty/ -->
         <spring.version>4.2.9.RELEASE</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>3.2.9.RELEASE</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.20</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
@@ -180,6 +180,7 @@
             </build>
         </profile>
         <profile>
+            <!-- Usage: "mvn clean verify -P regression-testing-rest" -->
             <id>regression-testing-rest</id>
             <build>
                 <plugins>
@@ -212,6 +213,7 @@
             </build>
         </profile>
         <profile>
+            <!-- Usage: "mvn clean verify -P regression-testing-ui" -->
             <id>regression-testing-ui</id>
             <build>
                 <plugins>
@@ -244,6 +246,7 @@
             </build>
         </profile>
         <profile>
+            <!-- Usage: "mvn clean package -P Jspc" -->
             <id>Jspc</id>
             <build>
                 <plugins>
