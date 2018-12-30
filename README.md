@@ -3,10 +3,10 @@
 Web application: http://elimu.ai
 
 ## Run application locally
-See https://github.com/elimu-ai/webapp/blob/master/INSTALL.md
+See [INSTALL.md](https://github.com/elimu-ai/webapp/blob/master/INSTALL.md)
 
 ## Contributing guidelines
-See https://github.com/elimu-ai/webapp/blob/master/CONTRIBUTING.md
+See [CONTRIBUTING.md](https://github.com/elimu-ai/webapp/blob/master/CONTRIBUTING.md)
 
 ## Continuous integration
 Travis: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
