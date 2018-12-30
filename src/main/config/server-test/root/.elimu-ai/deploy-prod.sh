@@ -1,5 +1,5 @@
 WARFILE=/var/lib/jenkins/workspace/webapp-2-precompile-jsps/target/webapp-SNAPSHOT.war
-PROD_SERVER=malta2797
+PROD_SERVER=elimu.ai
 echo "Copying latest WAR file to prod server '$PROD_SERVER'... ($WARFILE)"
 echo "Time stamp: $(stat -c %y $WARFILE)"
 
