@@ -2,6 +2,8 @@
 
 Web application: http://elimu.ai
 
+See software architecture diagram at https://github.com/elimu-ai/model/blob/master/README.md
+
 ## Run application locally
 See [INSTALL.md](https://github.com/elimu-ai/webapp/blob/master/INSTALL.md)
 
