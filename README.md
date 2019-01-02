@@ -1,6 +1,10 @@
+# elimu.ai webapp
+
 ![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/28230075-c42d3e8e-68e5-11e7-8d97-c99d9c7c322e.png)
 
 Web application: http://elimu.ai
+
+See software architecture diagram at https://github.com/elimu-ai/model/blob/master/README.md
 
 ## Run application locally
 See [INSTALL.md](https://github.com/elimu-ai/webapp/blob/master/INSTALL.md)
