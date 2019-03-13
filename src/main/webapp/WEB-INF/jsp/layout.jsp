@@ -131,7 +131,7 @@
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
                                 <li><a class="white-text" href="https://plus.google.com/u/0/100080736050421577958" target="_blank">Google+</a></li>
-                                <li><a class="white-text" href="https://www.linkedin.com/company-beta/18167293" target="_blank">LinkedIn</a></li>
+                                <li><a class="white-text" href="https://www.linkedin.com/company/elimuai" target="_blank">LinkedIn</a></li>
                                 <li><a class="white-text" href="https://medium.com/elimu-ai" target="_blank"><fmt:message key="blog" /></a></li>
                             </ul>
                           </div>
