@@ -23,7 +23,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
                 <%-- Google will only display the first 150 characters of the meta description in SERPs. --%>
-                <meta name="description" content="<fmt:message key='free.quality.education.for.every.child' />" />
+                <meta name="description" content="<fmt:message key="we.are.an.open.community.with" />" />
                 <link rel="shortcut icon" href="<spring:url value='/static/img/favicon.ico' />" />
 
                 <meta property="og:image" content="http://${pageContext.request.serverName}/static/img/logo-256x256.png" />
@@ -34,7 +34,7 @@
                 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Amaranth" />
                 <%--<link rel="stylesheet" href="<spring:url value='/static/css/materialize.min-0.97.6.css' />" />--%>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
-                <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
+                <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />?version=<content:getversion />" />
                 
                 <%-- JavaScripts --%>
                 <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>

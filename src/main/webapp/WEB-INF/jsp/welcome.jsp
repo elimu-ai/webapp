@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key='free.quality.education.for.every.child.title' />
+    <fmt:message key='quality.basic.education.for.every.child.title' />
 </content:title>
 
 <content:banner>
@@ -12,7 +12,7 @@
     </div>
     <div class="row center">
         <div class="col s2 m3 l4">&nbsp;</div>
-        <h5 class="header col s8 m6 l4 light white-text"><fmt:message key="free.quality.education.for.every.child" /></h5>
+        <h5 class="header col s8 m6 l4 light white-text"><fmt:message key="quality.basic.education.for.every.child" /></h5>
         <div class="col s2 m3 l4">&nbsp;</div>
     </div>
     <div class="row center">
