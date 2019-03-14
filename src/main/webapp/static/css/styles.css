@@ -19,6 +19,7 @@ body {
     /*background-image: url(../../static/img/banner-en.jpg);*/
     background-image: url(../../static/img/banner.jpg);
     background-size: cover;
+    background-position: 0 50%;
 }
 /*html[lang="ar"] #index-banner {
     background-image: url(../../static/img/banner-ar.jpg);
