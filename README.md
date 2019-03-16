@@ -1,8 +1,16 @@
 # elimu.ai webapp
 
-![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/28230075-c42d3e8e-68e5-11e7-8d97-c99d9c7c322e.png)
+![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/54360503-e8e88980-465c-11e9-9792-32b513105cf3.png)
+
+###### Quality basic education for _every child_
+
+---
+
+
 
 Web application: http://elimu.ai
+
+This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
 See software architecture diagram at https://github.com/elimu-ai/model/blob/master/README.md
 
