@@ -105,7 +105,11 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    ...
+                    <h2><i class="material-icons medium">archive</i></h2>
+                    <h4><fmt:message key="download.the.software" /></h4>
+                    
+                    For instructions on how to download and install the elimu.ai software, 
+                    see our <a href="https://github.com/elimu-ai/appstore">GitHub repository</a>.
                 </div>
             </div>
                   
