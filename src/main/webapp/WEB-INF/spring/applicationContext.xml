@@ -96,7 +96,6 @@
                 <prop key="/error/page-not-found">viewController</prop>
                 <prop key="/error/session-timeout">viewController</prop>
                 
-                <prop key="/donate">viewController</prop>
                 <prop key="/publish">viewController</prop>
                 
                 <prop key="/content/community/issue-management">viewController</prop>
