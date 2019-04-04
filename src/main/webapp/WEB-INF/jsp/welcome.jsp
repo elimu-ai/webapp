@@ -105,39 +105,7 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    <h2><i class="material-icons medium blue-grey-text">redeem</i></h2>
-                    <h4><fmt:message key="donate.money" /></h4>
-
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                        <input type="hidden" name="cmd" value="_s-xclick">
-                        <input type="hidden" name="hosted_button_id" value="6FRDJF8PK9UHY">
-                        <table>
-                            <tr>
-                                <td class="center">
-                                    <input type="hidden" name="on0" value="elimu.ai contribution">Contribute by helping us cover our monthly recurring costs:
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <select name="os0">
-                                        <option value="Option 1">Option 1 : €5.00 EUR - monthly</option>
-                                        <option value="Option 2">Option 2 : €10.00 EUR - monthly</option>
-                                        <option value="Option 3">Option 3 : €20.00 EUR - monthly</option>
-                                        <option value="Option 4">Option 4 : €40.00 EUR - monthly</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                        <input type="hidden" name="currency_code" value="EUR">
-                        <input type="submit" class="btn waves-effect waves-light blue-grey" value="Donate via PayPal" />
-                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                    </form>
-                    
-                    <br />
-                    <fmt:message key="or" /><br />
-                    <br />
-                    
-                    <a href="<spring:url value='/donate' />">Donate cryptocurrency</a>
+                    ...
                 </div>
             </div>
                   
