@@ -37,6 +37,7 @@ This file is placed on the test server under jetty.home/contexts/
       <Item>test.elimu.ai</Item>
       <Item>ar.test.elimu.ai</Item>
       <Item>en.test.elimu.ai</Item>
+      <Item>hi.test.elimu.ai</Item>
       <Item>es.test.elimu.ai</Item>
       <Item>sw.test.elimu.ai</Item>
     </Array>
