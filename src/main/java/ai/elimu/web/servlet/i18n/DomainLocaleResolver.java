@@ -38,6 +38,8 @@ public class DomainLocaleResolver extends SessionLocaleResolver {
                 locale = new Locale("en");
             } else if (serverName.startsWith("es.")) {
                 locale = new Locale("es");
+            } else if (serverName.startsWith("hi.")) {
+                locale = new Locale("hi");
             } else if (serverName.startsWith("sw.")) {
                 locale = new Locale("sw");
             }
