@@ -59,7 +59,7 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center"><fmt:message key="we.build.tablet.based.software" /></p>
+              <p class="light center">The elimu.ai Foundation develops open source software for teaching children the basics of reading, writing and arithmetic.</p>
             </div>
           </div>
         </div>
@@ -70,10 +70,13 @@
     <div class="section">
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Educational Apps and Games</h5>
+                <h5 class="header">Educational Apps & Games</h5>
                 <p>
                     A collection of educational Android apps teaches children basic 
                     literacy and numeracy in a fun and engaging way.    
+                </p>
+                <p>
+                    Each child can learn <i>fully autonomously</i>, without guidance from human teachers.  
                 </p>
             </div>
             <div class="col s12 m4">
@@ -120,7 +123,7 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Free and Open-Source Software</h5>
                 <p>
-                    Our goal is to spread the solution quickly in order to reach as many children as possible, and we believe that using <i>open source</i> software will enable this.
+                    Our goal is to spread the solution quickly in order to reach as many children as possible, and we believe that using <i>open source software</i> will enable this.
                 </p>
                 <p>
                     Anyone is welcome to take the existing code and adapt it to their local needs.
@@ -144,7 +147,7 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    <h2><i class="material-icons medium">archive</i></h2>
+                    <h2><i class="material-icons medium blue-grey-text">archive</i></h2>
                     <h5><fmt:message key="download.the.software" /></h5>
                     
                     For instructions on how to download and install the elimu.ai software, 
