@@ -40,7 +40,8 @@
               <h2 class="center"><i class="material-icons medium blue-grey-text">public</i></h2>
               <h4 class="center"><fmt:message key="purpose" /></h4>
 
-              <p class="light center"><%--<fmt:message key="millions.of.children.around.the.globe" />&nbsp;--%><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
+              <p class="light center">Worldwide, <a href="https://en.unesco.org/news/one-every-five-children-adolescents-and-youth-out-school-worldwide" target="_blank">63 million children</a> of primary age are out of school.</p>
+              <p class="light center"><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
             </div>
           </div>
           
@@ -63,35 +64,75 @@
           </div>
         </div>
     </div>
+    
+    <div class="divider" style="margin-bottom: 3em;"></div>
             
     <div class="section">
-        <%--<div class="row">
-            <div class="col s12 m4 offset-m4">
-                <div class="card small">
-                  <div class="card-image">
-                    <img src="<spring:url value='/static/static/img/banner-en.jpg' />" alt="Global Learning XPRIZE" />
-                    <span class="card-title">Global Learning XPRIZE</span>
-                  </div>
-                  <div class="card-content">
-                      <p>
-                          <img src="<spring:url value='/static/img/global-learning-xprize-600x142.png' />" alt="Global Learning XPRIZE" style="max-width: 100%;" />
-                      </p>
-                  </div>
-                  <div class="card-action">
-                    <a href="http://learning.xprize.org" target="_blank">learning.xprize.org</a>
-                  </div>
-                </div>
+        <div class="row">
+            <div class="col s12 offset-m2 m4">
+                <h5 class="header">Educational Apps and Games</h5>
+                <p>
+                    A collection of educational Android apps teaches children basic 
+                    literacy and numeracy in a fun and engaging way.    
+                </p>
             </div>
-        </div>--%>
-        <div class="row center">
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/3Dnn7NFQPbQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe>
+            <div class="col s12 m4">
+                <img src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" />
             </div>
         </div>
-        <%--<div class="row center">
-            <a href="<spring:url value='/sign-on' />" id="join-button-bottom" class="btn-large waves-effect waves-light purple"><fmt:message key="join.now" /></a>
-        </div>--%>
+        
+        <div class="row">
+            <div class="col s12 offset-m2 m4">
+                <h5 class="header">Personalized Learning 🚀</h5>
+                <p>
+                    Each child is guided through the curriculum by our AI tutor (Nya) and her robot companion.
+                </p>
+                <p>
+                    Nya automatically 
+                    detects the current knowledge level of the child, and adapts the 
+                    apps and content to best fit the child's current skill level.
+                </p>
+            </div>
+            <div class="col s12 m4">
+                <img src="https://user-images.githubusercontent.com/15718174/27411324-edec40ac-56e4-11e7-8207-1a05c770024d.png" />
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s12 offset-m2 m4">
+                <h5 class="header">Learning Platform</h5>
+                <p>
+                    The elimu.ai software is a <i>platform</i> of educational content and Android apps.
+                </p>
+                <p>
+                    Each child is provided with a clear instructional path for learning literacy and numeracy as efficiently as possible.
+                </p>
+                <p>
+                    The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
+                </p>
+            </div>
+            <div class="col s12 m4">
+                <img src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" />
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s12 offset-m2 m4">
+                <h5 class="header">Free and Open-Source Software</h5>
+                <p>
+                    Our goal is to spread the solution quickly in order to reach as many children as possible, and we believe that using <i>open source</i> software will enable this.
+                </p>
+                <p>
+                    Anyone is welcome to take the existing code and adapt it to their local needs.
+                </p>
+            </div>
+            <div class="col s12 m4">
+                <img src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" />
+            </div>
+        </div>
     </div>
+            
+    <div class="divider" style="margin-bottom: 3em;"></div>
     
     <div class="section">
         <a name="contributeInfoContainer"></a>
@@ -100,28 +141,23 @@
             <p>There are several ways you can contribute:</p>
         </div>
         
-        <div class="divider" style="margin-bottom: 3em;"></div>
-        
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
                     <h2><i class="material-icons medium">archive</i></h2>
-                    <h4><fmt:message key="download.the.software" /></h4>
+                    <h5><fmt:message key="download.the.software" /></h5>
                     
                     For instructions on how to download and install the elimu.ai software, 
                     see our <a href="https://github.com/elimu-ai/appstore">GitHub repository</a>.
                 </div>
+                <p>&nbsp;</p>
             </div>
                   
-            <div class="col s12 offset-m1 m5 z-depth-2 white center">
+            <div class="col s12 offset-m1 m4 z-depth-2 white center">
                 <div class="icon-block" style="padding: 1em;">
                   <h2><i class="material-icons large deep-purple-text">group</i></h2>
                   <h4><fmt:message key="join.a.team" /></h4>
                   
-                  <p>
-                      We need help from both technical and non-technical people. 
-                      Every contribution helps, both small and large.
-                  </p>
                   <p>
                       You are welcome to join a team matching your skill set and 
                       become an active contributor. We will help introduce you 
@@ -129,15 +165,15 @@
                   </p>
                   <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light deep-purple"><fmt:message key="join.now" /></a>
                 </div>
-                <br />
+                <p>&nbsp;</p>
             </div>
                   
-            <div class="col s12 offset-m1 m2 center">
+            <div class="col s12 offset-m1 m3 center">
                 <div class="icon-block">
                   <h2><i class="material-icons medium">record_voice_over</i></h2>
-                  <h4><fmt:message key="spread.the.word" /></h4>
+                  <h5><fmt:message key="spread.the.word" /></h5>
                   
-                  <p>Follow us on social media and share our work with your friends.</p>
+                  <p>Follow us on social media and share our work with your friends (see links below).</p>
                 </div>
             </div>
         </div>
