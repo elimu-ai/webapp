@@ -76,7 +76,7 @@
                     literacy and numeracy in a fun and engaging way.    
                 </p>
                 <p>
-                    Each child can learn <i>fully autonomously</i>, without guidance from human teachers.  
+                    Each child can learn <i>fully autonomously</i>, without depending on the availability of qualified teachers.  
                 </p>
             </div>
             <div class="col s12 m4">
@@ -88,7 +88,7 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Personalized Learning 🚀</h5>
                 <p>
-                    Each child is guided through the curriculum by our AI tutor (Nya) and her robot companion.
+                    Each child is guided through the curriculum by our AI tutor <i>Nya</i> and her robot companion.
                 </p>
                 <p>
                     Nya automatically 
@@ -121,7 +121,7 @@
         
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Free and Open-Source Software</h5>
+                <h5 class="header">Free and Open-Source Software 👩🏽‍💻</h5>
                 <p>
                     Our goal is to quickly distribute the solution to as many children as possible, and we believe that using <i>open source</i> software will enable this.
                 </p>
