@@ -104,7 +104,7 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/project/${project.id}/app-category/create' />" class="btn-floating btn-large deep-purple lighten-1 tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.app.category" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/project/${project.id}/app-category/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.app.category" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>
 
@@ -135,7 +135,7 @@
 
         <p></p>
 
-        <a href="<spring:url value='/project/${project.id}/app-collection/create' />" class="btn waves-effect grey lighten-5 waves-grey grey-text">
+        <a href="<spring:url value='/project/${project.id}/app-collection/create' />" class="btn waves-effect waves-grey grey-text">
             <fmt:message key="add.app.collection" />
         </a>
     </content:aside>

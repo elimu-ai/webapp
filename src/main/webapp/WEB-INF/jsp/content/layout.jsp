@@ -144,36 +144,6 @@
                 </div>
             </div>
         </nav>
-        <script>
-            $(function() {
-                <c:choose>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')}">
-                        $('nav').addClass('indigo');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter/')}">
-                        $('nav').addClass('teal');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/syllable/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/storybook/')}">
-                        $('nav').addClass('lime');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')}">
-                        $('nav').addClass('amber');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')}">
-                        $('nav').addClass('orange');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')}">
-                        $('nav').addClass('deep-orange');
-                    </c:when>
-                </c:choose>
-            });
-        </script>
                         
         <c:if test="${hasBanner}">
             <div class="section no-pad-bot" id="index-banner">

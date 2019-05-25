@@ -5,8 +5,8 @@
 <content:section cssId="mainAnalyticsPage">
     <div class="row">
         <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">school</i> <fmt:message key="students" /></span>
                     <p>List of students that have been assigned an ID on one or more devices.</p>
                 </div>
@@ -17,8 +17,8 @@
         </div>
         
         <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">devices</i> <fmt:message key="devices" /></span>
                     <p>List of devices that have registered with the server.</p>
                 </div>
@@ -29,8 +29,8 @@
         </div>
         
         <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">timeline</i> <fmt:message key="application.opened.events" /></span>
                     <p>Diagrams displaying applications opened on the devices.</p>
                 </div>

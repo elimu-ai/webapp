@@ -52,6 +52,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/activity/create' />" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.activity" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/content/activity/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.activity" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

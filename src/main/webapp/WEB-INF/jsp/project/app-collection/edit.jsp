@@ -36,7 +36,7 @@
             </div>
             <br />
             
-            <button id="submitButton" class="btn deep-purple lighten-1 waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
         </form:form>
@@ -69,7 +69,7 @@
 
     <p></p>
 
-    <a href="<spring:url value='/project/${project.id}/app-collection/${appCollection.id}/license/create' />" class="btn waves-effect grey lighten-5 waves-grey grey-text">
+    <a href="<spring:url value='/project/${project.id}/app-collection/${appCollection.id}/license/create' />" class="btn waves-effect waves-grey grey-text">
         <fmt:message key="add.license" />
     </a>
 </content:aside>

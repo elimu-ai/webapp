@@ -5,8 +5,8 @@
 <content:section cssId="mainAdminPage">
     <div class="row">
         <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">android</i> <fmt:message key="applications" /></span>
                     <p>Collection of applications to be regularly synchronized with every device.</p>
                 </div>
@@ -17,8 +17,8 @@
         </div>
         
         <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">group</i> <fmt:message key="contributors" /></span>
                     <p>List of registered Contributors</p>
                 </div>
@@ -29,8 +29,8 @@
         </div>
                 
         <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">timeline</i> <fmt:message key="sign.on.events" /></span>
                     <p>List of last Contributor sign-ons</p>
                 </div>
@@ -41,8 +41,8 @@
         </div>
         
         <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">list</i> <fmt:message key="projects" /></span>
                     <p>List of custom projects</p>
                 </div>

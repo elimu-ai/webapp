@@ -98,18 +98,6 @@
                 </div>
             </div>
         </nav>
-        <script>
-            $(function() {
-                <c:choose>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application-version/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                </c:choose>
-            });
-        </script>
                     
         <c:if test="${hasBanner}">
             <div class="section no-pad-bot" id="index-banner">
