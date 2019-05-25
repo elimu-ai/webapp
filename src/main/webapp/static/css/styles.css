@@ -1,10 +1,3 @@
-html[lang="ar"] {
-    direction: rtl;
-}
-html[lang="ar"] nav {
-    direction: ltr;
-}
-
 body {
     background: #EEE;
 }
@@ -21,10 +14,7 @@ body {
     background-size: cover;
     background-position: 0 50%;
 }
-/*html[lang="ar"] #index-banner {
-    background-image: url(../../static/img/banner-ar.jpg);
-}
-html[lang="es"] #index-banner {
+/*html[lang="es"] #index-banner {
     background-image: url(../../static/img/banner-es.jpg);
 }*/
 

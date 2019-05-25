@@ -20,11 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AllophoneListController {
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArrayAR = new String[][] {
-        // TODO
-    };
-    
-    // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
     public static final String[][] allophonesArrayEN = new String[][] {
         {"aʊ","aU", "60"},
         {"ɔɪ","OI", "3"},
@@ -157,9 +152,7 @@ public class AllophoneListController {
         List<Allophone> allophones = new ArrayList<>();
         
         String[][] allophonesArray = null;
-        if (locale == Locale.AR) {
-            allophonesArray = allophonesArrayAR;
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             allophonesArray = allophonesArrayEN;
         } else if (locale == Locale.ES) {
             allophonesArray = allophonesArrayES;

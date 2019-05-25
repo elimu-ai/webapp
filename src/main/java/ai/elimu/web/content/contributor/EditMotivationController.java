@@ -30,8 +30,6 @@ public class EditMotivationController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
     	logger.info("handleRequest");
-        
-        // TODO: fetch from MailChimp and pre-fill
 
         return "content/contributor/edit-motivation";
     }

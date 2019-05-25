@@ -6,13 +6,13 @@
     <h2><content:gettitle /></h2>
     
     <p>
-        Do you have (or wish to develop) an Android app which teaches literacy/numeracy skills to children?
+        Do you have (or wish to develop) an Android app which teaches literacy/numeracy skills to out-of-school children?
     </p>
     
     <p>
         We are building a platform of educational apps and games that teaches a child to read, write and perform 
-        arithmetic fully autonomously and without the aid of a teacher. This will help bring literacy to the 
-        millions of children in developing countries who are currently out of school.
+        arithmetic fully autonomously and without the aid of a qualified teacher. This will help bring quality basic education to the 
+        millions of children who are currently out of school.
     </p>
     
     <div class="row section">
@@ -37,7 +37,7 @@
     
     <ol class="browser-default">
         <li>Select <b>one</b> literacy/numeracy skill that your app/game will be teaching</li>
-        <li>Create a new repository for the project on GitHub</li>
+        <li>Create a new repository for the project on <a href="https://github.com/elimu-ai" target="_blank">GitHub</a></li>
         <li>Upload the source code (we will perform code reviews of your pull requests)</li>
         <li>Add <a href="https://github.com/elimu-ai/analytics/tree/master/eventtracker">learning event tracking</a> to the source code</li>
         <li>Add build and release instructions for generating APK files</li>
@@ -62,14 +62,16 @@
         </li>
         <li>
             <b>What languages should the app/game support?</b><br />
-            The app/game should support either English, Swahili or both. Our initial target 
-            users are Swahili-speaking children aged 5-10 living in Tanzania and Kenya. 
-            And we continuously add support for more languages.<br />
+            The app/game should support English, Hindi and/or Swahili. We target 
+            primary age children (about 6 to 11 years) who are out of school. 
+            And we continuously <a href="https://elimu-ai.atlassian.net/wiki/spaces/DE/pages/191136000/How+to+Add+Support+For+a+New+Language" target="_blank">add support for more languages</a>.<br />
             <br />
         </li>
         <li>
             <b>Do I have to submit one APK file per language?</b><br />
-            If the code is the same for all languages, you only need to submit one APK file.<br />
+            No. If the code is the same for all languages, you only need to submit one APK file. 
+            For scalability (and ease of future maintenance), we encourage you to design your code to work with 
+            multiple types of languages.<br />
             <br />
         </li>
         <li>
@@ -80,14 +82,14 @@
         </li>
         <li>
             <b>Is Internet access allowed?</b><br />
-            No, the tablets will in many cases be used in areas where there is little or no Internet access, 
+            No, the devices will in many cases be used in areas where there is little or no Internet access, 
             so all software has to work offline.<br />
             <br />
         </li>
         <li>
             <b>What devices are being used?</b><br />
-            We are building our software for tablets with 5"-10" displays installed with  
-            Android API 21 (5.0) or higher.<br />
+            We are building our software for Android devices with 6"-10" displays installed with  
+            Android API version 21 (5.0) or higher.<br />
             <br />
         </li>
     </ul>

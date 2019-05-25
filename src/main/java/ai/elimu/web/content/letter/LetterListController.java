@@ -63,9 +63,7 @@ public class LetterListController {
         List<Letter> letters = new ArrayList<>();
         
         List<String> letterStringArray = new ArrayList<>();
-        if (locale == Locale.AR) {
-            // TODO
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             Letter letterE = new Letter();
             letterE.setLocale(locale);
             letterE.setTimeLastUpdate(Calendar.getInstance());

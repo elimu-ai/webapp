@@ -27,8 +27,6 @@ public class EditLocaleController {
     	logger.info("handleRequest");
         
         model.addAttribute("locales", Locale.values());
-        
-        // TODO: fetch from MailChimp and pre-fill
     	
         return "content/contributor/edit-locale";
     }

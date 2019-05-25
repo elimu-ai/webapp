@@ -31,7 +31,7 @@
                     <label for="applicationStatus"><fmt:message key="status" /></label>
                 </div>
                 <div class="input-field col s2">
-                    <button id="submitButton" disabled="disabled" class="btn disabled deep-purple lighten-1 waves-effect waves-light" type="submit">
+                    <button id="submitButton" disabled="disabled" class="btn disabled waves-effect waves-light" type="submit">
                         <fmt:message key="edit" /> <i class="material-icons right">send</i>
                     </button>
                     <script>

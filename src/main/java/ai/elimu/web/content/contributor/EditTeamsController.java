@@ -33,8 +33,6 @@ public class EditTeamsController {
     	logger.info("handleRequest");
         
         model.addAttribute("teams", Team.values());
-        
-        // TODO: fetch from MailChimp and pre-select
     	
         return "content/contributor/edit-teams";
     }

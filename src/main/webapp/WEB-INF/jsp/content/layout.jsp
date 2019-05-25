@@ -43,11 +43,7 @@
                         <li><a href="<spring:url value='/content/community/issue-management' />"><i class="material-icons left">assignment</i><fmt:message key="issue.management" /></a></li>
                         
                         <li class="divider"></li>
-                        <%--<li class="grey-text"><b><fmt:message key="curriculum" /></b></li>
-                        <li><a href="<spring:url value='/content/module/list' />"><i class="material-icons left">view_module</i><fmt:message key="modules" /> (age 5-6)</a></li>
-                        <li><a href="<spring:url value='/content/module/list' />"><i class="material-icons left">view_module</i><fmt:message key="modules" /> (age 7-10)</a></li>
                         
-                        <li class="divider"></li>--%>
                         <li class="grey-text"><b><fmt:message key="application.content" /></b></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
@@ -144,36 +140,6 @@
                 </div>
             </div>
         </nav>
-        <script>
-            $(function() {
-                <c:choose>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')}">
-                        $('nav').addClass('indigo');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter/')}">
-                        $('nav').addClass('teal');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/syllable/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')}">
-                        $('nav').addClass('green');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/storybook/')}">
-                        $('nav').addClass('lime');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')}">
-                        $('nav').addClass('amber');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')}">
-                        $('nav').addClass('orange');
-                    </c:when>
-                    <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')}">
-                        $('nav').addClass('deep-orange');
-                    </c:when>
-                </c:choose>
-            });
-        </script>
                         
         <c:if test="${hasBanner}">
             <div class="section no-pad-bot" id="index-banner">

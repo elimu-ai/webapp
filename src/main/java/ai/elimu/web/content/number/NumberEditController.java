@@ -58,12 +58,6 @@ public class NumberEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        if (number.getLocale() == Locale.AR) {
-            if (StringUtils.isBlank(number.getSymbol())) {
-                result.rejectValue("symbol", "NotNull");
-            }
-        }
-        
         Number existingNumber = numberDao.readByValue(number.getLocale(), number.getValue());
         if ((existingNumber != null) && !existingNumber.getId().equals(number.getId())) {
             result.rejectValue("value", "NonUnique");

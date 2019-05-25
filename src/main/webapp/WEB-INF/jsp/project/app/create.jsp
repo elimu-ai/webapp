@@ -49,7 +49,7 @@
                         <fmt:message key="drop.your.apk.here.or.select.a.file" />
                     </p>
                     <div class="file-field input-field col s8 offset-s2 center">
-                        <div class="btn deep-purple">
+                        <div class="btn">
                             <span><fmt:message key='file' /></span>
                             <form:input path="bytes" type="file" />
                         </div>
