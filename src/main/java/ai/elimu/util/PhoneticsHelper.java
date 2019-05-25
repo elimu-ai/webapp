@@ -31,9 +31,7 @@ public class PhoneticsHelper {
         while (StringUtils.isNotBlank(phonetics)) {
             int phoneticsLengthBeforeExtraction = phonetics.length();
             
-            if (word.getLocale() == Locale.AR) {
-                // TODO
-            } else if (word.getLocale() == Locale.EN) {
+            if (word.getLocale() == Locale.EN) {
                 String[][] allophonesArrayEN = AllophoneListController.allophonesArrayEN;
                 for (String[] allophoneRow : allophonesArrayEN) {
                     String allophoneIpa = allophoneRow[0];

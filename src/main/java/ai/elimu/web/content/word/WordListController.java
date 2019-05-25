@@ -64,11 +64,7 @@ public class WordListController {
         Word wordZero = new Word();
         wordZero.setLocale(locale);
         wordZero.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordZero.setText("zero");
             wordZero.setPhonetics("ˈzɪrɔʊ");
             words.add(wordZero);
@@ -85,11 +81,7 @@ public class WordListController {
         Word wordOne = new Word();
         wordOne.setLocale(locale);
         wordOne.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordOne.setText("one");
             wordOne.setPhonetics("wʌn");
             words.add(wordOne);
@@ -107,11 +99,7 @@ public class WordListController {
         Word wordTwo = new Word();
         wordTwo.setLocale(locale);
         wordTwo.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordTwo.setText("two");
             wordTwo.setPhonetics("tu");
             words.add(wordTwo);
@@ -128,11 +116,7 @@ public class WordListController {
         Word wordThree = new Word();
         wordThree.setLocale(locale);
         wordThree.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordThree.setText("three");
             wordThree.setPhonetics("θri");
             words.add(wordThree);
@@ -150,11 +134,7 @@ public class WordListController {
         Word wordFour = new Word();
         wordFour.setLocale(locale);
         wordFour.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordFour.setText("four");
             wordFour.setPhonetics("fɔr");
             words.add(wordFour);
@@ -171,11 +151,7 @@ public class WordListController {
         Word wordFive = new Word();
         wordFive.setLocale(locale);
         wordFive.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordFive.setText("five");
             wordFive.setPhonetics("fɑɪv");
             words.add(wordFive);
@@ -192,11 +168,7 @@ public class WordListController {
         Word wordSix = new Word();
         wordSix.setLocale(locale);
         wordSix.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordSix.setText("six");
             wordSix.setPhonetics("sɪks");
             words.add(wordSix);
@@ -214,11 +186,7 @@ public class WordListController {
         Word wordSeven = new Word();
         wordSeven.setLocale(locale);
         wordSeven.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordSeven.setText("seven");
             wordSeven.setPhonetics("ˈsɛvən");
             words.add(wordSeven);
@@ -236,11 +204,7 @@ public class WordListController {
         Word wordEight = new Word();
         wordEight.setLocale(locale);
         wordEight.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordEight.setText("eight");
             wordEight.setPhonetics("ɛɪt");
             words.add(wordEight);
@@ -258,11 +222,7 @@ public class WordListController {
         Word wordNine = new Word();
         wordNine.setLocale(locale);
         wordNine.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordNine.setText("nine");
             wordNine.setPhonetics("nɑɪn");
             words.add(wordNine);
@@ -279,11 +239,7 @@ public class WordListController {
         Word wordTen = new Word();
         wordTen.setLocale(locale);
         wordTen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordTen.setText("ten");
             wordTen.setPhonetics("tɛn");
             words.add(wordTen);
@@ -311,11 +267,7 @@ public class WordListController {
         Word wordEleven = new Word();
         wordEleven.setLocale(locale);
         wordEleven.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordEleven.setText("eleven");
             wordEleven.setPhonetics("ɪˈlɛvən");
             words.add(wordEleven);
@@ -328,11 +280,7 @@ public class WordListController {
         Word wordTwelve = new Word();
         wordTwelve.setLocale(locale);
         wordTwelve.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordTwelve.setText("twelve");
             wordTwelve.setPhonetics("twɛlv");
             words.add(wordTwelve);
@@ -345,11 +293,7 @@ public class WordListController {
         Word wordThirteen = new Word();
         wordThirteen.setLocale(locale);
         wordThirteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordThirteen.setText("thirteen");
             wordThirteen.setPhonetics("θɛrtin");
             words.add(wordThirteen);
@@ -362,11 +306,7 @@ public class WordListController {
         Word wordFourteen = new Word();
         wordFourteen.setLocale(locale);
         wordFourteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordFourteen.setText("fourteen");
             wordFourteen.setPhonetics("ˈfɔrˈtin");
             words.add(wordFourteen);
@@ -379,11 +319,7 @@ public class WordListController {
         Word wordFifteen = new Word();
         wordFifteen.setLocale(locale);
         wordFifteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordFifteen.setText("fifteen");
             wordFifteen.setPhonetics("fɪfˈtin");
             words.add(wordFifteen);
@@ -396,11 +332,7 @@ public class WordListController {
         Word wordSixteen = new Word();
         wordSixteen.setLocale(locale);
         wordSixteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordSixteen.setText("sixteen");
             wordSixteen.setPhonetics("sɪkˈstin");
             words.add(wordSixteen);
@@ -413,11 +345,7 @@ public class WordListController {
         Word wordSeventeen = new Word();
         wordSeventeen.setLocale(locale);
         wordSeventeen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordSeventeen.setText("seventeen");
             wordSeventeen.setPhonetics("ˈsɛvənˈtin");
             words.add(wordSeventeen);
@@ -430,11 +358,7 @@ public class WordListController {
         Word wordEighteen = new Word();
         wordEighteen.setLocale(locale);
         wordEighteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordEighteen.setText("eighteen");
             wordEighteen.setPhonetics("ɛɪtin");
             words.add(wordEighteen);
@@ -447,11 +371,7 @@ public class WordListController {
         Word wordNineteen = new Word();
         wordNineteen.setLocale(locale);
         wordNineteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordNineteen.setText("nineteen");
             wordNineteen.setPhonetics("ˈnaɪnˈtin");
             words.add(wordNineteen);
@@ -464,11 +384,7 @@ public class WordListController {
         Word wordTwenty = new Word();
         wordTwenty.setLocale(locale);
         wordTwenty.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             wordTwenty.setText("twenty");
             wordTwenty.setPhonetics("ˈtwɛnti");
             words.add(wordTwenty);
@@ -485,11 +401,7 @@ public class WordListController {
         Word wordTwentyOne = new Word();
         wordTwentyOne.setLocale(locale);
         wordTwentyOne.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.AR) {
-            // TODO: set text
-            // TODO: set phonetics
-//            words.add(word???);
-        } else if (locale == Locale.ES) {
+        if (locale == Locale.ES) {
             wordTwentyOne.setText("veintiuno");
 //            word???.setPhonetics(TODO);
             words.add(wordTwentyOne);

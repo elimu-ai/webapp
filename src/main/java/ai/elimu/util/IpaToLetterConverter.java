@@ -7,9 +7,7 @@ public class IpaToLetterConverter {
     public static String getLetters(String ipaValue, Locale locale) {
         String letter = null;
         
-        if (locale == Locale.AR) {
-            // TODO
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             if ("i".equals(ipaValue)) {
                 return "i";
             } else if ("t".equals(ipaValue)) {

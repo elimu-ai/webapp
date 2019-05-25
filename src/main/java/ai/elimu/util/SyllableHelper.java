@@ -24,9 +24,7 @@ public class SyllableHelper {
     public static List<String> getSyllables(Word word) {
         List<String> syllables = new ArrayList<>();
         
-        if (word.getLocale() == Locale.AR) {
-            // TODO
-        } else if (word.getLocale() == Locale.EN) {
+        if (word.getLocale() == Locale.EN) {
             String hyphenatedWord = getHyphenatedWord(word.getText());
             logger.info("hyphenatedWord: " + hyphenatedWord);
             String[] syllableArray = hyphenatedWord.split("­");

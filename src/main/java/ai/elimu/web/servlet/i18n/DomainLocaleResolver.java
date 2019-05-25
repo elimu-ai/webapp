@@ -32,9 +32,7 @@ public class DomainLocaleResolver extends SessionLocaleResolver {
 
             String serverName = request.getServerName();
             logger.debug("serverName: " + serverName);
-            if (serverName.startsWith("ar.")) {
-                locale = new Locale("ar");
-            } else if (serverName.startsWith("en.")) {
+            if (serverName.startsWith("en.")) {
                 locale = new Locale("en");
             } else if (serverName.startsWith("es.")) {
                 locale = new Locale("es");

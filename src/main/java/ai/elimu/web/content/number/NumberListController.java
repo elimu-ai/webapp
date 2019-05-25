@@ -61,10 +61,7 @@ public class NumberListController {
         number0.setLocale(locale);
         number0.setTimeLastUpdate(Calendar.getInstance());
         number0.setValue(0);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number0.setWords(getNumberWords(locale, "zero"));
         } else if (locale == Locale.ES) {
             number0.setWords(getNumberWords(locale, "cero"));
@@ -77,10 +74,7 @@ public class NumberListController {
         number1.setLocale(locale);
         number1.setTimeLastUpdate(Calendar.getInstance());
         number1.setValue(1);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number1.setWords(getNumberWords(locale, "one"));
         } else if (locale == Locale.ES) {
             number1.setWords(getNumberWords(locale, "uno"));
@@ -93,10 +87,7 @@ public class NumberListController {
         number2.setLocale(locale);
         number2.setTimeLastUpdate(Calendar.getInstance());
         number2.setValue(2);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number2.setWords(getNumberWords(locale, "two"));
         } else if (locale == Locale.ES) {
             number2.setWords(getNumberWords(locale, "dos"));
@@ -109,10 +100,7 @@ public class NumberListController {
         number3.setLocale(locale);
         number3.setTimeLastUpdate(Calendar.getInstance());
         number3.setValue(3);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number3.setWords(getNumberWords(locale, "three"));
         } else if (locale == Locale.ES) {
             number3.setWords(getNumberWords(locale, "tres"));
@@ -125,10 +113,7 @@ public class NumberListController {
         number4.setLocale(locale);
         number4.setTimeLastUpdate(Calendar.getInstance());
         number4.setValue(4);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number4.setWords(getNumberWords(locale, "four"));
         } else if (locale == Locale.ES) {
             number4.setWords(getNumberWords(locale, "cuatro"));
@@ -141,10 +126,7 @@ public class NumberListController {
         number5.setLocale(locale);
         number5.setTimeLastUpdate(Calendar.getInstance());
         number5.setValue(5);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number5.setWords(getNumberWords(locale, "five"));
         } else if (locale == Locale.ES) {
             number5.setWords(getNumberWords(locale, "cinco"));
@@ -157,10 +139,7 @@ public class NumberListController {
         number6.setLocale(locale);
         number6.setTimeLastUpdate(Calendar.getInstance());
         number6.setValue(6);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number6.setWords(getNumberWords(locale, "six"));
         } else if (locale == Locale.ES) {
             number6.setWords(getNumberWords(locale, "seis"));
@@ -173,10 +152,7 @@ public class NumberListController {
         number7.setLocale(locale);
         number7.setTimeLastUpdate(Calendar.getInstance());
         number7.setValue(7);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number7.setWords(getNumberWords(locale, "seven"));
         } else if (locale == Locale.ES) {
             number7.setWords(getNumberWords(locale, "siete"));
@@ -189,10 +165,7 @@ public class NumberListController {
         number8.setLocale(locale);
         number8.setTimeLastUpdate(Calendar.getInstance());
         number8.setValue(8);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number8.setWords(getNumberWords(locale, "eight"));
         } else if (locale == Locale.ES) {
             number8.setWords(getNumberWords(locale, "ocho"));
@@ -205,10 +178,7 @@ public class NumberListController {
         number9.setLocale(locale);
         number9.setTimeLastUpdate(Calendar.getInstance());
         number9.setValue(9);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number9.setWords(getNumberWords(locale, "nine"));
         } else if (locale == Locale.ES) {
             number9.setWords(getNumberWords(locale, "nueve"));
@@ -221,10 +191,7 @@ public class NumberListController {
         number10.setLocale(locale);
         number10.setTimeLastUpdate(Calendar.getInstance());
         number10.setValue(10);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number10.setWords(getNumberWords(locale, "ten"));
         } else if (locale == Locale.ES) {
             number10.setWords(getNumberWords(locale, "diez"));
@@ -237,10 +204,7 @@ public class NumberListController {
         number11.setLocale(locale);
         number11.setTimeLastUpdate(Calendar.getInstance());
         number11.setValue(11);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number11.setWords(getNumberWords(locale, "eleven"));
         } else if (locale == Locale.ES) {
             number11.setWords(getNumberWords(locale, "once"));
@@ -253,10 +217,7 @@ public class NumberListController {
         number12.setLocale(locale);
         number12.setTimeLastUpdate(Calendar.getInstance());
         number12.setValue(12);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number12.setWords(getNumberWords(locale, "twelve"));
         } else if (locale == Locale.ES) {
             number12.setWords(getNumberWords(locale, "doce"));
@@ -269,10 +230,7 @@ public class NumberListController {
         number13.setLocale(locale);
         number13.setTimeLastUpdate(Calendar.getInstance());
         number13.setValue(13);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number13.setWords(getNumberWords(locale, "thirteen"));
         } else if (locale == Locale.ES) {
             number13.setWords(getNumberWords(locale, "trece"));
@@ -285,10 +243,7 @@ public class NumberListController {
         number14.setLocale(locale);
         number14.setTimeLastUpdate(Calendar.getInstance());
         number14.setValue(14);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number14.setWords(getNumberWords(locale, "fourteen"));
         } else if (locale == Locale.ES) {
             number14.setWords(getNumberWords(locale, "catorce"));
@@ -301,10 +256,7 @@ public class NumberListController {
         number15.setLocale(locale);
         number15.setTimeLastUpdate(Calendar.getInstance());
         number15.setValue(15);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number15.setWords(getNumberWords(locale, "fifteen"));
         } else if (locale == Locale.ES) {
             number15.setWords(getNumberWords(locale, "quince"));
@@ -317,10 +269,7 @@ public class NumberListController {
         number16.setLocale(locale);
         number16.setTimeLastUpdate(Calendar.getInstance());
         number16.setValue(16);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number16.setWords(getNumberWords(locale, "sixteen"));
         } else if (locale == Locale.ES) {
             number16.setWords(getNumberWords(locale, "dieciséis"));
@@ -333,10 +282,7 @@ public class NumberListController {
         number17.setLocale(locale);
         number17.setTimeLastUpdate(Calendar.getInstance());
         number17.setValue(17);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number17.setWords(getNumberWords(locale, "seventeen"));
         } else if (locale == Locale.ES) {
             number17.setWords(getNumberWords(locale, "diecisiete"));
@@ -349,10 +295,7 @@ public class NumberListController {
         number18.setLocale(locale);
         number18.setTimeLastUpdate(Calendar.getInstance());
         number18.setValue(18);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number18.setWords(getNumberWords(locale, "eighteen"));
         } else if (locale == Locale.ES) {
             number18.setWords(getNumberWords(locale, "dieciocho"));
@@ -365,10 +308,7 @@ public class NumberListController {
         number19.setLocale(locale);
         number19.setTimeLastUpdate(Calendar.getInstance());
         number19.setValue(19);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number19.setWords(getNumberWords(locale, "nineteen"));
         } else if (locale == Locale.ES) {
             number19.setWords(getNumberWords(locale, "diecinueve"));
@@ -381,10 +321,7 @@ public class NumberListController {
         number20.setLocale(locale);
         number20.setTimeLastUpdate(Calendar.getInstance());
         number20.setValue(20);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number20.setWords(getNumberWords(locale, "twenty"));
         } else if (locale == Locale.ES) {
             number20.setWords(getNumberWords(locale, "veinte"));
@@ -397,10 +334,7 @@ public class NumberListController {
         number21.setLocale(locale);
         number21.setTimeLastUpdate(Calendar.getInstance());
         number21.setValue(21);
-        if (locale == Locale.AR) {
-            // TODO: set symbol
-            // TODO: set number word
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             number21.setWords(getNumberWords(locale, "twenty", "one"));
         } else if (locale == Locale.ES) {
             number21.setWords(getNumberWords(locale, "veintiuno"));

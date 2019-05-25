@@ -56,12 +56,6 @@ public class NumberCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        if (number.getLocale() == Locale.AR) {
-            if (StringUtils.isBlank(number.getSymbol())) {
-                result.rejectValue("symbol", "NotNull");
-            }
-        }
-        
         Number existingNumber = numberDao.readByValue(number.getLocale(), number.getValue());
         if (existingNumber != null) {
             result.rejectValue("value", "NonUnique");
