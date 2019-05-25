@@ -115,7 +115,7 @@
                           <div class="col l3 offset-l1 s12 ">
                             <h5 class="white-text"><fmt:message key="contact.us" /></h5>
                             <p class="grey-text text-lighten-2">
-                                Send us an <a class="white-text" href="mailto:info@elimu.ai"><fmt:message key="email" /></a> 
+                                Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;"><fmt:message key="email" /></a> 
                                 or talk with us directly in our chat room:
                             </p>
                             <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="http://slack.elimu.ai">

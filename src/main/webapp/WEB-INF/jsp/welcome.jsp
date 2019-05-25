@@ -123,7 +123,7 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Free and Open-Source Software</h5>
                 <p>
-                    Our goal is to spread the solution quickly in order to reach as many children as possible, and we believe that using <i>open source software</i> will enable this.
+                    Our goal is to quickly distribute the solution to as many children as possible, and we believe that using <i>open source</i> software will enable this.
                 </p>
                 <p>
                     Anyone is welcome to take the existing code and adapt it to their local needs.
@@ -177,6 +177,38 @@
                   <h5><fmt:message key="spread.the.word" /></h5>
                   
                   <p>Follow us on social media and share our work with your friends (see links below).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+                  
+    <div class="divider" style="margin-bottom: 3em;"></div>    
+        <div class="section">
+            <div class="row">
+                <div class="col s12 offset-m3 m6 center">
+                    <h4>Sign up for updates</h4>
+                    
+                    <form action="https://elimu.us12.list-manage.com/subscribe/post?u=1a69583fdeec7d1888db043c0&amp;id=97b79a9d90" method="post" target="_blank">
+                        <div class="input-field col s12">
+                            <label for="email" class=""><fmt:message key='email' /></label>
+                            <input id="email" name="EMAIL" type="email" value="">
+                        </div>
+                        <button id="emailButton" class="btn deep-purple waves-effect waves-light disabled" type="submit">
+                            <fmt:message key="subscribe" /> <i class="material-icons right">send</i>
+                        </button>
+                        <script>
+                            $(function() {
+                                $('#email').on('keyup', function() {
+                                    console.log('#email keyup');
+                                    var email = $(this).val();
+                                    console.log('email: "' + email + '"');
+                                    if (email.length > 0) {
+                                        $('#emailButton').removeClass("disabled");
+                                    }
+                                });
+                            });
+                        </script>
+                    </form>
                 </div>
             </div>
         </div>
