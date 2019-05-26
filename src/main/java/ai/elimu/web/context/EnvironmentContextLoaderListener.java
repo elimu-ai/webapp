@@ -111,6 +111,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
                 
                 if (env == Environment.PROD) {
+                    String googleAnalyticsIdentifier = (String) servletContext.getAttribute("google_analytics_identifier");
+                    PROPERTIES.put("google.analytics.identifier", googleAnalyticsIdentifier);
+                    
                     String slackApiToken = (String) servletContext.getAttribute("slack_api_token");
                     PROPERTIES.put("slack.api.token", slackApiToken);
                 }
