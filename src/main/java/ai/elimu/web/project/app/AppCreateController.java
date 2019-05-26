@@ -16,7 +16,6 @@ import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.Contributor;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.model.project.AppCategory;
@@ -25,9 +24,6 @@ import ai.elimu.model.project.Project;
 import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.Mailer;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import java.util.List;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
@@ -245,23 +241,6 @@ public class AppCreateController {
             // Refresh REST API cache
 //            projectJsonService.refreshApplicationsInAppCollection(appCollection);
             projectJsonService.refreshApplicationsInAppCollection();
-            
-            // Post upload notification in Slack
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                String applicationDescription = !isUpdateOfExistingApplication ? "Application" : "APK version";
-                String text = URLEncoder.encode(
-                        contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new " + applicationDescription + ":\n" + 
-                        "• Project: \"" + project.getName() + "\"\n" +
-                        "• App Category: \"" + appCategory.getName() + "\"\n" +
-                        "• AppGroup: #" + appGroup.getId() + "\n" +
-                        "• Package name: \"" + application.getPackageName() + "\"\n" + 
-                        "• Version code: " + applicationVersion.getVersionCode() + "\n" +
-                        "• Version name: \"" + applicationVersion.getVersionName()+ "\"\n" +
-                        "• APK status: \"" + applicationVersion.getApplicationVersionStatus() + "\"\n" +
-                        "Once the APK has been reviewed and approved, it will become available for download via the Appstore.\n" +
-                        "See ") + "http://elimu.ai/project/" + project.getId() + "/app-category/" + appCategory.getId() + "/app-group/" + appGroup.getId() + "/app/" + application.getId() + "/edit";
-                SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
-            }
             
             // Send notification e-mail to admin with a reminder to review the APK
             String to = "elimu.ai <info@elimu.ai>";

@@ -6,13 +6,9 @@ import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.util.Mailer;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -93,22 +89,6 @@ public class ApkReviewController {
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
                 applicationDao.update(application);
             }
-        }
-        
-        // Post review result in Slack
-        if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-            String text = URLEncoder.encode(
-                    applicationVersion.getContributor().getFirstName() + ", your APK upload has been reviewed:\n" + 
-                    "• Project: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getName() + "\"\n" +
-                    "• App Category: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getName() + "\"\n" +
-                    "• AppGroup: #" + applicationVersion.getApplication().getAppGroup().getId() + "\n" +
-                    "• Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"\n" + 
-                    "• Version code: " + applicationVersion.getVersionCode() + "\n" +
-                    "• Version name: \"" + applicationVersion.getVersionName()+ "\"\n" +
-                    "• New APK status: " + applicationVersion.getApplicationVersionStatus() + "\n" +
-                    "• Comment: \"" + (StringUtils.isBlank(comment) ? "" : comment) + "\"\n" +
-                    "See ") + "http://elimu.ai/project/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getId() + "/app-category/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getId() + "/app-group/" + applicationVersion.getApplication().getAppGroup().getId() + "/app/" + applicationVersion.getApplication().getId() + "/edit";
-            SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
         }
         
         // Send review result via e-mail

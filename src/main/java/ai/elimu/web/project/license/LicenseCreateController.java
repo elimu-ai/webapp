@@ -9,15 +9,11 @@ import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.logic.project.LicenseGenerator;
 import ai.elimu.model.Contributor;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
 import ai.elimu.util.Mailer;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +73,7 @@ public class LicenseCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        // Needed by breadcrumbs and Slack post
+        // Needed by breadcrumbs
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
         
@@ -102,21 +98,6 @@ public class LicenseCreateController {
             // Send license information via e-mail
             Contributor contributor = (Contributor) session.getAttribute("contributor");
             sendLicenseInEmail(license, contributor);
-
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                // Notify project members in Slack
-                String text = URLEncoder.encode(
-                    contributor.getFirstName() + " just added a new License:\n" +
-                    "• Project: \"" + project.getName() + "\"\n" +
-                    "• App Collection: \"" + appCollection.getName() + "\"\n" +
-                    "• E-mail: \"" + license.getLicenseEmail() + "\"\n" +
-                    "• Number: \"" + license.getLicenseNumber() + "\"\n" +
-                    "• First name: \"" + license.getFirstName() + "\"\n" +
-                    "• Last name: \"" + license.getLastName() + "\"\n" +
-                    (StringUtils.isBlank(license.getOrganization()) ? "" : "• Organization: \"" + license.getOrganization() + "\"\n") +
-                    "See ") + "http://elimu.ai/project/" + project.getId() + "/app-collection/edit/" + appCollection.getId();
-                SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
-            }
             
             return "redirect:/project/" + project.getId() + "/app-collection/edit/" + appCollection.getId();
         }
