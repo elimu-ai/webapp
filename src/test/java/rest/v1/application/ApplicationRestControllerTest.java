@@ -26,7 +26,6 @@ public class ApplicationRestControllerTest {
     public void testList_success() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/application/list" +
                 "?deviceId=abcdef123456" + 
-                "&checksum=c0e08c173958ce4f1624068b131e3c59" + 
                 "&locale=" + Locale.EN + 
                 "&deviceModel=Google+Pixel+C" + 
                 "&osVersion=" + VersionRestController.MINIMUM_OS_VERSION + 

@@ -27,7 +27,6 @@ URL: /application/list
 
 Arguments:
   * deviceId String
-  * checksum String
   * locale ai.elimu.model.enums.Locale
   * deviceModel String
   * osVersion Integer
@@ -39,7 +38,6 @@ Example request:
 HTTP GET
 /application/list
                 ?deviceId=abcdef123456
-                &checksum=c0e08c173958ce4f1624068b131e3c59
                 &locale=EN
                 &deviceModel=Google+Pixel+C
                 &osVersion=21

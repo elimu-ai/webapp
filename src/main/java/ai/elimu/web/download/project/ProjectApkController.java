@@ -43,7 +43,6 @@ public class ProjectApkController {
             @PathVariable Integer versionCode,
             
             @RequestParam String deviceId,
-            @RequestParam String checksum,
             @RequestParam Locale locale,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
@@ -63,8 +62,6 @@ public class ProjectApkController {
         logger.info("versionCode: " + versionCode);
         logger.info("request.getQueryString(): " + request.getQueryString());
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
-        
-        // TODO: validate checksum
         
         // See JsonService#addInfrastructureApps
         boolean isInfrastructureApp = 

@@ -38,7 +38,6 @@ public class ApkController {
             @PathVariable Integer versionCode,
             
             @RequestParam String deviceId,
-            @RequestParam String checksum,
             @RequestParam Locale locale,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
@@ -53,8 +52,6 @@ public class ApkController {
         logger.info("versionCode: " + versionCode);
         logger.info("request.getQueryString(): " + request.getQueryString());
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
-        
-        // TODO: validate checksum
         
         Application application = applicationDao.readByPackageName(locale, packageName);
         logger.info("application: " + application);

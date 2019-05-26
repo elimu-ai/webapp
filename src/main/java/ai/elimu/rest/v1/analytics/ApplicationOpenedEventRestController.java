@@ -36,7 +36,6 @@ public class ApplicationOpenedEventRestController {
     @RequestMapping("/create")
     public String create(
             HttpServletRequest request,
-            // TODO: checksum,
             @RequestParam MultipartFile multipartFile
     ) {
         logger.info("create");

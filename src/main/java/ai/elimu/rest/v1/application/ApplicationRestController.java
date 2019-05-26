@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.model.enums.Locale;
-import ai.elimu.rest.v1.ChecksumHelper;
 import ai.elimu.rest.service.JsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -26,7 +25,6 @@ public class ApplicationRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam String checksum,
             @RequestParam Locale locale,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
@@ -39,19 +37,11 @@ public class ApplicationRestController {
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
         JSONObject jsonObject = new JSONObject();
-        
-        if (!checksum.equals(ChecksumHelper.getChecksum(deviceId))) {
-            jsonObject.put("result", "error");
-            jsonObject.put("description", "Incorrect checksum: " + checksum);
-            return jsonObject.toString();
-        } else {        
-            JSONArray applications = jsonService.getApplications(locale);
+        jsonObject.put("result", "success");
+        JSONArray applications = jsonService.getApplications(locale);
+        jsonObject.put("applications", applications);
 
-            jsonObject.put("result", "success");
-            jsonObject.put("applications", applications);
-
-            logger.info("jsonObject: " + jsonObject);
-            return jsonObject.toString();
-        }
+        logger.info("jsonObject: " + jsonObject);
+        return jsonObject.toString();
     }
 }

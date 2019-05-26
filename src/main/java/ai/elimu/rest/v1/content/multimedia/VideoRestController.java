@@ -29,7 +29,6 @@ public class VideoRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            // TODO: checksum,
             @RequestParam Locale locale
     ) {
         logger.info("list");

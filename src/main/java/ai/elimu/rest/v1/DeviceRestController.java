@@ -29,7 +29,6 @@ public class DeviceRestController {
     public String create(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            // TODO: checksum
             @RequestParam String deviceManufacturer,
             @RequestParam String deviceModel,
             @RequestParam String deviceSerial,
