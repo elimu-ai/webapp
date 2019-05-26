@@ -16,7 +16,6 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.rest.service.JsonService;
-import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
@@ -40,9 +39,6 @@ public class ApplicationVersionCreateController {
     
     @Autowired
     private JsonService jsonService;
-    
-    @Autowired
-    private ProjectJsonService projectJsonService;
     
     @Autowired
     private ApplicationDao applicationDao;
@@ -163,9 +159,6 @@ public class ApplicationVersionCreateController {
             
             // Refresh REST API cache
             jsonService.refreshApplications(application.getLocale());
-            if (application.isInfrastructural()) {
-                projectJsonService.refreshApplicationsInAppCollection();
-            }
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
         }

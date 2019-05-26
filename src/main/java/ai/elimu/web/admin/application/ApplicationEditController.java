@@ -12,7 +12,6 @@ import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.rest.service.JsonService;
-import ai.elimu.rest.service.project.ProjectJsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +28,6 @@ public class ApplicationEditController {
     
     @Autowired
     private JsonService jsonService;
-    
-    @Autowired
-    private ProjectJsonService projectJsonService;
     
     @Autowired
     private ApplicationDao applicationDao;
@@ -86,9 +82,6 @@ public class ApplicationEditController {
             
             // Refresh REST API cache
             jsonService.refreshApplications(application.getLocale());
-            if (application.isInfrastructural()) {
-                projectJsonService.refreshApplicationsInAppCollection();
-            }
             
             return "redirect:/admin/application/list";
         }
