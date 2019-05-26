@@ -73,7 +73,7 @@ public class LicenseCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        // Needed by breadcrumbs and Slack post
+        // Needed by breadcrumbs
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
         
