@@ -8,7 +8,6 @@ import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
-import ai.elimu.util.Mailer;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -90,28 +89,6 @@ public class ApkReviewController {
                 applicationDao.update(application);
             }
         }
-        
-        // Send review result via e-mail
-        String to = applicationVersion.getContributor().getEmail();
-        String from = "elimu.ai <info@elimu.ai>";
-        String subject = "[" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getName() + "] Your APK upload has been reviewed";
-        String title = "APK review complete";
-        String firstName = StringUtils.isBlank(applicationVersion.getContributor().getFirstName()) ? "" : applicationVersion.getContributor().getFirstName();
-        String htmlText = "<p>Hi, " + firstName + "</p>";
-        htmlText += "<p>Your APK upload has been reviewed:</p>";
-        htmlText += "<ul>";
-            htmlText += "<li>Project: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getName() + "\"</li>";
-            htmlText += "<li>App Category: \"" + applicationVersion.getApplication().getAppGroup().getAppCategory().getName() + "\"</li>";
-            htmlText += "<li>AppGroup: #" + applicationVersion.getApplication().getAppGroup().getId() + "</li>";
-            htmlText += "<li>Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"</li>";
-            htmlText += "<li>Version code: " + applicationVersion.getVersionCode() + "</li>";
-            htmlText += "<li>Version name: \"" + applicationVersion.getVersionName()+ "\"</li>";
-            htmlText += "<li>New APK status: " + applicationVersion.getApplicationVersionStatus() + "</li>";
-            htmlText += "<li>Comment: \"" + (StringUtils.isBlank(comment) ? "" : comment) + "\"</li>";
-        htmlText += "</ul>";
-        htmlText += "<h2>Application</h2>";
-        htmlText += "<p>See http://elimu.ai/project/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getProject().getId() + "/app-category/" + applicationVersion.getApplication().getAppGroup().getAppCategory().getId() + "/app-group/" + applicationVersion.getApplication().getAppGroup().getId() + "/app/" + applicationVersion.getApplication().getId() + "/edit</p>";
-        Mailer.sendHtml(to, null, from, subject, title, htmlText);
         
         return "redirect:/admin/project/apk-reviews";
     }

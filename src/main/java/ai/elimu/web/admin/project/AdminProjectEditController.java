@@ -7,13 +7,9 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.Contributor;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Role;
 import ai.elimu.model.project.Project;
-import ai.elimu.util.Mailer;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,21 +88,6 @@ public class AdminProjectEditController {
                         // Update role so that the contributor can access the /project page
                         manager.getRoles().add(Role.PROJECT_MANAGER);
                         contributorDao.update(manager);
-
-                        // Send inviation e-mail
-                        String to = manager.getEmail();
-                        String from = "elimu.ai <info@elimu.ai>";
-                        String subject = "You have been added as a manager";
-                        String title = project.getName();
-                        String firstName = StringUtils.isBlank(manager.getFirstName()) ? "" : manager.getFirstName();
-                        String htmlText = "<p>Hi, " + firstName + "</p>";
-                        htmlText += "<p>" + contributor.getFirstName() + " has added you as a manager of the \"" + project.getName() + "\" project.</p>";
-                        htmlText += "<p>To create a new app collection, click the button below:</p>";
-                        String buttonUrl = "http://elimu.ai/project";
-                        if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-                            buttonUrl = "http://test.elimu.ai/project";
-                        }
-                        Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open project", buttonUrl);
                     }
                 }
             }

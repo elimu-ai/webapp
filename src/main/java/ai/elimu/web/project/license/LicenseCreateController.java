@@ -9,13 +9,10 @@ import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.logic.project.LicenseGenerator;
 import ai.elimu.model.Contributor;
-import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
-import ai.elimu.util.Mailer;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,68 +94,9 @@ public class LicenseCreateController {
             
             // Send license information via e-mail
             Contributor contributor = (Contributor) session.getAttribute("contributor");
-            sendLicenseInEmail(license, contributor);
+//            sendLicenseInEmail(license, contributor);
             
             return "redirect:/project/" + project.getId() + "/app-collection/edit/" + appCollection.getId();
         }
-    }
-    
-    /**
-     * Sends an e-mail with the License details necessary to be able to use the Appstore application for downloading 
-     * an AppCollection.
-     * 
-     * @param license The License to send in the e-mail
-     * @param contributor The project manager who generated the License
-     */
-    private void sendLicenseInEmail(License license, Contributor projectManager) {
-        logger.info("sendLicenseInEmail");
-        
-        AppCollection appCollection = license.getAppCollection();
-        
-        String to = license.getLicenseEmail();
-        String from = "elimu.ai <info@elimu.ai>";
-        String subject = "License number - " + appCollection.getName();
-        String title = "Your license is ready!";
-        String firstName = license.getFirstName();
-        
-        String htmlText = "<p>Hi, " + firstName + "</p>";
-        htmlText += "<p>We have prepared a license number for you so that you can download and use our software.</p>";
-        
-        htmlText += "<h2>License Details</h2>";
-        htmlText += "<p>";
-            htmlText += "E-mail: " + license.getLicenseEmail() + "<br />";
-            htmlText += "Number: " + license.getLicenseNumber() + "<br />";
-        htmlText += "</p>";
-        htmlText += "<p>";
-            htmlText += "First name: " + license.getFirstName() + "<br />";
-            htmlText += "Last name: " + license.getLastName() + "<br />";
-        if (!StringUtils.isBlank(license.getOrganization())) {
-            htmlText += "Organization: " + license.getOrganization() + "<br />";
-        }
-        htmlText += "</p>";
-        
-        htmlText += "<h2>App Collection - " + appCollection.getName() + "</h2>";
-        htmlText += "<p>This license is valid for the app collection \"" + appCollection.getName() + "\", which "
-                + "contains the following app categories:</p>";
-        htmlText += "<ul>";
-        for (AppCategory appCategory : appCollection.getAppCategories()) {
-            htmlText += "<li>" + appCategory.getName() + "</li>";
-        }
-        htmlText += "</ul>";
-        
-        htmlText += "<h2>How to Start?</h2>";
-        htmlText += "<ol>";
-            htmlText += "<li>Install our Appstore application</li>";
-            htmlText += "<li>Open Appstore and type your e-mail + license number</li>";
-            htmlText += "<li>Download apps</li>";
-        htmlText += "</ol>";
-        
-        htmlText += "<h2>Download Appstore</h2>";
-        htmlText += "<p>At https://github.com/elimu-ai/appstore/releases you can download the latest version of our Appstore "
-                + "application which helps you download the entire collection of educational Android apps.</p>";
-        htmlText += "<p>Make sure you download the file named \"ai.elimu.appstore<b>_custom</b>-&lt;version&gt;.apk\". "
-                + "Start by clicking the button below:</p>";
-        
-        Mailer.sendHtmlWithButton(to, projectManager.getEmail(), from, subject, title, htmlText, "Download APK", "https://github.com/elimu-ai/appstore/releases");
     }
 }
