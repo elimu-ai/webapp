@@ -23,7 +23,6 @@ import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
 import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
-import ai.elimu.util.Mailer;
 import java.util.List;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
@@ -241,25 +240,6 @@ public class AppCreateController {
             // Refresh REST API cache
 //            projectJsonService.refreshApplicationsInAppCollection(appCollection);
             projectJsonService.refreshApplicationsInAppCollection();
-            
-            // Send notification e-mail to admin with a reminder to review the APK
-            String to = "elimu.ai <info@elimu.ai>";
-            String from = "elimu.ai <info@elimu.ai>";
-            String subject = "[" + project.getName() + "] A new APK version has been uploaded";
-            String title = application.getPackageName() + " (" + applicationVersion.getVersionCode() + ")";
-            String htmlText = "<p>" + contributor.getFirstName() + " (" + contributor.getEmail() + ") just uploaded a new APK version:</p>";
-            htmlText += "<ul>";
-                htmlText += "<li>Project: \"" + project.getName() + "\"</li>";
-                htmlText += "<li>App Category: \"" + appCategory.getName() + "\"</li>";
-                htmlText += "<li>AppGroup: #" + appGroup.getId() + "</li>";
-                htmlText += "<li>Package name: \"" + application.getPackageName() + "\"</li>";
-                htmlText += "<li>Version code: " + applicationVersion.getVersionCode() + "</li>";
-                htmlText += "<li>Version name: \"" + applicationVersion.getVersionName()+ "\"</li>";
-                htmlText += "<li>APK status: " + applicationVersion.getApplicationVersionStatus() + "</li>";
-            htmlText += "</ul>";
-            htmlText += "<h2>APK Review</h2>";
-            htmlText += "<p>To review the APK, go to http://elimu.ai/admin/project/apk-reviews</p>";
-            Mailer.sendHtml(to, null, from, subject, title, htmlText);
             
             if (!isUpdateOfExistingApplication) {
                 return "redirect:/project/{projectId}/app-category/{appCategoryId}/app-group/{appGroupId}/app/list#" + application.getId();

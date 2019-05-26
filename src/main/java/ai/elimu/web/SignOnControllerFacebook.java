@@ -170,11 +170,11 @@ public class SignOnControllerFacebook {
                 htmlText += "<h2>Purpose</h2>";
                 htmlText += "<p>The purpose of elimu.ai is to provide <i>every child</i> with access to quality basic education.</p>";
                 htmlText += "<h2>Why?</h2>";
-                htmlText += "<p>The word \"elimu\" is Swahili for \"education\". We believe that a free quality education is the right of every child no matter her social or geographical background.</p>";
+                htmlText += "<p>The word \"elimu\" is Swahili for \"education\". We believe that a quality basic education is the right of every child no matter her social or geographical background.</p>";
                 htmlText += "<h2>How?</h2>";
                 htmlText += "<p>With your help, this is what we aim to achieve:</p>";
-                htmlText += "<p><blockquote>\"We build tablet-based software that teaches a child to read, write and calculate fully autonomously, without guidance from qualified teachers.\"</blockquote></p>";
-                htmlText += "<p><img src=\"http://elimu.ai/static/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
+                htmlText += "<p><blockquote>\"The elimu.ai Foundation develops open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
+                htmlText += "<p><img src=\"https://gallery.mailchimp.com/1a69583fdeec7d1888db043c0/images/72b31d67-58fd-443e-a6be-3ef2095cfe3b.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
                 htmlText += "<p>At http://slack.elimu.ai you can chat with the other community members.</p>";
                 Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "http://slack.elimu.ai");

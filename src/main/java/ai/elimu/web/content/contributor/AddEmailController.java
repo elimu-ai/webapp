@@ -77,14 +77,17 @@ public class AddEmailController {
             String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
             String htmlText = "<p>Hi, " + firstName + "</p>";
             htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai community. We are glad to see you join us!</p>";
+            htmlText += "<h2>Purpose</h2>";
+            htmlText += "<p>The purpose of elimu.ai is to provide <i>every child</i> with access to quality basic education.</p>";
+            htmlText += "<h2>Why?</h2>";
+            htmlText += "<p>The word \"elimu\" is Swahili for \"education\". We believe that a quality basic education is the right of every child no matter her social or geographical background.</p>";
+            htmlText += "<h2>How?</h2>";
             htmlText += "<p>With your help, this is what we aim to achieve:</p>";
-            htmlText += "<p><blockquote>\"The mission of the elimu.ai project is to build software that will enable children without access to school to learn how to read and write <i>on their own</i>.\"</blockquote></p>";
-            htmlText += "<p><img src=\"http://elimu.ai/static/img/banner-en.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
+            htmlText += "<p><blockquote>\"The elimu.ai Foundation develops open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
+            htmlText += "<p><img src=\"https://gallery.mailchimp.com/1a69583fdeec7d1888db043c0/images/72b31d67-58fd-443e-a6be-3ef2095cfe3b.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
             htmlText += "<h2>Chat</h2>";
             htmlText += "<p>At http://slack.elimu.ai you can chat with the other community members.</p>";
-            htmlText += "<h2>Feedback</h2>";
-            htmlText += "<p>If you have any questions or suggestions, please contact us by replying to this e-mail or messaging us in the Slack chat room.</p>";
-            Mailer.sendHtml(to, null, from, subject, title, htmlText);
+            Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "http://slack.elimu.ai");
         }
     	
         return "redirect:/content";
