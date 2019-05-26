@@ -5,16 +5,10 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.admin.Application;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,19 +60,6 @@ public class ApplicationCreateController {
             return "admin/application/create";
         } else {
             applicationDao.create(application);
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                 Contributor contributor = (Contributor) session.getAttribute("contributor");
-                 String text = URLEncoder.encode(
-                         contributor.getFirstName() + " just added a new Application:\n" + 
-                         "• Language: " + application.getLocale().getLanguage() + "\n" + 
-                         "• Package name: \"" + application.getPackageName() + "\"\n" + 
-                         "• Literacy skills: " + application.getLiteracySkills() + "\n" + 
-                         "• Numeracy skills: " + application.getNumeracySkills());
-                 String iconUrl = contributor.getImageUrl();
-                 SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.DEVELOPMENT), text, iconUrl, null);
-             }
-            
             return "redirect:/admin/application/list";
         }
     }

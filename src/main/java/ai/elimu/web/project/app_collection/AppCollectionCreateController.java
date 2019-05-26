@@ -6,14 +6,9 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.project.AppCollectionDao;
 import ai.elimu.dao.project.ProjectDao;
-import ai.elimu.model.Contributor;
-import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.Project;
 import ai.elimu.rest.service.project.ProjectJsonService;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,17 +80,6 @@ public class AppCollectionCreateController {
             // Refresh REST API cache
 //            projectJsonService.refreshApplicationsInAppCollection(appCollection);
             projectJsonService.refreshApplicationsInAppCollection();
-
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                // Notify project members in Slack
-                Contributor contributor = (Contributor) session.getAttribute("contributor");
-                String text = URLEncoder.encode(
-                    contributor.getFirstName() + " just added a new App Collection:\n" +
-                    "• Project: \"" + appCollection.getProject().getName() + "\"\n" +
-                    "• App Collection: \"" + appCollection.getName() + "\"\n" +
-                    "See ") + "http://elimu.ai/project/" + appCollection.getProject().getId();
-                SlackApiHelper.postMessage("G6UR7UH2S", text, null, null);
-            }
             
             return "redirect:/project/" + appCollection.getProject().getId();
         }

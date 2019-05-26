@@ -20,14 +20,9 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -153,17 +148,6 @@ public class AudioEditController {
             audioDao.update(audio);
             
             // TODO: store RevisionEvent
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                 String text = URLEncoder.encode(
-                     contributor.getFirstName() + " just edited an Audio:\n" + 
-                     "• Language: \"" + audio.getLocale().getLanguage() + "\"\n" + 
-                     "• Transcription: \"" + audio.getTranscription() + "\"\n" + 
-                     "• Revision number: #" + audio.getRevisionNumber() + "\n" + 
-                     "See ") + "http://elimu.ai/content/multimedia/audio/edit/" + audio.getId();
-                 String iconUrl = contributor.getImageUrl();
-                 SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.CONTENT_CREATION), text, iconUrl, null);
-            }
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

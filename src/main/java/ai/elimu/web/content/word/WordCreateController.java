@@ -19,13 +19,8 @@ import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.WordRevisionEvent;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -139,19 +134,6 @@ public class WordCreateController {
             Syllable syllable = syllableDao.readByText(contributor.getLocale(), word.getText());
             if (syllable != null) {
                 syllableDao.delete(syllable);
-            }
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                 String text = URLEncoder.encode(
-                     contributor.getFirstName() + " just added a new Word:\n" +
-                     "• Language: \"" + word.getLocale().getLanguage() + "\"\n" +
-                     "• Text: \"" + word.getText() + "\"\n" +
-                     "• Phonetics (IPA): /" + word.getPhonetics() + "/\n" +
-                     "• Word type: " + word.getWordType() + "\n" +
-                     "• Spelling consistency: " + word.getSpellingConsistency() + "\n" +
-                     "See ") + "http://elimu.ai/content/word/edit/" + word.getId();
-                 String iconUrl = contributor.getImageUrl();
-                 SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.CONTENT_CREATION), text, iconUrl, null);
             }
             
             return "redirect:/content/word/list#" + word.getId();

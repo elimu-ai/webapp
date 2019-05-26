@@ -13,16 +13,11 @@ import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.Contributor;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Team;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.rest.service.JsonService;
 import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
-import ai.elimu.util.SlackApiHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.net.URLEncoder;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,17 +165,6 @@ public class ApplicationVersionCreateController {
             jsonService.refreshApplications(application.getLocale());
             if (application.isInfrastructural()) {
                 projectJsonService.refreshApplicationsInAppCollection();
-            }
-            
-            if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-                 String text = URLEncoder.encode(
-                         contributor.getFirstName() + " just uploaded a new APK version:\n" + 
-                         "• Language: " + applicationVersion.getApplication().getLocale().getLanguage() + "\n" + 
-                         "• Package name: \"" + applicationVersion.getApplication().getPackageName() + "\"\n" + 
-                         "• Version: " + applicationVersion.getVersionCode() + "\n" +
-                         "• Start command: " + applicationVersion.getStartCommand());
-                 String iconUrl = contributor.getImageUrl();
-                 SlackApiHelper.postMessage(SlackApiHelper.getChannelId(Team.DEVELOPMENT), text, iconUrl, null);
             }
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
