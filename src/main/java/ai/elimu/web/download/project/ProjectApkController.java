@@ -37,11 +37,7 @@ public class ProjectApkController {
             @PathVariable String packageName,
             @PathVariable Integer versionCode,
             
-            @RequestParam String deviceId,
             @RequestParam Locale locale,
-            @RequestParam String deviceModel,
-            @RequestParam Integer osVersion,
-            @RequestParam Integer appVersionCode,
             
             // Custom Project
             @RequestParam Long applicationId,

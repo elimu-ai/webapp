@@ -37,11 +37,7 @@ public class ApkController {
             @PathVariable String packageName,
             @PathVariable Integer versionCode,
             
-            @RequestParam String deviceId,
             @RequestParam Locale locale,
-            @RequestParam String deviceModel,
-            @RequestParam Integer osVersion,
-            @RequestParam Integer appVersionCode,
             
             HttpServletRequest request,
             HttpServletResponse response,

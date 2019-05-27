@@ -127,7 +127,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk?deviceId=&locale=${application.locale}&deviceModel=&osVersion=&appVersionCode=' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
+                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk?locale=${application.locale}' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
                                             <i class="material-icons">cloud_download</i>
                                         </a>
                                     </td>
