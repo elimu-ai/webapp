@@ -4,9 +4,6 @@
 2. [Analytics](#analytics)
 3. [Application](#application)
 4. [Content](#content)
-5. [Custom Project](#custom-project)
-   * [License](#license)
-   * [AppCollection](#appcollection)
 
 
 ## API Endpoint
@@ -88,58 +85,3 @@ Example response:
 ## Content
 
 TODO
-
-
-## Custom Project
-
-### License
-
-#### Read
-
-URL: `/project/licenses`
-
-Arguments:  
-  * licenseEmail: String 
-  * licenseNumber: String
-
-Example request:
-```
-HTTP GET
-/project/licenses?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
-```
-
-Example response:
-```json
-{
-    "result": "success",
-    "appCollectionId": 12
-}
-```
-
-### AppCollection
-
-#### Read Applications
-
-URL: `/project/app-collections/{appCollectionId}/applications`
-
-Arguments:  
-  * licenseEmail: String 
-  * licenseNumber: String
-
-Example request:
-```
-HTTP GET
-/project/app-collections/12/applications?licenseEmail=info@elimu.ai&licenseNumber=bddf-d8f4-2adf-a365
-```
-
-Example response:
-```json
-{
-    "result": "success",
-    "applications": [
-        { ... },
-        { ... },
-        { ... }
-    ]
-}
-```

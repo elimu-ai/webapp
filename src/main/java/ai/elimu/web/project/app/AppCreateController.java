@@ -21,7 +21,6 @@ import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
-import ai.elimu.rest.service.project.ProjectJsonService;
 import ai.elimu.util.ChecksumHelper;
 import java.util.List;
 import net.dongliu.apk.parser.ByteArrayApkFile;
@@ -47,9 +46,6 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 public class AppCreateController {
     
     private final Logger logger = Logger.getLogger(getClass());
-    
-    @Autowired
-    private ProjectJsonService projectJsonService;
     
     @Autowired
     private ProjectDao projectDao;
@@ -236,10 +232,6 @@ public class AppCreateController {
                 // Create new ApplicationVersion for the existing Application
                 applicationVersionDao.create(applicationVersion);
             }
-            
-            // Refresh REST API cache
-//            projectJsonService.refreshApplicationsInAppCollection(appCollection);
-            projectJsonService.refreshApplicationsInAppCollection();
             
             if (!isUpdateOfExistingApplication) {
                 return "redirect:/project/{projectId}/app-category/{appCategoryId}/app-group/{appGroupId}/app/list#" + application.getId();

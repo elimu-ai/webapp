@@ -10,7 +10,6 @@ import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
-import ai.elimu.rest.service.project.ProjectJsonService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,9 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AppCollectionEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
-    
-    @Autowired
-    private ProjectJsonService projectJsonService;
     
     @Autowired
     private ProjectDao projectDao;
@@ -90,10 +86,6 @@ public class AppCollectionEditController {
             return "project/app-collection/edit";
         } else {
             appCollectionDao.update(appCollection);
-            
-            // Refresh REST API cache
-//            projectJsonService.refreshApplicationsInAppCollection(appCollection);
-            projectJsonService.refreshApplicationsInAppCollection();
             
             return "redirect:/project/" + project.getId();
         }
