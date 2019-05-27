@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.Locale;
-import ai.elimu.model.project.License;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,9 +32,6 @@ public class ProjectApkController {
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
     
-    @Autowired
-    private LicenseDao licenseDao;
-    
     @RequestMapping(value="/{packageName}-{versionCode}.apk", method = RequestMethod.GET)
     public void handleRequest(
             @PathVariable String packageName,
@@ -49,8 +44,6 @@ public class ProjectApkController {
             @RequestParam Integer appVersionCode,
             
             // Custom Project
-            @RequestParam String licenseEmail,
-            @RequestParam String licenseNumber,
             @RequestParam Long applicationId,
             
             HttpServletRequest request,
@@ -75,11 +68,7 @@ public class ProjectApkController {
             application = applicationDao.readByPackageName(locale, packageName);
         } else {
             // Custom Project
-            License license = licenseDao.read(licenseEmail, licenseNumber);
-            if (license != null) {
-                // TODO: fetch Application based on License instead of additional applicationId parameter
-                application = applicationDao.read(applicationId);
-            }
+            application = applicationDao.read(applicationId);
         }
         logger.info("application: " + application);
         

@@ -108,6 +108,7 @@
                             <th><fmt:message key="status" /></th>
                             <th><fmt:message key="time.uploaded" /></th>
                             <th><fmt:message key="contributor" /></th>
+                            <th><i class="material-icons">cloud_download</i></th>
                         </thead>
                         <tbody>
                             <c:forEach var="applicationVersion" items="${applicationVersions}">
@@ -124,6 +125,11 @@
                                             <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
                                             <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
                                         </div>
+                                    </td>
+                                    <td>
+                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk?deviceId=&locale=${application.locale}&deviceModel=&osVersion=&appVersionCode=' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
+                                            <i class="material-icons">cloud_download</i>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>
