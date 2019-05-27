@@ -13,7 +13,6 @@ import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
-import ai.elimu.rest.service.project.ProjectJsonService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -30,9 +29,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AppEditController {
     
     private final Logger logger = Logger.getLogger(getClass());
-    
-    @Autowired
-    private ProjectJsonService projectJsonService;
     
     @Autowired
     private ProjectDao projectDao;
@@ -120,10 +116,6 @@ public class AppEditController {
                 for (ApplicationVersion applicationVersion : applicationVersions) {
                     applicationVersionDao.delete(applicationVersion);
                 }
-                
-                // Refresh REST API cache
-//                projectJsonService.refreshApplicationsInAppCollection(appCollection);
-                projectJsonService.refreshApplicationsInAppCollection();
             }
             
             return "redirect:/project/" + projectId + "/app-category/" + appCategoryId + "/app-group/" + appGroupId + "/app/list";
