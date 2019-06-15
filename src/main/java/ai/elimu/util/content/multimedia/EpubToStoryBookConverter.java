@@ -42,7 +42,11 @@ public class EpubToStoryBookConverter {
         }
         
         // Iterate chapters in the Table of Contents (TOC) file and extract images and paragraphs
-        // TODO
+        for (File unzippedFile : unzippedFiles) {
+            if ("toc.xhtml".equals(unzippedFile.getName())) {
+                extractChaptersFromTOC(unzippedFile, storyBook);
+            }
+        }
         
         // Delete the temporary folder
         // TODO
@@ -129,6 +133,8 @@ public class EpubToStoryBookConverter {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 logger.info("node: " + node);
+                
+                // Extract metadata
                 if ("metadata".equals(node.getNodeName())) {
                     NodeList metadataNodeList = node.getChildNodes();
                     logger.info("nodeList.getLength(): " + nodeList.getLength());
@@ -143,9 +149,110 @@ public class EpubToStoryBookConverter {
                         }
                     }
                 }
+                
+                // Extract cover image
+                if ("manifest".equals(node.getNodeName())) {
+                    // TODO
+                }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             logger.error(null, ex);
         }
+    }
+    
+    /**
+     * Extracts content from the chapters listed in the Table of Contents.
+     */
+    private static void extractChaptersFromTOC(File tocFile, StoryBook storyBook) {
+        logger.info("extractChaptersFromTOC");
+        
+        logger.info("Extracting paragraphs from \"" + tocFile + "\"");
+        
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(tocFile);
+            NodeList nodeList = document.getDocumentElement().getChildNodes();
+            logger.info("nodeList.getLength(): " + nodeList.getLength());
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                logger.info("node: " + node);
+                
+                if ("body".equals(node.getNodeName())) {
+                    Node navNode = node.getChildNodes().item(1); // <nav epub:type="toc" id="toc">
+                    logger.info("navNode: " + navNode);
+                    
+                    // Iterate chapters
+                    Node nodeOl = navNode.getChildNodes().item(1); // <ol>
+                    for (int j = 0; j < nodeOl.getChildNodes().getLength(); j++) {
+                        Node olChildNode = nodeOl.getChildNodes().item(j);
+                        if ("li".equals(olChildNode.getNodeName())) {
+                            logger.info("li");
+                            logger.info("olChildNode.getTextContent().trim(): " + olChildNode.getTextContent().trim());
+                            
+                            Node aNode = olChildNode.getChildNodes().item(1); // <a href="chapter-1.xhtml" title="chapter-1.xhtml">Chapter 1</a>
+                            String chapterReference = aNode.getAttributes().getNamedItem("href").getNodeValue();
+                            logger.info("chapterReference: \"" + chapterReference + "\"");
+                            
+                            File xhtmlChapterFile = new File(tocFile.getParent(), chapterReference);
+                            logger.info("xhtmlChapterFile: " + xhtmlChapterFile);
+                            
+                            List<String> paragraphs = extractImagesAndParagraphsFromChapter(xhtmlChapterFile);
+                            logger.info("paragraphs.size(): " + paragraphs.size());
+                            if (storyBook.getParagraphs() == null) {
+                                storyBook.setParagraphs(paragraphs);
+                            } else {
+                                storyBook.getParagraphs().addAll(paragraphs);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            logger.error(null, ex);
+        }
+    }
+    
+    private static List<String> extractImagesAndParagraphsFromChapter(File xhtmlChapterFile) {
+        logger.info("extractImagesAndParagraphsFromChapter");
+        logger.info("xhtmlChapterFile: \"" + xhtmlChapterFile + "\"");
+        
+        List<String> paragraphs = new ArrayList<>();
+        
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(xhtmlChapterFile);
+            NodeList nodeList = document.getDocumentElement().getChildNodes();
+            logger.info("nodeList.getLength(): " + nodeList.getLength());
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                logger.info("node: " + node);
+                if ("body".equals(node.getNodeName())) {
+                    NodeList bodyNodeList = node.getChildNodes();
+                    logger.info("bodyNodeList.getLength(): " + bodyNodeList.getLength());
+                    for (int j = 0; j < bodyNodeList.getLength(); j++) {
+                        Node bodyNode = bodyNodeList.item(j);
+                        logger.info("bodyNode: " + bodyNode);
+                        
+                        // Extract paragraphs (<p>...</p>)
+                        if ("p".equals(bodyNode.getNodeName())) {
+                            String paragraph = bodyNode.getTextContent().trim();
+                            logger.info("paragraph: " + paragraph);
+                            paragraphs.add(paragraph);
+                        }
+
+                        // Extract images (<img src="..." />)
+                        if ("img".equals(bodyNode.getNodeName())) {
+                            // TODO
+                        }
+                    }   
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            logger.error(null, ex);
+        }
+        
+        return paragraphs;
     }
 }

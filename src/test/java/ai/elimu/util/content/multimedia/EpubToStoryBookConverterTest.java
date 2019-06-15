@@ -27,11 +27,11 @@ public class EpubToStoryBookConverterTest {
         StoryBook storyBook = EpubToStoryBookConverter.getStoryBookFromEpub(ePubFile);
         assertThat(storyBook, not(nullValue()));
         assertThat(storyBook.getTitle(), is("Grace in Space"));
-        // TODO
+        assertThat(storyBook.getParagraphs().size(), is(39));
     }
     
     @Test
-    public void testgetStoryBookFromEpub_WhatIf_() throws IOException {
+    public void testgetStoryBookFromEpub_whatIf_() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
         Resource ePubResource = resourceLoader.getResource("What If_.epub");
         logger.info("ePubResource: " + ePubResource);
@@ -40,6 +40,6 @@ public class EpubToStoryBookConverterTest {
         StoryBook storyBook = EpubToStoryBookConverter.getStoryBookFromEpub(ePubFile);
         assertThat(storyBook, not(nullValue()));
         assertThat(storyBook.getTitle(), is("What If?"));
-        // TODO
+        assertThat(storyBook.getParagraphs().size(), is(35));
     }
 }
