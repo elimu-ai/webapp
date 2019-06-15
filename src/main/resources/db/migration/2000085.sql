@@ -1,0 +1,3 @@
+# 2.0.85
+
+ALTER TABLE StoryBook MODIFY paragraphs VARCHAR(1000);
