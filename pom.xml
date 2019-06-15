@@ -148,12 +148,15 @@
     <repositories>
         <repository>
             <id>bintray-elimu-ai-maven</id>
-            <name>bintray</name>
             <url>https://dl.bintray.com/elimu-ai/maven</url>
         </repository>
         <repository>
             <id>JBoss Repository</id>
             <url>https://repository.jboss.org/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>nl.siegmann.epublib repo</id>
+            <url>https://github.com/psiegman/mvn-repo/raw/master/releases</url>
         </repository>
     </repositories>
 

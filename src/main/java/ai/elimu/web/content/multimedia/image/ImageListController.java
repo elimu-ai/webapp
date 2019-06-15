@@ -15,6 +15,7 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.util.ImageColorHelper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,10 +40,15 @@ public class ImageListController {
         // To ease development/testing, auto-generate Images
         List<Image> imagesGenerated = generateImages(contributor.getLocale());
         for (Image image : imagesGenerated) {
+            String contentType = image.getContentType();
             Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
             if (existingImage == null) {
                 ImageFormat imageFormat = ImageFormat.PNG;
                 image.setContentType("image/png");
+                if (StringUtils.isNotBlank(contentType) && "image/jpg".equals(contentType)) {
+                    imageFormat = ImageFormat.JPG;
+                    image.setContentType("image/jpg");
+                }
                 String fileName = image.getTitle() + "." + imageFormat.toString().toLowerCase();
                 logger.info("Looking up file \"" + image.getTitle() + "." + imageFormat.toString().toLowerCase() + "\"...");
                 URL url = getClass().getResource(fileName);
@@ -80,6 +86,20 @@ public class ImageListController {
         coverImage55.setTimeLastUpdate(Calendar.getInstance());
         coverImage55.setTitle("M_ASP_55_Too_small_Page_02_Image_0001");
         images.add(coverImage55);
+        
+        Image coverImageGraceInSpace = new Image();
+        coverImageGraceInSpace.setLocale(locale);
+        coverImageGraceInSpace.setTimeLastUpdate(Calendar.getInstance());
+        coverImageGraceInSpace.setTitle("39e5eb1614ea195e9e377f63f561aa8c");
+        coverImageGraceInSpace.setContentType("image/jpg");
+        images.add(coverImageGraceInSpace);
+        
+        Image coverImageWhatIf = new Image();
+        coverImageWhatIf.setLocale(locale);
+        coverImageWhatIf.setTimeLastUpdate(Calendar.getInstance());
+        coverImageWhatIf.setTitle("badd7122aa68d2a339e359f03c03cc51");
+        coverImageWhatIf.setContentType("image/jpg");
+        images.add(coverImageWhatIf);
         
         return images;
     }

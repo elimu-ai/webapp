@@ -37,12 +37,13 @@ public class StoryBook extends Content {
     @Enumerated(EnumType.STRING)
     private GradeLevel gradeLevel;
     
+    // TODO: replace paragraphs with Chapters
+    @Deprecated
     @NotEmpty
     @OrderColumn
     @ElementCollection(fetch = FetchType.EAGER)
+    @Column(length = 1000)
     private List<String> paragraphs;
-    
-    // TODO: add pages
 
     public String getTitle() {
         return title;
