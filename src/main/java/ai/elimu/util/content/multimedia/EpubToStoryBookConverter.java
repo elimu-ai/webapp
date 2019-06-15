@@ -10,7 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.apache.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class EpubToStoryBookConverter {
     
@@ -28,11 +35,15 @@ public class EpubToStoryBookConverter {
         logger.info("unzippedFiles.size(): " + unzippedFiles.size());
         
         // Extract storybook metadata and cover image from the Open Package Format (OPF) file
+        for (File unzippedFile : unzippedFiles) {
+            if ("book.opf".equals(unzippedFile.getName())) {
+                extractMetadataFromOPF(unzippedFile, storyBook);
+            }
+        }
+        
+        // Iterate chapters in the Table of Contents (TOC) file and extract images and paragraphs
         // TODO
-
-        // Iterate chapters and extract images and paragraphs from the Table of Contents (TOC) file
-        // TODO
-
+        
         // Delete the temporary folder
         // TODO
         
@@ -95,5 +106,46 @@ public class EpubToStoryBookConverter {
         }
         
         return unzippedFiles;
+    }
+    
+    /**
+     * Extracts ePUB metadata from the <code>/content/book.opf</code> file, and adds it to a {@link StoryBook} instance.
+     * 
+     * @param opfFile The XML file containing the metadata.
+     * @param storyBook The {@link StoryBook} that will be populated with the metadata extracted from the OPF file.
+     * @return the updated {@link StoryBook}.
+     */
+    private static void extractMetadataFromOPF(File opfFile, StoryBook storyBook) {
+        logger.info("extractMetadataFromOPF");
+        
+        logger.info("Extracting metadata from \"" + opfFile + "\"");
+        
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(opfFile);
+            NodeList nodeList = document.getDocumentElement().getChildNodes();
+            logger.info("nodeList.getLength(): " + nodeList.getLength());
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                logger.info("node: " + node);
+                if ("metadata".equals(node.getNodeName())) {
+                    NodeList metadataNodeList = node.getChildNodes();
+                    logger.info("nodeList.getLength(): " + nodeList.getLength());
+                    for (int j = 0; j < metadataNodeList.getLength(); j++) {
+                        Node metadataNode = metadataNodeList.item(j);
+                        logger.info("metadataNode: " + metadataNode);
+                        
+                        if ("dc:title".equals(metadataNode.getNodeName())) {
+                            String title = metadataNode.getTextContent();
+                            logger.info("title: " + title);
+                            storyBook.setTitle(title);
+                        }
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            logger.error(null, ex);
+        }
     }
 }
