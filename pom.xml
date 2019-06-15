@@ -431,12 +431,6 @@
             <artifactId>commons-validator</artifactId>
             <version>1.5.1</version>
         </dependency>
-        
-        <dependency>
-            <groupId>nl.siegmann.epublib</groupId>
-            <artifactId>epublib-core</artifactId>
-            <version>3.1</version>
-        </dependency>
 
         <dependency>
             <groupId>org.imgscalr</groupId>
