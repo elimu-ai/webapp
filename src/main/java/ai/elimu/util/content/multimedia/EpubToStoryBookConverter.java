@@ -238,7 +238,7 @@ public class EpubToStoryBookConverter {
                         // Extract paragraphs (<p>...</p>)
                         if ("p".equals(bodyNode.getNodeName())) {
                             String paragraph = bodyNode.getTextContent().trim();
-                            logger.info("paragraph: " + paragraph);
+                            logger.info("paragraph: \"" + paragraph + "\"");
                             paragraphs.add(paragraph);
                         }
 

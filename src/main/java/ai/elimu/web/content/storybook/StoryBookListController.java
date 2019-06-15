@@ -12,6 +12,9 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.GradeLevel;
 import ai.elimu.model.enums.Locale;
+import ai.elimu.util.content.multimedia.EpubToStoryBookConverter;
+import java.io.File;
+import java.net.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,6 +87,26 @@ public class StoryBookListController {
         paragraphs.add("\"These clothes are all too BIG for me!\"");
         storyBook.setParagraphs(paragraphs);
         storyBooks.add(storyBook);
+        
+        URL urlGraceInSpace = getClass().getResource("Grace_in_Space.epub");
+        logger.info("urlGraceInSpace: " + urlGraceInSpace);
+        StoryBook storyBookGraceInSpace = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlGraceInSpace.getFile()));
+        Image coverImageGraceInSpace = imageDao.read("39e5eb1614ea195e9e377f63f561aa8c", locale);
+        storyBookGraceInSpace.setCoverImage(coverImageGraceInSpace);
+        storyBookGraceInSpace.setGradeLevel(GradeLevel.LEVEL2);
+        storyBookGraceInSpace.setLocale(locale.EN);
+        storyBookGraceInSpace.setTimeLastUpdate(Calendar.getInstance());
+        storyBooks.add(storyBookGraceInSpace);
+        
+        URL urlWhatIf_ = getClass().getResource("What_If_.epub");
+        logger.info("urlWhatIf_: " + urlWhatIf_);
+        StoryBook storyBookWhatIf_ = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlWhatIf_.getFile()));
+        Image coverImageWhatIf_ = imageDao.read("badd7122aa68d2a339e359f03c03cc51", locale);
+        storyBookWhatIf_.setCoverImage(coverImageWhatIf_);
+        storyBookWhatIf_.setGradeLevel(GradeLevel.LEVEL1);
+        storyBookWhatIf_.setLocale(locale.EN);
+        storyBookWhatIf_.setTimeLastUpdate(Calendar.getInstance());
+        storyBooks.add(storyBookWhatIf_);
         
         return storyBooks;
     }

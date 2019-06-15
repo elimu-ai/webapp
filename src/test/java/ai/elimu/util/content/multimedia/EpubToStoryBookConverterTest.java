@@ -20,7 +20,7 @@ public class EpubToStoryBookConverterTest {
     @Test
     public void testgetStoryBookFromEpub_graceInSpace() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
-        Resource ePubResource = resourceLoader.getResource("Grace in Space.epub");
+        Resource ePubResource = resourceLoader.getResource("Grace_in_Space.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
         
@@ -33,7 +33,7 @@ public class EpubToStoryBookConverterTest {
     @Test
     public void testgetStoryBookFromEpub_whatIf_() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
-        Resource ePubResource = resourceLoader.getResource("What If_.epub");
+        Resource ePubResource = resourceLoader.getResource("What_If_.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
         

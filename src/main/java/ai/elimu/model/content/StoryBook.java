@@ -42,6 +42,7 @@ public class StoryBook extends Content {
     @NotEmpty
     @OrderColumn
     @ElementCollection(fetch = FetchType.EAGER)
+    @Column(length = 1000)
     private List<String> paragraphs;
 
     public String getTitle() {
