@@ -5,6 +5,8 @@
 <content:section cssId="appealPage">
     <h2><content:gettitle /></h2>
     
+    <h4>Global Learning Crisis 🌍</h4>
+    
     <p>
         Worldwide, 64 million children of primary school age (about 6 to 11 years) are still out of school.
     </p>
@@ -58,9 +60,18 @@
         This empowers each child to learn fully autonomously, without depending on the availability of qualified teachers.
     </p>
     
-    <p>
-        <img src="https://elimu-ai.atlassian.net/wiki/download/thumbnails/163842/global_learning_xprize.jpg?version=1&modificationDate=1520688110913&cacheVersion=1&api=v2&width=738&height=415" />
-    </p>
+    <div class="row">
+        <div class="col s10">
+            <img src="https://elimu-ai.atlassian.net/wiki/download/thumbnails/163842/global_learning_xprize.jpg?version=1&modificationDate=1520688110913&cacheVersion=1&api=v2&width=738&height=415" />
+        </div>
+        <div class="col s2">
+            <img src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" /><br />
+            <img src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" /><br />
+            <img src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" /><br />
+            <img src="<spring:url value='/static/img/publish-literacy.png' />" /><br />
+            <img src="<spring:url value='/static/img/publish-literacy2.png' />" />
+        </div>
+    </div>
     
     <%-- TODO: include information about guiding principles --%>
     
@@ -70,8 +81,8 @@
     <h4>Would You Like to Contribute?</h4>
     
     <p>
-        The purpose of the <i>elimu.ai Foundation</i> is to provide out-of-school children with access to quality basic education. We 
-        deeply believe that every child has the right to a quality basic education no matter her social or geographic background.
+        The purpose of the <i>elimu.ai Foundation</i> is to provide access to quality basic education to out-of-school children. We 
+        deeply believe that all children have the right to a quality basic education no matter their social or geographic background.
     </p>
     
     <p>
@@ -82,21 +93,21 @@
     <p>&nbsp;</p>
     
     
-    <h4><fmt:message key="donate.money" /></h4>
+    <h4>Donate Money</h4>
     
     <div class="row">
         <div class="col s5">
             <ul>
                 <li>
                     <b>Step 1/3</b><br />
-                    Select which language you would like us to support first (if any).
+                    Select which language you would like to support.
                 </li>
                 <li>
                     <i class="material-icons">arrow_downward</i>
                 </li>
                 <li>
                     <b>Step 2/3</b><br />
-                    Select a donation amount and transfer via credit card or your bank.
+                    Select a donation amount and transfer via payment card or your bank.
                 </li>
                 <li>
                     <i class="material-icons">arrow_downward</i>
@@ -131,19 +142,19 @@
                     <div class="determinate" style="width: 33%"></div>
                 </div>  
                 <p>
-                  We develop content for children in their mother tongue. Which language would you like to prioritize?
+                  We create educational content matching a child's <i>mother tongue</i>. Which language would you like your donation to support?
                 </p>
                 
-                <form action="<spring:url value='/#' />">
+                <form action="<spring:url value='/appeal' />" method="POST">
                     <div class="row left-align">
                         <div class="input-field col s12">
                             <input name="donationLanguage" id="donationLanguageAny" type="radio" checked />
                             <label for="donationLanguageAny">Any language (let us decide for you)</label>
                         </div>
-                        <div class="input-field col s12">
+                        <%--<div class="input-field col s12">
                             <input name="donationLanguage" id="donationLanguageENGLISH" value="ENGLISH" type="radio" />
                             <label for="donationLanguageENGLISH">English</label>
-                        </div>
+                        </div>--%>
                         <div class="input-field col s12">
                             <input name="donationLanguage" id="donationLanguageHINDI" value="HINDI" type="radio" />
                             <label for="donationLanguageHINDI">Hindi (India)</label>
@@ -166,7 +177,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center">Primary out-of-school rate</h5>
+    <h5 class="center">Primary Out-of-School Rate</h5>
     <p>
         <img src="https://user-images.githubusercontent.com/15718174/60810127-a65b3780-a18c-11e9-811c-dc0edb6f270a.png" />
     </p>
@@ -182,19 +193,29 @@
 
         <tbody>
           <tr>
-            <td>Africa</td>
-            <td>40 million</td>
-            <td>31%</td>
+            <td>Sub-Saharan Africa</td>
+            <td>34.5 million</td>
+            <td>20.5%</td>    
           </tr>
           <tr>
-            <td>Asia</td>
-            <td>18 million</td>
-            <td>13%</td>
+            <td>Southern Asia</td>
+            <td>11.6 million</td>
+            <td>6.3%</td>
           </tr>
           <tr>
-            <td>Latin-America</td>
-            <td>3 million</td>
-            <td>5%</td>
+            <td>Eastern and South-Eastern Asia</td>
+            <td>6.6 million</td>
+            <td>3.8%</td>
+          </tr>
+          <tr>
+            <td>Northern Africa and Western Asia</td>
+            <td>5.7 million</td>
+            <td>10.5%</td>
+          </tr>
+          <tr>
+            <td>Latin America and the Caribbean</td>
+            <td>2.8 million</td>
+            <td>4.7%</td>
           </tr>
         </tbody>
       </table>
