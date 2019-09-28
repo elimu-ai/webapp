@@ -5,10 +5,8 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.project.AppCollectionDao;
-import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.project.AppCollection;
-import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +28,6 @@ public class AppCollectionEditController {
     
     @Autowired
     private AppCollectionDao appCollectionDao;
-    
-    @Autowired
-    private LicenseDao licenseDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -49,9 +44,6 @@ public class AppCollectionEditController {
         
         AppCollection appCollection = appCollectionDao.read(id);
         model.addAttribute("appCollection", appCollection);
-        
-        List<License> licenses = licenseDao.readAll(appCollection);
-        model.addAttribute("licenses", licenses);
 
         return "project/app-collection/edit";
     }
@@ -79,9 +71,6 @@ public class AppCollectionEditController {
             model.addAttribute("project", project);
             
             model.addAttribute("appCollection", appCollection);
-            
-            List<License> licenses = licenseDao.readAll(appCollection);
-            model.addAttribute("licenses", licenses);
             
             return "project/app-collection/edit";
         } else {
