@@ -3,14 +3,12 @@ package ai.elimu.web.project;
 import ai.elimu.dao.project.AppCategoryDao;
 import ai.elimu.dao.project.AppCollectionDao;
 import ai.elimu.dao.project.AppGroupDao;
-import ai.elimu.dao.project.LicenseDao;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.AppGroup;
-import ai.elimu.model.project.License;
 import ai.elimu.model.project.Project;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.ArrayList;
@@ -47,9 +45,6 @@ public class ProjectListController {
     
     @Autowired
     private AppCollectionDao appCollectionDao;
-    
-    @Autowired
-    private LicenseDao licenseDao;
     
     /**
      * Redirect to list of projects.
@@ -124,14 +119,6 @@ public class ProjectListController {
         appCollection1.setProject(project1);
         appCollection1.setAppCategories(Arrays.asList(appCategory1));
         appCollectionDao.create(appCollection1);
-        
-        License license1 = new License();
-        license1.setAppCollection(appCollection1);
-        license1.setLicenseEmail("info@elimu.ai");
-        license1.setLicenseNumber("bddf-d8f4-2adf-a365");
-        license1.setFirstName("Test");
-        license1.setLastName("Contributor");
-        licenseDao.create(license1);
         
         return projects;
     }
