@@ -35,10 +35,8 @@ import ai.elimu.model.gson.content.multimedia.AudioGson;
 import ai.elimu.model.gson.content.multimedia.ImageGson;
 import ai.elimu.model.gson.content.multimedia.VideoGson;
 import ai.elimu.model.gson.project.AppCategoryGson;
-import ai.elimu.model.gson.project.AppCollectionGson;
 import ai.elimu.model.gson.project.AppGroupGson;
 import ai.elimu.model.project.AppCategory;
-import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.AppGroup;
 
 /**
@@ -113,22 +111,6 @@ public class JavaToGsonConverter {
             allophoneGson.setUsageCount(allophone.getUsageCount());
             
             return allophoneGson;
-        }
-    }
-    
-    public static AppCollectionGson getAppCollectionGson(AppCollection appCollection) {
-        if (appCollection == null) {
-            return null;
-        } else {
-            AppCollectionGson appCollectionGson = new AppCollectionGson();
-            appCollectionGson.setId(appCollection.getId());
-            List<AppCategoryGson> appCategories = new ArrayList<>();
-            for (AppCategory appCategory : appCollection.getAppCategories()) {
-                AppCategoryGson appCategoryGson = getAppCategoryGson(appCategory);
-                appCategories.add(appCategoryGson);
-            }
-            appCollectionGson.setAppCategories(appCategories);
-            return appCollectionGson;
         }
     }
     
