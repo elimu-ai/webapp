@@ -1,5 +1,6 @@
 package ai.elimu.web.content.word;
 
+import ai.elimu.dao.AllophoneDao;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -7,9 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.Contributor;
+import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.web.content.number.NumberListController;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +27,9 @@ public class WordListController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, HttpSession session) {
@@ -32,10 +38,25 @@ public class WordListController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         // To ease development/testing, auto-generate Words
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
         List<Word> wordsGenerated = generateWords(contributor.getLocale());
         for (Word word : wordsGenerated) {
             Word existingWord = wordDao.readByText(word.getLocale(), word.getText());
             if (existingWord == null) {
+                // Verify that only valid Allophones are used (copied from WordCreateController#handleSubmit)
+                String allAllophonesCombined = "";
+                for (Allophone allophone : allophones) {
+                    allAllophonesCombined += allophone.getValueIpa();
+                }
+                if (StringUtils.isNotBlank(word.getPhonetics())) {
+                    for (char allophoneCharacter : word.getPhonetics().toCharArray()) {
+                        String allophone = String.valueOf(allophoneCharacter);
+                        if (!allAllophonesCombined.contains(allophone)) {
+                            throw new IllegalArgumentException("Invalid Allophone in the Word \"" + word.getText() + "\": /" + allophone + "/");
+                        }
+                    }
+                }
+                
                 wordDao.create(word);
             }
         }
@@ -73,8 +94,8 @@ public class WordListController {
             wordZero.setText("cero");
 //            wordZero.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
-            wordZero.setText("???");
-            wordZero.setPhonetics("???");
+            wordZero.setText("sero");
+            wordZero.setPhonetics("sɛr̩ɔ");
         } else if (locale == Locale.SW) {
             wordZero.setText("sifuri");
             wordZero.setPhonetics("siˈfuɾi");
@@ -92,7 +113,7 @@ public class WordListController {
 //            wordOne.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordOne.setText("isa");
-            wordOne.setPhonetics("???");
+            wordOne.setPhonetics("ɪsɑ");
         } else if (locale == Locale.SW) {
             wordOne.setText("moja");
             wordOne.setPhonetics("ˈmɔjɑ");
@@ -111,7 +132,7 @@ public class WordListController {
 //            wordTwo.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordTwo.setText("dalawa");
-            wordTwo.setPhonetics("???");
+            wordTwo.setPhonetics("dɑlɑwɑ");
         } else if (locale == Locale.SW) {
             wordTwo.setText("mbili");
             wordTwo.setPhonetics("mˈbili");
@@ -129,7 +150,7 @@ public class WordListController {
 //            wordThree.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordThree.setText("tatlo");
-            wordThree.setPhonetics("???");
+            wordThree.setPhonetics("tɑtlɔ");
         } else if (locale == Locale.SW) {
             wordThree.setText("tatu");
             wordThree.setPhonetics("ˈtɑtu");
@@ -148,7 +169,7 @@ public class WordListController {
 //            wordFour.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordFour.setText("apat");
-            wordFour.setPhonetics("???");
+            wordFour.setPhonetics("ɑpɑt");
         } else if (locale == Locale.SW) {
             wordFour.setText("nne");
             wordFour.setPhonetics("nˈnɛ");
@@ -166,7 +187,7 @@ public class WordListController {
 //            wordFive.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordFive.setText("lima");
-            wordFive.setPhonetics("???");
+            wordFive.setPhonetics("lɪmɑ");
         } else if (locale == Locale.SW) {
             wordFive.setText("tano");
             wordFive.setPhonetics("ˈtɑnɔ");
@@ -184,7 +205,7 @@ public class WordListController {
 //            wordSix.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordSix.setText("anim");
-            wordSix.setPhonetics("???");
+            wordSix.setPhonetics("ɑnɪm");
         } else if (locale == Locale.SW) {
             wordSix.setText("sita");
             wordSix.setPhonetics("ˈsitɑ");
@@ -203,7 +224,7 @@ public class WordListController {
 //            wordSeven.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordSeven.setText("pito");
-            wordSeven.setPhonetics("???");
+            wordSeven.setPhonetics("pɪtɔ");
         } else if (locale == Locale.SW) {
             wordSeven.setText("saba");
             wordSeven.setPhonetics("ˈsɑbɑ");
@@ -222,7 +243,7 @@ public class WordListController {
 //            wordEight.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordEight.setText("walo");
-            wordEight.setPhonetics("???");
+            wordEight.setPhonetics("wɑlɔ");
         } else if (locale == Locale.SW) {
             wordEight.setText("nane");
             wordEight.setPhonetics("ˈnɑnɛ");
@@ -241,7 +262,7 @@ public class WordListController {
 //            wordNine.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordNine.setText("siyam");
-            wordNine.setPhonetics("???");
+            wordNine.setPhonetics("ʃɑm");
         } else if (locale == Locale.SW) {
             wordNine.setText("tisa");
             wordNine.setPhonetics("ˈtisɑ");
@@ -259,7 +280,7 @@ public class WordListController {
 //            word???.setPhonetics(TODO);
         } else if (locale == Locale.FI) {
             wordTen.setText("sampu");
-            wordTen.setPhonetics("???");
+            wordTen.setPhonetics("sɑmpu");
         } else if (locale == Locale.SW) {
             wordTen.setText("kumi");
             wordTen.setPhonetics("kumi");

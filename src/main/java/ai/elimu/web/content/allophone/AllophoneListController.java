@@ -71,6 +71,52 @@ public class AllophoneListController {
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
+    public static final String[][] allophonesArrayFI = new String[][] {
+        {"aʊ","aU", "0"},
+        {"ɔɪ","OI", "0"},
+        {"əʊ","@U", "0"},
+        {"ɛɪ","EI", "0"},
+        {"ɑɪ","AI", "0"},
+        {"tʃ","tS", "0"},
+        {"dʒ","dZ", "0"}, // TODO: use /ʤ/ instead of /dʒ/?
+        {"r̩","r_=", "0"}, // TODO: use "r=" instead of "r_="?
+        {"ɑ","A", "0"},
+        {"ɔ","O", "0"},
+        {"u","u", "0"},
+        {"i","i", "0"},
+        {"æ","{", "0"},
+        {"ʌ","V", "0"},
+        {"ɛ","E", "0"},
+        {"ɪ","I", "0"},
+        {"ʊ","U", "0"},
+        {"ə","@", "0"},
+        {"p","p", "0"},
+        {"t","t", "0"},
+        {"k","k", "0"},
+        {"b","b", "0"},
+        {"d","d", "0"},
+        {"g","g", "0"},
+        {"f","f", "0"},
+        {"v","v", "0"},
+        {"θ","T", "0"},
+        {"ð","D", "0"},
+        {"s","s", "0"},
+        {"z","z", "0"},
+        {"ʃ","S", "0"},
+        {"ʒ","Z", "0"},
+        {"h","h", "0"},
+        {"l","l", "0"},
+        {"m","m", "0"},
+        {"n","n", "0"},
+        {"ŋ","N", "0"},
+        {"r","r", "0"},
+        {"w","w", "0"},
+        {"j","j", "0"},
+        {"ˈ","\"", "0"}, // TODO: set isDiacritic = true
+        {"ˌ","%", "0"} // TODO: set isDiacritic = true
+    };
+    
+    // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
     public static final String[][] allophonesArraySW = new String[][] {
         {"mb","mb", "9"},
         {"mv","mv", "0"},
@@ -156,6 +202,8 @@ public class AllophoneListController {
             allophonesArray = allophonesArrayEN;
         } else if (locale == Locale.ES) {
             allophonesArray = allophonesArrayES;
+        } else if (locale == Locale.FI) {
+            allophonesArray = allophonesArrayFI;
         } else if (locale == Locale.SW) {
             allophonesArray = allophonesArraySW;
         }
