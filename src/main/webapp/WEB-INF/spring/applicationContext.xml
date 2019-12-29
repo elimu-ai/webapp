@@ -34,7 +34,6 @@
                 
                 <!-- Custom Project -->
                 <bean class="ai.elimu.logic.converters.project.StringToAppCategoryConverter" />
-                <bean class="ai.elimu.logic.converters.project.StringToAppCollectionConverter" />
                 <bean class="ai.elimu.logic.converters.project.StringToAppGroupConverter" />
                 <bean class="ai.elimu.logic.converters.project.StringToProjectConverter" />
             </list>
@@ -124,7 +123,6 @@
         <property name="caches">
             <set>
                 <bean name="applications" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
-                <bean name="applicationsInAppCollection" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
             </set>
         </property>
     </bean>

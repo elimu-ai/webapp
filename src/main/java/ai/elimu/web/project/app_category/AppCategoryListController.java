@@ -1,10 +1,7 @@
 package ai.elimu.web.project.app_category;
 
-import ai.elimu.dao.project.AppCollectionDao;
 import ai.elimu.dao.project.ProjectDao;
-import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.Project;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +20,6 @@ public class AppCategoryListController {
     @Autowired
     private ProjectDao projectDao;
     
-    @Autowired
-    private AppCollectionDao appCollectionDao;
-    
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String handlRequest(Model model, @PathVariable Long projectId, HttpSession session) {
     	logger.info("handleRequest");
@@ -33,9 +27,6 @@ public class AppCategoryListController {
         logger.info("projectId: " + projectId);
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
-        
-        List<AppCollection> appCollections = appCollectionDao.readAll(project);
-        model.addAttribute("appCollections", appCollections);
         
         return "project/app-category/list";
     }

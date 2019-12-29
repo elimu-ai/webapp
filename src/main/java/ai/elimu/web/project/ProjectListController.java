@@ -1,13 +1,11 @@
 package ai.elimu.web.project;
 
 import ai.elimu.dao.project.AppCategoryDao;
-import ai.elimu.dao.project.AppCollectionDao;
 import ai.elimu.dao.project.AppGroupDao;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.project.AppCategory;
-import ai.elimu.model.project.AppCollection;
 import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -42,9 +40,6 @@ public class ProjectListController {
     
     @Autowired
     private AppGroupDao appGroupDao;
-    
-    @Autowired
-    private AppCollectionDao appCollectionDao;
     
     /**
      * Redirect to list of projects.
@@ -113,12 +108,6 @@ public class ProjectListController {
         appGroups.add(appGroup1);
         appCategory1.setAppGroups(appGroups);
         appCategoryDao.update(appCategory1);
-        
-        AppCollection appCollection1 = new AppCollection();
-        appCollection1.setName("App collection #1");
-        appCollection1.setProject(project1);
-        appCollection1.setAppCategories(Arrays.asList(appCategory1));
-        appCollectionDao.create(appCollection1);
         
         return projects;
     }

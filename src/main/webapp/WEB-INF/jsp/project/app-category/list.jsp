@@ -107,36 +107,3 @@
         <a href="<spring:url value='/project/${project.id}/app-category/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.app.category" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>
-
-<c:if test="${not empty project.appCategories}">
-    <content:aside>
-        <h5 class="center"><fmt:message key="app.collections" /></h5>
-
-        <table class="bordered highlight">
-            <thead>
-                <th><fmt:message key="name" /></th>
-                <th><fmt:message key="app.categories" /></th>
-            </thead>
-            <tbody>
-                <c:forEach var="appCollection" items="${appCollections}">
-                    <tr class="appCollection">
-                        <td>
-                            <a href="<spring:url value='/project/${project.id}/app-collection/edit/${appCollection.id}' />">
-                                <c:out value="${appCollection.name}" />
-                            </a>
-                        </td>
-                        <td>
-                            ${fn:length(appCollection.appCategories)}
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-
-        <p></p>
-
-        <a href="<spring:url value='/project/${project.id}/app-collection/create' />" class="btn waves-effect waves-grey grey-text">
-            <fmt:message key="add.app.collection" />
-        </a>
-    </content:aside>
-</c:if>

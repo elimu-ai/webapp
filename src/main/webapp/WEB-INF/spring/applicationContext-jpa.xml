@@ -83,7 +83,6 @@
     
     <!-- DAOs that will be autowired (Custom Project) -->
     <bean id="appCategoryDao" class="ai.elimu.dao.project.jpa.AppCategoryDaoJpa" />
-    <bean id="appCollectionDao" class="ai.elimu.dao.project.jpa.AppCollectionDaoJpa" />
     <bean id="appGroupDao" class="ai.elimu.dao.project.jpa.AppGroupDaoJpa" />
     <bean id="projectDao" class="ai.elimu.dao.project.jpa.ProjectDaoJpa" />
     <bean id="projectApplicationDao" class="ai.elimu.dao.project.jpa.ProjectApplicationDaoJpa" />
