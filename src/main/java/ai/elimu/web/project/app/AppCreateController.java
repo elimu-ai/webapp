@@ -1,6 +1,5 @@
 package ai.elimu.web.project.app;
 
-import ai.elimu.dao.project.AppCategoryDao;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.ServletException;
@@ -17,7 +16,6 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
-import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.Project;
 import ai.elimu.util.ChecksumHelper;
 import java.util.List;
@@ -49,9 +47,6 @@ public class AppCreateController {
     private ProjectDao projectDao;
     
     @Autowired
-    private AppCategoryDao appCategoryDao;
-    
-    @Autowired
     private ApplicationDao applicationDao;
     
     @Autowired
@@ -63,7 +58,6 @@ public class AppCreateController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
             @PathVariable Long projectId,
-            @PathVariable Long appCategoryId,
             @PathVariable Long appGroupId,
             @RequestParam(required = false) Long applicationId,
             Model model
@@ -72,9 +66,6 @@ public class AppCreateController {
         
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
-        
-        AppCategory appCategory = appCategoryDao.read(appCategoryId);
-        model.addAttribute("appCategory", appCategory);
         
         ApplicationVersion applicationVersion = new ApplicationVersion();
         
@@ -96,13 +87,11 @@ public class AppCreateController {
             BindingResult result,
             Model model,
             HttpSession session,
-            @PathVariable Long projectId,
-            @PathVariable Long appCategoryId
+            @PathVariable Long projectId
     ) {
     	logger.info("handleSubmit");
         
         Project project = projectDao.read(projectId);
-        AppCategory appCategory = appCategoryDao.read(appCategoryId);
         
         boolean isUpdateOfExistingApplication = applicationVersion.getApplication() != null;
         logger.info("isUpdateOfExistingApplication: " + isUpdateOfExistingApplication);
@@ -193,7 +182,6 @@ public class AppCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("project", project);
-            model.addAttribute("appCategory", appCategory);
             return "project/app/create";
         } else {
             Application application = applicationVersion.getApplication();

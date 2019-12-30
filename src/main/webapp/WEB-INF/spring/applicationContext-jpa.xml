@@ -82,7 +82,6 @@
     <bean id="wordRevisionEventDao" class="ai.elimu.dao.jpa.WordRevisionEventDaoJpa" />
     
     <!-- DAOs that will be autowired (Custom Project) -->
-    <bean id="appCategoryDao" class="ai.elimu.dao.project.jpa.AppCategoryDaoJpa" />
     <bean id="projectDao" class="ai.elimu.dao.project.jpa.ProjectDaoJpa" />
     <bean id="projectApplicationDao" class="ai.elimu.dao.project.jpa.ProjectApplicationDaoJpa" />
 </beans>

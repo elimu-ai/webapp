@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 
@@ -19,10 +18,6 @@ public class Project extends BaseEntity {
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Contributor> managers;
-    
-    @OrderColumn
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<AppCategory> appCategories;
 
     public String getName() {
         return name;
@@ -38,13 +33,5 @@ public class Project extends BaseEntity {
 
     public void setManagers(List<Contributor> managers) {
         this.managers = managers;
-    }
-
-    public List<AppCategory> getAppCategories() {
-        return appCategories;
-    }
-
-    public void setAppCategories(List<AppCategory> appCategories) {
-        this.appCategories = appCategories;
     }
 }
