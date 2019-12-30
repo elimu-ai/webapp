@@ -34,8 +34,6 @@ import ai.elimu.model.gson.content.SyllableGson;
 import ai.elimu.model.gson.content.multimedia.AudioGson;
 import ai.elimu.model.gson.content.multimedia.ImageGson;
 import ai.elimu.model.gson.content.multimedia.VideoGson;
-import ai.elimu.model.gson.project.AppCategoryGson;
-import ai.elimu.model.project.AppCategory;
 
 /**
  * Convert classes from JPA/Hibernate format to POJO format, so that they can be serialized into 
@@ -109,18 +107,6 @@ public class JavaToGsonConverter {
             allophoneGson.setUsageCount(allophone.getUsageCount());
             
             return allophoneGson;
-        }
-    }
-    
-    public static AppCategoryGson getAppCategoryGson(AppCategory appCategory) {
-        if (appCategory == null) {
-            return null;
-        } else {
-            AppCategoryGson appCategoryGson = new AppCategoryGson();
-            appCategoryGson.setId(appCategory.getId());
-            appCategoryGson.setName(appCategory.getName());
-            appCategoryGson.setBackgroundColor(appCategory.getBackgroundColor());
-            return appCategoryGson;
         }
     }
     

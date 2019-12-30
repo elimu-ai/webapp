@@ -1,7 +1,5 @@
 package ai.elimu.web.project.app;
 
-import ai.elimu.dao.project.AppCategoryDao;
-
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
@@ -9,7 +7,6 @@ import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.model.project.AppCategory;
 import ai.elimu.model.project.Project;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -32,9 +29,6 @@ public class AppEditController {
     private ProjectDao projectDao;
     
     @Autowired
-    private AppCategoryDao appCategoryDao;
-    
-    @Autowired
     private ApplicationDao applicationDao;
     
     @Autowired
@@ -43,7 +37,6 @@ public class AppEditController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
             @PathVariable Long projectId,
-            @PathVariable Long appCategoryId,
             @PathVariable Long applicationId,
             Model model
     ) {
@@ -51,9 +44,6 @@ public class AppEditController {
         
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
-        
-        AppCategory appCategory = appCategoryDao.read(appCategoryId);
-        model.addAttribute("appCategory", appCategory);
         
         Application application = applicationDao.read(applicationId);
         model.addAttribute("application", application);
@@ -69,7 +59,6 @@ public class AppEditController {
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             @PathVariable Long projectId,
-            @PathVariable Long appCategoryId,
             @PathVariable Long applicationId,
             HttpSession session,
             @Valid Application application,
@@ -80,9 +69,6 @@ public class AppEditController {
         
         Project project = projectDao.read(projectId);
         model.addAttribute("project", project);
-        
-        AppCategory appCategory = appCategoryDao.read(appCategoryId);
-        model.addAttribute("appCategory", appCategory);
         
         if (result.hasErrors()) {
             model.addAttribute("application", application);
@@ -104,7 +90,7 @@ public class AppEditController {
                 }
             }
             
-            return "redirect:/project/" + projectId + "/app-category/" + appCategoryId + "/app-group/" + null + "/app/list";
+            return "redirect:/project/" + projectId + "/app-category/" + null + "/app-group/" + null + "/app/list";
         }
     }
 }
