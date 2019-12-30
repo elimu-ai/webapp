@@ -218,7 +218,6 @@ public class AppCreateController {
                 application.setPackageName(packageName);
                 application.setApplicationStatus(ApplicationStatus.MISSING_APK); // Will be changed to "ApplicationStatus.ACTIVE" once the corresponding ApplicationVersion has been approved
                 application.setContributor(contributor);
-                application.setAppGroup(appGroup);
                 applicationDao.create(application);
                 
                 appGroup.getApplications().add(application);

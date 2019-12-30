@@ -107,7 +107,6 @@ public class AppEditController {
             
             return "project/app/edit";
         } else {
-            application.setAppGroup(appGroup); // TODO: remove when migration from Project to AppGroup is complete
             applicationDao.update(application);
 
             if (application.getApplicationStatus() == ApplicationStatus.DELETED) {
