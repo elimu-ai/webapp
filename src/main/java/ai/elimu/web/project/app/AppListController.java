@@ -1,10 +1,8 @@
 package ai.elimu.web.project.app;
 
 import ai.elimu.dao.project.AppCategoryDao;
-import ai.elimu.dao.project.AppGroupDao;
 import ai.elimu.dao.project.ProjectDao;
 import ai.elimu.model.project.AppCategory;
-import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
@@ -27,15 +25,11 @@ public class AppListController {
     @Autowired
     private AppCategoryDao appCategoryDao;
     
-    @Autowired
-    private AppGroupDao appGroupDao;
-    
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String handlRequest(
             Model model,
             @PathVariable Long projectId,
             @PathVariable Long appCategoryId,
-            @PathVariable Long appGroupId,
             HttpSession session
     ) {
     	logger.info("handleRequest");
@@ -47,10 +41,6 @@ public class AppListController {
         logger.info("appCategoryId: " + appCategoryId);
         AppCategory appCategory = appCategoryDao.read(appCategoryId);
         model.addAttribute("appCategory", appCategory);
-        
-        logger.info("appGroupId: " + appGroupId);
-        AppGroup appGroup = appGroupDao.read(appGroupId);
-        model.addAttribute("appGroup", appGroup);
         
         return "project/app/list";
     }

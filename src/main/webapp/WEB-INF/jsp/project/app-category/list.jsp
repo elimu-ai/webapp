@@ -28,26 +28,6 @@
                          style="background-color: rgb(${appCategory.backgroundColor}); height: 1em; margin-right: -1em; margin-left: -1em;">
                     </div>
                 </c:if>
-                
-                <%-- List AppGroups --%>
-                <c:forEach var="appGroup" items="${appCategory.appGroups}">
-                    <br />
-            <c:choose>
-                <c:when test="${not empty appCategory.backgroundColor}">
-                    <div style="padding: 1em; background-color: rgba(${appCategory.backgroundColor}, 0.2);">
-                </c:when>
-                <c:otherwise>
-                    <div style="padding: 1em; background-color: #FAFAFA;">
-                </c:otherwise>
-            </c:choose>
-                        <%-- List Applications --%>
-                        <c:forEach var="application" items="${appGroup.applications}">
-                            <a href="<spring:url value='/project/${project.id}/app-category/${appCategory.id}/app-group/${appGroup.id}/app/${application.id}/edit' />" title="${application.packageName}">
-                                ${application.packageName}
-                            </a>&nbsp;
-                        </c:forEach>
-                    </div>
-                </c:forEach>
             </div>
         </c:forEach>
         <script>
