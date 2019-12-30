@@ -1,7 +1,6 @@
 package ai.elimu.web.project.app;
 
 import ai.elimu.dao.project.AppCategoryDao;
-import ai.elimu.dao.project.AppGroupDao;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.ServletException;
@@ -19,7 +18,6 @@ import ai.elimu.model.Contributor;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.model.project.AppCategory;
-import ai.elimu.model.project.AppGroup;
 import ai.elimu.model.project.Project;
 import ai.elimu.util.ChecksumHelper;
 import java.util.List;
@@ -54,9 +52,6 @@ public class AppCreateController {
     private AppCategoryDao appCategoryDao;
     
     @Autowired
-    private AppGroupDao appGroupDao;
-    
-    @Autowired
     private ApplicationDao applicationDao;
     
     @Autowired
@@ -81,9 +76,6 @@ public class AppCreateController {
         AppCategory appCategory = appCategoryDao.read(appCategoryId);
         model.addAttribute("appCategory", appCategory);
         
-        AppGroup appGroup = appGroupDao.read(appGroupId);
-        model.addAttribute("appGroup", appGroup);
-        
         ApplicationVersion applicationVersion = new ApplicationVersion();
         
         logger.info("applicationId: " + applicationId);
@@ -104,7 +96,6 @@ public class AppCreateController {
             BindingResult result,
             Model model,
             HttpSession session,
-            @PathVariable Long appGroupId,
             @PathVariable Long projectId,
             @PathVariable Long appCategoryId
     ) {
@@ -112,7 +103,6 @@ public class AppCreateController {
         
         Project project = projectDao.read(projectId);
         AppCategory appCategory = appCategoryDao.read(appCategoryId);
-        AppGroup appGroup = appGroupDao.read(appGroupId);
         
         boolean isUpdateOfExistingApplication = applicationVersion.getApplication() != null;
         logger.info("isUpdateOfExistingApplication: " + isUpdateOfExistingApplication);
@@ -204,7 +194,6 @@ public class AppCreateController {
         if (result.hasErrors()) {
             model.addAttribute("project", project);
             model.addAttribute("appCategory", appCategory);
-            model.addAttribute("appGroup", appGroup);
             return "project/app/create";
         } else {
             Application application = applicationVersion.getApplication();
@@ -218,11 +207,7 @@ public class AppCreateController {
                 application.setPackageName(packageName);
                 application.setApplicationStatus(ApplicationStatus.MISSING_APK); // Will be changed to "ApplicationStatus.ACTIVE" once the corresponding ApplicationVersion has been approved
                 application.setContributor(contributor);
-                application.setAppGroup(appGroup);
                 applicationDao.create(application);
-                
-                appGroup.getApplications().add(application);
-                appGroupDao.update(appGroup);
 
                 applicationVersion.setApplication(application);
                 applicationVersionDao.create(applicationVersion);

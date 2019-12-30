@@ -34,7 +34,6 @@
                 
                 <!-- Custom Project -->
                 <bean class="ai.elimu.logic.converters.project.StringToAppCategoryConverter" />
-                <bean class="ai.elimu.logic.converters.project.StringToAppGroupConverter" />
                 <bean class="ai.elimu.logic.converters.project.StringToProjectConverter" />
             </list>
         </property>

@@ -35,9 +35,7 @@ import ai.elimu.model.gson.content.multimedia.AudioGson;
 import ai.elimu.model.gson.content.multimedia.ImageGson;
 import ai.elimu.model.gson.content.multimedia.VideoGson;
 import ai.elimu.model.gson.project.AppCategoryGson;
-import ai.elimu.model.gson.project.AppGroupGson;
 import ai.elimu.model.project.AppCategory;
-import ai.elimu.model.project.AppGroup;
 
 /**
  * Convert classes from JPA/Hibernate format to POJO format, so that they can be serialized into 
@@ -126,17 +124,6 @@ public class JavaToGsonConverter {
         }
     }
     
-    public static AppGroupGson getAppGroupGson(AppGroup appGroup) {
-        if (appGroup == null) {
-            return null;
-        } else {
-            AppGroupGson appGroupGson = new AppGroupGson();
-            appGroupGson.setId(appGroup.getId());
-            appGroupGson.setAppCategory(getAppCategoryGson(appGroup.getAppCategory()));
-            return appGroupGson;
-        }
-    }
-    
     public static ApplicationGson getApplicationGson(Application application) {
         if (application == null) {
             return null;
@@ -149,7 +136,6 @@ public class JavaToGsonConverter {
             applicationGson.setLiteracySkills(application.getLiteracySkills());
             applicationGson.setNumeracySkills(application.getNumeracySkills());
             applicationGson.setApplicationStatus(application.getApplicationStatus());
-            applicationGson.setAppGroup(getAppGroupGson(application.getAppGroup()));
             return applicationGson;
         }
     }
@@ -163,9 +149,6 @@ public class JavaToGsonConverter {
             applicationVersionGson.setApplication(getApplicationGson(applicationVersion.getApplication()));
             applicationVersionGson.setFileSizeInKb(applicationVersion.getFileSizeInKb());
             applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
-            if (applicationVersion.getApplication().isBelongingToCustomProject()) {
-                applicationVersionGson.setFileUrl("/project-apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
-            }
             applicationVersionGson.setChecksumMd5(applicationVersion.getChecksumMd5());
             applicationVersionGson.setContentType(applicationVersion.getContentType());
             applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());
