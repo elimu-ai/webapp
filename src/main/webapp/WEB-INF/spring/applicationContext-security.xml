@@ -13,7 +13,6 @@
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/analytics/**" access="hasRole('ROLE_ANALYST')" />
         <intercept-url pattern="/content/**" access="hasRole('ROLE_CONTRIBUTOR')" />
-        <intercept-url pattern="/project/**" access="hasRole('ROLE_PROJECT_MANAGER')" />
 
         <logout logout-success-url="/?sign_out" />
         <!--<session-management invalid-session-url="/sign-on?invalid_session" /> -->
