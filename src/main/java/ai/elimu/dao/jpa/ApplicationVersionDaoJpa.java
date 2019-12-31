@@ -5,7 +5,6 @@ import javax.persistence.NoResultException;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 
 import org.springframework.dao.DataAccessException;
 
@@ -36,17 +35,6 @@ public class ApplicationVersionDaoJpa extends GenericDaoJpa<ApplicationVersion> 
             "WHERE av.application = :application " +
             "ORDER BY av.timeUploaded DESC")
             .setParameter("application", application)
-            .getResultList();
-    }
-
-    @Override
-    public List<ApplicationVersion> readAllByStatus(ApplicationVersionStatus applicationVersionStatus) throws DataAccessException {
-        return em.createQuery(
-            "SELECT av " +
-            "FROM ApplicationVersion av " +
-            "WHERE av.applicationVersionStatus = :applicationVersionStatus " +
-            "ORDER BY av.timeUploaded DESC")
-            .setParameter("applicationVersionStatus", applicationVersionStatus)
             .getResultList();
     }
 }
