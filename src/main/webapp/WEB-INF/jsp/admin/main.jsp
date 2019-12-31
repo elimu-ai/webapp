@@ -39,18 +39,5 @@
                 </div>
             </div>
         </div>
-        
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">list</i> <fmt:message key="projects" /></span>
-                    <p>List of custom projects</p>
-                </div>
-                <div class="card-action">
-                    <a href="<spring:url value='/admin/project/list' />"><fmt:message key="view.list" /></a>
-                    <a href="<spring:url value='/admin/project/apk-reviews' />">View pending APK reviews</a>
-                </div>
-            </div>
-        </div>
     </div>
 </content:section>

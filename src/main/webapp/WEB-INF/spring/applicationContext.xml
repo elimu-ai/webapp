@@ -31,9 +31,6 @@
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
                 <bean class="ai.elimu.logic.converters.StringToWordConverter" />
                 <bean class="ai.elimu.logic.converters.StringToImageConverter" />
-                
-                <!-- Custom Project -->
-                <bean class="ai.elimu.logic.converters.project.StringToProjectConverter" />
             </list>
         </property>
     </bean>
