@@ -60,7 +60,6 @@
 
     <!-- DAOs that will be autowired -->
     <bean id="applicationDao" class="ai.elimu.dao.jpa.ApplicationDaoJpa" />
-    <bean id="applicationOpenedEventDao" class="ai.elimu.dao.jpa.ApplicationOpenedEventDaoJpa" />
     <bean id="applicationVersionDao" class="ai.elimu.dao.jpa.ApplicationVersionDaoJpa" />
     <bean id="allophoneDao" class="ai.elimu.dao.jpa.AllophoneDaoJpa" />
     <bean id="audioDao" class="ai.elimu.dao.jpa.AudioDaoJpa" />
@@ -69,9 +68,7 @@
     <bean id="deviceDao" class="ai.elimu.dao.jpa.DeviceDaoJpa" />
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
-    <bean id="letterLearningEventDao" class="ai.elimu.dao.jpa.LetterLearningEventDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
-    <bean id="numberLearningEventDao" class="ai.elimu.dao.jpa.NumberLearningEventDaoJpa" />
     <bean id="signOnEventDao" class="ai.elimu.dao.jpa.SignOnEventDaoJpa" />
     <bean id="storyBookDao" class="ai.elimu.dao.jpa.StoryBookDaoJpa" />
     <bean id="studentDao" class="ai.elimu.dao.jpa.StudentDaoJpa" />

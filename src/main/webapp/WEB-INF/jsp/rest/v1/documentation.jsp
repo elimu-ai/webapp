@@ -30,11 +30,6 @@
         </ul>
         
         
-        <h3>Analytics</h3>
-        
-        ...
-        
-        
         <h3>Content</h3>
         
         <h4>Allophone</h4>
