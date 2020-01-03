@@ -5,6 +5,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.content.multimedia.Video;
 
+// TODO: Rename to avoid confusion with "VideoReviewEvent"
 @Entity
 public class VideoRevisionEvent extends ContributorEvent {
     
