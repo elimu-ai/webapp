@@ -8,9 +8,6 @@ import ai.elimu.model.Student;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.analytics.LetterLearningEvent;
-import ai.elimu.model.analytics.NumberLearningEvent;
-import ai.elimu.model.analytics.VideoLearningEvent;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
@@ -24,9 +21,6 @@ import ai.elimu.model.gson.content.NumberGson;
 import ai.elimu.model.gson.content.WordGson;
 import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
-import ai.elimu.model.gson.analytics.LetterLearningEventGson;
-import ai.elimu.model.gson.analytics.NumberLearningEventGson;
-import ai.elimu.model.gson.analytics.VideoLearningEventGson;
 import ai.elimu.model.gson.content.AllophoneGson;
 import ai.elimu.model.gson.content.LetterGson;
 import ai.elimu.model.gson.content.StoryBookGson;
@@ -409,64 +403,6 @@ public class JavaToGsonConverter {
             videoGson.setThumbnailDownloadUrl("/video/" + video.getId() + "/thumbnail.png");
             
             return videoGson;
-        }
-    }
-    
-    
-    public static LetterLearningEventGson getLetterLearningEventGson(LetterLearningEvent letterLearningEvent) {
-        if (letterLearningEvent == null) {
-            return null;
-        } else {
-            LetterLearningEventGson letterLearningEventGson = new LetterLearningEventGson();
-            
-            letterLearningEventGson.setId(letterLearningEvent.getId());
-            letterLearningEventGson.setDevice(getDeviceGson(letterLearningEvent.getDevice()));
-            letterLearningEventGson.setTime(letterLearningEventGson.getTime());
-            
-            letterLearningEventGson.setApplication(getApplicationGson(letterLearningEvent.getApplication()));
-            letterLearningEventGson.setStudent(getStudentGson(letterLearningEvent.getStudent()));
-            
-            letterLearningEventGson.setLetter(getLetterGson(letterLearningEvent.getLetter()));
-            
-            return letterLearningEventGson;
-        }
-    }
-    
-    public static NumberLearningEventGson getNumberLearningEventGson(NumberLearningEvent numberLearningEvent) {
-        if (numberLearningEvent == null) {
-            return null;
-        } else {
-            NumberLearningEventGson numberLearningEventGson = new NumberLearningEventGson();
-            
-            numberLearningEventGson.setId(numberLearningEvent.getId());
-            numberLearningEventGson.setDevice(getDeviceGson(numberLearningEvent.getDevice()));
-            numberLearningEventGson.setTime(numberLearningEventGson.getTime());
-            
-            numberLearningEventGson.setApplication(getApplicationGson(numberLearningEvent.getApplication()));
-            numberLearningEventGson.setStudent(getStudentGson(numberLearningEvent.getStudent()));
-            
-            numberLearningEventGson.setNumber(getNumberGson(numberLearningEvent.getNumber()));
-            
-            return numberLearningEventGson;
-        }
-    }
-    
-    public static VideoLearningEventGson getVideoLearningEventGson(VideoLearningEvent videoLearningEvent) {
-        if (videoLearningEvent == null) {
-            return null;
-        } else {
-            VideoLearningEventGson videoLearningEventGson = new VideoLearningEventGson();
-            
-            videoLearningEventGson.setId(videoLearningEvent.getId());
-            videoLearningEventGson.setDevice(getDeviceGson(videoLearningEvent.getDevice()));
-            videoLearningEventGson.setTime(videoLearningEventGson.getTime());
-            
-            videoLearningEventGson.setApplication(getApplicationGson(videoLearningEvent.getApplication()));
-            videoLearningEventGson.setStudent(getStudentGson(videoLearningEvent.getStudent()));
-            
-            videoLearningEventGson.setVideo(getVideoGson(videoLearningEvent.getVideo()));
-            
-            return videoLearningEventGson;
         }
     }
 }

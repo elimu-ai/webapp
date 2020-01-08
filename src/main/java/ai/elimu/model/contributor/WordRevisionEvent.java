@@ -5,6 +5,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.content.Word;
 
+// TODO: Rename to avoid confusion with "WordReviewEvent"
 @Entity
 public class WordRevisionEvent extends ContributorEvent {
     

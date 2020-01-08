@@ -38,13 +38,8 @@
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="students" /></b></li>
-                        <li><a href="<spring:url value='/analytics/student/list' />"><i class="material-icons left">school</i><fmt:message key="students" /></a></li>
+                        <li class="grey-text"><b><fmt:message key="devices" /></b></li>
                         <li><a href="<spring:url value='/analytics/device/list' />"><i class="material-icons left">devices</i><fmt:message key="devices" /></a></li>
-                        
-                        <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="usage.activity" /></b></li>
-                        <li><a href="<spring:url value='/analytics/application-opened-event/list' />"><i class="material-icons left">timeline</i><fmt:message key="application.opened.events" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/analytics' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
