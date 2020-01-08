@@ -10,7 +10,7 @@
     </c:when>
     <c:otherwise>
         <!DOCTYPE html>
-        <html lang="${locale.language}">
+        <html lang="en">
             <head>
                 <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
                 <title><content:gettitle /> | elimu.ai</title>

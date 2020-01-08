@@ -103,15 +103,6 @@
           p:defaultEncoding="UTF-8"
           p:fileEncodings="UTF-8"
           p:cacheSeconds="-1" />
-
-    <mvc:interceptors>
-        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" 
-              p:paramName="lang" />
-        <bean class="ai.elimu.web.servlet.i18n.LocaleChangeInterceptor" />
-    </mvc:interceptors>
-    
-    <bean id="localeResolver" class="ai.elimu.web.servlet.i18n.DomainLocaleResolver"
-          p:defaultLocale="en_US" />
     
     <!-- Configure caching -->
     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
