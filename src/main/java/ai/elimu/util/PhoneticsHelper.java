@@ -1,7 +1,6 @@
 package ai.elimu.util;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.model.content.Word;
@@ -66,9 +65,7 @@ public class PhoneticsHelper {
     public static SoundType getSoundType(String ipaValue, Locale locale) {
         SoundType soundType = null;
         
-        if (locale == Locale.AR) {
-            // TODO
-        } else if (locale == Locale.EN) {
+        if (locale == Locale.EN) {
             if ("i".equals(ipaValue)) {
                 return soundType.VOWEL;
             } else if ("t".equals(ipaValue)) {
