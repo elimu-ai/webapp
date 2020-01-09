@@ -68,10 +68,6 @@ public class WordListController {
             wordZero.setText("zero");
             wordZero.setPhonetics("ˈzɪrɔʊ");
             words.add(wordZero);
-        } else if (locale == Locale.ES) {
-            wordZero.setText("cero");
-//            wordZero.setPhonetics(TODO);
-            words.add(wordZero);
         } else if (locale == Locale.SW) {
             wordZero.setText("sifuri");
             wordZero.setPhonetics("siˈfuɾi");
@@ -84,10 +80,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordOne.setText("one");
             wordOne.setPhonetics("wʌn");
-            words.add(wordOne);
-        } else if (locale == Locale.ES) {
-            wordOne.setText("uno");
-//            wordOne.setPhonetics(TODO);
             words.add(wordOne);
         } else if (locale == Locale.SW) {
             wordOne.setText("moja");
@@ -103,10 +95,6 @@ public class WordListController {
             wordTwo.setText("two");
             wordTwo.setPhonetics("tu");
             words.add(wordTwo);
-        } else if (locale == Locale.ES) {
-            wordTwo.setText("dos");
-//            wordTwo.setPhonetics(TODO);
-            words.add(wordTwo);
         } else if (locale == Locale.SW) {
             wordTwo.setText("mbili");
             wordTwo.setPhonetics("mˈbili");
@@ -119,10 +107,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordThree.setText("three");
             wordThree.setPhonetics("θri");
-            words.add(wordThree);
-        } else if (locale == Locale.ES) {
-            wordThree.setText("tres");
-//            wordThree.setPhonetics(TODO);
             words.add(wordThree);
         } else if (locale == Locale.SW) {
             wordThree.setText("tatu");
@@ -138,10 +122,6 @@ public class WordListController {
             wordFour.setText("four");
             wordFour.setPhonetics("fɔr");
             words.add(wordFour);
-        } else if (locale == Locale.ES) {
-            wordFour.setText("cuatro");
-//            wordFour.setPhonetics(TODO);
-            words.add(wordFour);
         } else if (locale == Locale.SW) {
             wordFour.setText("nne");
             wordFour.setPhonetics("nˈnɛ");
@@ -155,10 +135,6 @@ public class WordListController {
             wordFive.setText("five");
             wordFive.setPhonetics("fɑɪv");
             words.add(wordFive);
-        } else if (locale == Locale.ES) {
-            wordFive.setText("cinco");
-//            wordFive.setPhonetics(TODO);
-            words.add(wordFive);
         } else if (locale == Locale.SW) {
             wordFive.setText("tano");
             wordFive.setPhonetics("ˈtɑnɔ");
@@ -171,10 +147,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordSix.setText("six");
             wordSix.setPhonetics("sɪks");
-            words.add(wordSix);
-        } else if (locale == Locale.ES) {
-            wordSix.setText("seis");
-//            wordSix.setPhonetics(TODO);
             words.add(wordSix);
         } else if (locale == Locale.SW) {
             wordSix.setText("sita");
@@ -190,10 +162,6 @@ public class WordListController {
             wordSeven.setText("seven");
             wordSeven.setPhonetics("ˈsɛvən");
             words.add(wordSeven);
-        } else if (locale == Locale.ES) {
-            wordSeven.setText("siete");
-//            wordSeven.setPhonetics(TODO);
-            words.add(wordSeven);
         } else if (locale == Locale.SW) {
             wordSeven.setText("saba");
             wordSeven.setPhonetics("ˈsɑbɑ");
@@ -207,10 +175,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordEight.setText("eight");
             wordEight.setPhonetics("ɛɪt");
-            words.add(wordEight);
-        } else if (locale == Locale.ES) {
-            wordEight.setText("ocho");
-//            wordEight.setPhonetics(TODO);
             words.add(wordEight);
         } else if (locale == Locale.SW) {
             wordEight.setText("nane");
@@ -226,10 +190,6 @@ public class WordListController {
             wordNine.setText("nine");
             wordNine.setPhonetics("nɑɪn");
             words.add(wordNine);
-        } else if (locale == Locale.ES) {
-            wordNine.setText("nueve");
-//            wordNine.setPhonetics(TODO);
-            words.add(wordNine);
         } else if (locale == Locale.SW) {
             wordNine.setText("tisa");
             wordNine.setPhonetics("ˈtisɑ");
@@ -242,10 +202,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordTen.setText("ten");
             wordTen.setPhonetics("tɛn");
-            words.add(wordTen);
-        } else if (locale == Locale.ES) {
-            wordTen.setText("diez");
-//            word???.setPhonetics(TODO);
             words.add(wordTen);
         } else if (locale == Locale.SW) {
             wordTen.setText("kumi");
@@ -271,10 +227,6 @@ public class WordListController {
             wordEleven.setText("eleven");
             wordEleven.setPhonetics("ɪˈlɛvən");
             words.add(wordEleven);
-        } else if (locale == Locale.ES) {
-            wordEleven.setText("once");
-//            word???.setPhonetics(TODO);
-            words.add(wordEleven);
         }
         
         Word wordTwelve = new Word();
@@ -283,10 +235,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordTwelve.setText("twelve");
             wordTwelve.setPhonetics("twɛlv");
-            words.add(wordTwelve);
-        } else if (locale == Locale.ES) {
-            wordTwelve.setText("doce");
-//            word???.setPhonetics(TODO);
             words.add(wordTwelve);
         }
         
@@ -297,10 +245,6 @@ public class WordListController {
             wordThirteen.setText("thirteen");
             wordThirteen.setPhonetics("θɛrtin");
             words.add(wordThirteen);
-        } else if (locale == Locale.ES) {
-            wordThirteen.setText("trece");
-//            word???.setPhonetics(TODO);
-            words.add(wordThirteen);
         }
         
         Word wordFourteen = new Word();
@@ -309,10 +253,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordFourteen.setText("fourteen");
             wordFourteen.setPhonetics("ˈfɔrˈtin");
-            words.add(wordFourteen);
-        } else if (locale == Locale.ES) {
-            wordFourteen.setText("catorce");
-//            word???.setPhonetics(TODO);
             words.add(wordFourteen);
         }
         
@@ -323,10 +263,6 @@ public class WordListController {
             wordFifteen.setText("fifteen");
             wordFifteen.setPhonetics("fɪfˈtin");
             words.add(wordFifteen);
-        } else if (locale == Locale.ES) {
-            wordFifteen.setText("quince");
-//            word???.setPhonetics(TODO);
-            words.add(wordFifteen);
         }
         
         Word wordSixteen = new Word();
@@ -335,10 +271,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordSixteen.setText("sixteen");
             wordSixteen.setPhonetics("sɪkˈstin");
-            words.add(wordSixteen);
-        } else if (locale == Locale.ES) {
-            wordSixteen.setText("dieciséis");
-//            word???.setPhonetics(TODO);
             words.add(wordSixteen);
         }
         
@@ -349,10 +281,6 @@ public class WordListController {
             wordSeventeen.setText("seventeen");
             wordSeventeen.setPhonetics("ˈsɛvənˈtin");
             words.add(wordSeventeen);
-        } else if (locale == Locale.ES) {
-            wordSeventeen.setText("diecisiete");
-//            word???.setPhonetics(TODO);
-            words.add(wordSeventeen);
         }
         
         Word wordEighteen = new Word();
@@ -361,10 +289,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordEighteen.setText("eighteen");
             wordEighteen.setPhonetics("ɛɪtin");
-            words.add(wordEighteen);
-        } else if (locale == Locale.ES) {
-            wordEighteen.setText("dieciocho");
-//            word???.setPhonetics(TODO);
             words.add(wordEighteen);
         }
         
@@ -375,10 +299,6 @@ public class WordListController {
             wordNineteen.setText("nineteen");
             wordNineteen.setPhonetics("ˈnaɪnˈtin");
             words.add(wordNineteen);
-        } else if (locale == Locale.ES) {
-            wordNineteen.setText("diecinueve");
-//            word???.setPhonetics(TODO);
-            words.add(wordNineteen);
         }
         
         Word wordTwenty = new Word();
@@ -387,10 +307,6 @@ public class WordListController {
         if (locale == Locale.EN) {
             wordTwenty.setText("twenty");
             wordTwenty.setPhonetics("ˈtwɛnti");
-            words.add(wordTwenty);
-        } else if (locale == Locale.ES) {
-            wordTwenty.setText("veinte");
-//            word???.setPhonetics(TODO);
             words.add(wordTwenty);
         } else if (locale == Locale.SW) {
             wordTwenty.setText("ishirini");
@@ -401,9 +317,9 @@ public class WordListController {
         Word wordTwentyOne = new Word();
         wordTwentyOne.setLocale(locale);
         wordTwentyOne.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.ES) {
-            wordTwentyOne.setText("veintiuno");
-//            word???.setPhonetics(TODO);
+        if (locale == Locale.EN) {
+            wordTwentyOne.setText("twenty-one"); // TODO: handle words separated by hyphen
+            wordTwentyOne.setPhonetics("ˈtwɛnti wʌn");
             words.add(wordTwentyOne);
         }
         

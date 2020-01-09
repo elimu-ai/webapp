@@ -147,19 +147,16 @@
                                     <c:choose>
                                         <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
                                             <a class="white-text" href="<spring:url value='/?lang=en' />" title="English">en</a>
-                                            <a class="white-text" href="<spring:url value='/?lang=es' />" title="Español">es</a>
                                             <a class="white-text" href="<spring:url value='/?lang=hi' />" title="हिंदी">hi</a>
                                             <a class="white-text" href="<spring:url value='/?lang=sw' />" title="Kiswahili">sw</a>
                                         </c:when>
                                         <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
                                             <a class="white-text" href="http://en.test.elimu.ai" title="English">en</a>
-                                            <a class="white-text" href="http://es.test.elimu.ai" title="Español">es</a>
                                             <a class="white-text" href="http://hi.test.elimu.ai" title="हिंदी">hi</a>
                                             <a class="white-text" href="http://sw.test.elimu.ai" title="Kiswahili">sw</a>
                                         </c:when>
                                         <c:otherwise>
                                             <a class="white-text" href="http://en.elimu.ai" title="English">en</a>
-                                            <a class="white-text" href="http://es.elimu.ai" title="Español">es</a>
                                             <a class="white-text" href="http://hi.elimu.ai" title="हिंदी">hi</a>
                                             <a class="white-text" href="http://sw.elimu.ai" title="Kiswahili">sw</a>
                                         </c:otherwise>

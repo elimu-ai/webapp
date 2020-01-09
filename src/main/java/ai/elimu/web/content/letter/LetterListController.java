@@ -506,10 +506,6 @@ public class LetterListController {
             letterXUpperCase.setBraille("⠭");
             letterXUpperCase.setUsageCount(0);
             letters.add(letterXUpperCase);
-        } else if (locale == Locale.ES) {
-//            letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"));
-            
-            // TODO
         } else if (locale == Locale.SW) {
 //            letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","w","y","z"));
             
