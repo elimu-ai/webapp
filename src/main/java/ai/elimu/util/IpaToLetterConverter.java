@@ -16,8 +16,6 @@ public class IpaToLetterConverter {
                 return "th";
             }
             // TODO
-        } else if (locale == Locale.ES) {
-            // TODO
         } else if (locale == Locale.SW) {
             // TODO
         }

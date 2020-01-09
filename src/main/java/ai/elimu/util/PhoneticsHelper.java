@@ -40,8 +40,6 @@ public class PhoneticsHelper {
                         break;
                     }
                 }
-            } else if (word.getLocale() == Locale.ES) {
-                // TODO
             } else if (word.getLocale() == Locale.SW) {
                 String[][] allophonesArraySW = AllophoneListController.allophonesArraySW;
                 for (String[] allophoneRow : allophonesArraySW) {
@@ -145,8 +143,6 @@ public class PhoneticsHelper {
             } else if ("ʒ".equals(ipaValue)) {
                 return SoundType.CONSONANT;
             }
-        } else if (locale == Locale.ES) {
-            // TODO
         } else if (locale == Locale.SW) {
             // TODO
         }
