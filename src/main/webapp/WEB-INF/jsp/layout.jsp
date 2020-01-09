@@ -104,7 +104,7 @@
                       <div class="container">
                         <div class="row">
                           <div class="col l6 s12">
-                            <h5 class="white-text"><fmt:message key="about" /> elimu.ai Foundation</h5>
+                            <h5 class="white-text"><fmt:message key="about" /> elimu.ai</h5>
                             <p class="grey-text text-lighten-2"><fmt:message key="we.are.an.open.community.with" /></p>
                             <p class="grey-text text-lighten-2"><fmt:message key="we.build.tablet.based.software.which.is.open.source" />
                             <a class="white-text" href="<spring:url value='/publish' />"><fmt:message key="read.more" />...</a></p>

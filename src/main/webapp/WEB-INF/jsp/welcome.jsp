@@ -59,7 +59,7 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">The elimu.ai Foundation develops open source software for teaching children the basics of reading, writing and arithmetic.</p>
+              <p class="light center">The elimu.ai Community develops open source software for teaching children the basics of reading, writing and arithmetic.</p>
             </div>
           </div>
         </div>
