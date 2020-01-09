@@ -40,11 +40,6 @@
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="applications" /></b></li>
                         <li><a href="<spring:url value='/admin/application/list' />"><i class="material-icons left">android</i><fmt:message key="applications" /></a></li>
-                        
-                        <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="contributors" /></b></li>
-                        <li><a href="<spring:url value='/admin/contributor/list' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
-                        <li><a href="<spring:url value='/admin/sign-on-event/list' />"><i class="material-icons left">timeline</i><fmt:message key="sign.on.events" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
