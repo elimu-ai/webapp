@@ -182,9 +182,6 @@ public class SignOnControllerFacebook {
                     existingContributor.setImageUrl(contributor.getImageUrl());
                 }
                 // TODO: firstName/lastName
-                if (StringUtils.isBlank(existingContributor.getReferrer())) {
-                    existingContributor.setReferrer(contributor.getReferrer());
-                }
                 if (StringUtils.isBlank(existingContributor.getUtmSource())) {
                     existingContributor.setUtmSource(contributor.getUtmSource());
                 }

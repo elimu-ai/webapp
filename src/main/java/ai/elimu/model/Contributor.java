@@ -55,9 +55,6 @@ public class Contributor extends BaseEntity {
     
     @Enumerated(EnumType.STRING)
     private Locale locale;
-    
-    @Column(length=1000)
-    private String referrer;
 
     // Campaign parameter 'utm_source'
     private String utmSource;
@@ -189,14 +186,6 @@ public class Contributor extends BaseEntity {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
-    }
-
-    public String getReferrer() {
-        return referrer;
-    }
-
-    public void setReferrer(String referrer) {
-        this.referrer = referrer;
     }
 
     public String getUtmSource() {
