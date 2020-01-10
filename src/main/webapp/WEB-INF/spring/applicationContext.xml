@@ -92,8 +92,6 @@
                 
                 <prop key="/appeal">viewController</prop>
                 <prop key="/publish">viewController</prop>
-                
-                <prop key="/content/community/issue-management">viewController</prop>
             </props>
         </property>
     </bean>
