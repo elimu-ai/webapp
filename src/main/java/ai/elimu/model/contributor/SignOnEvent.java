@@ -19,9 +19,6 @@ public class SignOnEvent extends ContributorEvent {
     @Column(length = 1000)
     private String userAgent;
 
-    // Id of referring Contributor
-    private Long referralId;
-
     public String getServerName() {
         return serverName;
     }
@@ -52,13 +49,5 @@ public class SignOnEvent extends ContributorEvent {
 
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
-    }
-
-    public Long getReferralId() {
-        return referralId;
-    }
-
-    public void setReferralId(Long referralId) {
-        this.referralId = referralId;
     }
 }

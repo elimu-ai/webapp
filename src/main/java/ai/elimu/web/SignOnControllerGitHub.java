@@ -234,9 +234,6 @@ public class SignOnControllerGitHub {
                 if (StringUtils.isBlank(existingContributor.getUtmTerm())) {
                     existingContributor.setUtmTerm(contributor.getUtmTerm());
                 }
-                if (existingContributor.getReferralId() == null) {
-                    existingContributor.setReferralId(contributor.getReferralId());
-                }
                 contributorDao.update(existingContributor);
                 
                 // Contributor registered previously

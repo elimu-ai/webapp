@@ -71,9 +71,6 @@ public class Contributor extends BaseEntity {
     // Campaign parameter 'utm_term'
     private String utmTerm;
 
-    // Id of referring Contributor
-    private Long referralId;
-
     public String getEmail() {
         return email;
     }
@@ -232,13 +229,5 @@ public class Contributor extends BaseEntity {
 
     public void setUtmTerm(String utmTerm) {
         this.utmTerm = utmTerm;
-    }
-
-    public Long getReferralId() {
-        return referralId;
-    }
-
-    public void setReferralId(Long referralId) {
-        this.referralId = referralId;
     }
 }
