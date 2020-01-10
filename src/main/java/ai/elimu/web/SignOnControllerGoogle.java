@@ -176,18 +176,6 @@ public class SignOnControllerGoogle {
                     existingContributor.setImageUrl(contributor.getImageUrl());
                 }
                 // TODO: firstName/lastName
-                if (StringUtils.isBlank(existingContributor.getUtmSource())) {
-                    existingContributor.setUtmSource(contributor.getUtmSource());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmMedium())) {
-                    existingContributor.setUtmMedium(contributor.getUtmMedium());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmCampaign())) {
-                    existingContributor.setUtmCampaign(contributor.getUtmCampaign());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmTerm())) {
-                    existingContributor.setUtmTerm(contributor.getUtmTerm());
-                }
                 contributorDao.update(existingContributor);
                 
                 // Contributor registered previously
