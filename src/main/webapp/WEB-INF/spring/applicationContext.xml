@@ -61,22 +61,10 @@
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
-    <!--
-             - The BeanNameViewResolver is used to pick up the visits view name (below).
-             - It has the order property set to 1, which means that this will
-             - be the first view resolver to be used after the delegating content
-             - negotiating view resolver.
-      -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1" />
-
-    <!--
-             - This bean configures the 'prefix' and 'suffix' properties of
-             - InternalResourceViewResolver, which resolves logical view names
-             - returned by Controllers. For example, a logical view name of "vets"
-             - will be mapped to "/WEB-INF/jsp/vets.jsp".
-     -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp" p:order="2" />
+    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2"
+          p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"  />
 
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
     <bean name="viewController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
