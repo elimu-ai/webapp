@@ -11,8 +11,9 @@
     
     <p>
         We are building a platform of educational apps and games that teaches a child to read, write and perform 
-        arithmetic fully autonomously and without the aid of a qualified teacher. This will help bring quality basic education to the 
-        millions of children who are currently out of school.
+        arithmetic fully autonomously and without the aid of a qualified teacher. This will help bring quality basic 
+        education to the <a href="http://uis.unesco.org/en/news/new-education-data-sdg-4-and-more" target="_blank">64 
+        million children</a> who are currently out of school.
     </p>
     
     <div class="row section">
@@ -39,14 +40,15 @@
         <li>Select <b>one</b> literacy/numeracy skill that your app/game will be teaching</li>
         <li>Create a new repository for the project on <a href="https://github.com/elimu-ai" target="_blank">GitHub</a></li>
         <li>Upload the source code (we will perform code reviews of your pull requests)</li>
-        <li>Add <a href="https://github.com/elimu-ai/analytics/tree/master/eventtracker">learning event tracking</a> to the source code</li>
+        <li>Add <a href="https://github.com/elimu-ai/analytics">learning event reporting</a> to the source code</li>
         <li>Add build and release instructions for generating APK files</li>
-        <li>Once quality approved, we release the app and initiate usage data collection</li>
+        <li>Once quality approved, we release the app and initiate user testing and usage data collection</li>
         <li>Analyze usage data and update the software as needed</li>
     </ol>
     
     <p>
-        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our <a href="http://slack.elimu.ai">chat room</a>.
+        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our 
+        <a href="http://slack.elimu.ai">chat room</a>.
     </p>
 </content:section>
 
@@ -56,15 +58,16 @@
     <ul class="browser-default">
         <li>
             <b>What type of license is required?</b><br />
-            We require all code to be licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> or equivalent, 
-            creating a global public good available for anyone to use.<br />
+            We require all code to be licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 
+            or equivalent, creating a global public good available for anyone to use and build upon.<br />
             <br />
         </li>
         <li>
             <b>What languages should the app/game support?</b><br />
-            The app/game should support English, Hindi and/or Swahili. We target 
-            primary age children (about 6 to 11 years) who are out of school. 
-            And we continuously <a href="https://elimu-ai.atlassian.net/wiki/spaces/DE/pages/191136000/How+to+Add+Support+For+a+New+Language" target="_blank">add support for more languages</a>.<br />
+            As a minimum, the app/game should support English, and at least one of the following languages: 
+            Filipino/Hindi/Swahili. 
+            We target primary age children (about 6 to 11 years) who are out of school and who speak one of these 
+            languages as their mother tongue. And we continuously <a href="https://elimu-ai.atlassian.net/wiki/spaces/DE/pages/191136000/How+to+Add+Support+For+a+New+Language" target="_blank">add support for more languages</a>.<br />
             <br />
         </li>
         <li>
@@ -76,20 +79,23 @@
         </li>
         <li>
             <b>What content should I use in my app?</b><br />
-            We offer a <a href="https://github.com/elimu-ai/authentication/tree/master/contentprovider">content provider library</a> that will automatically provide educational content 
-            matching the current skill level of each child.<br />
+            The elimu.ai platform offers a <a href="https://github.com/elimu-ai/content-provider">content provider 
+            library</a> that will automatically provide educational content matching the current skill level of each 
+            child.<br />
             <br />
         </li>
         <li>
             <b>Is Internet access allowed?</b><br />
             No, the devices will in many cases be used in areas where there is little or no Internet access, 
-            so all software has to work offline.<br />
+            so all software has to work offline. When configuring a new Android device, the 
+            <a href="https://github.com/elimu-ai/appstore">elimu.ai Appstore</a> will take care of downloading and 
+            installing all the necessary apps and content.<br />
             <br />
         </li>
         <li>
             <b>What devices are being used?</b><br />
             We are building our software for Android devices with 6"-10" displays installed with  
-            Android API version 21 (5.0) or higher.<br />
+            Android API version 24 (7.0) or higher.<br />
             <br />
         </li>
     </ul>

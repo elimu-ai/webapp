@@ -17,7 +17,7 @@ public class FallbackRestController {
         logger.info("handleRequest");
         
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("error", "URL not found. See /rest/v1/documentation");
+        jsonObject.put("error", "URL not found. See https://github.com/elimu-ai/webapp/tree/master/src/main/java/ai/elimu/rest");
         
         return jsonObject.toString();
     }

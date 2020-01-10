@@ -37,14 +37,8 @@
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="community" /></b></li>
-                        <li><a href="<spring:url value='/content/community/contributors' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
-                        <li><a href="http://slack.elimu.ai" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
-                        <li><a href="<spring:url value='/content/community/issue-management' />"><i class="material-icons left">assignment</i><fmt:message key="issue.management" /></a></li>
-                        
-                        <li class="divider"></li>
-                        
-                        <li class="grey-text"><b><fmt:message key="application.content" /></b></li>
+                        <li class="grey-text"><b><fmt:message key="educational.content" /></b></li>
+                        <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
                         <li><a href="<spring:url value='/content/syllable/list' />"><i class="material-icons left">queue_music</i><fmt:message key="syllables" /></a></li>
@@ -53,10 +47,6 @@
                         <li><a href="<spring:url value='/content/multimedia/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/image/list' />"><i class="material-icons left">image</i><fmt:message key="images" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/video/list' />"><i class="material-icons left">movie</i><fmt:message key="videos" /></a></li>
-                        
-                        <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="language.${contributor.locale.language}" /></b></li>
-                        <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>

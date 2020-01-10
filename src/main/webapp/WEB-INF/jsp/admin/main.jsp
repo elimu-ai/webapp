@@ -15,29 +15,5 @@
                 </div>
             </div>
         </div>
-        
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">group</i> <fmt:message key="contributors" /></span>
-                    <p>List of registered Contributors</p>
-                </div>
-                <div class="card-action">
-                    <a href="<spring:url value='/admin/contributor/list' />"><fmt:message key="view.list" /></a>
-                </div>
-            </div>
-        </div>
-                
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">timeline</i> <fmt:message key="sign.on.events" /></span>
-                    <p>List of last Contributor sign-ons</p>
-                </div>
-                <div class="card-action">
-                    <a href="<spring:url value='/admin/sign-on-event/list' />"><fmt:message key="view.list" /></a>
-                </div>
-            </div>
-        </div>
     </div>
 </content:section>

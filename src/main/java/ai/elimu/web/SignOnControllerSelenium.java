@@ -17,7 +17,6 @@ import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
 import ai.elimu.model.enums.Team;
-import ai.elimu.util.CookieHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,12 +82,6 @@ public class SignOnControllerSelenium {
         signOnEvent.setProvider(Provider.SELENIUM);
         signOnEvent.setRemoteAddress(request.getRemoteAddr());
         signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
-        signOnEvent.setReferrer(CookieHelper.getReferrer(request));
-        signOnEvent.setUtmSource(CookieHelper.getUtmSource(request));
-        signOnEvent.setUtmMedium(CookieHelper.getUtmMedium(request));
-        signOnEvent.setUtmCampaign(CookieHelper.getUtmCampaign(request));
-        signOnEvent.setUtmTerm(CookieHelper.getUtmTerm(request));
-        signOnEvent.setReferralId(CookieHelper.getReferralId(request));
         signOnEventDao.create(signOnEvent);
 	        	
         return "redirect:/content";
