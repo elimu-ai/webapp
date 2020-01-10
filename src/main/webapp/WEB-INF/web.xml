@@ -19,9 +19,9 @@
             <param-value>true</param-value>
         </init-param>
         <init-param>
+            <!-- 30 days -->
             <param-name>cacheControl</param-name>
             <param-value>max-age=2592000</param-value>
-            <!-- 30 days -->
         </init-param>
         <init-param>
             <param-name>useFileMappedBuffer</param-name>
@@ -73,14 +73,6 @@
     </filter>
     <filter-mapping>
         <filter-name>httpMethodFilter</filter-name>
-        <servlet-name>dispatcher</servlet-name>
-    </filter-mapping>
-    <filter>
-        <filter-name>responseFilter</filter-name>
-        <filter-class>ai.elimu.web.filters.ResponseFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>responseFilter</filter-name>
         <servlet-name>dispatcher</servlet-name>
     </filter-mapping>
     <session-config>
