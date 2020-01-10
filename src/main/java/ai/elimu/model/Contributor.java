@@ -51,8 +51,6 @@ public class Contributor extends BaseEntity {
     @Column(length = 1000)
     private String motivation;
     
-    private Integer timePerWeek; // Minutes
-    
     @Enumerated(EnumType.STRING)
     private Locale locale;
 
@@ -158,14 +156,6 @@ public class Contributor extends BaseEntity {
 
     public void setMotivation(String motivation) {
         this.motivation = motivation;
-    }
-    
-    public Integer getTimePerWeek() {
-        return timePerWeek;
-    }
-
-    public void setTimePerWeek(Integer timePerWeek) {
-        this.timePerWeek = timePerWeek;
     }
 
     public Locale getLocale() {

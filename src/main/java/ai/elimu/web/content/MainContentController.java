@@ -77,8 +77,6 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-teams";
         } else if (StringUtils.isBlank(contributor.getMotivation())) {
             return "redirect:/content/contributor/edit-motivation";
-        } else if (contributor.getTimePerWeek() == null) {
-            return "redirect:/content/contributor/edit-time";
         } else {
             // Redirect to originally requested URL
             DefaultSavedRequest defaultSavedRequest = (DefaultSavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");

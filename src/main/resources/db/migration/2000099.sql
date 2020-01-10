@@ -8,3 +8,5 @@ ALTER TABLE Contributor DROP COLUMN utmSource;
 ALTER TABLE Contributor DROP COLUMN utmMedium;
 ALTER TABLE Contributor DROP COLUMN utmCampaign;
 ALTER TABLE Contributor DROP COLUMN utmTerm;
+
+ALTER TABLE Contributor DROP COLUMN timePerWeek;
