@@ -23,10 +23,6 @@ public class Letter extends Content {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
     
-    @Length(max = 1)
-    @Column(length = 1)
-    private String braille;
-    
     private int usageCount; // Based on StoryBook content (all difficulty levels)
 
     public String getText() {
@@ -43,14 +39,6 @@ public class Letter extends Content {
 
     public void setAllophones(List<Allophone> allophones) {
         this.allophones = allophones;
-    }
-    
-    public String getBraille() {
-        return braille;
-    }
-
-    public void setBraille(String braille) {
-        this.braille = braille;
     }
 
     public int getUsageCount() {
