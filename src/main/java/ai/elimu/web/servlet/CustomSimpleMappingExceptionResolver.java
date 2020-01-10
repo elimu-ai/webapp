@@ -13,6 +13,4 @@ public class CustomSimpleMappingExceptionResolver extends SimpleMappingException
     protected void logException(Exception ex, HttpServletRequest request) {
         logger.error(buildLogMessage(ex, request), ex);
     }
-    
-    
 }

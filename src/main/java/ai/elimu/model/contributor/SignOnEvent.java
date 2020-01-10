@@ -18,9 +18,6 @@ public class SignOnEvent extends ContributorEvent {
     
     @Column(length = 1000)
     private String userAgent;
-    
-    @Column(length=1000)
-    private String referrer;
 
     // Campaign parameter 'utm_source'
     private String utmSource;
@@ -67,14 +64,6 @@ public class SignOnEvent extends ContributorEvent {
 
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
-    }
-
-    public String getReferrer() {
-        return referrer;
-    }
-
-    public void setReferrer(String referrer) {
-        this.referrer = referrer;
     }
 
     public String getUtmSource() {

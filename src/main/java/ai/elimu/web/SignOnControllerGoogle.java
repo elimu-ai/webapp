@@ -17,7 +17,6 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
-import ai.elimu.util.CookieHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.scribe.builder.ServiceBuilder;
@@ -112,12 +111,6 @@ public class SignOnControllerGoogle {
             }
 
             Contributor contributor = new Contributor();
-            contributor.setReferrer(CookieHelper.getReferrer(request));
-            contributor.setUtmSource(CookieHelper.getUtmSource(request));
-            contributor.setUtmMedium(CookieHelper.getUtmMedium(request));
-            contributor.setUtmCampaign(CookieHelper.getUtmCampaign(request));
-            contributor.setUtmTerm(CookieHelper.getUtmTerm(request));
-            contributor.setReferralId(CookieHelper.getReferralId(request));
             try {
                 JSONObject jsonObject = new JSONObject(responseBody);
                 logger.info("jsonObject: " + jsonObject);
@@ -220,12 +213,6 @@ public class SignOnControllerGoogle {
             signOnEvent.setProvider(Provider.GOOGLE);
             signOnEvent.setRemoteAddress(request.getRemoteAddr());
             signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
-            signOnEvent.setReferrer(CookieHelper.getReferrer(request));
-            signOnEvent.setUtmSource(CookieHelper.getUtmSource(request));
-            signOnEvent.setUtmMedium(CookieHelper.getUtmMedium(request));
-            signOnEvent.setUtmCampaign(CookieHelper.getUtmCampaign(request));
-            signOnEvent.setUtmTerm(CookieHelper.getUtmTerm(request));
-            signOnEvent.setReferralId(CookieHelper.getReferralId(request));
             signOnEventDao.create(signOnEvent);
 
             return "redirect:/content";
