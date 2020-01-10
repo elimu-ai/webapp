@@ -182,24 +182,6 @@ public class SignOnControllerFacebook {
                     existingContributor.setImageUrl(contributor.getImageUrl());
                 }
                 // TODO: firstName/lastName
-                if (StringUtils.isBlank(existingContributor.getReferrer())) {
-                    existingContributor.setReferrer(contributor.getReferrer());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmSource())) {
-                    existingContributor.setUtmSource(contributor.getUtmSource());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmMedium())) {
-                    existingContributor.setUtmMedium(contributor.getUtmMedium());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmCampaign())) {
-                    existingContributor.setUtmCampaign(contributor.getUtmCampaign());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmTerm())) {
-                    existingContributor.setUtmTerm(contributor.getUtmTerm());
-                }
-                if (existingContributor.getReferralId() == null) {
-                    existingContributor.setReferralId(contributor.getReferralId());
-                }
                 contributorDao.update(existingContributor);
                 
                 // Contributor registered previously

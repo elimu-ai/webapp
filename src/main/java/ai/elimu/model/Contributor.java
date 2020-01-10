@@ -51,28 +51,8 @@ public class Contributor extends BaseEntity {
     @Column(length = 1000)
     private String motivation;
     
-    private Integer timePerWeek; // Minutes
-    
     @Enumerated(EnumType.STRING)
     private Locale locale;
-    
-    @Column(length=1000)
-    private String referrer;
-
-    // Campaign parameter 'utm_source'
-    private String utmSource;
-
-    // Campaign parameter 'utm_medium'
-    private String utmMedium;
-
-    // Campaign parameter 'utm_campaign'
-    private String utmCampaign;
-
-    // Campaign parameter 'utm_term'
-    private String utmTerm;
-
-    // Id of referring Contributor
-    private Long referralId;
 
     public String getEmail() {
         return email;
@@ -177,14 +157,6 @@ public class Contributor extends BaseEntity {
     public void setMotivation(String motivation) {
         this.motivation = motivation;
     }
-    
-    public Integer getTimePerWeek() {
-        return timePerWeek;
-    }
-
-    public void setTimePerWeek(Integer timePerWeek) {
-        this.timePerWeek = timePerWeek;
-    }
 
     public Locale getLocale() {
         return locale;
@@ -192,53 +164,5 @@ public class Contributor extends BaseEntity {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
-    }
-
-    public String getReferrer() {
-        return referrer;
-    }
-
-    public void setReferrer(String referrer) {
-        this.referrer = referrer;
-    }
-
-    public String getUtmSource() {
-        return utmSource;
-    }
-
-    public void setUtmSource(String utmSource) {
-        this.utmSource = utmSource;
-    }
-
-    public String getUtmMedium() {
-        return utmMedium;
-    }
-
-    public void setUtmMedium(String utmMedium) {
-        this.utmMedium = utmMedium;
-    }
-
-    public String getUtmCampaign() {
-        return utmCampaign;
-    }
-
-    public void setUtmCampaign(String utmCampaign) {
-        this.utmCampaign = utmCampaign;
-    }
-
-    public String getUtmTerm() {
-        return utmTerm;
-    }
-
-    public void setUtmTerm(String utmTerm) {
-        this.utmTerm = utmTerm;
-    }
-
-    public Long getReferralId() {
-        return referralId;
-    }
-
-    public void setReferralId(Long referralId) {
-        this.referralId = referralId;
     }
 }
