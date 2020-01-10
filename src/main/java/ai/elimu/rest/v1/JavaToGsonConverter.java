@@ -250,7 +250,6 @@ public class JavaToGsonConverter {
                 allophones.add(allophoneGson);
             }
             letterGson.setAllophones(allophones);
-            letterGson.setBraille(letter.getBraille());
             letterGson.setUsageCount(letter.getUsageCount());
             
             return letterGson;

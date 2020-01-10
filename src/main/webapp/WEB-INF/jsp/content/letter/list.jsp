@@ -14,7 +14,6 @@
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="letter" /></th>
                     <th><fmt:message key="phonetics" /></th>
-                    <th>Braille</th>
                     <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
@@ -36,11 +35,6 @@
                                 /<c:forEach var="allophone" items="${letter.allophones}">
                                     ${allophone.valueIpa} 
                                 </c:forEach>/
-                            </td>
-                            <td>
-                                <span style="border: 1px solid rgba(0,0,0, 0.20); padding: 0.5em;">
-                                    ${letter.braille}
-                                </span>
                             </td>
                             <td>
                                 <audio controls="true">
