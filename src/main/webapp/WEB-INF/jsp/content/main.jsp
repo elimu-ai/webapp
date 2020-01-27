@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="content" />
+    <fmt:message key="educational.content" />
 </content:title>
 
 <content:section cssId="mainContentPage">
@@ -7,6 +7,10 @@
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
+        
+        <div class="col s12">
+            <h5><fmt:message key="text" /></h5>
+        </div>
         
         <div class="col s12 m6">
             <div class="card">
