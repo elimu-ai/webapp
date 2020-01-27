@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="${locale.language}">
+<html lang="en">
     <head>
-        <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
         <title><content:gettitle /> | elimu.ai</title>
 
         <meta charset="UTF-8" />
@@ -22,7 +21,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
-        <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
     </head>
 
     <body>
@@ -37,33 +35,28 @@
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="community" /></b></li>
-                        <li><a href="<spring:url value='/content/community/contributors' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
-                        <li><a href="http://slack.elimu.ai" target="_blank"><i class="material-icons left">chat_bubble_outline</i><fmt:message key="chat" /></a></li>
-                        <li><a href="<spring:url value='/content/community/issue-management' />"><i class="material-icons left">assignment</i><fmt:message key="issue.management" /></a></li>
-                        
-                        <li class="divider"></li>
-                        
-                        <li class="grey-text"><b><fmt:message key="application.content" /></b></li>
+                        <li class="grey-text"><b><fmt:message key="text" /></b></li>
+                        <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
                         <li><a href="<spring:url value='/content/syllable/list' />"><i class="material-icons left">queue_music</i><fmt:message key="syllables" /></a></li>
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
                         <li><a href="<spring:url value='/content/storybook/list' />"><i class="material-icons left">book</i><fmt:message key="storybooks" /></a></li>
+                        <li class="grey-text"><b><fmt:message key="multimedia" /></b></li>
                         <li><a href="<spring:url value='/content/multimedia/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/image/list' />"><i class="material-icons left">image</i><fmt:message key="images" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/video/list' />"><i class="material-icons left">movie</i><fmt:message key="videos" /></a></li>
-                        
-                        <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="language.${contributor.locale.language}" /></b></li>
-                        <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
-                    <a href="<spring:url value='/content' />" class="breadcrumb"><fmt:message key="content" /></a>
+                    <a href="<spring:url value='/content' />" class="breadcrumb"><fmt:message key="educational.content" /></a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/main.jsp')}">
                         <c:choose>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>
+                            </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/number/list' />"><fmt:message key="numbers" /></a>
@@ -92,10 +85,6 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="videos" /></a>
                             </c:when>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
-                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>
-                            </c:when>
                         </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>
@@ -109,8 +98,6 @@
                             </div>
                         </a>
                         <ul id='contributorDropdown' class='dropdown-content'>
-                            <li><a href="<spring:url value='/content/contributor/edit-locale' />"><i class="material-icons left">public</i><fmt:message key="select.language" /></a></li>
-                            <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-teams' />"><i class="material-icons left">group</i><fmt:message key="select.teams" /></a></li>
                             <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
@@ -124,19 +111,10 @@
                                 <li class="divider"></li>
                                 <li><a href="<spring:url value='/analytics' />"><i class="material-icons left">timeline</i><fmt:message key="analytics" /></a></li>
                             </sec:authorize>
-                            <sec:authorize access="hasRole('ROLE_PROJECT_MANAGER')">
-                                <li class="divider"></li>
-                                <li><a href="<spring:url value='/project' />"><i class="material-icons left">list</i><fmt:message key="projects" /></a></li>
-                            </sec:authorize>
                             <li class="divider"></li>
                             <li><a href="<spring:url value='/j_spring_security_logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
-                    <c:if test="${not empty contributor.locale}">
-                        <div class="right">
-                            <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
-                        </div>
-                    </c:if>
                 </div>
             </div>
         </nav>

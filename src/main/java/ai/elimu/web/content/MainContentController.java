@@ -1,5 +1,6 @@
 package ai.elimu.web.content;
 
+import ai.elimu.dao.AllophoneDao;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,9 @@ public class MainContentController {
     
     @Autowired
     private ApplicationDao applicationDao;
+    
+    @Autowired
+    private AllophoneDao allophoneDao;
     
     @Autowired
     private NumberDao numberDao;
@@ -71,14 +75,10 @@ public class MainContentController {
             return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if (contributor.getLocale() == null) {
-            return "redirect:/content/contributor/edit-locale";
         } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
             return "redirect:/content/contributor/edit-teams";
         } else if (StringUtils.isBlank(contributor.getMotivation())) {
             return "redirect:/content/contributor/edit-motivation";
-        } else if (contributor.getTimePerWeek() == null) {
-            return "redirect:/content/contributor/edit-time";
         } else {
             // Redirect to originally requested URL
             DefaultSavedRequest defaultSavedRequest = (DefaultSavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
@@ -89,6 +89,7 @@ public class MainContentController {
             }
         }
         
+        model.addAttribute("allophoneCount", -1); // TODO: implement readCount() in allophoneDao
         model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
         model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
         model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLocale()));

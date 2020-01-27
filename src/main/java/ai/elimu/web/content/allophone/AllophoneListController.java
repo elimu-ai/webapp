@@ -66,11 +66,6 @@ public class AllophoneListController {
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArrayES = new String[][] {
-        // TODO
-    };
-    
-    // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
     public static final String[][] allophonesArrayFI = new String[][] {
         {"aʊ","aU", "0"},
         {"ɔɪ","OI", "0"},
@@ -200,8 +195,6 @@ public class AllophoneListController {
         String[][] allophonesArray = null;
         if (locale == Locale.EN) {
             allophonesArray = allophonesArrayEN;
-        } else if (locale == Locale.ES) {
-            allophonesArray = allophonesArrayES;
         } else if (locale == Locale.FI) {
             allophonesArray = allophonesArrayFI;
         } else if (locale == Locale.SW) {

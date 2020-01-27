@@ -59,7 +59,8 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">The elimu.ai Foundation develops open source software for teaching children the basics of reading, writing and arithmetic.</p>
+              <p class="light center">We develop software for teaching children the basics of reading, writing and arithmetic.</p>
+              <p class="light center">An AI tutor guides each child through the necessary steps.</p>
             </div>
           </div>
         </div>
@@ -176,7 +177,7 @@
                   <h2><i class="material-icons medium">record_voice_over</i></h2>
                   <h5><fmt:message key="spread.the.word" /></h5>
                   
-                  <p>Follow us on social media and share our work with your friends (see links below).</p>
+                  <p>Follow us on social media and share our work (see links below).</p>
                 </div>
             </div>
         </div>

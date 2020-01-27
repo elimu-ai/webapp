@@ -28,18 +28,13 @@ This file is placed on the prod server under jetty.home/contexts/
     <Arg>github_api_secret</Arg>
     <Arg>************</Arg>
   </Call>
-  <Call name="setAttribute">
-    <Arg>google_analytics_identifier</Arg>
-    <Arg>************</Arg>
-  </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
       <Item>elimu.ai</Item>
-      <Item>ar.elimu.ai</Item>
-      <Item>en.elimu.ai</Item>
-      <Item>hi.elimu.ai</Item>
-      <Item>es.elimu.ai</Item>
-      <Item>sw.elimu.ai</Item>
+      <Item>eng.elimu.ai</Item>
+      <Item>fil.elimu.ai</Item>
+      <Item>hin.elimu.ai</Item>
+      <Item>swa.elimu.ai</Item>
     </Array>
   </Set>
   <Set name="maxFormContentSize">1073741824</Set><!-- 1024MB -->

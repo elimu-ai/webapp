@@ -31,12 +31,6 @@
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
                 <bean class="ai.elimu.logic.converters.StringToWordConverter" />
                 <bean class="ai.elimu.logic.converters.StringToImageConverter" />
-                
-                <!-- Custom Project -->
-                <bean class="ai.elimu.logic.converters.project.StringToAppCategoryConverter" />
-                <bean class="ai.elimu.logic.converters.project.StringToAppCollectionConverter" />
-                <bean class="ai.elimu.logic.converters.project.StringToAppGroupConverter" />
-                <bean class="ai.elimu.logic.converters.project.StringToProjectConverter" />
             </list>
         </property>
     </bean>
@@ -67,22 +61,10 @@
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
-    <!--
-             - The BeanNameViewResolver is used to pick up the visits view name (below).
-             - It has the order property set to 1, which means that this will
-             - be the first view resolver to be used after the delegating content
-             - negotiating view resolver.
-      -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1" />
-
-    <!--
-             - This bean configures the 'prefix' and 'suffix' properties of
-             - InternalResourceViewResolver, which resolves logical view names
-             - returned by Controllers. For example, a logical view name of "vets"
-             - will be mapped to "/WEB-INF/jsp/vets.jsp".
-     -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp" p:order="2" />
+    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2"
+          p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"  />
 
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
     <bean name="viewController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
@@ -98,8 +80,6 @@
                 
                 <prop key="/appeal">viewController</prop>
                 <prop key="/publish">viewController</prop>
-                
-                <prop key="/content/community/issue-management">viewController</prop>
             </props>
         </property>
     </bean>
@@ -109,22 +89,12 @@
           p:defaultEncoding="UTF-8"
           p:fileEncodings="UTF-8"
           p:cacheSeconds="-1" />
-
-    <mvc:interceptors>
-        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" 
-              p:paramName="lang" />
-        <bean class="ai.elimu.web.servlet.i18n.LocaleChangeInterceptor" />
-    </mvc:interceptors>
-    
-    <bean id="localeResolver" class="ai.elimu.web.servlet.i18n.DomainLocaleResolver"
-          p:defaultLocale="en_US" />
     
     <!-- Configure caching -->
     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
         <property name="caches">
             <set>
                 <bean name="applications" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
-                <bean name="applicationsInAppCollection" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
             </set>
         </property>
     </bean>

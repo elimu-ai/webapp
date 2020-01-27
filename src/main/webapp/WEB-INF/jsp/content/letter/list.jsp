@@ -14,7 +14,6 @@
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="letter" /></th>
                     <th><fmt:message key="phonetics" /></th>
-                    <th>Braille</th>
                     <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
@@ -38,11 +37,6 @@
                                 </c:forEach>/
                             </td>
                             <td>
-                                <span style="border: 1px solid rgba(0,0,0, 0.20); padding: 0.5em;">
-                                    ${letter.braille}
-                                </span>
-                            </td>
-                            <td>
                                 <audio controls="true">
                                     <source src="<spring:url value='/static/audio/${locale.language}/sampa_${letter.text}.wav' />" />
                                 </audio>
@@ -59,6 +53,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">text_format</i></a>
+        <a href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

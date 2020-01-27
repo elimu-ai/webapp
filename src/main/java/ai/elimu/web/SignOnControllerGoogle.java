@@ -17,7 +17,6 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
-import ai.elimu.util.CookieHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.scribe.builder.ServiceBuilder;
@@ -112,12 +111,6 @@ public class SignOnControllerGoogle {
             }
 
             Contributor contributor = new Contributor();
-            contributor.setReferrer(CookieHelper.getReferrer(request));
-            contributor.setUtmSource(CookieHelper.getUtmSource(request));
-            contributor.setUtmMedium(CookieHelper.getUtmMedium(request));
-            contributor.setUtmCampaign(CookieHelper.getUtmCampaign(request));
-            contributor.setUtmTerm(CookieHelper.getUtmTerm(request));
-            contributor.setReferralId(CookieHelper.getReferralId(request));
             try {
                 JSONObject jsonObject = new JSONObject(responseBody);
                 logger.info("jsonObject: " + jsonObject);
@@ -156,21 +149,21 @@ public class SignOnControllerGoogle {
                 // Send welcome e-mail
                 String to = contributor.getEmail();
                 String from = "elimu.ai <info@elimu.ai>";
-                String subject = "Welcome to the community";
+                String subject = "Welcome to the elimu.ai Community";
                 String title = "Welcome!";
                 String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
                 String htmlText = "<p>Hi, " + firstName + "</p>";
-                htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai community. We are glad to see you join us!</p>";
+                htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai Community. We are glad to see you join us!</p>";
                 htmlText += "<h2>Purpose</h2>";
                 htmlText += "<p>The purpose of elimu.ai is to provide <i>every child</i> with access to quality basic education.</p>";
                 htmlText += "<h2>Why?</h2>";
                 htmlText += "<p>The word \"elimu\" is Swahili for \"education\". We believe that a quality basic education is the right of every child no matter her social or geographical background.</p>";
                 htmlText += "<h2>How?</h2>";
                 htmlText += "<p>With your help, this is what we aim to achieve:</p>";
-                htmlText += "<p><blockquote>\"The elimu.ai Foundation develops open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
+                htmlText += "<p><blockquote>\"The elimu.ai Community develops open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
                 htmlText += "<p><img src=\"https://gallery.mailchimp.com/1a69583fdeec7d1888db043c0/images/72b31d67-58fd-443e-a6be-3ef2095cfe3b.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
-                htmlText += "<p>At http://slack.elimu.ai you can chat with the other community members.</p>";
+                htmlText += "<p>At http://slack.elimu.ai you can chat with the other elimu.ai Community members.</p>";
                 Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "http://slack.elimu.ai");
             } else {
                 // Contributor already exists in database
@@ -183,24 +176,6 @@ public class SignOnControllerGoogle {
                     existingContributor.setImageUrl(contributor.getImageUrl());
                 }
                 // TODO: firstName/lastName
-                if (StringUtils.isBlank(existingContributor.getReferrer())) {
-                    existingContributor.setReferrer(contributor.getReferrer());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmSource())) {
-                    existingContributor.setUtmSource(contributor.getUtmSource());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmMedium())) {
-                    existingContributor.setUtmMedium(contributor.getUtmMedium());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmCampaign())) {
-                    existingContributor.setUtmCampaign(contributor.getUtmCampaign());
-                }
-                if (StringUtils.isBlank(existingContributor.getUtmTerm())) {
-                    existingContributor.setUtmTerm(contributor.getUtmTerm());
-                }
-                if (existingContributor.getReferralId() == null) {
-                    existingContributor.setReferralId(contributor.getReferralId());
-                }
                 contributorDao.update(existingContributor);
                 
                 // Contributor registered previously
@@ -220,12 +195,6 @@ public class SignOnControllerGoogle {
             signOnEvent.setProvider(Provider.GOOGLE);
             signOnEvent.setRemoteAddress(request.getRemoteAddr());
             signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
-            signOnEvent.setReferrer(CookieHelper.getReferrer(request));
-            signOnEvent.setUtmSource(CookieHelper.getUtmSource(request));
-            signOnEvent.setUtmMedium(CookieHelper.getUtmMedium(request));
-            signOnEvent.setUtmCampaign(CookieHelper.getUtmCampaign(request));
-            signOnEvent.setUtmTerm(CookieHelper.getUtmTerm(request));
-            signOnEvent.setReferralId(CookieHelper.getReferralId(request));
             signOnEventDao.create(signOnEvent);
 
             return "redirect:/content";

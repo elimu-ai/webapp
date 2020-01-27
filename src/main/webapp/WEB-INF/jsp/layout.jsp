@@ -8,12 +8,9 @@
     <c:when test="${fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
         <%@ include file="/WEB-INF/jsp/content/layout.jsp" %>
     </c:when>
-    <c:when test="${fn:contains(pageContext.request.requestURI, '/jsp/project/')}">
-        <%@ include file="/WEB-INF/jsp/project/layout.jsp" %>
-    </c:when>
     <c:otherwise>
         <!DOCTYPE html>
-        <html lang="${locale.language}">
+        <html lang="en">
             <head>
                 <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
                 <title><content:gettitle /> | elimu.ai</title>
@@ -41,7 +38,6 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
                 <script src="<spring:url value='/static/js/init.js' />"></script>
                 <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
-                <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
             </head>
 
             <body>
@@ -107,9 +103,9 @@
                       <div class="container">
                         <div class="row">
                           <div class="col l6 s12">
-                            <h5 class="white-text"><fmt:message key="about" /> elimu.ai Foundation</h5>
+                            <h5 class="white-text"><fmt:message key="about" /> elimu.ai</h5>
                             <p class="grey-text text-lighten-2"><fmt:message key="we.are.an.open.community.with" /></p>
-                            <p class="grey-text text-lighten-2"><fmt:message key="we.build.tablet.based.software.which.is.open.source" />
+                            <p class="grey-text text-lighten-2"><fmt:message key="we.build.educational.software.which.is.open.source" />
                             <a class="white-text" href="<spring:url value='/publish' />"><fmt:message key="read.more" />...</a></p>
                           </div>
                           <div class="col l3 offset-l1 s12 ">
@@ -149,22 +145,22 @@
                                    <fmt:message key="languages.supported.by.the.platform" />: 
                                     <c:choose>
                                         <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
-                                            <a class="white-text" href="<spring:url value='/?lang=en' />" title="English">en</a>
-                                            <a class="white-text" href="<spring:url value='/?lang=es' />" title="Español">es</a>
-                                            <a class="white-text" href="<spring:url value='/?lang=hi' />" title="हिंदी">hi</a>
-                                            <a class="white-text" href="<spring:url value='/?lang=sw' />" title="Kiswahili">sw</a>
+                                            <a class="white-text" href="<spring:url value='/?lang=eng' />" title="English">eng</a>
+                                            <a class="white-text" href="<spring:url value='/?lang=fil' />" title="Filipino">fil</a>
+                                            <a class="white-text" href="<spring:url value='/?lang=hin' />" title="हिंदी">hin</a>
+                                            <a class="white-text" href="<spring:url value='/?lang=swa' />" title="Kiswahili">swa</a>
                                         </c:when>
                                         <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                            <a class="white-text" href="http://en.test.elimu.ai" title="English">en</a>
-                                            <a class="white-text" href="http://es.test.elimu.ai" title="Español">es</a>
-                                            <a class="white-text" href="http://hi.test.elimu.ai" title="हिंदी">hi</a>
-                                            <a class="white-text" href="http://sw.test.elimu.ai" title="Kiswahili">sw</a>
+                                            <a class="white-text" href="http://eng.test.elimu.ai" title="English">eng</a>
+                                            <a class="white-text" href="http://fil.test.elimu.ai" title="Filipino">fil</a>
+                                            <a class="white-text" href="http://hin.test.elimu.ai" title="हिंदी">hin</a>
+                                            <a class="white-text" href="http://swa.test.elimu.ai" title="Kiswahili">swa</a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a class="white-text" href="http://en.elimu.ai" title="English">en</a>
-                                            <a class="white-text" href="http://es.elimu.ai" title="Español">es</a>
-                                            <a class="white-text" href="http://hi.elimu.ai" title="हिंदी">hi</a>
-                                            <a class="white-text" href="http://sw.elimu.ai" title="Kiswahili">sw</a>
+                                            <a class="white-text" href="http://eng.elimu.ai" title="English">eng</a>
+                                            <a class="white-text" href="http://fil.elimu.ai" title="Filipino">fil</a>
+                                            <a class="white-text" href="http://hin.elimu.ai" title="हिंदी">hin</a>
+                                            <a class="white-text" href="http://swa.elimu.ai" title="Kiswahili">swa</a>
                                         </c:otherwise>
                                     </c:choose>
                               </div>
