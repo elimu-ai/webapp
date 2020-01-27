@@ -1,5 +1,6 @@
 package ai.elimu.web.content;
 
+import ai.elimu.dao.AllophoneDao;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,9 @@ public class MainContentController {
     
     @Autowired
     private ApplicationDao applicationDao;
+    
+    @Autowired
+    private AllophoneDao allophoneDao;
     
     @Autowired
     private NumberDao numberDao;
@@ -85,6 +89,7 @@ public class MainContentController {
             }
         }
         
+        model.addAttribute("allophoneCount", -1); // TODO: implement readCount() in allophoneDao
         model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
         model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
         model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLocale()));

@@ -37,13 +37,14 @@
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="educational.content" /></b></li>
+                        <li class="grey-text"><b><fmt:message key="text" /></b></li>
                         <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
                         <li><a href="<spring:url value='/content/syllable/list' />"><i class="material-icons left">queue_music</i><fmt:message key="syllables" /></a></li>
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
                         <li><a href="<spring:url value='/content/storybook/list' />"><i class="material-icons left">book</i><fmt:message key="storybooks" /></a></li>
+                        <li class="grey-text"><b><fmt:message key="multimedia" /></b></li>
                         <li><a href="<spring:url value='/content/multimedia/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/image/list' />"><i class="material-icons left">image</i><fmt:message key="images" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/video/list' />"><i class="material-icons left">movie</i><fmt:message key="videos" /></a></li>
@@ -51,9 +52,13 @@
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
-                    <a href="<spring:url value='/content' />" class="breadcrumb"><fmt:message key="content" /></a>
+                    <a href="<spring:url value='/content' />" class="breadcrumb"><fmt:message key="educational.content" /></a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/main.jsp')}">
                         <c:choose>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>
+                            </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/number/list' />"><fmt:message key="numbers" /></a>
@@ -81,10 +86,6 @@
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="videos" /></a>
-                            </c:when>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
-                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>
                             </c:when>
                         </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
