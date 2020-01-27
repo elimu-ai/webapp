@@ -4,10 +4,6 @@
 
 <content:section cssId="mainContentPage">
     <div class="section row">
-        <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
-        </p>
-        
         <div class="col s12">
             <h5><fmt:message key="text" /></h5>
         </div>
