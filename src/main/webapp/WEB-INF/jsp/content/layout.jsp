@@ -116,11 +116,6 @@
                             <li><a href="<spring:url value='/j_spring_security_logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
-                    <c:if test="${not empty contributor.locale}">
-                        <div class="right">
-                            <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
-                        </div>
-                    </c:if>
                 </div>
             </div>
         </nav>

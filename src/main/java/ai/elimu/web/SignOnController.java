@@ -12,6 +12,7 @@ import ai.elimu.dao.SignOnEventDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
 import ai.elimu.model.enums.Team;
