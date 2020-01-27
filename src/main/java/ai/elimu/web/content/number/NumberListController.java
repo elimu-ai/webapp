@@ -65,7 +65,7 @@ public class NumberListController {
         if (locale == Locale.EN) {
             number0.setWords(getNumberWords(locale, "zero"));
         } else if (locale == Locale.FI) {
-            number0.setWords(getNumberWords(locale, "???"));
+            number0.setWords(getNumberWords(locale, "sero"));
         } else if (locale == Locale.SW) {
             number0.setWords(getNumberWords(locale, "sifuri"));
         }

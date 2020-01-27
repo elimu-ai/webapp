@@ -274,7 +274,7 @@ public class WordListController {
             wordEleven.setPhonetics("ɪˈlɛvən");
         } else if (locale == Locale.FI) {
             wordEleven.setText("labing-isang"); // TODO: handle "labing" and "isang" as separate words?
-            wordEleven.setPhonetics("???");
+            wordEleven.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordEleven);
         
@@ -286,7 +286,7 @@ public class WordListController {
             wordTwelve.setPhonetics("twɛlv");
         } else if (locale == Locale.FI) {
             wordTwelve.setText("labindalawang"); // TODO: no hyphen?
-            wordTwelve.setPhonetics("???");
+            wordTwelve.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordTwelve);
         
@@ -298,7 +298,7 @@ public class WordListController {
             wordThirteen.setPhonetics("θɛrtin");
         } else if (locale == Locale.FI) {
             wordThirteen.setText("labintatlo"); // TODO: no hyphen?
-            wordThirteen.setPhonetics("???");
+            wordThirteen.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordThirteen);
         
@@ -310,7 +310,7 @@ public class WordListController {
             wordFourteen.setPhonetics("ˈfɔrˈtin");
         } else if (locale == Locale.FI) {
             wordFourteen.setText("labing-apat");
-            wordFourteen.setPhonetics("???");
+            wordFourteen.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordFourteen);
         
@@ -322,7 +322,7 @@ public class WordListController {
             wordFifteen.setPhonetics("fɪfˈtin");
         } else if (locale == Locale.FI) {
             wordFifteen.setText("labinlimang"); // TODO: no hyphen?
-            wordFifteen.setPhonetics("???");
+            wordFifteen.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordFifteen);
         
@@ -334,7 +334,7 @@ public class WordListController {
             wordSixteen.setPhonetics("sɪkˈstin");
         } else if (locale == Locale.FI) {
             wordSixteen.setText("labing-anim");
-            wordSixteen.setPhonetics("???");
+            wordSixteen.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordSixteen);
         
@@ -346,7 +346,7 @@ public class WordListController {
             wordSeventeen.setPhonetics("ˈsɛvənˈtin");
         } else if (locale == Locale.FI) {
             wordSeventeen.setText("???");
-            wordSeventeen.setPhonetics("???");
+            wordSeventeen.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordSeventeen);
         
@@ -358,7 +358,7 @@ public class WordListController {
             wordEighteen.setPhonetics("ɛɪtin");
         } else if (locale == Locale.FI) {
             wordEighteen.setText("labing-walo");
-            wordEighteen.setPhonetics("???");
+            wordEighteen.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordEighteen);
         
@@ -370,7 +370,7 @@ public class WordListController {
             wordNineteen.setPhonetics("ˈnaɪnˈtin");
         } else if (locale == Locale.FI) {
             wordNineteen.setText("labinsiyam"); // TODO: no hyphen?
-            wordNineteen.setPhonetics("???");
+            wordNineteen.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordNineteen);
         
@@ -382,7 +382,7 @@ public class WordListController {
             wordTwenty.setPhonetics("ˈtwɛnti");
         } else if (locale == Locale.FI) {
             wordTwenty.setText("dalawampung");
-            wordTwenty.setPhonetics("???");
+            wordTwenty.setPhonetics("ˌˌˌ"); // TODO
         } else if (locale == Locale.SW) {
             wordTwenty.setText("ishirini");
             wordTwenty.setPhonetics("iʃiɾini");
@@ -397,7 +397,7 @@ public class WordListController {
             wordTwentyOne.setPhonetics("ˈtwɛnti wʌn");
         } else if (locale == Locale.FI) {
             wordTwentyOne.setText("dalawampu't isa"); // TODO: handle apostrophe ("dalawampu at")
-            wordTwentyOne.setPhonetics("???");
+            wordTwentyOne.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordTwentyOne);
         
@@ -409,7 +409,7 @@ public class WordListController {
             wordTwentyTwo.setPhonetics("???");
         } else if (locale == Locale.FI) {
             wordTwentyTwo.setText("dalawampu't dalawa"); // TODO: handle apostrophe ("dalawampu at")
-            wordTwentyTwo.setPhonetics("???");
+            wordTwentyTwo.setPhonetics("ˌˌˌ"); // TODO
         }
         words.add(wordTwentyTwo);
         

@@ -67,48 +67,48 @@ public class AllophoneListController {
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
     public static final String[][] allophonesArrayFI = new String[][] {
-        {"aʊ","aU", "0"},
-        {"ɔɪ","OI", "0"},
-        {"əʊ","@U", "0"},
-        {"ɛɪ","EI", "0"},
-        {"ɑɪ","AI", "0"},
-        {"tʃ","tS", "0"},
-        {"dʒ","dZ", "0"}, // TODO: use /ʤ/ instead of /dʒ/?
-        {"r̩","r_=", "0"}, // TODO: use "r=" instead of "r_="?
-        {"ɑ","A", "0"},
-        {"ɔ","O", "0"},
-        {"u","u", "0"},
-        {"i","i", "0"},
-        {"æ","{", "0"},
-        {"ʌ","V", "0"},
-        {"ɛ","E", "0"},
-        {"ɪ","I", "0"},
-        {"ʊ","U", "0"},
-        {"ə","@", "0"},
-        {"p","p", "0"},
-        {"t","t", "0"},
-        {"k","k", "0"},
-        {"b","b", "0"},
-        {"d","d", "0"},
-        {"g","g", "0"},
-        {"f","f", "0"},
-        {"v","v", "0"},
-        {"θ","T", "0"},
-        {"ð","D", "0"},
-        {"s","s", "0"},
-        {"z","z", "0"},
-        {"ʃ","S", "0"},
-        {"ʒ","Z", "0"},
-        {"h","h", "0"},
-        {"l","l", "0"},
-        {"m","m", "0"},
-        {"n","n", "0"},
-        {"ŋ","N", "0"},
-        {"r","r", "0"},
-        {"w","w", "0"},
-        {"j","j", "0"},
-        {"ˈ","\"", "0"}, // TODO: set isDiacritic = true
-        {"ˌ","%", "0"} // TODO: set isDiacritic = true
+        {"aʊ","aU", "-1"},
+        {"ɔɪ","OI", "-1"},
+        {"əʊ","@U", "-1"},
+        {"ɛɪ","EI", "-1"},
+        {"ɑɪ","AI", "-1"},
+        {"tʃ","tS", "-1"},
+        {"dʒ","dZ", "-1"}, // TODO: use /ʤ/ instead of /dʒ/?
+        {"r̩","r_=", "-1"}, // TODO: use "r=" instead of "r_="?
+        {"ɑ","A", "-1"},
+        {"ɔ","O", "-1"},
+        {"u","u", "-1"},
+        {"i","i", "-1"},
+        {"æ","{", "-1"},
+        {"ʌ","V", "-1"},
+        {"ɛ","E", "-1"},
+        {"ɪ","I", "-1"},
+        {"ʊ","U", "-1"},
+        {"ə","@", "-1"},
+        {"p","p", "-1"},
+        {"t","t", "-1"},
+        {"k","k", "-1"},
+        {"b","b", "-1"},
+        {"d","d", "-1"},
+        {"g","g", "-1"},
+        {"f","f", "-1"},
+        {"v","v", "-1"},
+        {"θ","T", "-1"},
+        {"ð","D", "-1"},
+        {"s","s", "-1"},
+        {"z","z", "-1"},
+        {"ʃ","S", "-1"},
+        {"ʒ","Z", "-1"},
+        {"h","h", "-1"},
+        {"l","l", "-1"},
+        {"m","m", "-1"},
+        {"n","n", "-1"},
+        {"ŋ","N", "-1"},
+        {"r","r", "-1"},
+        {"w","w", "-1"},
+        {"j","j", "-1"},
+        {"ˈ","\"", "-1"}, // TODO: set isDiacritic = true
+        {"ˌ","%", "-1"} // TODO: set isDiacritic = true
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
@@ -188,7 +188,6 @@ public class AllophoneListController {
         return "content/allophone/list";
     }
     
-    // TODO: add SoundType to each Allophone
     private List<Allophone> generateAllophones(Locale locale) {
         List<Allophone> allophones = new ArrayList<>();
         
@@ -207,6 +206,7 @@ public class AllophoneListController {
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophone.setValueIpa(allophoneRow[0]);
             allophone.setValueSampa(allophoneRow[1]);
+            // TODO: add SoundType to each Allophone
             allophone.setUsageCount(Integer.valueOf(allophoneRow[2]));
             allophones.add(allophone);
         }
