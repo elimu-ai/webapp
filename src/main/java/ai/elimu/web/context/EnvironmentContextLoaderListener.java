@@ -110,11 +110,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
                 
-                if (env == Environment.PROD) {
-                    String googleAnalyticsIdentifier = (String) servletContext.getAttribute("google_analytics_identifier");
-                    PROPERTIES.put("google.analytics.identifier", googleAnalyticsIdentifier);
-                }
-                
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
                 logger.error(null, ex);

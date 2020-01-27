@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
         <title><content:gettitle /> | elimu.ai</title>
 
         <meta charset="UTF-8" />
@@ -22,7 +21,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
-        <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
     </head>
 
     <body>
