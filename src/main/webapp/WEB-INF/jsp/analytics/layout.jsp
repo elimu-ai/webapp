@@ -58,8 +58,6 @@
                             </div>
                         </a>
                         <ul id='contributorDropdown' class='dropdown-content'>
-                            <li><a href="<spring:url value='/content/contributor/edit-locale' />"><i class="material-icons left">public</i><fmt:message key="select.language" /></a></li>
-                            <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-teams' />"><i class="material-icons left">group</i><fmt:message key="select.teams" /></a></li>
                             <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
