@@ -100,8 +100,6 @@
                             </div>
                         </a>
                         <ul id='contributorDropdown' class='dropdown-content'>
-                            <li><a href="<spring:url value='/content/contributor/edit-locale' />"><i class="material-icons left">public</i><fmt:message key="select.language" /></a></li>
-                            <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-teams' />"><i class="material-icons left">group</i><fmt:message key="select.teams" /></a></li>
                             <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
@@ -119,11 +117,6 @@
                             <li><a href="<spring:url value='/j_spring_security_logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
-                    <c:if test="${not empty contributor.locale}">
-                        <div class="right">
-                            <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
-                        </div>
-                    </c:if>
                 </div>
             </div>
         </nav>
