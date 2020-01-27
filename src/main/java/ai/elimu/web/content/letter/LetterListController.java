@@ -480,9 +480,44 @@ public class LetterListController {
             letterXUpperCase.setAllophones(getAllophones(locale, "k", "s"));
             letterXUpperCase.setUsageCount(0);
             letters.add(letterXUpperCase);
-        } else if (locale == Locale.SW) {
-//            letterStringArray = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","u","v","w","y","z"));
+        } else if (locale == Locale.FI) {
+            Letter letterA = new Letter();
+            letterA.setLocale(locale);
+            letterA.setTimeLastUpdate(Calendar.getInstance());
+            letterA.setText("a");
+            letterA.setAllophones(getAllophones(locale, "ɑ"));
+            letterA.setUsageCount(-1);
+            letters.add(letterA);
             
+            Letter letterB = new Letter();
+            letterB.setLocale(locale);
+            letterB.setTimeLastUpdate(Calendar.getInstance());
+            letterB.setText("b");
+            letterB.setAllophones(getAllophones(locale, "b"));
+            letterB.setUsageCount(-1);
+            letters.add(letterB);
+            
+            // TODO
+            
+            
+            Letter letterAUpperCase = new Letter();
+            letterAUpperCase.setLocale(locale);
+            letterAUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterAUpperCase.setText("A");
+            letterAUpperCase.setAllophones(getAllophones(locale, "ɑ"));
+            letterAUpperCase.setUsageCount(-1);
+            letters.add(letterAUpperCase);
+            
+            Letter letterBUpperCase = new Letter();
+            letterBUpperCase.setLocale(locale);
+            letterBUpperCase.setTimeLastUpdate(Calendar.getInstance());
+            letterBUpperCase.setText("B");
+            letterBUpperCase.setAllophones(getAllophones(locale, "b"));
+            letterBUpperCase.setUsageCount(-1);
+            letters.add(letterBUpperCase);
+            
+            // TODO
+        } else if (locale == Locale.SW) {
             Letter letterA = new Letter();
             letterA.setLocale(locale);
             letterA.setTimeLastUpdate(Calendar.getInstance());
@@ -845,7 +880,7 @@ public class LetterListController {
             letterVUpperCase.setUsageCount(1);
             letters.add(letterVUpperCase);
             
-            // TODO: replace 'C' with 'CH' and/or 'Ch'?
+            // TODO: replace 'C' with 'CH'?
             
             Letter letterOUpperCase = new Letter();
             letterOUpperCase.setLocale(locale);
