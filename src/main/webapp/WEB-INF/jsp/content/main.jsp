@@ -11,6 +11,17 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
+                    <span class="card-title"><i class="material-icons">record_voice_over</i> <fmt:message key="allophones" /></span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/content/allophone/list' />"><fmt:message key="view.list" /> (${allophoneCount})</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
                     <span class="card-title"><i class="material-icons">looks_one</i> <fmt:message key="numbers" /></span>
                 </div>
                 <div class="card-action">
