@@ -149,21 +149,6 @@ public class JavaToGsonConverter {
             
             deviceGson.setId(device.getId());
             deviceGson.setDeviceId(device.getDeviceId());
-//            deviceGson.setDeviceModel(device.getDeviceModel());
-//            deviceGson.setTimeRegistered(device.getTimeRegistered());
-//            deviceGson.setOsVersion(device.getOsVersion());
-//            deviceGson.setLocale(device.getLocale());
-//            
-//            Set<DeviceGson> devicesNearby = new HashSet<DeviceGson>();
-//            for (Device deviceNearby : device.getDevicesNearby()) {
-//                DeviceGson deviceJsonNearby = getDeviceGson(deviceNearby);
-//                if (deviceJsonNearby != null) {
-//                    devicesNearby.add(deviceJsonNearby);
-//                }
-//            }
-//            if (!devicesNearby.isEmpty()) {
-//                deviceGson.setDevicesNearby(devicesNearby);
-//            }
             
             return deviceGson;
         }
@@ -177,8 +162,6 @@ public class JavaToGsonConverter {
             
             studentGson.setUniqueId(student.getUniqueId());
             studentGson.setTimeCreated(student.getTimeCreated());
-//            studentGson.setAvatar(null);
-//            studentGson.setDevices(null);
             
             return studentGson;
         }
