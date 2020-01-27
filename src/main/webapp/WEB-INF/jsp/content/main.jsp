@@ -4,8 +4,6 @@
 
 <content:section cssId="mainContentPage">
     <div class="section row">
-        <%-- TODO: show progress bar for each content type --%>
-        
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
@@ -100,22 +98,6 @@
                     <a href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="view.list" /> (${videoCount})</a>
                 </div>
             </div>
-        </div>
-        
-        <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-            <a class="btn-floating btn-large" title="Add content">
-                <i class="large material-icons">add</i>
-            </a>
-            <ul>
-                <li><a href="<spring:url value='/content/number/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="110" data-tooltip="<fmt:message key="add.number" />"><i class="material-icons">looks_one</i></a></li>
-                <li><a href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="100" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">text_format</i></a></li>
-                <%--<li><a href="<spring:url value='/content/syllable/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="100" data-tooltip="<fmt:message key="add.syllable" />"><i class="material-icons">queue_music</i></a></li>--%>
-                <li><a href="<spring:url value='/content/word/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="90" data-tooltip="<fmt:message key="add.word" />"><i class="material-icons">sms</i></a></li>
-                <li><a href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="80" data-tooltip="<fmt:message key="add.storybook" />"><i class="material-icons">book</i></a></li>
-                <li><a href="<spring:url value='/content/multimedia/audio/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="70" data-tooltip="<fmt:message key="add.audio" />"><i class="material-icons">audiotrack</i></a></li>
-                <li><a href="<spring:url value='/content/multimedia/image/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="60" data-tooltip="<fmt:message key="add.image" />"><i class="material-icons">image</i></a></li>
-                <li><a href="<spring:url value='/content/multimedia/video/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.video" />"><i class="material-icons">movie</i></a></li>
-            </ul>
         </div>
     </div>
 </content:section>
