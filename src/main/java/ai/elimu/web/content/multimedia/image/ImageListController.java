@@ -101,6 +101,13 @@ public class ImageListController {
         coverImageWhatIf.setContentType("image/jpg");
         images.add(coverImageWhatIf);
         
+        Image coverImageHindiNaAkoNatatakot = new Image();
+        coverImageHindiNaAkoNatatakot.setLocale(locale);
+        coverImageHindiNaAkoNatatakot.setTimeLastUpdate(Calendar.getInstance());
+        coverImageHindiNaAkoNatatakot.setTitle("Hindi_na_Ako_natatakot_coverImage");
+        coverImageHindiNaAkoNatatakot.setContentType("image/jpg");
+        images.add(coverImageHindiNaAkoNatatakot);
+        
         return images;
     }
 }
