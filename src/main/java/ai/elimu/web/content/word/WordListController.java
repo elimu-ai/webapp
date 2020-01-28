@@ -266,113 +266,115 @@ public class WordListController {
             words.add(wordNa);
         }
         
-        Word wordEleven = new Word();
-        wordEleven.setLocale(locale);
-        wordEleven.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordEleven.setText("eleven");
-            wordEleven.setPhonetics("ɪˈlɛvən");
-        } else if (locale == Locale.FI) {
-            wordEleven.setText("labing-isa"); // TODO: handle "labing" and "isa" as separate words?
-            wordEleven.setPhonetics("ˌˌˌ"); // TODO
+        if ((locale == Locale.EN) || (locale == Locale.FI)) {
+            Word wordEleven = new Word();
+            wordEleven.setLocale(locale);
+            wordEleven.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordEleven.setText("eleven");
+                wordEleven.setPhonetics("ɪˈlɛvən");
+            } else if (locale == Locale.FI) {
+                wordEleven.setText("labing-isa"); // TODO: handle "labing" and "isa" as separate words?
+                wordEleven.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordEleven);
+
+            Word wordTwelve = new Word();
+            wordTwelve.setLocale(locale);
+            wordTwelve.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordTwelve.setText("twelve");
+                wordTwelve.setPhonetics("twɛlv");
+            } else if (locale == Locale.FI) {
+                wordTwelve.setText("labindalawa");
+                wordTwelve.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordTwelve);
+
+            Word wordThirteen = new Word();
+            wordThirteen.setLocale(locale);
+            wordThirteen.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordThirteen.setText("thirteen");
+                wordThirteen.setPhonetics("θɛrtin");
+            } else if (locale == Locale.FI) {
+                wordThirteen.setText("labintatlo");
+                wordThirteen.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordThirteen);
+
+            Word wordFourteen = new Word();
+            wordFourteen.setLocale(locale);
+            wordFourteen.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordFourteen.setText("fourteen");
+                wordFourteen.setPhonetics("ˈfɔrˈtin");
+            } else if (locale == Locale.FI) {
+                wordFourteen.setText("labing-apat");
+                wordFourteen.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordFourteen);
+
+            Word wordFifteen = new Word();
+            wordFifteen.setLocale(locale);
+            wordFifteen.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordFifteen.setText("fifteen");
+                wordFifteen.setPhonetics("fɪfˈtin");
+            } else if (locale == Locale.FI) {
+                wordFifteen.setText("labinlima");
+                wordFifteen.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordFifteen);
+
+            Word wordSixteen = new Word();
+            wordSixteen.setLocale(locale);
+            wordSixteen.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordSixteen.setText("sixteen");
+                wordSixteen.setPhonetics("sɪkˈstin");
+            } else if (locale == Locale.FI) {
+                wordSixteen.setText("labing-anim");
+                wordSixteen.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordSixteen);
+
+            Word wordSeventeen = new Word();
+            wordSeventeen.setLocale(locale);
+            wordSeventeen.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordSeventeen.setText("seventeen");
+                wordSeventeen.setPhonetics("ˈsɛvənˈtin");
+            } else if (locale == Locale.FI) {
+                wordSeventeen.setText("labimpito");
+                wordSeventeen.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordSeventeen);
+
+            Word wordEighteen = new Word();
+            wordEighteen.setLocale(locale);
+            wordEighteen.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordEighteen.setText("eighteen");
+                wordEighteen.setPhonetics("ɛɪtin");
+            } else if (locale == Locale.FI) {
+                wordEighteen.setText("labingwalo");
+                wordEighteen.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordEighteen);
+
+            Word wordNineteen = new Word();
+            wordNineteen.setLocale(locale);
+            wordNineteen.setTimeLastUpdate(Calendar.getInstance());
+            if (locale == Locale.EN) {
+                wordNineteen.setText("nineteen");
+                wordNineteen.setPhonetics("ˈnaɪnˈtin");
+            } else if (locale == Locale.FI) {
+                wordNineteen.setText("labinsiyam");
+                wordNineteen.setPhonetics("ˌˌˌ"); // TODO
+            }
+            words.add(wordNineteen);
         }
-        words.add(wordEleven);
-        
-        Word wordTwelve = new Word();
-        wordTwelve.setLocale(locale);
-        wordTwelve.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordTwelve.setText("twelve");
-            wordTwelve.setPhonetics("twɛlv");
-        } else if (locale == Locale.FI) {
-            wordTwelve.setText("labindalawa");
-            wordTwelve.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordTwelve);
-        
-        Word wordThirteen = new Word();
-        wordThirteen.setLocale(locale);
-        wordThirteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordThirteen.setText("thirteen");
-            wordThirteen.setPhonetics("θɛrtin");
-        } else if (locale == Locale.FI) {
-            wordThirteen.setText("labintatlo");
-            wordThirteen.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordThirteen);
-        
-        Word wordFourteen = new Word();
-        wordFourteen.setLocale(locale);
-        wordFourteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordFourteen.setText("fourteen");
-            wordFourteen.setPhonetics("ˈfɔrˈtin");
-        } else if (locale == Locale.FI) {
-            wordFourteen.setText("labing-apat");
-            wordFourteen.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordFourteen);
-        
-        Word wordFifteen = new Word();
-        wordFifteen.setLocale(locale);
-        wordFifteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordFifteen.setText("fifteen");
-            wordFifteen.setPhonetics("fɪfˈtin");
-        } else if (locale == Locale.FI) {
-            wordFifteen.setText("labinlima");
-            wordFifteen.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordFifteen);
-        
-        Word wordSixteen = new Word();
-        wordSixteen.setLocale(locale);
-        wordSixteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordSixteen.setText("sixteen");
-            wordSixteen.setPhonetics("sɪkˈstin");
-        } else if (locale == Locale.FI) {
-            wordSixteen.setText("labing-anim");
-            wordSixteen.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordSixteen);
-        
-        Word wordSeventeen = new Word();
-        wordSeventeen.setLocale(locale);
-        wordSeventeen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordSeventeen.setText("seventeen");
-            wordSeventeen.setPhonetics("ˈsɛvənˈtin");
-        } else if (locale == Locale.FI) {
-            wordSeventeen.setText("labimpito");
-            wordSeventeen.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordSeventeen);
-        
-        Word wordEighteen = new Word();
-        wordEighteen.setLocale(locale);
-        wordEighteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordEighteen.setText("eighteen");
-            wordEighteen.setPhonetics("ɛɪtin");
-        } else if (locale == Locale.FI) {
-            wordEighteen.setText("labingwalo");
-            wordEighteen.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordEighteen);
-        
-        Word wordNineteen = new Word();
-        wordNineteen.setLocale(locale);
-        wordNineteen.setTimeLastUpdate(Calendar.getInstance());
-        if (locale == Locale.EN) {
-            wordNineteen.setText("nineteen");
-            wordNineteen.setPhonetics("ˈnaɪnˈtin");
-        } else if (locale == Locale.FI) {
-            wordNineteen.setText("labinsiyam");
-            wordNineteen.setPhonetics("ˌˌˌ"); // TODO
-        }
-        words.add(wordNineteen);
         
         Word wordTwenty = new Word();
         wordTwenty.setLocale(locale);
