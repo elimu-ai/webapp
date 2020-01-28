@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -17,6 +16,7 @@ import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.model.enums.content.allophone.VowelFrontness;
 import ai.elimu.model.enums.content.allophone.VowelHeight;
 import ai.elimu.model.enums.content.allophone.VowelLength;
+import ai.elimu.tasks.AllophoneUsageCountScheduler;
 
 /**
  * Speech sound
@@ -43,28 +43,50 @@ public class Allophone extends Content {
     @Enumerated(EnumType.STRING)
     private SoundType soundType;
     
+    /**
+     * Only used if {@code soundType == SoundType.VOWEL}
+     */
     @Enumerated(EnumType.STRING)
     private VowelLength vowelLength;
   
+    /**
+     * Only used if {@code soundType == SoundType.VOWEL}
+     */
     @Enumerated(EnumType.STRING)
     private VowelHeight vowelHeight;
 
+    /**
+     * Only used if {@code soundType == SoundType.VOWEL}
+     */
     @Enumerated(EnumType.STRING)
     private VowelFrontness vowelFrontness;
     
     @Enumerated(EnumType.STRING)
     private LipRounding lipRounding;
     
+    /**
+     * Only used if {@code soundType == SoundType.CONSONANT}
+     */
     @Enumerated(EnumType.STRING)
     private ConsonantType consonantType;
     
+    /**
+     * Only used if {@code soundType == SoundType.CONSONANT}
+     */
     @Enumerated(EnumType.STRING)
     private ConsonantPlace consonantPlace;
     
+    /**
+     * Only used if {@code soundType == SoundType.CONSONANT}
+     */
     @Enumerated(EnumType.STRING)
     private ConsonantVoicing consonantVoicing;
     
-    private int usageCount; // Based on StoryBook content
+    /**
+     * This count is automatically extracted from {@link StoryBook}s, and is regularly updated by 
+     * the {@link AllophoneUsageCountScheduler}.
+     */
+    private int usageCount;
 
     public String getValueIpa() {
         return valueIpa;
