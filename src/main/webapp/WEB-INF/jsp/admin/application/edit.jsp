@@ -107,7 +107,7 @@
                             <th>minSdkVersion</th>
                             <th><fmt:message key="time.uploaded" /></th>
                             <th><fmt:message key="contributor" /></th>
-                            <th><i class="material-icons">cloud_download</i></th>
+                            <th><i class="material-icons">vertical_align_bottom</i></th>
                         </thead>
                         <tbody>
                             <c:forEach var="applicationVersion" items="${applicationVersions}">
@@ -126,7 +126,7 @@
                                     </td>
                                     <td>
                                         <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk?locale=${application.locale}' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
-                                            <i class="material-icons">cloud_download</i>
+                                            <i class="material-icons">vertical_align_bottom</i>
                                         </a>
                                     </td>
                                 </tr>
