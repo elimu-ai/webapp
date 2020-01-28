@@ -404,14 +404,14 @@ public class WordListController {
             wordTwentyOne.setLocale(locale);
             wordTwentyOne.setTimeLastUpdate(Calendar.getInstance());
             wordTwentyOne.setText("twenty-one"); // TODO: handle words separated by hyphen
-            wordTwentyOne.setPhonetics("ˈtwɛnti wʌn"); // TODO: handle pauses (whitespaces)
+            wordTwentyOne.setPhonetics("ˈtwɛntiˈwʌn"); // TODO: handle pauses (whitespaces)
             words.add(wordTwentyOne);
 
             Word wordTwentyTwo = new Word();
             wordTwentyTwo.setLocale(locale);
             wordTwentyTwo.setTimeLastUpdate(Calendar.getInstance());
             wordTwentyTwo.setText("twenty-two"); // TODO: handle words separated by hyphen
-            wordTwentyTwo.setPhonetics("ˈtwɛnti tu"); // TODO: handle pauses (whitespaces)
+            wordTwentyTwo.setPhonetics("ˈtwɛntiˈtu"); // TODO: handle pauses (whitespaces)
             words.add(wordTwentyTwo);
         }
         
