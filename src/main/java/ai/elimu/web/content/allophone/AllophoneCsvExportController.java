@@ -2,7 +2,6 @@ package ai.elimu.web.content.allophone;
 
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -49,23 +48,10 @@ public class AllophoneCsvExportController {
         response.setContentLength(bytes.length);
         try {
             outputStream.write(bytes);
-        } catch (EOFException ex) {
-            // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-            logger.warn(ex);
+            outputStream.flush();
+            outputStream.close();
         } catch (IOException ex) {
             logger.error(null, ex);
-        } finally {
-            try {
-                try {
-                    outputStream.flush();
-                    outputStream.close();
-                } catch (EOFException ex) {
-                    // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-                    logger.warn(ex);
-                }
-            } catch (IOException ex) {
-                logger.error(null, ex);
-            }
         }
     }
 }
