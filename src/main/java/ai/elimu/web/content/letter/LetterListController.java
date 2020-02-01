@@ -436,7 +436,7 @@ public class LetterListController {
             letterQUpperCase.setLocale(locale);
             letterQUpperCase.setTimeLastUpdate(Calendar.getInstance());
             letterQUpperCase.setText("Q");
-            letterQUpperCase.setAllophones(getAllophones(locale, "q", "w"));
+            letterQUpperCase.setAllophones(getAllophones(locale, "k", "w"));
             letterQUpperCase.setUsageCount(2);
             letters.add(letterQUpperCase);
             
@@ -613,7 +613,7 @@ public class LetterListController {
             letterO.setLocale(locale);
             letterO.setTimeLastUpdate(Calendar.getInstance());
             letterO.setText("o");
-            letterO.setAllophones(getAllophones(locale, "O"));
+            letterO.setAllophones(getAllophones(locale, "ɔ"));
             letterO.setUsageCount(-1);
             letters.add(letterO);
             
@@ -839,7 +839,7 @@ public class LetterListController {
             letterOUpperCase.setLocale(locale);
             letterOUpperCase.setTimeLastUpdate(Calendar.getInstance());
             letterOUpperCase.setText("O");
-            letterOUpperCase.setAllophones(getAllophones(locale, "O"));
+            letterOUpperCase.setAllophones(getAllophones(locale, "ɔ"));
             letterOUpperCase.setUsageCount(-1);
             letters.add(letterOUpperCase);
             
