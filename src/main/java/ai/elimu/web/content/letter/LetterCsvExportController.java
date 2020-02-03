@@ -1,9 +1,11 @@
-package ai.elimu.web.content.allophone;
+package ai.elimu.web.content.letter;
 
-import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Letter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,32 +17,35 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/allophone/list")
-public class AllophoneCsvExportController {
+@RequestMapping("/content/letter/list")
+public class LetterCsvExportController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private LetterDao letterDao;
     
-    @RequestMapping(value="/allophones.csv", method = RequestMethod.GET)
+    @RequestMapping(value="/letters.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count" + "\n";
-        List<Allophone> allophones = allophoneDao.readAll();
-        logger.info("allophones.size(): " + allophones.size());
-        for (Allophone allophone : allophones) {
-            csvFileContent += allophone.getId() + ","
-                    + "\"" + allophone.getValueIpa().replace("\"", "\"\"") + "\","
-                    + "\"" + allophone.getValueSampa().replace("\"", "\"\"") + "\","
-                    + ((allophone.getAudio() != null) ? allophone.getAudio().getId() : "null") + ","
-                    + allophone.isDiacritic() + ","
-                    + allophone.getSoundType() + ","
-                    + allophone.getUsageCount() + "\n";
+        String csvFileContent = "id,text,allophone_ids,usage_count" + "\n";
+        List<Letter> letters = letterDao.readAll();
+        logger.info("letters.size(): " + letters.size());
+        for (Letter letter : letters) {
+            long[] allophoneIdsArray = new long[letter.getAllophones().size()];
+            int index = 0;
+            for (Allophone allophone : letter.getAllophones()) {
+                allophoneIdsArray[index] = allophone.getId();
+                index++;
+            }
+            csvFileContent += letter.getId() + ","
+                    + "\"" + letter.getText() + "\","
+                    + Arrays.toString(allophoneIdsArray) + ","
+                    + letter.getUsageCount() + "\n";
         }
         
         response.setContentType("text/csv");
