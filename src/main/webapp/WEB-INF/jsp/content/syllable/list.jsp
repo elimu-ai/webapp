@@ -7,6 +7,7 @@
         <%--<p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>--%>
+        TODO...
         
         <c:forEach var="syllable" items="${syllables}">
             <div class="col s12 m6 l4">
