@@ -58,8 +58,6 @@ public class ApplicationVersion extends BaseEntity {
     @Column(length=512000) // 1MB
     private byte[] icon;
     
-    private String startCommand; // "adb shell <command>"
-    
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeUploaded;
@@ -145,14 +143,6 @@ public class ApplicationVersion extends BaseEntity {
 
     public void setIcon(byte[] icon) {
         this.icon = icon;
-    }
-    
-    public String getStartCommand() {
-        return startCommand;
-    }
-
-    public void setStartCommand(String startCommand) {
-        this.startCommand = startCommand;
     }
 
     public Calendar getTimeUploaded() {
