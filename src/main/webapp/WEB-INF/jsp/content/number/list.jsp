@@ -4,6 +4,11 @@
 
 <content:section cssId="numberListPage">
     <div class="section row">
+        <a class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/content/number/list/numbers.csv' />">
+            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
