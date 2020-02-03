@@ -12,7 +12,8 @@
         <%--<p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>--%>
-        
+    </div>
+    <div class="section row">
         <c:forEach var="syllable" items="${syllables}">
             <div class="col s12 m6 l4">
                 <a name="${syllable.id}"></a>
