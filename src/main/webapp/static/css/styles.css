@@ -1,10 +1,14 @@
+html {
+    font-family: "Poppins", sans-serif;
+}
+
 body {
     background: #EEE;
 }
 
 #logo-container img {
     max-height: 1.2em;
-    vertical-align: text-bottom;
+    vertical-align: sub;
 }
 
 #index-banner {
