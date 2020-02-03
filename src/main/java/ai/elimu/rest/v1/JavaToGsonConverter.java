@@ -135,7 +135,6 @@ public class JavaToGsonConverter {
             applicationVersionGson.setVersionName(applicationVersion.getVersionName());
             applicationVersionGson.setLabel(applicationVersion.getLabel());
             applicationVersionGson.setMinSdkVersion(applicationVersion.getMinSdkVersion());
-            applicationVersionGson.setStartCommand(applicationVersion.getStartCommand());
             applicationVersionGson.setTimeUploaded(applicationVersion.getTimeUploaded());
             return applicationVersionGson;
         }
