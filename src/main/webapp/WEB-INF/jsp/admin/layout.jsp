@@ -11,6 +11,7 @@
         
         <%-- CSS --%>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
         <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
         <link rel="stylesheet" href="<spring:url value='/static/css/analytics/styles.css?version=' /><content:getversion />" />
@@ -29,7 +30,7 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li>
                             <a href="<spring:url value='/admin' />">
-                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
+                                <img style="max-width: 100%; vertical-align: middle;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
                             </a>
                         </li>
                         

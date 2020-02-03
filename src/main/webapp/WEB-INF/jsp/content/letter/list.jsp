@@ -31,7 +31,7 @@
                                 <a name="${letter.id}"></a>
                                 ${letter.text}
                             </td>
-                            <td>
+                            <td style="font-size: 2em;">
                                 /<c:forEach var="allophone" items="${letter.allophones}">
                                     ${allophone.valueIpa} 
                                 </c:forEach>/
