@@ -3,12 +3,9 @@ package ai.elimu.model;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import ai.elimu.model.enums.Locale;
 
 @Entity
 public class Device extends BaseEntity {
@@ -35,10 +32,6 @@ public class Device extends BaseEntity {
     
     @NotNull
     private Integer osVersion;
-    
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Locale locale;
 
     public String getDeviceId() {
         return deviceId;
@@ -94,13 +87,5 @@ public class Device extends BaseEntity {
 
     public void setOsVersion(Integer osVersion) {
         this.osVersion = osVersion;
-    }
-    
-    public Locale getLocale() {
-        return locale;
-    }
-
-    public void setLocale(Locale locale) {
-        this.locale = locale;
     }
 }
