@@ -14,7 +14,7 @@ This web application hosts Android apps and educational content (e.g. texts, aud
 
 See software architecture diagram at https://github.com/elimu-ai/model
 
-## Run application locally 💻
+## Run application locally 👩🏽‍💻
 See [INSTALL.md](https://github.com/elimu-ai/webapp/blob/master/INSTALL.md)
 
 ## Contributing guidelines
