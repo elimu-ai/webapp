@@ -149,7 +149,7 @@
             <div class="col s12 m3">
                 <div class="icon-block center">
                     <h2><i class="material-icons medium blue-grey-text">archive</i></h2>
-                    <h5><fmt:message key="download.the.software" /></h5>
+                    <h5><fmt:message key="download.and.test.the.software" /></h5>
                     
                     For instructions on how to download and install the elimu.ai software, 
                     see our <a href="https://github.com/elimu-ai/appstore">GitHub repository</a>.
@@ -160,12 +160,11 @@
             <div class="col s12 offset-m1 m4 z-depth-2 white center">
                 <div class="icon-block" style="padding: 1em;">
                   <h2><i class="material-icons large deep-purple-text">group</i></h2>
-                  <h4><fmt:message key="join.a.team" /></h4>
+                  <h4><fmt:message key="help.improve.the.software" /></h4>
                   
                   <p>
-                      You are welcome to join a team matching your skill set and 
-                      become an active contributor. We will help introduce you 
-                      to team members and tasks.
+                      You are welcome to join us in building the code, or adding more educational content to the 
+                      platform.
                   </p>
                   <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light deep-purple"><fmt:message key="join.now" /></a>
                 </div>
@@ -174,10 +173,11 @@
                   
             <div class="col s12 offset-m1 m3 center">
                 <div class="icon-block">
-                  <h2><i class="material-icons medium">record_voice_over</i></h2>
-                  <h5><fmt:message key="spread.the.word" /></h5>
+                  <h2><i class="material-icons medium">local_shipping</i></h2>
+                  <h5><fmt:message key="distribute.the.software" /></h5>
                   
-                  <p>Follow us on social media and share our work (see links below).</p>
+                  <p>Do you live near a child who does not have access to quality basic education? Help us distribute 
+                  the learning software.</p>
                 </div>
             </div>
         </div>

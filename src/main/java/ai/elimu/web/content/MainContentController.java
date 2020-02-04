@@ -1,6 +1,5 @@
 package ai.elimu.web.content;
 
-import ai.elimu.dao.AllophoneDao;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
-import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
@@ -30,12 +28,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainContentController {
     
     private final Logger logger = Logger.getLogger(getClass());
-    
-    @Autowired
-    private ApplicationDao applicationDao;
-    
-    @Autowired
-    private AllophoneDao allophoneDao;
     
     @Autowired
     private NumberDao numberDao;
@@ -75,8 +67,6 @@ public class MainContentController {
             return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
-            return "redirect:/content/contributor/edit-teams";
         } else if (StringUtils.isBlank(contributor.getMotivation())) {
             return "redirect:/content/contributor/edit-motivation";
         } else {

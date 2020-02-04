@@ -16,7 +16,6 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
-import ai.elimu.model.enums.Team;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +56,6 @@ public class SignOnControllerSelenium {
         contributor.setFirstName("TestRole");
         contributor.setLastName(role.toString());
         contributor.setLocale(Locale.EN);
-        contributor.setTeams(new HashSet<>(Arrays.asList(Team.TESTING)));
         contributor.setMotivation("Regression testing as " + role);
 				
         Contributor existingContributor = contributorDao.read(contributor.getEmail());

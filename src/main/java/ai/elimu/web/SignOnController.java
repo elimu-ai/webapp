@@ -12,10 +12,8 @@ import ai.elimu.dao.SignOnEventDao;
 import ai.elimu.model.Contributor;
 import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
-import ai.elimu.model.enums.Team;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,8 +36,6 @@ public class SignOnController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(ModelMap model) {
     	logger.debug("handleRequest");
-        
-        model.addAttribute("teams", Team.values());
     	
         return "sign-on";
     }

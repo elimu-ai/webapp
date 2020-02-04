@@ -1,6 +1,5 @@
 package selenium.web.content.allophone;
 
-import selenium.web.content.contributor.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
