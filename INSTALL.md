@@ -30,7 +30,7 @@ http://`<language>`.test.elimu.ai
 http://`<language>`.elimu.ai
 
 
-## Supported languages
+## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿
 
 A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/master/src/main/java/ai/elimu/model/enums/Language.java
 
