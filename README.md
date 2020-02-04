@@ -12,7 +12,7 @@ Web application: http://elimu.ai
 
 This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
-See software architecture diagram at https://github.com/elimu-ai/model/blob/master/README.md
+See software architecture diagram at https://github.com/elimu-ai/model
 
 ## Run application locally
 See [INSTALL.md](https://github.com/elimu-ai/webapp/blob/master/INSTALL.md)
