@@ -22,13 +22,19 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 
 ## Test server
 
-http://test.elimu.ai
+http://`<language>`.test.elimu.ai
 
 
 ## Prod server
 
-http://elimu.ai
+http://`<language>`.elimu.ai
 
+
+## Supported languages
+
+A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/master/src/main/java/ai/elimu/model/enums/Language.java
+
+The default language used during development is English. To switch to another language, edit the `language` property in [src/main/resources/config.properties](../blob/master/src/main/resources/config.properties).
 
 ## Contributing guidelines
 
