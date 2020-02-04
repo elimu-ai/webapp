@@ -54,7 +54,7 @@ video {
         -2rem 0 3rem rgba(0,0,0, .8);
 }
 
-.footer-copyright {
+footer.page-footer .footer-copyright {
     overflow: auto;
     height: inherit;
     line-height: inherit;
