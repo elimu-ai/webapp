@@ -1,14 +1,10 @@
 package ai.elimu.model;
 
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -43,9 +39,6 @@ public class Device extends BaseEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Locale locale;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Device> devicesNearby = new HashSet<>();
 
     public String getDeviceId() {
         return deviceId;
@@ -109,13 +102,5 @@ public class Device extends BaseEntity {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
-    }
-
-    public Set<Device> getDevicesNearby() {
-        return devicesNearby;
-    }
-
-    public void setDevicesNearby(Set<Device> devicesNearby) {
-        this.devicesNearby = devicesNearby;
     }
 }
