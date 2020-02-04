@@ -26,7 +26,7 @@ Travis: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://tra
 ## Issue management
 See https://github.com/elimu-ai/webapp/projects
 
-## Chat
+## Chat 👋🏽
 See http://slack.elimu.ai
 
 ## Mailing list
