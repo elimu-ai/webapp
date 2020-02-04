@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.Role;
-import ai.elimu.model.enums.Team;
 
 @Entity
 public class Contributor extends BaseEntity {
@@ -43,10 +42,6 @@ public class Contributor extends BaseEntity {
     private String lastName;
     
     private String occupation;
-    
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<Team> teams;
     
     @Column(length = 1000)
     private String motivation;
@@ -140,14 +135,6 @@ public class Contributor extends BaseEntity {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
-    }
-
-    public Set<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
     }
     
     public String getMotivation() {

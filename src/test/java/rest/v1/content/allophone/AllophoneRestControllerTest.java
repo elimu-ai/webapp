@@ -3,7 +3,6 @@ package rest.v1.content.allophone;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.Assert;
 import org.junit.Test;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.util.JsonLoader;

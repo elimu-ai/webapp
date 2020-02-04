@@ -12,14 +12,12 @@
         <!DOCTYPE html>
         <html lang="en">
             <head>
-                <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
                 <title><content:gettitle /> | elimu.ai</title>
 
                 <meta charset="UTF-8" />
 
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-                <%-- Google will only display the first 150 characters of the meta description in SERPs. --%>
+                
                 <meta name="description" content="<fmt:message key="we.are.an.open.community.with" />" />
                 <link rel="shortcut icon" href="<spring:url value='/static/img/favicon.ico' />" />
 
@@ -30,7 +28,6 @@
                 <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
                 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
                 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Amaranth" />
-                <%--<link rel="stylesheet" href="<spring:url value='/static/css/materialize.min-0.97.6.css' />" />--%>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
                 <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />?version=<content:getversion />" />
                 
@@ -118,9 +115,6 @@
                             <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="http://slack.elimu.ai">
                                 <fmt:message key="open.chat" /><i class="material-icons right">forum</i>
                             </a>
-                            <%--<p class="grey-text text-lighten-4">
-                                <fmt:message key="mailing.list" />: <a class="white-text" href="http://eepurl.com/bGihkr" target="_blank"><fmt:message key="subscribe" /></a>
-                            </p>--%>
                           </div>
                           <div class="col l2 s12">
                             <h5 class="white-text"><fmt:message key="social.media" /></h5>
@@ -137,34 +131,35 @@
                     <div class="footer-copyright">
                       <div class="container">
                           <div class="row">
-                              <div class="col s12">
-                                  <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">
-                                      Apache License, 2.0
-                                  </a> &nbsp; | &nbsp; 
-                                  <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a>
-                                   &nbsp; | &nbsp; 
-                                   <fmt:message key="languages.supported.by.the.platform" />: 
-                                    <c:choose>
-                                        <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
-                                            <a class="white-text" href="<spring:url value='/?lang=eng' />" title="English">eng</a>
-                                            <a class="white-text" href="<spring:url value='/?lang=fil' />" title="Filipino">fil</a>
-                                            <a class="white-text" href="<spring:url value='/?lang=hin' />" title="हिंदी">hin</a>
-                                            <a class="white-text" href="<spring:url value='/?lang=swa' />" title="Kiswahili">swa</a>
-                                        </c:when>
-                                        <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                            <a class="white-text" href="http://eng.test.elimu.ai" title="English">eng</a>
-                                            <a class="white-text" href="http://fil.test.elimu.ai" title="Filipino">fil</a>
-                                            <a class="white-text" href="http://hin.test.elimu.ai" title="हिंदी">hin</a>
-                                            <a class="white-text" href="http://swa.test.elimu.ai" title="Kiswahili">swa</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a class="white-text" href="http://eng.elimu.ai" title="English">eng</a>
-                                            <a class="white-text" href="http://fil.elimu.ai" title="Filipino">fil</a>
-                                            <a class="white-text" href="http://hin.elimu.ai" title="हिंदी">hin</a>
-                                            <a class="white-text" href="http://swa.elimu.ai" title="Kiswahili">swa</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                              </div>
+                            <div class="col s12 m6">
+                                <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">
+                                    Apache License, 2.0
+                                </a> &nbsp; | &nbsp; 
+                                <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a>
+                            </div>
+                            <div class="col s12 m6">
+                                <fmt:message key="languages.supported.by.the.platform" />: 
+                                <c:choose>
+                                    <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
+                                        <a class="white-text" href="<spring:url value='/?lang=eng' />" title="English">eng</a>
+                                        <a class="white-text" href="<spring:url value='/?lang=fil' />" title="Filipino">fil</a>
+                                        <a class="white-text" href="<spring:url value='/?lang=hin' />" title="हिंदी">hin</a>
+                                        <a class="white-text" href="<spring:url value='/?lang=swa' />" title="Kiswahili">swa</a>
+                                    </c:when>
+                                    <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
+                                        <a class="white-text" href="http://eng.test.elimu.ai" title="English">eng</a>
+                                        <a class="white-text" href="http://fil.test.elimu.ai" title="Filipino">fil</a>
+                                        <a class="white-text" href="http://hin.test.elimu.ai" title="हिंदी">hin</a>
+                                        <a class="white-text" href="http://swa.test.elimu.ai" title="Kiswahili">swa</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="white-text" href="http://eng.elimu.ai" title="English">eng</a>
+                                        <a class="white-text" href="http://fil.elimu.ai" title="Filipino">fil</a>
+                                        <a class="white-text" href="http://hin.elimu.ai" title="हिंदी">hin</a>
+                                        <a class="white-text" href="http://swa.elimu.ai" title="Kiswahili">swa</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
                           </div>
                       </div>
                     </div>

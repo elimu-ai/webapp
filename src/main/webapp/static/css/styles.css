@@ -13,14 +13,10 @@ body {
 
 #index-banner {
     background-color: #673AB7;
-    /*background-image: url(../../static/img/banner-en.jpg);*/
     background-image: url(../../static/img/banner.jpg);
     background-size: cover;
     background-position: 0 50%;
 }
-/*html[lang="es"] #index-banner {
-    background-image: url(../../static/img/banner-es.jpg);
-}*/
 
 .container > .section {
     min-height: 400px;
@@ -56,6 +52,13 @@ video {
         2rem 0 3rem rgba(0,0,0, .8), 
         0 1rem 3rem rgba(0,0,0, .8), 
         -2rem 0 3rem rgba(0,0,0, .8);
+}
+
+.footer-copyright {
+    overflow: auto;
+    height: inherit;
+    line-height: inherit;
+    padding-top: 20px;
 }
 
 .side-nav .grey-text {
