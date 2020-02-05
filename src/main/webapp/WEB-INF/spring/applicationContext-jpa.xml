@@ -66,6 +66,7 @@
     <bean id="contributorDao" class="ai.elimu.dao.jpa.ContributorDaoJpa" />
     <bean id="dbMigrationDao" class="ai.elimu.dao.jpa.DbMigrationDaoJpa" />
     <bean id="deviceDao" class="ai.elimu.dao.jpa.DeviceDaoJpa" />
+    <bean id="emojiDao" class="ai.elimu.dao.jpa.EmojiDaoJpa" />
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />

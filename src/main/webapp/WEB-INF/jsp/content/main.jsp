@@ -66,16 +66,27 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
+                    <span class="card-title"><i class="material-icons">emoji_emotions</i> <fmt:message key="emojis" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
+                    <a href="<spring:url value='/content/emoji/list' />"><fmt:message key="view.list" /> (${emojiCount})</a>
                 </div>
             </div>
         </div>
         
         <div class="col s12">
             <h5><fmt:message key="multimedia" /></h5>
+        </div>
+        
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
+                </div>
+            </div>
         </div>
         
         <div class="col s12 m6">
