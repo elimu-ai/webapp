@@ -84,6 +84,7 @@ public class MainContentController {
         model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
         model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLocale()));
         model.addAttribute("wordCount", wordDao.readCount(contributor.getLocale()));
+        model.addAttribute("emojiCount", -1); // TODO: implement readCount() in emojiDao
         model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLocale()));
         model.addAttribute("audioCount", audioDao.readCount(contributor.getLocale()));
         model.addAttribute("imageCount", imageDao.readCount(contributor.getLocale()));
