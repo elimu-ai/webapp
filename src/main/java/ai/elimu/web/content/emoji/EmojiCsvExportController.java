@@ -35,7 +35,7 @@ public class EmojiCsvExportController {
         logger.info("emojis.size(): " + emojis.size());
         for (Emoji emoji : emojis) {
             csvFileContent += emoji.getId() + ","
-                    + "\"" + emoji.getGlyph() + "\","
+                    + emoji.getGlyph() + ","
                     + emoji.getUnicodeVersion() + ","
                     + emoji.getUnicodeEmojiVersion() + "\n";
         }

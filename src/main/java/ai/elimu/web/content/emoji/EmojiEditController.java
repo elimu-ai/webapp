@@ -61,7 +61,7 @@ public class EmojiEditController {
         
         Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
         if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
-            result.rejectValue("text", "NonUnique");
+            result.rejectValue("glyph", "NonUnique");
         }
         
         if (result.hasErrors()) {

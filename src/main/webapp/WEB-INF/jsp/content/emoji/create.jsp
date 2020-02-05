@@ -50,14 +50,14 @@
         $(function() {
             initializePreview();
             
-            $('#text').on("change", function() {
-                console.debug('#text on change');
+            $('#glyph').on("change", function() {
+                console.debug('#glyph on change');
                 initializePreview();
             });
             
             function initializePreview() {
                 console.debug('initializePreview');
-                var value = $('#text').val();
+                var value = $('#glyph').val();
                 if ((value != undefined) && (value != "")) {
                     $('#previewContent').html(value);
                 }

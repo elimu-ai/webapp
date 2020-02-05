@@ -9,8 +9,8 @@ import org.hibernate.validator.constraints.Length;
 public class Emoji extends Content {
 
     @NotNull
-    @Length(max = 1)
-    @Column(length = 1)
+    @Length(max = 2)
+    @Column(length = 2)
     private String glyph; // E.g. '🦋'
     
     /**
