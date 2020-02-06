@@ -44,9 +44,9 @@
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
                         <li><a href="<spring:url value='/content/emoji/list' />"><i class="material-icons left">emoji_emotions</i><fmt:message key="emojis" /></a></li>
                         <li class="grey-text"><b><fmt:message key="multimedia" /></b></li>
-                        <li><a href="<spring:url value='/content/storybook/list' />"><i class="material-icons left">book</i><fmt:message key="storybooks" /></a></li>
-                        <li><a href="<spring:url value='/content/multimedia/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/image/list' />"><i class="material-icons left">image</i><fmt:message key="images" /></a></li>
+                        <li><a href="<spring:url value='/content/multimedia/audio/list' />"><i class="material-icons left">audiotrack</i><fmt:message key="audios" /></a></li>
+                        <li><a href="<spring:url value='/content/storybook/list' />"><i class="material-icons left">book</i><fmt:message key="storybooks" /></a></li>
                         <li><a href="<spring:url value='/content/multimedia/video/list' />"><i class="material-icons left">movie</i><fmt:message key="videos" /></a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/content' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
@@ -75,17 +75,17 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/emoji/list' />"><fmt:message key="emojis" /></a>
                             </c:when>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/storybook/')
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/storybook/list' />"><fmt:message key="storybooks" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="images" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/audio/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="audios" /></a>
                             </c:when>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/image/')
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/storybook/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="images" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/content/storybook/list' />"><fmt:message key="storybooks" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/multimedia/video/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
