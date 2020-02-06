@@ -31,7 +31,7 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li>
                             <a href="<spring:url value='/content' />">
-                                <img style="max-width: 100%; vertical-align: middle;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
+                                <img style="max-width: 100%; vertical-align: middle; max-height: 60%;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
                             </a>
                         </li>
                         
