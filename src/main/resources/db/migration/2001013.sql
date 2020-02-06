@@ -2,3 +2,4 @@
 
 DROP TABLE WordRevisionEvent;
 DROP TABLE VideoRevisionEvent;
+DROP TABLE SignOnEvent;

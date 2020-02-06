@@ -10,11 +10,8 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.dao.SignOnEventDao;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
@@ -48,9 +45,6 @@ public class SignOnControllerGoogle {
     
     @Autowired
     private ContributorDao contributorDao;
-    
-    @Autowired
-    private SignOnEventDao signOnEventDao;
 
     @RequestMapping("/sign-on/google")
     public String handleAuthorization(HttpServletRequest request) throws IOException {
@@ -187,15 +181,6 @@ public class SignOnControllerGoogle {
 
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
-            
-            SignOnEvent signOnEvent = new SignOnEvent();
-            signOnEvent.setContributor(contributor);
-            signOnEvent.setCalendar(Calendar.getInstance());
-            signOnEvent.setServerName(request.getServerName());
-            signOnEvent.setProvider(Provider.GOOGLE);
-            signOnEvent.setRemoteAddress(request.getRemoteAddr());
-            signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
-            signOnEventDao.create(signOnEvent);
 
             return "redirect:/content";
         }

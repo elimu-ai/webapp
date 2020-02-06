@@ -70,7 +70,6 @@
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
-    <bean id="signOnEventDao" class="ai.elimu.dao.jpa.SignOnEventDaoJpa" />
     <bean id="storyBookDao" class="ai.elimu.dao.jpa.StoryBookDaoJpa" />
     <bean id="syllableDao" class="ai.elimu.dao.jpa.SyllableDaoJpa" />
     <bean id="videoDao" class="ai.elimu.dao.jpa.VideoDaoJpa" />
