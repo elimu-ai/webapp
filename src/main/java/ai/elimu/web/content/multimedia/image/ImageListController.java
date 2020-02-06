@@ -10,7 +10,7 @@ import org.apache.commons.io.IOUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.ImageFormat;

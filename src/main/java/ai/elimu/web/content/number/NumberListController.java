@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Locale;

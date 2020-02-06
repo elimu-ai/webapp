@@ -14,7 +14,7 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;

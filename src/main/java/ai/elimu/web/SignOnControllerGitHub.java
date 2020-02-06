@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;

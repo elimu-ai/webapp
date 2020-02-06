@@ -11,7 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.SignOnEventDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Provider;

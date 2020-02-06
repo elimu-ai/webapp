@@ -7,7 +7,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.Contributor;
 
 @MappedSuperclass
 public abstract class ContributorEvent extends BaseEntity {

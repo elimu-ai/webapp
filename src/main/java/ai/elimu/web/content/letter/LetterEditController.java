@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import org.springframework.beans.factory.annotation.Autowired;

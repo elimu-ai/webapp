@@ -10,7 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.VideoRevisionEventDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.contributor.VideoRevisionEvent;
 import ai.elimu.model.enums.ContentLicense;

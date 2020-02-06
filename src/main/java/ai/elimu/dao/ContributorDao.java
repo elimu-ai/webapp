@@ -2,7 +2,7 @@ package ai.elimu.dao;
 
 import java.util.Calendar;
 import java.util.List;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 
 import org.springframework.dao.DataAccessException;
 

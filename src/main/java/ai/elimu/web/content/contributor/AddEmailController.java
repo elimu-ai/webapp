@@ -8,7 +8,7 @@ import org.apache.commons.validator.EmailValidator;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.SignOnEventDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.util.Mailer;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,7 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.SignOnEventDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Locale;
