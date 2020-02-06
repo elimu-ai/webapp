@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.Device;
-import ai.elimu.model.Student;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.admin.ApplicationVersion;
@@ -16,7 +15,6 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.gson.DeviceGson;
-import ai.elimu.model.gson.StudentGson;
 import ai.elimu.model.gson.content.NumberGson;
 import ai.elimu.model.gson.content.WordGson;
 import ai.elimu.model.gson.admin.ApplicationGson;
@@ -150,19 +148,6 @@ public class JavaToGsonConverter {
             deviceGson.setDeviceId(device.getDeviceId());
             
             return deviceGson;
-        }
-    }
-    
-    public static StudentGson getStudentGson(Student student) {
-        if (student == null) {
-            return null;
-        } else {
-            StudentGson studentGson = new StudentGson();
-            
-            studentGson.setUniqueId(student.getUniqueId());
-            studentGson.setTimeCreated(student.getTimeCreated());
-            
-            return studentGson;
         }
     }
     

@@ -1,26 +1,18 @@
 package ai.elimu.dao;
 
-import ai.elimu.dao.ImageDao;
-import ai.elimu.dao.WordDao;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import org.hibernate.exception.ConstraintViolationException;
-import org.junit.Ignore;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ai.elimu.model.Device;
-import ai.elimu.model.Student;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

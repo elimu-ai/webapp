@@ -81,10 +81,10 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
+                    <span class="card-title"><i class="material-icons">image</i> <fmt:message key="images" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
+                    <a href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="view.list" /> (${imageCount})</a>
                 </div>
             </div>
         </div>
@@ -103,10 +103,10 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">image</i> <fmt:message key="images" /></span>
+                    <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="view.list" /> (${imageCount})</a>
+                    <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
                 </div>
             </div>
         </div>
