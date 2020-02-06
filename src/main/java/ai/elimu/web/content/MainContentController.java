@@ -15,7 +15,7 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;

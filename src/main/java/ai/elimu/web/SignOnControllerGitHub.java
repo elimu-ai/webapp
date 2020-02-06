@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import org.apache.commons.lang.StringUtils;
-import ai.elimu.dao.SignOnEventDao;
-import ai.elimu.model.contributor.SignOnEvent;
 import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Provider;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -53,9 +50,6 @@ public class SignOnControllerGitHub {
     
     @Autowired
     private ContributorDao contributorDao;
-    
-    @Autowired
-    private SignOnEventDao signOnEventDao;
 
     /**
      * https://developer.github.com/v3/oauth/#1-redirect-users-to-request-github-access
@@ -230,15 +224,6 @@ public class SignOnControllerGitHub {
 
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
-            
-            SignOnEvent signOnEvent = new SignOnEvent();
-            signOnEvent.setContributor(contributor);
-            signOnEvent.setCalendar(Calendar.getInstance());
-            signOnEvent.setServerName(request.getServerName());
-            signOnEvent.setProvider(Provider.GITHUB);
-            signOnEvent.setRemoteAddress(request.getRemoteAddr());
-            signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
-            signOnEventDao.create(signOnEvent);
             
             return "redirect:/content";
         }

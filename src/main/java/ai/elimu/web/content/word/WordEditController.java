@@ -13,14 +13,13 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.dao.WordRevisionEventDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.WordRevisionEvent;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +41,6 @@ public class WordEditController {
     
     @Autowired
     private AllophoneDao allophoneDao;
-    
-    @Autowired
-    private WordRevisionEventDao wordRevisionEventDao;
     
     @Autowired
     private AudioDao audioDao;
@@ -69,8 +65,6 @@ public class WordEditController {
         model.addAttribute("wordTypes", WordType.values());
         
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-        
-        model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
         
         Audio audio = audioDao.read(word.getText(), contributor.getLocale());
         model.addAttribute("audio", audio);
@@ -121,28 +115,18 @@ public class WordEditController {
             model.addAttribute("allophones", allophones);
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            model.addAttribute("wordRevisionEvents", wordRevisionEventDao.readAll(word));
             Audio audio = audioDao.read(word.getText(), contributor.getLocale());
             model.addAttribute("audio", audio);
             return "content/word/edit";
         } else {
-            if (!"I".equals(word.getText())) {
-                word.setText(word.getText().toLowerCase());
+            if (contributor.getLocale() == Locale.EN) {
+                if (!"I".equals(word.getText())) {
+                    word.setText(word.getText().toLowerCase());
+                }
             }
             word.setTimeLastUpdate(Calendar.getInstance());
             word.setRevisionNumber(word.getRevisionNumber() + 1);
             wordDao.update(word);
-            
-            WordRevisionEvent wordRevisionEvent = new WordRevisionEvent();
-            wordRevisionEvent.setContributor(contributor);
-            wordRevisionEvent.setCalendar(Calendar.getInstance());
-            wordRevisionEvent.setWord(word);
-            wordRevisionEvent.setText(word.getText());
-            wordRevisionEvent.setPhonetics(word.getPhonetics());
-            if (StringUtils.isNotBlank(request.getParameter("comment"))) {
-                wordRevisionEvent.setComment(request.getParameter("comment"));
-            }
-            wordRevisionEventDao.create(wordRevisionEvent);
             
             // Delete syllables that are actual words
             Syllable syllable = syllableDao.readByText(contributor.getLocale(), word.getText());

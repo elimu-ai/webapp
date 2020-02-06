@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.enums.Locale;
 import org.springframework.beans.factory.annotation.Autowired;

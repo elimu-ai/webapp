@@ -13,14 +13,12 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.VideoDao;
-import ai.elimu.dao.VideoRevisionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.contributor.VideoRevisionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.VideoFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
@@ -56,9 +54,6 @@ public class VideoEditController {
     
     @Autowired
     private WordDao wordDao;
-    
-    @Autowired
-    private VideoRevisionEventDao videoRevisionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -76,8 +71,6 @@ public class VideoEditController {
         
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
-        
-        model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
         
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
@@ -140,7 +133,6 @@ public class VideoEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
             model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
             model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
             model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
@@ -150,13 +142,6 @@ public class VideoEditController {
             video.setTimeLastUpdate(Calendar.getInstance());
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
-            
-            VideoRevisionEvent videoRevisionEvent = new VideoRevisionEvent();
-            videoRevisionEvent.setContributor(contributor);
-            videoRevisionEvent.setCalendar(Calendar.getInstance());
-            videoRevisionEvent.setVideo(video);
-            videoRevisionEvent.setTitle(video.getTitle());
-            videoRevisionEventDao.create(videoRevisionEvent);
             
             return "redirect:/content/multimedia/video/list#" + video.getId();
         }

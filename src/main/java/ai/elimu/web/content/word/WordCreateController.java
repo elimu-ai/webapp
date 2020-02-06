@@ -12,13 +12,12 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.dao.WordRevisionEventDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.WordRevisionEvent;
+import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +38,6 @@ public class WordCreateController {
     
     @Autowired
     private AllophoneDao allophoneDao;
-    
-    @Autowired
-    private WordRevisionEventDao wordRevisionEventDao;
     
     @Autowired
     private ImageDao imageDao;
@@ -105,19 +101,13 @@ public class WordCreateController {
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             return "content/word/create";
         } else {
-            if (!"I".equals(word.getText())) {
-                word.setText(word.getText().toLowerCase());
+            if (contributor.getLocale() == Locale.EN) {
+                if (!"I".equals(word.getText())) {
+                    word.setText(word.getText().toLowerCase());
+                }
             }
             word.setTimeLastUpdate(Calendar.getInstance());
             wordDao.create(word);
- 
-            WordRevisionEvent wordRevisionEvent = new WordRevisionEvent();
-            wordRevisionEvent.setContributor(contributor);
-            wordRevisionEvent.setCalendar(Calendar.getInstance());
-            wordRevisionEvent.setWord(word);
-            wordRevisionEvent.setText(word.getText());
-            wordRevisionEvent.setPhonetics(word.getPhonetics());
-            wordRevisionEventDao.create(wordRevisionEvent);
             
             // Label Image with Word of matching title
             Image matchingImage = imageDao.read(word.getText(), word.getLocale());

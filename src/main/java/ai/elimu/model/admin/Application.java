@@ -9,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.Locale;
 import ai.elimu.model.enums.content.NumeracySkill;

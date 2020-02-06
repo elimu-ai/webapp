@@ -104,44 +104,6 @@
             <a href="<spring:url value='/content/word/delete/${word.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
-    
-    <div class="divider"></div>
-    
-    <h5><fmt:message key="revisions" /></h5>
-    <table class="bordered highlight">
-        <thead>
-            <th><fmt:message key="revision" /></th>
-            <th><fmt:message key="content" /></th>
-            <th><fmt:message key="time" /></th>
-            <th><fmt:message key="contributor" /></th>
-        </thead>
-        <tbody>
-            <c:forEach var="wordRevisionEvent" items="${wordRevisionEvents}" varStatus="status">
-                <tr>
-                    <td>${fn:length(wordRevisionEvents) - status.index}</td>
-                    <td>
-                        <fmt:message key='text' />: "${wordRevisionEvent.text}"<br />
-                        IPA: /${wordRevisionEvent.phonetics}/
-                        
-                        <c:if test="${not empty wordRevisionEvent.comment}">
-                            <blockquote>
-                                "<c:out value="${wordRevisionEvent.comment}" />"
-                            </blockquote>
-                        </c:if>
-                    </td>
-                    <td><fmt:formatDate value="${wordRevisionEvent.calendar.time}" type="both" timeStyle="short" /></td>
-                    <td>
-                        <a href="<spring:url value='/content/community/contributors' />" target="_blank">
-                            <div class="chip">
-                                <img src="<spring:url value='${wordRevisionEvent.contributor.imageUrl}' />" alt="${wordRevisionEvent.contributor.firstName}" /> 
-                                <c:out value="${wordRevisionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordRevisionEvent.contributor.lastName}" />
-                            </div>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
 </content:section>
 
 <content:aside>

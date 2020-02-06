@@ -14,7 +14,7 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -71,8 +71,6 @@ public class AudioEditController {
         
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
-        
-//        model.addAttribute("audioRevisionEvents", audioRevisionEventDao.readAll(audio));
         
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
@@ -146,8 +144,6 @@ public class AudioEditController {
             audio.setTimeLastUpdate(Calendar.getInstance());
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

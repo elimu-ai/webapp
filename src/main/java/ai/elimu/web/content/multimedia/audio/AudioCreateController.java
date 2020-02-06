@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.AudioFormat;
@@ -113,8 +113,6 @@ public class AudioCreateController {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

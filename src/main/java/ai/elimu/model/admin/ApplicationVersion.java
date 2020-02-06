@@ -9,7 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 
 @Entity
 public class ApplicationVersion extends BaseEntity {

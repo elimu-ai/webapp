@@ -4,15 +4,11 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.dao.SignOnEventDao;
-import ai.elimu.model.Contributor;
-import ai.elimu.model.contributor.SignOnEvent;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Provider;
 import ai.elimu.model.enums.Role;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +25,6 @@ public class SignOnController {
     
     @Autowired
     private ContributorDao contributorDao;
-    
-    @Autowired
-    private SignOnEventDao signOnEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(ModelMap model) {
@@ -66,15 +59,6 @@ public class SignOnController {
             
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
-            
-            SignOnEvent signOnEvent = new SignOnEvent();
-            signOnEvent.setContributor(contributor);
-            signOnEvent.setCalendar(Calendar.getInstance());
-            signOnEvent.setServerName(request.getServerName());
-            signOnEvent.setProvider(Provider.OFFLINE);
-            signOnEvent.setRemoteAddress(request.getRemoteAddr());
-            signOnEvent.setUserAgent(StringUtils.abbreviate(request.getHeader("User-Agent"), 1000));
-            signOnEventDao.create(signOnEvent);
             
             return "redirect:/content";
         } else {

@@ -12,7 +12,7 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.rest.service.JsonService;
 import ai.elimu.util.ChecksumHelper;

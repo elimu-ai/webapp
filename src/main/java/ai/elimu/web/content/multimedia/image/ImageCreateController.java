@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
@@ -135,8 +135,6 @@ public class ImageCreateController {
             image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
-            
-            // TODO: store RevisionEvent
             
             // Label Image with Word of matching title
             Word matchingWord = wordDao.readByText(contributor.getLocale(), image.getTitle());

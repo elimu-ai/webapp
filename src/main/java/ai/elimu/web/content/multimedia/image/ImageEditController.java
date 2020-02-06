@@ -15,7 +15,7 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -77,8 +77,6 @@ public class ImageEditController {
         
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
-        
-//        model.addAttribute("imageRevisionEvents", imageRevisionEventDao.readAll(image));
         
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
@@ -170,8 +168,6 @@ public class ImageEditController {
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
         }

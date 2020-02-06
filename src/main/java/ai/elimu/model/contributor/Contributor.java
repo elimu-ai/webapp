@@ -1,5 +1,6 @@
-package ai.elimu.model;
+package ai.elimu.model.contributor;
 
+import ai.elimu.model.BaseEntity;
 import java.util.Calendar;
 import java.util.Set;
 import javax.persistence.Column;

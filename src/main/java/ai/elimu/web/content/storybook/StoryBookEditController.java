@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
@@ -99,8 +99,6 @@ public class StoryBookEditController {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
             storyBookDao.update(storyBook);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }
