@@ -79,33 +79,6 @@
             <a href="<spring:url value='/content/letter/delete/${letter.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
-    
-    <div class="divider"></div>
-    
-    <h5><fmt:message key="revisions" /></h5>
-    <table class="bordered highlight">
-        <thead>
-            <th><fmt:message key="revision" /></th>
-            <th><fmt:message key="time" /></th>
-            <th><fmt:message key="contributor" /></th>
-        </thead>
-        <tbody>
-            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
-                <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
-                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
-                    <td>
-                        <a href="<spring:url value='/content/community/contributors' />" target="_blank">
-                            <div class="chip">
-                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
-                            </div>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
 </content:section>
 
 <content:aside>

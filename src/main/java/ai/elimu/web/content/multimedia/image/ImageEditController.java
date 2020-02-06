@@ -78,8 +78,6 @@ public class ImageEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-//        model.addAttribute("imageRevisionEvents", imageRevisionEventDao.readAll(image));
-        
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
@@ -170,8 +168,6 @@ public class ImageEditController {
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
         }

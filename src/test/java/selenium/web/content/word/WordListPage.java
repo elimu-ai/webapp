@@ -1,6 +1,5 @@
 package selenium.web.content.word;
 
-import selenium.web.content.word.*;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -72,8 +72,6 @@ public class AudioEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-//        model.addAttribute("audioRevisionEvents", audioRevisionEventDao.readAll(audio));
-        
         model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
         model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
@@ -146,8 +144,6 @@ public class AudioEditController {
             audio.setTimeLastUpdate(Calendar.getInstance());
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

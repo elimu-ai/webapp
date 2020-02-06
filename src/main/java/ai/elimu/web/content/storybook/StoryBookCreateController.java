@@ -84,8 +84,6 @@ public class StoryBookCreateController {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storybookDao.create(storyBook);
             
-            // TODO: store RevisionEvent
-            
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }
     }

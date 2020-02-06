@@ -100,8 +100,6 @@ public class StoryBookEditController {
             storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
             storyBookDao.update(storyBook);
             
-            // TODO: store RevisionEvent
-            
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }
     }

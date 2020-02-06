@@ -1,6 +1,5 @@
 package selenium.web.content.word;
 
-import selenium.web.content.word.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

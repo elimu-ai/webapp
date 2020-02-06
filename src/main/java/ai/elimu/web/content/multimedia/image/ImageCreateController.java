@@ -136,8 +136,6 @@ public class ImageCreateController {
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
             
-            // TODO: store RevisionEvent
-            
             // Label Image with Word of matching title
             Word matchingWord = wordDao.readByText(contributor.getLocale(), image.getTitle());
             if (matchingWord != null) {
