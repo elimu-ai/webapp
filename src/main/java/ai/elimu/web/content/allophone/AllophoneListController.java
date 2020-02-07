@@ -195,11 +195,11 @@ public class AllophoneListController {
         List<Allophone> allophones = new ArrayList<>();
         
         String[][] allophonesArray = null;
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             allophonesArray = allophonesArrayEN;
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             allophonesArray = allophonesArrayFI;
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             allophonesArray = allophonesArraySW;
         }
         

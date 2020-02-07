@@ -58,7 +58,7 @@ public class StoryBookListController {
     private List<StoryBook> generateStoryBooks(Language language) {
         List<StoryBook> storyBooks = new ArrayList<>();
         
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             StoryBook storyBook = new StoryBook();
             storyBook.setLanguage(language);
             storyBook.setTimeLastUpdate(Calendar.getInstance());
@@ -108,7 +108,7 @@ public class StoryBookListController {
             storyBookWhatIf_.setLanguage(language);
             storyBookWhatIf_.setTimeLastUpdate(Calendar.getInstance());
             storyBooks.add(storyBookWhatIf_);
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
 //            URL urlHindiNaAkoNatatakot = getClass().getResource("Hindi_na_Ako_natatakot.epub");
 //            logger.info("urlHindiNaAkoNatatakot: " + urlHindiNaAkoNatatakot);
 //            StoryBook storyBookHindiNaAkoNatatakot = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlHindiNaAkoNatatakot.getFile()));
@@ -118,9 +118,9 @@ public class StoryBookListController {
 //            storyBookHindiNaAkoNatatakot.setLanguage(language);
 //            storyBookHindiNaAkoNatatakot.setTimeLastUpdate(Calendar.getInstance());
 //            storyBooks.add(storyBookHindiNaAkoNatatakot);
-        } else if (language == Language.HI) {
+        } else if (language == Language.HIN) {
             // TOOD
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             // TOOD
         }
         

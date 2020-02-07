@@ -24,7 +24,7 @@ public class SyllableHelper {
     public static List<String> getSyllables(Word word) {
         List<String> syllables = new ArrayList<>();
         
-        if (word.getLanguage() == Language.EN) {
+        if (word.getLanguage() == Language.ENG) {
             String hyphenatedWord = getHyphenatedWord(word.getText());
             logger.info("hyphenatedWord: " + hyphenatedWord);
             String[] syllableArray = hyphenatedWord.split("­");
@@ -35,7 +35,7 @@ public class SyllableHelper {
             // TODO: extract Consonants/Vocals
             // TODO: split Consonants/Vocals into syllables
             // TODO: convert syllables into letters
-        } else if (word.getLanguage() == Language.SW) {
+        } else if (word.getLanguage() == Language.SWA) {
             // TODO
         }
         

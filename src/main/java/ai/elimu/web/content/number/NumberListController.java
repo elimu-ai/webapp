@@ -62,11 +62,11 @@ public class NumberListController {
         number0.setLanguage(language);
         number0.setTimeLastUpdate(Calendar.getInstance());
         number0.setValue(0);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number0.setWords(getNumberWords(language, "zero"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number0.setWords(getNumberWords(language, "sero"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number0.setWords(getNumberWords(language, "sifuri"));
         }
         numbers.add(number0);
@@ -75,11 +75,11 @@ public class NumberListController {
         number1.setLanguage(language);
         number1.setTimeLastUpdate(Calendar.getInstance());
         number1.setValue(1);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number1.setWords(getNumberWords(language, "one"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number1.setWords(getNumberWords(language, "isa"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number1.setWords(getNumberWords(language, "moja"));
         }
         numbers.add(number1);
@@ -88,11 +88,11 @@ public class NumberListController {
         number2.setLanguage(language);
         number2.setTimeLastUpdate(Calendar.getInstance());
         number2.setValue(2);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number2.setWords(getNumberWords(language, "two"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number2.setWords(getNumberWords(language, "dalawa"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number2.setWords(getNumberWords(language, "mbili"));
         }
         numbers.add(number2);
@@ -101,11 +101,11 @@ public class NumberListController {
         number3.setLanguage(language);
         number3.setTimeLastUpdate(Calendar.getInstance());
         number3.setValue(3);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number3.setWords(getNumberWords(language, "three"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number3.setWords(getNumberWords(language, "tatlo"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number3.setWords(getNumberWords(language, "tatu"));
         }
         numbers.add(number3);
@@ -114,11 +114,11 @@ public class NumberListController {
         number4.setLanguage(language);
         number4.setTimeLastUpdate(Calendar.getInstance());
         number4.setValue(4);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number4.setWords(getNumberWords(language, "four"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number4.setWords(getNumberWords(language, "apat"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number4.setWords(getNumberWords(language, "nne"));
         }
         numbers.add(number4);
@@ -127,11 +127,11 @@ public class NumberListController {
         number5.setLanguage(language);
         number5.setTimeLastUpdate(Calendar.getInstance());
         number5.setValue(5);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number5.setWords(getNumberWords(language, "five"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number5.setWords(getNumberWords(language, "lima"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number5.setWords(getNumberWords(language, "tano"));
         }
         numbers.add(number5);
@@ -140,11 +140,11 @@ public class NumberListController {
         number6.setLanguage(language);
         number6.setTimeLastUpdate(Calendar.getInstance());
         number6.setValue(6);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number6.setWords(getNumberWords(language, "six"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number6.setWords(getNumberWords(language, "anim"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number6.setWords(getNumberWords(language, "sita"));
         }
         numbers.add(number6);
@@ -153,11 +153,11 @@ public class NumberListController {
         number7.setLanguage(language);
         number7.setTimeLastUpdate(Calendar.getInstance());
         number7.setValue(7);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number7.setWords(getNumberWords(language, "seven"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number7.setWords(getNumberWords(language, "pito"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number7.setWords(getNumberWords(language, "saba"));
         }
         numbers.add(number7);
@@ -166,11 +166,11 @@ public class NumberListController {
         number8.setLanguage(language);
         number8.setTimeLastUpdate(Calendar.getInstance());
         number8.setValue(8);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number8.setWords(getNumberWords(language, "eight"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number8.setWords(getNumberWords(language, "walo"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number8.setWords(getNumberWords(language, "nane"));
         }
         numbers.add(number8);
@@ -179,11 +179,11 @@ public class NumberListController {
         number9.setLanguage(language);
         number9.setTimeLastUpdate(Calendar.getInstance());
         number9.setValue(9);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number9.setWords(getNumberWords(language, "nine"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number9.setWords(getNumberWords(language, "siyam"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number9.setWords(getNumberWords(language, "tisa"));
         }
         numbers.add(number9);
@@ -192,11 +192,11 @@ public class NumberListController {
         number10.setLanguage(language);
         number10.setTimeLastUpdate(Calendar.getInstance());
         number10.setValue(10);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number10.setWords(getNumberWords(language, "ten"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number10.setWords(getNumberWords(language, "sampu"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number10.setWords(getNumberWords(language, "kumi"));
         }
         numbers.add(number10);
@@ -205,11 +205,11 @@ public class NumberListController {
         number11.setLanguage(language);
         number11.setTimeLastUpdate(Calendar.getInstance());
         number11.setValue(11);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number11.setWords(getNumberWords(language, "eleven"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number11.setWords(getNumberWords(language, "labing-isa")); // TODO: handle "labing" and "isa" as separate words?
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number11.setWords(getNumberWords(language, "kumi", "na", "moja"));
         }
         numbers.add(number11);
@@ -218,11 +218,11 @@ public class NumberListController {
         number12.setLanguage(language);
         number12.setTimeLastUpdate(Calendar.getInstance());
         number12.setValue(12);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number12.setWords(getNumberWords(language, "twelve"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number12.setWords(getNumberWords(language, "labindalawa"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number12.setWords(getNumberWords(language, "kumi", "na", "mbili"));
         }
         numbers.add(number12);
@@ -231,11 +231,11 @@ public class NumberListController {
         number13.setLanguage(language);
         number13.setTimeLastUpdate(Calendar.getInstance());
         number13.setValue(13);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number13.setWords(getNumberWords(language, "thirteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number13.setWords(getNumberWords(language, "labintatlo"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number13.setWords(getNumberWords(language, "kumi", "na", "tatu"));
         }
         numbers.add(number13);
@@ -244,11 +244,11 @@ public class NumberListController {
         number14.setLanguage(language);
         number14.setTimeLastUpdate(Calendar.getInstance());
         number14.setValue(14);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number14.setWords(getNumberWords(language, "fourteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number14.setWords(getNumberWords(language, "labing-apat"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number14.setWords(getNumberWords(language, "kumi", "na", "nne"));
         }
         numbers.add(number14);
@@ -257,11 +257,11 @@ public class NumberListController {
         number15.setLanguage(language);
         number15.setTimeLastUpdate(Calendar.getInstance());
         number15.setValue(15);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number15.setWords(getNumberWords(language, "fifteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number15.setWords(getNumberWords(language, "labinlima"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number15.setWords(getNumberWords(language, "kumi", "na", "tano"));
         }
         numbers.add(number15);
@@ -270,11 +270,11 @@ public class NumberListController {
         number16.setLanguage(language);
         number16.setTimeLastUpdate(Calendar.getInstance());
         number16.setValue(16);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number16.setWords(getNumberWords(language, "sixteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number16.setWords(getNumberWords(language, "labing-anim"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number16.setWords(getNumberWords(language, "kumi", "na", "sita"));
         }
         numbers.add(number16);
@@ -283,11 +283,11 @@ public class NumberListController {
         number17.setLanguage(language);
         number17.setTimeLastUpdate(Calendar.getInstance());
         number17.setValue(17);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number17.setWords(getNumberWords(language, "seventeen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number17.setWords(getNumberWords(language, "labimpito"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number17.setWords(getNumberWords(language, "kumi", "na", "saba"));
         }
         numbers.add(number17);
@@ -296,11 +296,11 @@ public class NumberListController {
         number18.setLanguage(language);
         number18.setTimeLastUpdate(Calendar.getInstance());
         number18.setValue(18);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number18.setWords(getNumberWords(language, "eighteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number18.setWords(getNumberWords(language, "labingwalo"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number18.setWords(getNumberWords(language, "kumi", "na", "nane"));
         }
         numbers.add(number18);
@@ -309,11 +309,11 @@ public class NumberListController {
         number19.setLanguage(language);
         number19.setTimeLastUpdate(Calendar.getInstance());
         number19.setValue(19);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number19.setWords(getNumberWords(language, "nineteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number19.setWords(getNumberWords(language, "labinsiyam"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number19.setWords(getNumberWords(language, "kumi", "na", "tisa"));
         }
         numbers.add(number19);
@@ -322,11 +322,11 @@ public class NumberListController {
         number20.setLanguage(language);
         number20.setTimeLastUpdate(Calendar.getInstance());
         number20.setValue(20);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number20.setWords(getNumberWords(language, "twenty"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number20.setWords(getNumberWords(language, "dalawampu"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number20.setWords(getNumberWords(language, "ishirini"));
         }
         numbers.add(number20);
@@ -335,11 +335,11 @@ public class NumberListController {
         number21.setLanguage(language);
         number21.setTimeLastUpdate(Calendar.getInstance());
         number21.setValue(21);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number21.setWords(getNumberWords(language, "twenty-one")); // TODO: handle words separated by hyphen
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number21.setWords(getNumberWords(language, "dalawampu't", "isa")); // TODO: handle apostrophe in "dalawampu't" ("dalawampu at")
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number21.setWords(getNumberWords(language, "ishirini", "na", "moja"));
         }
         numbers.add(number21);
@@ -348,11 +348,11 @@ public class NumberListController {
         number22.setLanguage(language);
         number22.setTimeLastUpdate(Calendar.getInstance());
         number22.setValue(22);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number22.setWords(getNumberWords(language, "twenty-two")); // TODO: handle words separated by hyphen
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number22.setWords(getNumberWords(language, "dalawampu't", "dalawa")); // TODO: handle apostrophe in "dalawampu't" ("dalawampu at")
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number22.setWords(getNumberWords(language, "ishirini", "na", "mbili"));
         }
         numbers.add(number22);
@@ -361,11 +361,11 @@ public class NumberListController {
         number30.setLanguage(language);
         number30.setTimeLastUpdate(Calendar.getInstance());
         number30.setValue(30);
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             number30.setWords(getNumberWords(language, "thirty"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number30.setWords(getNumberWords(language, "tatlumpu"));
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             number30.setWords(getNumberWords(language, "thelathini"));
         }
         numbers.add(number30);

@@ -62,7 +62,7 @@ public class LetterListController {
     private List<Letter> generateLetters(Language language) {
         List<Letter> letters = new ArrayList<>();
         
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             Letter letterE = new Letter();
             letterE.setLanguage(language);
             letterE.setTimeLastUpdate(Calendar.getInstance());
@@ -479,7 +479,7 @@ public class LetterListController {
             letterXUpperCase.setAllophones(getAllophones(language, "k", "s"));
             letterXUpperCase.setUsageCount(0);
             letters.add(letterXUpperCase);
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             Letter letterA = new Letter();
             letterA.setLanguage(language);
             letterA.setTimeLastUpdate(Calendar.getInstance());
@@ -930,7 +930,7 @@ public class LetterListController {
             letterZUpperCase.setAllophones(getAllophones(language, "z")); // TODO: can also be /s/
             letterZUpperCase.setUsageCount(-1);
             letters.add(letterZUpperCase);
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             Letter letterA = new Letter();
             letterA.setLanguage(language);
             letterA.setTimeLastUpdate(Calendar.getInstance());

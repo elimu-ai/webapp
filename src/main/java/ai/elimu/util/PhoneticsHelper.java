@@ -30,7 +30,7 @@ public class PhoneticsHelper {
         while (StringUtils.isNotBlank(phonetics)) {
             int phoneticsLengthBeforeExtraction = phonetics.length();
             
-            if (word.getLanguage() == Language.EN) {
+            if (word.getLanguage() == Language.ENG) {
                 String[][] allophonesArrayEN = AllophoneListController.allophonesArrayEN;
                 for (String[] allophoneRow : allophonesArrayEN) {
                     String allophoneIpa = allophoneRow[0];
@@ -40,7 +40,7 @@ public class PhoneticsHelper {
                         break;
                     }
                 }
-            } else if (word.getLanguage() == Language.SW) {
+            } else if (word.getLanguage() == Language.SWA) {
                 String[][] allophonesArraySW = AllophoneListController.allophonesArraySW;
                 for (String[] allophoneRow : allophonesArraySW) {
                     String allophoneIpa = allophoneRow[0];
@@ -63,7 +63,7 @@ public class PhoneticsHelper {
     public static SoundType getSoundType(String ipaValue, Language language) {
         SoundType soundType = null;
         
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             if ("i".equals(ipaValue)) {
                 return soundType.VOWEL;
             } else if ("t".equals(ipaValue)) {
@@ -143,7 +143,7 @@ public class PhoneticsHelper {
             } else if ("ʒ".equals(ipaValue)) {
                 return SoundType.CONSONANT;
             }
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             // TODO
         }
         
