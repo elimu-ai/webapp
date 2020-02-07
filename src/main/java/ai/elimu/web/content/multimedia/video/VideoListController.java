@@ -28,7 +28,7 @@ public class VideoListController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        List<Video> videos = videoDao.readAllOrdered(contributor.getLocale());
+        List<Video> videos = videoDao.readAllOrdered(contributor.getLanguage());
         model.addAttribute("videos", videos);
 
         return "content/multimedia/video/list";

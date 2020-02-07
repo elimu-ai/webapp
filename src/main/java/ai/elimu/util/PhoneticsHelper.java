@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.web.content.allophone.AllophoneListController;
 
@@ -30,7 +30,7 @@ public class PhoneticsHelper {
         while (StringUtils.isNotBlank(phonetics)) {
             int phoneticsLengthBeforeExtraction = phonetics.length();
             
-            if (word.getLocale() == Locale.EN) {
+            if (word.getLanguage() == Language.EN) {
                 String[][] allophonesArrayEN = AllophoneListController.allophonesArrayEN;
                 for (String[] allophoneRow : allophonesArrayEN) {
                     String allophoneIpa = allophoneRow[0];
@@ -40,7 +40,7 @@ public class PhoneticsHelper {
                         break;
                     }
                 }
-            } else if (word.getLocale() == Locale.SW) {
+            } else if (word.getLanguage() == Language.SW) {
                 String[][] allophonesArraySW = AllophoneListController.allophonesArraySW;
                 for (String[] allophoneRow : allophonesArraySW) {
                     String allophoneIpa = allophoneRow[0];
@@ -60,10 +60,10 @@ public class PhoneticsHelper {
         return allophones;
     }
     
-    public static SoundType getSoundType(String ipaValue, Locale locale) {
+    public static SoundType getSoundType(String ipaValue, Language language) {
         SoundType soundType = null;
         
-        if (locale == Locale.EN) {
+        if (language == Language.EN) {
             if ("i".equals(ipaValue)) {
                 return soundType.VOWEL;
             } else if ("t".equals(ipaValue)) {
@@ -143,7 +143,7 @@ public class PhoneticsHelper {
             } else if ("ʒ".equals(ipaValue)) {
                 return SoundType.CONSONANT;
             }
-        } else if (locale == Locale.SW) {
+        } else if (language == Language.SW) {
             // TODO
         }
         

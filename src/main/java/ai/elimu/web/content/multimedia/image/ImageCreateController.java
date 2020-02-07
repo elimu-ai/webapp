@@ -74,7 +74,7 @@ public class ImageCreateController {
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
             if (existingImage != null) {
                 result.rejectValue("title", "NonUnique");
             }
@@ -137,7 +137,7 @@ public class ImageCreateController {
             imageDao.create(image);
             
             // Label Image with Word of matching title
-            Word matchingWord = wordDao.readByText(contributor.getLocale(), image.getTitle());
+            Word matchingWord = wordDao.readByText(contributor.getLanguage(), image.getTitle());
             if (matchingWord != null) {
                 Set<Word> labeledWords = new HashSet<>();
                 if (!labeledWords.contains(matchingWord)) {

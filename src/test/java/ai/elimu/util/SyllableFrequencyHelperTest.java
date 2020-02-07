@@ -8,14 +8,14 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class SyllableFrequencyHelperTest {
 
     @Test
     public void testGetSyllableFrequency() {
         StoryBook storyBook = new StoryBook();
-        storyBook.setLocale(Locale.EN);
+        storyBook.setLanguage(Language.EN);
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look.\"");
         storyBook.setParagraphs(paragraphs);

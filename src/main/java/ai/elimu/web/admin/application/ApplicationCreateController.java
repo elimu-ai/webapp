@@ -48,7 +48,7 @@ public class ApplicationCreateController {
     ) {
     	logger.info("handleSubmit");
         
-        Application existingApplication = applicationDao.readByPackageName(application.getLocale(), application.getPackageName());
+        Application existingApplication = applicationDao.readByPackageName(application.getLanguage(), application.getPackageName());
         if (existingApplication != null) {
             result.rejectValue("packageName", "NonUnique");
         }

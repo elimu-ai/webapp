@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.multimedia.VideoGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,14 @@ public class VideoRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam Locale locale
+            @RequestParam Language language
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray jsonArray = new JSONArray();
-        for (Video video : videoDao.readAllOrdered(locale)) {
+        for (Video video : videoDao.readAllOrdered(language)) {
             VideoGson videoGson = JavaToGsonConverter.getVideoGson(video);
             String json = new Gson().toJson(videoGson);
             jsonArray.put(new JSONObject(json));

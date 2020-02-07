@@ -7,45 +7,45 @@ import ai.elimu.dao.StoryBookDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBookDao {
 
     @Override
-    public StoryBook readByTitle(Locale locale, String title) throws DataAccessException {
+    public StoryBook readByTitle(Language language, String title) throws DataAccessException {
         try {
             return (StoryBook) em.createQuery(
                 "SELECT book " +
                 "FROM StoryBook book " +
-                "WHERE book.locale = :locale " +
+                "WHERE book.language = :language " +
                 "AND book.title = :title")
-                .setParameter("locale", locale)
+                .setParameter("language", language)
                 .setParameter("title", title)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("StoryBook \"" + title + "\" was not found for locale " + locale);
+            logger.warn("StoryBook \"" + title + "\" was not found for language " + language);
             return null;
         }
     }
 
     @Override
-    public List<StoryBook> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<StoryBook> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT book " +
             "FROM StoryBook book " +
-            "WHERE book.locale = :locale " +
+            "WHERE book.language = :language " +
             "ORDER BY book.title")
-            .setParameter("locale", locale)
+            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public Long readCount(Locale locale) throws DataAccessException {
+    public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
                 "SELECT COUNT(s) " +
                 "FROM StoryBook s " +
-                "WHERE s.locale = :locale")
-                .setParameter("locale", locale)
+                "WHERE s.language = :language")
+                .setParameter("language", language)
                 .getSingleResult();
     }
 }

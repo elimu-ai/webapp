@@ -9,14 +9,14 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class PhoneticsHelperTest {
 
     @Test
-    public void testGetAllophones_localeEN() {
+    public void testGetAllophones_languageEN() {
         Word word = new Word();
-        word.setLocale(Locale.EN);
+        word.setLanguage(Language.EN);
         word.setText("zero");
         word.setPhonetics("ˈzɪrɔʊ");
         List<String> allophones = PhoneticsHelper.getAllophones(word);
@@ -48,9 +48,9 @@ public class PhoneticsHelperTest {
     }
     
     @Test
-    public void testGetAllophones_localeSW() {
+    public void testGetAllophones_languageSW() {
         Word word = new Word();
-        word.setLocale(Locale.SW);
+        word.setLanguage(Language.SW);
         word.setText("sifuri");
         word.setPhonetics("siˈfuɾi");
         List<String> allophones = PhoneticsHelper.getAllophones(word);

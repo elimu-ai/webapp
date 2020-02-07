@@ -6,14 +6,14 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class SyllableHelperTest {
 
     @Test
-    public void testGetMonoSyllables_localeEN() {
+    public void testGetMonoSyllables_languageEN() {
         Word word = new Word();
-        word.setLocale(Locale.EN);
+        word.setLanguage(Language.EN);
         word.setText("am");
         word.setPhonetics("æm");
         List<String> syllables = SyllableHelper.getSyllables(word);
@@ -36,9 +36,9 @@ public class SyllableHelperTest {
     }
     
     @Test
-    public void testGetDiSyllables_localeEN() {
+    public void testGetDiSyllables_languageEN() {
         Word word = new Word();
-        word.setLocale(Locale.EN);
+        word.setLanguage(Language.EN);
         word.setText("mother");
         word.setPhonetics("ˈmʌðər");
         List<String> syllables = SyllableHelper.getSyllables(word);
@@ -83,9 +83,9 @@ public class SyllableHelperTest {
     }
     
     @Test
-    public void testGetTriSyllables_localeEN() {
+    public void testGetTriSyllables_languageEN() {
         Word word = new Word();
-        word.setLocale(Locale.EN);
+        word.setLanguage(Language.EN);
         word.setText("grandmother");
         word.setPhonetics("ˈgrændˌmʌðər");
         List<String> syllables = SyllableHelper.getSyllables(word);

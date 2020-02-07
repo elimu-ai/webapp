@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.multimedia.ImageGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,14 @@ public class ImageRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam Locale locale
+            @RequestParam Language language
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray jsonArray = new JSONArray();
-        for (Image image : imageDao.readAllOrdered(locale)) {
+        for (Image image : imageDao.readAllOrdered(language)) {
             ImageGson imageGson = JavaToGsonConverter.getImageGson(image);
             String json = new Gson().toJson(imageGson);
             jsonArray.put(new JSONObject(json));

@@ -81,7 +81,7 @@ public class ApplicationEditController {
             applicationDao.update(application);
             
             // Refresh REST API cache
-            jsonService.refreshApplications(application.getLocale());
+            jsonService.refreshApplications(application.getLanguage());
             
             return "redirect:/admin/application/list";
         }

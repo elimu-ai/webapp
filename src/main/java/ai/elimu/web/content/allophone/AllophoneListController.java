@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -168,16 +168,16 @@ public class AllophoneListController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         // To ease development/testing, auto-generate Allophones
-        List<Allophone> allophonesGenerated = generateAllophones(contributor.getLocale());
+        List<Allophone> allophonesGenerated = generateAllophones(contributor.getLanguage());
         for (Allophone allophone : allophonesGenerated) {
             logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/, allophone.getValueSampa(): " + allophone.getValueSampa());
-            Allophone existingAllophone = allophoneDao.readByValueIpa(contributor.getLocale(), allophone.getValueIpa());
+            Allophone existingAllophone = allophoneDao.readByValueIpa(contributor.getLanguage(), allophone.getValueIpa());
             if (existingAllophone == null) {
                 allophoneDao.create(allophone);
             }
         }
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
         model.addAttribute("allophones", allophones);
         
         int maxUsageCount = 0;
@@ -191,21 +191,21 @@ public class AllophoneListController {
         return "content/allophone/list";
     }
     
-    private List<Allophone> generateAllophones(Locale locale) {
+    private List<Allophone> generateAllophones(Language language) {
         List<Allophone> allophones = new ArrayList<>();
         
         String[][] allophonesArray = null;
-        if (locale == Locale.EN) {
+        if (language == Language.EN) {
             allophonesArray = allophonesArrayEN;
-        } else if (locale == Locale.FI) {
+        } else if (language == Language.FI) {
             allophonesArray = allophonesArrayFI;
-        } else if (locale == Locale.SW) {
+        } else if (language == Language.SW) {
             allophonesArray = allophonesArraySW;
         }
         
         for (String[] allophoneRow : allophonesArray) {
             Allophone allophone = new Allophone();
-            allophone.setLocale(locale);
+            allophone.setLanguage(language);
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophone.setValueIpa(allophoneRow[0]);
             allophone.setValueSampa(allophoneRow[1]);

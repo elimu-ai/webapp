@@ -72,9 +72,9 @@ public class AudioEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
+        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
+        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
 
         return "content/multimedia/audio/edit";
     }
@@ -93,7 +93,7 @@ public class AudioEditController {
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
         } else {
-            Audio existingAudio = audioDao.read(audio.getTranscription(), audio.getLocale());
+            Audio existingAudio = audioDao.read(audio.getTranscription(), audio.getLanguage());
             if ((existingAudio != null) && !existingAudio.getId().equals(audio.getId())) {
                 result.rejectValue("transcription", "NonUnique");
             }
@@ -135,9 +135,9 @@ public class AudioEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
+            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
+            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
             return "content/multimedia/audio/edit";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());

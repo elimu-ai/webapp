@@ -9,7 +9,7 @@ import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Syllable;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,23 +38,23 @@ public class SyllableListController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         // To ease development/testing, auto-generate Syllables
-        List<Syllable> syllablesGenerated = generateSyllables(contributor.getLocale());
+        List<Syllable> syllablesGenerated = generateSyllables(contributor.getLanguage());
         for (Syllable syllable : syllablesGenerated) {
             logger.info("syllable.getText(): " + syllable.getText());
-            Syllable existingSyllable = syllableDao.readByText(syllable.getLocale(), syllable.getText());
+            Syllable existingSyllable = syllableDao.readByText(syllable.getLanguage(), syllable.getText());
             if (existingSyllable == null) {
                 syllableDao.create(syllable);
             }
         }
         
-        List<Syllable> syllables = syllableDao.readAllOrdered(contributor.getLocale());
+        List<Syllable> syllables = syllableDao.readAllOrdered(contributor.getLanguage());
         logger.info("syllables.size(): " + syllables.size());
         model.addAttribute("syllables", syllables);
 
         return "content/syllable/list";
     }
     
-    private List<Syllable> generateSyllables(Locale locale) {
+    private List<Syllable> generateSyllables(Language language) {
         List<Syllable> syllables = new ArrayList<>();
         
         // TODO

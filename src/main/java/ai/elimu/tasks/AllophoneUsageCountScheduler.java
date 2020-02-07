@@ -10,7 +10,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.util.PhoneticsHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,15 +39,15 @@ public class AllophoneUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        for (Locale locale : Locale.values()) {
-            logger.info("Calculating usage count of Allophones for locale " + locale);
+        for (Language language : Language.values()) {
+            logger.info("Calculating usage count of Allophones for language " + language);
             
             Map<String, Integer> allophoneFrequencyMap = new HashMap<>();
             
-            List<Allophone> allophones = allophoneDao.readAllOrdered(locale);
+            List<Allophone> allophones = allophoneDao.readAllOrdered(language);
             logger.info("allophones.size(): " + allophones.size());
             
-            List<Word> words = wordDao.readAllOrdered(locale);
+            List<Word> words = wordDao.readAllOrdered(language);
             logger.info("words.size(): " + words.size());
             
             for (Word word : words) {
@@ -62,7 +62,7 @@ public class AllophoneUsageCountScheduler {
             }
             
             for (String allophoneIpa : allophoneFrequencyMap.keySet()) {
-                Allophone allophone = allophoneDao.readByValueIpa(locale, allophoneIpa);
+                Allophone allophone = allophoneDao.readByValueIpa(language, allophoneIpa);
                 allophone.setUsageCount(allophoneFrequencyMap.get(allophoneIpa));
                 allophoneDao.update(allophone);
             }

@@ -1,13 +1,13 @@
 package ai.elimu.util;
 
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class IpaToLetterConverter {
 
-    public static String getLetters(String ipaValue, Locale locale) {
+    public static String getLetters(String ipaValue, Language language) {
         String letter = null;
         
-        if (locale == Locale.EN) {
+        if (language == Language.EN) {
             if ("i".equals(ipaValue)) {
                 return "i";
             } else if ("t".equals(ipaValue)) {
@@ -16,7 +16,7 @@ public class IpaToLetterConverter {
                 return "th";
             }
             // TODO
-        } else if (locale == Locale.SW) {
+        } else if (language == Language.SW) {
             // TODO
         }
         

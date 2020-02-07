@@ -67,7 +67,7 @@ public class VideoCreateController {
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Video existingVideo = videoDao.read(video.getTitle(), video.getLocale());
+            Video existingVideo = videoDao.read(video.getTitle(), video.getLanguage());
             if (existingVideo != null) {
                 result.rejectValue("title", "NonUnique");
             }

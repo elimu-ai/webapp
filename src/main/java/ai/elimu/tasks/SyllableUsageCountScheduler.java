@@ -11,7 +11,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.util.SyllableFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -39,12 +39,12 @@ public class SyllableUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        for (Locale locale : Locale.values()) {
-            logger.info("Calculating usage count for Syllables with locale " + locale);
+        for (Language language : Language.values()) {
+            logger.info("Calculating usage count for Syllables with language " + language);
             
             Map<String, Integer> syllableFrequencyMap = new HashMap<>();
             
-            List<StoryBook> storyBooks = storyBookDao.readAllOrdered(locale);
+            List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
             logger.info("storyBooks.size(): " + storyBooks.size());
             for (StoryBook storyBook : storyBooks) {
                 logger.info("storyBook.getTitle(): " + storyBook.getTitle());
@@ -68,7 +68,7 @@ public class SyllableUsageCountScheduler {
                 
                 // Skip syllables that are actual words
                 // TODO: add logic to Word editing
-                Word word = wordDao.readByText(locale, syllableText);
+                Word word = wordDao.readByText(language, syllableText);
                 if (word != null) {
                     continue;
                 }
@@ -79,10 +79,10 @@ public class SyllableUsageCountScheduler {
                     continue;
                 }
                 
-                Syllable existingSyllable = syllableDao.readByText(locale, syllableText);
+                Syllable existingSyllable = syllableDao.readByText(language, syllableText);
                 if (existingSyllable == null) {
                     Syllable syllable = new Syllable();
-                    syllable.setLocale(locale);
+                    syllable.setLanguage(language);
                     syllable.setTimeLastUpdate(Calendar.getInstance());
                     syllable.setText(syllableText);
                     syllable.setUsageCount(syllableFrequencyMap.get(syllableText));

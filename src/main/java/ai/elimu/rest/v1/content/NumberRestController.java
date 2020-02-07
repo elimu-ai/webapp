@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.NumberDao;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.NumberGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +28,14 @@ public class NumberRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam Locale locale
+            @RequestParam Language language
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray numbers = new JSONArray();
-        for (ai.elimu.model.content.Number number : numberDao.readAllOrdered(locale)) {
+        for (ai.elimu.model.content.Number number : numberDao.readAllOrdered(language)) {
             NumberGson numberGson = JavaToGsonConverter.getNumberGson(number);
             String json = new Gson().toJson(numberGson);
             numbers.put(new JSONObject(json));

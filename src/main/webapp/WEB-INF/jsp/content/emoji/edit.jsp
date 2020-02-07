@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="emoji" />
 
             <div class="row">
-                <form:hidden path="locale" value="${emoji.locale}" />
+                <form:hidden path="language" value="${emoji.language}" />
                 <form:hidden path="revisionNumber" value="${emoji.revisionNumber}" />
                 
                 <div class="input-field col s12">

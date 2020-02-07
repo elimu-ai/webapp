@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="allophone" />
 
             <div class="row">
-                <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="language" value="${contributor.language}" />
                 <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
                 <form:hidden path="usageCount" value="${allophone.usageCount}" />
                 
@@ -45,7 +45,7 @@
     <h5 class="center"><fmt:message key="preview" /></h5>
     
     <audio controls="true" autoplay="true">
-        <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+        <source src="<spring:url value='/static/audio/${language.isoCode}/sampa_${allophone.valueSampa}.wav' />" />
     </audio>
     
     <div class="divider" style="margin: 1em 0;"></div>

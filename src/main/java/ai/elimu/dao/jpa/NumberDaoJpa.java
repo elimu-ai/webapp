@@ -7,45 +7,45 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Number;
 import ai.elimu.dao.NumberDao;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
 
     @Override
-    public Number readByValue(Locale locale, Integer value) throws DataAccessException {
+    public Number readByValue(Language language, Integer value) throws DataAccessException {
         try {
             return (Number) em.createQuery(
                 "SELECT n " +
                 "FROM Number n " +
-                "WHERE n.locale = :locale " +
+                "WHERE n.language = :language " +
                 "AND n.value = :value")
-                .setParameter("locale", locale)
+                .setParameter("language", language)
                 .setParameter("value", value)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Number \"" + value + "\" was not found for locale " + locale);
+            logger.warn("Number \"" + value + "\" was not found for language " + language);
             return null;
         }
     }
 
     @Override
-    public List<Number> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<Number> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT n " +
             "FROM Number n " +
-            "WHERE n.locale = :locale " +
+            "WHERE n.language = :language " +
             "ORDER BY n.value")
-            .setParameter("locale", locale)
+            .setParameter("language", language)
             .getResultList();
     }
 
     @Override
-    public Long readCount(Locale locale) throws DataAccessException {
+    public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
                 "SELECT COUNT(n) " +
                 "FROM Number n " +
-                "WHERE n.locale = :locale")
-                .setParameter("locale", locale)
+                "WHERE n.language = :language")
+                .setParameter("language", language)
                 .getSingleResult();
     }
 }

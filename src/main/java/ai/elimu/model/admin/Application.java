@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 
@@ -20,7 +20,7 @@ public class Application extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Locale locale;
+    private Language language;
     
     @NotNull
     private String packageName;
@@ -43,12 +43,12 @@ public class Application extends BaseEntity {
     @ManyToOne
     private Contributor contributor;
 
-    public Locale getLocale() {
-        return locale;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLocale(Locale locale) {
-        this.locale = locale;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public String getPackageName() {

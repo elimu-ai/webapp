@@ -43,7 +43,7 @@ public class EmojiEditController {
         Emoji emoji = emojiDao.read(id);
         model.addAttribute("emoji", emoji);
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
         model.addAttribute("allophones", allophones);
 
         return "content/emoji/edit";
@@ -67,7 +67,7 @@ public class EmojiEditController {
         if (result.hasErrors()) {
             model.addAttribute("emoji", emoji);
             
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
             model.addAttribute("allophones", allophones);
             
             return "content/emoji/edit";

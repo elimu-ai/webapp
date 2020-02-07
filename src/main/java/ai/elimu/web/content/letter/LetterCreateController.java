@@ -41,7 +41,7 @@ public class LetterCreateController {
         Letter letter = new Letter();
         model.addAttribute("letter", letter);
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
         model.addAttribute("allophones", allophones);
 
         return "content/letter/create";
@@ -57,7 +57,7 @@ public class LetterCreateController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
+        Letter existingLetter = letterDao.readByText(letter.getLanguage(), letter.getText());
         if (existingLetter != null) {
             result.rejectValue("text", "NonUnique");
         }
@@ -65,7 +65,7 @@ public class LetterCreateController {
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
             
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
             model.addAttribute("allophones", allophones);
             
             return "content/letter/create";

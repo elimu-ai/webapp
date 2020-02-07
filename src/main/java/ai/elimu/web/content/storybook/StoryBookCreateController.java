@@ -43,7 +43,7 @@ public class StoryBookCreateController {
         
         model.addAttribute("contentLicenses", ContentLicense.values());
         
-        List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
+        List<Image> coverImages = imageDao.readAllOrdered(contributor.getLanguage());
         model.addAttribute("coverImages", coverImages);
         
         model.addAttribute("gradeLevels", GradeLevel.values());
@@ -61,7 +61,7 @@ public class StoryBookCreateController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getLocale(), storyBook.getTitle());
+        StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getLanguage(), storyBook.getTitle());
         if (existingStoryBook != null) {
             result.rejectValue("title", "NonUnique");
         }
@@ -74,7 +74,7 @@ public class StoryBookCreateController {
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
-            List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
+            List<Image> coverImages = imageDao.readAllOrdered(contributor.getLanguage());
             model.addAttribute("coverImages", coverImages);
             
             model.addAttribute("gradeLevels", GradeLevel.values());

@@ -72,9 +72,9 @@ public class VideoEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
+        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
+        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
 
         return "content/multimedia/video/edit";
     }
@@ -93,7 +93,7 @@ public class VideoEditController {
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Video existingVideo = videoDao.read(video.getTitle(), video.getLocale());
+            Video existingVideo = videoDao.read(video.getTitle(), video.getLanguage());
             if ((existingVideo != null) && !existingVideo.getId().equals(video.getId())) {
                 result.rejectValue("title", "NonUnique");
             }
@@ -133,9 +133,9 @@ public class VideoEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
+            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
+            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
             return "content/multimedia/video/edit";
         } else {
             video.setTitle(video.getTitle().toLowerCase());
