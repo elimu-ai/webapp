@@ -15,8 +15,8 @@ ALTER TABLE Letter CHANGE locale language VARCHAR(255) COLLATE utf8_bin NOT NULL
 ALTER TABLE Number DROP COLUMN language;
 ALTER TABLE Number CHANGE locale language VARCHAR(255) NOT NULL;
 
-ALTER TABLE Storybook DROP COLUMN language;
-ALTER TABLE Storybook CHANGE locale language VARCHAR(255) NOT NULL;
+ALTER TABLE StoryBook DROP COLUMN language;
+ALTER TABLE StoryBook CHANGE locale language VARCHAR(255) NOT NULL;
 
 ALTER TABLE Syllable DROP COLUMN language;
 ALTER TABLE Syllable CHANGE locale language VARCHAR(255) NOT NULL;
