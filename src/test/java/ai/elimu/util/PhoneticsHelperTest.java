@@ -50,7 +50,7 @@ public class PhoneticsHelperTest {
     @Test
     public void testGetAllophones_languageSW() {
         Word word = new Word();
-        word.setLanguage(Language.SW);
+        word.setLanguage(Language.SWA);
         word.setText("sifuri");
         word.setPhonetics("siˈfuɾi");
         List<String> allophones = PhoneticsHelper.getAllophones(word);

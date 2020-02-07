@@ -930,7 +930,7 @@ public class LetterListController {
             letterZUpperCase.setAllophones(getAllophones(language, "z")); // TODO: can also be /s/
             letterZUpperCase.setUsageCount(-1);
             letters.add(letterZUpperCase);
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             Letter letterA = new Letter();
             letterA.setLanguage(language);
             letterA.setTimeLastUpdate(Calendar.getInstance());

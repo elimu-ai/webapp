@@ -120,7 +120,7 @@ public class StoryBookListController {
 //            storyBooks.add(storyBookHindiNaAkoNatatakot);
         } else if (language == Language.HI) {
             // TOOD
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             // TOOD
         }
         

@@ -35,7 +35,7 @@ public class SyllableHelper {
             // TODO: extract Consonants/Vocals
             // TODO: split Consonants/Vocals into syllables
             // TODO: convert syllables into letters
-        } else if (word.getLanguage() == Language.SW) {
+        } else if (word.getLanguage() == Language.SWA) {
             // TODO
         }
         

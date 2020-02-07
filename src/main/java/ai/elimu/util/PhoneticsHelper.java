@@ -40,7 +40,7 @@ public class PhoneticsHelper {
                         break;
                     }
                 }
-            } else if (word.getLanguage() == Language.SW) {
+            } else if (word.getLanguage() == Language.SWA) {
                 String[][] allophonesArraySW = AllophoneListController.allophonesArraySW;
                 for (String[] allophoneRow : allophonesArraySW) {
                     String allophoneIpa = allophoneRow[0];
@@ -143,7 +143,7 @@ public class PhoneticsHelper {
             } else if ("ʒ".equals(ipaValue)) {
                 return SoundType.CONSONANT;
             }
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             // TODO
         }
         

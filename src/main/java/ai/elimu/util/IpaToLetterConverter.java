@@ -16,7 +16,7 @@ public class IpaToLetterConverter {
                 return "th";
             }
             // TODO
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             // TODO
         }
         

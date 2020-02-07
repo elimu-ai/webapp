@@ -199,7 +199,7 @@ public class AllophoneListController {
             allophonesArray = allophonesArrayEN;
         } else if (language == Language.FI) {
             allophonesArray = allophonesArrayFI;
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             allophonesArray = allophonesArraySW;
         }
         

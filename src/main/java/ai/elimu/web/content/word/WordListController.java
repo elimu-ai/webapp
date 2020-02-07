@@ -93,7 +93,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordZero.setText("sero");
             wordZero.setPhonetics("sɛr̩ɔ");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordZero.setText("sifuri");
             wordZero.setPhonetics("siˈfuɾi");
         }
@@ -108,7 +108,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordOne.setText("isa");
             wordOne.setPhonetics("ɪsɑ");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordOne.setText("moja");
             wordOne.setPhonetics("ˈmɔjɑ");
             wordOne.setUsageCount(29);
@@ -124,7 +124,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordTwo.setText("dalawa");
             wordTwo.setPhonetics("dɑlɑwɑ");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordTwo.setText("mbili");
             wordTwo.setPhonetics("mˈbili");
         }
@@ -139,7 +139,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordThree.setText("tatlo");
             wordThree.setPhonetics("tɑtlɔ");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordThree.setText("tatu");
             wordThree.setPhonetics("ˈtɑtu");
             wordThree.setUsageCount(6);
@@ -155,7 +155,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordFour.setText("apat");
             wordFour.setPhonetics("ɑpɑt");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordFour.setText("nne");
             wordFour.setPhonetics("nˈnɛ");
         }
@@ -170,7 +170,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordFive.setText("lima");
             wordFive.setPhonetics("lɪmɑ");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordFive.setText("tano");
             wordFive.setPhonetics("ˈtɑnɔ");
         }
@@ -185,7 +185,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordSix.setText("anim");
             wordSix.setPhonetics("ɑnɪm");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordSix.setText("sita");
             wordSix.setPhonetics("ˈsitɑ");
             wordSix.setUsageCount(3);
@@ -201,7 +201,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordSeven.setText("pito");
             wordSeven.setPhonetics("pɪtɔ");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordSeven.setText("saba");
             wordSeven.setPhonetics("ˈsɑbɑ");
             wordSeven.setUsageCount(4);
@@ -217,7 +217,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordEight.setText("walo");
             wordEight.setPhonetics("wɑlɔ");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordEight.setText("nane");
             wordEight.setPhonetics("ˈnɑnɛ");
             wordEight.setUsageCount(1);
@@ -233,7 +233,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordNine.setText("siyam");
             wordNine.setPhonetics("ʃɑm");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordNine.setText("tisa");
             wordNine.setPhonetics("ˈtisɑ");
         }
@@ -248,14 +248,14 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordTen.setText("sampu");
             wordTen.setPhonetics("sɑmpu");
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordTen.setText("kumi");
             wordTen.setPhonetics("kumi");
             wordTen.setUsageCount(2);
         }
         words.add(wordTen);
         
-        if (language == Language.SW) {
+        if (language == Language.SWA) {
             // E.g. "kumi na mbili", which literally means "ten and two" (12)
             Word wordNa = new Word();
             wordNa.setLanguage(language);
@@ -385,7 +385,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordTwenty.setText("dalawampu");
             wordTwenty.setPhonetics("ˌˌˌ"); // TODO
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordTwenty.setText("ishirini");
             wordTwenty.setPhonetics("iʃiɾini");
         }
@@ -426,7 +426,7 @@ public class WordListController {
         } else if (language == Language.FI) {
             wordThirty.setText("tatlumpu");
             wordThirty.setPhonetics("ˌˌˌ"); // TODO
-        } else if (language == Language.SW) {
+        } else if (language == Language.SWA) {
             wordThirty.setText("thelathini");
             wordThirty.setPhonetics("θɛlɑθini");
         }
