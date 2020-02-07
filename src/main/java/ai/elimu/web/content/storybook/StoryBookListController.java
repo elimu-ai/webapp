@@ -118,7 +118,7 @@ public class StoryBookListController {
 //            storyBookHindiNaAkoNatatakot.setLanguage(language);
 //            storyBookHindiNaAkoNatatakot.setTimeLastUpdate(Calendar.getInstance());
 //            storyBooks.add(storyBookHindiNaAkoNatatakot);
-        } else if (language == Language.HI) {
+        } else if (language == Language.HIN) {
             // TOOD
         } else if (language == Language.SWA) {
             // TOOD
