@@ -108,7 +108,7 @@ public class StoryBookListController {
             storyBookWhatIf_.setLanguage(language);
             storyBookWhatIf_.setTimeLastUpdate(Calendar.getInstance());
             storyBooks.add(storyBookWhatIf_);
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
 //            URL urlHindiNaAkoNatatakot = getClass().getResource("Hindi_na_Ako_natatakot.epub");
 //            logger.info("urlHindiNaAkoNatatakot: " + urlHindiNaAkoNatatakot);
 //            StoryBook storyBookHindiNaAkoNatatakot = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlHindiNaAkoNatatakot.getFile()));

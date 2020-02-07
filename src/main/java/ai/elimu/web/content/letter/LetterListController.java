@@ -479,7 +479,7 @@ public class LetterListController {
             letterXUpperCase.setAllophones(getAllophones(language, "k", "s"));
             letterXUpperCase.setUsageCount(0);
             letters.add(letterXUpperCase);
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             Letter letterA = new Letter();
             letterA.setLanguage(language);
             letterA.setTimeLastUpdate(Calendar.getInstance());

@@ -64,7 +64,7 @@ public class NumberListController {
         number0.setValue(0);
         if (language == Language.ENG) {
             number0.setWords(getNumberWords(language, "zero"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number0.setWords(getNumberWords(language, "sero"));
         } else if (language == Language.SWA) {
             number0.setWords(getNumberWords(language, "sifuri"));
@@ -77,7 +77,7 @@ public class NumberListController {
         number1.setValue(1);
         if (language == Language.ENG) {
             number1.setWords(getNumberWords(language, "one"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number1.setWords(getNumberWords(language, "isa"));
         } else if (language == Language.SWA) {
             number1.setWords(getNumberWords(language, "moja"));
@@ -90,7 +90,7 @@ public class NumberListController {
         number2.setValue(2);
         if (language == Language.ENG) {
             number2.setWords(getNumberWords(language, "two"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number2.setWords(getNumberWords(language, "dalawa"));
         } else if (language == Language.SWA) {
             number2.setWords(getNumberWords(language, "mbili"));
@@ -103,7 +103,7 @@ public class NumberListController {
         number3.setValue(3);
         if (language == Language.ENG) {
             number3.setWords(getNumberWords(language, "three"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number3.setWords(getNumberWords(language, "tatlo"));
         } else if (language == Language.SWA) {
             number3.setWords(getNumberWords(language, "tatu"));
@@ -116,7 +116,7 @@ public class NumberListController {
         number4.setValue(4);
         if (language == Language.ENG) {
             number4.setWords(getNumberWords(language, "four"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number4.setWords(getNumberWords(language, "apat"));
         } else if (language == Language.SWA) {
             number4.setWords(getNumberWords(language, "nne"));
@@ -129,7 +129,7 @@ public class NumberListController {
         number5.setValue(5);
         if (language == Language.ENG) {
             number5.setWords(getNumberWords(language, "five"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number5.setWords(getNumberWords(language, "lima"));
         } else if (language == Language.SWA) {
             number5.setWords(getNumberWords(language, "tano"));
@@ -142,7 +142,7 @@ public class NumberListController {
         number6.setValue(6);
         if (language == Language.ENG) {
             number6.setWords(getNumberWords(language, "six"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number6.setWords(getNumberWords(language, "anim"));
         } else if (language == Language.SWA) {
             number6.setWords(getNumberWords(language, "sita"));
@@ -155,7 +155,7 @@ public class NumberListController {
         number7.setValue(7);
         if (language == Language.ENG) {
             number7.setWords(getNumberWords(language, "seven"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number7.setWords(getNumberWords(language, "pito"));
         } else if (language == Language.SWA) {
             number7.setWords(getNumberWords(language, "saba"));
@@ -168,7 +168,7 @@ public class NumberListController {
         number8.setValue(8);
         if (language == Language.ENG) {
             number8.setWords(getNumberWords(language, "eight"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number8.setWords(getNumberWords(language, "walo"));
         } else if (language == Language.SWA) {
             number8.setWords(getNumberWords(language, "nane"));
@@ -181,7 +181,7 @@ public class NumberListController {
         number9.setValue(9);
         if (language == Language.ENG) {
             number9.setWords(getNumberWords(language, "nine"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number9.setWords(getNumberWords(language, "siyam"));
         } else if (language == Language.SWA) {
             number9.setWords(getNumberWords(language, "tisa"));
@@ -194,7 +194,7 @@ public class NumberListController {
         number10.setValue(10);
         if (language == Language.ENG) {
             number10.setWords(getNumberWords(language, "ten"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number10.setWords(getNumberWords(language, "sampu"));
         } else if (language == Language.SWA) {
             number10.setWords(getNumberWords(language, "kumi"));
@@ -207,7 +207,7 @@ public class NumberListController {
         number11.setValue(11);
         if (language == Language.ENG) {
             number11.setWords(getNumberWords(language, "eleven"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number11.setWords(getNumberWords(language, "labing-isa")); // TODO: handle "labing" and "isa" as separate words?
         } else if (language == Language.SWA) {
             number11.setWords(getNumberWords(language, "kumi", "na", "moja"));
@@ -220,7 +220,7 @@ public class NumberListController {
         number12.setValue(12);
         if (language == Language.ENG) {
             number12.setWords(getNumberWords(language, "twelve"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number12.setWords(getNumberWords(language, "labindalawa"));
         } else if (language == Language.SWA) {
             number12.setWords(getNumberWords(language, "kumi", "na", "mbili"));
@@ -233,7 +233,7 @@ public class NumberListController {
         number13.setValue(13);
         if (language == Language.ENG) {
             number13.setWords(getNumberWords(language, "thirteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number13.setWords(getNumberWords(language, "labintatlo"));
         } else if (language == Language.SWA) {
             number13.setWords(getNumberWords(language, "kumi", "na", "tatu"));
@@ -246,7 +246,7 @@ public class NumberListController {
         number14.setValue(14);
         if (language == Language.ENG) {
             number14.setWords(getNumberWords(language, "fourteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number14.setWords(getNumberWords(language, "labing-apat"));
         } else if (language == Language.SWA) {
             number14.setWords(getNumberWords(language, "kumi", "na", "nne"));
@@ -259,7 +259,7 @@ public class NumberListController {
         number15.setValue(15);
         if (language == Language.ENG) {
             number15.setWords(getNumberWords(language, "fifteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number15.setWords(getNumberWords(language, "labinlima"));
         } else if (language == Language.SWA) {
             number15.setWords(getNumberWords(language, "kumi", "na", "tano"));
@@ -272,7 +272,7 @@ public class NumberListController {
         number16.setValue(16);
         if (language == Language.ENG) {
             number16.setWords(getNumberWords(language, "sixteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number16.setWords(getNumberWords(language, "labing-anim"));
         } else if (language == Language.SWA) {
             number16.setWords(getNumberWords(language, "kumi", "na", "sita"));
@@ -285,7 +285,7 @@ public class NumberListController {
         number17.setValue(17);
         if (language == Language.ENG) {
             number17.setWords(getNumberWords(language, "seventeen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number17.setWords(getNumberWords(language, "labimpito"));
         } else if (language == Language.SWA) {
             number17.setWords(getNumberWords(language, "kumi", "na", "saba"));
@@ -298,7 +298,7 @@ public class NumberListController {
         number18.setValue(18);
         if (language == Language.ENG) {
             number18.setWords(getNumberWords(language, "eighteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number18.setWords(getNumberWords(language, "labingwalo"));
         } else if (language == Language.SWA) {
             number18.setWords(getNumberWords(language, "kumi", "na", "nane"));
@@ -311,7 +311,7 @@ public class NumberListController {
         number19.setValue(19);
         if (language == Language.ENG) {
             number19.setWords(getNumberWords(language, "nineteen"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number19.setWords(getNumberWords(language, "labinsiyam"));
         } else if (language == Language.SWA) {
             number19.setWords(getNumberWords(language, "kumi", "na", "tisa"));
@@ -324,7 +324,7 @@ public class NumberListController {
         number20.setValue(20);
         if (language == Language.ENG) {
             number20.setWords(getNumberWords(language, "twenty"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number20.setWords(getNumberWords(language, "dalawampu"));
         } else if (language == Language.SWA) {
             number20.setWords(getNumberWords(language, "ishirini"));
@@ -337,7 +337,7 @@ public class NumberListController {
         number21.setValue(21);
         if (language == Language.ENG) {
             number21.setWords(getNumberWords(language, "twenty-one")); // TODO: handle words separated by hyphen
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number21.setWords(getNumberWords(language, "dalawampu't", "isa")); // TODO: handle apostrophe in "dalawampu't" ("dalawampu at")
         } else if (language == Language.SWA) {
             number21.setWords(getNumberWords(language, "ishirini", "na", "moja"));
@@ -350,7 +350,7 @@ public class NumberListController {
         number22.setValue(22);
         if (language == Language.ENG) {
             number22.setWords(getNumberWords(language, "twenty-two")); // TODO: handle words separated by hyphen
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number22.setWords(getNumberWords(language, "dalawampu't", "dalawa")); // TODO: handle apostrophe in "dalawampu't" ("dalawampu at")
         } else if (language == Language.SWA) {
             number22.setWords(getNumberWords(language, "ishirini", "na", "mbili"));
@@ -363,7 +363,7 @@ public class NumberListController {
         number30.setValue(30);
         if (language == Language.ENG) {
             number30.setWords(getNumberWords(language, "thirty"));
-        } else if (language == Language.FI) {
+        } else if (language == Language.FIL) {
             number30.setWords(getNumberWords(language, "tatlumpu"));
         } else if (language == Language.SWA) {
             number30.setWords(getNumberWords(language, "thelathini"));
