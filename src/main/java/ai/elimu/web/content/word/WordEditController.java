@@ -119,7 +119,7 @@ public class WordEditController {
             model.addAttribute("audio", audio);
             return "content/word/edit";
         } else {
-            if (contributor.getLanguage() == Language.EN) {
+            if (contributor.getLanguage() == Language.ENG) {
                 if (!"I".equals(word.getText())) {
                     word.setText(word.getText().toLowerCase());
                 }

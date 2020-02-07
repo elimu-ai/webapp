@@ -26,7 +26,7 @@ public class ImageRestControllerTest {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/content/multimedia/image/list" +
                 "?deviceId=abc123" + 
                 "&applicationId=ai.elimu.contentprovider" + 
-                "&language=" + Language.EN);
+                "&language=" + Language.ENG);
         logger.info("jsonResponse: " + jsonResponse);
         JSONObject jsonObject = new JSONObject(jsonResponse);
         assertThat(jsonObject.has("result"), is(true));

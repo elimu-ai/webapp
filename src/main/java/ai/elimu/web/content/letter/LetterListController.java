@@ -62,7 +62,7 @@ public class LetterListController {
     private List<Letter> generateLetters(Language language) {
         List<Letter> letters = new ArrayList<>();
         
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             Letter letterE = new Letter();
             letterE.setLanguage(language);
             letterE.setTimeLastUpdate(Calendar.getInstance());

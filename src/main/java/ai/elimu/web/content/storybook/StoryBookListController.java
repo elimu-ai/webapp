@@ -58,7 +58,7 @@ public class StoryBookListController {
     private List<StoryBook> generateStoryBooks(Language language) {
         List<StoryBook> storyBooks = new ArrayList<>();
         
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             StoryBook storyBook = new StoryBook();
             storyBook.setLanguage(language);
             storyBook.setTimeLastUpdate(Calendar.getInstance());

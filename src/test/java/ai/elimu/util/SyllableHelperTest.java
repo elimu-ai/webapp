@@ -13,7 +13,7 @@ public class SyllableHelperTest {
     @Test
     public void testGetMonoSyllables_languageEN() {
         Word word = new Word();
-        word.setLanguage(Language.EN);
+        word.setLanguage(Language.ENG);
         word.setText("am");
         word.setPhonetics("æm");
         List<String> syllables = SyllableHelper.getSyllables(word);
@@ -38,7 +38,7 @@ public class SyllableHelperTest {
     @Test
     public void testGetDiSyllables_languageEN() {
         Word word = new Word();
-        word.setLanguage(Language.EN);
+        word.setLanguage(Language.ENG);
         word.setText("mother");
         word.setPhonetics("ˈmʌðər");
         List<String> syllables = SyllableHelper.getSyllables(word);
@@ -85,7 +85,7 @@ public class SyllableHelperTest {
     @Test
     public void testGetTriSyllables_languageEN() {
         Word word = new Word();
-        word.setLanguage(Language.EN);
+        word.setLanguage(Language.ENG);
         word.setText("grandmother");
         word.setPhonetics("ˈgrændˌmʌðər");
         List<String> syllables = SyllableHelper.getSyllables(word);

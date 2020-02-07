@@ -48,7 +48,7 @@ public class SignOnControllerSelenium {
         contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setFirstName("TestRole");
         contributor.setLastName(role.toString());
-        contributor.setLanguage(Language.EN);
+        contributor.setLanguage(Language.ENG);
         contributor.setMotivation("Regression testing as " + role);
 				
         Contributor existingContributor = contributorDao.read(contributor.getEmail());

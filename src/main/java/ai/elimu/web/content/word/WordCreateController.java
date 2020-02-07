@@ -101,7 +101,7 @@ public class WordCreateController {
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             return "content/word/create";
         } else {
-            if (contributor.getLanguage() == Language.EN) {
+            if (contributor.getLanguage() == Language.ENG) {
                 if (!"I".equals(word.getText())) {
                     word.setText(word.getText().toLowerCase());
                 }

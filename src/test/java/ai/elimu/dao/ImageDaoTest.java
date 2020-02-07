@@ -32,15 +32,15 @@ public class ImageDaoTest {
     public void testReadAllLabeled() {
         Word wordDog = new Word();
         wordDog.setText("dog");
-        wordDog.setLanguage(Language.EN);
+        wordDog.setLanguage(Language.ENG);
         wordDao.create(wordDog);
         
         Word wordCat = new Word();
         wordCat.setText("cat");
-        wordCat.setLanguage(Language.EN);
+        wordCat.setLanguage(Language.ENG);
         wordDao.create(wordCat);
         
-        List<Image> images = imageDao.readAllLabeled(wordCat, Language.EN);
+        List<Image> images = imageDao.readAllLabeled(wordCat, Language.ENG);
         assertThat(images.size(), is(0));
         
         Set<Word> words = new HashSet<>();
@@ -49,13 +49,13 @@ public class ImageDaoTest {
         Image image = new Image();
         image.setTitle("image");
         image.setWords(words);
-        image.setLanguage(Language.EN);
+        image.setLanguage(Language.ENG);
         imageDao.create(image);
         
-        images = imageDao.readAllLabeled(wordDog, Language.EN);
+        images = imageDao.readAllLabeled(wordDog, Language.ENG);
         assertThat(images.size(), is(0));
         
-        images = imageDao.readAllLabeled(wordCat, Language.EN);
+        images = imageDao.readAllLabeled(wordCat, Language.ENG);
         assertThat(images.size(), is(1));
         assertThat(images.get(0).getWords().size(), is(1));
         
@@ -63,7 +63,7 @@ public class ImageDaoTest {
         image.setWords(words);
         imageDao.update(image);
         
-        images = imageDao.readAllLabeled(wordCat, Language.EN);
+        images = imageDao.readAllLabeled(wordCat, Language.ENG);
         assertThat(images.size(), is(1));
         assertThat(images.get(0).getWords().size(), is(2));
     }

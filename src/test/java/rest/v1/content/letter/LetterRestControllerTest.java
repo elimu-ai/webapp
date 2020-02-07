@@ -25,7 +25,7 @@ public class LetterRestControllerTest {
     public void testList_success() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV1() + "/content/letter/list" +
                 "?deviceId=abc123" + 
-                "&language=" + Language.EN);
+                "&language=" + Language.ENG);
         logger.info("jsonResponse: " + jsonResponse);
         JSONObject jsonObject = new JSONObject(jsonResponse);
         assertThat(jsonObject.has("result"), is(true));

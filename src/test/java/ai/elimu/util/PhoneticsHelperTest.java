@@ -16,7 +16,7 @@ public class PhoneticsHelperTest {
     @Test
     public void testGetAllophones_languageEN() {
         Word word = new Word();
-        word.setLanguage(Language.EN);
+        word.setLanguage(Language.ENG);
         word.setText("zero");
         word.setPhonetics("ˈzɪrɔʊ");
         List<String> allophones = PhoneticsHelper.getAllophones(word);

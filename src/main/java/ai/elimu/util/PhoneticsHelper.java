@@ -30,7 +30,7 @@ public class PhoneticsHelper {
         while (StringUtils.isNotBlank(phonetics)) {
             int phoneticsLengthBeforeExtraction = phonetics.length();
             
-            if (word.getLanguage() == Language.EN) {
+            if (word.getLanguage() == Language.ENG) {
                 String[][] allophonesArrayEN = AllophoneListController.allophonesArrayEN;
                 for (String[] allophoneRow : allophonesArrayEN) {
                     String allophoneIpa = allophoneRow[0];
@@ -63,7 +63,7 @@ public class PhoneticsHelper {
     public static SoundType getSoundType(String ipaValue, Language language) {
         SoundType soundType = null;
         
-        if (language == Language.EN) {
+        if (language == Language.ENG) {
             if ("i".equals(ipaValue)) {
                 return soundType.VOWEL;
             } else if ("t".equals(ipaValue)) {
