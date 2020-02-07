@@ -18,7 +18,7 @@
                         <select id="language" name="language">
                             <option value="">-- <fmt:message key='select' /> --</option>
                             <c:forEach var="language" items="${languages}">
-                                <option value="${language}" <c:if test="${language == contributor.language}">selected="selected"</c:if>><fmt:message key='language.${language.language}' /></option>
+                                <option value="${language}" <c:if test="${language == contributor.language}">selected="selected"</c:if>><fmt:message key='language.${language.isoCode}' /></option>
                             </c:forEach>
                         </select>
                         <label for="language"><fmt:message key="language" /></label>

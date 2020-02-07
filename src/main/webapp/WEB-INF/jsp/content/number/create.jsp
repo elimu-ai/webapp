@@ -12,7 +12,7 @@
                 <form:hidden path="language" value="${contributor.language}" />
                 <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
                 
-                <c:if test="${contributor.language.language == 'ar'}">
+                <c:if test="${contributor.language.isoCode == 'ar'}">
                     <div id="symbolContainer" class="input-field col s12">
                         <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
                         <form:input path="symbol" cssErrorClass="error" />
