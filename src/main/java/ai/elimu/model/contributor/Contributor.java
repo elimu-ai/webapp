@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
 
 @Entity
@@ -48,7 +48,7 @@ public class Contributor extends BaseEntity {
     private String motivation;
     
     @Enumerated(EnumType.STRING)
-    private Locale locale;
+    private Language language;
 
     public String getEmail() {
         return email;
@@ -146,11 +146,11 @@ public class Contributor extends BaseEntity {
         this.motivation = motivation;
     }
 
-    public Locale getLocale() {
-        return locale;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLocale(Locale locale) {
-        this.locale = locale;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 }

@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -32,15 +32,15 @@ public class ImageDaoTest {
     public void testReadAllLabeled() {
         Word wordDog = new Word();
         wordDog.setText("dog");
-        wordDog.setLocale(Locale.EN);
+        wordDog.setLanguage(Language.EN);
         wordDao.create(wordDog);
         
         Word wordCat = new Word();
         wordCat.setText("cat");
-        wordCat.setLocale(Locale.EN);
+        wordCat.setLanguage(Language.EN);
         wordDao.create(wordCat);
         
-        List<Image> images = imageDao.readAllLabeled(wordCat, Locale.EN);
+        List<Image> images = imageDao.readAllLabeled(wordCat, Language.EN);
         assertThat(images.size(), is(0));
         
         Set<Word> words = new HashSet<>();
@@ -49,13 +49,13 @@ public class ImageDaoTest {
         Image image = new Image();
         image.setTitle("image");
         image.setWords(words);
-        image.setLocale(Locale.EN);
+        image.setLanguage(Language.EN);
         imageDao.create(image);
         
-        images = imageDao.readAllLabeled(wordDog, Locale.EN);
+        images = imageDao.readAllLabeled(wordDog, Language.EN);
         assertThat(images.size(), is(0));
         
-        images = imageDao.readAllLabeled(wordCat, Locale.EN);
+        images = imageDao.readAllLabeled(wordCat, Language.EN);
         assertThat(images.size(), is(1));
         assertThat(images.get(0).getWords().size(), is(1));
         
@@ -63,7 +63,7 @@ public class ImageDaoTest {
         image.setWords(words);
         imageDao.update(image);
         
-        images = imageDao.readAllLabeled(wordCat, Locale.EN);
+        images = imageDao.readAllLabeled(wordCat, Language.EN);
         assertThat(images.size(), is(1));
         assertThat(images.get(0).getWords().size(), is(2));
     }

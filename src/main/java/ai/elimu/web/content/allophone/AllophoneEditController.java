@@ -52,14 +52,14 @@ public class AllophoneEditController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         if (StringUtils.isNotBlank(allophone.getValueIpa())) {
-            Allophone existingAllophone = allophoneDao.readByValueIpa(allophone.getLocale(), allophone.getValueIpa());
+            Allophone existingAllophone = allophoneDao.readByValueIpa(allophone.getLanguage(), allophone.getValueIpa());
             if ((existingAllophone != null) && !existingAllophone.getId().equals(allophone.getId())) {
                 result.rejectValue("valueIpa", "NonUnique");
             }
         }
         
         if (StringUtils.isNotBlank(allophone.getValueSampa())) {
-            Allophone existingAllophone = allophoneDao.readByValueSampa(allophone.getLocale(), allophone.getValueSampa());
+            Allophone existingAllophone = allophoneDao.readByValueSampa(allophone.getLanguage(), allophone.getValueSampa());
             if ((existingAllophone != null) && !existingAllophone.getId().equals(allophone.getId())) {
                 result.rejectValue("valueSampa", "NonUnique");
             }

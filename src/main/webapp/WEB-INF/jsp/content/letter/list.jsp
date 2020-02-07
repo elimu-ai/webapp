@@ -43,7 +43,7 @@
                             </td>
                             <td>
                                 <audio controls="true">
-                                    <source src="<spring:url value='/static/audio/${locale.language}/sampa_${letter.text}.wav' />" />
+                                    <source src="<spring:url value='/static/audio/${language.language}/sampa_${letter.text}.wav' />" />
                                 </audio>
                             </td>
                             <td>

@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.WordGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,14 @@ public class WordRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam Locale locale
+            @RequestParam Language language
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray words = new JSONArray();
-        for (Word word : wordDao.readAllOrdered(locale)) {
+        for (Word word : wordDao.readAllOrdered(language)) {
             WordGson wordGson = JavaToGsonConverter.getWordGson(word);
             String json = new Gson().toJson(wordGson);
             words.put(new JSONObject(json));

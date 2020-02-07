@@ -12,7 +12,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +42,7 @@ public class NumberCreateController {
         model.addAttribute("number", number);
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
+        List<Word> words = wordDao.readAllOrdered(contributor.getLanguage());
         model.addAttribute("words", words);
         
         return "content/number/create";
@@ -56,7 +56,7 @@ public class NumberCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Number existingNumber = numberDao.readByValue(number.getLocale(), number.getValue());
+        Number existingNumber = numberDao.readByValue(number.getLanguage(), number.getValue());
         if (existingNumber != null) {
             result.rejectValue("value", "NonUnique");
         }
@@ -66,7 +66,7 @@ public class NumberCreateController {
         if (result.hasErrors()) {
             model.addAttribute("number", number);
 
-            List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
+            List<Word> words = wordDao.readAllOrdered(contributor.getLanguage());
             model.addAttribute("words", words);
             
             return "content/number/create";

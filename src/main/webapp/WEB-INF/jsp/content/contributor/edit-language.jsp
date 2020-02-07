@@ -2,7 +2,7 @@
     <fmt:message key="select.language" />
 </content:title>
 
-<content:section cssId="editLocalePage">
+<content:section cssId="editLanguagePage">
     <div class="col s12 m10 l8 offset-m1 offset-l2">
         <h4><content:gettitle /></h4>
         <div class="card-panel">
@@ -15,10 +15,10 @@
                 
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="locale" name="locale">
+                        <select id="language" name="language">
                             <option value="">-- <fmt:message key='select' /> --</option>
-                            <c:forEach var="locale" items="${locales}">
-                                <option value="${locale}" <c:if test="${locale == contributor.locale}">selected="selected"</c:if>><fmt:message key='language.${locale.language}' /></option>
+                            <c:forEach var="language" items="${languages}">
+                                <option value="${language}" <c:if test="${language == contributor.language}">selected="selected"</c:if>><fmt:message key='language.${language.language}' /></option>
                             </c:forEach>
                         </select>
                         <label for="language"><fmt:message key="language" /></label>

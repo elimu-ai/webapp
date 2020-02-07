@@ -32,12 +32,12 @@ public class ApplicationListController {
     	logger.info("handleRequest");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        logger.info("contributor.getLocale(): " + contributor.getLocale());
+        logger.info("contributor.getLanguage(): " + contributor.getLanguage());
         
         
         // List count of active Android applications for each EGRA/EGMA skill
         
-        List<Application> activeApplications = applicationDao.readAllByStatus(contributor.getLocale(), ApplicationStatus.ACTIVE);
+        List<Application> activeApplications = applicationDao.readAllByStatus(contributor.getLanguage(), ApplicationStatus.ACTIVE);
         logger.info("activeApplications.size(): " + activeApplications.size());
         
         Map<LiteracySkill, Integer> literacySkillCountMap = new LinkedHashMap<>();
@@ -81,7 +81,7 @@ public class ApplicationListController {
         model.addAttribute("maxNumeracySkillCount", maxNumeracySkillCount);
         
         
-        List<Application> applications = applicationDao.readAll(contributor.getLocale());
+        List<Application> applications = applicationDao.readAll(contributor.getLanguage());
         model.addAttribute("applications", applications);
 
         return "admin/application/list";

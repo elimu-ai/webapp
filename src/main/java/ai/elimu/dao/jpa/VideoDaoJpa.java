@@ -8,45 +8,45 @@ import ai.elimu.dao.VideoDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
 
     @Override
-    public Video read(String title, Locale locale) throws DataAccessException {
+    public Video read(String title, Language language) throws DataAccessException {
         try {
             return (Video) em.createQuery(
                 "SELECT v " +
                 "FROM Video v " +
                 "WHERE v.title = :title " +
-                "AND v.locale = :locale")
+                "AND v.language = :language")
                 .setParameter("title", title)
-                .setParameter("locale", locale)
+                .setParameter("language", language)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Video \"" + title + "\" was not found for locale " + locale);
+            logger.warn("Video \"" + title + "\" was not found for language " + language);
             return null;
         }
     }
 
     @Override
-    public List<Video> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<Video> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT v " +
             "FROM Video v " +
-            "WHERE v.locale = :locale " +
+            "WHERE v.language = :language " +
             "ORDER BY v.title")
-            .setParameter("locale", locale)
+            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public Long readCount(Locale locale) throws DataAccessException {
+    public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
                 "SELECT COUNT(v) " +
                 "FROM Video v " +
-                "WHERE v.locale = :locale")
-                .setParameter("locale", locale)
+                "WHERE v.language = :language")
+                .setParameter("language", language)
                 .getSingleResult();
     }
 }

@@ -6,18 +6,18 @@ import ai.elimu.model.content.Word;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public interface ImageDao extends GenericDao<Image> {
 	
-    Image read(String title, Locale locale) throws DataAccessException;
+    Image read(String title, Language language) throws DataAccessException;
 
-    List<Image> readAllOrdered(Locale locale) throws DataAccessException;
+    List<Image> readAllOrdered(Language language) throws DataAccessException;
     
     /**
      * Fetch all Images that have been labeled by a Word.
      */
-    List<Image> readAllLabeled(Word word, Locale locale) throws DataAccessException;
+    List<Image> readAllLabeled(Word word, Language language) throws DataAccessException;
     
-    Long readCount(Locale locale) throws DataAccessException;
+    Long readCount(Language language) throws DataAccessException;
 }

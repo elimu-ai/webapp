@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="letter" />
 
             <div class="row">
-                <form:hidden path="locale" value="${letter.locale}" />
+                <form:hidden path="language" value="${letter.language}" />
                 <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
                 <form:hidden path="usageCount" value="${letter.usageCount}" />
                 

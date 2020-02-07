@@ -8,7 +8,7 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.util.WordFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -33,12 +33,12 @@ public class WordUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        for (Locale locale : Locale.values()) {
-            logger.info("Calculating usage count for Words with locale " + locale);
+        for (Language language : Language.values()) {
+            logger.info("Calculating usage count for Words with language " + language);
             
             Map<String, Integer> wordFrequencyMap = new HashMap<>();
             
-            List<StoryBook> storyBooks = storyBookDao.readAllOrdered(locale);
+            List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
             logger.info("storyBooks.size(): " + storyBooks.size());
             for (StoryBook storyBook : storyBooks) {
                 logger.info("storyBook.getTitle(): " + storyBook.getTitle());
@@ -57,7 +57,7 @@ public class WordUsageCountScheduler {
             
             for (String key : wordFrequencyMap.keySet()) {
                 String wordLowerCase = key.toLowerCase();
-                Word word = wordDao.readByText(locale, wordLowerCase);
+                Word word = wordDao.readByText(language, wordLowerCase);
                 if (word != null) {
                     word.setUsageCount(wordFrequencyMap.get(wordLowerCase));
                     wordDao.update(word);

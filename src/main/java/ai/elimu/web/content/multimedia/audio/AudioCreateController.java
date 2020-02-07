@@ -65,7 +65,7 @@ public class AudioCreateController {
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
         } else {
-            Audio existingAudio = audioDao.read(audio.getTranscription(), audio.getLocale());
+            Audio existingAudio = audioDao.read(audio.getTranscription(), audio.getLanguage());
             if (existingAudio != null) {
                 result.rejectValue("transcription", "NonUnique");
             }

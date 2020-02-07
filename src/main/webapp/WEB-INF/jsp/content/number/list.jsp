@@ -18,7 +18,7 @@
                 <a name="${number.id}"></a>
                 <div class="number card-panel">
                     <c:choose>
-                        <c:when test="${number.locale.language == 'ar'}">
+                        <c:when test="${number.language.language == 'ar'}">
                             <h4><c:out value="${number.symbol}" /> (${number.value})</h4>
                         </c:when>
                         <c:otherwise>

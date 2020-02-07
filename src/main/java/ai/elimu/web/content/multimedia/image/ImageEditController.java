@@ -78,11 +78,11 @@ public class ImageEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
+        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
+        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
         
-        Audio audio = audioDao.read(image.getTitle(), contributor.getLocale());
+        Audio audio = audioDao.read(image.getTitle(), contributor.getLanguage());
         model.addAttribute("audio", audio);
 
         return "content/multimedia/image/edit";
@@ -102,7 +102,7 @@ public class ImageEditController {
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
             if ((existingImage != null) && !existingImage.getId().equals(image.getId())) {
                 result.rejectValue("title", "NonUnique");
             }
@@ -157,10 +157,10 @@ public class ImageEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
-            Audio audio = audioDao.read(image.getTitle(), contributor.getLocale());
+            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
+            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
+            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
+            Audio audio = audioDao.read(image.getTitle(), contributor.getLanguage());
             model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";
         } else {

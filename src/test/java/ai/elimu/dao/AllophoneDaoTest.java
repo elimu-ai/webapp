@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,37 +25,37 @@ public class AllophoneDaoTest {
     
     @Test
     public void testStoreSoundType() {
-        Locale locale = Locale.values()[(int) (Math.random() * Locale.values().length)];
-        logger.info("locale: " + locale);
+        Language language = Language.values()[(int) (Math.random() * Language.values().length)];
+        logger.info("language: " + language);
         
         Allophone allophone = new Allophone();
-        allophone.setLocale(locale);
+        allophone.setLanguage(language);
         allophone.setValueIpa("ɛ");
         allophone.setValueSampa("E");
         allophone.setSoundType(SoundType.VOWEL);
         allophoneDao.create(allophone);
         
-        assertThat(allophoneDao.readByValueSampa(locale, "E").getSoundType(), is(SoundType.VOWEL));
+        assertThat(allophoneDao.readByValueSampa(language, "E").getSoundType(), is(SoundType.VOWEL));
     }
     
     @Test
     public void testLowerCaseVsUpperCase() {
-        Locale locale = Locale.values()[(int) (Math.random() * Locale.values().length)];
-        logger.info("locale: " + locale);
+        Language language = Language.values()[(int) (Math.random() * Language.values().length)];
+        logger.info("language: " + language);
         
         Allophone allophoneLowerCaseT = new Allophone();
-        allophoneLowerCaseT.setLocale(locale);
+        allophoneLowerCaseT.setLanguage(language);
         allophoneLowerCaseT.setValueIpa("t");
         allophoneLowerCaseT.setValueSampa("t");
         allophoneDao.create(allophoneLowerCaseT);
         
         Allophone allophoneUpperCaseT = new Allophone();
-        allophoneUpperCaseT.setLocale(locale);
+        allophoneUpperCaseT.setLanguage(language);
         allophoneUpperCaseT.setValueIpa("θ");
         allophoneUpperCaseT.setValueSampa("T");
         allophoneDao.create(allophoneUpperCaseT);
         
-        assertThat(allophoneDao.readByValueSampa(locale, "t").getValueSampa(), is("t"));
-        assertThat(allophoneDao.readByValueSampa(locale, "T").getValueSampa(), is("T"));
+        assertThat(allophoneDao.readByValueSampa(language, "t").getValueSampa(), is("t"));
+        assertThat(allophoneDao.readByValueSampa(language, "T").getValueSampa(), is("T"));
     }
 }

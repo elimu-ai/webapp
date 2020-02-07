@@ -80,15 +80,15 @@ public class MainContentController {
         }
         
         model.addAttribute("allophoneCount", -1); // TODO: implement readCount() in allophoneDao
-        model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
-        model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
-        model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLocale()));
-        model.addAttribute("wordCount", wordDao.readCount(contributor.getLocale()));
+        model.addAttribute("numberCount", numberDao.readCount(contributor.getLanguage()));
+        model.addAttribute("letterCount", letterDao.readCount(contributor.getLanguage()));
+        model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLanguage()));
+        model.addAttribute("wordCount", wordDao.readCount(contributor.getLanguage()));
         model.addAttribute("emojiCount", -1); // TODO: implement readCount() in emojiDao
-        model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLocale()));
-        model.addAttribute("audioCount", audioDao.readCount(contributor.getLocale()));
-        model.addAttribute("imageCount", imageDao.readCount(contributor.getLocale()));
-        model.addAttribute("videoCount", videoDao.readCount(contributor.getLocale()));
+        model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLanguage()));
+        model.addAttribute("audioCount", audioDao.readCount(contributor.getLanguage()));
+        model.addAttribute("imageCount", imageDao.readCount(contributor.getLanguage()));
+        model.addAttribute("videoCount", videoDao.readCount(contributor.getLanguage()));
     	
         return "content/main";
     }

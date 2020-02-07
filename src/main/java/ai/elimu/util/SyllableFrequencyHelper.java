@@ -25,7 +25,7 @@ public class SyllableFrequencyHelper {
             for (String wordInParagraph : words) {
                 logger.info("wordInParagraph: " + wordInParagraph);
                 Word word = new Word();
-                word.setLocale(storyBook.getLocale());
+                word.setLanguage(storyBook.getLanguage());
                 word.setText(wordInParagraph);
                 List<String> syllables = SyllableHelper.getSyllables(word);
                 logger.info("syllables.size(): " + syllables.size());

@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="audio" />
 
             <div class="row">
-                <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="language" value="${contributor.language}" />
                 <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
                 
                 <div class="input-field col s12">

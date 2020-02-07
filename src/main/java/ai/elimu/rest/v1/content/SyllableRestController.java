@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.model.content.Syllable;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.SyllableGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,14 @@ public class SyllableRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam Locale locale
+            @RequestParam Language language
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray syllables = new JSONArray();
-        for (Syllable syllable : syllableDao.readAllOrdered(locale)) {
+        for (Syllable syllable : syllableDao.readAllOrdered(language)) {
             SyllableGson syllableGson = JavaToGsonConverter.getSyllableGson(syllable);
             String json = new Gson().toJson(syllableGson);
             syllables.put(new JSONObject(json));

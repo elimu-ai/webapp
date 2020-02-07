@@ -8,7 +8,7 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.util.LetterFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -33,12 +33,12 @@ public class LetterUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        for (Locale locale : Locale.values()) {
-            logger.info("Calculating usage count for Letters with locale " + locale);
+        for (Language language : Language.values()) {
+            logger.info("Calculating usage count for Letters with language " + language);
             
             Map<String, Integer> letterFrequencyMap = new HashMap<>();
             
-            List<StoryBook> storyBooks = storyBookDao.readAllOrdered(locale);
+            List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
             logger.info("storyBooks.size(): " + storyBooks.size());
             for (StoryBook storyBook : storyBooks) {
                 logger.info("storyBook.getTitle(): " + storyBook.getTitle());
@@ -59,7 +59,7 @@ public class LetterUsageCountScheduler {
             
             for (String key : letterFrequencyMap.keySet()) {
                 String letterText = key;
-                Letter existingLetter = letterDao.readByText(locale, letterText);
+                Letter existingLetter = letterDao.readByText(language, letterText);
                 if (existingLetter != null) {
                     existingLetter.setUsageCount(letterFrequencyMap.get(letterText));
                     letterDao.update(existingLetter);

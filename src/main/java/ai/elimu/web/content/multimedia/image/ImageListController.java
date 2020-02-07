@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.util.ImageColorHelper;
 import org.apache.commons.lang.StringUtils;
@@ -38,10 +38,10 @@ public class ImageListController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         // To ease development/testing, auto-generate Images
-        List<Image> imagesGenerated = generateImages(contributor.getLocale());
+        List<Image> imagesGenerated = generateImages(contributor.getLanguage());
         for (Image image : imagesGenerated) {
             String contentType = image.getContentType();
-            Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
             if (existingImage == null) {
                 ImageFormat imageFormat = ImageFormat.PNG;
                 image.setContentType("image/png");
@@ -66,43 +66,43 @@ public class ImageListController {
             }
         }
         
-        List<Image> images = imageDao.readAllOrdered(contributor.getLocale());
+        List<Image> images = imageDao.readAllOrdered(contributor.getLanguage());
         model.addAttribute("images", images);
 
         return "content/multimedia/image/list";
     }
     
-    private List<Image> generateImages(Locale locale) {
+    private List<Image> generateImages(Language language) {
         List<Image> images = new ArrayList<>();
         
         Image coverImage175 = new Image();
-        coverImage175.setLocale(locale);
+        coverImage175.setLanguage(language);
         coverImage175.setTimeLastUpdate(Calendar.getInstance());
         coverImage175.setTitle("ASP_175_I_like_to_read_Page_01_Image_0001");
         images.add(coverImage175);
         
         Image coverImage55 = new Image();
-        coverImage55.setLocale(locale);
+        coverImage55.setLanguage(language);
         coverImage55.setTimeLastUpdate(Calendar.getInstance());
         coverImage55.setTitle("M_ASP_55_Too_small_Page_02_Image_0001");
         images.add(coverImage55);
         
         Image coverImageGraceInSpace = new Image();
-        coverImageGraceInSpace.setLocale(locale);
+        coverImageGraceInSpace.setLanguage(language);
         coverImageGraceInSpace.setTimeLastUpdate(Calendar.getInstance());
         coverImageGraceInSpace.setTitle("39e5eb1614ea195e9e377f63f561aa8c");
         coverImageGraceInSpace.setContentType("image/jpg");
         images.add(coverImageGraceInSpace);
         
         Image coverImageWhatIf = new Image();
-        coverImageWhatIf.setLocale(locale);
+        coverImageWhatIf.setLanguage(language);
         coverImageWhatIf.setTimeLastUpdate(Calendar.getInstance());
         coverImageWhatIf.setTitle("badd7122aa68d2a339e359f03c03cc51");
         coverImageWhatIf.setContentType("image/jpg");
         images.add(coverImageWhatIf);
         
         Image coverImageHindiNaAkoNatatakot = new Image();
-        coverImageHindiNaAkoNatatakot.setLocale(locale);
+        coverImageHindiNaAkoNatatakot.setLanguage(language);
         coverImageHindiNaAkoNatatakot.setTimeLastUpdate(Calendar.getInstance());
         coverImageHindiNaAkoNatatakot.setTitle("Hindi_na_Ako_natatakot_coverImage");
         coverImageHindiNaAkoNatatakot.setContentType("image/jpg");

@@ -9,10 +9,10 @@
             <tag:formErrors modelAttribute="number" />
 
             <div class="row">
-                <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="language" value="${contributor.language}" />
                 <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
                 
-                <c:if test="${contributor.locale.language == 'ar'}">
+                <c:if test="${contributor.language.language == 'ar'}">
                     <div id="symbolContainer" class="input-field col s12">
                         <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
                         <form:input path="symbol" cssErrorClass="error" />

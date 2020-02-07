@@ -19,7 +19,7 @@ import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,18 +59,18 @@ public class WordEditController {
         model.addAttribute("word", word);
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
         model.addAttribute("allophones", allophones);
         
         model.addAttribute("wordTypes", WordType.values());
         
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
         
-        Audio audio = audioDao.read(word.getText(), contributor.getLocale());
+        Audio audio = audioDao.read(word.getText(), contributor.getLanguage());
         model.addAttribute("audio", audio);
         
         // Look up Multimedia content that has been labeled with this Word
-        List<Image> labeledImages = imageDao.readAllLabeled(word, contributor.getLocale());
+        List<Image> labeledImages = imageDao.readAllLabeled(word, contributor.getLanguage());
         // TODO: labeled Audios
         model.addAttribute("labeledImages", labeledImages);
         // TODO: labeled Videos
@@ -87,13 +87,13 @@ public class WordEditController {
             HttpServletRequest request) {
     	logger.info("handleSubmit");
         
-        Word existingWord = wordDao.readByText(word.getLocale(), word.getText());
+        Word existingWord = wordDao.readByText(word.getLanguage(), word.getText());
         if ((existingWord != null) && !existingWord.getId().equals(word.getId())) {
             result.rejectValue("text", "NonUnique");
         }
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
         
         // Verify that only valid Allophones are used
         String allAllophonesCombined = "";
@@ -115,11 +115,11 @@ public class WordEditController {
             model.addAttribute("allophones", allophones);
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            Audio audio = audioDao.read(word.getText(), contributor.getLocale());
+            Audio audio = audioDao.read(word.getText(), contributor.getLanguage());
             model.addAttribute("audio", audio);
             return "content/word/edit";
         } else {
-            if (contributor.getLocale() == Locale.EN) {
+            if (contributor.getLanguage() == Language.EN) {
                 if (!"I".equals(word.getText())) {
                     word.setText(word.getText().toLowerCase());
                 }
@@ -129,7 +129,7 @@ public class WordEditController {
             wordDao.update(word);
             
             // Delete syllables that are actual words
-            Syllable syllable = syllableDao.readByText(contributor.getLocale(), word.getText());
+            Syllable syllable = syllableDao.readByText(contributor.getLanguage(), word.getText());
             if (syllable != null) {
                 syllableDao.delete(syllable);
             }

@@ -28,7 +28,7 @@ public class AudioListController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        List<Audio> audios = audioDao.readAllOrdered(contributor.getLocale());
+        List<Audio> audios = audioDao.readAllOrdered(contributor.getLanguage());
         model.addAttribute("audios", audios);
 
         return "content/multimedia/audio/list";

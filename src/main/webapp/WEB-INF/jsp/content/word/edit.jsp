@@ -24,7 +24,7 @@
             <tag:formErrors modelAttribute="word" />
 
             <div class="row">
-                <form:hidden path="locale" value="${word.locale}" />
+                <form:hidden path="language" value="${word.language}" />
                 <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
                 <form:hidden path="usageCount" value="${word.usageCount}" />
                 
@@ -40,7 +40,7 @@
                         <c:forEach var="allophone" items="${allophones}">
                             <a href="#" class="allophone chip" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
                             <audio id="audio_sampa_${allophone.valueSampa}">
-                                <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+                                <source src="<spring:url value='/static/audio/${language.language}/sampa_${allophone.valueSampa}.wav' />" />
                             </audio>
                         </c:forEach>
                         <script>

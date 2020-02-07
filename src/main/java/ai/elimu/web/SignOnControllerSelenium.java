@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class SignOnControllerSelenium {
         contributor.setRegistrationTime(Calendar.getInstance());
         contributor.setFirstName("TestRole");
         contributor.setLastName(role.toString());
-        contributor.setLocale(Locale.EN);
+        contributor.setLanguage(Language.EN);
         contributor.setMotivation("Regression testing as " + role);
 				
         Contributor existingContributor = contributorDao.read(contributor.getEmail());
