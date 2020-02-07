@@ -17,20 +17,13 @@
             <div class="col s12 m6 l4">
                 <a name="${number.id}"></a>
                 <div class="number card-panel">
-                    <c:choose>
-                        <c:when test="${number.language.isoCode == 'ar'}">
-                            <h4><c:out value="${number.symbol}" /> (${number.value})</h4>
-                        </c:when>
-                        <c:otherwise>
-                            <h4>${number.value}</h4>
-                            <p><fmt:message key="number.words" />: 
-                                <c:forEach var="word" items="${number.words}">
-                                    <a href="<spring:url value='/content/word/edit/${word.id}' />">${word.text}</a>
-                                </c:forEach>
-                            </p>
-                            <p><fmt:message key="revision" />: #${number.revisionNumber}</p>
-                        </c:otherwise>
-                    </c:choose>
+                    <h4>${number.value}</h4>
+                    <p><fmt:message key="number.words" />: 
+                        <c:forEach var="word" items="${number.words}">
+                            <a href="<spring:url value='/content/word/edit/${word.id}' />">${word.text}</a>
+                        </c:forEach>
+                    </p>
+                    <p><fmt:message key="revision" />: #${number.revisionNumber}</p>
                     <div class="divider" style="margin: 1em 0;"></div>
                     <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                 </div>

@@ -12,12 +12,6 @@
                 <form:hidden path="language" value="${number.language}" />
                 <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
                 
-                <c:if test="${number.language.isoCode == 'ar'}">
-                    <div id="symbolContainer" class="input-field col s12"<c:if test="${number.language.isoCode != 'ar'}"> style="display: none;"</c:if>>
-                        <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
-                        <form:input path="symbol" cssErrorClass="error" />
-                    </div>
-                </c:if>
                 <div class="input-field col s12">
                     <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
                     <form:input path="value" cssErrorClass="error" type="number" />
