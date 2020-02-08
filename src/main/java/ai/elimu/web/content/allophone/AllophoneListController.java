@@ -21,12 +21,23 @@ public class AllophoneListController {
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
     public static final String[][] allophonesArrayBEN = new String[][] {
+        {"dʒ", "dZ", "-1"}, // TODO: use /ʤ/ instead of /dʒ/?
+        // TODO: /dʒʱ/
+        // TODO: /t͡ʃ/
+        // TODO: /t͡ʃʰ/
+        // TODO: /d͡ʒ/
+        // TODO: /d͡ʒʱ/
+        {"kʰ", "k_h", "-1"},
+        // TODO: {"ʈʰ", "t`_h", "-1"},
+        {"ʃʰ", "S_h", "-1"},
+        
         // Vowels - https://en.wikibooks.org/wiki/Bengali/Script/Vowels
         {"ɔ", "O", "-1"},
         {"a", "a", "-1"},
         {"i", "i", "-1"},
         {"u", "u", "-1"},
         {"e", "e", "-1"},
+        // TODO: /e̯/
         // TODO: /ɛ/
         {"o", "o", "-1"},
         // TODO: /ʊ/
@@ -34,25 +45,19 @@ public class AllophoneListController {
         
         // Consonants - https://en.wikibooks.org/wiki/Bengali/Script/Consonants_1
         {"k", "k", "-1"},
-        {"kʰ", "k_h", "-1"},
         {"g", "g", "-1"},
         // TODO: /gʱ/
         {"ŋ", "N", "-1"},
-        // TODO: /t͡ʃ/
-        // TODO: /t͡ʃʰ/
-        // TODO: /d͡ʒ/
-        // TODO: /d͡ʒʱ/
         {"n", "n", "-1"},
         {"ʈ", "t`", "-1"},
-        // TODO: /ʈʰ/
         {"ɖ", "d`", "-1"},
         // TODO: /ɖʱ/
         {"t", "t", "-1"},
-        // TODO: /tʰ/
+        {"t", "t_h", "-1"},
         {"d", "d", "-1"},
         // TODO: /dʱ/
         {"p", "p", "-1"},
-        // TODO: /pʰ/
+        {"p", "p_h", "-1"},
         {"ɸ", "p\\", "-1"},
         {"b", "b", "-1"},
         // TODO: /bʱ/
@@ -62,6 +67,8 @@ public class AllophoneListController {
         // Consonants - https://en.wikibooks.org/wiki/Bengali/Script/Consonants_2
         {"z", "z", "-1"},
         {"r", "r", "-1"},
+        // TOOD: /ɽ/
+        // TODO: /ɽʱ/
         {"l", "l", "-1"},
         {"w", "w", "-1"},
         {"ɕ", "s\\", "-1"},

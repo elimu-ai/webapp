@@ -156,7 +156,277 @@ public class LetterListController {
             
             // Consonants - https://en.wikipedia.org/wiki/Bengali_alphabet#Consonants
             
-            // TODO
+            Letter letterক = new Letter();
+            letterক.setLanguage(language);
+            letterক.setTimeLastUpdate(Calendar.getInstance());
+            letterক.setText("ক");
+            letterক.setAllophones(getAllophones(language, "k", "ɔ"));
+            letterক.setUsageCount(-1);
+            letters.add(letterক);
+            
+            Letter letterচ = new Letter();
+            letterচ.setLanguage(language);
+            letterচ.setTimeLastUpdate(Calendar.getInstance());
+            letterচ.setText("চ");
+            letterচ.setAllophones(getAllophones(language, "t", "ʃ", "ɔ"));
+            letterচ.setUsageCount(-1);
+            letters.add(letterচ);
+            
+            Letter letterট = new Letter();
+            letterট.setLanguage(language);
+            letterট.setTimeLastUpdate(Calendar.getInstance());
+            letterট.setText("ট");
+            letterট.setAllophones(getAllophones(language, "ʈ", "ɔ"));
+            letterট.setUsageCount(-1);
+            letters.add(letterট);
+            
+            Letter letterত = new Letter();
+            letterত.setLanguage(language);
+            letterত.setTimeLastUpdate(Calendar.getInstance());
+            letterত.setText("ত");
+            letterত.setAllophones(getAllophones(language, "t", "ɔ"));
+            letterত.setUsageCount(-1);
+            letters.add(letterত);
+            
+            Letter letterপ = new Letter();
+            letterপ.setLanguage(language);
+            letterপ.setTimeLastUpdate(Calendar.getInstance());
+            letterপ.setText("প");
+            letterপ.setAllophones(getAllophones(language, "p", "ɔ"));
+            letterপ.setUsageCount(-1);
+            letters.add(letterপ);
+            
+            Letter letterখ = new Letter();
+            letterখ.setLanguage(language);
+            letterখ.setTimeLastUpdate(Calendar.getInstance());
+            letterখ.setText("খ");
+            letterখ.setAllophones(getAllophones(language, "kʰ", "ɔ"));
+            letterখ.setUsageCount(-1);
+            letters.add(letterখ);
+            
+            Letter letterছ = new Letter();
+            letterছ.setLanguage(language);
+            letterছ.setTimeLastUpdate(Calendar.getInstance());
+            letterছ.setText("ছ");
+            letterছ.setAllophones(getAllophones(language, "t", "ʃʰ", "ɔ"));
+            letterছ.setUsageCount(-1);
+            letters.add(letterছ);
+            
+//            Letter letterঠ = new Letter();
+//            letterঠ.setLanguage(language);
+//            letterঠ.setTimeLastUpdate(Calendar.getInstance());
+//            letterঠ.setText("ঠ");
+//            letterঠ.setAllophones(getAllophones(language, "ʈʰ", "ɔ"));
+//            letterঠ.setUsageCount(-1);
+//            letters.add(letterঠ);
+            
+//            Letter letterথ = new Letter();
+//            letterথ.setLanguage(language);
+//            letterথ.setTimeLastUpdate(Calendar.getInstance());
+//            letterথ.setText("থ");
+//            letterথ.setAllophones(getAllophones(language, "tʰ", "ɔ"));
+//            letterথ.setUsageCount(-1);
+//            letters.add(letterথ);
+            
+//            Letter letterফ = new Letter();
+//            letterফ.setLanguage(language);
+//            letterফ.setTimeLastUpdate(Calendar.getInstance());
+//            letterফ.setText("ফ");
+//            letterফ.setAllophones(getAllophones(language, "pʰ", "ɔ")); // TODO: can also be /fɔ/
+//            letterফ.setUsageCount(-1);
+//            letters.add(letterফ);
+            
+            Letter letterগ = new Letter();
+            letterগ.setLanguage(language);
+            letterগ.setTimeLastUpdate(Calendar.getInstance());
+            letterগ.setText("গ");
+            letterগ.setAllophones(getAllophones(language, "g", "ɔ"));
+            letterগ.setUsageCount(-1);
+            letters.add(letterগ);
+            
+            Letter letterজ = new Letter();
+            letterজ.setLanguage(language);
+            letterজ.setTimeLastUpdate(Calendar.getInstance());
+            letterজ.setText("জ");
+            letterজ.setAllophones(getAllophones(language, "dʒ", "ɔ"));
+            letterজ.setUsageCount(-1);
+            letters.add(letterজ);
+            
+            Letter letterড = new Letter();
+            letterড.setLanguage(language);
+            letterড.setTimeLastUpdate(Calendar.getInstance());
+            letterড.setText("ড");
+            letterড.setAllophones(getAllophones(language, "ɖ", "ɔ")); // TODO: can also be /ɽɔ/
+            letterড.setUsageCount(-1);
+            letters.add(letterড);
+            
+            Letter letterদ = new Letter();
+            letterদ.setLanguage(language);
+            letterদ.setTimeLastUpdate(Calendar.getInstance());
+            letterদ.setText("দ");
+            letterদ.setAllophones(getAllophones(language, "d", "ɔ"));
+            letterদ.setUsageCount(-1);
+            letters.add(letterদ);
+            
+            Letter letterব = new Letter();
+            letterব.setLanguage(language);
+            letterব.setTimeLastUpdate(Calendar.getInstance());
+            letterব.setText("ব");
+            letterব.setAllophones(getAllophones(language, "b", "ɔ"));
+            letterব.setUsageCount(-1);
+            letters.add(letterব);
+            
+//            Letter letterঘ = new Letter();
+//            letterঘ.setLanguage(language);
+//            letterঘ.setTimeLastUpdate(Calendar.getInstance());
+//            letterঘ.setText("ঘ");
+//            letterঘ.setAllophones(getAllophones(language, "ɡʱ", "ɔ"));
+//            letterঘ.setUsageCount(-1);
+//            letters.add(letterঘ);
+            
+//            Letter letterঝ = new Letter();
+//            letterঝ.setLanguage(language);
+//            letterঝ.setTimeLastUpdate(Calendar.getInstance());
+//            letterঝ.setText("ঝ");
+//            letterঝ.setAllophones(getAllophones(language, "dʒʱ", "ɔ"));
+//            letterঝ.setUsageCount(-1);
+//            letters.add(letterঝ);
+            
+//            Letter letterঢ = new Letter();
+//            letterঢ.setLanguage(language);
+//            letterঢ.setTimeLastUpdate(Calendar.getInstance());
+//            letterঢ.setText("ঢ");
+//            letterঢ.setAllophones(getAllophones(language, "ɖʱ", "ɔ"));
+//            letterঢ.setUsageCount(-1);
+//            letters.add(letterঢ);
+            
+//            Letter letterধ = new Letter();
+//            letterধ.setLanguage(language);
+//            letterধ.setTimeLastUpdate(Calendar.getInstance());
+//            letterধ.setText("ধ");
+//            letterধ.setAllophones(getAllophones(language, "dʱ", "ɔ"));
+//            letterধ.setUsageCount(-1);
+//            letters.add(letterধ);
+            
+//            Letter letterর = new Letter();
+//            letterর.setLanguage(language);
+//            letterর.setTimeLastUpdate(Calendar.getInstance());
+//            letterর.setText("ভ");
+//            letterর.setAllophones(getAllophones(language, "bʱ", "ɔ"));
+//            letterর.setUsageCount(-1);
+//            letters.add(letterর);
+            
+            Letter letterঙ = new Letter();
+            letterঙ.setLanguage(language);
+            letterঙ.setTimeLastUpdate(Calendar.getInstance());
+            letterঙ.setText("ঙ");
+            letterঙ.setAllophones(getAllophones(language, "ŋ", "ɔ"));
+            letterঙ.setUsageCount(-1);
+            letters.add(letterঙ);
+            
+            Letter letterঞ = new Letter();
+            letterঞ.setLanguage(language);
+            letterঞ.setTimeLastUpdate(Calendar.getInstance());
+            letterঞ.setText("ঞ");
+            letterঞ.setAllophones(getAllophones(language, "n", "ɔ")); // TODO: can also be /ẽɔ/
+            letterঞ.setUsageCount(-1);
+            letters.add(letterঞ);
+            
+            Letter letterণ = new Letter();
+            letterণ.setLanguage(language);
+            letterণ.setTimeLastUpdate(Calendar.getInstance());
+            letterণ.setText("ণ");
+            letterণ.setAllophones(getAllophones(language, "n", "ɔ"));
+            letterণ.setUsageCount(-1);
+            letters.add(letterণ);
+            
+            Letter letterন = new Letter();
+            letterন.setLanguage(language);
+            letterন.setTimeLastUpdate(Calendar.getInstance());
+            letterন.setText("ন");
+            letterন.setAllophones(getAllophones(language, "n", "ɔ"));
+            letterন.setUsageCount(-1);
+            letters.add(letterন);
+            
+            Letter letterম = new Letter();
+            letterম.setLanguage(language);
+            letterম.setTimeLastUpdate(Calendar.getInstance());
+            letterম.setText("ম");
+            letterম.setAllophones(getAllophones(language, "m", "ɔ"));
+            letterম.setUsageCount(-1);
+            letters.add(letterম);
+            
+            Letter letterয = new Letter();
+            letterয.setLanguage(language);
+            letterয.setTimeLastUpdate(Calendar.getInstance());
+            letterয.setText("য");
+            letterয.setAllophones(getAllophones(language, "dʒ", "ɔ"));
+            letterয.setUsageCount(-1);
+            letters.add(letterয);
+            
+            Letter letterর = new Letter();
+            letterর.setLanguage(language);
+            letterর.setTimeLastUpdate(Calendar.getInstance());
+            letterর.setText("র");
+            letterর.setAllophones(getAllophones(language, "r", "ɔ")); // TODO: can also be /ɾɔ/
+            letterর.setUsageCount(-1);
+            letters.add(letterর);
+            
+            Letter letterল = new Letter();
+            letterল.setLanguage(language);
+            letterল.setTimeLastUpdate(Calendar.getInstance());
+            letterল.setText("ল");
+            letterল.setAllophones(getAllophones(language, "l", "ɔ"));
+            letterল.setUsageCount(-1);
+            letters.add(letterল);
+            
+            Letter letterশ = new Letter();
+            letterশ.setLanguage(language);
+            letterশ.setTimeLastUpdate(Calendar.getInstance());
+            letterশ.setText("শ");
+            letterশ.setAllophones(getAllophones(language, "ʃ", "ɔ"));
+            letterশ.setUsageCount(-1);
+            letters.add(letterশ);
+            
+            Letter letterষ = new Letter();
+            letterষ.setLanguage(language);
+            letterষ.setTimeLastUpdate(Calendar.getInstance());
+            letterষ.setText("ষ");
+            letterষ.setAllophones(getAllophones(language, "ʃ", "ɔ"));
+            letterষ.setUsageCount(-1);
+            letters.add(letterষ);
+            
+            Letter letterস = new Letter();
+            letterস.setLanguage(language);
+            letterস.setTimeLastUpdate(Calendar.getInstance());
+            letterস.setText("স");
+            letterস.setAllophones(getAllophones(language, "s", "ɔ")); // TODO: can also be /ʃɔ/
+            letterস.setUsageCount(-1);
+            letters.add(letterস);
+            
+            Letter letterহ = new Letter();
+            letterহ.setLanguage(language);
+            letterহ.setTimeLastUpdate(Calendar.getInstance());
+            letterহ.setText("হ");
+            letterহ.setAllophones(getAllophones(language, "ɦ", "ɔ")); // TODO: can also be /hɔ/
+            letterহ.setUsageCount(-1);
+            letters.add(letterহ);
+            
+//            Letter letterঢ় = new Letter();
+//            letterঢ়.setLanguage(language);
+//            letterঢ়.setTimeLastUpdate(Calendar.getInstance());
+//            letterঢ়.setText("ঢ়");
+//            letterঢ়.setAllophones(getAllophones(language, "ɽʱ", "ɔ")); // TODO: can also be /ɽ/
+//            letterঢ়.setUsageCount(-1);
+//            letters.add(letterঢ়);
+            
+//            Letter letterয় = new Letter();
+//            letterয়.setLanguage(language);
+//            letterয়.setTimeLastUpdate(Calendar.getInstance());
+//            letterয়.setText("য়");
+//            letterয়.setAllophones(getAllophones(language, "e̯", "ɔ")); // TODO: can also be /jɔ/
+//            letterয়.setUsageCount(-1);
+//            letters.add(letterয়);
         } else if (language == Language.ENG) {
             Letter letterE = new Letter();
             letterE.setLanguage(language);
