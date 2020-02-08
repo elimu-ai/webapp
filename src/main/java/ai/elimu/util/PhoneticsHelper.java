@@ -31,7 +31,7 @@ public class PhoneticsHelper {
             int phoneticsLengthBeforeExtraction = phonetics.length();
             
             if (word.getLanguage() == Language.ENG) {
-                String[][] allophonesArrayEN = AllophoneListController.allophonesArrayEN;
+                String[][] allophonesArrayEN = AllophoneListController.allophonesArrayENG;
                 for (String[] allophoneRow : allophonesArrayEN) {
                     String allophoneIpa = allophoneRow[0];
                     if (phonetics.startsWith(allophoneIpa)) {
@@ -41,7 +41,7 @@ public class PhoneticsHelper {
                     }
                 }
             } else if (word.getLanguage() == Language.SWA) {
-                String[][] allophonesArraySW = AllophoneListController.allophonesArraySW;
+                String[][] allophonesArraySW = AllophoneListController.allophonesArraySWA;
                 for (String[] allophoneRow : allophonesArraySW) {
                     String allophoneIpa = allophoneRow[0];
                     if (phonetics.startsWith(allophoneIpa)) {

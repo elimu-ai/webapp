@@ -20,7 +20,57 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AllophoneListController {
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArrayEN = new String[][] {
+    public static final String[][] allophonesArrayBEN = new String[][] {
+        // Vowels - https://en.wikibooks.org/wiki/Bengali/Script/Vowels
+        {"ɔ", "O", "-1"},
+        {"ɑ", "A", "-1"},
+        {"i", "i", "-1"},
+        {"u", "u", "-1"},
+        {"e", "e", "-1"},
+        {"o", "o", "-1"},
+        {"æ", "{", "-1"},
+        
+        // Consonants - https://en.wikibooks.org/wiki/Bengali/Script/Consonants_1
+        {"k", "k", "-1"},
+        {"kʰ", "k_h", "-1"},
+        {"g", "g", "-1"},
+        // TODO: /gʱ/
+        {"ŋ", "N", "-1"},
+        // TODO: /t͡ʃ/
+        // TODO: /t͡ʃʰ/
+        // TODO: /d͡ʒ/
+        // TODO: /d͡ʒʱ/
+        {"n", "n", "-1"},
+        {"ʈ", "t`", "-1"},
+        // TODO: /ʈʰ/
+        {"ɖ", "d`", "-1"},
+        // TODO: /ɖʱ/
+        {"t", "t", "-1"},
+        // TODO: /tʰ/
+        {"d", "d", "-1"},
+        // TODO: /dʱ/
+        {"p", "p", "-1"},
+        // TODO: /pʰ/
+        {"ɸ", "p\\", "-1"},
+        {"b", "b", "-1"},
+        // TODO: /bʱ/
+        {"β", "B", "-1"},
+        {"m", "m", "-1"},
+        
+        // Consonants - https://en.wikibooks.org/wiki/Bengali/Script/Consonants_2
+        {"z", "z", "-1"},
+        {"r", "r", "-1"},
+        {"l", "l", "-1"},
+        {"w", "w", "-1"},
+        {"ɕ", "s\\", "-1"},
+        {"ʃ", "S", "-1"},
+        {"s", "s", "-1"},
+        {"h", "h", "-1"},
+        {"ɦ", "h\\", "-1"}
+    };
+    
+    // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
+    public static final String[][] allophonesArrayENG = new String[][] {
         {"aʊ", "aU", "60"},
         {"ɔɪ", "OI", "3"},
         {"əʊ", "@U", "25"},
@@ -67,7 +117,7 @@ public class AllophoneListController {
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArrayFI = new String[][] {
+    public static final String[][] allophonesArrayFIL = new String[][] {
         {"aʊ", "aU", "-1"},
         {"ɔɪ", "OI", "-1"},
         {"əʊ", "@U", "-1"},
@@ -115,7 +165,7 @@ public class AllophoneListController {
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArraySW = new String[][] {
+    public static final String[][] allophonesArraySWA = new String[][] {
         {"mb", "mb", "9"},
         {"mv", "mv", "0"},
         {"nd", "nd", "4"},
@@ -195,12 +245,14 @@ public class AllophoneListController {
         List<Allophone> allophones = new ArrayList<>();
         
         String[][] allophonesArray = null;
-        if (language == Language.ENG) {
-            allophonesArray = allophonesArrayEN;
+        if (language == Language.BEN) {
+            allophonesArray = allophonesArrayBEN;
+        } else if (language == Language.ENG) {
+            allophonesArray = allophonesArrayENG;
         } else if (language == Language.FIL) {
-            allophonesArray = allophonesArrayFI;
+            allophonesArray = allophonesArrayFIL;
         } else if (language == Language.SWA) {
-            allophonesArray = allophonesArraySW;
+            allophonesArray = allophonesArraySWA;
         }
         
         for (String[] allophoneRow : allophonesArray) {
@@ -211,6 +263,7 @@ public class AllophoneListController {
             allophone.setValueSampa(allophoneRow[1]);
             // TODO: add SoundType to each Allophone
             allophone.setUsageCount(Integer.valueOf(allophoneRow[2]));
+            // TODO: set diacritic
             allophones.add(allophone);
         }
         

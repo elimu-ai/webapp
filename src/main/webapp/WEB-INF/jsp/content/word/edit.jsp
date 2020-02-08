@@ -40,7 +40,7 @@
                         <c:forEach var="allophone" items="${allophones}">
                             <a href="#" class="allophone chip" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
                             <audio id="audio_sampa_${allophone.valueSampa}">
-                                <source src="<spring:url value='/static/audio/${language.isoCode}/sampa_${allophone.valueSampa}.wav' />" />
+                                <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
                             </audio>
                         </c:forEach>
                         <script>

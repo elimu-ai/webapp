@@ -45,7 +45,7 @@
     <h5 class="center"><fmt:message key="preview" /></h5>
     
     <audio controls="true" autoplay="true">
-        <source src="<spring:url value='/static/audio/${language.isoCode}/sampa_${allophone.valueSampa}.wav' />" />
+        <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
     </audio>
     
     <div class="divider" style="margin: 1em 0;"></div>
