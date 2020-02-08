@@ -39,7 +39,7 @@
                                     $('#phonetics').focus();
                                 });
                                 
-                                // Play sound when hovering its IPA value
+                                // Play sound when hovering IPA value
                                 $('.allophone').mouseenter(function() {
                                     console.info('.allophone mouseenter');
                                     

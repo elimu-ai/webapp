@@ -23,11 +23,13 @@ public class AllophoneListController {
     public static final String[][] allophonesArrayBEN = new String[][] {
         // Vowels - https://en.wikibooks.org/wiki/Bengali/Script/Vowels
         {"ɔ", "O", "-1"},
-        {"ɑ", "A", "-1"},
+        {"a", "a", "-1"},
         {"i", "i", "-1"},
         {"u", "u", "-1"},
         {"e", "e", "-1"},
+        // TODO: /ɛ/
         {"o", "o", "-1"},
+        // TODO: /ʊ/
         {"æ", "{", "-1"},
         
         // Consonants - https://en.wikibooks.org/wiki/Bengali/Script/Consonants_1

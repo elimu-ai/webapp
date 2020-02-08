@@ -42,9 +42,11 @@
                                 </c:forEach>/
                             </td>
                             <td>
-                                <audio controls="true">
-                                    <source src="<spring:url value='/static/allophone/sampa_${letter.text}.wav' />" />
-                                </audio>
+                                <c:forEach var="allophone" items="${letter.allophones}">
+                                    <audio controls="true">
+                                        <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
+                                    </audio><br />
+                                </c:forEach>
                             </td>
                             <td>
                                 <p>#${letter.revisionNumber}</p>
