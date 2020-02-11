@@ -31,3 +31,4 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 30,"s","s",null,false,null,-1
 31,"h","h",null,false,null,-1
 32,"ɦ","h\",null,false,null,-1
+33,".",".",null,false,null,-1
