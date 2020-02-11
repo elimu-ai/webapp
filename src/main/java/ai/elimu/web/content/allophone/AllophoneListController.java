@@ -75,7 +75,9 @@ public class AllophoneListController {
         {"ʃ", "S", "-1"},
         {"s", "s", "-1"},
         {"h", "h", "-1"},
-        {"ɦ", "h\\", "-1"}
+        {"ɦ", "h\\", "-1"},
+            
+        {".", ".", "-1"} // TODO: set isDiacritic = true
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
@@ -88,6 +90,7 @@ public class AllophoneListController {
         {"tʃ", "tS", "0"},
         {"dʒ", "dZ", "3"}, // TODO: use /ʤ/ instead of /dʒ/?
         {"r̩", "r_=", "0"}, // TODO: use "r=" instead of "r_="?
+        
         {"ɑ", "A", "121"},
         {"ɔ", "O", "164"},
         {"u", "u", "277"},
@@ -121,8 +124,10 @@ public class AllophoneListController {
         {"r", "r", "205"},
         {"w", "w", "257"},
         {"j", "j", "58"},
-        {"ˈ", "\"", "0"}, // TODO: set isDiacritic = true
-        {"ˌ", "%", "0"} // TODO: set isDiacritic = true
+        
+        {"ˈ", "\"", "-1"}, // TODO: set isDiacritic = true
+        {"ˌ", "%", "-1"}, // TODO: set isDiacritic = true
+        {".", ".", "-1"} // TODO: set isDiacritic = true
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
@@ -135,6 +140,7 @@ public class AllophoneListController {
         {"tʃ", "tS", "-1"},
         {"dʒ", "dZ", "-1"}, // TODO: use /ʤ/ instead of /dʒ/?
         {"r̩", "r_=", "-1"}, // TODO: use "r=" instead of "r_="?
+        
         {"ɑ", "A", "-1"},
         {"ɔ", "O", "-1"},
         {"u", "u", "-1"},
@@ -169,8 +175,10 @@ public class AllophoneListController {
         {"ɾ", "4", "-1"},
         {"w", "w", "-1"},
         {"j", "j", "-1"},
+        
         {"ˈ", "\"", "-1"}, // TODO: set isDiacritic = true
-        {"ˌ", "%", "-1"} // TODO: set isDiacritic = true
+        {"ˌ", "%", "-1"}, // TODO: set isDiacritic = true
+        {".", ".", "-1"} // TODO: set isDiacritic = true
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
@@ -182,6 +190,7 @@ public class AllophoneListController {
         {"ɲɟ", "Jj\\", "0"},
         {"tʃ", "tS", "0"},
         {"ŋɡ", "Nɡ", "8"},
+        
         {"ɑ", "A", "376"},
         {"ɛ", "E", "74"},
         {"i", "i", "207"},
@@ -212,7 +221,9 @@ public class AllophoneListController {
         {"x", "x", "0"},
         {"w", "w", "0"},
         {"h", "h", "19"},
-        {"ˈ", "\"", "0"} // TODO: set isDiacritic = true
+        
+        {"ˈ", "\"", "-1"}, // TODO: set isDiacritic = true
+        {".", ".", "-1"} // TODO: set isDiacritic = true
     };
     
     private final Logger logger = Logger.getLogger(getClass());

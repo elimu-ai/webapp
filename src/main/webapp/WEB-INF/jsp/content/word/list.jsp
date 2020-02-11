@@ -33,7 +33,7 @@
                                     <div class="determinate" style="width: ${word.usageCount * 100 / maxUsageCount}%"></div>
                                 </div>
                             </td>
-                            <td>
+                            <td style="font-size: 2em;">
                                 "${word.text}"
                             </td>
                             <td>

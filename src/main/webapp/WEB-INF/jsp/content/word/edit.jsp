@@ -91,11 +91,6 @@
                     </select>
                     <label for="wordType"><fmt:message key="word.type" /></label>
                 </div>
-                
-                <div class="input-field col s12">
-                    <textarea id="comment" name="comment" class="materialize-textarea" maxlength="255"><c:if test="${not empty param.comment}">${param.comment}</c:if></textarea>
-                    <label for="comment"><fmt:message key="comment.about.the.change" /></label>
-                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
