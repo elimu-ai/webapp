@@ -129,6 +129,13 @@ public class ImageListController {
         coverImageBengali767.setContentType("image/jpg");
         images.add(coverImageBengali767);
         
+        Image coverImageBengali770 = new Image();
+        coverImageBengali770.setLanguage(language);
+        coverImageBengali770.setTimeLastUpdate(Calendar.getInstance());
+        coverImageBengali770.setTitle("e27c3643f7ba51abda1f02f07549577c");
+        coverImageBengali770.setContentType("image/jpg");
+        images.add(coverImageBengali770);
+        
         return images;
     }
 }
