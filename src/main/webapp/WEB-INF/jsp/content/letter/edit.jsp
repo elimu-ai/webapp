@@ -23,7 +23,10 @@
                     /<span id="allophonesContainer">
                         <c:forEach var="allophone" items="${letter.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
+                            <audio id="audio_sampa_${allophone.valueSampa}">
+                                <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
+                            </audio>
+                            <div class="allophone chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}" data-valuesampa="${allophone.valueSampa}">
                                 ${allophone.valueIpa} 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
                                     <i class="material-icons">clear</i>
@@ -42,6 +45,17 @@
                                     
                                     var $hiddenInput = $('input[name="allophones"][value="' + allophoneId + '"]');
                                     $hiddenInput.remove();
+                                });
+                                
+                                // Play sound when hovering IPA value
+                                $('.allophone').mouseenter(function() {
+                                    console.info('.allophone mouseenter');
+                                    
+                                    var valueSampa = $(this).attr('data-valuesampa');
+                                    console.info('valueSampa: ' + valueSampa);
+                                    
+                                    var audio = $('#audio_sampa_' + valueSampa);
+                                    audio[0].play();
                                 });
                             });
                         </script>
@@ -83,6 +97,14 @@
 
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
+    
+    <c:forEach var="allophone" items="${letter.allophones}">
+        <audio controls="true" autoplay="true">
+            <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
+        </audio><br />
+    </c:forEach>
+    
+    <div class="divider" style="margin: 1em 0;"></div>
     
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />

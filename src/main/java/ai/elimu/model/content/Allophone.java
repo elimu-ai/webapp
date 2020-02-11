@@ -24,15 +24,27 @@ import ai.elimu.tasks.AllophoneUsageCountScheduler;
 @Entity
 public class Allophone extends Content {
     
+    /**
+     * IPA - International Phonetic Alphabet
+     * <p />
+     * See https://en.wikipedia.org/wiki/International_Phonetic_Alphabet#Letters
+     */
     @NotNull
     @Length(max = 3)
     @Column(length = 3)
-    private String valueIpa; // IPA - International Phonetic Alphabet
+    private String valueIpa;
     
+    /**
+     * X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet.
+     * <p />
+     * See https://en.wikipedia.org/wiki/X-SAMPA#Lower_case_symbols
+     * <p />
+     * X-SAMPA is used to enable integration with Text-to-Speech (TTS) technology.
+     */
     @NotNull
     @Length(max = 3)
     @Column(length = 3)
-    private String valueSampa; // X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet
+    private String valueSampa;
     
 //    @NotNull
     @OneToOne

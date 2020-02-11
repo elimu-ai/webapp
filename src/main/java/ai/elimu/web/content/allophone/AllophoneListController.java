@@ -20,7 +20,68 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AllophoneListController {
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArrayEN = new String[][] {
+    public static final String[][] allophonesArrayBEN = new String[][] {
+        {"dʒ", "dZ", "-1"}, // TODO: use /ʤ/ instead of /dʒ/?
+        // TODO: /dʒʱ/
+        // TODO: /t͡ʃ/
+        // TODO: /t͡ʃʰ/
+        // TODO: /d͡ʒ/
+        // TODO: /d͡ʒʱ/
+        {"kʰ", "k_h", "-1"},
+        // TODO: {"ʈʰ", "t`_h", "-1"},
+        {"ʃʰ", "S_h", "-1"},
+        
+        // Vowels - https://en.wikibooks.org/wiki/Bengali/Script/Vowels
+        {"ɔ", "O", "-1"},
+        {"a", "a", "-1"},
+        {"i", "i", "-1"},
+        {"u", "u", "-1"},
+        {"e", "e", "-1"},
+        // TODO: /e̯/
+        // TODO: /ɛ/
+        {"o", "o", "-1"},
+        // TODO: /ʊ/
+        {"æ", "{", "-1"},
+        
+        // Consonants - https://en.wikibooks.org/wiki/Bengali/Script/Consonants_1
+        {"k", "k", "-1"},
+        {"g", "g", "-1"},
+        // TODO: /gʱ/
+        {"ŋ", "N", "-1"},
+        {"n", "n", "-1"},
+        {"ʈ", "t`", "-1"},
+        {"ɖ", "d`", "-1"},
+        // TODO: /ɖʱ/
+        {"t", "t", "-1"},
+        {"t", "t_h", "-1"},
+        {"d", "d", "-1"},
+        // TODO: /dʱ/
+        {"p", "p", "-1"},
+        {"p", "p_h", "-1"},
+        {"ɸ", "p\\", "-1"},
+        {"b", "b", "-1"},
+        // TODO: /bʱ/
+        {"β", "B", "-1"},
+        {"m", "m", "-1"},
+        
+        // Consonants - https://en.wikibooks.org/wiki/Bengali/Script/Consonants_2
+        {"z", "z", "-1"},
+        {"r", "r", "-1"},
+        // TOOD: /ɽ/
+        // TODO: /ɽʱ/
+        {"l", "l", "-1"},
+        {"w", "w", "-1"},
+        {"ɕ", "s\\", "-1"},
+        {"ʃ", "S", "-1"},
+        {"s", "s", "-1"},
+        {"h", "h", "-1"},
+        {"ɦ", "h\\", "-1"},
+            
+        {".", ".", "-1"} // TODO: set isDiacritic = true
+    };
+    
+    // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
+    public static final String[][] allophonesArrayENG = new String[][] {
         {"aʊ", "aU", "60"},
         {"ɔɪ", "OI", "3"},
         {"əʊ", "@U", "25"},
@@ -29,6 +90,7 @@ public class AllophoneListController {
         {"tʃ", "tS", "0"},
         {"dʒ", "dZ", "3"}, // TODO: use /ʤ/ instead of /dʒ/?
         {"r̩", "r_=", "0"}, // TODO: use "r=" instead of "r_="?
+        
         {"ɑ", "A", "121"},
         {"ɔ", "O", "164"},
         {"u", "u", "277"},
@@ -62,12 +124,14 @@ public class AllophoneListController {
         {"r", "r", "205"},
         {"w", "w", "257"},
         {"j", "j", "58"},
-        {"ˈ", "\"", "0"}, // TODO: set isDiacritic = true
-        {"ˌ", "%", "0"} // TODO: set isDiacritic = true
+        
+        {"ˈ", "\"", "-1"}, // TODO: set isDiacritic = true
+        {"ˌ", "%", "-1"}, // TODO: set isDiacritic = true
+        {".", ".", "-1"} // TODO: set isDiacritic = true
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArrayFI = new String[][] {
+    public static final String[][] allophonesArrayFIL = new String[][] {
         {"aʊ", "aU", "-1"},
         {"ɔɪ", "OI", "-1"},
         {"əʊ", "@U", "-1"},
@@ -76,6 +140,7 @@ public class AllophoneListController {
         {"tʃ", "tS", "-1"},
         {"dʒ", "dZ", "-1"}, // TODO: use /ʤ/ instead of /dʒ/?
         {"r̩", "r_=", "-1"}, // TODO: use "r=" instead of "r_="?
+        
         {"ɑ", "A", "-1"},
         {"ɔ", "O", "-1"},
         {"u", "u", "-1"},
@@ -110,12 +175,14 @@ public class AllophoneListController {
         {"ɾ", "4", "-1"},
         {"w", "w", "-1"},
         {"j", "j", "-1"},
+        
         {"ˈ", "\"", "-1"}, // TODO: set isDiacritic = true
-        {"ˌ", "%", "-1"} // TODO: set isDiacritic = true
+        {"ˌ", "%", "-1"}, // TODO: set isDiacritic = true
+        {".", ".", "-1"} // TODO: set isDiacritic = true
     };
     
     // Note: The array must list the allophones with larger IPA value length first, e.g. 'əʊ' before 'ə'
-    public static final String[][] allophonesArraySW = new String[][] {
+    public static final String[][] allophonesArraySWA = new String[][] {
         {"mb", "mb", "9"},
         {"mv", "mv", "0"},
         {"nd", "nd", "4"},
@@ -123,6 +190,7 @@ public class AllophoneListController {
         {"ɲɟ", "Jj\\", "0"},
         {"tʃ", "tS", "0"},
         {"ŋɡ", "Nɡ", "8"},
+        
         {"ɑ", "A", "376"},
         {"ɛ", "E", "74"},
         {"i", "i", "207"},
@@ -153,7 +221,9 @@ public class AllophoneListController {
         {"x", "x", "0"},
         {"w", "w", "0"},
         {"h", "h", "19"},
-        {"ˈ", "\"", "0"} // TODO: set isDiacritic = true
+        
+        {"ˈ", "\"", "-1"}, // TODO: set isDiacritic = true
+        {".", ".", "-1"} // TODO: set isDiacritic = true
     };
     
     private final Logger logger = Logger.getLogger(getClass());
@@ -195,12 +265,14 @@ public class AllophoneListController {
         List<Allophone> allophones = new ArrayList<>();
         
         String[][] allophonesArray = null;
-        if (language == Language.ENG) {
-            allophonesArray = allophonesArrayEN;
+        if (language == Language.BEN) {
+            allophonesArray = allophonesArrayBEN;
+        } else if (language == Language.ENG) {
+            allophonesArray = allophonesArrayENG;
         } else if (language == Language.FIL) {
-            allophonesArray = allophonesArrayFI;
+            allophonesArray = allophonesArrayFIL;
         } else if (language == Language.SWA) {
-            allophonesArray = allophonesArraySW;
+            allophonesArray = allophonesArraySWA;
         }
         
         for (String[] allophoneRow : allophonesArray) {
@@ -211,6 +283,7 @@ public class AllophoneListController {
             allophone.setValueSampa(allophoneRow[1]);
             // TODO: add SoundType to each Allophone
             allophone.setUsageCount(Integer.valueOf(allophoneRow[2]));
+            // TODO: set diacritic
             allophones.add(allophone);
         }
         

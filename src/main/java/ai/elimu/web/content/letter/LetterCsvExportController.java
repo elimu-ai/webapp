@@ -36,9 +36,11 @@ public class LetterCsvExportController {
         List<Letter> letters = letterDao.readAll();
         logger.info("letters.size(): " + letters.size());
         for (Letter letter : letters) {
+            logger.info("letter.getText(): \"" + letter.getText() + "\"");
             long[] allophoneIdsArray = new long[letter.getAllophones().size()];
             int index = 0;
             for (Allophone allophone : letter.getAllophones()) {
+                logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/");
                 allophoneIdsArray[index] = allophone.getId();
                 index++;
             }

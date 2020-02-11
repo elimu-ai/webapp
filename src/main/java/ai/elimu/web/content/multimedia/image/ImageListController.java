@@ -108,6 +108,34 @@ public class ImageListController {
         coverImageHindiNaAkoNatatakot.setContentType("image/jpg");
         images.add(coverImageHindiNaAkoNatatakot);
         
+        Image coverImageBengaliউৎসব = new Image();
+        coverImageBengaliউৎসব.setLanguage(language);
+        coverImageBengaliউৎসব.setTimeLastUpdate(Calendar.getInstance());
+        coverImageBengaliউৎসব.setTitle("99e3d3af620881991813482fb602a1f6");
+        coverImageBengaliউৎসব.setContentType("image/jpg");
+        images.add(coverImageBengaliউৎসব);
+        
+        Image coverImageBengali790 = new Image();
+        coverImageBengali790.setLanguage(language);
+        coverImageBengali790.setTimeLastUpdate(Calendar.getInstance());
+        coverImageBengali790.setTitle("15e689585b33730512e002e532f57ea9");
+        coverImageBengali790.setContentType("image/jpg");
+        images.add(coverImageBengali790);
+        
+        Image coverImageBengali767 = new Image();
+        coverImageBengali767.setLanguage(language);
+        coverImageBengali767.setTimeLastUpdate(Calendar.getInstance());
+        coverImageBengali767.setTitle("344cb250fee33bdabf4aff6603eb3506");
+        coverImageBengali767.setContentType("image/jpg");
+        images.add(coverImageBengali767);
+        
+        Image coverImageBengali770 = new Image();
+        coverImageBengali770.setLanguage(language);
+        coverImageBengali770.setTimeLastUpdate(Calendar.getInstance());
+        coverImageBengali770.setTitle("e27c3643f7ba51abda1f02f07549577c");
+        coverImageBengali770.setContentType("image/jpg");
+        images.add(coverImageBengali770);
+        
         return images;
     }
 }

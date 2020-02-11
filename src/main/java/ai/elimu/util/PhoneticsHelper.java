@@ -15,6 +15,7 @@ public class PhoneticsHelper {
      * </ p>
      * Example: /kæt/ --> /k/, /æ/, /t/
      */
+    @Deprecated
     public static List<String> getAllophones(Word word) {
         List<String> allophones = new ArrayList<>();
         
@@ -30,8 +31,18 @@ public class PhoneticsHelper {
         while (StringUtils.isNotBlank(phonetics)) {
             int phoneticsLengthBeforeExtraction = phonetics.length();
             
-            if (word.getLanguage() == Language.ENG) {
-                String[][] allophonesArrayEN = AllophoneListController.allophonesArrayEN;
+            if (word.getLanguage() == Language.BEN) {
+                String[][] allophonesArrayBEN = AllophoneListController.allophonesArrayBEN;
+                for (String[] allophoneRow : allophonesArrayBEN) {
+                    String allophoneIpa = allophoneRow[0];
+                    if (phonetics.startsWith(allophoneIpa)) {
+                        allophones.add(allophoneIpa);
+                        phonetics = phonetics.substring(allophoneIpa.length());
+                        break;
+                    }
+                }
+            } else if (word.getLanguage() == Language.ENG) {
+                String[][] allophonesArrayEN = AllophoneListController.allophonesArrayENG;
                 for (String[] allophoneRow : allophonesArrayEN) {
                     String allophoneIpa = allophoneRow[0];
                     if (phonetics.startsWith(allophoneIpa)) {
@@ -41,7 +52,7 @@ public class PhoneticsHelper {
                     }
                 }
             } else if (word.getLanguage() == Language.SWA) {
-                String[][] allophonesArraySW = AllophoneListController.allophonesArraySW;
+                String[][] allophonesArraySW = AllophoneListController.allophonesArraySWA;
                 for (String[] allophoneRow : allophonesArraySW) {
                     String allophoneIpa = allophoneRow[0];
                     if (phonetics.startsWith(allophoneIpa)) {
@@ -60,6 +71,7 @@ public class PhoneticsHelper {
         return allophones;
     }
     
+    @Deprecated
     public static SoundType getSoundType(String ipaValue, Language language) {
         SoundType soundType = null;
         

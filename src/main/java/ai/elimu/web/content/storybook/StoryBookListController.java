@@ -58,7 +58,47 @@ public class StoryBookListController {
     private List<StoryBook> generateStoryBooks(Language language) {
         List<StoryBook> storyBooks = new ArrayList<>();
         
-        if (language == Language.ENG) {
+        if (language == Language.BEN) {
+            URL urlউৎসব = getClass().getResource("ben-761.epub");
+            logger.info("urlউৎসব: " + urlউৎসব);
+            StoryBook storyBookউৎসব = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlউৎসব.getFile()));
+            Image coverImageউৎসব = imageDao.read("99e3d3af620881991813482fb602a1f6", language);
+            storyBookউৎসব.setCoverImage(coverImageউৎসব);
+            storyBookউৎসব.setGradeLevel(GradeLevel.LEVEL1);
+            storyBookউৎসব.setLanguage(language);
+            storyBookউৎসব.setTimeLastUpdate(Calendar.getInstance());
+            storyBooks.add(storyBookউৎসব);
+            
+            URL urlBen790 = getClass().getResource("ben-790.epub");
+            logger.info("urlBen790: " + urlBen790);
+            StoryBook storyBookBen790 = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlBen790.getFile()));
+            Image coverImageBen790 = imageDao.read("15e689585b33730512e002e532f57ea9", language);
+            storyBookBen790.setCoverImage(coverImageBen790);
+            storyBookBen790.setGradeLevel(GradeLevel.LEVEL3);
+            storyBookBen790.setLanguage(language);
+            storyBookBen790.setTimeLastUpdate(Calendar.getInstance());
+            storyBooks.add(storyBookBen790);
+            
+            URL urlBen767 = getClass().getResource("ben-767.epub");
+            logger.info("urlBen767: " + urlBen767);
+            StoryBook storyBookBen767 = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlBen767.getFile()));
+            Image coverImageBen767 = imageDao.read("344cb250fee33bdabf4aff6603eb3506", language);
+            storyBookBen767.setCoverImage(coverImageBen767);
+            storyBookBen767.setGradeLevel(GradeLevel.LEVEL3);
+            storyBookBen767.setLanguage(language);
+            storyBookBen767.setTimeLastUpdate(Calendar.getInstance());
+            storyBooks.add(storyBookBen767);
+            
+            URL urlBen770 = getClass().getResource("ben-770.epub");
+            logger.info("urlBen770: " + urlBen770);
+            StoryBook storyBookBen770 = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlBen770.getFile()));
+            Image coverImageBen770 = imageDao.read("e27c3643f7ba51abda1f02f07549577c", language);
+            storyBookBen770.setCoverImage(coverImageBen770);
+            storyBookBen770.setGradeLevel(GradeLevel.LEVEL4);
+            storyBookBen770.setLanguage(language);
+            storyBookBen770.setTimeLastUpdate(Calendar.getInstance());
+            storyBooks.add(storyBookBen770);
+        } else if (language == Language.ENG) {
             StoryBook storyBook = new StoryBook();
             storyBook.setLanguage(language);
             storyBook.setTimeLastUpdate(Calendar.getInstance());

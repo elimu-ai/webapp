@@ -40,7 +40,7 @@
                         <c:forEach var="allophone" items="${allophones}">
                             <a href="#" class="allophone chip" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
                             <audio id="audio_sampa_${allophone.valueSampa}">
-                                <source src="<spring:url value='/static/audio/${language.isoCode}/sampa_${allophone.valueSampa}.wav' />" />
+                                <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
                             </audio>
                         </c:forEach>
                         <script>
@@ -55,7 +55,7 @@
                                     $('#phonetics').focus();
                                 });
                                 
-                                // Play sound when hovering its IPA value
+                                // Play sound when hovering IPA value
                                 $('.allophone').mouseenter(function() {
                                     console.info('.allophone mouseenter');
                                     
@@ -90,11 +90,6 @@
                         </c:forEach>
                     </select>
                     <label for="wordType"><fmt:message key="word.type" /></label>
-                </div>
-                
-                <div class="input-field col s12">
-                    <textarea id="comment" name="comment" class="materialize-textarea" maxlength="255"><c:if test="${not empty param.comment}">${param.comment}</c:if></textarea>
-                    <label for="comment"><fmt:message key="comment.about.the.change" /></label>
                 </div>
             </div>
 
