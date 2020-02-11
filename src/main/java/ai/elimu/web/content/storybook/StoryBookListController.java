@@ -68,6 +68,16 @@ public class StoryBookListController {
             storyBookউৎসব.setLanguage(language);
             storyBookউৎসব.setTimeLastUpdate(Calendar.getInstance());
             storyBooks.add(storyBookউৎসব);
+            
+            URL urlBen790 = getClass().getResource("ben-790.epub");
+            logger.info("urlBen790: " + urlBen790);
+            StoryBook storyBookBen790 = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlBen790.getFile()));
+            Image coverImageBen790 = imageDao.read("15e689585b33730512e002e532f57ea9", language);
+            storyBookBen790.setCoverImage(coverImageBen790);
+            storyBookBen790.setGradeLevel(GradeLevel.LEVEL3);
+            storyBookBen790.setLanguage(language);
+            storyBookBen790.setTimeLastUpdate(Calendar.getInstance());
+            storyBooks.add(storyBookBen790);
         } else if (language == Language.ENG) {
             StoryBook storyBook = new StoryBook();
             storyBook.setLanguage(language);

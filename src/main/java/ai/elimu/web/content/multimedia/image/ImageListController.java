@@ -115,6 +115,13 @@ public class ImageListController {
         coverImageBengaliউৎসব.setContentType("image/jpg");
         images.add(coverImageBengaliউৎসব);
         
+        Image coverImageBengali790 = new Image();
+        coverImageBengali790.setLanguage(language);
+        coverImageBengali790.setTimeLastUpdate(Calendar.getInstance());
+        coverImageBengali790.setTitle("15e689585b33730512e002e532f57ea9");
+        coverImageBengali790.setContentType("image/jpg");
+        images.add(coverImageBengali790);
+        
         return images;
     }
 }
