@@ -13,6 +13,7 @@ import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -199,15 +200,15 @@ public class EpubToStoryBookConverter {
                             
                             List<String> paragraphs = extractImagesAndParagraphsFromChapter(xhtmlChapterFile);
                             logger.info("paragraphs.size(): " + paragraphs.size());
-                            if (storyBook.getParagraphs() == null) {
-                                storyBook.setParagraphs(paragraphs);
-                            } else {
-                                storyBook.getParagraphs().addAll(paragraphs);
+                                if (storyBook.getParagraphs() == null) {
+                                    storyBook.setParagraphs(paragraphs);
+                                } else {
+                                    storyBook.getParagraphs().addAll(paragraphs);
+                                }
                             }
                         }
                     }
                 }
-            }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             logger.error(null, ex);
         }
@@ -239,7 +240,9 @@ public class EpubToStoryBookConverter {
                         if ("p".equals(bodyNode.getNodeName())) {
                             String paragraph = bodyNode.getTextContent().trim();
                             logger.info("paragraph: \"" + paragraph + "\"");
-                            paragraphs.add(paragraph);
+                            if (StringUtils.isNotBlank(paragraph)) {
+                                paragraphs.add(paragraph);
+                            }
                         }
 
                         // Extract images (<img src="..." />)

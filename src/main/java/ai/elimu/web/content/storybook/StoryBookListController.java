@@ -58,7 +58,17 @@ public class StoryBookListController {
     private List<StoryBook> generateStoryBooks(Language language) {
         List<StoryBook> storyBooks = new ArrayList<>();
         
-        if (language == Language.ENG) {
+        if (language == Language.BEN) {
+            URL urlউৎসব = getClass().getResource("ben-761.epub");
+            logger.info("urlউৎসব: " + urlউৎসব);
+            StoryBook storyBookউৎসব = EpubToStoryBookConverter.getStoryBookFromEpub(new File(urlউৎসব.getFile()));
+            Image coverImageউৎসব = imageDao.read("99e3d3af620881991813482fb602a1f6", language);
+            storyBookউৎসব.setCoverImage(coverImageউৎসব);
+            storyBookউৎসব.setGradeLevel(GradeLevel.LEVEL1);
+            storyBookউৎসব.setLanguage(language);
+            storyBookউৎসব.setTimeLastUpdate(Calendar.getInstance());
+            storyBooks.add(storyBookউৎসব);
+        } else if (language == Language.ENG) {
             StoryBook storyBook = new StoryBook();
             storyBook.setLanguage(language);
             storyBook.setTimeLastUpdate(Calendar.getInstance());

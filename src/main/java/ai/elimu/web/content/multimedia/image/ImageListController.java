@@ -108,6 +108,13 @@ public class ImageListController {
         coverImageHindiNaAkoNatatakot.setContentType("image/jpg");
         images.add(coverImageHindiNaAkoNatatakot);
         
+        Image coverImageBengaliউৎসব = new Image();
+        coverImageBengaliউৎসব.setLanguage(language);
+        coverImageBengaliউৎসব.setTimeLastUpdate(Calendar.getInstance());
+        coverImageBengaliউৎসব.setTitle("99e3d3af620881991813482fb602a1f6");
+        coverImageBengaliউৎসব.setContentType("image/jpg");
+        images.add(coverImageBengaliউৎসব);
+        
         return images;
     }
 }
