@@ -85,10 +85,10 @@ public class CsvContentExtractionHelper {
                 logger.info("usageCount: " + usageCount);
                 
                 Allophone allophone = new Allophone();
-                allophone.setId(id);
+                // allophone.setId(id); // TODO: enable lookup of Allophones by ID
                 allophone.setValueIpa(valueIpa);
                 allophone.setValueSampa(valueSampa);
-                // TODO: allophone.setAudio();
+                // allophone.setAudio(); // TODO: enable lookup of Audios by ID
                 allophone.setDiacritic(diacritic);
                 allophone.setSoundType(soundType);
                 allophone.setUsageCount(usageCount);

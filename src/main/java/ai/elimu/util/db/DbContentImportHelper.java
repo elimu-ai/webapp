@@ -1,5 +1,6 @@
 package ai.elimu.util.db;
 
+import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
@@ -13,6 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 public class DbContentImportHelper {
     
     private Logger logger = Logger.getLogger(getClass());
+    
+    private AllophoneDao allophoneDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -31,12 +34,17 @@ public class DbContentImportHelper {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
         }
         
-        // Extract and import Allophones from src/main/resources
+        // Extract and import Allophones from CSV file in src/main/resources
         URL allophonesCsvFileUrl = getClass().getClassLoader()
                 .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/allophones.csv");
         File allophonesCsvFile = new File(allophonesCsvFileUrl.getFile());
         List<Allophone> allophones = CsvContentExtractionHelper.getAllophonesFromCsvBackup(allophonesCsvFile);
         logger.info("allophones.size(): " + allophones.size());
+        allophoneDao = (AllophoneDao) webApplicationContext.getBean("allophoneDao");
+        for (Allophone allophone : allophones) {
+            allophone.setLanguage(language);
+            allophoneDao.create(allophone);
+        }
         
         // Extract and import Letters
         // TODO
