@@ -264,10 +264,13 @@ public class AllophoneListController {
     private List<Allophone> generateAllophones(Language language) {
         List<Allophone> allophones = new ArrayList<>();
         
-        String[][] allophonesArray = null;
         if (language == Language.BEN) {
-            allophonesArray = allophonesArrayBEN;
-        } else if (language == Language.ENG) {
+            // Skip generation. DbContentImportHelper is used instead.
+            return allophones;
+        }
+        
+        String[][] allophonesArray = null;
+        if (language == Language.ENG) {
             allophonesArray = allophonesArrayENG;
         } else if (language == Language.FIL) {
             allophonesArray = allophonesArrayFIL;

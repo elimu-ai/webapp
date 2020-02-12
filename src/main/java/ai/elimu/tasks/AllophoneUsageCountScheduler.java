@@ -5,14 +5,11 @@ import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
-import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.PhoneticsHelper;
-import ai.elimu.util.WordFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -20,7 +17,7 @@ import org.springframework.stereotype.Service;
 /**
  * Iterates all Words and calculates the frequency of speech sounds, based on 
  * the Word's frequency in StoryBooks.
- * </ p>
+ * <p />
  * For this to work, the frequency of each Word must have been calculated and 
  * stored previously (see {@link WordUsageCountScheduler}
  */
@@ -51,7 +48,7 @@ public class AllophoneUsageCountScheduler {
             logger.info("words.size(): " + words.size());
             
             for (Word word : words) {
-                List<String> allophonesInWord = PhoneticsHelper.getAllophones(word);
+                List<String> allophonesInWord = PhoneticsHelper.getAllophones(word); // TODO: use word.getAllophones() instead
                 for (String allophoneInWord : allophonesInWord) {
                     if (!allophoneFrequencyMap.containsKey(allophoneInWord)) {
                         allophoneFrequencyMap.put(allophoneInWord, word.getUsageCount());
