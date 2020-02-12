@@ -26,7 +26,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             // To ease development, pre-populate database with educational content extracted from the test server
             
             // Lookup the language of the educational content from the config file
-            Language language = Language.valueOf(ConfigHelper.getProperty("content.language").toUpperCase());
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
             logger.info("language: " + language);
             
             // Import the educational content
