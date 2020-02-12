@@ -60,5 +60,7 @@ public class DbContentImportHelper {
         
         // Extract and import StoryBooks
         // TODO
+        
+        logger.info("Content import complete");
     }
 }
