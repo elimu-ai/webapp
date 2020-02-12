@@ -47,6 +47,7 @@ public class Contributor extends BaseEntity {
     @Column(length = 1000)
     private String motivation;
     
+    @Deprecated
     @Enumerated(EnumType.STRING)
     private Language language;
 
@@ -145,11 +146,13 @@ public class Contributor extends BaseEntity {
     public void setMotivation(String motivation) {
         this.motivation = motivation;
     }
-
+    
+    @Deprecated
     public Language getLanguage() {
         return language;
     }
 
+    @Deprecated
     public void setLanguage(Language language) {
         this.language = language;
     }

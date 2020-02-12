@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
@@ -138,6 +139,7 @@ public class SignOnControllerGoogle {
                 } else {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
                 }
+                contributor.setLanguage(Language.valueOf(ConfigHelper.getProperty("content.language")));
                 contributorDao.create(contributor);
                 
                 // Send welcome e-mail

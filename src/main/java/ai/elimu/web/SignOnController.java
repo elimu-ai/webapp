@@ -9,7 +9,9 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,6 +53,7 @@ public class SignOnController {
                 contributor.setLastName("Contributor");
                 contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 contributor.setRegistrationTime(Calendar.getInstance());
+                contributor.setLanguage(Language.valueOf(ConfigHelper.getProperty("content.language")));
                 contributorDao.create(contributor);
             }
             

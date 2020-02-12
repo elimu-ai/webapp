@@ -27,6 +27,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -173,6 +174,7 @@ public class SignOnControllerGitHub {
                 } else {
                     contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
                 }
+                contributor.setLanguage(Language.valueOf(ConfigHelper.getProperty("content.language")));
                 if (contributor.getEmail() == null) {
                     request.getSession().setAttribute("contributor", contributor);
                     new CustomAuthenticationManager().authenticateUser(contributor);
