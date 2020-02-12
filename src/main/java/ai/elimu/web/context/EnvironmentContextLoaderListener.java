@@ -62,7 +62,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
             LogManager.resetConfiguration();
             
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            URL environmentSpecificLog4JFile = classLoader.getResource(env + "_log4j.properties");
+            URL environmentSpecificLog4JFile = classLoader.getResource("log4j_" + env + ".properties");
             new PropertyConfigurator().doConfigure(environmentSpecificLog4JFile, LogManager.getLoggerRepository());
             logger = Logger.getLogger(getClass());
             logger.info("environmentSpecificLog4JFile: " + environmentSpecificLog4JFile);
