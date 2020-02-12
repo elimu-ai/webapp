@@ -23,9 +23,10 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.ServletContextResourceLoader;
 
 import ai.elimu.model.enums.Environment;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Use {@code WebApplicationContextUtils.getWebApplicationContext(servletContext)}
+ * Use {@link WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)}
  * to access this listener anywhere in the web application, outside of the framework.
  */
 public class EnvironmentContextLoaderListener extends ContextLoaderListener {
