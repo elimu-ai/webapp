@@ -92,11 +92,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         	InputStream inputStream = null;
             try {
                 // Override config.properties
-            	Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:" + env + "_config.properties");
+            	Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:config_" + env + ".properties");
                 PROPERTIES.load(resourceConfig.getInputStream());
 
                 // Override jdbc.properties
-                Resource resourceJdbc = new ServletContextResourceLoader(servletContext).getResource("classpath:" + env + "_jdbc.properties");
+                Resource resourceJdbc = new ServletContextResourceLoader(servletContext).getResource("classpath:jdbc_" + env + ".properties");
                 PROPERTIES.load(resourceJdbc.getInputStream());
                 
                 String jdbcPasswordAttr = (String) servletContext.getAttribute("jdbc_password");
