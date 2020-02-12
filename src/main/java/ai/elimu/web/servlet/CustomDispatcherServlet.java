@@ -1,9 +1,13 @@
 package ai.elimu.web.servlet;
 
+import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.db.DbContentImportHelper;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import ai.elimu.util.db.migration.DbMigrationHelper;
+import ai.elimu.util.db.DbMigrationHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 public class CustomDispatcherServlet extends DispatcherServlet {
 
@@ -16,6 +20,17 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         // Database migration
         logger.info("Performing database migration...");
         new DbMigrationHelper().performDatabaseMigration(wac);
+        
+        if (EnvironmentContextLoaderListener.env == Environment.DEV) {
+            // To ease development, pre-populate database with educational content extracted from the test server
+            
+            // Lookup the preferred language from the config file
+            // TODO
+            Language language = Language.BEN;
+            
+            // Import the educational content
+            new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, wac);
+        }
 
         return wac;
     }

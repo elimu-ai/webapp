@@ -1,4 +1,4 @@
-package ai.elimu.util.db.migration;
+package ai.elimu.util.db;
 
 import java.io.File;
 import java.io.FileNotFoundException;
