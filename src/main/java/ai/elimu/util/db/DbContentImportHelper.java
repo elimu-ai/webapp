@@ -15,10 +15,12 @@ public class DbContentImportHelper {
      * 
      * @param environment The environment from which to import the database content.
      * @param language The language to use during the import.
-     * @param wac Context needed to access DAOs.
+     * @param webApplicationContext Context needed to access DAOs.
      */
-    public synchronized void performDatabaseContentImport(Environment environment, Language language, WebApplicationContext wac) {
+    public synchronized void performDatabaseContentImport(Environment environment, Language language, WebApplicationContext webApplicationContext) {
         logger.info("performDatabaseContentImport");
+        
+        logger.info("environment: " + environment + ", language: " + language);
         
         if (!((environment == Environment.TEST) || (environment == Environment.PROD))) {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");

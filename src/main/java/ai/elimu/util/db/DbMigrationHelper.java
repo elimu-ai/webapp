@@ -20,10 +20,10 @@ public class DbMigrationHelper {
 
     private DbMigrationDao dbMigrationDao;
     
-    public synchronized void performDatabaseMigration(WebApplicationContext wac) {
+    public synchronized void performDatabaseMigration(WebApplicationContext webApplicationContext) {
         logger.info("performDatabaseMigration");
         
-        dbMigrationDao = (DbMigrationDao) wac.getBean("dbMigrationDao");
+        dbMigrationDao = (DbMigrationDao) webApplicationContext.getBean("dbMigrationDao");
         
         String pomVersion = ConfigHelper.getProperty("application.version");
         logger.info("pomVersion: " + pomVersion);

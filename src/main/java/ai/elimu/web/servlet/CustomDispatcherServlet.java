@@ -15,11 +15,11 @@ public class CustomDispatcherServlet extends DispatcherServlet {
     protected WebApplicationContext initWebApplicationContext() {
     	logger.info("initWebApplicationContext");
     	
-        WebApplicationContext wac = super.initWebApplicationContext();
+        WebApplicationContext webApplicationContext = super.initWebApplicationContext();
         
         // Database migration
         logger.info("Performing database migration...");
-        new DbMigrationHelper().performDatabaseMigration(wac);
+        new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             // To ease development, pre-populate database with educational content extracted from the test server
@@ -29,9 +29,9 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             Language language = Language.BEN;
             
             // Import the educational content
-            new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, wac);
+            new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, webApplicationContext);
         }
 
-        return wac;
+        return webApplicationContext;
     }
 }
