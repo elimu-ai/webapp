@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,16 +28,15 @@ public class ApplicationListController {
     private ApplicationDao applicationDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        logger.info("contributor.getLanguage(): " + contributor.getLanguage());
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         
         // List count of active Android applications for each EGRA/EGMA skill
         
-        List<Application> activeApplications = applicationDao.readAllByStatus(contributor.getLanguage(), ApplicationStatus.ACTIVE);
+        List<Application> activeApplications = applicationDao.readAllByStatus(language, ApplicationStatus.ACTIVE);
         logger.info("activeApplications.size(): " + activeApplications.size());
         
         Map<LiteracySkill, Integer> literacySkillCountMap = new LinkedHashMap<>();
@@ -81,7 +80,7 @@ public class ApplicationListController {
         model.addAttribute("maxNumeracySkillCount", maxNumeracySkillCount);
         
         
-        List<Application> applications = applicationDao.readAll(contributor.getLanguage());
+        List<Application> applications = applicationDao.readAll(language);
         model.addAttribute("applications", applications);
 
         return "admin/application/list";

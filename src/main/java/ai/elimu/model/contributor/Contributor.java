@@ -13,7 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
 
 @Entity
@@ -46,10 +45,6 @@ public class Contributor extends BaseEntity {
     
     @Column(length = 1000)
     private String motivation;
-    
-    @Deprecated
-    @Enumerated(EnumType.STRING)
-    private Language language;
 
     public String getEmail() {
         return email;
@@ -145,15 +140,5 @@ public class Contributor extends BaseEntity {
 
     public void setMotivation(String motivation) {
         this.motivation = motivation;
-    }
-    
-    @Deprecated
-    public Language getLanguage() {
-        return language;
-    }
-
-    @Deprecated
-    public void setLanguage(Language language) {
-        this.language = language;
     }
 }

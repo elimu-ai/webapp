@@ -3,12 +3,11 @@ package ai.elimu.web.content.allophone;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -232,22 +231,22 @@ public class AllophoneListController {
     private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         // To ease development/testing, auto-generate Allophones
-        List<Allophone> allophonesGenerated = generateAllophones(contributor.getLanguage());
+        List<Allophone> allophonesGenerated = generateAllophones(language);
         for (Allophone allophone : allophonesGenerated) {
             logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/, allophone.getValueSampa(): " + allophone.getValueSampa());
-            Allophone existingAllophone = allophoneDao.readByValueIpa(contributor.getLanguage(), allophone.getValueIpa());
+            Allophone existingAllophone = allophoneDao.readByValueIpa(language, allophone.getValueIpa());
             if (existingAllophone == null) {
                 allophoneDao.create(allophone);
             }
         }
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
         model.addAttribute("allophones", allophones);
         
         int maxUsageCount = 0;

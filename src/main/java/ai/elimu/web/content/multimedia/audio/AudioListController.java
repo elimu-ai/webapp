@@ -1,12 +1,12 @@
 package ai.elimu.web.content.multimedia.audio;
 
 import java.util.List;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +23,12 @@ public class AudioListController {
     private AudioDao audioDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        List<Audio> audios = audioDao.readAllOrdered(contributor.getLanguage());
+        List<Audio> audios = audioDao.readAllOrdered(language);
         model.addAttribute("audios", audios);
 
         return "content/multimedia/audio/list";

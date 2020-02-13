@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="image" />
 
             <div class="row">
-                <form:hidden path="language" value="${contributor.language}" />
+                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
                 <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
                 
                 <div class="input-field col s12">

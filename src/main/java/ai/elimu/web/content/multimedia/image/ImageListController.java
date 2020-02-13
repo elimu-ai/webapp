@@ -5,15 +5,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.io.IOUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +31,16 @@ public class ImageListController {
     private ImageDao imageDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         // To ease development/testing, auto-generate Images
-        List<Image> imagesGenerated = generateImages(contributor.getLanguage());
+        List<Image> imagesGenerated = generateImages(language);
         for (Image image : imagesGenerated) {
             String contentType = image.getContentType();
-            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
+            Image existingImage = imageDao.read(image.getTitle(), language);
             if (existingImage == null) {
                 ImageFormat imageFormat = ImageFormat.PNG;
                 image.setContentType("image/png");
@@ -66,7 +65,7 @@ public class ImageListController {
             }
         }
         
-        List<Image> images = imageDao.readAllOrdered(contributor.getLanguage());
+        List<Image> images = imageDao.readAllOrdered(language);
         model.addAttribute("images", images);
 
         return "content/multimedia/image/list";
