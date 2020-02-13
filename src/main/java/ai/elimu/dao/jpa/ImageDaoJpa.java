@@ -57,10 +57,10 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
     @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(i) " +
-                "FROM Image i " +
-                "WHERE i.language = :language")
-                .setParameter("language", language)
-                .getSingleResult();
+            "SELECT COUNT(i) " +
+            "FROM Image i " +
+            "WHERE i.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

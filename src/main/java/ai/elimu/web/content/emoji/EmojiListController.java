@@ -4,6 +4,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.model.content.Emoji;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,8 @@ public class EmojiListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<Emoji> emojis = emojiDao.readAllOrdered();
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Emoji> emojis = emojiDao.readAllOrdered(language);
         model.addAttribute("emojis", emojis);
 
         return "content/emoji/list";

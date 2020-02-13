@@ -43,10 +43,10 @@ public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
     @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(v) " +
-                "FROM Video v " +
-                "WHERE v.language = :language")
-                .setParameter("language", language)
-                .getSingleResult();
+            "SELECT COUNT(v) " +
+            "FROM Video v " +
+            "WHERE v.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

@@ -80,3 +80,5 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 79,"ˌ","%",null,false,null,0
 80,"ˈ","""",null,false,null,0
 81,"ɝ","@`",null,false,null,0
+82,"_","_",null,false,null,0
+83,".",".",null,false,null,-1

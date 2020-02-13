@@ -42,10 +42,10 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
     @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(n) " +
-                "FROM Number n " +
-                "WHERE n.language = :language")
-                .setParameter("language", language)
-                .getSingleResult();
+            "SELECT COUNT(n) " +
+            "FROM Number n " +
+            "WHERE n.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

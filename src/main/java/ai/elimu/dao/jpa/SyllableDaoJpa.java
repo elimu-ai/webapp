@@ -42,10 +42,10 @@ public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableD
     @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(s) " +
-                "FROM Syllable s " +
-                "WHERE s.language = :language")
-                .setParameter("language", language)
-                .getSingleResult();
+            "SELECT COUNT(s) " +
+            "FROM Syllable s " +
+            "WHERE s.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

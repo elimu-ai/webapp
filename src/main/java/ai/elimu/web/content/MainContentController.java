@@ -1,5 +1,6 @@
 package ai.elimu.web.content;
 
+import ai.elimu.dao.AllophoneDao;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
@@ -32,6 +34,9 @@ public class MainContentController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
+    private AllophoneDao allophoneDao;
+    
+    @Autowired
     private NumberDao numberDao;
     
     @Autowired
@@ -42,6 +47,9 @@ public class MainContentController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private EmojiDao emojiDao;
     
     @Autowired
     private StoryBookDao storyBookDao;
@@ -83,12 +91,12 @@ public class MainContentController {
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        model.addAttribute("allophoneCount", -1); // TODO: implement readCount() in allophoneDao
+        model.addAttribute("allophoneCount", allophoneDao.readCount(language));
         model.addAttribute("numberCount", numberDao.readCount(language));
         model.addAttribute("letterCount", letterDao.readCount(language));
         model.addAttribute("syllableCount", syllableDao.readCount(language));
         model.addAttribute("wordCount", wordDao.readCount(language));
-        model.addAttribute("emojiCount", -1); // TODO: implement readCount() in emojiDao
+        model.addAttribute("emojiCount", emojiDao.readCount(language));
         model.addAttribute("storyBookCount", storyBookDao.readCount(language));
         model.addAttribute("audioCount", audioDao.readCount(language));
         model.addAttribute("imageCount", imageDao.readCount(language));

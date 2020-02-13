@@ -42,10 +42,10 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
     @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(l) " +
-                "FROM Letter l " +
-                "WHERE l.language = :language")
-                .setParameter("language", language)
-                .getSingleResult();
+            "SELECT COUNT(l) " +
+            "FROM Letter l " +
+            "WHERE l.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

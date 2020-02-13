@@ -66,4 +66,14 @@ public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements Allopho
             .setParameter("language", language)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Language language) throws DataAccessException {
+        return (Long) em.createQuery(
+            "SELECT COUNT(a) " +
+            "FROM Allophone a " +
+            "WHERE a.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
+    }
 }

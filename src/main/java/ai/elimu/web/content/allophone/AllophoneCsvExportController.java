@@ -2,6 +2,8 @@ package ai.elimu.web.content.allophone;
 
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -31,7 +33,8 @@ public class AllophoneCsvExportController {
         
         // Generate CSV file
         String csvFileContent = "id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count" + "\n";
-        List<Allophone> allophones = allophoneDao.readAll();
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
         logger.info("allophones.size(): " + allophones.size());
         for (Allophone allophone : allophones) {
             csvFileContent += allophone.getId() + ","
