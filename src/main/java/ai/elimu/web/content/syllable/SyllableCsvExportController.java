@@ -3,6 +3,8 @@ package ai.elimu.web.content.syllable;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Syllable;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -33,7 +35,8 @@ public class SyllableCsvExportController {
         
         // Generate CSV file
         String csvFileContent = "id,text,allophone_ids,usage_count" + "\n";
-        List<Syllable> syllables = syllableDao.readAll();
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Syllable> syllables = syllableDao.readAllOrdered(language);
         logger.info("syllables.size(): " + syllables.size());
         for (Syllable syllable : syllables) {
             long[] allophoneIdsArray = new long[syllable.getAllophones().size()];
