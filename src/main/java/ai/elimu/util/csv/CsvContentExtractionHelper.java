@@ -3,7 +3,9 @@ package ai.elimu.util.csv;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.allophone.SoundType;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -129,8 +131,8 @@ public class CsvContentExtractionHelper {
                     continue;
                 }
                 
-                // Expected header format: id,text,allophone_ids,usage_count
-                // Expected row format: 1,"অ",[4],-1
+                // Expected header format: id,text,allophone_values_ipa,allophone_ids,usage_count
+                // Expected row format: 1,"অ",[ɔ],[4],-1
                 
                 // Prevent "অ" from being stored as ""অ""
                 // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
@@ -153,8 +155,26 @@ public class CsvContentExtractionHelper {
                 String text = String.valueOf(rowValues[1]);
                 logger.info("text: \"" + text + "\"");
                 
+                // "allophone_values_ipa"
+                String allophoneValuesIpa = String.valueOf(rowValues[2]);
+                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
+                allophoneValuesIpa = allophoneValuesIpa.replace("[", "");
+                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
+                allophoneValuesIpa = allophoneValuesIpa.replace("]", "");
+                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
+                String[] allophoneValuesIpaArray = allophoneValuesIpa.split("\\|");
+                logger.info("Arrays.toString(allophoneValuesIpaArray): " + Arrays.toString(allophoneValuesIpaArray));
+                List<Allophone> allophones = new ArrayList<>();
+                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+                for (String allophoneValueIpa : allophoneValuesIpaArray) {
+                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
+                    Allophone allophone = allophoneDao.readByValueIpa(language, allophoneValueIpa);
+                    logger.info("allophone.getId(): \"" + allophone.getId() + "\"");
+                    allophones.add(allophone);
+                }
+                
                 // "allophone_ids"
-                String allophoneIds = String.valueOf(rowValues[2]);
+                String allophoneIds = String.valueOf(rowValues[3]);
                 logger.info("allophoneIds: \"" + allophoneIds + "\"");
                 allophoneIds = allophoneIds.replace("[", "");
                 logger.info("allophoneIds: \"" + allophoneIds + "\"");
@@ -162,16 +182,9 @@ public class CsvContentExtractionHelper {
                 logger.info("allophoneIds: \"" + allophoneIds + "\"");
                 String[] allophoneIdsArray = allophoneIds.split("\\|");
                 logger.info("Arrays.toString(allophoneIdsArray): " + Arrays.toString(allophoneIdsArray));
-                List<Allophone> allophones = new ArrayList<>();
-                for (String allophoneIdAsString : allophoneIdsArray) {
-                    Long allophoneId = Long.valueOf(allophoneIdAsString);
-                    Allophone allophone = allophoneDao.read(allophoneId); // TODO: read by IPA value instead
-                    logger.info("allophone.getValueIpa(): \"" + allophone.getValueIpa() + "\"");
-                    allophones.add(allophone);
-                }
                 
                 // "usage_count"
-                int usageCount = Integer.valueOf(rowValues[3]);
+                int usageCount = Integer.valueOf(rowValues[4]);
                 logger.info("usageCount: " + usageCount);
                 
                 Letter letter = new Letter();

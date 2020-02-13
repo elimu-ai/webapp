@@ -61,7 +61,7 @@ public class LetterListController {
     private List<Letter> generateLetters(Language language) {
         List<Letter> letters = new ArrayList<>();
         
-        if (language == Language.BEN) {
+        if ((language == Language.BEN) || (language == Language.FIL)) {
             // Skip generation. DbContentImportHelper is used instead.
             return letters;
         }
