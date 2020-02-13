@@ -3,6 +3,8 @@ package ai.elimu.web.content.number;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -33,7 +35,8 @@ public class NumberCsvExportController {
         
         // Generate CSV file
         String csvFileContent = "id,value,symbol,word_ids" + "\n";
-        List<Number> numbers = numberDao.readAll();
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Number> numbers = numberDao.readAllOrdered(language);
         logger.info("numbers.size(): " + numbers.size());
         for (Number number : numbers) {
             long[] wordIdsArray = new long[number.getWords().size()];

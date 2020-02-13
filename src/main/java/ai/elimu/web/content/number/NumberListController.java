@@ -38,7 +38,7 @@ public class NumberListController {
         // To ease development/testing, auto-generate Numbers
         List<Number> numbersGenerated = generateNumbers(language);
         for (Number number : numbersGenerated) {
-            Number existingNumber = numberDao.readByValue(number.getLanguage(), number.getValue());
+            Number existingNumber = numberDao.readByValue(language, number.getValue());
             if (existingNumber == null) {
                 numberDao.create(number);
             }

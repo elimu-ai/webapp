@@ -41,3 +41,4 @@ id,text,phonetics,allophone_ids,usage_count,wordType,spellingConsistency
 40,"twenty-two",/ˈtwɛntiˈtu/,[],0,null,null
 41,"thirty",/ˈθɝtɪ/,[],0,null,null
 42,"thelathini",/θɛlɑθini/,[],0,null,null
+43,"test",/tɛst/,[],0,null,PERFECT

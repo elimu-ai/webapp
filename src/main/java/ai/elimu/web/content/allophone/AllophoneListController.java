@@ -263,7 +263,7 @@ public class AllophoneListController {
     private List<Allophone> generateAllophones(Language language) {
         List<Allophone> allophones = new ArrayList<>();
         
-        if ((language == Language.BEN) || (language == Language.FIL)) {
+        if ((language == Language.BEN) || (language == Language.ENG) || (language == Language.FIL)) {
             // Skip generation. DbContentImportHelper is used instead.
             return allophones;
         }

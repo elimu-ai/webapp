@@ -3,6 +3,8 @@ package ai.elimu.web.content.word;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -33,7 +35,8 @@ public class WordCsvExportController {
         
         // Generate CSV file
         String csvFileContent = "id,text,phonetics,allophone_ids,usage_count,wordType,spellingConsistency" + "\n";
-        List<Word> words = wordDao.readAll();
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Word> words = wordDao.readAllOrderedByUsage(language);
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             long[] allophoneIdsArray = new long[word.getAllophones().size()];
