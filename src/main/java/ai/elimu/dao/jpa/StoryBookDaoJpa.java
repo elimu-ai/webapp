@@ -42,10 +42,10 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
     @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(s) " +
-                "FROM StoryBook s " +
-                "WHERE s.language = :language")
-                .setParameter("language", language)
-                .getSingleResult();
+            "SELECT COUNT(s) " +
+            "FROM StoryBook s " +
+            "WHERE s.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

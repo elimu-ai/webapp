@@ -65,10 +65,10 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
     @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(w) " +
-                "FROM Word w " +
-                "WHERE w.language = :language")
-                .setParameter("language", language)
-                .getSingleResult();
+            "SELECT COUNT(w) " +
+            "FROM Word w " +
+            "WHERE w.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

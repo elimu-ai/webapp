@@ -7,6 +7,7 @@ import ai.elimu.dao.EmojiDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Emoji;
+import ai.elimu.model.enums.Language;
 
 public class EmojiDaoJpa extends GenericDaoJpa<Emoji> implements EmojiDao {
 
@@ -26,11 +27,23 @@ public class EmojiDaoJpa extends GenericDaoJpa<Emoji> implements EmojiDao {
     }
 
     @Override
-    public List<Emoji> readAllOrdered() throws DataAccessException {
+    public List<Emoji> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT e " +
             "FROM Emoji e " +
+            "WHERE e.language = :language " +
             "ORDER BY e.glyph")
+            .setParameter("language", language)
             .getResultList();
+    }
+    
+    @Override
+    public Long readCount(Language language) throws DataAccessException {
+        return (Long) em.createQuery(
+            "SELECT COUNT(e) " +
+            "FROM Emoji e " +
+            "WHERE e.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

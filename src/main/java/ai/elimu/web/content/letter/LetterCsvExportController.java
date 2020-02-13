@@ -3,6 +3,8 @@ package ai.elimu.web.content.letter;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -33,7 +35,8 @@ public class LetterCsvExportController {
         
         // Generate CSV file
         String csvFileContent = "id,text,allophone_values_ipa,allophone_ids,usage_count" + "\n";
-        List<Letter> letters = letterDao.readAll();
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Letter> letters = letterDao.readAllOrdered(language);
         logger.info("letters.size(): " + letters.size());
         for (Letter letter : letters) {
             logger.info("letter.getText(): \"" + letter.getText() + "\"");
