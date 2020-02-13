@@ -38,7 +38,7 @@ public class LetterListController {
         List<Letter> lettersGenerated = generateLetters(language);
         for (Letter letter : lettersGenerated) {
             logger.info("letter.getText(): " + letter.getText());
-            Letter existingLetter = letterDao.readByText(letter.getLanguage(), letter.getText());
+            Letter existingLetter = letterDao.readByText(language, letter.getText());
             if (existingLetter == null) {
                 letterDao.create(letter);
             }
@@ -60,6 +60,11 @@ public class LetterListController {
     
     private List<Letter> generateLetters(Language language) {
         List<Letter> letters = new ArrayList<>();
+        
+        if (language == Language.BEN) {
+            // Skip generation. DbContentImportHelper is used instead.
+            return letters;
+        }
         
         if (language == Language.BEN) {
             // Vowels - https://en.wikipedia.org/wiki/Bengali_alphabet#Vowels

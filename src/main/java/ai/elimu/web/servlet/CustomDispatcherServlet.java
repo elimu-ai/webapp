@@ -30,6 +30,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             logger.info("language: " + language);
             
             // Import the educational content
+            logger.info("Performing database content import...");
             new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, webApplicationContext);
         }
 

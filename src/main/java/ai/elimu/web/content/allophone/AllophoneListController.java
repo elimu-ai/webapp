@@ -269,7 +269,9 @@ public class AllophoneListController {
         }
         
         String[][] allophonesArray = null;
-        if (language == Language.ENG) {
+        if (language == Language.BEN) {
+            allophonesArray = allophonesArrayBEN;
+        } else if (language == Language.ENG) {
             allophonesArray = allophonesArrayENG;
         } else if (language == Language.FIL) {
             allophonesArray = allophonesArrayFIL;

@@ -1,6 +1,8 @@
 package ai.elimu.util.csv;
 
+import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Letter;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import java.io.File;
@@ -101,5 +103,90 @@ public class CsvContentExtractionHelper {
         }
         
         return allophones;
+    }
+    
+    /**
+     * For information on how the CSV files were generated, see {@link LetterCsvExportController#handleRequest}.
+     */
+    public static List<Letter> getLettersFromCsvBackup(File csvFile, AllophoneDao allophoneDao) {
+        logger.info("getLettersFromCsvBackup");
+        
+        logger.info("csvFile: " + csvFile);
+        
+        List<Letter> letters = new ArrayList<>();
+        
+        try {
+            Scanner scanner = new Scanner(csvFile);
+            int rowNumber = 0;
+            while (scanner.hasNextLine()) {
+                String row = scanner.nextLine();
+                logger.info("row: " + row);
+                
+                rowNumber++;
+                
+                if (rowNumber == 1) {
+                    // Skip the header row
+                    continue;
+                }
+                
+                // Expected header format: id,text,allophone_ids,usage_count
+                // Expected row format: 1,"অ",[4],-1
+                
+                // Prevent "অ" from being stored as ""অ""
+                // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
+                row = row.replace("\"", "");
+                logger.info("row (after removing '\"'): " + row);
+                
+                // Prevent "java.lang.NumberFormatException: For input string: " 6]""
+                // TODO: find more robust solution
+                row = row.replace(", ", "|");
+                logger.info("row (after removing ', '): " + row);
+                
+                String[] rowValues = row.split(",");
+                logger.info("rowValues: " + Arrays.toString(rowValues));
+                
+                // "id"
+                Long id = Long.valueOf(rowValues[0]);
+                logger.info("id: " + id);
+                
+                // "text"
+                String text = String.valueOf(rowValues[1]);
+                logger.info("text: \"" + text + "\"");
+                
+                // "allophone_ids"
+                String allophoneIds = String.valueOf(rowValues[2]);
+                logger.info("allophoneIds: \"" + allophoneIds + "\"");
+                allophoneIds = allophoneIds.replace("[", "");
+                logger.info("allophoneIds: \"" + allophoneIds + "\"");
+                allophoneIds = allophoneIds.replace("]", "");
+                logger.info("allophoneIds: \"" + allophoneIds + "\"");
+                String[] allophoneIdsArray = allophoneIds.split("\\|");
+                logger.info("Arrays.toString(allophoneIdsArray): " + Arrays.toString(allophoneIdsArray));
+                List<Allophone> allophones = new ArrayList<>();
+                for (String allophoneIdAsString : allophoneIdsArray) {
+                    Long allophoneId = Long.valueOf(allophoneIdAsString);
+                    Allophone allophone = allophoneDao.read(allophoneId); // TODO: read by IPA value instead
+                    logger.info("allophone.getValueIpa(): \"" + allophone.getValueIpa() + "\"");
+                    allophones.add(allophone);
+                }
+                
+                // "usage_count"
+                int usageCount = Integer.valueOf(rowValues[3]);
+                logger.info("usageCount: " + usageCount);
+                
+                Letter letter = new Letter();
+                // letter.setId(id); // TODO: to enable later lookup of the same Letter by its ID
+                letter.setText(text);
+                letter.setAllophones(allophones);
+                letter.setUsageCount(usageCount);
+                
+                letters.add(letter);
+            }
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            logger.error(null, ex);
+        }
+        
+        return letters;
     }
 }
