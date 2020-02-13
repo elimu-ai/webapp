@@ -13,6 +13,10 @@ This file is placed on the test server under jetty.home/contexts/
     <Arg>TEST</Arg>
   </Call>
   <Call name="setAttribute">
+    <Arg>content_language</Arg>
+    <Arg>***</Arg>
+  </Call>
+  <Call name="setAttribute">
     <Arg>jdbc_password</Arg>
     <Arg>************</Arg>
   </Call>
@@ -31,6 +35,7 @@ This file is placed on the test server under jetty.home/contexts/
   <Set name="virtualHosts">
     <Array type="java.lang.String">
       <Item>test.elimu.ai</Item>
+      <Item>ben.test.elimu.ai</Item>
       <Item>eng.test.elimu.ai</Item>
       <Item>fil.test.elimu.ai</Item>
       <Item>hin.test.elimu.ai</Item>

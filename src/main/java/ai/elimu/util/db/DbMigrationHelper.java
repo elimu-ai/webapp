@@ -1,4 +1,4 @@
-package ai.elimu.util.db.migration;
+package ai.elimu.util.db;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,10 +20,10 @@ public class DbMigrationHelper {
 
     private DbMigrationDao dbMigrationDao;
     
-    public synchronized void performDatabaseMigration(WebApplicationContext wac) {
+    public synchronized void performDatabaseMigration(WebApplicationContext webApplicationContext) {
         logger.info("performDatabaseMigration");
         
-        dbMigrationDao = (DbMigrationDao) wac.getBean("dbMigrationDao");
+        dbMigrationDao = (DbMigrationDao) webApplicationContext.getBean("dbMigrationDao");
         
         String pomVersion = ConfigHelper.getProperty("application.version");
         logger.info("pomVersion: " + pomVersion);
@@ -53,9 +53,9 @@ public class DbMigrationHelper {
             if (versionOfMostRecentMigration < pomVersionAsInteger) {
                 logger.info("Looking up pending DB migrations after version " + versionOfMostRecentMigration);
                 
-                // Look up SQL scripts from src/main/resources/db/migration
+                // Look up SQL scripts from src/main/resources/db
                 for (int scriptVersion = (versionOfMostRecentMigration + 1); scriptVersion <= pomVersionAsInteger; scriptVersion++) {
-                    String filePath = "db/migration/" + scriptVersion + ".sql";
+                    String filePath = "db/" + scriptVersion + ".sql";
                     logger.info("Looking up file \"" + filePath + "\"...");
                     URL url = getClass().getClassLoader().getResource(filePath);
                     if ((url != null) && StringUtils.isNotBlank(url.getFile())) {

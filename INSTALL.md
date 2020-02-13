@@ -16,7 +16,7 @@ Go to the project's folder:
 
 Then, to run the application, type:
     
-    mvn test jetty:run
+    mvn clean test jetty:run
 
 Next, to access the application in your browser, go to [http://localhost:8080/webapp](http://localhost:8080/webapp)
 
@@ -34,8 +34,8 @@ http://`<language>`.elimu.ai
 
 A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/master/src/main/java/ai/elimu/model/enums/Language.java
 
-The default language used during development is English. To switch to another language, edit the `language` property in [src/main/resources/config.properties](../blob/master/src/main/resources/config.properties).
+The default language used during development is English. To switch to another language, edit the `content.language` property in [src/main/resources/config.properties](../blob/master/src/main/resources/config.properties).
 
 ## Contributing guidelines
 
-For guidelines on how to work on issues, see https://github.com/elimu-ai/webapp/blob/master/CONTRIBUTING.md
+For guidelines on how to work on issues, see [CONTRIBUTING.md](../blob/master/CONTRIBUTING.md)

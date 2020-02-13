@@ -2,15 +2,15 @@ package ai.elimu.web.content.emoji;
 
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.EmojiDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,17 +33,16 @@ public class EmojiEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
-            HttpSession session,
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Emoji emoji = emojiDao.read(id);
         model.addAttribute("emoji", emoji);
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
         model.addAttribute("allophones", allophones);
 
         return "content/emoji/edit";
@@ -51,13 +50,12 @@ public class EmojiEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             @Valid Emoji emoji,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
         if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
@@ -67,7 +65,7 @@ public class EmojiEditController {
         if (result.hasErrors()) {
             model.addAttribute("emoji", emoji);
             
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
+            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
             model.addAttribute("allophones", allophones);
             
             return "content/emoji/edit";

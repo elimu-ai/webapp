@@ -4,17 +4,17 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.GradeLevel;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,17 +38,17 @@ public class StoryBookEditController {
     private ImageDao imageDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id, HttpSession session) {
+    public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         StoryBook storyBook = storyBookDao.read(id);
         model.addAttribute("storyBook", storyBook);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
         
-        List<Image> coverImages = imageDao.readAllOrdered(contributor.getLanguage());
+        List<Image> coverImages = imageDao.readAllOrdered(language);
         model.addAttribute("coverImages", coverImages);
         
         model.addAttribute("gradeLevels", GradeLevel.values());
@@ -64,16 +64,15 @@ public class StoryBookEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             @Valid StoryBook storyBook,
             BindingResult result,
             Model model,
             HttpServletRequest request) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getLanguage(), storyBook.getTitle());
+        StoryBook existingStoryBook = storyBookDao.readByTitle(language, storyBook.getTitle());
         if ((existingStoryBook != null) && !existingStoryBook.getId().equals(storyBook.getId())) {
             result.rejectValue("title", "NonUnique");
         }
@@ -83,7 +82,7 @@ public class StoryBookEditController {
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
-            List<Image> coverImages = imageDao.readAllOrdered(contributor.getLanguage());
+            List<Image> coverImages = imageDao.readAllOrdered(language);
             model.addAttribute("coverImages", coverImages);
             
             model.addAttribute("gradeLevels", GradeLevel.values());

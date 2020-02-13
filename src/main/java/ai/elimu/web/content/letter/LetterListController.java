@@ -3,14 +3,13 @@ package ai.elimu.web.content.letter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,22 +29,22 @@ public class LetterListController {
     private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         // To ease development/testing, auto-generate Letters
-        List<Letter> lettersGenerated = generateLetters(contributor.getLanguage());
+        List<Letter> lettersGenerated = generateLetters(language);
         for (Letter letter : lettersGenerated) {
             logger.info("letter.getText(): " + letter.getText());
-            Letter existingLetter = letterDao.readByText(letter.getLanguage(), letter.getText());
+            Letter existingLetter = letterDao.readByText(language, letter.getText());
             if (existingLetter == null) {
                 letterDao.create(letter);
             }
         }
         
-        List<Letter> letters = letterDao.readAllOrdered(contributor.getLanguage());
+        List<Letter> letters = letterDao.readAllOrdered(language);
         model.addAttribute("letters", letters);
         
         int maxUsageCount = 0;
@@ -61,6 +60,11 @@ public class LetterListController {
     
     private List<Letter> generateLetters(Language language) {
         List<Letter> letters = new ArrayList<>();
+        
+        if ((language == Language.BEN) || (language == Language.FIL)) {
+            // Skip generation. DbContentImportHelper is used instead.
+            return letters;
+        }
         
         if (language == Language.BEN) {
             // Vowels - https://en.wikipedia.org/wiki/Bengali_alphabet#Vowels

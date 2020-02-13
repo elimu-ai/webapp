@@ -16,6 +16,8 @@ import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
@@ -79,16 +81,18 @@ public class MainContentController {
             }
         }
         
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        
         model.addAttribute("allophoneCount", -1); // TODO: implement readCount() in allophoneDao
-        model.addAttribute("numberCount", numberDao.readCount(contributor.getLanguage()));
-        model.addAttribute("letterCount", letterDao.readCount(contributor.getLanguage()));
-        model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLanguage()));
-        model.addAttribute("wordCount", wordDao.readCount(contributor.getLanguage()));
+        model.addAttribute("numberCount", numberDao.readCount(language));
+        model.addAttribute("letterCount", letterDao.readCount(language));
+        model.addAttribute("syllableCount", syllableDao.readCount(language));
+        model.addAttribute("wordCount", wordDao.readCount(language));
         model.addAttribute("emojiCount", -1); // TODO: implement readCount() in emojiDao
-        model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLanguage()));
-        model.addAttribute("audioCount", audioDao.readCount(contributor.getLanguage()));
-        model.addAttribute("imageCount", imageDao.readCount(contributor.getLanguage()));
-        model.addAttribute("videoCount", videoDao.readCount(contributor.getLanguage()));
+        model.addAttribute("storyBookCount", storyBookDao.readCount(language));
+        model.addAttribute("audioCount", audioDao.readCount(language));
+        model.addAttribute("imageCount", imageDao.readCount(language));
+        model.addAttribute("videoCount", videoDao.readCount(language));
     	
         return "content/main";
     }

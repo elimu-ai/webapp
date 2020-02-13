@@ -2,10 +2,8 @@ package ai.elimu.web.content.storybook;
 
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;

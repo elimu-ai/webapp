@@ -4,13 +4,12 @@ import ai.elimu.dao.AllophoneDao;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.content.number.NumberListController;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +31,16 @@ public class WordListController {
     private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         // To ease development/testing, auto-generate Words
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
-        List<Word> wordsGenerated = generateWords(contributor.getLanguage());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
+        List<Word> wordsGenerated = generateWords(language);
         for (Word word : wordsGenerated) {
-            Word existingWord = wordDao.readByText(word.getLanguage(), word.getText());
+            Word existingWord = wordDao.readByText(language, word.getText());
             if (existingWord == null) {
                 // Verify that only valid Allophones are used (copied from WordCreateController#handleSubmit)
                 String allAllophonesCombined = "";
@@ -61,7 +60,7 @@ public class WordListController {
             }
         }
         
-        List<Word> words = wordDao.readAllOrderedByUsage(contributor.getLanguage());
+        List<Word> words = wordDao.readAllOrderedByUsage(language);
         model.addAttribute("words", words);
         
         int maxUsageCount = 0;

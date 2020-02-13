@@ -3,14 +3,13 @@ package ai.elimu.web.content.number;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.content.word.WordListController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,13 +30,13 @@ public class NumberListController {
     private WordDao wordDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         // To ease development/testing, auto-generate Numbers
-        List<Number> numbersGenerated = generateNumbers(contributor.getLanguage());
+        List<Number> numbersGenerated = generateNumbers(language);
         for (Number number : numbersGenerated) {
             Number existingNumber = numberDao.readByValue(number.getLanguage(), number.getValue());
             if (existingNumber == null) {
@@ -45,7 +44,7 @@ public class NumberListController {
             }
         }
         
-        List<Number> numbers = numberDao.readAllOrdered(contributor.getLanguage());
+        List<Number> numbers = numberDao.readAllOrdered(language);
         model.addAttribute("numbers", numbers);
 
         return "content/number/list";

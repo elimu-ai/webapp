@@ -3,7 +3,6 @@ package ai.elimu.web.content.word;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
@@ -12,7 +11,6 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
@@ -20,6 +18,7 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,14 +45,14 @@ public class WordCreateController {
     private SyllableDao syllableDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
         Word word = new Word();
         model.addAttribute("word", word);
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
         model.addAttribute("allophones", allophones);
         
         model.addAttribute("wordTypes", WordType.values());
@@ -65,19 +64,19 @@ public class WordCreateController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             @Valid Word word,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Word existingWord = wordDao.readByText(word.getLanguage(), word.getText());
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        
+        Word existingWord = wordDao.readByText(language, word.getText());
         if (existingWord != null) {
             result.rejectValue("text", "NonUnique");
         }
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLanguage());
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
         
         // Verify that only valid Allophones are used
         String allAllophonesCombined = "";
@@ -101,7 +100,7 @@ public class WordCreateController {
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             return "content/word/create";
         } else {
-            if (contributor.getLanguage() == Language.ENG) {
+            if (language == Language.ENG) {
                 if (!"I".equals(word.getText())) {
                     word.setText(word.getText().toLowerCase());
                 }
@@ -110,7 +109,7 @@ public class WordCreateController {
             wordDao.create(word);
             
             // Label Image with Word of matching title
-            Image matchingImage = imageDao.read(word.getText(), word.getLanguage());
+            Image matchingImage = imageDao.read(word.getText(), language);
             if (matchingImage != null) {
                 Set<Word> labeledWords = matchingImage.getWords();
                 if (!labeledWords.contains(word)) {
@@ -121,7 +120,7 @@ public class WordCreateController {
             }
             
             // Delete syllables that are actual words
-            Syllable syllable = syllableDao.readByText(contributor.getLanguage(), word.getText());
+            Syllable syllable = syllableDao.readByText(language, word.getText());
             if (syllable != null) {
                 syllableDao.delete(syllable);
             }

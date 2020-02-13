@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -15,16 +14,17 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,12 +63,11 @@ public class ImageEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
-            HttpSession session,
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Image image = imageDao.read(id);
         model.addAttribute("image", image);
@@ -78,11 +77,11 @@ public class ImageEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
+        model.addAttribute("letters", letterDao.readAllOrdered(language));
+        model.addAttribute("numbers", numberDao.readAllOrdered(language));
+        model.addAttribute("words", wordDao.readAllOrdered(language));
         
-        Audio audio = audioDao.read(image.getTitle(), contributor.getLanguage());
+        Audio audio = audioDao.read(image.getTitle(), language);
         model.addAttribute("audio", audio);
 
         return "content/multimedia/image/edit";
@@ -90,14 +89,13 @@ public class ImageEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             Image image,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -157,10 +155,10 @@ public class ImageEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLanguage()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLanguage()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLanguage()));
-            Audio audio = audioDao.read(image.getTitle(), contributor.getLanguage());
+            model.addAttribute("letters", letterDao.readAllOrdered(language));
+            model.addAttribute("numbers", numberDao.readAllOrdered(language));
+            model.addAttribute("words", wordDao.readAllOrdered(language));
+            Audio audio = audioDao.read(image.getTitle(), language);
             model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";
         } else {

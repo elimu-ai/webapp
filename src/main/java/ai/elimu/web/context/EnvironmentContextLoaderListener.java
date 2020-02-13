@@ -23,9 +23,10 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.ServletContextResourceLoader;
 
 import ai.elimu.model.enums.Environment;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Use {@code WebApplicationContextUtils.getWebApplicationContext(servletContext)}
+ * Use {@link WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)}
  * to access this listener anywhere in the web application, outside of the framework.
  */
 public class EnvironmentContextLoaderListener extends ContextLoaderListener {
@@ -61,7 +62,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
             LogManager.resetConfiguration();
             
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            URL environmentSpecificLog4JFile = classLoader.getResource(env + "_log4j.properties");
+            URL environmentSpecificLog4JFile = classLoader.getResource("log4j_" + env + ".properties");
             new PropertyConfigurator().doConfigure(environmentSpecificLog4JFile, LogManager.getLoggerRepository());
             logger = Logger.getLogger(getClass());
             logger.info("environmentSpecificLog4JFile: " + environmentSpecificLog4JFile);
@@ -91,12 +92,15 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         	InputStream inputStream = null;
             try {
                 // Override config.properties
-            	Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:" + env + "_config.properties");
+            	Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:config_" + env + ".properties");
                 PROPERTIES.load(resourceConfig.getInputStream());
 
                 // Override jdbc.properties
-                Resource resourceJdbc = new ServletContextResourceLoader(servletContext).getResource("classpath:" + env + "_jdbc.properties");
+                Resource resourceJdbc = new ServletContextResourceLoader(servletContext).getResource("classpath:jdbc_" + env + ".properties");
                 PROPERTIES.load(resourceJdbc.getInputStream());
+                
+                String contentLanguage = (String) servletContext.getAttribute("content_language");
+                PROPERTIES.put("content.language", contentLanguage);
                 
                 String jdbcPasswordAttr = (String) servletContext.getAttribute("jdbc_password");
                 PROPERTIES.put("jdbc.password", jdbcPasswordAttr);

@@ -21,7 +21,7 @@ public class Letter extends Content {
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Allophone> allophones; // TODO: handle Letters that can be represented by multiple sets of Allophones (e.g. the letter 'a' in English)
+    private List<Allophone> allophones; // TODO: handle Letters that can be represented by multiple sets (lists) of Allophones (e.g. the letter 'a' in English)
     
     private int usageCount; // Based on StoryBook content (all difficulty levels)
 

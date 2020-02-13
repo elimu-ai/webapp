@@ -3,15 +3,14 @@ package ai.elimu.web.content.storybook;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.GradeLevel;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.content.multimedia.EpubToStoryBookConverter;
 import java.io.File;
 import java.net.URL;
@@ -34,22 +33,22 @@ public class StoryBookListController {
     private ImageDao imageDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         // To ease development/testing, auto-generate StoryBooks
-        List<StoryBook> storyBooksGenerated = generateStoryBooks(contributor.getLanguage());
+        List<StoryBook> storyBooksGenerated = generateStoryBooks(language);
         for (StoryBook storyBook : storyBooksGenerated) {
-            StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getLanguage(), storyBook.getTitle());
+            StoryBook existingStoryBook = storyBookDao.readByTitle(language, storyBook.getTitle());
             if (existingStoryBook == null) {
                 
                 storyBookDao.create(storyBook);
             }
         }
         
-        List<StoryBook> storyBooks = storyBookDao.readAllOrdered(contributor.getLanguage());
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
         model.addAttribute("storyBooks", storyBooks);
 
         return "content/storybook/list";

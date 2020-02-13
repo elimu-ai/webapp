@@ -32,20 +32,31 @@ public class LetterCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,text,allophone_ids,usage_count" + "\n";
+        String csvFileContent = "id,text,allophone_values_ipa,allophone_ids,usage_count" + "\n";
         List<Letter> letters = letterDao.readAll();
         logger.info("letters.size(): " + letters.size());
         for (Letter letter : letters) {
             logger.info("letter.getText(): \"" + letter.getText() + "\"");
-            long[] allophoneIdsArray = new long[letter.getAllophones().size()];
+            
+            String[] allophoneValuesIpaArray = new String[letter.getAllophones().size()];
             int index = 0;
             for (Allophone allophone : letter.getAllophones()) {
                 logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/");
+                allophoneValuesIpaArray[index] = allophone.getValueIpa();
+                index++;
+            }
+            
+            long[] allophoneIdsArray = new long[letter.getAllophones().size()];
+            index = 0;
+            for (Allophone allophone : letter.getAllophones()) {
+                logger.info("allophone.getId(): " + allophone.getId());
                 allophoneIdsArray[index] = allophone.getId();
                 index++;
             }
+            
             csvFileContent += letter.getId() + ","
                     + "\"" + letter.getText() + "\","
+                    + Arrays.toString(allophoneValuesIpaArray) + ","
                     + Arrays.toString(allophoneIdsArray) + ","
                     + letter.getUsageCount() + "\n";
         }
