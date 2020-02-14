@@ -34,20 +34,32 @@ public class WordCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,text,phonetics,allophone_ids,usage_count,word_type,spelling_consistency" + "\n";
+        String csvFileContent = "id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<Word> words = wordDao.readAllOrderedByUsage(language);
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            long[] allophoneIdsArray = new long[word.getAllophones().size()];
+            logger.info("word.getText(): \"" + word.getText() + "\"");
+            
+            String[] allophoneValuesIpaArray = new String[word.getAllophones().size()];
             int index = 0;
+            for (Allophone allophone : word.getAllophones()) {
+                logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/");
+                allophoneValuesIpaArray[index] = allophone.getValueIpa();
+                index++;
+            }
+            
+            long[] allophoneIdsArray = new long[word.getAllophones().size()];
+            index = 0;
             for (Allophone allophone : word.getAllophones()) {
                 allophoneIdsArray[index] = allophone.getId();
                 index++;
             }
+            
             csvFileContent += word.getId() + ","
                     + "\"" + word.getText() + "\","
                     + "/" + word.getPhonetics() + "/,"
+                    + Arrays.toString(allophoneValuesIpaArray) + ","
                     + Arrays.toString(allophoneIdsArray) + ","
                     + word.getUsageCount() + ","
                     + word.getWordType() + ","
