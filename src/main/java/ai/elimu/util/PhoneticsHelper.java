@@ -1,75 +1,9 @@
 package ai.elimu.util;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.commons.lang.StringUtils;
-import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.allophone.SoundType;
-import ai.elimu.web.content.allophone.AllophoneListController;
 
 public class PhoneticsHelper {
-
-    /**
-     * Extract individual speech sounds (Allophones) from the phonetics of a Word.
-     * </ p>
-     * Example: /kæt/ --> /k/, /æ/, /t/
-     */
-    @Deprecated
-    public static List<String> getAllophones(Word word) {
-        List<String> allophones = new ArrayList<>();
-        
-        // E.g. "kæt"
-        String phonetics = word.getPhonetics();
-        
-        // Ignore diacritics
-        phonetics = phonetics
-                .replace("ˈ", "")
-                .replace("ˌ", "");
-        
-        // Extract speech sounds
-        while (StringUtils.isNotBlank(phonetics)) {
-            int phoneticsLengthBeforeExtraction = phonetics.length();
-            
-            if (word.getLanguage() == Language.BEN) {
-                String[][] allophonesArrayBEN = AllophoneListController.allophonesArrayBEN;
-                for (String[] allophoneRow : allophonesArrayBEN) {
-                    String allophoneIpa = allophoneRow[0];
-                    if (phonetics.startsWith(allophoneIpa)) {
-                        allophones.add(allophoneIpa);
-                        phonetics = phonetics.substring(allophoneIpa.length());
-                        break;
-                    }
-                }
-            } else if (word.getLanguage() == Language.ENG) {
-                String[][] allophonesArrayEN = AllophoneListController.allophonesArrayENG;
-                for (String[] allophoneRow : allophonesArrayEN) {
-                    String allophoneIpa = allophoneRow[0];
-                    if (phonetics.startsWith(allophoneIpa)) {
-                        allophones.add(allophoneIpa);
-                        phonetics = phonetics.substring(allophoneIpa.length());
-                        break;
-                    }
-                }
-            } else if (word.getLanguage() == Language.SWA) {
-                String[][] allophonesArraySW = AllophoneListController.allophonesArraySWA;
-                for (String[] allophoneRow : allophonesArraySW) {
-                    String allophoneIpa = allophoneRow[0];
-                    if (phonetics.startsWith(allophoneIpa)) {
-                        allophones.add(allophoneIpa);
-                        phonetics = phonetics.substring(allophoneIpa.length());
-                        break;
-                    }
-                }
-            }
-            
-            if (phoneticsLengthBeforeExtraction == phonetics.length()) {
-                break;
-            }
-        }
-        
-        return allophones;
-    }
     
     @Deprecated
     public static SoundType getSoundType(String ipaValue, Language language) {
