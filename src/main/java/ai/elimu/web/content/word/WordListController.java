@@ -383,7 +383,7 @@ public class WordListController {
             } else if (language == Language.ENG) {
                 wordThirteen.setText("thirteen");
                 wordThirteen.setPhonetics("θɛrtin");
-                wordThirteen.setAllophones(getAllophones(language, "θɛrtin"));
+                wordThirteen.setAllophones(getAllophones(language, "θ", "ɛ", "r", "t", "i", "n"));
             } else if (language == Language.FIL) {
                 wordThirteen.setText("labintatlo");
                 wordThirteen.setPhonetics("lɑbɪn.tɑtlɔ");
