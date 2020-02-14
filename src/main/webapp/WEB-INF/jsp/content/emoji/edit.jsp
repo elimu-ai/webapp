@@ -65,4 +65,86 @@
             };
         });
     </script>
+    
+    <div class="divider" style="margin-top: 1em;"></div>
+    
+    <h5 class="center"><fmt:message key="content.labels" /></h5>
+    
+    <b><fmt:message key="words" /></b><br />
+    <div id="progressWords" class="progress" style="display: none;">
+        <div class="indeterminate"></div>
+    </div>
+    <div id="wordLabelContainer">
+        <c:forEach var="word" items="${emoji.words}">
+            <div class="chip" data-wordid="${word.id}" data-wordvalue="${word.text}">
+                ${word.text} 
+                <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
+                    <i class="material-icons">clear</i>
+                </a>
+            </div>
+        </c:forEach>
+    </div>
+    <select id="wordId" class="browser-default">
+        <option value="">-- <fmt:message key='add.word' /> --</option>
+        <c:forEach var="word" items="${words}">
+            <option value="${word.id}"><c:out value="${word.text}" /></option>
+        </c:forEach>
+    </select>
+    <script>
+        $(function() {
+            $('#wordId').on('change', function() {
+                console.info('#wordId on change');
+                var wordId = $(this).val();
+                console.info('wordId: ' + wordId);
+                var wordText = $(this).find('option[value="' + wordId + '"]').html();
+                console.info('wordText ' + wordText);
+                if (wordId != '') {
+                    $('#progressWords').show();
+                    
+                    var jqXHR = $.ajax({
+                        type: "POST",
+                        url: "<spring:url value='/content/emoji/edit/${emoji.id}' />/add-content-label?wordId=" + wordId
+                    });
+                    jqXHR.done(function() {
+                        console.info('wordId ajax done');
+                        $('#wordLabelContainer').append('<div class="chip">' + wordText + '</div>');
+                    });
+                    jqXHR.fail(function() {
+                        console.info('wordId ajax error');
+                        
+                    });
+                    jqXHR.always(function() {
+                        console.info('wordId ajax always');
+                        $('#progressWords').hide();
+                    });
+                }
+            });
+            
+            $('.wordDeleteLink').on('click', function(event) {
+                console.info('.wordDeleteLink on click');
+                event.preventDefault();
+                var $link = $(this);
+                var wordId = $link.attr('data-wordid');
+                console.info('wordId: ' + wordId);
+                $('#progressWords').show();
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<spring:url value='/content/emoji/edit/${image.id}' />/remove-content-label?wordId=" + wordId
+                });
+                jqXHR.done(function() {
+                    console.info('wordId ajax done');
+                    $('.chip[data-wordid="' + wordId + '"]').remove();
+                });
+                jqXHR.fail(function() {
+                    console.info('wordId ajax error');
+
+                });
+                jqXHR.always(function() {
+                    console.info('wordId ajax always');
+                    $('#progressWords').hide();
+                });
+            });
+        });
+    </script>
 </content:aside>
