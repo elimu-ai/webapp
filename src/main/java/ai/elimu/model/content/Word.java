@@ -32,6 +32,7 @@ public class Word extends Content {
     @Enumerated(EnumType.STRING)
     private WordType wordType;
     
+//    @NotNull
     @Enumerated(EnumType.STRING)
     private SpellingConsistency spellingConsistency;
 
