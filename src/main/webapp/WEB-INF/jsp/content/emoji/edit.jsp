@@ -77,7 +77,9 @@
     <div id="wordLabelContainer">
         <c:forEach var="word" items="${emoji.words}">
             <div class="chip" data-wordid="${word.id}" data-wordvalue="${word.text}">
-                ${word.text} 
+                <a href="<spring:url value='/content/word/edit/${word.id}' />">
+                    ${word.text} 
+                </a>
                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
                     <i class="material-icons">clear</i>
                 </a>
@@ -130,7 +132,7 @@
 
                 var jqXHR = $.ajax({
                     type: "POST",
-                    url: "<spring:url value='/content/emoji/edit/${image.id}' />/remove-content-label?wordId=" + wordId
+                    url: "<spring:url value='/content/emoji/edit/${emoji.id}' />/remove-content-label?wordId=" + wordId
                 });
                 jqXHR.done(function() {
                     console.info('wordId ajax done');
