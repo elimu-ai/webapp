@@ -19,6 +19,7 @@
                     <th><fmt:message key="glyph" /></th>
                     <th><fmt:message key="unicode.version" /></th>
                     <th><fmt:message key="unicode.emoji.version" /></th>
+                    <th><fmt:message key="content.labels" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -34,6 +35,15 @@
                             </td>
                             <td>
                                 ${emoji.unicodeEmojiVersion}
+                            </td>
+                            <td>
+                                <c:forEach var="word" items="${emoji.words}">
+                                    <div class="chip">
+                                        <a href="<spring:url value='/content/word/edit/${word.id}' />">
+                                            ${word.text}
+                                        </a>
+                                    </div>
+                                </c:forEach>
                             </td>
                             <td>
                                 #${emoji.revisionNumber}
