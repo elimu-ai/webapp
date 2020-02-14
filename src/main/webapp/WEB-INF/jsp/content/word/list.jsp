@@ -36,9 +36,10 @@
                             <td style="font-size: 2em;">
                                 "${word.text}"
                             </td>
-                            <td>
-                                <a name="${word.id}"></a>
-                                /${word.phonetics}/
+                            <td style="font-size: 2em;">
+                                /<c:forEach var="allophone" items="${word.allophones}">
+                                    ${allophone.valueIpa} 
+                                </c:forEach>/
                             </td>
                             <c:choose>
                                 <c:when test="${word.spellingConsistency == 'PERFECT'}">

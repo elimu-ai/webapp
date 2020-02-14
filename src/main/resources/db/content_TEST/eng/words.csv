@@ -1,44 +1,25 @@
-id,text,phonetics,allophone_ids,usage_count,wordType,spellingConsistency
-1,"zero",/ˈzɪrɔʊ/,[],0,null,null
-2,"one",/wʌn/,[],0,null,null
-3,"two",/tu/,[],0,null,null
-4,"three",/θri/,[],0,null,null
-5,"four",/fɔr/,[],0,null,null
-6,"five",/fɑɪv/,[],0,null,null
-7,"six",/sɪks/,[],0,null,null
-8,"seven",/ˈsɛvən/,[],0,null,null
-9,"eight",/ɛɪt/,[],0,null,NON_PHONEMIC
-10,"nine",/nɑɪn/,[],0,null,null
-11,"sifuri",/siˈfuɾi/,[],0,null,null
-12,"moja",/ˈmɔja/,[],0,null,null
-13,"mbili",/mˈbili/,[],0,null,null
-14,"tatu",/ˈtɑtu/,[],0,null,null
-15,"nne",/nˈnɛ/,[],0,null,null
-16,"tano",/ˈtɑnɔ/,[],0,null,null
-17,"sita",/ˈsitɑ/,[],0,null,null
-18,"saba",/ˈsɑbɑ/,[],0,null,null
-19,"nane",/ˈnɑnɛ/,[],0,null,null
-20,"tisa",/ˈtisɑ/,[],0,null,null
-21,"a",/ɛɪ/,[],3,null,HIGHLY_NON_PHONEMIC
-22,"apple",/ˈæpəl/,[],0,NOUN,NON_PHONEMIC
-23,"ant",/ænt/,[],0,NOUN,PERFECT
-24,"ten",/tɛn/,[],2,null,null
-25,"eleven",/ɪˈlɛvən/,[],0,null,null
-26,"twelve",/twɛlv/,[],0,null,null
-27,"thirteen",/θɛrtin/,[],0,null,null
-28,"fourteen",/ˈfɔrˈtin/,[],0,null,null
-29,"fifteen",/fɪfˈtin/,[],0,null,null
-30,"sixteen",/sɪkˈstin/,[],0,null,null
-31,"seventeen",/ˈsɛvənˈtin/,[],0,null,null
-32,"eighteen",/ɛɪtin/,[],0,null,null
-33,"nineteen",/ˈnaɪnˈtin/,[],0,null,null
-34,"twenty",/ˈtwɛnti/,[],0,null,null
-35,"kumi",/kumi/,[],2,null,null
-36,"na",/nɑ/,[],2,null,null
-37,"ishirini",/iʃiɾini/,[],0,null,null
-38,"my",/mɑɪ/,[],15,null,PHONEMIC
-39,"twenty-one",/ˈtwɛnti wʌn/,[],0,null,null
-40,"twenty-two",/ˈtwɛntiˈtu/,[],0,null,null
-41,"thirty",/ˈθɝtɪ/,[],0,null,null
-42,"thelathini",/θɛlɑθini/,[],0,null,null
-43,"test",/tɛst/,[],0,null,PERFECT
+id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+9,"eight","ɛɪt",[ɛ, ɪ, t],[6, 37, 5],0,null,null
+19,"eighteen","ɛɪtin",[ɛ, ɪ, t, i, n],[6, 37, 5, 15, 4],0,null,null
+12,"eleven","ɪˈlɛvən",[ɪ, ˈ, l, ɛ, v, ə, n],[37, 42, 18, 6, 25, 34, 4],0,null,null
+16,"fifteen","fɪfˈtin",[f, ɪ, f, ˈ, t, i, n],[12, 37, 12, 42, 5, 15, 4],0,null,null
+6,"five","fɑɪv",[f, ɑ, ɪ, v],[12, 31, 37, 25],0,null,null
+5,"four","fɔr",[f, ɔ, r],[12, 32, 20],0,null,null
+15,"fourteen","ˈfɔrˈtin",[ˈ, f, ɔ, r, ˈ, t, i, n],[42, 12, 32, 20, 42, 5, 15, 4],0,null,null
+10,"nine","nɑɪn",[n, ɑ, ɪ, n],[4, 31, 37, 4],0,null,null
+20,"nineteen","ˈnɑɪnˈtin",[ˈ, n, ɑ, ɪ, n, ˈ, t, i, n],[42, 4, 31, 37, 4, 42, 5, 15, 4],0,null,null
+2,"one","wʌn",[w, ʌ, n],[26, 40, 4],0,null,null
+8,"seven","ˈsɛvən",[ˈ, s, ɛ, v, ə, n],[42, 22, 6, 25, 34, 4],0,null,null
+18,"seventeen","ˈsɛvənˈtin",[ˈ, s, ɛ, v, ə, n, ˈ, t, i, n],[42, 22, 6, 25, 34, 4, 42, 5, 15, 4],0,null,null
+7,"six","sɪks",[s, ɪ, k, s],[22, 37, 17, 22],0,null,null
+17,"sixteen","sɪkˈstin",[s, ɪ, k, ˈ, s, t, i, n],[22, 37, 17, 42, 22, 5, 15, 4],0,null,null
+11,"ten","tɛn",[t, ɛ, n],[5, 6, 4],0,null,null
+14,"thirteen","θɛrtin",[],[],0,null,null
+24,"thirty","ˈθɝtɪ",[ˈ, θ, ɝ, t, ɪ],[42, 44, 36, 5, 37],0,null,null
+4,"three","θri",[θ, r, i],[44, 20, 15],0,null,null
+13,"twelve","twɛlv",[t, w, ɛ, l, v],[5, 26, 6, 18, 25],0,null,null
+21,"twenty","ˈtwɛnti",[ˈ, t, w, ɛ, n, t, i],[42, 5, 26, 6, 4, 5, 15],0,null,null
+22,"twenty-one","ˈtwɛntiˈwʌn",[ˈ, t, w, ɛ, n, t, i, ˈ, w, ʌ, n],[42, 5, 26, 6, 4, 5, 15, 42, 26, 40, 4],0,null,null
+23,"twenty-two","ˈtwɛntiˈtu",[ˈ, t, w, ɛ, n, t, i, ˈ, t, u],[42, 5, 26, 6, 4, 5, 15, 42, 5, 24],0,null,null
+3,"two","tu",[t, u],[5, 24],0,null,null
+1,"zero","ˈzɪrɔʊ",[ˈ, z, ɪ, r, ɔ, ʊ],[42, 27, 37, 20, 32, 39],0,null,null

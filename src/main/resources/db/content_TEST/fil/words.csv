@@ -1,24 +1,24 @@
-id,text,phonetics,allophone_ids,usage_count,wordType,spellingConsistency
-1,"sero",/sɛr̩ɔ/,[],0,null,null
-2,"isa",/ɪsɑ/,[],0,null,null
-3,"dalawa",/dɑlɑwɑ/,[],0,null,null
-4,"tatlo",/tɑtlɔ/,[],0,null,null
-5,"apat",/ɑpɑt/,[],0,null,null
-6,"lima",/lɪmɑ/,[],0,null,null
-7,"anim",/ɑnɪm/,[],0,null,null
-8,"pito",/pɪtɔ/,[],0,null,null
-9,"walo",/wɑlɔ/,[],0,null,null
-10,"siyam",/ʃɑm/,[],0,null,null
-11,"sampu",/sɑmpu/,[],0,null,null
-12,"labing-isa",/.../,[],0,null,null
-13,"labindalawa",/.../,[],0,null,null
-14,"labintatlo",/.../,[],0,null,null
-15,"labing-apat",/.../,[],0,null,null
-16,"labinlima",/.../,[],0,null,null
-17,"labing-anim",/.../,[],0,null,null
-18,"labimpito",/.../,[],0,null,null
-19,"labingwalo",/.../,[],0,null,null
-20,"labinsiyam",/.../,[],0,null,null
-21,"dalawampu",/.../,[],0,null,null
-22,"dalawampu't",/.../,[],0,null,null
-23,"tatlumpu",/.../,[],0,null,null
+id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+1,"anim","ɑnɪm",[ɑ, n, ɪ, m],[28, 14, 36, 13],0,null,PERFECT
+2,"apat","ɑpɑt",[ɑ, p, ɑ, t],[28, 15, 28, 19],0,null,PERFECT
+3,"dalawa","dɑlɑwɑ",[d, ɑ, l, ɑ, w, ɑ],[4, 28, 12, 28, 23, 28],0,null,PERFECT
+4,"dalawampu","dɑlɑwɑmpu",[d, ɑ, l, ɑ, w, ɑ, m, p, u],[4, 28, 12, 28, 23, 28, 13, 15, 21],0,null,PERFECT
+5,"dalawampu't","dɑlɑwɑmput",[d, ɑ, l, ɑ, w, ɑ, m, p, u, t],[4, 28, 12, 28, 23, 28, 13, 15, 21, 19],0,null,HIGHLY_PHONEMIC
+6,"isa","ɪsɑ",[ɪ, s, ɑ],[36, 18, 28],0,null,PERFECT
+7,"labimpito","lɑbɪm.pɪtɔ",[l, ɑ, b, ɪ, m, ., p, ɪ, t, ɔ],[12, 28, 3, 36, 13, 1, 15, 36, 19, 30],0,null,HIGHLY_PHONEMIC
+8,"labindalawa","lɑbɪn.dɑlɑwɑ",[l, ɑ, b, ɪ, n, ., d, ɑ, l, ɑ, w],[12, 28, 3, 36, 14, 1, 4, 28, 12, 28, 23],0,null,HIGHLY_PHONEMIC
+9,"labing-anim","lɑbɪŋ.ɑnɪm",[l, ɑ, b, ɪ, ŋ, ., ɑ, n, ɪ, m],[12, 28, 3, 36, 27, 1, 28, 14, 36, 13],0,null,PHONEMIC
+10,"labing-apat","lɑbɪŋ.ɑpɑt",[l, ɑ, b, ɪ, ŋ, ., ɑ, p, ɑ, t],[12, 28, 3, 36, 27, 1, 28, 15, 28, 19],0,null,PHONEMIC
+11,"labing-isa","lɑbɪŋ.ɪsɑ",[l, ɑ, b, ɪ, ŋ, ., ɪ, s, ɑ],[12, 28, 3, 36, 27, 1, 36, 18, 28],0,null,PHONEMIC
+12,"labingwalo","lɑbɪŋ.wɑlɔ",[l, ɑ, b, ɪ, ŋ, ., w, ɑ, l, ɔ],[12, 28, 3, 36, 27, 1, 23, 28, 12, 30],0,null,PHONEMIC
+13,"labinlima","lɑbɪn.lɪmɑ",[l, ɑ, b, ɪ, n, ., l, ɪ, m, ɑ],[12, 28, 3, 36, 14, 1, 12, 36, 13, 28],0,null,HIGHLY_PHONEMIC
+14,"labinsiyam","lɑbɪn.ʃɑm",[l, ɑ, b, ɪ, n, ., ʃ, ɑ, m],[12, 28, 3, 36, 14, 1, 39, 28, 13],0,null,PHONEMIC
+15,"labintatlo","lɑbɪn.tɑtlɔ",[l, ɑ, b, ɪ, n, ., t, ɑ, t, l, ɔ],[12, 28, 3, 36, 14, 1, 19, 28, 19, 12, 30],0,null,HIGHLY_PHONEMIC
+16,"lima","lɪmɑ",[l, ɪ, m, ɑ],[12, 36, 13, 28],0,null,PERFECT
+17,"pito","pɪtɔ",[p, ɪ, t, ɔ],[15, 36, 19, 30],0,null,PERFECT
+18,"sampu","sɑmpu",[s, ɑ, m, p, u],[18, 28, 13, 15, 21],0,null,PERFECT
+19,"sero","sɛr̩ɔ",[s, ɛ, r̩, ɔ],[18, 34, 17, 30],0,null,PERFECT
+20,"siyam","ʃɑm",[ʃ, ɑ, m],[39, 28, 13],0,null,NON_PHONEMIC
+21,"tatlo","tɑtlɔ",[t, ɑ, t, l, ɔ],[19, 28, 19, 12, 30],0,null,PERFECT
+22,"tatlumpu","tɑtlumpu",[t, ɑ, t, l, u, m, p, u],[19, 28, 19, 12, 21, 13, 15, 21],0,null,PERFECT
+23,"walo","wɑlɔ",[w, ɑ, l, ɔ],[23, 28, 12, 30],0,null,PERFECT

@@ -55,7 +55,7 @@ public class LetterCreateController {
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        Letter existingLetter = letterDao.readByText(letter.getLanguage(), letter.getText());
+        Letter existingLetter = letterDao.readByText(language, letter.getText());
         if (existingLetter != null) {
             result.rejectValue("text", "NonUnique");
         }

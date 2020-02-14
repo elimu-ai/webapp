@@ -10,6 +10,7 @@ import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Word extends Content {
@@ -21,7 +22,7 @@ public class Word extends Content {
     @NotNull
     private String phonetics; // IPA
     
-//    @NotEmpty
+    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
@@ -31,6 +32,7 @@ public class Word extends Content {
     @Enumerated(EnumType.STRING)
     private WordType wordType;
     
+//    @NotNull
     @Enumerated(EnumType.STRING)
     private SpellingConsistency spellingConsistency;
 

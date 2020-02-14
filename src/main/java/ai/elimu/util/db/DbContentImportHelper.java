@@ -2,8 +2,10 @@ package ai.elimu.util.db;
 
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
@@ -20,6 +22,8 @@ public class DbContentImportHelper {
     private AllophoneDao allophoneDao;
     
     private LetterDao letterDao;
+    
+    private WordDao wordDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -38,7 +42,7 @@ public class DbContentImportHelper {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
         }
         
-        // Extract and import Allophones from CSV file in src/main/resources
+        // Extract and import Allophones from CSV file in src/main/resources/
         URL allophonesCsvFileUrl = getClass().getClassLoader()
                 .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/allophones.csv");
         File allophonesCsvFile = new File(allophonesCsvFileUrl.getFile());
@@ -50,7 +54,7 @@ public class DbContentImportHelper {
             allophoneDao.create(allophone);
         }
         
-        // Extract and import Letters from CSV file in src/main/resources
+        // Extract and import Letters from CSV file in src/main/resources/
         URL lettersCsvFileUrl = getClass().getClassLoader()
                 .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/letters.csv");
         File lettersCsvFile = new File(lettersCsvFileUrl.getFile());
@@ -62,8 +66,17 @@ public class DbContentImportHelper {
             letterDao.create(letter);
         }
         
-        // Extract and import Words
-        // TODO
+//        // Extract and import Words from CSV file in src/main/resources/
+//        URL wordsCsvFileUrl = getClass().getClassLoader()
+//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/words.csv");
+//        File wordsCsvFile = new File(wordsCsvFileUrl.getFile());
+//        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao);
+//        logger.info("words.size(): " + words.size());
+//        wordDao = (WordDao) webApplicationContext.getBean("wordDao");
+//        for (Word word : words) {
+//            word.setLanguage(language);
+//            wordDao.create(word);
+//        }
         
         // Extract and import Numbers
         // TODO
