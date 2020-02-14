@@ -9,10 +9,12 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
@@ -45,6 +47,9 @@ public class WordEditController {
     private AudioDao audioDao;
     
     @Autowired
+    private EmojiDao emojiDao;
+    
+    @Autowired
     private ImageDao imageDao;
     
     @Autowired
@@ -69,8 +74,10 @@ public class WordEditController {
         model.addAttribute("audio", audio);
         
         // Look up Multimedia content that has been labeled with this Word
-        List<Image> labeledImages = imageDao.readAllLabeled(word, language);
         // TODO: labeled Audios
+        List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word, language);
+        model.addAttribute("labeledEmojis", labeledEmojis);
+        List<Image> labeledImages = imageDao.readAllLabeled(word, language);
         model.addAttribute("labeledImages", labeledImages);
         // TODO: labeled Videos
 

@@ -1,7 +1,12 @@
 package ai.elimu.model.content;
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
@@ -30,6 +35,15 @@ public class Emoji extends Content {
      */
     @NotNull
     private Double unicodeEmojiVersion;
+    
+    /**
+     * Word(s) used for labeling the emoji.
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            inverseJoinColumns = @JoinColumn(name = "words_id", unique = false)
+    )
+    private Set<Word> words;
 
     public String getGlyph() {
         return glyph;
@@ -53,5 +67,13 @@ public class Emoji extends Content {
 
     public void setUnicodeEmojiVersion(Double unicodeEmojiVersion) {
         this.unicodeEmojiVersion = unicodeEmojiVersion;
+    }
+
+    public Set<Word> getWords() {
+        return words;
+    }
+
+    public void setWords(Set<Word> words) {
+        this.words = words;
     }
 }

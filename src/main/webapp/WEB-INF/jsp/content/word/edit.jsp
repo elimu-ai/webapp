@@ -176,6 +176,16 @@
     <b><fmt:message key="audios" /></b><br />
     <br />
     
+    <b><fmt:message key="emojis" /></b><br />
+    <div id="labeledEmojis">
+        <c:forEach var="emoji" items="${labeledEmojis}">
+            <a href="<spring:url value='/content/emoji/edit/${emoji.id}' />">
+                <span style="font-size: 4em;">${emoji.glyph}</span>
+            </a>
+        </c:forEach>
+    </div>
+    <br />
+    
     <b><fmt:message key="images" /></b><br />
     <div id="labeledImages">
         <c:forEach var="image" items="${labeledImages}">
