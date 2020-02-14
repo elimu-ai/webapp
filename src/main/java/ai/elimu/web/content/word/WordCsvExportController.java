@@ -58,7 +58,7 @@ public class WordCsvExportController {
             
             csvFileContent += word.getId() + ","
                     + "\"" + word.getText() + "\","
-                    + "/" + word.getPhonetics() + "/,"
+                    + "\"" + word.getPhonetics() + "\","
                     + Arrays.toString(allophoneValuesIpaArray) + ","
                     + Arrays.toString(allophoneIdsArray) + ","
                     + word.getUsageCount() + ","

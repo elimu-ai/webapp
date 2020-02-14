@@ -3,7 +3,10 @@ package ai.elimu.util.csv;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.enums.content.SpellingConsistency;
+import ai.elimu.model.enums.content.WordType;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
@@ -201,5 +204,121 @@ public class CsvContentExtractionHelper {
         }
         
         return letters;
+    }
+    
+    /**
+     * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
+     */
+    public static List<Word> getWordsFromCsvBackup(File csvFile, AllophoneDao allophoneDao) {
+        logger.info("getWordsFromCsvBackup");
+        
+        logger.info("csvFile: " + csvFile);
+        
+        List<Word> words = new ArrayList<>();
+        
+        try {
+            Scanner scanner = new Scanner(csvFile);
+            int rowNumber = 0;
+            while (scanner.hasNextLine()) {
+                String row = scanner.nextLine();
+                logger.info("row: " + row);
+                
+                rowNumber++;
+                
+                if (rowNumber == 1) {
+                    // Skip the header row
+                    continue;
+                }
+                
+                // Expected header format: id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+                // Expected row format: 7,"anim","ɑnɪm",[ɑ, n, ɪ, m],[28, 14, 36, 13],0,null,null
+                
+                // Prevent "anim" from being stored as ""anim""
+                // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
+                row = row.replace("\"", "");
+                logger.info("row (after removing '\"'): " + row);
+                
+                // Prevent "java.lang.NumberFormatException: For input string: " 6]""
+                // TODO: find more robust solution
+                row = row.replace(", ", "|");
+                logger.info("row (after removing ', '): " + row);
+                
+                String[] rowValues = row.split(",");
+                logger.info("rowValues: " + Arrays.toString(rowValues));
+                
+                // "id"
+                Long id = Long.valueOf(rowValues[0]);
+                logger.info("id: " + id);
+                
+                // "text"
+                String text = String.valueOf(rowValues[1]);
+                logger.info("text: \"" + text + "\"");
+                
+                // phonetics
+                String phonetics = String.valueOf(rowValues[2]);
+                logger.info("phonetics: /" + text + "/");
+                
+                // "allophone_values_ipa"
+                String allophoneValuesIpa = String.valueOf(rowValues[3]);
+                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
+                allophoneValuesIpa = allophoneValuesIpa.replace("[", "");
+                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
+                allophoneValuesIpa = allophoneValuesIpa.replace("]", "");
+                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
+                String[] allophoneValuesIpaArray = allophoneValuesIpa.split("\\|");
+                logger.info("Arrays.toString(allophoneValuesIpaArray): " + Arrays.toString(allophoneValuesIpaArray));
+                List<Allophone> allophones = new ArrayList<>();
+                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+                for (String allophoneValueIpa : allophoneValuesIpaArray) {
+                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
+                    Allophone allophone = allophoneDao.readByValueIpa(language, allophoneValueIpa);
+                    logger.info("allophone.getId(): \"" + allophone.getId() + "\"");
+                    allophones.add(allophone);
+                }
+                
+                // "allophone_ids"
+                String allophoneIds = String.valueOf(rowValues[4]);
+                logger.info("allophoneIds: \"" + allophoneIds + "\"");
+                allophoneIds = allophoneIds.replace("[", "");
+                logger.info("allophoneIds: \"" + allophoneIds + "\"");
+                allophoneIds = allophoneIds.replace("]", "");
+                logger.info("allophoneIds: \"" + allophoneIds + "\"");
+                String[] allophoneIdsArray = allophoneIds.split("\\|");
+                logger.info("Arrays.toString(allophoneIdsArray): " + Arrays.toString(allophoneIdsArray));
+                
+                // "usage_count"
+                int usageCount = Integer.valueOf(rowValues[5]);
+                logger.info("usageCount: " + usageCount);
+                
+                // "word_type"
+                WordType wordType = null;
+                if (!"null".equals(rowValues[6])) {
+                    wordType = WordType.valueOf(rowValues[6]);
+                }
+                logger.info("wordType: " + wordType);
+                
+                // spelling_consistency
+                SpellingConsistency spellingConsistency = null;
+                if (!"null".equals(rowValues[7])) {
+                    spellingConsistency = SpellingConsistency.valueOf(rowValues[7]);
+                }
+                logger.info("spellingConsistency: " + spellingConsistency);
+                
+                Word word = new Word();
+                // word.setId(id); // TODO: to enable later lookup of the same Word by its ID
+                word.setText(text);
+                word.setPhonetics(phonetics);
+                word.setAllophones(allophones);
+                word.setUsageCount(usageCount);
+                word.setWordType(wordType);
+                word.setSpellingConsistency(spellingConsistency);
+                words.add(word);
+            }
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            logger.error(null, ex);
+        }
+        
+        return words;
     }
 }

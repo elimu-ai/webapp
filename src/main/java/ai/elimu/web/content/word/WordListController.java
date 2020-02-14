@@ -81,6 +81,11 @@ public class WordListController {
     private List<Word> generateWords(Language language) {
         List<Word> words = new ArrayList<>();
         
+        if (language == Language.FIL) {
+            // Skip generation. DbContentImportHelper is used instead.
+            return words;
+        }
+        
         // Add number words
 
         Word wordZero = new Word();
