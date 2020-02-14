@@ -94,6 +94,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordZero.setText("শূন্য");
             wordZero.setPhonetics("..."); // TODO
+            wordZero.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordZero.setText("zero");
             wordZero.setPhonetics("ˈzɪrɔʊ");
@@ -113,6 +114,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordOne.setText("এক");
             wordOne.setPhonetics("..."); // TODO
+            wordOne.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordOne.setText("one");
             wordOne.setPhonetics("wʌn");
@@ -133,6 +135,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordTwo.setText("দুই");
             wordTwo.setPhonetics("..."); // TODO
+            wordTwo.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordTwo.setText("two");
             wordTwo.setPhonetics("tu");
@@ -152,6 +155,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordThree.setText("তিন");
             wordThree.setPhonetics("..."); // TODO
+            wordThree.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordThree.setText("three");
             wordThree.setPhonetics("θri");
@@ -172,6 +176,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordFour.setText("চার");
             wordFour.setPhonetics("..."); // TODO
+            wordFour.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordFour.setText("four");
             wordFour.setPhonetics("fɔr");
@@ -191,6 +196,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordFive.setText("পাঁচ");
             wordFive.setPhonetics("..."); // TODO
+            wordFive.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordFive.setText("five");
             wordFive.setPhonetics("fɑɪv");
@@ -210,6 +216,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordSix.setText("ছয়");
             wordSix.setPhonetics("..."); // TODO
+            wordSix.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordSix.setText("six");
             wordSix.setPhonetics("sɪks");
@@ -230,6 +237,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordSeven.setText("সাত");
             wordSeven.setPhonetics("..."); // TODO
+            wordSeven.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordSeven.setText("seven");
             wordSeven.setPhonetics("ˈsɛvən");
@@ -250,6 +258,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordEight.setText("আট");
             wordEight.setPhonetics("..."); // TODO
+            wordEight.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordEight.setText("eight");
             wordEight.setPhonetics("ɛɪt");
@@ -270,6 +279,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordNine.setText("নয়");
             wordNine.setPhonetics("..."); // TODO
+            wordNine.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordNine.setText("nine");
             wordNine.setPhonetics("nɑɪn");
@@ -289,6 +299,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordTen.setText("দশ");
             wordTen.setPhonetics("..."); // TODO
+            wordTen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordTen.setText("ten");
             wordTen.setPhonetics("tɛn");
@@ -321,6 +332,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordEleven.setText("এগার");
                 wordEleven.setPhonetics("..."); // TODO
+                wordEleven.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordEleven.setText("eleven");
                 wordEleven.setPhonetics("ɪˈlɛvən");
@@ -337,6 +349,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordTwelve.setText("বার");
                 wordTwelve.setPhonetics("..."); // TODO
+                wordTwelve.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordTwelve.setText("twelve");
                 wordTwelve.setPhonetics("twɛlv");
@@ -353,6 +366,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordThirteen.setText("তের");
                 wordThirteen.setPhonetics("..."); // TODO
+                wordThirteen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordThirteen.setText("thirteen");
                 wordThirteen.setPhonetics("θɛrtin");
@@ -369,6 +383,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordFourteen.setText("চতুর্দশ");
                 wordFourteen.setPhonetics("..."); // TODO
+                wordFourteen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordFourteen.setText("fourteen");
                 wordFourteen.setPhonetics("ˈfɔrˈtin");
@@ -385,6 +400,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordFifteen.setText("পনের");
                 wordFifteen.setPhonetics("..."); // TODO
+                wordFifteen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordFifteen.setText("fifteen");
                 wordFifteen.setPhonetics("fɪfˈtin");
@@ -401,6 +417,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordSixteen.setText("ষোল");
                 wordSixteen.setPhonetics("..."); // TODO
+                wordSixteen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordSixteen.setText("sixteen");
                 wordSixteen.setPhonetics("sɪkˈstin");
@@ -417,6 +434,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordSeventeen.setText("সতের");
                 wordSeventeen.setPhonetics("..."); // TODO
+                wordSeventeen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordSeventeen.setText("seventeen");
                 wordSeventeen.setPhonetics("ˈsɛvənˈtin");
@@ -433,6 +451,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordEighteen.setText("আঠার");
                 wordEighteen.setPhonetics("..."); // TODO
+                wordEighteen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordEighteen.setText("eighteen");
                 wordEighteen.setPhonetics("ɛɪtin");
@@ -449,6 +468,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordNineteen.setText("উনিশ");
                 wordNineteen.setPhonetics("..."); // TODO
+                wordNineteen.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordNineteen.setText("nineteen");
                 wordNineteen.setPhonetics("ˈnaɪnˈtin");
@@ -466,6 +486,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordTwenty.setText("বিশ");
             wordTwenty.setPhonetics("..."); // TODO
+            wordTwenty.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordTwenty.setText("twenty");
             wordTwenty.setPhonetics("ˈtwɛnti");
@@ -497,6 +518,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordTwentyOne.setText("একুশ");
                 wordTwentyOne.setPhonetics("..."); // TODO
+                wordTwentyOne.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordTwentyOne.setText("twenty-one"); // TODO: handle words separated by hyphen
                 wordTwentyOne.setPhonetics("ˈtwɛntiˈwʌn"); // TODO: handle pauses (whitespaces)
@@ -509,6 +531,7 @@ public class WordListController {
             if (language == Language.BEN) {
                 wordTwentyTwo.setText("বাইশ");
                 wordTwentyTwo.setPhonetics("..."); // TODO
+                wordTwentyTwo.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
             } else if (language == Language.ENG) {
                 wordTwentyTwo.setText("twenty-two"); // TODO: handle words separated by hyphen
                 wordTwentyTwo.setPhonetics("ˈtwɛntiˈtu"); // TODO: handle pauses (whitespaces)
@@ -522,6 +545,7 @@ public class WordListController {
         if (language == Language.BEN) {
             wordThirty.setText("ত্রিশ");
             wordThirty.setPhonetics("..."); // TODO
+            wordThirty.setAllophones(getAllophones(language, ".", ".", ".")); // TODO
         } else if (language == Language.ENG) {
             wordThirty.setText("thirty");
             wordThirty.setPhonetics("ˈθɝtɪ");
@@ -546,6 +570,7 @@ public class WordListController {
             wordMother.setTimeLastUpdate(Calendar.getInstance());
             wordMother.setText("মা");
             wordMother.setPhonetics("ma");
+            wordMother.setAllophones(getAllophones(language, "m", "a"));
             words.add(wordMother);
             
             Word wordSheIs = new Word();
@@ -553,6 +578,7 @@ public class WordListController {
             wordSheIs.setTimeLastUpdate(Calendar.getInstance());
             wordSheIs.setText("সে");
             wordSheIs.setPhonetics("ʃe");
+            wordSheIs.setAllophones(getAllophones(language, "ʃ", "e"));
             words.add(wordSheIs);
             
             Word wordInvitation = new Word();
@@ -560,6 +586,7 @@ public class WordListController {
             wordInvitation.setTimeLastUpdate(Calendar.getInstance());
             wordInvitation.setText("নিতা");
             wordInvitation.setPhonetics("nita");
+            wordInvitation.setAllophones(getAllophones(language, "n", "i", "t", "a"));
             words.add(wordInvitation);
             
             Word wordIAm = new Word();
@@ -567,6 +594,7 @@ public class WordListController {
             wordIAm.setTimeLastUpdate(Calendar.getInstance());
             wordIAm.setText("আমি");
             wordIAm.setPhonetics("ami");
+            wordIAm.setAllophones(getAllophones(language, "a", "m", "i"));
             words.add(wordIAm);
             
             // TODO

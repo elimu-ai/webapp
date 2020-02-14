@@ -66,17 +66,17 @@ public class DbContentImportHelper {
             letterDao.create(letter);
         }
         
-        // Extract and import Words from CSV file in src/main/resources/
-        URL wordsCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/words.csv");
-        File wordsCsvFile = new File(wordsCsvFileUrl.getFile());
-        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao);
-        logger.info("words.size(): " + words.size());
-        wordDao = (WordDao) webApplicationContext.getBean("wordDao");
-        for (Word word : words) {
-            word.setLanguage(language);
-            wordDao.create(word);
-        }
+//        // Extract and import Words from CSV file in src/main/resources/
+//        URL wordsCsvFileUrl = getClass().getClassLoader()
+//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/words.csv");
+//        File wordsCsvFile = new File(wordsCsvFileUrl.getFile());
+//        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao);
+//        logger.info("words.size(): " + words.size());
+//        wordDao = (WordDao) webApplicationContext.getBean("wordDao");
+//        for (Word word : words) {
+//            word.setLanguage(language);
+//            wordDao.create(word);
+//        }
         
         // Extract and import Numbers
         // TODO
