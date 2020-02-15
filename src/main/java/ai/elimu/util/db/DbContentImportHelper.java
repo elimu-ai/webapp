@@ -2,9 +2,11 @@ package ai.elimu.util.db;
 
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
@@ -24,6 +26,8 @@ public class DbContentImportHelper {
     private LetterDao letterDao;
     
     private WordDao wordDao;
+    
+    private NumberDao numberDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -66,19 +70,34 @@ public class DbContentImportHelper {
             letterDao.create(letter);
         }
         
-//        // Extract and import Words from CSV file in src/main/resources/
-//        URL wordsCsvFileUrl = getClass().getClassLoader()
-//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/words.csv");
-//        File wordsCsvFile = new File(wordsCsvFileUrl.getFile());
-//        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao);
-//        logger.info("words.size(): " + words.size());
-//        wordDao = (WordDao) webApplicationContext.getBean("wordDao");
-//        for (Word word : words) {
-//            word.setLanguage(language);
-//            wordDao.create(word);
-//        }
+        // Extract and import Words from CSV file in src/main/resources/
+        URL wordsCsvFileUrl = getClass().getClassLoader()
+                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/words.csv");
+        File wordsCsvFile = new File(wordsCsvFileUrl.getFile());
+        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao);
+        logger.info("words.size(): " + words.size());
+        wordDao = (WordDao) webApplicationContext.getBean("wordDao");
+        for (Word word : words) {
+            word.setLanguage(language);
+            wordDao.create(word);
+        }
         
-        // Extract and import Numbers
+        // Extract and import Numbers from CSV file in src/main/resources/
+        URL numbersCsvFileUrl = getClass().getClassLoader()
+                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/numbers.csv");
+        File numbersCsvFile = new File(numbersCsvFileUrl.getFile());
+        List<Number> numbers = CsvContentExtractionHelper.getNumbersFromCsvBackup(numbersCsvFile, wordDao);
+        logger.info("numbers.size(): " + numbers.size());
+        numberDao = (NumberDao) webApplicationContext.getBean("numberDao");
+        for (Number number : numbers) {
+            number.setLanguage(language);
+            numberDao.create(number);
+        }
+        
+        // Extract and import Syllables
+        // TODO
+        
+        // Extract and import Emojis
         // TODO
         
         // Extract and import Images

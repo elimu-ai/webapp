@@ -1,43 +1,15 @@
-id,text,phonetics,allophone_ids,usage_count,wordType,spellingConsistency
-1,"zero",/ˈzɪrɔʊ/,[],0,null,null
-2,"one",/wʌn/,[],0,null,null
-3,"two",/tu/,[],0,null,null
-4,"three",/θri/,[],0,null,null
-5,"four",/fɔr/,[],0,null,null
-6,"five",/fɑɪv/,[],0,null,null
-7,"six",/sɪks/,[],0,null,null
-8,"seven",/ˈsɛvən/,[],0,null,null
-9,"eight",/ɛɪt/,[],0,null,NON_PHONEMIC
-10,"nine",/nɑɪn/,[],0,null,null
-11,"sifuri",/siˈfuɾi/,[],0,null,null
-12,"moja",/ˈmɔja/,[],0,null,null
-13,"mbili",/mˈbili/,[],0,null,null
-14,"tatu",/ˈtɑtu/,[],0,null,null
-15,"nne",/nˈnɛ/,[],0,null,null
-16,"tano",/ˈtɑnɔ/,[],0,null,null
-17,"sita",/ˈsitɑ/,[],0,null,null
-18,"saba",/ˈsɑbɑ/,[],0,null,null
-19,"nane",/ˈnɑnɛ/,[],0,null,null
-20,"tisa",/ˈtisɑ/,[],0,null,null
-21,"a",/ɛɪ/,[],3,null,HIGHLY_NON_PHONEMIC
-22,"apple",/ˈæpəl/,[],0,NOUN,NON_PHONEMIC
-23,"ant",/ænt/,[],0,NOUN,PERFECT
-24,"ten",/tɛn/,[],2,null,null
-25,"eleven",/ɪˈlɛvən/,[],0,null,null
-26,"twelve",/twɛlv/,[],0,null,null
-27,"thirteen",/θɛrtin/,[],0,null,null
-28,"fourteen",/ˈfɔrˈtin/,[],0,null,null
-29,"fifteen",/fɪfˈtin/,[],0,null,null
-30,"sixteen",/sɪkˈstin/,[],0,null,null
-31,"seventeen",/ˈsɛvənˈtin/,[],0,null,null
-32,"eighteen",/ɛɪtin/,[],0,null,null
-33,"nineteen",/ˈnaɪnˈtin/,[],0,null,null
-34,"twenty",/ˈtwɛnti/,[],0,null,null
-35,"kumi",/kumi/,[],2,null,null
-36,"na",/nɑ/,[],2,null,null
-37,"ishirini",/iʃiɾini/,[],0,null,null
-38,"my",/mɑɪ/,[],15,null,PHONEMIC
-39,"twenty-one",/ˈtwɛnti wʌn/,[],0,null,null
-40,"twenty-two",/ˈtwɛntiˈtu/,[],0,null,null
-41,"thirty",/ˈθɝtɪ/,[],0,null,null
-42,"thelathini",/θɛlɑθini/,[],0,null,null
+id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+35,"kumi","kumi",[k, u, m, i],[73, 45, 46, 43],2,null,null
+36,"na","nɑ",[n, ɑ],[55, 41],2,null,null
+37,"ishirini","iʃiɾini",[i, ʃ, i, ɾ, i, n, i],[43, 68, 43, 62, 43, 55, 43],0,null,null
+13,"mbili","mbili",[mb, i, l, i],[47, 43, 63, 43],0,null,null
+12,"moja","ˈmɔjɑ",[ˈ, m, ɔ, j, ɑ],[80, 46, 44, 69, 41],0,null,null
+19,"nane","ˈnɑnɛ",[ˈ, n, ɑ, n, ɛ],[80, 55, 41, 55, 42],0,null,null
+15,"nne","nˈnɛ",[n, ˈ, n, ɛ],[55, 80, 55, 42],0,null,null
+18,"saba","ˈsɑɓɑ",[ˈ, s, ɑ, ɓ, ɑ],[80, 61, 41, 48, 41],0,null,null
+11,"sifuri","siˈfuɾi",[s, i, ˈ, f, u, ɾ, i],[61, 43, 80, 52, 45, 62, 43],0,null,null
+17,"sita","ˈsitɑ",[ˈ, s, i, t, ɑ],[80, 61, 43, 58, 41],0,null,null
+16,"tano","ˈtɑnɔ",[ˈ, t, ɑ, n, ɔ],[80, 58, 41, 55, 44],0,null,null
+14,"tatu","ˈtɑtu",[ˈ, t, ɑ, t, u],[80, 58, 41, 58, 45],0,null,null
+42,"thelathini","θɛlɑθini",[θ, ɛ, l, ɑ, θ, i, n, i],[54, 42, 63, 41, 54, 43, 55, 43],0,null,null
+20,"tisa","ˈtisɑ",[ˈ, t, i, s, ɑ],[80, 58, 43, 61, 41],0,null,null

@@ -1,25 +1,30 @@
 id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
-9,"eight","ɛɪt",[ɛ, ɪ, t],[6, 37, 5],0,null,null
-19,"eighteen","ɛɪtin",[ɛ, ɪ, t, i, n],[6, 37, 5, 15, 4],0,null,null
-12,"eleven","ɪˈlɛvən",[ɪ, ˈ, l, ɛ, v, ə, n],[37, 42, 18, 6, 25, 34, 4],0,null,null
-16,"fifteen","fɪfˈtin",[f, ɪ, f, ˈ, t, i, n],[12, 37, 12, 42, 5, 15, 4],0,null,null
-6,"five","fɑɪv",[f, ɑ, ɪ, v],[12, 31, 37, 25],0,null,null
-5,"four","fɔr",[f, ɔ, r],[12, 32, 20],0,null,null
-15,"fourteen","ˈfɔrˈtin",[ˈ, f, ɔ, r, ˈ, t, i, n],[42, 12, 32, 20, 42, 5, 15, 4],0,null,null
-10,"nine","nɑɪn",[n, ɑ, ɪ, n],[4, 31, 37, 4],0,null,null
-20,"nineteen","ˈnɑɪnˈtin",[ˈ, n, ɑ, ɪ, n, ˈ, t, i, n],[42, 4, 31, 37, 4, 42, 5, 15, 4],0,null,null
-2,"one","wʌn",[w, ʌ, n],[26, 40, 4],0,null,null
-8,"seven","ˈsɛvən",[ˈ, s, ɛ, v, ə, n],[42, 22, 6, 25, 34, 4],0,null,null
-18,"seventeen","ˈsɛvənˈtin",[ˈ, s, ɛ, v, ə, n, ˈ, t, i, n],[42, 22, 6, 25, 34, 4, 42, 5, 15, 4],0,null,null
-7,"six","sɪks",[s, ɪ, k, s],[22, 37, 17, 22],0,null,null
-17,"sixteen","sɪkˈstin",[s, ɪ, k, ˈ, s, t, i, n],[22, 37, 17, 42, 22, 5, 15, 4],0,null,null
-11,"ten","tɛn",[t, ɛ, n],[5, 6, 4],0,null,null
-14,"thirteen","θɛrtin",[],[],0,null,null
-24,"thirty","ˈθɝtɪ",[ˈ, θ, ɝ, t, ɪ],[42, 44, 36, 5, 37],0,null,null
-4,"three","θri",[θ, r, i],[44, 20, 15],0,null,null
-13,"twelve","twɛlv",[t, w, ɛ, l, v],[5, 26, 6, 18, 25],0,null,null
-21,"twenty","ˈtwɛnti",[ˈ, t, w, ɛ, n, t, i],[42, 5, 26, 6, 4, 5, 15],0,null,null
-22,"twenty-one","ˈtwɛntiˈwʌn",[ˈ, t, w, ɛ, n, t, i, ˈ, w, ʌ, n],[42, 5, 26, 6, 4, 5, 15, 42, 26, 40, 4],0,null,null
-23,"twenty-two","ˈtwɛntiˈtu",[ˈ, t, w, ɛ, n, t, i, ˈ, t, u],[42, 5, 26, 6, 4, 5, 15, 42, 5, 24],0,null,null
-3,"two","tu",[t, u],[5, 24],0,null,null
-1,"zero","ˈzɪrɔʊ",[ˈ, z, ɪ, r, ɔ, ʊ],[42, 27, 37, 20, 32, 39],0,null,null
+38,"my","ˈmɑɪ",[ˈ, m, ɑɪ],[78, 35, 16],15,null,PHONEMIC
+21,"a","ə",[ə],[10],3,null,HIGHLY_NON_PHONEMIC
+24,"ten","tɛn",[t, ɛ, n],[18, 7, 36],2,null,PERFECT
+23,"ant","ˈænt",[ˈ, æ, n, t],[78, 5, 36, 18],0,NOUN,PERFECT
+22,"apple","ˈæpəl",[ˈ, æ, p, ə, l],[78, 5, 17, 10, 34],0,NOUN,NON_PHONEMIC
+9,"eight","ɛɪt",[ɛ, ɪ, t],[7, 8, 18],0,null,NON_PHONEMIC
+32,"eighteen","ɛɪtin",[ɛ, ɪ, t, i, n],[7, 8, 18, 4, 36],0,null,null
+25,"eleven","ɪˈlɛvən",[ɪ, ˈ, l, ɛ, v, ə, n],[8, 78, 34, 7, 26, 10, 36],0,null,null
+29,"fifteen","fɪfˈtin",[f, ɪ, f, ˈ, t, i, n],[25, 8, 25, 78, 18, 4, 36],0,null,null
+6,"five","fɑɪv",[f, ɑɪ, v],[25, 16, 26],0,null,null
+5,"four","fɔr",[f, ɔ, r],[25, 2, 38],0,null,null
+28,"fourteen","ˈfɔrˈtin",[ˈ, f, ɔ, r, ˈ, t, i, n],[78, 25, 2, 38, 78, 18, 4, 36],0,null,null
+10,"nine","nɑɪn",[n, ɑɪ, n],[36, 16, 36],0,null,null
+33,"nineteen","ˈnɑɪnˈtin",[ˈ, n, ɑɪ, n, ˈ, t, i, n],[78, 36, 16, 36, 78, 18, 4, 36],0,null,null
+2,"one","wʌn",[w, ʌ, n],[39, 6, 36],0,null,null
+8,"seven","ˈsɛvən",[ˈ, s, ɛ, v, ə, n],[78, 29, 7, 26, 10, 36],0,null,null
+31,"seventeen","ˈsɛvənˈtin",[ˈ, s, ɛ, v, ə, n, ˈ, t, i, n],[78, 29, 7, 26, 10, 36, 78, 18, 4, 36],0,null,null
+7,"six","sɪks",[s, ɪ, k, s],[29, 8, 19, 29],0,null,null
+30,"sixteen","sɪkˈstin",[s, ɪ, k, ˈ, s, t, i, n],[29, 8, 19, 78, 29, 18, 4, 36],0,null,null
+43,"test","tɛst",[t, ɛ, s, t],[18, 7, 29, 18],0,null,PERFECT
+27,"thirteen","θɛrtin",[θ, ɛ, r, t, i, n],[27, 7, 38, 18, 4, 36],0,null,null
+41,"thirty","ˈθɝtɪ",[ˈ, θ, ɝ, t, ɪ],[78, 27, 81, 18, 8],0,null,null
+4,"three","θri",[θ, r, i],[27, 38, 4],0,null,null
+26,"twelve","twɛlv",[t, w, ɛ, l, v],[18, 39, 7, 34, 26],0,null,null
+34,"twenty","ˈtwɛnti",[ˈ, t, w, ɛ, n, t, i],[78, 18, 39, 7, 36, 18, 4],0,null,null
+39,"twenty-one","ˈtwɛnti.wʌn",[ˈ, t, w, ɛ, n, t, i, ., w, ʌ, n],[78, 18, 39, 7, 36, 18, 4, 83, 39, 6, 36],0,null,null
+40,"twenty-two","ˈtwɛntiˈtu",[ˈ, t, w, ɛ, n, t, i, ˈ, t, u],[78, 18, 39, 7, 36, 18, 4, 78, 18, 3],0,null,null
+3,"two","tu",[t, u],[18, 3],0,null,null
+1,"zero","ˈzɪrɔʊ",[ˈ, z, ɪ, r, ɔ, ʊ],[78, 30, 8, 38, 2, 9],0,null,null

@@ -9,7 +9,6 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
-import ai.elimu.util.PhoneticsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,7 @@ public class AllophoneUsageCountScheduler {
         for (Language language : Language.values()) {
             logger.info("Calculating usage count of Allophones for language " + language);
             
-            Map<String, Integer> allophoneFrequencyMap = new HashMap<>();
+            Map<Long, Integer> allophoneFrequencyMap = new HashMap<>();
             
             List<Allophone> allophones = allophoneDao.readAllOrdered(language);
             logger.info("allophones.size(): " + allophones.size());
@@ -48,19 +47,18 @@ public class AllophoneUsageCountScheduler {
             logger.info("words.size(): " + words.size());
             
             for (Word word : words) {
-                List<String> allophonesInWord = PhoneticsHelper.getAllophones(word); // TODO: use word.getAllophones() instead
-                for (String allophoneInWord : allophonesInWord) {
-                    if (!allophoneFrequencyMap.containsKey(allophoneInWord)) {
-                        allophoneFrequencyMap.put(allophoneInWord, word.getUsageCount());
+                for (Allophone allophone : word.getAllophones()) {
+                    if (!allophoneFrequencyMap.containsKey(allophone.getId())) {
+                        allophoneFrequencyMap.put(allophone.getId(), word.getUsageCount());
                     } else {
-                        allophoneFrequencyMap.put(allophoneInWord, allophoneFrequencyMap.get(allophoneInWord) + word.getUsageCount());
+                        allophoneFrequencyMap.put(allophone.getId(), allophoneFrequencyMap.get(allophone.getId()) + word.getUsageCount());
                     }
                 }
             }
             
-            for (String allophoneIpa : allophoneFrequencyMap.keySet()) {
-                Allophone allophone = allophoneDao.readByValueIpa(language, allophoneIpa);
-                allophone.setUsageCount(allophoneFrequencyMap.get(allophoneIpa));
+            for (Long allophoneId : allophoneFrequencyMap.keySet()) {
+                Allophone allophone = allophoneDao.read(allophoneId);
+                allophone.setUsageCount(allophoneFrequencyMap.get(allophoneId));
                 allophoneDao.update(allophone);
             }
         }
