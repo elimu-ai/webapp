@@ -1,348 +1,348 @@
 id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
-675,"basi","ɓɑsi",[],[],20,NOUN,PERFECT
-240,"maji","mɑʄi",[],[],19,NOUN,PERFECT
-245,"ya","jɑ",[],[],19,NOUN,NON_PHONEMIC
-243,"na","nɑ",[],[],17,null,PERFECT
-284,"za","zɑ",[],[],15,null,PERFECT
-644,"mpira","mpiɾɑ",[],[],13,NOUN,PERFECT
-517,"siku","siku",[],[],11,NOUN,PERFECT
-370,"chakula","tʃɑkulɑ",[],[],10,NOUN,HIGHLY_PHONEMIC
-561,"mtu","mtu",[],[],10,NOUN,PERFECT
-246,"sana","sɑnɑ",[],[],10,null,PERFECT
-200,"baba","ɓɑɓɑ",[],[],9,NOUN,PERFECT
-214,"huyu","huju",[],[],9,null,PERFECT
-199,"mama","mɑmɑ",[],[],9,NOUN,PERFECT
-244,"ni","ni",[],[],8,NOUN,PERFECT
-259,"saa","sɑɑ",[],[],8,VERB,PERFECT
-285,"chini","tʃini",[],[],7,VERB,PERFECT
-290,"karibu","kɑɾiɓu",[],[],7,VERB,PERFECT
-569,"usingizi","usinɠizi",[],[],7,VERB,HIGHLY_PHONEMIC
-247,"ana","ɑnɑ",[],[],6,VERB,PERFECT
-500,"bluu","ɓluu",[],[],6,NOUN,PERFECT
-281,"juu","ʄuu",[],[],6,VERB,PERFECT
-195,"kubwa","kuɓwɑ",[],[],6,VERB,PERFECT
-278,"mamake","mɑmɑkɛ",[],[],6,NOUN,PERFECT
-14,"tatu","tɑtu",[],[],6,NOUN,PERFECT
-224,"la","lɑ",[],[],5,null,PERFECT
-215,"lile","lilɛ",[],[],5,null,PERFECT
-12,"moja","mɔjɑ",[],[],5,NOUN,PERFECT
-210,"yeye","jɛjɛ",[],[],5,NOUN,PERFECT
-249,"leo","lɛɔ",[],[],4,NOUN,PERFECT
-366,"lori","lɔɾi",[],[],4,null,PERFECT
-642,"macho","mɑtʃɔ",[],[],4,NOUN,PERFECT
-242,"mto","mtɔ",[],[],4,NOUN,PERFECT
-198,"mtoto","mtɔtɔ",[],[],4,NOUN,PERFECT
-536,"nzuri","nzuɾi",[],[],4,VERB,PERFECT
+675,"basi","ɓɑsi",[ɓ, ɑ, s, i],[48, 41, 61, 43],20,NOUN,PERFECT
+240,"maji","mɑʄi",[m, ɑ, ʄ, i],[46, 41, 66, 43],19,NOUN,PERFECT
+245,"ya","jɑ",[j, ɑ],[69, 41],19,NOUN,NON_PHONEMIC
+243,"na","nɑ",[n, ɑ],[55, 41],17,null,PERFECT
+284,"za","zɑ",[z, ɑ],[60, 41],15,null,PERFECT
+644,"mpira","mpiɾɑ",[m, p, i, ɾ, ɑ],[46, 49, 43, 62, 41],13,NOUN,PERFECT
+517,"siku","siku",[s, i, k, u],[61, 43, 73, 45],11,NOUN,PERFECT
+370,"chakula","tʃɑkulɑ",[tʃ, ɑ, k, u, l, ɑ],[67, 41, 73, 45, 63, 41],10,NOUN,HIGHLY_PHONEMIC
+561,"mtu","mtu",[m, t, u],[46, 58, 45],10,NOUN,PERFECT
+246,"sana","sɑnɑ",[s, ɑ, n, ɑ],[61, 41, 55, 41],10,null,PERFECT
+200,"baba","ɓɑɓɑ",[ɓ, ɑ, ɓ, ɑ],[48, 41, 48, 41],9,NOUN,PERFECT
+214,"huyu","huju",[h, u, j, u],[77, 45, 69, 45],9,null,PERFECT
+199,"mama","mɑmɑ",[m, ɑ, m, ɑ],[46, 41, 46, 41],9,NOUN,PERFECT
+244,"ni","ni",[n, i],[55, 43],8,NOUN,PERFECT
+259,"saa","sɑɑ",[s, ɑ, ɑ],[61, 41, 41],8,VERB,PERFECT
+285,"chini","tʃini",[tʃ, i, n, i],[67, 43, 55, 43],7,VERB,PERFECT
+290,"karibu","kɑɾiɓu",[k, ɑ, ɾ, i, ɓ, u],[73, 41, 62, 43, 48, 45],7,VERB,PERFECT
+569,"usingizi","usinɠizi",[u, s, i, n, ɠ, i, z, i],[45, 61, 43, 55, 72, 43, 60, 43],7,VERB,HIGHLY_PHONEMIC
+247,"ana","ɑnɑ",[ɑ, n, ɑ],[41, 55, 41],6,VERB,PERFECT
+500,"bluu","ɓluu",[ɓ, l, u, u],[48, 63, 45, 45],6,NOUN,PERFECT
+281,"juu","ʄuu",[ʄ, u, u],[66, 45, 45],6,VERB,PERFECT
+195,"kubwa","kuɓwɑ",[k, u, ɓ, w, ɑ],[73, 45, 48, 76, 41],6,VERB,PERFECT
+278,"mamake","mɑmɑkɛ",[m, ɑ, m, ɑ, k, ɛ],[46, 41, 46, 41, 73, 42],6,NOUN,PERFECT
+14,"tatu","tɑtu",[t, ɑ, t, u],[58, 41, 58, 45],6,NOUN,PERFECT
+224,"la","lɑ",[l, ɑ],[63, 41],5,null,PERFECT
+215,"lile","lilɛ",[l, i, l, ɛ],[63, 43, 63, 42],5,null,PERFECT
+12,"moja","mɔjɑ",[m, ɔ, j, ɑ],[46, 44, 69, 41],5,NOUN,PERFECT
+210,"yeye","jɛjɛ",[j, ɛ, j, ɛ],[69, 42, 69, 42],5,NOUN,PERFECT
+249,"leo","lɛɔ",[l, ɛ, ɔ],[63, 42, 44],4,NOUN,PERFECT
+366,"lori","lɔɾi",[l, ɔ, ɾ, i],[63, 44, 62, 43],4,null,PERFECT
+642,"macho","mɑtʃɔ",[m, ɑ, tʃ, ɔ],[46, 41, 67, 44],4,NOUN,PERFECT
+242,"mto","mtɔ",[m, t, ɔ],[46, 58, 44],4,NOUN,PERFECT
+198,"mtoto","mtɔtɔ",[m, t, ɔ, t, ɔ],[46, 58, 44, 58, 44],4,NOUN,PERFECT
+536,"nzuri","nzuɾi",[nz, u, ɾ, i],[59, 45, 62, 43],4,VERB,PERFECT
 18,"saba","sɑbɑ",[],[],4,NOUN,PERFECT
-587,"tajiri","tɑʄiɾi",[],[],4,ADJECTIVE,PERFECT
-248,"watoto","wɑtɔtɔ",[],[],4,NOUN,PERFECT
-333,"gari","ɠɑɾi",[],[],3,NOUN,PERFECT
-340,"habari","hɑɓɑɾi",[],[],3,NOUN,PERFECT
-280,"ile","ilɛ",[],[],3,null,PERFECT
-543,"mgonjwa","mɠɔnʄwɑ",[],[],3,ADJECTIVE,HIGHLY_PHONEMIC
-648,"nyumba","ɲumbɑ",[],[],3,NOUN,PERFECT
-283,"peke","pɛkɛ",[],[],3,null,PERFECT
-17,"sita","sitɑ",[],[],3,NOUN,PERFECT
-255,"watu","wɑtu",[],[],3,NOUN,PERFECT
-270,"wote","wɔtɛ",[],[],3,null,PERFECT
-598,"aina","ɑinɑ",[],[],2,VERB,PERFECT
-590,"barabara","ɓɑɾɑɓɑɾɑ",[],[],2,NOUN,PERFECT
-514,"baridi","ɓɑɾiɗi",[],[],2,ADJECTIVE,PERFECT
-196,"dogo","ɗɔɠɔ",[],[],2,ADJECTIVE,PERFECT
-341,"hadithi","hɑɗithi",[],[],2,NOUN,PERFECT
-216,"hapa","hɑpɑ",[],[],2,VERB,PERFECT
-354,"jogoo","ʄɔɠɔɔ",[],[],2,NOUN,PERFECT
-580,"kucheza","kutʃɛzɑ",[],[],2,NOUN,PERFECT
-602,"kumi","kumi",[],[],2,NOUN,PERFECT
-289,"mawili","mɑwili",[],[],2,null,PERFECT
-552,"mfalme","mfɑlɑmɛ",[],[],2,NOUN,PERFECT
-221,"mguu","mɠuu",[],[],2,NOUN,PERFECT
-208,"mimi","mimi",[],[],2,NOUN,PERFECT
-222,"mkono","mkɔnɔ",[],[],2,null,PERFECT
-295,"mzee","mzɛɛ",[],[],2,ADJECTIVE,PERFECT
-547,"ndege","ndɛɠɛ",[],[],2,VERB,PERFECT
-616,"nguo","ŋɡuɔ",[],[],2,NOUN,PERFECT
-265,"nyoka","ʃɔkɑ",[],[],2,NOUN,PERFECT
-574,"rangi","ɾɑŋɡi",[],[],2,NOUN,PERFECT
-267,"sasa","sɑsɑ",[],[],2,VERB,PERFECT
+587,"tajiri","tɑʄiɾi",[t, ɑ, ʄ, i, ɾ, i],[58, 41, 66, 43, 62, 43],4,ADJECTIVE,PERFECT
+248,"watoto","wɑtɔtɔ",[w, ɑ, t, ɔ, t, ɔ],[76, 41, 58, 44, 58, 44],4,NOUN,PERFECT
+333,"gari","ɠɑɾi",[ɠ, ɑ, ɾ, i],[72, 41, 62, 43],3,NOUN,PERFECT
+340,"habari","hɑɓɑɾi",[h, ɑ, ɓ, ɑ, ɾ, i],[77, 41, 48, 41, 62, 43],3,NOUN,PERFECT
+280,"ile","ilɛ",[i, l, ɛ],[43, 63, 42],3,null,PERFECT
+543,"mgonjwa","mɠɔnʄwɑ",[m, ɠ, ɔ, n, ʄ, w, ɑ],[46, 72, 44, 55, 66, 76, 41],3,ADJECTIVE,HIGHLY_PHONEMIC
+648,"nyumba","ɲumbɑ",[ɲ, u, mb, ɑ],[64, 45, 47, 41],3,NOUN,PERFECT
+283,"peke","pɛkɛ",[p, ɛ, k, ɛ],[49, 42, 73, 42],3,null,PERFECT
+17,"sita","sitɑ",[s, i, t, ɑ],[61, 43, 58, 41],3,NOUN,PERFECT
+255,"watu","wɑtu",[w, ɑ, t, u],[76, 41, 58, 45],3,NOUN,PERFECT
+270,"wote","wɔtɛ",[w, ɔ, t, ɛ],[76, 44, 58, 42],3,null,PERFECT
+598,"aina","ɑinɑ",[ɑ, i, n, ɑ],[41, 43, 55, 41],2,VERB,PERFECT
+590,"barabara","ɓɑɾɑɓɑɾɑ",[ɓ, ɑ, ɾ, ɑ, ɓ, ɑ, ɾ, ɑ],[48, 41, 62, 41, 48, 41, 62, 41],2,NOUN,PERFECT
+514,"baridi","ɓɑɾiɗi",[ɓ, ɑ, ɾ, i, ɗ, i],[48, 41, 62, 43, 57, 43],2,ADJECTIVE,PERFECT
+196,"dogo","ɗɔɠɔ",[ɗ, ɔ, ɠ, ɔ],[57, 44, 72, 44],2,ADJECTIVE,PERFECT
+341,"hadithi","hɑɗithi",[h, ɑ, ɗ, i, t, h, i],[77, 41, 57, 43, 58, 77, 43],2,NOUN,PERFECT
+216,"hapa","hɑpɑ",[h, ɑ, p, ɑ],[77, 41, 49, 41],2,VERB,PERFECT
+354,"jogoo","ʄɔɠɔɔ",[ʄ, ɔ, ɠ, ɔ, ɔ],[66, 44, 72, 44, 44],2,NOUN,PERFECT
+580,"kucheza","kutʃɛzɑ",[k, u, tʃ, ɛ, z, ɑ],[73, 45, 67, 42, 60, 41],2,NOUN,PERFECT
+602,"kumi","kumi",[k, u, m, i],[73, 45, 46, 43],2,NOUN,PERFECT
+289,"mawili","mɑwili",[m, ɑ, w, i, l, i],[46, 41, 76, 43, 63, 43],2,null,PERFECT
+552,"mfalme","mfɑlɑmɛ",[m, f, ɑ, l, ɑ, m, ɛ],[46, 52, 41, 63, 41, 46, 42],2,NOUN,PERFECT
+221,"mguu","mɠuu",[m, ɠ, u, u],[46, 72, 45, 45],2,NOUN,PERFECT
+208,"mimi","mimi",[m, i, m, i],[46, 43, 46, 43],2,NOUN,PERFECT
+222,"mkono","mkɔnɔ",[m, k, ɔ, n, ɔ],[46, 73, 44, 55, 44],2,null,PERFECT
+295,"mzee","mzɛɛ",[m, z, ɛ, ɛ],[46, 60, 42, 42],2,ADJECTIVE,PERFECT
+547,"ndege","ndɛɠɛ",[nd, ɛ, ɠ, ɛ],[56, 42, 72, 42],2,VERB,PERFECT
+616,"nguo","ŋɡuɔ",[ŋɡ, u, ɔ],[71, 45, 44],2,NOUN,PERFECT
+265,"nyoka","ʃɔkɑ",[ʃ, ɔ, k, ɑ],[68, 44, 73, 41],2,NOUN,PERFECT
+574,"rangi","ɾɑŋɡi",[ɾ, ɑ, ŋɡ, i],[62, 41, 71, 43],2,NOUN,PERFECT
+267,"sasa","sɑsɑ",[s, ɑ, s, ɑ],[61, 41, 61, 41],2,VERB,PERFECT
 570,"shingo","ʃiŋɡɔ",[],[],2,NOUN,PERFECT
-653,"twiga","twiɠɑ",[],[],2,NOUN,PERFECT
-299,"akasema","ɑkɑsɛmɑ",[],[],1,VERB,PERFECT
-311,"baiskeli","ɓɑiskɛli",[],[],1,NOUN,PERFECT
-263,"chui","tʃui",[],[],1,NOUN,PERFECT
-317,"dunia","ɗuniɑ",[],[],1,NOUN,PERFECT
-321,"endelea","ɛnɗɛlɛɑ",[],[],1,VERB,PERFECT
-326,"familia","fɑmiliɑ",[],[],1,NOUN,PERFECT
+653,"twiga","twiɠɑ",[t, w, i, ɠ, ɑ],[58, 76, 43, 72, 41],2,NOUN,PERFECT
+299,"akasema","ɑkɑsɛmɑ",[ɑ, k, ɑ, s, ɛ, m, ɑ],[41, 73, 41, 61, 42, 46, 41],1,VERB,PERFECT
+311,"baiskeli","ɓɑiskɛli",[ɓ, ɑ, i, s, k, ɛ, l, i],[48, 41, 43, 61, 73, 42, 63, 43],1,NOUN,PERFECT
+263,"chui","tʃui",[tʃ, u, i],[67, 45, 43],1,NOUN,PERFECT
+317,"dunia","ɗuniɑ",[ɗ, u, n, i, ɑ],[57, 45, 55, 43, 41],1,NOUN,PERFECT
+321,"endelea","ɛnɗɛlɛɑ",[ɛ, n, ɗ, ɛ, l, ɛ, ɑ],[42, 55, 57, 42, 63, 42, 41],1,VERB,PERFECT
+326,"familia","fɑmiliɑ",[f, ɑ, m, i, l, i, ɑ],[52, 41, 46, 43, 63, 43, 41],1,NOUN,PERFECT
 599,"fimbo","fimbɔ",[],[],1,NOUN,PERFECT
-327,"fisi","fisi",[],[],1,NOUN,PERFECT
-531,"furaha","fuɾɑhɑ",[],[],1,VERB,PERFECT
-337,"gazeti","ɠɑzɛti",[],[],1,NOUN,PERFECT
-351,"imara","imɑɾɑ",[],[],1,ADJECTIVE,PERFECT
-258,"ina","inɑ",[],[],1,null,PERFECT
-350,"ingia","inɠiɑ",[],[],1,VERB,PERFECT
-355,"jani","ʄɑni",[],[],1,NOUN,PERFECT
-237,"jua","ʄuɑ",[],[],1,NOUN,PERFECT
-646,"karatasi","kɑɾɑtɑsi",[],[],1,NOUN,PERFECT
-594,"kelele","kɛlɛlɛ",[],[],1,VERB,PERFECT
-360,"kichwa","kitʃwɑ",[],[],1,NOUN,PERFECT
+327,"fisi","fisi",[f, i, s, i],[52, 43, 61, 43],1,NOUN,PERFECT
+531,"furaha","fuɾɑhɑ",[f, u, ɾ, ɑ, h, ɑ],[52, 45, 62, 41, 77, 41],1,VERB,PERFECT
+337,"gazeti","ɠɑzɛti",[ɠ, ɑ, z, ɛ, t, i],[72, 41, 60, 42, 58, 43],1,NOUN,PERFECT
+351,"imara","imɑɾɑ",[i, m, ɑ, ɾ, ɑ],[43, 46, 41, 62, 41],1,ADJECTIVE,PERFECT
+258,"ina","inɑ",[i, n, ɑ],[43, 55, 41],1,null,PERFECT
+350,"ingia","inɠiɑ",[i, n, ɠ, i, ɑ],[43, 55, 72, 43, 41],1,VERB,PERFECT
+355,"jani","ʄɑni",[ʄ, ɑ, n, i],[66, 41, 55, 43],1,NOUN,PERFECT
+237,"jua","ʄuɑ",[ʄ, u, ɑ],[66, 45, 41],1,NOUN,PERFECT
+646,"karatasi","kɑɾɑtɑsi",[k, ɑ, ɾ, ɑ, t, ɑ, s, i],[73, 41, 62, 41, 58, 41, 61, 43],1,NOUN,PERFECT
+594,"kelele","kɛlɛlɛ",[k, ɛ, l, ɛ, l, ɛ],[73, 42, 63, 42, 63, 42],1,VERB,PERFECT
+360,"kichwa","kitʃwɑ",[k, i, t, ʃ, w, ɑ],[73, 43, 58, 68, 76, 41],1,NOUN,PERFECT
 596,"kuimba","kuimbɑ",[],[],1,VERB,PERFECT
 557,"kuingia","kuiŋɡiɑ",[],[],1,NOUN,PERFECT
-301,"kule","kulɛ",[],[],1,null,PERFECT
-251,"kuna","kunɑ",[],[],1,null,PERFECT
-253,"kuni","kuni",[],[],1,NOUN,PERFECT
-550,"kuruka","kuɾukɑ",[],[],1,VERB,PERFECT
-523,"mbali","mbɑli",[],[],1,NOUN,PERFECT
-496,"mbaya","mbɑjɑ",[],[],1,ADJECTIVE,PERFECT
-203,"mbwa","mbwɑ",[],[],1,NOUN,PERFECT
-525,"miguu","miɠuu",[],[],1,NOUN,PERFECT
-275,"miti","miti",[],[],1,NOUN,PERFECT
-220,"mkia","mkiɑ",[],[],1,NOUN,PERFECT
-201,"mnyama","mɲɑmɑ",[],[],1,NOUN,PERFECT
-303,"mrefu","mɾɛfu",[],[],1,ADJECTIVE,PERFECT
-637,"msichana","msitʃɑnɑ",[],[],1,NOUN,PERFECT
-204,"mti","mti",[],[],1,NOUN,PERFECT
-238,"mwezi","mwɛzi",[],[],1,NOUN,PERFECT
-19,"nane","nɑnɛ",[],[],1,null,PERFECT
-274,"nani","nɑni",[],[],1,VERB,PERFECT
-537,"ngumu","ŋɡumu",[],[],1,ADJECTIVE,PERFECT
-585,"nyekundu","ɲɛkundu",[],[],1,NOUN,PERFECT
-212,"nyinyi","ɲiɲi",[],[],1,NOUN,PERFECT
-232,"paa","pɑɑ",[],[],1,NOUN,PERFECT
-507,"paka","pɑkɑ",[],[],1,NOUN,PERFECT
-217,"pale","pɑlɛ",[],[],1,null,PERFECT
-584,"panya","pɑɲɑ",[],[],1,NOUN,PERFECT
-302,"pia","piɛ",[],[],1,null,PERFECT
-558,"refu","ɾɛfu",[],[],1,ADJECTIVE,PERFECT
-505,"sanduku","sɑnduku",[],[],1,NOUN,PERFECT
-495,"siafu","siɑfu",[],[],1,NOUN,PERFECT
-194,"simba","simɓɑ",[],[],1,NOUN,PERFECT
-499,"sofa","sɔfɑ",[],[],1,NOUN,PERFECT
-551,"teke","tɛkɛ",[],[],1,VERB,PERFECT
-233,"tembea","tɛmbɛɑ",[],[],1,VERB,PERFECT
-213,"wao","wɑɔ",[],[],1,NOUN,PERFECT
-276,"watatu","wɑtɑtu",[],[],1,VERB,PERFECT
-209,"wewe","wɛwɛ",[],[],1,NOUN,PERFECT
-269,"yake","jɑkɛ",[],[],1,NOUN,PERFECT
-293,"zake","zɑkɛ",[],[],1,NOUN,PERFECT
-308,"afrika","ɑfɾikɑ",[],[],0,NOUN,PERFECT
-296,"ali","ɑli",[],[],0,null,PERFECT
-268,"ananunua","ɑnɑnunuɑ",[],[],0,VERB,PERFECT
-305,"andazi","ɑnɗɑzi",[],[],0,VERB,PERFECT
-307,"andika","ɑndikɑ",[],[],0,VERB,PERFECT
-690,"arobaini","ɑɾɔɓɑini",[],[],0,null,PERFECT
-279,"asali","ɑsɑli",[],[],0,NOUN,PERFECT
-288,"asini","ɑsini",[],[],0,null,PERFECT
-306,"askari","ɑskɑɾi",[],[],0,NOUN,PERFECT
-297,"asubui","ɑsuɓui",[],[],0,NOUN,PERFECT
-310,"bahari","ɓɑhɑɾi",[],[],0,NOUN,PERFECT
-312,"bakuli","ɓɑkuli",[],[],0,NOUN,PERFECT
-611,"bango","ɓɑŋɡɔ",[],[],0,NOUN,PERFECT
-640,"barafu","ɓɑɾɑfu",[],[],0,NOUN,PERFECT
-309,"bata","ɓɑtɑ",[],[],0,null,PERFECT
-197,"bibi","ɓiɓi",[],[],0,NOUN,PERFECT
-601,"bomba","ɓɔmbɑ",[],[],0,NOUN,PERFECT
-504,"bosi","ɓɔsi",[],[],0,NOUN,PERFECT
-271,"buibui","ɓuiɓui",[],[],0,NOUN,PERFECT
-636,"bundi","ɓundi",[],[],0,NOUN,PERFECT
-576,"bustani","ɓustɑni",[],[],0,NOUN,PERFECT
-553,"busu","ɓusu",[],[],0,NOUN,PERFECT
-581,"bwawa","ɓwɑwɑ",[],[],0,NOUN,NON_PHONEMIC
-373,"chaki","tʃɑki",[],[],0,null,PERFECT
-566,"changanya","tʃɑŋɡɑnjɑ",[],[],0,VERB,HIGHLY_PHONEMIC
-372,"chapati","tʃɑpɑti",[],[],0,null,HIGHLY_PHONEMIC
+301,"kule","kulɛ",[k, u, l, ɛ],[73, 45, 63, 42],1,null,PERFECT
+251,"kuna","kunɑ",[k, u, n, ɑ],[73, 45, 55, 41],1,null,PERFECT
+253,"kuni","kuni",[k, u, n, i],[73, 45, 55, 43],1,NOUN,PERFECT
+550,"kuruka","kuɾukɑ",[k, u, ɾ, u, k, ɑ],[73, 45, 62, 45, 73, 41],1,VERB,PERFECT
+523,"mbali","mbɑli",[mb, ɑ, l, i],[47, 41, 63, 43],1,NOUN,PERFECT
+496,"mbaya","mbɑjɑ",[mb, ɑ, j, ɑ],[47, 41, 69, 41],1,ADJECTIVE,PERFECT
+203,"mbwa","mbwɑ",[mb, w, ɑ],[47, 76, 41],1,NOUN,PERFECT
+525,"miguu","miɠuu",[m, i, ɠ, u, u],[46, 43, 72, 45, 45],1,NOUN,PERFECT
+275,"miti","miti",[m, i, t, i],[46, 43, 58, 43],1,NOUN,PERFECT
+220,"mkia","mkiɑ",[m, k, i, ɑ],[46, 73, 43, 41],1,NOUN,PERFECT
+201,"mnyama","mɲɑmɑ",[m, ɲ, ɑ, m, ɑ],[46, 64, 41, 46, 41],1,NOUN,PERFECT
+303,"mrefu","mɾɛfu",[m, ɾ, ɛ, f, u],[46, 62, 42, 52, 45],1,ADJECTIVE,PERFECT
+637,"msichana","msitʃɑnɑ",[m, s, i, t, ʃ, ɑ, n, ɑ],[46, 61, 43, 58, 68, 41, 55, 41],1,NOUN,PERFECT
+204,"mti","mti",[m, t, i],[46, 58, 43],1,NOUN,PERFECT
+238,"mwezi","mwɛzi",[m, w, ɛ, z, i],[46, 76, 42, 60, 43],1,NOUN,PERFECT
+19,"nane","nɑnɛ",[n, ɑ, n, ɛ],[55, 41, 55, 42],1,null,PERFECT
+274,"nani","nɑni",[n, ɑ, n, i],[55, 41, 55, 43],1,VERB,PERFECT
+537,"ngumu","ŋɡumu",[ŋɡ, u, m, u],[71, 45, 46, 45],1,ADJECTIVE,PERFECT
+585,"nyekundu","ɲɛkundu",[ɲ, ɛ, k, u, nd, u],[64, 42, 73, 45, 56, 45],1,NOUN,PERFECT
+212,"nyinyi","ɲiɲi",[ɲ, i, ɲ, i],[64, 43, 64, 43],1,NOUN,PERFECT
+232,"paa","pɑɑ",[p, ɑ, ɑ],[49, 41, 41],1,NOUN,PERFECT
+507,"paka","pɑkɑ",[p, ɑ, k, ɑ],[49, 41, 73, 41],1,NOUN,PERFECT
+217,"pale","pɑlɛ",[p, ɑ, l, ɛ],[49, 41, 63, 42],1,null,PERFECT
+584,"panya","pɑɲɑ",[p, ɑ, ɲ, ɑ],[49, 41, 64, 41],1,NOUN,PERFECT
+302,"pia","piɛ",[p, i, ɛ],[49, 43, 42],1,null,PERFECT
+558,"refu","ɾɛfu",[ɾ, ɛ, f, u],[62, 42, 52, 45],1,ADJECTIVE,PERFECT
+505,"sanduku","sɑnduku",[s, ɑ, nd, u, k, u],[61, 41, 56, 45, 73, 45],1,NOUN,PERFECT
+495,"siafu","siɑfu",[s, i, ɑ, f, u],[61, 43, 41, 52, 45],1,NOUN,PERFECT
+194,"simba","simɓɑ",[s, i, m, ɓ, ɑ],[61, 43, 46, 48, 41],1,NOUN,PERFECT
+499,"sofa","sɔfɑ",[s, ɔ, f, ɑ],[61, 44, 52, 41],1,NOUN,PERFECT
+551,"teke","tɛkɛ",[t, ɛ, k, ɛ],[58, 42, 73, 42],1,VERB,PERFECT
+233,"tembea","tɛmbɛɑ",[t, ɛ, mb, ɛ, ɑ],[58, 42, 47, 42, 41],1,VERB,PERFECT
+213,"wao","wɑɔ",[w, ɑ, ɔ],[76, 41, 44],1,NOUN,PERFECT
+276,"watatu","wɑtɑtu",[w, ɑ, t, ɑ, t, u],[76, 41, 58, 41, 58, 45],1,VERB,PERFECT
+209,"wewe","wɛwɛ",[w, ɛ, w, ɛ],[76, 42, 76, 42],1,NOUN,PERFECT
+269,"yake","jɑkɛ",[j, ɑ, k, ɛ],[69, 41, 73, 42],1,NOUN,PERFECT
+293,"zake","zɑkɛ",[z, ɑ, k, ɛ],[60, 41, 73, 42],1,NOUN,PERFECT
+308,"afrika","ɑfɾikɑ",[ɑ, f, ɾ, i, k, ɑ],[41, 52, 62, 43, 73, 41],0,NOUN,PERFECT
+296,"ali","ɑli",[ɑ, l, i],[41, 63, 43],0,null,PERFECT
+268,"ananunua","ɑnɑnunuɑ",[ɑ, n, ɑ, n, u, n, u, ɑ],[41, 55, 41, 55, 45, 55, 45, 41],0,VERB,PERFECT
+305,"andazi","ɑnɗɑzi",[ɑ, n, ɗ, ɑ, z, i],[41, 55, 57, 41, 60, 43],0,VERB,PERFECT
+307,"andika","ɑndikɑ",[ɑ, nd, i, k, ɑ],[41, 56, 43, 73, 41],0,VERB,PERFECT
+690,"arobaini","ɑɾɔɓɑini",[ɑ, ɾ, ɔ, ɓ, ɑ, i, n, i],[41, 62, 44, 48, 41, 43, 55, 43],0,null,PERFECT
+279,"asali","ɑsɑli",[ɑ, s, ɑ, l, i],[41, 61, 41, 63, 43],0,NOUN,PERFECT
+288,"asini","ɑsini",[ɑ, s, i, n, i],[41, 61, 43, 55, 43],0,null,PERFECT
+306,"askari","ɑskɑɾi",[ɑ, s, k, ɑ, ɾ, i],[41, 61, 73, 41, 62, 43],0,NOUN,PERFECT
+297,"asubui","ɑsuɓui",[ɑ, s, u, ɓ, u, i],[41, 61, 45, 48, 45, 43],0,NOUN,PERFECT
+310,"bahari","ɓɑhɑɾi",[ɓ, ɑ, h, ɑ, ɾ, i],[48, 41, 77, 41, 62, 43],0,NOUN,PERFECT
+312,"bakuli","ɓɑkuli",[ɓ, ɑ, k, u, l, i],[48, 41, 73, 45, 63, 43],0,NOUN,PERFECT
+611,"bango","ɓɑŋɡɔ",[ɓ, ɑ, ŋɡ, ɔ],[48, 41, 71, 44],0,NOUN,PERFECT
+640,"barafu","ɓɑɾɑfu",[ɓ, ɑ, ɾ, ɑ, f, u],[48, 41, 62, 41, 52, 45],0,NOUN,PERFECT
+309,"bata","ɓɑtɑ",[ɓ, ɑ, t, ɑ],[48, 41, 58, 41],0,null,PERFECT
+197,"bibi","ɓiɓi",[ɓ, i, ɓ, i],[48, 43, 48, 43],0,NOUN,PERFECT
+601,"bomba","ɓɔmbɑ",[ɓ, ɔ, mb, ɑ],[48, 44, 47, 41],0,NOUN,PERFECT
+504,"bosi","ɓɔsi",[ɓ, ɔ, s, i],[48, 44, 61, 43],0,NOUN,PERFECT
+271,"buibui","ɓuiɓui",[ɓ, u, i, ɓ, u, i],[48, 45, 43, 48, 45, 43],0,NOUN,PERFECT
+636,"bundi","ɓundi",[ɓ, u, nd, i],[48, 45, 56, 43],0,NOUN,PERFECT
+576,"bustani","ɓustɑni",[ɓ, u, s, t, ɑ, n, i],[48, 45, 61, 58, 41, 55, 43],0,NOUN,PERFECT
+553,"busu","ɓusu",[ɓ, u, s, u],[48, 45, 61, 45],0,NOUN,PERFECT
+581,"bwawa","ɓwɑwɑ",[ɓ, w, ɑ, w, ɑ],[48, 76, 41, 76, 41],0,NOUN,NON_PHONEMIC
+373,"chaki","tʃɑki",[tʃ, ɑ, k, i],[67, 41, 73, 43],0,null,PERFECT
+566,"changanya","tʃɑŋɡɑnjɑ",[tʃ, ɑ, ŋɡ, ɑ, n, j, ɑ],[67, 41, 71, 41, 55, 69, 41],0,VERB,HIGHLY_PHONEMIC
+372,"chapati","tʃɑpɑti",[tʃ, ɑ, p, ɑ, t, i],[67, 41, 49, 41, 58, 43],0,null,HIGHLY_PHONEMIC
 519,"chimba","tʃimbɑ",[],[],0,VERB,PERFECT
-374,"chungu","tʃunɠu",[],[],0,NOUN,PERFECT
-371,"chungwa","tʃunɠwɑ",[],[],0,NOUN,HIGHLY_PHONEMIC
-638,"chupa","tʃupɑ",[],[],0,NOUN,PERFECT
-369,"chura","tʃuɾɑ",[],[],0,NOUN,PERFECT
-261,"dada","ɗɑɗɑ",[],[],0,NOUN,PERFECT
-313,"dafu","ɗɑfu",[],[],0,VERB,PERFECT
-318,"dalma","ɗɑlmɑ",[],[],0,null,PERFECT
-315,"dirisha","ɗiɾiʃɑ",[],[],0,NOUN,PERFECT
-511,"dokezo","ɗɔkɛzɔ",[],[],0,NOUN,PERFECT
-314,"duka","ɗukɑ",[],[],0,NOUN,PERFECT
-316,"duma","ɗumɑ",[],[],0,NOUN,PERFECT
-322,"eleza","ɛlɛzɑ",[],[],0,VERB,PERFECT
-324,"elimu","ɛlimu",[],[],0,NOUN,PERFECT
-319,"embe","ɛmɓɛ",[],[],0,ADJECTIVE,PERFECT
-320,"endesha","ɛnɗɛʃɑ",[],[],0,VERB,PERFECT
-323,"eneo","ɛnɛɔ",[],[],0,NOUN,PERFECT
-229,"fa","fɑ",[],[],0,null,PERFECT
-325,"fagio","fɑɠiɔ",[],[],0,NOUN,PERFECT
-226,"fahamu","fɑhɑmu",[],[],0,NOUN,PERFECT
-328,"faru","fɑɾu",[],[],0,NOUN,PERFECT
-595,"fedha","fɛɗhɑ",[],[],0,NOUN,PERFECT
-234,"fikiri","fikiɾi",[],[],0,VERB,PERFECT
+374,"chungu","tʃunɠu",[tʃ, u, n, ɠ, u],[67, 45, 55, 72, 45],0,NOUN,PERFECT
+371,"chungwa","tʃunɠwɑ",[tʃ, u, n, ɠ, w, ɑ],[67, 45, 55, 72, 76, 41],0,NOUN,HIGHLY_PHONEMIC
+638,"chupa","tʃupɑ",[tʃ, u, p, ɑ],[67, 45, 49, 41],0,NOUN,PERFECT
+369,"chura","tʃuɾɑ",[tʃ, u, ɾ, ɑ],[67, 45, 62, 41],0,NOUN,PERFECT
+261,"dada","ɗɑɗɑ",[ɗ, ɑ, ɗ, ɑ],[57, 41, 57, 41],0,NOUN,PERFECT
+313,"dafu","ɗɑfu",[ɗ, ɑ, f, u],[57, 41, 52, 45],0,VERB,PERFECT
+318,"dalma","ɗɑlmɑ",[ɗ, ɑ, l, m, ɑ],[57, 41, 63, 46, 41],0,null,PERFECT
+315,"dirisha","ɗiɾiʃɑ",[ɗ, i, ɾ, i, ʃ, ɑ],[57, 43, 62, 43, 68, 41],0,NOUN,PERFECT
+511,"dokezo","ɗɔkɛzɔ",[ɗ, ɔ, k, ɛ, z, ɔ],[57, 44, 73, 42, 60, 44],0,NOUN,PERFECT
+314,"duka","ɗukɑ",[ɗ, u, k, ɑ],[57, 45, 73, 41],0,NOUN,PERFECT
+316,"duma","ɗumɑ",[ɗ, u, m, ɑ],[57, 45, 46, 41],0,NOUN,PERFECT
+322,"eleza","ɛlɛzɑ",[ɛ, l, ɛ, z, ɑ],[42, 63, 42, 60, 41],0,VERB,PERFECT
+324,"elimu","ɛlimu",[ɛ, l, i, m, u],[42, 63, 43, 46, 45],0,NOUN,PERFECT
+319,"embe","ɛmɓɛ",[ɛ, m, ɓ, ɛ],[42, 46, 48, 42],0,ADJECTIVE,PERFECT
+320,"endesha","ɛnɗɛʃɑ",[ɛ, n, ɗ, ɛ, ʃ, ɑ],[42, 55, 57, 42, 68, 41],0,VERB,PERFECT
+323,"eneo","ɛnɛɔ",[ɛ, n, ɛ, ɔ],[42, 55, 42, 44],0,NOUN,PERFECT
+229,"fa","fɑ",[f, ɑ],[52, 41],0,null,PERFECT
+325,"fagio","fɑɠiɔ",[f, ɑ, ɠ, i, ɔ],[52, 41, 72, 43, 44],0,NOUN,PERFECT
+226,"fahamu","fɑhɑmu",[f, ɑ, h, ɑ, m, u],[52, 41, 77, 41, 46, 45],0,NOUN,PERFECT
+328,"faru","fɑɾu",[f, ɑ, ɾ, u],[52, 41, 62, 45],0,NOUN,PERFECT
+595,"fedha","fɛɗhɑ",[f, ɛ, ɗ, h, ɑ],[52, 42, 57, 77, 41],0,NOUN,PERFECT
+234,"fikiri","fikiɾi",[f, i, k, i, ɾ, i],[52, 43, 73, 43, 62, 43],0,VERB,PERFECT
 330,"filimbi","filimbi",[],[],0,NOUN,PERFECT
-530,"fueli","fuɛli",[],[],0,NOUN,PERFECT
-564,"fujo","fuʄɔ",[],[],0,NOUN,PERFECT
-607,"fulana","fulɑnɑ",[],[],0,NOUN,PERFECT
-329,"funguo","funɠuɔ",[],[],0,NOUN,PERFECT
-331,"furahi","fuɾɑhi",[],[],0,ADJECTIVE,PERFECT
-506,"gamba","ɠɑmbɑ",[],[],0,NOUN,PERFECT
-332,"gauni","ɠɑuni",[],[],0,NOUN,PERFECT
-532,"gesi","ɠɛsi",[],[],0,NOUN,PERFECT
+530,"fueli","fuɛli",[f, u, ɛ, l, i],[52, 45, 42, 63, 43],0,NOUN,PERFECT
+564,"fujo","fuʄɔ",[f, u, ʄ, ɔ],[52, 45, 66, 44],0,NOUN,PERFECT
+607,"fulana","fulɑnɑ",[f, u, l, ɑ, n, ɑ],[52, 45, 63, 41, 55, 41],0,NOUN,PERFECT
+329,"funguo","funɠuɔ",[f, u, n, ɠ, u, ɔ],[52, 45, 55, 72, 45, 44],0,NOUN,PERFECT
+331,"furahi","fuɾɑhi",[f, u, ɾ, ɑ, h, i],[52, 45, 62, 41, 77, 43],0,ADJECTIVE,PERFECT
+506,"gamba","ɠɑmbɑ",[ɠ, ɑ, mb, ɑ],[72, 41, 47, 41],0,NOUN,PERFECT
+332,"gauni","ɠɑuni",[ɠ, ɑ, u, n, i],[72, 41, 45, 55, 43],0,NOUN,PERFECT
+532,"gesi","ɠɛsi",[ɠ, ɛ, s, i],[72, 42, 61, 43],0,NOUN,PERFECT
 338,"gimbi","ɠimbi",[],[],0,null,PERFECT
-641,"glasi","ɠlɑsi",[],[],0,NOUN,PERFECT
-336,"godoro","ɠɔɗɔɾɔ",[],[],0,NOUN,PERFECT
-335,"gogo","ɠɔɠɔ",[],[],0,null,PERFECT
-534,"goli","ɠɔli",[],[],0,NOUN,PERFECT
-533,"gundi","ɠunndi",[],[],0,NOUN,PERFECT
-334,"gunia","ɠuniɑ",[],[],0,NOUN,PERFECT
-236,"guta","ɠutɑ",[],[],0,NOUN,PERFECT
-691,"hamsini","hɑmsini",[],[],0,NOUN,PERFECT
-342,"hatua","hɑtuɑ",[],[],0,NOUN,PERFECT
-254,"hawa","hɑwɑ",[],[],0,null,PERFECT
-343,"hema","hɛmɑ",[],[],0,NOUN,PERFECT
-339,"herufi","hɛɾufi",[],[],0,NOUN,PERFECT
-345,"hongera","hɔnɠɛɾɑ",[],[],0,null,PERFECT
-344,"hospitali","hɔspitɑli",[],[],0,NOUN,PERFECT
-526,"imarisha","imɑɾiʃɑ",[],[],0,VERB,PERFECT
+641,"glasi","ɠlɑsi",[ɠ, l, ɑ, s, i],[72, 63, 41, 61, 43],0,NOUN,PERFECT
+336,"godoro","ɠɔɗɔɾɔ",[ɠ, ɔ, ɗ, ɔ, ɾ, ɔ],[72, 44, 57, 44, 62, 44],0,NOUN,PERFECT
+335,"gogo","ɠɔɠɔ",[ɠ, ɔ, ɠ, ɔ],[72, 44, 72, 44],0,null,PERFECT
+534,"goli","ɠɔli",[ɠ, ɔ, l, i],[72, 44, 63, 43],0,NOUN,PERFECT
+533,"gundi","ɠunndi",[ɠ, u, n, nd, i],[72, 45, 55, 56, 43],0,NOUN,PERFECT
+334,"gunia","ɠuniɑ",[ɠ, u, n, i, ɑ],[72, 45, 55, 43, 41],0,NOUN,PERFECT
+236,"guta","ɠutɑ",[ɠ, u, t, ɑ],[72, 45, 58, 41],0,NOUN,PERFECT
+691,"hamsini","hɑmsini",[h, ɑ, m, s, i, n, i],[77, 41, 46, 61, 43, 55, 43],0,NOUN,PERFECT
+342,"hatua","hɑtuɑ",[h, ɑ, t, u, ɑ],[77, 41, 58, 45, 41],0,NOUN,PERFECT
+254,"hawa","hɑwɑ",[h, ɑ, w, ɑ],[77, 41, 76, 41],0,null,PERFECT
+343,"hema","hɛmɑ",[h, ɛ, m, ɑ],[77, 42, 46, 41],0,NOUN,PERFECT
+339,"herufi","hɛɾufi",[h, ɛ, ɾ, u, f, i],[77, 42, 62, 45, 52, 43],0,NOUN,PERFECT
+345,"hongera","hɔnɠɛɾɑ",[h, ɔ, n, ɠ, ɛ, ɾ, ɑ],[77, 44, 55, 72, 42, 62, 41],0,null,PERFECT
+344,"hospitali","hɔspitɑli",[h, ɔ, s, p, i, t, ɑ, l, i],[77, 44, 61, 49, 43, 58, 41, 63, 43],0,NOUN,PERFECT
+526,"imarisha","imɑɾiʃɑ",[i, m, ɑ, ɾ, i, ʃ, ɑ],[43, 46, 41, 62, 43, 68, 41],0,VERB,PERFECT
 347,"imba","imbɑ",[],[],0,NOUN,PERFECT
-348,"ini","ini",[],[],0,NOUN,PERFECT
-349,"injini","inʄini",[],[],0,NOUN,PERFECT
-228,"ishi","iʃi",[],[],0,null,PERFECT
-688,"ishirini","iʃiɾini",[],[],0,NOUN,PERFECT
-346,"ita","itɑ",[],[],0,VERB,PERFECT
-510,"jabali","ʄɑɓɑli",[],[],0,NOUN,PERFECT
-353,"jagi","ʄɑɠi",[],[],0,null,PERFECT
-563,"jamvi","ʄɑmvi",[],[],0,NOUN,PERFECT
-582,"jaribio","ʄɑɾiɓiɔ",[],[],0,NOUN,PERFECT
-546,"jeep","ʄɛɛp",[],[],0,NOUN,PERFECT
-635,"jengo","ʃɛŋɡɔ",[],[],0,NOUN,PERFECT
-356,"jicho","ʄitʃɔ",[],[],0,NOUN,PERFECT
-352,"jiko","ʄikɔ",[],[],0,NOUN,PERFECT
-605,"jino","ʄinɔ",[],[],0,NOUN,PERFECT
-503,"jipu","ʄipu",[],[],0,VERB,PERFECT
-357,"jirushe","ʄiɾushɛ",[],[],0,null,PERFECT
+348,"ini","ini",[i, n, i],[43, 55, 43],0,NOUN,PERFECT
+349,"injini","inʄini",[i, n, ʄ, i, n, i],[43, 55, 66, 43, 55, 43],0,NOUN,PERFECT
+228,"ishi","iʃi",[i, ʃ, i],[43, 68, 43],0,null,PERFECT
+688,"ishirini","iʃiɾini",[i, ʃ, i, ɾ, i, n, i],[43, 68, 43, 62, 43, 55, 43],0,NOUN,PERFECT
+346,"ita","itɑ",[i, t, ɑ],[43, 58, 41],0,VERB,PERFECT
+510,"jabali","ʄɑɓɑli",[ʄ, ɑ, ɓ, ɑ, l, i],[66, 41, 48, 41, 63, 43],0,NOUN,PERFECT
+353,"jagi","ʄɑɠi",[ʄ, ɑ, ɠ, i],[66, 41, 72, 43],0,null,PERFECT
+563,"jamvi","ʄɑmvi",[ʄ, ɑ, mv, i],[66, 41, 50, 43],0,NOUN,PERFECT
+582,"jaribio","ʄɑɾiɓiɔ",[ʄ, ɑ, ɾ, i, ɓ, i, ɔ],[66, 41, 62, 43, 48, 43, 44],0,NOUN,PERFECT
+546,"jeep","ʄɛɛp",[ʄ, ɛ, ɛ, p],[66, 42, 42, 49],0,NOUN,PERFECT
+635,"jengo","ʃɛŋɡɔ",[ʃ, ɛ, ŋɡ, ɔ],[68, 42, 71, 44],0,NOUN,PERFECT
+356,"jicho","ʄitʃɔ",[ʄ, i, t, ʃ, ɔ],[66, 43, 58, 68, 44],0,NOUN,PERFECT
+352,"jiko","ʄikɔ",[ʄ, i, k, ɔ],[66, 43, 73, 44],0,NOUN,PERFECT
+605,"jino","ʄinɔ",[ʄ, i, n, ɔ],[66, 43, 55, 44],0,NOUN,PERFECT
+503,"jipu","ʄipu",[ʄ, i, p, u],[66, 43, 49, 45],0,VERB,PERFECT
+357,"jirushe","ʄiɾushɛ",[ʄ, i, ɾ, u, s, h, ɛ],[66, 43, 62, 45, 61, 77, 42],0,null,PERFECT
 549,"jiunga","ʄiuŋɡɑ",[],[],0,NOUN,PERFECT
-548,"jog","ʄɔɠ",[],[],0,VERB,PERFECT
-631,"kahawia","kɑhɑwiɑ",[],[],0,ADJECTIVE,PERFECT
-578,"kalamu","kɑlɑmu",[],[],0,NOUN,PERFECT
-260,"kali","kɑli",[],[],0,null,PERFECT
-362,"karoti","kɑɾɔti",[],[],0,NOUN,PERFECT
-359,"kasuku","kɑsuku",[],[],0,NOUN,PERFECT
-231,"kata","kɑtɑ",[],[],0,VERB,PERFECT
-509,"kidevu","kiɗɛvu",[],[],0,NOUN,PERFECT
-651,"kidole","kiɗɔlɛ",[],[],0,NOUN,PERFECT
-508,"kifaranga","kifɑɾɑnɠɑ",[],[],0,NOUN,PERFECT
-555,"kifuniko","kifunikɔ",[],[],0,NOUN,PERFECT
-633,"kijani","kiʃɑni",[],[],0,ADJECTIVE,PERFECT
-647,"kijivu","kiʃivu",[],[],0,ADJECTIVE,PERFECT
-516,"kikombe","kikɔmbɛ",[],[],0,NOUN,PERFECT
-539,"kilima","kilimɑ",[],[],0,NOUN,PERFECT
+548,"jog","ʄɔɠ",[ʄ, ɔ, ɠ],[66, 44, 72],0,VERB,PERFECT
+631,"kahawia","kɑhɑwiɑ",[k, ɑ, h, ɑ, w, i, ɑ],[73, 41, 77, 41, 76, 43, 41],0,ADJECTIVE,PERFECT
+578,"kalamu","kɑlɑmu",[k, ɑ, l, ɑ, m, u],[73, 41, 63, 41, 46, 45],0,NOUN,PERFECT
+260,"kali","kɑli",[k, ɑ, l, i],[73, 41, 63, 43],0,null,PERFECT
+362,"karoti","kɑɾɔti",[k, ɑ, ɾ, ɔ, t, i],[73, 41, 62, 44, 58, 43],0,NOUN,PERFECT
+359,"kasuku","kɑsuku",[k, ɑ, s, u, k, u],[73, 41, 61, 45, 73, 45],0,NOUN,PERFECT
+231,"kata","kɑtɑ",[k, ɑ, t, ɑ],[73, 41, 58, 41],0,VERB,PERFECT
+509,"kidevu","kiɗɛvu",[k, i, ɗ, ɛ, v, u],[73, 43, 57, 42, 51, 45],0,NOUN,PERFECT
+651,"kidole","kiɗɔlɛ",[k, i, ɗ, ɔ, l, ɛ],[73, 43, 57, 44, 63, 42],0,NOUN,PERFECT
+508,"kifaranga","kifɑɾɑnɠɑ",[k, i, f, ɑ, ɾ, ɑ, n, ɠ, ɑ],[73, 43, 52, 41, 62, 41, 55, 72, 41],0,NOUN,PERFECT
+555,"kifuniko","kifunikɔ",[k, i, f, u, n, i, k, ɔ],[73, 43, 52, 45, 55, 43, 73, 44],0,NOUN,PERFECT
+633,"kijani","kiʃɑni",[k, i, ʃ, ɑ, n, i],[73, 43, 68, 41, 55, 43],0,ADJECTIVE,PERFECT
+647,"kijivu","kiʃivu",[k, i, ʃ, i, v, u],[73, 43, 68, 43, 51, 45],0,ADJECTIVE,PERFECT
+516,"kikombe","kikɔmbɛ",[k, i, k, ɔ, mb, ɛ],[73, 43, 73, 44, 47, 42],0,NOUN,PERFECT
+539,"kilima","kilimɑ",[k, i, l, i, m, ɑ],[73, 43, 63, 43, 46, 41],0,NOUN,PERFECT
 583,"kimbia","kimbiɑ",[],[],0,VERB,PERFECT
-571,"kiota","kiɔtɑ",[],[],0,NOUN,PERFECT
-287,"kiswahili","kiswɑhili",[],[],0,NOUN,PERFECT
-358,"kitabu","kitɑɓu",[],[],0,NOUN,PERFECT
-538,"kofia","kɔfiɑ",[],[],0,NOUN,PERFECT
-634,"koleo","kɔlɛɔ",[],[],0,NOUN,PERFECT
-363,"komba","kɔmɓɑ",[],[],0,null,PERFECT
-545,"koti","kɔti",[],[],0,NOUN,PERFECT
-559,"kuangalia","kuɑŋɡɑiɑ",[],[],0,NOUN,PERFECT
-540,"kugonga","kuɠɔŋɡɑ",[],[],0,VERB,PERFECT
-592,"kukaa","kukɑɑ",[],[],0,VERB,PERFECT
-361,"kuku","kuku",[],[],0,NOUN,PERFECT
-542,"kumkumbatia","kumkumbɑtiɑ",[],[],0,NOUN,PERFECT
-554,"kuramba","kuɾɑmbɑ",[],[],0,NOUN,PERFECT
-591,"kusikitisha","kusikitiʃɑ",[],[],0,VERB,PERFECT
-227,"lala","lɑlɑ",[],[],0,VERB,PERFECT
-364,"lia","liɑ",[],[],0,null,PERFECT
-367,"lima","limɑ",[],[],0,NOUN,PERFECT
-365,"limao","limɑɔ",[],[],0,NOUN,PERFECT
-577,"lipa","lipɑ",[],[],0,VERB,PERFECT
-368,"loa","lɔɑ",[],[],0,null,PERFECT
-291,"madini","mɑɗini",[],[],0,NOUN,PERFECT
-572,"mafuta","mɑfutɑ",[],[],0,ADJECTIVE,PERFECT
-298,"mahalagi","mɑhɑlɑɠi",[],[],0,null,PERFECT
-252,"manene","mɑnɛnɛ",[],[],0,ADJECTIVE,PERFECT
-502,"mashua","mɑʃuɑ",[],[],0,NOUN,PERFECT
-567,"matope","mɑtɔpɛ",[],[],0,NOUN,PERFECT
-257,"maua","mɑuɑ",[],[],0,NOUN,PERFECT
-632,"mavazi","mɑvɑzi",[],[],0,ADJECTIVE,PERFECT
-250,"mayayi","mɑjɑji",[],[],0,null,PERFECT
-13,"mbili","mɓili",[],[],0,NOUN,PERFECT
-535,"mbuzi","mbuzi",[],[],0,NOUN,PERFECT
-529,"mbweha","mbwɛhɑ",[],[],0,NOUN,PERFECT
-556,"mdomo","mɗɔmɔ",[],[],0,NOUN,PERFECT
-518,"meza","mɛzɑ",[],[],0,NOUN,PERFECT
-497,"mfuko","mfukɔ",[],[],0,NOUN,PERFECT
-696,"mia","miɑ",[],[],0,NOUN,PERFECT
-608,"mifugo","mifuɠɔ",[],[],0,NOUN,PERFECT
-565,"mister","mistɛɾ",[],[],0,NOUN,PERFECT
-286,"mji","mʄi",[],[],0,NOUN,PERFECT
-541,"moto","mɔtɔ",[],[],0,ADJECTIVE,PERFECT
-272,"motokaa","mɔtɔkɑɑ",[],[],0,NOUN,PERFECT
-273,"motoni","mɔtɔni",[],[],0,null,PERFECT
-589,"mpasuko","mpɑsukɔ",[],[],0,VERB,PERFECT
-513,"mpishi","mpiʃi",[],[],0,NOUN,PERFECT
-568,"msumari","msumɑɾi",[],[],0,NOUN,PERFECT
-609,"mtandao","mtɑnɗɑɔ",[],[],0,NOUN,PERFECT
-241,"mvua","mvuɑ",[],[],0,NOUN,PERFECT
-639,"mvulana","mvulɑnɑ",[],[],0,NOUN,PERFECT
-294,"mwaka","mwɑkɑ",[],[],0,NOUN,PERFECT
-300,"mwanafunzi","mwɑnɑfunzi",[],[],0,NOUN,PERFECT
-521,"mwanasesere","mwɑnɑsɛsɛɾɛ",[],[],0,NOUN,PERFECT
-515,"nafaka","nɑfɑkɑ",[],[],0,NOUN,PERFECT
-649,"ndevu","ndɛvu",[],[],0,NOUN,PERFECT
-524,"nene","nɛnɛ",[],[],0,NOUN,PERFECT
-304,"njano","ŋjɑnɔ",[],[],0,ADJECTIVE,PERFECT
-15,"nne","nˈnɛ",[],[],0,NOUN,PERFECT
-603,"nyembamba","ɲɛmbɑmbɑ",[],[],0,NOUN,PERFECT
-650,"nyeupe","ɲɛupɛ",[],[],0,NOUN,PERFECT
-652,"nyeusi","ɲɛusi",[],[],0,ADJECTIVE,PERFECT
-239,"nyota","ɲɔtɑ",[],[],0,NOUN,PERFECT
-264,"nyuki","ʃuki",[],[],0,NOUN,PERFECT
-223,"nywa","ɲwɑ",[],[],0,NOUN,PERFECT
-266,"ole","ɔlɛ",[],[],0,VERB,PERFECT
-262,"ona","ɔnɑ",[],[],0,VERB,PERFECT
-573,"pakiti","pɑkiti",[],[],0,NOUN,PERFECT
-588,"pete","pɛtɛ",[],[],0,NOUN,PERFECT
-643,"pink","pink",[],[],0,ADJECTIVE,PERFECT
-501,"pipa","pipɑ",[],[],0,NOUN,PERFECT
-498,"popo","pɔpɔ",[],[],0,null,PERFECT
-586,"pumzika","pumzikɑ",[],[],0,VERB,PERFECT
-612,"pundamilia","pundɑmiliɑ",[],[],0,NOUN,PERFECT
-562,"ramani","ɾɑmɑni",[],[],0,NOUN,PERFECT
-674,"sa","sɑ",[],[],0,null,PERFECT
-693,"sabini","sɑɓini",[],[],0,NOUN,PERFECT
-597,"sabuni","sɑɓuni",[],[],0,NOUN,PERFECT
-235,"safisha","sɑfiʃɑ",[],[],0,VERB,PERFECT
-520,"sahani","sɑhɑni",[],[],0,NOUN,PERFECT
-202,"samaki","sɑmɑki",[],[],0,NOUN,PERFECT
-512,"sarafu","sɑɾɑfu",[],[],0,NOUN,PERFECT
-593,"sema","sɛmɑ",[],[],0,VERB,PERFECT
-522,"shabiki","ʃɑɓiki",[],[],0,NOUN,PERFECT
-579,"shimo","ʃimɔ",[],[],0,NOUN,PERFECT
+571,"kiota","kiɔtɑ",[k, i, ɔ, t, ɑ],[73, 43, 44, 58, 41],0,NOUN,PERFECT
+287,"kiswahili","kiswɑhili",[k, i, s, w, ɑ, h, i, l, i],[73, 43, 61, 76, 41, 77, 43, 63, 43],0,NOUN,PERFECT
+358,"kitabu","kitɑɓu",[k, i, t, ɑ, ɓ, u],[73, 43, 58, 41, 48, 45],0,NOUN,PERFECT
+538,"kofia","kɔfiɑ",[k, ɔ, f, i, ɑ],[73, 44, 52, 43, 41],0,NOUN,PERFECT
+634,"koleo","kɔlɛɔ",[k, ɔ, l, ɛ, ɔ],[73, 44, 63, 42, 44],0,NOUN,PERFECT
+363,"komba","kɔmɓɑ",[k, ɔ, m, ɓ, ɑ],[73, 44, 46, 48, 41],0,null,PERFECT
+545,"koti","kɔti",[k, ɔ, t, i],[73, 44, 58, 43],0,NOUN,PERFECT
+559,"kuangalia","kuɑŋɡɑiɑ",[k, u, ɑ, ŋɡ, ɑ, i, ɑ],[73, 45, 41, 71, 41, 43, 41],0,NOUN,PERFECT
+540,"kugonga","kuɠɔŋɡɑ",[k, u, ɠ, ɔ, ŋɡ, ɑ],[73, 45, 72, 44, 71, 41],0,VERB,PERFECT
+592,"kukaa","kukɑɑ",[k, u, k, ɑ, ɑ],[73, 45, 73, 41, 41],0,VERB,PERFECT
+361,"kuku","kuku",[k, u, k, u],[73, 45, 73, 45],0,NOUN,PERFECT
+542,"kumkumbatia","kumkumbɑtiɑ",[k, u, m, k, u, mb, ɑ, t, i, ɑ],[73, 45, 46, 73, 45, 47, 41, 58, 43, 41],0,NOUN,PERFECT
+554,"kuramba","kuɾɑmbɑ",[k, u, ɾ, ɑ, mb, ɑ],[73, 45, 62, 41, 47, 41],0,NOUN,PERFECT
+591,"kusikitisha","kusikitiʃɑ",[k, u, s, i, k, i, t, i, ʃ, ɑ],[73, 45, 61, 43, 73, 43, 58, 43, 68, 41],0,VERB,PERFECT
+227,"lala","lɑlɑ",[l, ɑ, l, ɑ],[63, 41, 63, 41],0,VERB,PERFECT
+364,"lia","liɑ",[l, i, ɑ],[63, 43, 41],0,null,PERFECT
+367,"lima","limɑ",[l, i, m, ɑ],[63, 43, 46, 41],0,NOUN,PERFECT
+365,"limao","limɑɔ",[l, i, m, ɑ, ɔ],[63, 43, 46, 41, 44],0,NOUN,PERFECT
+577,"lipa","lipɑ",[l, i, p, ɑ],[63, 43, 49, 41],0,VERB,PERFECT
+368,"loa","lɔɑ",[l, ɔ, ɑ],[63, 44, 41],0,null,PERFECT
+291,"madini","mɑɗini",[m, ɑ, ɗ, i, n, i],[46, 41, 57, 43, 55, 43],0,NOUN,PERFECT
+572,"mafuta","mɑfutɑ",[m, ɑ, f, u, t, ɑ],[46, 41, 52, 45, 58, 41],0,ADJECTIVE,PERFECT
+298,"mahalagi","mɑhɑlɑɠi",[m, ɑ, h, ɑ, l, ɑ, ɠ, i],[46, 41, 77, 41, 63, 41, 72, 43],0,null,PERFECT
+252,"manene","mɑnɛnɛ",[m, ɑ, n, ɛ, n, ɛ],[46, 41, 55, 42, 55, 42],0,ADJECTIVE,PERFECT
+502,"mashua","mɑʃuɑ",[m, ɑ, ʃ, u, ɑ],[46, 41, 68, 45, 41],0,NOUN,PERFECT
+567,"matope","mɑtɔpɛ",[m, ɑ, t, ɔ, p, ɛ],[46, 41, 58, 44, 49, 42],0,NOUN,PERFECT
+257,"maua","mɑuɑ",[m, ɑ, u, ɑ],[46, 41, 45, 41],0,NOUN,PERFECT
+632,"mavazi","mɑvɑzi",[m, ɑ, v, ɑ, z, i],[46, 41, 51, 41, 60, 43],0,ADJECTIVE,PERFECT
+250,"mayayi","mɑjɑji",[m, ɑ, j, ɑ, j, i],[46, 41, 69, 41, 69, 43],0,null,PERFECT
+13,"mbili","mɓili",[m, ɓ, i, l, i],[46, 48, 43, 63, 43],0,NOUN,PERFECT
+535,"mbuzi","mbuzi",[mb, u, z, i],[47, 45, 60, 43],0,NOUN,PERFECT
+529,"mbweha","mbwɛhɑ",[mb, w, ɛ, h, ɑ],[47, 76, 42, 77, 41],0,NOUN,PERFECT
+556,"mdomo","mɗɔmɔ",[m, ɗ, ɔ, m, ɔ],[46, 57, 44, 46, 44],0,NOUN,PERFECT
+518,"meza","mɛzɑ",[m, ɛ, z, ɑ],[46, 42, 60, 41],0,NOUN,PERFECT
+497,"mfuko","mfukɔ",[m, f, u, k, ɔ],[46, 52, 45, 73, 44],0,NOUN,PERFECT
+696,"mia","miɑ",[m, i, ɑ],[46, 43, 41],0,NOUN,PERFECT
+608,"mifugo","mifuɠɔ",[m, i, f, u, ɠ, ɔ],[46, 43, 52, 45, 72, 44],0,NOUN,PERFECT
+565,"mister","mistɛɾ",[m, i, s, t, ɛ, ɾ],[46, 43, 61, 58, 42, 62],0,NOUN,PERFECT
+286,"mji","mʄi",[m, ʄ, i],[46, 66, 43],0,NOUN,PERFECT
+541,"moto","mɔtɔ",[m, ɔ, t, ɔ],[46, 44, 58, 44],0,ADJECTIVE,PERFECT
+272,"motokaa","mɔtɔkɑɑ",[m, ɔ, t, ɔ, k, ɑ, ɑ],[46, 44, 58, 44, 73, 41, 41],0,NOUN,PERFECT
+273,"motoni","mɔtɔni",[m, ɔ, t, ɔ, n, i],[46, 44, 58, 44, 55, 43],0,null,PERFECT
+589,"mpasuko","mpɑsukɔ",[m, p, ɑ, s, u, k, ɔ],[46, 49, 41, 61, 45, 73, 44],0,VERB,PERFECT
+513,"mpishi","mpiʃi",[m, p, i, ʃ, i],[46, 49, 43, 68, 43],0,NOUN,PERFECT
+568,"msumari","msumɑɾi",[m, s, u, m, ɑ, ɾ, i],[46, 61, 45, 46, 41, 62, 43],0,NOUN,PERFECT
+609,"mtandao","mtɑnɗɑɔ",[m, t, ɑ, n, ɗ, ɑ, ɔ],[46, 58, 41, 55, 57, 41, 44],0,NOUN,PERFECT
+241,"mvua","mvuɑ",[mv, u, ɑ],[50, 45, 41],0,NOUN,PERFECT
+639,"mvulana","mvulɑnɑ",[mv, u, l, ɑ, n, ɑ],[50, 45, 63, 41, 55, 41],0,NOUN,PERFECT
+294,"mwaka","mwɑkɑ",[m, w, ɑ, k, ɑ],[46, 76, 41, 73, 41],0,NOUN,PERFECT
+300,"mwanafunzi","mwɑnɑfunzi",[m, w, ɑ, n, ɑ, f, u, nz, i],[46, 76, 41, 55, 41, 52, 45, 59, 43],0,NOUN,PERFECT
+521,"mwanasesere","mwɑnɑsɛsɛɾɛ",[m, w, ɑ, n, ɑ, s, ɛ, s, ɛ, ɾ, ɛ],[46, 76, 41, 55, 41, 61, 42, 61, 42, 62, 42],0,NOUN,PERFECT
+515,"nafaka","nɑfɑkɑ",[n, ɑ, f, ɑ, k, ɑ],[55, 41, 52, 41, 73, 41],0,NOUN,PERFECT
+649,"ndevu","ndɛvu",[nd, ɛ, v, u],[56, 42, 51, 45],0,NOUN,PERFECT
+524,"nene","nɛnɛ",[n, ɛ, n, ɛ],[55, 42, 55, 42],0,NOUN,PERFECT
+304,"njano","ŋjɑnɔ",[ŋ, j, ɑ, n, ɔ],[70, 69, 41, 55, 44],0,ADJECTIVE,PERFECT
+15,"nne","nˈnɛ",[n, ˈ, n, ɛ],[55, 80, 55, 42],0,NOUN,PERFECT
+603,"nyembamba","ɲɛmbɑmbɑ",[ɲ, ɛ, mb, ɑ, mb, ɑ],[64, 42, 47, 41, 47, 41],0,NOUN,PERFECT
+650,"nyeupe","ɲɛupɛ",[ɲ, ɛ, u, p, ɛ],[64, 42, 45, 49, 42],0,NOUN,PERFECT
+652,"nyeusi","ɲɛusi",[ɲ, ɛ, u, s, i],[64, 42, 45, 61, 43],0,ADJECTIVE,PERFECT
+239,"nyota","ɲɔtɑ",[ɲ, ɔ, t, ɑ],[64, 44, 58, 41],0,NOUN,PERFECT
+264,"nyuki","ʃuki",[ʃ, u, k, i],[68, 45, 73, 43],0,NOUN,PERFECT
+223,"nywa","ɲwɑ",[ɲ, w, ɑ],[64, 76, 41],0,NOUN,PERFECT
+266,"ole","ɔlɛ",[ɔ, l, ɛ],[44, 63, 42],0,VERB,PERFECT
+262,"ona","ɔnɑ",[ɔ, n, ɑ],[44, 55, 41],0,VERB,PERFECT
+573,"pakiti","pɑkiti",[p, ɑ, k, i, t, i],[49, 41, 73, 43, 58, 43],0,NOUN,PERFECT
+588,"pete","pɛtɛ",[p, ɛ, t, ɛ],[49, 42, 58, 42],0,NOUN,PERFECT
+643,"pink","pink",[p, i, n, k],[49, 43, 55, 73],0,ADJECTIVE,PERFECT
+501,"pipa","pipɑ",[p, i, p, ɑ],[49, 43, 49, 41],0,NOUN,PERFECT
+498,"popo","pɔpɔ",[p, ɔ, p, ɔ],[49, 44, 49, 44],0,null,PERFECT
+586,"pumzika","pumzikɑ",[p, u, m, z, i, k, ɑ],[49, 45, 46, 60, 43, 73, 41],0,VERB,PERFECT
+612,"pundamilia","pundɑmiliɑ",[p, u, nd, ɑ, m, i, l, i, ɑ],[49, 45, 56, 41, 46, 43, 63, 43, 41],0,NOUN,PERFECT
+562,"ramani","ɾɑmɑni",[ɾ, ɑ, m, ɑ, n, i],[62, 41, 46, 41, 55, 43],0,NOUN,PERFECT
+674,"sa","sɑ",[s, ɑ],[61, 41],0,null,PERFECT
+693,"sabini","sɑɓini",[s, ɑ, ɓ, i, n, i],[61, 41, 48, 43, 55, 43],0,NOUN,PERFECT
+597,"sabuni","sɑɓuni",[s, ɑ, ɓ, u, n, i],[61, 41, 48, 45, 55, 43],0,NOUN,PERFECT
+235,"safisha","sɑfiʃɑ",[s, ɑ, f, i, ʃ, ɑ],[61, 41, 52, 43, 68, 41],0,VERB,PERFECT
+520,"sahani","sɑhɑni",[s, ɑ, h, ɑ, n, i],[61, 41, 77, 41, 55, 43],0,NOUN,PERFECT
+202,"samaki","sɑmɑki",[s, ɑ, m, ɑ, k, i],[61, 41, 46, 41, 73, 43],0,NOUN,PERFECT
+512,"sarafu","sɑɾɑfu",[s, ɑ, ɾ, ɑ, f, u],[61, 41, 62, 41, 52, 45],0,NOUN,PERFECT
+593,"sema","sɛmɑ",[s, ɛ, m, ɑ],[61, 42, 46, 41],0,VERB,PERFECT
+522,"shabiki","ʃɑɓiki",[ʃ, ɑ, ɓ, i, k, i],[68, 41, 48, 43, 73, 43],0,NOUN,PERFECT
+579,"shimo","ʃimɔ",[ʃ, i, m, ɔ],[68, 43, 46, 44],0,NOUN,PERFECT
 610,"shinda","ʃindɑ",[],[],0,null,PERFECT
-11,"sifuri","sifuɾi",[],[],0,NOUN,PERFECT
-225,"sikia","sikiɑ",[],[],0,VERB,PERFECT
-211,"sisi","sisi",[],[],0,NOUN,PERFECT
-692,"sitini","sitini",[],[],0,NOUN,PERFECT
-575,"sufuria","sufuɾiɑ",[],[],0,NOUN,PERFECT
-600,"tangi","tɑŋɡi",[],[],0,NOUN,PERFECT
-16,"tano","tɑnɔ",[],[],0,NOUN,PERFECT
-282,"tele","tɛlɛ",[],[],0,NOUN,PERFECT
-615,"televisheni","tɛlɛviʃɛni",[],[],0,NOUN,PERFECT
-689,"thelathini","θɛlɑθini",[],[],0,NOUN,PERFECT
-694,"themanini","θɛmɑnini",[],[],0,NOUN,PERFECT
-604,"tie","tiɛ",[],[],0,NOUN,PERFECT
-20,"tisa","tisɑ",[],[],0,NOUN,PERFECT
-695,"tisini","tisini",[],[],0,NOUN,PERFECT
-606,"treni","tɾɛni",[],[],0,NOUN,PERFECT
-205,"tunda","tunɗɑ",[],[],0,NOUN,PERFECT
-206,"ua","uɑ",[],[],0,null,PERFECT
-527,"ukungu","ukunɠu",[],[],0,NOUN,PERFECT
-528,"uma","umɑ",[],[],0,NOUN,PERFECT
-277,"useni","usɛni",[],[],0,NOUN,PERFECT
-207,"vipi","vipi",[],[],0,VERB,PERFECT
-292,"wali","wɑli",[],[],0,null,PERFECT
-256,"wanakaa","wɑnɑkɑɑ",[],[],0,VERB,PERFECT
-560,"wazimu","wɑzimu",[],[],0,ADJECTIVE,PERFECT
+11,"sifuri","sifuɾi",[s, i, f, u, ɾ, i],[61, 43, 52, 45, 62, 43],0,NOUN,PERFECT
+225,"sikia","sikiɑ",[s, i, k, i, ɑ],[61, 43, 73, 43, 41],0,VERB,PERFECT
+211,"sisi","sisi",[s, i, s, i],[61, 43, 61, 43],0,NOUN,PERFECT
+692,"sitini","sitini",[s, i, t, i, n, i],[61, 43, 58, 43, 55, 43],0,NOUN,PERFECT
+575,"sufuria","sufuɾiɑ",[s, u, f, u, ɾ, i, ɑ],[61, 45, 52, 45, 62, 43, 41],0,NOUN,PERFECT
+600,"tangi","tɑŋɡi",[t, ɑ, ŋɡ, i],[58, 41, 71, 43],0,NOUN,PERFECT
+16,"tano","tɑnɔ",[t, ɑ, n, ɔ],[58, 41, 55, 44],0,NOUN,PERFECT
+282,"tele","tɛlɛ",[t, ɛ, l, ɛ],[58, 42, 63, 42],0,NOUN,PERFECT
+615,"televisheni","tɛlɛviʃɛni",[t, ɛ, l, ɛ, v, i, ʃ, ɛ, n, i],[58, 42, 63, 42, 51, 43, 68, 42, 55, 43],0,NOUN,PERFECT
+689,"thelathini","θɛlɑθini",[θ, ɛ, l, ɑ, θ, i, n, i],[54, 42, 63, 41, 54, 43, 55, 43],0,NOUN,PERFECT
+694,"themanini","θɛmɑnini",[θ, ɛ, m, ɑ, n, i, n, i],[54, 42, 46, 41, 55, 43, 55, 43],0,NOUN,PERFECT
+604,"tie","tiɛ",[t, i, ɛ],[58, 43, 42],0,NOUN,PERFECT
+20,"tisa","tisɑ",[t, i, s, ɑ],[58, 43, 61, 41],0,NOUN,PERFECT
+695,"tisini","tisini",[t, i, s, i, n, i],[58, 43, 61, 43, 55, 43],0,NOUN,PERFECT
+606,"treni","tɾɛni",[t, ɾ, ɛ, n, i],[58, 62, 42, 55, 43],0,NOUN,PERFECT
+205,"tunda","tunɗɑ",[t, u, n, ɗ, ɑ],[58, 45, 55, 57, 41],0,NOUN,PERFECT
+206,"ua","uɑ",[u, ɑ],[45, 41],0,null,PERFECT
+527,"ukungu","ukunɠu",[u, k, u, n, ɠ, u],[45, 73, 45, 55, 72, 45],0,NOUN,PERFECT
+528,"uma","umɑ",[u, m, ɑ],[45, 46, 41],0,NOUN,PERFECT
+277,"useni","usɛni",[u, s, ɛ, n, i],[45, 61, 42, 55, 43],0,NOUN,PERFECT
+207,"vipi","vipi",[v, i, p, i],[51, 43, 49, 43],0,VERB,PERFECT
+292,"wali","wɑli",[w, ɑ, l, i],[76, 41, 63, 43],0,null,PERFECT
+256,"wanakaa","wɑnɑkɑɑ",[w, ɑ, n, ɑ, k, ɑ, ɑ],[76, 41, 55, 41, 73, 41, 41],0,VERB,PERFECT
+560,"wazimu","wɑzimu",[w, ɑ, z, i, m, u],[76, 41, 60, 43, 46, 45],0,ADJECTIVE,PERFECT
 230,"winda","windɑ",[],[],0,VERB,PERFECT
-544,"wino","winɔ",[],[],0,NOUN,PERFECT
-219,"yai","jɑi",[],[],0,NOUN,PERFECT
-645,"zambarau","zɑmbɑɾɑu",[],[],0,ADJECTIVE,PERFECT
-613,"zip","zip",[],[],0,NOUN,PERFECT
-218,"zito","zitɔ",[],[],0,ADJECTIVE,PERFECT
-614,"zoo","zɔ",[],[],0,NOUN,PERFECT
+544,"wino","winɔ",[w, i, n, ɔ],[76, 43, 55, 44],0,NOUN,PERFECT
+219,"yai","jɑi",[j, ɑ, i],[69, 41, 43],0,NOUN,PERFECT
+645,"zambarau","zɑmbɑɾɑu",[z, ɑ, mb, ɑ, ɾ, ɑ, u],[60, 41, 47, 41, 62, 41, 45],0,ADJECTIVE,PERFECT
+613,"zip","zip",[z, i, p],[60, 43, 49],0,NOUN,PERFECT
+218,"zito","zitɔ",[z, i, t, ɔ],[60, 43, 58, 44],0,ADJECTIVE,PERFECT
+614,"zoo","zɔ",[z, ɔ],[60, 44],0,NOUN,PERFECT
