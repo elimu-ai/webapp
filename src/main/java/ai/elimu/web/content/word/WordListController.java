@@ -1,11 +1,15 @@
 package ai.elimu.web.content.word;
 
+import ai.elimu.dao.AllophoneDao;
 import java.util.List;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
+import java.util.ArrayList;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +24,9 @@ public class WordListController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -28,6 +35,13 @@ public class WordListController {
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         List<Word> words = wordDao.readAllOrderedByUsage(language);
+        
+        for (Word word : words) {
+            copyValuesFromPhoneticsToAllophones(word);
+            wordDao.update(word);
+        }
+        words = wordDao.readAllOrderedByUsage(language);
+        
         model.addAttribute("words", words);
         
         int maxUsageCount = 0;
@@ -39,5 +53,37 @@ public class WordListController {
         model.addAttribute("maxUsageCount", maxUsageCount);
 
         return "content/word/list";
+    }
+    
+    /**
+     * Example with "they": /ðɛɪ/ --> /ð/ + /ɛɪ/
+     */
+    @Deprecated
+    private void copyValuesFromPhoneticsToAllophones(Word word) {
+        logger.info("copyValuesFromPhoneticsToAllophones");
+        
+        logger.info("word.getText(): \"" + word.getText() + "\"");
+        logger.info("word.getPhonetics(): \"" + word.getPhonetics() + "\"");
+        
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Allophone> allAllophones = allophoneDao.readAllOrderedByIpaValueCharacterLength(language);
+        
+        List<Allophone> wordAllophones = new ArrayList<>();
+        
+        String phonetics = word.getPhonetics();
+        while (StringUtils.isNotBlank(phonetics)) {
+            logger.info("phonetics: /" + phonetics + "/");
+            for (Allophone allophone : allAllophones) {
+                logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/");
+                logger.info("phonetics.startsWith(allophone.getValueIpa()): " + phonetics.startsWith(allophone.getValueIpa()));
+                if (phonetics.startsWith(allophone.getValueIpa())) {
+                    wordAllophones.add(allophone);
+                    phonetics = phonetics.substring(allophone.getValueIpa().length(), phonetics.length());
+                    logger.info("phonetics (updated): /" + phonetics + "/");
+                }
+            }
+        }
+        
+        word.setAllophones(wordAllophones);
     }
 }
