@@ -57,6 +57,17 @@ public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements Allopho
     }
     
     @Override
+    public List<Allophone> readAllOrderedByIpaValueCharacterLength(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT a " +
+            "FROM Allophone a " +
+            "WHERE a.language = :language " +
+            "ORDER BY CHAR_LENGTH(a.valueIpa) DESC, a.valueIpa")
+            .setParameter("language", language)
+            .getResultList();
+    }
+    
+    @Override
     public List<Allophone> readAllOrderedByUsage(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT a " +
