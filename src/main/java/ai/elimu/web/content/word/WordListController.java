@@ -73,14 +73,20 @@ public class WordListController {
         String phonetics = word.getPhonetics();
         while (StringUtils.isNotBlank(phonetics)) {
             logger.info("phonetics: /" + phonetics + "/");
+            boolean isMatch = false;
             for (Allophone allophone : allAllophones) {
                 logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/");
                 logger.info("phonetics.startsWith(allophone.getValueIpa()): " + phonetics.startsWith(allophone.getValueIpa()));
                 if (phonetics.startsWith(allophone.getValueIpa())) {
+                    isMatch = true;
                     wordAllophones.add(allophone);
                     phonetics = phonetics.substring(allophone.getValueIpa().length(), phonetics.length());
                     logger.info("phonetics (updated): /" + phonetics + "/");
                 }
+            }
+            if (!isMatch) {
+                logger.warn("No Allophones matched the beginning of the IPA value /" + phonetics + "/. Skipping Word.");
+                return;
             }
         }
         
