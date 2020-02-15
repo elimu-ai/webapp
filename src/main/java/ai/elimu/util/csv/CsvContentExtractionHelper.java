@@ -1,8 +1,10 @@
 package ai.elimu.util.csv;
 
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
@@ -167,6 +169,7 @@ public class CsvContentExtractionHelper {
                 logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
                 String[] allophoneValuesIpaArray = allophoneValuesIpa.split("\\|");
                 logger.info("Arrays.toString(allophoneValuesIpaArray): " + Arrays.toString(allophoneValuesIpaArray));
+                
                 List<Allophone> allophones = new ArrayList<>();
                 Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
                 for (String allophoneValueIpa : allophoneValuesIpaArray) {
@@ -267,6 +270,7 @@ public class CsvContentExtractionHelper {
                 logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
                 String[] allophoneValuesIpaArray = allophoneValuesIpa.split("\\|");
                 logger.info("Arrays.toString(allophoneValuesIpaArray): " + Arrays.toString(allophoneValuesIpaArray));
+                
                 List<Allophone> allophones = new ArrayList<>();
                 Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
                 for (String allophoneValueIpa : allophoneValuesIpaArray) {
@@ -320,5 +324,104 @@ public class CsvContentExtractionHelper {
         }
         
         return words;
+    }
+    
+    /**
+     * For information on how the CSV files were generated, see {@link NumberCsvExportController#handleRequest}.
+     */
+    public static List<Number> getNumbersFromCsvBackup(File csvFile, WordDao wordDao) {
+        logger.info("getNumbersFromCsvBackup");
+        
+        logger.info("csvFile: " + csvFile);
+        
+        List<Number> numbers = new ArrayList<>();
+        
+        try {
+            Scanner scanner = new Scanner(csvFile);
+            int rowNumber = 0;
+            while (scanner.hasNextLine()) {
+                String row = scanner.nextLine();
+                logger.info("row: " + row);
+                
+                rowNumber++;
+                
+                if (rowNumber == 1) {
+                    // Skip the header row
+                    continue;
+                }
+                
+                // Expected header format: id,value,symbol,word_texts,word_ids
+                // Expected row format: 1,0,"null",["zero"],[1]
+                
+                // Prevent "null" from being stored as ""null""
+                // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
+                row = row.replace("\"", "");
+                logger.info("row (after removing '\"'): " + row);
+                
+                // Prevent "java.lang.NumberFormatException: For input string: " 6]""
+                // TODO: find more robust solution
+                row = row.replace(", ", "|");
+                logger.info("row (after removing ', '): " + row);
+                
+                String[] rowValues = row.split(",");
+                logger.info("rowValues: " + Arrays.toString(rowValues));
+                
+                // "id"
+                Long id = Long.valueOf(rowValues[0]);
+                logger.info("id: " + id);
+                
+                // "value"
+                Integer value = Integer.valueOf(rowValues[1]);
+                logger.info("value: " + value);
+                
+                // "symbol"
+                String symbol = null;
+                if (!"null".equals(rowValues[2])) {
+                    symbol = String.valueOf(rowValues[2]);
+                }
+                logger.info("symbol: \"" + symbol + "\"");
+                
+                // "word_texts"
+                String wordTexts = String.valueOf(rowValues[3]);
+                logger.info("wordTexts: \"" + wordTexts + "\"");
+                wordTexts = wordTexts.replace("[", "");
+                logger.info("wordTexts: \"" + wordTexts + "\"");
+                wordTexts = wordTexts.replace("]", "");
+                logger.info("wordTexts: \"" + wordTexts + "\"");
+                String[] wordTextsArray = wordTexts.split("\\|");
+                logger.info("Arrays.toString(wordTextsArray): " + Arrays.toString(wordTextsArray));
+                        
+                List<Word> words = new ArrayList<>();
+                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+                for (String wordText : wordTextsArray) {
+                    logger.info("Looking up Word with text \"" + wordText + "\"");
+                    Word word = wordDao.readByText(language, wordText);
+                    logger.info("word.getId(): \"" + word.getId() + "\"");
+                    words.add(word);
+                }
+                
+                // "word_ids"
+                String wordIds = String.valueOf(rowValues[4]);
+                logger.info("wordIds: \"" + wordIds + "\"");
+                wordIds = wordIds.replace("[", "");
+                logger.info("wordIds: \"" + wordIds + "\"");
+                wordIds = wordIds.replace("]", "");
+                logger.info("wordIds: \"" + wordIds + "\"");
+                String[] wordIdsArray = wordIds.split("\\|");
+                logger.info("Arrays.toString(wordIdsArray): " + Arrays.toString(wordIdsArray));
+                
+                Number number = new Number();
+                // number.setId(id); // TODO: to enable later lookup of the same Number by its ID
+                number.setValue(value);
+                number.setSymbol(symbol);
+                number.setWords(words);
+                numbers.add(number);
+            }
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            logger.error(null, ex);
+        }
+        
+        return numbers;
     }
 }
