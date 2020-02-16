@@ -1,4 +1,5 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
+46,"ʔ","?",null,false,VOWEL,0
 1,".",".",null,false,null,-1
 2,"aʊ","aU",null,false,null,-1
 3,"b","b",null,false,null,-1
