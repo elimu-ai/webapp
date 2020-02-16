@@ -277,7 +277,7 @@ public class CsvContentExtractionHelper {
                 }
                 
                 // "allophone_ids"
-                String allophoneIds = String.valueOf(rowValues[3]);
+                String allophoneIds = String.valueOf(rowValues[4]);
                 logger.info("allophoneIds: \"" + allophoneIds + "\"");
                 allophoneIds = allophoneIds.replace("[", "");
                 logger.info("allophoneIds: \"" + allophoneIds + "\"");
@@ -292,7 +292,7 @@ public class CsvContentExtractionHelper {
                 
                 // "word_type"
                 WordType wordType = null;
-                if (!"null".equals(rowValues[6])) {
+                if (!"null".equals(rowValues[5])) {
                     wordType = WordType.valueOf(rowValues[5]);
                 }
                 logger.info("wordType: " + wordType);
@@ -300,7 +300,7 @@ public class CsvContentExtractionHelper {
                 // spelling_consistency
                 SpellingConsistency spellingConsistency = null;
                 if (!"null".equals(rowValues[6])) {
-                    spellingConsistency = SpellingConsistency.valueOf(rowValues[7]);
+                    spellingConsistency = SpellingConsistency.valueOf(rowValues[6]);
                 }
                 logger.info("spellingConsistency: " + spellingConsistency);
                 
