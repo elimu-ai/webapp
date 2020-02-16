@@ -13,13 +13,15 @@ import ai.elimu.model.enums.Language;
 public class EmojiDaoJpa extends GenericDaoJpa<Emoji> implements EmojiDao {
 
     @Override
-    public Emoji readByGlyph(String glyph) throws DataAccessException {
+    public Emoji readByGlyph(String glyph, Language language) throws DataAccessException {
         try {
             return (Emoji) em.createQuery(
                 "SELECT e " +
                 "FROM Emoji e " +
-                "WHERE e.glyph = :glyph")
+                "WHERE e.glyph = :glyph " +
+                "AND e.language = :language")
                 .setParameter("glyph", glyph)
+                .setParameter("language", language)
                 .getSingleResult();
         } catch (NoResultException e) {
             logger.warn("Emoji '" + glyph + "' was not found");

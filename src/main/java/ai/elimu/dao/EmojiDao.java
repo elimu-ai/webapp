@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface EmojiDao extends GenericDao<Emoji> {
     
-    Emoji readByGlyph(String glyph) throws DataAccessException;
+    Emoji readByGlyph(String glyph, Language language) throws DataAccessException;
     
     List<Emoji> readAllOrdered(Language language) throws DataAccessException;
     
