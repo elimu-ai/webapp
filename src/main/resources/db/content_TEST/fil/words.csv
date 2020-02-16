@@ -1,9 +1,11 @@
 id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+48,"anak",[ɑ, n, ɑ, k],[28, 14, 28, 11],0,NOUN,PERFECT
 1,"anim",[ɑ, n, ɪ, m],[28, 14, 36, 13],0,null,PERFECT
 2,"apat",[ɑ, p, ɑ, t],[28, 15, 28, 19],0,null,PERFECT
 3,"dalawa",[d, ɑ, l, ɑ, w, ɑ],[4, 28, 12, 28, 23, 28],0,null,PERFECT
 4,"dalawampu",[d, ɑ, l, ɑ, w, ɑ, m, p, u],[4, 28, 12, 28, 23, 28, 13, 15, 21],0,null,PERFECT
 5,"dalawampu't",[d, ɑ, l, ɑ, w, ɑ, m, p, u, t],[4, 28, 12, 28, 23, 28, 13, 15, 21, 19],0,null,HIGHLY_PHONEMIC
+43,"damit",[d, ɑ, m, i, t],[4, 28, 13, 9, 19],0,NOUN,PERFECT
 36,"ilan",[ɪ, l, ɑ, n],[36, 12, 28, 14],0,null,PERFECT
 6,"isa",[ɪ, s, ɑ],[36, 18, 28],0,null,PERFECT
 27,"itim",[ɪ, t, i, m],[36, 19, 9, 13],0,ADJECTIVE,PERFECT
@@ -20,8 +22,13 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 15,"labintatlo",[l, ɑ, b, ɪ, n, ., t, ɑ, t, l, ɔ],[12, 28, 3, 36, 14, 1, 19, 28, 19, 12, 30],0,null,HIGHLY_PHONEMIC
 16,"lima",[l, ɪ, m, ɑ],[12, 36, 13, 28],0,null,PERFECT
 37,"maging",[m, ɑ, g, i, ŋ],[13, 28, 7, 9, 27],0,VERB,PHONEMIC
+47,"magsulat",[m, ɑ, g, s, u, l, ɑ, t],[13, 28, 7, 18, 21, 12, 28, 19],0,VERB,PERFECT
 38,"mahal",[m, ɑ, h, ɑ, l],[13, 28, 8, 28, 12],0,null,PERFECT
+40,"mainit",[m, ɑ, i, n, ɪ, t],[13, 28, 9, 14, 36, 19],0,ADJECTIVE,PERFECT
 29,"malaki",[m, ɑ, l, ɑ, k, ɪ],[13, 28, 12, 28, 11, 36],0,ADJECTIVE,PERFECT
+45,"malamig",[m, ɑ, z, ɑ, m, i, g],[13, 28, 24, 28, 13, 9, 7],0,ADJECTIVE,PERFECT
+46,"malayo",[m, ɑ, l, ɑ, j, ɔ],[13, 28, 12, 28, 10, 30],0,null,PERFECT
+41,"maliit",[m, ɑ, l, i, ɪ, t],[13, 28, 12, 9, 36, 19],0,ADJECTIVE,PERFECT
 32,"matulog",[m, ɑ, t, u, l, ɔ, g],[13, 28, 19, 21, 12, 30, 7],0,VERB,PERFECT
 31,"nagugutom",[n, ɑ, g, u, g, u, t, ɔ, m],[14, 28, 7, 21, 7, 21, 19, 30, 13],0,ADJECTIVE,PERFECT
 17,"natatakot",[n, ɑ, t, ɑ, t, ɑ, k, ɔ, t],[14, 28, 19, 28, 19, 28, 11, 30, 19],0,ADJECTIVE,PERFECT
@@ -30,8 +37,11 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 18,"pito",[p, ɪ, t, ɔ],[15, 36, 19, 30],0,null,PERFECT
 19,"pusa",[p, u, s, ɑ],[15, 21, 18, 28],0,NOUN,PERFECT
 20,"sampu",[s, ɑ, m, p, u],[18, 28, 13, 15, 21],0,null,PERFECT
+39,"sana",[s, ɑ, n, ɑ],[18, 28, 14, 28],0,null,PERFECT
 21,"sero",[s, ɛ, r̩, ɔ],[18, 34, 17, 30],0,null,PERFECT
 34,"sila",[s, i, l, ɑ],[18, 9, 12, 28],0,null,PERFECT
+44,"sino",[s, i, n, ɔ],[18, 9, 14, 30],0,null,PERFECT
+42,"siya",[ʃ, ɑ],[39, 28],0,null,HIGHLY_NON_PHONEMIC
 22,"siyam",[ʃ, ɑ, m],[39, 28, 13],0,null,NON_PHONEMIC
 23,"tatlo",[t, ɑ, t, l, ɔ],[19, 28, 19, 12, 30],0,null,PERFECT
 24,"tatlumpu",[t, ɑ, t, l, u, m, p, u],[19, 28, 19, 12, 21, 13, 15, 21],0,null,PERFECT
