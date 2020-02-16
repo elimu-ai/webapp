@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
@@ -100,21 +99,6 @@ public class WordEditController {
         }
         
         List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
-        
-        // Verify that only valid Allophones are used
-        String allAllophonesCombined = "";
-        for (Allophone allophone : allophones) {
-            allAllophonesCombined += allophone.getValueIpa();
-        }
-        if (StringUtils.isNotBlank(word.getPhonetics())) {
-            for (char allophoneCharacter : word.getPhonetics().toCharArray()) {
-                String allophone = String.valueOf(allophoneCharacter);
-                if (!allAllophonesCombined.contains(allophone)) {
-                    result.rejectValue("phonetics", "Invalid");
-                    break;
-                }
-            }
-        }
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);

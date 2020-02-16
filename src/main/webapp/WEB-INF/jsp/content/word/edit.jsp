@@ -64,8 +64,6 @@
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="phonetics" cssErrorClass="error"><fmt:message key='phonetics' /> (IPA)</form:label>
-                    <form:input path="phonetics" cssErrorClass="error" />
                     <div id="allophonesContainer">
                         <c:forEach var="allophone" items="${allophones}">
                             <a href="#" class="allophone chip" data-allophoneid="${allophone.id}" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
@@ -88,9 +86,6 @@
                                     
                                     $('#selectedAllophonesContainer').append('<input name="allophones" type="hidden" value="' + allophoneId + '" />');
                                     $('#selectedAllophonesContainer').append('<div class="chip">' + allophoneValueIpa + '</div>');
-                                    
-                                    $('#phonetics').val($('#phonetics').val() + allophoneValueIpa);
-                                    $('#phonetics').focus();
                                 });
                                 
                                 // Play sound when hovering IPA value

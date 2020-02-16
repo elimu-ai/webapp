@@ -233,8 +233,8 @@ public class CsvContentExtractionHelper {
                     continue;
                 }
                 
-                // Expected header format: id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
-                // Expected row format: 7,"anim","ɑnɪm",[ɑ, n, ɪ, m],[28, 14, 36, 13],0,null,null
+                // Expected header format: id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+                // Expected row format: 7,"anim",[ɑ, n, ɪ, m],[28, 14, 36, 13],0,null,null
                 
                 // Prevent "anim" from being stored as ""anim""
                 // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
@@ -257,12 +257,8 @@ public class CsvContentExtractionHelper {
                 String text = String.valueOf(rowValues[1]);
                 logger.info("text: \"" + text + "\"");
                 
-                // phonetics
-                String phonetics = String.valueOf(rowValues[2]);
-                logger.info("phonetics: /" + text + "/");
-                
                 // "allophone_values_ipa"
-                String allophoneValuesIpa = String.valueOf(rowValues[3]);
+                String allophoneValuesIpa = String.valueOf(rowValues[2]);
                 logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
                 allophoneValuesIpa = allophoneValuesIpa.replace("[", "");
                 logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
@@ -281,7 +277,7 @@ public class CsvContentExtractionHelper {
                 }
                 
                 // "allophone_ids"
-                String allophoneIds = String.valueOf(rowValues[4]);
+                String allophoneIds = String.valueOf(rowValues[3]);
                 logger.info("allophoneIds: \"" + allophoneIds + "\"");
                 allophoneIds = allophoneIds.replace("[", "");
                 logger.info("allophoneIds: \"" + allophoneIds + "\"");
@@ -291,19 +287,19 @@ public class CsvContentExtractionHelper {
                 logger.info("Arrays.toString(allophoneIdsArray): " + Arrays.toString(allophoneIdsArray));
                 
                 // "usage_count"
-                int usageCount = Integer.valueOf(rowValues[5]);
+                int usageCount = Integer.valueOf(rowValues[4]);
                 logger.info("usageCount: " + usageCount);
                 
                 // "word_type"
                 WordType wordType = null;
                 if (!"null".equals(rowValues[6])) {
-                    wordType = WordType.valueOf(rowValues[6]);
+                    wordType = WordType.valueOf(rowValues[5]);
                 }
                 logger.info("wordType: " + wordType);
                 
                 // spelling_consistency
                 SpellingConsistency spellingConsistency = null;
-                if (!"null".equals(rowValues[7])) {
+                if (!"null".equals(rowValues[6])) {
                     spellingConsistency = SpellingConsistency.valueOf(rowValues[7]);
                 }
                 logger.info("spellingConsistency: " + spellingConsistency);
@@ -311,7 +307,6 @@ public class CsvContentExtractionHelper {
                 Word word = new Word();
                 // word.setId(id); // TODO: to enable later lookup of the same Word by its ID
                 word.setText(text);
-                word.setPhonetics(phonetics);
                 word.setAllophones(allophones);
                 word.setUsageCount(usageCount);
                 word.setWordType(wordType);

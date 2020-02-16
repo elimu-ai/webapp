@@ -288,7 +288,6 @@ public class JavaToGsonConverter {
             wordGson.setContentStatus(word.getContentStatus());
             
             wordGson.setText(word.getText());
-            wordGson.setPhonetics(word.getPhonetics());
             List<AllophoneGson> allophones = new ArrayList<>();
             for (Allophone allophone : word.getAllophones()) {
                 AllophoneGson allophoneGson = getAllophoneGson(allophone);
