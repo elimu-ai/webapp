@@ -42,7 +42,7 @@ public class LetterEditController {
         Letter letter = letterDao.read(id);
         model.addAttribute("letter", letter);
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
+        List<Allophone> allophones = allophoneDao.readAllOrdered(language);
         model.addAttribute("allophones", allophones);
 
         return "content/letter/edit";
@@ -57,7 +57,7 @@ public class LetterEditController {
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        Letter existingLetter = letterDao.readByText(letter.getLanguage(), letter.getText());
+        Letter existingLetter = letterDao.readByText(language, letter.getText());
         if ((existingLetter != null) && !existingLetter.getId().equals(letter.getId())) {
             result.rejectValue("text", "NonUnique");
         }
@@ -65,7 +65,7 @@ public class LetterEditController {
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
             
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
+            List<Allophone> allophones = allophoneDao.readAllOrdered(language);
             model.addAttribute("allophones", allophones);
             
             return "content/letter/edit";

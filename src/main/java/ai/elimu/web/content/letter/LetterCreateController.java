@@ -40,7 +40,7 @@ public class LetterCreateController {
         Letter letter = new Letter();
         model.addAttribute("letter", letter);
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
+        List<Allophone> allophones = allophoneDao.readAllOrdered(language);
         model.addAttribute("allophones", allophones);
 
         return "content/letter/create";
@@ -63,7 +63,7 @@ public class LetterCreateController {
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
             
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
+            List<Allophone> allophones = allophoneDao.readAllOrdered(language);
             model.addAttribute("allophones", allophones);
             
             return "content/letter/create";

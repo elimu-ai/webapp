@@ -18,10 +18,11 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 17,"নিতা",[n, i, t, a],[14, 9, 19, 2],0,null,null
 18,"পনের",[., ., .],[1, 1, 1],0,null,null
 19,"পাঁচ",[., ., .],[1, 1, 1],0,null,null
+29,"পিতা",[p, i, t, a],[16, 9, 19, 2],0,NOUN,NON_PHONEMIC
 20,"বাইশ",[., ., .],[1, 1, 1],0,null,null
 21,"বার",[., ., .],[1, 1, 1],0,null,null
 22,"বিশ",[., ., .],[1, 1, 1],0,null,null
-23,"মা",[m, a],[13, 2],0,null,null
+23,"মা",[m, a],[13, 2],0,NOUN,PERFECT
 24,"শূন্য",[., ., .],[1, 1, 1],0,null,null
 25,"ষোল",[., ., .],[1, 1, 1],0,null,null
 26,"সতের",[., ., .],[1, 1, 1],0,null,null

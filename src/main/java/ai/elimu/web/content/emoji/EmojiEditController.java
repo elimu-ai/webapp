@@ -5,10 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
@@ -36,9 +34,6 @@ public class EmojiEditController {
     private EmojiDao emojiDao;
     
     @Autowired
-    private AllophoneDao allophoneDao;
-    
-    @Autowired
     private WordDao wordDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -52,10 +47,7 @@ public class EmojiEditController {
         Emoji emoji = emojiDao.read(id);
         model.addAttribute("emoji", emoji);
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
-        model.addAttribute("allophones", allophones);
-        
-        List<Word> words = wordDao.readAllOrderedByUsage(language);
+        List<Word> words = wordDao.readAllOrdered(language);
         model.addAttribute("words", words);
 
         return "content/emoji/edit";
@@ -77,10 +69,7 @@ public class EmojiEditController {
         if (result.hasErrors()) {
             model.addAttribute("emoji", emoji);
             
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
-            model.addAttribute("allophones", allophones);
-            
-            List<Word> words = wordDao.readAllOrderedByUsage(language);
+            List<Word> words = wordDao.readAllOrdered(language);
             model.addAttribute("words", words);
             
             return "content/emoji/edit";

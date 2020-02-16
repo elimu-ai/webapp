@@ -15,7 +15,9 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 14,"labinsiyam",[l, ɑ, b, ɪ, n, ., ʃ, ɑ, m],[12, 28, 3, 36, 14, 1, 39, 28, 13],0,null,PHONEMIC
 15,"labintatlo",[l, ɑ, b, ɪ, n, ., t, ɑ, t, l, ɔ],[12, 28, 3, 36, 14, 1, 19, 28, 19, 12, 30],0,null,HIGHLY_PHONEMIC
 16,"lima",[l, ɪ, m, ɑ],[12, 36, 13, 28],0,null,PERFECT
+24,"natatakot",[n, ɑ, t, ɑ, t, ɑ, k, ɔ, t],[14, 28, 19, 28, 19, 28, 11, 30, 19],0,ADJECTIVE,PERFECT
 17,"pito",[p, ɪ, t, ɔ],[15, 36, 19, 30],0,null,PERFECT
+25,"pusa",[p, u, s, ɑ],[15, 21, 18, 28],0,NOUN,PERFECT
 18,"sampu",[s, ɑ, m, p, u],[18, 28, 13, 15, 21],0,null,PERFECT
 19,"sero",[s, ɛ, r̩, ɔ],[18, 34, 17, 30],0,null,PERFECT
 20,"siyam",[ʃ, ɑ, m],[39, 28, 13],0,null,NON_PHONEMIC

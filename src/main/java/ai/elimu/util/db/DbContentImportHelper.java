@@ -1,10 +1,12 @@
 package ai.elimu.util.db;
 
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -28,6 +30,8 @@ public class DbContentImportHelper {
     private WordDao wordDao;
     
     private NumberDao numberDao;
+    
+    private EmojiDao emojiDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -97,8 +101,17 @@ public class DbContentImportHelper {
         // Extract and import Syllables
         // TODO
         
-        // Extract and import Emojis
-        // TODO
+        // Extract and import Emojis from CSV file in src/main/resources/
+        URL emojisCsvFileUrl = getClass().getClassLoader()
+                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/emojis.csv");
+        File emojisCsvFile = new File(emojisCsvFileUrl.getFile());
+        List<Emoji> emojis = CsvContentExtractionHelper.getEmojisFromCsvBackup(emojisCsvFile, wordDao);
+        logger.info("emojis.size(): " + emojis.size());
+        emojiDao = (EmojiDao) webApplicationContext.getBean("emojiDao");
+        for (Emoji emoji : emojis) {
+            emoji.setLanguage(language);
+            emojiDao.create(emoji);
+        }
         
         // Extract and import Images
         // TODO
