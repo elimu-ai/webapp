@@ -44,7 +44,6 @@ public class WordCsvExportController {
             String[] allophoneValuesIpaArray = new String[word.getAllophones().size()];
             int index = 0;
             for (Allophone allophone : word.getAllophones()) {
-                logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/");
                 allophoneValuesIpaArray[index] = allophone.getValueIpa();
                 index++;
             }

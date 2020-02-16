@@ -44,7 +44,6 @@ public class LetterCsvExportController {
             String[] allophoneValuesIpaArray = new String[letter.getAllophones().size()];
             int index = 0;
             for (Allophone allophone : letter.getAllophones()) {
-                logger.info("allophone.getValueIpa(): /" + allophone.getValueIpa() + "/");
                 allophoneValuesIpaArray[index] = allophone.getValueIpa();
                 index++;
             }
@@ -52,7 +51,6 @@ public class LetterCsvExportController {
             long[] allophoneIdsArray = new long[letter.getAllophones().size()];
             index = 0;
             for (Allophone allophone : letter.getAllophones()) {
-                logger.info("allophone.getId(): " + allophone.getId());
                 allophoneIdsArray[index] = allophone.getId();
                 index++;
             }
