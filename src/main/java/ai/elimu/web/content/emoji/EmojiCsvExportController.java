@@ -2,10 +2,12 @@ package ai.elimu.web.content.emoji;
 
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.model.content.Emoji;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -32,15 +34,33 @@ public class EmojiCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,glyph,unicode_version,unicode_emoji_version" + "\n";
+        String csvFileContent = "id,glyph,unicode_version,unicode_emoji_version,word_texts,word_ids" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<Emoji> emojis = emojiDao.readAllOrdered(language);
         logger.info("emojis.size(): " + emojis.size());
         for (Emoji emoji : emojis) {
+            logger.info("emoji.getGlyph(): \"" + emoji.getGlyph() + "\"");
+            
+            String[] wordTextsArray = new String[emoji.getWords().size()];
+            int index = 0;
+            for (Word word : emoji.getWords()) {
+                wordTextsArray[index] = word.getText();
+                index++;
+            }
+            
+            long[] wordIdsArray = new long[emoji.getWords().size()];
+            index = 0;
+            for (Word word : emoji.getWords()) {
+                wordIdsArray[index] = word.getId();
+                index++;
+            }
+            
             csvFileContent += emoji.getId() + ","
                     + emoji.getGlyph() + ","
                     + emoji.getUnicodeVersion() + ","
-                    + emoji.getUnicodeEmojiVersion() + "\n";
+                    + emoji.getUnicodeEmojiVersion() + ","
+                    + Arrays.toString(wordTextsArray) + ","
+                    + Arrays.toString(wordIdsArray) + "\n";
         }
         
         response.setContentType("text/csv");

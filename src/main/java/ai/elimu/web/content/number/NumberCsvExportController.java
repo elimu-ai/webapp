@@ -1,7 +1,6 @@
 package ai.elimu.web.content.number;
 
 import ai.elimu.dao.NumberDao;
-import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
@@ -45,7 +44,6 @@ public class NumberCsvExportController {
             String[] wordTextsArray = new String[number.getWords().size()];
             int index = 0;
             for (Word word : number.getWords()) {
-                logger.info("number.getValue(): " + number.getValue());
                 wordTextsArray[index] = word.getText();
                 index++;
             }

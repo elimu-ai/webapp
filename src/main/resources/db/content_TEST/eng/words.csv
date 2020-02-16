@@ -1,30 +1,30 @@
-id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
-38,"my","ˈmɑɪ",[ˈ, m, ɑ, ɪ],[78, 35, 1, 8],15,null,PHONEMIC
-21,"a","ə",[ə],[10],3,null,HIGHLY_NON_PHONEMIC
-24,"ten","tɛn",[t, ɛ, n],[18, 7, 36],2,null,PERFECT
-23,"ant","ˈænt",[ˈ, æ, n, t],[78, 5, 36, 18],0,NOUN,PERFECT
-22,"apple","ˈæpəl",[ˈ, æ, p, ə, l],[78, 5, 17, 10, 34],0,NOUN,NON_PHONEMIC
-9,"eight","ɛɪt",[ɛɪ, t],[15, 18],0,null,NON_PHONEMIC
-32,"eighteen","ɛɪtin",[ɛɪ, t, i, n],[15, 18, 4, 36],0,null,null
-25,"eleven","ɪˈlɛvən",[ɪ, ˈ, l, ɛ, v, ə, n],[8, 78, 34, 7, 26, 10, 36],0,null,null
-29,"fifteen","fɪfˈtin",[f, ɪ, f, ˈ, t, i, n],[25, 8, 25, 78, 18, 4, 36],0,null,null
-6,"five","fɑɪv",[f, ɑ, ɪ, v],[25, 1, 8, 26],0,null,null
-5,"four","fɔr",[f, ɔ, r],[25, 2, 38],0,null,null
-28,"fourteen","ˈfɔrˈtin",[ˈ, f, ɔ, r, ˈ, t, i, n],[78, 25, 2, 38, 78, 18, 4, 36],0,null,null
-10,"nine","nɑɪn",[n, ɑ, ɪ, n],[36, 1, 8, 36],0,null,null
-33,"nineteen","ˈnɑɪnˈtin",[ˈ, n, ɑ, ɪ, n, ˈ, t, i, n],[78, 36, 1, 8, 36, 78, 18, 4, 36],0,null,null
-2,"one","wʌn",[w, ʌ, n],[39, 6, 36],0,null,null
-8,"seven","ˈsɛvən",[ˈ, s, ɛ, v, ə, n],[78, 29, 7, 26, 10, 36],0,null,null
-31,"seventeen","ˈsɛvənˈtin",[ˈ, s, ɛ, v, ə, n, ˈ, t, i, n],[78, 29, 7, 26, 10, 36, 78, 18, 4, 36],0,null,null
-7,"six","sɪks",[s, ɪ, k, s],[29, 8, 19, 29],0,null,null
-30,"sixteen","sɪkˈstin",[s, ɪ, k, ˈ, s, t, i, n],[29, 8, 19, 78, 29, 18, 4, 36],0,null,null
-43,"test","tɛst",[t, ɛ, s, t],[18, 7, 29, 18],0,null,PERFECT
-27,"thirteen","θɛrtin",[θ, ɛ, r, t, i, n],[27, 7, 38, 18, 4, 36],0,null,null
-41,"thirty","ˈθɝtɪ",[ˈ, θ, ɝ, t, ɪ],[78, 27, 81, 18, 8],0,null,null
-4,"three","θri",[θ, r, i],[27, 38, 4],0,null,null
-26,"twelve","twɛlv",[t, w, ɛ, l, v],[18, 39, 7, 34, 26],0,null,null
-34,"twenty","ˈtwɛnti",[ˈ, t, w, ɛ, n, t, i],[78, 18, 39, 7, 36, 18, 4],0,null,null
-39,"twenty-one","ˈtwɛnti.wʌn",[ˈ, t, w, ɛ, n, t, i, ., w, ʌ, n],[78, 18, 39, 7, 36, 18, 4, 83, 39, 6, 36],0,null,null
-40,"twenty-two","ˈtwɛntiˈtu",[ˈ, t, w, ɛ, n, t, i, ˈ, t, u],[78, 18, 39, 7, 36, 18, 4, 78, 18, 3],0,null,null
-3,"two","tu",[t, u],[18, 3],0,null,null
-1,"zero","ˈzɪrɔʊ",[ˈ, z, ɪ, r, ɔ, ʊ],[78, 30, 8, 38, 2, 9],0,null,null
+id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+38,"my",[ˈ, m, ɑ, ɪ],[78, 35, 1, 8],15,null,PHONEMIC
+21,"a",[ə],[10],3,null,HIGHLY_NON_PHONEMIC
+24,"ten",[t, ɛ, n],[18, 7, 36],2,null,PERFECT
+23,"ant",[ˈ, æ, n, t],[78, 5, 36, 18],0,NOUN,PERFECT
+22,"apple",[ˈ, æ, p, ə, l],[78, 5, 17, 10, 34],0,NOUN,NON_PHONEMIC
+9,"eight",[ɛɪ, t],[15, 18],0,null,NON_PHONEMIC
+32,"eighteen",[ɛɪ, t, i, n],[15, 18, 4, 36],0,null,null
+25,"eleven",[ɪ, ˈ, l, ɛ, v, ə, n],[8, 78, 34, 7, 26, 10, 36],0,null,null
+29,"fifteen",[f, ɪ, f, ˈ, t, i, n],[25, 8, 25, 78, 18, 4, 36],0,null,null
+6,"five",[f, ɑ, ɪ, v],[25, 1, 8, 26],0,null,null
+5,"four",[f, ɔ, r],[25, 2, 38],0,null,null
+28,"fourteen",[ˈ, f, ɔ, r, ˈ, t, i, n],[78, 25, 2, 38, 78, 18, 4, 36],0,null,null
+10,"nine",[n, ɑ, ɪ, n],[36, 1, 8, 36],0,null,null
+33,"nineteen",[ˈ, n, ɑ, ɪ, n, ˈ, t, i, n],[78, 36, 1, 8, 36, 78, 18, 4, 36],0,null,null
+2,"one",[w, ʌ, n],[39, 6, 36],0,null,null
+8,"seven",[ˈ, s, ɛ, v, ə, n],[78, 29, 7, 26, 10, 36],0,null,null
+31,"seventeen",[ˈ, s, ɛ, v, ə, n, ˈ, t, i, n],[78, 29, 7, 26, 10, 36, 78, 18, 4, 36],0,null,null
+7,"six",[s, ɪ, k, s],[29, 8, 19, 29],0,null,null
+30,"sixteen",[s, ɪ, k, ˈ, s, t, i, n],[29, 8, 19, 78, 29, 18, 4, 36],0,null,null
+43,"test",[t, ɛ, s, t],[18, 7, 29, 18],0,null,PERFECT
+27,"thirteen",[θ, ɛ, r, t, i, n],[27, 7, 38, 18, 4, 36],0,null,null
+41,"thirty",[ˈ, θ, ɝ, t, ɪ],[78, 27, 81, 18, 8],0,null,null
+4,"three",[θ, r, i],[27, 38, 4],0,null,null
+26,"twelve",[t, w, ɛ, l, v],[18, 39, 7, 34, 26],0,null,null
+34,"twenty",[ˈ, t, w, ɛ, n, t, i],[78, 18, 39, 7, 36, 18, 4],0,null,null
+39,"twenty-one",[ˈ, t, w, ɛ, n, t, i, ., w, ʌ, n],[78, 18, 39, 7, 36, 18, 4, 83, 39, 6, 36],0,null,null
+40,"twenty-two",[ˈ, t, w, ɛ, n, t, i, ˈ, t, u],[78, 18, 39, 7, 36, 18, 4, 78, 18, 3],0,null,null
+3,"two",[t, u],[18, 3],0,null,null
+1,"zero",[ˈ, z, ɪ, r, ɔ, ʊ],[78, 30, 8, 38, 2, 9],0,null,null
