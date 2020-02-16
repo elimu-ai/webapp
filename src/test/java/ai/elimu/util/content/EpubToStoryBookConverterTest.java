@@ -1,6 +1,7 @@
-package ai.elimu.util.content.multimedia;
+package ai.elimu.util.content;
 
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.util.content.multimedia.EpubToStoryBookConverter;
 import ai.elimu.web.content.storybook.StoryBookListController;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import org.springframework.core.io.ResourceLoader;
 
 public class EpubToStoryBookConverterTest {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass());
     
     @Test
     public void testgetStoryBookFromEpub_graceInSpace() throws IOException {
@@ -28,18 +29,5 @@ public class EpubToStoryBookConverterTest {
         assertThat(storyBook, not(nullValue()));
         assertThat(storyBook.getTitle(), is("Grace in Space"));
         assertThat(storyBook.getParagraphs().size(), is(39));
-    }
-    
-    @Test
-    public void testgetStoryBookFromEpub_whatIf_() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
-        Resource ePubResource = resourceLoader.getResource("What_If_.epub");
-        logger.info("ePubResource: " + ePubResource);
-        File ePubFile = ePubResource.getFile();
-        
-        StoryBook storyBook = EpubToStoryBookConverter.getStoryBookFromEpub(ePubFile);
-        assertThat(storyBook, not(nullValue()));
-        assertThat(storyBook.getTitle(), is("What If?"));
-        assertThat(storyBook.getParagraphs().size(), is(35));
     }
 }
