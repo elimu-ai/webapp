@@ -18,10 +18,6 @@ public class Word extends Content {
     @NotNull
     private String text;
     
-    @Deprecated // Use the list of Allophones instead
-    @NotNull
-    private String phonetics; // IPA
-    
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
@@ -42,16 +38,6 @@ public class Word extends Content {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    @Deprecated
-    public String getPhonetics() {
-        return phonetics;
-    }
-
-    @Deprecated
-    public void setPhonetics(String phonetics) {
-        this.phonetics = phonetics;
     }
     
     public List<Allophone> getAllophones() {

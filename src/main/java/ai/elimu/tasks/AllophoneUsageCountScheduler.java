@@ -14,16 +14,16 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Iterates all Words and calculates the frequency of speech sounds, based on 
- * the Word's frequency in StoryBooks.
+ * Iterates all Words and calculates the frequency of Allophones (speech sounds), based on the Word's frequency in 
+ * StoryBooks.
  * <p />
- * For this to work, the frequency of each Word must have been calculated and 
- * stored previously (see {@link WordUsageCountScheduler}
+ * For this to work, the frequency of each {@link Word} must have been calculated and stored previously 
+ * (see {@link WordUsageCountScheduler}
  */
 @Service
 public class AllophoneUsageCountScheduler {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
     private AllophoneDao allophoneDao;
@@ -38,14 +38,13 @@ public class AllophoneUsageCountScheduler {
         for (Language language : Language.values()) {
             logger.info("Calculating usage count of Allophones for language " + language);
             
+            // Long = Allophone ID
+            // Integer = Usage count
             Map<Long, Integer> allophoneFrequencyMap = new HashMap<>();
             
-            List<Allophone> allophones = allophoneDao.readAllOrdered(language);
-            logger.info("allophones.size(): " + allophones.size());
-            
+            // Summarize the usage count of each Word's Allophone based on the Word's usage count
             List<Word> words = wordDao.readAllOrdered(language);
             logger.info("words.size(): " + words.size());
-            
             for (Word word : words) {
                 for (Allophone allophone : word.getAllophones()) {
                     if (!allophoneFrequencyMap.containsKey(allophone.getId())) {
@@ -56,6 +55,7 @@ public class AllophoneUsageCountScheduler {
                 }
             }
             
+            // Update each Allophone's usage count in the database
             for (Long allophoneId : allophoneFrequencyMap.keySet()) {
                 Allophone allophone = allophoneDao.read(allophoneId);
                 allophone.setUsageCount(allophoneFrequencyMap.get(allophoneId));

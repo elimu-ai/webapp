@@ -34,7 +34,7 @@ public class WordCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,text,phonetics,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency" + "\n";
+        String csvFileContent = "id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<Word> words = wordDao.readAllOrderedByUsage(language);
         logger.info("words.size(): " + words.size());
@@ -58,7 +58,6 @@ public class WordCsvExportController {
             
             csvFileContent += word.getId() + ","
                     + "\"" + word.getText() + "\","
-                    + "\"" + word.getPhonetics() + "\","
                     + Arrays.toString(allophoneValuesIpaArray) + ","
                     + Arrays.toString(allophoneIdsArray) + ","
                     + word.getUsageCount() + ","

@@ -18,7 +18,7 @@
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="phonetics" /></th>
+                    <th><fmt:message key="allophones" /></th>
                     <th><fmt:message key="spelling.consistency" /></th>
                     <th><fmt:message key="word.type" /></th>
                     <th><fmt:message key="revision" /></th>
