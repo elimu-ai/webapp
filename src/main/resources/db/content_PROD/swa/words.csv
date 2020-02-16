@@ -1,7 +1,7 @@
 id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
 675,"basi",[ɓ, ɑ, s, i],[48, 41, 61, 43],20,NOUN,PERFECT
 240,"maji",[m, ɑ, ʄ, i],[46, 41, 66, 43],19,NOUN,PERFECT
-245,"ya",[j, ɑ],[69, 41],19,NOUN,NON_PHONEMIC
+245,"ya",[j, ɑ],[69, 41],19,null,NON_PHONEMIC
 243,"na",[n, ɑ],[55, 41],17,null,PERFECT
 284,"za",[z, ɑ],[60, 41],15,null,PERFECT
 644,"mpira",[m, p, i, ɾ, ɑ],[46, 49, 43, 62, 41],13,NOUN,PERFECT

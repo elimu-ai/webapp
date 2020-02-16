@@ -69,8 +69,7 @@ public class EmojiEditController {
     	logger.info("handleSubmit");
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
+        Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph(), language);
         if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
             result.rejectValue("glyph", "NonUnique");
         }
