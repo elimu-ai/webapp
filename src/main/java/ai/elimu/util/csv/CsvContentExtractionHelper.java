@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 public class CsvContentExtractionHelper {
@@ -489,7 +490,7 @@ public class CsvContentExtractionHelper {
                 String[] wordTextsArray = wordTexts.split("\\|");
                 logger.info("Arrays.toString(wordTextsArray): " + Arrays.toString(wordTextsArray));
                 Set<Word> words = new HashSet<>();
-                if (wordTextsArray.length > 0) {
+                if (StringUtils.isNotBlank(wordTexts)) {
                     Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
                     for (String wordText : wordTextsArray) {
                         logger.info("Looking up Word with text \"" + wordText + "\"");
