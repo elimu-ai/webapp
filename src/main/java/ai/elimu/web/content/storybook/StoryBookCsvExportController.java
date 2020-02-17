@@ -2,6 +2,8 @@ package ai.elimu.web.content.storybook;
 
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -30,12 +32,14 @@ public class StoryBookCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,title,content_license,attribution_url,cover_image_id,grade_level" + "\n";
-        List<StoryBook> storyBooks = storyBookDao.readAll();
+        String csvFileContent = "id,title,description,content_license,attribution_url,cover_image_id,grade_level" + "\n";
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
         logger.info("storyBooks.size(): " + storyBooks.size());
         for (StoryBook storyBook : storyBooks) {
             csvFileContent += storyBook.getId() + ","
-                    + "\"" + storyBook.getTitle()+ "\","
+                    + "\"" + storyBook.getTitle() + "\","
+                    + "\"" + storyBook.getDescription() + "\","
                     + storyBook.getContentLicense()+ ","
                     + "\"" + storyBook.getAttributionUrl() + "\","
                     + storyBook.getCoverImage().getId() + ","

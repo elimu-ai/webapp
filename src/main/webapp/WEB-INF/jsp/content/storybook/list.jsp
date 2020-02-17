@@ -23,6 +23,7 @@
                     
                     <div class="card-content">
                         <h4><c:out value="${storyBook.title}" /></h4>
+                        <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="grade.level" />: <fmt:message key="grade.level.${storyBook.gradeLevel}" /></p>
                         <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
 

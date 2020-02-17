@@ -1,8 +1,1 @@
-id,title,content_license,attribution_url,cover_image_id,grade_level
-1,"Too Small",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=8398",5,LEVEL3
-2,"A very tall man",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=918",7,LEVEL1
-3,"Ah football",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12926",6,LEVEL2
-4,"I like to read",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10547",4,LEVEL1
-5,"Barua kwa mama",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2526",10,LEVEL1
-6,"Grace in Space",null,"null",11,LEVEL2
-7,"What If?",null,"null",12,LEVEL1
+id,title,description,content_license,attribution_url,cover_image_id,grade_level

@@ -150,6 +150,12 @@ public class EpubToStoryBookConverterLetsReadAsia {
                             logger.info("title: " + title);
                             storyBook.setTitle(title);
                         }
+                        
+                        if ("dc:description".equals(metadataNode.getNodeName())) {
+                            String description = metadataNode.getTextContent();
+                            logger.info("description: " + description);
+                            storyBook.setDescription(description);
+                        }
                     }
                 }
                 
