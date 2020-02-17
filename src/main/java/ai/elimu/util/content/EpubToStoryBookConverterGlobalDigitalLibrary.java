@@ -1,4 +1,4 @@
-package ai.elimu.util.content.multimedia;
+package ai.elimu.util.content;
 
 import ai.elimu.model.content.StoryBook;
 import java.io.File;
@@ -20,9 +20,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class EpubToStoryBookConverter {
+public class EpubToStoryBookConverterGlobalDigitalLibrary {
     
-    private static final Logger logger = Logger.getLogger(EpubToStoryBookConverter.class);
+    private static final Logger logger = Logger.getLogger(EpubToStoryBookConverterGlobalDigitalLibrary.class);
     
     public static StoryBook getStoryBookFromEpub(File ePubFile) {
         logger.info("getStoryBookFromEpub");
@@ -37,6 +37,7 @@ public class EpubToStoryBookConverter {
         
         // Extract storybook metadata and cover image from the Open Package Format (OPF) file
         for (File unzippedFile : unzippedFiles) {
+            // content/book.opf
             if ("book.opf".equals(unzippedFile.getName())) {
                 extractMetadataFromOPF(unzippedFile, storyBook);
             }
@@ -44,6 +45,7 @@ public class EpubToStoryBookConverter {
         
         // Iterate chapters in the Table of Contents (TOC) file and extract images and paragraphs
         for (File unzippedFile : unzippedFiles) {
+            // content/toc.xhtml
             if ("toc.xhtml".equals(unzippedFile.getName())) {
                 extractChaptersFromTOC(unzippedFile, storyBook);
             }
@@ -148,6 +150,12 @@ public class EpubToStoryBookConverter {
                             logger.info("title: " + title);
                             storyBook.setTitle(title);
                         }
+                        
+                        if ("dc:description".equals(metadataNode.getNodeName())) {
+                            String description = metadataNode.getTextContent();
+                            logger.info("description: " + description);
+                            storyBook.setDescription(description);
+                        }
                     }
                 }
                 
@@ -237,7 +245,8 @@ public class EpubToStoryBookConverter {
                         logger.info("bodyNode: " + bodyNode);
                         
                         // Extract paragraphs (<p>...</p>)
-                        if ("p".equals(bodyNode.getNodeName())) {
+                        // In some cases, <p> tags are missing (e.g. swa-gdl-30.epub), and "#text" is the node name
+                        if ("p".equals(bodyNode.getNodeName()) || "#text".equals(bodyNode.getNodeName())) {
                             String paragraph = bodyNode.getTextContent().trim();
                             logger.info("paragraph: \"" + paragraph + "\"");
                             if (StringUtils.isNotBlank(paragraph)) {

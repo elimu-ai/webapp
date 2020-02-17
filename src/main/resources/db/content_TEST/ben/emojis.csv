@@ -1,1 +1,3 @@
-id,glyph,unicode_version,unicode_emoji_version
+id,glyph,unicode_version,unicode_emoji_version,word_texts,word_ids
+2,👨,6.0,1.0,[পিতা],[29]
+1,👩,6.0,1.0,[মা],[23]

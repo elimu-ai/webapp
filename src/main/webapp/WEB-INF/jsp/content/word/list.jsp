@@ -34,6 +34,7 @@
                                 </div>
                             </td>
                             <td style="font-size: 2em;">
+                                <a name="${word.id}"></a>
                                 "${word.text}"
                             </td>
                             <td style="font-size: 2em;">

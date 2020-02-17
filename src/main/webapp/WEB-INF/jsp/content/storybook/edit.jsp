@@ -18,6 +18,11 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <form:label path="description" cssErrorClass="error"><fmt:message key='description' /></form:label>
+                    <form:input path="description" cssErrorClass="error" />
+                </div>
+                
+                <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">

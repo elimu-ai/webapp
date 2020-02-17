@@ -3,6 +3,7 @@ package ai.elimu.util.csv;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -16,8 +17,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 public class CsvContentExtractionHelper {
@@ -418,5 +422,107 @@ public class CsvContentExtractionHelper {
         }
         
         return numbers;
+    }
+    
+    /**
+     * For information on how the CSV files were generated, see {@link EmojiCsvExportController#handleRequest}.
+     */
+    public static List<Emoji> getEmojisFromCsvBackup(File csvFile, WordDao wordDao) {
+        logger.info("getEmojisFromCsvBackup");
+        
+        logger.info("csvFile: " + csvFile);
+        
+        List<Emoji> emojis = new ArrayList<>();
+        
+        try {
+            Scanner scanner = new Scanner(csvFile);
+            int rowEmoji = 0;
+            while (scanner.hasNextLine()) {
+                String row = scanner.nextLine();
+                logger.info("row: " + row);
+                
+                rowEmoji++;
+                
+                if (rowEmoji == 1) {
+                    // Skip the header row
+                    continue;
+                }
+                
+                // Expected header format: id,glyph,unicode_version,unicode_emoji_version,word_texts,word_ids
+                // Expected row format: 10,✋,6.0,1.0,[],[]
+                
+                // Prevent "text" from being stored as ""text""
+                // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
+                row = row.replace("\"", "");
+                logger.info("row (after removing '\"'): " + row);
+                
+                // Prevent "java.lang.EmojiFormatException: For input string: " 6]""
+                // TODO: find more robust solution
+                row = row.replace(", ", "|");
+                logger.info("row (after removing ', '): " + row);
+                
+                String[] rowValues = row.split(",");
+                logger.info("rowValues: " + Arrays.toString(rowValues));
+                
+                // "id"
+                Long id = Long.valueOf(rowValues[0]);
+                logger.info("id: " + id);
+                
+                // "glyph"
+                String glyph = String.valueOf(rowValues[1]);
+                logger.info("glyph: " + glyph);
+                
+                // "unicode_version"
+                Double unicodeVersion = Double.valueOf(rowValues[2]);
+                logger.info("unicodeVersion: " + unicodeVersion);
+                
+                // "unicode_emoji_version"
+                Double unicodeEmojiVersion = Double.valueOf(rowValues[3]);
+                logger.info("unicodeEmojiVersion: " + unicodeEmojiVersion);     
+                
+                // "word_texts"
+                String wordTexts = String.valueOf(rowValues[4]);
+                logger.info("wordTexts: \"" + wordTexts + "\"");
+                wordTexts = wordTexts.replace("[", "");
+                logger.info("wordTexts: \"" + wordTexts + "\"");
+                wordTexts = wordTexts.replace("]", "");
+                logger.info("wordTexts: \"" + wordTexts + "\"");
+                String[] wordTextsArray = wordTexts.split("\\|");
+                logger.info("Arrays.toString(wordTextsArray): " + Arrays.toString(wordTextsArray));
+                Set<Word> words = new HashSet<>();
+                if (StringUtils.isNotBlank(wordTexts)) {
+                    Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+                    for (String wordText : wordTextsArray) {
+                        logger.info("Looking up Word with text \"" + wordText + "\"");
+                        Word word = wordDao.readByText(language, wordText);
+                        logger.info("word.getId(): \"" + word.getId() + "\"");
+                        words.add(word);
+                    }
+                }
+                
+                // "word_ids"
+                String wordIds = String.valueOf(rowValues[5]);
+                logger.info("wordIds: \"" + wordIds + "\"");
+                wordIds = wordIds.replace("[", "");
+                logger.info("wordIds: \"" + wordIds + "\"");
+                wordIds = wordIds.replace("]", "");
+                logger.info("wordIds: \"" + wordIds + "\"");
+                String[] wordIdsArray = wordIds.split("\\|");
+                logger.info("Arrays.toString(wordIdsArray): " + Arrays.toString(wordIdsArray));
+                
+                Emoji emoji = new Emoji();
+                // emoji.setId(id); // TODO: to enable later lookup of the same Emoji by its ID
+                emoji.setGlyph(glyph);
+                emoji.setUnicodeVersion(unicodeVersion);
+                emoji.setUnicodeEmojiVersion(unicodeEmojiVersion);
+                emoji.setWords(words);
+                emojis.add(emoji);
+            }
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            logger.error(null, ex);
+        }
+        
+        return emojis;
     }
 }

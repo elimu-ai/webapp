@@ -22,6 +22,8 @@ public class StoryBook extends Content {
     @NotNull
     private String title;
     
+    private String description;
+    
     @Enumerated(EnumType.STRING)
     private ContentLicense contentLicense;
     
@@ -29,7 +31,7 @@ public class StoryBook extends Content {
     @Column(length = 1000)
     private String attributionUrl;
     
-    @NotNull
+//    @NotNull
     @ManyToOne
     private Image coverImage;
     
@@ -37,7 +39,7 @@ public class StoryBook extends Content {
     @Enumerated(EnumType.STRING)
     private GradeLevel gradeLevel;
     
-    // TODO: replace paragraphs with Chapters
+    // TODO: replace paragraphs with chapters
     @Deprecated
     @NotEmpty
     @OrderColumn
@@ -51,6 +53,14 @@ public class StoryBook extends Content {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     public ContentLicense getContentLicense() {
