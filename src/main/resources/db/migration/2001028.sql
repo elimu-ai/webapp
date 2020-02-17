@@ -1,0 +1,3 @@
+# 2.1.28
+
+ALTER TABLE StoryBook MODIFY coverImage_id BIGINT(20) DEFAULT NULL;

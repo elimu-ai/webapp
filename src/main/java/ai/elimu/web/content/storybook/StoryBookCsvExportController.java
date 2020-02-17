@@ -32,7 +32,7 @@ public class StoryBookCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,title,description,content_license,attribution_url,cover_image_id,grade_level" + "\n";
+        String csvFileContent = "id,title,description,content_license,attribution_url,grade_level" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
         logger.info("storyBooks.size(): " + storyBooks.size());
@@ -42,7 +42,6 @@ public class StoryBookCsvExportController {
                     + "\"" + storyBook.getDescription() + "\","
                     + storyBook.getContentLicense()+ ","
                     + "\"" + storyBook.getAttributionUrl() + "\","
-                    + storyBook.getCoverImage().getId() + ","
                     + storyBook.getGradeLevel() + "\n";
         }
         

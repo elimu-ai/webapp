@@ -31,7 +31,7 @@ public class StoryBook extends Content {
     @Column(length = 1000)
     private String attributionUrl;
     
-    @NotNull
+//    @NotNull
     @ManyToOne
     private Image coverImage;
     
