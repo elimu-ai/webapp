@@ -1,4 +1,4 @@
-package ai.elimu.util.content;
+package ai.elimu.util.epub;
 
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.web.content.storybook.StoryBookListController;
