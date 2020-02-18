@@ -141,8 +141,8 @@ public class EPubChapterExtractionHelper {
      * 
      * </pre>
      */
-    public static List<String> extractChapterReferencesFromTableOfContents(File xhtmlFile) {
-        logger.info("extractChapterReferencesFromTableOfContents");
+    public static List<String> extractChapterReferencesFromTableOfContentsFile(File xhtmlFile) {
+        logger.info("extractChapterReferencesFromTableOfContentsFile");
         
         List<String> chapterReferences = new ArrayList<>();
         

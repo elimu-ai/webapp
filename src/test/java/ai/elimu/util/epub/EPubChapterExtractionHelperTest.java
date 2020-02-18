@@ -22,7 +22,7 @@ public class EPubChapterExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContents(xhtmlFile);
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertThat(chapterReferences.size(), is(12));
     }
     
@@ -33,7 +33,7 @@ public class EPubChapterExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContents(xhtmlFile);
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertThat(chapterReferences.size(), is(12));
     }
 }
