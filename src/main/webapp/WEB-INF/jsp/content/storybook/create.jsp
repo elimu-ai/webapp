@@ -60,23 +60,6 @@
                         <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
                     </c:if>
                 </div>
-                
-                <p>&nbsp;</p>
-                
-                <div class="input-field col s12">
-                    <form:label path="paragraphs" cssErrorClass="error"><fmt:message key='paragraphs' /></form:label>
-                    <input name="paragraphs" type="text" />
-                    <a id="addParagraphLink" class="btn" href="#">+</a>
-                    <script>
-                        $(function() {
-                            $('#addParagraphLink').click(function(event) {
-                                console.info('#addParagraphLink click');
-                                event.preventDefault();
-                                $('#addParagraphLink').before('<input name="paragraphs" type="text" />');
-                            });
-                        });
-                    </script>
-                </div>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">

@@ -7,18 +7,15 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-import ai.elimu.model.content.StoryBook;
 
 public class WordFrequencyHelperTest {
 
     @Test
     public void testGetWordFrequency() {
-        StoryBook storyBook = new StoryBook();
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look. These clothes are all too small for me!\"");
         paragraphs.add("\"Look at my skirt. It's too small,\" said Lebo.");
-        storyBook.setParagraphs(paragraphs);
-        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
+        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
         assertThat(wordFrequencyMap.get("Lebo"), is(2));
         assertThat(wordFrequencyMap.get("too"), is(2));
         assertThat(wordFrequencyMap.get("small"), is(2));
