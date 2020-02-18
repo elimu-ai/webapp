@@ -1,7 +1,6 @@
 package ai.elimu.util.epub;
 
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.web.content.storybook.StoryBookListController;
 import java.io.File;
 import java.io.IOException;
 import org.apache.log4j.Logger;
@@ -19,7 +18,7 @@ public class EpubToStoryBookConverterLetsReadAsiaTest {
     
     @Test
     public void testGetStoryBookFromEpub_Filipino_0acfe340() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterLetsReadAsia.class);
         Resource ePubResource = resourceLoader.getResource("fil-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
@@ -33,7 +32,7 @@ public class EpubToStoryBookConverterLetsReadAsiaTest {
     
     @Test
     public void testGetStoryBookFromEpub_Filipino_faa0d66e() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterLetsReadAsia.class);
         Resource ePubResource = resourceLoader.getResource("fil-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();

@@ -1,6 +1,5 @@
 package ai.elimu.util.epub;
 
-import ai.elimu.web.content.storybook.StoryBookListController;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +17,7 @@ public class EPubChapterExtractionHelperTest {
     
     @Test
     public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("ben-gdl-761.epub_toc.xhtml");
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
@@ -29,7 +28,7 @@ public class EPubChapterExtractionHelperTest {
     
     @Test
     public void testExtractChapterReferencesFromTableOfContentsFile_LETS_READ_ASIA() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("fil-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_toc.xhtml");
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
