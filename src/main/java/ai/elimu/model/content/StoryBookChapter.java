@@ -11,6 +11,9 @@ public class StoryBookChapter extends BaseEntity {
     @ManyToOne
     private StoryBook storyBook;
     
+    /**
+     * [0, 1, 2, ...]
+     */
     @NotNull
     private Integer sortOrder;
 

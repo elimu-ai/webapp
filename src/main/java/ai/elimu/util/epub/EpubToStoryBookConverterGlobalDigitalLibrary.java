@@ -13,7 +13,6 @@ import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -184,7 +183,7 @@ public class EpubToStoryBookConverterGlobalDigitalLibrary {
             File xhtmlChapterFile = new File(tocFile.getParent(), chapterReference);
             logger.info("xhtmlChapterFile: " + xhtmlChapterFile);
 
-            List<String> paragraphs = extractImagesAndParagraphsFromChapter(xhtmlChapterFile);
+            List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlChapterFile);
             logger.info("paragraphs.size(): " + paragraphs.size());
             if (storyBook.getParagraphs() == null) {
                 storyBook.setParagraphs(paragraphs);
@@ -192,51 +191,5 @@ public class EpubToStoryBookConverterGlobalDigitalLibrary {
                 storyBook.getParagraphs().addAll(paragraphs);
             }
         }
-    }
-    
-    private static List<String> extractImagesAndParagraphsFromChapter(File xhtmlChapterFile) {
-        logger.info("extractImagesAndParagraphsFromChapter");
-        logger.info("xhtmlChapterFile: \"" + xhtmlChapterFile + "\"");
-        
-        List<String> paragraphs = new ArrayList<>();
-        
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(xhtmlChapterFile);
-            NodeList nodeList = document.getDocumentElement().getChildNodes();
-            logger.info("nodeList.getLength(): " + nodeList.getLength());
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-                logger.info("node: " + node);
-                if ("body".equals(node.getNodeName())) {
-                    NodeList bodyNodeList = node.getChildNodes();
-                    logger.info("bodyNodeList.getLength(): " + bodyNodeList.getLength());
-                    for (int j = 0; j < bodyNodeList.getLength(); j++) {
-                        Node bodyNode = bodyNodeList.item(j);
-                        logger.info("bodyNode: " + bodyNode);
-                        
-                        // Extract paragraphs (<p>...</p>)
-                        // In some cases, <p> tags are missing (e.g. swa-gdl-30.epub), and "#text" is the node name
-                        if ("p".equals(bodyNode.getNodeName()) || "#text".equals(bodyNode.getNodeName())) {
-                            String paragraph = bodyNode.getTextContent().trim();
-                            logger.info("paragraph: \"" + paragraph + "\"");
-                            if (StringUtils.isNotBlank(paragraph)) {
-                                paragraphs.add(paragraph);
-                            }
-                        }
-
-                        // Extract images (<img src="..." />)
-                        if ("img".equals(bodyNode.getNodeName())) {
-                            // TODO
-                        }
-                    }   
-                }
-            }
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
-        }
-        
-        return paragraphs;
     }
 }

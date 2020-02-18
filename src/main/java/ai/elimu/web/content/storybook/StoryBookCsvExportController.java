@@ -43,6 +43,8 @@ public class StoryBookCsvExportController {
                     + storyBook.getContentLicense()+ ","
                     + "\"" + storyBook.getAttributionUrl() + "\","
                     + storyBook.getGradeLevel() + "\n";
+                    // TOOD: add chapters
+                    // TODO: add paragraphs
         }
         
         response.setContentType("text/csv");
