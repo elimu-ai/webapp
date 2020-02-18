@@ -6,9 +6,11 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 5,"এক",[., ., .],[1, 1, 1],0,null,null
 6,"একুশ",[., ., .],[1, 1, 1],0,null,null
 7,"এগার",[., ., .],[1, 1, 1],0,null,null
+30,"কাক",[k, a, k, a],[10, 2, 10, 2],0,NOUN,PHONEMIC
 8,"চতুর্দশ",[., ., .],[1, 1, 1],0,null,null
 9,"চার",[., ., .],[1, 1, 1],0,null,null
 10,"ছয়",[., ., .],[1, 1, 1],0,null,null
+31,"তার",[t, a, r],[19, 2, 17],0,null,PHONEMIC
 11,"তিন",[., ., .],[1, 1, 1],0,null,null
 12,"তের",[., ., .],[1, 1, 1],0,null,null
 13,"ত্রিশ",[., ., .],[1, 1, 1],0,null,null
@@ -18,13 +20,14 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 17,"নিতা",[n, i, t, a],[14, 9, 19, 2],0,null,null
 18,"পনের",[., ., .],[1, 1, 1],0,null,null
 19,"পাঁচ",[., ., .],[1, 1, 1],0,null,null
-29,"পিতা",[p, i, t, a],[16, 9, 19, 2],0,NOUN,NON_PHONEMIC
-20,"বাইশ",[., ., .],[1, 1, 1],0,null,null
-21,"বার",[., ., .],[1, 1, 1],0,null,null
-22,"বিশ",[., ., .],[1, 1, 1],0,null,null
-23,"মা",[m, a],[13, 2],0,NOUN,PERFECT
-24,"শূন্য",[., ., .],[1, 1, 1],0,null,null
-25,"ষোল",[., ., .],[1, 1, 1],0,null,null
-26,"সতের",[., ., .],[1, 1, 1],0,null,null
-27,"সাত",[., ., .],[1, 1, 1],0,null,null
-28,"সে",[ʃ, e],[30, 6],0,null,null
+20,"পিতা",[p, i, t, a],[16, 9, 19, 2],0,NOUN,NON_PHONEMIC
+32,"ফসল",[., ., .],[1, 1, 1],0,NOUN,null
+21,"বাইশ",[., ., .],[1, 1, 1],0,null,null
+22,"বার",[., ., .],[1, 1, 1],0,null,null
+23,"বিশ",[., ., .],[1, 1, 1],0,null,null
+24,"মা",[m, a],[13, 2],0,NOUN,PERFECT
+25,"শূন্য",[., ., .],[1, 1, 1],0,null,null
+26,"ষোল",[., ., .],[1, 1, 1],0,null,null
+27,"সতের",[., ., .],[1, 1, 1],0,null,null
+28,"সাত",[., ., .],[1, 1, 1],0,null,null
+29,"সে",[ʃ, e],[30, 6],0,null,null

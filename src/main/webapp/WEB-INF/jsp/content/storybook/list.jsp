@@ -38,5 +38,8 @@
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
         <a href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.storybook" />"><i class="material-icons">add</i></a>
+        <ul>
+            <li><a href="<spring:url value='/content/storybook/create-from-epub' />" class="btn-floating btn-large tooltipped" data-position="left" data-tooltip="<fmt:message key="upload.epub.file" />"><i class="material-icons">cloud_upload</i></a></li>
+        </ul>
     </div>
 </content:section>
