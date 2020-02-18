@@ -22,6 +22,7 @@ import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,8 +65,18 @@ public class StoryBookEditController {
         
         model.addAttribute("gradeLevels", GradeLevel.values());
         
-        List<String> paragraphs = new ArrayList<>();
         List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+        model.addAttribute("storyBookChapters", storyBookChapters);
+        
+        // Map<StoryBookChapter.id, List<StoryBookParagraph>>
+        Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
+        for (StoryBookChapter storyBookChapter : storyBookChapters) {
+            List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+            paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+        }
+        model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
+        
+        List<String> paragraphs = new ArrayList<>();
         for (StoryBookChapter storyBookChapter : storyBookChapters) {
             List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
             for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {

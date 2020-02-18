@@ -1,6 +1,8 @@
 package ai.elimu.web.content.storybook;
 
+import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,9 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.content.StoryBookChapter;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
+import ai.elimu.util.epub.EPubParagraphExtractionHelper;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,6 +47,12 @@ public class StoryBookCreateFromEPubController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookChapterDao storyBookChapterDao;
+    
+    @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -61,6 +73,10 @@ public class StoryBookCreateFromEPubController {
             HttpSession session
     ) {
     	logger.info("handleSubmit");
+        
+        List<StoryBookChapter> storyBookChapters = new ArrayList<>();
+        
+        List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         storyBook.setLanguage(language);
@@ -94,23 +110,55 @@ public class StoryBookCreateFromEPubController {
                         opfFile = file;
                     }
                 }
+                logger.info("opfFile: \"" + opfFile + "\"");
                 if (opfFile == null) {
                     throw new FileNotFoundException("The OPF file was not found");
                 } else {
                     String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
-                    logger.info("title: " + title);
+                    logger.info("title: \"" + title + "\"");
                     storyBook.setTitle(title);
                     
                     String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
-                    logger.info("description: " + description);
+                    logger.info("description: \"" + description + "\"");
                     storyBook.setDescription(description);
                 }
                 
                 // Extract the ePUB's chapters
-                // TODO
+                File tableOfContentsFile = null;
+                for (File file : filesInEPub) {
+                    if ("toc.xhtml".equals(file.getName())) {
+                        tableOfContentsFile = file;
+                    }
+                }
+                logger.info("tableOfContentsFile: \"" + tableOfContentsFile + "\"");
+                if (tableOfContentsFile == null) {
+                    throw new FileNotFoundException("The TOC file was not found");
+                } else {
+                    List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
+                    logger.info("chapterReferences.size(): " + chapterReferences.size());
+                    
+                    // Extract each chapter's paragraphs
+                    for (String chapterReference : chapterReferences) {
+                        logger.info("chapterReference: \"" + chapterReference + "\"");
+                        File chapterFile = new File(opfFile.getParent(), chapterReference);
+                        logger.info("chapterFile: \"" + chapterFile + "\"");
+                        StoryBookChapter storyBookChapter = new StoryBookChapter();
+                        storyBookChapter.setSortOrder(storyBookChapters.size());
+                        storyBookChapters.add(storyBookChapter);
 
-                // Extract the ePUB's paragraphs
-                // TODO
+                        List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile);
+                        logger.info("paragraphs.size(): " + paragraphs.size());
+                        for (int i = 0; i < paragraphs.size(); i++) {
+                            String paragraph = paragraphs.get(i);
+                            logger.info("paragraph: \"" + paragraph + "\"");
+                            StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+                            storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                            storyBookParagraph.setSortOrder(i);
+                            storyBookParagraph.setOriginalText(paragraph);
+                            storyBookParagraphs.add(storyBookParagraph);
+                        }
+                    }
+                }
             } catch (IOException ex) {
                 logger.error(ex);
             }
@@ -119,9 +167,23 @@ public class StoryBookCreateFromEPubController {
         if (result.hasErrors()) {
             return "content/storybook/create-from-epub";
         } else {
-            // Save the StoryBook, StoryBookChapters and StoryBookParagraphs in the database
+            // Store the StoryBook in the database
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBookDao.create(storyBook);
+            
+            // Store the StoryBookChapters in the database
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                storyBookChapter.setStoryBook(storyBook);
+                storyBookChapterDao.create(storyBookChapter);
+                
+                // Store the StoryBookChapter's StoryBookParagraphs in the database
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                    if (storyBookParagraph.getStoryBookChapter().getSortOrder() == storyBookChapter.getSortOrder()) {
+                        storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                        storyBookParagraphDao.create(storyBookParagraph);
+                    }
+                }
+            }
             
             return "redirect:/content/storybook/edit/" + storyBook.getId();
         }

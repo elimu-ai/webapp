@@ -67,6 +67,15 @@
             </button>
         </form:form>
     </div>
+    
+    <c:forEach var="storyBookChapter" items="${storyBookChapters}">
+        <h5 style="margin-top: 1em;">Chapter ${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
+        <div class="card-panel">
+            <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
+                <p><c:out value="${storyBookParagraph.originalText}" /></p>
+            </c:forEach>
+        </div>
+    </c:forEach>
 </content:section>
 
 <content:aside>
