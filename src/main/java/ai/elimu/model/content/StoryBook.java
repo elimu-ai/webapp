@@ -30,7 +30,7 @@ public class StoryBook extends Content {
     @ManyToOne
     private Image coverImage;
     
-    @NotNull
+//    @NotNull
     @Enumerated(EnumType.STRING)
     private GradeLevel gradeLevel;
 
