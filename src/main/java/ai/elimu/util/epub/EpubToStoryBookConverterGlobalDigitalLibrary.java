@@ -1,4 +1,4 @@
-package ai.elimu.util.content;
+package ai.elimu.util.epub;
 
 import ai.elimu.model.content.StoryBook;
 import java.io.File;
@@ -20,9 +20,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class EpubToStoryBookConverterLetsReadAsia {
+@Deprecated
+public class EpubToStoryBookConverterGlobalDigitalLibrary {
     
-    private static final Logger logger = Logger.getLogger(EpubToStoryBookConverterLetsReadAsia.class);
+    private static final Logger logger = Logger.getLogger(EpubToStoryBookConverterGlobalDigitalLibrary.class);
     
     public static StoryBook getStoryBookFromEpub(File ePubFile) {
         logger.info("getStoryBookFromEpub");
@@ -37,15 +38,15 @@ public class EpubToStoryBookConverterLetsReadAsia {
         
         // Extract storybook metadata and cover image from the Open Package Format (OPF) file
         for (File unzippedFile : unzippedFiles) {
-            // OEBPS/content.opf
-            if ("content.opf".equals(unzippedFile.getName())) {
+            // content/book.opf
+            if ("book.opf".equals(unzippedFile.getName())) {
                 extractMetadataFromOPF(unzippedFile, storyBook);
             }
         }
         
         // Iterate chapters in the Table of Contents (TOC) file and extract images and paragraphs
         for (File unzippedFile : unzippedFiles) {
-            // OEBPS/toc.xhtml
+            // content/toc.xhtml
             if ("toc.xhtml".equals(unzippedFile.getName())) {
                 extractChaptersFromTOC(unzippedFile, storyBook);
             }
@@ -84,7 +85,7 @@ public class EpubToStoryBookConverterLetsReadAsia {
                 // Create intermediate folders.
                 File metaInfDirectory = new File(unzipDestinationDirectory, "META-INF");
                 logger.info("metaInfDirectory.mkdir(): " + metaInfDirectory.mkdir());
-                File contentDirectory = new File(unzipDestinationDirectory, "OEBPS");
+                File contentDirectory = new File(unzipDestinationDirectory, "content");
                 logger.info("contentDirectory.mkdir(): " + contentDirectory.mkdir());
                 
                 // E.g. unzipDestinationDirectory + "/" + "META-INF/container.xml"
@@ -170,110 +171,6 @@ public class EpubToStoryBookConverterLetsReadAsia {
     }
     
     /**
-     * Extracts a list of hyperlink references (e.g. "Page_2.xhtml") from {@code OEBPS/toc.xhtml}.
-     * <p />
-     * Expected file structure:
-     * <pre>
-     * 
-     *     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-     *     <html xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="fil" lang="fil" xmlns="http://www.w3.org/1999/xhtml">
-     *         <head>
-     *             <title>Hindi na Ako natatakot!</title>
-     *         </head>
-     *         <body>
-     *             <nav epub:type="toc">
-     *                 <h1>Table of Contents</h1>
-     *                 <ol>
-     *                     <li><a href="Page_2.xhtml">Page 2</a></li>
-     *                     <li><a href="Page_3.xhtml">Page 3</a></li>
-     *                     <li><a href="Page_4.xhtml">Page 4</a></li>
-     *                     <li><a href="Page_5.xhtml">Page 5</a></li>
-     *                     <li><a href="Page_6.xhtml">Page 6</a></li>
-     *                     <li><a href="Page_7.xhtml">Page 7</a></li>
-     *                     <li><a href="Page_8.xhtml">Page 8</a></li>
-     *                     <li><a href="Page_9.xhtml">Page 9</a></li>
-     *                     <li><a href="Page_10.xhtml">Page 10</a></li>
-     *                     <li><a href="Page_11.xhtml">Page 11</a></li>
-     *                     <li><a href="Page_12.xhtml">Page 12</a></li>
-     *                     <li><a href="Copyright.xhtml">Copyright</a></li>
-     *                 </ol>
-     *             </nav>
-     *             <nav epub:type="landmarks">
-     *                 <h1>Guide</h1>
-     *                 <ol>
-     *                     <li><a epub:type="cover" href="cover.xhtml">Cover</a></li>
-     *                     <li><a epub:type="bodymatter" href="Page_2.xhtml">Start of Story</a></li>
-     *                 </ol>
-     *             </nav>
-     *         </body>
-     *     </html>
-     * 
-     * </pre>
-     */
-    public static List<String> extractChapterReferencesFromTOC(File tocFile) {
-        logger.info("extractChapterReferencesFromTOC");
-        
-        List<String> chapterReferences = new ArrayList<>();
-        
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(tocFile);
-            NodeList nodeList = document.getDocumentElement().getChildNodes();
-            logger.info("nodeList.getLength(): " + nodeList.getLength());
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-                logger.info("node: " + node);
-                
-                // Look for "<body>"
-                if ("body".equals(node.getNodeName())) {
-                    NodeList bodyChildNodeList = node.getChildNodes();
-                    logger.info("bodyChildNodeList.getLength(): " + bodyChildNodeList.getLength());
-                    for (int j = 0; j < bodyChildNodeList.getLength(); j++) {
-                        Node bodyChildNode = bodyChildNodeList.item(j);
-                        logger.info("bodyChildNode: " + bodyChildNode);
-                        
-                        // Look for "<nav epub:type="toc">"
-                        if ("toc".equals(bodyChildNode.getAttributes().getNamedItem("epub:type").getNodeValue())) {
-                            NodeList navChildNodeList = bodyChildNode.getChildNodes();
-                            logger.info("navChildNodeList.getLength(): " + navChildNodeList.getLength());
-                            for (int k = 0; k < navChildNodeList.getLength(); k++) {
-                                Node navChildNode = navChildNodeList.item(k);
-                                logger.info("navChildNode: " + navChildNode);
-                                
-                                // Look for "<ol>"
-                                if ("ol".equals(navChildNode.getNodeName())) {
-                                    NodeList olChildNodeList = navChildNode.getChildNodes();
-                                    logger.info("olChildNodeList.getLength(): " + olChildNodeList.getLength());
-                                    
-                                    // Look for "<li>"
-                                    for (int l = 0; l < olChildNodeList.getLength(); l++) {
-                                        Node liChildNode = olChildNodeList.item(l);
-                                        logger.info("liChildNode: " + liChildNode);
-                                        
-                                        // Look for "<a>", e.g. <a href="Page_2.xhtml">Page 2</a>
-                                        Node aChildNode = liChildNode.getFirstChild();
-                                        logger.info("aChildNode: " + aChildNode);
-                                        
-                                        // Get the value of the "href" attribute
-                                        String chapterReference = aChildNode.getAttributes().getNamedItem("href").getNodeValue();
-                                        logger.info("chapterReference: \"" + chapterReference + "\"");
-                                        chapterReferences.add(chapterReference);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
-        }
-        
-        return chapterReferences;
-    }
-    
-    /**
      * Extracts content from the chapters listed in the Table of Contents.
      */
     private static void extractChaptersFromTOC(File tocFile, StoryBook storyBook) {
@@ -281,7 +178,7 @@ public class EpubToStoryBookConverterLetsReadAsia {
         
         logger.info("Extracting paragraphs from \"" + tocFile + "\"");
         
-        List<String> chapterReferences = extractChapterReferencesFromTOC(tocFile);
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContents(tocFile);
         logger.info("chapterReferences.size(): " + chapterReferences.size());
         for (String chapterReference : chapterReferences) {
             File xhtmlChapterFile = new File(tocFile.getParent(), chapterReference);
@@ -294,7 +191,7 @@ public class EpubToStoryBookConverterLetsReadAsia {
             } else {
                 storyBook.getParagraphs().addAll(paragraphs);
             }
-        }                        
+        }
     }
     
     private static List<String> extractImagesAndParagraphsFromChapter(File xhtmlChapterFile) {
@@ -320,7 +217,7 @@ public class EpubToStoryBookConverterLetsReadAsia {
                         logger.info("bodyNode: " + bodyNode);
                         
                         // Extract paragraphs (<p>...</p>)
-                        // In some cases, <p> tags are missing (e.g. swa-gdl-30.epub), and "#text" is the bodyChildNode name
+                        // In some cases, <p> tags are missing (e.g. swa-gdl-30.epub), and "#text" is the node name
                         if ("p".equals(bodyNode.getNodeName()) || "#text".equals(bodyNode.getNodeName())) {
                             String paragraph = bodyNode.getTextContent().trim();
                             logger.info("paragraph: \"" + paragraph + "\"");

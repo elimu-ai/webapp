@@ -1,10 +1,8 @@
-package ai.elimu.util.content;
+package ai.elimu.util.epub;
 
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.web.content.storybook.StoryBookListController;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import org.apache.log4j.Logger;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
@@ -19,20 +17,8 @@ public class EpubToStoryBookConverterLetsReadAsiaTest {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Test
-    public void testExtractChapterReferencesFromTOC() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
-        Resource tocResource = resourceLoader.getResource("fil-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e_toc.xhtml");
-        logger.info("tocResource: " + tocResource);
-        File tocFile = tocResource.getFile();
-        
-        List<String> chapterReferences = EpubToStoryBookConverterLetsReadAsia.extractChapterReferencesFromTOC(tocFile);
-        assertThat(chapterReferences.isEmpty(), not(true));
-        assertThat(chapterReferences.size(), is(12));
-    }
-    
-    @Test
     public void testGetStoryBookFromEpub_Filipino_0acfe340() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterLetsReadAsia.class);
         Resource ePubResource = resourceLoader.getResource("fil-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
@@ -46,7 +32,7 @@ public class EpubToStoryBookConverterLetsReadAsiaTest {
     
     @Test
     public void testGetStoryBookFromEpub_Filipino_faa0d66e() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterLetsReadAsia.class);
         Resource ePubResource = resourceLoader.getResource("fil-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();

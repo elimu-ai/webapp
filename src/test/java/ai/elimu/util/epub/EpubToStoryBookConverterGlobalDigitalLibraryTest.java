@@ -1,7 +1,6 @@
-package ai.elimu.util.content;
+package ai.elimu.util.epub;
 
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.web.content.storybook.StoryBookListController;
 import java.io.File;
 import java.io.IOException;
 import org.apache.log4j.Logger;
@@ -19,7 +18,7 @@ public class EpubToStoryBookConverterGlobalDigitalLibraryTest {
     
     @Test
     public void testGetStoryBookFromEpub_Bengali() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterGlobalDigitalLibrary.class);
         Resource ePubResource = resourceLoader.getResource("ben-gdl-761.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
@@ -33,7 +32,7 @@ public class EpubToStoryBookConverterGlobalDigitalLibraryTest {
     
     @Test
     public void testGetStoryBookFromEpub_English() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterGlobalDigitalLibrary.class);
         Resource ePubResource = resourceLoader.getResource("eng-gdl-1349.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
@@ -47,7 +46,7 @@ public class EpubToStoryBookConverterGlobalDigitalLibraryTest {
     
     @Test
     public void testGetStoryBookFromEpub_Hindi() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterGlobalDigitalLibrary.class);
         Resource ePubResource = resourceLoader.getResource("hin-gdl-1296.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
@@ -61,7 +60,7 @@ public class EpubToStoryBookConverterGlobalDigitalLibraryTest {
     
     @Test
     public void testGetStoryBookFromEpub_Swahili() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(StoryBookListController.class);
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EpubToStoryBookConverterGlobalDigitalLibrary.class);
         Resource ePubResource = resourceLoader.getResource("swa-gdl-30.epub");
         logger.info("ePubResource: " + ePubResource);
         File ePubFile = ePubResource.getFile();
