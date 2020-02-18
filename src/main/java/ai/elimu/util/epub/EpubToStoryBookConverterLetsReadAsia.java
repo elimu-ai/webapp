@@ -178,7 +178,7 @@ public class EpubToStoryBookConverterLetsReadAsia {
         
         logger.info("Extracting paragraphs from \"" + tocFile + "\"");
         
-        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContents(tocFile);
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tocFile);
         logger.info("chapterReferences.size(): " + chapterReferences.size());
         for (String chapterReference : chapterReferences) {
             File xhtmlChapterFile = new File(tocFile.getParent(), chapterReference);
