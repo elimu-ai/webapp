@@ -1,10 +1,10 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
+55,"n","n",null,false,CONSONANT,3
+41,"ɑ","A",null,false,VOWEL,3
 43,"i","i",null,false,VOWEL,2
 73,"k","k",null,false,CONSONANT,2
 46,"m","m",null,false,CONSONANT,2
-55,"n","n",null,false,CONSONANT,2
 45,"u","u",null,false,VOWEL,2
-41,"ɑ","A",null,false,VOWEL,2
 52,"f","f",null,false,CONSONANT,0
 77,"h","h",null,false,CONSONANT,0
 69,"j","j",null,false,CONSONANT,0
