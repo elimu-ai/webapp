@@ -1,17 +1,12 @@
 package ai.elimu.model.content;
 
-import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.GradeLevel;
@@ -38,14 +33,6 @@ public class StoryBook extends Content {
     @NotNull
     @Enumerated(EnumType.STRING)
     private GradeLevel gradeLevel;
-    
-    // TODO: replace paragraphs with chapters
-    @Deprecated
-    @NotEmpty
-    @OrderColumn
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Column(length = 1000)
-    private List<String> paragraphs;
 
     public String getTitle() {
         return title;
@@ -85,14 +72,6 @@ public class StoryBook extends Content {
 
     public void setCoverImage(Image coverImage) {
         this.coverImage = coverImage;
-    }
-
-    public List<String> getParagraphs() {
-        return paragraphs;
-    }
-
-    public void setParagraphs(List<String> paragraphs) {
-        this.paragraphs = paragraphs;
     }
 
     public GradeLevel getGradeLevel() {

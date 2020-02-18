@@ -8,8 +8,12 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
+import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.content.StoryBookChapter;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.GradeLevel;
@@ -17,6 +21,7 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +38,12 @@ public class StoryBookEditController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookChapterDao storyBookChapterDao;
+    
+    @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
     
     @Autowired
     private ImageDao imageDao;
@@ -53,10 +64,19 @@ public class StoryBookEditController {
         
         model.addAttribute("gradeLevels", GradeLevel.values());
         
-        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
+        List<String> paragraphs = new ArrayList<>();
+        List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+        for (StoryBookChapter storyBookChapter : storyBookChapters) {
+            List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+            for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                paragraphs.add(storyBookParagraph.getOriginalText());
+            }
+        }
+        
+        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
         
-        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(storyBook);
+        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
         model.addAttribute("letterFrequencyMap", letterFrequencyMap);
         
         return "content/storybook/edit";
@@ -87,10 +107,19 @@ public class StoryBookEditController {
             
             model.addAttribute("gradeLevels", GradeLevel.values());
             
-            Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(storyBook);
+            List<String> paragraphs = new ArrayList<>();
+            List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                    paragraphs.add(storyBookParagraph.getOriginalText());
+                }
+            }
+            
+            Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
             model.addAttribute("wordFrequencyMap", wordFrequencyMap);
             
-            Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(storyBook);
+            Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
             model.addAttribute("letterFrequencyMap", letterFrequencyMap);
             
             return "content/storybook/edit";

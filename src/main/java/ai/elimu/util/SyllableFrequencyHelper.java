@@ -8,24 +8,23 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.enums.Language;
 
 public class SyllableFrequencyHelper {
     
     private static final Logger logger = Logger.getLogger(SyllableFrequencyHelper.class);
 
-    public static Map<String, Integer> getSyllableFrequency(StoryBook storyBook) {
+    public static Map<String, Integer> getSyllableFrequency(List<String> paragraphs, Language language) {
         Map<String, Integer> syllableFrequencyMap = new HashMap<>();
         
-        List<String> paragraphs = storyBook.getParagraphs();
         for (String paragraph : paragraphs) {
             logger.info("paragraph: " + paragraph);
             List<String> words = WordExtractionHelper.getWords(paragraph);
             for (String wordInParagraph : words) {
                 logger.info("wordInParagraph: " + wordInParagraph);
                 Word word = new Word();
-                word.setLanguage(storyBook.getLanguage());
+                word.setLanguage(language);
                 word.setText(wordInParagraph);
                 List<String> syllables = SyllableHelper.getSyllables(word);
                 logger.info("syllables.size(): " + syllables.size());

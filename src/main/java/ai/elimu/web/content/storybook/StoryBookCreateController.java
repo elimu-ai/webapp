@@ -65,9 +65,6 @@ public class StoryBookCreateController {
             result.rejectValue("title", "NonUnique");
         }
         
-        List<String> paragraphs = storyBook.getParagraphs();
-        logger.info("paragraphs: " + paragraphs);
-        
         if (result.hasErrors()) {
             model.addAttribute("storybook", storyBook);
             
