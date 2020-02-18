@@ -178,48 +178,19 @@ public class EpubToStoryBookConverterGlobalDigitalLibrary {
         
         logger.info("Extracting paragraphs from \"" + tocFile + "\"");
         
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(tocFile);
-            NodeList nodeList = document.getDocumentElement().getChildNodes();
-            logger.info("nodeList.getLength(): " + nodeList.getLength());
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-                logger.info("node: " + node);
-                
-                if ("body".equals(node.getNodeName())) {
-                    Node navNode = node.getChildNodes().item(1); // <nav epub:type="toc" id="toc">
-                    logger.info("navNode: " + navNode);
-                    
-                    // Iterate chapters
-                    Node nodeOl = navNode.getChildNodes().item(1); // <ol>
-                    for (int j = 0; j < nodeOl.getChildNodes().getLength(); j++) {
-                        Node olChildNode = nodeOl.getChildNodes().item(j);
-                        if ("li".equals(olChildNode.getNodeName())) {
-                            logger.info("li");
-                            logger.info("olChildNode.getTextContent().trim(): " + olChildNode.getTextContent().trim());
-                            
-                            Node aNode = olChildNode.getChildNodes().item(1); // <a href="chapter-1.xhtml" title="chapter-1.xhtml">Chapter 1</a>
-                            String chapterReference = aNode.getAttributes().getNamedItem("href").getNodeValue();
-                            logger.info("chapterReference: \"" + chapterReference + "\"");
-                            
-                            File xhtmlChapterFile = new File(tocFile.getParent(), chapterReference);
-                            logger.info("xhtmlChapterFile: " + xhtmlChapterFile);
-                            
-                            List<String> paragraphs = extractImagesAndParagraphsFromChapter(xhtmlChapterFile);
-                            logger.info("paragraphs.size(): " + paragraphs.size());
-                                if (storyBook.getParagraphs() == null) {
-                                    storyBook.setParagraphs(paragraphs);
-                                } else {
-                                    storyBook.getParagraphs().addAll(paragraphs);
-                                }
-                            }
-                        }
-                    }
-                }
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContents(tocFile);
+        logger.info("chapterReferences.size(): " + chapterReferences.size());
+        for (String chapterReference : chapterReferences) {
+            File xhtmlChapterFile = new File(tocFile.getParent(), chapterReference);
+            logger.info("xhtmlChapterFile: " + xhtmlChapterFile);
+
+            List<String> paragraphs = extractImagesAndParagraphsFromChapter(xhtmlChapterFile);
+            logger.info("paragraphs.size(): " + paragraphs.size());
+            if (storyBook.getParagraphs() == null) {
+                storyBook.setParagraphs(paragraphs);
+            } else {
+                storyBook.getParagraphs().addAll(paragraphs);
+            }
         }
     }
     
