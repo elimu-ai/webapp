@@ -126,6 +126,10 @@ public class StoryBookCreateFromEPubController {
                     
                     String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
                     logger.info("description: \"" + description + "\"");
+                    logger.info("description.length(): " + description.length());
+                    if (description.length() > 1024) {
+                        description = description.substring(0, 1023);
+                    }
                     storyBook.setDescription(description);
                 }
                 
