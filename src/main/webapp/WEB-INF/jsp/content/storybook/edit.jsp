@@ -68,7 +68,10 @@
         </form:form>
     </div>
     
-    <c:forEach var="storyBookChapter" items="${storyBookChapters}">
+    <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
+        <c:if test="${status.index == (fn:length(storyBookChapters) - 1)}">
+            <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="<fmt:message key='delete' />">delete</i></a>
+        </c:if>
         <h5 style="margin-top: 1em;"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel">
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
