@@ -1,13 +1,15 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
-55,"n","n",null,false,CONSONANT,3
-41,"ɑ","A",null,false,VOWEL,3
+41,"ɑ","A",null,false,VOWEL,5
+55,"n","n",null,false,CONSONANT,4
+46,"m","m",null,false,CONSONANT,3
 43,"i","i",null,false,VOWEL,2
 73,"k","k",null,false,CONSONANT,2
-46,"m","m",null,false,CONSONANT,2
 45,"u","u",null,false,VOWEL,2
+69,"j","j",null,false,CONSONANT,1
+44,"ɔ","O",null,false,VOWEL,1
+80,"ˈ","""",null,false,null,1
 52,"f","f",null,false,CONSONANT,0
 77,"h","h",null,false,CONSONANT,0
-69,"j","j",null,false,CONSONANT,0
 63,"l","l",null,false,CONSONANT,0
 47,"mb","mb",null,false,CONSONANT,0
 50,"mv","mv",null,false,CONSONANT,0
@@ -25,7 +27,6 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 70,"ŋ","N",null,false,CONSONANT,0
 71,"ŋɡ","Nɡ",null,false,CONSONANT,0
 48,"ɓ","b_<",null,false,CONSONANT,0
-44,"ɔ","O",null,false,VOWEL,0
 57,"ɗ","d_<",null,false,CONSONANT,0
 42,"ɛ","E",null,false,VOWEL,0
 72,"ɠ","g_<",null,false,CONSONANT,0
@@ -35,6 +36,5 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 62,"ɾ","4",null,false,CONSONANT,0
 68,"ʃ","S",null,false,CONSONANT,0
 66,"ʄ","j_<",null,false,CONSONANT,0
-80,"ˈ","""",null,false,null,0
 54,"θ","T",null,false,CONSONANT,0
 84,".",".",null,false,null,-1
