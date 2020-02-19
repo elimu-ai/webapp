@@ -24,7 +24,10 @@ public class WordExtractionHelper {
                     .replace("”", "")
                     .replace(".", "")
                     .replace("!", "")
-                    .replace("?", "");
+                    .replace("?", "")
+                    .replace(":", "")
+                    .replace("(", "")
+                    .replace(")", "");
             if (StringUtils.isNotBlank(word)) {
                 words.add(word);
             }

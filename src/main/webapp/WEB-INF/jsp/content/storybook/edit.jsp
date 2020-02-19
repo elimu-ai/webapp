@@ -80,7 +80,7 @@
                                 <c:out value="${wordInOriginalText} " />
                             </c:when>
                             <c:otherwise>
-                                <a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${word.text} " /></a>
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${wordInOriginalText} " /></a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>

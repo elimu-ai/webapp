@@ -175,6 +175,8 @@ public class StoryBookCreateFromEPubController {
                             logger.info("words.size(): " + words.size());
                             for (String wordInOriginalText : wordsInOriginalText) {
                                 logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                                wordInOriginalText = wordInOriginalText.toLowerCase();
+                                logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
                                 Word word = wordDao.readByText(language, wordInOriginalText);
                                 logger.info("word: " + word);
                                 words.add(word);
