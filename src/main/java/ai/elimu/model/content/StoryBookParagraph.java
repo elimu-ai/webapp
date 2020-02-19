@@ -2,7 +2,12 @@ package ai.elimu.model.content;
 
 import javax.persistence.Entity;
 import ai.elimu.model.BaseEntity;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -18,7 +23,12 @@ public class StoryBookParagraph extends BaseEntity {
     private Integer sortOrder;
     
     @NotNull
+    @Column(length = 1024)
     private String originalText;
+    
+    @OrderColumn
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Word> words;
     
     public StoryBookChapter getStoryBookChapter() {
         return storyBookChapter;
@@ -42,5 +52,13 @@ public class StoryBookParagraph extends BaseEntity {
 
     public void setOriginalText(String originalText) {
         this.originalText = originalText;
+    }
+
+    public List<Word> getWords() {
+        return words;
+    }
+
+    public void setWords(List<Word> words) {
+        this.words = words;
     }
 }

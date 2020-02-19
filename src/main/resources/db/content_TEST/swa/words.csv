@@ -1,6 +1,6 @@
 id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
+36,"na",[n, ɑ],[55, 41],3,null,null
 35,"kumi",[k, u, m, i],[73, 45, 46, 43],2,null,null
-36,"na",[n, ɑ],[55, 41],2,null,null
 37,"ishirini",[i, ʃ, i, ɾ, i, n, i],[43, 68, 43, 62, 43, 55, 43],0,null,null
 44,"maji",[m, ɑ, ʄ, i],[46, 41, 66, 43],0,NOUN,PERFECT
 13,"mbili",[mb, i, l, i],[47, 43, 63, 43],0,null,null
