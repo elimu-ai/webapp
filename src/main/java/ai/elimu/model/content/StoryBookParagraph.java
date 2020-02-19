@@ -3,6 +3,7 @@ package ai.elimu.model.content;
 import javax.persistence.Entity;
 import ai.elimu.model.BaseEntity;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -22,6 +23,7 @@ public class StoryBookParagraph extends BaseEntity {
     private Integer sortOrder;
     
     @NotNull
+    @Column(length = 1024)
     private String originalText;
     
     @OrderColumn

@@ -157,14 +157,19 @@ public class StoryBookCreateFromEPubController {
                         for (int i = 0; i < paragraphs.size(); i++) {
                             String paragraph = paragraphs.get(i);
                             logger.info("paragraph: \"" + paragraph + "\"");
+                            logger.info("paragraph.length(): " + paragraph.length());
                             
                             StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
                             storyBookParagraph.setStoryBookChapter(storyBookChapter);
                             storyBookParagraph.setSortOrder(i);
                             
+                            if (paragraph.length() > 1024) {
+                                logger.warn("Reducing the length of the paragraph to its initial 1,024 characters.");
+                                paragraph = paragraph.substring(0, 1023);
+                            }
                             storyBookParagraph.setOriginalText(paragraph);
                             
-                            List<String> wordsInOriginalText = WordExtractionHelper.getWords(paragraph);
+                            List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText());
                             logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
                             List<Word> words = new ArrayList<>();
                             logger.info("words.size(): " + words.size());
