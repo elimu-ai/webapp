@@ -3,6 +3,7 @@ package ai.elimu.web.content.storybook;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.dao.WordDao;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,10 @@ import org.apache.log4j.Logger;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
@@ -53,6 +56,9 @@ public class StoryBookCreateFromEPubController {
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
+    
+    @Autowired
+    private WordDao wordDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -151,10 +157,25 @@ public class StoryBookCreateFromEPubController {
                         for (int i = 0; i < paragraphs.size(); i++) {
                             String paragraph = paragraphs.get(i);
                             logger.info("paragraph: \"" + paragraph + "\"");
+                            
                             StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
                             storyBookParagraph.setStoryBookChapter(storyBookChapter);
                             storyBookParagraph.setSortOrder(i);
+                            
                             storyBookParagraph.setOriginalText(paragraph);
+                            
+                            List<String> wordsInOriginalText = WordExtractionHelper.getWords(paragraph);
+                            logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                            List<Word> words = new ArrayList<>();
+                            logger.info("words.size(): " + words.size());
+                            for (String wordInOriginalText : wordsInOriginalText) {
+                                logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                                Word word = wordDao.readByText(language, wordInOriginalText);
+                                logger.info("word: " + word);
+                                words.add(word);
+                            }
+                            storyBookParagraph.setWords(words);
+                            
                             storyBookParagraphs.add(storyBookParagraph);
                         }
                     }

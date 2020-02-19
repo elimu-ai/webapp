@@ -69,10 +69,22 @@
     </div>
     
     <c:forEach var="storyBookChapter" items="${storyBookChapters}">
-        <h5 style="margin-top: 1em;">Chapter ${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
+        <h5 style="margin-top: 1em;"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel">
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
-                <p><c:out value="${storyBookParagraph.originalText}" /></p>
+                <p>
+                    <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
+                        <c:set var="word" value="${storyBookParagraph.words[status.index]}" />
+                        <c:choose>
+                            <c:when test="${empty word}">
+                                <c:out value="${wordInOriginalText} " />
+                            </c:when>
+                            <c:otherwise>
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${word.text} " /></a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </p>
             </c:forEach>
         </div>
     </c:forEach>
