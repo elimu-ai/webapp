@@ -1,49 +1,52 @@
 id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
-48,"anak",[ɑ, n, ɑ, k],[28, 14, 28, 11],0,NOUN,PERFECT
-1,"anim",[ɑ, n, ɪ, m],[28, 14, 36, 13],0,null,PERFECT
-2,"apat",[ɑ, p, ɑ, t],[28, 15, 28, 19],0,null,PERFECT
-3,"dalawa",[d, ɑ, l, ɑ, w, ɑ],[4, 28, 12, 28, 23, 28],0,null,PERFECT
-4,"dalawampu",[d, ɑ, l, ɑ, w, ɑ, m, p, u],[4, 28, 12, 28, 23, 28, 13, 15, 21],0,null,PERFECT
-5,"dalawampu't",[d, ɑ, l, ɑ, w, ɑ, m, p, u, t],[4, 28, 12, 28, 23, 28, 13, 15, 21, 19],0,null,HIGHLY_PHONEMIC
-43,"damit",[d, ɑ, m, i, t],[4, 28, 13, 9, 19],0,NOUN,PERFECT
-36,"ilan",[ɪ, l, ɑ, n],[36, 12, 28, 14],0,null,PERFECT
-6,"isa",[ɪ, s, ɑ],[36, 18, 28],0,null,PERFECT
-27,"itim",[ɪ, t, i, m],[36, 19, 9, 13],0,ADJECTIVE,PERFECT
-33,"kaibigan",[k, ɑ, ɪ, b, i, g, ɑ, n],[11, 28, 36, 3, 9, 7, 28, 14],0,NOUN,PERFECT
-30,"kumot",[k, u, m, ɔ, t],[11, 21, 13, 30, 19],0,NOUN,PERFECT
-7,"labimpito",[l, ɑ, b, ɪ, m, ., p, ɪ, t, ɔ],[12, 28, 3, 36, 13, 1, 15, 36, 19, 30],0,null,HIGHLY_PHONEMIC
-8,"labindalawa",[l, ɑ, b, ɪ, n, ., d, ɑ, l, ɑ, w],[12, 28, 3, 36, 14, 1, 4, 28, 12, 28, 23],0,null,HIGHLY_PHONEMIC
-9,"labing-anim",[l, ɑ, b, ɪ, ŋ, ., ɑ, n, ɪ, m],[12, 28, 3, 36, 27, 1, 28, 14, 36, 13],0,null,PHONEMIC
-10,"labing-apat",[l, ɑ, b, ɪ, ŋ, ., ɑ, p, ɑ, t],[12, 28, 3, 36, 27, 1, 28, 15, 28, 19],0,null,PHONEMIC
-11,"labing-isa",[l, ɑ, b, ɪ, ŋ, ., ɪ, s, ɑ],[12, 28, 3, 36, 27, 1, 36, 18, 28],0,null,PHONEMIC
-12,"labingwalo",[l, ɑ, b, ɪ, ŋ, ., w, ɑ, l, ɔ],[12, 28, 3, 36, 27, 1, 23, 28, 12, 30],0,null,PHONEMIC
-13,"labinlima",[l, ɑ, b, ɪ, n, ., l, ɪ, m, ɑ],[12, 28, 3, 36, 14, 1, 12, 36, 13, 28],0,null,HIGHLY_PHONEMIC
-14,"labinsiyam",[l, ɑ, b, ɪ, n, ., ʃ, ɑ, m],[12, 28, 3, 36, 14, 1, 39, 28, 13],0,null,PHONEMIC
-15,"labintatlo",[l, ɑ, b, ɪ, n, ., t, ɑ, t, l, ɔ],[12, 28, 3, 36, 14, 1, 19, 28, 19, 12, 30],0,null,HIGHLY_PHONEMIC
-16,"lima",[l, ɪ, m, ɑ],[12, 36, 13, 28],0,null,PERFECT
-37,"maging",[m, ɑ, g, i, ŋ],[13, 28, 7, 9, 27],0,VERB,PHONEMIC
-47,"magsulat",[m, ɑ, g, s, u, l, ɑ, t],[13, 28, 7, 18, 21, 12, 28, 19],0,VERB,PERFECT
-38,"mahal",[m, ɑ, h, ɑ, l],[13, 28, 8, 28, 12],0,null,PERFECT
-40,"mainit",[m, ɑ, i, n, ɪ, t],[13, 28, 9, 14, 36, 19],0,ADJECTIVE,PERFECT
-29,"malaki",[m, ɑ, l, ɑ, k, ɪ],[13, 28, 12, 28, 11, 36],0,ADJECTIVE,PERFECT
-45,"malamig",[m, ɑ, z, ɑ, m, i, g],[13, 28, 24, 28, 13, 9, 7],0,ADJECTIVE,PERFECT
-46,"malayo",[m, ɑ, l, ɑ, j, ɔ],[13, 28, 12, 28, 10, 30],0,null,PERFECT
-41,"maliit",[m, ɑ, l, i, ɪ, t],[13, 28, 12, 9, 36, 19],0,ADJECTIVE,PERFECT
-32,"matulog",[m, ɑ, t, u, l, ɔ, g],[13, 28, 19, 21, 12, 30, 7],0,VERB,PERFECT
-31,"nagugutom",[n, ɑ, g, u, g, u, t, ɔ, m],[14, 28, 7, 21, 7, 21, 19, 30, 13],0,ADJECTIVE,PERFECT
-17,"natatakot",[n, ɑ, t, ɑ, t, ɑ, k, ɔ, t],[14, 28, 19, 28, 19, 28, 11, 30, 19],0,ADJECTIVE,PERFECT
-26,"pagod",[p, ɑ, g, ɔ, d],[15, 28, 7, 30, 4],0,ADJECTIVE,PERFECT
-35,"pinsan",[p, ɪ, n, s, ɑ, n],[15, 36, 14, 18, 28, 14],0,NOUN,PERFECT
-18,"pito",[p, ɪ, t, ɔ],[15, 36, 19, 30],0,null,PERFECT
-19,"pusa",[p, u, s, ɑ],[15, 21, 18, 28],0,NOUN,PERFECT
-20,"sampu",[s, ɑ, m, p, u],[18, 28, 13, 15, 21],0,null,PERFECT
-39,"sana",[s, ɑ, n, ɑ],[18, 28, 14, 28],0,null,PERFECT
-21,"sero",[s, ɛ, r̩, ɔ],[18, 34, 17, 30],0,null,PERFECT
-34,"sila",[s, i, l, ɑ],[18, 9, 12, 28],0,null,PERFECT
-44,"sino",[s, i, n, ɔ],[18, 9, 14, 30],0,null,PERFECT
-42,"siya",[ʃ, ɑ],[39, 28],0,null,HIGHLY_NON_PHONEMIC
-22,"siyam",[ʃ, ɑ, m],[39, 28, 13],0,null,NON_PHONEMIC
-23,"tatlo",[t, ɑ, t, l, ɔ],[19, 28, 19, 12, 30],0,null,PERFECT
-24,"tatlumpu",[t, ɑ, t, l, u, m, p, u],[19, 28, 19, 12, 21, 13, 15, 21],0,null,PERFECT
-28,"tayo",[t, ɑ, j, ɔ],[19, 28, 10, 30],0,null,PERFECT
-25,"walo",[w, ɑ, l, ɔ],[23, 28, 12, 30],0,null,PERFECT
+1,"anak",[ɑ, n, ɑ, k],[29, 15, 29, 12],0,NOUN,PERFECT
+2,"anim",[ɑ, n, ɪ, m],[29, 15, 37, 14],0,null,PERFECT
+3,"apat",[ɑ, p, ɑ, t],[29, 16, 29, 20],0,null,PERFECT
+51,"aso",[ɑ, s, ɔ],[29, 19, 31],0,NOUN,PERFECT
+4,"dalawa",[d, ɑ, l, ɑ, w, ɑ],[5, 29, 13, 29, 24, 29],0,null,PERFECT
+5,"dalawampu",[d, ɑ, l, ɑ, w, ɑ, m, p, u],[5, 29, 13, 29, 24, 29, 14, 16, 22],0,null,PERFECT
+6,"dalawampu't",[d, ɑ, l, ɑ, w, ɑ, m, p, u, t],[5, 29, 13, 29, 24, 29, 14, 16, 22, 20],0,null,HIGHLY_PHONEMIC
+7,"damit",[d, ɑ, m, i, t],[5, 29, 14, 10, 20],0,NOUN,PERFECT
+8,"ilan",[ɪ, l, ɑ, n],[37, 13, 29, 15],0,null,PERFECT
+9,"isa",[ɪ, s, ɑ],[37, 19, 29],0,null,PERFECT
+10,"itim",[ɪ, t, i, m],[37, 20, 10, 14],0,ADJECTIVE,PERFECT
+11,"kaibigan",[k, ɑ, ɪ, b, i, g, ɑ, n],[12, 29, 37, 4, 10, 8, 29, 15],0,NOUN,PERFECT
+12,"kumot",[k, u, m, ɔ, t],[12, 22, 14, 31, 20],0,NOUN,PERFECT
+13,"labimpito",[l, ɑ, b, ɪ, m, ., p, ɪ, t, ɔ],[13, 29, 4, 37, 14, 2, 16, 37, 20, 31],0,null,HIGHLY_PHONEMIC
+14,"labindalawa",[l, ɑ, b, ɪ, n, ., d, ɑ, l, ɑ, w],[13, 29, 4, 37, 15, 2, 5, 29, 13, 29, 24],0,null,HIGHLY_PHONEMIC
+15,"labing-anim",[l, ɑ, b, ɪ, ŋ, ., ɑ, n, ɪ, m],[13, 29, 4, 37, 28, 2, 29, 15, 37, 14],0,null,PHONEMIC
+16,"labing-apat",[l, ɑ, b, ɪ, ŋ, ., ɑ, p, ɑ, t],[13, 29, 4, 37, 28, 2, 29, 16, 29, 20],0,null,PHONEMIC
+17,"labing-isa",[l, ɑ, b, ɪ, ŋ, ., ɪ, s, ɑ],[13, 29, 4, 37, 28, 2, 37, 19, 29],0,null,PHONEMIC
+18,"labingwalo",[l, ɑ, b, ɪ, ŋ, ., w, ɑ, l, ɔ],[13, 29, 4, 37, 28, 2, 24, 29, 13, 31],0,null,PHONEMIC
+19,"labinlima",[l, ɑ, b, ɪ, n, ., l, ɪ, m, ɑ],[13, 29, 4, 37, 15, 2, 13, 37, 14, 29],0,null,HIGHLY_PHONEMIC
+20,"labinsiyam",[l, ɑ, b, ɪ, n, ., ʃ, ɑ, m],[13, 29, 4, 37, 15, 2, 40, 29, 14],0,null,PHONEMIC
+21,"labintatlo",[l, ɑ, b, ɪ, n, ., t, ɑ, t, l, ɔ],[13, 29, 4, 37, 15, 2, 20, 29, 20, 13, 31],0,null,HIGHLY_PHONEMIC
+22,"lima",[l, ɪ, m, ɑ],[13, 37, 14, 29],0,null,PERFECT
+23,"maging",[m, ɑ, g, i, ŋ],[14, 29, 8, 10, 28],0,VERB,PHONEMIC
+24,"magsulat",[m, ɑ, g, s, u, l, ɑ, t],[14, 29, 8, 19, 22, 13, 29, 20],0,VERB,PERFECT
+25,"mahal",[m, ɑ, h, ɑ, l],[14, 29, 9, 29, 13],0,null,PERFECT
+26,"mainit",[m, ɑ, i, n, ɪ, t],[14, 29, 10, 15, 37, 20],0,ADJECTIVE,PERFECT
+27,"malaki",[m, ɑ, l, ɑ, k, ɪ],[14, 29, 13, 29, 12, 37],0,ADJECTIVE,PERFECT
+28,"malamig",[m, ɑ, z, ɑ, m, i, g],[14, 29, 25, 29, 14, 10, 8],0,ADJECTIVE,PERFECT
+29,"malayo",[m, ɑ, l, ɑ, j, ɔ],[14, 29, 13, 29, 11, 31],0,null,PERFECT
+30,"maliit",[m, ɑ, l, i, ɪ, t],[14, 29, 13, 10, 37, 20],0,ADJECTIVE,PERFECT
+31,"matulog",[m, ɑ, t, u, l, ɔ, g],[14, 29, 20, 22, 13, 31, 8],0,VERB,PERFECT
+32,"na",[n, ɑ],[15, 29],0,null,PERFECT
+33,"nagugutom",[n, ɑ, g, u, g, u, t, ɔ, m],[15, 29, 8, 22, 8, 22, 20, 31, 14],0,ADJECTIVE,PERFECT
+34,"natatakot",[n, ɑ, t, ɑ, t, ɑ, k, ɔ, t],[15, 29, 20, 29, 20, 29, 12, 31, 20],0,ADJECTIVE,PERFECT
+35,"pagod",[p, ɑ, g, ɔ, d],[16, 29, 8, 31, 5],0,ADJECTIVE,PERFECT
+36,"paruparo",[p, ɑ, r, u, p, ɑ, r, ɔ],[16, 29, 17, 22, 16, 29, 17, 31],0,NOUN,PERFECT
+37,"pinsan",[p, ɪ, n, s, ɑ, n],[16, 37, 15, 19, 29, 15],0,NOUN,PERFECT
+38,"pito",[p, ɪ, t, ɔ],[16, 37, 20, 31],0,null,PERFECT
+39,"pusa",[p, u, s, ɑ],[16, 22, 19, 29],0,NOUN,PERFECT
+40,"sampu",[s, ɑ, m, p, u],[19, 29, 14, 16, 22],0,null,PERFECT
+41,"sana",[s, ɑ, n, ɑ],[19, 29, 15, 29],0,null,PERFECT
+42,"sero",[s, ɛ, r̩, ɔ],[19, 35, 18, 31],0,null,PERFECT
+43,"sila",[s, i, l, ɑ],[19, 10, 13, 29],0,null,PERFECT
+44,"sino",[s, i, n, ɔ],[19, 10, 15, 31],0,null,PERFECT
+45,"siya",[ʃ, ɑ],[40, 29],0,null,HIGHLY_NON_PHONEMIC
+46,"siyam",[ʃ, ɑ, m],[40, 29, 14],0,null,NON_PHONEMIC
+47,"tatlo",[t, ɑ, t, l, ɔ],[20, 29, 20, 13, 31],0,null,PERFECT
+48,"tatlumpu",[t, ɑ, t, l, u, m, p, u],[20, 29, 20, 13, 22, 14, 16, 22],0,null,PERFECT
+49,"tayo",[t, ɑ, j, ɔ],[20, 29, 11, 31],0,null,PERFECT
+50,"walo",[w, ɑ, l, ɔ],[24, 29, 13, 31],0,null,PERFECT
