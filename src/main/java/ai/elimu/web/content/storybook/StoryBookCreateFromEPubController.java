@@ -126,6 +126,10 @@ public class StoryBookCreateFromEPubController {
                     
                     String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
                     logger.info("description: \"" + description + "\"");
+                    logger.info("description.length(): " + description.length());
+                    if (description.length() > 1024) {
+                        description = description.substring(0, 1023);
+                    }
                     storyBook.setDescription(description);
                 }
                 
@@ -253,15 +257,17 @@ public class StoryBookCreateFromEPubController {
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                 logger.info("zipEntry: " + zipEntry);
                 
-                // Create intermediate folders.
-                File metaInfDirectory = new File(unzipDestinationDirectory, "META-INF");
-                logger.info("metaInfDirectory.mkdir(): " + metaInfDirectory.mkdir());
-                File contentDirectory = new File(unzipDestinationDirectory, "content");
-                logger.info("contentDirectory.mkdir(): " + contentDirectory.mkdir());
-                
                 // E.g. unzipDestinationDirectory + "/" + "META-INF/container.xml"
                 File unzipDestinationFile = new File(unzipDestinationDirectory + File.separator + zipEntry.toString());
                 logger.info("unzipDestinationFile: " + unzipDestinationFile);
+                
+                // Create intermediate folders if they do not already exist, e.g. "META-INF/", "content/" or "OEBPS/"
+                File parentDirectory = unzipDestinationFile.getParentFile();
+                logger.info("parentDirectory: " + parentDirectory);
+                if (!parentDirectory.exists()) {
+                    boolean parentDirectoriesWereCreated = parentDirectory.mkdirs();
+                    logger.info("parentDirectory.mkdirs(): " + parentDirectoriesWereCreated);
+                }
                 
                 // Write file to disk
                 FileOutputStream fileOutputStream = new FileOutputStream(unzipDestinationFile);

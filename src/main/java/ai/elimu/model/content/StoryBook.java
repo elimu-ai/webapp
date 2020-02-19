@@ -17,6 +17,7 @@ public class StoryBook extends Content {
     @NotNull
     private String title;
     
+    @Column(length = 1024)
     private String description;
     
     @Enumerated(EnumType.STRING)
