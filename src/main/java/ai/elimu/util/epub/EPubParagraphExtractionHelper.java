@@ -79,11 +79,58 @@ public class EPubParagraphExtractionHelper {
                     for (int j = 0; j < bodyChildNodeList.getLength(); j++) {
                         Node bodyChildNode = bodyChildNodeList.item(j);
                         logger.info("bodyChildNode: " + bodyChildNode);
-                        logger.info("bodyChildNode.getNodeName(): \"" + bodyChildNode.getNodeName() + "\"");
+                        logger.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
+                        
+                        // Look for "<img>"
+                        // TODO
                         
                         // Look for "<p>"
+                        if ("p".equals(bodyChildNode.getNodeName())) {
+                            // Look for text content within the paragraph
+                            NodeList paragraphNodeList = bodyChildNode.getChildNodes();
+                            logger.info("paragraphNodeList.getLength(): " + paragraphNodeList.getLength());
+                            
+                            String paragraph = "";
+                            String previousNodeName = null;
+                            for (int k = 0; k < paragraphNodeList.getLength(); k++) {
+                                Node paragraphChildNode = paragraphNodeList.item(k);
+                                logger.info("paragraphChildNode: " + paragraphChildNode);
+                                
+                                
+                                if ("#text".equals(paragraphChildNode.getNodeName())) {
+                                    // Add whitespace between each sentence
+                                    // E.g. "WAAAAHHHH!" --> "WAAAAHHHH! "
+                                    if (StringUtils.isNotBlank(paragraph)) {
+                                        paragraph += " ";
+                                    }
+                                    paragraph += paragraphChildNode.getTextContent();
+                                } else if ("br".equals(paragraphChildNode.getNodeName())) {
+                                    // Handle double linebreaks within paragraphs
+                                    // E.g. "<p>WAAAAHHHH!<br/><br/>Ang ibong Brahminy...</p>" --> "<p>WAAAAHHHH!</p><p>Ang ibong Brahminy...</p>"
+                                    if ("br".equals(previousNodeName)) {
+                                        // Replace <br/><br/> with </p><p>
+                                        logger.info("paragraph: \"" + paragraph + "\"");
+                                        if (StringUtils.isNotBlank(paragraph)) {
+                                            paragraphs.add(paragraph);
+                                            
+                                            // Reset to initial state
+                                            paragraph = "";
+                                        }
+                                    }
+                                }
+                                
+                                // Keep track if the previous node name
+                                previousNodeName = paragraphChildNode.getNodeName();
+                            }
+                            logger.info("paragraph: \"" + paragraph + "\"");
+                            if (StringUtils.isNotBlank(paragraph)) {
+                                paragraphs.add(paragraph);
+                            }
+                        }
+                        
+                        // Look for text content
                         // In some cases, <p> tags are missing, and "#text" is the node name
-                        if ("p".equals(bodyChildNode.getNodeName()) || "#text".equals(bodyChildNode.getNodeName())) {
+                        if ("#text".equals(bodyChildNode.getNodeName())) {
                             String paragraph = bodyChildNode.getTextContent();
                             logger.info("paragraph: \"" + paragraph + "\"");
                             if (StringUtils.isNotBlank(paragraph)) {
