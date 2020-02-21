@@ -1,5 +1,6 @@
 package ai.elimu.web.content.storybook;
 
+import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
@@ -14,8 +15,11 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
@@ -25,11 +29,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,6 +57,9 @@ public class StoryBookCreateFromEPubController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private ImageDao imageDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
@@ -79,6 +89,8 @@ public class StoryBookCreateFromEPubController {
             HttpSession session
     ) {
     	logger.info("handleSubmit");
+        
+        Image storyBookCoverImage = null;
         
         List<StoryBookChapter> storyBookChapters = new ArrayList<>();
         
@@ -131,6 +143,30 @@ public class StoryBookCreateFromEPubController {
                         description = description.substring(0, 1023);
                     }
                     storyBook.setDescription(description);
+                    
+                    storyBookCoverImage = new Image();
+                    storyBookCoverImage.setLanguage(language);
+                    String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
+                    logger.info("coverImageReference: " + coverImageReference);
+                    File coverImageFile = new File(opfFile.getParent(), coverImageReference);
+                    logger.info("coverImageFile: " + coverImageFile);
+                    logger.info("coverImageFile.exists(): " + coverImageFile.exists());
+                    URI coverImageUri = coverImageFile.toURI();
+                    logger.info("coverImageUri: " + coverImageUri);
+                    byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
+                    storyBookCoverImage.setBytes(coverImageBytes);
+                    if (coverImageFile.getName().toLowerCase().endsWith(".png")) {
+                        storyBookCoverImage.setContentType("image/png");
+                        storyBookCoverImage.setImageFormat(ImageFormat.PNG);
+                    } else if (coverImageFile.getName().toLowerCase().endsWith(".jpg") || coverImageFile.getName().toLowerCase().endsWith(".jpeg")) {
+                        storyBookCoverImage.setContentType("image/jpg");
+                        storyBookCoverImage.setImageFormat(ImageFormat.JPG);
+                    } else if (coverImageFile.getName().toLowerCase().endsWith(".gif")) {
+                        storyBookCoverImage.setContentType("image/gif");
+                        storyBookCoverImage.setImageFormat(ImageFormat.GIF);
+                    }
+                    int[] dominantColor = ImageColorHelper.getDominantColor(storyBookCoverImage.getBytes());
+                    storyBookCoverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
                 }
                 
                 // Extract the ePUB's chapters
@@ -202,6 +238,12 @@ public class StoryBookCreateFromEPubController {
             // Store the StoryBook in the database
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBookDao.create(storyBook);
+            
+            // Store the StoryBook's cover image in the database, and assign it to the StoryBook
+            storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover-image");
+            imageDao.create(storyBookCoverImage);
+            storyBook.setCoverImage(storyBookCoverImage);
+            storyBookDao.update(storyBook);
             
             // Store the StoryBookChapters in the database
             for (StoryBookChapter storyBookChapter : storyBookChapters) {

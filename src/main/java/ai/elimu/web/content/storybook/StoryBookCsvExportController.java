@@ -1,11 +1,15 @@
 package ai.elimu.web.content.storybook;
 
+import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.content.StoryBookChapter;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -25,6 +29,9 @@ public class StoryBookCsvExportController {
     @Autowired
     private StoryBookDao storyBookDao;
     
+    @Autowired
+    private StoryBookChapterDao storyBookChapterDao;
+    
     @RequestMapping(value="/storybooks.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
@@ -32,18 +39,30 @@ public class StoryBookCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,title,description,content_license,attribution_url,grade_level" + "\n";
+        String csvFileContent = "id,title,description,content_license,attribution_url,grade_level,cover_image_id,chapter_ids" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
         logger.info("storyBooks.size(): " + storyBooks.size());
         for (StoryBook storyBook : storyBooks) {
+            logger.info("storyBook.getTitle(): \"" + storyBook.getTitle() + "\"");
+            
+            List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+            logger.info("storyBookChapters.size(): " + storyBookChapters.size());
+            long[] chapterIdsArray = new long[storyBookChapters.size()];
+            int index = 0;
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                chapterIdsArray[index] = storyBookChapter.getId();
+                index++;
+            }
+            
             csvFileContent += storyBook.getId() + ","
                     + "\"" + storyBook.getTitle() + "\","
                     + "\"" + storyBook.getDescription() + "\","
                     + storyBook.getContentLicense()+ ","
                     + "\"" + storyBook.getAttributionUrl() + "\","
-                    + storyBook.getGradeLevel() + "\n";
-                    // TOOD: add chapters
+                    + storyBook.getGradeLevel() + ","
+                    + ((storyBook.getCoverImage() != null) ? storyBook.getCoverImage().getId() : "null") + ","
+                    + Arrays.toString(chapterIdsArray) + "\n";
                     // TODO: add paragraphs
         }
         

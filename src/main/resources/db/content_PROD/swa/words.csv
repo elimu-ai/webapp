@@ -33,7 +33,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 242,"mto",[m, t, ɔ],[46, 58, 44],4,NOUN,PERFECT
 198,"mtoto",[m, t, ɔ, t, ɔ],[46, 58, 44, 58, 44],4,NOUN,PERFECT
 536,"nzuri",[nz, u, ɾ, i],[59, 45, 62, 43],4,VERB,PERFECT
-18,"saba",[],[],4,NOUN,PERFECT
+18,"saba",[s, ɑ, ɓ, ɑ],[61, 41, 48, 41],4,NOUN,PERFECT
 587,"tajiri",[t, ɑ, ʄ, i, ɾ, i],[58, 41, 66, 43, 62, 43],4,ADJECTIVE,PERFECT
 248,"watoto",[w, ɑ, t, ɔ, t, ɔ],[76, 41, 58, 44, 58, 44],4,NOUN,PERFECT
 333,"gari",[ɠ, ɑ, ɾ, i],[72, 41, 62, 43],3,NOUN,PERFECT
@@ -65,7 +65,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 265,"nyoka",[ʃ, ɔ, k, ɑ],[68, 44, 73, 41],2,NOUN,PERFECT
 574,"rangi",[ɾ, ɑ, ŋɡ, i],[62, 41, 71, 43],2,NOUN,PERFECT
 267,"sasa",[s, ɑ, s, ɑ],[61, 41, 61, 41],2,VERB,PERFECT
-570,"shingo",[],[],2,NOUN,PERFECT
+570,"shingo",[ʃ, i, ŋɡ, ɔ],[68, 43, 71, 44],2,NOUN,PERFECT
 653,"twiga",[t, w, i, ɠ, ɑ],[58, 76, 43, 72, 41],2,NOUN,PERFECT
 299,"akasema",[ɑ, k, ɑ, s, ɛ, m, ɑ],[41, 73, 41, 61, 42, 46, 41],1,VERB,PERFECT
 311,"baiskeli",[ɓ, ɑ, i, s, k, ɛ, l, i],[48, 41, 43, 61, 73, 42, 63, 43],1,NOUN,PERFECT
@@ -73,7 +73,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 317,"dunia",[ɗ, u, n, i, ɑ],[57, 45, 55, 43, 41],1,NOUN,PERFECT
 321,"endelea",[ɛ, n, ɗ, ɛ, l, ɛ, ɑ],[42, 55, 57, 42, 63, 42, 41],1,VERB,PERFECT
 326,"familia",[f, ɑ, m, i, l, i, ɑ],[52, 41, 46, 43, 63, 43, 41],1,NOUN,PERFECT
-599,"fimbo",[],[],1,NOUN,PERFECT
+599,"fimbo",[f, i, mb, ɔ],[52, 43, 47, 44],1,NOUN,PERFECT
 327,"fisi",[f, i, s, i],[52, 43, 61, 43],1,NOUN,PERFECT
 531,"furaha",[f, u, ɾ, ɑ, h, ɑ],[52, 45, 62, 41, 77, 41],1,VERB,PERFECT
 337,"gazeti",[ɠ, ɑ, z, ɛ, t, i],[72, 41, 60, 42, 58, 43],1,NOUN,PERFECT
@@ -85,8 +85,8 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 646,"karatasi",[k, ɑ, ɾ, ɑ, t, ɑ, s, i],[73, 41, 62, 41, 58, 41, 61, 43],1,NOUN,PERFECT
 594,"kelele",[k, ɛ, l, ɛ, l, ɛ],[73, 42, 63, 42, 63, 42],1,VERB,PERFECT
 360,"kichwa",[k, i, t, ʃ, w, ɑ],[73, 43, 58, 68, 76, 41],1,NOUN,PERFECT
-596,"kuimba",[],[],1,VERB,PERFECT
-557,"kuingia",[],[],1,NOUN,PERFECT
+596,"kuimba",[k, u, i, mb, ɑ],[73, 45, 43, 47, 41],1,VERB,PERFECT
+557,"kuingia",[k, u, i, ŋɡ, i, ɑ],[73, 45, 43, 71, 43, 41],1,NOUN,PERFECT
 301,"kule",[k, u, l, ɛ],[73, 45, 63, 42],1,null,PERFECT
 251,"kuna",[k, u, n, ɑ],[73, 45, 55, 41],1,null,PERFECT
 253,"kuni",[k, u, n, i],[73, 45, 55, 43],1,NOUN,PERFECT
@@ -150,7 +150,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 373,"chaki",[tʃ, ɑ, k, i],[67, 41, 73, 43],0,null,PERFECT
 566,"changanya",[tʃ, ɑ, ŋɡ, ɑ, n, j, ɑ],[67, 41, 71, 41, 55, 69, 41],0,VERB,HIGHLY_PHONEMIC
 372,"chapati",[tʃ, ɑ, p, ɑ, t, i],[67, 41, 49, 41, 58, 43],0,null,HIGHLY_PHONEMIC
-519,"chimba",[],[],0,VERB,PERFECT
+519,"chimba",[tʃ, i, mb, ɑ],[67, 43, 47, 41],0,VERB,PERFECT
 374,"chungu",[tʃ, u, n, ɠ, u],[67, 45, 55, 72, 45],0,NOUN,PERFECT
 371,"chungwa",[tʃ, u, n, ɠ, w, ɑ],[67, 45, 55, 72, 76, 41],0,NOUN,HIGHLY_PHONEMIC
 638,"chupa",[tʃ, u, p, ɑ],[67, 45, 49, 41],0,NOUN,PERFECT
@@ -173,7 +173,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 328,"faru",[f, ɑ, ɾ, u],[52, 41, 62, 45],0,NOUN,PERFECT
 595,"fedha",[f, ɛ, ɗ, h, ɑ],[52, 42, 57, 77, 41],0,NOUN,PERFECT
 234,"fikiri",[f, i, k, i, ɾ, i],[52, 43, 73, 43, 62, 43],0,VERB,PERFECT
-330,"filimbi",[],[],0,NOUN,PERFECT
+330,"filimbi",[f, i, l, i, mb, i],[52, 43, 63, 43, 47, 43],0,NOUN,PERFECT
 530,"fueli",[f, u, ɛ, l, i],[52, 45, 42, 63, 43],0,NOUN,PERFECT
 564,"fujo",[f, u, ʄ, ɔ],[52, 45, 66, 44],0,NOUN,PERFECT
 607,"fulana",[f, u, l, ɑ, n, ɑ],[52, 45, 63, 41, 55, 41],0,NOUN,PERFECT
@@ -182,7 +182,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 506,"gamba",[ɠ, ɑ, mb, ɑ],[72, 41, 47, 41],0,NOUN,PERFECT
 332,"gauni",[ɠ, ɑ, u, n, i],[72, 41, 45, 55, 43],0,NOUN,PERFECT
 532,"gesi",[ɠ, ɛ, s, i],[72, 42, 61, 43],0,NOUN,PERFECT
-338,"gimbi",[],[],0,null,PERFECT
+338,"gimbi",[ɠ, i, mb, i],[72, 43, 47, 43],0,null,PERFECT
 641,"glasi",[ɠ, l, ɑ, s, i],[72, 63, 41, 61, 43],0,NOUN,PERFECT
 336,"godoro",[ɠ, ɔ, ɗ, ɔ, ɾ, ɔ],[72, 44, 57, 44, 62, 44],0,NOUN,PERFECT
 335,"gogo",[ɠ, ɔ, ɠ, ɔ],[72, 44, 72, 44],0,null,PERFECT
@@ -198,7 +198,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 345,"hongera",[h, ɔ, n, ɠ, ɛ, ɾ, ɑ],[77, 44, 55, 72, 42, 62, 41],0,null,PERFECT
 344,"hospitali",[h, ɔ, s, p, i, t, ɑ, l, i],[77, 44, 61, 49, 43, 58, 41, 63, 43],0,NOUN,PERFECT
 526,"imarisha",[i, m, ɑ, ɾ, i, ʃ, ɑ],[43, 46, 41, 62, 43, 68, 41],0,VERB,PERFECT
-347,"imba",[],[],0,NOUN,PERFECT
+347,"imba",[i, mb, ɑ],[43, 47, 41],0,NOUN,PERFECT
 348,"ini",[i, n, i],[43, 55, 43],0,NOUN,PERFECT
 349,"injini",[i, n, ʄ, i, n, i],[43, 55, 66, 43, 55, 43],0,NOUN,PERFECT
 228,"ishi",[i, ʃ, i],[43, 68, 43],0,null,PERFECT
@@ -215,7 +215,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 605,"jino",[ʄ, i, n, ɔ],[66, 43, 55, 44],0,NOUN,PERFECT
 503,"jipu",[ʄ, i, p, u],[66, 43, 49, 45],0,VERB,PERFECT
 357,"jirushe",[ʄ, i, ɾ, u, s, h, ɛ],[66, 43, 62, 45, 61, 77, 42],0,null,PERFECT
-549,"jiunga",[],[],0,NOUN,PERFECT
+549,"jiunga",[ʄ, i, u, ŋɡ, ɑ],[66, 43, 45, 71, 41],0,NOUN,PERFECT
 548,"jog",[ʄ, ɔ, ɠ],[66, 44, 72],0,VERB,PERFECT
 631,"kahawia",[k, ɑ, h, ɑ, w, i, ɑ],[73, 41, 77, 41, 76, 43, 41],0,ADJECTIVE,PERFECT
 578,"kalamu",[k, ɑ, l, ɑ, m, u],[73, 41, 63, 41, 46, 45],0,NOUN,PERFECT
@@ -225,13 +225,13 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 231,"kata",[k, ɑ, t, ɑ],[73, 41, 58, 41],0,VERB,PERFECT
 509,"kidevu",[k, i, ɗ, ɛ, v, u],[73, 43, 57, 42, 51, 45],0,NOUN,PERFECT
 651,"kidole",[k, i, ɗ, ɔ, l, ɛ],[73, 43, 57, 44, 63, 42],0,NOUN,PERFECT
-508,"kifaranga",[k, i, f, ɑ, ɾ, ɑ, n, ɠ, ɑ],[73, 43, 52, 41, 62, 41, 55, 72, 41],0,NOUN,PERFECT
+508,"kifaranga",[k, i, f, ɑ, ɾ, ɑ, ŋɡ, ɑ],[73, 43, 52, 41, 62, 41, 71, 41],0,NOUN,PERFECT
 555,"kifuniko",[k, i, f, u, n, i, k, ɔ],[73, 43, 52, 45, 55, 43, 73, 44],0,NOUN,PERFECT
 633,"kijani",[k, i, ʃ, ɑ, n, i],[73, 43, 68, 41, 55, 43],0,ADJECTIVE,PERFECT
 647,"kijivu",[k, i, ʃ, i, v, u],[73, 43, 68, 43, 51, 45],0,ADJECTIVE,PERFECT
 516,"kikombe",[k, i, k, ɔ, mb, ɛ],[73, 43, 73, 44, 47, 42],0,NOUN,PERFECT
 539,"kilima",[k, i, l, i, m, ɑ],[73, 43, 63, 43, 46, 41],0,NOUN,PERFECT
-583,"kimbia",[],[],0,VERB,PERFECT
+583,"kimbia",[k, i, mb, i, ɑ],[73, 43, 47, 43, 41],0,VERB,PERFECT
 571,"kiota",[k, i, ɔ, t, ɑ],[73, 43, 44, 58, 41],0,NOUN,PERFECT
 287,"kiswahili",[k, i, s, w, ɑ, h, i, l, i],[73, 43, 61, 76, 41, 77, 43, 63, 43],0,NOUN,PERFECT
 358,"kitabu",[k, i, t, ɑ, ɓ, u],[73, 43, 58, 41, 48, 45],0,NOUN,PERFECT
@@ -314,7 +314,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 593,"sema",[s, ɛ, m, ɑ],[61, 42, 46, 41],0,VERB,PERFECT
 522,"shabiki",[ʃ, ɑ, ɓ, i, k, i],[68, 41, 48, 43, 73, 43],0,NOUN,PERFECT
 579,"shimo",[ʃ, i, m, ɔ],[68, 43, 46, 44],0,NOUN,PERFECT
-610,"shinda",[],[],0,null,PERFECT
+610,"shinda",[ʃ, i, nd, ɑ],[68, 43, 56, 41],0,null,PERFECT
 11,"sifuri",[s, i, f, u, ɾ, i],[61, 43, 52, 45, 62, 43],0,NOUN,PERFECT
 225,"sikia",[s, i, k, i, ɑ],[61, 43, 73, 43, 41],0,VERB,PERFECT
 211,"sisi",[s, i, s, i],[61, 43, 61, 43],0,NOUN,PERFECT
@@ -339,7 +339,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 292,"wali",[w, ɑ, l, i],[76, 41, 63, 43],0,null,PERFECT
 256,"wanakaa",[w, ɑ, n, ɑ, k, ɑ, ɑ],[76, 41, 55, 41, 73, 41, 41],0,VERB,PERFECT
 560,"wazimu",[w, ɑ, z, i, m, u],[76, 41, 60, 43, 46, 45],0,ADJECTIVE,PERFECT
-230,"winda",[],[],0,VERB,PERFECT
+230,"winda",[w, i, nd, ɑ],[76, 43, 56, 41],0,VERB,PERFECT
 544,"wino",[w, i, n, ɔ],[76, 43, 55, 44],0,NOUN,PERFECT
 219,"yai",[j, ɑ, i],[69, 41, 43],0,NOUN,PERFECT
 645,"zambarau",[z, ɑ, mb, ɑ, ɾ, ɑ, u],[60, 41, 47, 41, 62, 41, 45],0,ADJECTIVE,PERFECT
