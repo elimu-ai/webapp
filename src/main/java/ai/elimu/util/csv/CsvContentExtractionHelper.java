@@ -6,13 +6,21 @@ import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
+import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.GradeLevel;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
+import ai.elimu.web.content.emoji.EmojiCsvExportController;
+import ai.elimu.web.content.letter.LetterCsvExportController;
+import ai.elimu.web.content.number.NumberCsvExportController;
+import ai.elimu.web.content.storybook.StoryBookCsvExportController;
+import ai.elimu.web.content.word.WordCsvExportController;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -524,5 +532,92 @@ public class CsvContentExtractionHelper {
         }
         
         return emojis;
+    }
+    
+    /**
+     * For information on how the CSV files were generated, see {@link StoryBookCsvExportController#handleRequest}.
+     */
+    public static List<StoryBook> getStoryBooksFromCsvBackup(File csvFile) {
+        logger.info("getStoryBooksFromCsvBackup");
+        
+        logger.info("csvFile: " + csvFile);
+        
+        List<StoryBook> storyBooks = new ArrayList<>();
+        
+        try {
+            Scanner scanner = new Scanner(csvFile);
+            int rowStoryBook = 0;
+            while (scanner.hasNextLine()) {
+                String row = scanner.nextLine();
+                logger.info("row: " + row);
+                
+                rowStoryBook++;
+                
+                if (rowStoryBook == 1) {
+                    // Skip the header row
+                    continue;
+                }
+                
+                // Expected header format: id,description,description,content_license,attribution_url,grade_level
+                // Expected row format: 6,"Ang Aming Pamilya","Anong nangyayari sa tahanan ni Dany? Bakit abala ang lahat?",CREATIVE_COMMONS_CC_BY,"https://reader.letsreadasia.org/book/5eb963ec-4692-4224-8bd6-0b15cfd9f6c0",LEVEL1
+                
+                // Prevent text from being stored as ""text""
+                // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
+                row = row.replace("\"", "");
+                logger.info("row (after removing '\"'): " + row);
+                
+                // Prevent "java.lang.StoryBookFormatException: For input string: " 6]""
+                // TODO: find more robust solution
+                row = row.replace(", ", "|");
+                logger.info("row (after removing ', '): " + row);
+                
+                String[] rowValues = row.split(",");
+                logger.info("rowValues: " + Arrays.toString(rowValues));
+                
+                // "id"
+                Long id = Long.valueOf(rowValues[0]);
+                logger.info("id: " + id);
+                
+                // "description"
+                String title = String.valueOf(rowValues[1]);
+                logger.info("title: " + title);
+                
+                // "description"
+                String description = String.valueOf(rowValues[2]);
+                logger.info("description: " + description);
+                
+                // content_license
+                ContentLicense contentLicense = null;
+                if (!"null".equals(rowValues[3])) {
+                    contentLicense = ContentLicense.valueOf(rowValues[3]);
+                }
+                logger.info("contentLicense: " + contentLicense);
+                
+                // attribution_url
+                String attributionUrl = String.valueOf(rowValues[4]);
+                logger.info("attributionUrl: \"" + attributionUrl + "\"");
+                
+                // grade_level
+                GradeLevel gradeLevel = null;
+                if (!"null".equals(rowValues[5])) {
+                    gradeLevel = GradeLevel.valueOf(rowValues[5]);
+                }
+                logger.info("gradeLevel: " + gradeLevel);
+                
+                StoryBook storyBook = new StoryBook();
+                // storyBook.setId(id); // TODO: to enable later lookup of the same StoryBook by its ID
+                storyBook.setTitle(title);
+                storyBook.setDescription(description);
+                storyBook.setContentLicense(contentLicense);
+                storyBook.setAttributionUrl(attributionUrl);
+                storyBook.setGradeLevel(gradeLevel);
+                storyBooks.add(storyBook);
+            }
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            logger.error(null, ex);
+        }
+        
+        return storyBooks;
     }
 }
