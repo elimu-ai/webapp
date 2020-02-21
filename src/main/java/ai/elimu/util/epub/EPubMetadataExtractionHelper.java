@@ -127,7 +127,7 @@ public class EPubMetadataExtractionHelper {
                             
                             // Expected format (Let's Read Asia): 
                             // <item id="image_1" href="coverImage.jpeg" media-type="image/jpeg" />
-                            if ("coverImage.jpeg".equals(hrefAttributeNode.getNodeValue())) {
+                            if (hrefAttributeNode.getNodeValue().toLowerCase().contains("cover")) {
                                 logger.info("hrefAttributeNode.getNodeValue(): \"" + hrefAttributeNode.getNodeValue() + "\"");
                                 return hrefAttributeNode.getNodeValue();
                             }
