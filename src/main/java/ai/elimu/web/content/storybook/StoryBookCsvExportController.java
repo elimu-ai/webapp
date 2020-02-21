@@ -39,7 +39,7 @@ public class StoryBookCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,title,description,content_license,attribution_url,grade_level,chapter_ids" + "\n";
+        String csvFileContent = "id,title,description,content_license,attribution_url,grade_level,cover_image_id,chapter_ids" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
         logger.info("storyBooks.size(): " + storyBooks.size());
@@ -61,6 +61,7 @@ public class StoryBookCsvExportController {
                     + storyBook.getContentLicense()+ ","
                     + "\"" + storyBook.getAttributionUrl() + "\","
                     + storyBook.getGradeLevel() + ","
+                    + ((storyBook.getCoverImage() != null) ? storyBook.getCoverImage().getId() : "null") + ","
                     + Arrays.toString(chapterIdsArray) + "\n";
                     // TODO: add paragraphs
         }
