@@ -10,6 +10,7 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
@@ -21,6 +22,7 @@ import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
 import ai.elimu.model.gson.content.AllophoneGson;
 import ai.elimu.model.gson.content.LetterGson;
+import ai.elimu.model.gson.content.StoryBookChapterGson;
 import ai.elimu.model.gson.content.StoryBookGson;
 import ai.elimu.model.gson.content.SyllableGson;
 import ai.elimu.model.gson.content.multimedia.AudioGson;
@@ -288,6 +290,7 @@ public class JavaToGsonConverter {
             wordGson.setContentStatus(word.getContentStatus());
             
             wordGson.setText(word.getText());
+            // TODO: setLetters
             List<AllophoneGson> allophones = new ArrayList<>();
             for (Allophone allophone : word.getAllophones()) {
                 AllophoneGson allophoneGson = getAllophoneGson(allophone);
@@ -315,12 +318,26 @@ public class JavaToGsonConverter {
             storyBookGson.setContentStatus(storyBook.getContentStatus());
             
             storyBookGson.setTitle(storyBook.getTitle());
+            storyBookGson.setDescription(storyBook.getDescription());
             storyBookGson.setCoverImage(getImageGson(storyBook.getCoverImage()));
             storyBookGson.setGradeLevel(storyBook.getGradeLevel());
             
-            // TODO: add pages
-            
             return storyBookGson;
+        }
+    }
+    
+    public static StoryBookChapterGson getStoryBookChapter(StoryBookChapter storyBookChapter) {
+        if (storyBookChapter == null) {
+            return null;
+        } else {
+            StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
+            
+            storyBookChapterGson.setId(storyBookChapter.getId());
+            
+            storyBookChapterGson.setStoryBook(getStoryBookGson(storyBookChapter.getStoryBook()));
+            storyBookChapterGson.setSortOrder(storyBookChapter.getSortOrder());
+            
+            return storyBookChapterGson;
         }
     }
     
