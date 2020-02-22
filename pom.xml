@@ -437,12 +437,6 @@
             <artifactId>imgscalr-lib</artifactId>
             <version>4.2</version>
         </dependency>
-        
-        <dependency>
-            <groupId>com.google.api-client</groupId>
-            <artifactId>google-api-client</artifactId>
-            <version>1.22.0</version>
-        </dependency>
 
         <dependency>
           <groupId>com.googlecode.soundlibs</groupId>

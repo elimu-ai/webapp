@@ -1,5 +1,6 @@
 package selenium.web;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import selenium.ErrorHelper;
@@ -10,9 +11,8 @@ public class WelcomePage {
 
     public WelcomePage(WebDriver driver) {
         this.driver = driver;
-        
-//        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-//        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("welcomePage")));
+
+        driver.findElement(By.id("welcomePageNO"));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
