@@ -12,7 +12,7 @@ public class WelcomePage {
     public WelcomePage(WebDriver driver) {
         this.driver = driver;
 
-        driver.findElement(By.id("welcomePage"));
+        driver.findElement(By.id("welcomePageTEST"));
         
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
