@@ -569,16 +569,10 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.53.0</version>
-        </dependency>
-        <!-- Needed by Selenium to avoid "java.lang.NoClassDefFoundError: org/apache/http/conn/HttpClientConnectionManager" -->
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.2</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>3.141.59</version>
         </dependency>
     </dependencies>
 </project>
