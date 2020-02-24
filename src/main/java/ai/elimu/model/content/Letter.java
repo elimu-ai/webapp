@@ -23,6 +23,8 @@ public class Letter extends Content {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones; // TODO: handle Letters that can be represented by multiple sets (lists) of Allophones (e.g. the letter 'a' in English)
     
+    private boolean diacritic;
+    
     private int usageCount; // Based on StoryBook content (all difficulty levels)
 
     public String getText() {
@@ -39,6 +41,14 @@ public class Letter extends Content {
 
     public void setAllophones(List<Allophone> allophones) {
         this.allophones = allophones;
+    }
+    
+    public boolean isDiacritic() {
+        return diacritic;
+    }
+
+    public void setDiacritic(boolean diacritic) {
+        this.diacritic = diacritic;
     }
 
     public int getUsageCount() {

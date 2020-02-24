@@ -7,17 +7,19 @@
     <div class="card-panel">
         <form:form modelAttribute="letter">
             <tag:formErrors modelAttribute="letter" />
+            
+            <form:hidden path="language" value="${letter.language}" />
+            <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
+            <form:hidden path="usageCount" value="${letter.usageCount}" />
 
             <div class="row">
-                <form:hidden path="language" value="${letter.language}" />
-                <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
-                <form:hidden path="usageCount" value="${letter.usageCount}" />
-                
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
-                
+            </div>
+            
+            <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="allophonesContainer">
@@ -84,6 +86,16 @@
                             });
                         });
                     </script>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col">
+                    <select id="diacritic" name="diacritic">
+                        <option value="false" <c:if test="${not letter.diacritic}">selected="selected"</c:if>><fmt:message key="no" /></option>
+                        <option value="true" <c:if test="${letter.diacritic}">selected="selected"</c:if>><fmt:message key="yes" /></option>
+                    </select>
+                    <label for="diacritic"><fmt:message key="diacritic" /></label>
                 </div>
             </div>
 
