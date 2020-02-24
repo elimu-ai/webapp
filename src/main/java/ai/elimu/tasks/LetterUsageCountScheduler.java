@@ -63,7 +63,7 @@ public class LetterUsageCountScheduler {
                     }
                 }
                 
-                Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(paragraphs);
+                Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
                 for (String key : letterFrequencyMapForBook.keySet()) {
                     String letterText = key;
                     int letterFrequency = letterFrequencyMapForBook.get(key);

@@ -1,5 +1,6 @@
 package ai.elimu.util;
 
+import ai.elimu.model.enums.Language;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -14,11 +15,11 @@ public class LetterFrequencyHelper {
      * Note: upper-case and lower-case letters are considered different letters.
      * E.g. 'A' and 'a'.
      */
-    public static Map<String, Integer> getLetterFrequency(List<String> paragraphs) {
+    public static Map<String, Integer> getLetterFrequency(List<String> paragraphs, Language language) {
         Map<String, Integer> letterFrequencyMap = new HashMap<>();
         
         for (String paragraph : paragraphs) {
-            List<String> letters = LetterExtractionHelper.getLetters(paragraph);
+            List<String> letters = LetterExtractionHelper.getLetters(paragraph, language);
             for (String letter : letters) {
                 if (!letterFrequencyMap.containsKey(letter)) {
                     letterFrequencyMap.put(letter, 1);

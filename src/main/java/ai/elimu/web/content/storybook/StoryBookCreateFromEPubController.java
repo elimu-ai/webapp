@@ -209,7 +209,7 @@ public class StoryBookCreateFromEPubController {
                             }
                             storyBookParagraph.setOriginalText(paragraph);
                             
-                            List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText());
+                            List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
                             logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
                             List<Word> words = new ArrayList<>();
                             logger.info("words.size(): " + words.size());

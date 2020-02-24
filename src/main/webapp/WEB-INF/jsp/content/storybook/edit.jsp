@@ -115,11 +115,11 @@
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />" target="_blank">
                                     <c:out value="${word.text}" />
                                 </a><br />
-                                <span class="grey-text">/
-                                    <c:forEach var="allophone" items="${word.allophones}">
-                                        ${allophone.valueIpa}${' '}
-                                    </c:forEach>
-                                /</span>
+                                <span class="grey-text">
+                                    /<c:forEach var="allophone" items="${word.allophones}">
+                                        ${allophone.valueIpa}
+                                    </c:forEach>/
+                                </span>
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -152,11 +152,11 @@
                                 <a href="<spring:url value='/content/letter/edit/${letter.id}' />" target="_blank">
                                     <c:out value="${letter.text}" />
                                 </a><br />
-                                <span class="grey-text">/
-                                    <c:forEach var="allophone" items="${letter.allophones}">
-                                        ${allophone.valueIpa}${' '}
-                                    </c:forEach>
-                                /</span>
+                                <span class="grey-text">
+                                    /<c:forEach var="allophone" items="${letter.allophones}">
+                                        ${allophone.valueIpa}
+                                    </c:forEach>/
+                                </span>
                             </c:otherwise>
                         </c:choose>
                     </td>

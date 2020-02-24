@@ -94,7 +94,7 @@ public class StoryBookEditController {
             }
         }
         
-        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
+        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
         Map<String, Word> wordMap = new HashMap<>();
         for (Word word : wordDao.readAllOrdered(language)) {
@@ -102,7 +102,7 @@ public class StoryBookEditController {
         }
         model.addAttribute("wordMap", wordMap);
         
-        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
+        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
         model.addAttribute("letterFrequencyMap", letterFrequencyMap);
         Map<String, Letter> letterMap = new HashMap<>();
         for (Letter letter : letterDao.readAllOrdered(language)) {
@@ -147,10 +147,10 @@ public class StoryBookEditController {
                 }
             }
             
-            Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
+            Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
             model.addAttribute("wordFrequencyMap", wordFrequencyMap);
             
-            Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
+            Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
             model.addAttribute("letterFrequencyMap", letterFrequencyMap);
             
             return "content/storybook/edit";
