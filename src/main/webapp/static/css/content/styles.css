@@ -62,3 +62,8 @@ nav {
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
+.card.storyBook .card-content > p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
