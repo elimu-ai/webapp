@@ -13,9 +13,9 @@
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
-        <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
+        <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
         <link href="https://fonts.googleapis.com/css?family=Andika" rel="stylesheet" />
-        <link rel="stylesheet" href="<spring:url value='/static/css/content/styles.css?version=' /><content:getversion />" />
+        <link rel="stylesheet" href="<spring:url value='/static/css/content/styles.css' />" />
         
         <%-- JavaScripts --%>
         <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>

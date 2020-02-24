@@ -25,7 +25,7 @@ public class DbMigrationHelper {
         
         dbMigrationDao = (DbMigrationDao) webApplicationContext.getBean("dbMigrationDao");
         
-        String pomVersion = ConfigHelper.getProperty("application.version");
+        String pomVersion = ConfigHelper.getProperty("pom.version");
         logger.info("pomVersion: " + pomVersion);
         
         Integer pomVersionAsInteger = VersionHelper.getPomVersionAsInteger(pomVersion);
