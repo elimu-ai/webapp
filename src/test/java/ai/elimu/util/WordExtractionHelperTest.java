@@ -1,5 +1,6 @@
 package ai.elimu.util;
 
+import ai.elimu.model.enums.Language;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
@@ -11,7 +12,7 @@ public class WordExtractionHelperTest {
     @Test
     public void testGetWords() {
         String paragraph = "\"Mom,\" called Lebo. \"Come and look. These clothes are all too small for me!\"";
-        List<String> words = WordExtractionHelper.getWords(paragraph);
+        List<String> words = WordExtractionHelper.getWords(paragraph, Language.ENG);
         assertThat(words.get(0), is("Mom"));
         assertThat(words.get(1), is("called"));
         assertThat(words.get(2), is("Lebo"));
@@ -28,7 +29,7 @@ public class WordExtractionHelperTest {
         assertThat(words.get(13), is("me"));
         
         paragraph = "\"Look at my skirt. It's too small,\" said Lebo.";
-        words = WordExtractionHelper.getWords(paragraph);
+        words = WordExtractionHelper.getWords(paragraph, Language.ENG);
         assertThat(words.get(0), is("Look"));
         assertThat(words.get(1), is("at"));
         assertThat(words.get(2), is("my"));
@@ -41,7 +42,7 @@ public class WordExtractionHelperTest {
         
         // Test with extra spaces
         paragraph = "This is a girl called Norah.   Her doll’s name is Selah.";
-        words = WordExtractionHelper.getWords(paragraph);
+        words = WordExtractionHelper.getWords(paragraph, Language.ENG);
         System.out.println(words);
         assertThat(words.get(0), is("This"));
         assertThat(words.get(1), is("is"));
@@ -57,9 +58,20 @@ public class WordExtractionHelperTest {
     }
     
     @Test
+    public void testGetWordsWhenDanda() {
+        String paragraph = "চোখের এক মৌমাছি। সে অনেক";
+        List<String> words = WordExtractionHelper.getWords(paragraph, Language.BEN);
+        assertThat(words.get(0), is("চোখের"));
+        assertThat(words.get(1), is("এক"));
+        assertThat(words.get(2), is("মৌমাছি"));
+        assertThat(words.get(3), is("সে"));
+        assertThat(words.get(4), is("অনেক"));
+    }
+    
+    @Test
     public void testGetWordsInsideQuotes() {
         String paragraph = "I wanted to play the ball very much. I said, “Ah! Football.”";
-        List<String> words = WordExtractionHelper.getWords(paragraph);
+        List<String> words = WordExtractionHelper.getWords(paragraph, Language.ENG);
         assertThat(words.get(0), is("I"));
         assertThat(words.get(1), is("wanted"));
         assertThat(words.get(2), is("to"));

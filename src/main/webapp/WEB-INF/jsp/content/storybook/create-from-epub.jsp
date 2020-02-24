@@ -11,7 +11,7 @@
             <div class="col s6 offset-s3" style="padding: 3em; background: #F4F4F4; border: 2px dashed #CCC;">
                 
                 <p class="center grey-text">
-                    Drag-and-drop your ePUB file here, or select a file.
+                    Drag & drop your ePUB file here, or select a file.
                 </p>
                 <div class="file-field input-field col s8 offset-s2 center">
                     <div class="btn deep-purple">

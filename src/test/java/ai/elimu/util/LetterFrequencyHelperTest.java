@@ -1,5 +1,6 @@
 package ai.elimu.util;
 
+import ai.elimu.model.enums.Language;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class LetterFrequencyHelperTest {
     public void testGetLetterFrequency() {
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look.\"");
-        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
+        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, Language.ENG);
         assertThat(letterFrequencyMap.get("o"), is(5));
         assertThat(letterFrequencyMap.get("e"), is(3));
         assertThat(letterFrequencyMap.get("l"), is(3));

@@ -18,12 +18,14 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.util.ConfigHelper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/content/word/create")
@@ -44,10 +46,16 @@ public class WordCreateController {
     private SyllableDao syllableDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
+    public String handleRequest(Model model, @RequestParam(required = false) String autoFillText) {
     	logger.info("handleRequest");
         
         Word word = new Word();
+        
+        // Pre-fill the Word's autoFillText (if the user arrived from /content/storybook/edit/{id}/)
+        if (StringUtils.isNotBlank(autoFillText)) {
+            word.setText(autoFillText);
+        }
+        
         model.addAttribute("word", word);
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));

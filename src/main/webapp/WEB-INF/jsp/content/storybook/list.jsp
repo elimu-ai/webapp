@@ -17,12 +17,10 @@
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
-                    </a>
-                    
+                    <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                    </div>
                     <div class="card-content">
-                        <h4><c:out value="${storyBook.title}" /></h4>
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="grade.level" />: <fmt:message key="grade.level.${storyBook.gradeLevel}" /></p>
                         <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>

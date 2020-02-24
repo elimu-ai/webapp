@@ -102,10 +102,29 @@
             <th><fmt:message key="frequency" /></th>
         </thead>
         <tbody>
-            <c:forEach var="wordFrequency" items="${wordFrequencyMap}">
+            <c:forEach var="wordFrequencyMapItem" items="${wordFrequencyMap}">
                 <tr>
-                    <td>${wordFrequency.key}</td>
-                    <td>${wordFrequency.value}</td>
+                    <td>
+                        <c:set var="wordText" value="${wordFrequencyMapItem.key}" />
+                        <c:choose>
+                            <c:when test="${empty wordMap[wordText]}">
+                                <c:out value="${wordText}" /><br />
+                                <a href="<spring:url value='/content/word/create?autoFillText=${wordText}' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="word" value="${wordMap[wordText]}" />
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />" target="_blank">
+                                    <c:out value="${word.text}" />
+                                </a><br />
+                                <span class="grey-text">
+                                    /<c:forEach var="allophone" items="${word.allophones}">
+                                        ${allophone.valueIpa}
+                                    </c:forEach>/
+                                </span>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>${wordFrequencyMapItem.value}</td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -121,10 +140,28 @@
             <th><fmt:message key="frequency" /></th>
         </thead>
         <tbody>
-            <c:forEach var="letterFrequency" items="${letterFrequencyMap}">
+            <c:forEach var="letterFrequencyMapItem" items="${letterFrequencyMap}">
                 <tr>
-                    <td>${letterFrequency.key}</td>
-                    <td>${letterFrequency.value}</td>
+                    <td>
+                        <c:set var="letterText" value="${letterFrequencyMapItem.key}" />
+                        <c:choose>
+                            <c:when test="${empty letterMap[letterText]}">
+                                <c:out value="${letterText}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="letter" value="${letterMap[letterText]}" />
+                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />" target="_blank">
+                                    <c:out value="${letter.text}" />
+                                </a><br />
+                                <span class="grey-text">
+                                    /<c:forEach var="allophone" items="${letter.allophones}">
+                                        ${allophone.valueIpa}
+                                    </c:forEach>/
+                                </span>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>${letterFrequencyMapItem.value}</td>
                 </tr>
             </c:forEach>
         </tbody>

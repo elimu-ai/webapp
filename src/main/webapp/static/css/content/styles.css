@@ -55,3 +55,10 @@ nav {
     width: 47%;
     margin-right: 2%;
 }
+
+.card.storyBook .card-image {
+    height: 20em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}

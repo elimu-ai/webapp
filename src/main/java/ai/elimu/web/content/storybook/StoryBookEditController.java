@@ -8,12 +8,16 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
+import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.GradeLevel;
@@ -48,6 +52,12 @@ public class StoryBookEditController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private WordDao wordDao;
+    
+    @Autowired
+    private LetterDao letterDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -84,11 +94,21 @@ public class StoryBookEditController {
             }
         }
         
-        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
+        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+        Map<String, Word> wordMap = new HashMap<>();
+        for (Word word : wordDao.readAllOrdered(language)) {
+            wordMap.put(word.getText(), word);
+        }
+        model.addAttribute("wordMap", wordMap);
         
-        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
+        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
         model.addAttribute("letterFrequencyMap", letterFrequencyMap);
+        Map<String, Letter> letterMap = new HashMap<>();
+        for (Letter letter : letterDao.readAllOrdered(language)) {
+            letterMap.put(letter.getText(), letter);
+        }
+        model.addAttribute("letterMap", letterMap);
         
         return "content/storybook/edit";
     }
@@ -127,10 +147,10 @@ public class StoryBookEditController {
                 }
             }
             
-            Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
+            Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
             model.addAttribute("wordFrequencyMap", wordFrequencyMap);
             
-            Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
+            Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
             model.addAttribute("letterFrequencyMap", letterFrequencyMap);
             
             return "content/storybook/edit";
