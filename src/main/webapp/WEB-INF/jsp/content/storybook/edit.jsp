@@ -102,10 +102,28 @@
             <th><fmt:message key="frequency" /></th>
         </thead>
         <tbody>
-            <c:forEach var="wordFrequency" items="${wordFrequencyMap}">
+            <c:forEach var="wordFrequencyMapItem" items="${wordFrequencyMap}">
                 <tr>
-                    <td>${wordFrequency.key}</td>
-                    <td>${wordFrequency.value}</td>
+                    <td>
+                        <c:set var="wordText" value="${wordFrequencyMapItem.key}" />
+                        <c:choose>
+                            <c:when test="${empty wordMap[wordText]}">
+                                <c:out value="${wordText}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="word" value="${wordMap[wordText]}" />
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />" target="_blank">
+                                    <c:out value="${word.text}" />
+                                </a><br />
+                                <span class="grey-text">/
+                                    <c:forEach var="allophone" items="${word.allophones}">
+                                        ${allophone.valueIpa}${' '}
+                                    </c:forEach>
+                                /</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>${wordFrequencyMapItem.value}</td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -121,10 +139,10 @@
             <th><fmt:message key="frequency" /></th>
         </thead>
         <tbody>
-            <c:forEach var="letterFrequency" items="${letterFrequencyMap}">
+            <c:forEach var="letterFrequencyMapItem" items="${letterFrequencyMap}">
                 <tr>
-                    <td>${letterFrequency.key}</td>
-                    <td>${letterFrequency.value}</td>
+                    <td>${letterFrequencyMapItem.key}</td>
+                    <td>${letterFrequencyMapItem.value}</td>
                 </tr>
             </c:forEach>
         </tbody>

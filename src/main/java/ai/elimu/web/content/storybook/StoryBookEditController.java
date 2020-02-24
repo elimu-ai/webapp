@@ -11,9 +11,11 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.GradeLevel;
@@ -48,6 +50,9 @@ public class StoryBookEditController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private WordDao wordDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -86,6 +91,11 @@ public class StoryBookEditController {
         
         Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+        Map<String, Word> wordMap = new HashMap<>();
+        for (Word word : wordDao.readAllOrderedByUsage(language)) {
+            wordMap.put(word.getText(), word);
+        }
+        model.addAttribute("wordMap", wordMap);
         
         Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs);
         model.addAttribute("letterFrequencyMap", letterFrequencyMap);
