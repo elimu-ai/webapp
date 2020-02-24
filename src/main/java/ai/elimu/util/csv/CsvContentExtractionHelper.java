@@ -148,8 +148,8 @@ public class CsvContentExtractionHelper {
                     continue;
                 }
                 
-                // Expected header format: id,text,allophone_values_ipa,allophone_ids,usage_count
-                // Expected row format: 1,"অ",[ɔ],[4],-1
+                // Expected header format: id,text,allophone_values_ipa,allophone_ids,diacritic,usage_count
+                // Expected row format: 1,"অ",[ɔ],[4],false,-1
                 
                 // Prevent "অ" from being stored as ""অ""
                 // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
@@ -201,14 +201,19 @@ public class CsvContentExtractionHelper {
                 String[] allophoneIdsArray = allophoneIds.split("\\|");
                 logger.info("Arrays.toString(allophoneIdsArray): " + Arrays.toString(allophoneIdsArray));
                 
+                // diacritic
+                boolean diacritic = Boolean.valueOf(rowValues[4]);
+                logger.info("diacritic: " + diacritic);
+                
                 // "usage_count"
-                int usageCount = Integer.valueOf(rowValues[4]);
+                int usageCount = Integer.valueOf(rowValues[5]);
                 logger.info("usageCount: " + usageCount);
                 
                 Letter letter = new Letter();
                 // letter.setId(id); // TODO: to enable later lookup of the same Letter by its ID
                 letter.setText(text);
                 letter.setAllophones(allophones);
+                letter.setDiacritic(diacritic);
                 letter.setUsageCount(usageCount);
                 
                 letters.add(letter);
