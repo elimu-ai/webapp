@@ -46,14 +46,14 @@ public class WordCreateController {
     private SyllableDao syllableDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, @RequestParam(required = false) String text) {
+    public String handleRequest(Model model, @RequestParam(required = false) String autoFillText) {
     	logger.info("handleRequest");
         
         Word word = new Word();
         
-        // Pre-fill the Word's text (if the user arrived from /content/storybook/edit/{id}/)
-        if (StringUtils.isNotBlank(text)) {
-            word.setText(text);
+        // Pre-fill the Word's autoFillText (if the user arrived from /content/storybook/edit/{id}/)
+        if (StringUtils.isNotBlank(autoFillText)) {
+            word.setText(autoFillText);
         }
         
         model.addAttribute("word", word);
