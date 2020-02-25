@@ -19,11 +19,6 @@
             <param-value>true</param-value>
         </init-param>
         <init-param>
-            <!-- 30 days -->
-            <param-name>cacheControl</param-name>
-            <param-value>max-age=2592000</param-value>
-        </init-param>
-        <init-param>
             <param-name>useFileMappedBuffer</param-name>
             <param-value>false</param-value>
         </init-param>

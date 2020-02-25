@@ -19,6 +19,7 @@
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="letter" /></th>
                     <th><fmt:message key="allophones" /></th>
+                    <th><fmt:message key="diacritic" /></th>
                     <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
@@ -40,6 +41,9 @@
                                 /<c:forEach var="allophone" items="${letter.allophones}">
                                     ${allophone.valueIpa} 
                                 </c:forEach>/
+                            </td>
+                            <td>
+                                ${letter.diacritic}
                             </td>
                             <td>
                                 <c:forEach var="allophone" items="${letter.allophones}">

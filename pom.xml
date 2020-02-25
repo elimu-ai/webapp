@@ -4,7 +4,7 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.1.35-SNAPSHOT</version>
+    <version>2.1.37-SNAPSHOT</version>
 
     <properties>
     	<java.version>1.8</java.version>
@@ -437,12 +437,6 @@
             <artifactId>imgscalr-lib</artifactId>
             <version>4.2</version>
         </dependency>
-        
-        <dependency>
-            <groupId>com.google.api-client</groupId>
-            <artifactId>google-api-client</artifactId>
-            <version>1.22.0</version>
-        </dependency>
 
         <dependency>
           <groupId>com.googlecode.soundlibs</groupId>
@@ -569,16 +563,10 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.53.0</version>
-        </dependency>
-        <!-- Needed by Selenium to avoid "java.lang.NoClassDefFoundError: org/apache/http/conn/HttpClientConnectionManager" -->
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.2</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>3.141.59</version>
         </dependency>
     </dependencies>
 </project>

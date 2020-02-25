@@ -20,7 +20,7 @@ public class SyllableFrequencyHelper {
         
         for (String paragraph : paragraphs) {
             logger.info("paragraph: " + paragraph);
-            List<String> words = WordExtractionHelper.getWords(paragraph);
+            List<String> words = WordExtractionHelper.getWords(paragraph, language);
             for (String wordInParagraph : words) {
                 logger.info("wordInParagraph: " + wordInParagraph);
                 Word word = new Word();

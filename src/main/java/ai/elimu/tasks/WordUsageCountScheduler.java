@@ -63,7 +63,7 @@ public class WordUsageCountScheduler {
                     }
                 }
                 
-                Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(paragraphs);
+                Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(paragraphs, language    );
                 for (String key : wordFrequencyMapForBook.keySet()) {
                     int wordFrequency = wordFrequencyMapForBook.get(key);
                     String wordLowerCase = key.toLowerCase();
