@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -138,11 +139,13 @@ public class StoryBookCreateFromEPubController {
                     
                     String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
                     logger.info("description: \"" + description + "\"");
-                    logger.info("description.length(): " + description.length());
-                    if (description.length() > 1024) {
-                        description = description.substring(0, 1023);
+                    if (StringUtils.isNotBlank(description)) {
+                        logger.info("description.length(): " + description.length());
+                        if (description.length() > 1024) {
+                            description = description.substring(0, 1023);
+                        }
+                        storyBook.setDescription(description);
                     }
-                    storyBook.setDescription(description);
                     
                     storyBookCoverImage = new Image();
                     storyBookCoverImage.setLanguage(language);
