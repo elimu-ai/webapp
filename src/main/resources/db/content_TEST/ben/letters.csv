@@ -39,6 +39,7 @@ id,text,allophone_values_ipa,allophone_ids,diacritic,usage_count
 37,"ৃ",[r, i],[6, 4],true,21
 30,"ঞ",[n, ɔ],[11, 27],false,14
 31,"ঐ",[o, i],[12, 4],false,3
+45,"ং",[ŋ],[26],false,0
 41,"ঈ",[i],[4],false,-1
 42,"ঊ",[u],[22],false,-1
 43,"ঋ",[r, i],[6, 4],false,-1
