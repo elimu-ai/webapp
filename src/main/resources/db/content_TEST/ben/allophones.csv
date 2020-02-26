@@ -15,6 +15,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 14,"d","d",null,false,CONSONANT,11
 15,"kʰ","k_h",null,false,CONSONANT,11
 16,"p","p",null,false,CONSONANT,2
+37,"bʱ","b_h",null,false,CONSONANT,0
 35,"j","j",null,false,CONSONANT,0
 17,"n","n",null,false,CONSONANT,0
 36,"ɽ","r`",null,false,CONSONANT,0
