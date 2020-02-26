@@ -131,7 +131,7 @@ public class StoryBookCreateFromEPubController {
                 }
                 logger.info("opfFile: \"" + opfFile + "\"");
                 if (opfFile == null) {
-                    throw new FileNotFoundException("The OPF file was not found");
+                    throw new IllegalArgumentException("The OPF file was not found");
                 } else {
                     String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
                     logger.info("title: \"" + title + "\"");
@@ -175,15 +175,22 @@ public class StoryBookCreateFromEPubController {
                 // Extract the ePUB's chapters
                 File tableOfContentsFile = null;
                 for (File file : filesInEPub) {
-                    if ("toc.xhtml".equals(file.getName())) {
+                    if (file.getName().startsWith("toc.")) {
                         tableOfContentsFile = file;
                     }
                 }
                 logger.info("tableOfContentsFile: \"" + tableOfContentsFile + "\"");
                 if (tableOfContentsFile == null) {
-                    throw new FileNotFoundException("The TOC file was not found");
+                    throw new IllegalArgumentException("The TOC file was not found");
                 } else {
-                    List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
+                    List<String> chapterReferences = null;
+                    if (tableOfContentsFile.getName().endsWith(".xhtml")) {
+                        // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
+                        chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
+                    } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
+                        // StoryBookProvider#STORYWEAVER
+                        chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(tableOfContentsFile);
+                    }
                     logger.info("chapterReferences.size(): " + chapterReferences.size());
                     
                     // Extract each chapter's paragraphs
