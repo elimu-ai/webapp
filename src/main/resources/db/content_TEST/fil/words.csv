@@ -1,10 +1,11 @@
 id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
-21,"ay",[ɑɪ],[34],37,VERB,NON_PHONEMIC
+21,"ay",[ɑɪ],[34],76,VERB,NON_PHONEMIC
+59,"si",[s, i],[2, 8],42,NOUN,PERFECT
+1,"aso",[ɑ, s, ɔ],[1, 2, 4],35,NOUN,PERFECT
 3,"na",[n, ɑ],[7, 1],34,null,PERFECT
 4,"paruparo",[p, ɑ, r, u, p, ɑ, r, ɔ],[3, 1, 6, 5, 3, 1, 6, 4],30,NOUN,PERFECT
-1,"aso",[ɑ, s, ɔ],[1, 2, 4],18,NOUN,PERFECT
-59,"si",[s, i],[2, 8],15,NOUN,PERFECT
-2,"pusa",[p, u, s, ɑ],[3, 5, 2, 1],10,NOUN,PERFECT
+2,"pusa",[p, u, s, ɑ],[3, 5, 2, 1],27,NOUN,PERFECT
+5,"sila",[s, i, l, ɑ],[2, 8, 9, 1],20,null,PERFECT
 6,"damit",[d, ɑ, m, i, t],[13, 1, 11, 8, 10],6,NOUN,PERFECT
 64,"tumutulong",[t, u, m, u, t, u, l, ɔ, ŋ],[10, 5, 11, 5, 10, 5, 9, 4, 24],6,null,null
 50,"nakita",[n, ɑ, k, i, t, ɑ],[7, 1, 12, 8, 10, 1],5,VERB,PERFECT
@@ -20,7 +21,6 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 28,"kami",[k, ɑ, m, i],[12, 1, 11, 8],2,null,PERFECT
 51,"nanay",[n, ɑ, n, ɑɪ],[7, 1, 7, 34],2,NOUN,PERFECT
 52,"ngayong",[g, ɑɪ, ɔ, ŋ],[16, 34, 4, 24],2,null,NON_PHONEMIC
-5,"sila",[s, i, l, ɑ],[2, 8, 9, 1],2,null,PERFECT
 11,"dalawa",[d, ɑ, l, ɑ, w, ɑ],[13, 1, 9, 1, 18, 1],1,null,PERFECT
 12,"isa",[ɪ, s, ɑ],[14, 2, 1],1,null,PERFECT
 32,"kuya",[k, u, j, ɑ],[12, 5, 17, 1],1,NOUN,PERFECT
