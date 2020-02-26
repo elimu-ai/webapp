@@ -31,6 +31,24 @@ public class EPubParagraphExtractionHelperTest {
     }
     
     @Test
+    public void testExtractParagraphsFromChapterFile_BEN_SW_11791() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_2.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(2));
+        assertThat(storyBookParagraphs.get(0), is("\n" +
+"                    ভীমের\n" +
+"                    শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।\n" +
+"                "));
+        assertThat(storyBookParagraphs.get(1), is("ধোপা\n" +
+"                    রামু সুযোগ পেলেই ভীমকে বকা দেয়। \n" +
+"                "));
+    }
+    
+    @Test
     public void testExtractParagraphsFromChapterFile_ENG_GDL_1349() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_chapter-3.xhtml");

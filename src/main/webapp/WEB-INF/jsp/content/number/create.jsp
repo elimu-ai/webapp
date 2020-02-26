@@ -7,16 +7,25 @@
     <div class="card-panel">
         <form:form modelAttribute="number">
             <tag:formErrors modelAttribute="number" />
+            
+            <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
+            <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
 
             <div class="row">
-                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
-                <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
-                
                 <div class="input-field col s12">
                     <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
                     <form:input path="value" cssErrorClass="error" type="number" />
                 </div>
-                
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
+                    <form:input path="symbol" cssErrorClass="error" />
+                </div>
+            </div>
+            
+            <div class="row">    
                 <div class="col s12">
                     <label><fmt:message key="number.words" /></label>
                     <div id="numberWordsContainer">

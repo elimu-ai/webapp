@@ -220,4 +220,106 @@ public class EPubChapterExtractionHelper {
         
         return chapterReferences;
     }
+    
+    /**
+     * Extracts a list of filename references from the Table of Contents (TOC) file – {@code toc.ncz}. 
+     * E.g. "1.xhtml", "2.xhtml", or "3.xhtml", etc.
+     * <p />
+     * 
+     * Expected file structure ({@link StoryBookProvider#STORYWEAVER}):
+     * <pre>
+     * 
+     *     <?xml version="1.0" encoding="utf-8"?>
+     *     <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+     *       <head>
+     *         <meta name="dtb:uid" content="/stories/11791-ghumkature-bhim"/>
+     *         <meta name="dtb:depth" content="1"/>
+     *         <meta name="dtb:totalPageCount" content="0"/>
+     *         <meta name="dtb:maxPageNumber" content="0"/>
+     *       </head>
+     *       <docTitle>
+     *         <text>ঘুমকাতুরে ভীম</text>
+     *       </docTitle>
+     *       <navMap>
+     *         <navPoint id="item_1" playOrder="1">
+     *           <navLabel>
+     *             <text>Page 1</text>
+     *           </navLabel>
+     *           <content src="1.xhtml"/>
+     *         </navPoint>
+     *         <navPoint id="item_2" playOrder="2">
+     *           <navLabel>
+     *             <text>Page 2</text>
+     *           </navLabel>
+     *           <content src="2.xhtml"/>
+     *         </navPoint>
+     *         <navPoint id="item_3" playOrder="3">
+     *           <navLabel>
+     *             <text>Page 3</text>
+     *           </navLabel>
+     *           <content src="3.xhtml"/>
+     *         </navPoint>
+     *         <navPoint id="item_4" playOrder="4">
+     *           <navLabel>
+     *             <text>Page 4</text>
+     *           </navLabel>
+     *           <content src="4.xhtml"/>
+     *         </navPoint>
+     *       </navMap>
+     *     </ncx>
+     * 
+     * </pre>
+     */
+    public static List<String> extractChapterReferencesFromTableOfContentsFileNcx(File ncxFile) {
+        logger.info("extractChapterReferencesFromTableOfContentsFileNcx");
+        
+        List<String> chapterReferences = new ArrayList<>();
+        
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(ncxFile);
+            NodeList nodeList = document.getDocumentElement().getChildNodes();
+            logger.info("nodeList.getLength(): " + nodeList.getLength());
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                logger.info("node: " + node);
+                logger.info("node.getNodeName(): " + node.getNodeName());
+                        
+                // Look for "<navMap>"
+                if ("navMap".equals(node.getNodeName())) {
+                    NodeList navMapChildNodeList = node.getChildNodes();
+                    logger.info("navMapChildNodeList.getLength(): " + navMapChildNodeList.getLength());
+                    for (int j = 0; j < navMapChildNodeList.getLength(); j++) {
+                        Node navMapChildNode = navMapChildNodeList.item(j);
+                        logger.info("navMapChildNode: " + navMapChildNode);
+                        logger.info("navMapChildNode.getNodeName(): \"" + navMapChildNode.getNodeName() + "\"");
+                        
+                        // Look for "<navPoint>"
+                        if ("navPoint".equals(navMapChildNode.getNodeName())) {
+                            NodeList navPointChildNodeList = navMapChildNode.getChildNodes();
+                            logger.info("navPointChildNodeList.getLength(): " + navPointChildNodeList.getLength());
+                            for (int k = 0; k < navPointChildNodeList.getLength(); k++) {
+                                Node navPointChildNode = navPointChildNodeList.item(k);
+                                logger.info("navPointChildNode: " + navPointChildNode);
+                                logger.info("navPointChildNode.getNodeName(): \"" + navPointChildNode.getNodeName() + "\"");
+                                
+                                // Look for "<content>", e.g. <content src="1.xhtml"/>
+                                if ("content".equals(navPointChildNode.getNodeName())) {
+                                    // Get the value of the "src" attribute
+                                    String chapterReference = navPointChildNode.getAttributes().getNamedItem("src").getNodeValue();
+                                    logger.info("chapterReference: \"" + chapterReference + "\"");
+                                    chapterReferences.add(chapterReference);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            logger.error(null, ex);
+        }
+        
+        return chapterReferences;
+    }
 }

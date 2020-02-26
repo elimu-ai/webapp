@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.log4j.Logger;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
@@ -57,6 +58,21 @@ public class EPubMetadataExtractionHelperTest {
     }
     
     @Test
+    public void testExtractTitleFromOpfFile_BEN_STORYWEAVER_11791() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_package.opf");
+        File opfFile = resource.getFile();
+        logger.debug("opfFile: " + opfFile);
+        
+        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
+        assertThat(title, is("ঘুমকাতুরে ভীম"));
+        
+        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
+        assertThat(description, is(nullValue()));
+    }
+    
+    
+    @Test
     public void testExtractCoverImageReferenceFromOpfFile_FIL_GLOBAL_DIGITAL_LIBRARY_761() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("ben-gdl-761.epub_book.opf");
@@ -76,5 +92,16 @@ public class EPubMetadataExtractionHelperTest {
         
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
         assertThat(coverImageReference, is("coverImage.jpeg"));
+    }
+    
+    @Test
+    public void testExtractCoverImageReferenceFromOpfFile_BEN_STORYWEAVER_11791() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_package.opf");
+        File opfFile = resource.getFile();
+        logger.debug("opfFile: " + opfFile);
+        
+        String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
+        assertThat(coverImageReference, is("image_1.jpg"));
     }
 }

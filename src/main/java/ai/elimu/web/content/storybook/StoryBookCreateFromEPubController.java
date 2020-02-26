@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -130,7 +131,7 @@ public class StoryBookCreateFromEPubController {
                 }
                 logger.info("opfFile: \"" + opfFile + "\"");
                 if (opfFile == null) {
-                    throw new FileNotFoundException("The OPF file was not found");
+                    throw new IllegalArgumentException("The OPF file was not found");
                 } else {
                     String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
                     logger.info("title: \"" + title + "\"");
@@ -138,11 +139,13 @@ public class StoryBookCreateFromEPubController {
                     
                     String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
                     logger.info("description: \"" + description + "\"");
-                    logger.info("description.length(): " + description.length());
-                    if (description.length() > 1024) {
-                        description = description.substring(0, 1023);
+                    if (StringUtils.isNotBlank(description)) {
+                        logger.info("description.length(): " + description.length());
+                        if (description.length() > 1024) {
+                            description = description.substring(0, 1023);
+                        }
+                        storyBook.setDescription(description);
                     }
-                    storyBook.setDescription(description);
                     
                     storyBookCoverImage = new Image();
                     storyBookCoverImage.setLanguage(language);
@@ -172,15 +175,22 @@ public class StoryBookCreateFromEPubController {
                 // Extract the ePUB's chapters
                 File tableOfContentsFile = null;
                 for (File file : filesInEPub) {
-                    if ("toc.xhtml".equals(file.getName())) {
+                    if (file.getName().startsWith("toc.")) {
                         tableOfContentsFile = file;
                     }
                 }
                 logger.info("tableOfContentsFile: \"" + tableOfContentsFile + "\"");
                 if (tableOfContentsFile == null) {
-                    throw new FileNotFoundException("The TOC file was not found");
+                    throw new IllegalArgumentException("The TOC file was not found");
                 } else {
-                    List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
+                    List<String> chapterReferences = null;
+                    if (tableOfContentsFile.getName().endsWith(".xhtml")) {
+                        // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
+                        chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
+                    } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
+                        // StoryBookProvider#STORYWEAVER
+                        chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(tableOfContentsFile);
+                    }
                     logger.info("chapterReferences.size(): " + chapterReferences.size());
                     
                     // Extract each chapter's paragraphs

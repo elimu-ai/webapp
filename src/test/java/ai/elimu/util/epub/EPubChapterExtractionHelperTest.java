@@ -36,4 +36,15 @@ public class EPubChapterExtractionHelperTest {
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertThat(chapterReferences.size(), is(12));
     }
+    
+    @Test
+    public void testExtractChapterReferencesFromTableOfContentsFile_STORYWEAVER() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_toc.ncx");
+        File ncxFile = resource.getFile();
+        logger.debug("ncxFile: " + ncxFile);
+        
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(ncxFile);
+        assertThat(chapterReferences.size(), is(10));
+    }
 }
