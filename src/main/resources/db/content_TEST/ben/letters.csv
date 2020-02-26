@@ -40,6 +40,7 @@ id,text,allophone_values_ipa,allophone_ids,diacritic,usage_count
 39,"ঞ",[n, ɔ],[17, 9],false,14
 40,"ঐ",[o, i],[10, 5],false,3
 41,"ং",[ŋ],[27],false,0
+47,"ড়",[ɽ, ɔ],[36, 9],false,0
 46,"য়",[j, ɔ],[35, 9],false,0
 42,"ঈ",[i],[5],false,-1
 43,"ঊ",[u],[23],false,-1
