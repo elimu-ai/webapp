@@ -84,16 +84,16 @@ public class EPubParagraphExtractionHelper {
                         // Look for "<img>"
                         // TODO
                         
-                        // Look for "<p>"
+                        // Look for "<p>" (StoryBookProvider#GLOBAL_DIGITAL_LIBRARY)
                         if ("p".equals(bodyChildNode.getNodeName())) {
                             // Look for text content within the paragraph
-                            NodeList paragraphNodeList = bodyChildNode.getChildNodes();
-                            logger.info("paragraphNodeList.getLength(): " + paragraphNodeList.getLength());
+                            NodeList paragraphChildNodeList = bodyChildNode.getChildNodes();
+                            logger.info("paragraphChildNodeList.getLength(): " + paragraphChildNodeList.getLength());
                             
                             String paragraph = "";
                             String previousNodeName = null;
-                            for (int k = 0; k < paragraphNodeList.getLength(); k++) {
-                                Node paragraphChildNode = paragraphNodeList.item(k);
+                            for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
+                                Node paragraphChildNode = paragraphChildNodeList.item(k);
                                 logger.info("paragraphChildNode: " + paragraphChildNode);
                                 
                                 
@@ -135,6 +135,74 @@ public class EPubParagraphExtractionHelper {
                             logger.info("paragraph: \"" + paragraph + "\"");
                             if (StringUtils.isNotBlank(paragraph)) {
                                 paragraphs.add(paragraph);
+                            }
+                        }
+                        
+                        // Look for "<div>" (StoryBookProvider#STORYWEAVER)
+                        if ("div".equals(bodyChildNode.getNodeName())) {
+                            Node bodyChildNodeIdAttribute = bodyChildNode.getAttributes().getNamedItem("id");
+                            logger.info("bodyChildNodeIdAttribute: " + bodyChildNodeIdAttribute);
+                            
+                            // Expected format: <div id="story_epub">
+                            if ((bodyChildNodeIdAttribute != null) && "story_epub".equals(bodyChildNodeIdAttribute.getNodeValue())) {
+                                NodeList storyEpubDivChildNodeList = bodyChildNode.getChildNodes();
+                                logger.info("storyEpubDivChildNodeList: " + storyEpubDivChildNodeList);
+                                for (int k = 0; k < storyEpubDivChildNodeList.getLength(); k++) {
+                                    Node storyEpubDivChildNode = storyEpubDivChildNodeList.item(k);
+                                    logger.info("storyEpubDivChildNode: " + storyEpubDivChildNode);
+                                    
+                                    // Expected format: <div id="storyReader" class="bengali">
+                                    if ("div".equals(storyEpubDivChildNode.getNodeName())) {
+                                        Node storyEpubDivChildNodeIdAttribute = storyEpubDivChildNode.getAttributes().getNamedItem("id");
+                                        logger.info("storyEpubDivChildNodeIdAttribute: " + storyEpubDivChildNodeIdAttribute);
+                                        if ((storyEpubDivChildNodeIdAttribute != null) && "storyReader".equals(storyEpubDivChildNodeIdAttribute.getNodeValue())) {
+                                            NodeList storyReaderDivChildNodeList = storyEpubDivChildNode.getChildNodes();
+                                            logger.info("storyReaderDivChildNodeList: " + storyReaderDivChildNodeList);
+                                            for (int l = 0; l < storyReaderDivChildNodeList.getLength(); l++) {
+                                                Node storyReaderDivChildNode = storyReaderDivChildNodeList.item(l);
+                                                logger.info("storyReaderDivChildNode: " + storyReaderDivChildNode);
+                                                        
+                                                // Expected format: <div id="selected_page" class=" page-container-landscape story-page">
+                                                if ("div".equals(storyReaderDivChildNode.getNodeName())) {
+                                                    Node storyReaderDivChildNodeIdAttribute = storyReaderDivChildNode.getAttributes().getNamedItem("id");
+                                                    logger.info("storyReaderDivChildNodeIdAttribute: " + storyReaderDivChildNodeIdAttribute);
+                                                    if ((storyReaderDivChildNodeIdAttribute != null) && "selected_page".equals(storyReaderDivChildNodeIdAttribute.getNodeValue())) {
+                                                        NodeList selectedPageDivChildNodeList = storyReaderDivChildNode.getChildNodes();
+                                                        logger.info("selectedPageDivChildNodeList: " + selectedPageDivChildNodeList);
+                                                        for (int m = 0; m < selectedPageDivChildNodeList.getLength(); m++) {
+                                                            Node selectedPageDivChildNode = selectedPageDivChildNodeList.item(m);
+                                                            logger.info("selectedPageDivChildNode: " + selectedPageDivChildNode);
+                                                            
+                                                            // Expected format: <div class='text-font-normal sp_h_iT66_cB33 content ' dir="auto">
+                                                            if ("div".equals(selectedPageDivChildNode.getNodeName())) {
+                                                                Node selectedPageDivChildNodeClassAttribute = selectedPageDivChildNode.getAttributes().getNamedItem("class");
+                                                                logger.info("selectedPageDivChildNodeClassAttribute: " + selectedPageDivChildNodeClassAttribute);
+                                                                if ((selectedPageDivChildNodeClassAttribute != null) 
+                                                                        && selectedPageDivChildNodeClassAttribute.getNodeValue().contains("content")) {
+                                                                    NodeList contentDivChildNodeList = selectedPageDivChildNode.getChildNodes();
+                                                                    logger.info("contentDivChildNodeList: " + contentDivChildNodeList);
+                                                                    for (int n = 0; n < contentDivChildNodeList.getLength(); n++) {
+                                                                        Node contentDivChildNode = contentDivChildNodeList.item(n);
+                                                                        logger.info("contentDivChildNode : " + contentDivChildNode);
+                                                                        
+                                                                        // Expected format: <p>ভীমের শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।</p>
+                                                                        if ("p".equals(contentDivChildNode.getNodeName())) {
+                                                                            String paragraph = contentDivChildNode.getTextContent();
+                                                                            logger.info("paragraph: \"" + paragraph + "\"");
+                                                                            if (StringUtils.isNotBlank(paragraph)) {
+                                                                                paragraphs.add(paragraph);
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

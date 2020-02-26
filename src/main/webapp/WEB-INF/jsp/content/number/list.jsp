@@ -17,7 +17,7 @@
             <div class="col s12 m6 l4">
                 <a name="${number.id}"></a>
                 <div class="number card-panel">
-                    <h4>${number.value}</h4>
+                    <h4>${number.value}<c:if test="${not empty number.symbol}"> (${number.symbol})</c:if></h4>
                     <p><fmt:message key="number.words" />: 
                         <c:forEach var="word" items="${number.words}">
                             <a href="<spring:url value='/content/word/edit/${word.id}' />">${word.text}</a>

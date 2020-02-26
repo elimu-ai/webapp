@@ -1,27 +1,28 @@
-id,title,description,content_license,attribution_url,grade_level
-36,"Ajali mbaya","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10555",LEVEL1
-35,"Barua","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2912",LEVEL1
-34,"Barua kwa mama","Mama anaenda hospitalini kujifungua mtoto na bintiye anamwandikia barua.",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/56",LEVEL1
-24,"Basi kubwa la bluu","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12428",LEVEL3
-58,"Binti wa Mflame Kayanja","Hadithi ya mapenzi yenye huzuni kumhusu binti mrembo wa kifalme anayeamua kufuata moyo wake badala ya alivyotaka babake.",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/27",LEVEL4
-33,"Fahali na Punda","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=18399",LEVEL1
-29,"Fisi na kunguru","null",null,"null",LEVEL3
-23,"jozi yangu ya kwanza ya viatu","null",null,"null",LEVEL4
-26,"Mamba aliye mwilini mwangu","null",null,"null",LEVEL4
-30,"Matunda","null",null,"null",LEVEL4
-32,"Meno aina gani?","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12621",LEVEL1
-37,"Mimi na familia yangu","null",null,"null",LEVEL2
-31,"Mpira wangu mwekundu","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=16088",LEVEL1
-38,"Mtoto aliyeleta amani","null",null,"null",LEVEL2
-25,"Mtoto Punda","null",null,"null",LEVEL2
-22,"Mtoto wa Tembo Mdadisi","null",null,"null",LEVEL3
-39,"Mtu na Simba","null",null,"null",LEVEL2
-21,"Ndovu na Kinyonga","null",null,"null",LEVEL3
-40,"Ndovu na vyura","null",null,"null",LEVEL2
-41,"Ng'ombe mwenye pembe moja","null",null,"null",LEVEL2
-18,"Ninaweza!","null",CREATIVE_COMMONS_CC_BY_NC_ND,"http://www.americanuniversitynigeria.org",LEVEL1
-20,"Nini ni mtoto vibaya?","null",null,"null",LEVEL2
-19,"Nozibele na Nywele Tatu?","null",null,"null",LEVEL4
-42,"Paka mwer evu","null",null,"null",LEVEL2
-28,"Sayari Jua ya Saba","null",null,"null",LEVEL4
-27,"Siafu Amwokoa Njiwa","null",null,"null",LEVEL2
+id,title,description,content_license,attribution_url,grade_level,cover_image_id,chapter_ids
+59,"Ah! Mpira!","Mvulana mdogo alitumwa dukani na bibiye kununua vitu vichache. Anaambatana na rafikiye na kucheza mpira. Je,  atampelekea bibi alichotumwa?",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/28",LEVEL2,408,[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+36,"Ajali mbaya","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10555",LEVEL1,350,[]
+35,"Barua","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2912",LEVEL1,351,[]
+34,"Barua kwa mama","Mama anaenda hospitalini kujifungua mtoto na bintiye anamwandikia barua.",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/56",LEVEL1,353,[]
+24,"Basi kubwa la bluu","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12428",LEVEL3,354,[]
+58,"Binti wa Mflame Kayanja","Hadithi ya mapenzi yenye huzuni kumhusu binti mrembo wa kifalme anayeamua kufuata moyo wake badala ya alivyotaka babake.",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/27",LEVEL4,null,[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+33,"Fahali na Punda","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=18399",LEVEL1,355,[]
+29,"Fisi na kunguru","null",null,"null",LEVEL3,359,[]
+23,"jozi yangu ya kwanza ya viatu","null",null,"null",LEVEL4,359,[]
+26,"Mamba aliye mwilini mwangu","null",null,"null",LEVEL4,359,[]
+30,"Matunda","null",null,"null",LEVEL4,359,[]
+32,"Meno aina gani?","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12621",LEVEL1,356,[]
+37,"Mimi na familia yangu","null",null,"null",LEVEL2,359,[]
+31,"Mpira wangu mwekundu","null",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=16088",LEVEL1,357,[]
+38,"Mtoto aliyeleta amani","null",null,"null",LEVEL2,359,[]
+25,"Mtoto Punda","null",null,"null",LEVEL2,359,[]
+22,"Mtoto wa Tembo Mdadisi","null",null,"null",LEVEL3,359,[]
+39,"Mtu na Simba","null",null,"null",LEVEL2,359,[]
+21,"Ndovu na Kinyonga","null",null,"null",LEVEL3,359,[]
+40,"Ndovu na vyura","null",null,"null",LEVEL2,359,[]
+41,"Ng'ombe mwenye pembe moja","null",null,"null",LEVEL2,359,[]
+18,"Ninaweza!","null",CREATIVE_COMMONS_CC_BY_NC_ND,"http://www.americanuniversitynigeria.org",LEVEL1,358,[]
+20,"Nini ni mtoto vibaya?","null",null,"null",LEVEL2,359,[]
+19,"Nozibele na Nywele Tatu?","null",null,"null",LEVEL4,359,[]
+42,"Paka mwer evu","null",null,"null",LEVEL2,359,[]
+28,"Sayari Jua ya Saba","null",null,"null",LEVEL4,359,[]
+27,"Siafu Amwokoa Njiwa","null",null,"null",LEVEL2,359,[]

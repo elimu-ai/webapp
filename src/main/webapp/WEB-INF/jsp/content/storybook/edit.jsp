@@ -136,7 +136,7 @@
     
     <table class="bordered highlight">
         <thead>
-            <th><fmt:message key="letter" />/<fmt:message key="diacritic" /></th>
+            <th><fmt:message key="letter" /></th>
             <th><fmt:message key="frequency" /></th>
         </thead>
         <tbody>
