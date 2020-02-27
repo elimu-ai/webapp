@@ -1,7 +1,7 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
-1,"ɑ","A",null,false,null,413
+1,"ɑ","A",null,false,null,421
 2,"s","s",null,false,null,187
-4,"ɔ","O",null,false,null,118
+4,"ɔ","O",null,false,null,126
 3,"i","i",null,false,null,116
 8,"t","t",null,false,null,114
 5,"p","p",null,false,null,108
@@ -10,13 +10,14 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 10,"n","n",null,false,null,87
 9,"r","r",null,false,null,66
 11,"l","l",null,false,null,60
+13,"k","k",null,false,null,38
 12,"m","m",null,false,null,32
-13,"k","k",null,false,null,30
 15,"ɪ","I",null,false,null,17
 14,"ŋ","N",null,false,null,16
 16,"d","d",null,false,null,11
 18,"w","w",null,false,null,10
 19,"ʃ","S",null,false,null,8
+47,"ː",":",null,false,null,8
 17,"g","g",null,false,null,7
 21,"h","h",null,false,null,7
 20,"j","j",null,false,null,3
@@ -26,7 +27,6 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 25,"r̩","r_=",null,false,null,0
 26,"ɛ","E",null,false,null,0
 27,"ʔ","?",null,false,VOWEL,0
-47,"ː",":",null,false,null,0
 28,"aʊ","aU",null,false,null,-1
 29,"dʒ","dZ",null,false,null,-1
 30,"f","f",null,false,null,-1

@@ -8,6 +8,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 5,"paruparo",[p, ɑ, r, u, p, ɑ, r, ɔ],[5, 1, 9, 7, 5, 1, 9, 4],31,NOUN,PERFECT
 8,"sila",[s, i, l, ɑ],[2, 3, 11, 1],27,null,PERFECT
 15,"sino",[s, i, n, ɔ],[2, 3, 10, 4],9,null,PERFECT
+72,"ako",[ɑ, k, ɔ, ː],[1, 13, 4, 47],8,null,PERFECT
 12,"siya",[ʃ, ɑ],[19, 1],8,null,HIGHLY_NON_PHONEMIC
 22,"lahat",[l, ɑ, h, ɑ, t],[11, 1, 21, 1, 8],7,null,PERFECT
 10,"nakita",[n, ɑ, k, i, t, ɑ],[10, 1, 13, 3, 8, 1],7,VERB,PERFECT
@@ -41,7 +42,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 34,"tatay",[t, ɑ, t, ɑ, j],[8, 1, 8, 1, 20],1,NOUN,PERFECT
 35,"tayo",[t, ɑ, j, ɔ],[8, 1, 20, 4],1,null,PERFECT
 37,"tutulong",[t, u, t, u, l, ɔ, ŋ],[8, 7, 8, 7, 11, 4, 14],1,VERB,PHONEMIC
-72,"ako",[ɑ, k, ɔ, ː],[1, 13, 4, 47],0,null,PERFECT
+73,"ang",[ɑ, ŋ],[1, 14],0,null,HIGHLY_NON_PHONEMIC
 39,"bubuyog",[b, u, b, u, j, ɔ, g],[24, 7, 24, 7, 20, 4, 17],0,NOUN,PERFECT
 40,"dalawampu",[d, ɑ, l, ɑ, w, ɑ, m, p, u],[16, 1, 11, 1, 18, 1, 12, 5, 7],0,null,PERFECT
 41,"dalawampu't",[d, ɑ, l, ɑ, w, ɑ, m, p, u, t],[16, 1, 11, 1, 18, 1, 12, 5, 7, 8],0,null,HIGHLY_PHONEMIC
@@ -63,6 +64,7 @@ id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consis
 60,"matulog",[m, ɑ, t, u, l, ɔ, g],[12, 1, 8, 7, 11, 4, 17],0,VERB,PERFECT
 61,"nagugutom",[n, ɑ, g, u, g, u, t, ɔ, m],[10, 1, 17, 7, 17, 7, 8, 4, 12],0,ADJECTIVE,PERFECT
 62,"pagod",[p, ɑ, g, ɔ, d],[5, 1, 17, 4, 16],0,ADJECTIVE,PERFECT
+74,"pero",[p, ɛ, r, ɔ],[5, 26, 9, 4],0,null,PERFECT
 63,"pinsan",[p, ɪ, n, s, ɑ, n],[5, 15, 10, 2, 1, 10],0,NOUN,PERFECT
 64,"pito",[p, ɪ, t, ɔ],[5, 15, 8, 4],0,null,PERFECT
 65,"sampu",[s, ɑ, m, p, u],[2, 1, 12, 5, 7],0,null,PERFECT
