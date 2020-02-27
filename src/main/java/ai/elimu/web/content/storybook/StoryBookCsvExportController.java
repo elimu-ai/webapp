@@ -2,9 +2,10 @@ package ai.elimu.web.content.storybook;
 
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.Word;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
@@ -32,6 +33,9 @@ public class StoryBookCsvExportController {
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
     
+    @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
+    
     @RequestMapping(value="/storybooks.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
@@ -39,7 +43,7 @@ public class StoryBookCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,title,description,content_license,attribution_url,grade_level,cover_image_id,chapter_ids" + "\n";
+        String csvFileContent = "id,title,description,content_license,attribution_url,grade_level,cover_image_id,chapter_ids,chapter_paragraph_texts" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
         logger.info("storyBooks.size(): " + storyBooks.size());
@@ -55,6 +59,30 @@ public class StoryBookCsvExportController {
                 index++;
             }
             
+            String[] chapterParagraphTextsArray = new String[storyBookChapters.size()];
+            index = 0;
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+                logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+                
+                String[] originalTextArray = new String[storyBookParagraphs.size()];
+                int paragraphIndex = 0;
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                    String originalText = storyBookParagraph.getOriginalText();
+                    logger.info("originalText: \"" + originalText + "\"");
+                    
+                    originalText = originalText.replace("\n", "\\n");
+                    logger.info("originalText (after replacing '\\n'): \"" + originalText + "\"");
+                    
+                    originalTextArray[paragraphIndex] = "\"" + originalText + "\"";
+                    paragraphIndex++;
+                }
+                
+                chapterParagraphTextsArray[index] = Arrays.toString(originalTextArray);
+                
+                index++;
+            }
+            
             csvFileContent += storyBook.getId() + ","
                     + "\"" + storyBook.getTitle() + "\","
                     + "\"" + storyBook.getDescription() + "\","
@@ -62,8 +90,8 @@ public class StoryBookCsvExportController {
                     + "\"" + storyBook.getAttributionUrl() + "\","
                     + storyBook.getGradeLevel() + ","
                     + ((storyBook.getCoverImage() != null) ? storyBook.getCoverImage().getId() : "null") + ","
-                    + Arrays.toString(chapterIdsArray) + "\n";
-                    // TODO: add paragraphs
+                    + Arrays.toString(chapterIdsArray) + ","
+                    + Arrays.toString(chapterParagraphTextsArray) + "\n";
         }
         
         response.setContentType("text/csv");
