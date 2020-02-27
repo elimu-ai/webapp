@@ -52,10 +52,10 @@ public class StoryBookCsvExportController {
             
             List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
             logger.info("storyBookChapters.size(): " + storyBookChapters.size());
-            long[] chapterIdsArray = new long[storyBookChapters.size()];
+            long[] chapterIdArray = new long[storyBookChapters.size()];
             int index = 0;
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                chapterIdsArray[index] = storyBookChapter.getId();
+                chapterIdArray[index] = storyBookChapter.getId();
                 index++;
             }
             
@@ -74,6 +74,9 @@ public class StoryBookCsvExportController {
                     originalText = originalText.replace("\n", "\\n");
                     logger.info("originalText (after replacing '\\n'): \"" + originalText + "\"");
                     
+                    originalText = originalText.replace(",", "&#44;");
+                    logger.info("originalText (after replacing '\\,'): \"" + originalText + "\"");
+                    
                     originalTextArray[paragraphIndex] = "\"" + originalText + "\"";
                     paragraphIndex++;
                 }
@@ -90,7 +93,7 @@ public class StoryBookCsvExportController {
                     + "\"" + storyBook.getAttributionUrl() + "\","
                     + storyBook.getGradeLevel() + ","
                     + ((storyBook.getCoverImage() != null) ? storyBook.getCoverImage().getId() : "null") + ","
-                    + Arrays.toString(chapterIdsArray) + ","
+                    + Arrays.toString(chapterIdArray) + ","
                     + Arrays.toString(chapterParagraphTextsArray) + "\n";
         }
         
