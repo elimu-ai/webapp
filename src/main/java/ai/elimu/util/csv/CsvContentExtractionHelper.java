@@ -24,15 +24,22 @@ import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
-import ai.elimu.web.content.word.WordCsvExportController;
-import java.io.File;
+import ai.elimu.web.content.word.WordCsvExportController;import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -46,83 +53,51 @@ public class CsvContentExtractionHelper {
     public static List<Allophone> getAllophonesFromCsvBackup(File csvFile) {
         logger.info("getAllophonesFromCsvBackup");
         
-        logger.info("csvFile: " + csvFile);
-        
         List<Allophone> allophones = new ArrayList<>();
         
+        // Parse CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        logger.info("csvFilePath: " + csvFilePath);
         try {
-            Scanner scanner = new Scanner(csvFile);
-            int rowNumber = 0;
-            while (scanner.hasNextLine()) {
-                String row = scanner.nextLine();
-                logger.info("row: " + row);
-                
-                rowNumber++;
-                
-                if (rowNumber == 1) {
-                    // Skip the header row
-                    continue;
-                }
-                
-                // Expected header format: id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
-                // Expected row format: 1,"dʒ","dZ",null,false,null,-1
-                
-                // Prevent "dʒ" from being stored as ""dʒ""
-                // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
-                row = row.replace("\"", "");
-                logger.info("row (after removing '\"'): " + row);
-                
-                String[] rowValues = row.split(",");
-                logger.info("rowValues: " + Arrays.toString(rowValues));
-                
-                // "id"
-                Long id = Long.valueOf(rowValues[0]);
-                logger.info("id: " + id);
-                
-                // "value_ipa"
-                String valueIpa = String.valueOf(rowValues[1]);
-                logger.info("valueIpa: \"" + valueIpa + "\"");
-                
-                // "value_sampa"
-                String valueSampa = String.valueOf(rowValues[2]);
-                logger.info("valueSampa: \"" + valueSampa + "\"");
-                
-                // "audio_id"
-                Long audioId = null;
-                if (!"null".equals(rowValues[3])) {
-                    audioId = Long.valueOf(rowValues[3]);
-                }
-                logger.info("audioId: " + audioId);
-                
-                // "diacritic"
-                boolean diacritic = Boolean.valueOf(rowValues[4]);
-                logger.info("diacritic: " + diacritic);
-                
-                // "sound_type"
-                SoundType soundType = null;
-                if (!"null".equals(rowValues[5])) {
-                    soundType = SoundType.valueOf(rowValues[5]);
-                }
-                logger.info("soundType: " + soundType);
-                
-                // "usage_count"
-                int usageCount = Integer.valueOf(rowValues[6]);
-                logger.info("usageCount: " + usageCount);
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT
+                    .withHeader(
+                            "id", 
+                            "value_ipa", 
+                            "value_sampa", 
+                            "audio_id", 
+                            "diacritic", 
+                            "sound_type", 
+                            "usage_count"
+                    )
+                    .withSkipHeaderRecord();
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                logger.info("csvRecord: " + csvRecord);
                 
                 Allophone allophone = new Allophone();
-                // allophone.setId(id); // TODO: enable lookup of Allophones by ID
+                
+                String valueIpa = csvRecord.get("value_ipa");
                 allophone.setValueIpa(valueIpa);
+                
+                String valueSampa = csvRecord.get("value_sampa");
                 allophone.setValueSampa(valueSampa);
-                // allophone.setAudio(); // TODO: enable lookup of Audios by ID
+                
+                boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
                 allophone.setDiacritic(diacritic);
-                allophone.setSoundType(soundType);
+                
+                if (StringUtils.isNotBlank(csvRecord.get("sound_type"))) {
+                    SoundType soundType = SoundType.valueOf(csvRecord.get("sound_type"));
+                    allophone.setSoundType(soundType);
+                }
+                
+                Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 allophone.setUsageCount(usageCount);
                 
                 allophones.add(allophone);
             }
-            scanner.close();
-        } catch (FileNotFoundException ex) {
-            logger.error(null, ex);
+        } catch (IOException ex) {
+            logger.error(ex);
         }
         
         return allophones;
