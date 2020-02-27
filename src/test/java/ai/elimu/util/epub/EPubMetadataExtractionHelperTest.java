@@ -58,6 +58,20 @@ public class EPubMetadataExtractionHelperTest {
     }
     
     @Test
+    public void testExtractTitleFromOpfFile_FIL_STORYWEAVER_105391() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("fil-sw-105391-tayo-ay-magbilang.epub_package.opf");
+        File opfFile = resource.getFile();
+        logger.debug("opfFile: " + opfFile);
+        
+        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
+        assertThat(title, is("Tayo ay Magbilang!"));
+        
+        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
+        assertThat(description, is(nullValue()));
+    }
+    
+    @Test
     public void testExtractTitleFromOpfFile_BEN_STORYWEAVER_11791() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_package.opf");

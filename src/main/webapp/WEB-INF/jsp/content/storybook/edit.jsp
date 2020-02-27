@@ -106,13 +106,14 @@
                 <tr>
                     <td>
                         <c:set var="wordText" value="${wordFrequencyMapItem.key}" />
+                        <c:set var="wordTextLowerCase" value="${fn:toLowerCase(wordText)}" />
                         <c:choose>
-                            <c:when test="${empty wordMap[wordText]}">
+                            <c:when test="${empty wordMap[wordTextLowerCase]}">
                                 <c:out value="${wordText}" /><br />
-                                <a href="<spring:url value='/content/word/create?autoFillText=${wordText}' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
+                                <a href="<spring:url value='/content/word/create?autoFillText=${wordTextLowerCase}' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
                             </c:when>
                             <c:otherwise>
-                                <c:set var="word" value="${wordMap[wordText]}" />
+                                <c:set var="word" value="${wordMap[wordTextLowerCase]}" />
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />" target="_blank">
                                     <c:out value="${word.text}" />
                                 </a><br />
