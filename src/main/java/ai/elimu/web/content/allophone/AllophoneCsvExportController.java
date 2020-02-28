@@ -31,7 +31,8 @@ public class AllophoneCsvExportController {
     @RequestMapping(value="/allophones.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
-            OutputStream outputStream) throws IOException {
+            OutputStream outputStream
+    ) throws IOException {
         logger.info("handleRequest");
         
         // Generate CSV file
