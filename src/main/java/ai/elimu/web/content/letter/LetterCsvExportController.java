@@ -7,7 +7,7 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Arrays;
+import java.io.StringWriter;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -16,6 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
@@ -30,38 +33,56 @@ public class LetterCsvExportController {
     @RequestMapping(value="/letters.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
-            OutputStream outputStream) {
+            OutputStream outputStream
+    ) throws IOException {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,text,allophone_values_ipa,allophone_ids,diacritic,usage_count" + "\n";
+        CSVFormat csvFormat = CSVFormat.DEFAULT
+                .withHeader(
+                        "id", 
+                        "text", 
+                        "allophone_ids", 
+                        "allophone_values_ipa", 
+                        "diacritic", 
+                        "usage_count"
+                );
+        StringWriter stringWriter = new StringWriter();
+        CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
+        
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<Letter> letters = letterDao.readAllOrdered(language);
         logger.info("letters.size(): " + letters.size());
         for (Letter letter : letters) {
             logger.info("letter.getText(): \"" + letter.getText() + "\"");
             
-            String[] allophoneValuesIpaArray = new String[letter.getAllophones().size()];
+            JSONArray allophoneIdsJsonArray = new JSONArray();
             int index = 0;
             for (Allophone allophone : letter.getAllophones()) {
-                allophoneValuesIpaArray[index] = allophone.getValueIpa();
+                allophoneIdsJsonArray.put(index, allophone.getId());
                 index++;
             }
             
-            long[] allophoneIdsArray = new long[letter.getAllophones().size()];
+            JSONArray allophoneValuesIpaJsonArray = new JSONArray();
             index = 0;
             for (Allophone allophone : letter.getAllophones()) {
-                allophoneIdsArray[index] = allophone.getId();
+                allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
                 index++;
             }
             
-            csvFileContent += letter.getId() + ","
-                    + "\"" + letter.getText() + "\","
-                    + Arrays.toString(allophoneValuesIpaArray) + ","
-                    + Arrays.toString(allophoneIdsArray) + ","
-                    + letter.isDiacritic() + ","
-                    + letter.getUsageCount() + "\n";
+            csvPrinter.printRecord(
+                    letter.getId(),
+                    letter.getText(),
+                    allophoneIdsJsonArray,
+                    allophoneValuesIpaJsonArray,
+                    letter.isDiacritic(),
+                    letter.getUsageCount()
+            );
+            
+            csvPrinter.flush();
         }
+        
+        String csvFileContent = stringWriter.toString();
         
         response.setContentType("text/csv");
         byte[] bytes = csvFileContent.getBytes();

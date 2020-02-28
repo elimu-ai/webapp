@@ -4,13 +4,17 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.content.StoryBookChapter;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
@@ -36,6 +40,10 @@ public class DbContentImportHelper {
     private EmojiDao emojiDao;
     
     private StoryBookDao storyBookDao;
+    
+    private StoryBookChapterDao storyBookChapterDao;
+    
+    private StoryBookParagraphDao storyBookParagraphDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -133,6 +141,28 @@ public class DbContentImportHelper {
 //        for (StoryBook storyBook : storyBooks) {
 //            storyBook.setLanguage(language);
 //            storyBookDao.create(storyBook);
+//        }
+//        
+//        // Extract and import StoryBookChapters from CSV file in src/main/resources/
+//        URL storyBookChaptersCsvFileUrl = getClass().getClassLoader()
+//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
+//        File storyBookChaptersCsvFile = new File(storyBookChaptersCsvFileUrl.getFile());
+//        List<StoryBookChapter> storyBookChapters = CsvContentExtractionHelper.getStoryBookChaptersFromCsvBackup(storyBookChaptersCsvFile, storyBookDao);
+//        logger.info("storyBookChapters.size(): " + storyBookChapters.size());
+//        storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
+//        for (StoryBookChapter storyBookChapter : storyBookChapters) {
+//            storyBookChapterDao.create(storyBookChapter);
+//        }
+//        
+//        // Extract and import StoryBookParagraphs from CSV file in src/main/resources/
+//        URL storyBookParagraphsCsvFileUrl = getClass().getClassLoader()
+//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
+//        File storyBookParagraphsCsvFile = new File(storyBookParagraphsCsvFileUrl.getFile());
+//        List<StoryBookParagraph> storyBookParagraphs = CsvContentExtractionHelper.getStoryBookParagraphsFromCsvBackup(storyBookParagraphsCsvFile, storyBookChapterDao);
+//        logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+//        storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
+//        for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+//            storyBookParagraphDao.create(storyBookParagraph);
 //        }
         
         // Extract and import Videos

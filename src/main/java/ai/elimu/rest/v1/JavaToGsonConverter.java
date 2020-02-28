@@ -321,6 +321,7 @@ public class JavaToGsonConverter {
             storyBookGson.setDescription(storyBook.getDescription());
             storyBookGson.setCoverImage(getImageGson(storyBook.getCoverImage()));
             storyBookGson.setGradeLevel(storyBook.getGradeLevel());
+            // TODO: setStoryBookChapters
             
             return storyBookGson;
         }
@@ -333,9 +334,9 @@ public class JavaToGsonConverter {
             StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
             
             storyBookChapterGson.setId(storyBookChapter.getId());
-            
             storyBookChapterGson.setStoryBook(getStoryBookGson(storyBookChapter.getStoryBook()));
             storyBookChapterGson.setSortOrder(storyBookChapter.getSortOrder());
+            // TODO: setStoryBookParagraphs
             
             return storyBookChapterGson;
         }
