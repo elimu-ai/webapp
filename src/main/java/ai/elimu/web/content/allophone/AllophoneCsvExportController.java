@@ -35,7 +35,6 @@ public class AllophoneCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        // Generate CSV file
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
                         "id", 

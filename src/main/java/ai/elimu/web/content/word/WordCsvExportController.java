@@ -7,7 +7,7 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Arrays;
+import java.io.StringWriter;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -16,6 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
@@ -30,39 +33,57 @@ public class WordCsvExportController {
     @RequestMapping(value="/words.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
-            OutputStream outputStream) {
+            OutputStream outputStream
+    ) throws IOException {
         logger.info("handleRequest");
         
-        // Generate CSV file
-        String csvFileContent = "id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency" + "\n";
+        CSVFormat csvFormat = CSVFormat.DEFAULT
+                .withHeader(
+                        "id", 
+                        "text", 
+                        "allophone_ids", 
+                        "allophone_values_ipa", 
+                        "usage_count",
+                        "word_type",
+                        "spelling_consistency"
+                );
+        StringWriter stringWriter = new StringWriter();
+        CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
+        
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Word> words = wordDao.readAllOrderedByUsage(language);
+        List<Word> words = wordDao.readAllOrdered(language);
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
             
-            String[] allophoneValuesIpaArray = new String[word.getAllophones().size()];
+            JSONArray allophoneIdsJsonArray = new JSONArray();
             int index = 0;
             for (Allophone allophone : word.getAllophones()) {
-                allophoneValuesIpaArray[index] = allophone.getValueIpa();
+                allophoneIdsJsonArray.put(index, allophone.getId());
                 index++;
             }
             
-            long[] allophoneIdsArray = new long[word.getAllophones().size()];
+            JSONArray allophoneValuesIpaJsonArray = new JSONArray();
             index = 0;
             for (Allophone allophone : word.getAllophones()) {
-                allophoneIdsArray[index] = allophone.getId();
+                allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
                 index++;
             }
             
-            csvFileContent += word.getId() + ","
-                    + "\"" + word.getText() + "\","
-                    + Arrays.toString(allophoneValuesIpaArray) + ","
-                    + Arrays.toString(allophoneIdsArray) + ","
-                    + word.getUsageCount() + ","
-                    + word.getWordType() + ","
-                    + word.getSpellingConsistency() + "\n";
+            csvPrinter.printRecord(
+                    word.getId(),
+                    word.getText(),
+                    allophoneIdsJsonArray,
+                    allophoneValuesIpaJsonArray,
+                    word.getUsageCount(),
+                    word.getWordType(),
+                    word.getSpellingConsistency()
+            );
+            
+            csvPrinter.flush();
         }
+        
+        String csvFileContent = stringWriter.toString();
         
         response.setContentType("text/csv");
         byte[] bytes = csvFileContent.getBytes();

@@ -37,7 +37,6 @@ public class LetterCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        // Generate CSV file
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
                         "id", 
