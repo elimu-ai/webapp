@@ -42,6 +42,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 
 public class CsvContentExtractionHelper {
     
@@ -109,97 +110,58 @@ public class CsvContentExtractionHelper {
     public static List<Letter> getLettersFromCsvBackup(File csvFile, AllophoneDao allophoneDao) {
         logger.info("getLettersFromCsvBackup");
         
-        logger.info("csvFile: " + csvFile);
-        
         List<Letter> letters = new ArrayList<>();
         
+        // Parse CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        logger.info("csvFilePath: " + csvFilePath);
         try {
-            Scanner scanner = new Scanner(csvFile);
-            int rowNumber = 0;
-            while (scanner.hasNextLine()) {
-                String row = scanner.nextLine();
-                logger.info("row: " + row);
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT
+                    .withHeader(
+                            "id", 
+                            "text", 
+                            "allophone_ids", 
+                            "allophone_values_ipa", 
+                            "diacritic", 
+                            "usage_count"
+                    )
+                    .withSkipHeaderRecord();
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                logger.info("csvRecord: " + csvRecord);
                 
-                rowNumber++;
+                Letter letter = new Letter();
                 
-                if (rowNumber == 1) {
-                    // Skip the header row
-                    continue;
-                }
+                String text = csvRecord.get("text");
+                letter.setText(text);
                 
-                // Expected header format: id,text,allophone_values_ipa,allophone_ids,diacritic,usage_count
-                // Expected row format: 1,"অ",[ɔ],[4],false,-1
+                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
+                logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
                 
-                // Prevent "অ" from being stored as ""অ""
-                // TODO: find more robust solution (e.g. by using CSV parser library or JSON array parsing)
-                row = row.replace("\"", "");
-                logger.info("row (after removing '\"'): " + row);
-                
-                // Prevent "java.lang.NumberFormatException: For input string: " 6]""
-                // TODO: find more robust solution
-                row = row.replace(", ", "§§§");
-                logger.info("row (after removing ', '): " + row);
-                
-                String[] rowValues = row.split(",");
-                logger.info("rowValues: " + Arrays.toString(rowValues));
-                
-                // "id"
-                Long id = Long.valueOf(rowValues[0]);
-                logger.info("id: " + id);
-                
-                // "text"
-                String text = String.valueOf(rowValues[1]);
-                logger.info("text: \"" + text + "\"");
-                
-                // "allophone_values_ipa"
-                String allophoneValuesIpa = String.valueOf(rowValues[2]);
-                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
-                allophoneValuesIpa = allophoneValuesIpa.replace("[", "");
-                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
-                allophoneValuesIpa = allophoneValuesIpa.replace("]", "");
-                logger.info("allophoneValuesIpa: \"" + allophoneValuesIpa + "\"");
-                String[] allophoneValuesIpaArray = allophoneValuesIpa.split("§§§");
-                logger.info("Arrays.toString(allophoneValuesIpaArray): " + Arrays.toString(allophoneValuesIpaArray));
-                
+                JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
+                logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
                 List<Allophone> allophones = new ArrayList<>();
                 Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-                for (String allophoneValueIpa : allophoneValuesIpaArray) {
+                for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
+                    String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
                     logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
                     Allophone allophone = allophoneDao.readByValueIpa(language, allophoneValueIpa);
                     logger.info("allophone.getId(): \"" + allophone.getId() + "\"");
                     allophones.add(allophone);
                 }
-                
-                // "allophone_ids"
-                String allophoneIds = String.valueOf(rowValues[3]);
-                logger.info("allophoneIds: \"" + allophoneIds + "\"");
-                allophoneIds = allophoneIds.replace("[", "");
-                logger.info("allophoneIds: \"" + allophoneIds + "\"");
-                allophoneIds = allophoneIds.replace("]", "");
-                logger.info("allophoneIds: \"" + allophoneIds + "\"");
-                String[] allophoneIdsArray = allophoneIds.split("§§§");
-                logger.info("Arrays.toString(allophoneIdsArray): " + Arrays.toString(allophoneIdsArray));
-                
-                // diacritic
-                boolean diacritic = Boolean.valueOf(rowValues[4]);
-                logger.info("diacritic: " + diacritic);
-                
-                // "usage_count"
-                int usageCount = Integer.valueOf(rowValues[5]);
-                logger.info("usageCount: " + usageCount);
-                
-                Letter letter = new Letter();
-                // letter.setId(id); // TODO: to enable later lookup of the same Letter by its ID
-                letter.setText(text);
                 letter.setAllophones(allophones);
+                
+                boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
                 letter.setDiacritic(diacritic);
+                
+                Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 letter.setUsageCount(usageCount);
                 
                 letters.add(letter);
             }
-            scanner.close();
-        } catch (FileNotFoundException ex) {
-            logger.error(null, ex);
+        } catch (IOException ex) {
+            logger.error(ex);
         }
         
         return letters;
