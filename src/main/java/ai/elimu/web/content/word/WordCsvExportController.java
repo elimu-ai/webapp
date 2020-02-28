@@ -51,7 +51,7 @@ public class WordCsvExportController {
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Word> words = wordDao.readAllOrdered(language);
+        List<Word> words = wordDao.readAllOrderedByUsage(language);
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
