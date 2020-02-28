@@ -35,6 +35,10 @@ public class AllophoneCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
+        logger.info("allophones.size(): " + allophones.size());
+        
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
                         "id", 
@@ -48,9 +52,6 @@ public class AllophoneCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
-        logger.info("allophones.size(): " + allophones.size());
         for (Allophone allophone : allophones) {
             Long audioId = null;
             if (allophone.getAudio() != null) {

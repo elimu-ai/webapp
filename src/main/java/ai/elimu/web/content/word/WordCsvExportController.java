@@ -37,6 +37,10 @@ public class WordCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Word> words = wordDao.readAllOrderedByUsage(language);
+        logger.info("words.size(): " + words.size());
+        
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
                         "id", 
@@ -50,9 +54,6 @@ public class WordCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Word> words = wordDao.readAllOrderedByUsage(language);
-        logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
             
