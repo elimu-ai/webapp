@@ -143,27 +143,16 @@ public class DbContentImportHelper {
             storyBookDao.create(storyBook);
         }
         
-//        // Extract and import StoryBookChapters from CSV file in src/main/resources/
-//        URL storyBookChaptersCsvFileUrl = getClass().getClassLoader()
-//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-//        File storyBookChaptersCsvFile = new File(storyBookChaptersCsvFileUrl.getFile());
-//        List<StoryBookChapter> storyBookChapters = CsvContentExtractionHelper.getStoryBookChaptersFromCsvBackup(storyBookChaptersCsvFile, storyBookDao);
-//        logger.info("storyBookChapters.size(): " + storyBookChapters.size());
-//        storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
-//        for (StoryBookChapter storyBookChapter : storyBookChapters) {
-//            storyBookChapterDao.create(storyBookChapter);
-//        }
-//        
-//        // Extract and import StoryBookParagraphs from CSV file in src/main/resources/
-//        URL storyBookParagraphsCsvFileUrl = getClass().getClassLoader()
-//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-//        File storyBookParagraphsCsvFile = new File(storyBookParagraphsCsvFileUrl.getFile());
-//        List<StoryBookParagraph> storyBookParagraphs = CsvContentExtractionHelper.getStoryBookParagraphsFromCsvBackup(storyBookParagraphsCsvFile, storyBookChapterDao);
-//        logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
-//        storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
-//        for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-//            storyBookParagraphDao.create(storyBookParagraph);
-//        }
+        // Extract and import StoryBookChapters from CSV file in src/main/resources/
+        URL storyBookChaptersCsvFileUrl = getClass().getClassLoader()
+                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
+        File storyBookChaptersCsvFile = new File(storyBookChaptersCsvFileUrl.getFile());
+        List<StoryBookChapter> storyBookChapters = CsvContentExtractionHelper.getStoryBookChaptersFromCsvBackup(storyBookChaptersCsvFile, storyBookDao);
+        logger.info("storyBookChapters.size(): " + storyBookChapters.size());
+        storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
+        for (StoryBookChapter storyBookChapter : storyBookChapters) {
+            storyBookChapterDao.create(storyBookChapter);
+        }
         
         // Extract and import Videos
         // TODO
