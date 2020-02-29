@@ -38,7 +38,7 @@ public class WordCsvExportController {
         logger.info("handleRequest");
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Word> words = wordDao.readAllOrderedByUsage(language);
+        List<Word> words = wordDao.readAllOrdered(language);
         logger.info("words.size(): " + words.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

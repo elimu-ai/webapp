@@ -7,7 +7,7 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Arrays;
+import java.io.StringWriter;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -16,6 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
@@ -30,37 +33,54 @@ public class NumberCsvExportController {
     @RequestMapping(value="/numbers.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
-            OutputStream outputStream) {
+            OutputStream outputStream
+    ) throws IOException {
         logger.info("handleRequest");
         
-        // Generate CSV file
-        String csvFileContent = "id,value,symbol,word_texts,word_ids" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         List<Number> numbers = numberDao.readAllOrdered(language);
         logger.info("numbers.size(): " + numbers.size());
+        
+        CSVFormat csvFormat = CSVFormat.DEFAULT
+                .withHeader(
+                        "id", 
+                        "value", 
+                        "symbol", 
+                        "word_ids", 
+                        "word_texts"
+                );
+        StringWriter stringWriter = new StringWriter();
+        CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
+        
         for (Number number : numbers) {
-            logger.info("word.getValue(): " + number.getValue());
+            logger.info("number.getValue(): \"" + number.getValue() + "\"");
             
-            String[] wordTextsArray = new String[number.getWords().size()];
+            JSONArray wordIdsJsonArray = new JSONArray();
             int index = 0;
             for (Word word : number.getWords()) {
-                wordTextsArray[index] = word.getText();
+                wordIdsJsonArray.put(index, word.getId());
                 index++;
             }
             
-            long[] wordIdsArray = new long[number.getWords().size()];
+            JSONArray wordTextsJsonArray = new JSONArray();
             index = 0;
             for (Word word : number.getWords()) {
-                wordIdsArray[index] = word.getId();
+                wordTextsJsonArray.put(index, word.getText());
                 index++;
             }
             
-            csvFileContent += number.getId() + ","
-                    + number.getValue() + ","
-                    + "\"" + number.getSymbol() + "\","
-                    + Arrays.toString(wordTextsArray) + ","
-                    + Arrays.toString(wordIdsArray) + "\n";
+            csvPrinter.printRecord(
+                    number.getId(),
+                    number.getValue(),
+                    number.getSymbol(),
+                    wordIdsJsonArray,
+                    wordTextsJsonArray
+            );
+            
+            csvPrinter.flush();
         }
+        
+        String csvFileContent = stringWriter.toString();
         
         response.setContentType("text/csv");
         byte[] bytes = csvFileContent.getBytes();
