@@ -131,18 +131,18 @@ public class DbContentImportHelper {
         // Extract and import Audios
         // TODO
         
-//        // Extract and import StoryBooks from CSV file in src/main/resources/
-//        URL storyBooksCsvFileUrl = getClass().getClassLoader()
-//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-//        File storyBooksCsvFile = new File(storyBooksCsvFileUrl.getFile());
-//        List<StoryBook> storyBooks = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
-//        logger.info("storyBooks.size(): " + storyBooks.size());
-//        storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
-//        for (StoryBook storyBook : storyBooks) {
-//            storyBook.setLanguage(language);
-//            storyBookDao.create(storyBook);
-//        }
-//        
+        // Extract and import StoryBooks from CSV file in src/main/resources/
+        URL storyBooksCsvFileUrl = getClass().getClassLoader()
+                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
+        File storyBooksCsvFile = new File(storyBooksCsvFileUrl.getFile());
+        List<StoryBook> storyBooks = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
+        logger.info("storyBooks.size(): " + storyBooks.size());
+        storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
+        for (StoryBook storyBook : storyBooks) {
+            storyBook.setLanguage(language);
+            storyBookDao.create(storyBook);
+        }
+        
 //        // Extract and import StoryBookChapters from CSV file in src/main/resources/
 //        URL storyBookChaptersCsvFileUrl = getClass().getClassLoader()
 //                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
