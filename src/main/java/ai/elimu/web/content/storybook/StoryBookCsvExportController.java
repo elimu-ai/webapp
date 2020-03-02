@@ -90,6 +90,7 @@ public class StoryBookCsvExportController {
                 
                 // Store paragraphs as JSON objects
                 List<StoryBookParagraphGson> storyBookParagraphs = new ArrayList<>();
+                logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
                     logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
                     

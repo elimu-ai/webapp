@@ -18,6 +18,9 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.gson.content.StoryBookChapterGson;
+import ai.elimu.model.gson.content.StoryBookGson;
+import ai.elimu.model.gson.content.StoryBookParagraphGson;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
 import java.io.File;
 import java.net.URL;
@@ -135,53 +138,39 @@ public class DbContentImportHelper {
         URL storyBooksCsvFileUrl = getClass().getClassLoader()
                 .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
         File storyBooksCsvFile = new File(storyBooksCsvFileUrl.getFile());
-        List<StoryBook> storyBooks = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
-        logger.info("storyBooks.size(): " + storyBooks.size());
+        List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
+        logger.info("storyBookGsons.size(): " + storyBookGsons.size());
         storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
-        for (StoryBook storyBook : storyBooks) {
-            storyBook.setLanguage(language);
-            storyBookDao.create(storyBook);
-        }
-        
-        // Extract and import StoryBookChapters and StoryBookParagraphs from CSV file in src/main/resources/
-        URL storyBookParagraphsCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-        File storyBookParagraphsCsvFile = new File(storyBookParagraphsCsvFileUrl.getFile());
-        List<StoryBookParagraph> storyBookParagraphs = CsvContentExtractionHelper.getStoryBookChaptersAndParagraphsFromCsvBackup(storyBookParagraphsCsvFile, storyBookDao, wordDao);
-        logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
         storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
-        Long csvIdOfStoryBookChapterLastStoredInDatabase = 0L;
-        Long idOfStoryBookChapterLastStoredInDatabase = 0L;
-        for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-            logger.info("*** Importing StoryBookParagraph... ***");
-            logger.info("  • storyBook id: " + storyBookParagraph.getStoryBookChapter().getStoryBook().getId());
-            logger.info("  • chapter id: " + storyBookParagraph.getStoryBookChapter().getId());
-            logger.info("  • paragraph id: " + storyBookParagraph.getId());
+        for (StoryBookGson storyBookGson : storyBookGsons) {
+            // Convert from GSON to JPA
+            StoryBook storyBook = new StoryBook();
+            storyBook.setLanguage(language);
+            storyBook.setTitle(storyBookGson.getTitle());
+            storyBook.setDescription(storyBookGson.getDescription());
+//            TODO: storyBook.setContentLicense();
+//            TODO: storyBook.setAttributionUrl();
+            storyBook.setGradeLevel(storyBookGson.getGradeLevel());
+            storyBookDao.create(storyBook);
             
-            // Store the corresponding StoryBookChapter in the database
-            logger.info("csvIdOfStoryBookChapterLastStoredInDatabase: " + csvIdOfStoryBookChapterLastStoredInDatabase);
-            logger.info("idOfStoryBookChapterLastStoredInDatabase: " + idOfStoryBookChapterLastStoredInDatabase);
-            StoryBookChapter storyBookChapter = storyBookParagraph.getStoryBookChapter();
-            Long csvIdOfStoryBookChapter = storyBookChapter.getId();
-            logger.info("csvIdOfStoryBookChapter: " + csvIdOfStoryBookChapter);
-            logger.info("!csvIdOfStoryBookChapter.equals(csvIdOfStoryBookChapterLastStoredInDatabase): " + !csvIdOfStoryBookChapter.equals(csvIdOfStoryBookChapterLastStoredInDatabase));
-            if (!csvIdOfStoryBookChapter.equals(csvIdOfStoryBookChapterLastStoredInDatabase)) {
-                // Store the StoryBookChapter in the database
-                storyBookChapter.setId(null);
+            for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {
+                // Convert from GSON to JPA
+                StoryBookChapter storyBookChapter = new StoryBookChapter();
+                storyBookChapter.setStoryBook(storyBook);
+                storyBookChapter.setSortOrder(storyBookChapterGson.getSortOrder());
                 storyBookChapterDao.create(storyBookChapter);
-                csvIdOfStoryBookChapterLastStoredInDatabase = csvIdOfStoryBookChapter;
-                logger.info("csvIdOfStoryBookChapter (after storage): " + csvIdOfStoryBookChapter);
-                idOfStoryBookChapterLastStoredInDatabase = storyBookChapter.getId();
-            } else {
-                // Lookup previously stored StoryBookChapter from database
-                storyBookChapter = storyBookChapterDao.read(idOfStoryBookChapterLastStoredInDatabase);
+                
+                for (StoryBookParagraphGson storyBookParagraphGson : storyBookChapterGson.getStoryBookParagraphs()) {
+                    // Convert from GSON to JPA
+                    StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+                    storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                    storyBookParagraph.setSortOrder(storyBookParagraphGson.getSortOrder());
+                    storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
+                    // TODO: setWords
+                    storyBookParagraphDao.create(storyBookParagraph);
+                }
             }
-            
-            // Store the StoryBookParagraph in the database
-            storyBookParagraph.setStoryBookChapter(storyBookChapter);
-            storyBookParagraphDao.create(storyBookParagraph);
-            logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
         }
         
         // Extract and import Videos

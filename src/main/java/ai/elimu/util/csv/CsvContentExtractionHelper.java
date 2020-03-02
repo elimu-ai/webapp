@@ -1,24 +1,21 @@
 package ai.elimu.util.csv;
 
 import ai.elimu.dao.AllophoneDao;
-import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.GradeLevel;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.model.enums.content.allophone.SoundType;
+import ai.elimu.model.gson.content.StoryBookChapterGson;
+import ai.elimu.model.gson.content.StoryBookGson;
+import ai.elimu.model.gson.content.StoryBookParagraphGson;
 import ai.elimu.util.ConfigHelper;
-import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
@@ -361,10 +358,10 @@ public class CsvContentExtractionHelper {
      * <p />
      * Also see {@link #getStoryBookChaptersFromCsvBackup}
      */
-    public static List<StoryBook> getStoryBooksFromCsvBackup(File csvFile) {
+    public static List<StoryBookGson> getStoryBooksFromCsvBackup(File csvFile) {
         logger.info("getStoryBooksFromCsvBackup");
         
-        List<StoryBook> storyBooks = new ArrayList<>();
+        List<StoryBookGson> storyBookGsons = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -386,115 +383,69 @@ public class CsvContentExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                StoryBook storyBook = new StoryBook();
+                // Convert from CSV to GSON
+                
+                StoryBookGson storyBookGson = new StoryBookGson();
                 
                 String title = csvRecord.get("title");
-                storyBook.setTitle(title);
+                storyBookGson.setTitle(title);
                 
                 String description = csvRecord.get("description");
-                storyBook.setDescription(description);
+                storyBookGson.setDescription(description);
                 
-                if (StringUtils.isNotBlank(csvRecord.get("content_license"))) {
-                    ContentLicense contentLicense = ContentLicense.valueOf(csvRecord.get("content_license"));
-                    storyBook.setContentLicense(contentLicense);
-                }
-                
-                String attributionUrl = csvRecord.get("attribution_url");
-                storyBook.setAttributionUrl(attributionUrl);
+//                if (StringUtils.isNotBlank(csvRecord.get("content_license"))) {
+//                    ContentLicense contentLicense = ContentLicense.valueOf(csvRecord.get("content_license"));
+//                    storyBookGson.setContentLicense(contentLicense);
+//                }
+//                
+//                String attributionUrl = csvRecord.get("attribution_url");
+//                storyBookGson.setAttributionUrl(attributionUrl);
                 
                 if (StringUtils.isNotBlank(csvRecord.get("grade_level"))) {
                     GradeLevel gradeLevel = GradeLevel.valueOf(csvRecord.get("grade_level"));
-                    storyBook.setGradeLevel(gradeLevel);
+                    storyBookGson.setGradeLevel(gradeLevel);
                 }
                 
                 // TODO: set cover image
                 
-                storyBooks.add(storyBook);
-            }
-        } catch (IOException ex) {
-            logger.error(ex);
-        }
-        
-        return storyBooks;
-    }
-    
-    /**
-     * For information on how the CSV files were generated, see {@link StoryBookCsvExportController#handleRequest}.
-     */
-    public static List<StoryBookParagraph> getStoryBookChaptersAndParagraphsFromCsvBackup(File csvFile, StoryBookDao storyBookDao, WordDao wordDao) {
-        logger.info("getStoryBookChaptersAndParagraphsFromCsvBackup");
-        
-        List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
-        
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
-        try {
-            Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT
-                    .withHeader(
-                            "id",
-                            "title",
-                            "description",
-                            "content_license",
-                            "attribution_url",
-                            "grade_level",
-                            "cover_image_id",
-                            "chapters"
-                    )
-                    .withSkipHeaderRecord();
-            CSVParser csvParser = new CSVParser(reader, csvFormat);
-            for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
-                
-                Long id = Long.valueOf(csvRecord.get("id"));
-                StoryBook storyBook = storyBookDao.read(id);
-                
+                List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
                 JSONArray chaptersJsonArray = new JSONArray(csvRecord.get("chapters"));
                 logger.info("chaptersJsonArray: " + chaptersJsonArray);
                 for (int i = 0; i < chaptersJsonArray.length(); i++) {
                     JSONObject chapterJsonObject = chaptersJsonArray.getJSONObject(i);
                     logger.info("chapterJsonObject: " + chapterJsonObject);
                     
-                    StoryBookChapter storyBookChapter = new StoryBookChapter();
-                    storyBookChapter.setId(chapterJsonObject.getLong("id"));
-                    storyBookChapter.setStoryBook(storyBook);
-                    storyBookChapter.setSortOrder(chapterJsonObject.getInt("sortOrder"));
+                    StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
+                    // storyBookChapterGson.setStoryBook();
+                    storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
                     
+                    List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
                     JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");
                     logger.info("paragraphsJsonArray: " + paragraphsJsonArray);
                     for (int j = 0; j < paragraphsJsonArray.length(); j++) {
                         JSONObject paragraphJsonObject = paragraphsJsonArray.getJSONObject(j);
                         logger.info("paragraphJsonObject: " + paragraphJsonObject);
 
-                        StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
-                        storyBookParagraph.setStoryBookChapter(storyBookChapter);
-                        storyBookParagraph.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
-                        storyBookParagraph.setOriginalText(paragraphJsonObject.getString("originalText"));
+                        StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
+                        // storyBookParagraphGson.setStoryBookChapter();
+                        storyBookParagraphGson.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
+                        storyBookParagraphGson.setOriginalText(paragraphJsonObject.getString("originalText"));
+                        // TODO: setWords
                         
-                        List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-                        logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
-                        List<Word> words = new ArrayList<>();
-                        logger.info("words.size(): " + words.size());
-                        for (String wordInOriginalText : wordsInOriginalText) {
-                            logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
-                            wordInOriginalText = wordInOriginalText.toLowerCase();
-                            logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
-                            Word word = wordDao.readByText(language, wordInOriginalText);
-                            logger.info("word: " + word);
-                            words.add(word);
-                        }
-                        storyBookParagraph.setWords(words);
-                        
-                        storyBookParagraphs.add(storyBookParagraph);
+                        storyBookParagraphGsons.add(storyBookParagraphGson);
                     }
+                    storyBookChapterGson.setStoryBookParagraphs(storyBookParagraphGsons);
+                    
+                    storyBookChapterGsons.add(storyBookChapterGson);
                 }
+                storyBookGson.setStoryBookChapters(storyBookChapterGsons);
+                
+                storyBookGsons.add(storyBookGson);
             }
         } catch (IOException ex) {
             logger.error(ex);
         }
         
-        return storyBookParagraphs;
+        return storyBookGsons;
     }
 }
