@@ -147,7 +147,7 @@ public class DbContentImportHelper {
         URL storyBookParagraphsCsvFileUrl = getClass().getClassLoader()
                 .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
         File storyBookParagraphsCsvFile = new File(storyBookParagraphsCsvFileUrl.getFile());
-        List<StoryBookParagraph> storyBookParagraphs = CsvContentExtractionHelper.getStoryBookChaptersAndParagraphsFromCsvBackup(storyBookParagraphsCsvFile, storyBookDao);
+        List<StoryBookParagraph> storyBookParagraphs = CsvContentExtractionHelper.getStoryBookChaptersAndParagraphsFromCsvBackup(storyBookParagraphsCsvFile, storyBookDao, wordDao);
         logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
         storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");

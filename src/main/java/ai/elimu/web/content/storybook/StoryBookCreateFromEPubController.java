@@ -30,7 +30,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -262,7 +261,7 @@ public class StoryBookCreateFromEPubController {
                 
                 // Store the StoryBookChapter's StoryBookParagraphs in the database
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-                    if (storyBookParagraph.getStoryBookChapter().getSortOrder() == storyBookChapter.getSortOrder()) {
+                    if (storyBookParagraph.getStoryBookChapter().getSortOrder().equals(storyBookChapter.getSortOrder())) {
                         storyBookParagraph.setStoryBookChapter(storyBookChapter);
                         storyBookParagraphDao.create(storyBookParagraph);
                     }

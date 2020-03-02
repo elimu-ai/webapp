@@ -18,6 +18,7 @@ import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
@@ -420,10 +421,12 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link StoryBookCsvExportController#handleRequest}.
      */
-    public static List<StoryBookParagraph> getStoryBookChaptersAndParagraphsFromCsvBackup(File csvFile, StoryBookDao storyBookDao) {
+    public static List<StoryBookParagraph> getStoryBookChaptersAndParagraphsFromCsvBackup(File csvFile, StoryBookDao storyBookDao, WordDao wordDao) {
         logger.info("getStoryBookChaptersAndParagraphsFromCsvBackup");
         
         List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
+        
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -469,6 +472,20 @@ public class CsvContentExtractionHelper {
                         storyBookParagraph.setStoryBookChapter(storyBookChapter);
                         storyBookParagraph.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
                         storyBookParagraph.setOriginalText(paragraphJsonObject.getString("originalText"));
+                        
+                        List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
+                        logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                        List<Word> words = new ArrayList<>();
+                        logger.info("words.size(): " + words.size());
+                        for (String wordInOriginalText : wordsInOriginalText) {
+                            logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                            wordInOriginalText = wordInOriginalText.toLowerCase();
+                            logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                            Word word = wordDao.readByText(language, wordInOriginalText);
+                            logger.info("word: " + word);
+                            words.add(word);
+                        }
+                        storyBookParagraph.setWords(words);
                         
                         storyBookParagraphs.add(storyBookParagraph);
                     }
