@@ -21,9 +21,11 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.StoryBookChapterGson;
 import ai.elimu.model.gson.content.StoryBookGson;
 import ai.elimu.model.gson.content.StoryBookParagraphGson;
+import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
@@ -167,7 +169,21 @@ public class DbContentImportHelper {
                     storyBookParagraph.setStoryBookChapter(storyBookChapter);
                     storyBookParagraph.setSortOrder(storyBookParagraphGson.getSortOrder());
                     storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
-                    // TODO: setWords
+                    
+                    List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
+                    logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                    List<Word> paragraphWords = new ArrayList<>();
+                    logger.info("paragraphWords.size(): " + paragraphWords.size());
+                    for (String wordInOriginalText : wordsInOriginalText) {
+                        logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                        wordInOriginalText = wordInOriginalText.toLowerCase();
+                        logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                        Word word = wordDao.readByText(language, wordInOriginalText);
+                        logger.info("word: " + word);
+                        paragraphWords.add(word);
+                    }
+                    storyBookParagraph.setWords(paragraphWords);
+                    
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
