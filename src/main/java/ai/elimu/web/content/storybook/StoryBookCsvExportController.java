@@ -83,12 +83,16 @@ public class StoryBookCsvExportController {
             List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
             logger.info("storyBookChapters.size(): " + storyBookChapters.size());
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                logger.info("storyBookChapter.getId(): " + storyBookChapter.getId());
+                
                 StoryBookChapterGson storyBookChapterGson = JavaToGsonConverter.getStoryBookChapter(storyBookChapter);
                 storyBookChapterGson.setStoryBook(null);
                 
                 // Store paragraphs as JSON objects
                 List<StoryBookParagraphGson> storyBookParagraphs = new ArrayList<>();
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
+                    logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+                    
                     StoryBookParagraphGson storyBookParagraphGson = JavaToGsonConverter.getStoryBookParagraph(storyBookParagraph);
                     storyBookParagraphGson.setStoryBookChapter(null);
                     storyBookParagraphGson.setWords(null);
@@ -98,6 +102,7 @@ public class StoryBookCsvExportController {
                 
                 String json = new Gson().toJson(storyBookChapterGson);
                 JSONObject jsonObject = new JSONObject(json);
+                logger.info("jsonObject: " + jsonObject);
                 chaptersJsonArray.put(jsonObject);
             }
             logger.info("chaptersJsonArray: " + chaptersJsonArray);
