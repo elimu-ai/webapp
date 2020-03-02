@@ -86,6 +86,7 @@ public class StoryBookCsvExportController {
                 StoryBookChapterGson storyBookChapterGson = JavaToGsonConverter.getStoryBookChapter(storyBookChapter);
                 storyBookChapterGson.setStoryBook(null);
                 
+                // Store paragraphs as JSON objects
                 List<StoryBookParagraphGson> storyBookParagraphs = new ArrayList<>();
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
                     StoryBookParagraphGson storyBookParagraphGson = JavaToGsonConverter.getStoryBookParagraph(storyBookParagraph);

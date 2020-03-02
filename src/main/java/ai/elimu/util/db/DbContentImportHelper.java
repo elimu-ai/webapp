@@ -155,17 +155,23 @@ public class DbContentImportHelper {
         Long idOfStoryBookChapterLastStoredInDatabase = 0L;
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
             logger.info("*** Importing StoryBookParagraph... ***");
+            logger.info("  • storyBook id: " + storyBookParagraph.getStoryBookChapter().getStoryBook().getId());
+            logger.info("  • chapter id: " + storyBookParagraph.getStoryBookChapter().getId());
+            logger.info("  • paragraph id: " + storyBookParagraph.getId());
             
             // Store the corresponding StoryBookChapter in the database
             logger.info("csvIdOfStoryBookChapterLastStoredInDatabase: " + csvIdOfStoryBookChapterLastStoredInDatabase);
             logger.info("idOfStoryBookChapterLastStoredInDatabase: " + idOfStoryBookChapterLastStoredInDatabase);
             StoryBookChapter storyBookChapter = storyBookParagraph.getStoryBookChapter();
             Long csvIdOfStoryBookChapter = storyBookChapter.getId();
+            logger.info("csvIdOfStoryBookChapter: " + csvIdOfStoryBookChapter);
+            logger.info("!csvIdOfStoryBookChapter.equals(csvIdOfStoryBookChapterLastStoredInDatabase): " + !csvIdOfStoryBookChapter.equals(csvIdOfStoryBookChapterLastStoredInDatabase));
             if (!csvIdOfStoryBookChapter.equals(csvIdOfStoryBookChapterLastStoredInDatabase)) {
                 // Store the StoryBookChapter in the database
                 storyBookChapter.setId(null);
                 storyBookChapterDao.create(storyBookChapter);
                 csvIdOfStoryBookChapterLastStoredInDatabase = csvIdOfStoryBookChapter;
+                logger.info("csvIdOfStoryBookChapter (after storage): " + csvIdOfStoryBookChapter);
                 idOfStoryBookChapterLastStoredInDatabase = storyBookChapter.getId();
             } else {
                 // Lookup previously stored StoryBookChapter from database
@@ -175,6 +181,7 @@ public class DbContentImportHelper {
             // Store the StoryBookParagraph in the database
             storyBookParagraph.setStoryBookChapter(storyBookChapter);
             storyBookParagraphDao.create(storyBookParagraph);
+            logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
         }
         
         // Extract and import Videos
