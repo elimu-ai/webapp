@@ -37,7 +37,10 @@ public class LetterCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        // Generate CSV file
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Letter> letters = letterDao.readAllOrdered(language);
+        logger.info("letters.size(): " + letters.size());
+        
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
                         "id", 
@@ -50,9 +53,6 @@ public class LetterCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Letter> letters = letterDao.readAllOrdered(language);
-        logger.info("letters.size(): " + letters.size());
         for (Letter letter : letters) {
             logger.info("letter.getText(): \"" + letter.getText() + "\"");
             

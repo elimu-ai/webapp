@@ -11,6 +11,7 @@ import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
@@ -24,6 +25,7 @@ import ai.elimu.model.gson.content.AllophoneGson;
 import ai.elimu.model.gson.content.LetterGson;
 import ai.elimu.model.gson.content.StoryBookChapterGson;
 import ai.elimu.model.gson.content.StoryBookGson;
+import ai.elimu.model.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.gson.content.SyllableGson;
 import ai.elimu.model.gson.content.multimedia.AudioGson;
 import ai.elimu.model.gson.content.multimedia.ImageGson;
@@ -321,7 +323,6 @@ public class JavaToGsonConverter {
             storyBookGson.setDescription(storyBook.getDescription());
             storyBookGson.setCoverImage(getImageGson(storyBook.getCoverImage()));
             storyBookGson.setGradeLevel(storyBook.getGradeLevel());
-            // TODO: setStoryBookChapters
             
             return storyBookGson;
         }
@@ -336,9 +337,29 @@ public class JavaToGsonConverter {
             storyBookChapterGson.setId(storyBookChapter.getId());
             storyBookChapterGson.setStoryBook(getStoryBookGson(storyBookChapter.getStoryBook()));
             storyBookChapterGson.setSortOrder(storyBookChapter.getSortOrder());
-            // TODO: setStoryBookParagraphs
             
             return storyBookChapterGson;
+        }
+    }
+    
+    public static StoryBookParagraphGson getStoryBookParagraph(StoryBookParagraph storyBookParagraph) {
+        if (storyBookParagraph == null) {
+            return null;
+        } else {
+            StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
+            
+            storyBookParagraphGson.setId(storyBookParagraph.getId());
+            storyBookParagraphGson.setStoryBookChapter(getStoryBookChapter(storyBookParagraph.getStoryBookChapter()));
+            storyBookParagraphGson.setSortOrder(storyBookParagraph.getSortOrder());
+            storyBookParagraphGson.setOriginalText(storyBookParagraph.getOriginalText());
+            List<WordGson> words = new ArrayList<>();
+            for (Word word : storyBookParagraph.getWords()) {
+                WordGson wordGson = getWordGson(word);
+                words.add(wordGson);
+            }
+            storyBookParagraphGson.setWords(words);
+            
+            return storyBookParagraphGson;
         }
     }
     

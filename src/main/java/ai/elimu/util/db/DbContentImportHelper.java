@@ -18,9 +18,14 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.gson.content.StoryBookChapterGson;
+import ai.elimu.model.gson.content.StoryBookGson;
+import ai.elimu.model.gson.content.StoryBookParagraphGson;
+import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
@@ -131,39 +136,58 @@ public class DbContentImportHelper {
         // Extract and import Audios
         // TODO
         
-//        // Extract and import StoryBooks from CSV file in src/main/resources/
-//        URL storyBooksCsvFileUrl = getClass().getClassLoader()
-//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-//        File storyBooksCsvFile = new File(storyBooksCsvFileUrl.getFile());
-//        List<StoryBook> storyBooks = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
-//        logger.info("storyBooks.size(): " + storyBooks.size());
-//        storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
-//        for (StoryBook storyBook : storyBooks) {
-//            storyBook.setLanguage(language);
-//            storyBookDao.create(storyBook);
-//        }
-//        
-//        // Extract and import StoryBookChapters from CSV file in src/main/resources/
-//        URL storyBookChaptersCsvFileUrl = getClass().getClassLoader()
-//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-//        File storyBookChaptersCsvFile = new File(storyBookChaptersCsvFileUrl.getFile());
-//        List<StoryBookChapter> storyBookChapters = CsvContentExtractionHelper.getStoryBookChaptersFromCsvBackup(storyBookChaptersCsvFile, storyBookDao);
-//        logger.info("storyBookChapters.size(): " + storyBookChapters.size());
-//        storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
-//        for (StoryBookChapter storyBookChapter : storyBookChapters) {
-//            storyBookChapterDao.create(storyBookChapter);
-//        }
-//        
-//        // Extract and import StoryBookParagraphs from CSV file in src/main/resources/
-//        URL storyBookParagraphsCsvFileUrl = getClass().getClassLoader()
-//                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-//        File storyBookParagraphsCsvFile = new File(storyBookParagraphsCsvFileUrl.getFile());
-//        List<StoryBookParagraph> storyBookParagraphs = CsvContentExtractionHelper.getStoryBookParagraphsFromCsvBackup(storyBookParagraphsCsvFile, storyBookChapterDao);
-//        logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
-//        storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
-//        for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-//            storyBookParagraphDao.create(storyBookParagraph);
-//        }
+        // Extract and import StoryBooks from CSV file in src/main/resources/
+        URL storyBooksCsvFileUrl = getClass().getClassLoader()
+                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
+        File storyBooksCsvFile = new File(storyBooksCsvFileUrl.getFile());
+        List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
+        logger.info("storyBookGsons.size(): " + storyBookGsons.size());
+        storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
+        storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
+        storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
+        for (StoryBookGson storyBookGson : storyBookGsons) {
+            // Convert from GSON to JPA
+            StoryBook storyBook = new StoryBook();
+            storyBook.setLanguage(language);
+            storyBook.setTitle(storyBookGson.getTitle());
+            storyBook.setDescription(storyBookGson.getDescription());
+//            TODO: storyBook.setContentLicense();
+//            TODO: storyBook.setAttributionUrl();
+            storyBook.setGradeLevel(storyBookGson.getGradeLevel());
+            storyBookDao.create(storyBook);
+            
+            for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {
+                // Convert from GSON to JPA
+                StoryBookChapter storyBookChapter = new StoryBookChapter();
+                storyBookChapter.setStoryBook(storyBook);
+                storyBookChapter.setSortOrder(storyBookChapterGson.getSortOrder());
+                storyBookChapterDao.create(storyBookChapter);
+                
+                for (StoryBookParagraphGson storyBookParagraphGson : storyBookChapterGson.getStoryBookParagraphs()) {
+                    // Convert from GSON to JPA
+                    StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+                    storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                    storyBookParagraph.setSortOrder(storyBookParagraphGson.getSortOrder());
+                    storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
+                    
+                    List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
+                    logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                    List<Word> paragraphWords = new ArrayList<>();
+                    logger.info("paragraphWords.size(): " + paragraphWords.size());
+                    for (String wordInOriginalText : wordsInOriginalText) {
+                        logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                        wordInOriginalText = wordInOriginalText.toLowerCase();
+                        logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                        Word word = wordDao.readByText(language, wordInOriginalText);
+                        logger.info("word: " + word);
+                        paragraphWords.add(word);
+                    }
+                    storyBookParagraph.setWords(paragraphWords);
+                    
+                    storyBookParagraphDao.create(storyBookParagraph);
+                }
+            }
+        }
         
         // Extract and import Videos
         // TODO
