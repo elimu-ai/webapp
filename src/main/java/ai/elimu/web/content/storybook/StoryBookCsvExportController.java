@@ -53,7 +53,7 @@ public class StoryBookCsvExportController {
         logger.info("handleRequest");
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<ai.elimu.model.content.StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
         logger.info("storyBooks.size(): " + storyBooks.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
