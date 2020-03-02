@@ -234,6 +234,15 @@ public class StoryBookCreateFromEPubController {
                             
                             storyBookParagraphs.add(storyBookParagraph);
                         }
+                        
+                        if (paragraphs.isEmpty()) {
+                            // TODO: remove this after finding a way to skip storage of empty chapters
+                            StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+                            storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                            storyBookParagraph.setSortOrder(0);
+                            storyBookParagraph.setOriginalText("...");
+                            storyBookParagraphs.add(storyBookParagraph);
+                        }
                     }
                 }
             } catch (IOException ex) {
