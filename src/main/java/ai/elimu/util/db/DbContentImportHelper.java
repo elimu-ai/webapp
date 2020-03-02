@@ -155,21 +155,25 @@ public class DbContentImportHelper {
         Long idOfStoryBookChapterLastStoredInDatabase = 0L;
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
             logger.info("*** Importing StoryBookParagraph... ***");
+            
+            // Store the corresponding StoryBookChapter in the database
             logger.info("csvIdOfStoryBookChapterLastStoredInDatabase: " + csvIdOfStoryBookChapterLastStoredInDatabase);
             logger.info("idOfStoryBookChapterLastStoredInDatabase: " + idOfStoryBookChapterLastStoredInDatabase);
             StoryBookChapter storyBookChapter = storyBookParagraph.getStoryBookChapter();
-            if (!storyBookChapter.getId().equals(csvIdOfStoryBookChapterLastStoredInDatabase)) {
+            Long csvIdOfStoryBookChapter = storyBookChapter.getId();
+            if (!csvIdOfStoryBookChapter.equals(csvIdOfStoryBookChapterLastStoredInDatabase)) {
                 // Store the StoryBookChapter in the database
-                csvIdOfStoryBookChapterLastStoredInDatabase = storyBookChapter.getId();
                 storyBookChapter.setId(null);
                 storyBookChapterDao.create(storyBookChapter);
+                csvIdOfStoryBookChapterLastStoredInDatabase = csvIdOfStoryBookChapter;
                 idOfStoryBookChapterLastStoredInDatabase = storyBookChapter.getId();
             } else {
                 // Lookup previously stored StoryBookChapter from database
                 storyBookChapter = storyBookChapterDao.read(idOfStoryBookChapterLastStoredInDatabase);
-                storyBookParagraph.setStoryBookChapter(storyBookChapter);
             }
             
+            // Store the StoryBookParagraph in the database
+            storyBookParagraph.setStoryBookChapter(storyBookChapter);
             storyBookParagraphDao.create(storyBookParagraph);
         }
         
