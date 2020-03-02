@@ -9,6 +9,7 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.GradeLevel;
@@ -22,7 +23,8 @@ import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
-import ai.elimu.web.content.word.WordCsvExportController;import java.io.File;
+import ai.elimu.web.content.word.WordCsvExportController;
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -418,10 +420,10 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link StoryBookCsvExportController#handleRequest}.
      */
-    public static List<StoryBookChapter> getStoryBookChaptersFromCsvBackup(File csvFile, StoryBookDao storyBookDao) {
-        logger.info("getStoryBookChaptersFromCsvBackup");
+    public static List<StoryBookParagraph> getStoryBookChaptersAndParagraphsFromCsvBackup(File csvFile, StoryBookDao storyBookDao) {
+        logger.info("getStoryBookChaptersAndParagraphsFromCsvBackup");
         
-        List<StoryBookChapter> storyBookChapters = new ArrayList<>();
+        List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -453,19 +455,29 @@ public class CsvContentExtractionHelper {
                     logger.info("chapterJsonObject: " + chapterJsonObject);
                     
                     StoryBookChapter storyBookChapter = new StoryBookChapter();
-                    
+                    storyBookChapter.setId(chapterJsonObject.getLong("id"));
                     storyBookChapter.setStoryBook(storyBook);
+                    storyBookChapter.setSortOrder(chapterJsonObject.getInt("sortOrder"));
                     
-                    Integer sortOrder = chapterJsonObject.getInt(("sortOrder"));
-                    storyBookChapter.setSortOrder(sortOrder);
-                    
-                    storyBookChapters.add(storyBookChapter);
+                    JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");
+                    logger.info("paragraphsJsonArray: " + paragraphsJsonArray);
+                    for (int j = 0; j < paragraphsJsonArray.length(); j++) {
+                        JSONObject paragraphJsonObject = paragraphsJsonArray.getJSONObject(j);
+                        logger.info("paragraphJsonObject: " + paragraphJsonObject);
+
+                        StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+                        storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                        storyBookParagraph.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
+                        storyBookParagraph.setOriginalText(paragraphJsonObject.getString("originalText"));
+                        
+                        storyBookParagraphs.add(storyBookParagraph);
+                    }
                 }
             }
         } catch (IOException ex) {
             logger.error(ex);
         }
         
-        return storyBookChapters;
+        return storyBookParagraphs;
     }
 }
