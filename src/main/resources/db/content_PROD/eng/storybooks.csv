@@ -1,57 +1,32 @@
-id,title,content_license,attribution_url,cover_image_id,grade_level
-1,"Too Small",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2269",392,LEVEL3
-2,"I like to read",null,"null",347,LEVEL1
-3,"Domestic animals",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9680",364,LEVEL1
-4,"Ah! Football!",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12926",368,LEVEL2
-5,"Girl Called Norah",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9797",382,LEVEL2
-6,"Goat, Dog, and Cow with TV",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13529",386,LEVEL3
-7,"Goat, Dog and Cow",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=6380",385,LEVEL3
-8,"My First Pair of Shoes",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10446",390,LEVEL4
-9,"Goat and Hyena's Knife",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13623",384,LEVEL3
-10,"Go Home Pig",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12898",383,LEVEL3
-11,"Life in my village",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=14304",388,LEVEL2
-12,"Azizi the doll",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9748",361,LEVEL1
-13,"Letter to Mum",null,"http://www.africanstorybook.org/reader.php?id=2134",387,LEVEL2
-14,"Lion is Sick",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10242",389,LEVEL4
-15,"Old Rooster",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9545",391,LEVEL4
-17,"Day We Saw the Rainbow",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=11142",372,LEVEL2
-18,"Ninaweza!",CREATIVE_COMMONS_CC_BY_NC_ND,"http://www.americanuniversitynigeria.org",358,LEVEL1
-19,"Nozibele na Nywele Tatu?",null,"null",359,LEVEL4
-20,"Nini ni mtoto vibaya?",null,"null",359,LEVEL2
-21,"Ndovu na Kinyonga",null,"null",359,LEVEL3
-22,"Mtoto wa Tembo Mdadisi",null,"null",359,LEVEL3
-23,"jozi yangu ya kwanza ya viatu",null,"null",359,LEVEL4
-24,"Basi kubwa la bluu",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12428",354,LEVEL3
-25,"Mtoto Punda",null,"null",359,LEVEL2
-26,"Mamba aliye mwilini mwangu",null,"null",359,LEVEL4
-27,"Siafu Amwokoa Njiwa",null,"null",359,LEVEL2
-28,"Sayari Jua ya Saba",null,"null",359,LEVEL4
-29,"Fisi na kunguru",null,"null",359,LEVEL3
-30,"Matunda",null,"null",359,LEVEL4
-31,"Mpira wangu mwekundu",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=16088",357,LEVEL1
-32,"Meno aina gani?",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12621",356,LEVEL1
-33,"Fahali na Punda",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=18399",355,LEVEL1
-34,"Barua kwa mama",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2526",353,LEVEL1
-35,"Barua",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2912",351,LEVEL1
-36,"Ajali mbaya",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10555",350,LEVEL1
-37,"Mimi na familia yangu",null,"null",359,LEVEL2
-38,"Mtoto aliyeleta amani",null,"null",359,LEVEL2
-39,"Mtu na Simba",null,"null",359,LEVEL2
-40,"Ndovu na vyura",null,"null",359,LEVEL2
-41,"Ng'ombe mwenye pembe moja",null,"null",359,LEVEL2
-42,"Paka mwer evu",null,"null",359,LEVEL2
-43,"A very tall man",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=918",360,LEVEL1
-44,"Breakfast",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2839",362,LEVEL1
-45,"Bunty and Bubbly",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=913",363,LEVEL1
-46,"Keeper and His Nursery",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13025",373,LEVEL4
-47,"Feet, hands and head!",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=16631",365,LEVEL1
-48,"Friends",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9879",366,LEVEL1
-49,"Our Day at the Zoo",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=14186",367,LEVEL1
-50,"Feelings",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13618",381,LEVEL1
-51,"Annoying Mosquito",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=14893",369,LEVEL2
-52,"Big Blue Bus",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12083",370,LEVEL2
-53,"Dancing",CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2183",371,LEVEL2
-54,"Mogau's Gift",CREATIVE_COMMONS_CC_BY,"http://bookdash.org/mogaus-gift-lorato-trok-rofhiwa-mudau-shadrach-munene/",352,LEVEL1
-55,"Grace in Space",null,"null",393,LEVEL2
-56,"What If?",null,"null",394,LEVEL1
-57,"The Sea",CREATIVE_COMMONS_CC_BY,"https://bookdash.org/sea-nicola-rijsdijk-julie-smith-belton-lauren-nel/",395,LEVEL2
+id,title,description,content_license,attribution_url,reading_level,cover_image_id,chapters
+43,A very tall man,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=918,LEVEL1,360,[]
+4,Ah! Football!,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=12926,LEVEL2,368,[]
+51,Annoying Mosquito,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=14893,LEVEL2,369,[]
+12,Azizi the doll,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=9748,LEVEL1,361,[]
+52,Big Blue Bus,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=12083,LEVEL2,370,[]
+44,Breakfast,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=2839,LEVEL1,362,[]
+45,Bunty and Bubbly,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=913,LEVEL1,363,[]
+53,Dancing,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=2183,LEVEL2,371,[]
+17,Day We Saw the Rainbow,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=11142,LEVEL2,372,[]
+3,Domestic animals,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=9680,LEVEL1,364,[]
+50,Feelings,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=13618,LEVEL1,381,[]
+47,"Feet, hands and head!",,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=16631,LEVEL1,365,[]
+48,Friends,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=9879,LEVEL1,366,[]
+5,Girl Called Norah,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=9797,LEVEL2,382,[]
+10,Go Home Pig,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=12898,LEVEL3,383,[]
+9,Goat and Hyena's Knife,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=13623,LEVEL3,384,[]
+7,"Goat, Dog and Cow",,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=6380,LEVEL3,385,[]
+6,"Goat, Dog, and Cow with TV",,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=13529,LEVEL3,386,[]
+55,Grace in Space,,,,LEVEL2,393,[]
+2,I like to read,,,,LEVEL1,347,[]
+46,Keeper and His Nursery,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=13025,LEVEL4,373,[]
+13,Letter to Mum,,,http://www.africanstorybook.org/reader.php?id=2134,LEVEL2,387,[]
+11,Life in my village,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=14304,LEVEL2,388,[]
+14,Lion is Sick,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=10242,LEVEL4,389,[]
+54,Mogau's Gift,,CREATIVE_COMMONS_CC_BY,http://bookdash.org/mogaus-gift-lorato-trok-rofhiwa-mudau-shadrach-munene/,LEVEL1,352,[]
+8,My First Pair of Shoes,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=10446,LEVEL4,390,[]
+15,Old Rooster,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=9545,LEVEL4,391,[]
+49,Our Day at the Zoo,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=14186,LEVEL1,367,[]
+57,The Sea,,CREATIVE_COMMONS_CC_BY,https://bookdash.org/sea-nicola-rijsdijk-julie-smith-belton-lauren-nel/,LEVEL2,395,[]
+1,Too Small,,CREATIVE_COMMONS_CC_BY,http://www.africanstorybook.org/reader.php?id=2269,LEVEL3,392,[]
+56,What If?,,,,LEVEL1,394,[]

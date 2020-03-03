@@ -39,13 +39,13 @@
                 </div>
                 
                 <div class="input-field col s12">
-                    <select id="gradeLevel" name="gradeLevel">
+                    <select id="readingLevel" name="readingLevel">
                         <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="gradeLevel" items="${gradeLevels}">
-                            <option value="${gradeLevel}" <c:if test="${gradeLevel == storyBook.gradeLevel}">selected="selected"</c:if>><fmt:message key="grade.level.${gradeLevel}" /></option>
+                        <c:forEach var="readingLevel" items="${readingLevels}">
+                            <option value="${readingLevel}" <c:if test="${readingLevel == storyBook.readingLevel}">selected="selected"</c:if>><fmt:message key="reading.level.${readingLevel}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="gradeLevel"><fmt:message key="grade.level" /></label>
+                    <label for="readingLevel"><fmt:message key="reading.level" /></label>
                 </div>
                 
                 <div class="input-field col s12">

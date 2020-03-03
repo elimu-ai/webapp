@@ -10,7 +10,7 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.GradeLevel;
+import ai.elimu.model.enums.ReadingLevel;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class StoryBookCreateController {
         List<Image> coverImages = imageDao.readAllOrdered(language);
         model.addAttribute("coverImages", coverImages);
         
-        model.addAttribute("gradeLevels", GradeLevel.values());
+        model.addAttribute("readingLevels", ReadingLevel.values());
 
         return "content/storybook/create";
     }
@@ -73,7 +73,7 @@ public class StoryBookCreateController {
             List<Image> coverImages = imageDao.readAllOrdered(language);
             model.addAttribute("coverImages", coverImages);
             
-            model.addAttribute("gradeLevels", GradeLevel.values());
+            model.addAttribute("readingLevels", ReadingLevel.values());
             
             return "content/storybook/create";
         } else {
