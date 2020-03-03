@@ -352,6 +352,7 @@ public class JavaToGsonConverter {
             storyBookChapterGson.setId(storyBookChapter.getId());
             storyBookChapterGson.setStoryBook(getStoryBookGson(storyBookChapter.getStoryBook()));
             storyBookChapterGson.setSortOrder(storyBookChapter.getSortOrder());
+            storyBookChapterGson.setImage(getImageGson(storyBookChapter.getImage()));
             
             return storyBookChapterGson;
         }

@@ -22,6 +22,7 @@ import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
+import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
 import java.io.ByteArrayInputStream;
@@ -192,7 +193,7 @@ public class StoryBookCreateFromEPubController {
                     }
                     logger.info("chapterReferences.size(): " + chapterReferences.size());
                     
-                    // Extract each chapter's paragraphs
+                    // Extract each chapter's image (if any) and paragraphs
                     for (String chapterReference : chapterReferences) {
                         logger.info("chapterReference: \"" + chapterReference + "\"");
                         File chapterFile = new File(opfFile.getParent(), chapterReference);
@@ -200,7 +201,34 @@ public class StoryBookCreateFromEPubController {
                         StoryBookChapter storyBookChapter = new StoryBookChapter();
                         storyBookChapter.setSortOrder(storyBookChapters.size());
                         storyBookChapters.add(storyBookChapter);
-
+                        
+                        String chapterImageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(chapterFile);
+                        logger.info("chapterImageReference: " + chapterImageReference);
+                        if (StringUtils.isNotBlank(chapterImageReference)) {
+                            File chapterImageFile = new File(chapterFile.getParent(), chapterImageReference);
+                            logger.info("chapterImageFile: " + chapterImageFile);
+                            logger.info("chapterImageFile.exists(): " + chapterImageFile.exists());
+                            URI chapterImageUri = chapterImageFile.toURI();
+                            logger.info("chapterImageUri: " + chapterImageUri);
+                            byte[] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
+                            Image chapterImage = new Image();
+                            chapterImage.setLanguage(language);
+                            chapterImage.setBytes(chapterImageBytes);
+                            if (chapterImageFile.getName().toLowerCase().endsWith(".png")) {
+                                chapterImage.setContentType("image/png");
+                                chapterImage.setImageFormat(ImageFormat.PNG);
+                            } else if (chapterImageFile.getName().toLowerCase().endsWith(".jpg") || chapterImageFile.getName().toLowerCase().endsWith(".jpeg")) {
+                                chapterImage.setContentType("image/jpg");
+                                chapterImage.setImageFormat(ImageFormat.JPG);
+                            } else if (chapterImageFile.getName().toLowerCase().endsWith(".gif")) {
+                                chapterImage.setContentType("image/gif");
+                                chapterImage.setImageFormat(ImageFormat.GIF);
+                            }
+                            int[] dominantColor = ImageColorHelper.getDominantColor(chapterImage.getBytes());
+                            chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+                            storyBookChapter.setImage(chapterImage);
+                        }
+                        
                         List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile);
                         logger.info("paragraphs.size(): " + paragraphs.size());
                         for (int i = 0; i < paragraphs.size(); i++) {
@@ -258,10 +286,19 @@ public class StoryBookCreateFromEPubController {
             storyBookDao.create(storyBook);
             
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook
-            storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover-image");
+            storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
             imageDao.create(storyBookCoverImage);
             storyBook.setCoverImage(storyBookCoverImage);
             storyBookDao.update(storyBook);
+            
+            // Store the chapter images
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                Image chapterImage = storyBookChapter.getImage();
+                if (chapterImage != null) {
+                    chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + storyBookChapter.getSortOrder());
+                    imageDao.create(chapterImage);
+                }
+            }
             
             // Store the StoryBookChapters in the database
             for (StoryBookChapter storyBookChapter : storyBookChapters) {

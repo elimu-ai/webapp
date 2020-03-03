@@ -74,6 +74,10 @@
         </c:if>
         <h5 style="margin-top: 1em;"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
+            <c:if test="${not empty storyBookChapter.image}">
+                <img src="<spring:url value='/image/${storyBookChapter.image.id}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
+            </c:if>
+            
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
                 <p class="storyBookParagraph">
                     <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
