@@ -168,8 +168,12 @@ public class StoryBookCreateFromEPubController {
                         storyBookCoverImage.setContentType("image/gif");
                         storyBookCoverImage.setImageFormat(ImageFormat.GIF);
                     }
-                    int[] dominantColor = ImageColorHelper.getDominantColor(storyBookCoverImage.getBytes());
-                    storyBookCoverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+                    try {
+                        int[] dominantColor = ImageColorHelper.getDominantColor(storyBookCoverImage.getBytes());
+                        storyBookCoverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+                    } catch (NullPointerException ex) {
+                        // javax.imageio.IIOException: Unsupported Image Type
+                    }
                 }
                 
                 // Extract the ePUB's chapters
@@ -224,8 +228,12 @@ public class StoryBookCreateFromEPubController {
                                 chapterImage.setContentType("image/gif");
                                 chapterImage.setImageFormat(ImageFormat.GIF);
                             }
-                            int[] dominantColor = ImageColorHelper.getDominantColor(chapterImage.getBytes());
-                            chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+                            try {
+                                int[] dominantColor = ImageColorHelper.getDominantColor(chapterImage.getBytes());
+                                chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+                            } catch (NullPointerException ex) {
+                                // javax.imageio.IIOException: Unsupported Image Type
+                            }
                             storyBookChapter.setImage(chapterImage);
                         }
                         

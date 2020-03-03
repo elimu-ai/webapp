@@ -130,8 +130,12 @@ public class ImageCreateController {
             return "content/multimedia/image/create";
         } else {
             image.setTitle(image.getTitle().toLowerCase());
-            int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
-            image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            try {
+                int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
+                image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            } catch (NullPointerException ex) {
+                // javax.imageio.IIOException: Unsupported Image Type
+            }
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
             

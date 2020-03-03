@@ -37,6 +37,9 @@ public class StoryBookChapterDeleteController {
         StoryBookChapter storyBookChapter = storyBookChapterDao.read(id);
         logger.info("storyBookChapter: " + storyBookChapter);
         
+        // Delete the chapter's image (if any)
+        // TODO
+        
         // Delete the chapter's paragraphs
         List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
         logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
