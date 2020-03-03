@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="grade.level" />: <fmt:message key="grade.level.${storyBook.gradeLevel}" /></p>
+                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
                         <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
 
                         <div class="divider" style="margin: 1em 0;"></div>

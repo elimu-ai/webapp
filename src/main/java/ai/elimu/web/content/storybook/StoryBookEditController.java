@@ -20,7 +20,7 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.GradeLevel;
+import ai.elimu.model.enums.ReadingLevel;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
@@ -73,7 +73,7 @@ public class StoryBookEditController {
         List<Image> coverImages = imageDao.readAllOrdered(language);
         model.addAttribute("coverImages", coverImages);
         
-        model.addAttribute("gradeLevels", GradeLevel.values());
+        model.addAttribute("readingLevels", ReadingLevel.values());
         
         List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
         model.addAttribute("storyBookChapters", storyBookChapters);
@@ -136,7 +136,7 @@ public class StoryBookEditController {
             List<Image> coverImages = imageDao.readAllOrdered(language);
             model.addAttribute("coverImages", coverImages);
             
-            model.addAttribute("gradeLevels", GradeLevel.values());
+            model.addAttribute("readingLevels", ReadingLevel.values());
             
             List<String> paragraphs = new ArrayList<>();
             List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);

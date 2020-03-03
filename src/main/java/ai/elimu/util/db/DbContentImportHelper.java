@@ -153,7 +153,7 @@ public class DbContentImportHelper {
             storyBook.setDescription(storyBookGson.getDescription());
 //            TODO: storyBook.setContentLicense();
             storyBook.setAttributionUrl(storyBookGson.getAttributionUrl());
-            storyBook.setGradeLevel(storyBookGson.getGradeLevel());
+            storyBook.setReadingLevel(storyBookGson.getReadingLevel());
             storyBookDao.create(storyBook);
             
             for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {

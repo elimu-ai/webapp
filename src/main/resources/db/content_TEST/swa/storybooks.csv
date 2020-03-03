@@ -1,4 +1,4 @@
-id,title,description,content_license,attribution_url,grade_level,cover_image_id,chapter_ids
+id,title,description,content_license,attribution_url,reading_level,cover_image_id,chapter_ids
 18,"Ah! Mpira!","Mvulana mdogo alitumwa dukani na bibiye kununua vitu vichache. Anaambatana na rafikiye na kucheza mpira. Je,  atampelekea bibi alichotumwa?",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/28",LEVEL2,25,[134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150]
 12,"Barua kwa Mama","Mama anaenda hospitalini kujifungua mtoto na bintiye anamwandikia barua.",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/56",LEVEL1,null,[40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58]
 17,"Binti wa Mflame Kayanja","Hadithi ya mapenzi yenye huzuni kumhusu binti mrembo wa kifalme anayeamua kufuata moyo wake badala ya alivyotaka babake.",CREATIVE_COMMONS_CC_BY,"https://digitallibrary.io/sw-ke/books/details/27",LEVEL4,null,[116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132]

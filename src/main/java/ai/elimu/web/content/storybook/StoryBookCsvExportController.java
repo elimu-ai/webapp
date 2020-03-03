@@ -63,7 +63,7 @@ public class StoryBookCsvExportController {
                         "description",
                         "content_license",
                         "attribution_url",
-                        "grade_level",
+                        "reading_level",
                         "cover_image_id",
                         "chapters"
                 );
@@ -114,7 +114,7 @@ public class StoryBookCsvExportController {
                     storyBook.getDescription(),
                     storyBook.getContentLicense(),
                     storyBook.getAttributionUrl(),
-                    storyBook.getGradeLevel(),
+                    storyBook.getReadingLevel(),
                     coverImageId,
                     chaptersJsonArray
             );

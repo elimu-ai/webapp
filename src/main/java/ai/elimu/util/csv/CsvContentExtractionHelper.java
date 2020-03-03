@@ -7,7 +7,7 @@ import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.GradeLevel;
+import ai.elimu.model.enums.ReadingLevel;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
@@ -374,7 +374,7 @@ public class CsvContentExtractionHelper {
                             "description",
                             "content_license",
                             "attribution_url",
-                            "grade_level",
+                            "reading_level",
                             "cover_image_id",
                             "chapters"
                     )
@@ -401,9 +401,9 @@ public class CsvContentExtractionHelper {
                 String attributionUrl = csvRecord.get("attribution_url");
                 storyBookGson.setAttributionUrl(attributionUrl);
                 
-                if (StringUtils.isNotBlank(csvRecord.get("grade_level"))) {
-                    GradeLevel gradeLevel = GradeLevel.valueOf(csvRecord.get("grade_level"));
-                    storyBookGson.setGradeLevel(gradeLevel);
+                if (StringUtils.isNotBlank(csvRecord.get("reading_level"))) {
+                    ReadingLevel readingLevel = ReadingLevel.valueOf(csvRecord.get("reading_level"));
+                    storyBookGson.setReadingLevel(readingLevel);
                 }
                 
                 // TODO: set cover image

@@ -337,7 +337,7 @@ public class JavaToGsonConverter {
             storyBookGson.setDescription(storyBook.getDescription());
             storyBookGson.setAttributionUrl(storyBook.getAttributionUrl());
             storyBookGson.setCoverImage(getImageGson(storyBook.getCoverImage()));
-            storyBookGson.setGradeLevel(storyBook.getGradeLevel());
+            storyBookGson.setReadingLevel(storyBook.getReadingLevel());
             
             return storyBookGson;
         }

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.GradeLevel;
+import ai.elimu.model.enums.ReadingLevel;
 
 @Entity
 public class StoryBook extends Content {
@@ -33,7 +33,7 @@ public class StoryBook extends Content {
     
 //    @NotNull
     @Enumerated(EnumType.STRING)
-    private GradeLevel gradeLevel;
+    private ReadingLevel readingLevel;
 
     public String getTitle() {
         return title;
@@ -75,11 +75,11 @@ public class StoryBook extends Content {
         this.coverImage = coverImage;
     }
 
-    public GradeLevel getGradeLevel() {
-        return gradeLevel;
+    public ReadingLevel getReadingLevel() {
+        return readingLevel;
     }
 
-    public void setGradeLevel(GradeLevel gradeLevel) {
-        this.gradeLevel = gradeLevel;
+    public void setReadingLevel(ReadingLevel readingLevel) {
+        this.readingLevel = readingLevel;
     }
 }
