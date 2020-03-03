@@ -74,3 +74,10 @@ nav {
         0 0.5rem 1.5rem rgba(0,0,0, .4), 
         -1rem 0 1.5rem rgba(0,0,0, .4);
 }
+
+#storyBookEditPage .storyBookChapter .storyBookParagraph {
+    word-spacing: 1em;
+}
+#storyBookEditPage .storyBookChapter .storyBookParagraph:not(:last-child) {
+    margin-bottom: 2em;
+}
