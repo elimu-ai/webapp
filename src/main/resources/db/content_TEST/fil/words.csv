@@ -45,6 +45,7 @@ id,text,allophone_ids,allophone_values_ipa,usage_count,word_type,spelling_consis
 43,kaming,"[13,1,14,4,3]","[""k"",""ɑ"",""m"",""i"",""ŋ""]",1,VERB,PHONEMIC
 44,kuya,"[13,9,10,1]","[""k"",""u"",""j"",""ɑ""]",1,NOUN,PERFECT
 45,lima,"[12,19,14,1]","[""l"",""ɪ"",""m"",""ɑ""]",1,,PERFECT
+83,lola,"[12,5,12,1]","[""l"",""ɔ"",""l"",""ɑ""]",1,NOUN,PERFECT
 46,lolo,"[12,5,12,5]","[""l"",""ɔ"",""l"",""ɔ""]",1,NOUN,PERFECT
 47,mainit,"[14,1,4,8,19,6]","[""m"",""ɑ"",""i"",""n"",""ɪ"",""t""]",1,ADJECTIVE,PERFECT
 48,malamig,"[14,1,25,1,14,4,21]","[""m"",""ɑ"",""z"",""ɑ"",""m"",""i"",""g""]",1,ADJECTIVE,PERFECT
@@ -57,6 +58,7 @@ id,text,allophone_ids,allophone_values_ipa,usage_count,word_type,spelling_consis
 54,dalawampu't,"[16,1,12,1,22,1,14,7,9,6]","[""d"",""ɑ"",""l"",""ɑ"",""w"",""ɑ"",""m"",""p"",""u"",""t""]",0,,HIGHLY_PHONEMIC
 55,ilan,"[19,12,1,8]","[""ɪ"",""l"",""ɑ"",""n""]",0,,PERFECT
 56,itim,"[19,6,4,14]","[""ɪ"",""t"",""i"",""m""]",0,ADJECTIVE,PERFECT
+84,kaarawan,"[13,1,26,1,11,1,22,1,15,8]","[""k"",""ɑ"",""."",""ɑ"",""r"",""ɑ"",""w"",""ɑ"",""ː"",""n""]",0,NOUN,PERFECT
 57,kumot,"[13,9,14,5,6]","[""k"",""u"",""m"",""ɔ"",""t""]",0,NOUN,PERFECT
 58,labimpito,"[12,1,18,19,14,26,7,19,6,5]","[""l"",""ɑ"",""b"",""ɪ"",""m"",""."",""p"",""ɪ"",""t"",""ɔ""]",0,,HIGHLY_PHONEMIC
 59,labindalawa,"[12,1,18,19,8,26,16,1,12,1,22]","[""l"",""ɑ"",""b"",""ɪ"",""n"",""."",""d"",""ɑ"",""l"",""ɑ"",""w""]",0,,HIGHLY_PHONEMIC
