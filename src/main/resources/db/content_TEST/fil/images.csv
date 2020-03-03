@@ -1,8 +1,1 @@
 id,content_type,content_license,attribution_url,title,download_url,image_format
-1,image/jpg,null,"null","storybook-1-cover-image","/image/1.jpg",JPG
-2,image/jpg,null,"null","storybook-2-cover-image","/image/2.jpg",JPG
-3,image/png,null,"null","storybook-3-cover-image","/image/3.png",PNG
-4,image/jpg,null,"null","storybook-4-cover-image","/image/4.jpg",JPG
-5,image/jpg,null,"null","storybook-5-cover-image","/image/5.jpg",JPG
-6,image/png,null,"null","storybook-6-cover-image","/image/6.png",PNG
-7,image/jpg,null,"null","storybook-7-cover-image","/image/7.jpg",JPG

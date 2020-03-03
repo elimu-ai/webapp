@@ -120,9 +120,11 @@
     <script>
         $(function() {
             console.debug("dominantColor: ${image.dominantColor}");
-            $('#previewContent').css("background-color", "${image.dominantColor}");
-            $('nav').removeClass("deep-purple");
-            $('nav').css("background-color", "${image.dominantColor}");
+            <c:if test="${not empty image.dominantColor}">
+                $('#previewContent').css("background-color", "${image.dominantColor}");
+                $('nav').removeClass("deep-purple");
+                $('nav').css("background-color", "${image.dominantColor}");
+            </c:if>
         });
     </script>
     

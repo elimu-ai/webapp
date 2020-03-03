@@ -77,6 +77,8 @@ nav {
 
 #storyBookEditPage .storyBookChapter .storyBookParagraph {
     word-spacing: 1em;
+    font-size: 2em;
+    line-height: 2em;
 }
 #storyBookEditPage .storyBookChapter .storyBookParagraph:not(:last-child) {
     margin-bottom: 2em;

@@ -81,9 +81,6 @@ public class EPubParagraphExtractionHelper {
                         logger.info("bodyChildNode: " + bodyChildNode);
                         logger.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
                         
-                        // Look for "<img>"
-                        // TODO
-                        
                         // Look for "<p>" (StoryBookProvider#GLOBAL_DIGITAL_LIBRARY)
                         if ("p".equals(bodyChildNode.getNodeName())) {
                             // Look for text content within the paragraph

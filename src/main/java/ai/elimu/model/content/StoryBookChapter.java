@@ -2,6 +2,7 @@ package ai.elimu.model.content;
 
 import javax.persistence.Entity;
 import ai.elimu.model.BaseEntity;
+import ai.elimu.model.content.multimedia.Image;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +17,9 @@ public class StoryBookChapter extends BaseEntity {
      */
     @NotNull
     private Integer sortOrder;
+    
+    @ManyToOne
+    private Image image;
 
     public StoryBook getStoryBook() {
         return storyBook;
@@ -31,5 +35,13 @@ public class StoryBookChapter extends BaseEntity {
 
     public void setSortOrder(Integer sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
