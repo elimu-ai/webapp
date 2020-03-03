@@ -1,6 +1,5 @@
 package ai.elimu.web.content.syllable;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.SyllableDao;
@@ -28,28 +27,10 @@ public class SyllableListController {
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        // To ease development/testing, auto-generate Syllables
-        List<Syllable> syllablesGenerated = generateSyllables(language);
-        for (Syllable syllable : syllablesGenerated) {
-            logger.info("syllable.getText(): " + syllable.getText());
-            Syllable existingSyllable = syllableDao.readByText(syllable.getLanguage(), syllable.getText());
-            if (existingSyllable == null) {
-                syllableDao.create(syllable);
-            }
-        }
-        
-        List<Syllable> syllables = syllableDao.readAllOrdered(language);
+        List<Syllable> syllables = syllableDao.readAllOrderedByUsage(language);
         logger.info("syllables.size(): " + syllables.size());
         model.addAttribute("syllables", syllables);
 
         return "content/syllable/list";
-    }
-    
-    private List<Syllable> generateSyllables(Language language) {
-        List<Syllable> syllables = new ArrayList<>();
-        
-        // TODO
-        
-        return syllables;
     }
 }
