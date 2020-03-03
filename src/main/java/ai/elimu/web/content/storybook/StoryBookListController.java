@@ -29,6 +29,7 @@ public class StoryBookListController {
         model.addAttribute("storyBooksLevel2", storyBookDao.readAllOrdered(language, ReadingLevel.LEVEL2));
         model.addAttribute("storyBooksLevel3", storyBookDao.readAllOrdered(language, ReadingLevel.LEVEL3));
         model.addAttribute("storyBooksLevel4", storyBookDao.readAllOrdered(language, ReadingLevel.LEVEL4));
+        model.addAttribute("storyBooksUnleveled", storyBookDao.readAllUnleveled(language));
 
         return "content/storybook/list";
     }

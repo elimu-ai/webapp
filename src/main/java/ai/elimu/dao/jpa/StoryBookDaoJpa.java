@@ -54,6 +54,18 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
     }
     
     @Override
+    public List<StoryBook> readAllUnleveled(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT book " +
+            "FROM StoryBook book " +
+            "WHERE book.language = :language " +
+            "AND book.readingLevel IS NULL " +
+            "ORDER BY book.title")
+            .setParameter("language", language)
+            .getResultList();
+    }
+    
+    @Override
     public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
             "SELECT COUNT(s) " +

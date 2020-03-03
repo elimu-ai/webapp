@@ -106,6 +106,29 @@
         </c:forEach>
     </div>
     
+    <div class="row">
+        <h4><fmt:message key="reading.level" />: Unleveled</h4>
+        <c:forEach var="storyBook" items="${storyBooksUnleveled}">
+            <div class="col s12 m6 l4">
+                <a name="${storyBook.id}"></a>
+                <div class="storyBook card">
+                    <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
+                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+
+                        <div class="divider" style="margin: 1em 0;"></div>
+
+                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
         <a href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.storybook" />"><i class="material-icons">add</i></a>
         <ul>
