@@ -13,5 +13,7 @@ public interface SyllableDao extends GenericDao<Syllable> {
     
     List<Syllable> readAllOrdered(Language language) throws DataAccessException;
     
+    List<Syllable> readAllOrderedByUsage(Language language) throws DataAccessException;
+    
     Long readCount(Language language) throws DataAccessException;
 }

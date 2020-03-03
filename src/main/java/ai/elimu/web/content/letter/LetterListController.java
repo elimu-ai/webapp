@@ -2,7 +2,6 @@ package ai.elimu.web.content.letter;
 
 import java.util.List;
 import org.apache.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.enums.Language;
@@ -21,9 +20,6 @@ public class LetterListController {
     
     @Autowired
     private LetterDao letterDao;
-    
-    @Autowired
-    private AllophoneDao allophoneDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -31,7 +27,7 @@ public class LetterListController {
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        List<Letter> letters = letterDao.readAllOrdered(language);
+        List<Letter> letters = letterDao.readAllOrderedByUsage(language);
         model.addAttribute("letters", letters);
         
         int maxUsageCount = 0;

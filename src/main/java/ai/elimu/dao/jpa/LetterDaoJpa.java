@@ -34,6 +34,17 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
             "SELECT l " +
             "FROM Letter l " +
             "WHERE l.language = :language " +
+            "ORDER BY l.text")
+            .setParameter("language", language)
+            .getResultList();
+    }
+    
+    @Override
+    public List<Letter> readAllOrderedByUsage(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT l " +
+            "FROM Letter l " +
+            "WHERE l.language = :language " +
             "ORDER BY l.usageCount DESC, l.text")
             .setParameter("language", language)
             .getResultList();

@@ -13,5 +13,7 @@ public interface LetterDao extends GenericDao<Letter> {
     
     List<Letter> readAllOrdered(Language language) throws DataAccessException;
     
+    List<Letter> readAllOrderedByUsage(Language language) throws DataAccessException;
+    
     Long readCount(Language language) throws DataAccessException;
 }

@@ -38,7 +38,7 @@ public class LetterCsvExportController {
         logger.info("handleRequest");
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Letter> letters = letterDao.readAllOrdered(language);
+        List<Letter> letters = letterDao.readAllOrderedByUsage(language);
         logger.info("letters.size(): " + letters.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

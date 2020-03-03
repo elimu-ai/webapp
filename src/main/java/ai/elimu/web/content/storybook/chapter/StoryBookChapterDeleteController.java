@@ -1,9 +1,12 @@
 package ai.elimu.web.content.storybook.chapter;
 
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import java.util.Calendar;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StoryBookChapterDeleteController {
     
     private final Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private StoryBookDao storyBookDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
@@ -40,7 +46,14 @@ public class StoryBookChapterDeleteController {
         }
         
         // Delete the chapter
+        logger.info("Deleting StoryBookChapter with ID " + storyBookChapter.getId());
         storyBookChapterDao.delete(storyBookChapter);
+        
+        // Update the StoryBook's metadata
+        StoryBook storyBook = storyBookChapter.getStoryBook();
+        storyBook.setTimeLastUpdate(Calendar.getInstance());
+        storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
+        storyBookDao.update(storyBook);
 
         return "redirect:/content/storybook/edit/" + storyBookId;
     }

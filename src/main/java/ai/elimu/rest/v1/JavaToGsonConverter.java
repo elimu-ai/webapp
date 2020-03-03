@@ -241,7 +241,6 @@ public class JavaToGsonConverter {
             
             numberGson.setValue(number.getValue());
             numberGson.setSymbol(number.getSymbol());
-            numberGson.setWord(getWordGson(number.getWord()));
             
             List<WordGson> words = new ArrayList<>();
             for (Word word : number.getWords()) {

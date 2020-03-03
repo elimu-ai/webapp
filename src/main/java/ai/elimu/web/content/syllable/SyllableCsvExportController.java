@@ -36,7 +36,7 @@ public class SyllableCsvExportController {
         // Generate CSV file
         String csvFileContent = "id,text,allophone_ids,usage_count" + "\n";
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Syllable> syllables = syllableDao.readAllOrdered(language);
+        List<Syllable> syllables = syllableDao.readAllOrderedByUsage(language);
         logger.info("syllables.size(): " + syllables.size());
         for (Syllable syllable : syllables) {
             long[] allophoneIdsArray = new long[syllable.getAllophones().size()];
