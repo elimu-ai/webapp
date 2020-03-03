@@ -12,8 +12,80 @@
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
-        
-        <c:forEach var="storyBook" items="${storyBooks}">
+    </div>
+    
+    <div class="row">
+        <h4><fmt:message key="reading.level.LEVEL1" /></h4>
+        <c:forEach var="storyBook" items="${storyBooksLevel1}">
+            <div class="col s12 m6 l4">
+                <a name="${storyBook.id}"></a>
+                <div class="storyBook card">
+                    <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
+                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+
+                        <div class="divider" style="margin: 1em 0;"></div>
+
+                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    
+    <div class="row">
+        <h4><fmt:message key="reading.level.LEVEL2" /></h4>
+        <c:forEach var="storyBook" items="${storyBooksLevel2}">
+            <div class="col s12 m6 l4">
+                <a name="${storyBook.id}"></a>
+                <div class="storyBook card">
+                    <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
+                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+
+                        <div class="divider" style="margin: 1em 0;"></div>
+
+                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    
+    <div class="row">
+        <h4><fmt:message key="reading.level.LEVEL3" /></h4>
+        <c:forEach var="storyBook" items="${storyBooksLevel3}">
+            <div class="col s12 m6 l4">
+                <a name="${storyBook.id}"></a>
+                <div class="storyBook card">
+                    <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                    </div>
+                    <div class="card-content">
+                        <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
+                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+
+                        <div class="divider" style="margin: 1em 0;"></div>
+
+                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    
+    <div class="row">
+        <h4><fmt:message key="reading.level.LEVEL4" /></h4>
+        <c:forEach var="storyBook" items="${storyBooksLevel4}">
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
