@@ -26,6 +26,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 43,ɖʱ,d`_h\,,false,CONSONANT,0
 24,ɡʱ,g_h\,,false,CONSONANT,0
 25,ɽ,r`,,false,CONSONANT,0
+45,ɽʱ,r`_h\,,false,CONSONANT,0
 26,ʈʰ,t`_h,,false,CONSONANT,0
 27,g,g,,false,CONSONANT,-1
 28,h,h,,false,CONSONANT,-1
