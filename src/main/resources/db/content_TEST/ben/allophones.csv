@@ -17,6 +17,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 16,p,p,,false,CONSONANT,6
 17,bʱ,b_h,,false,CONSONANT,4
 18,ː,:,,false,,4
+44,dʒʱ,dZ_h\,,false,CONSONANT,0
 19,dʱ,d_h\,,false,CONSONANT,0
 20,j,j,,false,CONSONANT,0
 21,n,n,,false,CONSONANT,0
