@@ -1,3 +1,3 @@
 # 2.1.41
 
-ALTER TABLE Allophone MODIFY valueSampa VARCHAR(4) COLLATE utf8_bin NOT NULL;
+ALTER TABLE Allophone MODIFY valueSampa VARCHAR(5) COLLATE utf8_bin NOT NULL;

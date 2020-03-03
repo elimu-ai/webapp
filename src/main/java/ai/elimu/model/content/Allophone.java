@@ -42,8 +42,8 @@ public class Allophone extends Content {
      * X-SAMPA is used to enable integration with Text-to-Speech (TTS) technology.
      */
     @NotNull
-    @Length(max = 4)
-    @Column(length = 4)
+    @Length(max = 5)
+    @Column(length = 5)
     private String valueSampa;
     
 //    @NotNull
