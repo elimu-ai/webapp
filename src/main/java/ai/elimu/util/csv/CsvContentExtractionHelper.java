@@ -397,9 +397,9 @@ public class CsvContentExtractionHelper {
 //                    ContentLicense contentLicense = ContentLicense.valueOf(csvRecord.get("content_license"));
 //                    storyBookGson.setContentLicense(contentLicense);
 //                }
-//                
-//                String attributionUrl = csvRecord.get("attribution_url");
-//                storyBookGson.setAttributionUrl(attributionUrl);
+                
+                String attributionUrl = csvRecord.get("attribution_url");
+                storyBookGson.setAttributionUrl(attributionUrl);
                 
                 if (StringUtils.isNotBlank(csvRecord.get("grade_level"))) {
                     GradeLevel gradeLevel = GradeLevel.valueOf(csvRecord.get("grade_level"));
