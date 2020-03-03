@@ -34,6 +34,17 @@ public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableD
             "SELECT s " +
             "FROM Syllable s " +
             "WHERE s.language = :language " +
+            "ORDER BY s.text")
+            .setParameter("language", language)
+            .getResultList();
+    }
+    
+    @Override
+    public List<Syllable> readAllOrderedByUsage(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT s " +
+            "FROM Syllable s " +
+            "WHERE s.language = :language " +
             "ORDER BY s.usageCount DESC, s.text")
             .setParameter("language", language)
             .getResultList();
