@@ -2,7 +2,6 @@ package ai.elimu.rest.v2;
 
 import ai.elimu.util.JsonLoader;
 import org.apache.log4j.Logger;
-import org.hamcrest.CoreMatchers;
 import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONObject;
 import static org.junit.Assert.assertThat;
