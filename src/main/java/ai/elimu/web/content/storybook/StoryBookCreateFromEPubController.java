@@ -32,6 +32,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -158,7 +159,13 @@ public class StoryBookCreateFromEPubController {
                     logger.info("coverImageUri: " + coverImageUri);
                     byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
                     storyBookCoverImage.setBytes(coverImageBytes);
-                    if (coverImageFile.getName().toLowerCase().endsWith(".png")) {
+                    byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
+                    byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+                    byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+                    if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+                        storyBookCoverImage.setContentType("image/gif");
+                        storyBookCoverImage.setImageFormat(ImageFormat.GIF);
+                    } else if (coverImageFile.getName().toLowerCase().endsWith(".png")) {
                         storyBookCoverImage.setContentType("image/png");
                         storyBookCoverImage.setImageFormat(ImageFormat.PNG);
                     } else if (coverImageFile.getName().toLowerCase().endsWith(".jpg") || coverImageFile.getName().toLowerCase().endsWith(".jpeg")) {
@@ -218,7 +225,13 @@ public class StoryBookCreateFromEPubController {
                             Image chapterImage = new Image();
                             chapterImage.setLanguage(language);
                             chapterImage.setBytes(chapterImageBytes);
-                            if (chapterImageFile.getName().toLowerCase().endsWith(".png")) {
+                            byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
+                            byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+                            byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+                            if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+                                chapterImage.setContentType("image/gif");
+                                chapterImage.setImageFormat(ImageFormat.GIF);
+                            } else if (chapterImageFile.getName().toLowerCase().endsWith(".png")) {
                                 chapterImage.setContentType("image/png");
                                 chapterImage.setImageFormat(ImageFormat.PNG);
                             } else if (chapterImageFile.getName().toLowerCase().endsWith(".jpg") || chapterImageFile.getName().toLowerCase().endsWith(".jpeg")) {

@@ -21,6 +21,7 @@ import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,7 +87,13 @@ public class ImageCreateController {
             } else {
                 String originalFileName = multipartFile.getOriginalFilename();
                 logger.info("originalFileName: " + originalFileName);
-                if (originalFileName.toLowerCase().endsWith(".png")) {
+                
+                byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
+                byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+                byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+                if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+                    image.setImageFormat(ImageFormat.GIF);
+                } else if (originalFileName.toLowerCase().endsWith(".png")) {
                     image.setImageFormat(ImageFormat.PNG);
                 } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
                     image.setImageFormat(ImageFormat.JPG);
