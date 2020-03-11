@@ -26,6 +26,17 @@ public class EPubImageExtractionHelperTest {
     }
     
     @Test
+    public void testExtractImageReferenceFromChapterFile_BEN_SW_11791() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_2.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertThat(imageReference, is("image_2.jpg"));
+    }
+    
+    @Test
     public void testExtractImageReferenceFromChapterFile_FIL_LRA_faa0d66e() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
         Resource resource = resourceLoader.getResource("fil-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");

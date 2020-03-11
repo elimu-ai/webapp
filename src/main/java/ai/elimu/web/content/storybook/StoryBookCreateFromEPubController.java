@@ -316,7 +316,7 @@ public class StoryBookCreateFromEPubController {
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
                 Image chapterImage = storyBookChapter.getImage();
                 if (chapterImage != null) {
-                    chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + storyBookChapter.getSortOrder());
+                    chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
                     imageDao.create(chapterImage);
                 }
             }
