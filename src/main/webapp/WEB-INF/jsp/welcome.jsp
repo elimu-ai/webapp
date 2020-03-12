@@ -92,13 +92,12 @@
                     Each child is guided through the curriculum by our AI tutor <i>Nya</i> and her robot companion.
                 </p>
                 <p>
-                    Nya automatically 
-                    detects the current knowledge level of the child, and adapts the 
-                    apps and content to best fit the child's current skill level.
+                    Nya automatically detects the current knowledge level of the child, and adapts the apps and content 
+                    to best fit the child's current skill level.
                 </p>
             </div>
             <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/27411324-edec40ac-56e4-11e7-8207-1a05c770024d.png" />
+                <img src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" />
             </div>
         </div>
         
@@ -112,7 +111,7 @@
                     Each child is provided with a clear instructional path for learning literacy and numeracy as efficiently as possible.
                 </p>
                 <p>
-                    The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
+                    As the child demonstrates mastery of prerequisite skills, the AI tutor gradually unlocks more advanced content.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -122,9 +121,12 @@
         
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Free and Open-Source Software 👩🏽‍💻</h5>
+                <h5 class="header">Free and Open Source Software 👩🏽‍💻</h5>
                 <p>
                     Our goal is to quickly distribute the solution to as many children as possible, and we believe that using <i>open source</i> software will enable this.
+                </p>
+                <p>
+                    The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
                 </p>
                 <p>
                     Anyone is welcome to take the existing code and adapt it to their local needs.
