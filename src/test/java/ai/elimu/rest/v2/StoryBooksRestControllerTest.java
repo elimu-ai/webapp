@@ -3,6 +3,7 @@ package ai.elimu.rest.v2;
 import ai.elimu.util.JsonLoader;
 import org.apache.log4j.Logger;
 import static org.hamcrest.CoreMatchers.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -26,5 +27,8 @@ public class StoryBooksRestControllerTest {
         
         JSONObject storyBookJsonObject = jsonObject.getJSONArray("storyBooks").getJSONObject(0);
         assertThat(storyBookJsonObject.getString("title"), not(nullValue()));
+        
+        JSONArray chaptersJsonArray = storyBookJsonObject.getJSONArray("storyBookChapters");
+        assertThat(chaptersJsonArray.length() > 0, is(true));
     }
 }

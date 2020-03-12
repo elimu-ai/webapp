@@ -1,12 +1,17 @@
 package ai.elimu.rest.v2;
 
+import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.gson.content.StoryBookChapterGson;
 import ai.elimu.model.gson.content.StoryBookGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -26,6 +31,9 @@ public class StoryBooksRestController {
     @Autowired
     private StoryBookDao storyBookDao;
     
+    @Autowired
+    private StoryBookChapterDao storyBookChapterDao;
+    
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest(HttpServletRequest request) {
         logger.info("handleGetRequest");
@@ -36,6 +44,15 @@ public class StoryBooksRestController {
         JSONArray storyBooksJsonArray = new JSONArray();
         for (StoryBook storyBook : storyBookDao.readAllOrdered(language)) {
             StoryBookGson storyBookGson = JavaToGsonConverter.getStoryBookGson(storyBook);
+            
+            List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
+            for (StoryBookChapter storyBookChapter : storyBookChapterDao.readAll(storyBook)) {
+                StoryBookChapterGson storyBookChapterGson = JavaToGsonConverter.getStoryBookChapter(storyBookChapter);
+                storyBookChapterGson.setStoryBook(null);
+                storyBookChapterGsons.add(storyBookChapterGson);
+            }
+            storyBookGson.setStoryBookChapters(storyBookChapterGsons);
+            
             String json = new Gson().toJson(storyBookGson);
             storyBooksJsonArray.put(new JSONObject(json));
         }
