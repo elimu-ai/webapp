@@ -20,6 +20,9 @@ See [INSTALL.md](INSTALL.md)
 ## Contributing guidelines
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## Localization
+See [LOCALIZE.md](LOCALIZE.md)
+
 ## Continuous integration
 Travis: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
 
