@@ -1,10 +1,8 @@
-# Localize
+# How to Localize the Software
 
-## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿
+## Currently Supported Languages
 
-A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/master/src/main/java/ai/elimu/model/enums/Language.java
-
-The default language used during development is English. To switch to another language, edit the `content.language` property in [src/main/resources/config.properties](src/main/resources/config.properties).
+See [INSTALL.md](INSTALL.md#supported-languages-)
 
 ## Adding Support for a New Language
 
