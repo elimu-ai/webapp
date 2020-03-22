@@ -1,9 +1,20 @@
 package ai.elimu.rest.v2.analytics;
 
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.enums.analytics.LearningEventType;
+import ai.elimu.model.gson.analytics.StoryBookLearningEventGson;
 import ai.elimu.util.ConfigHelper;
 import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Calendar;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
@@ -46,11 +57,54 @@ public class StoryBookLearningEventsController {
             logger.info("Storing CSV file at " + csvFile);
             multipartFile.transferTo(csvFile);
             
-            // Convert the events from CSV to Java
-            // TODO
-            
-            // Store the events in the database
-            // TODO
+            // Iterate each row in the CSV file
+            Path csvFilePath = Paths.get(csvFile.toURI());
+            logger.info("csvFilePath: " + csvFilePath);
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT
+                    .withHeader(
+                            "time",
+                            "android_id",
+                            "package_name",
+                            "storybook_id",
+                            "learning_event_type"
+                    )
+                    .withSkipHeaderRecord();
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                logger.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to GSON
+                
+                StoryBookLearningEventGson storyBookLearningEventGson = new StoryBookLearningEventGson();
+                
+                long timeInMillis = Long.valueOf(csvRecord.get("time"));
+                Calendar time = Calendar.getInstance();
+                time.setTimeInMillis(timeInMillis);
+                storyBookLearningEventGson.setTime(time);
+                
+                String androidId = csvRecord.get("android_id");
+                storyBookLearningEventGson.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                storyBookLearningEventGson.setPackageName(packageName);
+                
+                Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
+                storyBookLearningEventGson.setStoryBookId(storyBookId);
+                
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                    storyBookLearningEventGson.setLearningEventType(learningEventType);
+                }
+                
+                
+                // Convert from GSON to JPA
+                // TODO
+                
+                
+                // Store the event in the database
+                // TODO
+            }
         } catch (IOException ex) {
             logger.error(null, ex);
         }
