@@ -1,8 +1,13 @@
 package ai.elimu.rest.v2.analytics;
 
+import ai.elimu.dao.ApplicationDao;
+import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookLearningEventDao;
+import ai.elimu.model.admin.Application;
+import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.analytics.LearningEventType;
-import ai.elimu.model.gson.analytics.StoryBookLearningEventGson;
 import ai.elimu.util.ConfigHelper;
 import java.io.File;
 import java.io.IOException;
@@ -11,12 +16,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Calendar;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,12 +34,24 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "/rest/v2/analytics/storybook-learning-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class StoryBookLearningEventsController {
+public class StoryBookLearningEventsRestController {
     
     private Logger logger = Logger.getLogger(getClass());
     
+    @Autowired
+    private StoryBookLearningEventDao storyBookLearningEventDao;
+    
+    @Autowired
+    private ApplicationDao applicationDao;
+    
+    @Autowired
+    private StoryBookDao storyBookDao;
+    
     @RequestMapping(value = "/csv", method = RequestMethod.POST)
-    public String handleUploadCsvRequest(@RequestParam("file") MultipartFile multipartFile) {
+    public String handleUploadCsvRequest(
+            @RequestParam("file") MultipartFile multipartFile,
+            HttpServletResponse response
+    ) {
         logger.info("handleUploadCsvRequest");
         
         String name = multipartFile.getName();
@@ -43,6 +63,7 @@ public class StoryBookLearningEventsController {
         String contentType = multipartFile.getContentType();
         logger.info("contentType: " + contentType);
         
+        JSONObject jsonObject = new JSONObject();
         try {
             byte[] bytes = multipartFile.getBytes();
             logger.info("bytes.length: " + bytes.length);
@@ -74,43 +95,43 @@ public class StoryBookLearningEventsController {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                // Convert from CSV to GSON
+                // Convert from CSV to Java
                 
-                StoryBookLearningEventGson storyBookLearningEventGson = new StoryBookLearningEventGson();
+                StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                 
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
                 Calendar time = Calendar.getInstance();
                 time.setTimeInMillis(timeInMillis);
-                storyBookLearningEventGson.setTime(time);
+                storyBookLearningEvent.setTime(time);
                 
                 String androidId = csvRecord.get("android_id");
-                storyBookLearningEventGson.setAndroidId(androidId);
+                storyBookLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
-                storyBookLearningEventGson.setPackageName(packageName);
+                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+                Application application = applicationDao.readByPackageName(language, packageName);
+                storyBookLearningEvent.setApplication(application);
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
-                storyBookLearningEventGson.setStoryBookId(storyBookId);
+                StoryBook storyBook = storyBookDao.read(storyBookId);
+                storyBookLearningEvent.setStoryBook(storyBook);
                 
-                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
-                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                    storyBookLearningEventGson.setLearningEventType(learningEventType);
-                }
-                
-                
-                // Convert from GSON to JPA
-                // TODO
-                
+                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                storyBookLearningEvent.setLearningEventType(learningEventType);
                 
                 // Store the event in the database
-                // TODO
+                storyBookLearningEventDao.create(storyBookLearningEvent);
+                logger.info("Stored StoryBookLearningEvent in database with ID " + storyBookLearningEvent.getId());
+                
+                jsonObject.put("result", "success");
             }
-        } catch (IOException ex) {
+        } catch (IOException | DataAccessException ex) {
             logger.error(null, ex);
+            
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", ex.getMessage());
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
-        
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("result", "success");
         
         String jsonResponse = jsonObject.toString();
         logger.info("jsonResponse: " + jsonResponse);
