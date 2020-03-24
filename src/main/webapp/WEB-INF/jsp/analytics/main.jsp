@@ -3,5 +3,20 @@
 </content:title>
 
 <content:section cssId="mainAnalyticsPage">
-    TODO...
+    <div class="section row">
+        <div class="col s12">
+            <h5><fmt:message key="learning.events" /></h5>
+        </div>
+        
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title"><i class="material-icons">book</i> StoryBookLearningEvents</span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/analytics/storybook-learning-event/list' />"><fmt:message key="view.list" /> (${storyBookLearningEventsCount})</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </content:section>
