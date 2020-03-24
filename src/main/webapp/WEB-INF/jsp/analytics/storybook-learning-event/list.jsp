@@ -22,7 +22,7 @@
                     <c:forEach var="storyBookLearningEvent" items="${storyBookLearningEvents}">
                         <tr class="storyBookLearningEvent">
                             <td>
-                                <fmt:formatDate value="${storyBookLearningEvent.time.time}" type="both" timeStyle="short" />
+                                <fmt:formatDate value="${storyBookLearningEvent.time.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                             <td>
                                 ${storyBookLearningEvent.androidId}

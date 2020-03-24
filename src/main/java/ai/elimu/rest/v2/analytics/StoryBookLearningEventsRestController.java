@@ -64,6 +64,7 @@ public class StoryBookLearningEventsRestController {
         logger.info("contentType: " + contentType);
         
         JSONObject jsonObject = new JSONObject();
+        
         try {
             byte[] bytes = multipartFile.getBytes();
             logger.info("bytes.length: " + bytes.length);
@@ -84,6 +85,7 @@ public class StoryBookLearningEventsRestController {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
                     .withHeader(
+                            "id", // The Room database ID
                             "time",
                             "android_id",
                             "package_name",
@@ -110,6 +112,14 @@ public class StoryBookLearningEventsRestController {
                 String packageName = csvRecord.get("package_name");
                 Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
                 Application application = applicationDao.readByPackageName(language, packageName);
+                if (application == null) {
+                    // Return error message saying that the reporting Application has not yet been added
+                    logger.warn("The application " + packageName + " has not been added");
+                    
+                    jsonObject.put("result", "error");
+                    jsonObject.put("errorMessage", "The application " + packageName + " has not been added");
+                    response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+                }
                 storyBookLearningEvent.setApplication(application);
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
@@ -119,13 +129,26 @@ public class StoryBookLearningEventsRestController {
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 storyBookLearningEvent.setLearningEventType(learningEventType);
                 
-                // Store the event in the database
-                storyBookLearningEventDao.create(storyBookLearningEvent);
-                logger.info("Stored StoryBookLearningEvent in database with ID " + storyBookLearningEvent.getId());
-                
-                jsonObject.put("result", "success");
+                // Check if the event has already been stored in the database
+                StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(time, androidId, application, storyBook);
+                logger.info("existingStoryBookLearningEvent: " + existingStoryBookLearningEvent);
+                if (existingStoryBookLearningEvent == null) {
+                    // Store the event in the database
+                    storyBookLearningEventDao.create(storyBookLearningEvent);
+                    logger.info("Stored StoryBookLearningEvent in database with ID " + storyBookLearningEvent.getId());
+
+                    jsonObject.put("result", "success");
+                    jsonObject.put("successMessage", "The StoryBookLearningEvent was stored in the database");
+                } else {
+                    // Return error message saying that the event has already been uploaded
+                    logger.warn("The event has already been stored in the database");
+                    
+                    jsonObject.put("result", "error");
+                    jsonObject.put("errorMessage", "The event has already been stored in the database");
+                    response.setStatus(HttpStatus.CONFLICT.value());
+                }
             }
-        } catch (IOException | DataAccessException ex) {
+        } catch (Exception ex) {
             logger.error(null, ex);
             
             jsonObject.put("result", "error");
