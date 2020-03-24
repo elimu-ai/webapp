@@ -112,6 +112,7 @@ public class StoryBookLearningEventsRestController {
                 String packageName = csvRecord.get("package_name");
                 Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
                 Application application = applicationDao.readByPackageName(language, packageName);
+                logger.info("application: " + application);
                 if (application == null) {
                     // Return error message saying that the reporting Application has not yet been added
                     logger.warn("The Application " + packageName + " has not been added to the website");
@@ -126,8 +127,18 @@ public class StoryBookLearningEventsRestController {
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
                 StoryBook storyBook = storyBookDao.read(storyBookId);
+                logger.info("storyBook: " + storyBook);
                 storyBookLearningEvent.setStoryBook(storyBook);
-                
+                if (storyBook == null) {
+                    // Return error message saying that the StoryBook ID was not found
+                    logger.warn("A StoryBook with ID " + storyBookId + " was not found on the website");
+                    
+                    jsonObject.put("result", "error");
+                    jsonObject.put("errorMessage", "A StoryBook with ID " + storyBookId + " was not found on the website");
+                    response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+                    
+                    break;
+                }
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 storyBookLearningEvent.setLearningEventType(learningEventType);
                 
