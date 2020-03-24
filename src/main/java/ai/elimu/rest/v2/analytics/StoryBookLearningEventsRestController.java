@@ -115,10 +115,10 @@ public class StoryBookLearningEventsRestController {
                 logger.info("application: " + application);
                 if (application == null) {
                     // Return error message saying that the reporting Application has not yet been added
-                    logger.warn("The Application " + packageName + " has not been added to the website");
+                    logger.warn("An Application with package name " + packageName + " was not found");
                     
                     jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "The Application " + packageName + " has not been added to the website");
+                    jsonObject.put("errorMessage", "An Application with package name " + packageName + " was not found");
                     response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
                     
                     break;
@@ -131,10 +131,10 @@ public class StoryBookLearningEventsRestController {
                 storyBookLearningEvent.setStoryBook(storyBook);
                 if (storyBook == null) {
                     // Return error message saying that the StoryBook ID was not found
-                    logger.warn("A StoryBook with ID " + storyBookId + " was not found on the website");
+                    logger.warn("A StoryBook with ID " + storyBookId + " was not found");
                     
                     jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "A StoryBook with ID " + storyBookId + " was not found on the website");
+                    jsonObject.put("errorMessage", "A StoryBook with ID " + storyBookId + " was not found");
                     response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
                     
                     break;
