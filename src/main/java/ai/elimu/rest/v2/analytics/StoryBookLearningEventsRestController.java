@@ -114,11 +114,13 @@ public class StoryBookLearningEventsRestController {
                 Application application = applicationDao.readByPackageName(language, packageName);
                 if (application == null) {
                     // Return error message saying that the reporting Application has not yet been added
-                    logger.warn("The application " + packageName + " has not been added");
+                    logger.warn("The Application " + packageName + " has not been added to the website");
                     
                     jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "The application " + packageName + " has not been added");
+                    jsonObject.put("errorMessage", "The Application " + packageName + " has not been added to the website");
                     response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+                    
+                    break;
                 }
                 storyBookLearningEvent.setApplication(application);
                 
