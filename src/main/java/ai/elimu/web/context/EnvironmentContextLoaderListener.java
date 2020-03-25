@@ -49,7 +49,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
     	
         ServletContext servletContext = event.getServletContext();
         
-        // Fetch attribute set in the corresponding context file at jetty.home/contexts/
+        // Fetch attribute set in the corresponding context file at $JETTY_HOME/contexts/
         String envAttr = (String) servletContext.getAttribute("env");
         if (StringUtils.isNotBlank(envAttr)) {
             env = Environment.valueOf(envAttr);
