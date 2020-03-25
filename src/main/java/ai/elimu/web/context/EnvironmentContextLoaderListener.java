@@ -100,6 +100,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 PROPERTIES.load(resourceJdbc.getInputStream());
                 
                 String contentLanguage = (String) servletContext.getAttribute("content_language");
+                logger.info("contentLanguage: " + contentLanguage);
                 PROPERTIES.put("content.language", contentLanguage);
                 
                 String jdbcPasswordAttr = (String) servletContext.getAttribute("jdbc_password");

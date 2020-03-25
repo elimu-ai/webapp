@@ -14,7 +14,7 @@ This file is placed on the prod server under $JETTY_HOME/contexts/
   </Call>
   <Call name="setAttribute">
     <Arg>content_language</Arg>
-    <Arg>***</Arg>
+    <Arg>ENG</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_password</Arg>
@@ -34,12 +34,7 @@ This file is placed on the prod server under $JETTY_HOME/contexts/
   </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
-      <!--<Item>elimu.ai</Item>-->
-      <!--<Item>ben.elimu.ai</Item>-->
       <Item>eng.elimu.ai</Item>
-      <!--<Item>fil.elimu.ai</Item>-->
-      <!--<Item>hin.elimu.ai</Item>-->
-      <!--<Item>swa.elimu.ai</Item>-->
     </Array>
   </Set>
   <Set name="maxFormContentSize">1073741824</Set><!-- 1024MB -->
