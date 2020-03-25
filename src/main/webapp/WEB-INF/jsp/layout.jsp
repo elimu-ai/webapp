@@ -141,25 +141,25 @@
                                 <fmt:message key="languages.supported.by.the.platform" />: 
                                 <c:choose>
                                     <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
-                                        <a class="white-text" href="<spring:url value='/?lang=ben' />" title="বাংলা">ben</a>
+                                        <%--<a class="white-text" href="<spring:url value='/?lang=ben' />" title="বাংলা">ben</a>--%>
                                         <a class="white-text" href="<spring:url value='/?lang=eng' />" title="English">eng</a>
-                                        <a class="white-text" href="<spring:url value='/?lang=fil' />" title="Filipino">fil</a>
-                                        <a class="white-text" href="<spring:url value='/?lang=hin' />" title="हिंदी">hin</a>
-                                        <a class="white-text" href="<spring:url value='/?lang=swa' />" title="Kiswahili">swa</a>
+                                        <%--<a class="white-text" href="<spring:url value='/?lang=fil' />" title="Filipino">fil</a>--%>
+                                        <%--<a class="white-text" href="<spring:url value='/?lang=hin' />" title="हिंदी">hin</a>--%>
+                                        <%--<a class="white-text" href="<spring:url value='/?lang=swa' />" title="Kiswahili">swa</a>--%>
                                     </c:when>
                                     <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                        <a class="white-text" href="http://ben.test.elimu.ai" title="বাংলা">ben</a>
+                                        <%--<a class="white-text" href="http://ben.test.elimu.ai" title="বাংলা">ben</a>--%>
                                         <a class="white-text" href="http://eng.test.elimu.ai" title="English">eng</a>
-                                        <a class="white-text" href="http://fil.test.elimu.ai" title="Filipino">fil</a>
-                                        <a class="white-text" href="http://hin.test.elimu.ai" title="हिंदी">hin</a>
-                                        <a class="white-text" href="http://swa.test.elimu.ai" title="Kiswahili">swa</a>
+                                        <%--<a class="white-text" href="http://fil.test.elimu.ai" title="Filipino">fil</a>--%>
+                                        <%--<a class="white-text" href="http://hin.test.elimu.ai" title="हिंदी">hin</a>--%>
+                                        <%--<a class="white-text" href="http://swa.test.elimu.ai" title="Kiswahili">swa</a>--%>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="white-text" href="http://ben.elimu.ai" title="বাংলা">ben</a>
+                                        <%--<a class="white-text" href="http://ben.elimu.ai" title="বাংলা">ben</a>--%>
                                         <a class="white-text" href="http://eng.elimu.ai" title="English">eng</a>
-                                        <a class="white-text" href="http://fil.elimu.ai" title="Filipino">fil</a>
-                                        <a class="white-text" href="http://hin.elimu.ai" title="हिंदी">hin</a>
-                                        <a class="white-text" href="http://swa.elimu.ai" title="Kiswahili">swa</a>
+                                        <%--<a class="white-text" href="http://fil.elimu.ai" title="Filipino">fil</a>--%>
+                                        <%--<a class="white-text" href="http://hin.elimu.ai" title="हिंदी">hin</a>--%>
+                                        <%--<a class="white-text" href="http://swa.elimu.ai" title="Kiswahili">swa</a>--%>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
