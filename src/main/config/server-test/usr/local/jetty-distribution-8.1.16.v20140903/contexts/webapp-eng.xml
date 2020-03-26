@@ -17,6 +17,14 @@ This file is placed on the test server under $JETTY_HOME/contexts/
     <Arg>ENG</Arg>
   </Call>
   <Call name="setAttribute">
+    <Arg>jdbc_url</Arg>
+    <Arg>************</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>jdbc_username</Arg>
+    <Arg>************</Arg>
+  </Call>
+  <Call name="setAttribute">
     <Arg>jdbc_password</Arg>
     <Arg>************</Arg>
   </Call>

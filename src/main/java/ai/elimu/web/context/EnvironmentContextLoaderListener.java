@@ -103,6 +103,12 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 logger.info("contentLanguage: " + contentLanguage);
                 PROPERTIES.put("content.language", contentLanguage);
                 
+                String jdbcUrl = (String) servletContext.getAttribute("jdbc_url");
+                PROPERTIES.put("jdbc.url", jdbcUrl);
+                
+                String jdbcUsername = (String) servletContext.getAttribute("jdbc_username");
+                PROPERTIES.put("jdbc.username", jdbcUsername);
+                
                 String jdbcPasswordAttr = (String) servletContext.getAttribute("jdbc_password");
                 PROPERTIES.put("jdbc.password", jdbcPasswordAttr);
                 
