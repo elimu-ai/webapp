@@ -18,9 +18,9 @@ To configure the web application to run on a new server, perform the following:
     
 2. Create database:
 
-    1. `# mysql -u root -p`
+    1. `mysql -u root -p`
     1. ``MariaDB [(none)]> CREATE DATABASE `webapp-eng` CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;``
-    1. ``USE `webapp-eng`;``
+    1. ``MariaDB [(none)]> USE `webapp-eng`;``
     1. Create a database user.
     1. Grant all rights on the database to the newly created user.
     1. Import backup of existing database content (if any): `SOURCE webapp-<date>.sql`
