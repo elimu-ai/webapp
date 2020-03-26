@@ -22,9 +22,9 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         logger.info("Performing database migration...");
         new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
         
-        if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            // To ease development, pre-populate database with educational content extracted from the test server
-            
+//        if (EnvironmentContextLoaderListener.env == Environment.DEV) {
+//            // To ease development, pre-populate database with educational content extracted from the test server
+//            
             // Lookup the language of the educational content from the config file
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
             logger.info("language: " + language);
@@ -32,7 +32,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             // Import the educational content
             logger.info("Performing database content import...");
             new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, webApplicationContext);
-        }
+//        }
 
         return webApplicationContext;
     }
