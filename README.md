@@ -24,7 +24,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 See [LOCALIZE.md](LOCALIZE.md)
 
 ## Continuous integration
-Travis: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
+Travis CI: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
 
 ## Issue management
 See https://github.com/elimu-ai/webapp/projects
