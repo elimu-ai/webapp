@@ -12,7 +12,6 @@ import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,10 +34,8 @@ public class StoryBooksRestController {
     private StoryBookChapterDao storyBookChapterDao;
     
     @RequestMapping(method = RequestMethod.GET)
-    public String handleGetRequest(HttpServletRequest request) {
+    public String handleGetRequest() {
         logger.info("handleGetRequest");
-        
-        logger.info("request.getQueryString(): " + request.getQueryString());
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         JSONArray storyBooksJsonArray = new JSONArray();
