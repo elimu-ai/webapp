@@ -12,7 +12,7 @@
         <!DOCTYPE html>
         <html lang="en">
             <head>
-                <title><content:gettitle /> | elimu.ai</title>
+                <title><content:gettitle /> | ${fn:toLowerCase(applicationScope.configProperties['content.language'])}.elimu.ai</title>
 
                 <meta charset="UTF-8" />
 
