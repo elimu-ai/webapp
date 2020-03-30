@@ -63,14 +63,14 @@ public class WordUsageCountScheduler {
                     }
                 }
                 
-                Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(paragraphs, language    );
+                Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(paragraphs, language);
                 for (String key : wordFrequencyMapForBook.keySet()) {
                     int wordFrequency = wordFrequencyMapForBook.get(key);
-                    String wordLowerCase = key.toLowerCase();
-                    if (!wordFrequencyMap.containsKey(wordLowerCase)) {
-                        wordFrequencyMap.put(wordLowerCase, wordFrequency);
+                    String word = key;
+                    if (!wordFrequencyMap.containsKey(word)) {
+                        wordFrequencyMap.put(word, wordFrequency);
                     } else {
-                        wordFrequencyMap.put(wordLowerCase, wordFrequencyMap.get(wordLowerCase) + wordFrequency);
+                        wordFrequencyMap.put(word, wordFrequencyMap.get(word) + wordFrequency);
                     }
                 }
             }
