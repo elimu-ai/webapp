@@ -118,12 +118,4 @@
             content:title tag.
         </description>
   </tag>
-  <tag>
-    <name>getversion</name>
-    <body-content>empty</body-content>
-    <tag-class>ai.elimu.web.tags.GetVersionTag</tag-class>
-    <description>
-            The content:getversion tag display the application version
-        </description>
-  </tag>
 </taglib>

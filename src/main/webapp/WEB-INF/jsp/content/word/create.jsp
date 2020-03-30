@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="word" />
 
             <div class="row">
-                <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
                 <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
                 
                 <div class="input-field col s12">
@@ -17,14 +17,42 @@
                     <form:input path="text" cssErrorClass="error" />
                 </div>
                 
+                <div class="col s12">
+                    <label><fmt:message key="allophones" /></label><br />
+                    /<span id="selectedAllophonesContainer">
+                        <c:forEach var="allophone" items="${word.allophones}">
+                            <input name="allophones" type="hidden" value="${allophone.id}" />
+                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
+                                ${allophone.valueIpa} 
+                                <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
+                                    <i class="material-icons">clear</i>
+                                </a>
+                            </div>
+                        </c:forEach>
+                        <script>
+                            $(function() {
+                                $('.allophoneDeleteLink').on("click", function() {
+                                    console.log('.allophoneDeleteLink on click');
+                                    
+                                    var allophoneId = $(this).attr("data-allophoneid");
+                                    console.log('allophoneId: ' + allophoneId);
+                                    
+                                    $(this).parent().remove();
+                                    
+                                    var $hiddenInput = $('input[name="allophones"][value="' + allophoneId + '"]');
+                                    $hiddenInput.remove();
+                                });
+                            });
+                        </script>
+                    </span>/
+                </div>
+                
                 <div class="input-field col s12">
-                    <form:label path="phonetics" cssErrorClass="error"><fmt:message key='phonetics' /> (IPA)</form:label>
-                    <form:input path="phonetics" cssErrorClass="error" />
                     <div id="allophonesContainer">
                         <c:forEach var="allophone" items="${allophones}">
-                            <a href="#" class="allophone chip" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
+                            <a href="#" class="allophone chip" data-allophoneid="${allophone.id}" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
                             <audio id="audio_sampa_${allophone.valueSampa}">
-                                <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+                                <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
                             </audio>
                         </c:forEach>
                         <script>
@@ -33,13 +61,18 @@
                                 $('#allophonesContainer .chip').click(function(event) {
                                     console.info('#allophonesContainer .chip click');
                                     event.preventDefault();
-                                    var valueIpa = $(this).html();
-                                    console.info('valueIpa: ' + valueIpa);
-                                    $('#phonetics').val($('#phonetics').val() + valueIpa);
-                                    $('#phonetics').focus();
+                                    
+                                    var allophoneId = $(this).attr("data-allophoneid");
+                                    console.log('allophoneId: ' + allophoneId);
+                                    
+                                    var allophoneValueIpa = $(this).html();
+                                    console.info('allophoneValueIpa: ' + allophoneValueIpa);
+                                    
+                                    $('#selectedAllophonesContainer').append('<input name="allophones" type="hidden" value="' + allophoneId + '" />');
+                                    $('#selectedAllophonesContainer').append('<div class="chip">' + allophoneValueIpa + '</div>');
                                 });
                                 
-                                // Play sound when hovering its IPA value
+                                // Play sound when hovering IPA value
                                 $('.allophone').mouseenter(function() {
                                     console.info('.allophone mouseenter');
                                     

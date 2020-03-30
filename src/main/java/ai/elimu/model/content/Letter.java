@@ -21,11 +21,9 @@ public class Letter extends Content {
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Allophone> allophones;
+    private List<Allophone> allophones; // TODO: handle Letters that can be represented by multiple sets (lists) of Allophones (e.g. the letter 'a' in English)
     
-    @Length(max = 1)
-    @Column(length = 1)
-    private String braille;
+    private boolean diacritic;
     
     private int usageCount; // Based on StoryBook content (all difficulty levels)
 
@@ -45,12 +43,12 @@ public class Letter extends Content {
         this.allophones = allophones;
     }
     
-    public String getBraille() {
-        return braille;
+    public boolean isDiacritic() {
+        return diacritic;
     }
 
-    public void setBraille(String braille) {
-        this.braille = braille;
+    public void setDiacritic(boolean diacritic) {
+        this.diacritic = diacritic;
     }
 
     public int getUsageCount() {

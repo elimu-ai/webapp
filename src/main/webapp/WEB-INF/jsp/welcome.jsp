@@ -59,7 +59,8 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">The elimu.ai Foundation develops open source software for teaching children the basics of reading, writing and arithmetic.</p>
+              <p class="light center">We develop software for teaching children the basics of reading, writing and arithmetic.</p>
+              <p class="light center">An AI tutor guides each child through the necessary steps.</p>
             </div>
           </div>
         </div>
@@ -91,13 +92,12 @@
                     Each child is guided through the curriculum by our AI tutor <i>Nya</i> and her robot companion.
                 </p>
                 <p>
-                    Nya automatically 
-                    detects the current knowledge level of the child, and adapts the 
-                    apps and content to best fit the child's current skill level.
+                    Nya automatically detects the current knowledge level of the child, and adapts the apps and content 
+                    to best fit the child's current skill level.
                 </p>
             </div>
             <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/27411324-edec40ac-56e4-11e7-8207-1a05c770024d.png" />
+                <img src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" />
             </div>
         </div>
         
@@ -111,7 +111,7 @@
                     Each child is provided with a clear instructional path for learning literacy and numeracy as efficiently as possible.
                 </p>
                 <p>
-                    The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
+                    As the child demonstrates mastery of prerequisite skills, the AI tutor gradually unlocks more advanced content.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -121,9 +121,12 @@
         
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Free and Open-Source Software 👩🏽‍💻</h5>
+                <h5 class="header">Free and Open Source Software 👩🏽‍💻</h5>
                 <p>
                     Our goal is to quickly distribute the solution to as many children as possible, and we believe that using <i>open source</i> software will enable this.
+                </p>
+                <p>
+                    The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
                 </p>
                 <p>
                     Anyone is welcome to take the existing code and adapt it to their local needs.
@@ -148,7 +151,7 @@
             <div class="col s12 m3">
                 <div class="icon-block center">
                     <h2><i class="material-icons medium blue-grey-text">archive</i></h2>
-                    <h5><fmt:message key="download.the.software" /></h5>
+                    <h5><fmt:message key="download.and.test.the.software" /></h5>
                     
                     For instructions on how to download and install the elimu.ai software, 
                     see our <a href="https://github.com/elimu-ai/appstore">GitHub repository</a>.
@@ -159,12 +162,11 @@
             <div class="col s12 offset-m1 m4 z-depth-2 white center">
                 <div class="icon-block" style="padding: 1em;">
                   <h2><i class="material-icons large deep-purple-text">group</i></h2>
-                  <h4><fmt:message key="join.a.team" /></h4>
+                  <h4><fmt:message key="help.improve.the.software" /></h4>
                   
                   <p>
-                      You are welcome to join a team matching your skill set and 
-                      become an active contributor. We will help introduce you 
-                      to team members and tasks.
+                      You are welcome to join us in building the code, or adding more educational content to the 
+                      platform.
                   </p>
                   <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light deep-purple"><fmt:message key="join.now" /></a>
                 </div>
@@ -173,10 +175,11 @@
                   
             <div class="col s12 offset-m1 m3 center">
                 <div class="icon-block">
-                  <h2><i class="material-icons medium">record_voice_over</i></h2>
-                  <h5><fmt:message key="spread.the.word" /></h5>
+                  <h2><i class="material-icons medium">local_shipping</i></h2>
+                  <h5><fmt:message key="distribute.the.software" /></h5>
                   
-                  <p>Follow us on social media and share our work with your friends (see links below).</p>
+                  <p>Do you live near a child who does not have access to quality basic education? Help us distribute 
+                  the learning software.</p>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Used as layer between Controllers and DAOs in order to enable usage of caching.
- * <p>
+ * <p />
  * Spring caching feature works over AOP proxies, thus internal calls to cached methods don't work. That's why this 
  * intermediate service is used. See https://stackoverflow.com/a/48168762
  */
@@ -38,13 +38,13 @@ public class JsonService {
     private ApplicationVersionDao applicationVersionDao;
     
     @Cacheable("applications")
-    public JSONArray getApplications(Locale locale) {
+    public JSONArray getApplications(Language language) {
         logger.info("getApplications");
         
         Date dateStart = new Date();
         
         JSONArray applications = new JSONArray();
-        for (Application application : applicationDao.readAll(locale)) {
+        for (Application application : applicationDao.readAll(language)) {
             ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
 
             List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
@@ -66,7 +66,7 @@ public class JsonService {
     }
     
     @CacheEvict("applications")
-    public void refreshApplications(Locale locale) {
+    public void refreshApplications(Language language) {
         logger.info("refreshApplications");
     }
 }

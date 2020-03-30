@@ -1,0 +1,4 @@
+# 2.1.33
+
+ALTER TABLE StoryBookParagraph MODIFY originalText VARCHAR(1024) COLLATE utf8mb4_bin NOT NULL;
+ALTER TABLE StoryBook MODIFY description VARCHAR(1024) DEFAULT NULL;

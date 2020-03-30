@@ -23,7 +23,7 @@ public class Image extends Multimedia {
     @Enumerated(EnumType.STRING)
     private ImageFormat imageFormat;
     
-    @NotNull
+//    @NotNull
     private String dominantColor; // Web color
 
     public String getTitle() {

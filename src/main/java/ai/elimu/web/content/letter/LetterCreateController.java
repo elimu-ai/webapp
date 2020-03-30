@@ -2,15 +2,15 @@ package ai.elimu.web.content.letter;
 
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,16 +32,15 @@ public class LetterCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
-            HttpSession session,
             Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Letter letter = new Letter();
         model.addAttribute("letter", letter);
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+        List<Allophone> allophones = allophoneDao.readAllOrdered(language);
         model.addAttribute("allophones", allophones);
 
         return "content/letter/create";
@@ -49,15 +48,14 @@ public class LetterCreateController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             @Valid Letter letter,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        Letter existingLetter = letterDao.readByText(letter.getLocale(), letter.getText());
+        Letter existingLetter = letterDao.readByText(language, letter.getText());
         if (existingLetter != null) {
             result.rejectValue("text", "NonUnique");
         }
@@ -65,7 +63,7 @@ public class LetterCreateController {
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
             
-            List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(contributor.getLocale());
+            List<Allophone> allophones = allophoneDao.readAllOrdered(language);
             model.addAttribute("allophones", allophones);
             
             return "content/letter/create";

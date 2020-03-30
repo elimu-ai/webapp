@@ -2,17 +2,15 @@ package ai.elimu.web.content.number;
 
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +33,6 @@ public class NumberEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
-            HttpSession session,
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
@@ -43,8 +40,8 @@ public class NumberEditController {
         Number number = numberDao.read(id);
         model.addAttribute("number", number);
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        List<Word> words = wordDao.readAllOrdered(language);
         model.addAttribute("words", words);
 
         return "content/number/edit";
@@ -52,23 +49,22 @@ public class NumberEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             @Valid Number number,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Number existingNumber = numberDao.readByValue(number.getLocale(), number.getValue());
+        Number existingNumber = numberDao.readByValue(number.getLanguage(), number.getValue());
         if ((existingNumber != null) && !existingNumber.getId().equals(number.getId())) {
             result.rejectValue("value", "NonUnique");
         }
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (result.hasErrors()) {
             model.addAttribute("number", number);
             
-            List<Word> words = wordDao.readAllOrdered(contributor.getLocale());
+            List<Word> words = wordDao.readAllOrdered(language);
             model.addAttribute("words", words);
             
             return "content/number/edit";

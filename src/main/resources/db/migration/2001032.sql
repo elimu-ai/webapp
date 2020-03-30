@@ -1,0 +1,3 @@
+# 2.1.32
+
+ALTER TABLE StoryBook MODIFY readingLevel VARCHAR(255) DEFAULT NULL;

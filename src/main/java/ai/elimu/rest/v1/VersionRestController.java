@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +33,7 @@ public class VersionRestController {
     @RequestMapping("/read")
     public String read(
             HttpServletRequest request,
-            @RequestParam Locale locale,
+            @RequestParam Language language,
             @RequestParam String applicationId,
             @RequestParam Integer appVersionCode,
             @RequestParam String osVersion) {
@@ -42,7 +42,7 @@ public class VersionRestController {
         logger.info("request.getQueryString(): " + request.getQueryString());
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
-        Application appStoreApplication = applicationDao.readByPackageName(locale, "ai.elimu.appstore");
+        Application appStoreApplication = applicationDao.readByPackageName(language, "ai.elimu.appstore");
         if (appStoreApplication != null) {
             // TODO: fetch dynamically from Application/ApplicationVersion
         }

@@ -9,10 +9,8 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.VideoDao;
-import ai.elimu.dao.VideoRevisionEventDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.contributor.VideoRevisionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.VideoFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
@@ -38,9 +36,6 @@ public class VideoCreateController {
     
     @Autowired
     private VideoDao videoDao;
-    
-    @Autowired
-    private VideoRevisionEventDao videoRevisionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -72,7 +67,7 @@ public class VideoCreateController {
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Video existingVideo = videoDao.read(video.getTitle(), video.getLocale());
+            Video existingVideo = videoDao.read(video.getTitle(), video.getLanguage());
             if (existingVideo != null) {
                 result.rejectValue("title", "NonUnique");
             }
@@ -144,13 +139,6 @@ public class VideoCreateController {
             video.setTitle(video.getTitle().toLowerCase());
             video.setTimeLastUpdate(Calendar.getInstance());
             videoDao.create(video);
-            
-            VideoRevisionEvent videoRevisionEvent = new VideoRevisionEvent();
-            videoRevisionEvent.setContributor(contributor);
-            videoRevisionEvent.setCalendar(Calendar.getInstance());
-            videoRevisionEvent.setVideo(video);
-            videoRevisionEvent.setTitle(video.getTitle());
-            videoRevisionEventDao.create(videoRevisionEvent);
             
             return "redirect:/content/multimedia/video/list#" + video.getId();
         }

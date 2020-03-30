@@ -10,18 +10,21 @@ import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Word extends Content {
 
+    @Deprecated // TODO: replace with list of Letters
     @NotNull
     private String text;
     
-    @Deprecated
-    @NotNull
-    private String phonetics; // IPA
-    
 //    @NotEmpty
+    @OrderColumn
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Letter> letters;
+    
+    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
@@ -31,23 +34,26 @@ public class Word extends Content {
     @Enumerated(EnumType.STRING)
     private WordType wordType;
     
+//    @NotNull
     @Enumerated(EnumType.STRING)
     private SpellingConsistency spellingConsistency;
 
+    @Deprecated
     public String getText() {
         return text;
     }
 
+    @Deprecated
     public void setText(String text) {
         this.text = text;
     }
-
-    public String getPhonetics() {
-        return phonetics;
+    
+    public List<Letter> getLetters() {
+        return letters;
     }
 
-    public void setPhonetics(String phonetics) {
-        this.phonetics = phonetics;
+    public void setLetters(List<Letter> letters) {
+        this.letters = letters;
     }
     
     public List<Allophone> getAllophones() {

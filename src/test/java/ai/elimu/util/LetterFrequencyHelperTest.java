@@ -1,5 +1,6 @@
 package ai.elimu.util;
 
+import ai.elimu.model.enums.Language;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,17 +8,14 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-import ai.elimu.model.content.StoryBook;
 
 public class LetterFrequencyHelperTest {
 
     @Test
     public void testGetLetterFrequency() {
-        StoryBook storyBook = new StoryBook();
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look.\"");
-        storyBook.setParagraphs(paragraphs);
-        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(storyBook);
+        Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, Language.ENG);
         assertThat(letterFrequencyMap.get("o"), is(5));
         assertThat(letterFrequencyMap.get("e"), is(3));
         assertThat(letterFrequencyMap.get("l"), is(3));

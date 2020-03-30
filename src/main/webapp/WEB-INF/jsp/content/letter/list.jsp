@@ -4,6 +4,11 @@
 
 <content:section cssId="letterListPage">
     <div class="section row">
+        <a class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/content/letter/list/letters.csv' />">
+            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
@@ -13,8 +18,8 @@
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="letter" /></th>
-                    <th><fmt:message key="phonetics" /></th>
-                    <th>Braille</th>
+                    <th><fmt:message key="allophones" /></th>
+                    <th><fmt:message key="diacritic" /></th>
                     <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
@@ -32,20 +37,20 @@
                                 <a name="${letter.id}"></a>
                                 ${letter.text}
                             </td>
-                            <td>
+                            <td style="font-size: 2em;">
                                 /<c:forEach var="allophone" items="${letter.allophones}">
                                     ${allophone.valueIpa} 
                                 </c:forEach>/
                             </td>
                             <td>
-                                <span style="border: 1px solid rgba(0,0,0, 0.20); padding: 0.5em;">
-                                    ${letter.braille}
-                                </span>
+                                ${letter.diacritic}
                             </td>
                             <td>
-                                <audio controls="true">
-                                    <source src="<spring:url value='/static/audio/${locale.language}/sampa_${letter.text}.wav' />" />
-                                </audio>
+                                <c:forEach var="allophone" items="${letter.allophones}">
+                                    <audio controls="true">
+                                        <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
+                                    </audio><br />
+                                </c:forEach>
                             </td>
                             <td>
                                 <p>#${letter.revisionNumber}</p>
@@ -59,6 +64,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">text_format</i></a>
+        <a href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

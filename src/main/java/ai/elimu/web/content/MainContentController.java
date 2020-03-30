@@ -1,5 +1,6 @@
 package ai.elimu.web.content;
 
+import ai.elimu.dao.AllophoneDao;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,8 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
-import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
@@ -16,7 +17,9 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
@@ -31,7 +34,7 @@ public class MainContentController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private ApplicationDao applicationDao;
+    private AllophoneDao allophoneDao;
     
     @Autowired
     private NumberDao numberDao;
@@ -44,6 +47,9 @@ public class MainContentController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private EmojiDao emojiDao;
     
     @Autowired
     private StoryBookDao storyBookDao;
@@ -71,14 +77,8 @@ public class MainContentController {
             return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if (contributor.getLocale() == null) {
-            return "redirect:/content/contributor/edit-locale";
-        } else if ((contributor.getTeams() == null) || contributor.getTeams().isEmpty()) {
-            return "redirect:/content/contributor/edit-teams";
         } else if (StringUtils.isBlank(contributor.getMotivation())) {
             return "redirect:/content/contributor/edit-motivation";
-        } else if (contributor.getTimePerWeek() == null) {
-            return "redirect:/content/contributor/edit-time";
         } else {
             // Redirect to originally requested URL
             DefaultSavedRequest defaultSavedRequest = (DefaultSavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
@@ -89,14 +89,18 @@ public class MainContentController {
             }
         }
         
-        model.addAttribute("numberCount", numberDao.readCount(contributor.getLocale()));
-        model.addAttribute("letterCount", letterDao.readCount(contributor.getLocale()));
-        model.addAttribute("syllableCount", syllableDao.readCount(contributor.getLocale()));
-        model.addAttribute("wordCount", wordDao.readCount(contributor.getLocale()));
-        model.addAttribute("storyBookCount", storyBookDao.readCount(contributor.getLocale()));
-        model.addAttribute("audioCount", audioDao.readCount(contributor.getLocale()));
-        model.addAttribute("imageCount", imageDao.readCount(contributor.getLocale()));
-        model.addAttribute("videoCount", videoDao.readCount(contributor.getLocale()));
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        
+        model.addAttribute("allophoneCount", allophoneDao.readCount(language));
+        model.addAttribute("numberCount", numberDao.readCount(language));
+        model.addAttribute("letterCount", letterDao.readCount(language));
+        model.addAttribute("syllableCount", syllableDao.readCount(language));
+        model.addAttribute("wordCount", wordDao.readCount(language));
+        model.addAttribute("emojiCount", emojiDao.readCount(language));
+        model.addAttribute("storyBookCount", storyBookDao.readCount(language));
+        model.addAttribute("audioCount", audioDao.readCount(language));
+        model.addAttribute("imageCount", imageDao.readCount(language));
+        model.addAttribute("videoCount", videoDao.readCount(language));
     	
         return "content/main";
     }

@@ -12,9 +12,8 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.model.enums.admin.ApplicationVersionStatus;
 import ai.elimu.rest.service.JsonService;
 import ai.elimu.util.ChecksumHelper;
 import net.dongliu.apk.parser.ByteArrayApkFile;
@@ -145,7 +144,6 @@ public class ApplicationVersionCreateController {
         } else {
             Contributor contributor = (Contributor) session.getAttribute("contributor");
             applicationVersion.setContributor(contributor);
-            applicationVersion.setApplicationVersionStatus(ApplicationVersionStatus.APPROVED);
             applicationVersion.setTimeUploaded(Calendar.getInstance());
             applicationVersionDao.create(applicationVersion);
             
@@ -158,7 +156,7 @@ public class ApplicationVersionCreateController {
             applicationDao.update(application);
             
             // Refresh REST API cache
-            jsonService.refreshApplications(application.getLocale());
+            jsonService.refreshApplications(application.getLanguage());
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
         }

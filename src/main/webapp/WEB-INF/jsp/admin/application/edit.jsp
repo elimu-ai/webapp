@@ -14,7 +14,7 @@
             <tag:formErrors modelAttribute="application" />
 
             <div class="row">
-                <form:hidden path="locale" value="${application.locale}" />
+                <form:hidden path="language" value="${application.language}" />
                 <form:hidden path="contributor" value="${application.contributor.id}" />
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
@@ -105,10 +105,9 @@
                             <th><fmt:message key="version.name" /></th>
                             <th><fmt:message key="file.size" /></th>
                             <th>minSdkVersion</th>
-                            <th><fmt:message key="status" /></th>
                             <th><fmt:message key="time.uploaded" /></th>
                             <th><fmt:message key="contributor" /></th>
-                            <th><i class="material-icons">cloud_download</i></th>
+                            <th><i class="material-icons">vertical_align_bottom</i></th>
                         </thead>
                         <tbody>
                             <c:forEach var="applicationVersion" items="${applicationVersions}">
@@ -118,7 +117,6 @@
                                     <td>${applicationVersion.versionName}</td>
                                     <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
                                     <td><c:out value="${applicationVersion.minSdkVersion}" /></td>
-                                    <td>${applicationVersion.applicationVersionStatus}</td>
                                     <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
                                     <td>
                                         <div class="chip">
@@ -127,8 +125,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk?locale=${application.locale}' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
-                                            <i class="material-icons">cloud_download</i>
+                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk?language=${application.language}' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
+                                            <i class="material-icons">vertical_align_bottom</i>
                                         </a>
                                     </td>
                                 </tr>

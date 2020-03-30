@@ -1,74 +1,15 @@
 package ai.elimu.util;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import org.apache.commons.lang.StringUtils;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.allophone.SoundType;
-import ai.elimu.web.content.allophone.AllophoneListController;
 
 public class PhoneticsHelper {
-
-    /**
-     * Extract individual speech sounds (Allophones) from the phonetics of a Word.
-     * </ p>
-     * Example: /kæt/ --> /k/, /æ/, /t/
-     */
-    public static List<String> getAllophones(Word word) {
-        List<String> allophones = new ArrayList<>();
-        
-        // E.g. "kæt"
-        String phonetics = word.getPhonetics();
-        
-        // Ignore diacritics
-        phonetics = phonetics
-                .replace("ˈ", "")
-                .replace("ˌ", "");
-        
-        // Extract speech sounds
-        while (StringUtils.isNotBlank(phonetics)) {
-            int phoneticsLengthBeforeExtraction = phonetics.length();
-            
-            if (word.getLocale() == Locale.EN) {
-                String[][] allophonesArrayEN = AllophoneListController.allophonesArrayEN;
-                for (String[] allophoneRow : allophonesArrayEN) {
-                    String allophoneIpa = allophoneRow[0];
-                    if (phonetics.startsWith(allophoneIpa)) {
-                        allophones.add(allophoneIpa);
-                        phonetics = phonetics.substring(allophoneIpa.length());
-                        break;
-                    }
-                }
-            } else if (word.getLocale() == Locale.ES) {
-                // TODO
-            } else if (word.getLocale() == Locale.SW) {
-                String[][] allophonesArraySW = AllophoneListController.allophonesArraySW;
-                for (String[] allophoneRow : allophonesArraySW) {
-                    String allophoneIpa = allophoneRow[0];
-                    if (phonetics.startsWith(allophoneIpa)) {
-                        allophones.add(allophoneIpa);
-                        phonetics = phonetics.substring(allophoneIpa.length());
-                        break;
-                    }
-                }
-            }
-            
-            if (phoneticsLengthBeforeExtraction == phonetics.length()) {
-                break;
-            }
-        }
-        
-        return allophones;
-    }
     
-    public static SoundType getSoundType(String ipaValue, Locale locale) {
+    @Deprecated
+    public static SoundType getSoundType(String ipaValue, Language language) {
         SoundType soundType = null;
         
-        if (locale == Locale.AR) {
-            // TODO
-        } else if (locale == Locale.EN) {
+        if (language == Language.ENG) {
             if ("i".equals(ipaValue)) {
                 return soundType.VOWEL;
             } else if ("t".equals(ipaValue)) {
@@ -148,9 +89,7 @@ public class PhoneticsHelper {
             } else if ("ʒ".equals(ipaValue)) {
                 return SoundType.CONSONANT;
             }
-        } else if (locale == Locale.ES) {
-            // TODO
-        } else if (locale == Locale.SW) {
+        } else if (language == Language.SWA) {
             // TODO
         }
         

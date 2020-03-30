@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -14,15 +13,16 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,12 +57,11 @@ public class AudioEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
-            HttpSession session,
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Audio audio = audioDao.read(id);
         model.addAttribute("audio", audio);
@@ -72,30 +71,27 @@ public class AudioEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-//        model.addAttribute("audioRevisionEvents", audioRevisionEventDao.readAll(audio));
-        
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+        model.addAttribute("letters", letterDao.readAllOrdered(language));
+        model.addAttribute("numbers", numberDao.readAllOrdered(language));
+        model.addAttribute("words", wordDao.readAllOrdered(language));
 
         return "content/multimedia/audio/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             Audio audio,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
         } else {
-            Audio existingAudio = audioDao.read(audio.getTranscription(), audio.getLocale());
+            Audio existingAudio = audioDao.read(audio.getTranscription(), audio.getLanguage());
             if ((existingAudio != null) && !existingAudio.getId().equals(audio.getId())) {
                 result.rejectValue("transcription", "NonUnique");
             }
@@ -137,17 +133,15 @@ public class AudioEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+            model.addAttribute("letters", letterDao.readAllOrdered(language));
+            model.addAttribute("numbers", numberDao.readAllOrdered(language));
+            model.addAttribute("words", wordDao.readAllOrdered(language));
             return "content/multimedia/audio/edit";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

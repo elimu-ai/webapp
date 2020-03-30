@@ -9,12 +9,17 @@
             <tag:formErrors modelAttribute="storyBook" />
 
             <div class="row">
-                <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
                 <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
                 
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />
+                </div>
+                
+                <div class="input-field col s12">
+                    <form:label path="description" cssErrorClass="error"><fmt:message key='description' /></form:label>
+                    <form:input path="description" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
@@ -34,13 +39,13 @@
                 </div>
                 
                 <div class="input-field col s12">
-                    <select id="gradeLevel" name="gradeLevel">
+                    <select id="readingLevel" name="readingLevel">
                         <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="gradeLevel" items="${gradeLevels}">
-                            <option value="${gradeLevel}" <c:if test="${gradeLevel == storyBook.gradeLevel}">selected="selected"</c:if>><fmt:message key="grade.level.${gradeLevel}" /></option>
+                        <c:forEach var="readingLevel" items="${readingLevels}">
+                            <option value="${readingLevel}" <c:if test="${readingLevel == storyBook.readingLevel}">selected="selected"</c:if>><fmt:message key="reading.level.${readingLevel}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="gradeLevel"><fmt:message key="grade.level" /></label>
+                    <label for="readingLevel"><fmt:message key="reading.level" /></label>
                 </div>
                 
                 <div class="input-field col s12">
@@ -54,23 +59,6 @@
                     <c:if test="${not empty storyBook.coverImage}">
                         <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
                     </c:if>
-                </div>
-                
-                <p>&nbsp;</p>
-                
-                <div class="input-field col s12">
-                    <form:label path="paragraphs" cssErrorClass="error"><fmt:message key='paragraphs' /></form:label>
-                    <input name="paragraphs" type="text" />
-                    <a id="addParagraphLink" class="btn" href="#">+</a>
-                    <script>
-                        $(function() {
-                            $('#addParagraphLink').click(function(event) {
-                                console.info('#addParagraphLink click');
-                                event.preventDefault();
-                                $('#addParagraphLink').before('<input name="paragraphs" type="text" />');
-                            });
-                        });
-                    </script>
                 </div>
             </div>
 

@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.rest.service.JsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,7 +25,7 @@ public class ApplicationRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam Locale locale,
+            @RequestParam Language language,
             @RequestParam String deviceModel,
             @RequestParam Integer osVersion,
             @RequestParam String applicationId,
@@ -38,7 +38,7 @@ public class ApplicationRestController {
         
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("result", "success");
-        JSONArray applications = jsonService.getApplications(locale);
+        JSONArray applications = jsonService.getApplications(language);
         jsonObject.put("applications", applications);
 
         logger.info("jsonObject: " + jsonObject);

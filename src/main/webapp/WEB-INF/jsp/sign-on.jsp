@@ -45,25 +45,3 @@
         </div>
     </div>    
 </content:section>
-
-<content:aside>
-    <h5 class="center"><fmt:message key="teams" /></h5>
-    
-    <p>
-        Once you sign on, we will ask you to pick the team(s) where you wish to 
-        contribute:
-    </p>
-    
-    <div class="divider"></div>
-    
-    <ul class="browser-default">
-        <c:forEach var="team" items="${teams}">
-            <c:if test="${team != 'OTHER'}">
-                <li>
-                    <b><fmt:message key="team.${team}" /></b> (<fmt:message key="team.${team}.description" />)<br />
-                    <br />
-                </li>
-            </c:if>
-        </c:forEach>
-    </ul>
-</content:aside>

@@ -1,5 +1,6 @@
 package ai.elimu.util;
 
+import ai.elimu.model.enums.Language;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -7,7 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import ai.elimu.model.content.StoryBook;
 
 public class WordFrequencyHelper {
 
@@ -15,12 +15,11 @@ public class WordFrequencyHelper {
      * Note: upper-case and lower-case words are considered different words.
      * E.g. "Word" and "word".
      */
-    public static Map<String, Integer> getWordFrequency(StoryBook storyBook) {
+    public static Map<String, Integer> getWordFrequency(List<String> paragraphs, Language language) {
         Map<String, Integer> wordFrequencyMap = new HashMap<>();
         
-        List<String> paragraphs = storyBook.getParagraphs();
         for (String paragraph : paragraphs) {
-            List<String> words = WordExtractionHelper.getWords(paragraph);
+            List<String> words = WordExtractionHelper.getWords(paragraph, language);
             for (String word : words) {
                 if (!wordFrequencyMap.containsKey(word)) {
                     wordFrequencyMap.put(word, 1);

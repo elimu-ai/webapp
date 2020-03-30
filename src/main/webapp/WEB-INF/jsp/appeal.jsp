@@ -81,7 +81,7 @@
     <h4>Would You Like to Contribute?</h4>
     
     <p>
-        The purpose of the <i>elimu.ai Foundation</i> is to provide access to quality basic education to out-of-school children. We 
+        The purpose of the <i>elimu.ai Community</i> is to provide access to quality basic education to out-of-school children. We 
         deeply believe that all children have the right to a quality basic education no matter their social or geographic background.
     </p>
     

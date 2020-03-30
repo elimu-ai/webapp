@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -15,17 +14,19 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageHelper;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,12 +64,11 @@ public class ImageEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
-            HttpSession session,
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Image image = imageDao.read(id);
         model.addAttribute("image", image);
@@ -78,13 +78,11 @@ public class ImageEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-//        model.addAttribute("imageRevisionEvents", imageRevisionEventDao.readAll(image));
+        model.addAttribute("letters", letterDao.readAllOrdered(language));
+        model.addAttribute("numbers", numberDao.readAllOrdered(language));
+        model.addAttribute("words", wordDao.readAllOrdered(language));
         
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
-        
-        Audio audio = audioDao.read(image.getTitle(), contributor.getLocale());
+        Audio audio = audioDao.read(image.getTitle(), language);
         model.addAttribute("audio", audio);
 
         return "content/multimedia/image/edit";
@@ -92,19 +90,18 @@ public class ImageEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             Image image,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
             if ((existingImage != null) && !existingImage.getId().equals(image.getId())) {
                 result.rejectValue("title", "NonUnique");
             }
@@ -117,7 +114,13 @@ public class ImageEditController {
             } else {
                 String originalFileName = multipartFile.getOriginalFilename();
                 logger.info("originalFileName: " + originalFileName);
-                if (originalFileName.toLowerCase().endsWith(".png")) {
+                
+                byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
+                byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+                byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+                if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+                    image.setImageFormat(ImageFormat.GIF);
+                } else if (originalFileName.toLowerCase().endsWith(".png")) {
                     image.setImageFormat(ImageFormat.PNG);
                 } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
                     image.setImageFormat(ImageFormat.JPG);
@@ -159,10 +162,10 @@ public class ImageEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
-            Audio audio = audioDao.read(image.getTitle(), contributor.getLocale());
+            model.addAttribute("letters", letterDao.readAllOrdered(language));
+            model.addAttribute("numbers", numberDao.readAllOrdered(language));
+            model.addAttribute("words", wordDao.readAllOrdered(language));
+            Audio audio = audioDao.read(image.getTitle(), language);
             model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";
         } else {
@@ -170,8 +173,6 @@ public class ImageEditController {
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
         }

@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="allophone" />
 
             <div class="row">
-                <form:hidden path="locale" value="${contributor.locale}" />
+                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
                 <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
                 <form:hidden path="usageCount" value="${allophone.usageCount}" />
                 
@@ -39,40 +39,13 @@
             </button>
         </form:form>
     </div>
-    
-    <div class="divider"></div>
-    
-    <h5><fmt:message key="revisions" /></h5>
-    <table class="bordered highlight">
-        <thead>
-            <th><fmt:message key="revision" /></th>
-            <th><fmt:message key="time" /></th>
-            <th><fmt:message key="contributor" /></th>
-        </thead>
-        <tbody>
-            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
-                <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
-                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
-                    <td>
-                        <a href="<spring:url value='/content/community/contributors' />" target="_blank">
-                            <div class="chip">
-                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
-                            </div>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
 </content:section>
 
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
     
     <audio controls="true" autoplay="true">
-        <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+        <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
     </audio>
     
     <div class="divider" style="margin: 1em 0;"></div>

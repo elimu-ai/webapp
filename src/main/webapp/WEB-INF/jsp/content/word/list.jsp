@@ -4,6 +4,11 @@
 
 <content:section cssId="wordListPage">
     <div class="section row">
+        <a class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/content/word/list/words.csv' />">
+            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
@@ -13,7 +18,7 @@
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="phonetics" /></th>
+                    <th><fmt:message key="allophones" /></th>
                     <th><fmt:message key="spelling.consistency" /></th>
                     <th><fmt:message key="word.type" /></th>
                     <th><fmt:message key="revision" /></th>
@@ -28,12 +33,14 @@
                                     <div class="determinate" style="width: ${word.usageCount * 100 / maxUsageCount}%"></div>
                                 </div>
                             </td>
-                            <td>
+                            <td style="font-size: 2em;">
+                                <a name="${word.id}"></a>
                                 "${word.text}"
                             </td>
-                            <td>
-                                <a name="${word.id}"></a>
-                                /${word.phonetics}/
+                            <td style="font-size: 2em;">
+                                /<c:forEach var="allophone" items="${word.allophones}">
+                                    ${allophone.valueIpa} 
+                                </c:forEach>/
                             </td>
                             <c:choose>
                                 <c:when test="${word.spellingConsistency == 'PERFECT'}">
@@ -73,6 +80,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/word/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.word" />"><i class="material-icons">sms</i></a>
+        <a href="<spring:url value='/content/word/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.word" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

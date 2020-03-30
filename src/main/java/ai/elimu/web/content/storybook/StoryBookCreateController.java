@@ -2,17 +2,17 @@ package ai.elimu.web.content.storybook;
 
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.GradeLevel;
+import ai.elimu.model.enums.ReadingLevel;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,58 +33,52 @@ public class StoryBookCreateController {
     private ImageDao imageDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, HttpSession session) {
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
         
-        List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
+        List<Image> coverImages = imageDao.readAllOrdered(language);
         model.addAttribute("coverImages", coverImages);
         
-        model.addAttribute("gradeLevels", GradeLevel.values());
+        model.addAttribute("readingLevels", ReadingLevel.values());
 
         return "content/storybook/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             @Valid StoryBook storyBook,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getLocale(), storyBook.getTitle());
+        StoryBook existingStoryBook = storybookDao.readByTitle(language, storyBook.getTitle());
         if (existingStoryBook != null) {
             result.rejectValue("title", "NonUnique");
         }
-        
-        List<String> paragraphs = storyBook.getParagraphs();
-        logger.info("paragraphs: " + paragraphs);
         
         if (result.hasErrors()) {
             model.addAttribute("storybook", storyBook);
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
-            List<Image> coverImages = imageDao.readAllOrdered(contributor.getLocale());
+            List<Image> coverImages = imageDao.readAllOrdered(language);
             model.addAttribute("coverImages", coverImages);
             
-            model.addAttribute("gradeLevels", GradeLevel.values());
+            model.addAttribute("readingLevels", ReadingLevel.values());
             
             return "content/storybook/create";
         } else {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storybookDao.create(storyBook);
-            
-            // TODO: store RevisionEvent
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

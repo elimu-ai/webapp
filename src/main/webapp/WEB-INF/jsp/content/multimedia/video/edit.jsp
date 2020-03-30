@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="video" />
 
             <div class="row">
-                <form:hidden path="locale" value="${video.locale}" />
+                <form:hidden path="language" value="${video.language}" />
                 <form:hidden path="revisionNumber" value="${video.revisionNumber}" />
                 <form:hidden path="videoFormat" value="${number.videoFormat}" />
                 <form:hidden path="contentType" value="${number.contentType}" />
@@ -86,43 +86,6 @@
             <a href="<spring:url value='/content/multimedia/video/delete/${video.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
-    
-    <div class="divider"></div>
-    
-    <h5><fmt:message key="revisions" /></h5>
-    <table class="bordered highlight">
-        <thead>
-            <th><fmt:message key="revision" /></th>
-            <th><fmt:message key="content" /></th>
-            <th><fmt:message key="time" /></th>
-            <th><fmt:message key="contributor" /></th>
-        </thead>
-        <tbody>
-            <c:forEach var="videoRevisionEvent" items="${videoRevisionEvents}" varStatus="status">
-                <tr>
-                    <td>#${fn:length(videoRevisionEvents) - status.index}</td>
-                    <td>
-                        <fmt:message key='title' />: "${videoRevisionEvent.title}"
-                        
-                        <c:if test="${not empty videoRevisionEvent.comment}">
-                            <blockquote>
-                                "<c:out value="${videoRevisionEvent.comment}" />"
-                            </blockquote>
-                        </c:if>
-                    </td>
-                    <td><fmt:formatDate value="${videoRevisionEvent.calendar.time}" type="both" timeStyle="short" /></td>
-                    <td>
-                        <a href="<spring:url value='/content/community/contributors' />" target="_blank">
-                            <div class="chip">
-                                <img src="<spring:url value='${videoRevisionEvent.contributor.imageUrl}' />" alt="${videoRevisionEvent.contributor.firstName}" /> 
-                                <c:out value="${videoRevisionEvent.contributor.firstName}" />&nbsp;<c:out value="${videoRevisionEvent.contributor.lastName}" />
-                            </div>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
 </content:section>
 
 <content:aside>

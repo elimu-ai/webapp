@@ -7,45 +7,56 @@ import ai.elimu.dao.SyllableDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Syllable;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableDao {
 
     @Override
-    public Syllable readByText(Locale locale, String text) throws DataAccessException {
+    public Syllable readByText(Language language, String text) throws DataAccessException {
         try {
             return (Syllable) em.createQuery(
                 "SELECT s " +
                 "FROM Syllable s " +
-                "WHERE s.locale = :locale " +
+                "WHERE s.language = :language " +
                 "AND s.text = :text")
-                .setParameter("locale", locale)
+                .setParameter("language", language)
                 .setParameter("text", text)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Syllable '" + text + "' was not found for locale " + locale);
+            logger.warn("Syllable '" + text + "' was not found for language " + language);
             return null;
         }
     }
 
     @Override
-    public List<Syllable> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<Syllable> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT s " +
             "FROM Syllable s " +
-            "WHERE s.locale = :locale " +
-            "ORDER BY s.usageCount DESC, s.text")
-            .setParameter("locale", locale)
+            "WHERE s.language = :language " +
+            "ORDER BY s.text")
+            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public Long readCount(Locale locale) throws DataAccessException {
+    public List<Syllable> readAllOrderedByUsage(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT s " +
+            "FROM Syllable s " +
+            "WHERE s.language = :language " +
+            "ORDER BY s.usageCount DESC, s.text")
+            .setParameter("language", language)
+            .getResultList();
+    }
+    
+    @Override
+    public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(s) " +
-                "FROM Syllable s " +
-                "WHERE s.locale = :locale")
-                .setParameter("locale", locale)
-                .getSingleResult();
+            "SELECT COUNT(s) " +
+            "FROM Syllable s " +
+            "WHERE s.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

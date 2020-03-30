@@ -8,45 +8,45 @@ import ai.elimu.dao.AudioDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.multimedia.Audio;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
 
     @Override
-    public Audio read(String transcription, Locale locale) throws DataAccessException {
+    public Audio read(String transcription, Language language) throws DataAccessException {
         try {
             return (Audio) em.createQuery(
                 "SELECT a " +
                 "FROM Audio a " +
                 "WHERE a.transcription = :transcription " +
-                "AND a.locale = :locale")
+                "AND a.language = :language")
                 .setParameter("transcription", transcription)
-                .setParameter("locale", locale)
+                .setParameter("language", language)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Audio \"" + transcription + "\" was not found for locale " + locale);
+            logger.warn("Audio \"" + transcription + "\" was not found for language " + language);
             return null;
         }
     }
 
     @Override
-    public List<Audio> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<Audio> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT a " +
             "FROM Audio a " +
-            "WHERE a.locale = :locale " +
+            "WHERE a.language = :language " +
             "ORDER BY a.transcription")
-            .setParameter("locale", locale)
+            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public Long readCount(Locale locale) throws DataAccessException {
+    public Long readCount(Language language) throws DataAccessException {
         return (Long) em.createQuery(
-                "SELECT COUNT(a) " +
-                "FROM Audio a " +
-                "WHERE a.locale = :locale")
-                .setParameter("locale", locale)
-                .getSingleResult();
+            "SELECT COUNT(a) " +
+            "FROM Audio a " +
+            "WHERE a.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

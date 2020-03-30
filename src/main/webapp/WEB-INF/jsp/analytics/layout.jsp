@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="${locale.language}">
+<html lang="en">
     <head>
-        <%-- The title should ideally be less than 64 characters in length (http://www.w3.org/Provider/Style/TITLE.html). --%>
         <title><content:gettitle /> | elimu.ai</title>
 
         <meta charset="UTF-8" />
@@ -12,18 +11,16 @@
         
         <%-- CSS --%>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <%--<link rel="stylesheet" href="<spring:url value='/static/css/materialize.min-0.97.6.css' />" />--%>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
-        <link rel="stylesheet" href="<spring:url value='/static/css/styles.css?version=' /><content:getversion />" />
-        <link rel="stylesheet" href="<spring:url value='/static/css/analytics/styles.css?version=' /><content:getversion />" />
+        <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
+        <link rel="stylesheet" href="<spring:url value='/static/css/analytics/styles.css' />" />
         
         <%-- JavaScripts --%>
         <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
-        <%--<script src="<spring:url value='/static/js/materialize.min-0.97.6.js' />"></script>--%>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
-        <%@ include file="/WEB-INF/jsp/google-analytics.jsp" %>
     </head>
 
     <body>
@@ -33,18 +30,13 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li>
                             <a href="<spring:url value='/analytics' />">
-                                <img style="max-width: 100%; padding-top: 1em;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
+                                <img style="max-width: 100%; vertical-align: middle; max-height: 60%;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
                             </a>
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="students" /></b></li>
-                        <li><a href="<spring:url value='/analytics/student/list' />"><i class="material-icons left">school</i><fmt:message key="students" /></a></li>
-                        <li><a href="<spring:url value='/analytics/device/list' />"><i class="material-icons left">devices</i><fmt:message key="devices" /></a></li>
-                        
-                        <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="usage.activity" /></b></li>
-                        <li><a href="<spring:url value='/analytics/application-opened-event/list' />"><i class="material-icons left">timeline</i><fmt:message key="application.opened.events" /></a></li>
+                        <li class="grey-text"><b><fmt:message key="learning.events" /></b></li>
+                        <li><a href="<spring:url value='/analytics/storybook-learning-event/list' />"><i class="material-icons left">book</i>StoryBookLearningEvents</a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/analytics' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
@@ -59,14 +51,10 @@
                         <a class="dropdown-button" data-activates="contributorDropdown" data-beloworigin="true" >
                             <div class="chip">
                                 <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt; <%--<a href="<spring:url value='/j_spring_security_logout' />"><fmt:message key="sign.out" /></a>--%>
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt;
                             </div>
                         </a>
                         <ul id='contributorDropdown' class='dropdown-content'>
-                            <li><a href="<spring:url value='/content/contributor/edit-locale' />"><i class="material-icons left">public</i><fmt:message key="select.language" /></a></li>
-                            <li class="divider"></li>
-                            <li><a href="<spring:url value='/content/contributor/edit-teams' />"><i class="material-icons left">group</i><fmt:message key="select.teams" /></a></li>
-                            <li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
                             <%--<li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-email' />"><i class="material-icons left">mail</i><fmt:message key="edit.email" /></a></li>--%>
@@ -78,17 +66,10 @@
                                 <li class="divider"></li>
                                 <li><a href="<spring:url value='/analytics' />"><i class="material-icons left">timeline</i><fmt:message key="analytics" /></a></li>
                             </sec:authorize>
-                            <sec:authorize access="hasRole('ROLE_PROJECT_MANAGER')">
-                                <li class="divider"></li>
-                                <li><a href="<spring:url value='/project' />"><i class="material-icons left">list</i><fmt:message key="projects" /></a></li>
-                            </sec:authorize>
                             <li class="divider"></li>
                             <li><a href="<spring:url value='/j_spring_security_logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
-                    <div class="right">
-                        <div class="white-text"><fmt:message key="language.${contributor.locale.language}" /></div>
-                    </div>
                 </div>
             </div>
         </nav>

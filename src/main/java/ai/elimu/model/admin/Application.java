@@ -9,19 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.model.project.AppGroup;
 
 @Entity
 public class Application extends BaseEntity {
     
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Locale locale;
+    private Language language;
     
     @NotNull
     private String packageName;
@@ -43,23 +42,13 @@ public class Application extends BaseEntity {
     @NotNull
     @ManyToOne
     private Contributor contributor;
-    
-    /**
-     * This will only be set if the Application belongs to a custom Project.
-     */
-    @ManyToOne
-    private AppGroup appGroup;
-    
-    public boolean isBelongingToCustomProject() {
-        return appGroup != null;
+
+    public Language getLanguage() {
+        return language;
     }
 
-    public Locale getLocale() {
-        return locale;
-    }
-
-    public void setLocale(Locale locale) {
-        this.locale = locale;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public String getPackageName() {
@@ -108,13 +97,5 @@ public class Application extends BaseEntity {
 
     public void setContributor(Contributor contributor) {
         this.contributor = contributor;
-    }
-
-    public AppGroup getAppGroup() {
-        return appGroup;
-    }
-
-    public void setAppGroup(AppGroup appGroup) {
-        this.appGroup = appGroup;
     }
 }

@@ -1,0 +1,37 @@
+# 2.1.14
+
+ALTER TABLE Application DROP COLUMN language;
+ALTER TABLE Application CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE Allophone DROP COLUMN language;
+ALTER TABLE Allophone CHANGE locale language VARCHAR(255) COLLATE utf8_bin NOT NULL;
+
+ALTER TABLE Emoji DROP COLUMN language;
+ALTER TABLE Emoji CHANGE locale language VARCHAR(255) COLLATE utf8mb4_bin NOT NULL;
+
+ALTER TABLE Letter DROP COLUMN language;
+ALTER TABLE Letter CHANGE locale language VARCHAR(255) COLLATE utf8_bin NOT NULL;
+
+ALTER TABLE Number DROP COLUMN language;
+ALTER TABLE Number CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE StoryBook DROP COLUMN language;
+ALTER TABLE StoryBook CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE Syllable DROP COLUMN language;
+ALTER TABLE Syllable CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE Word DROP COLUMN language;
+ALTER TABLE Word CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE Audio DROP COLUMN language;
+ALTER TABLE Audio CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE Image DROP COLUMN language;
+ALTER TABLE Image CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE Video DROP COLUMN language;
+ALTER TABLE Video CHANGE locale language VARCHAR(255) NOT NULL;
+
+ALTER TABLE Contributor DROP COLUMN language;
+ALTER TABLE Contributor CHANGE locale language VARCHAR(255) DEFAULT NULL;

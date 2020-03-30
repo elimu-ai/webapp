@@ -7,63 +7,84 @@ import ai.elimu.model.content.Allophone;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 
 public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements AllophoneDao {
 
     @Override
-    public Allophone readByValueIpa(Locale locale, String value) throws DataAccessException {
+    public Allophone readByValueIpa(Language language, String value) throws DataAccessException {
         try {
             return (Allophone) em.createQuery(
                 "SELECT a " +
                 "FROM Allophone a " +
-                "WHERE a.locale = :locale " +
+                "WHERE a.language = :language " +
                 "AND a.valueIpa = :value")
-                .setParameter("locale", locale)
+                .setParameter("language", language)
                 .setParameter("value", value)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Allophone \"" + value + "\" was not found for locale " + locale);
+            logger.warn("Allophone \"" + value + "\" was not found for language " + language);
             return null;
         }
     }
     
     @Override
-    public Allophone readByValueSampa(Locale locale, String value) throws DataAccessException {
+    public Allophone readByValueSampa(Language language, String value) throws DataAccessException {
         try {
             return (Allophone) em.createQuery(
                 "SELECT a " +
                 "FROM Allophone a " +
-                "WHERE a.locale = :locale " +
+                "WHERE a.language = :language " +
                 "AND a.valueSampa = :value")
-                .setParameter("locale", locale)
+                .setParameter("language", language)
                 .setParameter("value", value)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Allophone \"" + value + "\" was not found for locale " + locale);
+            logger.warn("Allophone \"" + value + "\" was not found for language " + language);
             return null;
         }
     }
 
     @Override
-    public List<Allophone> readAllOrdered(Locale locale) throws DataAccessException {
+    public List<Allophone> readAllOrdered(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT a " +
             "FROM Allophone a " +
-            "WHERE a.locale = :locale " +
+            "WHERE a.language = :language " +
             "ORDER BY a.valueIpa")
-            .setParameter("locale", locale)
+            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public List<Allophone> readAllOrderedByUsage(Locale locale) throws DataAccessException {
+    public List<Allophone> readAllOrderedByIpaValueCharacterLength(Language language) throws DataAccessException {
         return em.createQuery(
             "SELECT a " +
             "FROM Allophone a " +
-            "WHERE a.locale = :locale " +
-            "ORDER BY a.usageCount DESC, a.valueIpa")
-            .setParameter("locale", locale)
+            "WHERE a.language = :language " +
+            "ORDER BY CHAR_LENGTH(a.valueIpa) DESC, a.valueIpa")
+            .setParameter("language", language)
             .getResultList();
+    }
+    
+    @Override
+    public List<Allophone> readAllOrderedByUsage(Language language) throws DataAccessException {
+        return em.createQuery(
+            "SELECT a " +
+            "FROM Allophone a " +
+            "WHERE a.language = :language " +
+            "ORDER BY a.usageCount DESC, a.valueIpa")
+            .setParameter("language", language)
+            .getResultList();
+    }
+    
+    @Override
+    public Long readCount(Language language) throws DataAccessException {
+        return (Long) em.createQuery(
+            "SELECT COUNT(a) " +
+            "FROM Allophone a " +
+            "WHERE a.language = :language")
+            .setParameter("language", language)
+            .getSingleResult();
     }
 }

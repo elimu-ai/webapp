@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.StoryBookGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Deprecated
 @RestController
 @RequestMapping(value = "/rest/v1/content/storybook", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class StoryBookRestController {
@@ -29,14 +30,14 @@ public class StoryBookRestController {
     public String list(
             HttpServletRequest request,
             @RequestParam String deviceId,
-            @RequestParam Locale locale
+            @RequestParam Language language
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray storyBooks = new JSONArray();
-        for (StoryBook storyBook : storyBookDao.readAllOrdered(locale)) {
+        for (StoryBook storyBook : storyBookDao.readAllOrdered(language)) {
             StoryBookGson storyBookGson = JavaToGsonConverter.getStoryBookGson(storyBook);
             String json = new Gson().toJson(storyBookGson);
             storyBooks.put(new JSONObject(json));

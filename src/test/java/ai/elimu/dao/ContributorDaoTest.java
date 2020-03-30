@@ -9,7 +9,7 @@ import org.junit.Ignore;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ai.elimu.model.Contributor;
+import ai.elimu.model.contributor.Contributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

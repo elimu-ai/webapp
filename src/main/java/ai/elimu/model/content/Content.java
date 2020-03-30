@@ -8,7 +8,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.enums.Locale;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ContentStatus;
 
 /**
@@ -17,9 +17,10 @@ import ai.elimu.model.enums.content.ContentStatus;
 @MappedSuperclass
 public abstract class Content extends BaseEntity {
     
+    @Deprecated
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Locale locale;
+    private Language language;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeLastUpdate;
@@ -30,13 +31,15 @@ public abstract class Content extends BaseEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ContentStatus contentStatus = ContentStatus.ACTIVE;
-
-    public Locale getLocale() {
-        return locale;
+    
+    @Deprecated
+    public Language getLanguage() {
+        return language;
     }
-
-    public void setLocale(Locale locale) {
-        this.locale = locale;
+    
+    @Deprecated
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public Calendar getTimeLastUpdate() {

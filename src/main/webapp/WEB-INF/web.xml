@@ -19,11 +19,6 @@
             <param-value>true</param-value>
         </init-param>
         <init-param>
-            <param-name>cacheControl</param-name>
-            <param-value>max-age=2592000</param-value>
-            <!-- 30 days -->
-        </init-param>
-        <init-param>
             <param-name>useFileMappedBuffer</param-name>
             <param-value>false</param-value>
         </init-param>
@@ -45,7 +40,7 @@
     <servlet-mapping>
         <!-- Map static resources to the default servlet -->
         <servlet-name>default</servlet-name>
-        <url-pattern>/static/audio/*</url-pattern>
+        <url-pattern>/static/allophone/*</url-pattern>
         <url-pattern>/static/css/*</url-pattern>
         <url-pattern>/static/img/*</url-pattern>
         <url-pattern>/static/js/*</url-pattern>
@@ -73,14 +68,6 @@
     </filter>
     <filter-mapping>
         <filter-name>httpMethodFilter</filter-name>
-        <servlet-name>dispatcher</servlet-name>
-    </filter-mapping>
-    <filter>
-        <filter-name>responseFilter</filter-name>
-        <filter-class>ai.elimu.web.filters.ResponseFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>responseFilter</filter-name>
         <servlet-name>dispatcher</servlet-name>
     </filter-mapping>
     <session-config>

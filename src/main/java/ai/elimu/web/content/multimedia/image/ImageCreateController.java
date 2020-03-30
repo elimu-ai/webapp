@@ -6,21 +6,22 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,19 +63,18 @@ public class ImageCreateController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             /*@Valid*/ Image image,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Image existingImage = imageDao.read(image.getTitle(), image.getLocale());
+            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
             if (existingImage != null) {
                 result.rejectValue("title", "NonUnique");
             }
@@ -87,7 +87,13 @@ public class ImageCreateController {
             } else {
                 String originalFileName = multipartFile.getOriginalFilename();
                 logger.info("originalFileName: " + originalFileName);
-                if (originalFileName.toLowerCase().endsWith(".png")) {
+                
+                byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
+                byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+                byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+                if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+                    image.setImageFormat(ImageFormat.GIF);
+                } else if (originalFileName.toLowerCase().endsWith(".png")) {
                     image.setImageFormat(ImageFormat.PNG);
                 } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
                     image.setImageFormat(ImageFormat.JPG);
@@ -131,15 +137,17 @@ public class ImageCreateController {
             return "content/multimedia/image/create";
         } else {
             image.setTitle(image.getTitle().toLowerCase());
-            int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
-            image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            try {
+                int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
+                image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            } catch (NullPointerException ex) {
+                // javax.imageio.IIOException: Unsupported Image Type
+            }
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
             
-            // TODO: store RevisionEvent
-            
             // Label Image with Word of matching title
-            Word matchingWord = wordDao.readByText(contributor.getLocale(), image.getTitle());
+            Word matchingWord = wordDao.readByText(language, image.getTitle());
             if (matchingWord != null) {
                 Set<Word> labeledWords = new HashSet<>();
                 if (!labeledWords.contains(matchingWord)) {

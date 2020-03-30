@@ -3,39 +3,18 @@
 </content:title>
 
 <content:section cssId="mainAnalyticsPage">
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">school</i> <fmt:message key="students" /></span>
-                    <p>List of students that have been assigned an ID on one or more devices.</p>
-                </div>
-                <div class="card-action">
-                    <a href="<spring:url value='/analytics/student/list' />"><fmt:message key="view.list" /></a>
-                </div>
-            </div>
+    <div class="section row">
+        <div class="col s12">
+            <h5><fmt:message key="learning.events" /></h5>
         </div>
         
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">devices</i> <fmt:message key="devices" /></span>
-                    <p>List of devices that have registered with the server.</p>
+                    <span class="card-title"><i class="material-icons">book</i> StoryBookLearningEvents</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/analytics/device/list' />"><fmt:message key="view.list" /></a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title"><i class="material-icons">timeline</i> <fmt:message key="application.opened.events" /></span>
-                    <p>Diagrams displaying applications opened on the devices.</p>
-                </div>
-                <div class="card-action">
-                    <a href="<spring:url value='/analytics/application-opened-event/list' />"><fmt:message key="view.events" /></a>
+                    <a href="<spring:url value='/analytics/storybook-learning-event/list' />"><fmt:message key="view.list" /> (${storyBookLearningEventsCount})</a>
                 </div>
             </div>
         </div>

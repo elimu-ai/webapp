@@ -6,25 +6,23 @@ import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.VideoDao;
-import ai.elimu.dao.VideoRevisionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.Contributor;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.contributor.VideoRevisionEvent;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.VideoFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,18 +54,14 @@ public class VideoEditController {
     
     @Autowired
     private WordDao wordDao;
-    
-    @Autowired
-    private VideoRevisionEventDao videoRevisionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
-            HttpSession session,
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Video video = videoDao.read(id);
         model.addAttribute("video", video);
@@ -77,30 +71,27 @@ public class VideoEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-        model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
-        
-        model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-        model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+        model.addAttribute("letters", letterDao.readAllOrdered(language));
+        model.addAttribute("numbers", numberDao.readAllOrdered(language));
+        model.addAttribute("words", wordDao.readAllOrdered(language));
 
         return "content/multimedia/video/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             Video video,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Video existingVideo = videoDao.read(video.getTitle(), video.getLocale());
+            Video existingVideo = videoDao.read(video.getTitle(), video.getLanguage());
             if ((existingVideo != null) && !existingVideo.getId().equals(video.getId())) {
                 result.rejectValue("title", "NonUnique");
             }
@@ -140,23 +131,15 @@ public class VideoEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("videoRevisionEvents", videoRevisionEventDao.readAll(video));
-            model.addAttribute("letters", letterDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("numbers", numberDao.readAllOrdered(contributor.getLocale()));
-            model.addAttribute("words", wordDao.readAllOrdered(contributor.getLocale()));
+            model.addAttribute("letters", letterDao.readAllOrdered(language));
+            model.addAttribute("numbers", numberDao.readAllOrdered(language));
+            model.addAttribute("words", wordDao.readAllOrdered(language));
             return "content/multimedia/video/edit";
         } else {
             video.setTitle(video.getTitle().toLowerCase());
             video.setTimeLastUpdate(Calendar.getInstance());
             video.setRevisionNumber(video.getRevisionNumber() + 1);
             videoDao.update(video);
-            
-            VideoRevisionEvent videoRevisionEvent = new VideoRevisionEvent();
-            videoRevisionEvent.setContributor(contributor);
-            videoRevisionEvent.setCalendar(Calendar.getInstance());
-            videoRevisionEvent.setVideo(video);
-            videoRevisionEvent.setTitle(video.getTitle());
-            videoRevisionEventDao.create(videoRevisionEvent);
             
             return "redirect:/content/multimedia/video/list#" + video.getId();
         }

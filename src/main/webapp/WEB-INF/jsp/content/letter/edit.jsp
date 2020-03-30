@@ -7,23 +7,28 @@
     <div class="card-panel">
         <form:form modelAttribute="letter">
             <tag:formErrors modelAttribute="letter" />
+            
+            <form:hidden path="language" value="${letter.language}" />
+            <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
+            <form:hidden path="usageCount" value="${letter.usageCount}" />
 
             <div class="row">
-                <form:hidden path="locale" value="${letter.locale}" />
-                <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
-                <form:hidden path="usageCount" value="${letter.usageCount}" />
-                
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
-                
+            </div>
+            
+            <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="allophonesContainer">
                         <c:forEach var="allophone" items="${letter.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
+                            <audio id="audio_sampa_${allophone.valueSampa}">
+                                <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
+                            </audio>
+                            <div class="allophone chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}" data-valuesampa="${allophone.valueSampa}">
                                 ${allophone.valueIpa} 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
                                     <i class="material-icons">clear</i>
@@ -42,6 +47,17 @@
                                     
                                     var $hiddenInput = $('input[name="allophones"][value="' + allophoneId + '"]');
                                     $hiddenInput.remove();
+                                });
+                                
+                                // Play sound when hovering IPA value
+                                $('.allophone').mouseenter(function() {
+                                    console.info('.allophone mouseenter');
+                                    
+                                    var valueSampa = $(this).attr('data-valuesampa');
+                                    console.info('valueSampa: ' + valueSampa);
+                                    
+                                    var audio = $('#audio_sampa_' + valueSampa);
+                                    audio[0].play();
                                 });
                             });
                         </script>
@@ -71,10 +87,15 @@
                         });
                     </script>
                 </div>
-                
-                <div class="input-field col s12">
-                    <form:label path="braille" cssErrorClass="error">Braille</form:label>
-                    <form:input path="braille" cssErrorClass="error" />
+            </div>
+            
+            <div class="row">
+                <div class="input-field col">
+                    <select id="diacritic" name="diacritic">
+                        <option value="false" <c:if test="${not letter.diacritic}">selected="selected"</c:if>><fmt:message key="no" /></option>
+                        <option value="true" <c:if test="${letter.diacritic}">selected="selected"</c:if>><fmt:message key="yes" /></option>
+                    </select>
+                    <label for="diacritic"><fmt:message key="diacritic" /></label>
                 </div>
             </div>
 
@@ -84,37 +105,18 @@
             <a href="<spring:url value='/content/letter/delete/${letter.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
-    
-    <div class="divider"></div>
-    
-    <h5><fmt:message key="revisions" /></h5>
-    <table class="bordered highlight">
-        <thead>
-            <th><fmt:message key="revision" /></th>
-            <th><fmt:message key="time" /></th>
-            <th><fmt:message key="contributor" /></th>
-        </thead>
-        <tbody>
-            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
-                <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
-                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
-                    <td>
-                        <a href="<spring:url value='/content/community/contributors' />" target="_blank">
-                            <div class="chip">
-                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
-                            </div>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
 </content:section>
 
 <content:aside>
     <h5 class="center"><fmt:message key="preview" /></h5>
+    
+    <c:forEach var="allophone" items="${letter.allophones}">
+        <audio controls="true" autoplay="true">
+            <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
+        </audio><br />
+    </c:forEach>
+    
+    <div class="divider" style="margin: 1em 0;"></div>
     
     <div class="previewContainer valignwrapper">
         <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />

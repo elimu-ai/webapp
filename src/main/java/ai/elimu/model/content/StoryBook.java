@@ -1,26 +1,24 @@
 package ai.elimu.model.content;
 
-import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.GradeLevel;
+import ai.elimu.model.enums.ReadingLevel;
 
 @Entity
 public class StoryBook extends Content {
 
     @NotNull
     private String title;
+    
+    @Column(length = 1024)
+    private String description;
     
     @Enumerated(EnumType.STRING)
     private ContentLicense contentLicense;
@@ -29,21 +27,13 @@ public class StoryBook extends Content {
     @Column(length = 1000)
     private String attributionUrl;
     
-    @NotNull
+//    @NotNull
     @ManyToOne
     private Image coverImage;
     
-    @NotNull
+//    @NotNull
     @Enumerated(EnumType.STRING)
-    private GradeLevel gradeLevel;
-    
-    // TODO: replace paragraphs with Chapters
-    @Deprecated
-    @NotEmpty
-    @OrderColumn
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Column(length = 1000)
-    private List<String> paragraphs;
+    private ReadingLevel readingLevel;
 
     public String getTitle() {
         return title;
@@ -51,6 +41,14 @@ public class StoryBook extends Content {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     public ContentLicense getContentLicense() {
@@ -77,19 +75,11 @@ public class StoryBook extends Content {
         this.coverImage = coverImage;
     }
 
-    public List<String> getParagraphs() {
-        return paragraphs;
+    public ReadingLevel getReadingLevel() {
+        return readingLevel;
     }
 
-    public void setParagraphs(List<String> paragraphs) {
-        this.paragraphs = paragraphs;
-    }
-
-    public GradeLevel getGradeLevel() {
-        return gradeLevel;
-    }
-
-    public void setGradeLevel(GradeLevel gradeLevel) {
-        this.gradeLevel = gradeLevel;
+    public void setReadingLevel(ReadingLevel readingLevel) {
+        this.readingLevel = readingLevel;
     }
 }

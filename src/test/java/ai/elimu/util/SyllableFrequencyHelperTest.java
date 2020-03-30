@@ -1,5 +1,6 @@
 package ai.elimu.util;
 
+import ai.elimu.model.enums.Language;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,19 +8,14 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.Locale;
 
 public class SyllableFrequencyHelperTest {
 
     @Test
     public void testGetSyllableFrequency() {
-        StoryBook storyBook = new StoryBook();
-        storyBook.setLocale(Locale.EN);
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look.\"");
-        storyBook.setParagraphs(paragraphs);
-        Map<String, Integer> syllableFrequencyMap = SyllableFrequencyHelper.getSyllableFrequency(storyBook);
+        Map<String, Integer> syllableFrequencyMap = SyllableFrequencyHelper.getSyllableFrequency(paragraphs, Language.ENG);
         assertThat(syllableFrequencyMap.get("mom"), is(1));
         assertThat(syllableFrequencyMap.get("called"), is(1));
         assertThat(syllableFrequencyMap.get("lebo"), is(1));

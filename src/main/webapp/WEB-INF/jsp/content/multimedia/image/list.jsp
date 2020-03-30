@@ -4,6 +4,11 @@
 
 <content:section cssId="imageListPage">
     <div class="section row">
+        <a class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/content/image/list/images.csv' />">
+            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
@@ -55,6 +60,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/multimedia/image/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.image" />"><i class="material-icons">image</i></a>
+        <a href="<spring:url value='/content/multimedia/image/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.image" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

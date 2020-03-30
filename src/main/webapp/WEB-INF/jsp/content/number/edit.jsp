@@ -7,22 +7,25 @@
     <div class="card-panel">
         <form:form modelAttribute="number">
             <tag:formErrors modelAttribute="number" />
+            
+            <form:hidden path="language" value="${number.language}" />
+            <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
 
             <div class="row">
-                <form:hidden path="locale" value="${number.locale}" />
-                <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
-                
-                <c:if test="${number.locale.language == 'ar'}">
-                    <div id="symbolContainer" class="input-field col s12"<c:if test="${number.locale.language != 'ar'}"> style="display: none;"</c:if>>
-                        <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
-                        <form:input path="symbol" cssErrorClass="error" />
-                    </div>
-                </c:if>
                 <div class="input-field col s12">
                     <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
                     <form:input path="value" cssErrorClass="error" type="number" />
                 </div>
-                
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
+                    <form:input path="symbol" cssErrorClass="error" />
+                </div>
+            </div>
+            
+            <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="number.words" /></label>
                     <div id="numberWordsContainer">
@@ -86,33 +89,6 @@
             <a href="<spring:url value='/content/number/delete/${number.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
-    
-    <div class="divider"></div>
-    
-    <h5><fmt:message key="revisions" /></h5>
-    <table class="bordered highlight">
-        <thead>
-            <th><fmt:message key="revision" /></th>
-            <th><fmt:message key="time" /></th>
-            <th><fmt:message key="contributor" /></th>
-        </thead>
-        <tbody>
-            <c:forEach var="contentCreationEvent" items="${contentCreationEvents}" varStatus="status">
-                <tr>
-                    <td>${fn:length(contentCreationEvents) - status.index}</td>
-                    <td><fmt:formatDate value="${contentCreationEvent.calendar.time}" type="both" timeStyle="short" /></td>
-                    <td>
-                        <a href="<spring:url value='/content/community/contributors' />" target="_blank">
-                            <div class="chip">
-                                <img src="<spring:url value='${contentCreationEvent.contributor.imageUrl}' />" alt="${contentCreationEvent.contributor.firstName}" /> 
-                                <c:out value="${contentCreationEvent.contributor.firstName}" />&nbsp;<c:out value="${contentCreationEvent.contributor.lastName}" />
-                            </div>
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
 </content:section>
 
 <content:aside>

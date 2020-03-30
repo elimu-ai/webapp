@@ -4,6 +4,11 @@
 
 <content:section cssId="allophoneListPage">
     <div class="section row">
+        <a class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/content/allophone/list/allophones.csv' />">
+            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
@@ -32,7 +37,7 @@
                                 <a name="${allophone.id}"></a>
                                 /${allophone.valueIpa}/
                             </td>
-                            <td style="font-size: 2em;">
+                            <td>
                                 ${allophone.valueSampa}
                             </td>
                             <td>
@@ -40,7 +45,7 @@
                             </td>
                             <td>
                                 <audio controls="true">
-                                    <source src="<spring:url value='/static/audio/${locale.language}/sampa_${allophone.valueSampa}.wav' />" />
+                                    <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
                                 </audio>
                             </td>
                             <td>
@@ -55,6 +60,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/allophone/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.allophone" />"><i class="material-icons">record_voice_over</i></a>
+        <a href="<spring:url value='/content/allophone/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.allophone" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

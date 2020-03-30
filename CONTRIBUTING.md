@@ -31,4 +31,4 @@ maintainers:
    If the maintainers are too slow to get back to you, contact them in the [Slack channel](https://elimu-ai.slack.com/messages/C0LDBLX3J/details/).
    
 5. Once your pull request has been approved by at least one project maintainer, press the "merge" button. This will merge 
-your code changes into the `master` branch and deploy them to the test server at http://test.elimu.ai.
+your code changes into the `master` branch and deploy them to the test servers at http://`<language>`.test.elimu.ai.

@@ -1,20 +1,45 @@
 package ai.elimu.model.analytics;
 
+import ai.elimu.model.BaseEntity;
+import ai.elimu.model.admin.Application;
+import java.util.Calendar;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import ai.elimu.model.Student;
-import ai.elimu.model.admin.Application;
 
 @MappedSuperclass
-public abstract class LearningEvent extends DeviceEvent {
+public abstract class LearningEvent extends BaseEntity {
     
     @NotNull
-    @ManyToOne
-    private Application application;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar time;
+    
+    /**
+     * See https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID
+     */
+    @NotNull
+    private String androidId;
     
     @ManyToOne
-    private Student student;
+    private Application application;
+
+    public Calendar getTime() {
+        return time;
+    }
+
+    public void setTime(Calendar time) {
+        this.time = time;
+    }
+
+    public String getAndroidId() {
+        return androidId;
+    }
+
+    public void setAndroidId(String androidId) {
+        this.androidId = androidId;
+    }
 
     public Application getApplication() {
         return application;
@@ -22,13 +47,5 @@ public abstract class LearningEvent extends DeviceEvent {
 
     public void setApplication(Application application) {
         this.application = application;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
     }
 }
