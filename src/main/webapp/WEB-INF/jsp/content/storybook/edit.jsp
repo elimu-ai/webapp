@@ -48,7 +48,7 @@
                     <label for="readingLevel"><fmt:message key="reading.level" /></label>
                 </div>
                 
-                <div class="input-field col s12">
+                <div class="input-field col s12" id="coverImageContainer">
                     <select id="coverImage" name="coverImage">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="coverImage" items="${coverImages}">
@@ -57,9 +57,7 @@
                     </select>
                     <label for="coverImage"><fmt:message key="cover.image" /></label>
                     <c:if test="${not empty storyBook.coverImage}">
-                        <a href="<spring:url value="/content/multimedia/image/edit/${storyBook.coverImage.id}" />" target="_blank">
-                            <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
-                        </a>
+                        <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
                     </c:if>
                 </div>
             </div>
@@ -74,12 +72,10 @@
         <c:if test="${status.index == (fn:length(storyBookChapters) - 1)}">
             <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="<fmt:message key='delete' />">delete</i></a>
         </c:if>
-        <h5 class="grey-text" style="margin-top: 1em;"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
+        <h5 style="margin-top: 1em;"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
-                <a href="<spring:url value="/content/multimedia/image/edit/${storyBookChapter.image.id}" />" target="_blank">
-                    <img src="<spring:url value='/image/${storyBookChapter.image.id}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
-                </a>
+                <img src="<spring:url value='/image/${storyBookChapter.image.id}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
             </c:if>
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
