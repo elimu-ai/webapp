@@ -12,8 +12,8 @@ import java.util.Map;
 public class WordFrequencyHelper {
 
     /**
-     * Note: upper-case and lower-case words are considered different words.
-     * E.g. "Word" and "word".
+     * Note: upper-case and lower-case words are considered similar words.
+     * E.g. "Word" and "word" are counted twice as "word".
      */
     public static Map<String, Integer> getWordFrequency(List<String> paragraphs, Language language) {
         Map<String, Integer> wordFrequencyMap = new HashMap<>();
@@ -21,10 +21,11 @@ public class WordFrequencyHelper {
         for (String paragraph : paragraphs) {
             List<String> words = WordExtractionHelper.getWords(paragraph, language);
             for (String word : words) {
-                if (!wordFrequencyMap.containsKey(word)) {
-                    wordFrequencyMap.put(word, 1);
+                String wordLowerCase = word.toLowerCase();
+                if (!wordFrequencyMap.containsKey(wordLowerCase)) {
+                    wordFrequencyMap.put(wordLowerCase, 1);
                 } else {
-                    wordFrequencyMap.put(word, wordFrequencyMap.get(word) + 1);
+                    wordFrequencyMap.put(wordLowerCase, wordFrequencyMap.get(wordLowerCase) + 1);
                 }
             }
         }

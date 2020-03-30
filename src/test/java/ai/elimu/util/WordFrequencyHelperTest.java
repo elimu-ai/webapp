@@ -17,10 +17,10 @@ public class WordFrequencyHelperTest {
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look. These clothes are all too small for me!\"");
         paragraphs.add("\"Look at my skirt. It's too small,\" said Lebo.");
         Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, Language.ENG);
-        assertThat(wordFrequencyMap.get("Lebo"), is(2));
-        assertThat(wordFrequencyMap.get("too"), is(2));
         assertThat(wordFrequencyMap.get("small"), is(2));
-        assertThat(wordFrequencyMap.get("Mom"), is(1));
-        assertThat(wordFrequencyMap.get("called"), is(1));
+        assertThat(wordFrequencyMap.get("look"), is(2));
+        assertThat(wordFrequencyMap.get("lebo"), is(2));
+        assertThat(wordFrequencyMap.get("too"), is(2));
+        assertThat(wordFrequencyMap.get("all"), is(1));
     }
 }
