@@ -75,11 +75,13 @@ nav {
         -1rem 0 1.5rem rgba(0,0,0, .4);
 }
 
+#storyBookEditPage #coverImageContainer img,
 #storyBookEditPage .storyBookChapter img {
     display: block;
     margin: auto;
 }
 #storyBookEditPage .storyBookChapter .storyBookParagraph {
+    letter-spacing: 2pt;
     word-spacing: 1em;
     font-size: 2em;
     line-height: 2em;
