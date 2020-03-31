@@ -174,6 +174,22 @@
         });
     </script>
     
+    <c:if test="${not empty wordInflections}">
+        <div class="divider" style="margin-top: 1em;"></div>
+
+        <h5 class="center"><fmt:message key="inflections" /></h5>
+
+        <div id="wordInflectionsContainer">
+            <c:forEach var="word" items="${wordInflections}">
+                <div class="chip">
+                    <a href="<spring:url value='/content/word/edit/${word.id}' />">
+                        ${word.text} 
+                    </a>
+                </div>
+            </c:forEach>
+        </div>
+    </c:if>
+    
     <div class="divider" style="margin-top: 1em;"></div>
     
     <h5 class="center"><fmt:message key="labeled.content" /></h5>

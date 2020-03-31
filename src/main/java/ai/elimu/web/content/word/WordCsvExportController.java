@@ -49,7 +49,9 @@ public class WordCsvExportController {
                         "allophone_values_ipa", 
                         "usage_count",
                         "word_type",
-                        "spelling_consistency"
+                        "spelling_consistency",
+                        "root_word_id",
+                        "root_word_text"
                 );
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
@@ -71,6 +73,13 @@ public class WordCsvExportController {
                 index++;
             }
             
+            Long rootWordId = null;
+            String rootWordText = null;
+            if (word.getRootWord() != null) {
+                rootWordId = word.getRootWord().getId();
+                rootWordText = word.getRootWord().getText();
+            }
+            
             csvPrinter.printRecord(
                     word.getId(),
                     word.getText(),
@@ -78,7 +87,9 @@ public class WordCsvExportController {
                     allophoneValuesIpaJsonArray,
                     word.getUsageCount(),
                     word.getWordType(),
-                    word.getSpellingConsistency()
+                    word.getSpellingConsistency(),
+                    rootWordId,
+                    rootWordText
             );
             
             csvPrinter.flush();

@@ -21,6 +21,7 @@
                     <th><fmt:message key="allophones" /></th>
                     <th><fmt:message key="spelling.consistency" /></th>
                     <th><fmt:message key="word.type" /></th>
+                    <th><fmt:message key="root.word" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -67,6 +68,13 @@
                             </td>
                             <td>
                                 ${word.wordType}
+                            </td>
+                            <td>
+                                <c:if test="${not empty word.rootWord}">
+                                    <a href="<spring:url value='/content/word/edit/${word.rootWord.id}' />">
+                                        ${word.rootWord.text} 
+                                    </a> (${word.rootWord.wordType})
+                                </c:if>
                             </td>
                             <td>
                                 <p>#${word.revisionNumber}</p>

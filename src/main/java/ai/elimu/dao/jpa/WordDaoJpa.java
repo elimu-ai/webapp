@@ -61,6 +61,17 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
             .setMaxResults(10)
             .getResultList();
     }
+
+    @Override
+    public List<Word> readInflections(Word word) throws DataAccessException {
+        return em.createQuery(
+            "SELECT w " +
+            "FROM Word w " +
+            "WHERE w.rootWord = :word " +
+            "ORDER BY w.text")
+            .setParameter("word", word)
+            .getResultList();
+    }
     
     @Override
     public Long readCount(Language language) throws DataAccessException {
