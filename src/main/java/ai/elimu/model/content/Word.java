@@ -10,6 +10,7 @@ import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -30,6 +31,12 @@ public class Word extends Content {
     private List<Allophone> allophones;
     
     private int usageCount; // Based on StoryBook content
+    
+    /**
+     * As an example, the verb "reading" will be linked to the root verb "read".
+     */
+    @ManyToOne
+    private Word rootWord;
     
     @Enumerated(EnumType.STRING)
     private WordType wordType;
@@ -70,6 +77,14 @@ public class Word extends Content {
 
     public void setUsageCount(int usageCount) {
         this.usageCount = usageCount;
+    }
+    
+    public Word getRootWord() {
+        return rootWord;
+    }
+
+    public void setRootWord(Word rootWord) {
+        this.rootWord = rootWord;
     }
 
     public WordType getWordType() {

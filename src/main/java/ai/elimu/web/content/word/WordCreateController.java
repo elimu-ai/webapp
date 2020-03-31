@@ -56,14 +56,12 @@ public class WordCreateController {
             word.setText(autoFillText);
         }
         
-        model.addAttribute("word", word);
-        
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Allophone> allophones = allophoneDao.readAllOrdered(language);
-        model.addAttribute("allophones", allophones);
         
+        model.addAttribute("word", word);
+        model.addAttribute("allophones", allophoneDao.readAllOrdered(language));
+        model.addAttribute("rootWords", wordDao.readAllOrdered(language));
         model.addAttribute("wordTypes", WordType.values());
-        
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
 
         return "content/word/create";
@@ -88,6 +86,7 @@ public class WordCreateController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
+            model.addAttribute("rootWords", wordDao.readAllOrdered(language));
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             return "content/word/create";

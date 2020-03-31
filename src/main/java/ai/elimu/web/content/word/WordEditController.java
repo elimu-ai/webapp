@@ -16,7 +16,6 @@ import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
@@ -59,18 +58,15 @@ public class WordEditController {
     	logger.info("handleRequest");
         
         Word word = wordDao.read(id);
-        model.addAttribute("word", word);
-        
+                
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Allophone> allophones = allophoneDao.readAllOrdered(language);
-        model.addAttribute("allophones", allophones);
         
+        model.addAttribute("word", wordDao.read(id));
+        model.addAttribute("allophones", allophoneDao.readAllOrdered(language));
+        model.addAttribute("rootWords", wordDao.readAllOrdered(language));
         model.addAttribute("wordTypes", WordType.values());
-        
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-        
-        Audio audio = audioDao.read(word.getText(), language);
-        model.addAttribute("audio", audio);
+        model.addAttribute("audio", audioDao.read(word.getText(), language));
         
         // Look up Multimedia content that has been labeled with this Word
         // TODO: labeled Audios
@@ -103,10 +99,10 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
+            model.addAttribute("rootWords", wordDao.readAllOrdered(language));
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            Audio audio = audioDao.read(word.getText(), language);
-            model.addAttribute("audio", audio);
+            model.addAttribute("audio", audioDao.read(word.getText(), language));
             return "content/word/edit";
         } else {
             if (language == Language.ENG) {
