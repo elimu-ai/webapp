@@ -17,5 +17,7 @@ public interface WordDao extends GenericDao<Word> {
     
     List<Word> readLatest(Language language) throws DataAccessException;
     
+    List<Word> readInflections(Word word) throws DataAccessException;
+    
     Long readCount(Language language) throws DataAccessException;
 }
