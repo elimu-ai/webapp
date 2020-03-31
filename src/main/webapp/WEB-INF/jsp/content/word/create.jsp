@@ -100,6 +100,16 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <select id="rootWord" name="rootWord">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="rootWord" items="${rootWords}">
+                            <option value="${rootWord.id}" <c:if test="${rootWord.id == word.rootWord.id}">selected="selected"</c:if>>${rootWord.text}<c:if test="${not empty rootWord.wordType}"> (${rootWord.wordType})</c:if></option>
+                        </c:forEach>
+                    </select>
+                    <label for="rootWord"><fmt:message key="root.word" /></label>
+                </div>
+                
+                <div class="input-field col s12">
                     <select id="wordType" name="wordType">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="wordType" items="${wordTypes}">
