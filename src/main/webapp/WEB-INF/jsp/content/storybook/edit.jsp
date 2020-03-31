@@ -79,7 +79,7 @@
             </c:if>
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
-                <p class="storyBookParagraph">
+                <p class="storyBookParagraph" data-language="${fn:toLowerCase(applicationScope.configProperties['content.language'])}">
                     <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
                         <c:set var="word" value="${storyBookParagraph.words[status.index]}" />
                         <c:choose>

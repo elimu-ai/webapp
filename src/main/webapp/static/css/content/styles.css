@@ -81,9 +81,13 @@ nav {
     margin: auto;
 }
 #storyBookEditPage .storyBookChapter .storyBookParagraph {
-    letter-spacing: 2pt;
+    letter-spacing: 0.2em;
     word-spacing: 1em;
     font-size: 2em;
     line-height: 2em;
     margin: 2em;
+}
+#storyBookEditPage .storyBookChapter .storyBookParagraph[data-language="ben"],
+#storyBookEditPage .storyBookChapter .storyBookParagraph[data-language="hin"] {
+    letter-spacing: 0.4em;
 }
