@@ -16,6 +16,9 @@
     
     <div class="row">
         <h4><fmt:message key="reading.level.LEVEL1" /></h4>
+        <c:if test="${empty storyBooksLevel1}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel1}">
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
@@ -39,6 +42,9 @@
     
     <div class="row">
         <h4><fmt:message key="reading.level.LEVEL2" /></h4>
+        <c:if test="${empty storyBooksLevel2}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel2}">
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
@@ -62,6 +68,9 @@
     
     <div class="row">
         <h4><fmt:message key="reading.level.LEVEL3" /></h4>
+        <c:if test="${empty storyBooksLevel3}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel3}">
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
@@ -85,6 +94,9 @@
     
     <div class="row">
         <h4><fmt:message key="reading.level.LEVEL4" /></h4>
+        <c:if test="${empty storyBooksLevel4}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel4}">
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
@@ -108,6 +120,9 @@
     
     <div class="row">
         <h4><fmt:message key="reading.level" />: Unleveled</h4>
+        <c:if test="${empty storyBooksUnleveled}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="storyBook" items="${storyBooksUnleveled}">
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>

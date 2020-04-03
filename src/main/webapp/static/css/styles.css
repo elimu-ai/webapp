@@ -20,6 +20,9 @@ body {
 html[data-content-language="fil"] #index-banner {
     background-image: url(../../static/img/banner-fil.jpg);
 }
+html[data-content-language="hin"] #index-banner {
+    background-image: url(../../static/img/banner-hin.jpg);
+}
 
 .container > .section {
     min-height: 400px;

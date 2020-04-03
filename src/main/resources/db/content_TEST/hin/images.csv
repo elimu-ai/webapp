@@ -1,0 +1,12 @@
+id,content_type,content_license,attribution_url,title,download_url,image_format
+1,image/jpg,null,"null","storybook-1-cover","/image/1.jpg",JPG
+2,image/jpg,null,"null","storybook-1-ch-1","/image/2.jpg",JPG
+3,image/jpg,null,"null","storybook-1-ch-2","/image/3.jpg",JPG
+4,image/jpg,null,"null","storybook-1-ch-3","/image/4.jpg",JPG
+5,image/jpg,null,"null","storybook-1-ch-4","/image/5.jpg",JPG
+6,image/jpg,null,"null","storybook-1-ch-5","/image/6.jpg",JPG
+7,image/jpg,null,"null","storybook-1-ch-6","/image/7.jpg",JPG
+8,image/jpg,null,"null","storybook-1-ch-7","/image/8.jpg",JPG
+9,image/jpg,null,"null","storybook-1-ch-8","/image/9.jpg",JPG
+10,image/png,null,"null","storybook-1-ch-9","/image/10.png",PNG
+11,image/png,null,"null","storybook-1-ch-10","/image/11.png",PNG
