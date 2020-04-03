@@ -10,7 +10,7 @@
     </c:when>
     <c:otherwise>
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="en" data-content-language="${fn:toLowerCase(applicationScope.configProperties['content.language'])}">
             <head>
                 <title><content:gettitle /> | ${fn:toLowerCase(applicationScope.configProperties['content.language'])}.elimu.ai</title>
 
