@@ -4,7 +4,7 @@
 MAILTO=group-development@elimu.ai
 
 # minute hour day month weekday command
-00 04 * * * /root/.elimu-ai/backup_test/mysqlBackup.sh
+00 04 * * * ~/.elimu-ai/backup_test/mysqlBackup.sh
 
 # minute hour day month weekday command
-30 04 * * * /root/.elimu-ai/backup_prod/removeOldBackups.sh
+30 04 * * * ~/.elimu-ai/backup_prod/removeOldBackups.sh
