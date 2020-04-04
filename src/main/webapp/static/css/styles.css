@@ -17,11 +17,14 @@ body {
     background-size: cover;
     background-position: 0 50%;
 }
-html[data-content-language="fil"] #index-banner {
-    background-image: url(../../static/img/banner-fil.jpg);
+html[data-content-language="ben"] #index-banner {
+    background-image: url(../../static/img/banner-ben.jpg);
 }
 html[data-content-language="hin"] #index-banner {
     background-image: url(../../static/img/banner-hin.jpg);
+}
+html[data-content-language="fil"] #index-banner {
+    background-image: url(../../static/img/banner-fil.jpg);
 }
 
 .container > .section {

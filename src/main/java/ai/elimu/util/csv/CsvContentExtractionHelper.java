@@ -141,7 +141,7 @@ public class CsvContentExtractionHelper {
                     String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
                     logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
                     Allophone allophone = allophoneDao.readByValueIpa(language, allophoneValueIpa);
-                    logger.info("allophone.getId(): \"" + allophone.getId() + "\"");
+                    logger.info("allophone.getId(): " + allophone.getId());
                     allophones.add(allophone);
                 }
                 letter.setAllophones(allophones);
@@ -164,7 +164,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, AllophoneDao allophoneDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, AllophoneDao allophoneDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();
@@ -175,13 +175,15 @@ public class CsvContentExtractionHelper {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
                     .withHeader(
-                            "id", 
-                            "text", 
-                            "allophone_ids", 
-                            "allophone_values_ipa", 
+                            "id",
+                            "text",
+                            "allophone_ids",
+                            "allophone_values_ipa",
                             "usage_count",
                             "word_type",
-                            "spelling_consistency"
+                            "spelling_consistency",
+                            "root_word_id",
+                            "root_word_text"
                     )
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
@@ -204,7 +206,7 @@ public class CsvContentExtractionHelper {
                     String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
                     logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
                     Allophone allophone = allophoneDao.readByValueIpa(language, allophoneValueIpa);
-                    logger.info("allophone.getId(): \"" + allophone.getId() + "\"");
+                    logger.info("allophone.getId(): " + allophone.getId());
                     allophones.add(allophone);
                 }
                 word.setAllophones(allophones);
@@ -221,6 +223,13 @@ public class CsvContentExtractionHelper {
                     SpellingConsistency spellingConsistency = SpellingConsistency.valueOf(csvRecord.get("spelling_consistency"));
                     word.setSpellingConsistency(spellingConsistency);
                 }
+                
+                // TODO: Store rootWords _after_ all Words have been stored
+//                if (StringUtils.isNotBlank(csvRecord.get("root_word_text"))) {
+//                    String rootWordText = csvRecord.get("root_word_text");
+//                    Word rootWord = wordDao.readByText(language, rootWordText);
+//                    word.setRootWord(rootWord);
+//                }
                 
                 words.add(word);
             }

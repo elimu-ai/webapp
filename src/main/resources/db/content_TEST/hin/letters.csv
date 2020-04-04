@@ -1,2 +1,5 @@
 id,text,allophone_ids,allophone_values_ipa,diacritic,usage_count
-1,न,[1],"[""n""]",false,0
+1,न,[1],"[""n""]",false,40
+2,क,[2],"[""k""]",false,0
+4,म,[4],"[""m""]",false,0
+3,ह,[3],"[""ɦ""]",false,0

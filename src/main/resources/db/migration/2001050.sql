@@ -1,5 +1,8 @@
 # 2.1.50
 
+# ALTER TABLE Contributor DROP INDEX UK_se15thb3bqtr3sw28rgf1v8ia;
+# ALTER TABLE Device DROP INDEX UK_ktkbd0xm3q2nddw1xxtdaxjy7;
+
 ALTER TABLE Allophone CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE Application CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ALTER TABLE ApplicationVersion CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;

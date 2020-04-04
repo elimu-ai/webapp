@@ -1,2 +1,5 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
+2,k,k,,false,CONSONANT,0
+4,m,m,,false,CONSONANT,0
 1,n,n,,false,CONSONANT,0
+3,ɦ,h\,,false,CONSONANT,0

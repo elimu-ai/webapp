@@ -73,7 +73,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
 
     @Override
     protected void customizeContext(ServletContext servletContext, ConfigurableWebApplicationContext applicationContext) {
-    	logger.info("contextInitialized");
+    	logger.info("customizeContext");
     	
         // Load default settings
         try {
