@@ -1,25 +1,25 @@
-id,value,symbol,word_texts,word_ids
-20,0,"null",[sifuri],[11]
-11,1,"null",[moja],[12]
-12,2,"null",[mbili],[13]
-13,3,"null",[tatu],[14]
-14,4,"null",[nne],[15]
-15,5,"null",[tano],[16]
-16,6,"null",[sita],[17]
-17,7,"null",[saba],[18]
-18,8,"null",[nane],[19]
-19,9,"null",[tisa],[20]
-33,10,"null",[kumi],[35]
-34,11,"null",[kumi, na, moja],[35, 36, 12]
-35,12,"null",[kumi, na, mbili],[35, 36, 13]
-36,13,"null",[kumi, na, tatu],[35, 36, 14]
-37,14,"null",[kumi, na, nne],[35, 36, 15]
-38,15,"null",[kumi, na, tano],[35, 36, 16]
-39,16,"null",[kumi, na, sita],[35, 36, 17]
-40,17,"null",[kumi, na, saba],[35, 36, 18]
-41,18,"null",[kumi, na, nane],[35, 36, 19]
-42,19,"null",[kumi, na, tisa],[35, 36, 20]
-43,20,"null",[ishirini],[37]
-44,21,"null",[ishirini, na, moja],[37, 36, 12]
-47,22,"null",[ishirini, na, mbili],[37, 36, 13]
-48,30,"null",[thelathini],[42]
+id,value,symbol,word_ids,word_texts
+20,0,,[11],"[""sifuri""]"
+11,1,,[12],"[""moja""]"
+12,2,,[13],"[""mbili""]"
+13,3,,[14],"[""tatu""]"
+14,4,,[15],"[""nne""]"
+15,5,,[16],"[""tano""]"
+16,6,,[17],"[""sita""]"
+17,7,,[18],"[""saba""]"
+18,8,,[19],"[""nane""]"
+19,9,,[20],"[""tisa""]"
+33,10,,[35],"[""kumi""]"
+34,11,,"[35,36,12]","[""kumi"",""na"",""moja""]"
+35,12,,"[35,36,13]","[""kumi"",""na"",""mbili""]"
+36,13,,"[35,36,14]","[""kumi"",""na"",""tatu""]"
+37,14,,"[35,36,15]","[""kumi"",""na"",""nne""]"
+38,15,,"[35,36,16]","[""kumi"",""na"",""tano""]"
+39,16,,"[35,36,17]","[""kumi"",""na"",""sita""]"
+40,17,,"[35,36,18]","[""kumi"",""na"",""saba""]"
+41,18,,"[35,36,19]","[""kumi"",""na"",""nane""]"
+42,19,,"[35,36,20]","[""kumi"",""na"",""tisa""]"
+43,20,,[37],"[""ishirini""]"
+44,21,,"[37,36,12]","[""ishirini"",""na"",""moja""]"
+47,22,,"[37,36,13]","[""ishirini"",""na"",""mbili""]"
+48,30,,[42],"[""thelathini""]"
