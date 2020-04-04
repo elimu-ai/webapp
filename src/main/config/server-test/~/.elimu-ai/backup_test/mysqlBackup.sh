@@ -9,7 +9,7 @@ if [ ! -d "database" ]; then
     echo "directory '$(pwd)/database' was created"
 fi
 
-mysqldump -c -u webapp-eng-user -p************ literacyapp > database/webapp-eng_`date +%Y"-"%m"-"%d`.sql
+mysqldump -c -u webapp-eng-user -p************ webapp-eng > database/webapp-eng_`date +%Y"-"%m"-"%d`.sql
 
 # Copy the backup to the prod server
 DUMP_FILE=~/.elimu-ai/backup_test/database/webapp-eng_`date +%Y"-"%m"-"%d`.sql
