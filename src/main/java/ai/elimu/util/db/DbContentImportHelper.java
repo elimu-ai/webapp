@@ -95,7 +95,7 @@ public class DbContentImportHelper {
         URL wordsCsvFileUrl = getClass().getClassLoader()
                 .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/words.csv");
         File wordsCsvFile = new File(wordsCsvFileUrl.getFile());
-        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao);
+        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao, wordDao);
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
         for (Word word : words) {
