@@ -1,1 +1,7 @@
 id,text,allophone_ids,allophone_values_ipa,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+3,कहा,"[2,14,3,14]","[""k"",""aː"",""ɦ"",""aː""]",0,VERB,PHONEMIC,,
+4,क्या,"[2,13,14]","[""k"",""j"",""aː""]",0,,PERFECT,,
+2,ने,"[1,15]","[""n"",""eː""]",0,VERB,PERFECT,,
+6,ये,"[13,15]","[""j"",""eː""]",0,,PERFECT,,
+5,सकते,"[6,14,2,7,15]","[""s"",""aː"",""k"",""t"",""eː""]",0,VERB,PERFECT,,
+1,से,"[6,15]","[""s"",""eː""]",0,,PERFECT,,

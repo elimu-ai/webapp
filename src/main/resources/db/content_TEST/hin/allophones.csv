@@ -1,5 +1,16 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
+14,aː,a,,false,VOWEL,0
+12,b,b,,false,CONSONANT,0
+15,eː,e,,false,VOWEL,0
+13,j,j,,false,CONSONANT,0
 2,k,k,,false,CONSONANT,0
+5,l,l,,false,CONSONANT,0
 4,m,m,,false,CONSONANT,0
 1,n,n,,false,CONSONANT,0
+9,p,p,,false,CONSONANT,0
+6,s,s,,false,CONSONANT,0
+7,t,t,,false,CONSONANT,0
+11,z,z,,false,CONSONANT,0
+8,ə,@,,false,VOWEL,0
 3,ɦ,h\,,false,CONSONANT,0
+10,ɾ,4,,false,CONSONANT,0
