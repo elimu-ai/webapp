@@ -10,3 +10,14 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 9,image/jpg,null,"null","storybook-1-ch-8","/image/9.jpg",JPG
 10,image/png,null,"null","storybook-1-ch-9","/image/10.png",PNG
 11,image/png,null,"null","storybook-1-ch-10","/image/11.png",PNG
+12,image/jpg,null,"null","storybook-2-cover","/image/12.jpg",JPG
+13,image/jpg,null,"null","storybook-2-ch-1","/image/13.jpg",JPG
+14,image/jpg,null,"null","storybook-2-ch-2","/image/14.jpg",JPG
+15,image/jpg,null,"null","storybook-2-ch-3","/image/15.jpg",JPG
+16,image/jpg,null,"null","storybook-2-ch-4","/image/16.jpg",JPG
+17,image/jpg,null,"null","storybook-2-ch-5","/image/17.jpg",JPG
+18,image/jpg,null,"null","storybook-2-ch-6","/image/18.jpg",JPG
+19,image/jpg,null,"null","storybook-2-ch-7","/image/19.jpg",JPG
+20,image/jpg,null,"null","storybook-2-ch-8","/image/20.jpg",JPG
+21,image/png,null,"null","storybook-2-ch-9","/image/21.png",PNG
+22,image/png,null,"null","storybook-2-ch-10","/image/22.png",PNG
