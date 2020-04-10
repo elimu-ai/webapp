@@ -69,9 +69,9 @@
     </div>
     
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
-        <c:if test="${status.index == (fn:length(storyBookChapters) - 1)}">
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
             <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="<fmt:message key='delete' />">delete</i></a>
-        </c:if>
+        </sec:authorize>
         <h5 style="margin-top: 1em;" class="grey-text"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
