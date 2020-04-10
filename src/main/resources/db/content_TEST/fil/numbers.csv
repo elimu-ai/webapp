@@ -28,4 +28,7 @@ id,value,symbol,word_ids,word_texts
 28,26,,"[60,35]","[""dalawampu't"",""anim""]"
 29,27,,"[60,80]","[""dalawampu't"",""pito""]"
 30,28,,"[60,86]","[""dalawampu't"",""walo""]"
+31,29,,"[60,84]","[""dalawampu't"",""siyam""]"
 24,30,,[85],"[""tatlumpu""]"
+32,31,,"[180,31]","[""tatlumpu't"",""isa""]"
+33,32,,"[180,30]","[""tatlumpu't"",""dalawa""]"
