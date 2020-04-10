@@ -18,4 +18,8 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 20,oː,o,,false,VOWEL,0
 9,p,p,,false,CONSONANT,0
 11,z,z,,false,CONSONANT,0
+24,ɔː,O,,false,VOWEL,0
 8,ə,@,,false,VOWEL,0
+21,ɛː,E,,false,VOWEL,0
+23,ɪ,I,,false,VOWEL,0
+22,ʊ,U,,false,VOWEL,0
