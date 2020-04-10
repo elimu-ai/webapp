@@ -34,14 +34,14 @@ public class StoryBookChapterDeleteController {
     public String handleRequest(@PathVariable Long storyBookId, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        StoryBookChapter storyBookChapter = storyBookChapterDao.read(id);
-        logger.info("storyBookChapter: " + storyBookChapter);
+        StoryBookChapter storyBookChapterToBeDeleted = storyBookChapterDao.read(id);
+        logger.info("storyBookChapterToBeDeleted: " + storyBookChapterToBeDeleted);
         
         // Delete the chapter's image (if any)
         // TODO
         
         // Delete the chapter's paragraphs
-        List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+        List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapterToBeDeleted);
         logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
             logger.info("Deleting StoryBookParagraph with ID " + storyBookParagraph.getId());
@@ -49,14 +49,28 @@ public class StoryBookChapterDeleteController {
         }
         
         // Delete the chapter
-        logger.info("Deleting StoryBookChapter with ID " + storyBookChapter.getId());
-        storyBookChapterDao.delete(storyBookChapter);
+        logger.info("Deleting StoryBookChapter with ID " + storyBookChapterToBeDeleted.getId());
+        storyBookChapterDao.delete(storyBookChapterToBeDeleted);
         
         // Update the StoryBook's metadata
-        StoryBook storyBook = storyBookChapter.getStoryBook();
+        StoryBook storyBook = storyBookChapterToBeDeleted.getStoryBook();
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
         storyBookDao.update(storyBook);
+        
+        // Update the sorting order of the remaining chapters
+        logger.info("storyBookChapterToBeDeleted.getSortOrder(): " + storyBookChapterToBeDeleted.getSortOrder());
+        List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+        logger.info("storyBookChapters.size(): " + storyBookChapters.size());
+        for (StoryBookChapter storyBookChapter : storyBookChapters) {
+            logger.info("storyBookChapter.getId(): " + storyBookChapter.getId() + ", storyBookChapter.getSortOrder(): " + storyBookChapter.getSortOrder());
+            if (storyBookChapter.getSortOrder() > storyBookChapterToBeDeleted.getSortOrder()) {
+                // Reduce sort order by 1
+                storyBookChapter.setSortOrder(storyBookChapter.getSortOrder() - 1);
+                storyBookChapterDao.update(storyBookChapter);
+                logger.info("storyBookChapter.getSortOrder() (after update): " + storyBookChapter.getSortOrder());
+            }
+        }
 
         return "redirect:/content/storybook/edit/" + storyBookId;
     }
