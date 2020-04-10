@@ -20,3 +20,7 @@ id,text,allophone_ids,allophone_values_ipa,diacritic,usage_count
 11,ज,[11],"[""z""]",false,14
 19,थ,[19],"[""tʰ""]",false,6
 20,ए,[15],"[""eː""]",false,0
+25,औ,[24],"[""ɔː""]",false,0
+24,ि,[23],"[""ɪ""]",true,0
+23,ु,[22],"[""ʊ""]",true,0
+22,ै,[21],"[""ɛː""]",true,0
