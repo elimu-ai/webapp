@@ -7,18 +7,13 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
-import ai.elimu.util.ConfigHelper;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,20 +65,14 @@ public class StoryBookChapterDeleteController {
         storyBookChapterDao.delete(storyBookChapterToBeDeleted);
         
         // Delete the chapter's image (if any)
-        StoryBook storyBook = storyBookChapterToBeDeleted.getStoryBook();
-        String chapterImageTitle = "storybook-" + storyBook.getId() + "-ch-" + (storyBookChapterToBeDeleted.getSortOrder() + 1);
-        logger.info("chapterImageTitle: \"" + chapterImageTitle + "\"");
-        if (StringUtils.isNotBlank(chapterImageTitle)) {
-            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-            Image chapterImage = imageDao.read(chapterImageTitle, language);
-            logger.info("chapterImage: " + chapterImage);
-            if (chapterImage != null) {
-                logger.warn("Deleting the chapter image from the database");
-                imageDao.delete(chapterImage);
-            }
+        logger.info("storyBookChapterToBeDeleted.getImage(): " + storyBookChapterToBeDeleted.getImage());
+        if (storyBookChapterToBeDeleted.getImage() != null) {
+            logger.warn("Deleting the chapter image from the database");
+            imageDao.delete(storyBookChapterToBeDeleted.getImage());
         }
         
         // Update the StoryBook's metadata
+        StoryBook storyBook = storyBookChapterToBeDeleted.getStoryBook();
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
         storyBookDao.update(storyBook);
