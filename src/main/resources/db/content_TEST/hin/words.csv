@@ -11,5 +11,7 @@ id,text,allophone_ids,allophone_values_ipa,usage_count,word_type,spelling_consis
 8,भी,"[18,16]","[""bʱ"",""iː""]",2,,PERFECT,,
 14,अभी,"[8,18,16]","[""ə"",""bʱ"",""iː""]",0,,PERFECT,,
 11,एक,"[15,2]","[""eː"",""k""]",0,,PERFECT,,
+15,खा,"[26,14]","[""kʰ"",""aː""]",0,,NON_PHONEMIC,,
+16,चार,"[7,27,14,10]","[""t"",""ʃ"",""aː"",""ɾ""]",0,,PERFECT,,
 13,तीन,"[7,16,1]","[""t"",""iː"",""n""]",0,,PERFECT,,
 12,दो,"[17,20]","[""d"",""oː""]",0,,PERFECT,,
