@@ -92,14 +92,22 @@ public class EPubParagraphExtractionHelper {
                             for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
                                 Node paragraphChildNode = paragraphChildNodeList.item(k);
                                 logger.info("paragraphChildNode: " + paragraphChildNode);
+                                logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
                                 
                                 
                                 if ("#text".equals(paragraphChildNode.getNodeName())) {
-                                    // Add whitespace between each sentence
-                                    // E.g. "WAAAAHHHH!" --> "WAAAAHHHH! "
-                                    if (StringUtils.isNotBlank(paragraph)) {
+                                    // Add whitespace before each word/sentence
+                                    if (StringUtils.isNotBlank(paragraph)
+                                            &!"b".equals(previousNodeName)) {
                                         paragraph += " ";
                                     }
+                                    
+                                    // Append the word/sentence to the paragraph.
+                                    paragraph += paragraphChildNode.getTextContent();
+                                } else if ("b".equals(paragraphChildNode.getNodeName())) {
+                                    // E.g. "Like the <b>tiger</b>!"
+                                    
+                                    // Append the word/sentence to the paragraph.
                                     paragraph += paragraphChildNode.getTextContent();
                                 } else if ("br".equals(paragraphChildNode.getNodeName())) {
                                     // Handle double linebreaks within paragraphs
