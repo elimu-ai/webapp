@@ -66,6 +66,40 @@ public class EPubParagraphExtractionHelperTest {
     }
     
     @Test
+    public void testExtractParagraphsFromChapterFile_ENG_GDL_1855() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("eng-gdl-1855.epub_chapter-2.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(2));
+        assertThat(storyBookParagraphs.get(0), is("\n"
+                + " Some wild cats have stripes.\n"
+                + ""));
+        assertThat(storyBookParagraphs.get(1), is("\n"
+                + " Like the tiger!\n"
+                + ""));
+    }
+    
+    @Test
+    public void testExtractParagraphsFromChapterFile_ENG_GDL_1855_ch4() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("eng-gdl-1855.epub_chapter-4.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(2));
+        assertThat(storyBookParagraphs.get(0), is("\n"
+                + " Some wild cats have spots.\n"
+                + ""));
+        assertThat(storyBookParagraphs.get(1), is("\n"
+                + " Like the leopard and the leopard cat!\n"
+                + ""));
+    }
+    
+    @Test
     public void testExtractParagraphsFromChapterFile_FIL_LRA_faa0d66e() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("fil-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");
@@ -77,6 +111,43 @@ public class EPubParagraphExtractionHelperTest {
         assertThat(storyBookParagraphs.get(0), is("WAAAAHHHH!"));
         assertThat(storyBookParagraphs.get(1), is("Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol."));
         assertThat(storyBookParagraphs.get(2), is("WAAAAHHHH!"));
+    }
+    
+    @Test
+    public void testExtractParagraphsFromChapterFile_HIN_GDL_1296() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-gdl-1296.epub_chapter-2.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(1));
+        assertThat(storyBookParagraphs.get(0), is("\n"
+                + " \n"
+                + "  एक बादल घुमने चला.\n"
+                + " \n"
+                + ""));
+    }
+    
+    @Test
+    public void testExtractParagraphsFromChapterFile_HIN_GDL_1296_ch3() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-gdl-1296.epub_chapter-3.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(2));
+        assertThat(storyBookParagraphs.get(0), is("\n"
+                + " \n"
+                + "  साथ में चिड़िया भी उड़ती\n"
+                + " \n"
+                + ""));
+        assertThat(storyBookParagraphs.get(1), is("\n"
+                + " \n"
+                + "  हुई चली.\n"
+                + " \n"
+                + ""));
     }
     
     @Test
