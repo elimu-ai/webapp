@@ -35,3 +35,6 @@ id,value,symbol,word_ids,word_texts
 34,33,,"[180,39]","[""tatlumpu't"",""tatlo""]"
 35,34,,"[180,29]","[""tatlumpu't"",""apat""]"
 36,35,,"[180,50]","[""tatlumpu't"",""lima""]"
+37,36,,"[180,35]","[""tatlumpu't"",""anim""]"
+38,37,,"[180,80]","[""tatlumpu't"",""pito""]"
+39,38,,"[180,86]","[""tatlumpu't"",""walo""]"
