@@ -7,9 +7,11 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.gson.v2.content.ImageGson;
 import ai.elimu.model.gson.v2.content.StoryBookChapterGson;
 import ai.elimu.model.gson.v2.content.StoryBookGson;
 import ai.elimu.model.gson.v2.content.StoryBookParagraphGson;
+import ai.elimu.model.gson.v2.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
@@ -48,15 +50,47 @@ public class StoryBooksRestController {
         for (StoryBook storyBook : storyBookDao.readAllOrdered(language)) {
             StoryBookGson storyBookGson = JpaToGsonConverter.getStoryBookGson(storyBook);
             
+            // Remove duplicate cover image content
+            // TODO: move this code block to JpaToGsonConverter?
+            ImageGson coverImageGson = storyBookGson.getCoverImage();
+            if (coverImageGson != null) {
+                ImageGson imageGsonWithIdOnly = new ImageGson();
+                imageGsonWithIdOnly.setId(coverImageGson.getId());
+                storyBookGson.setCoverImage(imageGsonWithIdOnly);
+            }
+            
             // Add chapters
             List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
             for (StoryBookChapter storyBookChapter : storyBookChapterDao.readAll(storyBook)) {
                 StoryBookChapterGson storyBookChapterGson = JpaToGsonConverter.getStoryBookChapterGson(storyBookChapter);
                 
+                // Remove duplicate image content
+                // TODO: move this code block to JpaToGsonConverter?
+                ImageGson imageGson = storyBookChapterGson.getImage();
+                if (imageGson != null) {
+                    ImageGson imageGsonWithIdOnly = new ImageGson();
+                    imageGsonWithIdOnly.setId(imageGson.getId());
+                    storyBookChapterGson.setImage(imageGsonWithIdOnly);
+                }
+                
                 // Add paragraphs
                 List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
                     StoryBookParagraphGson storyBookParagraphGson = JpaToGsonConverter.getStoryBookParagraphGson(storyBookParagraph);
+                    
+                    // Remove duplicate word content
+                    // TODO: move this code block to JpaToGsonConverter?
+                    List<WordGson> wordGsons = storyBookParagraphGson.getWords();
+                    List<WordGson> wordGsonsWithIdOnly = new ArrayList<>();
+                    for (WordGson wordGson : wordGsons) {
+                        WordGson wordGsonWithIdOnly = new WordGson();
+                        if (wordGson != null) {
+                            wordGsonWithIdOnly.setId(wordGson.getId());
+                        }
+                        wordGsonsWithIdOnly.add(wordGsonWithIdOnly);
+                    }
+                    storyBookParagraphGson.setWords(wordGsonsWithIdOnly);
+                    
                     storyBookParagraphGsons.add(storyBookParagraphGson);
                 }
                 storyBookChapterGson.setStoryBookParagraphs(storyBookParagraphGsons);
