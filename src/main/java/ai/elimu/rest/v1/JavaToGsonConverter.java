@@ -35,6 +35,7 @@ import ai.elimu.model.gson.content.multimedia.VideoGson;
  * Convert classes from JPA/Hibernate format to POJO format, so that they can be serialized into 
  * JSON and transferred to Android applications that are connecting via the REST API.
  */
+@Deprecated
 public class JavaToGsonConverter {
     
     public static ApplicationGson getApplicationGson(Application application) {
@@ -343,7 +344,7 @@ public class JavaToGsonConverter {
         }
     }
     
-    public static StoryBookChapterGson getStoryBookChapter(StoryBookChapter storyBookChapter) {
+    public static StoryBookChapterGson getStoryBookChapterGson(StoryBookChapter storyBookChapter) {
         if (storyBookChapter == null) {
             return null;
         } else {
@@ -358,14 +359,14 @@ public class JavaToGsonConverter {
         }
     }
     
-    public static StoryBookParagraphGson getStoryBookParagraph(StoryBookParagraph storyBookParagraph) {
+    public static StoryBookParagraphGson getStoryBookParagraphGson(StoryBookParagraph storyBookParagraph) {
         if (storyBookParagraph == null) {
             return null;
         } else {
             StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
             
             storyBookParagraphGson.setId(storyBookParagraph.getId());
-            storyBookParagraphGson.setStoryBookChapter(getStoryBookChapter(storyBookParagraph.getStoryBookChapter()));
+            storyBookParagraphGson.setStoryBookChapter(getStoryBookChapterGson(storyBookParagraph.getStoryBookChapter()));
             storyBookParagraphGson.setSortOrder(storyBookParagraph.getSortOrder());
             storyBookParagraphGson.setOriginalText(storyBookParagraph.getOriginalText());
             List<WordGson> words = new ArrayList<>();

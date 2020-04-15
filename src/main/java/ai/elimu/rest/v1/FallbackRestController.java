@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Deprecated
 @RestController
 @RequestMapping(value = "/rest/v1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class FallbackRestController {
