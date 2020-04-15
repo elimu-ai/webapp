@@ -1,4 +1,4 @@
-package ai.elimu.rest.v2;
+package ai.elimu.rest.v2.content;
 
 import ai.elimu.util.JsonLoader;
 import org.apache.log4j.Logger;
@@ -17,18 +17,16 @@ public class StoryBooksRestControllerTest {
     public void testHandleGetRequest() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/content/storybooks");
         logger.info("jsonResponse: " + jsonResponse);
-        JSONObject jsonObject = new JSONObject(jsonResponse);
         
-        assertThat(jsonObject.has("result"), is(true));
-        assertThat(jsonObject.get("result"), is("success"));
+        JSONArray storyBooksJSONArray = new JSONArray(jsonResponse);
+        logger.info("storyBooksJSONArray.length(): " + storyBooksJSONArray.length());
+        assertThat(storyBooksJSONArray.length() > 0, is(true));
         
-        assertThat(jsonObject.has("storyBooks"), is(true));
-        assertThat(jsonObject.getJSONArray("storyBooks").length() > 0, is(true));
-        
-        JSONObject storyBookJsonObject = jsonObject.getJSONArray("storyBooks").getJSONObject(0);
+        JSONObject storyBookJsonObject = storyBooksJSONArray.getJSONObject(0);
         assertThat(storyBookJsonObject.getString("title"), not(nullValue()));
         
         JSONArray chaptersJsonArray = storyBookJsonObject.getJSONArray("storyBookChapters");
+        logger.info("chaptersJsonArray.length(): " + chaptersJsonArray.length());
         assertThat(chaptersJsonArray.length() > 0, is(true));
     }
 }

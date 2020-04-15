@@ -3,6 +3,7 @@ package ai.elimu.rest.v2.content;
 import ai.elimu.util.JsonLoader;
 import org.apache.log4j.Logger;
 import static org.hamcrest.CoreMatchers.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -16,15 +17,12 @@ public class ImagesRestControllerTest {
     public void testHandleGetRequest() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/content/images");
         logger.info("jsonResponse: " + jsonResponse);
-        JSONObject jsonObject = new JSONObject(jsonResponse);
         
-        assertThat(jsonObject.has("result"), is(true));
-        assertThat(jsonObject.get("result"), is("success"));
+        JSONArray imagesJSONArray = new JSONArray(jsonResponse);
+        logger.info("imagesJSONArray.length(): " + imagesJSONArray.length());
+        assertThat(imagesJSONArray.length() > 0, is(true));
         
-        assertThat(jsonObject.has("images"), is(true));
-        assertThat(jsonObject.getJSONArray("images").length() > 0, is(true));
-        
-        JSONObject imageJsonObject = jsonObject.getJSONArray("images").getJSONObject(0);
+        JSONObject imageJsonObject = imagesJSONArray.getJSONObject(0);
         assertThat(imageJsonObject.getString("title"), not(nullValue()));
     }
 }
