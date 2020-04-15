@@ -1,6 +1,6 @@
 id,text,allophone_ids,usage_count
 5,"to",[],45
-28,"er",[],27
+28,"er",[],26
 35,"in",[],23
 43,"of",[],20
 26,"ed",[],18
@@ -9,8 +9,8 @@ id,text,allophone_ids,usage_count
 40,"ly",[],17
 24,"up",[],17
 36,"is",[],16
-3,"al",[],15
 44,"on",[],15
+3,"al",[],14
 73,"ka",[],14
 45,"ou",[],10
 21,"so",[],10
@@ -39,7 +39,6 @@ id,text,allophone_ids,usage_count
 47,"ar",[],3
 11,"as",[],3
 72,"ho",[],3
-56,"la",[],3
 79,"pa",[],3
 85,"s ",[],3
 22,"di",[],2
@@ -47,6 +46,7 @@ id,text,allophone_ids,usage_count
 71,"f ",[],2
 70,"gi",[],2
 38,"ku",[],2
+56,"la",[],2
 39,"li",[],2
 75,"lo",[],2
 1,"ma",[],2
