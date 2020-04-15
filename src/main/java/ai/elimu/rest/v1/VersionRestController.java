@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * The responsibility of this controller is to return the latest version code of  
  * the applications that are using the webapp's REST API.
  */
+@Deprecated
 @RestController
 @RequestMapping(value = "/rest/v1/version", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class VersionRestController {
