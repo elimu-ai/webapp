@@ -1,348 +1,348 @@
-id,text,allophone_values_ipa,allophone_ids,usage_count,word_type,spelling_consistency
-675,"basi",[ɓ, ɑ, s, i],[48, 41, 61, 43],20,NOUN,PERFECT
-240,"maji",[m, ɑ, ʄ, i],[46, 41, 66, 43],19,NOUN,PERFECT
-245,"ya",[j, ɑ],[69, 41],19,null,NON_PHONEMIC
-243,"na",[n, ɑ],[55, 41],17,null,PERFECT
-284,"za",[z, ɑ],[60, 41],15,null,PERFECT
-644,"mpira",[m, p, i, ɾ, ɑ],[46, 49, 43, 62, 41],13,NOUN,PERFECT
-517,"siku",[s, i, k, u],[61, 43, 73, 45],11,NOUN,PERFECT
-370,"chakula",[tʃ, ɑ, k, u, l, ɑ],[67, 41, 73, 45, 63, 41],10,NOUN,HIGHLY_PHONEMIC
-561,"mtu",[m, t, u],[46, 58, 45],10,NOUN,PERFECT
-246,"sana",[s, ɑ, n, ɑ],[61, 41, 55, 41],10,null,PERFECT
-200,"baba",[ɓ, ɑ, ɓ, ɑ],[48, 41, 48, 41],9,NOUN,PERFECT
-214,"huyu",[h, u, j, u],[77, 45, 69, 45],9,null,PERFECT
-199,"mama",[m, ɑ, m, ɑ],[46, 41, 46, 41],9,NOUN,PERFECT
-244,"ni",[n, i],[55, 43],8,NOUN,PERFECT
-259,"saa",[s, ɑ, ɑ],[61, 41, 41],8,VERB,PERFECT
-285,"chini",[tʃ, i, n, i],[67, 43, 55, 43],7,VERB,PERFECT
-290,"karibu",[k, ɑ, ɾ, i, ɓ, u],[73, 41, 62, 43, 48, 45],7,VERB,PERFECT
-569,"usingizi",[u, s, i, n, ɠ, i, z, i],[45, 61, 43, 55, 72, 43, 60, 43],7,VERB,HIGHLY_PHONEMIC
-247,"ana",[ɑ, n, ɑ],[41, 55, 41],6,VERB,PERFECT
-500,"bluu",[ɓ, l, u, u],[48, 63, 45, 45],6,NOUN,PERFECT
-281,"juu",[ʄ, u, u],[66, 45, 45],6,VERB,PERFECT
-195,"kubwa",[k, u, ɓ, w, ɑ],[73, 45, 48, 76, 41],6,VERB,PERFECT
-278,"mamake",[m, ɑ, m, ɑ, k, ɛ],[46, 41, 46, 41, 73, 42],6,NOUN,PERFECT
-14,"tatu",[t, ɑ, t, u],[58, 41, 58, 45],6,NOUN,PERFECT
-224,"la",[l, ɑ],[63, 41],5,null,PERFECT
-215,"lile",[l, i, l, ɛ],[63, 43, 63, 42],5,null,PERFECT
-12,"moja",[m, ɔ, j, ɑ],[46, 44, 69, 41],5,NOUN,PERFECT
-210,"yeye",[j, ɛ, j, ɛ],[69, 42, 69, 42],5,NOUN,PERFECT
-249,"leo",[l, ɛ, ɔ],[63, 42, 44],4,NOUN,PERFECT
-366,"lori",[l, ɔ, ɾ, i],[63, 44, 62, 43],4,null,PERFECT
-642,"macho",[m, ɑ, tʃ, ɔ],[46, 41, 67, 44],4,NOUN,PERFECT
-242,"mto",[m, t, ɔ],[46, 58, 44],4,NOUN,PERFECT
-198,"mtoto",[m, t, ɔ, t, ɔ],[46, 58, 44, 58, 44],4,NOUN,PERFECT
-536,"nzuri",[nz, u, ɾ, i],[59, 45, 62, 43],4,VERB,PERFECT
-18,"saba",[s, ɑ, ɓ, ɑ],[61, 41, 48, 41],4,NOUN,PERFECT
-587,"tajiri",[t, ɑ, ʄ, i, ɾ, i],[58, 41, 66, 43, 62, 43],4,ADJECTIVE,PERFECT
-248,"watoto",[w, ɑ, t, ɔ, t, ɔ],[76, 41, 58, 44, 58, 44],4,NOUN,PERFECT
-333,"gari",[ɠ, ɑ, ɾ, i],[72, 41, 62, 43],3,NOUN,PERFECT
-340,"habari",[h, ɑ, ɓ, ɑ, ɾ, i],[77, 41, 48, 41, 62, 43],3,NOUN,PERFECT
-280,"ile",[i, l, ɛ],[43, 63, 42],3,null,PERFECT
-543,"mgonjwa",[m, ɠ, ɔ, n, ʄ, w, ɑ],[46, 72, 44, 55, 66, 76, 41],3,ADJECTIVE,HIGHLY_PHONEMIC
-648,"nyumba",[ɲ, u, mb, ɑ],[64, 45, 47, 41],3,NOUN,PERFECT
-283,"peke",[p, ɛ, k, ɛ],[49, 42, 73, 42],3,null,PERFECT
-17,"sita",[s, i, t, ɑ],[61, 43, 58, 41],3,NOUN,PERFECT
-255,"watu",[w, ɑ, t, u],[76, 41, 58, 45],3,NOUN,PERFECT
-270,"wote",[w, ɔ, t, ɛ],[76, 44, 58, 42],3,null,PERFECT
-598,"aina",[ɑ, i, n, ɑ],[41, 43, 55, 41],2,VERB,PERFECT
-590,"barabara",[ɓ, ɑ, ɾ, ɑ, ɓ, ɑ, ɾ, ɑ],[48, 41, 62, 41, 48, 41, 62, 41],2,NOUN,PERFECT
-514,"baridi",[ɓ, ɑ, ɾ, i, ɗ, i],[48, 41, 62, 43, 57, 43],2,ADJECTIVE,PERFECT
-196,"dogo",[ɗ, ɔ, ɠ, ɔ],[57, 44, 72, 44],2,ADJECTIVE,PERFECT
-341,"hadithi",[h, ɑ, ɗ, i, t, h, i],[77, 41, 57, 43, 58, 77, 43],2,NOUN,PERFECT
-216,"hapa",[h, ɑ, p, ɑ],[77, 41, 49, 41],2,VERB,PERFECT
-354,"jogoo",[ʄ, ɔ, ɠ, ɔ, ɔ],[66, 44, 72, 44, 44],2,NOUN,PERFECT
-580,"kucheza",[k, u, tʃ, ɛ, z, ɑ],[73, 45, 67, 42, 60, 41],2,NOUN,PERFECT
-602,"kumi",[k, u, m, i],[73, 45, 46, 43],2,NOUN,PERFECT
-289,"mawili",[m, ɑ, w, i, l, i],[46, 41, 76, 43, 63, 43],2,null,PERFECT
-552,"mfalme",[m, f, ɑ, l, ɑ, m, ɛ],[46, 52, 41, 63, 41, 46, 42],2,NOUN,PERFECT
-221,"mguu",[m, ɠ, u, u],[46, 72, 45, 45],2,NOUN,PERFECT
-208,"mimi",[m, i, m, i],[46, 43, 46, 43],2,NOUN,PERFECT
-222,"mkono",[m, k, ɔ, n, ɔ],[46, 73, 44, 55, 44],2,null,PERFECT
-295,"mzee",[m, z, ɛ, ɛ],[46, 60, 42, 42],2,ADJECTIVE,PERFECT
-547,"ndege",[nd, ɛ, ɠ, ɛ],[56, 42, 72, 42],2,VERB,PERFECT
-616,"nguo",[ŋɡ, u, ɔ],[71, 45, 44],2,NOUN,PERFECT
-265,"nyoka",[ʃ, ɔ, k, ɑ],[68, 44, 73, 41],2,NOUN,PERFECT
-574,"rangi",[ɾ, ɑ, ŋɡ, i],[62, 41, 71, 43],2,NOUN,PERFECT
-267,"sasa",[s, ɑ, s, ɑ],[61, 41, 61, 41],2,VERB,PERFECT
-570,"shingo",[ʃ, i, ŋɡ, ɔ],[68, 43, 71, 44],2,NOUN,PERFECT
-653,"twiga",[t, w, i, ɠ, ɑ],[58, 76, 43, 72, 41],2,NOUN,PERFECT
-299,"akasema",[ɑ, k, ɑ, s, ɛ, m, ɑ],[41, 73, 41, 61, 42, 46, 41],1,VERB,PERFECT
-311,"baiskeli",[ɓ, ɑ, i, s, k, ɛ, l, i],[48, 41, 43, 61, 73, 42, 63, 43],1,NOUN,PERFECT
-263,"chui",[tʃ, u, i],[67, 45, 43],1,NOUN,PERFECT
-317,"dunia",[ɗ, u, n, i, ɑ],[57, 45, 55, 43, 41],1,NOUN,PERFECT
-321,"endelea",[ɛ, n, ɗ, ɛ, l, ɛ, ɑ],[42, 55, 57, 42, 63, 42, 41],1,VERB,PERFECT
-326,"familia",[f, ɑ, m, i, l, i, ɑ],[52, 41, 46, 43, 63, 43, 41],1,NOUN,PERFECT
-599,"fimbo",[f, i, mb, ɔ],[52, 43, 47, 44],1,NOUN,PERFECT
-327,"fisi",[f, i, s, i],[52, 43, 61, 43],1,NOUN,PERFECT
-531,"furaha",[f, u, ɾ, ɑ, h, ɑ],[52, 45, 62, 41, 77, 41],1,VERB,PERFECT
-337,"gazeti",[ɠ, ɑ, z, ɛ, t, i],[72, 41, 60, 42, 58, 43],1,NOUN,PERFECT
-351,"imara",[i, m, ɑ, ɾ, ɑ],[43, 46, 41, 62, 41],1,ADJECTIVE,PERFECT
-258,"ina",[i, n, ɑ],[43, 55, 41],1,null,PERFECT
-350,"ingia",[i, n, ɠ, i, ɑ],[43, 55, 72, 43, 41],1,VERB,PERFECT
-355,"jani",[ʄ, ɑ, n, i],[66, 41, 55, 43],1,NOUN,PERFECT
-237,"jua",[ʄ, u, ɑ],[66, 45, 41],1,NOUN,PERFECT
-646,"karatasi",[k, ɑ, ɾ, ɑ, t, ɑ, s, i],[73, 41, 62, 41, 58, 41, 61, 43],1,NOUN,PERFECT
-594,"kelele",[k, ɛ, l, ɛ, l, ɛ],[73, 42, 63, 42, 63, 42],1,VERB,PERFECT
-360,"kichwa",[k, i, t, ʃ, w, ɑ],[73, 43, 58, 68, 76, 41],1,NOUN,PERFECT
-596,"kuimba",[k, u, i, mb, ɑ],[73, 45, 43, 47, 41],1,VERB,PERFECT
-557,"kuingia",[k, u, i, ŋɡ, i, ɑ],[73, 45, 43, 71, 43, 41],1,NOUN,PERFECT
-301,"kule",[k, u, l, ɛ],[73, 45, 63, 42],1,null,PERFECT
-251,"kuna",[k, u, n, ɑ],[73, 45, 55, 41],1,null,PERFECT
-253,"kuni",[k, u, n, i],[73, 45, 55, 43],1,NOUN,PERFECT
-550,"kuruka",[k, u, ɾ, u, k, ɑ],[73, 45, 62, 45, 73, 41],1,VERB,PERFECT
-523,"mbali",[mb, ɑ, l, i],[47, 41, 63, 43],1,NOUN,PERFECT
-496,"mbaya",[mb, ɑ, j, ɑ],[47, 41, 69, 41],1,ADJECTIVE,PERFECT
-203,"mbwa",[mb, w, ɑ],[47, 76, 41],1,NOUN,PERFECT
-525,"miguu",[m, i, ɠ, u, u],[46, 43, 72, 45, 45],1,NOUN,PERFECT
-275,"miti",[m, i, t, i],[46, 43, 58, 43],1,NOUN,PERFECT
-220,"mkia",[m, k, i, ɑ],[46, 73, 43, 41],1,NOUN,PERFECT
-201,"mnyama",[m, ɲ, ɑ, m, ɑ],[46, 64, 41, 46, 41],1,NOUN,PERFECT
-303,"mrefu",[m, ɾ, ɛ, f, u],[46, 62, 42, 52, 45],1,ADJECTIVE,PERFECT
-637,"msichana",[m, s, i, t, ʃ, ɑ, n, ɑ],[46, 61, 43, 58, 68, 41, 55, 41],1,NOUN,PERFECT
-204,"mti",[m, t, i],[46, 58, 43],1,NOUN,PERFECT
-238,"mwezi",[m, w, ɛ, z, i],[46, 76, 42, 60, 43],1,NOUN,PERFECT
-19,"nane",[n, ɑ, n, ɛ],[55, 41, 55, 42],1,null,PERFECT
-274,"nani",[n, ɑ, n, i],[55, 41, 55, 43],1,VERB,PERFECT
-537,"ngumu",[ŋɡ, u, m, u],[71, 45, 46, 45],1,ADJECTIVE,PERFECT
-585,"nyekundu",[ɲ, ɛ, k, u, nd, u],[64, 42, 73, 45, 56, 45],1,NOUN,PERFECT
-212,"nyinyi",[ɲ, i, ɲ, i],[64, 43, 64, 43],1,NOUN,PERFECT
-232,"paa",[p, ɑ, ɑ],[49, 41, 41],1,NOUN,PERFECT
-507,"paka",[p, ɑ, k, ɑ],[49, 41, 73, 41],1,NOUN,PERFECT
-217,"pale",[p, ɑ, l, ɛ],[49, 41, 63, 42],1,null,PERFECT
-584,"panya",[p, ɑ, ɲ, ɑ],[49, 41, 64, 41],1,NOUN,PERFECT
-302,"pia",[p, i, ɛ],[49, 43, 42],1,null,PERFECT
-558,"refu",[ɾ, ɛ, f, u],[62, 42, 52, 45],1,ADJECTIVE,PERFECT
-505,"sanduku",[s, ɑ, nd, u, k, u],[61, 41, 56, 45, 73, 45],1,NOUN,PERFECT
-495,"siafu",[s, i, ɑ, f, u],[61, 43, 41, 52, 45],1,NOUN,PERFECT
-194,"simba",[s, i, m, ɓ, ɑ],[61, 43, 46, 48, 41],1,NOUN,PERFECT
-499,"sofa",[s, ɔ, f, ɑ],[61, 44, 52, 41],1,NOUN,PERFECT
-551,"teke",[t, ɛ, k, ɛ],[58, 42, 73, 42],1,VERB,PERFECT
-233,"tembea",[t, ɛ, mb, ɛ, ɑ],[58, 42, 47, 42, 41],1,VERB,PERFECT
-213,"wao",[w, ɑ, ɔ],[76, 41, 44],1,NOUN,PERFECT
-276,"watatu",[w, ɑ, t, ɑ, t, u],[76, 41, 58, 41, 58, 45],1,VERB,PERFECT
-209,"wewe",[w, ɛ, w, ɛ],[76, 42, 76, 42],1,NOUN,PERFECT
-269,"yake",[j, ɑ, k, ɛ],[69, 41, 73, 42],1,NOUN,PERFECT
-293,"zake",[z, ɑ, k, ɛ],[60, 41, 73, 42],1,NOUN,PERFECT
-308,"afrika",[ɑ, f, ɾ, i, k, ɑ],[41, 52, 62, 43, 73, 41],0,NOUN,PERFECT
-296,"ali",[ɑ, l, i],[41, 63, 43],0,null,PERFECT
-268,"ananunua",[ɑ, n, ɑ, n, u, n, u, ɑ],[41, 55, 41, 55, 45, 55, 45, 41],0,VERB,PERFECT
-305,"andazi",[ɑ, n, ɗ, ɑ, z, i],[41, 55, 57, 41, 60, 43],0,VERB,PERFECT
-307,"andika",[ɑ, nd, i, k, ɑ],[41, 56, 43, 73, 41],0,VERB,PERFECT
-690,"arobaini",[ɑ, ɾ, ɔ, ɓ, ɑ, i, n, i],[41, 62, 44, 48, 41, 43, 55, 43],0,null,PERFECT
-279,"asali",[ɑ, s, ɑ, l, i],[41, 61, 41, 63, 43],0,NOUN,PERFECT
-288,"asini",[ɑ, s, i, n, i],[41, 61, 43, 55, 43],0,null,PERFECT
-306,"askari",[ɑ, s, k, ɑ, ɾ, i],[41, 61, 73, 41, 62, 43],0,NOUN,PERFECT
-297,"asubui",[ɑ, s, u, ɓ, u, i],[41, 61, 45, 48, 45, 43],0,NOUN,PERFECT
-310,"bahari",[ɓ, ɑ, h, ɑ, ɾ, i],[48, 41, 77, 41, 62, 43],0,NOUN,PERFECT
-312,"bakuli",[ɓ, ɑ, k, u, l, i],[48, 41, 73, 45, 63, 43],0,NOUN,PERFECT
-611,"bango",[ɓ, ɑ, ŋɡ, ɔ],[48, 41, 71, 44],0,NOUN,PERFECT
-640,"barafu",[ɓ, ɑ, ɾ, ɑ, f, u],[48, 41, 62, 41, 52, 45],0,NOUN,PERFECT
-309,"bata",[ɓ, ɑ, t, ɑ],[48, 41, 58, 41],0,null,PERFECT
-197,"bibi",[ɓ, i, ɓ, i],[48, 43, 48, 43],0,NOUN,PERFECT
-601,"bomba",[ɓ, ɔ, mb, ɑ],[48, 44, 47, 41],0,NOUN,PERFECT
-504,"bosi",[ɓ, ɔ, s, i],[48, 44, 61, 43],0,NOUN,PERFECT
-271,"buibui",[ɓ, u, i, ɓ, u, i],[48, 45, 43, 48, 45, 43],0,NOUN,PERFECT
-636,"bundi",[ɓ, u, nd, i],[48, 45, 56, 43],0,NOUN,PERFECT
-576,"bustani",[ɓ, u, s, t, ɑ, n, i],[48, 45, 61, 58, 41, 55, 43],0,NOUN,PERFECT
-553,"busu",[ɓ, u, s, u],[48, 45, 61, 45],0,NOUN,PERFECT
-581,"bwawa",[ɓ, w, ɑ, w, ɑ],[48, 76, 41, 76, 41],0,NOUN,NON_PHONEMIC
-373,"chaki",[tʃ, ɑ, k, i],[67, 41, 73, 43],0,null,PERFECT
-566,"changanya",[tʃ, ɑ, ŋɡ, ɑ, n, j, ɑ],[67, 41, 71, 41, 55, 69, 41],0,VERB,HIGHLY_PHONEMIC
-372,"chapati",[tʃ, ɑ, p, ɑ, t, i],[67, 41, 49, 41, 58, 43],0,null,HIGHLY_PHONEMIC
-519,"chimba",[tʃ, i, mb, ɑ],[67, 43, 47, 41],0,VERB,PERFECT
-374,"chungu",[tʃ, u, n, ɠ, u],[67, 45, 55, 72, 45],0,NOUN,PERFECT
-371,"chungwa",[tʃ, u, n, ɠ, w, ɑ],[67, 45, 55, 72, 76, 41],0,NOUN,HIGHLY_PHONEMIC
-638,"chupa",[tʃ, u, p, ɑ],[67, 45, 49, 41],0,NOUN,PERFECT
-369,"chura",[tʃ, u, ɾ, ɑ],[67, 45, 62, 41],0,NOUN,PERFECT
-261,"dada",[ɗ, ɑ, ɗ, ɑ],[57, 41, 57, 41],0,NOUN,PERFECT
-313,"dafu",[ɗ, ɑ, f, u],[57, 41, 52, 45],0,VERB,PERFECT
-318,"dalma",[ɗ, ɑ, l, m, ɑ],[57, 41, 63, 46, 41],0,null,PERFECT
-315,"dirisha",[ɗ, i, ɾ, i, ʃ, ɑ],[57, 43, 62, 43, 68, 41],0,NOUN,PERFECT
-511,"dokezo",[ɗ, ɔ, k, ɛ, z, ɔ],[57, 44, 73, 42, 60, 44],0,NOUN,PERFECT
-314,"duka",[ɗ, u, k, ɑ],[57, 45, 73, 41],0,NOUN,PERFECT
-316,"duma",[ɗ, u, m, ɑ],[57, 45, 46, 41],0,NOUN,PERFECT
-322,"eleza",[ɛ, l, ɛ, z, ɑ],[42, 63, 42, 60, 41],0,VERB,PERFECT
-324,"elimu",[ɛ, l, i, m, u],[42, 63, 43, 46, 45],0,NOUN,PERFECT
-319,"embe",[ɛ, m, ɓ, ɛ],[42, 46, 48, 42],0,ADJECTIVE,PERFECT
-320,"endesha",[ɛ, n, ɗ, ɛ, ʃ, ɑ],[42, 55, 57, 42, 68, 41],0,VERB,PERFECT
-323,"eneo",[ɛ, n, ɛ, ɔ],[42, 55, 42, 44],0,NOUN,PERFECT
-229,"fa",[f, ɑ],[52, 41],0,null,PERFECT
-325,"fagio",[f, ɑ, ɠ, i, ɔ],[52, 41, 72, 43, 44],0,NOUN,PERFECT
-226,"fahamu",[f, ɑ, h, ɑ, m, u],[52, 41, 77, 41, 46, 45],0,NOUN,PERFECT
-328,"faru",[f, ɑ, ɾ, u],[52, 41, 62, 45],0,NOUN,PERFECT
-595,"fedha",[f, ɛ, ɗ, h, ɑ],[52, 42, 57, 77, 41],0,NOUN,PERFECT
-234,"fikiri",[f, i, k, i, ɾ, i],[52, 43, 73, 43, 62, 43],0,VERB,PERFECT
-330,"filimbi",[f, i, l, i, mb, i],[52, 43, 63, 43, 47, 43],0,NOUN,PERFECT
-530,"fueli",[f, u, ɛ, l, i],[52, 45, 42, 63, 43],0,NOUN,PERFECT
-564,"fujo",[f, u, ʄ, ɔ],[52, 45, 66, 44],0,NOUN,PERFECT
-607,"fulana",[f, u, l, ɑ, n, ɑ],[52, 45, 63, 41, 55, 41],0,NOUN,PERFECT
-329,"funguo",[f, u, n, ɠ, u, ɔ],[52, 45, 55, 72, 45, 44],0,NOUN,PERFECT
-331,"furahi",[f, u, ɾ, ɑ, h, i],[52, 45, 62, 41, 77, 43],0,ADJECTIVE,PERFECT
-506,"gamba",[ɠ, ɑ, mb, ɑ],[72, 41, 47, 41],0,NOUN,PERFECT
-332,"gauni",[ɠ, ɑ, u, n, i],[72, 41, 45, 55, 43],0,NOUN,PERFECT
-532,"gesi",[ɠ, ɛ, s, i],[72, 42, 61, 43],0,NOUN,PERFECT
-338,"gimbi",[ɠ, i, mb, i],[72, 43, 47, 43],0,null,PERFECT
-641,"glasi",[ɠ, l, ɑ, s, i],[72, 63, 41, 61, 43],0,NOUN,PERFECT
-336,"godoro",[ɠ, ɔ, ɗ, ɔ, ɾ, ɔ],[72, 44, 57, 44, 62, 44],0,NOUN,PERFECT
-335,"gogo",[ɠ, ɔ, ɠ, ɔ],[72, 44, 72, 44],0,null,PERFECT
-534,"goli",[ɠ, ɔ, l, i],[72, 44, 63, 43],0,NOUN,PERFECT
-533,"gundi",[ɠ, u, n, nd, i],[72, 45, 55, 56, 43],0,NOUN,PERFECT
-334,"gunia",[ɠ, u, n, i, ɑ],[72, 45, 55, 43, 41],0,NOUN,PERFECT
-236,"guta",[ɠ, u, t, ɑ],[72, 45, 58, 41],0,NOUN,PERFECT
-691,"hamsini",[h, ɑ, m, s, i, n, i],[77, 41, 46, 61, 43, 55, 43],0,NOUN,PERFECT
-342,"hatua",[h, ɑ, t, u, ɑ],[77, 41, 58, 45, 41],0,NOUN,PERFECT
-254,"hawa",[h, ɑ, w, ɑ],[77, 41, 76, 41],0,null,PERFECT
-343,"hema",[h, ɛ, m, ɑ],[77, 42, 46, 41],0,NOUN,PERFECT
-339,"herufi",[h, ɛ, ɾ, u, f, i],[77, 42, 62, 45, 52, 43],0,NOUN,PERFECT
-345,"hongera",[h, ɔ, n, ɠ, ɛ, ɾ, ɑ],[77, 44, 55, 72, 42, 62, 41],0,null,PERFECT
-344,"hospitali",[h, ɔ, s, p, i, t, ɑ, l, i],[77, 44, 61, 49, 43, 58, 41, 63, 43],0,NOUN,PERFECT
-526,"imarisha",[i, m, ɑ, ɾ, i, ʃ, ɑ],[43, 46, 41, 62, 43, 68, 41],0,VERB,PERFECT
-347,"imba",[i, mb, ɑ],[43, 47, 41],0,NOUN,PERFECT
-348,"ini",[i, n, i],[43, 55, 43],0,NOUN,PERFECT
-349,"injini",[i, n, ʄ, i, n, i],[43, 55, 66, 43, 55, 43],0,NOUN,PERFECT
-228,"ishi",[i, ʃ, i],[43, 68, 43],0,null,PERFECT
-688,"ishirini",[i, ʃ, i, ɾ, i, n, i],[43, 68, 43, 62, 43, 55, 43],0,NOUN,PERFECT
-346,"ita",[i, t, ɑ],[43, 58, 41],0,VERB,PERFECT
-510,"jabali",[ʄ, ɑ, ɓ, ɑ, l, i],[66, 41, 48, 41, 63, 43],0,NOUN,PERFECT
-353,"jagi",[ʄ, ɑ, ɠ, i],[66, 41, 72, 43],0,null,PERFECT
-563,"jamvi",[ʄ, ɑ, mv, i],[66, 41, 50, 43],0,NOUN,PERFECT
-582,"jaribio",[ʄ, ɑ, ɾ, i, ɓ, i, ɔ],[66, 41, 62, 43, 48, 43, 44],0,NOUN,PERFECT
-546,"jeep",[ʄ, ɛ, ɛ, p],[66, 42, 42, 49],0,NOUN,PERFECT
-635,"jengo",[ʃ, ɛ, ŋɡ, ɔ],[68, 42, 71, 44],0,NOUN,PERFECT
-356,"jicho",[ʄ, i, t, ʃ, ɔ],[66, 43, 58, 68, 44],0,NOUN,PERFECT
-352,"jiko",[ʄ, i, k, ɔ],[66, 43, 73, 44],0,NOUN,PERFECT
-605,"jino",[ʄ, i, n, ɔ],[66, 43, 55, 44],0,NOUN,PERFECT
-503,"jipu",[ʄ, i, p, u],[66, 43, 49, 45],0,VERB,PERFECT
-357,"jirushe",[ʄ, i, ɾ, u, s, h, ɛ],[66, 43, 62, 45, 61, 77, 42],0,null,PERFECT
-549,"jiunga",[ʄ, i, u, ŋɡ, ɑ],[66, 43, 45, 71, 41],0,NOUN,PERFECT
-548,"jog",[ʄ, ɔ, ɠ],[66, 44, 72],0,VERB,PERFECT
-631,"kahawia",[k, ɑ, h, ɑ, w, i, ɑ],[73, 41, 77, 41, 76, 43, 41],0,ADJECTIVE,PERFECT
-578,"kalamu",[k, ɑ, l, ɑ, m, u],[73, 41, 63, 41, 46, 45],0,NOUN,PERFECT
-260,"kali",[k, ɑ, l, i],[73, 41, 63, 43],0,null,PERFECT
-362,"karoti",[k, ɑ, ɾ, ɔ, t, i],[73, 41, 62, 44, 58, 43],0,NOUN,PERFECT
-359,"kasuku",[k, ɑ, s, u, k, u],[73, 41, 61, 45, 73, 45],0,NOUN,PERFECT
-231,"kata",[k, ɑ, t, ɑ],[73, 41, 58, 41],0,VERB,PERFECT
-509,"kidevu",[k, i, ɗ, ɛ, v, u],[73, 43, 57, 42, 51, 45],0,NOUN,PERFECT
-651,"kidole",[k, i, ɗ, ɔ, l, ɛ],[73, 43, 57, 44, 63, 42],0,NOUN,PERFECT
-508,"kifaranga",[k, i, f, ɑ, ɾ, ɑ, ŋɡ, ɑ],[73, 43, 52, 41, 62, 41, 71, 41],0,NOUN,PERFECT
-555,"kifuniko",[k, i, f, u, n, i, k, ɔ],[73, 43, 52, 45, 55, 43, 73, 44],0,NOUN,PERFECT
-633,"kijani",[k, i, ʃ, ɑ, n, i],[73, 43, 68, 41, 55, 43],0,ADJECTIVE,PERFECT
-647,"kijivu",[k, i, ʃ, i, v, u],[73, 43, 68, 43, 51, 45],0,ADJECTIVE,PERFECT
-516,"kikombe",[k, i, k, ɔ, mb, ɛ],[73, 43, 73, 44, 47, 42],0,NOUN,PERFECT
-539,"kilima",[k, i, l, i, m, ɑ],[73, 43, 63, 43, 46, 41],0,NOUN,PERFECT
-583,"kimbia",[k, i, mb, i, ɑ],[73, 43, 47, 43, 41],0,VERB,PERFECT
-571,"kiota",[k, i, ɔ, t, ɑ],[73, 43, 44, 58, 41],0,NOUN,PERFECT
-287,"kiswahili",[k, i, s, w, ɑ, h, i, l, i],[73, 43, 61, 76, 41, 77, 43, 63, 43],0,NOUN,PERFECT
-358,"kitabu",[k, i, t, ɑ, ɓ, u],[73, 43, 58, 41, 48, 45],0,NOUN,PERFECT
-538,"kofia",[k, ɔ, f, i, ɑ],[73, 44, 52, 43, 41],0,NOUN,PERFECT
-634,"koleo",[k, ɔ, l, ɛ, ɔ],[73, 44, 63, 42, 44],0,NOUN,PERFECT
-363,"komba",[k, ɔ, m, ɓ, ɑ],[73, 44, 46, 48, 41],0,null,PERFECT
-545,"koti",[k, ɔ, t, i],[73, 44, 58, 43],0,NOUN,PERFECT
-559,"kuangalia",[k, u, ɑ, ŋɡ, ɑ, i, ɑ],[73, 45, 41, 71, 41, 43, 41],0,NOUN,PERFECT
-540,"kugonga",[k, u, ɠ, ɔ, ŋɡ, ɑ],[73, 45, 72, 44, 71, 41],0,VERB,PERFECT
-592,"kukaa",[k, u, k, ɑ, ɑ],[73, 45, 73, 41, 41],0,VERB,PERFECT
-361,"kuku",[k, u, k, u],[73, 45, 73, 45],0,NOUN,PERFECT
-542,"kumkumbatia",[k, u, m, k, u, mb, ɑ, t, i, ɑ],[73, 45, 46, 73, 45, 47, 41, 58, 43, 41],0,NOUN,PERFECT
-554,"kuramba",[k, u, ɾ, ɑ, mb, ɑ],[73, 45, 62, 41, 47, 41],0,NOUN,PERFECT
-591,"kusikitisha",[k, u, s, i, k, i, t, i, ʃ, ɑ],[73, 45, 61, 43, 73, 43, 58, 43, 68, 41],0,VERB,PERFECT
-227,"lala",[l, ɑ, l, ɑ],[63, 41, 63, 41],0,VERB,PERFECT
-364,"lia",[l, i, ɑ],[63, 43, 41],0,null,PERFECT
-367,"lima",[l, i, m, ɑ],[63, 43, 46, 41],0,NOUN,PERFECT
-365,"limao",[l, i, m, ɑ, ɔ],[63, 43, 46, 41, 44],0,NOUN,PERFECT
-577,"lipa",[l, i, p, ɑ],[63, 43, 49, 41],0,VERB,PERFECT
-368,"loa",[l, ɔ, ɑ],[63, 44, 41],0,null,PERFECT
-291,"madini",[m, ɑ, ɗ, i, n, i],[46, 41, 57, 43, 55, 43],0,NOUN,PERFECT
-572,"mafuta",[m, ɑ, f, u, t, ɑ],[46, 41, 52, 45, 58, 41],0,ADJECTIVE,PERFECT
-298,"mahalagi",[m, ɑ, h, ɑ, l, ɑ, ɠ, i],[46, 41, 77, 41, 63, 41, 72, 43],0,null,PERFECT
-252,"manene",[m, ɑ, n, ɛ, n, ɛ],[46, 41, 55, 42, 55, 42],0,ADJECTIVE,PERFECT
-502,"mashua",[m, ɑ, ʃ, u, ɑ],[46, 41, 68, 45, 41],0,NOUN,PERFECT
-567,"matope",[m, ɑ, t, ɔ, p, ɛ],[46, 41, 58, 44, 49, 42],0,NOUN,PERFECT
-257,"maua",[m, ɑ, u, ɑ],[46, 41, 45, 41],0,NOUN,PERFECT
-632,"mavazi",[m, ɑ, v, ɑ, z, i],[46, 41, 51, 41, 60, 43],0,ADJECTIVE,PERFECT
-250,"mayayi",[m, ɑ, j, ɑ, j, i],[46, 41, 69, 41, 69, 43],0,null,PERFECT
-13,"mbili",[m, ɓ, i, l, i],[46, 48, 43, 63, 43],0,NOUN,PERFECT
-535,"mbuzi",[mb, u, z, i],[47, 45, 60, 43],0,NOUN,PERFECT
-529,"mbweha",[mb, w, ɛ, h, ɑ],[47, 76, 42, 77, 41],0,NOUN,PERFECT
-556,"mdomo",[m, ɗ, ɔ, m, ɔ],[46, 57, 44, 46, 44],0,NOUN,PERFECT
-518,"meza",[m, ɛ, z, ɑ],[46, 42, 60, 41],0,NOUN,PERFECT
-497,"mfuko",[m, f, u, k, ɔ],[46, 52, 45, 73, 44],0,NOUN,PERFECT
-696,"mia",[m, i, ɑ],[46, 43, 41],0,NOUN,PERFECT
-608,"mifugo",[m, i, f, u, ɠ, ɔ],[46, 43, 52, 45, 72, 44],0,NOUN,PERFECT
-565,"mister",[m, i, s, t, ɛ, ɾ],[46, 43, 61, 58, 42, 62],0,NOUN,PERFECT
-286,"mji",[m, ʄ, i],[46, 66, 43],0,NOUN,PERFECT
-541,"moto",[m, ɔ, t, ɔ],[46, 44, 58, 44],0,ADJECTIVE,PERFECT
-272,"motokaa",[m, ɔ, t, ɔ, k, ɑ, ɑ],[46, 44, 58, 44, 73, 41, 41],0,NOUN,PERFECT
-273,"motoni",[m, ɔ, t, ɔ, n, i],[46, 44, 58, 44, 55, 43],0,null,PERFECT
-589,"mpasuko",[m, p, ɑ, s, u, k, ɔ],[46, 49, 41, 61, 45, 73, 44],0,VERB,PERFECT
-513,"mpishi",[m, p, i, ʃ, i],[46, 49, 43, 68, 43],0,NOUN,PERFECT
-568,"msumari",[m, s, u, m, ɑ, ɾ, i],[46, 61, 45, 46, 41, 62, 43],0,NOUN,PERFECT
-609,"mtandao",[m, t, ɑ, n, ɗ, ɑ, ɔ],[46, 58, 41, 55, 57, 41, 44],0,NOUN,PERFECT
-241,"mvua",[mv, u, ɑ],[50, 45, 41],0,NOUN,PERFECT
-639,"mvulana",[mv, u, l, ɑ, n, ɑ],[50, 45, 63, 41, 55, 41],0,NOUN,PERFECT
-294,"mwaka",[m, w, ɑ, k, ɑ],[46, 76, 41, 73, 41],0,NOUN,PERFECT
-300,"mwanafunzi",[m, w, ɑ, n, ɑ, f, u, nz, i],[46, 76, 41, 55, 41, 52, 45, 59, 43],0,NOUN,PERFECT
-521,"mwanasesere",[m, w, ɑ, n, ɑ, s, ɛ, s, ɛ, ɾ, ɛ],[46, 76, 41, 55, 41, 61, 42, 61, 42, 62, 42],0,NOUN,PERFECT
-515,"nafaka",[n, ɑ, f, ɑ, k, ɑ],[55, 41, 52, 41, 73, 41],0,NOUN,PERFECT
-649,"ndevu",[nd, ɛ, v, u],[56, 42, 51, 45],0,NOUN,PERFECT
-524,"nene",[n, ɛ, n, ɛ],[55, 42, 55, 42],0,NOUN,PERFECT
-304,"njano",[ŋ, j, ɑ, n, ɔ],[70, 69, 41, 55, 44],0,ADJECTIVE,PERFECT
-15,"nne",[n, ˈ, n, ɛ],[55, 80, 55, 42],0,NOUN,PERFECT
-603,"nyembamba",[ɲ, ɛ, mb, ɑ, mb, ɑ],[64, 42, 47, 41, 47, 41],0,NOUN,PERFECT
-650,"nyeupe",[ɲ, ɛ, u, p, ɛ],[64, 42, 45, 49, 42],0,NOUN,PERFECT
-652,"nyeusi",[ɲ, ɛ, u, s, i],[64, 42, 45, 61, 43],0,ADJECTIVE,PERFECT
-239,"nyota",[ɲ, ɔ, t, ɑ],[64, 44, 58, 41],0,NOUN,PERFECT
-264,"nyuki",[ʃ, u, k, i],[68, 45, 73, 43],0,NOUN,PERFECT
-223,"nywa",[ɲ, w, ɑ],[64, 76, 41],0,NOUN,PERFECT
-266,"ole",[ɔ, l, ɛ],[44, 63, 42],0,VERB,PERFECT
-262,"ona",[ɔ, n, ɑ],[44, 55, 41],0,VERB,PERFECT
-573,"pakiti",[p, ɑ, k, i, t, i],[49, 41, 73, 43, 58, 43],0,NOUN,PERFECT
-588,"pete",[p, ɛ, t, ɛ],[49, 42, 58, 42],0,NOUN,PERFECT
-643,"pink",[p, i, n, k],[49, 43, 55, 73],0,ADJECTIVE,PERFECT
-501,"pipa",[p, i, p, ɑ],[49, 43, 49, 41],0,NOUN,PERFECT
-498,"popo",[p, ɔ, p, ɔ],[49, 44, 49, 44],0,null,PERFECT
-586,"pumzika",[p, u, m, z, i, k, ɑ],[49, 45, 46, 60, 43, 73, 41],0,VERB,PERFECT
-612,"pundamilia",[p, u, nd, ɑ, m, i, l, i, ɑ],[49, 45, 56, 41, 46, 43, 63, 43, 41],0,NOUN,PERFECT
-562,"ramani",[ɾ, ɑ, m, ɑ, n, i],[62, 41, 46, 41, 55, 43],0,NOUN,PERFECT
-674,"sa",[s, ɑ],[61, 41],0,null,PERFECT
-693,"sabini",[s, ɑ, ɓ, i, n, i],[61, 41, 48, 43, 55, 43],0,NOUN,PERFECT
-597,"sabuni",[s, ɑ, ɓ, u, n, i],[61, 41, 48, 45, 55, 43],0,NOUN,PERFECT
-235,"safisha",[s, ɑ, f, i, ʃ, ɑ],[61, 41, 52, 43, 68, 41],0,VERB,PERFECT
-520,"sahani",[s, ɑ, h, ɑ, n, i],[61, 41, 77, 41, 55, 43],0,NOUN,PERFECT
-202,"samaki",[s, ɑ, m, ɑ, k, i],[61, 41, 46, 41, 73, 43],0,NOUN,PERFECT
-512,"sarafu",[s, ɑ, ɾ, ɑ, f, u],[61, 41, 62, 41, 52, 45],0,NOUN,PERFECT
-593,"sema",[s, ɛ, m, ɑ],[61, 42, 46, 41],0,VERB,PERFECT
-522,"shabiki",[ʃ, ɑ, ɓ, i, k, i],[68, 41, 48, 43, 73, 43],0,NOUN,PERFECT
-579,"shimo",[ʃ, i, m, ɔ],[68, 43, 46, 44],0,NOUN,PERFECT
-610,"shinda",[ʃ, i, nd, ɑ],[68, 43, 56, 41],0,null,PERFECT
-11,"sifuri",[s, i, f, u, ɾ, i],[61, 43, 52, 45, 62, 43],0,NOUN,PERFECT
-225,"sikia",[s, i, k, i, ɑ],[61, 43, 73, 43, 41],0,VERB,PERFECT
-211,"sisi",[s, i, s, i],[61, 43, 61, 43],0,NOUN,PERFECT
-692,"sitini",[s, i, t, i, n, i],[61, 43, 58, 43, 55, 43],0,NOUN,PERFECT
-575,"sufuria",[s, u, f, u, ɾ, i, ɑ],[61, 45, 52, 45, 62, 43, 41],0,NOUN,PERFECT
-600,"tangi",[t, ɑ, ŋɡ, i],[58, 41, 71, 43],0,NOUN,PERFECT
-16,"tano",[t, ɑ, n, ɔ],[58, 41, 55, 44],0,NOUN,PERFECT
-282,"tele",[t, ɛ, l, ɛ],[58, 42, 63, 42],0,NOUN,PERFECT
-615,"televisheni",[t, ɛ, l, ɛ, v, i, ʃ, ɛ, n, i],[58, 42, 63, 42, 51, 43, 68, 42, 55, 43],0,NOUN,PERFECT
-689,"thelathini",[θ, ɛ, l, ɑ, θ, i, n, i],[54, 42, 63, 41, 54, 43, 55, 43],0,NOUN,PERFECT
-694,"themanini",[θ, ɛ, m, ɑ, n, i, n, i],[54, 42, 46, 41, 55, 43, 55, 43],0,NOUN,PERFECT
-604,"tie",[t, i, ɛ],[58, 43, 42],0,NOUN,PERFECT
-20,"tisa",[t, i, s, ɑ],[58, 43, 61, 41],0,NOUN,PERFECT
-695,"tisini",[t, i, s, i, n, i],[58, 43, 61, 43, 55, 43],0,NOUN,PERFECT
-606,"treni",[t, ɾ, ɛ, n, i],[58, 62, 42, 55, 43],0,NOUN,PERFECT
-205,"tunda",[t, u, n, ɗ, ɑ],[58, 45, 55, 57, 41],0,NOUN,PERFECT
-206,"ua",[u, ɑ],[45, 41],0,null,PERFECT
-527,"ukungu",[u, k, u, n, ɠ, u],[45, 73, 45, 55, 72, 45],0,NOUN,PERFECT
-528,"uma",[u, m, ɑ],[45, 46, 41],0,NOUN,PERFECT
-277,"useni",[u, s, ɛ, n, i],[45, 61, 42, 55, 43],0,NOUN,PERFECT
-207,"vipi",[v, i, p, i],[51, 43, 49, 43],0,VERB,PERFECT
-292,"wali",[w, ɑ, l, i],[76, 41, 63, 43],0,null,PERFECT
-256,"wanakaa",[w, ɑ, n, ɑ, k, ɑ, ɑ],[76, 41, 55, 41, 73, 41, 41],0,VERB,PERFECT
-560,"wazimu",[w, ɑ, z, i, m, u],[76, 41, 60, 43, 46, 45],0,ADJECTIVE,PERFECT
-230,"winda",[w, i, nd, ɑ],[76, 43, 56, 41],0,VERB,PERFECT
-544,"wino",[w, i, n, ɔ],[76, 43, 55, 44],0,NOUN,PERFECT
-219,"yai",[j, ɑ, i],[69, 41, 43],0,NOUN,PERFECT
-645,"zambarau",[z, ɑ, mb, ɑ, ɾ, ɑ, u],[60, 41, 47, 41, 62, 41, 45],0,ADJECTIVE,PERFECT
-613,"zip",[z, i, p],[60, 43, 49],0,NOUN,PERFECT
-218,"zito",[z, i, t, ɔ],[60, 43, 58, 44],0,ADJECTIVE,PERFECT
-614,"zoo",[z, ɔ],[60, 44],0,NOUN,PERFECT
+id,text,allophone_ids,allophone_values_ipa,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+243,na,"[55,41]","[""n"",""ɑ""]",30,,PERFECT,,
+245,ya,"[69,41]","[""j"",""ɑ""]",15,,NON_PHONEMIC,,
+552,mfalme,"[46,52,41,63,41,46,42]","[""m"",""f"",""ɑ"",""l"",""ɑ"",""m"",""ɛ""]",13,NOUN,PERFECT,,
+370,chakula,"[67,41,73,45,63,41]","[""tʃ"",""ɑ"",""k"",""u"",""l"",""ɑ""]",10,NOUN,HIGHLY_PHONEMIC,,
+561,mtu,"[46,58,45]","[""m"",""t"",""u""]",10,NOUN,PERFECT,,
+200,baba,"[48,41,48,41]","[""ɓ"",""ɑ"",""ɓ"",""ɑ""]",9,NOUN,PERFECT,,
+214,huyu,"[77,45,69,45]","[""h"",""u"",""j"",""u""]",9,,PERFECT,,
+199,mama,"[46,41,46,41]","[""m"",""ɑ"",""m"",""ɑ""]",9,NOUN,PERFECT,,
+259,saa,"[61,41,41]","[""s"",""ɑ"",""ɑ""]",8,VERB,PERFECT,,
+285,chini,"[67,43,55,43]","[""tʃ"",""i"",""n"",""i""]",7,VERB,PERFECT,,
+644,mpira,"[46,49,43,62,41]","[""m"",""p"",""i"",""ɾ"",""ɑ""]",7,NOUN,PERFECT,,
+569,usingizi,"[45,61,43,55,72,43,60,43]","[""u"",""s"",""i"",""n"",""ɠ"",""i"",""z"",""i""]",7,VERB,HIGHLY_PHONEMIC,,
+247,ana,"[41,55,41]","[""ɑ"",""n"",""ɑ""]",6,VERB,PERFECT,,
+500,bluu,"[48,63,45,45]","[""ɓ"",""l"",""u"",""u""]",6,NOUN,PERFECT,,
+278,mamake,"[46,41,46,41,73,42]","[""m"",""ɑ"",""m"",""ɑ"",""k"",""ɛ""]",6,NOUN,PERFECT,,
+502,mashua,"[46,41,68,45,41]","[""m"",""ɑ"",""ʃ"",""u"",""ɑ""]",6,NOUN,PERFECT,,
+14,tatu,"[58,41,58,45]","[""t"",""ɑ"",""t"",""u""]",6,NOUN,PERFECT,,
+580,kucheza,"[73,45,67,42,60,41]","[""k"",""u"",""tʃ"",""ɛ"",""z"",""ɑ""]",5,NOUN,PERFECT,,
+215,lile,"[63,43,63,42]","[""l"",""i"",""l"",""ɛ""]",5,,PERFECT,,
+246,sana,"[61,41,55,41]","[""s"",""ɑ"",""n"",""ɑ""]",5,,PERFECT,,
+366,lori,"[63,44,62,43]","[""l"",""ɔ"",""ɾ"",""i""]",4,,PERFECT,,
+642,macho,"[46,41,67,44]","[""m"",""ɑ"",""tʃ"",""ɔ""]",4,NOUN,PERFECT,,
+208,mimi,"[46,43,46,43]","[""m"",""i"",""m"",""i""]",4,NOUN,PERFECT,,
+12,moja,"[46,44,69,41]","[""m"",""ɔ"",""j"",""ɑ""]",4,NOUN,PERFECT,,
+198,mtoto,"[46,58,44,58,44]","[""m"",""t"",""ɔ"",""t"",""ɔ""]",4,NOUN,PERFECT,,
+536,nzuri,"[59,45,62,43]","[""nz"",""u"",""ɾ"",""i""]",4,VERB,PERFECT,,
+18,saba,"[61,41,48,41]","[""s"",""ɑ"",""ɓ"",""ɑ""]",4,NOUN,PERFECT,,
+209,wewe,"[76,42,76,42]","[""w"",""ɛ"",""w"",""ɛ""]",4,NOUN,PERFECT,,
+269,yake,"[69,41,73,42]","[""j"",""ɑ"",""k"",""ɛ""]",4,NOUN,PERFECT,,
+197,bibi,"[48,43,48,43]","[""ɓ"",""i"",""ɓ"",""i""]",3,NOUN,PERFECT,,
+333,gari,"[72,41,62,43]","[""ɠ"",""ɑ"",""ɾ"",""i""]",3,NOUN,PERFECT,,
+340,habari,"[77,41,48,41,62,43]","[""h"",""ɑ"",""ɓ"",""ɑ"",""ɾ"",""i""]",3,NOUN,PERFECT,,
+280,ile,"[43,63,42]","[""i"",""l"",""ɛ""]",3,,PERFECT,,
+543,mgonjwa,"[46,72,44,55,66,76,41]","[""m"",""ɠ"",""ɔ"",""n"",""ʄ"",""w"",""ɑ""]",3,ADJECTIVE,HIGHLY_PHONEMIC,,
+295,mzee,"[46,60,42,42]","[""m"",""z"",""ɛ"",""ɛ""]",3,ADJECTIVE,PERFECT,,
+648,nyumba,"[64,45,47,41]","[""ɲ"",""u"",""mb"",""ɑ""]",3,NOUN,PERFECT,,
+302,pia,"[49,43,42]","[""p"",""i"",""ɛ""]",3,,PERFECT,,
+517,siku,"[61,43,73,45]","[""s"",""i"",""k"",""u""]",3,NOUN,PERFECT,,
+17,sita,"[61,43,58,41]","[""s"",""i"",""t"",""ɑ""]",3,NOUN,PERFECT,,
+598,aina,"[41,43,55,41]","[""ɑ"",""i"",""n"",""ɑ""]",2,VERB,PERFECT,,
+590,barabara,"[48,41,62,41,48,41,62,41]","[""ɓ"",""ɑ"",""ɾ"",""ɑ"",""ɓ"",""ɑ"",""ɾ"",""ɑ""]",2,NOUN,PERFECT,,
+514,baridi,"[48,41,62,43,57,43]","[""ɓ"",""ɑ"",""ɾ"",""i"",""ɗ"",""i""]",2,ADJECTIVE,PERFECT,,
+196,dogo,"[57,44,72,44]","[""ɗ"",""ɔ"",""ɠ"",""ɔ""]",2,ADJECTIVE,PERFECT,,
+341,hadithi,"[77,41,57,43,58,77,43]","[""h"",""ɑ"",""ɗ"",""i"",""t"",""h"",""i""]",2,NOUN,PERFECT,,
+216,hapa,"[77,41,49,41]","[""h"",""ɑ"",""p"",""ɑ""]",2,VERB,PERFECT,,
+354,jogoo,"[66,44,72,44,44]","[""ʄ"",""ɔ"",""ɠ"",""ɔ"",""ɔ""]",2,NOUN,PERFECT,,
+260,kali,"[73,41,63,43]","[""k"",""ɑ"",""l"",""i""]",2,,PERFECT,,
+290,karibu,"[73,41,62,43,48,45]","[""k"",""ɑ"",""ɾ"",""i"",""ɓ"",""u""]",2,VERB,PERFECT,,
+195,kubwa,"[73,45,48,76,41]","[""k"",""u"",""ɓ"",""w"",""ɑ""]",2,VERB,PERFECT,,
+602,kumi,"[73,45,46,43]","[""k"",""u"",""m"",""i""]",2,NOUN,PERFECT,,
+224,la,"[63,41]","[""l"",""ɑ""]",2,,PERFECT,,
+572,mafuta,"[46,41,52,45,58,41]","[""m"",""ɑ"",""f"",""u"",""t"",""ɑ""]",2,ADJECTIVE,PERFECT,,
+240,maji,"[46,41,66,43]","[""m"",""ɑ"",""ʄ"",""i""]",2,NOUN,PERFECT,,
+289,mawili,"[46,41,76,43,63,43]","[""m"",""ɑ"",""w"",""i"",""l"",""i""]",2,,PERFECT,,
+221,mguu,"[46,72,45,45]","[""m"",""ɠ"",""u"",""u""]",2,NOUN,PERFECT,,
+525,miguu,"[46,43,72,45,45]","[""m"",""i"",""ɠ"",""u"",""u""]",2,NOUN,PERFECT,,
+242,mto,"[46,58,44]","[""m"",""t"",""ɔ""]",2,NOUN,PERFECT,,
+547,ndege,"[56,42,72,42]","[""nd"",""ɛ"",""ɠ"",""ɛ""]",2,VERB,PERFECT,,
+616,nguo,"[71,45,44]","[""ŋɡ"",""u"",""ɔ""]",2,NOUN,PERFECT,,
+244,ni,"[55,43]","[""n"",""i""]",2,NOUN,PERFECT,,
+265,nyoka,"[68,44,73,41]","[""ʃ"",""ɔ"",""k"",""ɑ""]",2,NOUN,PERFECT,,
+574,rangi,"[62,41,71,43]","[""ɾ"",""ɑ"",""ŋɡ"",""i""]",2,NOUN,PERFECT,,
+267,sasa,"[61,41,61,41]","[""s"",""ɑ"",""s"",""ɑ""]",2,VERB,PERFECT,,
+570,shingo,"[68,43,71,44]","[""ʃ"",""i"",""ŋɡ"",""ɔ""]",2,NOUN,PERFECT,,
+653,twiga,"[58,76,43,72,41]","[""t"",""w"",""i"",""ɠ"",""ɑ""]",2,NOUN,PERFECT,,
+270,wote,"[76,44,58,42]","[""w"",""ɔ"",""t"",""ɛ""]",2,,PERFECT,,
+299,akasema,"[41,73,41,61,42,46,41]","[""ɑ"",""k"",""ɑ"",""s"",""ɛ"",""m"",""ɑ""]",1,VERB,PERFECT,,
+306,askari,"[41,61,73,41,62,43]","[""ɑ"",""s"",""k"",""ɑ"",""ɾ"",""i""]",1,NOUN,PERFECT,,
+311,baiskeli,"[48,41,43,61,73,42,63,43]","[""ɓ"",""ɑ"",""i"",""s"",""k"",""ɛ"",""l"",""i""]",1,NOUN,PERFECT,,
+675,basi,"[48,41,61,43]","[""ɓ"",""ɑ"",""s"",""i""]",1,NOUN,PERFECT,,
+309,bata,"[48,41,58,41]","[""ɓ"",""ɑ"",""t"",""ɑ""]",1,,PERFECT,,
+263,chui,"[67,45,43]","[""tʃ"",""u"",""i""]",1,NOUN,PERFECT,,
+317,dunia,"[57,45,55,43,41]","[""ɗ"",""u"",""n"",""i"",""ɑ""]",1,NOUN,PERFECT,,
+321,endelea,"[42,55,57,42,63,42,41]","[""ɛ"",""n"",""ɗ"",""ɛ"",""l"",""ɛ"",""ɑ""]",1,VERB,PERFECT,,
+326,familia,"[52,41,46,43,63,43,41]","[""f"",""ɑ"",""m"",""i"",""l"",""i"",""ɑ""]",1,NOUN,PERFECT,,
+599,fimbo,"[52,43,47,44]","[""f"",""i"",""mb"",""ɔ""]",1,NOUN,PERFECT,,
+327,fisi,"[52,43,61,43]","[""f"",""i"",""s"",""i""]",1,NOUN,PERFECT,,
+531,furaha,"[52,45,62,41,77,41]","[""f"",""u"",""ɾ"",""ɑ"",""h"",""ɑ""]",1,VERB,PERFECT,,
+337,gazeti,"[72,41,60,42,58,43]","[""ɠ"",""ɑ"",""z"",""ɛ"",""t"",""i""]",1,NOUN,PERFECT,,
+534,goli,"[72,44,63,43]","[""ɠ"",""ɔ"",""l"",""i""]",1,NOUN,PERFECT,,
+342,hatua,"[77,41,58,45,41]","[""h"",""ɑ"",""t"",""u"",""ɑ""]",1,NOUN,PERFECT,,
+351,imara,"[43,46,41,62,41]","[""i"",""m"",""ɑ"",""ɾ"",""ɑ""]",1,ADJECTIVE,PERFECT,,
+258,ina,"[43,55,41]","[""i"",""n"",""ɑ""]",1,,PERFECT,,
+350,ingia,"[43,55,72,43,41]","[""i"",""n"",""ɠ"",""i"",""ɑ""]",1,VERB,PERFECT,,
+355,jani,"[66,41,55,43]","[""ʄ"",""ɑ"",""n"",""i""]",1,NOUN,PERFECT,,
+237,jua,"[66,45,41]","[""ʄ"",""u"",""ɑ""]",1,NOUN,PERFECT,,
+281,juu,"[66,45,45]","[""ʄ"",""u"",""u""]",1,VERB,PERFECT,,
+646,karatasi,"[73,41,62,41,58,41,61,43]","[""k"",""ɑ"",""ɾ"",""ɑ"",""t"",""ɑ"",""s"",""i""]",1,NOUN,PERFECT,,
+594,kelele,"[73,42,63,42,63,42]","[""k"",""ɛ"",""l"",""ɛ"",""l"",""ɛ""]",1,VERB,PERFECT,,
+360,kichwa,"[73,43,58,68,76,41]","[""k"",""i"",""t"",""ʃ"",""w"",""ɑ""]",1,NOUN,PERFECT,,
+596,kuimba,"[73,45,43,47,41]","[""k"",""u"",""i"",""mb"",""ɑ""]",1,VERB,PERFECT,,
+557,kuingia,"[73,45,43,71,43,41]","[""k"",""u"",""i"",""ŋɡ"",""i"",""ɑ""]",1,NOUN,PERFECT,,
+361,kuku,"[73,45,73,45]","[""k"",""u"",""k"",""u""]",1,NOUN,PERFECT,,
+301,kule,"[73,45,63,42]","[""k"",""u"",""l"",""ɛ""]",1,,PERFECT,,
+251,kuna,"[73,45,55,41]","[""k"",""u"",""n"",""ɑ""]",1,,PERFECT,,
+253,kuni,"[73,45,55,43]","[""k"",""u"",""n"",""i""]",1,NOUN,PERFECT,,
+550,kuruka,"[73,45,62,45,73,41]","[""k"",""u"",""ɾ"",""u"",""k"",""ɑ""]",1,VERB,PERFECT,,
+249,leo,"[63,42,44]","[""l"",""ɛ"",""ɔ""]",1,NOUN,PERFECT,,
+523,mbali,"[47,41,63,43]","[""mb"",""ɑ"",""l"",""i""]",1,NOUN,PERFECT,,
+496,mbaya,"[47,41,69,41]","[""mb"",""ɑ"",""j"",""ɑ""]",1,ADJECTIVE,PERFECT,,
+203,mbwa,"[47,76,41]","[""mb"",""w"",""ɑ""]",1,NOUN,PERFECT,,
+275,miti,"[46,43,58,43]","[""m"",""i"",""t"",""i""]",1,NOUN,PERFECT,,
+220,mkia,"[46,73,43,41]","[""m"",""k"",""i"",""ɑ""]",1,NOUN,PERFECT,,
+222,mkono,"[46,73,44,55,44]","[""m"",""k"",""ɔ"",""n"",""ɔ""]",1,,PERFECT,,
+201,mnyama,"[46,64,41,46,41]","[""m"",""ɲ"",""ɑ"",""m"",""ɑ""]",1,NOUN,PERFECT,,
+303,mrefu,"[46,62,42,52,45]","[""m"",""ɾ"",""ɛ"",""f"",""u""]",1,ADJECTIVE,PERFECT,,
+637,msichana,"[46,61,43,58,68,41,55,41]","[""m"",""s"",""i"",""t"",""ʃ"",""ɑ"",""n"",""ɑ""]",1,NOUN,PERFECT,,
+204,mti,"[46,58,43]","[""m"",""t"",""i""]",1,NOUN,PERFECT,,
+238,mwezi,"[46,76,42,60,43]","[""m"",""w"",""ɛ"",""z"",""i""]",1,NOUN,PERFECT,,
+19,nane,"[55,41,55,42]","[""n"",""ɑ"",""n"",""ɛ""]",1,,PERFECT,,
+274,nani,"[55,41,55,43]","[""n"",""ɑ"",""n"",""i""]",1,VERB,PERFECT,,
+537,ngumu,"[71,45,46,45]","[""ŋɡ"",""u"",""m"",""u""]",1,ADJECTIVE,PERFECT,,
+585,nyekundu,"[64,42,73,45,56,45]","[""ɲ"",""ɛ"",""k"",""u"",""nd"",""u""]",1,NOUN,PERFECT,,
+212,nyinyi,"[64,43,64,43]","[""ɲ"",""i"",""ɲ"",""i""]",1,NOUN,PERFECT,,
+232,paa,"[49,41,41]","[""p"",""ɑ"",""ɑ""]",1,NOUN,PERFECT,,
+507,paka,"[49,41,73,41]","[""p"",""ɑ"",""k"",""ɑ""]",1,NOUN,PERFECT,,
+217,pale,"[49,41,63,42]","[""p"",""ɑ"",""l"",""ɛ""]",1,,PERFECT,,
+584,panya,"[49,41,64,41]","[""p"",""ɑ"",""ɲ"",""ɑ""]",1,NOUN,PERFECT,,
+283,peke,"[49,42,73,42]","[""p"",""ɛ"",""k"",""ɛ""]",1,,PERFECT,,
+558,refu,"[62,42,52,45]","[""ɾ"",""ɛ"",""f"",""u""]",1,ADJECTIVE,PERFECT,,
+505,sanduku,"[61,41,56,45,73,45]","[""s"",""ɑ"",""nd"",""u"",""k"",""u""]",1,NOUN,PERFECT,,
+495,siafu,"[61,43,41,52,45]","[""s"",""i"",""ɑ"",""f"",""u""]",1,NOUN,PERFECT,,
+194,simba,"[61,43,46,48,41]","[""s"",""i"",""m"",""ɓ"",""ɑ""]",1,NOUN,PERFECT,,
+499,sofa,"[61,44,52,41]","[""s"",""ɔ"",""f"",""ɑ""]",1,NOUN,PERFECT,,
+587,tajiri,"[58,41,66,43,62,43]","[""t"",""ɑ"",""ʄ"",""i"",""ɾ"",""i""]",1,ADJECTIVE,PERFECT,,
+551,teke,"[58,42,73,42]","[""t"",""ɛ"",""k"",""ɛ""]",1,VERB,PERFECT,,
+233,tembea,"[58,42,47,42,41]","[""t"",""ɛ"",""mb"",""ɛ"",""ɑ""]",1,VERB,PERFECT,,
+213,wao,"[76,41,44]","[""w"",""ɑ"",""ɔ""]",1,NOUN,PERFECT,,
+276,watatu,"[76,41,58,41,58,45]","[""w"",""ɑ"",""t"",""ɑ"",""t"",""u""]",1,VERB,PERFECT,,
+248,watoto,"[76,41,58,44,58,44]","[""w"",""ɑ"",""t"",""ɔ"",""t"",""ɔ""]",1,NOUN,PERFECT,,
+255,watu,"[76,41,58,45]","[""w"",""ɑ"",""t"",""u""]",1,NOUN,PERFECT,,
+210,yeye,"[69,42,69,42]","[""j"",""ɛ"",""j"",""ɛ""]",1,NOUN,PERFECT,,
+284,za,"[60,41]","[""z"",""ɑ""]",1,,PERFECT,,
+293,zake,"[60,41,73,42]","[""z"",""ɑ"",""k"",""ɛ""]",1,NOUN,PERFECT,,
+308,afrika,"[41,52,62,43,73,41]","[""ɑ"",""f"",""ɾ"",""i"",""k"",""ɑ""]",0,NOUN,PERFECT,,
+296,ali,"[41,63,43]","[""ɑ"",""l"",""i""]",0,,PERFECT,,
+268,ananunua,"[41,55,41,55,45,55,45,41]","[""ɑ"",""n"",""ɑ"",""n"",""u"",""n"",""u"",""ɑ""]",0,VERB,PERFECT,,
+305,andazi,"[41,55,57,41,60,43]","[""ɑ"",""n"",""ɗ"",""ɑ"",""z"",""i""]",0,VERB,PERFECT,,
+307,andika,"[41,56,43,73,41]","[""ɑ"",""nd"",""i"",""k"",""ɑ""]",0,VERB,PERFECT,,
+690,arobaini,"[41,62,44,48,41,43,55,43]","[""ɑ"",""ɾ"",""ɔ"",""ɓ"",""ɑ"",""i"",""n"",""i""]",0,,PERFECT,,
+279,asali,"[41,61,41,63,43]","[""ɑ"",""s"",""ɑ"",""l"",""i""]",0,NOUN,PERFECT,,
+288,asini,"[41,61,43,55,43]","[""ɑ"",""s"",""i"",""n"",""i""]",0,,PERFECT,,
+297,asubui,"[41,61,45,48,45,43]","[""ɑ"",""s"",""u"",""ɓ"",""u"",""i""]",0,NOUN,PERFECT,,
+310,bahari,"[48,41,77,41,62,43]","[""ɓ"",""ɑ"",""h"",""ɑ"",""ɾ"",""i""]",0,NOUN,PERFECT,,
+312,bakuli,"[48,41,73,45,63,43]","[""ɓ"",""ɑ"",""k"",""u"",""l"",""i""]",0,NOUN,PERFECT,,
+611,bango,"[48,41,71,44]","[""ɓ"",""ɑ"",""ŋɡ"",""ɔ""]",0,NOUN,PERFECT,,
+640,barafu,"[48,41,62,41,52,45]","[""ɓ"",""ɑ"",""ɾ"",""ɑ"",""f"",""u""]",0,NOUN,PERFECT,,
+601,bomba,"[48,44,47,41]","[""ɓ"",""ɔ"",""mb"",""ɑ""]",0,NOUN,PERFECT,,
+504,bosi,"[48,44,61,43]","[""ɓ"",""ɔ"",""s"",""i""]",0,NOUN,PERFECT,,
+271,buibui,"[48,45,43,48,45,43]","[""ɓ"",""u"",""i"",""ɓ"",""u"",""i""]",0,NOUN,PERFECT,,
+636,bundi,"[48,45,56,43]","[""ɓ"",""u"",""nd"",""i""]",0,NOUN,PERFECT,,
+576,bustani,"[48,45,61,58,41,55,43]","[""ɓ"",""u"",""s"",""t"",""ɑ"",""n"",""i""]",0,NOUN,PERFECT,,
+553,busu,"[48,45,61,45]","[""ɓ"",""u"",""s"",""u""]",0,NOUN,PERFECT,,
+581,bwawa,"[48,76,41,76,41]","[""ɓ"",""w"",""ɑ"",""w"",""ɑ""]",0,NOUN,NON_PHONEMIC,,
+373,chaki,"[67,41,73,43]","[""tʃ"",""ɑ"",""k"",""i""]",0,,PERFECT,,
+566,changanya,"[67,41,71,41,55,69,41]","[""tʃ"",""ɑ"",""ŋɡ"",""ɑ"",""n"",""j"",""ɑ""]",0,VERB,HIGHLY_PHONEMIC,,
+372,chapati,"[67,41,49,41,58,43]","[""tʃ"",""ɑ"",""p"",""ɑ"",""t"",""i""]",0,,HIGHLY_PHONEMIC,,
+519,chimba,"[67,43,47,41]","[""tʃ"",""i"",""mb"",""ɑ""]",0,VERB,PERFECT,,
+374,chungu,"[67,45,55,72,45]","[""tʃ"",""u"",""n"",""ɠ"",""u""]",0,NOUN,PERFECT,,
+371,chungwa,"[67,45,55,72,76,41]","[""tʃ"",""u"",""n"",""ɠ"",""w"",""ɑ""]",0,NOUN,HIGHLY_PHONEMIC,,
+638,chupa,"[67,45,49,41]","[""tʃ"",""u"",""p"",""ɑ""]",0,NOUN,PERFECT,,
+369,chura,"[67,45,62,41]","[""tʃ"",""u"",""ɾ"",""ɑ""]",0,NOUN,PERFECT,,
+261,dada,"[57,41,57,41]","[""ɗ"",""ɑ"",""ɗ"",""ɑ""]",0,NOUN,PERFECT,,
+313,dafu,"[57,41,52,45]","[""ɗ"",""ɑ"",""f"",""u""]",0,VERB,PERFECT,,
+318,dalma,"[57,41,63,46,41]","[""ɗ"",""ɑ"",""l"",""m"",""ɑ""]",0,,PERFECT,,
+315,dirisha,"[57,43,62,43,68,41]","[""ɗ"",""i"",""ɾ"",""i"",""ʃ"",""ɑ""]",0,NOUN,PERFECT,,
+511,dokezo,"[57,44,73,42,60,44]","[""ɗ"",""ɔ"",""k"",""ɛ"",""z"",""ɔ""]",0,NOUN,PERFECT,,
+314,duka,"[57,45,73,41]","[""ɗ"",""u"",""k"",""ɑ""]",0,NOUN,PERFECT,,
+316,duma,"[57,45,46,41]","[""ɗ"",""u"",""m"",""ɑ""]",0,NOUN,PERFECT,,
+322,eleza,"[42,63,42,60,41]","[""ɛ"",""l"",""ɛ"",""z"",""ɑ""]",0,VERB,PERFECT,,
+324,elimu,"[42,63,43,46,45]","[""ɛ"",""l"",""i"",""m"",""u""]",0,NOUN,PERFECT,,
+319,embe,"[42,46,48,42]","[""ɛ"",""m"",""ɓ"",""ɛ""]",0,ADJECTIVE,PERFECT,,
+320,endesha,"[42,55,57,42,68,41]","[""ɛ"",""n"",""ɗ"",""ɛ"",""ʃ"",""ɑ""]",0,VERB,PERFECT,,
+323,eneo,"[42,55,42,44]","[""ɛ"",""n"",""ɛ"",""ɔ""]",0,NOUN,PERFECT,,
+229,fa,"[52,41]","[""f"",""ɑ""]",0,,PERFECT,,
+325,fagio,"[52,41,72,43,44]","[""f"",""ɑ"",""ɠ"",""i"",""ɔ""]",0,NOUN,PERFECT,,
+226,fahamu,"[52,41,77,41,46,45]","[""f"",""ɑ"",""h"",""ɑ"",""m"",""u""]",0,NOUN,PERFECT,,
+328,faru,"[52,41,62,45]","[""f"",""ɑ"",""ɾ"",""u""]",0,NOUN,PERFECT,,
+595,fedha,"[52,42,57,77,41]","[""f"",""ɛ"",""ɗ"",""h"",""ɑ""]",0,NOUN,PERFECT,,
+234,fikiri,"[52,43,73,43,62,43]","[""f"",""i"",""k"",""i"",""ɾ"",""i""]",0,VERB,PERFECT,,
+330,filimbi,"[52,43,63,43,47,43]","[""f"",""i"",""l"",""i"",""mb"",""i""]",0,NOUN,PERFECT,,
+530,fueli,"[52,45,42,63,43]","[""f"",""u"",""ɛ"",""l"",""i""]",0,NOUN,PERFECT,,
+564,fujo,"[52,45,66,44]","[""f"",""u"",""ʄ"",""ɔ""]",0,NOUN,PERFECT,,
+607,fulana,"[52,45,63,41,55,41]","[""f"",""u"",""l"",""ɑ"",""n"",""ɑ""]",0,NOUN,PERFECT,,
+329,funguo,"[52,45,55,72,45,44]","[""f"",""u"",""n"",""ɠ"",""u"",""ɔ""]",0,NOUN,PERFECT,,
+331,furahi,"[52,45,62,41,77,43]","[""f"",""u"",""ɾ"",""ɑ"",""h"",""i""]",0,ADJECTIVE,PERFECT,,
+506,gamba,"[72,41,47,41]","[""ɠ"",""ɑ"",""mb"",""ɑ""]",0,NOUN,PERFECT,,
+332,gauni,"[72,41,45,55,43]","[""ɠ"",""ɑ"",""u"",""n"",""i""]",0,NOUN,PERFECT,,
+532,gesi,"[72,42,61,43]","[""ɠ"",""ɛ"",""s"",""i""]",0,NOUN,PERFECT,,
+338,gimbi,"[72,43,47,43]","[""ɠ"",""i"",""mb"",""i""]",0,,PERFECT,,
+641,glasi,"[72,63,41,61,43]","[""ɠ"",""l"",""ɑ"",""s"",""i""]",0,NOUN,PERFECT,,
+336,godoro,"[72,44,57,44,62,44]","[""ɠ"",""ɔ"",""ɗ"",""ɔ"",""ɾ"",""ɔ""]",0,NOUN,PERFECT,,
+335,gogo,"[72,44,72,44]","[""ɠ"",""ɔ"",""ɠ"",""ɔ""]",0,,PERFECT,,
+533,gundi,"[72,45,55,56,43]","[""ɠ"",""u"",""n"",""nd"",""i""]",0,NOUN,PERFECT,,
+334,gunia,"[72,45,55,43,41]","[""ɠ"",""u"",""n"",""i"",""ɑ""]",0,NOUN,PERFECT,,
+236,guta,"[72,45,58,41]","[""ɠ"",""u"",""t"",""ɑ""]",0,NOUN,PERFECT,,
+691,hamsini,"[77,41,46,61,43,55,43]","[""h"",""ɑ"",""m"",""s"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+254,hawa,"[77,41,76,41]","[""h"",""ɑ"",""w"",""ɑ""]",0,,PERFECT,,
+343,hema,"[77,42,46,41]","[""h"",""ɛ"",""m"",""ɑ""]",0,NOUN,PERFECT,,
+339,herufi,"[77,42,62,45,52,43]","[""h"",""ɛ"",""ɾ"",""u"",""f"",""i""]",0,NOUN,PERFECT,,
+345,hongera,"[77,44,55,72,42,62,41]","[""h"",""ɔ"",""n"",""ɠ"",""ɛ"",""ɾ"",""ɑ""]",0,,PERFECT,,
+344,hospitali,"[77,44,61,49,43,58,41,63,43]","[""h"",""ɔ"",""s"",""p"",""i"",""t"",""ɑ"",""l"",""i""]",0,NOUN,PERFECT,,
+526,imarisha,"[43,46,41,62,43,68,41]","[""i"",""m"",""ɑ"",""ɾ"",""i"",""ʃ"",""ɑ""]",0,VERB,PERFECT,,
+347,imba,"[43,47,41]","[""i"",""mb"",""ɑ""]",0,NOUN,PERFECT,,
+348,ini,"[43,55,43]","[""i"",""n"",""i""]",0,NOUN,PERFECT,,
+349,injini,"[43,55,66,43,55,43]","[""i"",""n"",""ʄ"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+228,ishi,"[43,68,43]","[""i"",""ʃ"",""i""]",0,,PERFECT,,
+688,ishirini,"[43,68,43,62,43,55,43]","[""i"",""ʃ"",""i"",""ɾ"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+346,ita,"[43,58,41]","[""i"",""t"",""ɑ""]",0,VERB,PERFECT,,
+510,jabali,"[66,41,48,41,63,43]","[""ʄ"",""ɑ"",""ɓ"",""ɑ"",""l"",""i""]",0,NOUN,PERFECT,,
+353,jagi,"[66,41,72,43]","[""ʄ"",""ɑ"",""ɠ"",""i""]",0,,PERFECT,,
+563,jamvi,"[66,41,50,43]","[""ʄ"",""ɑ"",""mv"",""i""]",0,NOUN,PERFECT,,
+582,jaribio,"[66,41,62,43,48,43,44]","[""ʄ"",""ɑ"",""ɾ"",""i"",""ɓ"",""i"",""ɔ""]",0,NOUN,PERFECT,,
+546,jeep,"[66,42,42,49]","[""ʄ"",""ɛ"",""ɛ"",""p""]",0,NOUN,PERFECT,,
+635,jengo,"[68,42,71,44]","[""ʃ"",""ɛ"",""ŋɡ"",""ɔ""]",0,NOUN,PERFECT,,
+356,jicho,"[66,43,58,68,44]","[""ʄ"",""i"",""t"",""ʃ"",""ɔ""]",0,NOUN,PERFECT,,
+352,jiko,"[66,43,73,44]","[""ʄ"",""i"",""k"",""ɔ""]",0,NOUN,PERFECT,,
+605,jino,"[66,43,55,44]","[""ʄ"",""i"",""n"",""ɔ""]",0,NOUN,PERFECT,,
+503,jipu,"[66,43,49,45]","[""ʄ"",""i"",""p"",""u""]",0,VERB,PERFECT,,
+357,jirushe,"[66,43,62,45,61,77,42]","[""ʄ"",""i"",""ɾ"",""u"",""s"",""h"",""ɛ""]",0,,PERFECT,,
+549,jiunga,"[66,43,45,71,41]","[""ʄ"",""i"",""u"",""ŋɡ"",""ɑ""]",0,NOUN,PERFECT,,
+548,jog,"[66,44,72]","[""ʄ"",""ɔ"",""ɠ""]",0,VERB,PERFECT,,
+631,kahawia,"[73,41,77,41,76,43,41]","[""k"",""ɑ"",""h"",""ɑ"",""w"",""i"",""ɑ""]",0,ADJECTIVE,PERFECT,,
+578,kalamu,"[73,41,63,41,46,45]","[""k"",""ɑ"",""l"",""ɑ"",""m"",""u""]",0,NOUN,PERFECT,,
+362,karoti,"[73,41,62,44,58,43]","[""k"",""ɑ"",""ɾ"",""ɔ"",""t"",""i""]",0,NOUN,PERFECT,,
+359,kasuku,"[73,41,61,45,73,45]","[""k"",""ɑ"",""s"",""u"",""k"",""u""]",0,NOUN,PERFECT,,
+231,kata,"[73,41,58,41]","[""k"",""ɑ"",""t"",""ɑ""]",0,VERB,PERFECT,,
+509,kidevu,"[73,43,57,42,51,45]","[""k"",""i"",""ɗ"",""ɛ"",""v"",""u""]",0,NOUN,PERFECT,,
+651,kidole,"[73,43,57,44,63,42]","[""k"",""i"",""ɗ"",""ɔ"",""l"",""ɛ""]",0,NOUN,PERFECT,,
+508,kifaranga,"[73,43,52,41,62,41,71,41]","[""k"",""i"",""f"",""ɑ"",""ɾ"",""ɑ"",""ŋɡ"",""ɑ""]",0,NOUN,PERFECT,,
+555,kifuniko,"[73,43,52,45,55,43,73,44]","[""k"",""i"",""f"",""u"",""n"",""i"",""k"",""ɔ""]",0,NOUN,PERFECT,,
+633,kijani,"[73,43,68,41,55,43]","[""k"",""i"",""ʃ"",""ɑ"",""n"",""i""]",0,ADJECTIVE,PERFECT,,
+647,kijivu,"[73,43,68,43,51,45]","[""k"",""i"",""ʃ"",""i"",""v"",""u""]",0,ADJECTIVE,PERFECT,,
+516,kikombe,"[73,43,73,44,47,42]","[""k"",""i"",""k"",""ɔ"",""mb"",""ɛ""]",0,NOUN,PERFECT,,
+539,kilima,"[73,43,63,43,46,41]","[""k"",""i"",""l"",""i"",""m"",""ɑ""]",0,NOUN,PERFECT,,
+583,kimbia,"[73,43,47,43,41]","[""k"",""i"",""mb"",""i"",""ɑ""]",0,VERB,PERFECT,,
+571,kiota,"[73,43,44,58,41]","[""k"",""i"",""ɔ"",""t"",""ɑ""]",0,NOUN,PERFECT,,
+287,kiswahili,"[73,43,61,76,41,77,43,63,43]","[""k"",""i"",""s"",""w"",""ɑ"",""h"",""i"",""l"",""i""]",0,NOUN,PERFECT,,
+358,kitabu,"[73,43,58,41,48,45]","[""k"",""i"",""t"",""ɑ"",""ɓ"",""u""]",0,NOUN,PERFECT,,
+538,kofia,"[73,44,52,43,41]","[""k"",""ɔ"",""f"",""i"",""ɑ""]",0,NOUN,PERFECT,,
+634,koleo,"[73,44,63,42,44]","[""k"",""ɔ"",""l"",""ɛ"",""ɔ""]",0,NOUN,PERFECT,,
+363,komba,"[73,44,46,48,41]","[""k"",""ɔ"",""m"",""ɓ"",""ɑ""]",0,,PERFECT,,
+545,koti,"[73,44,58,43]","[""k"",""ɔ"",""t"",""i""]",0,NOUN,PERFECT,,
+559,kuangalia,"[73,45,41,71,41,43,41]","[""k"",""u"",""ɑ"",""ŋɡ"",""ɑ"",""i"",""ɑ""]",0,NOUN,PERFECT,,
+540,kugonga,"[73,45,72,44,71,41]","[""k"",""u"",""ɠ"",""ɔ"",""ŋɡ"",""ɑ""]",0,VERB,PERFECT,,
+592,kukaa,"[73,45,73,41,41]","[""k"",""u"",""k"",""ɑ"",""ɑ""]",0,VERB,PERFECT,,
+542,kumkumbatia,"[73,45,46,73,45,47,41,58,43,41]","[""k"",""u"",""m"",""k"",""u"",""mb"",""ɑ"",""t"",""i"",""ɑ""]",0,NOUN,PERFECT,,
+554,kuramba,"[73,45,62,41,47,41]","[""k"",""u"",""ɾ"",""ɑ"",""mb"",""ɑ""]",0,NOUN,PERFECT,,
+591,kusikitisha,"[73,45,61,43,73,43,58,43,68,41]","[""k"",""u"",""s"",""i"",""k"",""i"",""t"",""i"",""ʃ"",""ɑ""]",0,VERB,PERFECT,,
+227,lala,"[63,41,63,41]","[""l"",""ɑ"",""l"",""ɑ""]",0,VERB,PERFECT,,
+364,lia,"[63,43,41]","[""l"",""i"",""ɑ""]",0,,PERFECT,,
+367,lima,"[63,43,46,41]","[""l"",""i"",""m"",""ɑ""]",0,NOUN,PERFECT,,
+365,limao,"[63,43,46,41,44]","[""l"",""i"",""m"",""ɑ"",""ɔ""]",0,NOUN,PERFECT,,
+577,lipa,"[63,43,49,41]","[""l"",""i"",""p"",""ɑ""]",0,VERB,PERFECT,,
+368,loa,"[63,44,41]","[""l"",""ɔ"",""ɑ""]",0,,PERFECT,,
+291,madini,"[46,41,57,43,55,43]","[""m"",""ɑ"",""ɗ"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+298,mahalagi,"[46,41,77,41,63,41,72,43]","[""m"",""ɑ"",""h"",""ɑ"",""l"",""ɑ"",""ɠ"",""i""]",0,,PERFECT,,
+252,manene,"[46,41,55,42,55,42]","[""m"",""ɑ"",""n"",""ɛ"",""n"",""ɛ""]",0,ADJECTIVE,PERFECT,,
+567,matope,"[46,41,58,44,49,42]","[""m"",""ɑ"",""t"",""ɔ"",""p"",""ɛ""]",0,NOUN,PERFECT,,
+257,maua,"[46,41,45,41]","[""m"",""ɑ"",""u"",""ɑ""]",0,NOUN,PERFECT,,
+632,mavazi,"[46,41,51,41,60,43]","[""m"",""ɑ"",""v"",""ɑ"",""z"",""i""]",0,ADJECTIVE,PERFECT,,
+250,mayayi,"[46,41,69,41,69,43]","[""m"",""ɑ"",""j"",""ɑ"",""j"",""i""]",0,,PERFECT,,
+13,mbili,"[46,48,43,63,43]","[""m"",""ɓ"",""i"",""l"",""i""]",0,NOUN,PERFECT,,
+535,mbuzi,"[47,45,60,43]","[""mb"",""u"",""z"",""i""]",0,NOUN,PERFECT,,
+529,mbweha,"[47,76,42,77,41]","[""mb"",""w"",""ɛ"",""h"",""ɑ""]",0,NOUN,PERFECT,,
+556,mdomo,"[46,57,44,46,44]","[""m"",""ɗ"",""ɔ"",""m"",""ɔ""]",0,NOUN,PERFECT,,
+518,meza,"[46,42,60,41]","[""m"",""ɛ"",""z"",""ɑ""]",0,NOUN,PERFECT,,
+497,mfuko,"[46,52,45,73,44]","[""m"",""f"",""u"",""k"",""ɔ""]",0,NOUN,PERFECT,,
+696,mia,"[46,43,41]","[""m"",""i"",""ɑ""]",0,NOUN,PERFECT,,
+608,mifugo,"[46,43,52,45,72,44]","[""m"",""i"",""f"",""u"",""ɠ"",""ɔ""]",0,NOUN,PERFECT,,
+565,mister,"[46,43,61,58,42,62]","[""m"",""i"",""s"",""t"",""ɛ"",""ɾ""]",0,NOUN,PERFECT,,
+286,mji,"[46,66,43]","[""m"",""ʄ"",""i""]",0,NOUN,PERFECT,,
+541,moto,"[46,44,58,44]","[""m"",""ɔ"",""t"",""ɔ""]",0,ADJECTIVE,PERFECT,,
+272,motokaa,"[46,44,58,44,73,41,41]","[""m"",""ɔ"",""t"",""ɔ"",""k"",""ɑ"",""ɑ""]",0,NOUN,PERFECT,,
+273,motoni,"[46,44,58,44,55,43]","[""m"",""ɔ"",""t"",""ɔ"",""n"",""i""]",0,,PERFECT,,
+589,mpasuko,"[46,49,41,61,45,73,44]","[""m"",""p"",""ɑ"",""s"",""u"",""k"",""ɔ""]",0,VERB,PERFECT,,
+513,mpishi,"[46,49,43,68,43]","[""m"",""p"",""i"",""ʃ"",""i""]",0,NOUN,PERFECT,,
+568,msumari,"[46,61,45,46,41,62,43]","[""m"",""s"",""u"",""m"",""ɑ"",""ɾ"",""i""]",0,NOUN,PERFECT,,
+609,mtandao,"[46,58,41,55,57,41,44]","[""m"",""t"",""ɑ"",""n"",""ɗ"",""ɑ"",""ɔ""]",0,NOUN,PERFECT,,
+241,mvua,"[50,45,41]","[""mv"",""u"",""ɑ""]",0,NOUN,PERFECT,,
+639,mvulana,"[50,45,63,41,55,41]","[""mv"",""u"",""l"",""ɑ"",""n"",""ɑ""]",0,NOUN,PERFECT,,
+294,mwaka,"[46,76,41,73,41]","[""m"",""w"",""ɑ"",""k"",""ɑ""]",0,NOUN,PERFECT,,
+300,mwanafunzi,"[46,76,41,55,41,52,45,59,43]","[""m"",""w"",""ɑ"",""n"",""ɑ"",""f"",""u"",""nz"",""i""]",0,NOUN,PERFECT,,
+521,mwanasesere,"[46,76,41,55,41,61,42,61,42,62,42]","[""m"",""w"",""ɑ"",""n"",""ɑ"",""s"",""ɛ"",""s"",""ɛ"",""ɾ"",""ɛ""]",0,NOUN,PERFECT,,
+515,nafaka,"[55,41,52,41,73,41]","[""n"",""ɑ"",""f"",""ɑ"",""k"",""ɑ""]",0,NOUN,PERFECT,,
+649,ndevu,"[56,42,51,45]","[""nd"",""ɛ"",""v"",""u""]",0,NOUN,PERFECT,,
+524,nene,"[55,42,55,42]","[""n"",""ɛ"",""n"",""ɛ""]",0,NOUN,PERFECT,,
+304,njano,"[70,69,41,55,44]","[""ŋ"",""j"",""ɑ"",""n"",""ɔ""]",0,ADJECTIVE,PERFECT,,
+15,nne,"[55,80,55,42]","[""n"",""ˈ"",""n"",""ɛ""]",0,NOUN,PERFECT,,
+603,nyembamba,"[64,42,47,41,47,41]","[""ɲ"",""ɛ"",""mb"",""ɑ"",""mb"",""ɑ""]",0,NOUN,PERFECT,,
+650,nyeupe,"[64,42,45,49,42]","[""ɲ"",""ɛ"",""u"",""p"",""ɛ""]",0,NOUN,PERFECT,,
+652,nyeusi,"[64,42,45,61,43]","[""ɲ"",""ɛ"",""u"",""s"",""i""]",0,ADJECTIVE,PERFECT,,
+239,nyota,"[64,44,58,41]","[""ɲ"",""ɔ"",""t"",""ɑ""]",0,NOUN,PERFECT,,
+264,nyuki,"[68,45,73,43]","[""ʃ"",""u"",""k"",""i""]",0,NOUN,PERFECT,,
+223,nywa,"[64,76,41]","[""ɲ"",""w"",""ɑ""]",0,NOUN,PERFECT,,
+266,ole,"[44,63,42]","[""ɔ"",""l"",""ɛ""]",0,VERB,PERFECT,,
+262,ona,"[44,55,41]","[""ɔ"",""n"",""ɑ""]",0,VERB,PERFECT,,
+573,pakiti,"[49,41,73,43,58,43]","[""p"",""ɑ"",""k"",""i"",""t"",""i""]",0,NOUN,PERFECT,,
+588,pete,"[49,42,58,42]","[""p"",""ɛ"",""t"",""ɛ""]",0,NOUN,PERFECT,,
+643,pink,"[49,43,55,73]","[""p"",""i"",""n"",""k""]",0,ADJECTIVE,PERFECT,,
+501,pipa,"[49,43,49,41]","[""p"",""i"",""p"",""ɑ""]",0,NOUN,PERFECT,,
+498,popo,"[49,44,49,44]","[""p"",""ɔ"",""p"",""ɔ""]",0,,PERFECT,,
+586,pumzika,"[49,45,46,60,43,73,41]","[""p"",""u"",""m"",""z"",""i"",""k"",""ɑ""]",0,VERB,PERFECT,,
+612,pundamilia,"[49,45,56,41,46,43,63,43,41]","[""p"",""u"",""nd"",""ɑ"",""m"",""i"",""l"",""i"",""ɑ""]",0,NOUN,PERFECT,,
+562,ramani,"[62,41,46,41,55,43]","[""ɾ"",""ɑ"",""m"",""ɑ"",""n"",""i""]",0,NOUN,PERFECT,,
+674,sa,"[61,41]","[""s"",""ɑ""]",0,,PERFECT,,
+693,sabini,"[61,41,48,43,55,43]","[""s"",""ɑ"",""ɓ"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+597,sabuni,"[61,41,48,45,55,43]","[""s"",""ɑ"",""ɓ"",""u"",""n"",""i""]",0,NOUN,PERFECT,,
+235,safisha,"[61,41,52,43,68,41]","[""s"",""ɑ"",""f"",""i"",""ʃ"",""ɑ""]",0,VERB,PERFECT,,
+520,sahani,"[61,41,77,41,55,43]","[""s"",""ɑ"",""h"",""ɑ"",""n"",""i""]",0,NOUN,PERFECT,,
+202,samaki,"[61,41,46,41,73,43]","[""s"",""ɑ"",""m"",""ɑ"",""k"",""i""]",0,NOUN,PERFECT,,
+512,sarafu,"[61,41,62,41,52,45]","[""s"",""ɑ"",""ɾ"",""ɑ"",""f"",""u""]",0,NOUN,PERFECT,,
+593,sema,"[61,42,46,41]","[""s"",""ɛ"",""m"",""ɑ""]",0,VERB,PERFECT,,
+522,shabiki,"[68,41,48,43,73,43]","[""ʃ"",""ɑ"",""ɓ"",""i"",""k"",""i""]",0,NOUN,PERFECT,,
+579,shimo,"[68,43,46,44]","[""ʃ"",""i"",""m"",""ɔ""]",0,NOUN,PERFECT,,
+610,shinda,"[68,43,56,41]","[""ʃ"",""i"",""nd"",""ɑ""]",0,,PERFECT,,
+11,sifuri,"[61,43,52,45,62,43]","[""s"",""i"",""f"",""u"",""ɾ"",""i""]",0,NOUN,PERFECT,,
+225,sikia,"[61,43,73,43,41]","[""s"",""i"",""k"",""i"",""ɑ""]",0,VERB,PERFECT,,
+211,sisi,"[61,43,61,43]","[""s"",""i"",""s"",""i""]",0,NOUN,PERFECT,,
+692,sitini,"[61,43,58,43,55,43]","[""s"",""i"",""t"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+575,sufuria,"[61,45,52,45,62,43,41]","[""s"",""u"",""f"",""u"",""ɾ"",""i"",""ɑ""]",0,NOUN,PERFECT,,
+600,tangi,"[58,41,71,43]","[""t"",""ɑ"",""ŋɡ"",""i""]",0,NOUN,PERFECT,,
+16,tano,"[58,41,55,44]","[""t"",""ɑ"",""n"",""ɔ""]",0,NOUN,PERFECT,,
+282,tele,"[58,42,63,42]","[""t"",""ɛ"",""l"",""ɛ""]",0,NOUN,PERFECT,,
+615,televisheni,"[58,42,63,42,51,43,68,42,55,43]","[""t"",""ɛ"",""l"",""ɛ"",""v"",""i"",""ʃ"",""ɛ"",""n"",""i""]",0,NOUN,PERFECT,,
+689,thelathini,"[54,42,63,41,54,43,55,43]","[""θ"",""ɛ"",""l"",""ɑ"",""θ"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+694,themanini,"[54,42,46,41,55,43,55,43]","[""θ"",""ɛ"",""m"",""ɑ"",""n"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+604,tie,"[58,43,42]","[""t"",""i"",""ɛ""]",0,NOUN,PERFECT,,
+20,tisa,"[58,43,61,41]","[""t"",""i"",""s"",""ɑ""]",0,NOUN,PERFECT,,
+695,tisini,"[58,43,61,43,55,43]","[""t"",""i"",""s"",""i"",""n"",""i""]",0,NOUN,PERFECT,,
+606,treni,"[58,62,42,55,43]","[""t"",""ɾ"",""ɛ"",""n"",""i""]",0,NOUN,PERFECT,,
+205,tunda,"[58,45,55,57,41]","[""t"",""u"",""n"",""ɗ"",""ɑ""]",0,NOUN,PERFECT,,
+206,ua,"[45,41]","[""u"",""ɑ""]",0,,PERFECT,,
+527,ukungu,"[45,73,45,55,72,45]","[""u"",""k"",""u"",""n"",""ɠ"",""u""]",0,NOUN,PERFECT,,
+528,uma,"[45,46,41]","[""u"",""m"",""ɑ""]",0,NOUN,PERFECT,,
+277,useni,"[45,61,42,55,43]","[""u"",""s"",""ɛ"",""n"",""i""]",0,NOUN,PERFECT,,
+207,vipi,"[51,43,49,43]","[""v"",""i"",""p"",""i""]",0,VERB,PERFECT,,
+292,wali,"[76,41,63,43]","[""w"",""ɑ"",""l"",""i""]",0,,PERFECT,,
+256,wanakaa,"[76,41,55,41,73,41,41]","[""w"",""ɑ"",""n"",""ɑ"",""k"",""ɑ"",""ɑ""]",0,VERB,PERFECT,,
+560,wazimu,"[76,41,60,43,46,45]","[""w"",""ɑ"",""z"",""i"",""m"",""u""]",0,ADJECTIVE,PERFECT,,
+230,winda,"[76,43,56,41]","[""w"",""i"",""nd"",""ɑ""]",0,VERB,PERFECT,,
+544,wino,"[76,43,55,44]","[""w"",""i"",""n"",""ɔ""]",0,NOUN,PERFECT,,
+219,yai,"[69,41,43]","[""j"",""ɑ"",""i""]",0,NOUN,PERFECT,,
+645,zambarau,"[60,41,47,41,62,41,45]","[""z"",""ɑ"",""mb"",""ɑ"",""ɾ"",""ɑ"",""u""]",0,ADJECTIVE,PERFECT,,
+613,zip,"[60,43,49]","[""z"",""i"",""p""]",0,NOUN,PERFECT,,
+218,zito,"[60,43,58,44]","[""z"",""i"",""t"",""ɔ""]",0,ADJECTIVE,PERFECT,,
+614,zoo,"[60,44]","[""z"",""ɔ""]",0,NOUN,PERFECT,,

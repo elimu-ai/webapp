@@ -1,102 +1,102 @@
-id,value,symbol,word_texts,word_ids
-34,0,"null",[sifuri],[11]
-11,1,"null",[moja],[12]
-12,2,"null",[mbili],[13]
-13,3,"null",[tatu],[14]
-14,4,"null",[nne],[15]
-15,5,"null",[tano],[16]
-16,6,"null",[sita],[17]
-17,7,"null",[saba],[18]
-18,8,"null",[nane],[19]
-19,9,"null",[tisa],[20]
-31,10,"null",[kumi],[602]
-35,11,"null",[kumi, na, moja],[602, 243, 12]
-37,12,"null",[kumi, na, mbili],[602, 243, 13]
-38,13,"null",[kumi, na, tatu],[602, 243, 14]
-39,14,"null",[kumi, na, nne],[602, 243, 15]
-40,15,"null",[kumi, na, tano],[602, 243, 16]
-41,16,"null",[kumi, na, sita],[602, 243, 17]
-42,17,"null",[kumi, na, saba],[602, 243, 18]
-43,18,"null",[kumi, na, nane],[602, 243, 19]
-44,19,"null",[kumi, na, tisa],[602, 243, 20]
-46,20,"null",[ishirini],[688]
-45,21,"null",[ishirini, na, moja],[688, 243, 12]
-47,22,"null",[ishirini, na, mbili],[688, 243, 13]
-48,23,"null",[ishirini, na, tatu],[688, 243, 14]
-49,24,"null",[ishirini, na, nne],[688, 243, 15]
-50,25,"null",[ishirini, na, tano],[688, 243, 16]
-51,26,"null",[ishirini, na, sita],[688, 243, 17]
-52,27,"null",[ishirini, na, saba],[688, 243, 18]
-53,28,"null",[ishirini, na, nane],[688, 243, 19]
-54,29,"null",[ishirini, na, tisa],[688, 243, 20]
-55,30,"null",[thelathini],[689]
-56,31,"null",[thelathini, na, moja],[689, 243, 12]
-57,32,"null",[thelathini, na, mbili],[689, 243, 13]
-58,33,"null",[thelathini, na, tatu],[689, 243, 14]
-59,34,"null",[thelathini, na, nne],[689, 243, 15]
-60,35,"null",[thelathini, na, tano],[689, 243, 16]
-61,36,"null",[thelathini, na, sita],[689, 243, 17]
-62,37,"null",[thelathini, na, saba],[689, 243, 18]
-63,38,"null",[thelathini, na, nane],[689, 243, 19]
-64,39,"null",[thelathini, na, tisa],[689, 243, 20]
-65,40,"null",[arobaini],[690]
-66,41,"null",[arobaini, na, moja],[690, 243, 12]
-67,42,"null",[arobaini, na, mbili],[690, 243, 13]
-68,43,"null",[arobaini, na, tatu],[690, 243, 14]
-69,44,"null",[arobaini, na, nne],[690, 243, 15]
-70,45,"null",[arobaini, na, tano],[690, 243, 16]
-71,46,"null",[arobaini, na, sita],[690, 243, 17]
-72,47,"null",[arobaini, na, saba],[690, 243, 18]
-73,48,"null",[arobaini, na, nane],[690, 243, 19]
-74,49,"null",[arobaini, na, tisa],[690, 243, 20]
-75,50,"null",[hamsini],[691]
-76,51,"null",[hamsini, na, moja],[691, 243, 12]
-77,52,"null",[hamsini, na, mbili],[691, 243, 13]
-78,53,"null",[hamsini, na, tatu],[691, 243, 14]
-79,54,"null",[hamsini, na, nne],[691, 243, 15]
-80,55,"null",[hamsini, na, tano],[691, 243, 16]
-81,56,"null",[hamsini, na, sita],[691, 243, 17]
-82,57,"null",[hamsini, na, saba],[691, 243, 18]
-83,58,"null",[hamsini, na, nane],[691, 243, 19]
-84,59,"null",[hamsini, na, tisa],[691, 243, 20]
-85,60,"null",[sitini],[692]
-86,61,"null",[sitini, na, moja],[692, 243, 12]
-87,62,"null",[sitini, na, mbili],[692, 243, 13]
-88,63,"null",[sitini, na, tatu],[692, 243, 14]
-89,64,"null",[sitini, na, nne],[692, 243, 15]
-90,65,"null",[sitini, na, tano],[692, 243, 16]
-91,66,"null",[sitini, na, sita],[692, 243, 17]
-92,67,"null",[sitini, na, saba],[692, 243, 18]
-93,68,"null",[sitini, na, nane],[692, 243, 19]
-94,69,"null",[sitini, na, tisa],[692, 243, 20]
-95,70,"null",[sabini],[693]
-96,71,"null",[sabini, na, moja],[693, 243, 12]
-97,72,"null",[sabini, na, moja],[693, 243, 12]
-98,73,"null",[sabini, na, tatu],[693, 243, 14]
-99,74,"null",[sabini, na, nne],[693, 243, 15]
-100,75,"null",[sabini, na, tano],[693, 243, 16]
-101,76,"null",[sabini, na, sita],[693, 243, 17]
-102,77,"null",[sabini, na, saba],[693, 243, 18]
-103,78,"null",[sabini, na, nane],[693, 243, 19]
-104,79,"null",[sabini, na, tisa],[693, 243, 20]
-105,80,"null",[themanini],[694]
-106,81,"null",[themanini, na, moja],[694, 243, 12]
-107,82,"null",[themanini, na, mbili],[694, 243, 13]
-108,83,"null",[themanini, na, tatu],[694, 243, 14]
-109,84,"null",[themanini, na, nne],[694, 243, 15]
-110,85,"null",[themanini, na, tano],[694, 243, 16]
-111,86,"null",[themanini, na, sita],[694, 243, 17]
-112,87,"null",[themanini, na, saba],[694, 243, 18]
-113,88,"null",[themanini, na, nane],[694, 243, 19]
-114,89,"null",[themanini, na, tisa],[694, 243, 20]
-115,90,"null",[tisini],[695]
-116,91,"null",[tisini, na, moja],[695, 243, 12]
-117,92,"null",[tisini, na, mbili],[695, 243, 13]
-118,93,"null",[tisini, na, tatu],[695, 243, 14]
-119,94,"null",[tisini, na, nne],[695, 243, 15]
-120,95,"null",[tisini, na, tano],[695, 243, 16]
-121,96,"null",[tisini, na, sita],[695, 243, 17]
-122,97,"null",[tisini, na, saba],[695, 243, 18]
-123,98,"null",[tisini, na, nane],[695, 243, 19]
-124,99,"null",[tisini, na, tisa],[695, 243, 20]
-125,100,"null",[mia],[696]
+id,value,symbol,word_ids,word_texts
+34,0,,[11],"[""sifuri""]"
+11,1,,[12],"[""moja""]"
+12,2,,[13],"[""mbili""]"
+13,3,,[14],"[""tatu""]"
+14,4,,[15],"[""nne""]"
+15,5,,[16],"[""tano""]"
+16,6,,[17],"[""sita""]"
+17,7,,[18],"[""saba""]"
+18,8,,[19],"[""nane""]"
+19,9,,[20],"[""tisa""]"
+31,10,,[602],"[""kumi""]"
+35,11,,"[602,243,12]","[""kumi"",""na"",""moja""]"
+37,12,,"[602,243,13]","[""kumi"",""na"",""mbili""]"
+38,13,,"[602,243,14]","[""kumi"",""na"",""tatu""]"
+39,14,,"[602,243,15]","[""kumi"",""na"",""nne""]"
+40,15,,"[602,243,16]","[""kumi"",""na"",""tano""]"
+41,16,,"[602,243,17]","[""kumi"",""na"",""sita""]"
+42,17,,"[602,243,18]","[""kumi"",""na"",""saba""]"
+43,18,,"[602,243,19]","[""kumi"",""na"",""nane""]"
+44,19,,"[602,243,20]","[""kumi"",""na"",""tisa""]"
+46,20,,[688],"[""ishirini""]"
+45,21,,"[688,243,12]","[""ishirini"",""na"",""moja""]"
+47,22,,"[688,243,13]","[""ishirini"",""na"",""mbili""]"
+48,23,,"[688,243,14]","[""ishirini"",""na"",""tatu""]"
+49,24,,"[688,243,15]","[""ishirini"",""na"",""nne""]"
+50,25,,"[688,243,16]","[""ishirini"",""na"",""tano""]"
+51,26,,"[688,243,17]","[""ishirini"",""na"",""sita""]"
+52,27,,"[688,243,18]","[""ishirini"",""na"",""saba""]"
+53,28,,"[688,243,19]","[""ishirini"",""na"",""nane""]"
+54,29,,"[688,243,20]","[""ishirini"",""na"",""tisa""]"
+55,30,,[689],"[""thelathini""]"
+56,31,,"[689,243,12]","[""thelathini"",""na"",""moja""]"
+57,32,,"[689,243,13]","[""thelathini"",""na"",""mbili""]"
+58,33,,"[689,243,14]","[""thelathini"",""na"",""tatu""]"
+59,34,,"[689,243,15]","[""thelathini"",""na"",""nne""]"
+60,35,,"[689,243,16]","[""thelathini"",""na"",""tano""]"
+61,36,,"[689,243,17]","[""thelathini"",""na"",""sita""]"
+62,37,,"[689,243,18]","[""thelathini"",""na"",""saba""]"
+63,38,,"[689,243,19]","[""thelathini"",""na"",""nane""]"
+64,39,,"[689,243,20]","[""thelathini"",""na"",""tisa""]"
+65,40,,[690],"[""arobaini""]"
+66,41,,"[690,243,12]","[""arobaini"",""na"",""moja""]"
+67,42,,"[690,243,13]","[""arobaini"",""na"",""mbili""]"
+68,43,,"[690,243,14]","[""arobaini"",""na"",""tatu""]"
+69,44,,"[690,243,15]","[""arobaini"",""na"",""nne""]"
+70,45,,"[690,243,16]","[""arobaini"",""na"",""tano""]"
+71,46,,"[690,243,17]","[""arobaini"",""na"",""sita""]"
+72,47,,"[690,243,18]","[""arobaini"",""na"",""saba""]"
+73,48,,"[690,243,19]","[""arobaini"",""na"",""nane""]"
+74,49,,"[690,243,20]","[""arobaini"",""na"",""tisa""]"
+75,50,,[691],"[""hamsini""]"
+76,51,,"[691,243,12]","[""hamsini"",""na"",""moja""]"
+77,52,,"[691,243,13]","[""hamsini"",""na"",""mbili""]"
+78,53,,"[691,243,14]","[""hamsini"",""na"",""tatu""]"
+79,54,,"[691,243,15]","[""hamsini"",""na"",""nne""]"
+80,55,,"[691,243,16]","[""hamsini"",""na"",""tano""]"
+81,56,,"[691,243,17]","[""hamsini"",""na"",""sita""]"
+82,57,,"[691,243,18]","[""hamsini"",""na"",""saba""]"
+83,58,,"[691,243,19]","[""hamsini"",""na"",""nane""]"
+84,59,,"[691,243,20]","[""hamsini"",""na"",""tisa""]"
+85,60,,[692],"[""sitini""]"
+86,61,,"[692,243,12]","[""sitini"",""na"",""moja""]"
+87,62,,"[692,243,13]","[""sitini"",""na"",""mbili""]"
+88,63,,"[692,243,14]","[""sitini"",""na"",""tatu""]"
+89,64,,"[692,243,15]","[""sitini"",""na"",""nne""]"
+90,65,,"[692,243,16]","[""sitini"",""na"",""tano""]"
+91,66,,"[692,243,17]","[""sitini"",""na"",""sita""]"
+92,67,,"[692,243,18]","[""sitini"",""na"",""saba""]"
+93,68,,"[692,243,19]","[""sitini"",""na"",""nane""]"
+94,69,,"[692,243,20]","[""sitini"",""na"",""tisa""]"
+95,70,,[693],"[""sabini""]"
+96,71,,"[693,243,12]","[""sabini"",""na"",""moja""]"
+97,72,,"[693,243,12]","[""sabini"",""na"",""moja""]"
+98,73,,"[693,243,14]","[""sabini"",""na"",""tatu""]"
+99,74,,"[693,243,15]","[""sabini"",""na"",""nne""]"
+100,75,,"[693,243,16]","[""sabini"",""na"",""tano""]"
+101,76,,"[693,243,17]","[""sabini"",""na"",""sita""]"
+102,77,,"[693,243,18]","[""sabini"",""na"",""saba""]"
+103,78,,"[693,243,19]","[""sabini"",""na"",""nane""]"
+104,79,,"[693,243,20]","[""sabini"",""na"",""tisa""]"
+105,80,,[694],"[""themanini""]"
+106,81,,"[694,243,12]","[""themanini"",""na"",""moja""]"
+107,82,,"[694,243,13]","[""themanini"",""na"",""mbili""]"
+108,83,,"[694,243,14]","[""themanini"",""na"",""tatu""]"
+109,84,,"[694,243,15]","[""themanini"",""na"",""nne""]"
+110,85,,"[694,243,16]","[""themanini"",""na"",""tano""]"
+111,86,,"[694,243,17]","[""themanini"",""na"",""sita""]"
+112,87,,"[694,243,18]","[""themanini"",""na"",""saba""]"
+113,88,,"[694,243,19]","[""themanini"",""na"",""nane""]"
+114,89,,"[694,243,20]","[""themanini"",""na"",""tisa""]"
+115,90,,[695],"[""tisini""]"
+116,91,,"[695,243,12]","[""tisini"",""na"",""moja""]"
+117,92,,"[695,243,13]","[""tisini"",""na"",""mbili""]"
+118,93,,"[695,243,14]","[""tisini"",""na"",""tatu""]"
+119,94,,"[695,243,15]","[""tisini"",""na"",""nne""]"
+120,95,,"[695,243,16]","[""tisini"",""na"",""tano""]"
+121,96,,"[695,243,17]","[""tisini"",""na"",""sita""]"
+122,97,,"[695,243,18]","[""tisini"",""na"",""saba""]"
+123,98,,"[695,243,19]","[""tisini"",""na"",""nane""]"
+124,99,,"[695,243,20]","[""tisini"",""na"",""tisa""]"
+125,100,,[696],"[""mia""]"
