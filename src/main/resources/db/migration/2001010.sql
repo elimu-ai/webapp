@@ -1,4 +1,4 @@
 # 2.1.10
 
 ALTER TABLE Emoji CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-ALTER DATABASE `literacyapp` CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+ALTER DATABASE `webapp-eng` CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
