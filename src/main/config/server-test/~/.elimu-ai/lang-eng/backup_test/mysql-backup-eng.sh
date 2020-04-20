@@ -18,6 +18,7 @@ mysqldump -c -u webapp-$LANGUAGE-user -p********** webapp-$LANGUAGE > database/w
 DUMP_FILE=~/.elimu-ai/lang-$LANGUAGE/backup_test/database/webapp-$LANGUAGE-`date +%Y"-"%m"-"%d`.sql
 echo "Copying latest DUMP file to prod server... ($DUMP_FILE)"
 echo "Time stamp: $(stat -c %y $DUMP_FILE)"
+echo "File size: $(($(stat -c%s $DUMP_FILE)/1024/1024)) MB"
 DUMP_FILE_PROD=~/.elimu-ai/lang-$LANGUAGE/backup_test/database/webapp-$LANGUAGE-`date +%Y"-"%m"-"%d`.sql
 echo "Copying to $LANGUAGE.elimu.ai:$DUMP_FILE_PROD"
 scp $DUMP_FILE root@$LANGUAGE.elimu.ai:$DUMP_FILE_PROD
