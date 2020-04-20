@@ -116,6 +116,7 @@ public class EPubParagraphExtractionHelper {
                                         // Replace <br/><br/> with </p><p>
                                         logger.info("paragraph: \"" + paragraph + "\"");
                                         if (StringUtils.isNotBlank(paragraph)) {
+                                            paragraph = paragraph.trim();
                                             paragraphs.add(paragraph);
                                             
                                             // Reset to initial state
@@ -129,6 +130,7 @@ public class EPubParagraphExtractionHelper {
                             }
                             logger.info("paragraph: \"" + paragraph + "\"");
                             if (StringUtils.isNotBlank(paragraph)) {
+                                paragraph = paragraph.trim();
                                 paragraphs.add(paragraph);
                             }
                         }
@@ -139,6 +141,7 @@ public class EPubParagraphExtractionHelper {
                             String paragraph = bodyChildNode.getTextContent();
                             logger.info("paragraph: \"" + paragraph + "\"");
                             if (StringUtils.isNotBlank(paragraph)) {
+                                paragraph = paragraph.trim();
                                 paragraphs.add(paragraph);
                             }
                         }
@@ -195,6 +198,7 @@ public class EPubParagraphExtractionHelper {
                                                                             String paragraph = contentDivChildNode.getTextContent();
                                                                             logger.info("paragraph: \"" + paragraph + "\"");
                                                                             if (StringUtils.isNotBlank(paragraph)) {
+                                                                                paragraph = paragraph.trim();
                                                                                 paragraphs.add(paragraph);
                                                                             }
                                                                         }

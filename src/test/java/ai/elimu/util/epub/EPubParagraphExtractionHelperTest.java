@@ -24,10 +24,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(1));
-        assertThat(storyBookParagraphs.get(0), is("\n" +
-                " আজকে ছুটির দিন আনন্দে হারাই!\n" +
-                " চলো সবে পোশাকের উৎসবে যাই!\n" +
-                ""));
+        assertThat(storyBookParagraphs.get(0), is("আজকে ছুটির দিন আনন্দে হারাই!\n" +
+                " চলো সবে পোশাকের উৎসবে যাই!"));
     }
     
     @Test
@@ -39,13 +37,10 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
-        assertThat(storyBookParagraphs.get(0), is("\n" +
-"                    ভীমের\n" +
-"                    শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।\n" +
-"                "));
+        assertThat(storyBookParagraphs.get(0), is("ভীমের\n" +
+"                    শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।"));
         assertThat(storyBookParagraphs.get(1), is("ধোপা\n" +
-"                    রামু সুযোগ পেলেই ভীমকে বকা দেয়। \n" +
-"                "));
+"                    রামু সুযোগ পেলেই ভীমকে বকা দেয়।"));
     }
     
     @Test
@@ -57,12 +52,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
-        assertThat(storyBookParagraphs.get(0), is("\n"
-                + " Fifth grade student, Little Miss Grace,\n"
-                + ""));
-        assertThat(storyBookParagraphs.get(1), is("\n"
-                + " was totally fascinated by outer space .\n"
-                + ""));
+        assertThat(storyBookParagraphs.get(0), is("Fifth grade student, Little Miss Grace,"));
+        assertThat(storyBookParagraphs.get(1), is("was totally fascinated by outer space ."));
     }
     
     @Test
@@ -74,12 +65,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
-        assertThat(storyBookParagraphs.get(0), is("\n"
-                + " Some wild cats have stripes.\n"
-                + ""));
-        assertThat(storyBookParagraphs.get(1), is("\n"
-                + " Like the tiger!\n"
-                + ""));
+        assertThat(storyBookParagraphs.get(0), is("Some wild cats have stripes."));
+        assertThat(storyBookParagraphs.get(1), is("Like the tiger!"));
     }
     
     @Test
@@ -91,12 +78,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
-        assertThat(storyBookParagraphs.get(0), is("\n"
-                + " Some wild cats have spots.\n"
-                + ""));
-        assertThat(storyBookParagraphs.get(1), is("\n"
-                + " Like the leopard and the leopard cat!\n"
-                + ""));
+        assertThat(storyBookParagraphs.get(0), is("Some wild cats have spots."));
+        assertThat(storyBookParagraphs.get(1), is("Like the leopard and the leopard cat!"));
     }
     
     @Test
@@ -122,11 +105,7 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(1));
-        assertThat(storyBookParagraphs.get(0), is("\n"
-                + " \n"
-                + "  एक बादल घुमने चला.\n"
-                + " \n"
-                + ""));
+        assertThat(storyBookParagraphs.get(0), is("एक बादल घुमने चला."));
     }
     
     @Test
@@ -138,16 +117,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
-        assertThat(storyBookParagraphs.get(0), is("\n"
-                + " \n"
-                + "  साथ में चिड़िया भी उड़ती\n"
-                + " \n"
-                + ""));
-        assertThat(storyBookParagraphs.get(1), is("\n"
-                + " \n"
-                + "  हुई चली.\n"
-                + " \n"
-                + ""));
+        assertThat(storyBookParagraphs.get(0), is("साथ में चिड़िया भी उड़ती"));
+        assertThat(storyBookParagraphs.get(1), is("हुई चली."));
     }
     
     @Test
@@ -159,8 +130,6 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(1));
-        assertThat(storyBookParagraphs.get(0), is("\n" +
-                "Kuku na Jongoo walikuwa marafiki.\n" +
-                ""));
+        assertThat(storyBookParagraphs.get(0), is("Kuku na Jongoo walikuwa marafiki."));
     }
 }
