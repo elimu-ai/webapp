@@ -79,58 +79,17 @@ public class EPubParagraphExtractionHelper {
                     for (int j = 0; j < bodyChildNodeList.getLength(); j++) {
                         Node bodyChildNode = bodyChildNodeList.item(j);
                         logger.info("bodyChildNode: " + bodyChildNode);
+                        logger.info("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
                         logger.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
                         
                         // Look for "<p>" (StoryBookProvider#GLOBAL_DIGITAL_LIBRARY)
                         if ("p".equals(bodyChildNode.getNodeName())) {
-                            // Look for text content within the paragraph
-                            NodeList paragraphChildNodeList = bodyChildNode.getChildNodes();
-                            logger.info("paragraphChildNodeList.getLength(): " + paragraphChildNodeList.getLength());
-                            
-                            String paragraph = "";
-                            String previousNodeName = null;
-                            for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
-                                Node paragraphChildNode = paragraphChildNodeList.item(k);
-                                logger.info("paragraphChildNode: " + paragraphChildNode);
-                                logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
-                                
-                                
-                                if ("#text".equals(paragraphChildNode.getNodeName())) {
-                                    // Add whitespace before each word/sentence
-                                    if (StringUtils.isNotBlank(paragraph)
-                                            &!"b".equals(previousNodeName)) {
-                                        paragraph += " ";
-                                    }
-                                    
-                                    // Append the word/sentence to the paragraph.
-                                    paragraph += paragraphChildNode.getTextContent();
-                                } else if ("b".equals(paragraphChildNode.getNodeName())) {
-                                    // E.g. "Like the <b>tiger</b>!"
-                                    
-                                    // Append the word/sentence to the paragraph.
-                                    paragraph += paragraphChildNode.getTextContent();
-                                } else if ("br".equals(paragraphChildNode.getNodeName())) {
-                                    // Handle double linebreaks within paragraphs
-                                    // E.g. "<p>WAAAAHHHH!<br/><br/>Ang ibong Brahminy...</p>" --> "<p>WAAAAHHHH!</p><p>Ang ibong Brahminy...</p>"
-                                    if ("br".equals(previousNodeName)) {
-                                        // Replace <br/><br/> with </p><p>
-                                        logger.info("paragraph: \"" + paragraph + "\"");
-                                        if (StringUtils.isNotBlank(paragraph)) {
-                                            paragraph = paragraph.trim();
-                                            paragraphs.add(paragraph);
-                                            
-                                            // Reset to initial state
-                                            paragraph = "";
-                                        }
-                                    }
-                                }
-                                
-                                // Keep track if the previous node name
-                                previousNodeName = paragraphChildNode.getNodeName();
-                            }
+                            String paragraph = bodyChildNode.getTextContent();
                             logger.info("paragraph: \"" + paragraph + "\"");
+                            paragraph = paragraph.trim();
+                            paragraph = paragraph.replace("\n", " ");
+                            paragraph = paragraph.replaceAll(" +", " ");
                             if (StringUtils.isNotBlank(paragraph)) {
-                                paragraph = paragraph.trim();
                                 paragraphs.add(paragraph);
                             }
                         }
@@ -140,8 +99,10 @@ public class EPubParagraphExtractionHelper {
                         if ("#text".equals(bodyChildNode.getNodeName())) {
                             String paragraph = bodyChildNode.getTextContent();
                             logger.info("paragraph: \"" + paragraph + "\"");
+                            paragraph = paragraph.trim();
+                            paragraph = paragraph.replace("\n", " ");
+                            paragraph = paragraph.replaceAll(" +", " ");
                             if (StringUtils.isNotBlank(paragraph)) {
-                                paragraph = paragraph.trim();
                                 paragraphs.add(paragraph);
                             }
                         }
@@ -197,8 +158,10 @@ public class EPubParagraphExtractionHelper {
                                                                         if ("p".equals(contentDivChildNode.getNodeName())) {
                                                                             String paragraph = contentDivChildNode.getTextContent();
                                                                             logger.info("paragraph: \"" + paragraph + "\"");
+                                                                            paragraph = paragraph.trim();
+                                                                            paragraph = paragraph.replace("\n", " ");
+                                                                            paragraph = paragraph.replaceAll(" +", " ");
                                                                             if (StringUtils.isNotBlank(paragraph)) {
-                                                                                paragraph = paragraph.trim();
                                                                                 paragraphs.add(paragraph);
                                                                             }
                                                                         }

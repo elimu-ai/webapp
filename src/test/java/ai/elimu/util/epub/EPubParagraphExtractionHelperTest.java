@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
@@ -24,8 +25,7 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(1));
-        assertThat(storyBookParagraphs.get(0), is("আজকে ছুটির দিন আনন্দে হারাই!\n" +
-                " চলো সবে পোশাকের উৎসবে যাই!"));
+        assertThat(storyBookParagraphs.get(0), is("আজকে ছুটির দিন আনন্দে হারাই! চলো সবে পোশাকের উৎসবে যাই!"));
     }
     
     @Test
@@ -37,10 +37,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
-        assertThat(storyBookParagraphs.get(0), is("ভীমের\n" +
-"                    শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।"));
-        assertThat(storyBookParagraphs.get(1), is("ধোপা\n" +
-"                    রামু সুযোগ পেলেই ভীমকে বকা দেয়।"));
+        assertThat(storyBookParagraphs.get(0), is("ভীমের শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।"));
+        assertThat(storyBookParagraphs.get(1), is("ধোপা রামু সুযোগ পেলেই ভীমকে বকা দেয়।"));
     }
     
     @Test
@@ -90,10 +88,21 @@ public class EPubParagraphExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
-        assertThat(storyBookParagraphs.size(), is(3));
-        assertThat(storyBookParagraphs.get(0), is("WAAAAHHHH!"));
-        assertThat(storyBookParagraphs.get(1), is("Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol."));
-        assertThat(storyBookParagraphs.get(2), is("WAAAAHHHH!"));
+        assertThat(storyBookParagraphs.size(), is(1));
+        assertThat(storyBookParagraphs.get(0), is("WAAAAHHHH!Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol.WAAAAHHHH!"));
+    }
+    
+    @Ignore // TODO: handle &#xa0; interpreted as white space: "कुत्ता &#xa0;सैर"
+    @Test
+    public void testExtractParagraphsFromChapterFile_HIN_GDL_1287_ch3() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-gdl-1287.epub_chapter-3.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(1));
+        assertThat(storyBookParagraphs.get(0), is("उस मोटे राजा के पास एक पतला कुत्ता था । एक दिन मोटा राजा और उसका पतला कुत्ता सैर करने गए।"));
     }
     
     @Test
