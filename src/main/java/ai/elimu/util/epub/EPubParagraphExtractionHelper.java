@@ -88,6 +88,7 @@ public class EPubParagraphExtractionHelper {
                             logger.info("paragraph: \"" + paragraph + "\"");
                             paragraph = paragraph.trim();
                             paragraph = paragraph.replace("\n", " ");
+                            paragraph = paragraph.replaceAll(" +", " ");
                             if (StringUtils.isNotBlank(paragraph)) {
                                 paragraphs.add(paragraph);
                             }
@@ -100,6 +101,7 @@ public class EPubParagraphExtractionHelper {
                             logger.info("paragraph: \"" + paragraph + "\"");
                             paragraph = paragraph.trim();
                             paragraph = paragraph.replace("\n", " ");
+                            paragraph = paragraph.replaceAll(" +", " ");
                             if (StringUtils.isNotBlank(paragraph)) {
                                 paragraphs.add(paragraph);
                             }
@@ -158,6 +160,7 @@ public class EPubParagraphExtractionHelper {
                                                                             logger.info("paragraph: \"" + paragraph + "\"");
                                                                             paragraph = paragraph.trim();
                                                                             paragraph = paragraph.replace("\n", " ");
+                                                                            paragraph = paragraph.replaceAll(" +", " ");
                                                                             if (StringUtils.isNotBlank(paragraph)) {
                                                                                 paragraphs.add(paragraph);
                                                                             }
