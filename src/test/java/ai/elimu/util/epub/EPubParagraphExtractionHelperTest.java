@@ -24,8 +24,7 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(1));
-        assertThat(storyBookParagraphs.get(0), is("আজকে ছুটির দিন আনন্দে হারাই!\n" +
-                " চলো সবে পোশাকের উৎসবে যাই!"));
+        assertThat(storyBookParagraphs.get(0), is("আজকে ছুটির দিন আনন্দে হারাই!  চলো সবে পোশাকের উৎসবে যাই!"));
     }
     
     @Test
@@ -37,10 +36,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
-        assertThat(storyBookParagraphs.get(0), is("ভীমের\n" +
-"                    শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।"));
-        assertThat(storyBookParagraphs.get(1), is("ধোপা\n" +
-"                    রামু সুযোগ পেলেই ভীমকে বকা দেয়।"));
+        assertThat(storyBookParagraphs.get(0), is("ভীমের                     শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।"));
+        assertThat(storyBookParagraphs.get(1), is("ধোপা                     রামু সুযোগ পেলেই ভীমকে বকা দেয়।"));
     }
     
     @Test
@@ -90,10 +87,8 @@ public class EPubParagraphExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
-        assertThat(storyBookParagraphs.size(), is(3));
-        assertThat(storyBookParagraphs.get(0), is("WAAAAHHHH!"));
-        assertThat(storyBookParagraphs.get(1), is("Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol."));
-        assertThat(storyBookParagraphs.get(2), is("WAAAAHHHH!"));
+        assertThat(storyBookParagraphs.size(), is(1));
+        assertThat(storyBookParagraphs.get(0), is("WAAAAHHHH!Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol.WAAAAHHHH!"));
     }
     
     @Test
@@ -105,15 +100,7 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(1));
-        assertThat(storyBookParagraphs.get(0), is("उस मोटे राजा के पास एक पतला कुत्ता था ।\n"
-                + "\n"
-                + "एक दिन\n"
-                + "\n"
-                + " मोटा \n"
-                + "\n"
-                + "राजा\n"
-                + "\n"
-                + "  और उसका पतला कुत्ता  सैर करने गए।"));
+        assertThat(storyBookParagraphs.get(0), is("उस मोटे राजा के पास एक पतला कुत्ता था ।  एक दिन   मोटा   राजा    और उसका पतला कुत्ता  सैर करने गए।"));
     }
     
     @Test
