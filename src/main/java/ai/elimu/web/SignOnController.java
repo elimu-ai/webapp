@@ -9,11 +9,12 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,8 +28,11 @@ public class SignOnController {
     private ContributorDao contributorDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(ModelMap model) {
+    public String handleRequest(Model model) {
     	logger.debug("handleRequest");
+        
+        Language[] supportedLanguages = Language.values();
+        model.addAttribute("supportedLanguages", supportedLanguages);
     	
         return "sign-on";
     }
