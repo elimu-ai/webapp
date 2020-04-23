@@ -132,10 +132,8 @@
                       <div class="container">
                           <div class="row">
                             <div class="col s12 m6">
-                                <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">
-                                    Apache License, 2.0
-                                </a> &nbsp; | &nbsp; 
-                                <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai"><fmt:message key="github.repository" /></a>
+                                <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, 2.0</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai">code repository</a><br />
+                                <a class="white-text" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="<spring:url value='/content' />">content repository</a><br />
                             </div>
                             <div class="col s12 m6">
                                 <fmt:message key="languages.supported.by.the.platform" />: 
