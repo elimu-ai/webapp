@@ -84,8 +84,9 @@ nav {
     letter-spacing: 0.2em;
     word-spacing: 1em;
     font-size: 2em;
-    line-height: 2em;
+    line-height: 3em;
     margin: 2em;
+    text-align: center;
 }
 #storyBookEditPage .storyBookChapter .storyBookParagraph[data-language="ben"],
 #storyBookEditPage .storyBookChapter .storyBookParagraph[data-language="hin"] {
