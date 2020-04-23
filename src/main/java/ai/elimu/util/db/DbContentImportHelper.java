@@ -67,10 +67,19 @@ public class DbContentImportHelper {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
         }
         
+        String contentDirectoryPath = "db" + File.separator + "content_" + environment + File.separator + language.toString().toLowerCase();
+        logger.info("contentDirectoryPath: \"" + contentDirectoryPath + "\"");
+        URL contentDirectoryURL = getClass().getClassLoader().getResource(contentDirectoryPath);
+        logger.info("contentDirectoryURL: " + contentDirectoryURL);
+        if (contentDirectoryURL == null) {
+            logger.warn("The content directory was not found. Aborting content import.");
+            return;
+        }
+        File contentDirectory = new File(contentDirectoryURL.getPath());
+        logger.info("contentDirectory: " + contentDirectory);
+        
         // Extract and import Allophones from CSV file in src/main/resources/
-        URL allophonesCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/allophones.csv");
-        File allophonesCsvFile = new File(allophonesCsvFileUrl.getFile());
+        File allophonesCsvFile = new File(contentDirectory, "allophones.csv");
         List<Allophone> allophones = CsvContentExtractionHelper.getAllophonesFromCsvBackup(allophonesCsvFile);
         logger.info("allophones.size(): " + allophones.size());
         allophoneDao = (AllophoneDao) webApplicationContext.getBean("allophoneDao");
@@ -80,9 +89,7 @@ public class DbContentImportHelper {
         }
         
         // Extract and import Letters from CSV file in src/main/resources/
-        URL lettersCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/letters.csv");
-        File lettersCsvFile = new File(lettersCsvFileUrl.getFile());
+        File lettersCsvFile = new File(contentDirectory, "letters.csv");
         List<Letter> letters = CsvContentExtractionHelper.getLettersFromCsvBackup(lettersCsvFile, allophoneDao);
         logger.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
@@ -92,9 +99,7 @@ public class DbContentImportHelper {
         }
         
         // Extract and import Words from CSV file in src/main/resources/
-        URL wordsCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/words.csv");
-        File wordsCsvFile = new File(wordsCsvFileUrl.getFile());
+        File wordsCsvFile = new File(contentDirectory, "words.csv");
         List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, allophoneDao, wordDao);
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
@@ -104,9 +109,7 @@ public class DbContentImportHelper {
         }
         
         // Extract and import Numbers from CSV file in src/main/resources/
-        URL numbersCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/numbers.csv");
-        File numbersCsvFile = new File(numbersCsvFileUrl.getFile());
+        File numbersCsvFile = new File(contentDirectory, "numbers.csv");
         List<Number> numbers = CsvContentExtractionHelper.getNumbersFromCsvBackup(numbersCsvFile, wordDao);
         logger.info("numbers.size(): " + numbers.size());
         numberDao = (NumberDao) webApplicationContext.getBean("numberDao");
@@ -119,9 +122,7 @@ public class DbContentImportHelper {
         // TODO
         
         // Extract and import Emojis from CSV file in src/main/resources/
-        URL emojisCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/emojis.csv");
-        File emojisCsvFile = new File(emojisCsvFileUrl.getFile());
+        File emojisCsvFile = new File(contentDirectory, "emojis.csv");
         List<Emoji> emojis = CsvContentExtractionHelper.getEmojisFromCsvBackup(emojisCsvFile, wordDao);
         logger.info("emojis.size(): " + emojis.size());
         emojiDao = (EmojiDao) webApplicationContext.getBean("emojiDao");
@@ -137,9 +138,7 @@ public class DbContentImportHelper {
         // TODO
         
         // Extract and import StoryBooks from CSV file in src/main/resources/
-        URL storyBooksCsvFileUrl = getClass().getClassLoader()
-                .getResource("db/content_" + environment + "/" + language.toString().toLowerCase() + "/storybooks.csv");
-        File storyBooksCsvFile = new File(storyBooksCsvFileUrl.getFile());
+        File storyBooksCsvFile = new File(contentDirectory, "storybooks.csv");
         List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
         logger.info("storyBookGsons.size(): " + storyBookGsons.size());
         storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
