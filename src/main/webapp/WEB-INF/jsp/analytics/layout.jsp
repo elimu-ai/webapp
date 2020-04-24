@@ -37,6 +37,7 @@
                         <li class="divider"></li>
                         <li class="grey-text"><b><fmt:message key="learning.events" /></b></li>
                         <li><a href="<spring:url value='/analytics/storybook-learning-event/list' />"><i class="material-icons left">book</i>StoryBookLearningEvents</a></li>
+                        <li><a href="<spring:url value='/analytics/word-learning-event/list' />"><i class="material-icons left">sms</i>WordLearningEvents</a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/analytics' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>

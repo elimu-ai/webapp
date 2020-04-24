@@ -18,5 +18,16 @@
                 </div>
             </div>
         </div>
+        
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title"><i class="material-icons">sms</i> WordLearningEvents</span>
+                </div>
+                <div class="card-action">
+                    <a href="<spring:url value='/analytics/word-learning-event/list' />"><fmt:message key="view.list" /> (${wordLearningEventsCount})</a>
+                </div>
+            </div>
+        </div>
     </div>
 </content:section>
