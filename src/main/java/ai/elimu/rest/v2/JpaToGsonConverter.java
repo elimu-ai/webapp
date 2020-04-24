@@ -5,11 +5,11 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.gson.v2.content.ImageGson;
-import ai.elimu.model.gson.v2.content.StoryBookChapterGson;
-import ai.elimu.model.gson.v2.content.StoryBookGson;
-import ai.elimu.model.gson.v2.content.StoryBookParagraphGson;
-import ai.elimu.model.gson.v2.content.WordGson;
+import ai.elimu.model.v2.gson.content.ImageGson;
+import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
+import ai.elimu.model.v2.gson.content.StoryBookGson;
+import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
+import ai.elimu.model.v2.gson.content.WordGson;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,11 +1,11 @@
 package ai.elimu.rest.v2.analytics;
 
 import ai.elimu.dao.ApplicationDao;
-import ai.elimu.dao.StoryBookDao;
-import ai.elimu.dao.StoryBookLearningEventDao;
+import ai.elimu.dao.WordDao;
+import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.model.admin.Application;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
-import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.analytics.WordLearningEvent;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.analytics.LearningEventType;
 import ai.elimu.util.ConfigHelper;
@@ -31,19 +31,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping(value = "/rest/v2/analytics/storybook-learning-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class StoryBookLearningEventsRestController {
+@RequestMapping(value = "/rest/v2/analytics/word-learning-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public class WordLearningEventsRestController {
     
     private Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private StoryBookLearningEventDao storyBookLearningEventDao;
+    private WordLearningEventDao wordLearningEventDao;
     
     @Autowired
     private ApplicationDao applicationDao;
     
     @Autowired
-    private StoryBookDao storyBookDao;
+    private WordDao wordDao;
     
     @RequestMapping(value = "/csv", method = RequestMethod.POST)
     public String handleUploadCsvRequest(
@@ -55,7 +55,7 @@ public class StoryBookLearningEventsRestController {
         String name = multipartFile.getName();
         logger.info("name: " + name);
         
-        // Expected format: "7161a85a0e4751cd_storybook-learning-events_2020-04-23.csv"
+        // Expected format: "7161a85a0e4751cd_word-learning-events_2020-04-23.csv"
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
@@ -79,9 +79,9 @@ public class StoryBookLearningEventsRestController {
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")).toString().toLowerCase());
             File analyticsDir = new File(languageDir, "analytics");
             File androidIdDir = new File(analyticsDir, "android-id_" + androidIdExtractedFromFilename);
-            File storyBookLearningEventsDir = new File(androidIdDir, "storybook-learning-events");
-            storyBookLearningEventsDir.mkdirs();
-            File csvFile = new File(storyBookLearningEventsDir, originalFilename);
+            File wordLearningEventsDir = new File(androidIdDir, "word-learning-events");
+            wordLearningEventsDir.mkdirs();
+            File csvFile = new File(wordLearningEventsDir, originalFilename);
             logger.info("Storing CSV file at " + csvFile);
             multipartFile.transferTo(csvFile);
             
@@ -95,7 +95,8 @@ public class StoryBookLearningEventsRestController {
                             "time",
                             "android_id",
                             "package_name",
-                            "storybook_id",
+                            "word_id",
+                            "word_text",
                             "learning_event_type"
                     )
                     .withSkipHeaderRecord();
@@ -105,15 +106,15 @@ public class StoryBookLearningEventsRestController {
                 
                 // Convert from CSV to Java
                 
-                StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
+                WordLearningEvent wordLearningEvent = new WordLearningEvent();
                 
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
                 Calendar time = Calendar.getInstance();
                 time.setTimeInMillis(timeInMillis);
-                storyBookLearningEvent.setTime(time);
+                wordLearningEvent.setTime(time);
                 
                 String androidId = csvRecord.get("android_id");
-                storyBookLearningEvent.setAndroidId(androidId);
+                wordLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
                 Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
@@ -129,35 +130,39 @@ public class StoryBookLearningEventsRestController {
                     
                     break;
                 }
-                storyBookLearningEvent.setApplication(application);
+                wordLearningEvent.setApplication(application);
                 
-                Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
-                StoryBook storyBook = storyBookDao.read(storyBookId);
-                logger.info("storyBook: " + storyBook);
-                storyBookLearningEvent.setStoryBook(storyBook);
-                if (storyBook == null) {
-                    // Return error message saying that the StoryBook ID was not found
-                    logger.warn("A StoryBook with ID " + storyBookId + " was not found");
+                Long wordId = Long.valueOf(csvRecord.get("word_id"));
+                Word word = wordDao.read(wordId);
+                logger.info("word: " + word);
+                wordLearningEvent.setWord(word);
+                if (word == null) {
+                    // Return error message saying that the Word ID was not found
+                    logger.warn("A Word with ID " + wordId + " was not found");
                     
                     jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "A StoryBook with ID " + storyBookId + " was not found");
+                    jsonObject.put("errorMessage", "A Word with ID " + wordId + " was not found");
                     response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
                     
                     break;
                 }
+                
+                String wordText = csvRecord.get("word_text");
+                wordLearningEvent.setWordText(wordText);
+                
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                storyBookLearningEvent.setLearningEventType(learningEventType);
+                wordLearningEvent.setLearningEventType(learningEventType);
                 
                 // Check if the event has already been stored in the database
-                StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(time, androidId, application, storyBook);
-                logger.info("existingStoryBookLearningEvent: " + existingStoryBookLearningEvent);
-                if (existingStoryBookLearningEvent == null) {
+                WordLearningEvent existingWordLearningEvent = wordLearningEventDao.read(time, androidId, application, word);
+                logger.info("existingWordLearningEvent: " + existingWordLearningEvent);
+                if (existingWordLearningEvent == null) {
                     // Store the event in the database
-                    storyBookLearningEventDao.create(storyBookLearningEvent);
-                    logger.info("Stored StoryBookLearningEvent in database with ID " + storyBookLearningEvent.getId());
+                    wordLearningEventDao.create(wordLearningEvent);
+                    logger.info("Stored WordLearningEvent in database with ID " + wordLearningEvent.getId());
 
                     jsonObject.put("result", "success");
-                    jsonObject.put("successMessage", "The StoryBookLearningEvent was stored in the database");
+                    jsonObject.put("successMessage", "The WordLearningEvent was stored in the database");
                 } else {
                     // Return error message saying that the event has already been uploaded
                     logger.warn("The event has already been stored in the database");
