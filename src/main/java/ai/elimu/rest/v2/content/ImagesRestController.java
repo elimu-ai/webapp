@@ -3,7 +3,7 @@ package ai.elimu.rest.v2.content;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Language;
-import ai.elimu.model.gson.v2.content.ImageGson;
+import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
