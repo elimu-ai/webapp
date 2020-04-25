@@ -2,10 +2,8 @@ package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
-import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -29,9 +27,8 @@ public class WordsRestController {
     public String handleGetRequest() {
         logger.info("handleGetRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         JSONArray wordsJsonArray = new JSONArray();
-        for (Word word : wordDao.readAllOrdered(language)) {
+        for (Word word : wordDao.readAllOrdered()) {
             WordGson wordGson = JpaToGsonConverter.getWordGson(word);
             String json = new Gson().toJson(wordGson);
             wordsJsonArray.put(new JSONObject(json));

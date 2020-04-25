@@ -14,10 +14,8 @@ import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
-import ai.elimu.util.ConfigHelper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,11 +54,9 @@ public class WordCreateController {
             word.setText(autoFillText);
         }
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         model.addAttribute("word", word);
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
-        model.addAttribute("rootWords", wordDao.readAllOrdered(language));
+        model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
 
@@ -74,9 +70,7 @@ public class WordCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        Word existingWord = wordDao.readByText(language, word.getText());
+        Word existingWord = wordDao.readByText(word.getText());
         if (existingWord != null) {
             result.rejectValue("text", "NonUnique");
         }
@@ -86,16 +80,11 @@ public class WordCreateController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
-            model.addAttribute("rootWords", wordDao.readAllOrdered(language));
+            model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             return "content/word/create";
         } else {
-            if (language == Language.ENG) {
-                if (!"I".equals(word.getText())) {
-                    word.setText(word.getText().toLowerCase());
-                }
-            }
             word.setTimeLastUpdate(Calendar.getInstance());
             wordDao.create(word);
             

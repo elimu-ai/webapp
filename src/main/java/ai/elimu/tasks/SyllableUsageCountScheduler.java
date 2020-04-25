@@ -16,6 +16,7 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.SyllableFrequencyHelper;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,67 +51,67 @@ public class SyllableUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        for (Language language : Language.values()) {
-            logger.info("Calculating usage count for Syllables with language " + language);
-            
-            Map<String, Integer> syllableFrequencyMap = new HashMap<>();
-            
-            List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
-            logger.info("storyBooks.size(): " + storyBooks.size());
-            for (StoryBook storyBook : storyBooks) {
-                logger.info("storyBook.getTitle(): " + storyBook.getTitle());
-                
-                List<String> paragraphs = new ArrayList<>();
-                List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
-                for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                    List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-                    for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-                        paragraphs.add(storyBookParagraph.getOriginalText());
-                    }
-                }
-                
-                Map<String, Integer> syllableFrequencyMapForBook = SyllableFrequencyHelper.getSyllableFrequency(paragraphs, language);
-                for (String key : syllableFrequencyMapForBook.keySet()) {
-                    String syllableText = key;
-                    int syllableFrequency = syllableFrequencyMapForBook.get(key);
-                    if (!syllableFrequencyMap.containsKey(syllableText)) {
-                        syllableFrequencyMap.put(syllableText, syllableFrequency);
-                    } else {
-                        syllableFrequencyMap.put(syllableText, syllableFrequencyMap.get(syllableText) + syllableFrequency);
-                    }
+        logger.info("Calculating usage count for Syllables");
+
+        Map<String, Integer> syllableFrequencyMap = new HashMap<>();
+        
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
+        logger.info("storyBooks.size(): " + storyBooks.size());
+        for (StoryBook storyBook : storyBooks) {
+            logger.info("storyBook.getTitle(): " + storyBook.getTitle());
+
+            List<String> paragraphs = new ArrayList<>();
+            List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                    paragraphs.add(storyBookParagraph.getOriginalText());
                 }
             }
-            
-            logger.info("syllableFrequencyMap: " + syllableFrequencyMap);
-            
-            for (String key : syllableFrequencyMap.keySet()) {
+
+            Map<String, Integer> syllableFrequencyMapForBook = SyllableFrequencyHelper.getSyllableFrequency(paragraphs, language);
+            for (String key : syllableFrequencyMapForBook.keySet()) {
                 String syllableText = key;
-                
-                // Skip syllables that are actual words
-                // TODO: add logic to Word editing
-                Word word = wordDao.readByText(language, syllableText);
-                if (word != null) {
-                    continue;
-                }
-                
-                // Skip syllables that are not digrams
-                // TODO: add support for trigrams
-                if (syllableText.length() != 2) {
-                    continue;
-                }
-                
-                Syllable existingSyllable = syllableDao.readByText(syllableText);
-                if (existingSyllable == null) {
-                    Syllable syllable = new Syllable();
-                    syllable.setLanguage(language);
-                    syllable.setTimeLastUpdate(Calendar.getInstance());
-                    syllable.setText(syllableText);
-                    syllable.setUsageCount(syllableFrequencyMap.get(syllableText));
-                    syllableDao.create(syllable);
+                int syllableFrequency = syllableFrequencyMapForBook.get(key);
+                if (!syllableFrequencyMap.containsKey(syllableText)) {
+                    syllableFrequencyMap.put(syllableText, syllableFrequency);
                 } else {
-                    existingSyllable.setUsageCount(syllableFrequencyMap.get(syllableText));
-                    syllableDao.update(existingSyllable);
+                    syllableFrequencyMap.put(syllableText, syllableFrequencyMap.get(syllableText) + syllableFrequency);
                 }
+            }
+        }
+
+        logger.info("syllableFrequencyMap: " + syllableFrequencyMap);
+
+        for (String key : syllableFrequencyMap.keySet()) {
+            String syllableText = key;
+
+            // Skip syllables that are actual words
+            // TODO: add logic to Word editing
+            Word word = wordDao.readByText(syllableText);
+            if (word != null) {
+                continue;
+            }
+
+            // Skip syllables that are not digrams
+            // TODO: add support for trigrams
+            if (syllableText.length() != 2) {
+                continue;
+            }
+
+            Syllable existingSyllable = syllableDao.readByText(syllableText);
+            if (existingSyllable == null) {
+                Syllable syllable = new Syllable();
+                syllable.setLanguage(language);
+                syllable.setTimeLastUpdate(Calendar.getInstance());
+                syllable.setText(syllableText);
+                syllable.setUsageCount(syllableFrequencyMap.get(syllableText));
+                syllableDao.create(syllable);
+            } else {
+                existingSyllable.setUsageCount(syllableFrequencyMap.get(syllableText));
+                syllableDao.update(existingSyllable);
             }
         }
         

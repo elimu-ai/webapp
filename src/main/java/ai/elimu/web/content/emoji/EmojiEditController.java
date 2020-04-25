@@ -9,8 +9,6 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
@@ -42,12 +40,10 @@ public class EmojiEditController {
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         Emoji emoji = emojiDao.read(id);
         model.addAttribute("emoji", emoji);
         
-        List<Word> words = wordDao.readAllOrdered(language);
+        List<Word> words = wordDao.readAllOrdered();
         model.addAttribute("words", words);
 
         return "content/emoji/edit";
@@ -60,7 +56,6 @@ public class EmojiEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
         if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
             result.rejectValue("glyph", "NonUnique");
@@ -69,7 +64,7 @@ public class EmojiEditController {
         if (result.hasErrors()) {
             model.addAttribute("emoji", emoji);
             
-            List<Word> words = wordDao.readAllOrdered(language);
+            List<Word> words = wordDao.readAllOrdered();
             model.addAttribute("words", words);
             
             return "content/emoji/edit";

@@ -9,8 +9,6 @@ import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,8 +36,7 @@ public class NumberCreateController {
         Number number = new Number();
         model.addAttribute("number", number);
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Word> words = wordDao.readAllOrdered(language);
+        List<Word> words = wordDao.readAllOrdered();
         model.addAttribute("words", words);
         
         return "content/number/create";
@@ -57,12 +54,10 @@ public class NumberCreateController {
             result.rejectValue("value", "NonUnique");
         }
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         if (result.hasErrors()) {
             model.addAttribute("number", number);
 
-            List<Word> words = wordDao.readAllOrdered(language);
+            List<Word> words = wordDao.readAllOrdered();
             model.addAttribute("words", words);
             
             return "content/number/create";

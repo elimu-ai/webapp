@@ -18,11 +18,9 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.VideoFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,8 +59,6 @@ public class VideoEditController {
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         Video video = videoDao.read(id);
         model.addAttribute("video", video);
         
@@ -73,7 +69,7 @@ public class VideoEditController {
         
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
-        model.addAttribute("words", wordDao.readAllOrdered(language));
+        model.addAttribute("words", wordDao.readAllOrdered());
 
         return "content/multimedia/video/edit";
     }
@@ -85,8 +81,6 @@ public class VideoEditController {
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
-        
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -133,7 +127,7 @@ public class VideoEditController {
             model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());
-            model.addAttribute("words", wordDao.readAllOrdered(language));
+            model.addAttribute("words", wordDao.readAllOrdered());
             return "content/multimedia/video/edit";
         } else {
             video.setTitle(video.getTitle().toLowerCase());

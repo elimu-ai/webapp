@@ -18,11 +18,9 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,8 +59,6 @@ public class AudioEditController {
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         Audio audio = audioDao.read(id);
         model.addAttribute("audio", audio);
         
@@ -73,7 +69,7 @@ public class AudioEditController {
         
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
-        model.addAttribute("words", wordDao.readAllOrdered(language));
+        model.addAttribute("words", wordDao.readAllOrdered());
 
         return "content/multimedia/audio/edit";
     }
@@ -85,8 +81,6 @@ public class AudioEditController {
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
-        
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
@@ -135,7 +129,7 @@ public class AudioEditController {
             model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());
-            model.addAttribute("words", wordDao.readAllOrdered(language));
+            model.addAttribute("words", wordDao.readAllOrdered());
             return "content/multimedia/audio/edit";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());

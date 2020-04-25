@@ -13,6 +13,7 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,44 +45,44 @@ public class WordUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        for (Language language : Language.values()) {
-            logger.info("Calculating usage count for Words with language " + language);
-            
-            Map<String, Integer> wordFrequencyMap = new HashMap<>();
-            
-            List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
-            logger.info("storyBooks.size(): " + storyBooks.size());
-            for (StoryBook storyBook : storyBooks) {
-                logger.info("storyBook.getTitle(): " + storyBook.getTitle());
-                
-                List<String> paragraphs = new ArrayList<>();
-                List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
-                for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                    List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-                    for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-                        paragraphs.add(storyBookParagraph.getOriginalText());
-                    }
-                }
-                
-                Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(paragraphs, language);
-                for (String key : wordFrequencyMapForBook.keySet()) {
-                    int wordFrequency = wordFrequencyMapForBook.get(key);
-                    String word = key;
-                    if (!wordFrequencyMap.containsKey(word)) {
-                        wordFrequencyMap.put(word, wordFrequency);
-                    } else {
-                        wordFrequencyMap.put(word, wordFrequencyMap.get(word) + wordFrequency);
-                    }
+        logger.info("Calculating usage count for Words");
+
+        Map<String, Integer> wordFrequencyMap = new HashMap<>();
+        
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
+        logger.info("storyBooks.size(): " + storyBooks.size());
+        for (StoryBook storyBook : storyBooks) {
+            logger.info("storyBook.getTitle(): " + storyBook.getTitle());
+
+            List<String> paragraphs = new ArrayList<>();
+            List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                    paragraphs.add(storyBookParagraph.getOriginalText());
                 }
             }
-            
-            for (String key : wordFrequencyMap.keySet()) {
-                String wordLowerCase = key.toLowerCase();
-                Word word = wordDao.readByText(language, wordLowerCase);
-                if (word != null) {
-                    word.setUsageCount(wordFrequencyMap.get(wordLowerCase));
-                    wordDao.update(word);
+
+            Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(paragraphs, language);
+            for (String key : wordFrequencyMapForBook.keySet()) {
+                int wordFrequency = wordFrequencyMapForBook.get(key);
+                String word = key;
+                if (!wordFrequencyMap.containsKey(word)) {
+                    wordFrequencyMap.put(word, wordFrequency);
+                } else {
+                    wordFrequencyMap.put(word, wordFrequencyMap.get(word) + wordFrequency);
                 }
+            }
+        }
+
+        for (String key : wordFrequencyMap.keySet()) {
+            String wordLowerCase = key.toLowerCase();
+            Word word = wordDao.readByText(wordLowerCase);
+            if (word != null) {
+                word.setUsageCount(wordFrequencyMap.get(wordLowerCase));
+                wordDao.update(word);
             }
         }
         

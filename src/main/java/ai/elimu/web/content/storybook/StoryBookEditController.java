@@ -97,7 +97,7 @@ public class StoryBookEditController {
         Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
         Map<String, Word> wordMap = new HashMap<>();
-        for (Word word : wordDao.readAllOrdered(language)) {
+        for (Word word : wordDao.readAllOrdered()) {
             wordMap.put(word.getText(), word);
         }
         model.addAttribute("wordMap", wordMap);

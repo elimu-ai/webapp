@@ -3,8 +3,6 @@ package ai.elimu.web.content.word;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -37,8 +35,7 @@ public class WordCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Word> words = wordDao.readAllOrderedByUsage(language);
+        List<Word> words = wordDao.readAllOrderedByUsage();
         logger.info("words.size(): " + words.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
