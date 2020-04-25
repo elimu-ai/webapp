@@ -92,7 +92,7 @@ public class MainContentController {
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         model.addAttribute("allophoneCount", allophoneDao.readCount());
-        model.addAttribute("numberCount", numberDao.readCount(language));
+        model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("letterCount", letterDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount(language));
         model.addAttribute("wordCount", wordDao.readCount(language));

@@ -4,8 +4,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.model.content.Number;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +23,7 @@ public class NumberListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        List<Number> numbers = numberDao.readAllOrdered(language);
+        List<Number> numbers = numberDao.readAllOrdered();
         model.addAttribute("numbers", numbers);
 
         return "content/number/list";

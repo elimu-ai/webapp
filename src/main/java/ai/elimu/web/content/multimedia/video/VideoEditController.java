@@ -72,7 +72,7 @@ public class VideoEditController {
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
         model.addAttribute("letters", letterDao.readAllOrdered());
-        model.addAttribute("numbers", numberDao.readAllOrdered(language));
+        model.addAttribute("numbers", numberDao.readAllOrdered());
         model.addAttribute("words", wordDao.readAllOrdered(language));
 
         return "content/multimedia/video/edit";
@@ -132,7 +132,7 @@ public class VideoEditController {
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("letters", letterDao.readAllOrdered());
-            model.addAttribute("numbers", numberDao.readAllOrdered(language));
+            model.addAttribute("numbers", numberDao.readAllOrdered());
             model.addAttribute("words", wordDao.readAllOrdered(language));
             return "content/multimedia/video/edit";
         } else {

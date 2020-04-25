@@ -52,7 +52,7 @@ public class NumberCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Number existingNumber = numberDao.readByValue(number.getLanguage(), number.getValue());
+        Number existingNumber = numberDao.readByValue(number.getValue());
         if (existingNumber != null) {
             result.rejectValue("value", "NonUnique");
         }
