@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.LetterGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,14 @@ public class LetterRestController {
     @RequestMapping("/list")
     public String list(
             HttpServletRequest request,
-            @RequestParam String deviceId,
-            @RequestParam Language language
+            @RequestParam String deviceId
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray numbers = new JSONArray();
-        for (Letter letter : letterDao.readAllOrdered(language)) {
+        for (Letter letter : letterDao.readAllOrdered()) {
             LetterGson letterGson = JavaToGsonConverter.getLetterGson(letter);
             String json = new Gson().toJson(letterGson);
             numbers.put(new JSONObject(json));

@@ -7,56 +7,47 @@ import ai.elimu.dao.LetterDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.enums.Language;
 
 public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
 
     @Override
-    public Letter readByText(Language language, String text) throws DataAccessException {
+    public Letter readByText(String text) throws DataAccessException {
         try {
             return (Letter) em.createQuery(
                 "SELECT l " +
                 "FROM Letter l " +
-                "WHERE l.language = :language " +
-                "AND l.text = :text")
-                .setParameter("language", language)
+                "WHERE l.text = :text")
                 .setParameter("text", text)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Letter '" + text + "' was not found for language " + language);
+            logger.warn("Letter '" + text + "' was not found");
             return null;
         }
     }
 
     @Override
-    public List<Letter> readAllOrdered(Language language) throws DataAccessException {
+    public List<Letter> readAllOrdered() throws DataAccessException {
         return em.createQuery(
             "SELECT l " +
             "FROM Letter l " +
-            "WHERE l.language = :language " +
             "ORDER BY l.text")
-            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public List<Letter> readAllOrderedByUsage(Language language) throws DataAccessException {
+    public List<Letter> readAllOrderedByUsage() throws DataAccessException {
         return em.createQuery(
             "SELECT l " +
             "FROM Letter l " +
-            "WHERE l.language = :language " +
             "ORDER BY l.usageCount DESC, l.text")
-            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public Long readCount(Language language) throws DataAccessException {
+    public Long readCount() throws DataAccessException {
         return (Long) em.createQuery(
             "SELECT COUNT(l) " +
-            "FROM Letter l " +
-            "WHERE l.language = :language")
-            .setParameter("language", language)
+            "FROM Letter l")
             .getSingleResult();
     }
 }

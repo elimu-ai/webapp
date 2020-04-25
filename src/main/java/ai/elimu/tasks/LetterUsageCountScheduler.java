@@ -79,7 +79,7 @@ public class LetterUsageCountScheduler {
             
             for (String key : letterFrequencyMap.keySet()) {
                 String letterText = key;
-                Letter existingLetter = letterDao.readByText(language, letterText);
+                Letter existingLetter = letterDao.readByText(letterText);
                 if (existingLetter != null) {
                     existingLetter.setUsageCount(letterFrequencyMap.get(letterText));
                     letterDao.update(existingLetter);
