@@ -36,14 +36,12 @@ public class StoryBookCreateController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
         
-        List<Image> coverImages = imageDao.readAllOrdered(language);
+        List<Image> coverImages = imageDao.readAllOrdered();
         model.addAttribute("coverImages", coverImages);
         
         model.addAttribute("readingLevels", ReadingLevel.values());
@@ -70,7 +68,7 @@ public class StoryBookCreateController {
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
-            List<Image> coverImages = imageDao.readAllOrdered(language);
+            List<Image> coverImages = imageDao.readAllOrdered();
             model.addAttribute("coverImages", coverImages);
             
             model.addAttribute("readingLevels", ReadingLevel.values());

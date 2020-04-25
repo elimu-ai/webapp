@@ -2,10 +2,8 @@ package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.ImageDao;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
-import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
@@ -30,9 +28,8 @@ public class ImagesRestController {
     public String handleGetRequest(HttpServletRequest request) {
         logger.info("handleGetRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         JSONArray imagesJsonArray = new JSONArray();
-        for (Image image : imageDao.readAllOrdered(language)) {
+        for (Image image : imageDao.readAllOrdered()) {
             ImageGson imageGson = JpaToGsonConverter.getImageGson(image);
             
             String json = new Gson().toJson(imageGson);

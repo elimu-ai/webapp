@@ -99,7 +99,7 @@ public class MainContentController {
         model.addAttribute("emojiCount", emojiDao.readCount());
         model.addAttribute("storyBookCount", storyBookDao.readCount(language));
         model.addAttribute("audioCount", audioDao.readCount());
-        model.addAttribute("imageCount", imageDao.readCount(language));
+        model.addAttribute("imageCount", imageDao.readCount());
         model.addAttribute("videoCount", videoDao.readCount(language));
     	
         return "content/main";

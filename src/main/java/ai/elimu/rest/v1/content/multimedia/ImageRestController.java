@@ -29,15 +29,14 @@ public class ImageRestController {
     @RequestMapping("/list")
     public String list(
             HttpServletRequest request,
-            @RequestParam String deviceId,
-            @RequestParam Language language
+            @RequestParam String deviceId
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray jsonArray = new JSONArray();
-        for (Image image : imageDao.readAllOrdered(language)) {
+        for (Image image : imageDao.readAllOrdered()) {
             ImageGson imageGson = JavaToGsonConverter.getImageGson(image);
             String json = new Gson().toJson(imageGson);
             jsonArray.put(new JSONObject(json));

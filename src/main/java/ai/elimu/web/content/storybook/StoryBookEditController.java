@@ -70,7 +70,7 @@ public class StoryBookEditController {
         
         model.addAttribute("contentLicenses", ContentLicense.values());
         
-        List<Image> coverImages = imageDao.readAllOrdered(language);
+        List<Image> coverImages = imageDao.readAllOrdered();
         model.addAttribute("coverImages", coverImages);
         
         model.addAttribute("readingLevels", ReadingLevel.values());
@@ -133,7 +133,7 @@ public class StoryBookEditController {
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
-            List<Image> coverImages = imageDao.readAllOrdered(language);
+            List<Image> coverImages = imageDao.readAllOrdered();
             model.addAttribute("coverImages", coverImages);
             
             model.addAttribute("readingLevels", ReadingLevel.values());
