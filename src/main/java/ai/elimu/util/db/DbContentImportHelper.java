@@ -137,54 +137,56 @@ public class DbContentImportHelper {
         // Extract and import Audios
         // TODO
         
-        // Extract and import StoryBooks from CSV file in src/main/resources/
-        File storyBooksCsvFile = new File(contentDirectory, "storybooks.csv");
-        List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
-        logger.info("storyBookGsons.size(): " + storyBookGsons.size());
-        storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
-        storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
-        storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
-        for (StoryBookGson storyBookGson : storyBookGsons) {
-            // Convert from GSON to JPA
-            StoryBook storyBook = new StoryBook();
-            storyBook.setLanguage(language);
-            storyBook.setTitle(storyBookGson.getTitle());
-            storyBook.setDescription(storyBookGson.getDescription());
-//            TODO: storyBook.setContentLicense();
-            storyBook.setAttributionUrl(storyBookGson.getAttributionUrl());
-            storyBook.setReadingLevel(storyBookGson.getReadingLevel());
-            storyBookDao.create(storyBook);
-            
-            for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {
+        if (language != Language.BEN) {
+            // Extract and import StoryBooks from CSV file in src/main/resources/
+            File storyBooksCsvFile = new File(contentDirectory, "storybooks.csv");
+            List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
+            logger.info("storyBookGsons.size(): " + storyBookGsons.size());
+            storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
+            storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
+            storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
+            for (StoryBookGson storyBookGson : storyBookGsons) {
                 // Convert from GSON to JPA
-                StoryBookChapter storyBookChapter = new StoryBookChapter();
-                storyBookChapter.setStoryBook(storyBook);
-                storyBookChapter.setSortOrder(storyBookChapterGson.getSortOrder());
-                // TODO: storyBookChapter.setImage();
-                storyBookChapterDao.create(storyBookChapter);
-                
-                for (StoryBookParagraphGson storyBookParagraphGson : storyBookChapterGson.getStoryBookParagraphs()) {
+                StoryBook storyBook = new StoryBook();
+                storyBook.setLanguage(language);
+                storyBook.setTitle(storyBookGson.getTitle());
+                storyBook.setDescription(storyBookGson.getDescription());
+    //            TODO: storyBook.setContentLicense();
+                storyBook.setAttributionUrl(storyBookGson.getAttributionUrl());
+                storyBook.setReadingLevel(storyBookGson.getReadingLevel());
+                storyBookDao.create(storyBook);
+
+                for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {
                     // Convert from GSON to JPA
-                    StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
-                    storyBookParagraph.setStoryBookChapter(storyBookChapter);
-                    storyBookParagraph.setSortOrder(storyBookParagraphGson.getSortOrder());
-                    storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
-                    
-                    List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-                    logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
-                    List<Word> paragraphWords = new ArrayList<>();
-                    logger.info("paragraphWords.size(): " + paragraphWords.size());
-                    for (String wordInOriginalText : wordsInOriginalText) {
-                        logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
-                        wordInOriginalText = wordInOriginalText.toLowerCase();
-                        logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
-                        Word word = wordDao.readByText(language, wordInOriginalText);
-                        logger.info("word: " + word);
-                        paragraphWords.add(word);
+                    StoryBookChapter storyBookChapter = new StoryBookChapter();
+                    storyBookChapter.setStoryBook(storyBook);
+                    storyBookChapter.setSortOrder(storyBookChapterGson.getSortOrder());
+                    // TODO: storyBookChapter.setImage();
+                    storyBookChapterDao.create(storyBookChapter);
+
+                    for (StoryBookParagraphGson storyBookParagraphGson : storyBookChapterGson.getStoryBookParagraphs()) {
+                        // Convert from GSON to JPA
+                        StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+                        storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                        storyBookParagraph.setSortOrder(storyBookParagraphGson.getSortOrder());
+                        storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
+
+                        List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
+                        logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                        List<Word> paragraphWords = new ArrayList<>();
+                        logger.info("paragraphWords.size(): " + paragraphWords.size());
+                        for (String wordInOriginalText : wordsInOriginalText) {
+                            logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                            wordInOriginalText = wordInOriginalText.toLowerCase();
+                            logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                            Word word = wordDao.readByText(language, wordInOriginalText);
+                            logger.info("word: " + word);
+                            paragraphWords.add(word);
+                        }
+                        storyBookParagraph.setWords(paragraphWords);
+
+                        storyBookParagraphDao.create(storyBookParagraph);
                     }
-                    storyBookParagraph.setWords(paragraphWords);
-                    
-                    storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
         }
