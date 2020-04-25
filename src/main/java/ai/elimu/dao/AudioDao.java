@@ -5,13 +5,11 @@ import ai.elimu.model.content.multimedia.Audio;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.enums.Language;
-
 public interface AudioDao extends GenericDao<Audio> {
 	
-    Audio read(String transcription, Language language) throws DataAccessException;
+    Audio read(String transcription) throws DataAccessException;
 
-    List<Audio> readAllOrdered(Language language) throws DataAccessException;
+    List<Audio> readAllOrdered() throws DataAccessException;
     
-    Long readCount(Language language) throws DataAccessException;
+    Long readCount() throws DataAccessException;
 }

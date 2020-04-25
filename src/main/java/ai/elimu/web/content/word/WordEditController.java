@@ -66,7 +66,7 @@ public class WordEditController {
         model.addAttribute("rootWords", wordDao.readAllOrdered(language));
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-        model.addAttribute("audio", audioDao.read(word.getText(), language));
+        model.addAttribute("audio", audioDao.read(word.getText()));
         
         // Look up variants of the same word
         model.addAttribute("wordInflections", wordDao.readInflections(word));
@@ -105,7 +105,7 @@ public class WordEditController {
             model.addAttribute("rootWords", wordDao.readAllOrdered(language));
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            model.addAttribute("audio", audioDao.read(word.getText(), language));
+            model.addAttribute("audio", audioDao.read(word.getText()));
             model.addAttribute("wordInflections", wordDao.readInflections(word));
             return "content/word/edit";
         } else {

@@ -10,11 +10,9 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,12 +57,10 @@ public class AudioCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
         } else {
-            Audio existingAudio = audioDao.read(audio.getTranscription(), language);
+            Audio existingAudio = audioDao.read(audio.getTranscription());
             if (existingAudio != null) {
                 result.rejectValue("transcription", "NonUnique");
             }
