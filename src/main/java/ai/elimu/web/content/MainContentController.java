@@ -93,7 +93,7 @@ public class MainContentController {
         
         model.addAttribute("allophoneCount", allophoneDao.readCount());
         model.addAttribute("numberCount", numberDao.readCount(language));
-        model.addAttribute("letterCount", letterDao.readCount(language));
+        model.addAttribute("letterCount", letterDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount(language));
         model.addAttribute("wordCount", wordDao.readCount(language));
         model.addAttribute("emojiCount", emojiDao.readCount());

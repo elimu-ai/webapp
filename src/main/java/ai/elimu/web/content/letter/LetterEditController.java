@@ -9,8 +9,6 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +51,7 @@ public class LetterEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        Letter existingLetter = letterDao.readByText(language, letter.getText());
+        Letter existingLetter = letterDao.readByText(letter.getText());
         if ((existingLetter != null) && !existingLetter.getId().equals(letter.getId())) {
             result.rejectValue("text", "NonUnique");
         }

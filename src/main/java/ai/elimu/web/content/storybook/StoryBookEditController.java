@@ -105,7 +105,7 @@ public class StoryBookEditController {
         Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
         model.addAttribute("letterFrequencyMap", letterFrequencyMap);
         Map<String, Letter> letterMap = new HashMap<>();
-        for (Letter letter : letterDao.readAllOrdered(language)) {
+        for (Letter letter : letterDao.readAllOrdered()) {
             letterMap.put(letter.getText(), letter);
         }
         model.addAttribute("letterMap", letterMap);

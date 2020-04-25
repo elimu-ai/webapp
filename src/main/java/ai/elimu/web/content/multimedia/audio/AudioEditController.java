@@ -71,7 +71,7 @@ public class AudioEditController {
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
-        model.addAttribute("letters", letterDao.readAllOrdered(language));
+        model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered(language));
         model.addAttribute("words", wordDao.readAllOrdered(language));
 
@@ -133,7 +133,7 @@ public class AudioEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered(language));
+            model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered(language));
             model.addAttribute("words", wordDao.readAllOrdered(language));
             return "content/multimedia/audio/edit";
