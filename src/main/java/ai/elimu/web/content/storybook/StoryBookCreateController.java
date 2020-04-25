@@ -11,8 +11,6 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.ReadingLevel;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,9 +54,7 @@ public class StoryBookCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        StoryBook existingStoryBook = storybookDao.readByTitle(language, storyBook.getTitle());
+        StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getTitle());
         if (existingStoryBook != null) {
             result.rejectValue("title", "NonUnique");
         }

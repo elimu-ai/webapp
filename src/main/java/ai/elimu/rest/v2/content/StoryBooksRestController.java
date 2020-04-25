@@ -6,14 +6,12 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
-import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +43,8 @@ public class StoryBooksRestController {
     public String handleGetRequest() {
         logger.info("handleGetRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         JSONArray storyBooksJsonArray = new JSONArray();
-        for (StoryBook storyBook : storyBookDao.readAllOrdered(language)) {
+        for (StoryBook storyBook : storyBookDao.readAllOrdered()) {
             StoryBookGson storyBookGson = JpaToGsonConverter.getStoryBookGson(storyBook);
             
             // Remove duplicate cover image content

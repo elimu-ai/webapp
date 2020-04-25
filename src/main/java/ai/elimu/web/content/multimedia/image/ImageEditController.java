@@ -20,11 +20,9 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageHelper;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +66,6 @@ public class ImageEditController {
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         Image image = imageDao.read(id);
         model.addAttribute("image", image);
         
@@ -80,7 +76,7 @@ public class ImageEditController {
         
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
-        model.addAttribute("words", wordDao.readAllOrdered(language));
+        model.addAttribute("words", wordDao.readAllOrdered());
         
         Audio audio = audioDao.read(image.getTitle());
         model.addAttribute("audio", audio);
@@ -95,8 +91,6 @@ public class ImageEditController {
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
-        
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -164,7 +158,7 @@ public class ImageEditController {
             model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());
-            model.addAttribute("words", wordDao.readAllOrdered(language));
+            model.addAttribute("words", wordDao.readAllOrdered());
             Audio audio = audioDao.read(image.getTitle());
             model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";

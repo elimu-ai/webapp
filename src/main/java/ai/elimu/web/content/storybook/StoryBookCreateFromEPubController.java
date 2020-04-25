@@ -295,7 +295,7 @@ public class StoryBookCreateFromEPubController {
                             logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
                             wordInOriginalText = wordInOriginalText.toLowerCase();
                             logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
-                            Word word = wordDao.readByText(language, wordInOriginalText);
+                            Word word = wordDao.readByText(wordInOriginalText);
                             logger.info("word: " + word);
                             words.add(word);
                         }

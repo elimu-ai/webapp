@@ -18,8 +18,6 @@ import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
@@ -89,18 +87,16 @@ public class MainContentController {
             }
         }
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         model.addAttribute("allophoneCount", allophoneDao.readCount());
         model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("letterCount", letterDao.readCount());
-        model.addAttribute("syllableCount", syllableDao.readCount(language));
-        model.addAttribute("wordCount", wordDao.readCount(language));
+        model.addAttribute("syllableCount", syllableDao.readCount());
+        model.addAttribute("wordCount", wordDao.readCount());
         model.addAttribute("emojiCount", emojiDao.readCount());
-        model.addAttribute("storyBookCount", storyBookDao.readCount(language));
+        model.addAttribute("storyBookCount", storyBookDao.readCount());
         model.addAttribute("audioCount", audioDao.readCount());
         model.addAttribute("imageCount", imageDao.readCount());
-        model.addAttribute("videoCount", videoDao.readCount(language));
+        model.addAttribute("videoCount", videoDao.readCount());
     	
         return "content/main";
     }

@@ -8,14 +8,12 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.ReadingLevel;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import ai.elimu.model.gson.content.StoryBookChapterGson;
 import ai.elimu.model.gson.content.StoryBookGson;
 import ai.elimu.model.gson.content.StoryBookParagraphGson;
-import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
@@ -246,8 +244,6 @@ public class CsvContentExtractionHelper {
         
         List<Number> numbers = new ArrayList<>();
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
         try {
@@ -282,7 +278,7 @@ public class CsvContentExtractionHelper {
                 for (int i = 0; i < wordTextsJsonArray.length(); i++) {
                     String wordText = wordTextsJsonArray.getString(i);
                     logger.info("Looking up Word with text /" + wordText + "/");
-                    Word word = wordDao.readByText(language, wordText);
+                    Word word = wordDao.readByText(wordText);
                     logger.info("word.getId(): \"" + word.getId() + "\"");
                     words.add(word);
                 }
@@ -304,8 +300,6 @@ public class CsvContentExtractionHelper {
         logger.info("getEmojisFromCsvBackup");
         
         List<Emoji> emojis = new ArrayList<>();
-        
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -345,7 +339,7 @@ public class CsvContentExtractionHelper {
                 for (int i = 0; i < wordTextsJsonArray.length(); i++) {
                     String wordText = wordTextsJsonArray.getString(i);
                     logger.info("Looking up Word with text /" + wordText + "/");
-                    Word word = wordDao.readByText(language, wordText);
+                    Word word = wordDao.readByText(wordText);
                     logger.info("word.getId(): \"" + word.getId() + "\"");
                     words.add(word);
                 }

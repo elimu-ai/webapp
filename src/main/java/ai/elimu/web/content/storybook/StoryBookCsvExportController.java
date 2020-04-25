@@ -6,11 +6,9 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.StoryBookChapterGson;
 import ai.elimu.model.gson.content.StoryBookParagraphGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
-import ai.elimu.util.ConfigHelper;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -52,8 +50,7 @@ public class StoryBookCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
         logger.info("storyBooks.size(): " + storyBooks.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

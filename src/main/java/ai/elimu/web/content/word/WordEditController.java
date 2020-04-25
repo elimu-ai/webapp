@@ -17,10 +17,8 @@ import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,11 +57,9 @@ public class WordEditController {
         
         Word word = wordDao.read(id);
                 
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         model.addAttribute("word", wordDao.read(id));
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
-        model.addAttribute("rootWords", wordDao.readAllOrdered(language));
+        model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
         model.addAttribute("audio", audioDao.read(word.getText()));
@@ -90,9 +86,7 @@ public class WordEditController {
             HttpServletRequest request) {
     	logger.info("handleSubmit");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        Word existingWord = wordDao.readByText(language, word.getText());
+        Word existingWord = wordDao.readByText(word.getText());
         if ((existingWord != null) && !existingWord.getId().equals(word.getId())) {
             result.rejectValue("text", "NonUnique");
         }
@@ -102,24 +96,19 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
-            model.addAttribute("rootWords", wordDao.readAllOrdered(language));
+            model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             model.addAttribute("audio", audioDao.read(word.getText()));
             model.addAttribute("wordInflections", wordDao.readInflections(word));
             return "content/word/edit";
         } else {
-            if (language == Language.ENG) {
-                if (!"I".equals(word.getText())) {
-                    word.setText(word.getText().toLowerCase());
-                }
-            }
             word.setTimeLastUpdate(Calendar.getInstance());
             word.setRevisionNumber(word.getRevisionNumber() + 1);
             wordDao.update(word);
             
             // Delete syllables that are actual words
-            Syllable syllable = syllableDao.readByText(language, word.getText());
+            Syllable syllable = syllableDao.readByText(word.getText());
             if (syllable != null) {
                 syllableDao.delete(syllable);
             }
