@@ -74,7 +74,7 @@ public class ImageCreateController {
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
+            Image existingImage = imageDao.read(image.getTitle());
             if (existingImage != null) {
                 result.rejectValue("title", "NonUnique");
             }

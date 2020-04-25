@@ -40,7 +40,7 @@ public class ImageDaoTest {
         wordCat.setLanguage(Language.ENG);
         wordDao.create(wordCat);
         
-        List<Image> images = imageDao.readAllLabeled(wordCat, Language.ENG);
+        List<Image> images = imageDao.readAllLabeled(wordCat);
         assertThat(images.size(), is(0));
         
         Set<Word> words = new HashSet<>();
@@ -52,10 +52,10 @@ public class ImageDaoTest {
         image.setLanguage(Language.ENG);
         imageDao.create(image);
         
-        images = imageDao.readAllLabeled(wordDog, Language.ENG);
+        images = imageDao.readAllLabeled(wordDog);
         assertThat(images.size(), is(0));
         
-        images = imageDao.readAllLabeled(wordCat, Language.ENG);
+        images = imageDao.readAllLabeled(wordCat);
         assertThat(images.size(), is(1));
         assertThat(images.get(0).getWords().size(), is(1));
         
@@ -63,7 +63,7 @@ public class ImageDaoTest {
         image.setWords(words);
         imageDao.update(image);
         
-        images = imageDao.readAllLabeled(wordCat, Language.ENG);
+        images = imageDao.readAllLabeled(wordCat);
         assertThat(images.size(), is(1));
         assertThat(images.get(0).getWords().size(), is(2));
     }

@@ -101,7 +101,7 @@ public class ImageEditController {
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Image existingImage = imageDao.read(image.getTitle(), image.getLanguage());
+            Image existingImage = imageDao.read(image.getTitle());
             if ((existingImage != null) && !existingImage.getId().equals(image.getId())) {
                 result.rejectValue("title", "NonUnique");
             }

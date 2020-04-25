@@ -100,7 +100,7 @@ public class WordCreateController {
             wordDao.create(word);
             
             // Label Image with Word of matching title
-            Image matchingImage = imageDao.read(word.getText(), language);
+            Image matchingImage = imageDao.read(word.getText());
             if (matchingImage != null) {
                 Set<Word> labeledWords = matchingImage.getWords();
                 if (!labeledWords.contains(word)) {
