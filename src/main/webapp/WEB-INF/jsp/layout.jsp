@@ -147,18 +147,18 @@
                                         </c:forEach>
                                     </c:when>
                                     <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                        <c:if test="${status.index > 0}">
-                                            • 
-                                        </c:if>
-                                        <c:forEach var="supportedLanguage" items="${supportedLanguages}">
+                                        <c:forEach var="supportedLanguage" items="${supportedLanguages}" varStatus="status">
+                                            <c:if test="${status.index > 0}">
+                                                • 
+                                            </c:if>
                                             <a class="white-text" href="http://${supportedLanguage.isoCode}.test.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
                                         </c:forEach>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:if test="${status.index > 0}">
-                                            • 
-                                        </c:if>
-                                        <c:forEach var="supportedLanguage" items="${supportedLanguages}">
+                                        <c:forEach var="supportedLanguage" items="${supportedLanguages}" varStatus="status">
+                                            <c:if test="${status.index > 0}">
+                                                • 
+                                            </c:if>
                                             <a class="white-text" href="http://${supportedLanguage.isoCode}.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
                                         </c:forEach>
                                     </c:otherwise>
