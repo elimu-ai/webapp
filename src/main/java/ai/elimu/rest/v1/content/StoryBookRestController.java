@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.StoryBookGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,14 @@ public class StoryBookRestController {
     @RequestMapping("/list")
     public String list(
             HttpServletRequest request,
-            @RequestParam String deviceId,
-            @RequestParam Language language
+            @RequestParam String deviceId
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray storyBooks = new JSONArray();
-        for (StoryBook storyBook : storyBookDao.readAllOrdered(language)) {
+        for (StoryBook storyBook : storyBookDao.readAllOrdered()) {
             StoryBookGson storyBookGson = JavaToGsonConverter.getStoryBookGson(storyBook);
             String json = new Gson().toJson(storyBookGson);
             storyBooks.put(new JSONObject(json));

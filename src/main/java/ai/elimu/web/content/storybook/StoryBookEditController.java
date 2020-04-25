@@ -123,7 +123,7 @@ public class StoryBookEditController {
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
-        StoryBook existingStoryBook = storyBookDao.readByTitle(language, storyBook.getTitle());
+        StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getTitle());
         if ((existingStoryBook != null) && !existingStoryBook.getId().equals(storyBook.getId())) {
             result.rejectValue("title", "NonUnique");
         }

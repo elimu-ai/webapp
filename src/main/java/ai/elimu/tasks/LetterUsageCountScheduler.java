@@ -49,7 +49,7 @@ public class LetterUsageCountScheduler {
             
             Map<String, Integer> letterFrequencyMap = new HashMap<>();
             
-            List<StoryBook> storyBooks = storyBookDao.readAllOrdered(language);
+            List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
             logger.info("storyBooks.size(): " + storyBooks.size());
             for (StoryBook storyBook : storyBooks) {
                 logger.info("storyBook.getTitle(): " + storyBook.getTitle());
