@@ -5,6 +5,9 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 public class ConfigHelper {
 
+    /**
+     * This only works _after_ the WebApplicationContext has been initialized.
+     */
     public static String getProperty(String key) {
         String value = null;
 
