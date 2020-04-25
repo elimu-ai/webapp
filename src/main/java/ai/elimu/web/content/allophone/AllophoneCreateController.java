@@ -7,11 +7,9 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.enums.content.allophone.SoundType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,9 +24,6 @@ public class AllophoneCreateController {
     
     @Autowired
     private AllophoneDao allophoneDao;
-    
-    @Autowired
-    private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -51,17 +46,15 @@ public class AllophoneCreateController {
     ) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        
         if (StringUtils.isNotBlank(allophone.getValueIpa())) {
-            Allophone existingAllophone = allophoneDao.readByValueIpa(allophone.getLanguage(), allophone.getValueIpa());
+            Allophone existingAllophone = allophoneDao.readByValueIpa(allophone.getValueIpa());
             if (existingAllophone != null) {
                 result.rejectValue("valueIpa", "NonUnique");
             }
         }
         
         if (StringUtils.isNotBlank(allophone.getValueSampa())) {
-            Allophone existingAllophone = allophoneDao.readByValueSampa(allophone.getLanguage(), allophone.getValueSampa());
+            Allophone existingAllophone = allophoneDao.readByValueSampa(allophone.getValueSampa());
             if (existingAllophone != null) {
                 result.rejectValue("valueSampa", "NonUnique");
             }

@@ -1,6 +1,5 @@
 package ai.elimu.dao;
 
-import ai.elimu.dao.AllophoneDao;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -35,7 +34,7 @@ public class AllophoneDaoTest {
         allophone.setSoundType(SoundType.VOWEL);
         allophoneDao.create(allophone);
         
-        assertThat(allophoneDao.readByValueSampa(language, "E").getSoundType(), is(SoundType.VOWEL));
+        assertThat(allophoneDao.readByValueSampa("E").getSoundType(), is(SoundType.VOWEL));
     }
     
     @Test
@@ -55,7 +54,7 @@ public class AllophoneDaoTest {
         allophoneUpperCaseT.setValueSampa("T");
         allophoneDao.create(allophoneUpperCaseT);
         
-        assertThat(allophoneDao.readByValueSampa(language, "t").getValueSampa(), is("t"));
-        assertThat(allophoneDao.readByValueSampa(language, "T").getValueSampa(), is("T"));
+        assertThat(allophoneDao.readByValueSampa("t").getValueSampa(), is("t"));
+        assertThat(allophoneDao.readByValueSampa("T").getValueSampa(), is("T"));
     }
 }

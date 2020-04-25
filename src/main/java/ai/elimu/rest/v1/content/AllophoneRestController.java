@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.AllophoneGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,14 @@ public class AllophoneRestController {
     @RequestMapping("/list")
     public String list(
             HttpServletRequest request,
-            @RequestParam String deviceId,
-            @RequestParam Language language
+            @RequestParam String deviceId
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray allophones = new JSONArray();
-        for (Allophone allophone : allophoneDao.readAllOrdered(language)) {
+        for (Allophone allophone : allophoneDao.readAllOrdered()) {
             AllophoneGson allophoneGson = JavaToGsonConverter.getAllophoneGson(allophone);
             String json = new Gson().toJson(allophoneGson);
             allophones.put(new JSONObject(json));
