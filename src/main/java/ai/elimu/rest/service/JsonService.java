@@ -4,7 +4,6 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.admin.ApplicationGson;
 import ai.elimu.model.gson.admin.ApplicationVersionGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
@@ -38,13 +37,13 @@ public class JsonService {
     private ApplicationVersionDao applicationVersionDao;
     
     @Cacheable("applications")
-    public JSONArray getApplications(Language language) {
+    public JSONArray getApplications() {
         logger.info("getApplications");
         
         Date dateStart = new Date();
         
         JSONArray applications = new JSONArray();
-        for (Application application : applicationDao.readAll(language)) {
+        for (Application application : applicationDao.readAll()) {
             ApplicationGson applicationGson = JavaToGsonConverter.getApplicationGson(application);
 
             List<ApplicationVersionGson> applicationVersions = new ArrayList<>();
@@ -66,7 +65,7 @@ public class JsonService {
     }
     
     @CacheEvict("applications")
-    public void refreshApplications(Language language) {
+    public void refreshApplications() {
         logger.info("refreshApplications");
     }
 }

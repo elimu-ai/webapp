@@ -26,11 +26,13 @@ public class ApplicationVersionDaoTest {
     private ApplicationVersionDao applicationVersionDao;
     
     @Test
-    public void testCacheable() {
+    public void testReadAll() {
         Application application = new Application();
         applicationDao.create(application);
         
         List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
         assertThat(applicationVersions.isEmpty(), is(true));
+        
+        applicationDao.delete(application);
     }
 }

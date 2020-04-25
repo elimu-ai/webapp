@@ -7,11 +7,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,12 +29,10 @@ public class ApplicationListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         
         // List count of active Android applications for each EGRA/EGMA skill
         
-        List<Application> activeApplications = applicationDao.readAllByStatus(language, ApplicationStatus.ACTIVE);
+        List<Application> activeApplications = applicationDao.readAllByStatus(ApplicationStatus.ACTIVE);
         logger.info("activeApplications.size(): " + activeApplications.size());
         
         Map<LiteracySkill, Integer> literacySkillCountMap = new LinkedHashMap<>();
@@ -80,7 +76,7 @@ public class ApplicationListController {
         model.addAttribute("maxNumeracySkillCount", maxNumeracySkillCount);
         
         
-        List<Application> applications = applicationDao.readAll(language);
+        List<Application> applications = applicationDao.readAll();
         model.addAttribute("applications", applications);
 
         return "admin/application/list";

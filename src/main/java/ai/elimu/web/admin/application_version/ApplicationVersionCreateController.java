@@ -156,7 +156,7 @@ public class ApplicationVersionCreateController {
             applicationDao.update(application);
             
             // Refresh REST API cache
-            jsonService.refreshApplications(application.getLanguage());
+            jsonService.refreshApplications();
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
         }
