@@ -91,7 +91,7 @@ public class VideoEditController {
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Video existingVideo = videoDao.read(video.getTitle(), video.getLanguage());
+            Video existingVideo = videoDao.read(video.getTitle());
             if ((existingVideo != null) && !existingVideo.getId().equals(video.getId())) {
                 result.rejectValue("title", "NonUnique");
             }

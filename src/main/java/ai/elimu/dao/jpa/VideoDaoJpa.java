@@ -8,45 +8,38 @@ import ai.elimu.dao.VideoDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.enums.Language;
 
 public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
 
     @Override
-    public Video read(String title, Language language) throws DataAccessException {
+    public Video read(String title) throws DataAccessException {
         try {
             return (Video) em.createQuery(
                 "SELECT v " +
                 "FROM Video v " +
-                "WHERE v.title = :title " +
-                "AND v.language = :language")
+                "WHERE v.title = :title")
                 .setParameter("title", title)
-                .setParameter("language", language)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Video \"" + title + "\" was not found for language " + language);
+            logger.warn("Video \"" + title + "\" was not found");
             return null;
         }
     }
 
     @Override
-    public List<Video> readAllOrdered(Language language) throws DataAccessException {
+    public List<Video> readAllOrdered() throws DataAccessException {
         return em.createQuery(
             "SELECT v " +
             "FROM Video v " +
-            "WHERE v.language = :language " +
             "ORDER BY v.title")
-            .setParameter("language", language)
             .getResultList();
     }
     
     @Override
-    public Long readCount(Language language) throws DataAccessException {
+    public Long readCount() throws DataAccessException {
         return (Long) em.createQuery(
             "SELECT COUNT(v) " +
-            "FROM Video v " +
-            "WHERE v.language = :language")
-            .setParameter("language", language)
+            "FROM Video v")
             .getSingleResult();
     }
 }

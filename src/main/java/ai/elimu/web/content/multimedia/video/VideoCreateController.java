@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.VideoDao;
-import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.VideoFormat;
@@ -54,7 +52,6 @@ public class VideoCreateController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            HttpSession session,
             /*@Valid*/ Video video,
             @RequestParam("bytes") MultipartFile multipartFile,
             @RequestParam("thumbnail") MultipartFile multipartFileThumbnail,
@@ -62,12 +59,10 @@ public class VideoCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            Video existingVideo = videoDao.read(video.getTitle(), video.getLanguage());
+            Video existingVideo = videoDao.read(video.getTitle());
             if (existingVideo != null) {
                 result.rejectValue("title", "NonUnique");
             }

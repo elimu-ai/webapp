@@ -100,7 +100,7 @@ public class MainContentController {
         model.addAttribute("storyBookCount", storyBookDao.readCount());
         model.addAttribute("audioCount", audioDao.readCount());
         model.addAttribute("imageCount", imageDao.readCount());
-        model.addAttribute("videoCount", videoDao.readCount(language));
+        model.addAttribute("videoCount", videoDao.readCount());
     	
         return "content/main";
     }
