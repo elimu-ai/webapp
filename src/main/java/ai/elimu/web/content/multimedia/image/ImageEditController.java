@@ -82,7 +82,7 @@ public class ImageEditController {
         model.addAttribute("numbers", numberDao.readAllOrdered(language));
         model.addAttribute("words", wordDao.readAllOrdered(language));
         
-        Audio audio = audioDao.read(image.getTitle(), language);
+        Audio audio = audioDao.read(image.getTitle());
         model.addAttribute("audio", audio);
 
         return "content/multimedia/image/edit";
@@ -165,7 +165,7 @@ public class ImageEditController {
             model.addAttribute("letters", letterDao.readAllOrdered(language));
             model.addAttribute("numbers", numberDao.readAllOrdered(language));
             model.addAttribute("words", wordDao.readAllOrdered(language));
-            Audio audio = audioDao.read(image.getTitle(), language);
+            Audio audio = audioDao.read(image.getTitle());
             model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";
         } else {

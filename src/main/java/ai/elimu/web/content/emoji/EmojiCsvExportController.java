@@ -3,8 +3,6 @@ package ai.elimu.web.content.emoji;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -37,8 +35,7 @@ public class EmojiCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<ai.elimu.model.content.Emoji> emojis = emojiDao.readAllOrdered(language);
+        List<Emoji> emojis = emojiDao.readAllOrdered();
         logger.info("emojis.size(): " + emojis.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

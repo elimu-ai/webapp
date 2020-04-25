@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.multimedia.Audio;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.gson.content.multimedia.AudioGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,14 @@ public class AudioRestController {
     @RequestMapping("/list")
     public String list(
             HttpServletRequest request,
-            @RequestParam String deviceId,
-            @RequestParam Language language
+            @RequestParam String deviceId
     ) {
         logger.info("list");
         
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray jsonArray = new JSONArray();
-        for (Audio audio : audioDao.readAllOrdered(language)) {
+        for (Audio audio : audioDao.readAllOrdered()) {
             AudioGson audioGson = JavaToGsonConverter.getAudioGson(audio);
             String json = new Gson().toJson(audioGson);
             jsonArray.put(new JSONObject(json));

@@ -66,14 +66,14 @@ public class WordEditController {
         model.addAttribute("rootWords", wordDao.readAllOrdered(language));
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-        model.addAttribute("audio", audioDao.read(word.getText(), language));
+        model.addAttribute("audio", audioDao.read(word.getText()));
         
         // Look up variants of the same word
         model.addAttribute("wordInflections", wordDao.readInflections(word));
         
         // Look up Multimedia content that has been labeled with this Word
         // TODO: labeled Audios
-        List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word, language);
+        List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word);
         model.addAttribute("labeledEmojis", labeledEmojis);
         List<Image> labeledImages = imageDao.readAllLabeled(word, language);
         model.addAttribute("labeledImages", labeledImages);
@@ -105,7 +105,7 @@ public class WordEditController {
             model.addAttribute("rootWords", wordDao.readAllOrdered(language));
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            model.addAttribute("audio", audioDao.read(word.getText(), language));
+            model.addAttribute("audio", audioDao.read(word.getText()));
             model.addAttribute("wordInflections", wordDao.readInflections(word));
             return "content/word/edit";
         } else {

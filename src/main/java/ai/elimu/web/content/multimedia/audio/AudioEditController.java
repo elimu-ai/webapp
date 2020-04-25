@@ -91,7 +91,7 @@ public class AudioEditController {
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
         } else {
-            Audio existingAudio = audioDao.read(audio.getTranscription(), audio.getLanguage());
+            Audio existingAudio = audioDao.read(audio.getTranscription());
             if ((existingAudio != null) && !existingAudio.getId().equals(audio.getId())) {
                 result.rejectValue("transcription", "NonUnique");
             }

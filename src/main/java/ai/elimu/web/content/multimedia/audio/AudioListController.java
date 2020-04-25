@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.multimedia.Audio;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +24,7 @@ public class AudioListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
-        List<Audio> audios = audioDao.readAllOrdered(language);
+        List<Audio> audios = audioDao.readAllOrdered();
         model.addAttribute("audios", audios);
 
         return "content/multimedia/audio/list";
