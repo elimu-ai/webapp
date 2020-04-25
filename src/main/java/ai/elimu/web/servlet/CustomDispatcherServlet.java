@@ -33,6 +33,13 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             logger.info("Performing database content import...");
             new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, webApplicationContext);
         }
+        
+        if (EnvironmentContextLoaderListener.env == Environment.TEST) {
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+            if (language == Language.BEN) {
+                new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, webApplicationContext);
+            }
+        }
 
         return webApplicationContext;
     }
