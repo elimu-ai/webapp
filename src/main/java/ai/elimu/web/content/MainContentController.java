@@ -96,7 +96,7 @@ public class MainContentController {
         model.addAttribute("letterCount", letterDao.readCount(language));
         model.addAttribute("syllableCount", syllableDao.readCount(language));
         model.addAttribute("wordCount", wordDao.readCount(language));
-        model.addAttribute("emojiCount", emojiDao.readCount(language));
+        model.addAttribute("emojiCount", emojiDao.readCount());
         model.addAttribute("storyBookCount", storyBookDao.readCount(language));
         model.addAttribute("audioCount", audioDao.readCount());
         model.addAttribute("imageCount", imageDao.readCount(language));

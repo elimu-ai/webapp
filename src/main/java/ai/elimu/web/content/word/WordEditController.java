@@ -73,7 +73,7 @@ public class WordEditController {
         
         // Look up Multimedia content that has been labeled with this Word
         // TODO: labeled Audios
-        List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word, language);
+        List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word);
         model.addAttribute("labeledEmojis", labeledEmojis);
         List<Image> labeledImages = imageDao.readAllLabeled(word, language);
         model.addAttribute("labeledImages", labeledImages);
