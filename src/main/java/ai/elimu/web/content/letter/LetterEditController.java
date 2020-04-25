@@ -37,12 +37,10 @@ public class LetterEditController {
             @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         Letter letter = letterDao.read(id);
         model.addAttribute("letter", letter);
         
-        List<Allophone> allophones = allophoneDao.readAllOrdered(language);
+        List<Allophone> allophones = allophoneDao.readAllOrdered();
         model.addAttribute("allophones", allophones);
 
         return "content/letter/edit";
@@ -65,7 +63,7 @@ public class LetterEditController {
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
             
-            List<Allophone> allophones = allophoneDao.readAllOrdered(language);
+            List<Allophone> allophones = allophoneDao.readAllOrdered();
             model.addAttribute("allophones", allophones);
             
             return "content/letter/edit";

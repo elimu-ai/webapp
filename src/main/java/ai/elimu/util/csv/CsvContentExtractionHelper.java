@@ -136,11 +136,10 @@ public class CsvContentExtractionHelper {
                 JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
                 logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
                 List<Allophone> allophones = new ArrayList<>();
-                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
                 for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
                     String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
                     logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
-                    Allophone allophone = allophoneDao.readByValueIpa(language, allophoneValueIpa);
+                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
                     logger.info("allophone.getId(): " + allophone.getId());
                     allophones.add(allophone);
                 }
@@ -201,11 +200,10 @@ public class CsvContentExtractionHelper {
                 JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
                 logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
                 List<Allophone> allophones = new ArrayList<>();
-                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
                 for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
                     String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
                     logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
-                    Allophone allophone = allophoneDao.readByValueIpa(language, allophoneValueIpa);
+                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
                     logger.info("allophone.getId(): " + allophone.getId());
                     allophones.add(allophone);
                 }

@@ -2,8 +2,6 @@ package ai.elimu.web.content.allophone;
 
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -35,8 +33,7 @@ public class AllophoneCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage(language);
+        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage();
         logger.info("allophones.size(): " + allophones.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

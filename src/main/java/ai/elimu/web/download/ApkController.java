@@ -16,9 +16,7 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.enums.Language;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/apk")
@@ -37,8 +35,6 @@ public class ApkController {
             @PathVariable String packageName,
             @PathVariable Integer versionCode,
             
-            @RequestParam Language language,
-            
             HttpServletRequest request,
             HttpServletResponse response,
             OutputStream outputStream) {
@@ -49,7 +45,7 @@ public class ApkController {
         logger.info("request.getQueryString(): " + request.getQueryString());
         logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
         
-        Application application = applicationDao.readByPackageName(language, packageName);
+        Application application = applicationDao.readByPackageName(packageName);
         logger.info("application: " + application);
         
         ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);

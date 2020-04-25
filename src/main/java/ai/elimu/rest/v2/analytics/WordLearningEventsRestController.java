@@ -117,8 +117,7 @@ public class WordLearningEventsRestController {
                 wordLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
-                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-                Application application = applicationDao.readByPackageName(language, packageName);
+                Application application = applicationDao.readByPackageName(packageName);
                 logger.info("application: " + application);
                 if (application == null) {
                     // Return error message saying that the reporting Application has not yet been added

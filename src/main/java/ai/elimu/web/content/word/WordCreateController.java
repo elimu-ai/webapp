@@ -59,7 +59,7 @@ public class WordCreateController {
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         model.addAttribute("word", word);
-        model.addAttribute("allophones", allophoneDao.readAllOrdered(language));
+        model.addAttribute("allophones", allophoneDao.readAllOrdered());
         model.addAttribute("rootWords", wordDao.readAllOrdered(language));
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
@@ -81,7 +81,7 @@ public class WordCreateController {
             result.rejectValue("text", "NonUnique");
         }
         
-        List<Allophone> allophones = allophoneDao.readAllOrdered(language);
+        List<Allophone> allophones = allophoneDao.readAllOrdered();
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);

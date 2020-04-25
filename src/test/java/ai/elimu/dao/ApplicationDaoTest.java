@@ -7,7 +7,6 @@ import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ai.elimu.model.enums.Language;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,11 +22,8 @@ public class ApplicationDaoTest {
     private ApplicationDao applicationDao;
     
     @Test
-    public void testCacheable() {
-        Language language = Language.values()[(int) (Math.random() * Language.values().length)];
-        logger.info("language: " + language);
-        
-        List<Application> applications = applicationDao.readAll(language);
+    public void testReadAll() {
+        List<Application> applications = applicationDao.readAll();
         assertThat(applications.isEmpty(), is(true));
     }
 }
