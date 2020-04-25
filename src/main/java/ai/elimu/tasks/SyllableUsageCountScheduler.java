@@ -99,7 +99,7 @@ public class SyllableUsageCountScheduler {
                     continue;
                 }
                 
-                Syllable existingSyllable = syllableDao.readByText(language, syllableText);
+                Syllable existingSyllable = syllableDao.readByText(syllableText);
                 if (existingSyllable == null) {
                     Syllable syllable = new Syllable();
                     syllable.setLanguage(language);

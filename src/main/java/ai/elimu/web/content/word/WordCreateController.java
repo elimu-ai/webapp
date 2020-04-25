@@ -111,7 +111,7 @@ public class WordCreateController {
             }
             
             // Delete syllables that are actual words
-            Syllable syllable = syllableDao.readByText(language, word.getText());
+            Syllable syllable = syllableDao.readByText(word.getText());
             if (syllable != null) {
                 syllableDao.delete(syllable);
             }
