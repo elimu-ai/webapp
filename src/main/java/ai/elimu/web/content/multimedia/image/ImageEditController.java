@@ -79,7 +79,7 @@ public class ImageEditController {
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
         model.addAttribute("letters", letterDao.readAllOrdered());
-        model.addAttribute("numbers", numberDao.readAllOrdered(language));
+        model.addAttribute("numbers", numberDao.readAllOrdered());
         model.addAttribute("words", wordDao.readAllOrdered(language));
         
         Audio audio = audioDao.read(image.getTitle());
@@ -163,7 +163,7 @@ public class ImageEditController {
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
             model.addAttribute("letters", letterDao.readAllOrdered());
-            model.addAttribute("numbers", numberDao.readAllOrdered(language));
+            model.addAttribute("numbers", numberDao.readAllOrdered());
             model.addAttribute("words", wordDao.readAllOrdered(language));
             Audio audio = audioDao.read(image.getTitle());
             model.addAttribute("audio", audio);

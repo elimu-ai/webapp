@@ -54,7 +54,7 @@ public class NumberEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Number existingNumber = numberDao.readByValue(number.getLanguage(), number.getValue());
+        Number existingNumber = numberDao.readByValue(number.getValue());
         if ((existingNumber != null) && !existingNumber.getId().equals(number.getId())) {
             result.rejectValue("value", "NonUnique");
         }

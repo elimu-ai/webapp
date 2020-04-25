@@ -7,45 +7,38 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.Number;
 import ai.elimu.dao.NumberDao;
-import ai.elimu.model.enums.Language;
 
 public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
 
     @Override
-    public Number readByValue(Language language, Integer value) throws DataAccessException {
+    public Number readByValue(Integer value) throws DataAccessException {
         try {
             return (Number) em.createQuery(
                 "SELECT n " +
                 "FROM Number n " +
-                "WHERE n.language = :language " +
-                "AND n.value = :value")
-                .setParameter("language", language)
+                "WHERE n.value = :value")
                 .setParameter("value", value)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Number \"" + value + "\" was not found for language " + language);
+            logger.warn("Number \"" + value + "\" was not found");
             return null;
         }
     }
 
     @Override
-    public List<Number> readAllOrdered(Language language) throws DataAccessException {
+    public List<Number> readAllOrdered() throws DataAccessException {
         return em.createQuery(
             "SELECT n " +
             "FROM Number n " +
-            "WHERE n.language = :language " +
             "ORDER BY n.value")
-            .setParameter("language", language)
             .getResultList();
     }
 
     @Override
-    public Long readCount(Language language) throws DataAccessException {
+    public Long readCount() throws DataAccessException {
         return (Long) em.createQuery(
             "SELECT COUNT(n) " +
-            "FROM Number n " +
-            "WHERE n.language = :language")
-            .setParameter("language", language)
+            "FROM Number n")
             .getSingleResult();
     }
 }
