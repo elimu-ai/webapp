@@ -104,7 +104,6 @@ public class SyllableUsageCountScheduler {
             Syllable existingSyllable = syllableDao.readByText(syllableText);
             if (existingSyllable == null) {
                 Syllable syllable = new Syllable();
-                syllable.setLanguage(language);
                 syllable.setTimeLastUpdate(Calendar.getInstance());
                 syllable.setText(syllableText);
                 syllable.setUsageCount(syllableFrequencyMap.get(syllableText));

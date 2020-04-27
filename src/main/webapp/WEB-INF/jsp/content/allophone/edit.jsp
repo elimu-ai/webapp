@@ -9,7 +9,6 @@
             <tag:formErrors modelAttribute="allophone" />
 
             <div class="row">
-                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
                 <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
                 <form:hidden path="usageCount" value="${allophone.usageCount}" />
                 

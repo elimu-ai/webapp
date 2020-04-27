@@ -24,7 +24,6 @@
             <tag:formErrors modelAttribute="image" />
 
             <div class="row">
-                <form:hidden path="language" value="${image.language}" />
                 <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
                 <form:hidden path="imageFormat" value="${number.imageFormat}" />
                 <form:hidden path="contentType" value="${number.contentType}" />

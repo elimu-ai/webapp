@@ -14,7 +14,6 @@
             <tag:formErrors modelAttribute="application" />
 
             <div class="row">
-                <form:hidden path="language" value="${application.language}" />
                 <form:hidden path="contributor" value="${application.contributor.id}" />
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}
@@ -125,7 +124,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk?language=${application.language}' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
+                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
                                             <i class="material-icons">vertical_align_bottom</i>
                                         </a>
                                     </td>

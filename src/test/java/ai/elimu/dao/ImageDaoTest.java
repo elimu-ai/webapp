@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -32,12 +31,10 @@ public class ImageDaoTest {
     public void testReadAllLabeled() {
         Word wordDog = new Word();
         wordDog.setText("dog");
-        wordDog.setLanguage(Language.ENG);
         wordDao.create(wordDog);
         
         Word wordCat = new Word();
         wordCat.setText("cat");
-        wordCat.setLanguage(Language.ENG);
         wordDao.create(wordCat);
         
         List<Image> images = imageDao.readAllLabeled(wordCat);
@@ -49,7 +46,6 @@ public class ImageDaoTest {
         Image image = new Image();
         image.setTitle("image");
         image.setWords(words);
-        image.setLanguage(Language.ENG);
         imageDao.create(image);
         
         images = imageDao.readAllLabeled(wordDog);

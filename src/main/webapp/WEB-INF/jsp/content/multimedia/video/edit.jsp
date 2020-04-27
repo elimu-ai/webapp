@@ -9,7 +9,6 @@
             <tag:formErrors modelAttribute="video" />
 
             <div class="row">
-                <form:hidden path="language" value="${video.language}" />
                 <form:hidden path="revisionNumber" value="${video.revisionNumber}" />
                 <form:hidden path="videoFormat" value="${number.videoFormat}" />
                 <form:hidden path="contentType" value="${number.contentType}" />

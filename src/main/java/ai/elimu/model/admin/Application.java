@@ -11,16 +11,11 @@ import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 
 @Entity
 public class Application extends BaseEntity {
-    
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Language language;
     
     @NotNull
     private String packageName;
@@ -42,14 +37,6 @@ public class Application extends BaseEntity {
     @NotNull
     @ManyToOne
     private Contributor contributor;
-
-    public Language getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
 
     public String getPackageName() {
         return packageName;
