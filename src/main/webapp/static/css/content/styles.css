@@ -1,3 +1,9 @@
+html[data-content-language="ben"],
+html[data-content-language="hin"],
+html[data-content-language="urd"] {
+    font-family: "Andika", sans-serif;
+}
+
 body {
     background-image: url(../../../static/img/background.jpg);
 }

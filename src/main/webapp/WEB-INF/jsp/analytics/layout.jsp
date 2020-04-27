@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-content-language="${fn:toLowerCase(applicationScope.configProperties['content.language'])}">
     <head>
         <title><content:gettitle /> | ${fn:toLowerCase(applicationScope.configProperties['content.language'])}.elimu.ai</title>
 
@@ -11,8 +11,8 @@
         
         <%-- CSS --%>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
         <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
         <link rel="stylesheet" href="<spring:url value='/static/css/analytics/styles.css' />" />
         
