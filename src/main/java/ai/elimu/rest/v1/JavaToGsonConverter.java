@@ -206,7 +206,6 @@ public class JavaToGsonConverter {
             EmojiGson emojiGson = new EmojiGson();
             
             emojiGson.setId(emoji.getId());
-            emojiGson.setLanguage(emoji.getLanguage());
             emojiGson.setTimeLastUpdate(emoji.getTimeLastUpdate());
             emojiGson.setRevisionNumber(emoji.getRevisionNumber());
             emojiGson.setContentStatus(emoji.getContentStatus());
@@ -280,7 +279,6 @@ public class JavaToGsonConverter {
             AudioGson audioGson = new AudioGson();
             
             audioGson.setId(audio.getId());
-            audioGson.setLanguage(audio.getLanguage());
             audioGson.setTimeLastUpdate(audio.getTimeLastUpdate());
             audioGson.setRevisionNumber(audio.getRevisionNumber());
             audioGson.setContentStatus(audio.getContentStatus());

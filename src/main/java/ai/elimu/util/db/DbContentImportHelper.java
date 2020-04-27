@@ -84,7 +84,6 @@ public class DbContentImportHelper {
         logger.info("allophones.size(): " + allophones.size());
         allophoneDao = (AllophoneDao) webApplicationContext.getBean("allophoneDao");
         for (Allophone allophone : allophones) {
-            allophone.setLanguage(language);
             allophoneDao.create(allophone);
         }
         
@@ -94,7 +93,6 @@ public class DbContentImportHelper {
         logger.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         for (Letter letter : letters) {
-            letter.setLanguage(language);
             letterDao.create(letter);
         }
         
@@ -127,7 +125,6 @@ public class DbContentImportHelper {
         logger.info("emojis.size(): " + emojis.size());
         emojiDao = (EmojiDao) webApplicationContext.getBean("emojiDao");
         for (Emoji emoji : emojis) {
-            emoji.setLanguage(language);
             emojiDao.create(emoji);
         }
         
