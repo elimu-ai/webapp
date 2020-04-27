@@ -223,7 +223,6 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 402,image/jpg,null,"null","344cb250fee33bdabf4aff6603eb3506","/image/402.jpg",JPG
 403,image/jpg,null,"null","e27c3643f7ba51abda1f02f07549577c","/image/403.jpg",JPG
 410,image/jpg,null,"null","storybook-61-cover","/image/410.jpg",JPG
-411,image/jpg,null,"null","storybook-61-ch-1","/image/411.jpg",JPG
 412,image/jpg,null,"null","storybook-61-ch-2","/image/412.jpg",JPG
 413,image/jpg,null,"null","storybook-61-ch-3","/image/413.jpg",JPG
 414,image/jpg,null,"null","storybook-61-ch-4","/image/414.jpg",JPG
@@ -244,7 +243,6 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 429,image/jpg,null,"null","storybook-61-ch-19","/image/429.jpg",JPG
 430,image/jpg,null,"null","storybook-61-ch-20","/image/430.jpg",JPG
 431,image/jpg,null,"null","storybook-62-cover","/image/431.jpg",JPG
-432,image/jpg,null,"null","storybook-62-ch-1","/image/432.jpg",JPG
 433,image/jpg,null,"null","storybook-62-ch-2","/image/433.jpg",JPG
 434,image/jpg,null,"null","storybook-62-ch-3","/image/434.jpg",JPG
 435,image/jpg,null,"null","storybook-62-ch-4","/image/435.jpg",JPG
@@ -256,4 +254,3 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 441,image/jpg,null,"null","storybook-62-ch-10","/image/441.jpg",JPG
 442,image/jpg,null,"null","storybook-62-ch-11","/image/442.jpg",JPG
 443,image/jpg,null,"null","storybook-62-ch-12","/image/443.jpg",JPG
-444,image/jpg,null,"null","storybook-62-ch-15","/image/444.jpg",JPG
