@@ -18,9 +18,9 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
-import ai.elimu.model.gson.content.StoryBookChapterGson;
-import ai.elimu.model.gson.content.StoryBookGson;
-import ai.elimu.model.gson.content.StoryBookParagraphGson;
+import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
+import ai.elimu.model.v2.gson.content.StoryBookGson;
+import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
 import java.io.File;
@@ -151,7 +151,7 @@ public class DbContentImportHelper {
             storyBook.setTitle(storyBookGson.getTitle());
             storyBook.setDescription(storyBookGson.getDescription());
 //            TODO: storyBook.setContentLicense();
-            storyBook.setAttributionUrl(storyBookGson.getAttributionUrl());
+//            TODO: storyBook.setAttributionUrl();
             storyBook.setReadingLevel(storyBookGson.getReadingLevel());
             storyBookDao.create(storyBook);
             

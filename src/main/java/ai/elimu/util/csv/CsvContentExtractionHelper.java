@@ -7,13 +7,14 @@ import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.ReadingLevel;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.model.enums.content.allophone.SoundType;
-import ai.elimu.model.gson.content.StoryBookChapterGson;
-import ai.elimu.model.gson.content.StoryBookGson;
-import ai.elimu.model.gson.content.StoryBookParagraphGson;
+import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
+import ai.elimu.model.v2.gson.content.StoryBookGson;
+import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
@@ -394,20 +395,23 @@ public class CsvContentExtractionHelper {
                 String description = csvRecord.get("description");
                 storyBookGson.setDescription(description);
                 
-//                if (StringUtils.isNotBlank(csvRecord.get("content_license"))) {
-//                    ContentLicense contentLicense = ContentLicense.valueOf(csvRecord.get("content_license"));
+                if (StringUtils.isNotBlank(csvRecord.get("content_license"))) {
+                    ContentLicense contentLicense = ContentLicense.valueOf(csvRecord.get("content_license"));
 //                    storyBookGson.setContentLicense(contentLicense);
-//                }
+                }
                 
                 String attributionUrl = csvRecord.get("attribution_url");
-                storyBookGson.setAttributionUrl(attributionUrl);
+//                storyBookGson.setAttributionUrl(attributionUrl);
                 
                 if (StringUtils.isNotBlank(csvRecord.get("reading_level"))) {
                     ReadingLevel readingLevel = ReadingLevel.valueOf(csvRecord.get("reading_level"));
                     storyBookGson.setReadingLevel(readingLevel);
                 }
                 
-                // TODO: set cover image
+                if (StringUtils.isNotBlank(csvRecord.get("cover_image_id"))) {
+                    Long coverImageId = Long.valueOf(csvRecord.get("cover_image_id"));
+//                    storyBookGson.setCoverImage();
+                }
                 
                 List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
                 JSONArray chaptersJsonArray = new JSONArray(csvRecord.get("chapters"));
@@ -417,7 +421,6 @@ public class CsvContentExtractionHelper {
                     logger.info("chapterJsonObject: " + chapterJsonObject);
                     
                     StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
-                    // storyBookChapterGson.setStoryBook();
                     storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
                     
                     List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
@@ -428,7 +431,6 @@ public class CsvContentExtractionHelper {
                         logger.info("paragraphJsonObject: " + paragraphJsonObject);
 
                         StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
-                        // storyBookParagraphGson.setStoryBookChapter();
                         storyBookParagraphGson.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
                         storyBookParagraphGson.setOriginalText(paragraphJsonObject.getString("originalText"));
                         // TODO: setWords

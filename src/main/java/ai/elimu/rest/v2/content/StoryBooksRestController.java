@@ -63,10 +63,9 @@ public class StoryBooksRestController {
                 
                 // Remove duplicate image content
                 // TODO: move this code block to JpaToGsonConverter?
-                ImageGson imageGson = storyBookChapterGson.getImage();
-                if (imageGson != null) {
+                if (storyBookChapterGson.getImage() != null) {
                     ImageGson imageGsonWithIdOnly = new ImageGson();
-                    imageGsonWithIdOnly.setId(imageGson.getId());
+                    imageGsonWithIdOnly.setId(storyBookChapterGson.getImage().getId());
                     storyBookChapterGson.setImage(imageGsonWithIdOnly);
                 }
                 

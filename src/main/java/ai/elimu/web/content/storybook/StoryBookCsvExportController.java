@@ -6,9 +6,10 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.gson.content.StoryBookChapterGson;
-import ai.elimu.model.gson.content.StoryBookParagraphGson;
-import ai.elimu.rest.v1.JavaToGsonConverter;
+import ai.elimu.model.v2.gson.content.ImageGson;
+import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
+import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
+import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -82,8 +83,15 @@ public class StoryBookCsvExportController {
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
                 logger.info("storyBookChapter.getId(): " + storyBookChapter.getId());
                 
-                StoryBookChapterGson storyBookChapterGson = JavaToGsonConverter.getStoryBookChapterGson(storyBookChapter);
-                storyBookChapterGson.setStoryBook(null);
+                StoryBookChapterGson storyBookChapterGson = JpaToGsonConverter.getStoryBookChapterGson(storyBookChapter);
+                
+                // Remove duplicate image content
+                // TODO: move this code block to JpaToGsonConverter?
+                if (storyBookChapterGson.getImage() != null) {
+                    ImageGson imageGsonWithIdOnly = new ImageGson();
+                    imageGsonWithIdOnly.setId(storyBookChapterGson.getImage().getId());
+                    storyBookChapterGson.setImage(imageGsonWithIdOnly);
+                }
                 
                 // Store paragraphs as JSON objects
                 List<StoryBookParagraphGson> storyBookParagraphs = new ArrayList<>();
@@ -91,8 +99,7 @@ public class StoryBookCsvExportController {
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
                     logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
                     
-                    StoryBookParagraphGson storyBookParagraphGson = JavaToGsonConverter.getStoryBookParagraphGson(storyBookParagraph);
-                    storyBookParagraphGson.setStoryBookChapter(null);
+                    StoryBookParagraphGson storyBookParagraphGson = JpaToGsonConverter.getStoryBookParagraphGson(storyBookParagraph);
                     storyBookParagraphGson.setWords(null);
                     storyBookParagraphs.add(storyBookParagraphGson);
                 }
