@@ -143,7 +143,6 @@ public class DbContentImportHelper {
         for (StoryBookGson storyBookGson : storyBookGsons) {
             // Convert from GSON to JPA
             StoryBook storyBook = new StoryBook();
-            storyBook.setLanguage(language);
             storyBook.setTitle(storyBookGson.getTitle());
             storyBook.setDescription(storyBookGson.getDescription());
 //            TODO: storyBook.setContentLicense();

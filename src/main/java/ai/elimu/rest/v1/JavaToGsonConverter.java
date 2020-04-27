@@ -322,7 +322,6 @@ public class JavaToGsonConverter {
             StoryBookGson storyBookGson = new StoryBookGson();
             
             storyBookGson.setId(storyBook.getId());
-            storyBookGson.setLanguage(storyBook.getLanguage());
             storyBookGson.setTimeLastUpdate(storyBook.getTimeLastUpdate());
             storyBookGson.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookGson.setContentStatus(storyBook.getContentStatus());
