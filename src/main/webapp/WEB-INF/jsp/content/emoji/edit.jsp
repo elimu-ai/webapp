@@ -77,7 +77,7 @@
         <c:forEach var="word" items="${emoji.words}">
             <div class="chip" data-wordid="${word.id}" data-wordvalue="${word.text}">
                 <a href="<spring:url value='/content/word/edit/${word.id}' />">
-                    ${word.text} 
+                    ${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if>
                 </a>
                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
                     <i class="material-icons">clear</i>

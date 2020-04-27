@@ -40,6 +40,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 13,ɔɪ,OI,,false,VOWEL,3
 11,r̩,r_=,,false,CONSONANT,0
 23,tʃ,tS,,false,CONSONANT,0
+84,ɜ,3,,false,VOWEL,0
 32,ʒ,Z,,false,CONSONANT,0
 82,.,.,,false,,-1
 81,ɝ,@`,,false,,-1

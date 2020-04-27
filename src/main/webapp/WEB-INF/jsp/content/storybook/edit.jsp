@@ -56,7 +56,9 @@
                     </select>
                     <label for="coverImage"><fmt:message key="cover.image" /></label>
                     <c:if test="${not empty storyBook.coverImage}">
-                        <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
+                        <a href="<spring:url value='/content/multimedia/image/edit/${storyBook.coverImage.id}' />">
+                            <img src="<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
+                        </a>
                     </c:if>
                 </div>
             </div>
@@ -74,7 +76,9 @@
         <h5 style="margin-top: 1em;" class="grey-text"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
-                <img src="<spring:url value='/image/${storyBookChapter.image.id}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
+                <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
+                    <img src="<spring:url value='/image/${storyBookChapter.image.id}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
+                </a>
             </c:if>
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">

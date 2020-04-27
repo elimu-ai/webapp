@@ -13,24 +13,39 @@
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
         
-        <c:forEach var="number" items="${numbers}">
-            <div class="col s12 m6 l4">
-                <a name="${number.id}"></a>
-                <div class="number card-panel">
-                    <h4>${number.value}<c:if test="${not empty number.symbol}"> (${number.symbol})</c:if></h4>
-                    <p><fmt:message key="number.words" />: 
-                        <c:forEach var="word" items="${number.words}">
-                            <a href="<spring:url value='/content/word/edit/${word.id}' />">${word.text}</a>
-                        </c:forEach>
-                    </p>
-                    <p><fmt:message key="revision" />: #${number.revisionNumber}</p>
-                    <div class="divider" style="margin: 1em 0;"></div>
-                    <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
-                </div>
-                
-                <%-- TODO: word --%>
-            </div>
-        </c:forEach>
+        <table class="bordered highlight">
+            <thead>
+                <th><fmt:message key="value" /></th>
+                <th><fmt:message key="symbol" /></th>
+                <th><fmt:message key="number.words" /></th>
+                <th><fmt:message key="revision" /></th>
+                <th><fmt:message key="edit" /></th>
+            </thead>
+            <tbody>
+                <c:forEach var="number" items="${numbers}">
+                    <tr class="letter">
+                        <td style="font-size: 2em;">
+                            <a name="${number.id}"></a>
+                            ${number.value}
+                        </td>
+                        <td style="font-size: 2em;">
+                            ${number.symbol}
+                        </td>
+                        <td style="font-size: 2em;">
+                            <c:forEach var="word" items="${number.words}">
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />">${word.text}</a>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            #${number.revisionNumber}
+                        </td>
+                        <td>
+                            <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">

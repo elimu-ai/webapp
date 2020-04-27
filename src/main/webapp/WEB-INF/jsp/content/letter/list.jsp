@@ -53,9 +53,11 @@
                                 </c:forEach>
                             </td>
                             <td>
-                                <p>#${letter.revisionNumber}</p>
+                                #${letter.revisionNumber}
                             </td>
-                            <td><a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />"><span class="material-icons">edit</span></a></td>
+                            <td>
+                                <a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />"><span class="material-icons">edit</span></a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>

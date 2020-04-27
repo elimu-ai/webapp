@@ -18,12 +18,11 @@
                 <a name="${image.id}"></a>
                 <div class="image card">
                     <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
-                        <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
+                        <div class="card-image" style="background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />);">
+                            <span class="card-title"><c:out value="${image.title}" /></span>
+                        </div>
                     </a>
-                    
                     <div class="card-content">
-                        <h4>${image.title}</h4>
-                        
                         <p><fmt:message key="literacy.skills" />: ${image.literacySkills}</p>
                         <p><fmt:message key="numeracy.skills" />: ${image.numeracySkills}</p>
                         <p>
