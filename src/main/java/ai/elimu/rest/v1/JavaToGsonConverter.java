@@ -232,7 +232,6 @@ public class JavaToGsonConverter {
             ImageGson imageGson = new ImageGson();
             
             imageGson.setId(image.getId());
-            imageGson.setLanguage(image.getLanguage());
             imageGson.setTimeLastUpdate(image.getTimeLastUpdate());
             imageGson.setRevisionNumber(image.getRevisionNumber());
             imageGson.setContentStatus(image.getContentStatus());
