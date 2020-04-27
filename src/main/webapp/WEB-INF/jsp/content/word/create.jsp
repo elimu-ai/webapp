@@ -16,6 +16,18 @@
                     <form:input path="text" cssErrorClass="error" />
                 </div>
                 
+                <c:if test="${(applicationScope.configProperties['content.language'] == 'BEN')
+                      || (applicationScope.configProperties['content.language'] == 'HIN')
+                      || (applicationScope.configProperties['content.language'] == 'URD')}">
+                      <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
+                    <div class="col s12 grey-text" style="font-size: 3em; height: 2em;">
+                        <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
+                            <c:set var="letter" value="${fn:substring(word.text, status.index, status.index + 1)}" />
+                            <c:out value="${letter}" /><c:out value=" " />
+                        </c:forEach>
+                    </div>
+                </c:if>
+                
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="selectedAllophonesContainer">
