@@ -294,7 +294,9 @@
     <div id="wordLabelContainer">
         <c:forEach var="word" items="${image.words}">
             <div class="chip" data-wordid="${word.id}" data-wordvalue="${word.text}">
-                ${word.text} 
+                <a href="<spring:url value='/content/word/edit/${word.id}' />">
+                    ${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if>
+                </a>
                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
                     <i class="material-icons">clear</i>
                 </a>
@@ -304,7 +306,7 @@
     <select id="wordId" class="browser-default">
         <option value="">-- <fmt:message key='add.word' /> --</option>
         <c:forEach var="word" items="${words}">
-            <option value="${word.id}"><c:out value="${word.text}" /></option>
+            <option value="${word.id}"><c:out value="${word.text}" /><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if></option>
         </c:forEach>
     </select>
     <script>

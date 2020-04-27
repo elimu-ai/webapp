@@ -254,3 +254,7 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 441,image/jpg,null,"null","storybook-62-ch-10","/image/441.jpg",JPG
 442,image/jpg,null,"null","storybook-62-ch-11","/image/442.jpg",JPG
 443,image/jpg,null,"null","storybook-62-ch-12","/image/443.jpg",JPG
+445,image/jpg,null,"null","storybook-63-cover","/image/445.jpg",JPG
+447,image/jpg,null,"null","storybook-63-ch-2","/image/447.jpg",JPG
+448,image/jpg,null,"null","storybook-63-ch-3","/image/448.jpg",JPG
+449,image/gif,null,"null","storybook-63-ch-4","/image/449.gif",GIF
