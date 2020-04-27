@@ -14,7 +14,6 @@
             <tag:formErrors modelAttribute="application" />
 
             <div class="row">
-                <form:hidden path="language" value="${application.language}" />
                 <form:hidden path="contributor" value="${application.contributor.id}" />
                 <div class="input-field col s6">
                     <fmt:message key='package.name' />: ${application.packageName}

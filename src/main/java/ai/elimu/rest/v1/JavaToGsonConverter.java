@@ -44,7 +44,6 @@ public class JavaToGsonConverter {
         } else {
             ApplicationGson applicationGson = new ApplicationGson();
             applicationGson.setId(application.getId());
-            applicationGson.setLanguage(application.getLanguage());
             applicationGson.setPackageName(application.getPackageName());
             applicationGson.setInfrastructural(application.isInfrastructural());
             applicationGson.setLiteracySkills(application.getLiteracySkills());
