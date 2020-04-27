@@ -188,7 +188,9 @@
     <div id="numberLabelContainer">
         <c:forEach var="number" items="${video.numbers}">
             <div class="chip" data-numberid="${number.id}">
-                ${number.value} 
+                <a href="<spring:url value='/content/number/edit/${number.id}' />">
+                    ${number.value}<c:if test="${not empty number.symbol}"> (${number.symbol})</c:if>
+                </a>
                 <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
                     <i class="material-icons">clear</i>
                 </a>
@@ -198,7 +200,7 @@
     <select id="numberId" class="browser-default">
         <option value="">-- <fmt:message key='add.number' /> --</option>
         <c:forEach var="number" items="${numbers}">
-            <option value="${number.id}"><c:out value="${number.value}" /></option>
+            <option value="${number.id}"><c:out value="${number.value}" /><c:if test="${not empty number.symbol}"> (${number.symbol})</c:if></option>
         </c:forEach>
     </select>
     <script>

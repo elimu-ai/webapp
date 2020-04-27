@@ -40,13 +40,23 @@ nav {
 .previewContainer #previewContent.previewContentGrapheme {
     background: #FFF;
     font-size: 10em;
-    font-family: "Andika", "Source Sans Pro", Arial, Verdana, sans-serif;
 }
 #wordCreatePage .previewContainer #previewContent.previewContentGrapheme,
 #wordEditPage .previewContainer #previewContent.previewContentGrapheme {
     font-size: 4em;
     padding-top: 4rem;
     letter-spacing: .5rem;
+}
+
+html[data-content-language="ben"] #wordCreatePage input#text,
+html[data-content-language="hin"] #wordCreatePage input#text,
+html[data-content-language="urd"] #wordCreatePage input#text,
+html[data-content-language="ben"] #wordEditPage input#text,
+html[data-content-language="hin"] #wordEditPage input#text,
+html[data-content-language="urd"] #wordEditPage input#text {
+    font-size: 3em;
+    height: 2em;
+    letter-spacing: 0.2em;
 }
 
 #labeledAudios img,

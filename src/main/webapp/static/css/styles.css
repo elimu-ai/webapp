@@ -1,6 +1,11 @@
 html {
     font-family: "Poppins", sans-serif;
 }
+html[data-content-language="ben"],
+html[data-content-language="hin"],
+html[data-content-language="urd"] {
+    font-family: "Andika", sans-serif;
+}
 
 body {
     background: #EEE;
