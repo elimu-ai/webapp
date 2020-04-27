@@ -155,7 +155,6 @@ public class JavaToGsonConverter {
             NumberGson numberGson = new NumberGson();
             
             numberGson.setId(number.getId());
-            numberGson.setLanguage(number.getLanguage());
             numberGson.setTimeLastUpdate(number.getTimeLastUpdate());
             numberGson.setRevisionNumber(number.getRevisionNumber());
             numberGson.setContentStatus(number.getContentStatus());

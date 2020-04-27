@@ -112,7 +112,6 @@ public class DbContentImportHelper {
         logger.info("numbers.size(): " + numbers.size());
         numberDao = (NumberDao) webApplicationContext.getBean("numberDao");
         for (Number number : numbers) {
-            number.setLanguage(language);
             numberDao.create(number);
         }
         
