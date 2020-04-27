@@ -180,7 +180,6 @@ public class JavaToGsonConverter {
             SyllableGson syllableGson = new SyllableGson();
             
             syllableGson.setId(syllable.getId());
-            syllableGson.setLanguage(syllable.getLanguage());
             syllableGson.setTimeLastUpdate(syllable.getTimeLastUpdate());
             syllableGson.setRevisionNumber(syllable.getRevisionNumber());
             syllableGson.setContentStatus(syllable.getContentStatus());
