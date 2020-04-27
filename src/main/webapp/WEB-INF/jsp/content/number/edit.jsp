@@ -8,7 +8,6 @@
         <form:form modelAttribute="number">
             <tag:formErrors modelAttribute="number" />
             
-            <form:hidden path="language" value="${number.language}" />
             <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
 
             <div class="row">

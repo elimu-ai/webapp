@@ -8,7 +8,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ContentStatus;
 
 /**
@@ -16,11 +15,6 @@ import ai.elimu.model.enums.content.ContentStatus;
  */
 @MappedSuperclass
 public abstract class Content extends BaseEntity {
-    
-    @Deprecated
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Language language;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeLastUpdate;
@@ -31,16 +25,6 @@ public abstract class Content extends BaseEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ContentStatus contentStatus = ContentStatus.ACTIVE;
-    
-    @Deprecated
-    public Language getLanguage() {
-        return language;
-    }
-    
-    @Deprecated
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
 
     public Calendar getTimeLastUpdate() {
         return timeLastUpdate;

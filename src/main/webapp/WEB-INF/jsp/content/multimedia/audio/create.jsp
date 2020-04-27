@@ -9,7 +9,6 @@
             <tag:formErrors modelAttribute="audio" />
 
             <div class="row">
-                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
                 <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
                 
                 <div class="input-field col s12">

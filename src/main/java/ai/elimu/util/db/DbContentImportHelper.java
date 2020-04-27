@@ -84,7 +84,6 @@ public class DbContentImportHelper {
         logger.info("allophones.size(): " + allophones.size());
         allophoneDao = (AllophoneDao) webApplicationContext.getBean("allophoneDao");
         for (Allophone allophone : allophones) {
-            allophone.setLanguage(language);
             allophoneDao.create(allophone);
         }
         
@@ -94,7 +93,6 @@ public class DbContentImportHelper {
         logger.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         for (Letter letter : letters) {
-            letter.setLanguage(language);
             letterDao.create(letter);
         }
         
@@ -104,7 +102,6 @@ public class DbContentImportHelper {
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
         for (Word word : words) {
-            word.setLanguage(language);
             wordDao.create(word);
         }
         
@@ -114,7 +111,6 @@ public class DbContentImportHelper {
         logger.info("numbers.size(): " + numbers.size());
         numberDao = (NumberDao) webApplicationContext.getBean("numberDao");
         for (Number number : numbers) {
-            number.setLanguage(language);
             numberDao.create(number);
         }
         
@@ -127,7 +123,6 @@ public class DbContentImportHelper {
         logger.info("emojis.size(): " + emojis.size());
         emojiDao = (EmojiDao) webApplicationContext.getBean("emojiDao");
         for (Emoji emoji : emojis) {
-            emoji.setLanguage(language);
             emojiDao.create(emoji);
         }
         
@@ -147,7 +142,6 @@ public class DbContentImportHelper {
         for (StoryBookGson storyBookGson : storyBookGsons) {
             // Convert from GSON to JPA
             StoryBook storyBook = new StoryBook();
-            storyBook.setLanguage(language);
             storyBook.setTitle(storyBookGson.getTitle());
             storyBook.setDescription(storyBookGson.getDescription());
 //            TODO: storyBook.setContentLicense();

@@ -9,7 +9,6 @@
             <tag:formErrors modelAttribute="application" />
 
             <div class="row">
-                <form:hidden path="language" value="${applicationScope.configProperties['content.language']}" />
                 <form:hidden path="applicationStatus" value="${application.applicationStatus}" />
                 <form:hidden path="contributor" value="${contributor.id}" />
                 <div class="col s12 m6 input-field">

@@ -44,7 +44,6 @@ public class JavaToGsonConverter {
         } else {
             ApplicationGson applicationGson = new ApplicationGson();
             applicationGson.setId(application.getId());
-            applicationGson.setLanguage(application.getLanguage());
             applicationGson.setPackageName(application.getPackageName());
             applicationGson.setInfrastructural(application.isInfrastructural());
             applicationGson.setLiteracySkills(application.getLiteracySkills());
@@ -82,7 +81,6 @@ public class JavaToGsonConverter {
             AllophoneGson allophoneGson = new AllophoneGson();
             
             allophoneGson.setId(allophone.getId());
-            allophoneGson.setLanguage(allophone.getLanguage());
             allophoneGson.setTimeLastUpdate(allophone.getTimeLastUpdate());
             allophoneGson.setRevisionNumber(allophone.getRevisionNumber());
             allophoneGson.setContentStatus(allophone.getContentStatus());
@@ -105,7 +103,6 @@ public class JavaToGsonConverter {
             LetterGson letterGson = new LetterGson();
             
             letterGson.setId(letter.getId());
-            letterGson.setLanguage(letter.getLanguage());
             letterGson.setTimeLastUpdate(letter.getTimeLastUpdate());
             letterGson.setRevisionNumber(letter.getRevisionNumber());
             letterGson.setContentStatus(letter.getContentStatus());
@@ -130,7 +127,6 @@ public class JavaToGsonConverter {
             WordGson wordGson = new WordGson();
             
             wordGson.setId(word.getId());
-            wordGson.setLanguage(word.getLanguage());
             wordGson.setTimeLastUpdate(word.getTimeLastUpdate());
             wordGson.setRevisionNumber(word.getRevisionNumber());
             wordGson.setContentStatus(word.getContentStatus());
@@ -158,7 +154,6 @@ public class JavaToGsonConverter {
             NumberGson numberGson = new NumberGson();
             
             numberGson.setId(number.getId());
-            numberGson.setLanguage(number.getLanguage());
             numberGson.setTimeLastUpdate(number.getTimeLastUpdate());
             numberGson.setRevisionNumber(number.getRevisionNumber());
             numberGson.setContentStatus(number.getContentStatus());
@@ -184,7 +179,6 @@ public class JavaToGsonConverter {
             SyllableGson syllableGson = new SyllableGson();
             
             syllableGson.setId(syllable.getId());
-            syllableGson.setLanguage(syllable.getLanguage());
             syllableGson.setTimeLastUpdate(syllable.getTimeLastUpdate());
             syllableGson.setRevisionNumber(syllable.getRevisionNumber());
             syllableGson.setContentStatus(syllable.getContentStatus());
@@ -209,7 +203,6 @@ public class JavaToGsonConverter {
             EmojiGson emojiGson = new EmojiGson();
             
             emojiGson.setId(emoji.getId());
-            emojiGson.setLanguage(emoji.getLanguage());
             emojiGson.setTimeLastUpdate(emoji.getTimeLastUpdate());
             emojiGson.setRevisionNumber(emoji.getRevisionNumber());
             emojiGson.setContentStatus(emoji.getContentStatus());
@@ -236,7 +229,6 @@ public class JavaToGsonConverter {
             ImageGson imageGson = new ImageGson();
             
             imageGson.setId(image.getId());
-            imageGson.setLanguage(image.getLanguage());
             imageGson.setTimeLastUpdate(image.getTimeLastUpdate());
             imageGson.setRevisionNumber(image.getRevisionNumber());
             imageGson.setContentStatus(image.getContentStatus());
@@ -283,7 +275,6 @@ public class JavaToGsonConverter {
             AudioGson audioGson = new AudioGson();
             
             audioGson.setId(audio.getId());
-            audioGson.setLanguage(audio.getLanguage());
             audioGson.setTimeLastUpdate(audio.getTimeLastUpdate());
             audioGson.setRevisionNumber(audio.getRevisionNumber());
             audioGson.setContentStatus(audio.getContentStatus());
@@ -329,7 +320,6 @@ public class JavaToGsonConverter {
             StoryBookGson storyBookGson = new StoryBookGson();
             
             storyBookGson.setId(storyBook.getId());
-            storyBookGson.setLanguage(storyBook.getLanguage());
             storyBookGson.setTimeLastUpdate(storyBook.getTimeLastUpdate());
             storyBookGson.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookGson.setContentStatus(storyBook.getContentStatus());
@@ -387,7 +377,6 @@ public class JavaToGsonConverter {
             VideoGson videoGson = new VideoGson();
             
             videoGson.setId(video.getId());
-            videoGson.setLanguage(video.getLanguage());
             videoGson.setTimeLastUpdate(video.getTimeLastUpdate());
             videoGson.setRevisionNumber(video.getRevisionNumber());
             videoGson.setContentStatus(video.getContentStatus());
