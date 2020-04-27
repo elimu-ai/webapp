@@ -81,7 +81,6 @@ public class JavaToGsonConverter {
             AllophoneGson allophoneGson = new AllophoneGson();
             
             allophoneGson.setId(allophone.getId());
-            allophoneGson.setLanguage(allophone.getLanguage());
             allophoneGson.setTimeLastUpdate(allophone.getTimeLastUpdate());
             allophoneGson.setRevisionNumber(allophone.getRevisionNumber());
             allophoneGson.setContentStatus(allophone.getContentStatus());
