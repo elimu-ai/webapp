@@ -102,7 +102,6 @@ public class DbContentImportHelper {
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
         for (Word word : words) {
-            word.setLanguage(language);
             wordDao.create(word);
         }
         

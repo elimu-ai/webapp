@@ -127,7 +127,6 @@ public class JavaToGsonConverter {
             WordGson wordGson = new WordGson();
             
             wordGson.setId(word.getId());
-            wordGson.setLanguage(word.getLanguage());
             wordGson.setTimeLastUpdate(word.getTimeLastUpdate());
             wordGson.setRevisionNumber(word.getRevisionNumber());
             wordGson.setContentStatus(word.getContentStatus());

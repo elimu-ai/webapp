@@ -101,7 +101,6 @@ public class StoryBookCreateFromEPubController {
         List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        storyBook.setLanguage(language);
         
         if (multipartFile.isEmpty()) {
             result.rejectValue("bytes", "NotNull");
@@ -150,7 +149,6 @@ public class StoryBookCreateFromEPubController {
                 }
 
                 storyBookCoverImage = new Image();
-                storyBookCoverImage.setLanguage(language);
                 String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
                 logger.info("coverImageReference: " + coverImageReference);
                 File coverImageFile = new File(opfFile.getParent(), coverImageReference);
@@ -243,7 +241,6 @@ public class StoryBookCreateFromEPubController {
                         logger.info("chapterImageUri: " + chapterImageUri);
                         byte[] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
                         Image chapterImage = new Image();
-                        chapterImage.setLanguage(language);
                         chapterImage.setBytes(chapterImageBytes);
                         byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
                         byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"

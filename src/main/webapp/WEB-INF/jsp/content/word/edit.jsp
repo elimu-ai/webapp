@@ -24,7 +24,6 @@
             <tag:formErrors modelAttribute="word" />
 
             <div class="row">
-                <form:hidden path="language" value="${word.language}" />
                 <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
                 <form:hidden path="usageCount" value="${word.usageCount}" />
                 

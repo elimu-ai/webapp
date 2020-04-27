@@ -10,3 +10,4 @@ ALTER TABLE `Video` DROP COLUMN `language`;
 ALTER TABLE `Number` DROP COLUMN `language`;
 ALTER TABLE `StoryBook` DROP COLUMN `language`;
 ALTER TABLE `Syllable` DROP COLUMN `language`;
+ALTER TABLE `Word` DROP COLUMN `language`;
