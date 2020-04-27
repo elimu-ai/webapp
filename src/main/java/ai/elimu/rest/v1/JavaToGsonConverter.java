@@ -381,7 +381,6 @@ public class JavaToGsonConverter {
             VideoGson videoGson = new VideoGson();
             
             videoGson.setId(video.getId());
-            videoGson.setLanguage(video.getLanguage());
             videoGson.setTimeLastUpdate(video.getTimeLastUpdate());
             videoGson.setRevisionNumber(video.getRevisionNumber());
             videoGson.setContentStatus(video.getContentStatus());
