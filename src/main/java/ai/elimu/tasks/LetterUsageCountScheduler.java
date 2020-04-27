@@ -13,6 +13,7 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,46 +45,46 @@ public class LetterUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        for (Language language : Language.values()) {
-            logger.info("Calculating usage count for Letters with language " + language);
-            
-            Map<String, Integer> letterFrequencyMap = new HashMap<>();
-            
-            List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
-            logger.info("storyBooks.size(): " + storyBooks.size());
-            for (StoryBook storyBook : storyBooks) {
-                logger.info("storyBook.getTitle(): " + storyBook.getTitle());
-                
-                List<String> paragraphs = new ArrayList<>();
-                List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
-                for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                    List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-                    for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-                        paragraphs.add(storyBookParagraph.getOriginalText());
-                    }
-                }
-                
-                Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
-                for (String key : letterFrequencyMapForBook.keySet()) {
-                    String letterText = key;
-                    int letterFrequency = letterFrequencyMapForBook.get(key);
-                    if (!letterFrequencyMap.containsKey(letterText)) {
-                        letterFrequencyMap.put(letterText, letterFrequency);
-                    } else {
-                        letterFrequencyMap.put(letterText, letterFrequencyMap.get(letterText) + letterFrequency);
-                    }
+        logger.info("Calculating usage count for Letters");
+
+        Map<String, Integer> letterFrequencyMap = new HashMap<>();
+        
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+
+        List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
+        logger.info("storyBooks.size(): " + storyBooks.size());
+        for (StoryBook storyBook : storyBooks) {
+            logger.info("storyBook.getTitle(): " + storyBook.getTitle());
+
+            List<String> paragraphs = new ArrayList<>();
+            List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                    paragraphs.add(storyBookParagraph.getOriginalText());
                 }
             }
-            
-            logger.info("letterFrequencyMap: " + letterFrequencyMap);
-            
-            for (String key : letterFrequencyMap.keySet()) {
+
+            Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
+            for (String key : letterFrequencyMapForBook.keySet()) {
                 String letterText = key;
-                Letter existingLetter = letterDao.readByText(letterText);
-                if (existingLetter != null) {
-                    existingLetter.setUsageCount(letterFrequencyMap.get(letterText));
-                    letterDao.update(existingLetter);
+                int letterFrequency = letterFrequencyMapForBook.get(key);
+                if (!letterFrequencyMap.containsKey(letterText)) {
+                    letterFrequencyMap.put(letterText, letterFrequency);
+                } else {
+                    letterFrequencyMap.put(letterText, letterFrequencyMap.get(letterText) + letterFrequency);
                 }
+            }
+        }
+
+        logger.info("letterFrequencyMap: " + letterFrequencyMap);
+
+        for (String key : letterFrequencyMap.keySet()) {
+            String letterText = key;
+            Letter existingLetter = letterDao.readByText(letterText);
+            if (existingLetter != null) {
+                existingLetter.setUsageCount(letterFrequencyMap.get(letterText));
+                letterDao.update(existingLetter);
             }
         }
         
