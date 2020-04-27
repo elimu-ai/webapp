@@ -1,0 +1,8 @@
+id,text,allophone_ids,allophone_values_ipa,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+1,کی,"[4,1]","[""k"",""j""]",8,,PERFECT,,
+2,کہ,"[4,6]","[""k"",""ɦ""]",7,,PERFECT,,
+4,اس,"[3,9]","[""ɑː"",""s""]",0,,PERFECT,,
+6,سے,"[9,8]","[""s"",""ɛː""]",0,,PERFECT,,
+7,نے,"[10,8]","[""n"",""ɛː""]",0,,PERFECT,,
+5,کو,"[4,7]","[""k"",""ʋ""]",0,,PERFECT,,
+3,کے,"[4,8]","[""k"",""ɛː""]",0,,PERFECT,,
