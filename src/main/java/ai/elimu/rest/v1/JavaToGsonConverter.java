@@ -103,7 +103,6 @@ public class JavaToGsonConverter {
             LetterGson letterGson = new LetterGson();
             
             letterGson.setId(letter.getId());
-            letterGson.setLanguage(letter.getLanguage());
             letterGson.setTimeLastUpdate(letter.getTimeLastUpdate());
             letterGson.setRevisionNumber(letter.getRevisionNumber());
             letterGson.setContentStatus(letter.getContentStatus());

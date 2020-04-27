@@ -8,7 +8,6 @@
         <form:form modelAttribute="letter">
             <tag:formErrors modelAttribute="letter" />
             
-            <form:hidden path="language" value="${letter.language}" />
             <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
             <form:hidden path="usageCount" value="${letter.usageCount}" />
 
