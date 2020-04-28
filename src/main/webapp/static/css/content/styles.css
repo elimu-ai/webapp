@@ -54,6 +54,12 @@ nav {
     letter-spacing: .5rem;
 }
 
+html[data-content-language="ben"] #letterCreatePage input#text,
+html[data-content-language="hin"] #letterCreatePage input#text,
+html[data-content-language="urd"] #letterCreatePage input#text,
+html[data-content-language="ben"] #letterEditPage input#text,
+html[data-content-language="hin"] #letterEditPage input#text,
+html[data-content-language="urd"] #letterEditPage input#text,
 html[data-content-language="ben"] #wordCreatePage input#text,
 html[data-content-language="hin"] #wordCreatePage input#text,
 html[data-content-language="urd"] #wordCreatePage input#text,

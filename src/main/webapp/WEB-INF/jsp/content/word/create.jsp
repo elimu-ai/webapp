@@ -29,14 +29,28 @@
                         </div>
                     </c:if>
                 </c:if>
-                
+            </div>
+            
+            <div class="row">
+                <div class="col s12">
+                    <label><fmt:message key="letters" /></label><br />
+                    
+                    TODO...<br />
+                    
+                    <a href="<spring:url value='/content/letter/create' />" target="_blank"><fmt:message key="add.letter" /> <i class="material-icons">launch</i></a>
+                </div>
+            </div>
+        
+            <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="selectedAllophonesContainer">
                         <c:forEach var="allophone" items="${word.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
-                                ${allophone.valueIpa} 
+                            <div class="chip <c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
+                                <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">
+                                    ${allophone.valueIpa}
+                                </a> 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
                                     <i class="material-icons">clear</i>
                                 </a>
@@ -63,7 +77,7 @@
                 <div class="input-field col s12">
                     <div id="allophonesContainer">
                         <c:forEach var="allophone" items="${allophones}">
-                            <a href="#" class="allophone chip" data-allophoneid="${allophone.id}" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
+                            <a href="#" class="allophone chip <c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
                             <audio id="audio_sampa_${allophone.valueSampa}">
                                 <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
                             </audio>
@@ -98,10 +112,75 @@
                             });
                         </script>
                     </div>
+                    <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
                 </div>
+            </div>
                 
-                <p>&nbsp;</p>
-                
+            <div class="row">
+                <div class="col s12">
+                    <label><fmt:message key="letter.to.allophone.mappings" /></label><br />
+                    
+                    <span id="letterToAllophoneMappingsContainer">
+                        <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
+                            <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
+                            <div class="chip" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
+                                <a href="<spring:url value='/content/letter/edit/${letterToAllophoneMapping.letter.id}' />">${letterToAllophoneMapping.letter.text}</a> 
+                                → 
+                                /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
+                                    <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a>
+                                </c:forEach>/
+                                
+                                <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
+                                    <i class="material-icons">clear</i>
+                                </a>
+                            </div>
+                        </c:forEach>
+                        <script>
+                            $(function() {
+                                $('.letterToAllophoneMappingDeleteLink').on("click", function() {
+                                    console.log('.letterToAllophoneMappingDeleteLink on click');
+                                    
+                                    var letterToAllophoneMappingId = $(this).attr("data-letter-to-allophone-mapping-id");
+                                    console.log('letterToAllophoneMappingId: ' + letterToAllophoneMappingId);
+                                    
+                                    $(this).parent().remove();
+                                    
+                                    var $hiddenInput = $('input[name="letterToAllophoneMappings"][value="' + letterToAllophoneMappingId + '"]');
+                                    $hiddenInput.remove();
+                                });
+                            });
+                        </script>
+                    </span>
+
+                    <select id="letterToAllophoneMappings" class="browser-default" style="margin: 0.5em 0;">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="letterToAllophoneMapping" items="${letterToAllophoneMappings}">
+                            <option value="${letterToAllophoneMapping.id}">${letterToAllophoneMapping.letter.text} → /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>/</option>
+                        </c:forEach>
+                    </select>
+                    <script>
+                        $(function() {
+                            $('#letterToAllophoneMappings').on("change", function() {
+                                console.log('#letterToAllophoneMappings on change');
+                                
+                                var letterToAllophoneMappingId = $(this).val();
+                                console.log('letterToAllophoneMappingId: ' + letterToAllophoneMappingId);
+                                var letterToAllophoneMappingValueIpa = $(this).find('option[value="' + letterToAllophoneMappingId + '"]').text();
+                                console.log('letterToAllophoneMappingValueIpa: ' + letterToAllophoneMappingValueIpa);
+                                if (letterToAllophoneMappingId != "") {
+                                    $('#letterToAllophoneMappingsContainer').append('<input name="letterToAllophoneMappings" type="hidden" value="' + letterToAllophoneMappingId + '" />');
+                                    $('#letterToAllophoneMappingsContainer').append('<div class="chip">' + letterToAllophoneMappingValueIpa + '</div>');
+                                    $(this).val("");
+                                }
+                            });
+                        });
+                    </script>
+                    
+                    <a href="<spring:url value='/content/letter-to-allophone-mapping/create' />" target="_blank"><fmt:message key="add.letter.to.allophone.mapping" /> <i class="material-icons">launch</i></a>
+                </div>
+            </div>
+            
+            <div class="row">
                 <div class="input-field col s12">
                     <select id="spellingConsistency" name="spellingConsistency">
                         <option value="">-- <fmt:message key='select' /> --</option>
@@ -111,7 +190,9 @@
                     </select>
                     <label for="spellingConsistency"><fmt:message key="spelling.consistency" /></label>
                 </div>
+            </div>
                 
+            <div class="row">
                 <div class="input-field col s12">
                     <select id="rootWord" name="rootWord">
                         <option value="">-- <fmt:message key='select' /> --</option>
@@ -121,7 +202,9 @@
                     </select>
                     <label for="rootWord"><fmt:message key="root.word" /></label>
                 </div>
+            </div>
                 
+            <div class="row">
                 <div class="input-field col s12">
                     <select id="wordType" name="wordType">
                         <option value="">-- <fmt:message key='select' /> --</option>

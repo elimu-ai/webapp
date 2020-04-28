@@ -1,19 +1,23 @@
 <content:title>
-    <fmt:message key="add.letter" />
+    <fmt:message key="add.letter.to.allophone.mapping" />
 </content:title>
 
-<content:section cssId="letterCreatePage">
+<content:section cssId="letterToAllophoneMappingCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="letter">
-            <tag:formErrors modelAttribute="letter" />
-            
-            <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
+        <form:form modelAttribute="letterToAllophoneMapping">
+            <tag:formErrors modelAttribute="letterToAllophoneMapping" />
 
             <div class="row">
-                <div class="input-field col s12">
-                    <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
-                    <form:input path="text" cssErrorClass="error" />
+                <div class="col s12">
+                    <label><fmt:message key="letter" /></label><br />
+                    <select id="letter" name="letter" class="browser-default" style="margin: 0.5em 0;">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="letter" items="${letters}">
+                            <option value="${letter.id}" <c:if test="${letter.id == letterToAllophoneMapping.letter.id}">selected="selected"</c:if>><c:out value="${letter.text}" /></option>
+                        </c:forEach>
+                    </select>                    
+                    <a href="<spring:url value='/content/letter/create' />" target="_blank"><fmt:message key="add.letter" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
@@ -21,9 +25,9 @@
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="allophonesContainer">
-                        <c:forEach var="allophone" items="${letter.allophones}">
+                        <c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip<c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
+                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
                                 ${allophone.valueIpa} 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
                                     <i class="material-icons">clear</i>
@@ -74,16 +78,6 @@
                     <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
-                
-            <div class="row">
-                <div class="input-field col">
-                    <select id="diacritic" name="diacritic">
-                        <option value="false" <c:if test="${not letter.diacritic}">selected="selected"</c:if>><fmt:message key="no" /></option>
-                        <option value="true" <c:if test="${letter.diacritic}">selected="selected"</c:if>><fmt:message key="yes" /></option>
-                    </select>
-                    <label for="diacritic"><fmt:message key="diacritic" /></label>
-                </div>
-            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="add" /> <i class="material-icons right">send</i>
@@ -91,34 +85,3 @@
         </form:form>
     </div>
 </content:section>
-
-<content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
-    
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentGrapheme">
-
-            </div>
-        </div>
-    </div>
-    <script>
-        $(function() {
-            initializePreview();
-            
-            $('#text').on("change", function() {
-                console.debug('#text on change');
-                initializePreview();
-            });
-            
-            function initializePreview() {
-                console.debug('initializePreview');
-                var value = $('#text').val();
-                if ((value != undefined) && (value != "")) {
-                    $('#previewContent').html(value);
-                }
-            };
-        });
-    </script>
-</content:aside>

@@ -27,7 +27,7 @@
                             <audio id="audio_sampa_${allophone.valueSampa}">
                                 <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
                             </audio>
-                            <div class="allophone chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}" data-valuesampa="${allophone.valueSampa}">
+                            <div class="allophone chip<c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}" data-valuesampa="${allophone.valueSampa}">
                                 ${allophone.valueIpa} 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
                                     <i class="material-icons">clear</i>
@@ -85,6 +85,8 @@
                             });
                         });
                     </script>
+                    
+                    <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             

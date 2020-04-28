@@ -10,6 +10,7 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
+import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
@@ -40,6 +41,9 @@ public class WordEditController {
     private AllophoneDao allophoneDao;
     
     @Autowired
+    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    
+    @Autowired
     private AudioDao audioDao;
     
     @Autowired
@@ -59,6 +63,7 @@ public class WordEditController {
                 
         model.addAttribute("word", wordDao.read(id));
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
+        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
@@ -96,6 +101,7 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
+            model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());

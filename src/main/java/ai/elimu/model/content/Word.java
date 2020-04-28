@@ -30,6 +30,10 @@ public class Word extends Content {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
     
+    @OrderColumn
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<LetterToAllophoneMapping> letterToAllophoneMappings;
+    
     private int usageCount; // Based on StoryBook content
     
     /**
@@ -69,6 +73,14 @@ public class Word extends Content {
 
     public void setAllophones(List<Allophone> allophones) {
         this.allophones = allophones;
+    }
+    
+    public List<LetterToAllophoneMapping> getLetterToAllophoneMappings() {
+        return letterToAllophoneMappings;
+    }
+
+    public void setLetterToAllophoneMappings(List<LetterToAllophoneMapping> letterToAllophoneMappings) {
+        this.letterToAllophoneMappings = letterToAllophoneMappings;
     }
 
     public int getUsageCount() {
