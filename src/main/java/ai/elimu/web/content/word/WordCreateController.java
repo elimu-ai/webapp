@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ImageDao;
+import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
@@ -38,6 +39,9 @@ public class WordCreateController {
     private AllophoneDao allophoneDao;
     
     @Autowired
+    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    
+    @Autowired
     private ImageDao imageDao;
     
     @Autowired
@@ -56,6 +60,7 @@ public class WordCreateController {
         
         model.addAttribute("word", word);
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
+        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
@@ -80,6 +85,7 @@ public class WordCreateController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
+            model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());

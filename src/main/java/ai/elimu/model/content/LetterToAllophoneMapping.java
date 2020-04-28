@@ -1,57 +1,46 @@
 package ai.elimu.model.content;
 
+import ai.elimu.model.BaseEntity;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Contains information about the various sounds a letter can represent.
+ */
 @Entity
-public class Letter extends Content {
-
-    @NotNull
-    @Length(max = 1)
-    @Column(length = 1)
-    private String text;
+public class LetterToAllophoneMapping extends BaseEntity {
     
-    @Deprecated // Will be replaced by LetterToAllophoneMappings
-    @NotEmpty
+    @NotNull
+    @ManyToOne
+    private Letter letter;
+    
+//    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
     
-    private boolean diacritic;
-    
-    private int usageCount; // Based on StoryBook content (all difficulty levels)
+    private int usageCount;
 
-    public String getText() {
-        return text;
+    public Letter getLetter() {
+        return letter;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setLetter(Letter letter) {
+        this.letter = letter;
     }
-    
-    @Deprecated
+
     public List<Allophone> getAllophones() {
         return allophones;
     }
 
-    @Deprecated
     public void setAllophones(List<Allophone> allophones) {
         this.allophones = allophones;
-    }
-    
-    public boolean isDiacritic() {
-        return diacritic;
-    }
-
-    public void setDiacritic(boolean diacritic) {
-        this.diacritic = diacritic;
     }
 
     public int getUsageCount() {

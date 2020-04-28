@@ -28,6 +28,8 @@
                 <bean class="ai.elimu.logic.converters.StringToAllophoneConverter" />
                 <bean class="ai.elimu.logic.converters.StringToApplicationConverter" />
                 <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
+                <bean class="ai.elimu.logic.converters.StringToLetterConverter" />
+                <bean class="ai.elimu.logic.converters.StringToLetterToAllophoneMappingConverter" />
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
                 <bean class="ai.elimu.logic.converters.StringToWordConverter" />
                 <bean class="ai.elimu.logic.converters.StringToImageConverter" />
