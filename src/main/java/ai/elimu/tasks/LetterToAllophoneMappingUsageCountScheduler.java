@@ -23,7 +23,7 @@ public class LetterToAllophoneMappingUsageCountScheduler {
     @Autowired
     private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
     
-    @Scheduled(cron="00 45 05 * * *") // At 05:45 every day
+    @Scheduled(cron="00 15 06 * * *") // At 06:15 every day
     public synchronized void execute() {
         logger.info("execute");
         
@@ -39,9 +39,9 @@ public class LetterToAllophoneMappingUsageCountScheduler {
             
             for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
                 if (!letterToAllophoneMappingFrequencyMap.containsKey(letterToAllophoneMapping.getId())) {
-                    letterToAllophoneMappingFrequencyMap.put(letterToAllophoneMapping.getId(), 1);
+                    letterToAllophoneMappingFrequencyMap.put(letterToAllophoneMapping.getId(), word.getUsageCount());
                 } else {
-                    letterToAllophoneMappingFrequencyMap.put(letterToAllophoneMapping.getId(), letterToAllophoneMappingFrequencyMap.get(letterToAllophoneMapping.getId()) + 1);
+                    letterToAllophoneMappingFrequencyMap.put(letterToAllophoneMapping.getId(), letterToAllophoneMappingFrequencyMap.get(letterToAllophoneMapping.getId()) + word.getUsageCount());
                 }
             }
         }
