@@ -1,5 +1,5 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
-1,a,a,,false,VOWEL,340
+1,ɐ,6,,false,VOWEL,340
 2,.,.,,false,,273
 3,r,r,,false,CONSONANT,191
 5,t,t,,false,CONSONANT,183
@@ -27,6 +27,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 26,ɡʱ,g_h\,,false,CONSONANT,0
 27,ɽ,r`,,false,CONSONANT,0
 28,ɽʱ,r`_h\,,false,CONSONANT,0
+46,ɾ," 4",,false,CONSONANT,0
 29,ʈʰ,t`_h,,false,CONSONANT,0
 30,g,g,,false,CONSONANT,-1
 31,h,h,,false,CONSONANT,-1
