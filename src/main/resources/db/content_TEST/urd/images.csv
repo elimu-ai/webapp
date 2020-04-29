@@ -35,6 +35,8 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 34,image/jpg,null,"null","storybook-3-ch-12","/image/34.jpg",JPG
 35,image/jpg,null,"null","storybook-3-ch-13","/image/35.jpg",JPG
 36,image/jpg,null,"null","storybook-4-cover","/image/36.jpg",JPG
+61,image/jpg,null,"null","storybook-5-cover","/image/61.jpg",JPG
+62,image/jpg,null,"null","storybook-5-ch-1","/image/62.jpg",JPG
 38,image/jpg,null,"null","storybook-4-ch-2","/image/38.jpg",JPG
 39,image/jpg,null,"null","storybook-4-ch-3","/image/39.jpg",JPG
 40,image/jpg,null,"null","storybook-4-ch-4","/image/40.jpg",JPG
@@ -58,3 +60,14 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 58,image/jpg,null,"null","storybook-4-ch-22","/image/58.jpg",JPG
 59,image/jpg,null,"null","storybook-4-ch-23","/image/59.jpg",JPG
 60,image/jpg,null,"null","storybook-4-ch-24","/image/60.jpg",JPG
+63,image/jpg,null,"null","storybook-5-ch-2","/image/63.jpg",JPG
+64,image/jpg,null,"null","storybook-5-ch-3","/image/64.jpg",JPG
+65,image/jpg,null,"null","storybook-5-ch-4","/image/65.jpg",JPG
+66,image/jpg,null,"null","storybook-5-ch-5","/image/66.jpg",JPG
+67,image/jpg,null,"null","storybook-5-ch-6","/image/67.jpg",JPG
+68,image/jpg,null,"null","storybook-5-ch-7","/image/68.jpg",JPG
+69,image/jpg,null,"null","storybook-5-ch-8","/image/69.jpg",JPG
+70,image/jpg,null,"null","storybook-5-ch-9","/image/70.jpg",JPG
+71,image/jpg,null,"null","storybook-5-ch-10","/image/71.jpg",JPG
+72,image/jpg,null,"null","storybook-5-ch-11","/image/72.jpg",JPG
+73,image/jpg,null,"null","storybook-5-ch-12","/image/73.jpg",JPG
