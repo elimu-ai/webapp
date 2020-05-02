@@ -11,7 +11,10 @@
                     <p>Collection of applications to be regularly synchronized with every device.</p>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/admin/application/list' />"><fmt:message key="view.list" /></a>
+                    <a href="<spring:url value='/admin/application/list' />"><fmt:message key="view.list" /> (${applicationCount})</a>
+                </div>
+                <div class="progress">
+                    <div class="determinate" style="width: ${applicationCount/(4+24+12) * 100}%"></div>
                 </div>
             </div>
         </div>

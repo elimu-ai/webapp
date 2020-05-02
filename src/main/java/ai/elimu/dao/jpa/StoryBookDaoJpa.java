@@ -55,12 +55,4 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
             "ORDER BY book.title")
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(s) " +
-            "FROM StoryBook s")
-            .getSingleResult();
-    }
 }

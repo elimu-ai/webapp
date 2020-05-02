@@ -46,12 +46,4 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
             .setParameter("word", word)
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(i) " +
-            "FROM Image i")
-            .getSingleResult();
-    }
 }

@@ -10,6 +10,4 @@ public interface AudioDao extends GenericDao<Audio> {
     Audio read(String transcription) throws DataAccessException;
 
     List<Audio> readAllOrdered() throws DataAccessException;
-    
-    Long readCount() throws DataAccessException;
 }

@@ -45,12 +45,4 @@ public class EmojiDaoJpa extends GenericDaoJpa<Emoji> implements EmojiDao {
             .setParameter("word", word)
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(e) " +
-            "FROM Emoji e")
-            .getSingleResult();
-    }
 }

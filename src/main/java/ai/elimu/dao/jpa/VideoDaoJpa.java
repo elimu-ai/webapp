@@ -34,12 +34,4 @@ public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
             "ORDER BY v.title")
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(v) " +
-            "FROM Video v")
-            .getSingleResult();
-    }
 }

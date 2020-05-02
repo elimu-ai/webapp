@@ -34,12 +34,4 @@ public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
             "ORDER BY a.transcription")
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(a) " +
-            "FROM Audio a")
-            .getSingleResult();
-    }
 }
