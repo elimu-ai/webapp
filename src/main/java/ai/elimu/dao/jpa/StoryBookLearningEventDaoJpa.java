@@ -26,7 +26,7 @@ public class StoryBookLearningEventDaoJpa extends GenericDaoJpa<StoryBookLearnin
                 .setParameter("storyBook", storyBook)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("StoryBookLearningEvent (" + time.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", " + storyBook.getTitle() + ") was not found");
+            logger.info("StoryBookLearningEvent (" + time.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", \"" + storyBook.getTitle() + "\") was not found");
             return null;
         }
     }

@@ -26,7 +26,7 @@ public class WordLearningEventDaoJpa extends GenericDaoJpa<WordLearningEvent> im
                 .setParameter("word", word)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("WordLearningEvent (" + time.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", " + word.getText() + ") was not found");
+            logger.info("WordLearningEvent (" + time.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", \"" + word.getText() + "\") was not found");
             return null;
         }
     }
