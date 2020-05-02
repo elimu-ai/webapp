@@ -8,6 +8,7 @@ import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.analytics.LearningEventType;
+import ai.elimu.util.AnalyticsHelper;
 import ai.elimu.util.ConfigHelper;
 import java.io.File;
 import java.io.Reader;
@@ -59,10 +60,7 @@ public class StoryBookLearningEventsRestController {
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
-        String androidIdExtractedFromFilename = null;
-        if (originalFilename.length() > 41) {
-            androidIdExtractedFromFilename = originalFilename.substring(0, originalFilename.length() - 41);
-        }
+        String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
         logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
         
         String contentType = multipartFile.getContentType();
