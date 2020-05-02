@@ -34,7 +34,7 @@
                         </td>
                         <td>
                             <a href="<spring:url value='/content/word/edit/${wordLearningEvent.word.id}' />">
-                                ${wordLearningEvent.word.title}
+                                ${wordLearningEvent.word.text}
                             </a>
                         </td>
                         <td>
