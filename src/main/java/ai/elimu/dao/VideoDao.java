@@ -10,6 +10,4 @@ public interface VideoDao extends GenericDao<Video> {
     Video read(String title) throws DataAccessException;
 
     List<Video> readAllOrdered() throws DataAccessException;
-    
-    Long readCount() throws DataAccessException;
 }

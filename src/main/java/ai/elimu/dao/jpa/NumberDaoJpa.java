@@ -33,12 +33,4 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
             "ORDER BY n.value")
             .getResultList();
     }
-
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(n) " +
-            "FROM Number n")
-            .getSingleResult();
-    }
 }

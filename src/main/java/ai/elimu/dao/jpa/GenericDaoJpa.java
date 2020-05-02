@@ -11,7 +11,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import org.apache.log4j.Logger;
 
 import ai.elimu.dao.GenericDao;
@@ -29,7 +28,6 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
         em.persist(t);
     }
 
-    @SuppressWarnings("unchecked")
     public T read(Long id) throws DataAccessException {
         Class<?> entityClass = getEntityClass();
         return (T) em.find(entityClass, id);
@@ -41,6 +39,15 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
                 "FROM " + entityClass.getSimpleName() + " c",
                 entityClass)
                 .getResultList();
+    }
+    
+    @Override
+    public Long readCount() throws DataAccessException {
+        Class<?> entityClass = getEntityClass();
+        return (Long) em.createQuery("SELECT COUNT(c) " +
+                "FROM " + entityClass.getSimpleName() + " c")
+                .getSingleResult();
+                
     }
 
     public void update(T t) throws DataAccessException {

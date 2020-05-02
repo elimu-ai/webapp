@@ -42,12 +42,4 @@ public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableD
             "ORDER BY s.usageCount DESC, s.text")
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(s) " +
-            "FROM Syllable s")
-            .getSingleResult();
-    }
 }

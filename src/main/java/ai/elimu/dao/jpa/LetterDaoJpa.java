@@ -42,12 +42,4 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
             "ORDER BY l.usageCount DESC, l.text")
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(l) " +
-            "FROM Letter l")
-            .getSingleResult();
-    }
 }

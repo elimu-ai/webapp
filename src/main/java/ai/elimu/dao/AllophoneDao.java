@@ -16,6 +16,4 @@ public interface AllophoneDao extends GenericDao<Allophone> {
     List<Allophone> readAllOrderedByIpaValueCharacterLength() throws DataAccessException;
     
     List<Allophone> readAllOrderedByUsage() throws DataAccessException;
-    
-    Long readCount() throws DataAccessException;
 }

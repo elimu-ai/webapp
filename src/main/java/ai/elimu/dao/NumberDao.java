@@ -11,6 +11,4 @@ public interface NumberDao extends GenericDao<Number> {
     Number readByValue(Integer value) throws DataAccessException;
 
     List<Number> readAllOrdered() throws DataAccessException;
-    
-    Long readCount() throws DataAccessException;
 }

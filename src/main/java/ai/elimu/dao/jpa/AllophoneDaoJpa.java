@@ -65,12 +65,4 @@ public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements Allopho
             "ORDER BY a.usageCount DESC, a.valueIpa")
             .getResultList();
     }
-    
-    @Override
-    public Long readCount() throws DataAccessException {
-        return (Long) em.createQuery(
-            "SELECT COUNT(a) " +
-            "FROM Allophone a")
-            .getSingleResult();
-    }
 }

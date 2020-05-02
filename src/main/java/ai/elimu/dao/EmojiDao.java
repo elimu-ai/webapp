@@ -15,6 +15,4 @@ public interface EmojiDao extends GenericDao<Emoji> {
      * Fetch all Emojis that have been labeled by a Word.
      */
     List<Emoji> readAllLabeled(Word word) throws DataAccessException;
-    
-    Long readCount() throws DataAccessException;
 }
