@@ -22,6 +22,7 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.ReadingLevel;
 import ai.elimu.model.enums.Language;
+import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
@@ -58,6 +59,9 @@ public class StoryBookEditController {
     
     @Autowired
     private LetterDao letterDao;
+    
+    @Autowired
+    private StoryBooksJsonService jsonService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -158,6 +162,9 @@ public class StoryBookEditController {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
             storyBookDao.update(storyBook);
+            
+            // Refresh REST API cache
+            jsonService.refreshStoryBooksJSONArray();
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

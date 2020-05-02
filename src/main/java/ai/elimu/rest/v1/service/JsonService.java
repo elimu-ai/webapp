@@ -1,4 +1,4 @@
-package ai.elimu.rest.service;
+package ai.elimu.rest.v1.service;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
  * Spring caching feature works over AOP proxies, thus internal calls to cached methods don't work. That's why this 
  * intermediate service is used. See https://stackoverflow.com/a/48168762
  */
+@Deprecated
 @Service
 public class JsonService {
     

@@ -9,6 +9,7 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
+import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -36,6 +37,9 @@ public class StoryBookChapterDeleteController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    StoryBooksJsonService jsonService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(HttpSession session, @PathVariable Long storyBookId, @PathVariable Long id) {
@@ -90,6 +94,9 @@ public class StoryBookChapterDeleteController {
                 logger.info("storyBookChapter.getSortOrder() (after update): " + storyBookChapter.getSortOrder());
             }
         }
+        
+        // Refresh the REST API cache
+        jsonService.refreshStoryBooksJSONArray();
 
         return "redirect:/content/storybook/edit/" + storyBookId;
     }

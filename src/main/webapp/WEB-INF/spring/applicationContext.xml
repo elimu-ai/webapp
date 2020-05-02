@@ -96,6 +96,7 @@
         <property name="caches">
             <set>
                 <bean name="applications" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
+                <bean name="storyBooks" class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" />
             </set>
         </property>
     </bean>
