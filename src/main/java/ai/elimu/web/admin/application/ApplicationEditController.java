@@ -11,7 +11,7 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.rest.service.JsonService;
+import ai.elimu.rest.v1.service.JsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
