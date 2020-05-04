@@ -69,7 +69,7 @@ public class WordEditController {
         
         Word word = wordDao.read(id);
                 
-        model.addAttribute("word", wordDao.read(id));
+        model.addAttribute("word", word);
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
         model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
         model.addAttribute("rootWords", wordDao.readAllOrdered());
@@ -92,10 +92,7 @@ public class WordEditController {
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public String handleSubmit(
-            @Valid Word word,
-            BindingResult result,
-            Model model) {
+    public String handleSubmit(@Valid Word word, BindingResult result, Model model) {
     	logger.info("handleSubmit");
         
         Word existingWord = wordDao.readByText(word.getText());

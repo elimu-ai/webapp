@@ -16,9 +16,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class LetterToAllophoneMapping extends BaseEntity {
     
+    @Deprecated
     @NotNull
     @ManyToOne
     private Letter letter;
+    
+    @OrderColumn
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Letter> letters;
     
 //    @NotEmpty
     @OrderColumn
@@ -27,12 +32,22 @@ public class LetterToAllophoneMapping extends BaseEntity {
     
     private int usageCount;
 
+    @Deprecated
     public Letter getLetter() {
         return letter;
     }
 
+    @Deprecated
     public void setLetter(Letter letter) {
         this.letter = letter;
+    }
+    
+    public List<Letter> getLetters() {
+        return letters;
+    }
+
+    public void setLetters(List<Letter> letters) {
+        this.letters = letters;
     }
 
     public List<Allophone> getAllophones() {

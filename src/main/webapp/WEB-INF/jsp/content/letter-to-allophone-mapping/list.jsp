@@ -17,7 +17,7 @@
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="usage.count" /></th>
-                    <th><fmt:message key="letter" /></th>
+                    <th><fmt:message key="letters" /></th>
                     <th><fmt:message key="allophones" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -25,16 +25,15 @@
                     <c:forEach var="letterToAllophoneMapping" items="${letterToAllophoneMappings}">
                         <tr class="letterToAllophoneMapping">
                             <td>
+                                <a name="${letterToAllophoneMapping.id}"></a>
+                                
                                 ${letterToAllophoneMapping.usageCount}
                             </td>
                             <td style="font-size: 2em;">
-                                <a name="${letterToAllophoneMapping.id}"></a>
-                                <a href="<spring:url value='/content/letter/edit/${letterToAllophoneMapping.letter.id}' />">
-                                    ${letterToAllophoneMapping.letter.text}
-                                </a>
+                                "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a></c:forEach>"
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}"><a href="<spring:url value='/content/letter/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
+                                /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
                             </td>
                             <td>
                                 <a class="editLink" href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />"><span class="material-icons">edit</span></a>
