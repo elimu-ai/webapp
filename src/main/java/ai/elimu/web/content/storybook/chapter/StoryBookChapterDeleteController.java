@@ -74,6 +74,8 @@ public class StoryBookChapterDeleteController {
         logger.info("chapterImage: " + chapterImage);
         if (chapterImage != null) {
             // Remove content labels
+            chapterImage.setLiteracySkills(null);
+            chapterImage.setNumeracySkills(null);
             chapterImage.setLetters(null);
             chapterImage.setNumbers(null);
             chapterImage.setWords(null);
