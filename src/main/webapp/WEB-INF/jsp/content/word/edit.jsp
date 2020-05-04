@@ -22,11 +22,11 @@
     <div class="card-panel">
         <form:form modelAttribute="word">
             <tag:formErrors modelAttribute="word" />
+            
+            <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
+            <form:hidden path="usageCount" value="${word.usageCount}" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
-                <form:hidden path="usageCount" value="${word.usageCount}" />
-                
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />

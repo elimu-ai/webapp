@@ -7,12 +7,12 @@
     <div class="card-panel">
         <form:form modelAttribute="audio" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="audio" />
+            
+            <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
+            <form:hidden path="audioFormat" value="${audio.audioFormat}" />
+            <form:hidden path="contentType" value="${audio.contentType}" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
-                <form:hidden path="audioFormat" value="${number.audioFormat}" />
-                <form:hidden path="contentType" value="${number.contentType}" />
-                
                 <div class="input-field col s12">
                     <form:label path="transcription" cssErrorClass="error"><fmt:message key='transcription' /></form:label>
                     <form:input path="transcription" cssErrorClass="error" />

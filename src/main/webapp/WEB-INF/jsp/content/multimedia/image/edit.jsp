@@ -22,13 +22,13 @@
     <div class="card-panel">
         <form:form modelAttribute="image" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="image" />
+            
+            <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
+            <form:hidden path="imageFormat" value="${image.imageFormat}" />
+            <form:hidden path="contentType" value="${image.contentType}" />
+            <form:hidden path="dominantColor" value="${image.dominantColor}" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
-                <form:hidden path="imageFormat" value="${number.imageFormat}" />
-                <form:hidden path="contentType" value="${number.contentType}" />
-                <form:hidden path="dominantColor" value="${number.dominantColor}" />
-                
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />

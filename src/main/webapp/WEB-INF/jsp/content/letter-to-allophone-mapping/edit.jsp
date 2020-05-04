@@ -7,6 +7,9 @@
     <div class="card-panel">
         <form:form modelAttribute="letterToAllophoneMapping">
             <tag:formErrors modelAttribute="letterToAllophoneMapping" />
+            
+            <form:hidden path="revisionNumber" value="${letterToAllophoneMapping.revisionNumber}" />
+            <form:hidden path="usageCount" value="${letterToAllophoneMapping.usageCount}" />
 
             <div class="row">
                 <div class="col s12">

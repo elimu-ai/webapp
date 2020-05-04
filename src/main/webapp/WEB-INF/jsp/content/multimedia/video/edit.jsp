@@ -10,8 +10,8 @@
 
             <div class="row">
                 <form:hidden path="revisionNumber" value="${video.revisionNumber}" />
-                <form:hidden path="videoFormat" value="${number.videoFormat}" />
-                <form:hidden path="contentType" value="${number.contentType}" />
+                <form:hidden path="videoFormat" value="${video.videoFormat}" />
+                <form:hidden path="contentType" value="${video.contentType}" />
                 
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
