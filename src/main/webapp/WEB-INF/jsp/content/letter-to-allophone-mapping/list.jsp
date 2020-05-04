@@ -30,7 +30,7 @@
                                 ${letterToAllophoneMapping.usageCount}
                             </td>
                             <td style="font-size: 2em;">
-                                "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a></c:forEach>"
+                                "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />"> ${letter.text} </a></c:forEach>"
                             </td>
                             <td style="font-size: 2em;">
                                 /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
