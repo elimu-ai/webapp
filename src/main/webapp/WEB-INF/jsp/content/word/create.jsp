@@ -124,7 +124,9 @@
                         <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
                             <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
                             <div class="chip" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
-                                <a href="<spring:url value='/content/letter/edit/${letterToAllophoneMapping.letter.id}' />">${letterToAllophoneMapping.letter.text}</a> 
+                                "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
+                                    <a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a>
+                                </c:forEach>" 
                                 → 
                                 /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
                                     <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a>
@@ -155,7 +157,7 @@
                     <select id="letterToAllophoneMappings" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="letterToAllophoneMapping" items="${letterToAllophoneMappings}">
-                            <option value="${letterToAllophoneMapping.id}">${letterToAllophoneMapping.letter.text} → /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>/</option>
+                            <option value="${letterToAllophoneMapping.id}">"<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>/</option>
                         </c:forEach>
                     </select>
                     <script>

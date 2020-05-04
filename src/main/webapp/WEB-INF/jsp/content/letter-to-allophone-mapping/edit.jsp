@@ -2,7 +2,7 @@
     <fmt:message key="add.letter.to.allophone.mapping" />
 </content:title>
 
-<content:section cssId="letterToAllophoneMappingCreatePage">
+<content:section cssId="letterToAllophoneMappingEditPage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="letterToAllophoneMapping">
@@ -138,7 +138,7 @@
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
