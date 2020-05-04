@@ -2,7 +2,6 @@ package ai.elimu.web.content.word;
 
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -11,15 +10,21 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.WordExtractionHelper;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +58,9 @@ public class WordEditController {
     private ImageDao imageDao;
     
     @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
+    
+    @Autowired
     private SyllableDao syllableDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -69,7 +77,7 @@ public class WordEditController {
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
         model.addAttribute("audio", audioDao.read(word.getText()));
         
-        // Look up variants of the same word
+        // Look up variants of the same wordByTextMatch
         model.addAttribute("wordInflections", wordDao.readInflections(word));
         
         // Look up Multimedia content that has been labeled with this Word
@@ -87,8 +95,7 @@ public class WordEditController {
     public String handleSubmit(
             @Valid Word word,
             BindingResult result,
-            Model model,
-            HttpServletRequest request) {
+            Model model) {
     	logger.info("handleSubmit");
         
         Word existingWord = wordDao.readByText(word.getText());
@@ -112,6 +119,27 @@ public class WordEditController {
             word.setTimeLastUpdate(Calendar.getInstance());
             word.setRevisionNumber(word.getRevisionNumber() + 1);
             wordDao.update(word);
+            
+            // Refresh the list of Words StoryBookParagraphs where the Word is being used
+            List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAllContainingWord(word.getText());
+            logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+            for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
+                logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                List<Word> words = new ArrayList<>();
+                logger.info("words.size(): " + words.size());
+                for (String wordInOriginalText : wordsInOriginalText) {
+                    logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                    wordInOriginalText = wordInOriginalText.toLowerCase();
+                    logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                    Word wordByTextMatch = wordDao.readByText(wordInOriginalText);
+                    logger.info("wordByTextMatch: " + wordByTextMatch);
+                    words.add(wordByTextMatch);
+                }
+                storyBookParagraph.setWords(words);
+                storyBookParagraphDao.update(storyBookParagraph);
+            }
             
             // Delete syllables that are actual words
             Syllable syllable = syllableDao.readByText(word.getText());

@@ -9,14 +9,20 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.WordExtractionHelper;
+import java.util.ArrayList;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +49,9 @@ public class WordCreateController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
     
     @Autowired
     private SyllableDao syllableDao;
@@ -93,6 +102,27 @@ public class WordCreateController {
         } else {
             word.setTimeLastUpdate(Calendar.getInstance());
             wordDao.create(word);
+            
+            // Refresh the list of Words StoryBookParagraphs where the Word is being used
+            List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAllContainingWord(word.getText());
+            logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+            for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+                List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
+                logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                List<Word> words = new ArrayList<>();
+                logger.info("words.size(): " + words.size());
+                for (String wordInOriginalText : wordsInOriginalText) {
+                    logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                    wordInOriginalText = wordInOriginalText.toLowerCase();
+                    logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                    Word wordByTextMatch = wordDao.readByText(wordInOriginalText);
+                    logger.info("wordByTextMatch: " + wordByTextMatch);
+                    words.add(wordByTextMatch);
+                }
+                storyBookParagraph.setWords(words);
+                storyBookParagraphDao.update(storyBookParagraph);
+            }
             
             // Label Image with Word of matching title
             Image matchingImage = imageDao.read(word.getText());
