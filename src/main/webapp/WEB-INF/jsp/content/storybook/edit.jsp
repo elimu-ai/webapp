@@ -7,10 +7,10 @@
     <div class="card-panel">
         <form:form modelAttribute="storyBook">
             <tag:formErrors modelAttribute="storyBook" />
+            
+            <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
-                
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />

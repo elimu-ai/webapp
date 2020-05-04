@@ -7,11 +7,11 @@
     <div class="card-panel">
         <form:form modelAttribute="allophone">
             <tag:formErrors modelAttribute="allophone" />
+            
+            <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
+            <form:hidden path="usageCount" value="${allophone.usageCount}" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
-                <form:hidden path="usageCount" value="${allophone.usageCount}" />
-                
                 <div class="input-field col s12">
                     <form:label path="valueIpa" cssErrorClass="error"><fmt:message key='value' /> (IPA)</form:label>
                     <form:input path="valueIpa" cssErrorClass="error" />
