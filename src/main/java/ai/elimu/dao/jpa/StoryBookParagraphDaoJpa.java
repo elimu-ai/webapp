@@ -20,4 +20,14 @@ public class StoryBookParagraphDaoJpa extends GenericDaoJpa<StoryBookParagraph> 
             .setParameter("storyBookChapter", storyBookChapter)
             .getResultList();
     }
+
+    @Override
+    public List<StoryBookParagraph> readAllContainingWord(String wordText) throws DataAccessException {
+        return em.createQuery(
+            "SELECT paragraph " +
+            "FROM StoryBookParagraph paragraph " +
+            "WHERE paragraph.originalText LIKE '%" + wordText + "%' " +
+            "ORDER BY paragraph.storyBookChapter.id, paragraph.sortOrder")
+            .getResultList();
+    }
 }
