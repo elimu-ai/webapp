@@ -7,6 +7,7 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
@@ -69,10 +70,17 @@ public class StoryBookChapterDeleteController {
         storyBookChapterDao.delete(storyBookChapterToBeDeleted);
         
         // Delete the chapter's image (if any)
-        logger.info("storyBookChapterToBeDeleted.getImage(): " + storyBookChapterToBeDeleted.getImage());
-        if (storyBookChapterToBeDeleted.getImage() != null) {
+        Image chapterImage = storyBookChapterToBeDeleted.getImage();
+        logger.info("chapterImage: " + chapterImage);
+        if (chapterImage != null) {
+            // Remove content labels
+            chapterImage.setLetters(null);
+            chapterImage.setNumbers(null);
+            chapterImage.setWords(null);
+            imageDao.update(chapterImage);
+            
             logger.warn("Deleting the chapter image from the database");
-            imageDao.delete(storyBookChapterToBeDeleted.getImage());
+            imageDao.delete(chapterImage);
         }
         
         // Update the StoryBook's metadata
