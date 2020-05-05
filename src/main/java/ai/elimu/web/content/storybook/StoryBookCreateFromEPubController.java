@@ -20,6 +20,7 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
+import ai.elimu.util.ImageHelper;
 import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
@@ -117,10 +118,10 @@ public class StoryBookCreateFromEPubController {
             long size = multipartFile.getSize();
             logger.info("size: " + size + " (" + (size / 1024) + "kB)");
             
-            byte[] bytes = multipartFile.getBytes();
-            logger.info("bytes.length: " + (bytes.length / 1024 / 1024) + "MB");
+            byte[] ePubBytes = multipartFile.getBytes();
+            logger.info("ePubBytes.length: " + (ePubBytes.length / 1024 / 1024) + "MB");
 
-            List<File> filesInEPub = unzipFiles(bytes, originalFilename);
+            List<File> filesInEPub = unzipFiles(ePubBytes, originalFilename);
             logger.info("filesInEPub.size(): " + filesInEPub.size());
 
             // Extract the ePUB's metadata from its OPF file
@@ -158,7 +159,7 @@ public class StoryBookCreateFromEPubController {
                 logger.info("coverImageUri: " + coverImageUri);
                 byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
                 storyBookCoverImage.setBytes(coverImageBytes);
-                byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
+                byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
                 byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
                 byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
                 if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
@@ -179,6 +180,15 @@ public class StoryBookCreateFromEPubController {
                     storyBookCoverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
                 } catch (NullPointerException ex) {
                     // javax.imageio.IIOException: Unsupported Image Type
+                }
+                if (storyBookCoverImage.getImageFormat() != ImageFormat.GIF) {
+                    // Reduce size if large image
+                    int imageWidth = ImageHelper.getWidth(coverImageBytes);
+                    logger.info("imageWidth: " + imageWidth + "px");
+                    if (imageWidth > ImageHelper.MINIMUM_WIDTH) {
+                        coverImageBytes = ImageHelper.scaleImage(coverImageBytes, ImageHelper.MINIMUM_WIDTH);
+                        storyBookCoverImage.setBytes(coverImageBytes);
+                    }
                 }
             }
 
@@ -263,6 +273,15 @@ public class StoryBookCreateFromEPubController {
                             chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
                         } catch (NullPointerException ex) {
                             // javax.imageio.IIOException: Unsupported Image Type
+                        }
+                        if (chapterImage.getImageFormat() != ImageFormat.GIF) {
+                            // Reduce size if large image
+                            int imageWidth = ImageHelper.getWidth(chapterImageBytes);
+                            logger.info("imageWidth: " + imageWidth + "px");
+                            if (imageWidth > ImageHelper.MINIMUM_WIDTH) {
+                                chapterImageBytes = ImageHelper.scaleImage(chapterImageBytes, ImageHelper.MINIMUM_WIDTH);
+                                chapterImage.setBytes(chapterImageBytes);
+                            }
                         }
                         storyBookChapter.setImage(chapterImage);
                     }
@@ -356,8 +375,8 @@ public class StoryBookCreateFromEPubController {
     /**
      * See http://www.mkyong.com/spring-mvc/spring-mvc-failed-to-convert-property-value-in-file-upload-form/
      * <p></p>
-     * Fixes this error message:
-     * "Cannot convert value of type [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile] to required type [byte] for property 'bytes[0]'"
+ Fixes this error message:
+ "Cannot convert value of type [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile] to required type [byte] for property 'ePubBytes[0]'"
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
@@ -368,7 +387,7 @@ public class StoryBookCreateFromEPubController {
     /**
      * Unzip the contents of the ePUB file to a temporary folder.
      */
-    private List<File> unzipFiles(byte[] bytes, String originalFilename) {
+    private List<File> unzipFiles(byte[] ePubBytes, String originalFilename) {
         logger.info("unzipFiles");
         
         List<File> unzippedFiles = new ArrayList<>();
@@ -383,7 +402,7 @@ public class StoryBookCreateFromEPubController {
         logger.info("unzipDestinationDirectory.mkdir(): " + unzipDestinationDirectory.mkdir());
         byte[] buffer = new byte[1024];
         try {
-            InputStream inputStream = new ByteArrayInputStream(bytes);
+            InputStream inputStream = new ByteArrayInputStream(ePubBytes);
             ZipInputStream zipInputStream = new ZipInputStream(inputStream);
             ZipEntry zipEntry = null;
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {

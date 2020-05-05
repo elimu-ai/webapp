@@ -16,7 +16,7 @@ public class ImageHelper {
     private static Logger logger = Logger.getLogger(ImageHelper.class);
     
     /** 
-     * TODO: add method detecting image type (PNG/JPG/GIF)
+     * TODO: add method for detecting image type (PNG/JPG/GIF)
      */
     public static int getWidth(byte[] imageBytes) {
         logger.info("getWidth");
