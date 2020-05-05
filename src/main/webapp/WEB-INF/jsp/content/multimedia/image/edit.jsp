@@ -5,20 +5,6 @@
 <content:section cssId="imageEditPage">
     <h4><content:gettitle /></h4>
     
-    <c:choose>
-        <c:when test="${empty audio}">
-            <div class="card-panel amber lighten-3">
-                <b>Warning:</b> This image has no corresponding audio.
-                <a href="<spring:url value='/content/multimedia/audio/create?transcription=${image.title}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <audio controls="true" autoplay="true">
-                <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
-            </audio>
-        </c:otherwise>
-    </c:choose>
-    
     <div class="card-panel">
         <form:form modelAttribute="image" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="image" />
@@ -27,6 +13,19 @@
             <form:hidden path="imageFormat" value="${image.imageFormat}" />
             <form:hidden path="contentType" value="${image.contentType}" />
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
+            
+            <img 
+                src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />"
+                alt="${image.title}" />
+            <script>
+                $(function() {
+                    console.debug("dominantColor: ${image.dominantColor}");
+                    <c:if test="${not empty image.dominantColor}">
+                        $('nav').removeClass("deep-purple");
+                        $('nav').css("background-color", "${image.dominantColor}");
+                    </c:if>
+                });
+            </script>
 
             <div class="row">
                 <div class="input-field col s12">
@@ -94,38 +93,21 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
+    <h5 class="center"><fmt:message key="audio" /></h5>
     
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="valign-wrapper" 
-                 style="
-                    background-image: url(<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />);
-                 ">
-                <h5 class="white-text" style="
-                    position: absolute; 
-                    bottom: 0; 
-                    width: 100%;
-                    font-size: 2rem;
-                    letter-spacing: .5em;
-                    text-shadow: 1px 1px rgba(0,0,0, .8);
-                    /*background-color: rgba(0,0,0, .1);*/
-                    ">${image.title}</h5>
+    <c:choose>
+        <c:when test="${empty audio}">
+            <div class="card-panel amber lighten-3">
+                <b>Warning:</b> This image has no corresponding audio.
+                <a href="<spring:url value='/content/multimedia/audio/create?transcription=${image.title}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
             </div>
-        </div>
-    </div>
-    
-    <script>
-        $(function() {
-            console.debug("dominantColor: ${image.dominantColor}");
-            <c:if test="${not empty image.dominantColor}">
-                $('#previewContent').css("background-color", "${image.dominantColor}");
-                $('nav').removeClass("deep-purple");
-                $('nav').css("background-color", "${image.dominantColor}");
-            </c:if>
-        });
-    </script>
+        </c:when>
+        <c:otherwise>
+            <audio controls="true" autoplay="true">
+                <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
+            </audio>
+        </c:otherwise>
+    </c:choose>
     
     <div class="divider" style="margin-top: 1em;"></div>
     
