@@ -48,7 +48,7 @@ public class JpaToGsonConverter {
             
             imageGson.setTitle(image.getTitle());
             imageGson.setImageFormat(image.getImageFormat());
-            imageGson.setDownloadUrl("/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase());
+            imageGson.setDownloadUrl("/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase());
             imageGson.setDownloadSize(image.getBytes().length / 1024);
             
             return imageGson;
