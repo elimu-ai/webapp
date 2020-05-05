@@ -14,7 +14,7 @@
         </c:when>
         <c:otherwise>
             <audio controls="true" autoplay="true">
-                <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
+                <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
             </audio>
         </c:otherwise>
     </c:choose>
@@ -101,7 +101,7 @@
         <div id="previewContentContainer">
             <div id="previewContent" class="valign-wrapper" 
                  style="
-                    background-image: url(<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />);
+                    background-image: url(<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />);
                  ">
                 <h5 class="white-text" style="
                     position: absolute; 

@@ -14,7 +14,7 @@
         </c:when>
         <c:otherwise>
             <audio controls="true" autoplay="true">
-                <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
+                <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
             </audio>
         </c:otherwise>
     </c:choose>
@@ -309,7 +309,7 @@
     <div id="labeledImages">
         <c:forEach var="image" items="${labeledImages}">
             <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
-                <img src="<spring:url value='/image/${image.id}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
+                <img src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
             </a>
         </c:forEach>
     </div>

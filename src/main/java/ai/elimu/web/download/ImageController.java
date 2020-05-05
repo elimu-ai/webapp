@@ -25,16 +25,18 @@ public class ImageController {
     @Autowired
     private ImageDao imageDao;
     
-    @RequestMapping(value="/{imageId}.{imageFormat}", method = RequestMethod.GET)
+    @RequestMapping(value="/{imageId}_r{revisionNumber}.{imageFormat}", method = RequestMethod.GET)
     public void handleRequest(
             Model model,
             @PathVariable Long imageId,
+            @PathVariable Integer revisionNumber,
             @PathVariable String imageFormat,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
         logger.info("imageId: " + imageId);
+        logger.info("revisionNumber: " + revisionNumber);
         logger.info("imageFormat: " + imageFormat);
         
         Image image = imageDao.read(imageId);

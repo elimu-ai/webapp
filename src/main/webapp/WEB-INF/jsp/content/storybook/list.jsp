@@ -24,7 +24,7 @@
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -52,7 +52,7 @@
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -80,7 +80,7 @@
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -108,7 +108,7 @@
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -134,7 +134,7 @@
                     <a name="${storyBook.id}"></a>
                     <div class="storyBook card">
                         <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                            <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                            <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
                                 <span class="card-title"><c:out value="${storyBook.title}" /></span>
                             </div>
                         </a>
