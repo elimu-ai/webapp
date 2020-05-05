@@ -25,16 +25,18 @@ public class AudioController {
     @Autowired
     private AudioDao audioDao;
     
-    @RequestMapping(value="/{audioId}.{audioFormat}", method = RequestMethod.GET)
+    @RequestMapping(value="/{audioId}_r{revisionNumber}.{audioFormat}", method = RequestMethod.GET)
     public void handleRequest(
             Model model,
             @PathVariable Long audioId,
+            @PathVariable Integer revisionNumber,
             @PathVariable String audioFormat,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
         logger.info("audioId: " + audioId);
+        logger.info("revisionNumber: " + revisionNumber);
         logger.info("audioFormat: " + audioFormat);
         
         Audio audio = audioDao.read(audioId);

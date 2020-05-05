@@ -32,7 +32,7 @@
                             </td>
                             <td>
                                 <audio controls="true">
-                                    <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
+                                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
                                 </audio>
                             </td>
                             <td>

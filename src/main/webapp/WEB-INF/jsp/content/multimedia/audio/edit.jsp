@@ -81,7 +81,7 @@
     <h5 class="center"><fmt:message key="preview" /></h5>
     
     <audio controls="true" autoplay="true">
-        <source src="<spring:url value='/audio/${audio.id}.${fn:toLowerCase(audio.audioFormat)}' />" />
+        <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
     </audio>
     
     <div class="divider" style="margin-top: 1em;"></div>
