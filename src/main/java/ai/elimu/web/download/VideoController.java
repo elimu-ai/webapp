@@ -25,16 +25,18 @@ public class VideoController {
     @Autowired
     private VideoDao videoDao;
     
-    @RequestMapping(value="/{videoId}.{videoFormat}", method = RequestMethod.GET)
+    @RequestMapping(value="/{videoId}_r{revisionNumber}.{videoFormat}", method = RequestMethod.GET)
     public void handleRequest(
             Model model,
             @PathVariable Long videoId,
+            @PathVariable Integer revisionNumber,
             @PathVariable String videoFormat,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleRequest");
         
         logger.info("videoId: " + videoId);
+        logger.info("revisionNumber: " + revisionNumber);
         logger.info("videoFormat: " + videoFormat);
         
         Video video = videoDao.read(videoId);
@@ -65,15 +67,17 @@ public class VideoController {
         }
     }
     
-    @RequestMapping(value="/{videoId}/thumbnail.png", method = RequestMethod.GET)
+    @RequestMapping(value="/{videoId}_r{revisionNumber}_thumbnail.png", method = RequestMethod.GET)
     public void handleThumbnailRequest(
             Model model,
             @PathVariable Long videoId,
+            @PathVariable Integer revisionNumber,
             HttpServletResponse response,
             OutputStream outputStream) {
         logger.info("handleThumbnailRequest");
         
         logger.info("videoId: " + videoId);
+        logger.info("revisionNumber: " + revisionNumber);
         
         Video video = videoDao.read(videoId);
         
