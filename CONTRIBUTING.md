@@ -24,9 +24,9 @@ for each commit to make it easier for future contributors to understand each cod
 request needs at least one approved review in order to be merged. When assigning reviewers, add one or more of the project's 
 maintainers:
 
-   * nya-elimuai
-   * jo-elimuai
-   * sladomic
+   * [nya-elimuai](https://github.com/nya-elimuai)
+   * [jo-elimuai](https://github.com/jo-elimuai)
+   * [sladomic](https://github.com/sladomic)
    
    If the maintainers are too slow to get back to you, send an e-mail to info@elimu.ai.
    
