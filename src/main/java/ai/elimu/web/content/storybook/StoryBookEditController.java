@@ -61,7 +61,7 @@ public class StoryBookEditController {
     private LetterDao letterDao;
     
     @Autowired
-    private StoryBooksJsonService jsonService;
+    private StoryBooksJsonService storyBooksJsonService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -164,7 +164,7 @@ public class StoryBookEditController {
             storyBookDao.update(storyBook);
             
             // Refresh REST API cache
-            jsonService.refreshStoryBooksJSONArray();
+            storyBooksJsonService.refreshStoryBooksJSONArray();
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }
