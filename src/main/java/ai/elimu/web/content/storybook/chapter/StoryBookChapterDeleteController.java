@@ -40,7 +40,7 @@ public class StoryBookChapterDeleteController {
     private ImageDao imageDao;
     
     @Autowired
-    StoryBooksJsonService jsonService;
+    private StoryBooksJsonService storyBooksJsonService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(HttpSession session, @PathVariable Long storyBookId, @PathVariable Long id) {
@@ -106,7 +106,7 @@ public class StoryBookChapterDeleteController {
         }
         
         // Refresh the REST API cache
-        jsonService.refreshStoryBooksJSONArray();
+        storyBooksJsonService.refreshStoryBooksJSONArray();
 
         return "redirect:/content/storybook/edit/" + storyBookId;
     }
