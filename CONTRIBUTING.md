@@ -22,7 +22,7 @@ for each commit to make it easier for future contributors to understand each cod
 
 4. Once ready for testing, create a pull request for your branch for merging it into the `master` branch. Your pull 
 request needs at least one approved review in order to be merged. When assigning reviewers, add one or more of the project's 
-maintainers:
+[maintainers](CODEOWNERS):
 
    * [nya-elimuai](https://github.com/nya-elimuai)
    * [jo-elimuai](https://github.com/jo-elimuai)
