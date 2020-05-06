@@ -31,8 +31,5 @@ Travis CI: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://
 ## Issue management
 See https://github.com/elimu-ai/webapp/projects
 
-## Chat 👋🏽
-See http://slack.elimu.ai
-
 ## Mailing list
 Sign up at http://eepurl.com/bGihkr
