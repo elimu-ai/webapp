@@ -6,6 +6,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordExtractionHelper;
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class ParagraphWordScheduler {
 
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private StoryBooksJsonService storyBooksJsonService;
     
     @Scheduled(cron="00 00 * * * *") // Every hour
     public synchronized void execute() {
@@ -56,6 +60,9 @@ public class ParagraphWordScheduler {
             // Update the paragraph's list of Words in the database
             storyBookParagraphDao.update(storyBookParagraph);
         }
+        
+        // Refresh REST API cache
+        storyBooksJsonService.refreshStoryBooksJSONArray();
         
         logger.info("execute complete");
     }
