@@ -14,14 +14,12 @@ import org.apache.log4j.Logger;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
-import ai.elimu.util.WordExtractionHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
@@ -303,19 +301,7 @@ public class StoryBookCreateFromEPubController {
                         }
                         storyBookParagraph.setOriginalText(paragraph);
 
-                        List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-                        logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
-                        List<Word> words = new ArrayList<>();
-                        logger.info("words.size(): " + words.size());
-                        for (String wordInOriginalText : wordsInOriginalText) {
-                            logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
-                            wordInOriginalText = wordInOriginalText.toLowerCase();
-                            logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
-                            Word word = wordDao.readByText(wordInOriginalText);
-                            logger.info("word: " + word);
-                            words.add(word);
-                        }
-                        storyBookParagraph.setWords(words);
+                        // Note: updating the paragraph's list of Words is handled by the ParagraphWordScheduler
 
                         storyBookParagraphs.add(storyBookParagraph);
                     }
