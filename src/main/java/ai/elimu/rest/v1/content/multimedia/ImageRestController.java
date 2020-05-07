@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.Language;
-import ai.elimu.model.gson.content.multimedia.ImageGson;
+import ai.elimu.model.v1.gson.content.multimedia.ImageGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

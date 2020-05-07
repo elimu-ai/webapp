@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.multimedia.Audio;
-import ai.elimu.model.gson.content.multimedia.AudioGson;
+import ai.elimu.model.v1.gson.content.multimedia.AudioGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

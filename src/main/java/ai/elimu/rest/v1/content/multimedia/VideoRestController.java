@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.gson.content.multimedia.VideoGson;
+import ai.elimu.model.v1.gson.content.multimedia.VideoGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

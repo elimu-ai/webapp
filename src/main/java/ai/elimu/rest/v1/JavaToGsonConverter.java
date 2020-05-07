@@ -16,20 +16,20 @@ import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.gson.content.NumberGson;
-import ai.elimu.model.gson.content.WordGson;
-import ai.elimu.model.gson.admin.ApplicationGson;
-import ai.elimu.model.gson.admin.ApplicationVersionGson;
-import ai.elimu.model.gson.content.AllophoneGson;
-import ai.elimu.model.gson.content.EmojiGson;
-import ai.elimu.model.gson.content.LetterGson;
-import ai.elimu.model.gson.content.StoryBookChapterGson;
-import ai.elimu.model.gson.content.StoryBookGson;
-import ai.elimu.model.gson.content.StoryBookParagraphGson;
-import ai.elimu.model.gson.content.SyllableGson;
-import ai.elimu.model.gson.content.multimedia.AudioGson;
-import ai.elimu.model.gson.content.multimedia.ImageGson;
-import ai.elimu.model.gson.content.multimedia.VideoGson;
+import ai.elimu.model.v1.gson.content.NumberGson;
+import ai.elimu.model.v1.gson.content.WordGson;
+import ai.elimu.model.v1.gson.admin.ApplicationGson;
+import ai.elimu.model.v1.gson.admin.ApplicationVersionGson;
+import ai.elimu.model.v1.gson.content.AllophoneGson;
+import ai.elimu.model.v1.gson.content.EmojiGson;
+import ai.elimu.model.v1.gson.content.LetterGson;
+import ai.elimu.model.v1.gson.content.StoryBookChapterGson;
+import ai.elimu.model.v1.gson.content.StoryBookGson;
+import ai.elimu.model.v1.gson.content.StoryBookParagraphGson;
+import ai.elimu.model.v1.gson.content.SyllableGson;
+import ai.elimu.model.v1.gson.content.multimedia.AudioGson;
+import ai.elimu.model.v1.gson.content.multimedia.ImageGson;
+import ai.elimu.model.v1.gson.content.multimedia.VideoGson;
 
 /**
  * Convert classes from JPA/Hibernate format to POJO format, so that they can be serialized into 

@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.NumberDao;
-import ai.elimu.model.gson.content.NumberGson;
+import ai.elimu.model.v1.gson.content.NumberGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import ai.elimu.model.content.Number;
 import org.springframework.beans.factory.annotation.Autowired;

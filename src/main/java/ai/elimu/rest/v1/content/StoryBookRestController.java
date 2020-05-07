@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.gson.content.StoryBookGson;
+import ai.elimu.model.v1.gson.content.StoryBookGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
