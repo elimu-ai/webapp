@@ -21,7 +21,7 @@
                         <div style="position: absolute; width: 100%; text-align: center;">
                             <i class="material-icons" style=" background-color: rgba(0,0,0, 0.2); color: rgba(255,255,255, 0.8); padding: 0.5rem; font-size: 3em; border-width: 2px; border-color: rgba(255,255,255, 0.8); border-style: solid; border-radius: 50%;">play_arrow</i>
                         </div>
-                        <img src="<spring:url value='/video/${video.id}/thumbnail.png' />" alt="${video.title}" />
+                        <img src="<spring:url value='/video/${video.id}_r${video.revisionNumber}_thumbnail.png' />" alt="${video.title}" />
                     </a>
                     
                     <div class="card-content">
