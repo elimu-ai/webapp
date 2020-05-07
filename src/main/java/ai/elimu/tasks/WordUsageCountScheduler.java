@@ -79,6 +79,7 @@ public class WordUsageCountScheduler {
 
         for (String key : wordFrequencyMap.keySet()) {
             String wordLowerCase = key.toLowerCase();
+            logger.info("wordLowerCase: \"" + wordLowerCase + "\"");
             Word word = wordDao.readByText(wordLowerCase);
             if (word != null) {
                 word.setUsageCount(wordFrequencyMap.get(wordLowerCase));
