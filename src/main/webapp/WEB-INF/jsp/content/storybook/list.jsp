@@ -23,11 +23,13 @@
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
-                            <span class="card-title"><c:out value="${storyBook.title}" /></span>
-                        </div>
-                    </a>
+                    <c:if test="${not empty storyBook.coverImage}">
+                        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                            <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                                <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                            </div>
+                        </a>
+                    </c:if>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
@@ -51,11 +53,13 @@
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
-                            <span class="card-title"><c:out value="${storyBook.title}" /></span>
-                        </div>
-                    </a>
+                    <c:if test="${not empty storyBook.coverImage}">
+                        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                            <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                                <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                            </div>
+                        </a>
+                    </c:if>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
@@ -79,11 +83,13 @@
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
-                            <span class="card-title"><c:out value="${storyBook.title}" /></span>
-                        </div>
-                    </a>
+                    <c:if test="${not empty storyBook.coverImage}">
+                        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                            <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                                <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                            </div>
+                        </a>
+                    </c:if>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
@@ -107,11 +113,13 @@
             <div class="col s12 m6 l4">
                 <a name="${storyBook.id}"></a>
                 <div class="storyBook card">
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
-                            <span class="card-title"><c:out value="${storyBook.title}" /></span>
-                        </div>
-                    </a>
+                    <c:if test="${not empty storyBook.coverImage}">
+                        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                            <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                                <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                            </div>
+                        </a>
+                    </c:if>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
@@ -133,11 +141,13 @@
                 <div class="col s12 m6 l4">
                     <a name="${storyBook.id}"></a>
                     <div class="storyBook card">
-                        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                            <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
-                                <span class="card-title"><c:out value="${storyBook.title}" /></span>
-                            </div>
-                        </a>
+                        <c:if test="${not empty storyBook.coverImage}">
+                            <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                                <div class="card-image" style="background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                                    <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                                </div>
+                            </a>
+                        </c:if>
                         <div class="card-content">
                             <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                             <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
