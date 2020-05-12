@@ -34,8 +34,6 @@ public class Word extends Content {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<LetterToAllophoneMapping> letterToAllophoneMappings;
     
-    private int usageCount; // Based on StoryBook content
-    
     /**
      * As an example, the verb "reading" will be linked to the root verb "read".
      */
@@ -81,14 +79,6 @@ public class Word extends Content {
 
     public void setLetterToAllophoneMappings(List<LetterToAllophoneMapping> letterToAllophoneMappings) {
         this.letterToAllophoneMappings = letterToAllophoneMappings;
-    }
-
-    public int getUsageCount() {
-        return usageCount;
-    }
-
-    public void setUsageCount(int usageCount) {
-        this.usageCount = usageCount;
     }
     
     public Word getRootWord() {

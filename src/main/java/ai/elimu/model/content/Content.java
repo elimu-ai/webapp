@@ -22,6 +22,12 @@ public abstract class Content extends BaseEntity {
     @NotNull
     private Integer revisionNumber = 1; // [1, 2, 3, ...]
     
+    /**
+     * See UsageCountSchedulers in {@link ai.elimu.tasks} for details on how this value is being updated on a regular 
+     * basis.
+     */
+    private int usageCount;
+    
     @NotNull
     @Enumerated(EnumType.STRING)
     private ContentStatus contentStatus = ContentStatus.ACTIVE;
@@ -40,6 +46,14 @@ public abstract class Content extends BaseEntity {
 
     public void setRevisionNumber(Integer revisionNumber) {
         this.revisionNumber = revisionNumber;
+    }
+    
+    public int getUsageCount() {
+        return usageCount;
+    }
+
+    public void setUsageCount(int usageCount) {
+        this.usageCount = usageCount;
     }
 
     public ContentStatus getContentStatus() {

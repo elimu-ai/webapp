@@ -25,8 +25,6 @@ public class Letter extends Content {
     private List<Allophone> allophones;
     
     private boolean diacritic;
-    
-    private int usageCount; // Based on StoryBook content (all difficulty levels)
 
     public String getText() {
         return text;
@@ -52,13 +50,5 @@ public class Letter extends Content {
 
     public void setDiacritic(boolean diacritic) {
         this.diacritic = diacritic;
-    }
-
-    public int getUsageCount() {
-        return usageCount;
-    }
-
-    public void setUsageCount(int usageCount) {
-        this.usageCount = usageCount;
     }
 }
