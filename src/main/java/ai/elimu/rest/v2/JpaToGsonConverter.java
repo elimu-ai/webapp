@@ -31,6 +31,7 @@ public class JpaToGsonConverter {
             
             wordGson.setText(word.getText());
             // TODO: setLetters
+            wordGson.setWordType(word.getWordType());
             
             return wordGson;
         }
