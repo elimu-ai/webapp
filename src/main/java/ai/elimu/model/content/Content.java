@@ -23,7 +23,7 @@ public abstract class Content extends BaseEntity {
     private Integer revisionNumber = 1; // [1, 2, 3, ...]
     
     /**
-     * See UsageCountSchedulers in {@link ai.elimu.tasks} for details in how this value is being updated on a regular 
+     * See UsageCountSchedulers in {@link ai.elimu.tasks} for details on how this value is being updated on a regular 
      * basis.
      */
     private int usageCount;
