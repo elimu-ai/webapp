@@ -25,10 +25,14 @@ public class JpaToGsonConverter {
         } else {
             WordGson wordGson = new WordGson();
             
+            // BaseEntity
             wordGson.setId(word.getId());
             
+            // Content
             wordGson.setRevisionNumber(word.getRevisionNumber());
+            wordGson.setUsageCount(word.getUsageCount());
             
+            // Word
             wordGson.setText(word.getText());
             // TODO: setLetters
             wordGson.setWordType(word.getWordType());
@@ -43,10 +47,14 @@ public class JpaToGsonConverter {
         } else {
             ImageGson imageGson = new ImageGson();
             
+            // BaseEntity
             imageGson.setId(image.getId());
             
+            // Content
             imageGson.setRevisionNumber(image.getRevisionNumber());
+            imageGson.setUsageCount(image.getUsageCount());
             
+            // Image
             imageGson.setTitle(image.getTitle());
             imageGson.setImageFormat(image.getImageFormat());
             imageGson.setDownloadUrl("/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase());
@@ -62,10 +70,14 @@ public class JpaToGsonConverter {
         } else {
             StoryBookGson storyBookGson = new StoryBookGson();
             
+            // BaseEntity
             storyBookGson.setId(storyBook.getId());
             
+            // Content
             storyBookGson.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookGson.setUsageCount(storyBook.getUsageCount());
             
+            // StoryBook
             storyBookGson.setTitle(storyBook.getTitle());
             storyBookGson.setDescription(storyBook.getDescription());
             storyBookGson.setCoverImage(getImageGson(storyBook.getCoverImage()));
@@ -82,8 +94,10 @@ public class JpaToGsonConverter {
         } else {
             StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
             
+            // BaseEntity
             storyBookChapterGson.setId(storyBookChapter.getId());
             
+            // StoryBookChapter
             storyBookChapterGson.setSortOrder(storyBookChapter.getSortOrder());
             storyBookChapterGson.setImage(getImageGson(storyBookChapter.getImage()));
             
@@ -97,7 +111,10 @@ public class JpaToGsonConverter {
         } else {
             StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
             
+            // BaseEntity
             storyBookParagraphGson.setId(storyBookParagraph.getId());
+            
+            // StoryBookParagraph
             storyBookParagraphGson.setSortOrder(storyBookParagraph.getSortOrder());
             storyBookParagraphGson.setOriginalText(storyBookParagraph.getOriginalText());
             List<WordGson> words = new ArrayList<>();

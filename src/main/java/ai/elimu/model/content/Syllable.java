@@ -18,8 +18,6 @@ public class Syllable extends Content {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
     
-    private int usageCount; // Based on StoryBook content (all difficulty levels)
-
     public String getText() {
         return text;
     }
@@ -34,13 +32,5 @@ public class Syllable extends Content {
 
     public void setAllophones(List<Allophone> allophones) {
         this.allophones = allophones;
-    }
-
-    public int getUsageCount() {
-        return usageCount;
-    }
-
-    public void setUsageCount(int usageCount) {
-        this.usageCount = usageCount;
     }
 }
