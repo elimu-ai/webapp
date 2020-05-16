@@ -253,6 +253,30 @@
                 <li>
                     <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
                 </li>
+                <li>
+                    <a href="https://translate.google.com/#view=home&op=translate&sl=hi&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ul>
+        </div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin-top: 1em;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ul>
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#tl" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/#view=home&op=translate&sl=tl&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+                <li>
+                    <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
+                </li>
             </ul>
         </div>
     </c:if>
