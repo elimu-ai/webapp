@@ -240,4 +240,20 @@
             </c:otherwise>
         </c:choose>
     </c:if>
+    
+    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin-top: 1em;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ul>
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
+                </li>
+            </ul>
+        </div>
+    </c:if>
 </content:aside>
