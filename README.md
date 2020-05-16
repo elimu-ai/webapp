@@ -20,12 +20,6 @@ See [LOCALIZE.md](LOCALIZE.md)
 ## Continuous integration
 Travis CI: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
 
-## Issue management
-See https://github.com/elimu-ai/webapp/projects
-
-## Mailing list
-Sign up at http://eepurl.com/bGihkr
-
 ---
 
 ## About the elimu.ai Community
