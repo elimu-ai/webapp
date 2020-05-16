@@ -9,8 +9,6 @@
             <tag:formErrors modelAttribute="word" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
-                
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />
@@ -226,32 +224,60 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
+    <c:if test="${not empty word.text}">
+        <h5 class="center"><fmt:message key="audio" /></h5>
+        <c:choose>
+            <c:when test="${empty audio}">
+                <div class="card-panel amber lighten-3">
+                    <b>Warning:</b> This word has no corresponding audio.
+                    <a href="<spring:url value='/content/multimedia/audio/create?transcription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <audio controls="true" autoplay="true">
+                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
+                </audio>
+            </c:otherwise>
+        </c:choose>
+    </c:if>
     
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentGrapheme">
+    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin-top: 1em;"></div>
+        </c:if>
 
-            </div>
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ul>
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/#view=home&op=translate&sl=hi&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ul>
         </div>
-    </div>
-    <script>
-        $(function() {
-            initializePreview();
-            
-            $('#text').on("change", function() {
-                console.debug('#text on change');
-                initializePreview();
-            });
-            
-            function initializePreview() {
-                console.debug('initializePreview');
-                var value = $('#text').val();
-                if ((value != undefined) && (value != "")) {
-                    $('#previewContent').html(value);
-                }
-            };
-        });
-    </script>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin-top: 1em;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ul>
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#tl" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/#view=home&op=translate&sl=tl&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+                <li>
+                    <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
+                </li>
+            </ul>
+        </div>
+    </c:if>
 </content:aside>
