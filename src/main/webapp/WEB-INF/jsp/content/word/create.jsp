@@ -9,8 +9,6 @@
             <tag:formErrors modelAttribute="word" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
-                
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />
@@ -226,32 +224,20 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
-    
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentGrapheme">
-
-            </div>
-        </div>
-    </div>
-    <script>
-        $(function() {
-            initializePreview();
-            
-            $('#text').on("change", function() {
-                console.debug('#text on change');
-                initializePreview();
-            });
-            
-            function initializePreview() {
-                console.debug('initializePreview');
-                var value = $('#text').val();
-                if ((value != undefined) && (value != "")) {
-                    $('#previewContent').html(value);
-                }
-            };
-        });
-    </script>
+    <c:if test="${not empty word.text}">
+        <h5 class="center"><fmt:message key="audio" /></h5>
+        <c:choose>
+            <c:when test="${empty audio}">
+                <div class="card-panel amber lighten-3">
+                    <b>Warning:</b> This word has no corresponding audio.
+                    <a href="<spring:url value='/content/multimedia/audio/create?transcription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <audio controls="true" autoplay="true">
+                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
+                </audio>
+            </c:otherwise>
+        </c:choose>
+    </c:if>
 </content:aside>
