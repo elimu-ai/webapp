@@ -1,12 +1,4 @@
-# elimu.ai webapp
-
-![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/54360503-e8e88980-465c-11e9-9792-32b513105cf3.png)
-
-###### Quality basic education for _every child_
-
----
-
-
+# elimu.ai Webapp
 
 Web application: http://elimu.ai
 
