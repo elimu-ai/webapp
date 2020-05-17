@@ -157,3 +157,13 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 247,image/jpg,null,"null","storybook-16-ch-5","/image/247.jpg",JPG
 248,image/jpg,null,"null","storybook-16-ch-6","/image/248.jpg",JPG
 249,image/jpg,null,"null","storybook-16-ch-7","/image/249.jpg",JPG
+255,image/jpg,null,"null","storybook-17-cover","/image/255.jpg",JPG
+257,image/jpg,null,"null","storybook-17-ch-2","/image/257.jpg",JPG
+258,image/jpg,null,"null","storybook-17-ch-3","/image/258.jpg",JPG
+259,image/jpg,null,"null","storybook-17-ch-4","/image/259.jpg",JPG
+260,image/jpg,null,"null","storybook-17-ch-5","/image/260.jpg",JPG
+261,image/jpg,null,"null","storybook-17-ch-6","/image/261.jpg",JPG
+262,image/jpg,null,"null","storybook-17-ch-7","/image/262.jpg",JPG
+263,image/jpg,null,"null","storybook-17-ch-8","/image/263.jpg",JPG
+264,image/jpg,null,"null","storybook-17-ch-9","/image/264.jpg",JPG
+265,image/jpg,null,"null","storybook-17-ch-10","/image/265.jpg",JPG
