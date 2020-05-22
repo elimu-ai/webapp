@@ -36,34 +36,14 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
-    
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentGrapheme">
-
-            </div>
-        </div>
+    <h5 class="center"><fmt:message key="resources" /></h5>
+    <div class="card-panel deep-purple lighten-5">
+        <ul style="list-style-type: default;">
+            <li>
+                <a href="https://emojipedia.org/<c:out value='${emoji.glyph}' />" target="_blank">📙 Emojipedia</a>
+            </li>
+        </ul>
     </div>
-    <script>
-        $(function() {
-            initializePreview();
-            
-            $('#glyph').on("change", function() {
-                console.debug('#glyph on change');
-                initializePreview();
-            });
-            
-            function initializePreview() {
-                console.debug('initializePreview');
-                var value = $('#glyph').val();
-                if ((value != undefined) && (value != "")) {
-                    $('#previewContent').html(value);
-                }
-            };
-        });
-    </script>
     
     <div class="divider" style="margin-top: 1em;"></div>
     

@@ -26,7 +26,7 @@
                 <tbody>
                     <c:forEach var="emoji" items="${emojis}">
                         <tr class="emoji">
-                            <td style="font-size: 4em;">
+                            <td style="font-size: 6em;">
                                 <a name="${emoji.id}"></a>
                                 ${emoji.glyph}
                             </td>

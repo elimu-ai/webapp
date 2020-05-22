@@ -310,7 +310,7 @@
     <div id="labeledEmojis">
         <c:forEach var="emoji" items="${labeledEmojis}">
             <a href="<spring:url value='/content/emoji/edit/${emoji.id}' />">
-                <span style="font-size: 4em;">${emoji.glyph}</span>
+                <span style="font-size: 6em;">${emoji.glyph}</span>
             </a>
         </c:forEach>
     </div>
