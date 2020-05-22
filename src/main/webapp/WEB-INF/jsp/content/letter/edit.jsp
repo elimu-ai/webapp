@@ -125,6 +125,12 @@
                 <li>
                     <a href="https://en.wikipedia.org/wiki/Help:IPA/Hindi_and_Urdu" target="_blank">Wikipedia: Help:IPA/Hindi and Urdu</a>
                 </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Devanagari#Letters" target="_blank">Wikipedia: Devanagari - Letters</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/writing/hindi.htm" target="_blank">Omniglot: Hindi (हिन्दी)</a>
+                </li>
             </ul>
         </c:if>
         
@@ -132,9 +138,6 @@
         
         General resources:
         <ul style="list-style-type: default;">
-            <li>
-                <a href="https://www.omniglot.com/" target="_blank">Omniglot</a>
-            </li>
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
             </li>
