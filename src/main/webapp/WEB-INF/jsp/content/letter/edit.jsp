@@ -139,6 +139,9 @@
         General resources:
         <ul style="list-style-type: default;">
             <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md#add-educational-content-to-the-website-step-by-step-guide" target="_blank">elimu.ai Wiki</a>
+            </li>
+            <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
             </li>
         </ul>

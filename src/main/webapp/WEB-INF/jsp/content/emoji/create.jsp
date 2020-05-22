@@ -41,6 +41,9 @@
             <li>
                 <a href="https://emojipedia.org" target="_blank">📙 Emojipedia</a>
             </li>
+            <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md#add-educational-content-to-the-website-step-by-step-guide" target="_blank">elimu.ai Wiki</a>
+            </li>
         </ul>
     </div>
 </content:aside>
