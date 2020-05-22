@@ -71,6 +71,12 @@ html[data-content-language="urd"] #wordEditPage input#text {
     letter-spacing: 0.2em;
 }
 
+#emojiCreatePage input#glyph,
+#emojiEditPage input#glyph {
+    font-size: 6em;
+    height: 1.2em;
+}
+
 #labeledAudios img,
 #labeledImages img,
 #labeledVideos img {
