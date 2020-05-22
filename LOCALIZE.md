@@ -6,4 +6,4 @@ See [INSTALL.md](INSTALL.md#supported-languages-)
 
 ## Adding Support for a New Language
 
-See https://elimu-ai.atlassian.net/wiki/spaces/DE/pages/191136000/
+See https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md

@@ -27,7 +27,7 @@ request needs at least one approved review in order to be merged. When assigning
    * [jo-elimuai](https://github.com/jo-elimuai)
    * [sladomic](https://github.com/sladomic)
    
-   If the maintainers are too slow to get back to you, send an e-mail to info@elimu.ai.
+   If the maintainers are too slow to get back to you, send an e-mail to info@elimu.ai or contact us via [Slack](https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw).
    
 5. Once your pull request has been approved by at least one project maintainer, press the "merge" button. This will merge 
 your code changes into the `master` branch and deploy them to the test servers at http://`<language>`.test.elimu.ai.
