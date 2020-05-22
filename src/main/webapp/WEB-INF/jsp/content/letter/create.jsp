@@ -93,32 +93,27 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
-    
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentGrapheme">
-
-            </div>
-        </div>
+    <h5 class="center"><fmt:message key="resources" /></h5>
+    <div class="card-panel deep-purple lighten-5">
+        <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+            Hindi resources:
+            <ul style="list-style-type: default;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Hindi_and_Urdu" target="_blank">Wikipedia: Help:IPA/Hindi and Urdu</a>
+                </li>
+            </ul>
+        </c:if>
+        
+        <div class="divider" style="margin: 1em 0;"></div>
+        
+        General resources:
+        <ul style="list-style-type: default;">
+            <li>
+                <a href="https://www.omniglot.com/" target="_blank">Omniglot</a>
+            </li>
+            <li>
+                <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
+            </li>
+        </ul>
     </div>
-    <script>
-        $(function() {
-            initializePreview();
-            
-            $('#text').on("change", function() {
-                console.debug('#text on change');
-                initializePreview();
-            });
-            
-            function initializePreview() {
-                console.debug('initializePreview');
-                var value = $('#text').val();
-                if ((value != undefined) && (value != "")) {
-                    $('#previewContent').html(value);
-                }
-            };
-        });
-    </script>
 </content:aside>
