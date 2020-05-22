@@ -48,7 +48,7 @@
     
     <p>
         If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our 
-        <a href="http://slack.elimu.ai">chat room</a>.
+        <a href="https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw">chat room (Slack)</a>.
     </p>
 </content:section>
 

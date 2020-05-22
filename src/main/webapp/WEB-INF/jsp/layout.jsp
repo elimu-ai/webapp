@@ -101,10 +101,9 @@
                       <div class="container">
                         <div class="row">
                           <div class="col l6 s12">
-                            <h5 class="white-text"><fmt:message key="about" /> elimu.ai</h5>
-                            <p class="grey-text text-lighten-2"><fmt:message key="we.are.an.open.community.with" /></p>
-                            <p class="grey-text text-lighten-2"><fmt:message key="we.build.educational.software.which.is.open.source" />
-                            <a class="white-text" href="<spring:url value='/publish' />"><fmt:message key="read.more" />...</a></p>
+                            <h5 class="white-text">About the elimu.ai Community</h5>
+                            <p class="grey-text text-lighten-2">The purpose of the elimu.ai Community is to provide out-of-school children with access to quality basic education.</p>
+                            <p class="grey-text text-lighten-2">Read more about the project at <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">github.com/elimu-ai/wiki</a></p>
                           </div>
                           <div class="col l3 offset-l1 s12 ">
                             <h5 class="white-text"><fmt:message key="contact.us" /> 👋🏽</h5>
@@ -112,7 +111,7 @@
                                 Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;"><fmt:message key="email" /></a> 
                                 or talk with us directly in our chat room:
                             </p>
-                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="http://slack.elimu.ai">
+                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw">
                                 <fmt:message key="open.chat" /><i class="material-icons right">forum</i>
                             </a>
                           </div>
@@ -121,6 +120,7 @@
                             <ul>
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
+                                <li><a class="white-text" href="https://www.instagram.com/elimu.ai" target="_blank">Instagram</a></li>
                                 <li><a class="white-text" href="https://www.youtube.com/channel/UCRjBGmM0huH2DhVH3jJ8B6Q" target="_blank">YouTube</a></li>
                                 <li><a class="white-text" href="https://www.linkedin.com/company/elimuai" target="_blank">LinkedIn</a></li>
                                 <li><a class="white-text" href="https://medium.com/elimu-ai" target="_blank"><fmt:message key="blog" /></a></li>
@@ -132,7 +132,7 @@
                       <div class="container">
                           <div class="row">
                             <div class="col s12 m6">
-                                <a class="white-text" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, 2.0</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai">code repository</a><br />
+                                <a class="white-text" href="https://opensource.org/licenses/MIT">MIT License</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai">code repository</a><br />
                                 <a class="white-text" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="<spring:url value='/content' />">content repository</a><br />
                             </div>
                             <div class="col s12 m6">

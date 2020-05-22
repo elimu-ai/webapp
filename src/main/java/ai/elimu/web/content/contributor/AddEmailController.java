@@ -77,8 +77,8 @@ public class AddEmailController {
             htmlText += "<p><blockquote>\"The elimu.ai Community develops open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
             htmlText += "<p><img src=\"https://gallery.mailchimp.com/1a69583fdeec7d1888db043c0/images/72b31d67-58fd-443e-a6be-3ef2095cfe3b.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
             htmlText += "<h2>Chat</h2>";
-            htmlText += "<p>At http://slack.elimu.ai you can chat with the other elimu.ai Community members.</p>";
-            Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "http://slack.elimu.ai");
+            htmlText += "<p>In Slack you can chat with the other elimu.ai Community members:</p>";
+            Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw");
         }
     	
         return "redirect:/content";
