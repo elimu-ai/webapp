@@ -67,3 +67,14 @@
         </form:form>
     </div>
 </content:section>
+
+<content:aside>
+    <h5 class="center"><fmt:message key="resources" /></h5>
+    <div class="card-panel deep-purple lighten-5">
+        <ul>
+            <li>
+                <a href="https://bookdash.org/books/" target="_blank">Book Dash</a>
+            </li>
+        </ul>
+    </div>
+</content:aside>

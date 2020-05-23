@@ -282,7 +282,7 @@
             <div class="divider" style="margin: 1em 0;"></div>
         
             General resources:
-            <ul style="list-style-type: default;">
+            <ul>
                 <li>
                     <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md#add-educational-content-to-the-website-step-by-step-guide" target="_blank">elimu.ai Wiki</a>
                 </li>

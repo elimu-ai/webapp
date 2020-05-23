@@ -37,7 +37,7 @@
 <content:aside>
     <h5 class="center"><fmt:message key="resources" /></h5>
     <div class="card-panel deep-purple lighten-5">
-        <ul style="list-style-type: default;">
+        <ul>
             <li>
                 <a href="https://emojipedia.org" target="_blank">📙 Emojipedia</a>
             </li>
