@@ -38,3 +38,20 @@
         </form:form>
     </div>
 </content:section>
+
+<content:aside>
+    <h5 class="center"><fmt:message key="resources" /></h5>
+    <div class="card-panel deep-purple lighten-5">
+        <ul>
+            <li>
+                <a href="https://digitallibrary.io" target="_blank">Global Digital Library</a>
+            </li>
+            <li>
+                <a href="https://reader.letasreadasia.org" target="_blank">Let's Read</a>
+            </li>
+            <li>
+                <a href="https://storyweaver.org.in/stories" target="_blank">StoryWeaver</a>
+            </li>
+        </ul>
+    </div>
+</content:aside>

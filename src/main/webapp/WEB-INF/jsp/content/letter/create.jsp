@@ -97,7 +97,7 @@
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
             Hindi resources:
-            <ul style="list-style-type: default;">
+            <ul>
                 <li>
                     <a href="https://en.wikipedia.org/wiki/Help:IPA/Hindi_and_Urdu" target="_blank">Wikipedia: Help:IPA/Hindi and Urdu</a>
                 </li>
@@ -113,7 +113,10 @@
         <div class="divider" style="margin: 1em 0;"></div>
         
         General resources:
-        <ul style="list-style-type: default;">
+        <ul>
+            <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md#add-educational-content-to-the-website-step-by-step-guide" target="_blank">elimu.ai Wiki</a>
+            </li>
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
             </li>

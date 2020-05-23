@@ -40,10 +40,6 @@ This file is placed on the prod server under $JETTY_HOME/contexts/
     <Arg>github_api_secret</Arg>
     <Arg>************</Arg>
   </Call>
-  <Call name="setAttribute">
-    <Arg>slack_api_token</Arg>
-    <Arg>************</Arg>
-  </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
       <Item>fil.elimu.ai</Item>

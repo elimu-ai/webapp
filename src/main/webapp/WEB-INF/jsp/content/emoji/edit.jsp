@@ -38,9 +38,12 @@
 <content:aside>
     <h5 class="center"><fmt:message key="resources" /></h5>
     <div class="card-panel deep-purple lighten-5">
-        <ul style="list-style-type: default;">
+        <ul>
             <li>
                 <a href="https://emojipedia.org/<c:out value='${emoji.glyph}' />" target="_blank">📙 Emojipedia</a>
+            </li>
+            <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md#add-educational-content-to-the-website-step-by-step-guide" target="_blank">elimu.ai Wiki</a>
             </li>
         </ul>
     </div>

@@ -278,6 +278,18 @@
                     <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
                 </li>
             </ul>
+                
+            <div class="divider" style="margin: 1em 0;"></div>
+        
+            General resources:
+            <ul>
+                <li>
+                    <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
+                </li>
+                <li>
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
+                </li>
+            </ul>
         </div>
     </c:if>
 </content:aside>
