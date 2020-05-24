@@ -80,7 +80,11 @@ public class JpaToGsonConverter {
             // StoryBook
             storyBookGson.setTitle(storyBook.getTitle());
             storyBookGson.setDescription(storyBook.getDescription());
-            storyBookGson.setCoverImage(getImageGson(storyBook.getCoverImage()));
+            if (storyBook.getCoverImage() != null) {
+                ImageGson imageGson = new ImageGson();
+                imageGson.setId(storyBook.getCoverImage().getId());
+                storyBookGson.setCoverImage(imageGson);
+            }
             storyBookGson.setReadingLevel(storyBook.getReadingLevel());
             
             
@@ -99,7 +103,11 @@ public class JpaToGsonConverter {
             
             // StoryBookChapter
             storyBookChapterGson.setSortOrder(storyBookChapter.getSortOrder());
-            storyBookChapterGson.setImage(getImageGson(storyBookChapter.getImage()));
+            if (storyBookChapter.getImage() != null) {
+                ImageGson imageGson = new ImageGson();
+                imageGson.setId(storyBookChapter.getImage().getId());
+                storyBookChapterGson.setImage(imageGson);
+            }
             
             return storyBookChapterGson;
         }
@@ -119,7 +127,11 @@ public class JpaToGsonConverter {
             storyBookParagraphGson.setOriginalText(storyBookParagraph.getOriginalText());
             List<WordGson> words = new ArrayList<>();
             for (Word word : storyBookParagraph.getWords()) {
-                WordGson wordGson = getWordGson(word);
+                WordGson wordGson = null;
+                if (word != null) {
+                    wordGson = new WordGson();
+                    wordGson.setId(word.getId());
+                }
                 words.add(wordGson);
             }
             storyBookParagraphGson.setWords(words);
