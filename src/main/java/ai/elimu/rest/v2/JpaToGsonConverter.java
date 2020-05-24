@@ -11,7 +11,9 @@ import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Convert classes from JPA/Hibernate format to POJO format, so that they can be serialized into 
@@ -59,6 +61,16 @@ public class JpaToGsonConverter {
             imageGson.setImageFormat(image.getImageFormat());
             imageGson.setDownloadUrl("/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase());
             imageGson.setDownloadSize(image.getBytes().length / 1024);
+            Set<WordGson> wordGsons = new HashSet<>();
+            for (Word word : image.getWords()) {
+                WordGson wordGson = null;
+                if (word != null) {
+                    wordGson = new WordGson();
+                    wordGson.setId(word.getId());
+                }
+                wordGsons.add(wordGson);
+            }
+            imageGson.setWords(wordGsons);
             
             return imageGson;
         }
@@ -125,19 +137,18 @@ public class JpaToGsonConverter {
             // StoryBookParagraph
             storyBookParagraphGson.setSortOrder(storyBookParagraph.getSortOrder());
             storyBookParagraphGson.setOriginalText(storyBookParagraph.getOriginalText());
-            List<WordGson> words = new ArrayList<>();
+            List<WordGson> wordGsons = new ArrayList<>();
             for (Word word : storyBookParagraph.getWords()) {
                 WordGson wordGson = null;
                 if (word != null) {
                     wordGson = new WordGson();
                     wordGson.setId(word.getId());
                 }
-                words.add(wordGson);
+                wordGsons.add(wordGson);
             }
-            storyBookParagraphGson.setWords(words);
+            storyBookParagraphGson.setWords(wordGsons);
             
             return storyBookParagraphGson;
         }
     }
 }
- 
