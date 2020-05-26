@@ -23,6 +23,6 @@ public class EmojisRestControllerTest {
         assertThat(emojisJSONArray.length() > 0, is(true));
         
         JSONObject emojiJsonObject = emojisJSONArray.getJSONObject(0);
-        assertThat(emojiJsonObject.getString("title"), not(nullValue()));
+        assertThat(emojiJsonObject.getString("glyph"), not(nullValue()));
     }
 }
