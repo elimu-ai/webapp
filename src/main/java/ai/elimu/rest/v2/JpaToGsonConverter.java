@@ -1,10 +1,12 @@
 package ai.elimu.rest.v2;
 
+import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
@@ -43,6 +45,35 @@ public class JpaToGsonConverter {
         }
     }
     
+    public static EmojiGson getEmojiGson(Emoji emoji) {
+        if (emoji == null) {
+            return null;
+        } else {
+            EmojiGson emojiGson = new EmojiGson();
+            
+            // BaseEntity
+            emojiGson.setId(emoji.getId());
+            
+            // Content
+            emojiGson.setRevisionNumber(emoji.getRevisionNumber());
+            emojiGson.setUsageCount(emoji.getUsageCount());
+            
+            // Emoji
+            emojiGson.setGlyph(emoji.getGlyph());
+            emojiGson.setUnicodeVersion(emoji.getUnicodeVersion());
+            emojiGson.setUnicodeEmojiVersion(emoji.getUnicodeEmojiVersion());
+            Set<WordGson> wordGsons = new HashSet<>();
+            for (Word word : emoji.getWords()) {
+                WordGson wordGson = new WordGson();
+                wordGson.setId(word.getId());
+                wordGsons.add(wordGson);
+            }
+            emojiGson.setWords(wordGsons);
+            
+            return emojiGson;
+        }
+    }
+    
     public static ImageGson getImageGson(Image image) {
         if (image == null) {
             return null;
@@ -63,11 +94,8 @@ public class JpaToGsonConverter {
             imageGson.setDownloadSize(image.getBytes().length / 1024);
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : image.getWords()) {
-                WordGson wordGson = null;
-                if (word != null) {
-                    wordGson = new WordGson();
-                    wordGson.setId(word.getId());
-                }
+                WordGson wordGson = new WordGson();
+                wordGson.setId(word.getId());
                 wordGsons.add(wordGson);
             }
             imageGson.setWords(wordGsons);

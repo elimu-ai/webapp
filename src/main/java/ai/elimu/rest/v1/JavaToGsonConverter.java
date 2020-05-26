@@ -7,7 +7,6 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
@@ -21,7 +20,6 @@ import ai.elimu.model.v1.gson.content.WordGson;
 import ai.elimu.model.v1.gson.admin.ApplicationGson;
 import ai.elimu.model.v1.gson.admin.ApplicationVersionGson;
 import ai.elimu.model.v1.gson.content.AllophoneGson;
-import ai.elimu.model.v1.gson.content.EmojiGson;
 import ai.elimu.model.v1.gson.content.LetterGson;
 import ai.elimu.model.v1.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v1.gson.content.StoryBookGson;
@@ -193,32 +191,6 @@ public class JavaToGsonConverter {
             syllableGson.setUsageCount(syllable.getUsageCount());
             
             return syllableGson;
-        }
-    }
-    
-    public static EmojiGson getEmojiGson(Emoji emoji) {
-        if (emoji == null) {
-            return null;
-        } else {
-            EmojiGson emojiGson = new EmojiGson();
-            
-            emojiGson.setId(emoji.getId());
-            emojiGson.setTimeLastUpdate(emoji.getTimeLastUpdate());
-            emojiGson.setRevisionNumber(emoji.getRevisionNumber());
-            emojiGson.setContentStatus(emoji.getContentStatus());
-            
-            emojiGson.setGlyph(emoji.getGlyph());
-            emojiGson.setUnicodeVersion(emoji.getUnicodeVersion());
-            emojiGson.setUnicodeEmojiVersion(emoji.getUnicodeEmojiVersion());
-            
-            List<WordGson> words = new ArrayList<>();
-            for (Word word : emoji.getWords()) {
-                WordGson wordGson = getWordGson(word);
-                words.add(wordGson);
-            }
-            emojiGson.setWords(words);
-            
-            return emojiGson;
         }
     }
     
