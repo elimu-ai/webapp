@@ -8,16 +8,20 @@ This web application hosts Android apps and educational content (e.g. texts, aud
 
 ## Software architecture
 
-See software architecture diagram at https://github.com/elimu-ai/model
+See https://github.com/elimu-ai/wiki/blob/master/SOFTWARE_ARCHITECTURE.md
+
+## REST API
+
+See [src/main/java/ai/elimu/rest/](src/main/java/ai/elimu/rest/)
 
 ## Run application locally 👩🏽‍💻
 See [INSTALL.md](INSTALL.md)
 
-## Contributing guidelines
-See [CONTRIBUTING.md](CONTRIBUTING.md)
-
 ## Localization
 See [LOCALIZE.md](LOCALIZE.md)
+
+## Contributing guidelines
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Continuous integration
 Travis CI: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
