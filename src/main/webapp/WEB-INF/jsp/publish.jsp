@@ -58,7 +58,7 @@
     <ul class="browser-default">
         <li>
             <b>What type of license is required?</b><br />
-            We require all code to be licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> 
+            We require all code to be licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a> 
             or equivalent, creating a global public good available for anyone to use and build upon.<br />
             <br />
         </li>
