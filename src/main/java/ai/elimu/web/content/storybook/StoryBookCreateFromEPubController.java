@@ -4,7 +4,6 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import ai.elimu.dao.WordDao;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +14,7 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.ImageFormat;
-import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
@@ -69,9 +66,6 @@ public class StoryBookCreateFromEPubController {
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
-    
-    @Autowired
-    private WordDao wordDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -98,8 +92,6 @@ public class StoryBookCreateFromEPubController {
         List<StoryBookChapter> storyBookChapters = new ArrayList<>();
         
         List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
-        
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         if (multipartFile.isEmpty()) {
             result.rejectValue("bytes", "NotNull");
@@ -305,15 +297,6 @@ public class StoryBookCreateFromEPubController {
 
                         storyBookParagraphs.add(storyBookParagraph);
                     }
-
-                    if (paragraphs.isEmpty()) {
-                        // TODO: remove this after finding a way to skip storage of empty chapters
-                        StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
-                        storyBookParagraph.setStoryBookChapter(storyBookChapter);
-                        storyBookParagraph.setSortOrder(0);
-                        storyBookParagraph.setOriginalText("...");
-                        storyBookParagraphs.add(storyBookParagraph);
-                    }
                 }
             }
         }
@@ -331,26 +314,35 @@ public class StoryBookCreateFromEPubController {
             storyBook.setCoverImage(storyBookCoverImage);
             storyBookDao.update(storyBook);
             
-            // Store the chapter images
+            // Store the StoryBookChapters in the database
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                storyBookChapter.setStoryBook(storyBook);
+                
+                // Store the chapter's image (if any)
                 Image chapterImage = storyBookChapter.getImage();
                 if (chapterImage != null) {
                     chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
                     imageDao.create(chapterImage);
                 }
-            }
-            
-            // Store the StoryBookChapters in the database
-            for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                storyBookChapter.setStoryBook(storyBook);
-                storyBookChapterDao.create(storyBookChapter);
                 
-                // Store the StoryBookChapter's StoryBookParagraphs in the database
+                // Get the paragraphs associated with this chapter
+                List<StoryBookParagraph> storyBookParagraphsAssociatedWithChapter = new ArrayList<>();
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
                     if (storyBookParagraph.getStoryBookChapter().getSortOrder().equals(storyBookChapter.getSortOrder())) {
-                        storyBookParagraph.setStoryBookChapter(storyBookChapter);
-                        storyBookParagraphDao.create(storyBookParagraph);
+                        storyBookParagraphsAssociatedWithChapter.add(storyBookParagraph);
                     }
+                }
+                logger.info("storyBookParagraphsAssociatedWithChapter.size(): " + storyBookParagraphsAssociatedWithChapter.size());
+                
+                // Only store the chapter if it has an image or at least one paragraph
+                if ((chapterImage != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
+                    storyBookChapterDao.create(storyBookChapter);
+                }
+                
+                // Store the chapter's paragraphs in the database
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
+                    storyBookParagraph.setStoryBookChapter(storyBookChapter);
+                    storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
             
