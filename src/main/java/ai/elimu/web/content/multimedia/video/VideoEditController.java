@@ -1,5 +1,6 @@
 package ai.elimu.web.content.multimedia.video;
 
+import ai.elimu.dao.EmojiDao;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -13,6 +14,7 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -21,6 +23,9 @@ import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.VideoFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +57,9 @@ public class VideoEditController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private EmojiDao emojiDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -70,6 +78,7 @@ public class VideoEditController {
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
         model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", getEmojisByWordId());
 
         return "content/multimedia/video/edit";
     }
@@ -128,6 +137,7 @@ public class VideoEditController {
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());
             model.addAttribute("words", wordDao.readAllOrdered());
+            model.addAttribute("emojisByWordId", getEmojisByWordId());
             return "content/multimedia/video/edit";
         } else {
             video.setTitle(video.getTitle().toLowerCase());
@@ -265,5 +275,26 @@ public class VideoEditController {
         }
         
         return "success";
+    }
+    
+    private Map<Long, String> getEmojisByWordId() {
+        logger.info("getEmojisByWordId");
+        
+        Map<Long, String> emojisByWordId = new HashMap<>();
+        
+        for (Word word : wordDao.readAll()) {
+            String emojiGlyphs = "";
+            
+            List<Emoji> emojis = emojiDao.readAllLabeled(word);
+            for (Emoji emoji : emojis) {
+                emojiGlyphs += emoji.getGlyph();
+            }
+            
+            if (StringUtils.isNotBlank(emojiGlyphs)) {
+                emojisByWordId.put(word.getId(), emojiGlyphs);
+            }
+        }
+        
+        return emojisByWordId;
     }
 }

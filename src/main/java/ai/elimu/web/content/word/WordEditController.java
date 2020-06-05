@@ -10,7 +10,6 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
-import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
@@ -20,6 +19,9 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import java.util.HashMap;
+import java.util.Map;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +55,6 @@ public class WordEditController {
     private ImageDao imageDao;
     
     @Autowired
-    private StoryBookParagraphDao storyBookParagraphDao;
-    
-    @Autowired
     private SyllableDao syllableDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -68,6 +67,7 @@ public class WordEditController {
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
         model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
         model.addAttribute("rootWords", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
         model.addAttribute("audio", audioDao.read(word.getText()));
@@ -102,6 +102,7 @@ public class WordEditController {
             model.addAttribute("allophones", allophones);
             model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
             model.addAttribute("rootWords", wordDao.readAllOrdered());
+            model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             model.addAttribute("audio", audioDao.read(word.getText()));
@@ -122,5 +123,26 @@ public class WordEditController {
             
             return "redirect:/content/word/list#" + word.getId();
         }
+    }
+    
+    private Map<Long, String> getEmojisByWordId() {
+        logger.info("getEmojisByWordId");
+        
+        Map<Long, String> emojisByWordId = new HashMap<>();
+        
+        for (Word word : wordDao.readAll()) {
+            String emojiGlyphs = "";
+            
+            List<Emoji> emojis = emojiDao.readAllLabeled(word);
+            for (Emoji emoji : emojis) {
+                emojiGlyphs += emoji.getGlyph();
+            }
+            
+            if (StringUtils.isNotBlank(emojiGlyphs)) {
+                emojisByWordId.put(word.getId(), emojiGlyphs);
+            }
+        }
+        
+        return emojisByWordId;
     }
 }

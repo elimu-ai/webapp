@@ -123,7 +123,7 @@
                                 <c:set var="word" value="${wordMap[wordTextLowerCase]}" />
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />" target="_blank">
                                     <c:out value="${word.text}" />
-                                </a><br />
+                                </a><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /><br />
                                 <span class="grey-text">
                                     /<c:forEach var="allophone" items="${word.allophones}">
                                         ${allophone.valueIpa}

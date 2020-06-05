@@ -7,17 +7,21 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +41,9 @@ public class WordCreateController {
     private WordDao wordDao;
     
     @Autowired
+    private EmojiDao emojiDao;
+    
+    @Autowired
     private AllophoneDao allophoneDao;
     
     @Autowired
@@ -44,9 +51,6 @@ public class WordCreateController {
     
     @Autowired
     private ImageDao imageDao;
-    
-    @Autowired
-    private StoryBookParagraphDao storyBookParagraphDao;
     
     @Autowired
     private SyllableDao syllableDao;
@@ -66,6 +70,7 @@ public class WordCreateController {
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
         model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
         model.addAttribute("rootWords", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
 
@@ -91,6 +96,7 @@ public class WordCreateController {
             model.addAttribute("allophones", allophones);
             model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAll());
             model.addAttribute("rootWords", wordDao.readAllOrdered());
+            model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             return "content/word/create";
@@ -119,5 +125,26 @@ public class WordCreateController {
             
             return "redirect:/content/word/list#" + word.getId();
         }
+    }
+    
+    private Map<Long, String> getEmojisByWordId() {
+        logger.info("getEmojisByWordId");
+        
+        Map<Long, String> emojisByWordId = new HashMap<>();
+        
+        for (Word word : wordDao.readAll()) {
+            String emojiGlyphs = "";
+            
+            List<Emoji> emojis = emojiDao.readAllLabeled(word);
+            for (Emoji emoji : emojis) {
+                emojiGlyphs += emoji.getGlyph();
+            }
+            
+            if (StringUtils.isNotBlank(emojiGlyphs)) {
+                emojisByWordId.put(word.getId(), emojiGlyphs);
+            }
+        }
+        
+        return emojisByWordId;
     }
 }

@@ -67,7 +67,8 @@
                                 <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
                             </td>
                             <td>
-                                ${word.wordType}
+                                ${word.wordType}<br />
+                                <c:out value=" ${emojisByWordId[word.id]}" />
                             </td>
                             <td>
                                 <c:if test="${not empty word.rootWord}">

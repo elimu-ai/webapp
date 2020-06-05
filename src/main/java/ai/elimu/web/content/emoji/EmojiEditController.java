@@ -9,7 +9,9 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Word;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
@@ -45,6 +47,7 @@ public class EmojiEditController {
         
         List<Word> words = wordDao.readAllOrdered();
         model.addAttribute("words", words);
+        model.addAttribute("emojisByWordId", getEmojisByWordId());
 
         return "content/emoji/edit";
     }
@@ -66,6 +69,7 @@ public class EmojiEditController {
             
             List<Word> words = wordDao.readAllOrdered();
             model.addAttribute("words", words);
+            model.addAttribute("emojisByWordId", getEmojisByWordId());
             
             return "content/emoji/edit";
         } else {
@@ -131,5 +135,26 @@ public class EmojiEditController {
         }
         
         return "success";
+    }
+    
+    private Map<Long, String> getEmojisByWordId() {
+        logger.info("getEmojisByWordId");
+        
+        Map<Long, String> emojisByWordId = new HashMap<>();
+        
+        for (Word word : wordDao.readAll()) {
+            String emojiGlyphs = "";
+            
+            List<Emoji> emojis = emojiDao.readAllLabeled(word);
+            for (Emoji emoji : emojis) {
+                emojiGlyphs += emoji.getGlyph();
+            }
+            
+            if (StringUtils.isNotBlank(emojiGlyphs)) {
+                emojisByWordId.put(word.getId(), emojiGlyphs);
+            }
+        }
+        
+        return emojisByWordId;
     }
 }

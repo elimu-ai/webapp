@@ -10,10 +10,12 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -25,6 +27,9 @@ import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.util.ImageHelper;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,6 +63,9 @@ public class ImageEditController {
     private WordDao wordDao;
     
     @Autowired
+    private EmojiDao emojiDao;
+    
+    @Autowired
     private AudioDao audioDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -77,6 +85,7 @@ public class ImageEditController {
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
         model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", getEmojisByWordId());
         
         Audio audio = audioDao.read(image.getTitle());
         model.addAttribute("audio", audio);
@@ -159,6 +168,7 @@ public class ImageEditController {
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());
             model.addAttribute("words", wordDao.readAllOrdered());
+            model.addAttribute("emojisByWordId", getEmojisByWordId());
             Audio audio = audioDao.read(image.getTitle());
             model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";
@@ -298,5 +308,26 @@ public class ImageEditController {
         }
         
         return "success";
+    }
+    
+    private Map<Long, String> getEmojisByWordId() {
+        logger.info("getEmojisByWordId");
+        
+        Map<Long, String> emojisByWordId = new HashMap<>();
+        
+        for (Word word : wordDao.readAll()) {
+            String emojiGlyphs = "";
+            
+            List<Emoji> emojis = emojiDao.readAllLabeled(word);
+            for (Emoji emoji : emojis) {
+                emojiGlyphs += emoji.getGlyph();
+            }
+            
+            if (StringUtils.isNotBlank(emojiGlyphs)) {
+                emojisByWordId.put(word.getId(), emojiGlyphs);
+            }
+        }
+        
+        return emojisByWordId;
     }
 }

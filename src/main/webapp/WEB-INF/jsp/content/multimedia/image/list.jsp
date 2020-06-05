@@ -45,7 +45,9 @@
                             <fmt:message key="words" />: 
                             <c:forEach var="word" items="${image.words}">
                                 <div class="chip">
-                                    ${word.text}
+                                    <a href="<spring:url value='/content/word/edit/${word.id}' />">
+                                        ${word.text} <c:out value=" ${emojisByWordId[word.id]}" />
+                                    </a>
                                 </div>
                             </c:forEach>
                         </p>
