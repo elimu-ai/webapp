@@ -47,7 +47,7 @@
                 <a href="https://digitallibrary.io" target="_blank">Global Digital Library</a>
             </li>
             <li>
-                <a href="https://reader.letasreadasia.org" target="_blank">Let's Read</a>
+                <a href="https://reader.letsreadasia.org" target="_blank">Let's Read</a>
             </li>
             <li>
                 <a href="https://storyweaver.org.in/stories" target="_blank">StoryWeaver</a>
