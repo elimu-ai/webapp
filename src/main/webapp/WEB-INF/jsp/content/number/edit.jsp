@@ -31,7 +31,9 @@
                         <c:forEach var="word" items="${number.words}">
                             <input name="words" type="hidden" value="${word.id}" />
                             <div class="chip" data-wordid="${word.id}" data-wordvalue="${word.text}">
-                                ${word.text} 
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />">
+                                    ${word.text} 
+                                </a>
                                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
                                     <i class="material-icons">clear</i>
                                 </a>
@@ -57,7 +59,7 @@
                     <select id="numberWords" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="word" items="${words}">
-                            <option value="${word.id}"><c:out value="${word.text}" /></option>
+                            <option value="${word.id}"><c:out value="${word.text}" /><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if></option>
                         </c:forEach>
                     </select>
                     <script>

@@ -57,7 +57,7 @@
                     <select id="numberWords" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="word" items="${words}">
-                            <option value="${word.id}"><c:out value="${word.text}" /></option>
+                            <option value="${word.id}"><c:out value="${word.text}" /><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if></option>
                         </c:forEach>
                     </select>
                     <script>
