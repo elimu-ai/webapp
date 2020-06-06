@@ -6,10 +6,6 @@ Web application: http://elimu.ai
 
 This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
-## Software architecture
-
-See https://github.com/elimu-ai/wiki/blob/master/SOFTWARE_ARCHITECTURE.md
-
 ## REST API
 
 See [src/main/java/ai/elimu/rest/](src/main/java/ai/elimu/rest/)
@@ -19,6 +15,10 @@ The webapp's REST API is used by four Android applications:
   1. [elimu.ai Content Provider](https://github.com/elimu-ai/content-provider)
   1. [elimu.ai Analytics](https://github.com/elimu-ai/analytics)
   1. [elimu.ai Crowdsource](https://github.com/elimu-ai/crowdsource)
+
+## Software architecture
+
+See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/blob/master/SOFTWARE_ARCHITECTURE.md)
 
 ## Run application locally 👩🏽‍💻
 See [INSTALL.md](INSTALL.md)
