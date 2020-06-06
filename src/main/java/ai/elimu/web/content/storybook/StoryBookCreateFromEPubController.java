@@ -318,13 +318,6 @@ public class StoryBookCreateFromEPubController {
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
                 storyBookChapter.setStoryBook(storyBook);
                 
-                // Store the chapter's image (if any)
-                Image chapterImage = storyBookChapter.getImage();
-                if (chapterImage != null) {
-                    chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
-                    imageDao.create(chapterImage);
-                }
-                
                 // Get the paragraphs associated with this chapter
                 List<StoryBookParagraph> storyBookParagraphsAssociatedWithChapter = new ArrayList<>();
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
@@ -333,6 +326,33 @@ public class StoryBookCreateFromEPubController {
                     }
                 }
                 logger.info("storyBookParagraphsAssociatedWithChapter.size(): " + storyBookParagraphsAssociatedWithChapter.size());
+                
+                // Exclude chapters containing book metadata
+                boolean isMetadata = false;
+                for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
+                    String originalTextLowerCase = storyBookParagraph.getOriginalText().toLowerCase();
+                    if (
+                           originalTextLowerCase.contains("author: ")
+                        || originalTextLowerCase.contains("illustrator: ")
+                        || originalTextLowerCase.contains("translator: ")
+                        || originalTextLowerCase.contains("creative commons")
+                        || originalTextLowerCase.contains("pratham books")
+                        || originalTextLowerCase.contains("storyweaver")
+                    ) {
+                        isMetadata = true;
+                        break;
+                    }
+                }
+                if (isMetadata) {
+                    continue;
+                }
+                
+                // Store the chapter's image (if any)
+                Image chapterImage = storyBookChapter.getImage();
+                if (chapterImage != null) {
+                    chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
+                    imageDao.create(chapterImage);
+                }
                 
                 // Only store the chapter if it has an image or at least one paragraph
                 if ((chapterImage != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
