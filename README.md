@@ -14,6 +14,12 @@ See https://github.com/elimu-ai/wiki/blob/master/SOFTWARE_ARCHITECTURE.md
 
 See [src/main/java/ai/elimu/rest/](src/main/java/ai/elimu/rest/)
 
+The webapp's REST API is used by four Android applications:
+  1. [elimu.ai Appstore](https://github.com/elimu-ai/appstore)
+  1. [elimu.ai Content Provider](https://github.com/elimu-ai/content-provider)
+  1. [elimu.ai Analytics](https://github.com/elimu-ai/analytics)
+  1. [elimu.ai Crowdsource](https://github.com/elimu-ai/crowdsource)
+
 ## Run application locally 👩🏽‍💻
 See [INSTALL.md](INSTALL.md)
 
