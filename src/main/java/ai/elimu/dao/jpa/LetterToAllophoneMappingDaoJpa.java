@@ -25,5 +25,14 @@ public class LetterToAllophoneMappingDaoJpa extends GenericDaoJpa<LetterToAlloph
             logger.warn("LetterToAllophoneMapping was not found for Letter \"" + letter.getText() + "\"");
             return null;
         }
-    }   
+    }
+    
+    @Override
+    public List<LetterToAllophoneMapping> readAllOrderedByUsage() throws DataAccessException {
+        return em.createQuery(
+            "SELECT ltam " +
+            "FROM LetterToAllophoneMapping ltam " +
+            "ORDER BY ltam.usageCount DESC")
+            .getResultList();
+    }
 }
