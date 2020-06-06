@@ -4,7 +4,7 @@ Web application: http://elimu.ai
 
 ![webapp](https://user-images.githubusercontent.com/15718174/81133309-ccf02780-8f83-11ea-9759-ac390d25f68b.png)
 
-This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
+This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
 ## Software architecture
 
