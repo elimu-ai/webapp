@@ -23,7 +23,7 @@ public class LetterToAllophoneMappingListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<LetterToAllophoneMapping> letterToAllophoneMappings = letterToAllophoneMappingDao.readAll();
+        List<LetterToAllophoneMapping> letterToAllophoneMappings = letterToAllophoneMappingDao.readAllOrderedByUsage();
         model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappings);
         
         int maxUsageCount = 0;

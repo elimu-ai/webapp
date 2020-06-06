@@ -10,4 +10,6 @@ import org.springframework.dao.DataAccessException;
 public interface LetterToAllophoneMappingDao extends GenericDao<LetterToAllophoneMapping> {
     
     LetterToAllophoneMapping read(Letter letter, List<Allophone> allophones) throws DataAccessException;
+    
+    List<LetterToAllophoneMapping> readAllOrderedByUsage() throws DataAccessException;
 }
