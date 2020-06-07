@@ -35,4 +35,13 @@ public class LetterToAllophoneMappingDaoJpa extends GenericDaoJpa<LetterToAlloph
             "ORDER BY ltam.usageCount DESC")
             .getResultList();
     }
+    
+    @Override
+    public List<LetterToAllophoneMapping> readAllOrderedByLetterText() throws DataAccessException {
+        return em.createQuery(
+            "SELECT ltam " +
+            "FROM LetterToAllophoneMapping ltam " +
+            "ORDER BY ltam.letter.text")
+            .getResultList();
+    }
 }

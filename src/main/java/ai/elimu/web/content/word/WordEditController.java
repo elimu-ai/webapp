@@ -65,7 +65,7 @@ public class WordEditController {
                 
         model.addAttribute("word", word);
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
-        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage());
+        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
@@ -100,7 +100,7 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("allophones", allophones);
-            model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage());
+            model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
