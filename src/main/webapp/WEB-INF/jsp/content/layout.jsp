@@ -67,6 +67,10 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/letter/list' />"><fmt:message key="letters" /></a>
                             </c:when>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-to-allophone-mapping/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/letter-to-allophone-mapping/list' />"><fmt:message key="letter.to.allophone.mappings" /></a>
+                            </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/word/list' />"><fmt:message key="words" /></a>
