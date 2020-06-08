@@ -3,7 +3,6 @@ package ai.elimu.web.content.word;
 import ai.elimu.dao.StoryBookParagraphDao;
 import java.util.List;
 import org.apache.log4j.Logger;
-import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
@@ -21,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WordsPendingController {
     
     private final Logger logger = Logger.getLogger(getClass());
-    
-    @Autowired
-    private WordDao wordDao;
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
