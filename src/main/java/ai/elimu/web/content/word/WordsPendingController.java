@@ -1,0 +1,52 @@
+package ai.elimu.web.content.word;
+
+import ai.elimu.dao.StoryBookParagraphDao;
+import java.util.List;
+import org.apache.log4j.Logger;
+import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.enums.Language;
+import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.WordFrequencyHelper;
+import java.util.ArrayList;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+@RequestMapping("/content/word/pending")
+public class WordsPendingController {
+    
+    private final Logger logger = Logger.getLogger(getClass());
+    
+    @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String handleRequest(Model model) {
+    	logger.info("handleRequest");
+        
+        List<String> paragraphs = new ArrayList<>();
+        for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {
+            paragraphs.add(storyBookParagraph.getOriginalText());
+        }
+        logger.info("paragraphs.size(): " + paragraphs.size());
+        
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
+        model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+        logger.info("wordFrequencyMap.size(): " + wordFrequencyMap.size());
+        
+        int maxUsageCount = 0;
+        for (Integer usageCount : wordFrequencyMap.values()) {
+            if (usageCount > maxUsageCount) {
+                maxUsageCount = usageCount;
+            }
+        }
+        model.addAttribute("maxUsageCount", maxUsageCount);
+
+        return "content/word/pending";
+    }
+}

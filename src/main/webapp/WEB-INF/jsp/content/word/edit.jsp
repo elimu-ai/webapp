@@ -282,18 +282,23 @@
             </ul>
             
             <div class="divider" style="margin: 1em 0;"></div>
-        
-            General resources:
-            <ul>
-                <li>
-                    <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
-                </li>
-                <li>
-                    <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
-                </li>
-            </ul>
         </div>
     </c:if>
+    
+    <div class="card-panel deep-purple lighten-5">
+        General resources:
+        <ul>
+            <li>
+                <a href="<spring:url value='/content/word/pending' />"><fmt:message key="words.pending" /></a>
+            </li>
+            <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
+            </li>
+            <li>
+                <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
+            </li>
+        </ul>
+    </div>
     
     <c:if test="${not empty wordInflections}">
         <div class="divider" style="margin-top: 1em;"></div>
