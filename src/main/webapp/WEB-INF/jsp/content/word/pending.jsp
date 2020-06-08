@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <c:forEach var="wordFrequencyMapItem" items="${wordFrequencyMap}">
-                    <c:set var="wordTextLowerCase" value="${wordFrequencyMapItem.key}" />
+                    <c:set var="wordText" value="${wordFrequencyMapItem.key}" />
                     <c:set var="wordUsageCount" value="${wordFrequencyMapItem.value}" />
                     <tr>
                         <td>
@@ -22,10 +22,10 @@
                             </div>
                         </td>
                         <td style="font-size: 2em;">
-                            "<c:out value="${wordTextLowerCase}" />"
+                            "<c:out value="${wordText}" />"
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/word/create?autoFillText=${wordTextLowerCase}' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
+                            <a href="<spring:url value='/content/word/create?autoFillText=${wordText}' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
                         </td>
                     </tr>
                 </c:forEach>
