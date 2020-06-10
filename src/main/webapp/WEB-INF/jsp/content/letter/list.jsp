@@ -38,9 +38,7 @@
                                 ${letter.text}
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="allophone" items="${letter.allophones}">
-                                    ${allophone.valueIpa} 
-                                </c:forEach>/
+                                /<c:forEach var="allophone" items="${letter.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
                             </td>
                             <td>
                                 ${letter.diacritic}

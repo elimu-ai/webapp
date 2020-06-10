@@ -18,6 +18,7 @@
                 <th><fmt:message key="value" /></th>
                 <th><fmt:message key="symbol" /></th>
                 <th><fmt:message key="number.words" /></th>
+                <th><fmt:message key="allophones" /></th>
                 <th><fmt:message key="revision" /></th>
                 <th><fmt:message key="edit" /></th>
             </thead>
@@ -34,6 +35,12 @@
                         <td style="font-size: 2em;">
                             <c:forEach var="word" items="${number.words}">
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />">${word.text}</a>
+                            </c:forEach>
+                        </td>
+                        
+                        <td style="font-size: 2em;">
+                            <c:forEach var="word" items="${number.words}">
+                                /<c:forEach var="allophone" items="${word.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
                             </c:forEach>
                         </td>
                         <td>
