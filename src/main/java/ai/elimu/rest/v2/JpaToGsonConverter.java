@@ -1,11 +1,13 @@
 package ai.elimu.rest.v2;
 
+import ai.elimu.model.admin.Application;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.v2.gson.application.ApplicationGson;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
@@ -177,6 +179,26 @@ public class JpaToGsonConverter {
             storyBookParagraphGson.setWords(wordGsons);
             
             return storyBookParagraphGson;
+        }
+    }
+    
+    public static ApplicationGson getApplicationGson(Application application) {
+        if (application == null) {
+            return null;
+        } else {
+            ApplicationGson applicationGson = new ApplicationGson();
+            
+            // BaseEntity
+            applicationGson.setId(application.getId());
+            
+            // Application
+            applicationGson.setPackageName(application.getPackageName());
+            applicationGson.setInfrastructural(application.isInfrastructural());
+            applicationGson.setLiteracySkills(application.getLiteracySkills());
+            applicationGson.setNumeracySkills(application.getNumeracySkills());
+            applicationGson.setApplicationStatus(application.getApplicationStatus());
+            
+            return applicationGson;
         }
     }
 }
