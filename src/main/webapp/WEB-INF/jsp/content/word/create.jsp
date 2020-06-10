@@ -1,4 +1,4 @@
- <content:title>
+<content:title>
     <fmt:message key="add.word" />
 </content:title>
 
