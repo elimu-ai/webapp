@@ -39,9 +39,7 @@
                                 "${word.text}"
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="allophone" items="${word.allophones}">
-                                    <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a>
-                                </c:forEach>/
+                                /<c:forEach var="allophone" items="${word.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
                             </td>
                             <c:choose>
                                 <c:when test="${word.spellingConsistency == 'PERFECT'}">

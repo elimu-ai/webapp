@@ -16,27 +16,37 @@
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
-                
-                <c:if test="${not empty word.text}">
-                    <c:if test="${(applicationScope.configProperties['content.language'] == 'BEN')
-                          || (applicationScope.configProperties['content.language'] == 'HIN')
-                          || (applicationScope.configProperties['content.language'] == 'URD')}">
-                          <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
-                        <div class="col s12 grey-text" style="font-size: 3em; height: 2em;">
-                            <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
-                                <c:set var="letter" value="${fn:substring(word.text, status.index, status.index + 1)}" />
-                                <c:out value="${letter}" /><c:out value=" " />
-                            </c:forEach>
-                        </div>
-                    </c:if>
-                </c:if>
             </div>
             
             <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="letters" /></label><br />
                     
-                    TODO...<br />
+                    <c:if test="${not empty word.text}">
+                        <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
+                        <div class="col s12 grey-text" style="font-size: 3em; height: 2em;">
+                            <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
+                                <c:set var="letterText" value="${fn:substring(word.text, status.index, status.index + 1)}" />
+                                <c:set var="matchingLetter" />
+                                <c:forEach var="letter" items="${letters}">
+                                    <c:if test="${letter.text eq letterText}">
+                                        <c:set var="matchingLetter" value="${letter}" />
+                                    </c:if>
+                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${empty matchingLetter}">
+                                        <c:out value="${letterText}" /><c:out value=" " />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="<spring:url value='/content/letter/edit/${matchingLetter.id}' />">
+                                            <c:if test="${status.index > 0}">&nbsp;</c:if>
+                                            <c:out value=" ${matchingLetter.text} " />&nbsp;
+                                        </a><c:if test="${matchingLetter.isDiacritic()}">&nbsp;&nbsp;</c:if>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </div>
+                    </c:if>
                     
                     <a href="<spring:url value='/content/letter/create' />" target="_blank"><fmt:message key="add.letter" /> <i class="material-icons">launch</i></a>
                 </div>
