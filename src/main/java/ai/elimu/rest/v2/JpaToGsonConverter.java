@@ -1,6 +1,7 @@
 package ai.elimu.rest.v2;
 
 import ai.elimu.model.admin.Application;
+import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
@@ -8,6 +9,7 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.v2.gson.application.ApplicationGson;
+import ai.elimu.model.v2.gson.application.ApplicationVersionGson;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
@@ -199,6 +201,25 @@ public class JpaToGsonConverter {
             applicationGson.setApplicationStatus(application.getApplicationStatus());
             
             return applicationGson;
+        }
+    }
+    
+    public static ApplicationVersionGson getApplicationVersionGson(ApplicationVersion applicationVersion) {
+        if (applicationVersion == null) {
+            return null;
+        } else {
+            ApplicationVersionGson applicationVersionGson = new ApplicationVersionGson();
+            
+            // BaseEntity
+            applicationVersionGson.setId(applicationVersion.getId());
+            
+            // ApplicationVersion
+            applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
+            applicationVersionGson.setFileSizeInKb(applicationVersion.getFileSizeInKb());
+            applicationVersionGson.setChecksumMd5(applicationVersion.getChecksumMd5());
+            applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());
+            
+            return applicationVersionGson;
         }
     }
 }
