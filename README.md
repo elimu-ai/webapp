@@ -29,9 +29,6 @@ See [LOCALIZE.md](LOCALIZE.md)
 ## Contributing guidelines
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Continuous integration
-Travis CI: [![Build Status](https://travis-ci.com/elimu-ai/webapp.svg?branch=master)](https://travis-ci.com/elimu-ai/webapp)
-
 ---
 
 ## About the elimu.ai Community
