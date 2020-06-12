@@ -30,7 +30,7 @@ See [LOCALIZE.md](LOCALIZE.md)
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Continuous integration
-Travis CI: [![Build Status](https://travis-ci.org/elimu-ai/webapp.svg)](https://travis-ci.org/elimu-ai/webapp)
+Travis CI: [![Build Status](https://travis-ci.com/elimu-ai/webapp.svg?branch=master)](https://travis-ci.com/elimu-ai/webapp)
 
 ---
 
