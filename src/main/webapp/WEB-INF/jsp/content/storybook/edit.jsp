@@ -83,10 +83,7 @@
             </c:if>
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
-                <p class="storyBookParagraph">
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <a class="storyBookParagraphEditLink right" href="<spring:url value='/content/storybook/paragraph/edit/${storyBookParagraph.id}' />"><i class="material-icons" title="<fmt:message key='edit' />">edit</i></a>
-                    </sec:authorize>
+                <p class="storyBookParagraph"><sec:authorize access="hasRole('ROLE_ADMIN')"><a class="storyBookParagraphEditLink right" href="<spring:url value='/content/storybook/paragraph/edit/${storyBookParagraph.id}' />"><i class="material-icons" title="<fmt:message key='edit' />">edit</i></a></sec:authorize>
                     <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
                         <c:set var="word" value="${storyBookParagraph.words[status.index]}" />
                         <c:choose>
