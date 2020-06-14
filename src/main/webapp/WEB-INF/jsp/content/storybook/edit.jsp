@@ -70,6 +70,7 @@
     </div>
     
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
+        <a name="ch-${storyBookChapter.id}"></a>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="<fmt:message key='delete' />">delete</i></a>
         </sec:authorize>
@@ -83,6 +84,9 @@
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
                 <p class="storyBookParagraph">
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <a class="storyBookParagraphEditLink right" href="<spring:url value='/content/storybook/paragraph/edit/${storyBookParagraph.id}' />"><i class="material-icons" title="<fmt:message key='edit' />">edit</i></a>
+                    </sec:authorize>
                     <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
                         <c:set var="word" value="${storyBookParagraph.words[status.index]}" />
                         <c:choose>
