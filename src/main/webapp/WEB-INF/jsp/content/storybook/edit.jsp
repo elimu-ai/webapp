@@ -90,12 +90,8 @@
                     <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
                         <c:set var="word" value="${storyBookParagraph.words[status.index]}" />
                         <c:choose>
-                            <c:when test="${empty word}">
-                                <c:out value="${wordInOriginalText}" /><c:out value=" " />
-                            </c:when>
-                            <c:otherwise>
-                                <a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${wordInOriginalText}" /></a><c:out value=" " />
-                            </c:otherwise>
+                            <c:when test="${empty word}"><c:out value="${wordInOriginalText}" /><c:out value=" " /></c:when>
+                            <c:otherwise><a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${wordInOriginalText}" /></a><c:out value=" " /></c:otherwise>
                         </c:choose>
                     </c:forEach>
                 </p>

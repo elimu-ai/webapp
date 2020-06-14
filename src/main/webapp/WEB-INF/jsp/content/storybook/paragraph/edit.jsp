@@ -33,8 +33,6 @@
             word-spacing: 1em;<br />
             letter-spacing: 0.4em;
         </code>
-        <blockquote class="flow-text" style="white-space: pre-line; word-spacing: 1em; letter-spacing: 0.4em;">
-            <c:out value="${storyBookParagraph.originalText}" />
-        </blockquote>
+        <blockquote class="flow-text" style="white-space: pre-line; word-spacing: 1em; letter-spacing: 0.4em;"><c:out value="${storyBookParagraph.originalText}" /></blockquote>
     </div>
 </content:aside>
