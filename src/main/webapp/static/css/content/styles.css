@@ -117,6 +117,7 @@ html[data-content-language="urd"] #wordEditPage input#text {
     margin: auto;
 }
 #storyBookEditPage .storyBookChapter .storyBookParagraph {
+    white-space: pre-line;
     letter-spacing: 0.2em;
     word-spacing: 1em;
     font-size: 2em;
