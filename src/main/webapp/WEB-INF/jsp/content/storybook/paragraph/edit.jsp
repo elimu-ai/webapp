@@ -29,10 +29,11 @@
     <h5 class="center"><fmt:message key='original.text' /></h5>
     <div class="card-panel grey lighten-5">
         <code class="language-markup">
+            white-space: pre-line;<br />
             word-spacing: 1em;<br />
             letter-spacing: 0.4em;
         </code>
-        <blockquote class="flow-text" style="word-spacing: 1em; letter-spacing: 0.4em;">
+        <blockquote class="flow-text" style="white-space: pre-line; word-spacing: 1em; letter-spacing: 0.4em;">
             <c:out value="${storyBookParagraph.originalText}" />
         </blockquote>
     </div>
