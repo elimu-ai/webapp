@@ -47,7 +47,6 @@ public class StoryBookChapterDeleteController {
     	logger.info("handleRequest");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        logger.info("contributor: " + contributor);
         logger.info("contributor.getRoles(): " + contributor.getRoles());
         if (!contributor.getRoles().contains(Role.ADMIN)) {
             // TODO: return HttpStatus.FORBIDDEN
