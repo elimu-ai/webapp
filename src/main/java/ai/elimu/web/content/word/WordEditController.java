@@ -82,6 +82,7 @@ public class WordEditController {
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
+        model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
         model.addAttribute("audio", audioDao.read(word.getText()));
         
         // Look up variants of the same wordByTextMatch
@@ -118,6 +119,7 @@ public class WordEditController {
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
+            model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
             model.addAttribute("audio", audioDao.read(word.getText()));
             model.addAttribute("wordInflections", wordDao.readInflections(word));
             return "content/word/edit";
