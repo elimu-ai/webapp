@@ -239,7 +239,9 @@
     <div class="collection">
         <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
             <div class="collection-item">
-                <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /><br />
+                <span class="badge">
+                    <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                </span>
                 <div class="chip">
                     <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 
                     <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
