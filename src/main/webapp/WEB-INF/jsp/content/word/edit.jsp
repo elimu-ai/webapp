@@ -235,6 +235,18 @@
             <a href="<spring:url value='/content/word/delete/${word.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
+    
+    <div class="collection">
+        <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
+            <div class="collection-item">
+                <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /><br />
+                <div class="chip">
+                    <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 
+                    <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 </content:section>
 
 <content:aside>

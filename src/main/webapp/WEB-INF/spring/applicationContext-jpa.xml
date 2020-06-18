@@ -77,6 +77,7 @@
     <bean id="storyBookParagraphDao" class="ai.elimu.dao.jpa.StoryBookParagraphDaoJpa" />
     <bean id="syllableDao" class="ai.elimu.dao.jpa.SyllableDaoJpa" />
     <bean id="videoDao" class="ai.elimu.dao.jpa.VideoDaoJpa" />
+    <bean id="wordContributionEventDao" class="ai.elimu.dao.jpa.WordContributionEventDaoJpa" />
     <bean id="wordDao" class="ai.elimu.dao.jpa.WordDaoJpa" />
     <bean id="wordLearningEventDao" class="ai.elimu.dao.jpa.WordLearningEventDaoJpa" />
 </beans>
