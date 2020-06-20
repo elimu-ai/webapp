@@ -225,6 +225,13 @@
                     <label for="wordType"><fmt:message key="word.type" /></label>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution (for example a URL pointing to the source you used for determining word's IPA transcription)."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                </div>
+            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="add" /> <i class="material-icons right">send</i>
