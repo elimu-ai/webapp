@@ -25,6 +25,7 @@ import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,7 @@ public class WordCreateController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
             HttpSession session,
             @Valid Word word,
             BindingResult result,
@@ -122,6 +124,7 @@ public class WordCreateController {
             wordContributionEvent.setContributor(contributor);
             wordContributionEvent.setTime(Calendar.getInstance());
             wordContributionEvent.setWord(word);
+            wordContributionEvent.setComment(request.getParameter("contributionComment"));
             wordContributionEventDao.create(wordContributionEvent);
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
