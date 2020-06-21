@@ -10,6 +10,7 @@
             
             <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
             <form:hidden path="usageCount" value="${word.usageCount}" />
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -243,19 +244,18 @@
         </form:form>
     </div>
     
-    <div class="collection">
+    <div id="contributionEvents" class="collection">
         <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)
                 </span>
                 <div class="chip">
                     <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 
                     <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
                 </div>
-                <blockquote>
-                    <c:out value="${wordContributionEvent.comment}" />
-                </blockquote>
+                <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
             </div>
         </c:forEach>
     </div>

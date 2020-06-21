@@ -54,6 +54,10 @@ nav {
     letter-spacing: .5rem;
 }
 
+#contributionEvents blockquote {
+    white-space: pre-line;
+}
+
 html[data-content-language="ben"] #letterCreatePage input#text,
 html[data-content-language="hin"] #letterCreatePage input#text,
 html[data-content-language="urd"] #letterCreatePage input#text,

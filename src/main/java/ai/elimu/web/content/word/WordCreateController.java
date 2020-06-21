@@ -78,6 +78,7 @@ public class WordCreateController {
         }
         
         model.addAttribute("word", word);
+        model.addAttribute("timeStart", System.currentTimeMillis());
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
         model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
@@ -107,6 +108,7 @@ public class WordCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);
+            model.addAttribute("timeStart", request.getParameter("timeStart"));
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("allophones", allophones);
             model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
@@ -120,11 +122,11 @@ public class WordCreateController {
             wordDao.create(word);
             
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
-            Contributor contributor = (Contributor) session.getAttribute("contributor");
-            wordContributionEvent.setContributor(contributor);
+            wordContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
             wordContributionEvent.setTime(Calendar.getInstance());
             wordContributionEvent.setWord(word);
             wordContributionEvent.setComment(request.getParameter("contributionComment"));
+            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             wordContributionEventDao.create(wordContributionEvent);
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler

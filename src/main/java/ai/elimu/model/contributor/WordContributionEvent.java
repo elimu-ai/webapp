@@ -25,6 +25,12 @@ public class WordContributionEvent extends BaseEntity {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar time;
+    
+    /**
+     * The time passed during the creation/editing of the {@link #word}.
+     */
+    @NotNull
+    private Long timeSpentMs;
 
     public String getComment() {
         return comment;
@@ -56,5 +62,13 @@ public class WordContributionEvent extends BaseEntity {
 
     public void setWord(Word word) {
         this.word = word;
+    }
+
+    public Long getTimeSpentMs() {
+        return timeSpentMs;
+    }
+
+    public void setTimeSpentMs(Long timeSpentMs) {
+        this.timeSpentMs = timeSpentMs;
     }
 }

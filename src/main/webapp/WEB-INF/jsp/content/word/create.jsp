@@ -7,6 +7,8 @@
     <div class="card-panel">
         <form:form modelAttribute="word">
             <tag:formErrors modelAttribute="word" />
+            
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
