@@ -12,16 +12,21 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.SyllableDao;
+import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +62,9 @@ public class WordCreateController {
     
     @Autowired
     private SyllableDao syllableDao;
+    
+    @Autowired
+    private WordContributionEventDao wordContributionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, @RequestParam(required = false) String autoFillText) {
@@ -70,6 +78,7 @@ public class WordCreateController {
         }
         
         model.addAttribute("word", word);
+        model.addAttribute("timeStart", System.currentTimeMillis());
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
         model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
@@ -83,6 +92,8 @@ public class WordCreateController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             @Valid Word word,
             BindingResult result,
             Model model) {
@@ -97,6 +108,7 @@ public class WordCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);
+            model.addAttribute("timeStart", request.getParameter("timeStart"));
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("allophones", allophones);
             model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
@@ -108,6 +120,14 @@ public class WordCreateController {
         } else {
             word.setTimeLastUpdate(Calendar.getInstance());
             wordDao.create(word);
+            
+            WordContributionEvent wordContributionEvent = new WordContributionEvent();
+            wordContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setWord(word);
+            wordContributionEvent.setComment(request.getParameter("contributionComment"));
+            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            wordContributionEventDao.create(wordContributionEvent);
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
             

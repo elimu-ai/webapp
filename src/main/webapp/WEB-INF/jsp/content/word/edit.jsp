@@ -10,6 +10,7 @@
             
             <form:hidden path="revisionNumber" value="${word.revisionNumber}" />
             <form:hidden path="usageCount" value="${word.usageCount}" />
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -228,12 +229,35 @@
                     <label for="wordType"><fmt:message key="word.type" /></label>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution (for example a URL pointing to the source you used for determining word's IPA transcription)."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                </div>
+            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
             <a href="<spring:url value='/content/word/delete/${word.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
+    </div>
+    
+    <div id="contributionEvents" class="collection">
+        <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
+            <div class="collection-item">
+                <span class="badge">
+                    <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                </span>
+                <div class="chip">
+                    <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 
+                    <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
+                </div>
+                <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+            </div>
+        </c:forEach>
     </div>
 </content:section>
 
