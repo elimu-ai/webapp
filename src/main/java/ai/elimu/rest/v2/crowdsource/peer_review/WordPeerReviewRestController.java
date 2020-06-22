@@ -1,10 +1,12 @@
 package ai.elimu.rest.v2.crowdsource.peer_review;
 
-import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
+import ai.elimu.dao.WordContributionEventDao;
+import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.gson.content.WordGson;
+import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,23 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/peer-review/words", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class WordReviewRestController {
+public class WordPeerReviewRestController {
     
     private Logger logger = Logger.getLogger(getClass());
     
     @Autowired
-    private WordDao wordDao;
+    private WordContributionEventDao wordContributionEventDao;
     
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest() {
         logger.info("handleGetRequest");
         
-        // TODO: list Word creation events (see ContentCreationEvent)
-        
         JSONArray wordsJsonArray = new JSONArray();
-        for (Word word : wordDao.readAllOrdered()) {
-            WordGson wordGson = JpaToGsonConverter.getWordGson(word);
-            String json = new Gson().toJson(wordGson);
+        
+        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll();
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            WordContributionEventGson wordContributionEventGson = JpaToGsonConverter.getWordContributionEventGson(wordContributionEvent);
+            String json = new Gson().toJson(wordContributionEventGson);
             wordsJsonArray.put(new JSONObject(json));
         }
         
