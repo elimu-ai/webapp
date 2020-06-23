@@ -51,7 +51,7 @@ public class EPubParagraphExtractionHelperTest {
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(2));
         assertThat(storyBookParagraphs.get(0), is("Fifth grade student, Little Miss Grace,"));
-        assertThat(storyBookParagraphs.get(1), is("was totally fascinated by outer space ."));
+        assertThat(storyBookParagraphs.get(1), is("was totally fascinated by outer space."));
     }
     
     @Test
@@ -128,6 +128,19 @@ public class EPubParagraphExtractionHelperTest {
         assertThat(storyBookParagraphs.size(), is(2));
         assertThat(storyBookParagraphs.get(0), is("साथ में चिड़िया भी उड़ती"));
         assertThat(storyBookParagraphs.get(1), is("हुई चली."));
+    }
+    
+    @Test
+    public void testExtractParagraphsFromChapterFile_HIN_SW_99651_ch3() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-sw-99651-hamare-mitra-kon-hai.epub_3.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(2));
+        assertThat(storyBookParagraphs.get(0), is("हमारा सबसे अच्छा मित्र है पक्षी!"));
+        assertThat(storyBookParagraphs.get(1), is("(चिड़िया)"));
     }
     
     @Test
