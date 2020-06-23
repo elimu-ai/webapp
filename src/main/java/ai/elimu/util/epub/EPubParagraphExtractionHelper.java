@@ -86,9 +86,7 @@ public class EPubParagraphExtractionHelper {
                         if ("p".equals(bodyChildNode.getNodeName())) {
                             String paragraph = bodyChildNode.getTextContent();
                             logger.info("paragraph: \"" + paragraph + "\"");
-                            paragraph = paragraph.trim();
-                            paragraph = paragraph.replace("\n", " ");
-                            paragraph = paragraph.replaceAll(" +", " ");
+                            paragraph = getCleanedUpParagraph(paragraph);
                             if (StringUtils.isNotBlank(paragraph)) {
                                 paragraphs.add(paragraph);
                             }
@@ -99,9 +97,7 @@ public class EPubParagraphExtractionHelper {
                         if ("#text".equals(bodyChildNode.getNodeName())) {
                             String paragraph = bodyChildNode.getTextContent();
                             logger.info("paragraph: \"" + paragraph + "\"");
-                            paragraph = paragraph.trim();
-                            paragraph = paragraph.replace("\n", " ");
-                            paragraph = paragraph.replaceAll(" +", " ");
+                            paragraph = getCleanedUpParagraph(paragraph);
                             if (StringUtils.isNotBlank(paragraph)) {
                                 paragraphs.add(paragraph);
                             }
@@ -158,9 +154,7 @@ public class EPubParagraphExtractionHelper {
                                                                         if ("p".equals(contentDivChildNode.getNodeName())) {
                                                                             String paragraph = contentDivChildNode.getTextContent();
                                                                             logger.info("paragraph: \"" + paragraph + "\"");
-                                                                            paragraph = paragraph.trim();
-                                                                            paragraph = paragraph.replace("\n", " ");
-                                                                            paragraph = paragraph.replaceAll(" +", " ");
+                                                                            paragraph = getCleanedUpParagraph(paragraph);
                                                                             if (StringUtils.isNotBlank(paragraph)) {
                                                                                 paragraphs.add(paragraph);
                                                                             }
@@ -185,5 +179,39 @@ public class EPubParagraphExtractionHelper {
         }
         
         return paragraphs;
+    }
+    
+    /**
+     * E.g. "लेना ।" --> "लेना।"
+     */
+    private static String getCleanedUpParagraph(String paragraph) {
+        // Remove line-breaks
+        paragraph = paragraph.replace("\n", " ");
+        
+        // Replace non-breaking spaces (&nbsp;) with a whitespace
+        paragraph = paragraph.replace("\u00a0", " ");
+        
+        // Remove leading/trailing whitespaces
+        paragraph = paragraph.trim();
+        
+        // Remove spaces in front of punctuation marks
+        paragraph = paragraph.replace(" ,", ",");
+        paragraph = paragraph.replace(" .", ".");
+        paragraph = paragraph.replace(" ।", "।");
+        paragraph = paragraph.replace(" ?", "?");
+        paragraph = paragraph.replace(" !", "!");
+        
+        // Remove spaces within parenthesis
+        paragraph = paragraph.replace("( ", "(");
+        paragraph = paragraph.replace(" )", ")");
+        
+        // Remove spaces within quotes
+        paragraph = paragraph.replace("“ ", "“");
+        paragraph = paragraph.replace(" ”", "”");
+        
+        // Remove duplicate whitespaces
+        paragraph = paragraph.replaceAll(" +", " ");
+        
+        return paragraph;
     }
 }
