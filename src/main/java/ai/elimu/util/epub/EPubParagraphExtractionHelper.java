@@ -194,6 +194,9 @@ public class EPubParagraphExtractionHelper {
         // Remove leading/trailing whitespaces
         paragraph = paragraph.trim();
         
+        // Replace vertical bar with Danda (https://en.wikipedia.org/wiki/Danda)
+        paragraph = paragraph.replace("|", "।");
+        
         // Remove spaces in front of punctuation marks
         paragraph = paragraph.replace(" ,", ",");
         paragraph = paragraph.replace(" .", ".");
