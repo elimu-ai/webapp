@@ -39,7 +39,7 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
         return em.createQuery(
             "SELECT w " +
             "FROM Word w " +
-            "ORDER BY w.usageCount DESC, w.text")
+            "ORDER BY w.usageCount2 DESC, w.text")
             .getResultList();
     }
 
