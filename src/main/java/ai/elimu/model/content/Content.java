@@ -27,7 +27,7 @@ public abstract class Content extends BaseEntity {
      * basis.
      */
     @NotNull
-    private Integer usageCount = 0;
+    private Integer usageCount2 = 0;
     
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -50,11 +50,11 @@ public abstract class Content extends BaseEntity {
     }
     
     public Integer getUsageCount() {
-        return usageCount;
+        return usageCount2;
     }
 
     public void setUsageCount(Integer usageCount) {
-        this.usageCount = usageCount;
+        this.usageCount2 = usageCount;
     }
 
     public ContentStatus getContentStatus() {
