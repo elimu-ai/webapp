@@ -144,6 +144,18 @@ public class EPubParagraphExtractionHelperTest {
     }
     
     @Test
+    public void testExtractParagraphsFromChapterFile_HIN_SW_141016_ch8() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-sw-141016-tumi-ke-park-ka-din.epub_8.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(1));
+        assertThat(storyBookParagraphs.get(0), is("\"देखो माँ, मैं बंदर की तरह झूल रही हूँ।\""));
+    }
+    
+    @Test
     public void testExtractParagraphsFromChapterFile_SWA_GDL_30() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("swa-gdl-30.epub_chapter-2.xhtml");

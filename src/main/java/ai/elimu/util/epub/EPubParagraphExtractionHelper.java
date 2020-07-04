@@ -185,6 +185,8 @@ public class EPubParagraphExtractionHelper {
      * E.g. "लेना ।" --> "लेना।"
      */
     private static String getCleanedUpParagraph(String paragraph) {
+        logger.info("getCleanedUpParagraph, paragraph: \"" + paragraph + "\"");
+        
         // Remove line-breaks
         paragraph = paragraph.replace("\n", " ");
         
@@ -193,6 +195,9 @@ public class EPubParagraphExtractionHelper {
         
         // Remove leading/trailing whitespaces
         paragraph = paragraph.trim();
+        
+        // Remove duplicate whitespaces
+        paragraph = paragraph.replaceAll(" +", " ");
         
         // Replace vertical bar with Danda (https://en.wikipedia.org/wiki/Danda)
         paragraph = paragraph.replace("|", "।");
@@ -210,10 +215,13 @@ public class EPubParagraphExtractionHelper {
         
         // Remove spaces within quotes
         paragraph = paragraph.replace("“ ", "“");
+        if (paragraph.startsWith("\" ")) {
+            paragraph = paragraph.replace("\" ", "\"");
+        }
         paragraph = paragraph.replace(" ”", "”");
-        
-        // Remove duplicate whitespaces
-        paragraph = paragraph.replaceAll(" +", " ");
+        if (paragraph.endsWith(" \"")) {
+            paragraph = paragraph.replace(" \"", "\"");
+        }
         
         return paragraph;
     }
