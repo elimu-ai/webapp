@@ -15,6 +15,7 @@
                 <th>Android ID</th>
                 <th><fmt:message key="application" /></th>
                 <th><fmt:message key="storybook" /></th>
+                <th><fmt:message key="storybook.title" /></th>
                 <th><fmt:message key="learning.event.type" /></th>
             </thead>
             <tbody>
@@ -35,6 +36,9 @@
                             <a href="<spring:url value='/content/storybook/edit/${storyBookLearningEvent.storyBook.id}' />">
                                 ${storyBookLearningEvent.storyBook.title}
                             </a>
+                        </td>
+                        <td>
+                            "TODO"
                         </td>
                         <td>
                             ${storyBookLearningEvent.learningEventType}

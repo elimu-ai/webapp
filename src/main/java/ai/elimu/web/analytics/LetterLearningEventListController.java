@@ -1,8 +1,8 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.LetterLearningEventDao;
-import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.dao.WordLearningEventDao;
+import ai.elimu.model.analytics.LetterLearningEvent;
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,28 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/analytics")
-public class MainAnalyticsController {
+@RequestMapping("/analytics/letter-learning-event/list")
+public class LetterLearningEventListController {
     
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
     private LetterLearningEventDao letterLearningEventDao;
-    
-    @Autowired
-    private WordLearningEventDao wordLearningEventDao;
-    
-    @Autowired
-    private StoryBookLearningEventDao storyBookLearningEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        model.addAttribute("letterLearningEventCount", letterLearningEventDao.readCount());
-        model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
-        model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
-    	
-        return "analytics/main";
+        List<LetterLearningEvent> letterLearningEvents = letterLearningEventDao.readAll();
+        model.addAttribute("letterLearningEvents", letterLearningEvents);
+
+        return "analytics/letter-learning-event/list";
     }
 }
