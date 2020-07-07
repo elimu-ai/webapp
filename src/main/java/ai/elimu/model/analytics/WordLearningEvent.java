@@ -17,6 +17,7 @@ public class WordLearningEvent extends LearningEvent {
     /**
      * A Word's text value is used as a fall-back if the Android application did not use a Word ID.
      */
+//    @NotNull
     private String wordText;
     
     @NotNull
