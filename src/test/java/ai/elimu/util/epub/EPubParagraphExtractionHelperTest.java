@@ -144,6 +144,20 @@ public class EPubParagraphExtractionHelperTest {
     }
     
     @Test
+    public void testExtractParagraphsFromChapterFile_HIN_SW_10145_ch4() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_4.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(3));
+        assertThat(storyBookParagraphs.get(0), is("एक गोजर एक बड़े से भूरे पत्ते के भीतर"));
+        assertThat(storyBookParagraphs.get(1), is("ख़ुमारी में दुबकी हुई थी।"));
+        assertThat(storyBookParagraphs.get(2), is("चिड़ियों की चहचहाट ने उसे जगा दिया।"));
+    }
+    
+    @Test
     public void testExtractParagraphsFromChapterFile_HIN_SW_141016_ch8() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-sw-141016-tumi-ke-park-ka-din.epub_8.xhtml");
