@@ -61,7 +61,7 @@ public class StoryBookParagraphEditController {
             storyBookParagraphDao.update(storyBookParagraph);
             return "redirect:/content/storybook/edit/" + 
                     storyBookParagraph.getStoryBookChapter().getStoryBook().getId() + 
-                    "#ch-" + storyBookParagraph.getStoryBookChapter().getId();
+                    "#ch-id-" + storyBookParagraph.getStoryBookChapter().getId();
         }
     }
 }

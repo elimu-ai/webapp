@@ -70,7 +70,7 @@
     </div>
     
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
-        <a name="ch-${storyBookChapter.id}"></a>
+        <a name="ch-id-${storyBookChapter.id}"></a>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="<fmt:message key='delete' />">delete</i></a>
         </sec:authorize>

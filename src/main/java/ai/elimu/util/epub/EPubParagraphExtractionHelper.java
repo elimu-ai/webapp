@@ -155,6 +155,12 @@ public class EPubParagraphExtractionHelper {
                                                                             String paragraph = contentDivChildNode.getTextContent();
                                                                             logger.info("paragraph: \"" + paragraph + "\"");
                                                                             paragraph = getCleanedUpParagraph(paragraph);
+                                                                            
+                                                                            // Skip paragraphs containing CSS code
+                                                                            if (paragraph.contains("@page")) {
+                                                                                continue;
+                                                                            }
+                                                                            
                                                                             if (StringUtils.isNotBlank(paragraph)) {
                                                                                 paragraphs.add(paragraph);
                                                                             }
