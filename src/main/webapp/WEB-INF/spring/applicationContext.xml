@@ -82,6 +82,7 @@
                 <prop key="/error/session-timeout">viewController</prop>
                 
                 <prop key="/appeal">viewController</prop>
+                <prop key="/aragon-dao">viewController</prop>
             </props>
         </property>
     </bean>
