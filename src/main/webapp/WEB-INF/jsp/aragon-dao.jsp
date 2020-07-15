@@ -6,7 +6,32 @@
     <h2><content:gettitle /></h2>
 
     <div class="card-panel">
-        TODO: Node.js
+        <div id="aragonDaoContainer" style="text-align: center; margin: 5em;">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+            </div>
+            <p>
+                Loading DAO information...
+            </p>
+        </div>
+        <script>
+            $(function() {
+                const url = 'http://localhost:3000/';
+                console.info('Loading data from ' + url);
+                $('#aragonDaoContainer').load(url, function() {
+                    console.info('#aragonDaoContainer load complete');
+                    
+                });
+            });
+        </script>
     </div>
 </content:section>
 
