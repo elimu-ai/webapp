@@ -621,6 +621,7 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 776,image/jpg,null,"null","storybook-55-ch-17","/image/776.jpg",JPG
 777,image/jpg,null,"null","storybook-55-ch-18","/image/777.jpg",JPG
 778,image/jpg,null,"null","storybook-55-ch-19","/image/778.jpg",JPG
+792,image/jpg,null,"null","storybook-57-cover","/image/792.jpg",JPG
 781,image/jpg,null,"null","storybook-56-ch-2","/image/781.jpg",JPG
 782,image/jpg,null,"null","storybook-56-ch-3","/image/782.jpg",JPG
 783,image/jpg,null,"null","storybook-56-ch-4","/image/783.jpg",JPG
@@ -632,3 +633,19 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 789,image/jpg,null,"null","storybook-56-ch-10","/image/789.jpg",JPG
 790,image/jpg,null,"null","storybook-56-ch-11","/image/790.jpg",JPG
 791,image/jpg,null,"null","storybook-56-ch-12","/image/791.jpg",JPG
+794,image/jpg,null,"null","storybook-57-ch-2","/image/794.jpg",JPG
+795,image/jpg,null,"null","storybook-57-ch-3","/image/795.jpg",JPG
+796,image/jpg,null,"null","storybook-57-ch-4","/image/796.jpg",JPG
+797,image/jpg,null,"null","storybook-57-ch-5","/image/797.jpg",JPG
+798,image/jpg,null,"null","storybook-57-ch-6","/image/798.jpg",JPG
+799,image/jpg,null,"null","storybook-57-ch-7","/image/799.jpg",JPG
+800,image/jpg,null,"null","storybook-57-ch-8","/image/800.jpg",JPG
+801,image/jpg,null,"null","storybook-57-ch-9","/image/801.jpg",JPG
+802,image/jpg,null,"null","storybook-57-ch-10","/image/802.jpg",JPG
+803,image/jpg,null,"null","storybook-57-ch-11","/image/803.jpg",JPG
+804,image/jpg,null,"null","storybook-57-ch-12","/image/804.jpg",JPG
+805,image/jpg,null,"null","storybook-57-ch-13","/image/805.jpg",JPG
+806,image/jpg,null,"null","storybook-57-ch-14","/image/806.jpg",JPG
+807,image/jpg,null,"null","storybook-57-ch-15","/image/807.jpg",JPG
+808,image/jpg,null,"null","storybook-57-ch-16","/image/808.jpg",JPG
+809,image/jpg,null,"null","storybook-57-ch-17","/image/809.jpg",JPG
