@@ -2,6 +2,7 @@ package ai.elimu.web.content.storybook;
 
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import java.io.IOException;
@@ -14,6 +15,8 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.content.ImageFormat;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
@@ -59,6 +62,9 @@ public class StoryBookCreateFromEPubController {
     private StoryBookDao storyBookDao;
     
     @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
+    
+    @Autowired
     private ImageDao imageDao;
     
     @Autowired
@@ -73,6 +79,8 @@ public class StoryBookCreateFromEPubController {
         
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
+        
+        model.addAttribute("timeStart", System.currentTimeMillis());
 
         return "content/storybook/create-from-epub";
     }
@@ -83,6 +91,7 @@ public class StoryBookCreateFromEPubController {
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model,
+            HttpServletRequest request,
             HttpSession session
     ) throws IOException {
     	logger.info("handleSubmit");
@@ -307,6 +316,15 @@ public class StoryBookCreateFromEPubController {
             // Store the StoryBook in the database
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBookDao.create(storyBook);
+            
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEventDao.create(storyBookContributionEvent);
             
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook
             storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");

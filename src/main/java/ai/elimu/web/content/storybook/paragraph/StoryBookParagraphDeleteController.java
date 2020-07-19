@@ -1,11 +1,13 @@
 package ai.elimu.web.content.storybook.paragraph;
 
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookParagraph;
 import org.apache.log4j.Logger;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import java.util.Calendar;
@@ -25,6 +27,9 @@ public class StoryBookParagraphDeleteController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
@@ -55,6 +60,14 @@ public class StoryBookParagraphDeleteController {
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
         storyBookDao.update(storyBook);
+        
+        StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+        storyBookContributionEvent.setContributor(contributor);
+        storyBookContributionEvent.setTime(Calendar.getInstance());
+        storyBookContributionEvent.setStoryBook(storyBook);
+        storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+        storyBookContributionEvent.setComment("Deleted storybook paragraph (🤖 auto-generated comment)");
+        storyBookContributionEventDao.create(storyBookContributionEvent);
         
         // Update the sorting order of the remaining paragraphs
         logger.info("storyBookParagraphToBeDeleted.getSortOrder(): " + storyBookParagraphToBeDeleted.getSortOrder());

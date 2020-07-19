@@ -1,10 +1,15 @@
 package ai.elimu.web.content.storybook.paragraph;
 
+import ai.elimu.dao.StoryBookContributionEventDao;
+import ai.elimu.dao.StoryBookDao;
 import org.apache.log4j.Logger;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.Role;
+import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -23,6 +28,12 @@ public class StoryBookParagraphEditController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
+    private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
+    
+    @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -31,8 +42,9 @@ public class StoryBookParagraphEditController {
         
         StoryBookParagraph storyBookParagraph = storyBookParagraphDao.read(id);
         logger.info("storyBookParagraph: " + storyBookParagraph);
-        
         model.addAttribute("storyBookParagraph", storyBookParagraph);
+        
+        model.addAttribute("timeStart", System.currentTimeMillis());
         
         return "content/storybook/paragraph/edit";
     }
@@ -56,9 +68,26 @@ public class StoryBookParagraphEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
+            model.addAttribute("timeStart", System.currentTimeMillis());
             return "content/storybook/paragraph/edit";
         } else {
             storyBookParagraphDao.update(storyBookParagraph);
+            
+            // Update the storybook's metadata
+            StoryBook storyBook = storyBookParagraph.getStoryBookChapter().getStoryBook();
+            storyBook.setTimeLastUpdate(Calendar.getInstance());
+            storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
+            storyBookDao.update(storyBook);
+            
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            storyBookContributionEvent.setContributor(contributor);
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookContributionEvent.setComment("Edited storybook paragraph (🤖 auto-generated comment)");
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEventDao.create(storyBookContributionEvent);
+            
             return "redirect:/content/storybook/edit/" + 
                     storyBookParagraph.getStoryBookChapter().getStoryBook().getId() + 
                     "#ch-id-" + storyBookParagraph.getStoryBookChapter().getId();

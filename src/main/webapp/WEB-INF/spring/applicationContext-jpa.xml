@@ -74,6 +74,7 @@
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
     <bean id="storyBookDao" class="ai.elimu.dao.jpa.StoryBookDaoJpa" />
     <bean id="storyBookChapterDao" class="ai.elimu.dao.jpa.StoryBookChapterDaoJpa" />
+    <bean id="storyBookContributionEventDao" class="ai.elimu.dao.jpa.StoryBookContributionEventDaoJpa" />
     <bean id="storyBookLearningEventDao" class="ai.elimu.dao.jpa.StoryBookLearningEventDaoJpa" />
     <bean id="storyBookParagraphDao" class="ai.elimu.dao.jpa.StoryBookParagraphDaoJpa" />
     <bean id="syllableDao" class="ai.elimu.dao.jpa.SyllableDaoJpa" />

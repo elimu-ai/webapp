@@ -6,11 +6,16 @@ import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.ReadingLevel;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +33,9 @@ public class StoryBookCreateController {
     private StoryBookDao storybookDao;
     
     @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
+    
+    @Autowired
     private ImageDao imageDao;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -36,6 +44,8 @@ public class StoryBookCreateController {
         
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
+        
+        model.addAttribute("timeStart", System.currentTimeMillis());
         
         model.addAttribute("contentLicenses", ContentLicense.values());
         
@@ -51,7 +61,9 @@ public class StoryBookCreateController {
     public String handleSubmit(
             @Valid StoryBook storyBook,
             BindingResult result,
-            Model model) {
+            Model model,
+            HttpServletRequest request,
+            HttpSession session) {
     	logger.info("handleSubmit");
         
         StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getTitle());
@@ -61,6 +73,8 @@ public class StoryBookCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("storybook", storyBook);
+            
+            model.addAttribute("timeStart", System.currentTimeMillis());
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
@@ -73,6 +87,15 @@ public class StoryBookCreateController {
         } else {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storybookDao.create(storyBook);
+            
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEventDao.create(storyBookContributionEvent);
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }
