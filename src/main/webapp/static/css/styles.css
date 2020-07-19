@@ -81,6 +81,9 @@ a {
 .card-panel {
     border-radius: 8px;
 }
+.card .card-image {
+    border-radius: 8px 8px 0 0;
+}
 .card .card-action {
     border-radius: 0 0 8px 8px;
 }

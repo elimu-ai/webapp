@@ -41,28 +41,30 @@
                             <td style="font-size: 2em;">
                                 /<c:forEach var="allophone" items="${word.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
                             </td>
-                            <c:choose>
-                                <c:when test="${word.spellingConsistency == 'PERFECT'}">
-                                    <c:set var="spellingConsistencyColor" value="green lighten-1" />
-                                </c:when>
-                                <c:when test="${word.spellingConsistency == 'HIGHLY_PHONEMIC'}">
-                                    <c:set var="spellingConsistencyColor" value="green lighten-3" />
-                                </c:when>
-                                <c:when test="${word.spellingConsistency == 'PHONEMIC'}">
-                                    <c:set var="spellingConsistencyColor" value="yellow lighten-3" />
-                                </c:when>
-                                <c:when test="${word.spellingConsistency == 'NON_PHONEMIC'}">
-                                    <c:set var="spellingConsistencyColor" value="orange lighten-3" />
-                                </c:when>
-                                <c:when test="${word.spellingConsistency == 'HIGHLY_NON_PHONEMIC'}">
-                                    <c:set var="spellingConsistencyColor" value="red lighten-3" />
-                                </c:when>
-                                <c:otherwise>
-                                    <c:set var="spellingConsistencyColor" value="" />
-                                </c:otherwise>
-                            </c:choose>
-                            <td class="${spellingConsistencyColor}">
-                                <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
+                            <td>
+                                <c:choose>
+                                    <c:when test="${word.spellingConsistency == 'PERFECT'}">
+                                        <c:set var="spellingConsistencyColor" value="green lighten-1" />
+                                    </c:when>
+                                    <c:when test="${word.spellingConsistency == 'HIGHLY_PHONEMIC'}">
+                                        <c:set var="spellingConsistencyColor" value="green lighten-3" />
+                                    </c:when>
+                                    <c:when test="${word.spellingConsistency == 'PHONEMIC'}">
+                                        <c:set var="spellingConsistencyColor" value="yellow lighten-3" />
+                                    </c:when>
+                                    <c:when test="${word.spellingConsistency == 'NON_PHONEMIC'}">
+                                        <c:set var="spellingConsistencyColor" value="orange lighten-3" />
+                                    </c:when>
+                                    <c:when test="${word.spellingConsistency == 'HIGHLY_NON_PHONEMIC'}">
+                                        <c:set var="spellingConsistencyColor" value="red lighten-3" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="spellingConsistencyColor" value="" />
+                                    </c:otherwise>
+                                </c:choose>
+                                <div class="chip ${spellingConsistencyColor}">
+                                    <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
+                                </div>
                             </td>
                             <td>
                                 ${word.wordType}<br />
