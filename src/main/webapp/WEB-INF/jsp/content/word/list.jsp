@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                     <c:forEach var="word" items="${words}">
-                        <tr class="allophone">
+                        <tr>
                             <td>
                                 ${word.usageCount}<br />
                                 <div class="progress">

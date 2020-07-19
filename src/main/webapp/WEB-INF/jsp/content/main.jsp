@@ -25,10 +25,10 @@
                     <span class="card-title"><i class="material-icons">looks_one</i> <fmt:message key="numbers" /></span>
                 </div>
                 <div class="card-action">
+                    <div class="progress">
+                        <div class="determinate" style="width: ${numberCount/1001 * 100}%"></div>
+                    </div>
                     <a href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
-                </div>
-                <div class="progress">
-                    <div class="determinate" style="width: ${numberCount/1001 * 100}%"></div>
                 </div>
             </div>
         </div>
@@ -61,10 +61,10 @@
                     <span class="card-title"><i class="material-icons">sms</i> <fmt:message key="words" /></span>
                 </div>
                 <div class="card-action">
+                    <div class="progress">
+                        <div class="determinate" style="width: ${wordCount/2000 * 100}%"></div>
+                    </div>
                     <a href="<spring:url value='/content/word/list' />"><fmt:message key="view.list" /> (${wordCount})</a>
-                </div>
-                <div class="progress">
-                    <div class="determinate" style="width: ${wordCount/2000 * 100}%"></div>
                 </div>
             </div>
         </div>
@@ -112,10 +112,10 @@
                     <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
                 </div>
                 <div class="card-action">
+                    <div class="progress">
+                        <div class="determinate" style="width: ${storyBookCount/104 * 100}%"></div>
+                    </div>
                     <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
-                </div>
-                <div class="progress">
-                    <div class="determinate" style="width: ${storyBookCount/104 * 100}%"></div>
                 </div>
             </div>
         </div>

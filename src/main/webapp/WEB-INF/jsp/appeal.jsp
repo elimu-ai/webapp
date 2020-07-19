@@ -131,7 +131,7 @@
                 <li class="grey-text">0% of your donation will be spent on administrative overhead costs.</li>
             </ol>
         </div>
-        <div class="col offset-s1 s6 z-depth-1 white center">
+        <div class="col offset-s1 s6 z-depth-1 white center" style="border-radius: 8px;">
             <div style="padding: 1em;">
                 <h2><i class="material-icons large deep-purple-text">card_giftcard</i></h2>
 

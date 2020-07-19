@@ -81,7 +81,7 @@
                 </p>
             </div>
             <div class="col s12 m4">
-                <img src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" />
+                <img src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" style="border-radius: 8px;" />
             </div>
         </div>
         
@@ -97,7 +97,7 @@
                 </p>
             </div>
             <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" />
+                <img src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" style="border-radius: 8px;" />
             </div>
         </div>
         
@@ -115,7 +115,7 @@
                 </p>
             </div>
             <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" />
+                <img src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" style="border-radius: 8px;" />
             </div>
         </div>
         
@@ -133,7 +133,7 @@
                 </p>
             </div>
             <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" />
+                <img src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" style="border-radius: 8px;" />
             </div>
         </div>
     </div>
@@ -159,7 +159,7 @@
                 <p>&nbsp;</p>
             </div>
                   
-            <div class="col s12 offset-m1 m4 z-depth-2 white center">
+            <div class="col s12 offset-m1 m4 z-depth-2 white center" style="border-radius: 8px;">
                 <div class="icon-block" style="padding: 1em;">
                   <h2><i class="material-icons large deep-purple-text">group</i></h2>
                   <h4><fmt:message key="help.improve.the.software" /></h4>
