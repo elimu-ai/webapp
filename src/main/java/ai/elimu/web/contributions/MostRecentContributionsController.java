@@ -1,6 +1,8 @@
 package ai.elimu.web.contributions;
 
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.WordContributionEventDao;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import java.util.List;
 import org.apache.log4j.Logger;
 import ai.elimu.model.contributor.WordContributionEvent;
@@ -17,11 +19,18 @@ public class MostRecentContributionsController {
     private final Logger logger = Logger.getLogger(getClass());
     
     @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
+    
+    @Autowired
     private WordContributionEventDao wordContributionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
+        
+        List<StoryBookContributionEvent> storyBookContributionEvents = storyBookContributionEventDao.readMostRecent(9);
+        logger.info("storyBookContributionEvents.size(): " + storyBookContributionEvents.size());
+        model.addAttribute("storyBookContributionEvents", storyBookContributionEvents);
         
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll();
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());

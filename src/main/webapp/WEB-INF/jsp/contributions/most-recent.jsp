@@ -7,9 +7,34 @@
 
     <div class="card-panel">
         <h5>Most Recent Storybook Contributions</h5>
-        storyBookContributionEvents: ${storyBookContributionEvents}
+        <div class="row">
+            <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
+                <c:set var="storyBook" value="${storyBookContributionEvent.storyBook}" />
+                <div class="col s12 m6 l4">
+                    <a name="${storyBook.id}"></a>
+                    <div class="storyBook card">
+                        <c:if test="${not empty storyBook.coverImage}">
+                            <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                                <div class="card-image" style="height: 10em; background-image: url(<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />);">
+                                    <span class="card-title"><c:out value="${storyBook.title}" /></span>
+                                </div>
+                            </a>
+                        </c:if>
+                        <div class="card-content">
+                            <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
+                            <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                            <p><fmt:message key="revision" />: #${storyBookContributionEvent.revisionNumber}</p>
+
+                            <div class="divider" style="margin: 1em 0;"></div>
+
+                            <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
         
-        <div class="divider" style="margin: 1.5em 0;"></div>
+        <div class="divider" style="margin: 1.5em 0 2em 0;"></div>
         
         <h5>Most Recent Word Contributions</h5>
         <table class="bordered striped highlight">
