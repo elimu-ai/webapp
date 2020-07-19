@@ -72,3 +72,84 @@ footer.page-footer .footer-copyright {
 .side-nav .grey-text {
     margin-left: 1rem;
 }
+
+a {
+    color: #673ab7;
+}
+
+.card,
+.card-panel {
+    border-radius: 8px;
+}
+.card .card-action {
+    border-radius: 0 0 8px 8px;
+}
+.btn,
+.btn-large {
+    border-radius: 4px;
+}
+.btn-floating {
+    border-radius: 50%;
+}
+
+.btn,
+.btn-large {
+    background-color: #7e57c2;
+}
+.btn:hover,
+.btn:focus,
+.btn-large:hover,
+.btn-large:focus {
+    background-color: #9575cd;
+}
+
+.progress {
+    background-color: #d1c4e9;
+}
+.progress .determinate,
+.progress .indeterminate {
+    background-color: #9575cd;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #9575cd;
+  box-shadow: 0 1px 0 0 #9575cd;
+}
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #9575cd;
+}
+
+.dropdown-content li > a,
+.dropdown-content li > span,
+.input-field .prefix.active {
+    color: #673ab7;
+}
+
+[type="checkbox"]:checked + label:before {
+  border-right: 2px solid #9575cd;
+  border-bottom: 2px solid #9575cd;
+}

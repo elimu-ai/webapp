@@ -18,13 +18,13 @@
     
     <div class="row section">
         <div class="col s12 m4">
-            <img src="<spring:url value='/static/img/publish-nya.png' />" alt="Nya's Space Quest" />
+            <img src="<spring:url value='/static/img/publish-nya.png' />" alt="Nya's Space Quest" style="border-radius: 8px;" />
         </div>
         <div class="col s12 m4">
-            <img src="<spring:url value='/static/img/publish-literacy.png' />" alt="elimu.ai" />
+            <img src="<spring:url value='/static/img/publish-literacy.png' />" alt="elimu.ai" style="border-radius: 8px;" />
         </div>
         <div class="col s12 m4">
-            <img src="<spring:url value='/static/img/publish-literacy2.png' />" alt="elimu.ai" />
+            <img src="<spring:url value='/static/img/publish-literacy2.png' />" alt="elimu.ai" style="border-radius: 8px;" />
         </div>
     </div>
     
