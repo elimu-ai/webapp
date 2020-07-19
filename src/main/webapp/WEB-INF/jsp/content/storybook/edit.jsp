@@ -9,6 +9,7 @@
             <tag:formErrors modelAttribute="storyBook" />
             
             <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -62,6 +63,13 @@
                     </c:if>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                </div>
+            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
@@ -95,6 +103,23 @@
             </c:forEach>
         </div>
     </c:forEach>
+    
+    <div id="contributionEvents" class="collection">
+        <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
+            <div class="collection-item">
+                <span class="badge">
+                    <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
+                    <fmt:message key="revision" />: #${storyBookContributionEvent.revisionNumber}
+                </span>
+                <div class="chip">
+                    <img src="<spring:url value='${storyBookContributionEvent.contributor.imageUrl}' />" alt="${storyBookContributionEvent.contributor.firstName}" /> 
+                    <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
+                </div>
+                <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
+            </div>
+        </c:forEach>
+    </div>
 </content:section>
 
 <content:aside>
