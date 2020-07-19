@@ -88,28 +88,6 @@ html[data-content-language="urd"] #wordEditPage input#text {
     margin-right: 2%;
 }
 
-.card.image .card-image,
-.card.storyBook .card-image {
-    height: 20em;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-}
-.card.image .card-content > p,
-.card.storyBook .card-content > p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.card.image .card-title,
-.card.storyBook .card-title {
-    text-shadow: 1px 1px rgba(0,0,0, .8), 
-        0 -0.5rem 1.5rem rgba(0,0,0, .4), 
-        1rem 0 1.5rem rgba(0,0,0, .4), 
-        0 0.5rem 1.5rem rgba(0,0,0, .4), 
-        -1rem 0 1.5rem rgba(0,0,0, .4);
-}
-
 #imageEditPage #image img {
     display: block;
     margin: auto;
