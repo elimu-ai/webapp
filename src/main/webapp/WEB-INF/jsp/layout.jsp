@@ -29,7 +29,7 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" />
                 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
                 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Amaranth" />
-                <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
+                <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />?5b16a04937ce2d3dcee195026864a63d12e97388" />
                 
                 <%-- JavaScripts --%>
                 <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
