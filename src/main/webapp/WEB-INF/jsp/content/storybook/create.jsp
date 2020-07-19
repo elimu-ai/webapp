@@ -7,6 +7,8 @@
     <div class="card-panel">
         <form:form modelAttribute="storyBook">
             <tag:formErrors modelAttribute="storyBook" />
+            
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />

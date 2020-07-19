@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
@@ -21,6 +22,8 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.ReadingLevel;
 import ai.elimu.model.enums.Language;
@@ -30,6 +33,7 @@ import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +51,9 @@ public class StoryBookEditController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
@@ -78,6 +85,8 @@ public class StoryBookEditController {
         StoryBook storyBook = storyBookDao.read(id);
         model.addAttribute("storyBook", storyBook);
         
+        model.addAttribute("timeStart", System.currentTimeMillis());
+        
         model.addAttribute("contentLicenses", ContentLicense.values());
         
         List<Image> coverImages = imageDao.readAllOrdered();
@@ -104,6 +113,8 @@ public class StoryBookEditController {
             }
         }
         
+        model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(storyBook));
+        
         Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
         Map<String, Word> wordMap = new HashMap<>();
@@ -129,7 +140,8 @@ public class StoryBookEditController {
             @Valid StoryBook storyBook,
             BindingResult result,
             Model model,
-            HttpServletRequest request) {
+            HttpServletRequest request,
+            HttpSession session) {
     	logger.info("handleSubmit");
         
         Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
@@ -141,6 +153,8 @@ public class StoryBookEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBook", storyBook);
+            
+            model.addAttribute("timeStart", System.currentTimeMillis());
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
@@ -169,6 +183,15 @@ public class StoryBookEditController {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
             storyBookDao.update(storyBook);
+            
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEventDao.create(storyBookContributionEvent);
             
             // Refresh REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

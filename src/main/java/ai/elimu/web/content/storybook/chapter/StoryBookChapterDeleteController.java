@@ -2,6 +2,7 @@ package ai.elimu.web.content.storybook.chapter;
 
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
@@ -9,6 +10,7 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import java.util.Calendar;
@@ -29,6 +31,9 @@ public class StoryBookChapterDeleteController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
@@ -89,6 +94,14 @@ public class StoryBookChapterDeleteController {
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
         storyBookDao.update(storyBook);
+        
+        StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+        storyBookContributionEvent.setContributor(contributor);
+        storyBookContributionEvent.setTime(Calendar.getInstance());
+        storyBookContributionEvent.setStoryBook(storyBook);
+        storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+        storyBookContributionEvent.setComment("Deleted storybook chapter (🤖 auto-generated comment)");
+        storyBookContributionEventDao.create(storyBookContributionEvent);
         
         // Update the sorting order of the remaining chapters
         logger.info("storyBookChapterToBeDeleted.getSortOrder(): " + storyBookChapterToBeDeleted.getSortOrder());
