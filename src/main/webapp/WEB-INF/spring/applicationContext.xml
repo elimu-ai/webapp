@@ -81,8 +81,8 @@
                 <prop key="/error/page-not-found">viewController</prop>
                 <prop key="/error/session-timeout">viewController</prop>
                 
-                <prop key="/appeal">viewController</prop>
-                <prop key="/aragon-dao">viewController</prop>
+                <prop key="/contributions/appeal">viewController</prop>
+                <prop key="/contributions/aragon-dao">viewController</prop>
             </props>
         </property>
     </bean>
