@@ -21,7 +21,20 @@
             </p>
         </div>
         <script>
+            /**
+             * Copied from AragonRestController.java
+             */
+            function getBaseUrl() {
+                console.info("getBaseUrl")
+                let domain = "62.75.236.14"; // DEV/TEST
+                <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
+                    domain = "85.93.91.26";
+                </c:if>
+                return "http://" + domain + ":3000";
+            }
+            
             $(function() {
+                // Fetch Aragon token holders from Aragon Connect (via the REST API)
                 $.ajax({
                     dataType: "json",
                     url: "<spring:url value='/rest/v2/aragon/token-holders' />",
@@ -38,8 +51,14 @@
                         htmlString += '    <tbody>';
                         tokenHolders.forEach(function(tokenHolder, index) {
                             htmlString += '<tr>';
-                            htmlString += '    <td><div class="chip">' + tokenHolder.address + '</div></td>';
-                            htmlString += '    <td>' + tokenHolder.balance/1000000000000000000 + '</td>';
+                            htmlString += '    <td>';
+                            htmlString += '        <div class="chip">';
+                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + tokenHolder.address + '" />' + tokenHolder.address;
+                            htmlString += '        </div>';
+                            htmlString += '    </td>';
+                            htmlString += '    <td>';
+                            htmlString += '        ' + tokenHolder.balance/1000000000000000000;
+                            htmlString += '    </td>';
                             htmlString += '</tr>';
                         });
                         htmlString += '</tbody>';
