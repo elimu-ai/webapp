@@ -8,4 +8,6 @@ import org.springframework.dao.DataAccessException;
 public interface WordContributionEventDao extends GenericDao<WordContributionEvent> {
     
     List<WordContributionEvent> readAll(Word word) throws DataAccessException;
+    
+    List<WordContributionEvent> readMostRecent(int maxResults) throws DataAccessException;
 }
