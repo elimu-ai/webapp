@@ -32,7 +32,7 @@ public class MostRecentContributionsController {
         logger.info("storyBookContributionEvents.size(): " + storyBookContributionEvents.size());
         model.addAttribute("storyBookContributionEvents", storyBookContributionEvents);
         
-        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll();
+        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecent(10);
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
         model.addAttribute("wordContributionEvents", wordContributionEvents);
 
