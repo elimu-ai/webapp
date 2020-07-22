@@ -12,7 +12,7 @@
     </div>
     <div class="row center">
         <div class="col s2 m3 l4">&nbsp;</div>
-        <h5 class="header col s8 m6 l4 light white-text"><fmt:message key="quality.basic.education.for.every.child" /></h5>
+        <h5 class="header col s8 m6 l4 light white-text" style="border-radius: 8px;"><fmt:message key="quality.basic.education.for.every.child" /></h5>
         <div class="col s2 m3 l4">&nbsp;</div>
     </div>
     <div class="row center">
@@ -121,7 +121,7 @@
         
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Free and Open Source Software 👩🏽‍💻</h5>
+                <h5 class="header">Free and Open Source Software (FOSS) 👩🏽‍💻</h5>
                 <p>
                     Our goal is to quickly distribute the solution to as many children as possible, and we believe that using <i>open source</i> software will enable this.
                 </p>

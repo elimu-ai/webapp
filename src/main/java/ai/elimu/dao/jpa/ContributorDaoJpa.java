@@ -62,4 +62,22 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             .setParameter("calendarTo", calendarTo)
             .getResultList();
     }
+
+    @Override
+    public List<Contributor> readAllWithStoryBookContributions() throws DataAccessException {
+        return em.createQuery(
+            "SELECT c " +
+            "FROM Contributor c " +
+            "WHERE c IN (SELECT contributor FROM StoryBookContributionEvent)")
+            .getResultList();
+    }
+
+    @Override
+    public List<Contributor> readAllWithWordContributions() throws DataAccessException {
+        return em.createQuery(
+            "SELECT c " +
+            "FROM Contributor c " +
+            "WHERE c IN (SELECT contributor FROM WordContributionEvent)")
+            .getResultList();
+    }
 }

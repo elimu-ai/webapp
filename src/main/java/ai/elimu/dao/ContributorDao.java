@@ -15,4 +15,8 @@ public interface ContributorDao extends GenericDao<Contributor> {
     List<Contributor> readAllOrderedDesc() throws DataAccessException;
     
     List<Contributor> readAll(Calendar calendarFrom, Calendar calendarTo) throws DataAccessException;
+    
+    List<Contributor> readAllWithStoryBookContributions() throws DataAccessException;
+    
+    List<Contributor> readAllWithWordContributions() throws DataAccessException;
 }

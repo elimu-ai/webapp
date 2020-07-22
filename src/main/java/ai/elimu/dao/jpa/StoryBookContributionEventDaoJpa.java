@@ -3,6 +3,7 @@ package ai.elimu.dao.jpa;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.contributor.Contributor;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 
@@ -27,5 +28,14 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
             "ORDER BY sce.time DESC")
             .setMaxResults(maxResults)
             .getResultList();
+    }
+    
+    @Override
+    public Long readCount(Contributor contributor) throws DataAccessException {
+        return (Long) em.createQuery("SELECT COUNT(sce) " +
+                "FROM StoryBookContributionEvent sce " +
+                "WHERE sce.contributor = :contributor")
+                .setParameter("contributor", contributor)
+                .getSingleResult();
     }
 }

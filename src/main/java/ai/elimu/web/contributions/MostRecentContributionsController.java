@@ -1,11 +1,15 @@
 package ai.elimu.web.contributions;
 
+import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.WordContributionEventDao;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import java.util.List;
 import org.apache.log4j.Logger;
 import ai.elimu.model.contributor.WordContributionEvent;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,9 @@ public class MostRecentContributionsController {
     
     @Autowired
     private WordContributionEventDao wordContributionEventDao;
+    
+    @Autowired
+    private ContributorDao contributorDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -35,6 +42,24 @@ public class MostRecentContributionsController {
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecent(10);
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
         model.addAttribute("wordContributionEvents", wordContributionEvents);
+        
+        List<Contributor> contributorsWithStoryBookContributions = contributorDao.readAllWithStoryBookContributions();
+        logger.info("contributorsWithStoryBookContributions.size(): " + contributorsWithStoryBookContributions.size());
+        model.addAttribute("contributorsWithStoryBookContributions", contributorsWithStoryBookContributions);
+        Map<Long, Long> storyBookContributionsCountMap = new HashMap<>();
+        for (Contributor contributor : contributorsWithStoryBookContributions) {
+            storyBookContributionsCountMap.put(contributor.getId(), storyBookContributionEventDao.readCount(contributor));
+        }
+        model.addAttribute("storyBookContributionsCountMap", storyBookContributionsCountMap);
+        
+        List<Contributor> contributorsWithWordContributions = contributorDao.readAllWithWordContributions();
+        logger.info("contributorsWithWordContributions.size(): " + contributorsWithWordContributions.size());
+        model.addAttribute("contributorsWithWordContributions", contributorsWithWordContributions);
+        Map<Long, Long> wordContributionsCountMap = new HashMap<>();
+        for (Contributor contributor : contributorsWithWordContributions) {
+            wordContributionsCountMap.put(contributor.getId(), wordContributionEventDao.readCount(contributor));
+        }
+        model.addAttribute("wordContributionsCountMap", wordContributionsCountMap);
 
         return "contributions/most-recent";
     }

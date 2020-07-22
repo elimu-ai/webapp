@@ -19,6 +19,9 @@ public class WordContributionEvent extends BaseEntity {
     @NotNull
     @ManyToOne
     private Word word;
+    
+    @NotNull
+    private Integer revisionNumber;
 
     private String comment;
     
@@ -46,6 +49,14 @@ public class WordContributionEvent extends BaseEntity {
 
     public Word getWord() {
         return word;
+    }
+    
+    public Integer getRevisionNumber() {
+        return revisionNumber;
+    }
+
+    public void setRevisionNumber(Integer revisionNumber) {
+        this.revisionNumber = revisionNumber;
     }
 
     public void setComment(String comment) {

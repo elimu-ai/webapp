@@ -61,7 +61,7 @@
                             <c:out value=" ${emojisByWordId[word.id]}" />
                         </td>
                         <td>
-                            <p>#${word.revisionNumber}</p>
+                            <p>#${wordContributionEvent.revisionNumber}</p>
                         </td>
                         <td><a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />"><span class="material-icons">edit</span></a></td>
                     </tr>
@@ -72,8 +72,32 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="top.contributors" /></h5>
+    <h5 class="center"><fmt:message key="top.contributors" /> 🏆</h5>
     <div class="card-panel deep-purple lighten-5">
-        TODO...
+        <b><fmt:message key="storybooks" /></b><br />
+        <ol>
+            <c:forEach var="contributorWithStoryBookContributions" items="${contributorsWithStoryBookContributions}">
+                <li>
+                    <div class="chip">
+                        <img src="<spring:url value='${contributorWithStoryBookContributions.imageUrl}' />" alt="${contributorWithStoryBookContributions.firstName}" /> 
+                        <c:out value="${contributorWithStoryBookContributions.firstName}" />&nbsp;<c:out value="${contributorWithStoryBookContributions.lastName}" />
+                    </div> (${storyBookContributionsCountMap[contributorWithStoryBookContributions.id]})
+                </li>
+            </c:forEach>
+        </ol>
+        
+        <div class="divider" style="margin: 1em 0;"></div>
+        
+        <b><fmt:message key="words" /></b><br />
+        <ol>
+            <c:forEach var="contributorWithWordContributions" items="${contributorsWithWordContributions}">
+                <li>
+                    <div class="chip">
+                        <img src="<spring:url value='${contributorWithWordContributions.imageUrl}' />" alt="${contributorWithWordContributions.firstName}" /> 
+                        <c:out value="${contributorWithWordContributions.firstName}" />&nbsp;<c:out value="${contributorWithWordContributions.lastName}" />
+                    </div> (${wordContributionsCountMap[contributorWithWordContributions.id]})
+                </li>
+            </c:forEach>
+        </ol>
     </div>
 </content:aside>
