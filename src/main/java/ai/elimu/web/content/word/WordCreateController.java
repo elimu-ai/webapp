@@ -125,6 +125,7 @@ public class WordCreateController {
             wordContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
             wordContributionEvent.setTime(Calendar.getInstance());
             wordContributionEvent.setWord(word);
+            wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
             wordContributionEvent.setComment(request.getParameter("contributionComment"));
             wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             wordContributionEventDao.create(wordContributionEvent);

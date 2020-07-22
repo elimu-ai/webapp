@@ -61,7 +61,7 @@
                             <c:out value=" ${emojisByWordId[word.id]}" />
                         </td>
                         <td>
-                            <p>#${word.revisionNumber}</p>
+                            <p>#${wordContributionEvent.revisionNumber}</p>
                         </td>
                         <td><a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />"><span class="material-icons">edit</span></a></td>
                     </tr>
