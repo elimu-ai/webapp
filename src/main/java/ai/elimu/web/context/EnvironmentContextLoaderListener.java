@@ -23,6 +23,7 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.ServletContextResourceLoader;
 
 import ai.elimu.model.enums.Environment;
+import ai.elimu.model.enums.Language;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
@@ -147,6 +148,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 }
             });
         }
+        
+        // Add all supported languages
+        PROPERTIES.put("supported.languages", Language.values());
 
         // Add config properties to application scope
         servletContext.setAttribute("configProperties", PROPERTIES);

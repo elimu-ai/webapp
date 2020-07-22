@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.Role;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +29,6 @@ public class SignOnController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
     	logger.debug("handleRequest");
-        
-        Language[] supportedLanguages = Language.values();
-        model.addAttribute("supportedLanguages", supportedLanguages);
     	
         return "sign-on";
     }

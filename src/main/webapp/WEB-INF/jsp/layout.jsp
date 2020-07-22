@@ -139,7 +139,7 @@
                                 <fmt:message key="languages.supported.by.the.platform" />: 
                                 <c:choose>
                                     <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
-                                        <c:forEach var="supportedLanguage" items="${supportedLanguages}" varStatus="status">
+                                        <c:forEach var="supportedLanguage" items="${applicationScope.configProperties['supported.languages']}" varStatus="status">
                                             <c:if test="${status.index > 0}">
                                                 • 
                                             </c:if>
@@ -147,7 +147,7 @@
                                         </c:forEach>
                                     </c:when>
                                     <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                        <c:forEach var="supportedLanguage" items="${supportedLanguages}" varStatus="status">
+                                        <c:forEach var="supportedLanguage" items="${applicationScope.configProperties['supported.languages']}" varStatus="status">
                                             <c:if test="${status.index > 0}">
                                                 • 
                                             </c:if>
@@ -155,7 +155,7 @@
                                         </c:forEach>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:forEach var="supportedLanguage" items="${supportedLanguages}" varStatus="status">
+                                        <c:forEach var="supportedLanguage" items="${applicationScope.configProperties['supported.languages']}" varStatus="status">
                                             <c:if test="${status.index > 0}">
                                                 • 
                                             </c:if>
