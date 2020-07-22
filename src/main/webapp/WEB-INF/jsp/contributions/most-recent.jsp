@@ -81,7 +81,7 @@
                     <div class="chip">
                         <img src="<spring:url value='${contributorWithStoryBookContributions.imageUrl}' />" alt="${contributorWithStoryBookContributions.firstName}" /> 
                         <c:out value="${contributorWithStoryBookContributions.firstName}" />&nbsp;<c:out value="${contributorWithStoryBookContributions.lastName}" />
-                    </div> (COUNT)
+                    </div> (${storyBookContributionsCountMap[contributorWithStoryBookContributions.id]})
                 </li>
             </c:forEach>
         </ol>
@@ -95,7 +95,7 @@
                     <div class="chip">
                         <img src="<spring:url value='${contributorWithWordContributions.imageUrl}' />" alt="${contributorWithWordContributions.firstName}" /> 
                         <c:out value="${contributorWithWordContributions.firstName}" />&nbsp;<c:out value="${contributorWithWordContributions.lastName}" />
-                    </div> (COUNT)
+                    </div> (${wordContributionsCountMap[contributorWithWordContributions.id]})
                 </li>
             </c:forEach>
         </ol>
