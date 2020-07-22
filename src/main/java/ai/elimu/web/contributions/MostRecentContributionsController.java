@@ -43,24 +43,18 @@ public class MostRecentContributionsController {
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
         model.addAttribute("wordContributionEvents", wordContributionEvents);
         
-        
         List<Contributor> contributorsWithStoryBookContributions = contributorDao.readAllWithStoryBookContributions();
         logger.info("contributorsWithStoryBookContributions.size(): " + contributorsWithStoryBookContributions.size());
         model.addAttribute("contributorsWithStoryBookContributions", contributorsWithStoryBookContributions);
-        
-        // <Contributor ID, Count>
         Map<Long, Long> storyBookContributionsCountMap = new HashMap<>();
         for (Contributor contributor : contributorsWithStoryBookContributions) {
             storyBookContributionsCountMap.put(contributor.getId(), storyBookContributionEventDao.readCount(contributor));
         }
         model.addAttribute("storyBookContributionsCountMap", storyBookContributionsCountMap);
         
-        
         List<Contributor> contributorsWithWordContributions = contributorDao.readAllWithWordContributions();
         logger.info("contributorsWithWordContributions.size(): " + contributorsWithWordContributions.size());
         model.addAttribute("contributorsWithWordContributions", contributorsWithWordContributions);
-        
-        // <Contributor ID, Count>
         Map<Long, Long> wordContributionsCountMap = new HashMap<>();
         for (Contributor contributor : contributorsWithWordContributions) {
             wordContributionsCountMap.put(contributor.getId(), wordContributionEventDao.readCount(contributor));

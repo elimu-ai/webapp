@@ -9,15 +9,21 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.log4j.Logger;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
+import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
@@ -60,6 +66,15 @@ public class MainContentController {
     
     @Autowired
     private VideoDao videoDao;
+    
+    @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
+    
+    @Autowired
+    private WordContributionEventDao wordContributionEventDao;
+    
+    @Autowired
+    private ContributorDao contributorDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -97,6 +112,24 @@ public class MainContentController {
         model.addAttribute("audioCount", audioDao.readCount());
         model.addAttribute("imageCount", imageDao.readCount());
         model.addAttribute("videoCount", videoDao.readCount());
+        
+        List<Contributor> contributorsWithStoryBookContributions = contributorDao.readAllWithStoryBookContributions();
+        logger.info("contributorsWithStoryBookContributions.size(): " + contributorsWithStoryBookContributions.size());
+        model.addAttribute("contributorsWithStoryBookContributions", contributorsWithStoryBookContributions);
+        Map<Long, Long> storyBookContributionsCountMap = new HashMap<>();
+        for (Contributor contributorWithContributions : contributorsWithStoryBookContributions) {
+            storyBookContributionsCountMap.put(contributorWithContributions.getId(), storyBookContributionEventDao.readCount(contributorWithContributions));
+        }
+        model.addAttribute("storyBookContributionsCountMap", storyBookContributionsCountMap);
+        
+        List<Contributor> contributorsWithWordContributions = contributorDao.readAllWithWordContributions();
+        logger.info("contributorsWithWordContributions.size(): " + contributorsWithWordContributions.size());
+        model.addAttribute("contributorsWithWordContributions", contributorsWithWordContributions);
+        Map<Long, Long> wordContributionsCountMap = new HashMap<>();
+        for (Contributor contributorWithContributions : contributorsWithWordContributions) {
+            wordContributionsCountMap.put(contributorWithContributions.getId(), wordContributionEventDao.readCount(contributorWithContributions));
+        }
+        model.addAttribute("wordContributionsCountMap", wordContributionsCountMap);
     	
         return "content/main";
     }

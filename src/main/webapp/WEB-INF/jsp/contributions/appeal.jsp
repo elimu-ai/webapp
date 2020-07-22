@@ -184,39 +184,38 @@
     
     <table class="striped">
         <thead>
-          <tr>
-              <th>Region</th>
-              <th>Number</th>
-              <th>Rate</th>
-          </tr>
+            <tr>
+                <th>Region</th>
+                <th>Number</th>
+                <th>Rate</th>
+            </tr>
         </thead>
-
         <tbody>
-          <tr>
-            <td>Sub-Saharan Africa</td>
-            <td>34.5 million</td>
-            <td>20.5%</td>    
-          </tr>
-          <tr>
-            <td>Southern Asia</td>
-            <td>11.6 million</td>
-            <td>6.3%</td>
-          </tr>
-          <tr>
-            <td>Eastern and South-Eastern Asia</td>
-            <td>6.6 million</td>
-            <td>3.8%</td>
-          </tr>
-          <tr>
-            <td>Northern Africa and Western Asia</td>
-            <td>5.7 million</td>
-            <td>10.5%</td>
-          </tr>
-          <tr>
-            <td>Latin America and the Caribbean</td>
-            <td>2.8 million</td>
-            <td>4.7%</td>
-          </tr>
+            <tr>
+                <td>Sub-Saharan Africa</td>
+                <td>34.5 million</td>
+                <td>20.5%</td>    
+            </tr>
+            <tr>
+                <td>Southern Asia</td>
+                <td>11.6 million</td>
+                <td>6.3%</td>
+            </tr>
+            <tr>
+                <td>Eastern and South-Eastern Asia</td>
+                <td>6.6 million</td>
+                <td>3.8%</td>
+            </tr>
+            <tr>
+                <td>Northern Africa and Western Asia</td>
+                <td>5.7 million</td>
+                <td>10.5%</td>
+            </tr>
+            <tr>
+                <td>Latin America and the Caribbean</td>
+                <td>2.8 million</td>
+                <td>4.7%</td>
+            </tr>
         </tbody>
-      </table>
+    </table>
 </content:aside>

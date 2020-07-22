@@ -72,7 +72,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="top.contributors" /></h5>
+    <h5 class="center"><fmt:message key="top.contributors" /> 🏆</h5>
     <div class="card-panel deep-purple lighten-5">
         <b><fmt:message key="storybooks" /></b><br />
         <ol>
