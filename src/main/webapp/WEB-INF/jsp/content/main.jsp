@@ -162,4 +162,73 @@
             </c:forEach>
         </ol>
     </div>
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
+    <h5 class="center">Token Holders</h5>
+    <div class="card-panel deep-purple lighten-5">
+        <p>
+            Active contributors get rewarded with 
+            <a href="https://mainnet.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">elimu.ai Community Tokens</a>.
+        </p>
+        <p>
+            All token holders can participate in the community's decision making.
+        </p>
+        <div id="tokenHoldersContainer">
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+            <p>
+                Loading...
+            </p>
+        </div>
+        <script>
+            /**
+             * Copied from AragonRestController.java
+             */
+            function getBaseUrl() {
+                console.info("getBaseUrl")
+                let domain = "62.75.236.14"; // DEV/TEST
+                <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
+                    domain = "85.93.91.26";
+                </c:if>
+                return "http://" + domain + ":3000";
+            }
+
+            $(function() {
+                // Fetch Aragon token holders from Aragon Connect (via the REST API)
+                $.ajax({
+                    dataType: "json",
+                    url: "<spring:url value='/rest/v2/aragon/token-holders' />",
+                    success: function(tokenHolders) {
+                        console.info("success");
+
+                        let htmlString = '<table class="striped">';
+                        htmlString += '    <thead>';
+                        htmlString += '        <tr>';
+                        htmlString += '            <th>Holder</th>';
+                        htmlString += '            <th>Balance</th>';
+                        htmlString += '        </tr>';
+                        htmlString += '    </thead>';
+                        htmlString += '    <tbody>';
+                        tokenHolders.forEach(function(tokenHolder, index) {
+                            htmlString += '<tr>';
+                            htmlString += '    <td>';
+                            htmlString += '        <div class="chip">';
+                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + tokenHolder.address + '" />' + tokenHolder.address;
+                            htmlString += '        </div>';
+                            htmlString += '    </td>';
+                            htmlString += '    <td>';
+                            htmlString += '        ' + tokenHolder.balance/1000000000000000000;
+                            htmlString += '    </td>';
+                            htmlString += '</tr>';
+                        });
+                        htmlString += '</tbody>';
+                        htmlString += '</table>';
+                        $('#tokenHoldersContainer').html(htmlString);
+                    }
+                });
+            });
+        </script>
+    </div>
 </content:aside>
