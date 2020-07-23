@@ -215,7 +215,7 @@
                             htmlString += '<tr>';
                             htmlString += '    <td>';
                             htmlString += '        <div class="chip">';
-                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + tokenHolder.address + '" />' + tokenHolder.address;
+                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + tokenHolder.address + '" />' + tokenHolder.address.substring(0, 6) + "..." + tokenHolder.address.substring(tokenHolder.address.length - 4, tokenHolder.address.length);
                             htmlString += '        </div>';
                             htmlString += '    </td>';
                             htmlString += '    <td>';
