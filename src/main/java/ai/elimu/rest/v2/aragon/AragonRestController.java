@@ -29,6 +29,17 @@ public class AragonRestController {
         return jsonResponse;
     }
     
+    @RequestMapping(value = "/finance-transactions", method = RequestMethod.GET)
+    public String handleFinanceTransactionsRequest() {
+        logger.info("handleFinanceTransactionsRequest");
+        
+        String url = getBaseUrl() + "/finance-transactions";
+        logger.info("url: " + url);
+        String jsonResponse = JsonLoader.loadJson(url);
+        logger.info("jsonResponse: " + jsonResponse);
+        return jsonResponse;
+    }
+    
     @RequestMapping(value = "/token-holders", method = RequestMethod.GET)
     public String handleTokensRequest() {
         logger.info("handleTokensRequest");

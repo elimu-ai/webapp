@@ -34,7 +34,7 @@
             }
             
             $(function() {
-                // Fetch Aragon token holders from Aragon Connect (via the REST API)
+                // Fetch token holders from Aragon Connect (via the REST API)
                 $.ajax({
                     dataType: "json",
                     url: "<spring:url value='/rest/v2/aragon/token-holders' />",
