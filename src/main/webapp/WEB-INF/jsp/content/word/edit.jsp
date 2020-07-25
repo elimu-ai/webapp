@@ -268,7 +268,7 @@
     <c:choose>
         <c:when test="${empty audio}">
             <div class="card-panel amber lighten-3">
-                <b>Warning:</b> This word has no corresponding audio.
+                <b>Warning:</b> This word has no corresponding audio.<br />
                 <a href="<spring:url value='/content/multimedia/audio/create?transcription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
             </div>
         </c:when>
@@ -281,7 +281,7 @@
     
     <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
         <c:if test="${not empty word.text}">
-            <div class="divider" style="margin-top: 1em;"></div>
+            <div class="divider" style="margin: 1.5em 0;"></div>
         </c:if>
 
         <h5 class="center"><fmt:message key="resources" /></h5>
@@ -299,7 +299,7 @@
     </c:if>
     <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
         <c:if test="${not empty word.text}">
-            <div class="divider" style="margin-top: 1em;"></div>
+            <div class="divider" style="margin: 1.5em 0;"></div>
         </c:if>
 
         <h5 class="center"><fmt:message key="resources" /></h5>
@@ -317,13 +317,15 @@
                 </li>
             </ul>
             
-            <div class="divider" style="margin: 1em 0;"></div>
+            <div class="divider" style="margin: 1.5em 0;"></div>
         </div>
     </c:if>
     
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
     <div class="card-panel deep-purple lighten-5">
         General resources:
-        <ul>
+        <ol style="list-style-type: inherit;">
             <li>
                 <a href="<spring:url value='/content/word/pending' />"><fmt:message key="words.pending" /></a>
             </li>
@@ -333,11 +335,11 @@
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
             </li>
-        </ul>
+        </ol>
     </div>
     
     <c:if test="${not empty wordInflections}">
-        <div class="divider" style="margin-top: 1em;"></div>
+        <div class="divider" style="margin: 1.5em 0;"></div>
 
         <h5 class="center"><fmt:message key="inflections" /></h5>
 
@@ -352,7 +354,7 @@
         </div>
     </c:if>
     
-    <div class="divider" style="margin-top: 1em;"></div>
+    <div class="divider" style="margin: 1.5em 0;"></div>
     
     <h5 class="center"><fmt:message key="labeled.content" /></h5>
     

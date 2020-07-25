@@ -42,7 +42,7 @@
 <content:aside>
     <h5 class="center"><fmt:message key="resources" /></h5>
     <div class="card-panel deep-purple lighten-5">
-        <ul>
+        <ol style="list-style-type: inherit;">
             <li>
                 <a href="https://digitallibrary.io" target="_blank">Global Digital Library</a>
             </li>
@@ -52,6 +52,6 @@
             <li>
                 <a href="https://storyweaver.org.in/stories" target="_blank">StoryWeaver</a>
             </li>
-        </ul>
+        </ol>
     </div>
 </content:aside>

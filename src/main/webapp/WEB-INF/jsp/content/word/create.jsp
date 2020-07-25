@@ -280,7 +280,7 @@
     </c:if>
     <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
         <c:if test="${not empty word.text}">
-            <div class="divider" style="margin-top: 1em;"></div>
+            <div class="divider" style="margin: 1.5em 0;"></div>
         </c:if>
 
         <h5 class="center"><fmt:message key="resources" /></h5>
@@ -299,10 +299,12 @@
             </ul>
         </div>
     </c:if>
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
         
     <div class="card-panel deep-purple lighten-5">
         General resources:
-        <ul>
+        <ol style="list-style-type: inherit;">
             <li>
                 <a href="<spring:url value='/content/word/pending' />"><fmt:message key="words.pending" /></a>
             </li>
@@ -312,6 +314,6 @@
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
             </li>
-        </ul>
+        </ol>
     </div>
 </content:aside>
