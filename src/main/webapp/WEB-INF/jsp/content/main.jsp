@@ -137,7 +137,7 @@
     <h5 class="center"><fmt:message key="top.contributors" /> 🏆</h5>
     <div class="card-panel deep-purple lighten-5">
         <b><fmt:message key="storybooks" /></b><br />
-        <ol>
+        <ol style="list-style-type: inherit;">
             <c:forEach var="contributorWithStoryBookContributions" items="${contributorsWithStoryBookContributions}">
                 <li>
                     <div class="chip">
@@ -151,7 +151,7 @@
         <div class="divider" style="margin: 1em 0;"></div>
         
         <b><fmt:message key="words" /></b><br />
-        <ol>
+        <ol style="list-style-type: inherit;">
             <c:forEach var="contributorWithWordContributions" items="${contributorsWithWordContributions}">
                 <li>
                     <div class="chip">
@@ -196,7 +196,7 @@
             }
 
             $(function() {
-                // Fetch Aragon token holders from Aragon Connect (via the REST API)
+                // Fetch token holders from Aragon Connect (via the REST API)
                 $.ajax({
                     dataType: "json",
                     url: "<spring:url value='/rest/v2/aragon/token-holders' />",
