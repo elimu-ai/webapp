@@ -112,12 +112,38 @@
              * Copied from AragonRestController.java
              */
             function getBaseUrl() {
-                console.info("getBaseUrl")
+                console.info("getBaseUrl");
                 let domain = "62.75.236.14"; // DEV/TEST
                 <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
                     domain = "85.93.91.26";
                 </c:if>
                 return "http://" + domain + ":3000";
+            }
+            
+            /**
+             * E.g. "2020-03-31 13:35"
+             */
+            function getFormattedDate(timestamp) {
+                console.info("getFormattedDate");
+                let date = new Date(timestamp * 1000);
+                let year = date.getFullYear();
+                let month = (date.getMonth() + 1).toString();
+                if (month.length == 1) {
+                    month = "0" + month;
+                }
+                let day = date.getDate().toString();
+                if (day.length == 1) {
+                    day = "0" + day;
+                }
+                let hour = date.getHours().toString();
+                if (hour.length == 1) {
+                    hour = "0" + hour;
+                }
+                let minute = date.getMinutes().toString();
+                if (minute.length == 1) {
+                    minute = "0" + minute;
+                }
+                return year + "-" + month + "-" + day + " <br /><span class='grey-text'>" + hour + ":" + minute + "</span>";
             }
 
             $(function() {
@@ -141,7 +167,7 @@
                         financeTransactions.forEach(function(financeTransaction, index) {
                             htmlString += '<tr>';
                             htmlString += '    <td>';
-                            htmlString += '        ' + financeTransaction.date;
+                            htmlString += '        ' + getFormattedDate(financeTransaction.date);
                             htmlString += '    </td>';
                             htmlString += '    <td>';
                             htmlString += '        <div class="chip">';
