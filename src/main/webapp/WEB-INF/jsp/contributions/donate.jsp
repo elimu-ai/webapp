@@ -170,6 +170,11 @@
                                 return;
                             }
                             
+                            // Exclude tokens that are not ETH
+                            if (financeTransaction.token !== "0x0000000000000000000000000000000000000000") {
+                                return;
+                            }
+                            
                             htmlString += '<tr>';
                             htmlString += '    <td>';
                             htmlString += '        ' + getFormattedDate(financeTransaction.date);
