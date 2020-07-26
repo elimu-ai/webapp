@@ -95,109 +95,123 @@
         we add more educational content.
     </p>
     
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
     <h4>Most Recent Donations</h4>
-    <div id="donationsContainer">
-        <div class="progress">
-            <div class="indeterminate"></div>
+    <div class="card-panel">
+        <div id="donationsContainer">
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+            <p>
+                Loading...
+            </p>
         </div>
-        <p>
-            Loading...
-        </p>
-    </div>
-    <script>
-        /**
-         * Copied from AragonRestController.java
-         */
-        function getBaseUrl() {
-            console.info("getBaseUrl")
-            let domain = "62.75.236.14"; // DEV/TEST
-            <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
-                domain = "85.93.91.26";
-            </c:if>
-            return "http://" + domain + ":3000";
-        }
+        <script>
+            /**
+             * Copied from AragonRestController.java
+             */
+            function getBaseUrl() {
+                console.info("getBaseUrl")
+                let domain = "62.75.236.14"; // DEV/TEST
+                <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
+                    domain = "85.93.91.26";
+                </c:if>
+                return "http://" + domain + ":3000";
+            }
 
-        $(function() {
-            // Fetch finance transactions from Aragon Connect (via the REST API)
-            $.ajax({
-                dataType: "json",
-                url: "<spring:url value='/rest/v2/aragon/finance-transactions' />",
-                success: function(financeTransactions) {
-                    console.info("success");
+            $(function() {
+                // Fetch finance transactions from Aragon Connect (via the REST API)
+                $.ajax({
+                    dataType: "json",
+                    url: "<spring:url value='/rest/v2/aragon/finance-transactions' />",
+                    success: function(financeTransactions) {
+                        console.info("success");
 
-                    let htmlString = '<table class="striped">';
-                    htmlString += '    <thead>';
-                    htmlString += '        <tr>';
-                    htmlString += '            <th>Date</th>';
-                    htmlString += '            <th>Source</th>';
-                    htmlString += '            <th>Reference</th>';
-                    htmlString += '            <th>Amount</th>';
-                    htmlString += '        </tr>';
-                    htmlString += '    </thead>';
-                    htmlString += '    <tbody>';
-                    financeTransactions.forEach(function(financeTransaction, index) {
-                        htmlString += '<tr>';
-                        htmlString += '    <td>';
-                        htmlString += '        ' + financeTransaction.date;
-                        htmlString += '    </td>';
-                        htmlString += '    <td>';
-                        htmlString += '        <div class="chip">';
-                        htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + financeTransaction.entity + '" />' + financeTransaction.entity.substring(0, 6) + "..." + financeTransaction.entity.substring(financeTransaction.entity.length - 4, financeTransaction.entity.length);
-                        htmlString += '        </div>';
-                        htmlString += '    </td>';
-                        htmlString += '    <td>';
-                        htmlString += '        "' + financeTransaction.reference + '"';
-                        htmlString += '    </td>';                
-                        htmlString += '    <td>';
-                        htmlString += '        ' + (financeTransaction.amount/1000000000000000000).toFixed(2) + ' ETH';
-                        htmlString += '    </td>';
-                        htmlString += '</tr>';
-                    });
-                    htmlString += '</tbody>';
-                    htmlString += '</table>';
-                    $('#donationsContainer').html(htmlString);
-                }
+                        let htmlString = '<table class="striped">';
+                        htmlString += '    <thead>';
+                        htmlString += '        <tr>';
+                        htmlString += '            <th>Date</th>';
+                        htmlString += '            <th>Source</th>';
+                        htmlString += '            <th>Reference</th>';
+                        htmlString += '            <th>Amount</th>';
+                        htmlString += '        </tr>';
+                        htmlString += '    </thead>';
+                        htmlString += '    <tbody>';
+                        financeTransactions.forEach(function(financeTransaction, index) {
+                            htmlString += '<tr>';
+                            htmlString += '    <td>';
+                            htmlString += '        ' + financeTransaction.date;
+                            htmlString += '    </td>';
+                            htmlString += '    <td>';
+                            htmlString += '        <div class="chip">';
+                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + financeTransaction.entity + '" />' + financeTransaction.entity.substring(0, 6) + "..." + financeTransaction.entity.substring(financeTransaction.entity.length - 4, financeTransaction.entity.length);
+                            htmlString += '        </div>';
+                            htmlString += '    </td>';
+                            htmlString += '    <td>';
+                            htmlString += '        "' + financeTransaction.reference + '"';
+                            htmlString += '    </td>';                
+                            htmlString += '    <td>';
+                            htmlString += '        ' + (financeTransaction.amount/1000000000000000000).toFixed(2) + ' ETH';
+                            htmlString += '    </td>';
+                            htmlString += '</tr>';
+                        });
+                        htmlString += '</tbody>';
+                        htmlString += '</table>';
+                        $('#donationsContainer').html(htmlString);
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+
+        <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
+            View all transactions <i class="material-icons">launch</i>
+        </a>
+    </div>
     
-    <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
-        View all transactions
-    </a>
+    <div class="divider" style="margin: 1.5em 0;"></div>
     
-    
+    <a name="donate-cryptocurrency"></a>
     <h3>Donate Cryptocurrency</h3>
-    <p>
-        Would you like to support our work with a donation? Great! 😀
-    </p>
-    <p>
-        To donate, follow these steps:
-    </p>
-    <ol>
-        <li>
-            Make sure to <a href="https://www.youtube.com/watch?v=sO3WVSFd5ng" target="_blank">enable Web3</a> in your browser
-        </li>
-        <li>
-            Go to <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6" target="_blank">https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6</a> 
-            and press "Connect account"
-        </li>
-        <li>
-            Then press "New transfer"
-        </li>
-        <li>
-            Let us know where to allocate your funds by typing any of these values into the "Reference" field: 
-            <ul>
-                <li>
-                    <span class="chip deep-purple lighten-2 white-text">#content-creation</span>
-                    <span class="chip light-green darken-2 white-text">#android-development</span>
-                    <span class="chip cyan darken-1 white-text">#software-distribution</span>
-                </li>
-            </ul>
-        </li>
-        <li>
-            Finally, press "Submit deposit". Then sign the transaction, and verify that your donation appears in the list above.
-        </li>
-    </ol>
+    <div class="card-panel">
+        <p>
+            To donate, follow these steps:
+        </p>
+        <ol>
+            <li>
+                Make sure to <a href="https://www.youtube.com/watch?v=sO3WVSFd5ng" target="_blank">enable Web3</a> in your browser (e.g. MetaMask)
+            </li>
+            <li>
+                Go to the elimu.ai Community's 
+                <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6" target="_blank">Finance App</a> 
+                and press "Connect account"
+            </li>
+            <li>
+                Then press "New transfer"
+            </li>
+            <li>
+                Let us know where to allocate your funds by typing any of these values into the "Reference" field: 
+                <ul>
+                    <li>
+                        <span class="chip deep-purple lighten-2 white-text">#content-creation</span>
+                        <span class="chip light-green darken-2 white-text">#android-development</span>
+                        <span class="chip cyan darken-1 white-text">#software-distribution</span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Finally, press "Submit deposit". Then sign the transaction, and verify that your donation appears in the list above.
+            </li>
+            <li>
+                Thank you! 😀
+            </li>
+        </ol>
+        
+        <a href="https://aragon.org" target="_blank">
+            <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" 
+                 alt="Powered by Aragon" height="64px" />
+        </a>
+    </div>
 </content:section>
 
 <content:aside>
@@ -244,5 +258,21 @@
                 }
             });
         </script>
+        
+        <div class="divider" style="margin-bottom: 1em;"></div>
+        
+        <div class="center">
+            <a href="#donate-cryptocurrency" id="donateNowButton" class="btn waves-effect waves-light deep-purple lighten-2">Donate now</a>
+            <script>
+                $(function() {
+                  $('#donateNowButton').click(function(event) {
+                      event.preventDefault();
+                      $('html, body').animate({
+                          scrollTop: $('[name="donate-cryptocurrency"]').offset().top
+                      }, 1000);
+                  });
+                });
+            </script>
+        </div>
     </div>
 </content:aside>
