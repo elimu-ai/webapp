@@ -355,10 +355,31 @@
             </li>
         </ol>
         
-        <a href="https://aragon.org" target="_blank">
-            <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" 
-                 alt="Powered by Aragon" height="64px" />
-        </a>
+        <div class="divider" style="margin: 1.5em 0;"></div>
+        
+        <div class="center">
+            <c:choose>
+                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                    <a href="https://rinkeby.aragon.org/#/elimuai/0x7a2711f547696fff3fc1788b9295c5464e4a7edd/"
+                            target="_blank"
+                            class="btn-large waves-effect waves-light deep-purple lighten-2">
+                        Donate now
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/"
+                            target="_blank"
+                            class="btn-large waves-effect waves-light deep-purple lighten-2">
+                        Donate now
+                    </a>
+                </c:otherwise>
+            </c:choose><br />
+            <br />
+            <a href="https://aragon.org" target="_blank">
+                <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" 
+                     alt="Powered by Aragon" height="64px" />
+            </a>
+        </div>
     </div>
 </content:section>
 
