@@ -63,7 +63,8 @@ public class AragonRestController {
     }
     
     private String getBaseUrl() {
-        String domain = "62.75.236.14"; // DEV/TEST
+//        String domain = "62.75.236.14"; // DEV/TEST
+        String domain = "localhost";
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             domain = "85.93.91.26";
         }

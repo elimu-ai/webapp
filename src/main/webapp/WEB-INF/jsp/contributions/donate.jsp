@@ -24,70 +24,85 @@
     
     
     <h3>Allocation of Donated Funds</h3>
-    
-    <div id="canvas-holder">
+    <div id="allocationChartLoadingContainer">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+        <p>
+            Loading...
+        </p>
+    </div>
+    <div id="allocationChartContainer" style="display: none;">
         <canvas id="chart-area"></canvas>
     </div>
     <script>
-        var randomScalingFactor = function() {
-            return Math.round(Math.random() * 100);
-        };
+        function displayPieChart(
+                sumContentCreation,
+                sumContentCreationBen,
+                sumContentCreationEng,
+                sumContentCreationFil,
+                sumContentCreationHin,
+                sumContentCreationSwa,
+                sumContentCreationUrd,
+                sumAndroidDevelopment,
+                sumSoftwareDistribution
+        ) {
+            console.info('displayPieChart');
+            
+            var chartColors = {
+                purple: 'rgb(149,117,205)',
+                green: 'rgb(104,159,56)',
+                cyan: 'rgb(0,172,193)'
+            };
 
-        chartColors = {
-            purple: 'rgb(149,117,205)',
-            green: 'rgb(104,159,56)',
-            cyan: 'rgb(0,172,193)'
-        };
-
-        var config = {
-            type: 'pie',
-            data: {
-                datasets: [{
-                    data: [
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor()
-                    ],
-                    backgroundColor: [
-                        chartColors.purple,
-                        chartColors.purple,
-                        chartColors.purple,
-                        chartColors.purple,
-                        chartColors.purple,
-                        chartColors.purple,
-                        chartColors.purple,
-                        chartColors.green,
-                        chartColors.cyan
-                    ],
-                    label: 'Allocation of Donated Funds'
-                }],
-                labels: [
-                    'Content creation (any language)',
-                    'Content creation (Bengali)',
-                    'Content creation (English)',
-                    'Content creation (Filipino)',
-                    'Content creation (Hindi)',
-                    'Content creation (Swahili)',
-                    'Content creation (Urdu)',
-                    'Android development',
-                    'Software distribution'
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        };
-
-        window.onload = function() {
-            var ctx = document.getElementById('chart-area').getContext('2d');
-            window.myPie = new Chart(ctx, config);
-        };
+            var config = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            sumContentCreation,
+                            sumContentCreationBen,
+                            sumContentCreationEng,
+                            sumContentCreationFil,
+                            sumContentCreationHin,
+                            sumContentCreationSwa,
+                            sumContentCreationUrd,
+                            sumAndroidDevelopment,
+                            sumSoftwareDistribution
+                        ],
+                        backgroundColor: [
+                            chartColors.purple,
+                            chartColors.purple,
+                            chartColors.purple,
+                            chartColors.purple,
+                            chartColors.purple,
+                            chartColors.purple,
+                            chartColors.purple,
+                            chartColors.green,
+                            chartColors.cyan
+                        ],
+                        label: 'Allocation of Donated Funds'
+                    }],
+                    labels: [
+                        'Content creation (any language)',
+                        'Content creation (Bengali)',
+                        'Content creation (English)',
+                        'Content creation (Filipino)',
+                        'Content creation (Hindi)',
+                        'Content creation (Swahili)',
+                        'Content creation (Urdu)',
+                        'Android development',
+                        'Software distribution'
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            
+            var context = document.getElementById('chart-area').getContext('2d');
+            window.myPie = new Chart(context, config);
+        }
     </script>
     <p>
         When you donate, you can tell us where you would like us to allocate your funds. You can also tell us 
@@ -143,7 +158,35 @@
                 if (minute.length == 1) {
                     minute = "0" + minute;
                 }
-                return year + "-" + month + "-" + day + " <br /><span class='grey-text'>" + hour + ":" + minute + "</span>";
+                return year + "-" + month + "-" + day + " " + hour + ":" + minute;
+            }
+            
+            /**
+             * E.g. "#content-creation" --> "<span class="chip deep-purple lighten-2 white-text">#content-creation</span>"
+             */
+            function getLabeledReference(reference) {
+                console.info("getLabeledReference");
+                if (reference.includes('#content-creation') 
+                        && !reference.includes('#content-creation-')) {
+                    reference = reference.replace('#content-creation', '<span class="chip deep-purple lighten-2 white-text">#content-creation</span>');
+                } else if (reference.includes('#content-creation-ben')) {
+                    reference = reference.replace('#content-creation-ben', '<span class="chip deep-purple lighten-2 white-text">#content-creation-ben</span>');
+                } else if (reference.includes('#content-creation-eng')) {
+                    reference = reference.replace('#content-creation-eng', '<span class="chip deep-purple lighten-2 white-text">#content-creation-eng</span>');
+                } else if (reference.includes('#content-creation-fil')) {
+                    reference = reference.replace('#content-creation-fil', '<span class="chip deep-purple lighten-2 white-text">#content-creation-fil</span>');
+                } else if (reference.includes('#content-creation-hin')) {
+                    reference = reference.replace('#content-creation-hin', '<span class="chip deep-purple lighten-2 white-text">#content-creation-hin</span>');
+                } else if (reference.includes('#content-creation-swa')) {
+                    reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-creation-swa</span>');
+                } else if (reference.includes('#content-creation-urd')) {
+                    reference = reference.replace('#content-creation-urd', '<span class="chip deep-purple lighten-2 white-text">#content-creation-urd</span>');
+                } else if (reference.includes('#android-development')) {
+                    reference = reference.replace('#android-development', '<span class="chip light-green darken-2 white-text">#android-development</span>');
+                } else if (reference.includes('#software-distribution')) {
+                    reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
+                }
+                return reference;
             }
 
             $(function() {
@@ -154,13 +197,23 @@
                     success: function(financeTransactions) {
                         console.info("success");
                         
+                        // Prepare values to be displayed in the pie-chart for allocation of funds
+                        let sumContentCreation = 0;
+                        let sumContentCreationBen = 0;
+                        let sumContentCreationEng = 0;
+                        let sumContentCreationFil = 0;
+                        let sumContentCreationHin = 0;
+                        let sumContentCreationSwa = 0;
+                        let sumContentCreationUrd = 0;
+                        let sumAndroidDevelopment = 0;
+                        let sumSoftwareDistribution = 0.00;
+                        
                         // Display newest transactions on top
                         financeTransactions.reverse();
 
                         let htmlString = '<table class="striped responsive-table">';
                         htmlString += '    <thead>';
                         htmlString += '        <tr>';
-                        htmlString += '            <th>Date</th>';
                         htmlString += '            <th>Source</th>';
                         htmlString += '            <th>Reference</th>';
                         htmlString += '            <th>Amount</th>';
@@ -178,30 +231,70 @@
                                 return;
                             }
                             
+                            let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(2));
+                            
+                            // Summarize funds per activity
+                            if (financeTransaction.reference.includes('#content-creation') 
+                                    && !financeTransaction.reference.includes('#content-creation-')) {
+                                sumContentCreation += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-creation-ben')) {
+                                sumContentCreationBen += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-creation-eng')) {
+                                sumContentCreationEng += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-creation-fil')) {
+                                sumContentCreationFil += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-creation-hin')) {
+                                sumContentCreationHin += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-creation-swa')) {
+                                sumContentCreationSwa += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-creation-urd')) {
+                                sumContentCreationUrd += ethAmount;
+                            } else if (financeTransaction.reference.includes('#android-development')) {
+                                sumAndroidDevelopment += ethAmount;
+                            } else if (financeTransaction.reference.includes('#software-distribution')) {
+                                sumSoftwareDistribution += ethAmount;
+                            }
+                            
                             htmlString += '<tr>';
-                            htmlString += '    <td>';
-                            htmlString += '        ' + getFormattedDate(financeTransaction.date);
-                            htmlString += '    </td>';
                             htmlString += '    <td>';
                             htmlString += '        <div class="chip">';
                             htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + financeTransaction.entity + '" />' + financeTransaction.entity.substring(0, 6) + "..." + financeTransaction.entity.substring(financeTransaction.entity.length - 4, financeTransaction.entity.length);
-                            htmlString += '        </div>';
+                            htmlString += '        </div><br />';
+//                            htmlString += '        ' + getFormattedDate(financeTransaction.date);
                             htmlString += '    </td>';
                             htmlString += '    <td>';
-                            htmlString += '        "' + financeTransaction.reference + '"';
+                            htmlString += '        ' + ethAmount + ' ETH';
+                            htmlString += '    </td>';
+                            htmlString += '    <td>';
+                            htmlString += '        ' + getLabeledReference(financeTransaction.reference);
                             htmlString += '    </td>';                
-                            htmlString += '    <td>';
-                            htmlString += '        ' + (financeTransaction.amount/1000000000000000000).toFixed(2) + ' ETH';
-                            htmlString += '    </td>';
+
                             htmlString += '</tr>';
                         });
                         htmlString += '</tbody>';
                         htmlString += '</table>';
                         $('#donationsContainer').html(htmlString);
+                        
+                        // Display in the pie-chart for allocation of funds
+                        $('#allocationChartLoadingContainer').remove();
+                        $('#allocationChartContainer').show();
+                        displayPieChart(
+                                sumContentCreation,
+                                sumContentCreationBen,
+                                sumContentCreationEng,
+                                sumContentCreationFil,
+                                sumContentCreationHin,
+                                sumContentCreationSwa,
+                                sumContentCreationUrd,
+                                sumAndroidDevelopment,
+                                sumSoftwareDistribution
+                        );
                     }
                 });
             });
         </script>
+        
+        <div class="divider" style="margin: 1em 0;"></div>
 
         <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
             View all transactions <i class="material-icons">launch</i>
