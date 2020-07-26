@@ -165,7 +165,7 @@
         </script>
 
         <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
-            View all transactions
+            View all transactions <i class="material-icons">launch</i>
         </a>
     </div>
     
@@ -206,6 +206,11 @@
                 Thank you! 😀
             </li>
         </ol>
+        
+        <a href="https://aragon.org" target="_blank">
+            <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" 
+                 alt="Powered by Aragon" height="64px" />
+        </a>
     </div>
 </content:section>
 
