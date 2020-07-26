@@ -165,6 +165,11 @@
                         htmlString += '    </thead>';
                         htmlString += '    <tbody>';
                         financeTransactions.forEach(function(financeTransaction, index) {
+                            // Exclude outgoing transactions
+                            if (!financeTransaction.isIncoming) {
+                                return;
+                            }
+                            
                             htmlString += '<tr>';
                             htmlString += '    <td>';
                             htmlString += '        ' + getFormattedDate(financeTransaction.date);
@@ -205,7 +210,7 @@
         </p>
         <ol>
             <li>
-                Make sure to <a href="https://www.youtube.com/watch?v=sO3WVSFd5ng" target="_blank">enable Web3</a> in your browser (e.g. MetaMask)
+                Make sure to <a href="https://www.youtube.com/watch?v=sO3WVSFd5ng" target="_blank">enable Web3</a> in your browser
             </li>
             <li>
                 Go to the elimu.ai Community's 
