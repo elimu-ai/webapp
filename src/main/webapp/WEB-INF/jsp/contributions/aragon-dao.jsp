@@ -8,9 +8,18 @@
     <div class="card-panel">
         <h4>Token Holders</h4>
         <p class="grey-text">
-            <a href="https://mainnet.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">
-                elimu.ai Community Token (ECT)
-            </a>
+            <c:choose>
+                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                    <a href="https://rinkeby.aragon.org/#/elimuai/0xcfc816708740e121dd280969f05cc7e95d977177/" target="_blank">
+                        elimu.ai Community Token (ECT)
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="https://mainnet.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">
+                        elimu.ai Community Token (ECT)
+                    </a>
+                </c:otherwise>
+            </c:choose>
         </p>
         <div id="tokenHoldersContainer">
             <div class="progress">
@@ -81,6 +90,10 @@
             </p>
         </div>
         <script>
+            <c:set var="ethereumNetwork" value="rinkeby" />
+            <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
+                <c:set var="ethereumNetwork" value="mainnet" />
+            </c:if>
             $(function() {
                 $.ajax({
                     dataType: "json",
@@ -98,7 +111,7 @@
                         htmlString += '    <tbody>';
                         votes.forEach(function(vote, index) {
                             htmlString += '<tr>';
-                            htmlString += '    <td><a href="https://mainnet.aragon.org/#/elimuai/' + vote.appAddress + '/vote/' + index + '" target="_blank">' + vote.description + '</a></td>';
+                            htmlString += '    <td><a href="https://${ethereumNetwork}.aragon.org/#/elimuai/' + vote.appAddress + '/vote/' + index + '" target="_blank">' + vote.description + '</a></td>';
                             htmlString += '    <td>' + (vote.yea/vote.votingPower*100).toFixed(2) + '%<div class="progress"><div class="determinate" style="width: ' + vote.yea/vote.votingPower*100 + '%"></div></div></td>';
                             htmlString += '</tr>';
                         });
@@ -115,13 +128,13 @@
 <content:aside>
     <h5 class="center">Decentralized Autonomous Organization (DAO)</h5>
     <p>
-        The <a href="https://mainnet.aragon.org/#/elimuai" target="_blank">elimu.ai Community DAO</a> is empowered by <a href="https://aragon.org" target="_blank">Aragon</a>. 
+        The <a href="https://${ethereumNetwork}.aragon.org/#/elimuai" target="_blank">elimu.ai Community DAO</a> is empowered by <a href="https://aragon.org" target="_blank">Aragon</a>. 
         Aragon gives internet communities the power to freely organize and collaborate without borders or intermediaries.
     </p>
     <p>
         For more information, see our blog post: <a href="https://medium.com/elimu-ai/why-did-the-elimu-ai-community-decide-to-use-aragon-e9863c135111" target="_blank">Why Did the elimu.ai Community Decide to Use Aragon? 🦅</a>.
     </p>
-    <a href="https://mainnet.aragon.org/#/elimuai">
+    <a href="https://${ethereumNetwork}.aragon.org/#/elimuai">
         <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" alt="Powered by Aragon" />
     </a>
 </content:aside>
