@@ -154,7 +154,7 @@
                     success: function(financeTransactions) {
                         console.info("success");
 
-                        let htmlString = '<table class="striped">';
+                        let htmlString = '<table class="striped responsive-table">';
                         htmlString += '    <thead>';
                         htmlString += '        <tr>';
                         htmlString += '            <th>Date</th>';
