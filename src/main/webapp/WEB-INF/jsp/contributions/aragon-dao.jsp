@@ -98,7 +98,7 @@
                         htmlString += '    <tbody>';
                         votes.forEach(function(vote, index) {
                             htmlString += '<tr>';
-                            htmlString += '    <td><a href="https://mainnet.aragon.org/#/elimuai/' + vote.appAddress + '/vote/' + index + '" target="_blank">Vote #' + index + '</a> ("' + vote.metadata + '")</td>';
+                            htmlString += '    <td><a href="https://mainnet.aragon.org/#/elimuai/' + vote.appAddress + '/vote/' + index + '" target="_blank">' + vote.description + '</a></td>';
                             htmlString += '    <td>' + (vote.yea/vote.votingPower*100).toFixed(2) + '%<div class="progress"><div class="determinate" style="width: ' + vote.yea/vote.votingPower*100 + '%"></div></div></td>';
                             htmlString += '</tr>';
                         });
