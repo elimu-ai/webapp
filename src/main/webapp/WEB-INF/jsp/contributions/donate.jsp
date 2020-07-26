@@ -153,6 +153,9 @@
                     url: "<spring:url value='/rest/v2/aragon/finance-transactions' />",
                     success: function(financeTransactions) {
                         console.info("success");
+                        
+                        // Display newest transactions on top
+                        financeTransactions.reverse();
 
                         let htmlString = '<table class="striped responsive-table">';
                         htmlString += '    <thead>';
