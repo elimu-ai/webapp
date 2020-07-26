@@ -45,14 +45,16 @@
                 sumContentCreationSwa,
                 sumContentCreationUrd,
                 sumAndroidDevelopment,
-                sumSoftwareDistribution
+                sumSoftwareDistribution,
+                sumUnallocated
         ) {
             console.info('displayPieChart');
             
             var chartColors = {
-                purple: 'rgb(149,117,205)',
+                cyan: 'rgb(0,172,193)',
+                gray: 'rgb(176,190,197)',
                 green: 'rgb(104,159,56)',
-                cyan: 'rgb(0,172,193)'
+                purple: 'rgb(149,117,205)'
             };
 
             var config = {
@@ -68,7 +70,8 @@
                             sumContentCreationSwa,
                             sumContentCreationUrd,
                             sumAndroidDevelopment,
-                            sumSoftwareDistribution
+                            sumSoftwareDistribution,
+                            sumUnallocated
                         ],
                         backgroundColor: [
                             chartColors.purple,
@@ -79,7 +82,8 @@
                             chartColors.purple,
                             chartColors.purple,
                             chartColors.green,
-                            chartColors.cyan
+                            chartColors.cyan,
+                            chartColors.gray
                         ],
                         label: 'Allocation of Donated Funds'
                     }],
@@ -92,7 +96,8 @@
                         'Content creation (Swahili)',
                         'Content creation (Urdu)',
                         'Android development',
-                        'Software distribution'
+                        'Software distribution',
+                        'Unallocated (no preference)'
                     ]
                 },
                 options: {
@@ -207,6 +212,7 @@
                         let sumContentCreationUrd = 0;
                         let sumAndroidDevelopment = 0;
                         let sumSoftwareDistribution = 0.00;
+                        let sumUnallocated = 0.00;
                         
                         // Display newest transactions on top
                         financeTransactions.reverse();
@@ -253,6 +259,8 @@
                                 sumAndroidDevelopment += ethAmount;
                             } else if (financeTransaction.reference.includes('#software-distribution')) {
                                 sumSoftwareDistribution += ethAmount;
+                            } else {
+                                sumUnallocated += ethAmount;
                             }
                             
                             htmlString += '<tr>';
@@ -287,7 +295,8 @@
                                 sumContentCreationSwa,
                                 sumContentCreationUrd,
                                 sumAndroidDevelopment,
-                                sumSoftwareDistribution
+                                sumSoftwareDistribution,
+                                sumUnallocated
                         );
                     }
                 });
