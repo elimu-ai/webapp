@@ -107,7 +107,14 @@
     <div class="card-panel deep-purple lighten-5">
         <p>
             Active contributors get rewarded with 
-            <a href="https://mainnet.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">elimu.ai Community Tokens</a>.
+            <c:choose>
+                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                    <a href="https://rinkeby.aragon.org/#/elimuai/0xcfc816708740e121dd280969f05cc7e95d977177/" target="_blank">elimu.ai Community Tokens</a>.
+                </c:when>
+                <c:otherwise>
+                    <a href="https://mainnet.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">elimu.ai Community Tokens</a>.
+                </c:otherwise>
+            </c:choose>
         </p>
         <p>
             All token holders can participate in the community's decision making.
