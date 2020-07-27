@@ -152,7 +152,7 @@
                 <div class="icon-block center">
                     <img alt="ETH" src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/info/logo.png" 
                          style="height: 3.56rem; margin: 1.78rem 0 1.424rem 0;" />
-                    <h5>Donate Cryptocurrency</h5>
+                    <h5>Donate cryptocurrency</h5>
                     
                     <p>
                         Support our work by transferring cryptocurrency to our 
