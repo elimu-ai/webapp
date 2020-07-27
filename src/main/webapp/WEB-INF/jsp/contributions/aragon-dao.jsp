@@ -122,6 +122,129 @@
                 });
             });
         </script>
+        
+        <div class="divider" style="margin: 1.5em 0;"></div>
+    
+        <h4>Payments</h4>
+        <div id="paymentsContainer">
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+            <p>
+                Loading...
+            </p>
+        </div>
+        <script>
+            /**
+             * Copied from AragonRestController.java
+             */
+            function getBaseUrl() {
+                console.info("getBaseUrl");
+                let domain = "62.75.236.14"; // DEV/TEST
+                <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
+                    domain = "85.93.91.26";
+                </c:if>
+                return "http://" + domain + ":3000";
+            }
+
+            /**
+             * E.g. "#content-creation" --> "<span class="chip deep-purple lighten-2 white-text">#content-creation</span>"
+             */
+            function getLabeledReference(reference) {
+                console.info("getLabeledReference");
+                if (reference.includes('#content-creation') 
+                        && !reference.includes('#content-creation-')) {
+                    reference = reference.replace('#content-creation', '<span class="chip deep-purple lighten-2 white-text">#content-creation</span>');
+                } else if (reference.includes('#content-creation-ben')) {
+                    reference = reference.replace('#content-creation-ben', '<span class="chip deep-purple lighten-2 white-text">#content-creation-ben</span>');
+                } else if (reference.includes('#content-creation-eng')) {
+                    reference = reference.replace('#content-creation-eng', '<span class="chip deep-purple lighten-2 white-text">#content-creation-eng</span>');
+                } else if (reference.includes('#content-creation-fil')) {
+                    reference = reference.replace('#content-creation-fil', '<span class="chip deep-purple lighten-2 white-text">#content-creation-fil</span>');
+                } else if (reference.includes('#content-creation-hin')) {
+                    reference = reference.replace('#content-creation-hin', '<span class="chip deep-purple lighten-2 white-text">#content-creation-hin</span>');
+                } else if (reference.includes('#content-creation-swa')) {
+                    reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-creation-swa</span>');
+                } else if (reference.includes('#content-creation-urd')) {
+                    reference = reference.replace('#content-creation-urd', '<span class="chip deep-purple lighten-2 white-text">#content-creation-urd</span>');
+                } else if (reference.includes('#android-development')) {
+                    reference = reference.replace('#android-development', '<span class="chip light-green darken-2 white-text">#android-development</span>');
+                } else if (reference.includes('#software-distribution')) {
+                    reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
+                }
+                return reference;
+            }
+
+            $(function() {
+                // Fetch finance transactions from Aragon Connect (via the REST API)
+                $.ajax({
+                    dataType: "json",
+                    url: "<spring:url value='/rest/v2/aragon/finance-transactions' />",
+                    success: function(financeTransactions) {
+                        console.info("success");
+
+                        // Display newest transactions on top
+                        financeTransactions.reverse();
+
+                        let htmlString = '<table class="striped responsive-table">';
+                        htmlString += '    <thead>';
+                        htmlString += '        <tr>';
+                        htmlString += '            <th>Recipient</th>';
+                        htmlString += '            <th>Amount</th>';
+                        htmlString += '            <th>Reference</th>';
+                        htmlString += '        </tr>';
+                        htmlString += '    </thead>';
+                        htmlString += '    <tbody>';
+                        financeTransactions.forEach(function(financeTransaction, index) {
+                            // Exclude incoming transactions
+                            if (financeTransaction.isIncoming) {
+                                return;
+                            }
+
+                            // Exclude tokens that are not ETH
+                            if (financeTransaction.token !== "0x0000000000000000000000000000000000000000") {
+                                return;
+                            }
+
+                            let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
+
+                            htmlString += '<tr>';
+                            htmlString += '    <td>';
+                            htmlString += '        <div class="chip">';
+                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + financeTransaction.entity + '" />' + financeTransaction.entity.substring(0, 6) + "..." + financeTransaction.entity.substring(financeTransaction.entity.length - 4, financeTransaction.entity.length);
+                            htmlString += '        </div><br />';
+                            htmlString += '    </td>';
+                            htmlString += '    <td>';
+                            htmlString += '        ' + ethAmount.toFixed(5) + ' ETH';
+                            htmlString += '    </td>';
+                            htmlString += '    <td style="width: 50%;">';
+                            htmlString += '        ' + getLabeledReference(financeTransaction.reference);
+                            htmlString += '    </td>';                
+
+                            htmlString += '</tr>';
+                        });
+                        htmlString += '</tbody>';
+                        htmlString += '</table>';
+                        $('#paymentsContainer').html(htmlString);
+                    }
+                });
+            });
+        </script>
+
+        <div class="divider" style="margin: 1em 0;"></div>
+
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.aragon.org/#/elimuai/0x7a2711f547696fff3fc1788b9295c5464e4a7edd/" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </content:section>
 
