@@ -221,8 +221,8 @@
                         htmlString += '    <thead>';
                         htmlString += '        <tr>';
                         htmlString += '            <th>Source</th>';
-                        htmlString += '            <th>Reference</th>';
                         htmlString += '            <th>Amount</th>';
+                        htmlString += '            <th>Reference</th>';
                         htmlString += '        </tr>';
                         htmlString += '    </thead>';
                         htmlString += '    <tbody>';
