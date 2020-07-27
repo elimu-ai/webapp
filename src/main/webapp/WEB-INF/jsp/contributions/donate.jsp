@@ -203,14 +203,14 @@
                         console.info("success");
                         
                         // Prepare values to be displayed in the pie-chart for allocation of funds
-                        let sumContentCreation = 0;
-                        let sumContentCreationBen = 0;
-                        let sumContentCreationEng = 0;
-                        let sumContentCreationFil = 0;
-                        let sumContentCreationHin = 0;
-                        let sumContentCreationSwa = 0;
-                        let sumContentCreationUrd = 0;
-                        let sumAndroidDevelopment = 0;
+                        let sumContentCreation = 0.00;
+                        let sumContentCreationBen = 0.00;
+                        let sumContentCreationEng = 0.00;
+                        let sumContentCreationFil = 0.00;
+                        let sumContentCreationHin = 0.00;
+                        let sumContentCreationSwa = 0.00;
+                        let sumContentCreationUrd = 0.00;
+                        let sumAndroidDevelopment = 0.00;
                         let sumSoftwareDistribution = 0.00;
                         let sumUnallocated = 0.00;
                         
@@ -237,7 +237,7 @@
                                 return;
                             }
                             
-                            let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(2));
+                            let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
                             
                             // Summarize funds per activity
                             if (financeTransaction.reference.includes('#content-creation') 
@@ -271,7 +271,7 @@
 //                            htmlString += '        ' + getFormattedDate(financeTransaction.date);
                             htmlString += '    </td>';
                             htmlString += '    <td>';
-                            htmlString += '        ' + ethAmount + ' ETH';
+                            htmlString += '        ' + ethAmount.toFixed(5) + ' ETH';
                             htmlString += '    </td>';
                             htmlString += '    <td>';
                             htmlString += '        ' + getLabeledReference(financeTransaction.reference);
