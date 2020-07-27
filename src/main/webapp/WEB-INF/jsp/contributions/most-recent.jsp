@@ -117,7 +117,7 @@
             </c:choose>
         </p>
         <p>
-            All token holders can participate in the community's decision making.
+            All token holders can participate in the community's <a href="<spring:url value='/contributions/aragon-dao' />">decision making</a>.
         </p>
         <div id="tokenHoldersContainer">
             <div class="progress">

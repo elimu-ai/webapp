@@ -161,6 +161,10 @@
                 </li>
             </c:forEach>
         </ol>
+        
+        <div class="divider" style="margin: 1em 0;"></div>
+        
+        <a href="<spring:url value='/contributions/most-recent' />">Most recent contributions</a>
     </div>
     
     <div class="divider" style="margin: 1.5em 0;"></div>
@@ -179,7 +183,7 @@
             </c:choose>
         </p>
         <p>
-            All token holders can participate in the community's decision making.
+            All token holders can participate in the community's <a href="<spring:url value='/contributions/aragon-dao' />">decision making</a>.
         </p>
         <div id="tokenHoldersContainer">
             <div class="progress">
