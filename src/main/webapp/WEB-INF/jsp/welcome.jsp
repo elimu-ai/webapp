@@ -150,11 +150,15 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    <h2><i class="material-icons medium blue-grey-text">archive</i></h2>
-                    <h5><fmt:message key="download.and.test.the.software" /></h5>
+                    <img alt="ETH" src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/info/logo.png" 
+                         style="height: 3.56rem; margin: 1.78rem 0 1.424rem 0;" />
+                    <h5>Donate Cryptocurrency</h5>
                     
-                    For instructions on how to download and install the elimu.ai software, 
-                    see our <a href="https://github.com/elimu-ai/appstore">GitHub repository</a>.
+                    <p>
+                        Support our work by transferring cryptocurrency to our 
+                        <a href="<spring:url value='/contributions/aragon-dao' />" target="_blank">Decentralized Autonomous Organization</a> (DAO).
+                    </p>
+                    <a href="<spring:url value='/contributions/donate' />" class="btn waves-effect waves-light deep-purple lighten-2">Donate now</a>
                 </div>
                 <p>&nbsp;</p>
             </div>
