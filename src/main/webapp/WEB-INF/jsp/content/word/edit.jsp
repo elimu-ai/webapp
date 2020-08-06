@@ -25,7 +25,7 @@
                     
                     <c:if test="${not empty word.text}">
                         <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
-                        <div class="col s12 grey-text" style="font-size: 3em; height: 2em;">
+                        <div class="col s12 grey-text" style="font-size: 3em;">
                             <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
                                 <c:set var="letterText" value="${fn:substring(word.text, status.index, status.index + 1)}" />
                                 <c:set var="matchingLetter" />
@@ -287,14 +287,14 @@
         <h5 class="center"><fmt:message key="resources" /></h5>
         <div class="card-panel deep-purple lighten-5">
             For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
-            <ul>
+            <ol style="list-style-type: inherit;">
                 <li>
                     <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
                 </li>
                 <li>
                     <a href="https://translate.google.com/#view=home&op=translate&sl=hi&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
                 </li>
-            </ul>
+            </ol>
         </div>
     </c:if>
     <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
@@ -305,7 +305,7 @@
         <h5 class="center"><fmt:message key="resources" /></h5>
         <div class="card-panel deep-purple lighten-5">
             For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
-            <ul>
+            <ol style="list-style-type: inherit;">
                 <li>
                     <a href="https://forvo.com/word/<c:out value='${word.text}' />/#tl" target="_blank">Forvo</a>
                 </li>
@@ -315,7 +315,7 @@
                 <li>
                     <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
                 </li>
-            </ul>
+            </ol>
             
             <div class="divider" style="margin: 1.5em 0;"></div>
         </div>
