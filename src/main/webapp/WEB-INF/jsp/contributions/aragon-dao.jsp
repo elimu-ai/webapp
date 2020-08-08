@@ -148,25 +148,25 @@
             }
 
             /**
-             * E.g. "#content-creation" --> "<span class="chip deep-purple lighten-2 white-text">#content-creation</span>"
+             * E.g. "#content" --> "<span class="chip deep-purple lighten-2 white-text">#content</span>"
              */
             function getLabeledReference(reference) {
                 console.info("getLabeledReference");
-                if (reference.includes('#content-creation') 
-                        && !reference.includes('#content-creation-')) {
-                    reference = reference.replace('#content-creation', '<span class="chip deep-purple lighten-2 white-text">#content-creation</span>');
-                } else if (reference.includes('#content-creation-ben')) {
-                    reference = reference.replace('#content-creation-ben', '<span class="chip deep-purple lighten-2 white-text">#content-creation-ben</span>');
-                } else if (reference.includes('#content-creation-eng')) {
-                    reference = reference.replace('#content-creation-eng', '<span class="chip deep-purple lighten-2 white-text">#content-creation-eng</span>');
-                } else if (reference.includes('#content-creation-fil')) {
-                    reference = reference.replace('#content-creation-fil', '<span class="chip deep-purple lighten-2 white-text">#content-creation-fil</span>');
-                } else if (reference.includes('#content-creation-hin')) {
-                    reference = reference.replace('#content-creation-hin', '<span class="chip deep-purple lighten-2 white-text">#content-creation-hin</span>');
-                } else if (reference.includes('#content-creation-swa')) {
-                    reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-creation-swa</span>');
-                } else if (reference.includes('#content-creation-urd')) {
-                    reference = reference.replace('#content-creation-urd', '<span class="chip deep-purple lighten-2 white-text">#content-creation-urd</span>');
+                if (reference.includes('#content') 
+                        && !reference.includes('#content-')) {
+                    reference = reference.replace('#content', '<span class="chip deep-purple lighten-2 white-text">#content</span>');
+                } else if (reference.includes('#content-ben')) {
+                    reference = reference.replace('#content-ben', '<span class="chip deep-purple lighten-2 white-text">#content-ben</span>');
+                } else if (reference.includes('#content-eng')) {
+                    reference = reference.replace('#content-eng', '<span class="chip deep-purple lighten-2 white-text">#content-eng</span>');
+                } else if (reference.includes('#content-fil')) {
+                    reference = reference.replace('#content-fil', '<span class="chip deep-purple lighten-2 white-text">#content-fil</span>');
+                } else if (reference.includes('#content-hin')) {
+                    reference = reference.replace('#content-hin', '<span class="chip deep-purple lighten-2 white-text">#content-hin</span>');
+                } else if (reference.includes('#content-swa')) {
+                    reference = reference.replace('#content-creatio-swa', '<span class="chip deep-purple lighten-2 white-text">#content-swa</span>');
+                } else if (reference.includes('#content-urd')) {
+                    reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
                 } else if (reference.includes('#android-development')) {
                     reference = reference.replace('#android-development', '<span class="chip light-green darken-2 white-text">#android-development</span>');
                 } else if (reference.includes('#software-distribution')) {
@@ -183,9 +183,6 @@
                     success: function(financeTransactions) {
                         console.info("success");
 
-                        // Display newest transactions on top
-                        financeTransactions.reverse();
-
                         let htmlString = '<table class="striped responsive-table">';
                         htmlString += '    <thead>';
                         htmlString += '        <tr>';
@@ -198,11 +195,6 @@
                         financeTransactions.forEach(function(financeTransaction, index) {
                             // Exclude incoming transactions
                             if (financeTransaction.isIncoming) {
-                                return;
-                            }
-
-                            // Exclude tokens that are not ETH
-                            if (financeTransaction.token !== "0x0000000000000000000000000000000000000000") {
                                 return;
                             }
 
