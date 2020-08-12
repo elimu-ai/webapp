@@ -18,9 +18,9 @@
         In order to achieve our purpose of providing out-of-school children with access to quality basic education, the 
         elimu.ai Community focuses on three <a href="https://github.com/elimu-ai/wiki/projects" target="_blank">main activities</a>:
     </p>
-    <div class="chip deep-purple lighten-2 white-text">1. Content creation</div>
-    <div class="chip light-green darken-2 white-text">2. Android development</div>
-    <div class="chip cyan darken-1 white-text">3. Software distribution</div>
+    <div class="chip deep-purple lighten-2 white-text">1. Content</div>
+    <div class="chip light-green darken-2 white-text">2. Engineering</div>
+    <div class="chip cyan darken-1 white-text">3. Distribution</div>
     
     
     <h3>Allocation of Donated Funds</h3>
@@ -37,15 +37,15 @@
     </div>
     <script>
         function displayPieChart(
-                sumContentCreation,
-                sumContentCreationBen,
-                sumContentCreationEng,
-                sumContentCreationFil,
-                sumContentCreationHin,
-                sumContentCreationSwa,
-                sumContentCreationUrd,
-                sumAndroidDevelopment,
-                sumSoftwareDistribution,
+                sumContent,
+                sumContentBen,
+                sumContentEng,
+                sumContentFil,
+                sumContentHin,
+                sumContentSwa,
+                sumContentUrd,
+                sumEngineering,
+                sumDistribution,
                 sumUnallocated
         ) {
             console.info('displayPieChart');
@@ -62,15 +62,15 @@
                 data: {
                     datasets: [{
                         data: [
-                            sumContentCreation,
-                            sumContentCreationBen,
-                            sumContentCreationEng,
-                            sumContentCreationFil,
-                            sumContentCreationHin,
-                            sumContentCreationSwa,
-                            sumContentCreationUrd,
-                            sumAndroidDevelopment,
-                            sumSoftwareDistribution,
+                            sumContent,
+                            sumContentBen,
+                            sumContentEng,
+                            sumContentFil,
+                            sumContentHin,
+                            sumContentSwa,
+                            sumContentUrd,
+                            sumEngineering,
+                            sumDistribution,
                             sumUnallocated
                         ],
                         backgroundColor: [
@@ -88,15 +88,15 @@
                         label: 'Allocation of Donated Funds'
                     }],
                     labels: [
-                        'Content creation (any language)',
-                        'Content creation (Bengali)',
-                        'Content creation (English)',
-                        'Content creation (Filipino)',
-                        'Content creation (Hindi)',
-                        'Content creation (Swahili)',
-                        'Content creation (Urdu)',
-                        'Android development',
-                        'Software distribution',
+                        'Content (any language)',
+                        'Content (Bengali)',
+                        'Content (English)',
+                        'Content (Filipino)',
+                        'Content (Hindi)',
+                        'Content (Swahili)',
+                        'Content (Urdu)',
+                        'Engineering',
+                        'Distribution',
                         'Unallocated (no preference)'
                     ]
                 },
@@ -167,29 +167,29 @@
             }
             
             /**
-             * E.g. "#content-creation" --> "<span class="chip deep-purple lighten-2 white-text">#content-creation</span>"
+             * E.g. "#content" --> "<span class="chip deep-purple lighten-2 white-text">#content</span>"
              */
             function getLabeledReference(reference) {
                 console.info("getLabeledReference");
-                if (reference.includes('#content-creation') 
-                        && !reference.includes('#content-creation-')) {
-                    reference = reference.replace('#content-creation', '<span class="chip deep-purple lighten-2 white-text">#content-creation</span>');
-                } else if (reference.includes('#content-creation-ben')) {
-                    reference = reference.replace('#content-creation-ben', '<span class="chip deep-purple lighten-2 white-text">#content-creation-ben</span>');
-                } else if (reference.includes('#content-creation-eng')) {
-                    reference = reference.replace('#content-creation-eng', '<span class="chip deep-purple lighten-2 white-text">#content-creation-eng</span>');
-                } else if (reference.includes('#content-creation-fil')) {
-                    reference = reference.replace('#content-creation-fil', '<span class="chip deep-purple lighten-2 white-text">#content-creation-fil</span>');
-                } else if (reference.includes('#content-creation-hin')) {
-                    reference = reference.replace('#content-creation-hin', '<span class="chip deep-purple lighten-2 white-text">#content-creation-hin</span>');
-                } else if (reference.includes('#content-creation-swa')) {
-                    reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-creation-swa</span>');
-                } else if (reference.includes('#content-creation-urd')) {
-                    reference = reference.replace('#content-creation-urd', '<span class="chip deep-purple lighten-2 white-text">#content-creation-urd</span>');
-                } else if (reference.includes('#android-development')) {
-                    reference = reference.replace('#android-development', '<span class="chip light-green darken-2 white-text">#android-development</span>');
-                } else if (reference.includes('#software-distribution')) {
-                    reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
+                if (reference.includes('#content') 
+                        && !reference.includes('#content-')) {
+                    reference = reference.replace('#content', '<span class="chip deep-purple lighten-2 white-text">#content</span>');
+                } else if (reference.includes('#content-ben')) {
+                    reference = reference.replace('#content-ben', '<span class="chip deep-purple lighten-2 white-text">#content-ben</span>');
+                } else if (reference.includes('#content-eng')) {
+                    reference = reference.replace('#content-eng', '<span class="chip deep-purple lighten-2 white-text">#content-eng</span>');
+                } else if (reference.includes('#content-fil')) {
+                    reference = reference.replace('#content-fil', '<span class="chip deep-purple lighten-2 white-text">#content-fil</span>');
+                } else if (reference.includes('#content-hin')) {
+                    reference = reference.replace('#content-hin', '<span class="chip deep-purple lighten-2 white-text">#content-hin</span>');
+                } else if (reference.includes('#content-swa')) {
+                    reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-swa</span>');
+                } else if (reference.includes('#content-urd')) {
+                    reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
+                } else if (reference.includes('#engineering')) {
+                    reference = reference.replace('#engineering', '<span class="chip light-green darken-2 white-text">#engineering</span>');
+                } else if (reference.includes('#distribution')) {
+                    reference = reference.replace('#distribution', '<span class="chip cyan darken-1 white-text">#distribution</span>');
                 }
                 return reference;
             }
@@ -203,15 +203,15 @@
                         console.info("success");
                         
                         // Prepare values to be displayed in the pie-chart for allocation of funds
-                        let sumContentCreation = 0.00;
-                        let sumContentCreationBen = 0.00;
-                        let sumContentCreationEng = 0.00;
-                        let sumContentCreationFil = 0.00;
-                        let sumContentCreationHin = 0.00;
-                        let sumContentCreationSwa = 0.00;
-                        let sumContentCreationUrd = 0.00;
-                        let sumAndroidDevelopment = 0.00;
-                        let sumSoftwareDistribution = 0.00;
+                        let sumContent = 0.00;
+                        let sumContentBen = 0.00;
+                        let sumContentEng = 0.00;
+                        let sumContentFil = 0.00;
+                        let sumContentHin = 0.00;
+                        let sumContentSwa = 0.00;
+                        let sumContentUrd = 0.00;
+                        let sumEngineering = 0.00;
+                        let sumDistribution = 0.00;
                         let sumUnallocated = 0.00;
                         
                         // Display newest transactions on top
@@ -232,33 +232,34 @@
                                 return;
                             }
                             
+                            // TODO: add support for any type of token
                             // Exclude tokens that are not ETH
-                            if (financeTransaction.token !== "0x0000000000000000000000000000000000000000") {
+                            if (financeTransaction.token !== '0x0000000000000000000000000000000000000000') {
                                 return;
                             }
                             
                             let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
                             
                             // Summarize funds per activity
-                            if (financeTransaction.reference.includes('#content-creation') 
-                                    && !financeTransaction.reference.includes('#content-creation-')) {
-                                sumContentCreation += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-creation-ben')) {
-                                sumContentCreationBen += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-creation-eng')) {
-                                sumContentCreationEng += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-creation-fil')) {
-                                sumContentCreationFil += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-creation-hin')) {
-                                sumContentCreationHin += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-creation-swa')) {
-                                sumContentCreationSwa += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-creation-urd')) {
-                                sumContentCreationUrd += ethAmount;
-                            } else if (financeTransaction.reference.includes('#android-development')) {
-                                sumAndroidDevelopment += ethAmount;
-                            } else if (financeTransaction.reference.includes('#software-distribution')) {
-                                sumSoftwareDistribution += ethAmount;
+                            if (financeTransaction.reference.includes('#content') 
+                                    && !financeTransaction.reference.includes('#content-')) {
+                                sumContent += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-ben')) {
+                                sumContentBen += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-eng')) {
+                                sumContentEng += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-fil')) {
+                                sumContentFil += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-hin')) {
+                                sumContentHin += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-swa')) {
+                                sumContentSwa += ethAmount;
+                            } else if (financeTransaction.reference.includes('#content-urd')) {
+                                sumContentUrd += ethAmount;
+                            } else if (financeTransaction.reference.includes('#engineering')) {
+                                sumEngineering += ethAmount;
+                            } else if (financeTransaction.reference.includes('#distribution')) {
+                                sumDistribution += ethAmount;
                             } else {
                                 sumUnallocated += ethAmount;
                             }
@@ -279,7 +280,7 @@
 
                             htmlString += '</tr>';
                         });
-                        htmlString += '</tbody>';
+                        htmlString += '    </tbody>';
                         htmlString += '</table>';
                         $('#donationsContainer').html(htmlString);
                         
@@ -287,15 +288,15 @@
                         $('#allocationChartLoadingContainer').remove();
                         $('#allocationChartContainer').show();
                         displayPieChart(
-                                sumContentCreation,
-                                sumContentCreationBen,
-                                sumContentCreationEng,
-                                sumContentCreationFil,
-                                sumContentCreationHin,
-                                sumContentCreationSwa,
-                                sumContentCreationUrd,
-                                sumAndroidDevelopment,
-                                sumSoftwareDistribution,
+                                sumContent,
+                                sumContentBen,
+                                sumContentEng,
+                                sumContentFil,
+                                sumContentHin,
+                                sumContentSwa,
+                                sumContentUrd,
+                                sumEngineering,
+                                sumDistribution,
                                 sumUnallocated
                         );
                     }
@@ -350,9 +351,9 @@
                 Let us know where to allocate your funds by typing any of these values into the "Reference" field: 
                 <ul>
                     <li>
-                        <span class="chip deep-purple lighten-2 white-text">#content-creation</span>
-                        <span class="chip light-green darken-2 white-text">#android-development</span>
-                        <span class="chip cyan darken-1 white-text">#software-distribution</span>
+                        <span class="chip deep-purple lighten-2 white-text">#content</span>
+                        <span class="chip light-green darken-2 white-text">#engineering</span>
+                        <span class="chip cyan darken-1 white-text">#distribution</span>
                     </li>
                 </ul>
             </li>
