@@ -20,7 +20,7 @@
     </p>
     <div class="chip deep-purple lighten-2 white-text">1. Content</div>
     <div class="chip light-green darken-2 white-text">2. Engineering</div>
-    <div class="chip cyan darken-1 white-text">3. Software distribution</div>
+    <div class="chip cyan darken-1 white-text">3. Distribution</div>
     
     
     <h3>Allocation of Donated Funds</h3>
@@ -45,7 +45,7 @@
                 sumContentSwa,
                 sumContentUrd,
                 sumEngineering,
-                sumSoftwareDistribution,
+                sumDistribution,
                 sumUnallocated
         ) {
             console.info('displayPieChart');
@@ -70,7 +70,7 @@
                             sumContentSwa,
                             sumContentUrd,
                             sumEngineering,
-                            sumSoftwareDistribution,
+                            sumDistribution,
                             sumUnallocated
                         ],
                         backgroundColor: [
@@ -96,7 +96,7 @@
                         'Content (Swahili)',
                         'Content (Urdu)',
                         'Engineering',
-                        'Software distribution',
+                        'Distribution',
                         'Unallocated (no preference)'
                     ]
                 },
@@ -188,8 +188,8 @@
                     reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
                 } else if (reference.includes('#engineering')) {
                     reference = reference.replace('#engineering', '<span class="chip light-green darken-2 white-text">#engineering</span>');
-                } else if (reference.includes('#software-distribution')) {
-                    reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
+                } else if (reference.includes('#distribution')) {
+                    reference = reference.replace('#distribution', '<span class="chip cyan darken-1 white-text">#distribution</span>');
                 }
                 return reference;
             }
@@ -211,7 +211,7 @@
                         let sumContentSwa = 0.00;
                         let sumContentUrd = 0.00;
                         let sumEngineering = 0.00;
-                        let sumSoftwareDistribution = 0.00;
+                        let sumDistribution = 0.00;
                         let sumUnallocated = 0.00;
                         
                         // Display newest transactions on top
@@ -258,8 +258,8 @@
                                 sumContentUrd += ethAmount;
                             } else if (financeTransaction.reference.includes('#engineering')) {
                                 sumEngineering += ethAmount;
-                            } else if (financeTransaction.reference.includes('#software-distribution')) {
-                                sumSoftwareDistribution += ethAmount;
+                            } else if (financeTransaction.reference.includes('#distribution')) {
+                                sumDistribution += ethAmount;
                             } else {
                                 sumUnallocated += ethAmount;
                             }
@@ -296,7 +296,7 @@
                                 sumContentSwa,
                                 sumContentUrd,
                                 sumEngineering,
-                                sumSoftwareDistribution,
+                                sumDistribution,
                                 sumUnallocated
                         );
                     }
@@ -353,7 +353,7 @@
                     <li>
                         <span class="chip deep-purple lighten-2 white-text">#content</span>
                         <span class="chip light-green darken-2 white-text">#engineering</span>
-                        <span class="chip cyan darken-1 white-text">#software-distribution</span>
+                        <span class="chip cyan darken-1 white-text">#distribution</span>
                     </li>
                 </ul>
             </li>

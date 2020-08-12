@@ -169,8 +169,8 @@
                     reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
                 } else if (reference.includes('#engineering')) {
                     reference = reference.replace('#engineering', '<span class="chip light-green darken-2 white-text">#engineering</span>');
-                } else if (reference.includes('#software-distribution')) {
-                    reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
+                } else if (reference.includes('#distribution')) {
+                    reference = reference.replace('#distribution', '<span class="chip cyan darken-1 white-text">#distribution</span>');
                 }
                 return reference;
             }
