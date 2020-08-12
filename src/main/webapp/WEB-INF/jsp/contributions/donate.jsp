@@ -19,7 +19,7 @@
         elimu.ai Community focuses on three <a href="https://github.com/elimu-ai/wiki/projects" target="_blank">main activities</a>:
     </p>
     <div class="chip deep-purple lighten-2 white-text">1. Content</div>
-    <div class="chip light-green darken-2 white-text">2. Android development</div>
+    <div class="chip light-green darken-2 white-text">2. Engineering</div>
     <div class="chip cyan darken-1 white-text">3. Software distribution</div>
     
     
@@ -44,7 +44,7 @@
                 sumContentHin,
                 sumContentSwa,
                 sumContentUrd,
-                sumAndroidDevelopment,
+                sumEngineering,
                 sumSoftwareDistribution,
                 sumUnallocated
         ) {
@@ -69,7 +69,7 @@
                             sumContentHin,
                             sumContentSwa,
                             sumContentUrd,
-                            sumAndroidDevelopment,
+                            sumEngineering,
                             sumSoftwareDistribution,
                             sumUnallocated
                         ],
@@ -95,7 +95,7 @@
                         'Content (Hindi)',
                         'Content (Swahili)',
                         'Content (Urdu)',
-                        'Android development',
+                        'Engineering',
                         'Software distribution',
                         'Unallocated (no preference)'
                     ]
@@ -186,8 +186,8 @@
                     reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-swa</span>');
                 } else if (reference.includes('#content-urd')) {
                     reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
-                } else if (reference.includes('#android-development')) {
-                    reference = reference.replace('#android-development', '<span class="chip light-green darken-2 white-text">#android-development</span>');
+                } else if (reference.includes('#engineering')) {
+                    reference = reference.replace('#engineering', '<span class="chip light-green darken-2 white-text">#engineering</span>');
                 } else if (reference.includes('#software-distribution')) {
                     reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
                 }
@@ -210,7 +210,7 @@
                         let sumContentHin = 0.00;
                         let sumContentSwa = 0.00;
                         let sumContentUrd = 0.00;
-                        let sumAndroidDevelopment = 0.00;
+                        let sumEngineering = 0.00;
                         let sumSoftwareDistribution = 0.00;
                         let sumUnallocated = 0.00;
                         
@@ -232,6 +232,7 @@
                                 return;
                             }
                             
+                            // TODO: add support for any type of token
                             // Exclude tokens that are not ETH
                             if (financeTransaction.token !== "0x0000000000000000000000000000000000000000") {
                                 return;
@@ -255,8 +256,8 @@
                                 sumContentSwa += ethAmount;
                             } else if (financeTransaction.reference.includes('#content-urd')) {
                                 sumContentUrd += ethAmount;
-                            } else if (financeTransaction.reference.includes('#android-development')) {
-                                sumAndroidDevelopment += ethAmount;
+                            } else if (financeTransaction.reference.includes('#engineering')) {
+                                sumEngineering += ethAmount;
                             } else if (financeTransaction.reference.includes('#software-distribution')) {
                                 sumSoftwareDistribution += ethAmount;
                             } else {
@@ -294,7 +295,7 @@
                                 sumContentHin,
                                 sumContentSwa,
                                 sumContentUrd,
-                                sumAndroidDevelopment,
+                                sumEngineering,
                                 sumSoftwareDistribution,
                                 sumUnallocated
                         );
@@ -351,7 +352,7 @@
                 <ul>
                     <li>
                         <span class="chip deep-purple lighten-2 white-text">#content</span>
-                        <span class="chip light-green darken-2 white-text">#android-development</span>
+                        <span class="chip light-green darken-2 white-text">#engineering</span>
                         <span class="chip cyan darken-1 white-text">#software-distribution</span>
                     </li>
                 </ul>

@@ -167,8 +167,8 @@
                     reference = reference.replace('#content-creatio-swa', '<span class="chip deep-purple lighten-2 white-text">#content-swa</span>');
                 } else if (reference.includes('#content-urd')) {
                     reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
-                } else if (reference.includes('#android-development')) {
-                    reference = reference.replace('#android-development', '<span class="chip light-green darken-2 white-text">#android-development</span>');
+                } else if (reference.includes('#engineering')) {
+                    reference = reference.replace('#engineering', '<span class="chip light-green darken-2 white-text">#engineering</span>');
                 } else if (reference.includes('#software-distribution')) {
                     reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
                 }
@@ -198,6 +198,7 @@
                                 return;
                             }
 
+                            // TODO: add support for any type of token
                             let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
 
                             htmlString += '<tr>';
