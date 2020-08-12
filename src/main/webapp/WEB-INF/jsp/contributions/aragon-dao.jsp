@@ -197,9 +197,14 @@
                             if (financeTransaction.isIncoming) {
                                 return;
                             }
-
-                            // TODO: add support for any type of token
-                            let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
+                            
+                            let tokenType = 'ETH';
+                            if (financeTransaction.token === '0x960b236a07cf122663c4303350609a66a7b288c0') {
+                                tokenType = 'ANT';
+                            } else if (financeTransaction.token === '0x6b175474e89094c44da98b954eedeac495271d0f') {
+                                tokenType = 'DAI';
+                            }
+                            let tokenAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
 
                             htmlString += '<tr>';
                             htmlString += '    <td>';
@@ -208,7 +213,7 @@
                             htmlString += '        </div><br />';
                             htmlString += '    </td>';
                             htmlString += '    <td>';
-                            htmlString += '        ' + ethAmount.toFixed(5) + ' ETH';
+                            htmlString += '        ' + tokenAmount.toFixed(5) + ' ' + tokenType;
                             htmlString += '    </td>';
                             htmlString += '    <td style="width: 50%;">';
                             htmlString += '        ' + getLabeledReference(financeTransaction.reference);
@@ -216,7 +221,7 @@
 
                             htmlString += '</tr>';
                         });
-                        htmlString += '</tbody>';
+                        htmlString += '    </tbody>';
                         htmlString += '</table>';
                         $('#paymentsContainer').html(htmlString);
                     }

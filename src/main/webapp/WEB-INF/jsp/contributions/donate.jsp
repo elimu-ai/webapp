@@ -234,7 +234,7 @@
                             
                             // TODO: add support for any type of token
                             // Exclude tokens that are not ETH
-                            if (financeTransaction.token !== "0x0000000000000000000000000000000000000000") {
+                            if (financeTransaction.token !== '0x0000000000000000000000000000000000000000') {
                                 return;
                             }
                             
@@ -280,7 +280,7 @@
 
                             htmlString += '</tr>';
                         });
-                        htmlString += '</tbody>';
+                        htmlString += '    </tbody>';
                         htmlString += '</table>';
                         $('#donationsContainer').html(htmlString);
                         
