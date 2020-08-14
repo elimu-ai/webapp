@@ -148,29 +148,29 @@
             }
 
             /**
-             * E.g. "#content-creation" --> "<span class="chip deep-purple lighten-2 white-text">#content-creation</span>"
+             * E.g. "#content" --> "<span class="chip deep-purple lighten-2 white-text">#content</span>"
              */
             function getLabeledReference(reference) {
                 console.info("getLabeledReference");
-                if (reference.includes('#content-creation') 
-                        && !reference.includes('#content-creation-')) {
-                    reference = reference.replace('#content-creation', '<span class="chip deep-purple lighten-2 white-text">#content-creation</span>');
-                } else if (reference.includes('#content-creation-ben')) {
-                    reference = reference.replace('#content-creation-ben', '<span class="chip deep-purple lighten-2 white-text">#content-creation-ben</span>');
-                } else if (reference.includes('#content-creation-eng')) {
-                    reference = reference.replace('#content-creation-eng', '<span class="chip deep-purple lighten-2 white-text">#content-creation-eng</span>');
-                } else if (reference.includes('#content-creation-fil')) {
-                    reference = reference.replace('#content-creation-fil', '<span class="chip deep-purple lighten-2 white-text">#content-creation-fil</span>');
-                } else if (reference.includes('#content-creation-hin')) {
-                    reference = reference.replace('#content-creation-hin', '<span class="chip deep-purple lighten-2 white-text">#content-creation-hin</span>');
-                } else if (reference.includes('#content-creation-swa')) {
-                    reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-creation-swa</span>');
-                } else if (reference.includes('#content-creation-urd')) {
-                    reference = reference.replace('#content-creation-urd', '<span class="chip deep-purple lighten-2 white-text">#content-creation-urd</span>');
-                } else if (reference.includes('#android-development')) {
-                    reference = reference.replace('#android-development', '<span class="chip light-green darken-2 white-text">#android-development</span>');
-                } else if (reference.includes('#software-distribution')) {
-                    reference = reference.replace('#software-distribution', '<span class="chip cyan darken-1 white-text">#software-distribution</span>');
+                if (reference.includes('#content') 
+                        && !reference.includes('#content-')) {
+                    reference = reference.replace('#content', '<span class="chip deep-purple lighten-2 white-text">#content</span>');
+                } else if (reference.includes('#content-ben')) {
+                    reference = reference.replace('#content-ben', '<span class="chip deep-purple lighten-2 white-text">#content-ben</span>');
+                } else if (reference.includes('#content-eng')) {
+                    reference = reference.replace('#content-eng', '<span class="chip deep-purple lighten-2 white-text">#content-eng</span>');
+                } else if (reference.includes('#content-fil')) {
+                    reference = reference.replace('#content-fil', '<span class="chip deep-purple lighten-2 white-text">#content-fil</span>');
+                } else if (reference.includes('#content-hin')) {
+                    reference = reference.replace('#content-hin', '<span class="chip deep-purple lighten-2 white-text">#content-hin</span>');
+                } else if (reference.includes('#content-swa')) {
+                    reference = reference.replace('#content-creatio-swa', '<span class="chip deep-purple lighten-2 white-text">#content-swa</span>');
+                } else if (reference.includes('#content-urd')) {
+                    reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
+                } else if (reference.includes('#engineering')) {
+                    reference = reference.replace('#engineering', '<span class="chip light-green darken-2 white-text">#engineering</span>');
+                } else if (reference.includes('#distribution')) {
+                    reference = reference.replace('#distribution', '<span class="chip cyan darken-1 white-text">#distribution</span>');
                 }
                 return reference;
             }
@@ -182,9 +182,6 @@
                     url: "<spring:url value='/rest/v2/aragon/finance-transactions' />",
                     success: function(financeTransactions) {
                         console.info("success");
-
-                        // Display newest transactions on top
-                        financeTransactions.reverse();
 
                         let htmlString = '<table class="striped responsive-table">';
                         htmlString += '    <thead>';
@@ -200,13 +197,14 @@
                             if (financeTransaction.isIncoming) {
                                 return;
                             }
-
-                            // Exclude tokens that are not ETH
-                            if (financeTransaction.token !== "0x0000000000000000000000000000000000000000") {
-                                return;
+                            
+                            let tokenType = 'ETH';
+                            if (financeTransaction.token === '0x960b236a07cf122663c4303350609a66a7b288c0') {
+                                tokenType = 'ANT';
+                            } else if (financeTransaction.token === '0x6b175474e89094c44da98b954eedeac495271d0f') {
+                                tokenType = 'DAI';
                             }
-
-                            let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
+                            let tokenAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
 
                             htmlString += '<tr>';
                             htmlString += '    <td>';
@@ -215,7 +213,7 @@
                             htmlString += '        </div><br />';
                             htmlString += '    </td>';
                             htmlString += '    <td>';
-                            htmlString += '        ' + ethAmount.toFixed(5) + ' ETH';
+                            htmlString += '        ' + tokenAmount.toFixed(5) + ' ' + tokenType;
                             htmlString += '    </td>';
                             htmlString += '    <td style="width: 50%;">';
                             htmlString += '        ' + getLabeledReference(financeTransaction.reference);
@@ -223,7 +221,7 @@
 
                             htmlString += '</tr>';
                         });
-                        htmlString += '</tbody>';
+                        htmlString += '    </tbody>';
                         htmlString += '</table>';
                         $('#paymentsContainer').html(htmlString);
                     }
