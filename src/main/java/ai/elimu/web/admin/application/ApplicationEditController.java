@@ -80,6 +80,15 @@ public class ApplicationEditController {
         } else {
             applicationDao.update(application);
             
+            if (application.getApplicationStatus() == ApplicationStatus.DELETED) {
+                // Delete corresponding ApplicationVersions
+                List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
+                for (ApplicationVersion applicationVersion : applicationVersions) {
+                    logger.info("Deleting ApplicationVersion: " + applicationVersion.getVersionCode());
+                    applicationVersionDao.delete(applicationVersion);
+                }
+            }
+            
             // Refresh REST API cache
             jsonService.refreshApplications();
             
