@@ -264,6 +264,8 @@
                                     <goal>jspc</goal>
                                 </goals>
                                 <configuration>
+                                    <sourceVersion>${java.version}</sourceVersion>
+                                    <targetVersion>${java.version}</targetVersion>
                                     <verbose>true</verbose>
                                     <!--<validateXml>true</validateXml>-->
                                 </configuration>
