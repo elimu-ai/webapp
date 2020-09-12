@@ -2,7 +2,7 @@
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
 
 <!-- ============================================================
-This file is placed on the prod server under $JETTY_HOME/contexts/
+This file is placed on the prod server under $JETTY_HOME/webapps/
 ================================================================= -->
 
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
