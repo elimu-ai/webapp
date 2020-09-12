@@ -118,7 +118,7 @@
 	
     <!-- More Project Information -->
     <prerequisites>
-        <maven>3.2.2</maven>
+        <maven>3.6.3</maven>
     </prerequisites>
     <name>webapp</name>
     <url>http://localhost:8080/webapp</url>
