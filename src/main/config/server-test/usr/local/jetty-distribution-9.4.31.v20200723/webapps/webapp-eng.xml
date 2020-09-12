@@ -2,7 +2,7 @@
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
 
 <!-- ==================================================================
-This file is placed on the test server under $JETTY_HOME/contexts/
+This file is placed on the test server under $JETTY_HOME/webapps/
 ===================================================================== -->
 
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
@@ -14,7 +14,7 @@ This file is placed on the test server under $JETTY_HOME/contexts/
   </Call>
   <Call name="setAttribute">
     <Arg>content_language</Arg>
-    <Arg>FIL</Arg>
+    <Arg>ENG</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_url</Arg>
@@ -42,7 +42,7 @@ This file is placed on the test server under $JETTY_HOME/contexts/
   </Call>
   <Set name="virtualHosts">
     <Array type="java.lang.String">
-      <Item>fil.test.elimu.ai</Item>
+      <Item>eng.test.elimu.ai</Item>
     </Array>
   </Set>
   <Set name="maxFormContentSize">1073741824</Set><!-- 1024MB -->
