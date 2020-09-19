@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 public class EPubImageExtractionHelper {
     
-    private static final Logger logger = LogManager.getLogger(EPubImageExtractionHelper.class);
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * Expected file format (GLOBAL_DIGITAL_LIBRARY):

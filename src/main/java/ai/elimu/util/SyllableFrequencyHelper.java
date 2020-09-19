@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 
 public class SyllableFrequencyHelper {
     
-    private static final Logger logger = LogManager.getLogger(SyllableFrequencyHelper.class);
+    private static final Logger logger = LogManager.getLogger();
 
     public static Map<String, Integer> getSyllableFrequency(List<String> paragraphs, Language language) {
         Map<String, Integer> syllableFrequencyMap = new HashMap<>();

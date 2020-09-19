@@ -14,7 +14,7 @@ public class ImageHelper {
     
     public static final int MINIMUM_WIDTH = 640;
     
-    private static Logger logger = LogManager.getLogger(ImageHelper.class);
+    private static Logger logger = LogManager.getLogger();
     
     /** 
      * TODO: add method for detecting image type (PNG/JPG/GIF)

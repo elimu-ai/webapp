@@ -17,7 +17,7 @@ import org.xml.sax.SAXException;
 
 public class EPubParagraphExtractionHelper {
     
-    private static final Logger logger = LogManager.getLogger(EPubParagraphExtractionHelper.class);
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * Expected file format:

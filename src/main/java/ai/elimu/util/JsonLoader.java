@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 public class JsonLoader {
     
-    private static Logger logger = LogManager.getLogger(JsonLoader.class);
+    private static Logger logger = LogManager.getLogger();
 
     public static String loadJson(String urlValue) {
         logger.info("loadJson");

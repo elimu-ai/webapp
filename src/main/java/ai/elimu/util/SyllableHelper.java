@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 
 public class SyllableHelper {
     
-    private static final Logger logger = LogManager.getLogger(SyllableHelper.class);
+    private static final Logger logger = LogManager.getLogger();
     
     /**
      * Example (English): "chicken" --> ["chick","en"]

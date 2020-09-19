@@ -16,7 +16,7 @@ import org.apache.logging.log4j.LogManager;
  */
 public class ImageColorHelper {
     
-    private static final Logger logger = LogManager.getLogger(ImageColorHelper.class);
+    private static final Logger logger = LogManager.getLogger();
     
     private static final int DEFAULT_QUALITY = 10;
     private static final boolean DEFAULT_IGNORE_WHITE = true;

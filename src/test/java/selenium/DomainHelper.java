@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class DomainHelper {
     
-    private static final Logger logger = LogManager.getLogger(DomainHelper.class.getName());
+    private static final Logger logger = LogManager.getLogger();
     
     public static String getBaseUrl() {
         // Read property set on the command line: 

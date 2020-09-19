@@ -42,7 +42,7 @@ import org.json.JSONObject;
 
 public class CsvContentExtractionHelper {
     
-    private static final Logger logger = LogManager.getLogger(CsvContentExtractionHelper.class);
+    private static final Logger logger = LogManager.getLogger();
     
     /**
      * For information on how the CSV files were generated, see {@link AllophoneCsvExportController#handleRequest}.

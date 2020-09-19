@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class ChecksumHelper {
     
-    private static final Logger logger = LogManager.getLogger(ChecksumHelper.class);
+    private static final Logger logger = LogManager.getLogger();
 
     public static String calculateMD5(byte[] bytes) {
         logger.info("calculateMD5");

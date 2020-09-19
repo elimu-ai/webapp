@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 public class EPubMetadataExtractionHelper {
     
-    private static final Logger logger = LogManager.getLogger(EPubMetadataExtractionHelper.class);
+    private static final Logger logger = LogManager.getLogger();
     
     public static String extractTitleFromOpfFile(File opfFile) {
         logger.info("extractTitleFromOpfFile");
