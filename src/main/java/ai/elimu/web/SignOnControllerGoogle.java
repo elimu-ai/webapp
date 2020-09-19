@@ -101,7 +101,7 @@ public class SignOnControllerGoogle {
                 logger.info("response.getCode(): " + response.getCode());
                 logger.info("response.getBody(): " + responseBody);
             } catch (OAuthException e) {
-                logger.error(null, e);
+                logger.error(e);
                 return "redirect:/sign-on?login_error=" + e.getMessage();
             }
 
@@ -127,7 +127,7 @@ public class SignOnControllerGoogle {
                     contributor.setLastName(jsonObject.getString("family_name"));
                 }
             } catch (JSONException e) {
-                logger.error(null, e);
+                logger.error(e);
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());

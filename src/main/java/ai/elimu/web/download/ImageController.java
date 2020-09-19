@@ -52,7 +52,7 @@ public class ImageController {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } finally {
             try {
                 try {
@@ -63,7 +63,7 @@ public class ImageController {
                     logger.warn(ex);
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
     }

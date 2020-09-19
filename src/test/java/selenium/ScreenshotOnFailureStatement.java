@@ -81,9 +81,9 @@ public class ScreenshotOnFailureStatement extends Statement {
                 try {
                     driver = (WebDriver) field.get(target);
                 } catch (IllegalArgumentException ex) {
-                    logger.error(null, ex);
+                    logger.error(ex);
                 } catch (IllegalAccessException ex) {
-                    logger.error(null, ex);
+                    logger.error(ex);
                 }
             }
         }

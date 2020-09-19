@@ -32,7 +32,7 @@ public class DomainHelper {
                 Language language = Language.valueOf(contentLanguageProperty);
                 baseUrl = "http://" + language.toString().toLowerCase() + ".test.elimu.ai";
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
         

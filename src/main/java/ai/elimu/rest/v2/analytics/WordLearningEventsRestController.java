@@ -171,7 +171,7 @@ public class WordLearningEventsRestController {
                 }
             }
         } catch (Exception ex) {
-            logger.error(null, ex);
+            logger.error(ex);
             
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", ex.getMessage());

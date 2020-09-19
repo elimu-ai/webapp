@@ -78,9 +78,9 @@ public class SyllableHelper {
         try {
             hyphenator.loadTable(new BufferedInputStream(new FileInputStream(file)));
         } catch (FileNotFoundException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return hyphenator.hyphenate(text);

@@ -451,9 +451,9 @@ public class StoryBookCreateFromEPubController {
             zipInputStream.close();
             inputStream.close();
         } catch (FileNotFoundException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return unzippedFiles;

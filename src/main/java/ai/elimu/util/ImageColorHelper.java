@@ -32,7 +32,7 @@ public class ImageColorHelper {
         try {
             bufferedImage = ImageIO.read(inputStream);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         int[][] palette = getPalette(bufferedImage, 5);

@@ -27,7 +27,7 @@ public class ImageHelper {
         try {
             awtImage = ImageIO.read(byteArrayInputStream);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return awtImage.getWidth(null);
@@ -44,7 +44,7 @@ public class ImageHelper {
         try {
             awtImage = ImageIO.read(byteArrayInputStream);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         int originalWidth = awtImage.getWidth(null);
@@ -69,7 +69,7 @@ public class ImageHelper {
                 scaledImageBytes = byteArrayOutputStream.toByteArray();
                 byteArrayOutputStream.close();
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
 
             return scaledImageBytes;

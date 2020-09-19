@@ -214,7 +214,7 @@ public class EPubImageExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return null;

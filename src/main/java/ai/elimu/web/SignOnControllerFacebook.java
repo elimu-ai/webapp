@@ -100,7 +100,7 @@ public class SignOnControllerFacebook {
                 logger.info("response.getCode(): " + response.getCode());
                 logger.info("response.getBody(): " + responseBody);
             } catch (InterruptedException | ExecutionException | IOException e) {
-                logger.error(null, e);
+                logger.error(e);
                 return "redirect:/sign-on?login_error=" + e.getMessage();
             }
 
@@ -128,7 +128,7 @@ public class SignOnControllerFacebook {
                     contributor.setLastName(jsonObject.getString("last_name"));
                 }
             } catch (JSONException e) {
-                logger.error(null, e);
+                logger.error(e);
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());

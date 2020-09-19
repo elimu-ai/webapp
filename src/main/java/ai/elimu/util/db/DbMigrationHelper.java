@@ -80,7 +80,7 @@ public class DbMigrationHelper {
                             }
                             scanner.close();
                         } catch (FileNotFoundException ex) {
-                            logger.error(null, ex);
+                            logger.error(ex);
                         }
                         
                         DbMigration dbMigration = new DbMigration();

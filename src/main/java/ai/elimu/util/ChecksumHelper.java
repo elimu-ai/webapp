@@ -25,7 +25,7 @@ public class ChecksumHelper {
         try {
             messageDigest = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
             return null;
         }
 
@@ -45,13 +45,13 @@ public class ChecksumHelper {
             
             return output;
         } catch (IOException e) {
-            logger.error(null, e);
+            logger.error(e);
             return null;
         } finally {
             try {
                 inputStream.close();
             } catch (IOException e) {
-                logger.error(null, e);
+                logger.error(e);
             }
         }
     }

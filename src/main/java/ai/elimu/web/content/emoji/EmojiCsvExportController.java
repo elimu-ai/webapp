@@ -90,7 +90,7 @@ public class EmojiCsvExportController {
             outputStream.flush();
             outputStream.close();
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
     }
 }

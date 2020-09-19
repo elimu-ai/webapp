@@ -62,7 +62,7 @@ public class ApkController {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } finally {
             try {
                 try {
@@ -73,7 +73,7 @@ public class ApkController {
                     logger.warn(ex);
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
     }

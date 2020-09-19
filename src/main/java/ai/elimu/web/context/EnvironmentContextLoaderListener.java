@@ -84,7 +84,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
 
             logger.debug("properties (before overriding): " + PROPERTIES);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         if ((env == Environment.TEST) || (env == Environment.PROD)) {
@@ -122,16 +122,16 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             } finally {
                 try {
                     if (inputStream != null) {
                         inputStream.close();
                     }
                 } catch (IOException ex) {
-                    logger.error(null, ex);
+                    logger.error(ex);
                 }
             }
 

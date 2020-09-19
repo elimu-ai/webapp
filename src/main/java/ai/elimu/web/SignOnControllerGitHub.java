@@ -117,7 +117,7 @@ public class SignOnControllerGitHub {
                 logger.info("response.getCode(): " + response.getCode());
                 logger.info("response.getBody(): " + responseBody);
             } catch (IOException | InterruptedException | ExecutionException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
                 return "redirect:/sign-on?login_error=" + ex.getMessage();
             }
             
@@ -158,7 +158,7 @@ public class SignOnControllerGitHub {
                     }
                 }
             } catch (JSONException e) {
-                logger.error(null, e);
+                logger.error(e);
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());

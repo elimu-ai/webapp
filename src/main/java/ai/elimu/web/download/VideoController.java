@@ -52,7 +52,7 @@ public class VideoController {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } finally {
             try {
                 try {
@@ -63,7 +63,7 @@ public class VideoController {
                     logger.warn(ex);
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
     }
@@ -92,7 +92,7 @@ public class VideoController {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } finally {
             try {
                 try {
@@ -103,7 +103,7 @@ public class VideoController {
                     logger.warn(ex);
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
     }
