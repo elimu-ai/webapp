@@ -10,6 +10,7 @@ import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/content/letter-to-allophone-mapping/edit")
 public class LetterToAllophoneMappingEditController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private LetterToAllophoneMappingDao letterToAllophoneMappingDao;

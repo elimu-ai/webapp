@@ -1,6 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/rest/v2/content/storybooks", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class StoryBooksRestController {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private StoryBooksJsonService storyBooksJsonService;

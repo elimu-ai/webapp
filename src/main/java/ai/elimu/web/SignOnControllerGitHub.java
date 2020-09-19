@@ -30,6 +30,7 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,7 +47,7 @@ public class SignOnControllerGitHub {
     
     private String secretState;
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private ContributorDao contributorDao;

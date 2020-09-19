@@ -1,6 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.util.JsonLoader;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONArray;
@@ -11,7 +12,7 @@ import selenium.DomainHelper;
 
 public class LetterToAllophoneMappingsRestControllerTest {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Test
     public void testHandleGetRequest() {

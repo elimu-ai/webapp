@@ -9,6 +9,7 @@ import ai.elimu.dao.SyllableDao;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.v1.gson.content.SyllableGson;
 import ai.elimu.rest.v1.JavaToGsonConverter;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/rest/v1/content/syllable", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class SyllableRestController {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private SyllableDao syllableDao;

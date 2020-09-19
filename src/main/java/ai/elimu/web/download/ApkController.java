@@ -16,13 +16,14 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/apk")
 public class ApkController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private ApplicationDao applicationDao;

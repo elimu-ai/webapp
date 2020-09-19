@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class VersionRestController {
     
     public static final Integer MINIMUM_OS_VERSION = 21; // Android 5.0
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private ApplicationDao applicationDao;

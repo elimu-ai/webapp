@@ -16,6 +16,7 @@ import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/content/storybook/edit/{storyBookId}/chapter/delete")
 public class StoryBookChapterDeleteController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private StoryBookDao storyBookDao;

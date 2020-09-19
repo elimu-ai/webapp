@@ -24,6 +24,7 @@ import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class SignOnControllerFacebook {
 	
     private OAuth20Service oAuth20Service;
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private ContributorDao contributorDao;

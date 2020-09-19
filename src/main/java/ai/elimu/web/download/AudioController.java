@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.multimedia.Audio;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/audio")
 public class AudioController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private AudioDao audioDao;

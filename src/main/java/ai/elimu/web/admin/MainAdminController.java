@@ -1,6 +1,7 @@
 package ai.elimu.web.admin;
 
 import ai.elimu.dao.ApplicationDao;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin")
 public class MainAdminController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private ApplicationDao applicationDao;

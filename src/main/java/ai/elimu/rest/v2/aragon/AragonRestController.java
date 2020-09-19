@@ -3,6 +3,7 @@ package ai.elimu.rest.v2.aragon;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.util.JsonLoader;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/rest/v2/aragon", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AragonRestController {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @RequestMapping(value = "/apps", method = RequestMethod.GET)
     public String handleAppsRequest() {

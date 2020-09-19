@@ -20,6 +20,7 @@ import ai.elimu.model.enums.content.NumeracySkill;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
 import java.util.Arrays;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,7 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @RequestMapping("/content/multimedia/image/create")
 public class ImageCreateController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private ImageDao imageDao;

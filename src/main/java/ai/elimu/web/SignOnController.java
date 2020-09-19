@@ -11,6 +11,7 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Role;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/sign-on")
 public class SignOnController {
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private ContributorDao contributorDao;

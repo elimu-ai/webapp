@@ -8,11 +8,13 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import ai.elimu.rest.v1.VersionRestController;
 import ai.elimu.util.JsonLoader;
+import org.apache.logging.log4j.LogManager;
 import selenium.DomainHelper;
 
+@Deprecated
 public class ApplicationRestControllerTest {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
 
     @Test(expected = JSONException.class)
     public void testList_missingParameters() {

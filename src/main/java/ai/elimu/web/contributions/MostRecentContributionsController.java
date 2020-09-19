@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.WordContributionEvent;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/contributions/most-recent")
 public class MostRecentContributionsController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private StoryBookContributionEventDao storyBookContributionEventDao;

@@ -12,11 +12,12 @@ import ai.elimu.dao.DbMigrationDao;
 import ai.elimu.model.DbMigration;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.VersionHelper;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.web.context.WebApplicationContext;
 
 public class DbMigrationHelper {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
 
     private DbMigrationDao dbMigrationDao;
     

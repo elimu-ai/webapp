@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/content/letter/list")
 public class LetterCsvExportController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private LetterDao letterDao;

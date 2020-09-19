@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/content/storybook/list")
 public class StoryBookCsvExportController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private StoryBookDao storyBookDao;

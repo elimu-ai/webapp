@@ -16,6 +16,7 @@ import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.Google2Api;
 import org.scribe.exceptions.OAuthException;
@@ -41,7 +42,7 @@ public class SignOnControllerGoogle {
 
     private Token requestToken;
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private ContributorDao contributorDao;

@@ -3,6 +3,7 @@ package ai.elimu.util.epub;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -13,7 +14,7 @@ import org.springframework.core.io.ResourceLoader;
 
 public class EPubChapterExtractionHelperTest {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Test
     public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY() throws IOException {
