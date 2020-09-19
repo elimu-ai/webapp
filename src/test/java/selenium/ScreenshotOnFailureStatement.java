@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
@@ -23,7 +24,7 @@ public class ScreenshotOnFailureStatement extends Statement {
      */
     private static final String JENKINS_URL = "http://jenkins.elimu.ai:8080/job/webapp-4-regression-testing/ws/";
     
-    private final Logger logger = Logger.getLogger(ScreenshotOnFailureStatement.class);
+    private final Logger logger = LogManager.getLogger(ScreenshotOnFailureStatement.class);
 
     private Statement base;
     

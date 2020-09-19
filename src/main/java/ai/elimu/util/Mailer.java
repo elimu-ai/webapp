@@ -19,7 +19,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class Mailer {
     
-    private static final Logger logger = Logger.getLogger(Mailer.class);
+    private static final Logger logger = LogManager.getLogger(Mailer.class);
     
     private static final String ADMIN_EMAIL = "info@elimu.ai";
     

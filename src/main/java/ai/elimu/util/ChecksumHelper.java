@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
@@ -13,7 +14,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class ChecksumHelper {
     
-    private static final Logger logger = Logger.getLogger(ChecksumHelper.class);
+    private static final Logger logger = LogManager.getLogger(ChecksumHelper.class);
 
     public static String calculateMD5(byte[] bytes) {
         logger.info("calculateMD5");

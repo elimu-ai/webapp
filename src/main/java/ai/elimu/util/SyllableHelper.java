@@ -13,10 +13,11 @@ import net.davidashen.util.ErrorHandler;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import org.apache.logging.log4j.LogManager;
 
 public class SyllableHelper {
     
-    private static final Logger logger = Logger.getLogger(SyllableHelper.class);
+    private static final Logger logger = LogManager.getLogger(SyllableHelper.class);
     
     /**
      * Example (English): "chicken" --> ["chick","en"]

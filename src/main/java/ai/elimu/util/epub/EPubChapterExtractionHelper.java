@@ -8,6 +8,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -17,7 +18,7 @@ import org.xml.sax.SAXException;
 
 public class EPubChapterExtractionHelper {
     
-    private static final Logger logger = Logger.getLogger(EPubChapterExtractionHelper.class);
+    private static final Logger logger = LogManager.getLogger(EPubChapterExtractionHelper.class);
 
     /**
      * Extracts a list of filename references from the Table of Contents (TOC) file – {@code toc.xhtml}. 

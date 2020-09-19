@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.imgscalr.Scalr;
 
@@ -13,7 +14,7 @@ public class ImageHelper {
     
     public static final int MINIMUM_WIDTH = 640;
     
-    private static Logger logger = Logger.getLogger(ImageHelper.class);
+    private static Logger logger = LogManager.getLogger(ImageHelper.class);
     
     /** 
      * TODO: add method for detecting image type (PNG/JPG/GIF)

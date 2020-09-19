@@ -10,10 +10,11 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import org.apache.logging.log4j.LogManager;
 
 public class SyllableFrequencyHelper {
     
-    private static final Logger logger = Logger.getLogger(SyllableFrequencyHelper.class);
+    private static final Logger logger = LogManager.getLogger(SyllableFrequencyHelper.class);
 
     public static Map<String, Integer> getSyllableFrequency(List<String> paragraphs, Language language) {
         Map<String, Integer> syllableFrequencyMap = new HashMap<>();

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,7 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class CustomAuthenticationManager implements AuthenticationManager {
 	
-    private static Logger logger = Logger.getLogger(CustomAuthenticationManager.class);
+    private static Logger logger = LogManager.getLogger(CustomAuthenticationManager.class);
 
     private final List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
 
