@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.StoryBookChapterDao;

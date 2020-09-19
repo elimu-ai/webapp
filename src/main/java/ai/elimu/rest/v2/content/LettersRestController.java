@@ -5,7 +5,7 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.v2.gson.content.LetterGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

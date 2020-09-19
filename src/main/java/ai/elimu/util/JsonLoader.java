@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class JsonLoader {
     

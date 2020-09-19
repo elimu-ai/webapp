@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;

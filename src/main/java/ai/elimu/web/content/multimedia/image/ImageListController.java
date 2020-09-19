@@ -3,7 +3,7 @@ package ai.elimu.web.content.multimedia.image;
 import ai.elimu.dao.EmojiDao;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;

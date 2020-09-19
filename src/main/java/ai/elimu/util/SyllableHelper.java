@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import net.davidashen.text.Hyphenator;
 import net.davidashen.util.ErrorHandler;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
 

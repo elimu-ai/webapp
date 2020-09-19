@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.DbMigrationDao;
 import ai.elimu.model.DbMigration;
 import ai.elimu.util.ConfigHelper;

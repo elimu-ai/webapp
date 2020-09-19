@@ -1,7 +1,7 @@
 package ai.elimu.web.content.emoji;
 
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.model.content.Emoji;
 import org.springframework.beans.factory.annotation.Autowired;

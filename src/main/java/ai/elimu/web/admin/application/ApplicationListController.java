@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.enums.admin.ApplicationStatus;

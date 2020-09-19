@@ -1,6 +1,6 @@
 package ai.elimu.tasks;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBookParagraph;

@@ -6,7 +6,7 @@ import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

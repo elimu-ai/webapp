@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Environment;

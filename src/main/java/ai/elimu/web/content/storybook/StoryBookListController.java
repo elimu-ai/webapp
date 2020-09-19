@@ -1,6 +1,6 @@
 package ai.elimu.web.content.storybook;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.enums.ReadingLevel;
 import org.springframework.beans.factory.annotation.Autowired;

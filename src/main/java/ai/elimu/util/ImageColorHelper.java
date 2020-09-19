@@ -3,7 +3,7 @@
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;

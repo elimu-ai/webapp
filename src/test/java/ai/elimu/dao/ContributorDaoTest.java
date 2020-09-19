@@ -1,7 +1,7 @@
 package ai.elimu.dao;
 
 import ai.elimu.dao.ContributorDao;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.hibernate.exception.ConstraintViolationException;

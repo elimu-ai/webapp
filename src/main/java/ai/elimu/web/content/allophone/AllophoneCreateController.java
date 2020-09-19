@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.enums.content.allophone.SoundType;

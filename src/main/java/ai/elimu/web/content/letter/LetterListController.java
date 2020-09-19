@@ -1,7 +1,7 @@
 package ai.elimu.web.content.letter;
 
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Letter;
 import org.springframework.beans.factory.annotation.Autowired;

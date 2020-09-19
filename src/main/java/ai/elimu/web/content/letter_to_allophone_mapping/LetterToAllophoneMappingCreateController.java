@@ -3,7 +3,7 @@ package ai.elimu.web.content.letter_to_allophone_mapping;
 import java.util.List;
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;

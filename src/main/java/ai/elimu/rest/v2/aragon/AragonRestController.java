@@ -3,7 +3,7 @@ package ai.elimu.rest.v2.aragon;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.util.JsonLoader;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

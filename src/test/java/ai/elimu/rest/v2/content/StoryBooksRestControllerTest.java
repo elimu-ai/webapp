@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.util.JsonLoader;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONArray;
 import org.json.JSONObject;

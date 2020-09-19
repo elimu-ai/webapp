@@ -1,6 +1,6 @@
 package rest.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import ai.elimu.util.JsonLoader;
 import selenium.DomainHelper;

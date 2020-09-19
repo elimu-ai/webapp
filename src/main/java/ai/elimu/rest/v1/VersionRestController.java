@@ -1,7 +1,7 @@
 package ai.elimu.rest.v1;
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;

@@ -1,6 +1,6 @@
 package rest.v1.content.multimedia.image;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;

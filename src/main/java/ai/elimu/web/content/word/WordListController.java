@@ -2,7 +2,7 @@ package ai.elimu.web.content.word;
 
 import ai.elimu.dao.EmojiDao;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Word;

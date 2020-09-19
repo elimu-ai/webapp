@@ -3,7 +3,7 @@ package ai.elimu.web.admin.application;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;

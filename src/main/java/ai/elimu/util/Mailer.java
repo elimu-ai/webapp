@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.springframework.core.io.ClassRelativeResourceLoader;

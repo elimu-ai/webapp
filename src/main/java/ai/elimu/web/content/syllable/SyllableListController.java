@@ -1,7 +1,7 @@
 package ai.elimu.web.content.syllable;
 
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.model.content.Syllable;
 import org.springframework.beans.factory.annotation.Autowired;

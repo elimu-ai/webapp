@@ -1,6 +1,6 @@
 package ai.elimu.rest.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;

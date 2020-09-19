@@ -1,6 +1,6 @@
 package rest.v1.application;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import static org.hamcrest.CoreMatchers.is;
 import org.json.JSONException;
 import org.json.JSONObject;

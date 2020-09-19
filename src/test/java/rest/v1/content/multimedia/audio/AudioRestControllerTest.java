@@ -1,6 +1,6 @@
 package rest.v1.content.multimedia.audio;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;

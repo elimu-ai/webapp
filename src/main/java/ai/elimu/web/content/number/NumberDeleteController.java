@@ -1,6 +1,6 @@
 package ai.elimu.web.content.number;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.model.content.Number;
 import org.springframework.beans.factory.annotation.Autowired;

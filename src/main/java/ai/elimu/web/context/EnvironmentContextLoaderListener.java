@@ -11,7 +11,7 @@ import javax.servlet.ServletContextEvent;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;

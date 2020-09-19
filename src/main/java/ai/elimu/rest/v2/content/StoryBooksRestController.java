@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

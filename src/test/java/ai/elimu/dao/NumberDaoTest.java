@@ -4,7 +4,7 @@ import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
