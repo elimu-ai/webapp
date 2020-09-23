@@ -22,12 +22,12 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 
 ## Test server
 
-http://`<language>`.test.elimu.ai
+    http://<language>.test.elimu.ai
 
 
 ## Prod server
 
-http://`<language>`.elimu.ai
+    http://<language>.elimu.ai
 
 
 ## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿
