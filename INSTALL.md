@@ -16,7 +16,7 @@ Go to the project's folder:
 
 Then, to run the application, type:
     
-    mvn test jetty:run
+    mvn clean test jetty:run
 
 Next, to access the application in your browser, go to [http://localhost:8080/webapp](http://localhost:8080/webapp)
 
