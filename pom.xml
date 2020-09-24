@@ -12,7 +12,7 @@
         <model.version>2.0.23</model.version> <!-- https://github.com/elimu-ai/model/releases -->
         <hibernate.version>4.3.11.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
-        <spring.version>4.2.9.RELEASE</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
+        <spring.version>4.3.0.RELEASE</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>3.2.10.RELEASE</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.20</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
     </properties>
