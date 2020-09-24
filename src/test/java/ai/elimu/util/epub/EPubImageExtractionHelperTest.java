@@ -2,7 +2,8 @@ package ai.elimu.util.epub;
 
 import java.io.File;
 import java.io.IOException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import org.springframework.core.io.ResourceLoader;
 
 public class EPubImageExtractionHelperTest {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Test
     public void testExtractImageReferenceFromChapterFile_BEN_GDL_761() throws IOException {

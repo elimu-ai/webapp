@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +16,14 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/apk")
 public class ApkController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private ApplicationDao applicationDao;
@@ -61,7 +62,7 @@ public class ApkController {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } finally {
             try {
                 try {
@@ -72,7 +73,7 @@ public class ApkController {
                     logger.warn(ex);
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
     }

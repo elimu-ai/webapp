@@ -1,6 +1,6 @@
 package ai.elimu.tasks;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBookParagraph;
@@ -11,6 +11,7 @@ import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordExtractionHelper;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParagraphWordScheduler {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;

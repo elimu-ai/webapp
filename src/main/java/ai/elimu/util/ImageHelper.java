@@ -6,14 +6,15 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imgscalr.Scalr;
 
 public class ImageHelper {
     
     public static final int MINIMUM_WIDTH = 640;
     
-    private static Logger logger = Logger.getLogger(ImageHelper.class);
+    private static Logger logger = LogManager.getLogger();
     
     /** 
      * TODO: add method for detecting image type (PNG/JPG/GIF)
@@ -26,7 +27,7 @@ public class ImageHelper {
         try {
             awtImage = ImageIO.read(byteArrayInputStream);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return awtImage.getWidth(null);
@@ -43,7 +44,7 @@ public class ImageHelper {
         try {
             awtImage = ImageIO.read(byteArrayInputStream);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         int originalWidth = awtImage.getWidth(null);
@@ -68,7 +69,7 @@ public class ImageHelper {
                 scaledImageBytes = byteArrayOutputStream.toByteArray();
                 byteArrayOutputStream.close();
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
 
             return scaledImageBytes;

@@ -1,13 +1,14 @@
 package ai.elimu.web.servlet;
 
 import javax.servlet.http.HttpServletRequest;
+import org.apache.logging.log4j.LogManager;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 public class CustomSimpleMappingExceptionResolver extends SimpleMappingExceptionResolver {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
 
     @Override
     protected void logException(Exception ex, HttpServletRequest request) {

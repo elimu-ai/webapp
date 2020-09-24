@@ -3,20 +3,20 @@
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.InputStream;
 import java.util.Arrays;
-import ai.elimu.model.content.multimedia.Image;
+import org.apache.logging.log4j.LogManager;
 
 /**
  * See https://github.com/SvenWoltmann/color-thief-java/blob/master/src/main/java/de/androidpit/colorthief/ColorThief.java
  */
 public class ImageColorHelper {
     
-    private static final Logger logger = Logger.getLogger(ImageColorHelper.class);
+    private static final Logger logger = LogManager.getLogger();
     
     private static final int DEFAULT_QUALITY = 10;
     private static final boolean DEFAULT_IGNORE_WHITE = true;
@@ -32,7 +32,7 @@ public class ImageColorHelper {
         try {
             bufferedImage = ImageIO.read(inputStream);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         int[][] palette = getPalette(bufferedImage, 5);

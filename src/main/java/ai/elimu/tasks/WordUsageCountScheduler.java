@@ -4,7 +4,7 @@ import ai.elimu.dao.StoryBookChapterDao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
@@ -16,6 +16,7 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import java.util.ArrayList;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordUsageCountScheduler {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
 
     @Autowired
     private WordDao wordDao;

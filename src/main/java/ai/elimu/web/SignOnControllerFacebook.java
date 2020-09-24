@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
@@ -24,6 +24,7 @@ import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class SignOnControllerFacebook {
 	
     private OAuth20Service oAuth20Service;
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private ContributorDao contributorDao;
@@ -99,7 +100,7 @@ public class SignOnControllerFacebook {
                 logger.info("response.getCode(): " + response.getCode());
                 logger.info("response.getBody(): " + responseBody);
             } catch (InterruptedException | ExecutionException | IOException e) {
-                logger.error(null, e);
+                logger.error(e);
                 return "redirect:/sign-on?login_error=" + e.getMessage();
             }
 
@@ -127,7 +128,7 @@ public class SignOnControllerFacebook {
                     contributor.setLastName(jsonObject.getString("last_name"));
                 }
             } catch (JSONException e) {
-                logger.error(null, e);
+                logger.error(e);
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());

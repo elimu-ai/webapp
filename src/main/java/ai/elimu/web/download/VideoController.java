@@ -4,7 +4,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.model.content.multimedia.Video;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/video")
 public class VideoController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private VideoDao videoDao;
@@ -51,7 +52,7 @@ public class VideoController {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } finally {
             try {
                 try {
@@ -62,7 +63,7 @@ public class VideoController {
                     logger.warn(ex);
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
     }
@@ -91,7 +92,7 @@ public class VideoController {
             // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
             logger.warn(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } finally {
             try {
                 try {
@@ -102,7 +103,7 @@ public class VideoController {
                     logger.warn(ex);
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
     }

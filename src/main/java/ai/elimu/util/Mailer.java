@@ -7,9 +7,10 @@ import java.io.InputStreamReader;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -19,7 +20,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class Mailer {
     
-    private static final Logger logger = Logger.getLogger(Mailer.class);
+    private static final Logger logger = LogManager.getLogger();
     
     private static final String ADMIN_EMAIL = "info@elimu.ai";
     
@@ -104,27 +105,27 @@ public class Mailer {
                     html += line;
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             } finally {
                 if (bufferedReader != null) {
                     try {
                         bufferedReader.close();
                     } catch (IOException e) {
-                        logger.error(null, e);
+                        logger.error(e);
                     }
                 }
                 if (inputStreamReader != null) {
                     try {
                         inputStreamReader.close();
                     } catch (IOException e) {
-                        logger.error(null, e);
+                        logger.error(e);
                     }
                 }
                 if (inputStream != null) {
                     try {
                         inputStream.close();
                     } catch (IOException e) {
-                        logger.error(null, e);
+                        logger.error(e);
                     }
                 }
             }
@@ -138,7 +139,7 @@ public class Mailer {
                 javaMailSenderImpl.send(mimeMessage);
             }
         } catch (MessagingException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
     }
     
@@ -200,27 +201,27 @@ public class Mailer {
                     html += line;
                 }
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             } finally {
                 if (bufferedReader != null) {
                     try {
                         bufferedReader.close();
                     } catch (IOException e) {
-                        logger.error(null, e);
+                        logger.error(e);
                     }
                 }
                 if (inputStreamReader != null) {
                     try {
                         inputStreamReader.close();
                     } catch (IOException e) {
-                        logger.error(null, e);
+                        logger.error(e);
                     }
                 }
                 if (inputStream != null) {
                     try {
                         inputStream.close();
                     } catch (IOException e) {
-                        logger.error(null, e);
+                        logger.error(e);
                     }
                 }
             }
@@ -236,7 +237,7 @@ public class Mailer {
                 javaMailSenderImpl.send(mimeMessage);
             }
         } catch (MessagingException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
     }
 }

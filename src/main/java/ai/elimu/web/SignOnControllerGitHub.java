@@ -3,7 +3,7 @@ package ai.elimu.web;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
@@ -30,6 +30,7 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,7 +47,7 @@ public class SignOnControllerGitHub {
     
     private String secretState;
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
     
     @Autowired
     private ContributorDao contributorDao;
@@ -116,7 +117,7 @@ public class SignOnControllerGitHub {
                 logger.info("response.getCode(): " + response.getCode());
                 logger.info("response.getBody(): " + responseBody);
             } catch (IOException | InterruptedException | ExecutionException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
                 return "redirect:/sign-on?login_error=" + ex.getMessage();
             }
             
@@ -157,7 +158,7 @@ public class SignOnControllerGitHub {
                     }
                 }
             } catch (JSONException e) {
-                logger.error(null, e);
+                logger.error(e);
             }
 
             Contributor existingContributor = contributorDao.read(contributor.getEmail());

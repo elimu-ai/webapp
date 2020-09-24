@@ -11,9 +11,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.apache.log4j.Logger;
-
 import ai.elimu.dao.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Repository
 @Transactional
@@ -22,7 +22,7 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
     @PersistenceContext
     protected EntityManager em;
 
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Logger logger = LogManager.getLogger();
 
     public void create(T t) throws DataAccessException {
         em.persist(t);

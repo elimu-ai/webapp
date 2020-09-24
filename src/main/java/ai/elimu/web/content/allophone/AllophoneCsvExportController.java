@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/allophone/list")
 public class AllophoneCsvExportController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private AllophoneDao allophoneDao;
@@ -78,7 +79,7 @@ public class AllophoneCsvExportController {
             outputStream.flush();
             outputStream.close();
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
     }
 }

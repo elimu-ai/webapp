@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DomainHelper {
     
-    private static final Logger logger = Logger.getLogger(DomainHelper.class.getName());
+    private static final Logger logger = LogManager.getLogger();
     
     public static String getBaseUrl() {
         // Read property set on the command line: 
@@ -31,7 +32,7 @@ public class DomainHelper {
                 Language language = Language.valueOf(contentLanguageProperty);
                 baseUrl = "http://" + language.toString().toLowerCase() + ".test.elimu.ai";
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             }
         }
         

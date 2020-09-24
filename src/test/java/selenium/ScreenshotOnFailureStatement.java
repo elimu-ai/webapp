@@ -8,7 +8,8 @@ import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 import org.openqa.selenium.OutputType;
@@ -21,9 +22,9 @@ public class ScreenshotOnFailureStatement extends Statement {
      * The URL pointing to the folder at the Jenkins server in which the target
      * folder of the project is located.
      */
-    private static final String JENKINS_URL = "http://jenkins.elimu.ai:8080/job/webapp-4-regression-testing/ws/";
+    private static final String JENKINS_URL = "http://jenkins.elimu.ai:8080/job/webapp-5-regression-testing-ui/ws/";
     
-    private final Logger logger = Logger.getLogger(ScreenshotOnFailureStatement.class);
+    private final Logger logger = LogManager.getLogger();
 
     private Statement base;
     
@@ -80,9 +81,9 @@ public class ScreenshotOnFailureStatement extends Statement {
                 try {
                     driver = (WebDriver) field.get(target);
                 } catch (IllegalArgumentException ex) {
-                    logger.error(null, ex);
+                    logger.error(ex);
                 } catch (IllegalAccessException ex) {
-                    logger.error(null, ex);
+                    logger.error(ex);
                 }
             }
         }

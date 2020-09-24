@@ -17,7 +17,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/content/storybook/list")
 public class StoryBookCsvExportController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private StoryBookDao storyBookDao;
@@ -136,7 +137,7 @@ public class StoryBookCsvExportController {
             outputStream.flush();
             outputStream.close();
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
     }
 }

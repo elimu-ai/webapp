@@ -8,7 +8,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -16,7 +17,7 @@ import org.xml.sax.SAXException;
 
 public class EPubParagraphExtractionHelper {
     
-    private static final Logger logger = Logger.getLogger(EPubParagraphExtractionHelper.class);
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * Expected file format:
@@ -181,7 +182,7 @@ public class EPubParagraphExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return paragraphs;

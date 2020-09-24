@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import net.davidashen.text.Hyphenator;
 import net.davidashen.util.ErrorHandler;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.Language;
+import org.apache.logging.log4j.LogManager;
 
 public class SyllableHelper {
     
-    private static final Logger logger = Logger.getLogger(SyllableHelper.class);
+    private static final Logger logger = LogManager.getLogger();
     
     /**
      * Example (English): "chicken" --> ["chick","en"]
@@ -77,9 +78,9 @@ public class SyllableHelper {
         try {
             hyphenator.loadTable(new BufferedInputStream(new FileInputStream(file)));
         } catch (FileNotFoundException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return hyphenator.hyphenate(text);

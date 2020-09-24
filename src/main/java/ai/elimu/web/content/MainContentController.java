@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
@@ -24,6 +24,7 @@ import ai.elimu.model.contributor.Contributor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/content")
 public class MainContentController {
     
-    private final Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private AllophoneDao allophoneDao;

@@ -3,16 +3,13 @@ package ai.elimu.web.context;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -24,6 +21,7 @@ import org.springframework.web.context.support.ServletContextResourceLoader;
 
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
@@ -36,7 +34,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
 	
     public final static Properties PROPERTIES = new Properties();
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
 
     /**
      * Note that environment-specific config.properties and
@@ -59,13 +57,13 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         PROPERTIES.put("env", env);
 
 //        if ((env == Environment.TEST) || (env == Environment.PROD)) {
-//            // Clear existing Log4j configuration
+//            // Clear existing Log4j 2 configuration
 //            LogManager.resetConfiguration();
 //            
 //            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//            URL environmentSpecificLog4JFile = classLoader.getResource("log4j_" + env + ".properties");
+//            URL environmentSpecificLog4JFile = classLoader.getResource("log4j2_" + env + ".properties");
 //            new PropertyConfigurator().doConfigure(environmentSpecificLog4JFile, LogManager.getLoggerRepository());
-//            logger = Logger.getLogger(getClass());
+//            logger = LogManager.getLogger();
 //            logger.info("environmentSpecificLog4JFile: " + environmentSpecificLog4JFile);
 //        }
 
@@ -86,7 +84,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
 
             logger.debug("properties (before overriding): " + PROPERTIES);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         if ((env == Environment.TEST) || (env == Environment.PROD)) {
@@ -124,16 +122,16 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             } catch (IOException ex) {
-                logger.error(null, ex);
+                logger.error(ex);
             } finally {
                 try {
                     if (inputStream != null) {
                         inputStream.close();
                     }
                 } catch (IOException ex) {
-                    logger.error(null, ex);
+                    logger.error(ex);
                 }
             }
 

@@ -6,14 +6,15 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Based on https://github.com/CyanogenMod/android_packages_apps_CMUpdater/blob/cm-10.2/src/com/cyanogenmod/updater/utils/MD5.java
  */
 public class ChecksumHelper {
     
-    private static final Logger logger = Logger.getLogger(ChecksumHelper.class);
+    private static final Logger logger = LogManager.getLogger();
 
     public static String calculateMD5(byte[] bytes) {
         logger.info("calculateMD5");
@@ -24,7 +25,7 @@ public class ChecksumHelper {
         try {
             messageDigest = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
             return null;
         }
 
@@ -44,13 +45,13 @@ public class ChecksumHelper {
             
             return output;
         } catch (IOException e) {
-            logger.error(null, e);
+            logger.error(e);
             return null;
         } finally {
             try {
                 inputStream.close();
             } catch (IOException e) {
-                logger.error(null, e);
+                logger.error(e);
             }
         }
     }

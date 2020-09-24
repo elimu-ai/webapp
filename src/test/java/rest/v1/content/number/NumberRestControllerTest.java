@@ -1,17 +1,19 @@
 package rest.v1.content.number;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import ai.elimu.util.JsonLoader;
+import org.apache.logging.log4j.LogManager;
 import selenium.DomainHelper;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
+@Deprecated
 public class NumberRestControllerTest {
     
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LogManager.getLogger();
 
     @Test(expected = JSONException.class)
     public void testList_missingParameters() {

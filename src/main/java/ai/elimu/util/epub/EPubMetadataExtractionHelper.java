@@ -5,7 +5,8 @@ import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -14,7 +15,7 @@ import org.xml.sax.SAXException;
 
 public class EPubMetadataExtractionHelper {
     
-    private static final Logger logger = Logger.getLogger(EPubMetadataExtractionHelper.class);
+    private static final Logger logger = LogManager.getLogger();
     
     public static String extractTitleFromOpfFile(File opfFile) {
         logger.info("extractTitleFromOpfFile");
@@ -44,7 +45,7 @@ public class EPubMetadataExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return null;
@@ -78,7 +79,7 @@ public class EPubMetadataExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return null;
@@ -136,7 +137,7 @@ public class EPubMetadataExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(null, ex);
+            logger.error(ex);
         }
         
         return null;
