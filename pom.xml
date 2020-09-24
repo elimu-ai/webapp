@@ -91,18 +91,18 @@
         </plugins>
         <resources>
             <resource>
-               <directory>src/main/resources</directory>
-               <filtering>true</filtering>
-               <includes>
-                 <include>config.properties</include>
-               </includes>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>config.properties</include>
+                </includes>
             </resource>
             <resource>
-               <directory>src/main/resources</directory>
-               <filtering>false</filtering>
-               <excludes>
-                <exclude>config.properties</exclude>
-               </excludes>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>config.properties</exclude>
+                </excludes>
             </resource>
         </resources>
      </build>
