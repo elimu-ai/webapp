@@ -57,11 +57,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         PROPERTIES.put("env", env);
 
 //        if ((env == Environment.TEST) || (env == Environment.PROD)) {
-//            // Clear existing Log4j configuration
+//            // Clear existing Log4j 2 configuration
 //            LogManager.resetConfiguration();
 //            
 //            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//            URL environmentSpecificLog4JFile = classLoader.getResource("log4j_" + env + ".properties");
+//            URL environmentSpecificLog4JFile = classLoader.getResource("log4j2_" + env + ".properties");
 //            new PropertyConfigurator().doConfigure(environmentSpecificLog4JFile, LogManager.getLoggerRepository());
 //            logger = LogManager.getLogger();
 //            logger.info("environmentSpecificLog4JFile: " + environmentSpecificLog4JFile);
