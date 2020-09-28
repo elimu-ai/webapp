@@ -12,6 +12,8 @@
             <frame-options policy="SAMEORIGIN" />
         </headers>
         
+        <csrf disabled="true" />
+        
         <form-login login-page="/sign-on" authentication-failure-url="/sign-on?error" />
 
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
