@@ -118,7 +118,7 @@ public class SignOnControllerGitHub {
                 logger.info("response.getBody(): " + responseBody);
             } catch (IOException | InterruptedException | ExecutionException ex) {
                 logger.error(ex);
-                return "redirect:/sign-on?login_error=" + ex.getMessage();
+                return "redirect:/sign-on?error=" + ex.getMessage();
             }
             
             Contributor contributor = new Contributor();
