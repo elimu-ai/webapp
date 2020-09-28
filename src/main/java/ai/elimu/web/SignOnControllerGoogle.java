@@ -102,7 +102,7 @@ public class SignOnControllerGoogle {
                 logger.info("response.getBody(): " + responseBody);
             } catch (OAuthException e) {
                 logger.error(e);
-                return "redirect:/sign-on?login_error=" + e.getMessage();
+                return "redirect:/sign-on?error=" + e.getMessage();
             }
 
             Contributor contributor = new Contributor();

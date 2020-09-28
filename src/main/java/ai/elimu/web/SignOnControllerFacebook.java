@@ -101,7 +101,7 @@ public class SignOnControllerFacebook {
                 logger.info("response.getBody(): " + responseBody);
             } catch (InterruptedException | ExecutionException | IOException e) {
                 logger.error(e);
-                return "redirect:/sign-on?login_error=" + e.getMessage();
+                return "redirect:/sign-on?error=" + e.getMessage();
             }
 
             Contributor contributor = new Contributor();

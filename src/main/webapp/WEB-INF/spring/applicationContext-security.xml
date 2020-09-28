@@ -5,17 +5,20 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <!-- http://static.springsource.org/spring-security/site/docs/3.2.x/reference/ns-config.html -->
+    <!-- https://docs.spring.io/spring-security/site/docs/4.0.0.RELEASE/reference/html/ns-config.html -->
 
-    <http use-expressions="true" disable-url-rewriting="true">
-        <form-login login-page="/sign-on" authentication-failure-url="/sign-on?login_error" />
+    <http>
+        <headers>
+            <frame-options policy="SAMEORIGIN" />
+        </headers>
+        
+        <form-login login-page="/sign-on" authentication-failure-url="/sign-on?error" />
 
-        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/analytics/**" access="hasRole('ROLE_ANALYST')" />
-        <intercept-url pattern="/content/**" access="hasRole('ROLE_CONTRIBUTOR')" />
+        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/analytics/**" access="hasRole('ANALYST')" />
+        <intercept-url pattern="/content/**" access="hasRole('CONTRIBUTOR')" />
 
-        <logout logout-success-url="/?sign_out" />
-        <!--<session-management invalid-session-url="/sign-on?invalid_session" /> -->
+        <logout />
     </http>
 
     <authentication-manager />

@@ -44,11 +44,11 @@ public class SignOnController {
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             // Create and store test user in database
-            Contributor contributor = contributorDao.read("test@elimu.ai");
+            Contributor contributor = contributorDao.read("dev@elimu.ai");
             if (contributor == null) {
                 contributor = new Contributor();
-                contributor.setEmail("test@elimu.ai");
-                contributor.setFirstName("Test");
+                contributor.setEmail("dev@elimu.ai");
+                contributor.setFirstName("Dev");
                 contributor.setLastName("Contributor");
                 contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
                 contributor.setRegistrationTime(Calendar.getInstance());

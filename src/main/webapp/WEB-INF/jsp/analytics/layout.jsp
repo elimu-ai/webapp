@@ -60,16 +60,16 @@
                             <li><a href="<spring:url value='/content/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
                             <%--<li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-email' />"><i class="material-icons left">mail</i><fmt:message key="edit.email" /></a></li>--%>
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <sec:authorize access="hasRole('ADMIN')">
                                 <li class="divider"></li>
                                 <li><a href="<spring:url value='/admin' />"><i class="material-icons left">build</i><fmt:message key="administration" /></a></li>
                             </sec:authorize>
-                            <sec:authorize access="hasRole('ROLE_ANALYST')">
+                            <sec:authorize access="hasRole('ANALYST')">
                                 <li class="divider"></li>
                                 <li><a href="<spring:url value='/analytics' />"><i class="material-icons left">timeline</i><fmt:message key="analytics" /></a></li>
                             </sec:authorize>
                             <li class="divider"></li>
-                            <li><a href="<spring:url value='/j_spring_security_logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
+                            <li><a href="<spring:url value='/logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
                 </div>

@@ -17,24 +17,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class CustomAuthenticationManager implements AuthenticationManager {
 	
-    private static Logger logger = LogManager.getLogger();
+    private Logger logger = LogManager.getLogger();
 
     private final List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-            logger.info("authenticate");
+        logger.info("authenticate");
 
-            logger.info("authentication.getName(): " + authentication.getName());
-            
-            Contributor contributor = (Contributor) authentication.getPrincipal();
-            logger.info("contributor: " + contributor);
-            logger.info("contributor.getRoles(): " + contributor.getRoles());
-            for (Role role : contributor.getRoles()) {
-                AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_" + role.toString()));
-            }
+        logger.info("authentication.getName(): " + authentication.getName());
+        
+        Contributor contributor = (Contributor) authentication.getPrincipal();
+        logger.info("contributor: " + contributor);
+        logger.info("contributor.getRoles(): " + contributor.getRoles());
+        for (Role role : contributor.getRoles()) {
+            AUTHORITIES.add(new SimpleGrantedAuthority(role.toString()));
+        }
 
-            return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), AUTHORITIES);
+        return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), AUTHORITIES);
     }
 
     public void authenticateUser(Contributor contributor) {
