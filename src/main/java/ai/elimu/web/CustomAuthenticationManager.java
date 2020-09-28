@@ -31,7 +31,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
         logger.info("contributor: " + contributor);
         logger.info("contributor.getRoles(): " + contributor.getRoles());
         for (Role role : contributor.getRoles()) {
-            AUTHORITIES.add(new SimpleGrantedAuthority(role.toString()));
+            AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_" + role.toString()));
         }
 
         return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), AUTHORITIES);

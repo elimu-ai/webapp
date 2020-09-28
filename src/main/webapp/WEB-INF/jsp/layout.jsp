@@ -46,7 +46,7 @@
                         <a id="logo-container" href="<spring:url value='/' />" class="brand-logo">
                             <img src="<spring:url value='/static/img/logo-text-256x77.png' />" alt="elimu.ai" />
                         </a>
-                        <sec:authorize access="!hasAnyRole('ADMIN','CONTRIBUTOR')">
+                        <sec:authorize access="!hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
                             <ul class="right hide-on-med-and-down">
                                 <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
                             </ul>
@@ -54,7 +54,7 @@
                                 <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
                             </ul>
                         </sec:authorize>
-                        <sec:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR')">
+                        <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_CONTRIBUTOR')">
                             <ul class="right">
                                 <a href="<spring:url value='/content' />">
                                     <div class="chip">

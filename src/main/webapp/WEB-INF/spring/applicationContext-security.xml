@@ -16,9 +16,9 @@
         
         <form-login login-page="/sign-on" authentication-failure-url="/sign-on?error" />
 
-        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/analytics/**" access="hasRole('ANALYST')" />
-        <intercept-url pattern="/content/**" access="hasRole('CONTRIBUTOR')" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/analytics/**" access="hasRole('ROLE_ANALYST')" />
+        <intercept-url pattern="/content/**" access="hasRole('ROLE_CONTRIBUTOR')" />
 
         <logout />
     </http>
