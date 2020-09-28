@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <!-- https://docs.spring.io/spring-security/site/docs/4.0.0.RELEASE/reference/html/ns-config.html -->
+    <!-- https://docs.spring.io/spring-security/site/docs/5.4.0/reference/html5/#ns-minimal -->
 
     <http>
         <headers>
