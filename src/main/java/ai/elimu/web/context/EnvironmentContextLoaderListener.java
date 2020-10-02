@@ -21,7 +21,9 @@ import org.springframework.web.context.support.ServletContextResourceLoader;
 
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
+import java.net.URL;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
@@ -48,24 +50,26 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
     	
         ServletContext servletContext = event.getServletContext();
         
-        // Fetch attribute set in the corresponding context file at $JETTY_HOME/contexts/
+        // Fetch attribute set in the corresponding context file at $JETTY_HOME/webapps/
         String envAttr = (String) servletContext.getAttribute("env");
         if (StringUtils.isNotBlank(envAttr)) {
             env = Environment.valueOf(envAttr);
         }
         logger.info("env: " + env);
         PROPERTIES.put("env", env);
-
-//        if ((env == Environment.TEST) || (env == Environment.PROD)) {
-//            // Clear existing Log4j 2 configuration
-//            LogManager.resetConfiguration();
-//            
-//            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//            URL environmentSpecificLog4JFile = classLoader.getResource("log4j2_" + env + ".properties");
-//            new PropertyConfigurator().doConfigure(environmentSpecificLog4JFile, LogManager.getLoggerRepository());
-//            logger = LogManager.getLogger();
-//            logger.info("environmentSpecificLog4JFile: " + environmentSpecificLog4JFile);
-//        }
+        
+        if ((env == Environment.TEST) || (env == Environment.PROD)) {
+            // Configure Log4j 2 so that it logs to a file instead of to the console
+            // See https://logging.apache.org/log4j/2.x/manual/customconfig.html#Configurator)
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            URL log4j2FileUrl = classLoader.getResource("log4j2_" + env + ".xml"); // E.g. "log4j2_TEST.xml"
+            logger.info("log4j2FileUrl: " + log4j2FileUrl);
+            String log4j2FilePath = log4j2FileUrl.getFile();
+            logger.info("log4j2FilePath: " + log4j2FilePath);
+            Configurator.initialize(null, log4j2FilePath);
+            logger.info("log4j2FilePath: " + log4j2FilePath);
+            logger.info("env: " + env);
+        }
 
         super.contextInitialized(event);
     }
@@ -88,7 +92,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         }
         
         if ((env == Environment.TEST) || (env == Environment.PROD)) {
-        	InputStream inputStream = null;
+            InputStream inputStream = null;
             try {
                 // Override config.properties
             	Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:config_" + env + ".properties");

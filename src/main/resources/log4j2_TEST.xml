@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <ThresholdFilter level="INFO" />
+ 
+    <Appenders>
+        <Routing name="routing">
+            <Routes>
+                <Route>
+                    <RollingFile name="rollingfile" 
+                                 fileName="/root/.elimu-ai/lang-ALL/logs/webapp.log" 
+                                 filePattern="/root/.elimu-ai/lang-ALL/logs/webapp.log.%d">
+                        <PatternLayout>
+                            <pattern>[TEST] %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+                        </PatternLayout>
+                        <TimeBasedTriggeringPolicy />
+                    </RollingFile>
+                </Route>
+            </Routes>
+        </Routing>
+    </Appenders>
+  
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="routing"/>
+        </Root>
+    </Loggers> 
+</Configuration>
