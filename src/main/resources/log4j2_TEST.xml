@@ -7,8 +7,8 @@
             <Routes>
                 <Route>
                     <RollingFile name="rollingfile" 
-                                 fileName="/root/.elimu-ai/lang-ALL/logs/webapp.log" 
-                                 filePattern="/root/.elimu-ai/lang-ALL/logs/webapp.log.%d">
+                                 fileName="${sys:user.home}/.elimu-ai/lang-ALL/logs/webapp.log" 
+                                 filePattern="${sys:user.home}/.elimu-ai/lang-ALL/logs/webapp.log.%d">
                         <PatternLayout>
                             <pattern>[TEST] %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
                         </PatternLayout>
