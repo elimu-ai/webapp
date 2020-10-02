@@ -59,7 +59,8 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         PROPERTIES.put("env", env);
         
         if ((env == Environment.TEST) || (env == Environment.PROD)) {
-            // Configure Log4j 2 (see https://logging.apache.org/log4j/2.x/manual/customconfig.html#Hybrid)
+            // Configure Log4j 2 so that it logs to a file instead of to the console
+            // See https://logging.apache.org/log4j/2.x/manual/customconfig.html#Configurator)
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             URL log4j2FileUrl = classLoader.getResource("log4j2_" + env + ".xml"); // E.g. "log4j2_TEST.xml"
             logger.info("log4j2FileUrl: " + log4j2FileUrl);
@@ -67,6 +68,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
             logger.info("log4j2FilePath: " + log4j2FilePath);
             Configurator.initialize(null, log4j2FilePath);
             logger.info("log4j2FilePath: " + log4j2FilePath);
+            logger.info("env: " + env);
         }
 
         super.contextInitialized(event);
@@ -90,7 +92,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         }
         
         if ((env == Environment.TEST) || (env == Environment.PROD)) {
-        	InputStream inputStream = null;
+            InputStream inputStream = null;
             try {
                 // Override config.properties
             	Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:config_" + env + ".properties");
