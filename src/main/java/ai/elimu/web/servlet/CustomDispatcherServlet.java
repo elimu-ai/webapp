@@ -9,8 +9,12 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import ai.elimu.util.db.DbMigrationHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CustomDispatcherServlet extends DispatcherServlet {
+    
+    private final Logger logger = LogManager.getLogger();
 
     @Override
     protected WebApplicationContext initWebApplicationContext() {
