@@ -58,6 +58,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         logger.info("env: " + env);
         PROPERTIES.put("env", env);
         
+        env = Environment.TEST;
         if ((env == Environment.TEST) || (env == Environment.PROD)) {
             // Configure Log4j 2 so that it logs to a file instead of to the console
             // See https://logging.apache.org/log4j/2.x/manual/customconfig.html#Configurator)
