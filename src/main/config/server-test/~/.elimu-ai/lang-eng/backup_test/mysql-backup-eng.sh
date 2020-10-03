@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LANGUAGE="eng"
+LANGUAGE="ENG"
 echo "LANGUAGE: $LANGUAGE"
 
 # Navigate to the backup directory of the webapp
