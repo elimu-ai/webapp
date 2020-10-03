@@ -10,7 +10,7 @@
                                  fileName="${sys:user.home}/.elimu-ai/lang-${web:attr.content_language}/logs/webapp.log" 
                                  filePattern="${sys:user.home}/.elimu-ai/lang-${web:attr.content_language}/logs/webapp.log.%d">
                         <PatternLayout>
-                            <pattern>[${web:content_language}] %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+                            <pattern>[${web:attr.content_language}] %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
                         </PatternLayout>
                         <TimeBasedTriggeringPolicy />
                     </RollingFile>
