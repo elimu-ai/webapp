@@ -67,6 +67,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
             String log4j2FilePath = log4j2FileUrl.getFile();
             logger.info("log4j2FilePath: " + log4j2FilePath);
             Configurator.initialize(null, log4j2FilePath);
+            logger = LogManager.getLogger();
             logger.info("log4j2FilePath: " + log4j2FilePath);
             logger.info("env: " + env);
         }
