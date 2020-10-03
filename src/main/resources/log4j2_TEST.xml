@@ -7,10 +7,10 @@
             <Routes>
                 <Route>
                     <RollingFile name="rollingfile" 
-                                 fileName="${sys:user.home}/.elimu-ai/lang-${content_language}/logs/webapp.log" 
-                                 filePattern="${sys:user.home}/.elimu-ai/lang-${content_language}/logs/webapp.log.%d">
+                                 fileName="${sys:user.home}/.elimu-ai/lang-ALL/logs/webapp.log" 
+                                 filePattern="${sys:user.home}/.elimu-ai/lang-ALL/logs/webapp.log.%d">
                         <PatternLayout>
-                            <pattern>[TEST][${web:attr.content_language}][${contextPath}][${contextPathName}][${rootDir}][${servletContextName}] %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+                            <pattern>[TEST][${web:content_language}][${web:contextPath}][${web:contextPathName}][${web:rootDir}][${web:servletContextName}] %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
                         </PatternLayout>
                         <TimeBasedTriggeringPolicy />
                     </RollingFile>
