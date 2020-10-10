@@ -8,6 +8,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.jpa.compliance.global_id_generators" value="true" />
         </properties>
     </persistence-unit>
 </persistence>
