@@ -75,7 +75,7 @@ public class StoryBookLearningEventsRestController {
             
             // Store a backup of the original CSV file on the filesystem (in case it will be needed for debugging)
             File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
-            File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")).toString().toLowerCase());
+            File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
             File androidIdDir = new File(analyticsDir, "android-id_" + androidIdExtractedFromFilename);
             File storyBookLearningEventsDir = new File(androidIdDir, "storybook-learning-events");
