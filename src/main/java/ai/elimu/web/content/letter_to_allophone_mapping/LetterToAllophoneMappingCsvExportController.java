@@ -44,7 +44,9 @@ public class LetterToAllophoneMappingCsvExportController {
                 .withHeader(
                         "id",
                         "letter_ids",
+                        "letter_values",
                         "allophone_ids",
+                        "allophone_values_ipa",
                         "usage_count"
                 );
         StringWriter stringWriter = new StringWriter();
@@ -60,6 +62,13 @@ public class LetterToAllophoneMappingCsvExportController {
                 index++;
             }
             
+            JSONArray letterValuesJsonArray = new JSONArray();
+            index = 0;
+            for (Letter letter : letterToAllophoneMapping.getLetters()) {
+                letterValuesJsonArray.put(index, letter.getText());
+                index++;
+            }
+            
             JSONArray allophoneIdsJsonArray = new JSONArray();
             index = 0;
             for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
@@ -67,10 +76,19 @@ public class LetterToAllophoneMappingCsvExportController {
                 index++;
             }
             
+            JSONArray allophoneValuesIpaJsonArray = new JSONArray();
+            index = 0;
+            for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
+                allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
+                index++;
+            }
+            
             csvPrinter.printRecord(
                     letterToAllophoneMapping.getId(),
                     letterIdsJsonArray,
+                    letterValuesJsonArray,
                     allophoneIdsJsonArray,
+                    allophoneValuesIpaJsonArray,
                     letterToAllophoneMapping.getUsageCount()
             );
             
