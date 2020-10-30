@@ -3,6 +3,7 @@ package ai.elimu.util.db;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
@@ -11,6 +12,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
@@ -38,6 +40,8 @@ public class DbContentImportHelper {
     private AllophoneDao allophoneDao;
     
     private LetterDao letterDao;
+    
+    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
     
     private WordDao wordDao;
     
@@ -95,6 +99,15 @@ public class DbContentImportHelper {
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         for (Letter letter : letters) {
             letterDao.create(letter);
+        }
+        
+        // Extraxct and import Letter-to-Allophone mappings in src/main/resources/
+        File letterToAllophioneMappingsCsvFile = new File(contentDirectory, "letter-to-allophone-mappings.csv");
+        List<LetterToAllophoneMapping> letterToAllophioneMappings = CsvContentExtractionHelper.getLetterToAllophoneMappingsFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, allophoneDao, letterToAllophoneMappingDao);
+        logger.info("letterToAllophioneMappings.size(): " + letterToAllophioneMappings.size());
+        letterToAllophoneMappingDao = (LetterToAllophoneMappingDao) webApplicationContext.getBean("letterToAllophoneMappingDao");
+        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophioneMappings) {
+            letterToAllophoneMappingDao.create(letterToAllophoneMapping);
         }
         
         // Extract and import Words from CSV file in src/main/resources/
