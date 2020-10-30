@@ -50,7 +50,6 @@ public class LetterToAllophoneMappingUsageCountScheduler {
         // Update the values previously stored in the database
         for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAll()) {
             logger.info("letterToAllophoneMapping.getId(): " + letterToAllophoneMapping.getId());
-            logger.info("letterToAllophoneMapping.getLetter().getText(): " + letterToAllophoneMapping.getLetter().getText());
             logger.info("letterToAllophoneMapping.getUsageCount() (before update): " + letterToAllophoneMapping.getUsageCount());
             
             int newUsageCount = 0;

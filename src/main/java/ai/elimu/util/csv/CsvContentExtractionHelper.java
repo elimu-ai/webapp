@@ -207,8 +207,6 @@ public class CsvContentExtractionHelper {
                 }
                 letterToAllophoneMapping.setLetters(letters);
                 
-                letterToAllophoneMapping.setLetter(letters.get(0)); // TODO: remove 'letter' attribute
-                
                 JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
                 logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
                 
