@@ -54,7 +54,7 @@ public class DbMigrationHelper {
             if (versionOfMostRecentMigration < pomVersionAsInteger) {
                 logger.info("Looking up pending DB migrations after version " + versionOfMostRecentMigration);
                 
-                // Look up SQL scripts from src/main/resources/db
+                // Look up SQL scripts from src/main/resources/db/
                 for (int scriptVersion = (versionOfMostRecentMigration + 1); scriptVersion <= pomVersionAsInteger; scriptVersion++) {
                     String filePath = "db/migration/" + scriptVersion + ".sql";
                     logger.info("Looking up file \"" + filePath + "\"...");
