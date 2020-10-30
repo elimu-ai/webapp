@@ -2,20 +2,11 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 1,image/gif,null,"null","a","/image/1.gif",GIF
 2,image/gif,null,"null","common kingfisher","/image/2.gif",GIF
 3,image/png,null,"null","ant","/image/3.png",PNG
-4,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10547","asp_175_i_like_to_read_page_01_image_0001","/image/4.png",PNG
-5,image/png,null,"null","M_ASP_55_Too_small_Page_02_Image_0001","/image/5.png",PNG
-6,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12926","ah football cover","/image/6.jpg",JPG
-7,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=918","a very tall man - cover","/image/7.png",PNG
-11,image/jpg,null,"null","39e5eb1614ea195e9e377f63f561aa8c","/image/11.jpg",JPG
-12,image/jpg,null,"null","badd7122aa68d2a339e359f03c03cc51","/image/12.jpg",JPG
 13,image/jpg,null,"null","Hindi_na_Ako_natatakot_coverImage","/image/13.jpg",JPG
 17,image/jpg,null,"null","99e3d3af620881991813482fb602a1f6","/image/17.jpg",JPG
 18,image/jpg,null,"null","15e689585b33730512e002e532f57ea9","/image/18.jpg",JPG
 19,image/jpg,null,"null","344cb250fee33bdabf4aff6603eb3506","/image/19.jpg",JPG
 20,image/jpg,null,"null","e27c3643f7ba51abda1f02f07549577c","/image/20.jpg",JPG
-26,image/jpg,null,"null","storybook-19-cover-image","/image/26.jpg",JPG
-27,image/jpg,null,"null","storybook-20-cover-image","/image/27.jpg",JPG
-28,image/jpg,null,"null","storybook-21-cover-image","/image/28.jpg",JPG
 29,image/jpg,null,"null","storybook-22-cover","/image/29.jpg",JPG
 31,image/jpg,null,"null","storybook-22-ch-1","/image/31.jpg",JPG
 32,image/jpg,null,"null","storybook-22-ch-2","/image/32.jpg",JPG
@@ -64,7 +55,7 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 77,image/gif,null,"null","storybook-24-ch-19","/image/77.gif",GIF
 78,image/gif,null,"null","storybook-24-ch-20","/image/78.gif",GIF
 79,image/jpg,null,"null","storybook-25-cover","/image/79.jpg",JPG
-80,image/jpg,null,"null","storybook-25-ch-1","/image/80.jpg",JPG
+100,image/jpg,null,"null","storybook-26-cover","/image/100.jpg",JPG
 81,image/jpg,null,"null","storybook-25-ch-2","/image/81.jpg",JPG
 82,image/jpg,null,"null","storybook-25-ch-3","/image/82.jpg",JPG
 83,image/jpg,null,"null","storybook-25-ch-4","/image/83.jpg",JPG
@@ -84,3 +75,31 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 97,image/jpg,null,"null","storybook-25-ch-18","/image/97.jpg",JPG
 98,image/jpg,null,"null","storybook-25-ch-19","/image/98.jpg",JPG
 99,image/jpg,null,"null","storybook-25-ch-20","/image/99.jpg",JPG
+102,image/jpg,null,"null","storybook-26-ch-2","/image/102.jpg",JPG
+103,image/jpg,null,"null","storybook-26-ch-3","/image/103.jpg",JPG
+104,image/jpg,null,"null","storybook-26-ch-4","/image/104.jpg",JPG
+105,image/jpg,null,"null","storybook-26-ch-5","/image/105.jpg",JPG
+106,image/jpg,null,"null","storybook-26-ch-6","/image/106.jpg",JPG
+107,image/jpg,null,"null","storybook-26-ch-7","/image/107.jpg",JPG
+108,image/jpg,null,"null","storybook-26-ch-8","/image/108.jpg",JPG
+109,image/jpg,null,"null","storybook-26-ch-9","/image/109.jpg",JPG
+110,image/jpg,null,"null","storybook-26-ch-10","/image/110.jpg",JPG
+111,image/jpg,null,"null","storybook-26-ch-11","/image/111.jpg",JPG
+112,image/jpg,null,"null","storybook-26-ch-12","/image/112.jpg",JPG
+114,image/jpg,null,"null","storybook-27-cover","/image/114.jpg",JPG
+116,image/jpg,null,"null","storybook-27-ch-3","/image/116.jpg",JPG
+117,image/jpg,null,"null","storybook-27-ch-4","/image/117.jpg",JPG
+118,image/jpg,null,"null","storybook-27-ch-5","/image/118.jpg",JPG
+119,image/jpg,null,"null","storybook-27-ch-6","/image/119.jpg",JPG
+120,image/jpg,null,"null","storybook-27-ch-7","/image/120.jpg",JPG
+121,image/jpg,null,"null","storybook-27-ch-8","/image/121.jpg",JPG
+122,image/jpg,null,"null","storybook-27-ch-9","/image/122.jpg",JPG
+123,image/jpg,null,"null","storybook-27-ch-10","/image/123.jpg",JPG
+124,image/jpg,null,"null","storybook-27-ch-11","/image/124.jpg",JPG
+125,image/jpg,null,"null","storybook-27-ch-12","/image/125.jpg",JPG
+126,image/jpg,null,"null","storybook-27-ch-13","/image/126.jpg",JPG
+127,image/jpg,null,"null","storybook-27-ch-14","/image/127.jpg",JPG
+128,image/jpg,null,"null","storybook-27-ch-15","/image/128.jpg",JPG
+129,image/jpg,null,"null","storybook-27-ch-16","/image/129.jpg",JPG
+130,image/jpg,null,"null","storybook-27-ch-17","/image/130.jpg",JPG
+131,image/jpg,null,"null","storybook-27-ch-18","/image/131.jpg",JPG
