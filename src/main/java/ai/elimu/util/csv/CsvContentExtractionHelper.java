@@ -1,10 +1,13 @@
 package ai.elimu.util.csv;
 
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.ContentLicense;
@@ -18,6 +21,7 @@ import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
+import ai.elimu.web.content.letter_to_allophone_mapping.LetterToAllophoneMappingCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
 import ai.elimu.web.content.word.WordCsvExportController;
@@ -158,6 +162,78 @@ public class CsvContentExtractionHelper {
         }
         
         return letters;
+    }
+    
+    /**
+     * For information on how the CSV files were generated, see {@link LetterToAllophoneMappingCsvExportController#handleRequest}.
+     */
+    public static List<LetterToAllophoneMapping> getLetterToAllophoneMappingsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterToAllophoneMappingDao) {
+        logger.info("getLetterToAllophoneMappingsFromCsvBackup");
+        
+        List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
+        
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        logger.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT
+                    .withHeader(
+                            "id",
+                            "letter_ids",
+                            "letter_texts",
+                            "allophone_ids",
+                            "allophone_values_ipa",
+                            "usage_count"
+                    )
+                    .withSkipHeaderRecord();
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                logger.info("csvRecord: " + csvRecord);
+                
+                LetterToAllophoneMapping letterToAllophoneMapping = new LetterToAllophoneMapping();
+                
+                JSONArray letterIdsJsonArray = new JSONArray(csvRecord.get("letter_ids"));
+                logger.info("letterIdsJsonArray: " + letterIdsJsonArray);
+                
+                JSONArray letterTextsJsonArray = new JSONArray(csvRecord.get("letter_texts"));
+                logger.info("letterTextsJsonArray: " + letterTextsJsonArray);
+                List<Letter> letters = new ArrayList<>();
+                for (int i = 0; i < letterTextsJsonArray.length(); i++) {
+                    String letterText = letterTextsJsonArray.getString(i);
+                    logger.info("Looking up Letter with text '" + letterText + "'");
+                    Letter letter = letterDao.readByText(letterText);
+                    logger.info("letter.getId(): " + letter.getId());
+                    letters.add(letter);
+                }
+                letterToAllophoneMapping.setLetters(letters);
+                
+                letterToAllophoneMapping.setLetter(letters.get(0)); // TODO: remove 'letter' attribute
+                
+                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
+                logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
+                
+                JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
+                logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
+                List<Allophone> allophones = new ArrayList<>();
+                for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
+                    String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
+                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
+                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
+                    logger.info("allophone.getId(): " + allophone.getId());
+                    allophones.add(allophone);
+                }
+                letterToAllophoneMapping.setAllophones(allophones);
+                
+                Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
+                letterToAllophoneMapping.setUsageCount(usageCount);
+                
+                letterToAllophoneMappings.add(letterToAllophoneMapping);
+            }
+        } catch (IOException ex) {
+            logger.error(ex);
+        }
+        
+        return letterToAllophoneMappings;
     }
     
     /**

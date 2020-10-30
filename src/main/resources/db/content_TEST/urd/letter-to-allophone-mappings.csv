@@ -1,4 +1,4 @@
-id,letter_ids,letter_values,allophone_ids,allophone_values_ipa,usage_count
+id,letter_ids,letter_texts,allophone_ids,allophone_values_ipa,usage_count
 6,[4],"[""ک""]",[4],"[""k""]",54
 18,[1],"[""ی""]",[1],"[""j""]",54
 19,[12],"[""گ""]",[20],"[""g""]",21
