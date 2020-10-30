@@ -9,6 +9,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import ai.elimu.util.db.DbMigrationHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import java.io.File;
 import java.util.EnumSet;
 import javax.persistence.Entity;
 import org.apache.logging.log4j.LogManager;
@@ -83,9 +84,18 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         }
 
         Metadata metadata = metadataSources.buildMetadata();
+        
+        File outputFile = new File("src/main/resources/META-INF/jpa-schema-export.sql");
+        if (outputFile.exists()) {
+            // Delete existing file content since the SchemaExport appends to existing content.
+            logger.info("Deleting " + outputFile.getPath());
+            outputFile.delete();
+        }
 
         SchemaExport schemaExport = new SchemaExport();
-        schemaExport.setOutputFile("src/main/resources/META-INF/jpa-schema-export.sql");
+        schemaExport.setOutputFile(outputFile.getPath());
+        schemaExport.setDelimiter(";");
+        schemaExport.setFormat(true);
         schemaExport.create(EnumSet.of(TargetType.SCRIPT), metadata);
     }
 }
