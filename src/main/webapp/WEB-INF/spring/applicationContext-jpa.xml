@@ -1,59 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:p="http://www.springframework.org/schema/p"
-		xmlns:context="http://www.springframework.org/schema/context"
-		xmlns:tx="http://www.springframework.org/schema/tx"
-		xsi:schemaLocation="
-			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:p="http://www.springframework.org/schema/p"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xmlns:tx="http://www.springframework.org/schema/tx"
+            xsi:schemaLocation="
+                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:property-placeholder location="classpath:jdbc.properties" />
 
     <!-- DataSource configuration for Apache Commons DBCP. -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-                    p:driverClassName="${jdbc.driverClassName}"
-                    p:url="${jdbc.url}"
-                    p:username="${jdbc.username}"
-                    p:password="${jdbc.password}"
-        p:validationQuery="${jdbc.validationQuery}"
-        p:testOnBorrow="true" />
+            p:driverClassName="${jdbc.driverClassName}"
+            p:url="${jdbc.url}"
+            p:username="${jdbc.username}"
+            p:password="${jdbc.password}"
+            p:validationQuery="${jdbc.validationQuery}"
+            p:testOnBorrow="true" />
 
     <!-- JPA EntityManagerFactory -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-                    p:dataSource-ref="dataSource"
-                    p:persistenceXmlLocation="classpath:META-INF/jpa-persistence.xml">
+            p:dataSource-ref="dataSource"
+            p:persistenceXmlLocation="classpath:META-INF/jpa-persistence.xml">
     <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-                  p:database="${jpa.database}"
-                  p:databasePlatform="${jpa.databasePlatform}"
-                  p:showSql="${jpa.showSql}"
-                  p:generateDdl="${jpa.generateDdl}" />
+                    p:database="${jpa.database}"
+                    p:databasePlatform="${jpa.databasePlatform}"
+                    p:showSql="${jpa.showSql}"
+                    p:generateDdl="${jpa.generateDdl}" />
             </property>
     </bean>
 
     <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-                    p:entityManagerFactory-ref="entityManagerFactory" />
-
-
-    <!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
-
-    <!--
-            Activates various annotations to be detected in bean classes: Spring's
-            @Required and @Autowired, as well as JSR 250's @PostConstruct,
-            @PreDestroy and @Resource (if available) and JPA's @PersistenceContext
-            and @PersistenceUnit (if available).
-    -->
+            p:entityManagerFactory-ref="entityManagerFactory" />
+    
     <context:annotation-config />
-
-    <!--
-            Instruct Spring to perform declarative transaction management
-            automatically on annotated classes.
-
-            for mode="aspectj"/ see SPR-6392
-    -->
+    
     <tx:annotation-driven />
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
