@@ -75,7 +75,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             logger.info("beanDefinition.getBeanClassName(): " + beanDefinition.getBeanClassName());
             try {
                 Class<?> annotatedClass = Class.forName(beanDefinition.getBeanClassName());
-                logger.info("annotatedClass.getClass().getName(): " + annotatedClass.getClass().getName());
+                logger.info("annotatedClass.getName(): " + annotatedClass.getName());
                 metadataSources.addAnnotatedClass(annotatedClass);
             } catch (ClassNotFoundException ex) {
                 logger.error(ex);
