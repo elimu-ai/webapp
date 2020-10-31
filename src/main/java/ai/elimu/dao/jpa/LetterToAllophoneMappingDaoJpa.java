@@ -5,6 +5,7 @@ import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
@@ -22,7 +23,9 @@ public class LetterToAllophoneMappingDaoJpa extends GenericDaoJpa<LetterToAlloph
                 .setParameter("allophones", allophones)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("LetterToAllophoneMapping was not found");
+            logger.warn("LetterToAllophoneMapping was not found for Letter(s)/Allophone(s): " +
+                    "\"" + letters.stream().map(Letter::getText).collect(Collectors.joining()) + "\"" +
+                    " /" + allophones.stream().map(Allophone::getValueIpa).collect(Collectors.joining()) + "/");
             return null;
         }
     }
