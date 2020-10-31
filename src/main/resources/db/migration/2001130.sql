@@ -1,3 +1,3 @@
 # 2.1.130
 
-ALTER TABLE `LetterToAllophoneMapping` DROP COLUMN `letter`;
+ALTER TABLE `LetterToAllophoneMapping` DROP COLUMN `letter_id`;
