@@ -80,7 +80,7 @@ public class WordEditController {
         model.addAttribute("timeStart", System.currentTimeMillis());
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
-        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
+        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
@@ -124,7 +124,7 @@ public class WordEditController {
             model.addAttribute("timeStart", request.getParameter("timeStart"));
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("allophones", allophones);
-            model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByLetterText());
+            model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());

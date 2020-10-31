@@ -57,6 +57,9 @@ public class LetterToAllophoneMappingCreateController {
     ) {
     	logger.info("handleSubmit");
         
+        // Check if the LetterToAllophoneMapping already exists
+        // TODO
+        
         if (result.hasErrors()) {
             model.addAttribute("letterToAllophoneMapping", letterToAllophoneMapping);
             
