@@ -6,8 +6,11 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Word;
+import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -50,7 +53,8 @@ public class LetterToAllophoneMappingUsageCountScheduler {
         // Update the values previously stored in the database
         for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAll()) {
             logger.info("letterToAllophoneMapping.getId(): " + letterToAllophoneMapping.getId());
-            logger.info("letterToAllophoneMapping.getLetter().getText(): " + letterToAllophoneMapping.getLetter().getText());
+            logger.info("letterToAllophoneMapping Letters: \"" + letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
+            logger.info("letterToAllophoneMapping Allophones: /" + letterToAllophoneMapping.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining()) + "/");
             logger.info("letterToAllophoneMapping.getUsageCount() (before update): " + letterToAllophoneMapping.getUsageCount());
             
             int newUsageCount = 0;

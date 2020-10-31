@@ -7,19 +7,6 @@
     <div class="card-panel">
         <form:form modelAttribute="letterToAllophoneMapping">
             <tag:formErrors modelAttribute="letterToAllophoneMapping" />
-
-            <div class="row">
-                <div class="col s12">
-                    <label><fmt:message key="letter" /></label><br />
-                    <select id="letter" name="letter" class="browser-default" style="margin: 0.5em 0;">
-                        <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="letter" items="${letters}">
-                            <option value="${letter.id}" <c:if test="${letter.id == letterToAllophoneMapping.letter.id}">selected="selected"</c:if>><c:out value="${letter.text}" /></option>
-                        </c:forEach>
-                    </select>                    
-                    <a href="<spring:url value='/content/letter/create' />" target="_blank"><fmt:message key="add.letter" /> <i class="material-icons">launch</i></a>
-                </div>
-            </div>
             
             <div class="row">
                 <div class="col s12">

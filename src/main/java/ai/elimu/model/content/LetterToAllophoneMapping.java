@@ -5,9 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OrderColumn;
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -15,11 +13,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 public class LetterToAllophoneMapping extends BaseEntity {
-    
-    @Deprecated
-    @NotNull
-    @ManyToOne
-    private Letter letter;
     
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
@@ -31,16 +24,6 @@ public class LetterToAllophoneMapping extends BaseEntity {
     private List<Allophone> allophones;
     
     private int usageCount;
-
-    @Deprecated
-    public Letter getLetter() {
-        return letter;
-    }
-
-    @Deprecated
-    public void setLetter(Letter letter) {
-        this.letter = letter;
-    }
     
     public List<Letter> getLetters() {
         return letters;

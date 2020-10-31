@@ -29,7 +29,7 @@ public class LetterToAllophoneMappingsRestController {
         logger.info("handleGetRequest");
         
         JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAllOrderedByLetterText()) {
+        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAllOrderedByUsage()) {
             LetterToAllophoneMappingGson letterToAllophoneMappingGson = JpaToGsonConverter.getLetterToAllophoneMappingGson(letterToAllophoneMapping);
             String json = new Gson().toJson(letterToAllophoneMappingGson);
             letterToAllophoneMappingsJsonArray.put(new JSONObject(json));

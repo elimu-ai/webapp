@@ -57,10 +57,8 @@ public class LetterToAllophoneMappingCreateController {
     ) {
     	logger.info("handleSubmit");
         
-//        LetterToAllophoneMapping existingLetterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMapping.getLetter(), letterToAllophoneMapping.getAllophones());
-//        if (existingLetterToAllophoneMapping != null) {
-//            result.rejectValue("letter", "NonUnique");
-//        }
+        // Check if the LetterToAllophoneMapping already exists
+        // TODO
         
         if (result.hasErrors()) {
             model.addAttribute("letterToAllophoneMapping", letterToAllophoneMapping);
