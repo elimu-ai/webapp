@@ -106,6 +106,7 @@
     
     <div class="divider" style="margin: 2em 0;"></div>
     
+    <a name="contribution-events"></a>
     <h5><fmt:message key="contributions" /></h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
