@@ -1,0 +1,69 @@
+package ai.elimu.model.contributor;
+
+import ai.elimu.model.BaseEntity;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+/**
+ * An event where a {@link Contributor} peer-reviews a {@link StoryBook} which 
+ * was added/edited by another {@link Contributor}.
+ */
+@Entity
+public class StoryBookPeerReviewEvent extends BaseEntity {
+
+    @NotNull
+    @ManyToOne
+    private Contributor contributor;
+    
+    /**
+     * The contribution event which is being peer-reviewed.
+     */
+    @NotNull
+    @ManyToOne
+    private StoryBookContributionEvent storyBookContributionEvent;
+    
+    /**
+     * Whether or not the {@link #storyBookContributionEvent} was approved.
+     */
+    @NotNull
+    private Boolean approved;
+    
+    /**
+     * Any additional explanations. This field is mandatory only if the 
+     * {@link #storyBookContributionEvent} was <i>not</i> approved.
+     */
+    private String comment;    
+
+    public Contributor getContributor() {
+        return contributor;
+    }
+
+    public void setContributor(Contributor contributor) {
+        this.contributor = contributor;
+    }
+
+    public StoryBookContributionEvent getStoryBookContributionEvent() {
+        return storyBookContributionEvent;
+    }
+
+    public void setStoryBookContributionEvent(StoryBookContributionEvent storyBookContributionEvent) {
+        this.storyBookContributionEvent = storyBookContributionEvent;
+    }
+
+    public Boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean isApproved) {
+        this.approved = isApproved;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+}
