@@ -104,6 +104,60 @@
         </div>
     </c:forEach>
     
+    <div class="divider" style="margin: 2em 0;"></div>
+    
+    <c:if test="${not empty storyBookContributionEvents}">
+        <a name="peer-review"></a>
+        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀️️️️</h5>
+        
+        <form action="<spring:url value='/content/storybook-peer-review-event/create' />" method="POST" class="card-panel">
+            <p>
+                Do you approve the quality of this storybook?
+            </p>
+            
+            <input type="hidden" name="storyBookContributionEventId" value="${storyBookContributionEvents[0].id}" />
+            
+            <input type="radio" id="approved_true" name="approved" value="true" />
+            <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
+
+            <input type="radio" id="approved_false" name="approved" value="false" />
+            <label for="approved_false"><fmt:message key="no" /> (request changes)</label><br />
+            
+            <script>
+                $(function() {
+                    $('[name="approved"]').on('change', function() {
+                        console.info('[name="approved"] on change');
+                        
+                        var isApproved = $('#approved_true').is(':checked');
+                        console.info('isApproved: ' + isApproved);
+                        if (isApproved) {
+                            console.info('isApproved');
+                            $('#comment').removeAttr('required');
+                        } else {
+                            $('#comment').attr('required', 'required');
+                            console.info('!isApproved');
+                        }
+                        
+                        $('#peerReviewSubmitContainer').fadeIn();
+                    });
+                });
+            </script>
+            
+            <div id="peerReviewSubmitContainer" style="display: none;">
+                <label for="comment"><fmt:message key="comment" /></label>
+                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+
+                <button class="btn waves-effect waves-light" type="submit">
+                    <fmt:message key="submit" /> <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+        
+        <div class="divider" style="margin: 2em 0;"></div>
+    </c:if>
+    
+    <a name="contribution-events"></a>
+    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
             <div class="collection-item">
@@ -116,7 +170,41 @@
                     <img src="<spring:url value='${storyBookContributionEvent.contributor.imageUrl}' />" alt="${storyBookContributionEvent.contributor.firstName}" /> 
                     <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
                 </div>
-                <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
+                <blockquote>"<c:out value="${storyBookContributionEvent.comment}" />"</blockquote>
+                
+                <%-- List peer reviews below each contribution event --%>
+                <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEvents}">
+                    <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
+                        <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
+                            <div class="col s4">
+                                <div class="chip">
+                                    <img src="<spring:url value='${storyBookPeerReviewEvent.contributor.imageUrl}' />" alt="${storyBookPeerReviewEvent.contributor.firstName}" /> 
+                                    <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
+                                </div>
+                            </div>
+                            <div class="col s4">
+                                <code class="peerReviewStatus">
+                                    <c:choose>
+                                        <c:when test="${storyBookPeerReviewEvent.isApproved()}">
+                                            APPROVED
+                                        </c:when>
+                                        <c:otherwise>
+                                            NOT_APPROVED
+                                        </c:otherwise>
+                                    </c:choose>
+                                </code>
+                            </div>
+                            <div class="col s4" style="text-align: right;">
+                                <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                            </div>
+                            <c:if test="${not empty storyBookPeerReviewEvent.comment}">
+                                <div class="col s12">
+                                    "<c:out value="${storyBookPeerReviewEvent.comment}" />"
+                                </div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </c:forEach>
     </div>

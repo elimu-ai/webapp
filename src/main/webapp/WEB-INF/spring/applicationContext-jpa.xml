@@ -62,6 +62,7 @@
     <bean id="storyBookContributionEventDao" class="ai.elimu.dao.jpa.StoryBookContributionEventDaoJpa" />
     <bean id="storyBookLearningEventDao" class="ai.elimu.dao.jpa.StoryBookLearningEventDaoJpa" />
     <bean id="storyBookParagraphDao" class="ai.elimu.dao.jpa.StoryBookParagraphDaoJpa" />
+    <bean id="storyBookPeerReviewEventDao" class="ai.elimu.dao.jpa.StoryBookPeerReviewEventDaoJpa" />
     <bean id="syllableDao" class="ai.elimu.dao.jpa.SyllableDaoJpa" />
     <bean id="videoDao" class="ai.elimu.dao.jpa.VideoDaoJpa" />
     <bean id="wordContributionEventDao" class="ai.elimu.dao.jpa.WordContributionEventDaoJpa" />

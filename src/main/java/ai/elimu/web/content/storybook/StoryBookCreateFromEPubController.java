@@ -323,8 +323,7 @@ public class StoryBookCreateFromEPubController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
-            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook

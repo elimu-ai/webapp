@@ -124,6 +124,10 @@ footer.page-footer .footer-copyright {
     background-color: #9575cd;
 }
 
+.collection {
+    border-radius: 8px;
+}
+
 .progress {
     background-color: #d1c4e9;
 }

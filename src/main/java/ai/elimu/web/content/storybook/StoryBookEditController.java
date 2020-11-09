@@ -14,6 +14,7 @@ import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
@@ -57,6 +58,9 @@ public class StoryBookEditController {
     private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
+    private StoryBookPeerReviewEventDao storyBookPeerReviewEventDao;
+    
+    @Autowired
     private StoryBookChapterDao storyBookChapterDao;
     
     @Autowired
@@ -80,8 +84,6 @@ public class StoryBookEditController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
-        
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         
         StoryBook storyBook = storyBookDao.read(id);
         model.addAttribute("storyBook", storyBook);
@@ -115,7 +117,9 @@ public class StoryBookEditController {
         }
         
         model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(storyBook));
+        model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(storyBook));
         
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
         Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
         model.addAttribute("wordFrequencyMap", wordFrequencyMap);
         Map<String, Word> wordMap = new HashMap<>();
@@ -145,8 +149,6 @@ public class StoryBookEditController {
             HttpSession session) {
     	logger.info("handleSubmit");
         
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        
         StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getTitle());
         if ((existingStoryBook != null) && !existingStoryBook.getId().equals(storyBook.getId())) {
             result.rejectValue("title", "NonUnique");
@@ -164,21 +166,46 @@ public class StoryBookEditController {
             
             model.addAttribute("readingLevels", ReadingLevel.values());
             
-            List<String> paragraphs = new ArrayList<>();
             List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+            model.addAttribute("storyBookChapters", storyBookChapters);
+
+            // Map<StoryBookChapter.id, List<StoryBookParagraph>>
+            Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
+            for (StoryBookChapter storyBookChapter : storyBookChapters) {
+                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+                paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+            }
+            model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
+
+            List<String> paragraphs = new ArrayList<>();
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
                 List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
                     paragraphs.add(storyBookParagraph.getOriginalText());
                 }
             }
+
+            model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(storyBook));
+            model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(storyBook));
             
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
             Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
             model.addAttribute("wordFrequencyMap", wordFrequencyMap);
-            
+            Map<String, Word> wordMap = new HashMap<>();
+            for (Word word : wordDao.readAllOrdered()) {
+                wordMap.put(word.getText(), word);
+            }
+            model.addAttribute("wordMap", wordMap);
+            model.addAttribute("emojisByWordId", getEmojisByWordId());
+
             Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
             model.addAttribute("letterFrequencyMap", letterFrequencyMap);
-            
+            Map<String, Letter> letterMap = new HashMap<>();
+            for (Letter letter : letterDao.readAllOrdered()) {
+                letterMap.put(letter.getText(), letter);
+            }
+            model.addAttribute("letterMap", letterMap);
+
             return "content/storybook/edit";
         } else {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
