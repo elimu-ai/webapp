@@ -171,6 +171,40 @@
                     <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
                 </div>
                 <blockquote>"<c:out value="${storyBookContributionEvent.comment}" />"</blockquote>
+                
+                <%-- List peer reviews below each contribution event --%>
+                <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEvents}">
+                    <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
+                        <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
+                            <div class="col s4">
+                                <div class="chip">
+                                    <img src="<spring:url value='${storyBookPeerReviewEvent.contributor.imageUrl}' />" alt="${storyBookPeerReviewEvent.contributor.firstName}" /> 
+                                    <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
+                                </div>
+                            </div>
+                            <div class="col s4">
+                                <code class="peerReviewStatus">
+                                    <c:choose>
+                                        <c:when test="${storyBookPeerReviewEvent.isApproved()}">
+                                            APPROVED
+                                        </c:when>
+                                        <c:otherwise>
+                                            NOT_APPROVED
+                                        </c:otherwise>
+                                    </c:choose>
+                                </code>
+                            </div>
+                            <div class="col s4" style="text-align: right;">
+                                <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                            </div>
+                            <c:if test="${not empty storyBookPeerReviewEvent.comment}">
+                                <div class="col s12">
+                                    "<c:out value="${storyBookPeerReviewEvent.comment}" />"
+                                </div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </c:forEach>
     </div>
