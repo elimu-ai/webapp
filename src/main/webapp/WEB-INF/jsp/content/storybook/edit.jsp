@@ -110,10 +110,12 @@
         <a name="peer-review"></a>
         <h5><fmt:message key="peer.review" /> 🕵🏽‍♀️️️️</h5>
         
-        <form action="#" class="card-panel">
+        <form action="<spring:url value='/content/storybook-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
                 Do you approve the quality of this storybook?
             </p>
+            
+            <input type="hidden" name="storyBookContributionEventId" value="${storyBookContributionEvents[0].id}" />
             
             <input type="radio" id="approved_true" name="approved" value="true" />
             <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
@@ -168,7 +170,7 @@
                     <img src="<spring:url value='${storyBookContributionEvent.contributor.imageUrl}' />" alt="${storyBookContributionEvent.contributor.firstName}" /> 
                     <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
                 </div>
-                <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
+                <blockquote>"<c:out value="${storyBookContributionEvent.comment}" />"</blockquote>
             </div>
         </c:forEach>
     </div>
