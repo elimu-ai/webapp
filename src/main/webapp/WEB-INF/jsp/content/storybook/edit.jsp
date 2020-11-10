@@ -3,6 +3,23 @@
 </content:title>
 
 <content:section cssId="storyBookEditPage">
+    <c:choose>
+        <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+        </c:when>
+        <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="peerReviewStatusColor" value="" />
+        </c:otherwise>
+    </c:choose>
+    <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
+        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+            <fmt:message key="peer.review" />: ${storyBook.peerReviewStatus}
+        </a>
+    </div>
+    
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="storyBook">
@@ -108,7 +125,7 @@
     
     <c:if test="${not empty storyBookContributionEvents}">
         <a name="peer-review"></a>
-        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀️️️️</h5>
+        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
         
         <form action="<spring:url value='/content/storybook-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
@@ -162,9 +179,9 @@
         <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    <fmt:message key="revision" /> #${storyBookContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:message key="revision" />: #${storyBookContributionEvent.revisionNumber}
+                    <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <div class="chip">
                     <img src="<spring:url value='${storyBookContributionEvent.contributor.imageUrl}' />" alt="${storyBookContributionEvent.contributor.firstName}" /> 

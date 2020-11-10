@@ -1,12 +1,16 @@
 package ai.elimu.web.content.peer_review;
 
 import ai.elimu.dao.StoryBookContributionEventDao;
+import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookPeerReviewEventDao;
+import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
+import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,9 @@ public class StoryBookPeerReviewEventCreateController {
     @Autowired
     private StoryBookPeerReviewEventDao storyBookPeerReviewEventDao;
     
+    @Autowired
+    private StoryBookDao storyBookDao;
+    
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             @RequestParam Long storyBookContributionEventId,
@@ -42,7 +49,8 @@ public class StoryBookPeerReviewEventCreateController {
         logger.info("storyBookContributionEventId: " + storyBookContributionEventId);
         StoryBookContributionEvent storyBookContributionEvent = storyBookContributionEventDao.read(storyBookContributionEventId);
         logger.info("storyBookContributionEvent: " + storyBookContributionEvent);
-            
+        
+        // Store the peer review event
         StoryBookPeerReviewEvent storyBookPeerReviewEvent = new StoryBookPeerReviewEvent();
         storyBookPeerReviewEvent.setContributor(contributor);
         storyBookPeerReviewEvent.setStoryBookContributionEvent(storyBookContributionEvent);
@@ -51,8 +59,25 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEvent.setTime(Calendar.getInstance());
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
 
-        // Update the storybook's metadata
-        // TODO
+        // Update the storybook's peer review status
+        int approvedCount = 0;
+        int notApprovedCount = 0;
+        for (StoryBookPeerReviewEvent peerReviewEvent : storyBookPeerReviewEventDao.readAll(storyBookContributionEvent)) {
+            if (peerReviewEvent.isApproved()) {
+                approvedCount++;
+            } else {
+                notApprovedCount++;
+            }
+        }
+        logger.info("approvedCount: " + approvedCount);
+        logger.info("notApprovedCount: " + notApprovedCount);
+        StoryBook storyBook = storyBookContributionEvent.getStoryBook();
+        if (approvedCount >= notApprovedCount) {
+            storyBook.setPeerReviewStatus(PeerReviewStatus.APPROVED);
+        } else {
+            storyBook.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
+        }
+        storyBookDao.update(storyBook);
 
         return "redirect:/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId() + "#contribution-events";
     }
