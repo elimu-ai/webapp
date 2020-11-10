@@ -123,13 +123,15 @@
     
     <div class="divider" style="margin: 2em 0;"></div>
     
-    <c:if test="${not empty storyBookContributionEvents}">
+    <%-- Display peer review form if the current contributor is not the same as that of the latest contribution event --%>
+    <c:if test="${(not empty storyBookContributionEvents) 
+                  && (storyBookContributionEvents[0].contributor.id != contributor.id)}">
         <a name="peer-review"></a>
         <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
         
         <form action="<spring:url value='/content/storybook-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
-                Do you approve the quality of this storybook?
+                <fmt:message key="do.you.approve.quality.of.this.storybook?" />
             </p>
             
             <input type="hidden" name="storyBookContributionEventId" value="${storyBookContributionEvents[0].id}" />
