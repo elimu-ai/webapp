@@ -34,6 +34,25 @@
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
                         <p><fmt:message key="revision" />: #${storyBook.revisionNumber}</p>
+                        <p>
+                            <fmt:message key="peer.review" />: 
+                            <c:choose>
+                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                </c:when>
+                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="peerReviewStatusColor" value="" />
+                                </c:otherwise>
+                            </c:choose>
+                            <span class="chip ${peerReviewStatusColor}">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+                                    ${storyBook.peerReviewStatus}
+                                </a>
+                            </span>
+                        </p>
 
                         <div class="divider" style="margin: 1em 0;"></div>
 
@@ -64,6 +83,25 @@
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
                         <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                        <p>
+                            <fmt:message key="peer.review" />: 
+                            <c:choose>
+                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                </c:when>
+                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="peerReviewStatusColor" value="" />
+                                </c:otherwise>
+                            </c:choose>
+                            <span class="chip ${peerReviewStatusColor}">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+                                    ${storyBook.peerReviewStatus}
+                                </a>
+                            </span>
+                        </p>
 
                         <div class="divider" style="margin: 1em 0;"></div>
 
@@ -94,6 +132,25 @@
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
                         <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                        <p>
+                            <fmt:message key="peer.review" />: 
+                            <c:choose>
+                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                </c:when>
+                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="peerReviewStatusColor" value="" />
+                                </c:otherwise>
+                            </c:choose>
+                            <span class="chip ${peerReviewStatusColor}">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+                                    ${storyBook.peerReviewStatus}
+                                </a>
+                            </span>
+                        </p>
 
                         <div class="divider" style="margin: 1em 0;"></div>
 
@@ -124,6 +181,25 @@
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                         <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
                         <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                        <p>
+                            <fmt:message key="peer.review" />: 
+                            <c:choose>
+                                <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                </c:when>
+                                <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+                                    <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="peerReviewStatusColor" value="" />
+                                </c:otherwise>
+                            </c:choose>
+                            <span class="chip ${peerReviewStatusColor}">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+                                    ${storyBook.peerReviewStatus}
+                                </a>
+                            </span>
+                        </p>
 
                         <div class="divider" style="margin: 1em 0;"></div>
 
@@ -152,6 +228,25 @@
                             <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
                             <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
                             <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                            <p>
+                                <fmt:message key="peer.review" />: 
+                                <c:choose>
+                                    <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+                                        <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                    </c:when>
+                                    <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+                                        <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="peerReviewStatusColor" value="" />
+                                    </c:otherwise>
+                                </c:choose>
+                                <span class="chip ${peerReviewStatusColor}">
+                                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+                                        ${storyBook.peerReviewStatus}
+                                    </a>
+                                </span>
+                            </p>
 
                             <div class="divider" style="margin: 1em 0;"></div>
 

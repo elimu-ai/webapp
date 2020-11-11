@@ -3,6 +3,23 @@
 </content:title>
 
 <content:section cssId="storyBookEditPage">
+    <c:choose>
+        <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+        </c:when>
+        <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="peerReviewStatusColor" value="" />
+        </c:otherwise>
+    </c:choose>
+    <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
+        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+            <fmt:message key="peer.review" />: ${storyBook.peerReviewStatus}
+        </a>
+    </div>
+    
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="storyBook">
@@ -106,13 +123,15 @@
     
     <div class="divider" style="margin: 2em 0;"></div>
     
-    <c:if test="${not empty storyBookContributionEvents}">
+    <%-- Display peer review form if the current contributor is not the same as that of the latest contribution event --%>
+    <c:if test="${(not empty storyBookContributionEvents) 
+                  && (storyBookContributionEvents[0].contributor.id != contributor.id)}">
         <a name="peer-review"></a>
-        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀️️️️</h5>
+        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
         
         <form action="<spring:url value='/content/storybook-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
-                Do you approve the quality of this storybook?
+                <fmt:message key="do.you.approve.quality.of.this.storybook?" />
             </p>
             
             <input type="hidden" name="storyBookContributionEventId" value="${storyBookContributionEvents[0].id}" />
@@ -162,9 +181,9 @@
         <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    <fmt:message key="revision" /> #${storyBookContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:message key="revision" />: #${storyBookContributionEvent.revisionNumber}
+                    <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <div class="chip">
                     <img src="<spring:url value='${storyBookContributionEvent.contributor.imageUrl}' />" alt="${storyBookContributionEvent.contributor.firstName}" /> 

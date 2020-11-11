@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.ReadingLevel;
 
 @Entity
@@ -34,6 +35,9 @@ public class StoryBook extends Content {
 //    @NotNull
     @Enumerated(EnumType.STRING)
     private ReadingLevel readingLevel;
+    
+    @Enumerated(EnumType.STRING)
+    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
 
     public String getTitle() {
         return title;
@@ -81,5 +85,13 @@ public class StoryBook extends Content {
 
     public void setReadingLevel(ReadingLevel readingLevel) {
         this.readingLevel = readingLevel;
+    }
+
+    public PeerReviewStatus getPeerReviewStatus() {
+        return peerReviewStatus;
+    }
+
+    public void setPeerReviewStatus(PeerReviewStatus peerReviewStatus) {
+        this.peerReviewStatus = peerReviewStatus;
     }
 }

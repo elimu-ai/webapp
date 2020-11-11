@@ -124,14 +124,14 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
     border-radius: 4px;
 }
 .peerReviewEvent[data-approved="true"] {
-    background-color: #e0f2f1;
-    border-left: 5px solid #009688;
-    color: #009688;
+    background-color: #e0f2f1; /* teal lighten-5 */
+    border-left: 5px solid #009688; /* teal */
+    color: #009688; /* teal */
 }
 .peerReviewEvent[data-approved="false"] {
-    background-color: #ffccbc;
-    border-left: 5px solid #f4511e;
-    color: #f4511e;
+    background-color: #ffccbc; /* deep-orange lighten-4 */
+    border-left: 5px solid #f4511e; /* deep-orange darken-1 */
+    color: #f4511e; /* deep-orange darken-1 */
 }
 .peerReviewEvent .peerReviewStatus {
     font-weight: bold;

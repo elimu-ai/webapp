@@ -382,6 +382,7 @@
         attributionUrl varchar(1000),
         contentLicense varchar(255),
         description varchar(1024),
+        peerReviewStatus varchar(255),
         readingLevel varchar(255),
         title varchar(255),
         coverImage_id bigint,
