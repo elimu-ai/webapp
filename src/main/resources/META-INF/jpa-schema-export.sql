@@ -211,7 +211,6 @@
         lastName varchar(255),
         motivation varchar(1000),
         occupation varchar(255),
-        providerIdFacebook varchar(255),
         providerIdGitHub varchar(255),
         providerIdGoogle varchar(255),
         registrationTime timestamp,
