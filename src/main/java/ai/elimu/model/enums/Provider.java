@@ -1,8 +1,10 @@
 package ai.elimu.model.enums;
 
+/**
+ * Sign-On Providers.
+ */
 public enum Provider {
     
-    FACEBOOK,
     GITHUB,
     GOOGLE,
     OFFLINE,
