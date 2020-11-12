@@ -32,39 +32,37 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 32,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/linux-tux-administrator-animal-154544/","computer","/image/32.jpg",JPG
 33,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://commons.wikimedia.org/wiki/User:Didym/Mobile_upload/2014_January_17-21#/media/File:Rubber_Duck_in_Parramatta_Park.jpg","duck","/image/33.jpg",JPG
 34,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/owl-animal-bird-funny-family-158418/","family","/image/34.jpg",JPG
-346,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=8398","m_asp_55_too_small_page_02_image_0001","/image/346.png",PNG
-347,image/png,null,"null","ASP_175_I_like_to_read_Page_01_Image_0001","/image/347.png",PNG
-352,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://bookdash.org/mogaus-gift-lorato-trok-rofhiwa-mudau-shadrach-munene/","mogau's gift - cover","/image/352.jpg",JPG
-360,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=918","a very tall man - cover","/image/360.png",PNG
-361,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9748","azizi the doll - cover","/image/361.png",PNG
-362,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2839","breakfast - cover","/image/362.png",PNG
-363,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=913","bunty and bubbly - cover","/image/363.png",PNG
-364,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9680","domestic animals - cover","/image/364.png",PNG
-365,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=16631","feet, hands and head! - cover","/image/365.jpg",JPG
-366,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9879","friends - cover","/image/366.png",PNG
-367,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=14186","our day at the zoo - cover","/image/367.jpg",JPG
-368,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12926","ah! football! - cover","/image/368.png",PNG
-369,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=14893","annoying mosquito - cover","/image/369.jpg",JPG
-370,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12083","big blue bus - cover","/image/370.png",PNG
-371,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2183","dancing - cover","/image/371.png",PNG
-372,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=11142","day we saw the rainbow - cover","/image/372.jpg",JPG
-373,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13025","keeper and his nursery - cover","/image/373.jpg",JPG
-381,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13618","feelings - cover","/image/381.png",PNG
-382,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9797","girl called norah - cover","/image/382.jpg",JPG
-383,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12898","go home pig - cover","/image/383.png",PNG
-384,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13623","goat and hyena's knife - cover","/image/384.jpg",JPG
-385,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=6380","goat, dog and cow - cover","/image/385.png",PNG
+532,image/jpg,null,"null","storybook-68-ch-5","/image/532.jpg",JPG
+533,image/jpg,null,"null","storybook-68-ch-6","/image/533.jpg",JPG
+534,image/jpg,null,"null","storybook-68-ch-7","/image/534.jpg",JPG
+535,image/jpg,null,"null","storybook-68-ch-8","/image/535.jpg",JPG
+536,image/jpg,null,"null","storybook-68-ch-9","/image/536.jpg",JPG
+537,image/jpg,null,"null","storybook-68-ch-10","/image/537.jpg",JPG
+538,image/jpg,null,"null","storybook-68-ch-11","/image/538.jpg",JPG
+539,image/jpg,null,"null","storybook-68-ch-12","/image/539.jpg",JPG
+540,image/jpg,null,"null","storybook-68-ch-13","/image/540.jpg",JPG
+541,image/jpg,null,"null","storybook-69-cover","/image/541.jpg",JPG
+543,image/jpg,null,"null","storybook-69-ch-2","/image/543.jpg",JPG
+544,image/jpg,null,"null","storybook-69-ch-3","/image/544.jpg",JPG
+545,image/jpg,null,"null","storybook-69-ch-4","/image/545.jpg",JPG
+546,image/jpg,null,"null","storybook-69-ch-5","/image/546.jpg",JPG
+547,image/jpg,null,"null","storybook-69-ch-6","/image/547.jpg",JPG
+548,image/jpg,null,"null","storybook-69-ch-7","/image/548.jpg",JPG
+549,image/jpg,null,"null","storybook-69-ch-8","/image/549.jpg",JPG
+550,image/jpg,null,"null","storybook-69-ch-9","/image/550.jpg",JPG
+551,image/jpg,null,"null","storybook-69-ch-10","/image/551.jpg",JPG
+552,image/jpg,null,"null","storybook-69-ch-11","/image/552.jpg",JPG
+553,image/jpg,null,"null","storybook-69-ch-12","/image/553.jpg",JPG
+554,image/jpg,null,"null","storybook-69-ch-13","/image/554.jpg",JPG
+555,image/jpg,null,"null","storybook-69-ch-14","/image/555.jpg",JPG
+556,image/jpg,null,"null","storybook-69-ch-15","/image/556.jpg",JPG
+557,image/jpg,null,"null","storybook-69-ch-16","/image/557.jpg",JPG
+558,image/jpg,null,"null","storybook-69-ch-17","/image/558.jpg",JPG
+559,image/jpg,null,"null","storybook-69-ch-18","/image/559.jpg",JPG
 341,image/gif,null,"http://imgur.com/oOzBj75","rose","/image/341.gif",GIF
 342,image/gif,null,"http://giphy.com/gifs/creative-coding-rXwx17SkEBJmw","circle","/image/342.gif",GIF
 343,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://animalphotos.info/a/2009/02/10/a-beautiful-young-mandarin-duck-paddling-lazily-in-the-green-waters/#more-6792","mandarin duck","/image/343.jpg",JPG
 344,image/gif,null,"http://giphy.com/gifs/happy-weird-ItWzWnWSjPsbe","snow fox","/image/344.gif",GIF
-386,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=13529","goat, dog, and cow with tv - cover","/image/386.png",PNG
-387,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2134","letter to mum - cover","/image/387.png",PNG
-388,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=14304","life in my village","/image/388.png",PNG
-389,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10242","lion is sick","/image/389.jpg",JPG
-390,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10446","my first pair of shoes - cover","/image/390.png",PNG
-391,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=9545","old rooster - cover","/image/391.png",PNG
-392,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2269","too small - cover","/image/392.png",PNG
 48,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/tree-green-stem-crown-nature-305234/","tree","/image/48.jpg",JPG
 49,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","ant","/image/49.png",PNG
 50,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","arm","/image/50.png",PNG
@@ -214,14 +212,6 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 194,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","zebra","/image/194.png",PNG
 195,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","zip","/image/195.png",PNG
 196,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","zoo","/image/196.png",PNG
-393,image/jpg,null,"null","39e5eb1614ea195e9e377f63f561aa8c","/image/393.jpg",JPG
-394,image/jpg,null,"null","badd7122aa68d2a339e359f03c03cc51","/image/394.jpg",JPG
-395,image/jpeg,CREATIVE_COMMONS_CC_BY,"https://bookdash.org/sea-nicola-rijsdijk-julie-smith-belton-lauren-nel/","the sea - cover","/image/395.jpg",JPG
-396,image/jpg,null,"null","Hindi_na_Ako_natatakot_coverImage","/image/396.jpg",JPG
-400,image/jpg,null,"null","99e3d3af620881991813482fb602a1f6","/image/400.jpg",JPG
-401,image/jpg,null,"null","15e689585b33730512e002e532f57ea9","/image/401.jpg",JPG
-402,image/jpg,null,"null","344cb250fee33bdabf4aff6603eb3506","/image/402.jpg",JPG
-403,image/jpg,null,"null","e27c3643f7ba51abda1f02f07549577c","/image/403.jpg",JPG
 410,image/jpg,null,"null","storybook-61-cover","/image/410.jpg",JPG
 412,image/jpg,null,"null","storybook-61-ch-2","/image/412.jpg",JPG
 413,image/jpg,null,"null","storybook-61-ch-3","/image/413.jpg",JPG
@@ -255,17 +245,72 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 442,image/jpg,null,"null","storybook-62-ch-11","/image/442.jpg",JPG
 443,image/jpg,null,"null","storybook-62-ch-12","/image/443.jpg",JPG
 445,image/jpg,null,"null","storybook-63-cover","/image/445.jpg",JPG
-450,image/jpg,null,"null","storybook-64-cover","/image/450.jpg",JPG
+531,image/jpg,null,"null","storybook-68-ch-4","/image/531.jpg",JPG
 447,image/jpg,null,"null","storybook-63-ch-2","/image/447.jpg",JPG
 448,image/jpg,null,"null","storybook-63-ch-3","/image/448.jpg",JPG
 449,image/gif,null,"null","storybook-63-ch-4","/image/449.gif",GIF
-452,image/jpg,null,"null","storybook-64-ch-2","/image/452.jpg",JPG
-453,image/jpg,null,"null","storybook-64-ch-3","/image/453.jpg",JPG
-454,image/jpg,null,"null","storybook-64-ch-4","/image/454.jpg",JPG
-455,image/jpg,null,"null","storybook-64-ch-5","/image/455.jpg",JPG
-456,image/jpg,null,"null","storybook-64-ch-6","/image/456.jpg",JPG
-457,image/jpg,null,"null","storybook-64-ch-7","/image/457.jpg",JPG
-458,image/jpg,null,"null","storybook-64-ch-8","/image/458.jpg",JPG
-459,image/jpg,null,"null","storybook-64-ch-9","/image/459.jpg",JPG
-460,image/jpg,null,"null","storybook-64-ch-10","/image/460.jpg",JPG
-461,image/jpg,null,"null","storybook-64-ch-11","/image/461.jpg",JPG
+530,image/jpg,null,"null","storybook-68-ch-3","/image/530.jpg",JPG
+529,image/jpg,null,"null","storybook-68-ch-2","/image/529.jpg",JPG
+528,image/jpg,null,"null","storybook-68-cover","/image/528.jpg",JPG
+466,image/jpg,null,"null","storybook-65-cover","/image/466.jpg",JPG
+467,image/jpg,null,"null","storybook-65-ch-2","/image/467.jpg",JPG
+468,image/jpg,null,"null","storybook-65-ch-3","/image/468.jpg",JPG
+469,image/jpg,null,"null","storybook-65-ch-4","/image/469.jpg",JPG
+470,image/jpg,null,"null","storybook-65-ch-5","/image/470.jpg",JPG
+471,image/jpg,null,"null","storybook-65-ch-6","/image/471.jpg",JPG
+472,image/jpg,null,"null","storybook-65-ch-7","/image/472.jpg",JPG
+473,image/jpg,null,"null","storybook-65-ch-8","/image/473.jpg",JPG
+474,image/jpg,null,"null","storybook-65-ch-9","/image/474.jpg",JPG
+475,image/jpg,null,"null","storybook-65-ch-10","/image/475.jpg",JPG
+476,image/jpg,null,"null","storybook-65-ch-11","/image/476.jpg",JPG
+477,image/jpg,null,"null","storybook-65-ch-12","/image/477.jpg",JPG
+478,image/jpg,null,"null","storybook-65-ch-13","/image/478.jpg",JPG
+479,image/jpg,null,"null","storybook-65-ch-14","/image/479.jpg",JPG
+480,image/jpg,null,"null","storybook-65-ch-15","/image/480.jpg",JPG
+481,image/jpg,null,"null","storybook-65-ch-16","/image/481.jpg",JPG
+482,image/jpg,null,"null","storybook-65-ch-17","/image/482.jpg",JPG
+483,image/jpg,null,"null","storybook-65-ch-18","/image/483.jpg",JPG
+484,image/jpg,null,"null","storybook-65-ch-19","/image/484.jpg",JPG
+485,image/jpg,null,"null","storybook-65-ch-20","/image/485.jpg",JPG
+486,image/jpg,null,"null","storybook-65-ch-21","/image/486.jpg",JPG
+487,image/jpg,null,"null","storybook-65-ch-22","/image/487.jpg",JPG
+488,image/jpg,null,"null","storybook-65-ch-23","/image/488.jpg",JPG
+489,image/jpg,null,"null","storybook-65-ch-24","/image/489.jpg",JPG
+490,image/jpg,null,"null","storybook-65-ch-25","/image/490.jpg",JPG
+491,image/jpg,null,"null","storybook-65-ch-26","/image/491.jpg",JPG
+492,image/jpg,null,"null","storybook-65-ch-27","/image/492.jpg",JPG
+493,image/jpg,null,"null","storybook-65-ch-28","/image/493.jpg",JPG
+494,image/jpg,null,"null","storybook-66-cover","/image/494.jpg",JPG
+495,image/jpg,null,"null","storybook-66-ch-2","/image/495.jpg",JPG
+496,image/jpg,null,"null","storybook-66-ch-3","/image/496.jpg",JPG
+497,image/jpg,null,"null","storybook-66-ch-4","/image/497.jpg",JPG
+498,image/jpg,null,"null","storybook-66-ch-5","/image/498.jpg",JPG
+499,image/jpg,null,"null","storybook-66-ch-6","/image/499.jpg",JPG
+500,image/jpg,null,"null","storybook-66-ch-7","/image/500.jpg",JPG
+501,image/jpg,null,"null","storybook-66-ch-8","/image/501.jpg",JPG
+502,image/jpg,null,"null","storybook-66-ch-9","/image/502.jpg",JPG
+503,image/jpg,null,"null","storybook-66-ch-10","/image/503.jpg",JPG
+504,image/jpg,null,"null","storybook-66-ch-11","/image/504.jpg",JPG
+505,image/jpg,null,"null","storybook-66-ch-12","/image/505.jpg",JPG
+506,image/jpg,null,"null","storybook-66-ch-13","/image/506.jpg",JPG
+507,image/jpg,null,"null","storybook-66-ch-14","/image/507.jpg",JPG
+508,image/jpg,null,"null","storybook-67-cover","/image/508.jpg",JPG
+509,image/jpg,null,"null","storybook-67-ch-1","/image/509.jpg",JPG
+510,image/jpg,null,"null","storybook-67-ch-2","/image/510.jpg",JPG
+511,image/jpg,null,"null","storybook-67-ch-3","/image/511.jpg",JPG
+512,image/jpg,null,"null","storybook-67-ch-4","/image/512.jpg",JPG
+513,image/jpg,null,"null","storybook-67-ch-5","/image/513.jpg",JPG
+514,image/jpg,null,"null","storybook-67-ch-6","/image/514.jpg",JPG
+515,image/jpg,null,"null","storybook-67-ch-7","/image/515.jpg",JPG
+516,image/jpg,null,"null","storybook-67-ch-8","/image/516.jpg",JPG
+517,image/jpg,null,"null","storybook-67-ch-9","/image/517.jpg",JPG
+518,image/jpg,null,"null","storybook-67-ch-10","/image/518.jpg",JPG
+519,image/jpg,null,"null","storybook-67-ch-11","/image/519.jpg",JPG
+520,image/jpg,null,"null","storybook-67-ch-12","/image/520.jpg",JPG
+521,image/jpg,null,"null","storybook-67-ch-13","/image/521.jpg",JPG
+522,image/jpg,null,"null","storybook-67-ch-14","/image/522.jpg",JPG
+523,image/jpg,null,"null","storybook-67-ch-15","/image/523.jpg",JPG
+524,image/jpg,null,"null","storybook-67-ch-16","/image/524.jpg",JPG
+525,image/jpg,null,"null","storybook-67-ch-17","/image/525.jpg",JPG
+526,image/jpg,null,"null","storybook-67-ch-18","/image/526.jpg",JPG
+527,image/jpg,null,"null","storybook-67-ch-19","/image/527.jpg",JPG
