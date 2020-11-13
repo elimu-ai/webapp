@@ -28,7 +28,6 @@ import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.ReadingLevel;
 import ai.elimu.model.enums.Language;
-import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
@@ -211,10 +210,6 @@ public class StoryBookEditController {
         } else {
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
-            if (storyBook.getPeerReviewStatus() == null) {
-                // TODO: remove this once every storybook in the TEST/PROD database has been given a peer review status
-                storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
-            }
             storyBookDao.update(storyBook);
             
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();

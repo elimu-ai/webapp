@@ -8,6 +8,7 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Role;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +79,7 @@ public class StoryBookParagraphEditController {
             StoryBook storyBook = storyBookParagraph.getStoryBookChapter().getStoryBook();
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
+            storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
             storyBookDao.update(storyBook);
             
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
