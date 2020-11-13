@@ -1,5 +1,5 @@
 id,text,allophone_ids,allophone_values_ipa,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
-36,na,"[55,41]","[""n"",""ɑ""]",49,,,,
+36,na,"[55,41]","[""n"",""ɑ""]",54,,,,
 44,maji,"[46,41,66,43]","[""m"",""ɑ"",""ʄ"",""i""]",9,NOUN,PERFECT,,
 12,moja,"[80,46,44,69,41]","[""ˈ"",""m"",""ɔ"",""j"",""ɑ""]",8,,,,
 45,mpira,"[46,49,43,62,41]","[""m"",""p"",""i"",""ɾ"",""ɑ""]",8,NOUN,PERFECT,,
