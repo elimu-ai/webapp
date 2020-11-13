@@ -20,8 +20,6 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 40,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/wood-board-wooden-plank-panel-601830/","kuni","/image/40.jpg",JPG
 41,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","mguu","/image/41.png",PNG
 42,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/snake-python-serpent-green-reptile-312561/","nyoka","/image/42.jpg",JPG
-348,image/png,null,"null","ASP_175_I_like_to_read_Page_01_Image_0001","/image/348.png",PNG
-349,image/png,null,"null","M_ASP_55_Too_small_Page_02_Image_0001","/image/349.png",PNG
 536,image/jpg,null,"null","storybook-68-ch-16","/image/536.jpg",JPG
 534,image/jpg,null,"null","storybook-68-ch-11","/image/534.jpg",JPG
 535,image/jpg,null,"null","storybook-68-ch-13","/image/535.jpg",JPG
@@ -30,13 +28,6 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 531,image/jpg,null,"null","storybook-68-ch-4","/image/531.jpg",JPG
 532,image/jpg,null,"null","storybook-68-ch-6","/image/532.jpg",JPG
 533,image/jpg,null,"null","storybook-68-ch-8","/image/533.jpg",JPG
-374,image/png,CREATIVE_COMMONS_CC_BY,"null","hyena_and_raven__page_13_image_0001","/image/374.png",PNG
-375,image/png,CREATIVE_COMMONS_CC_BY,"null","m_asp_22 crocodile_in_my_body_page_01_image_00011","/image/375.png",PNG
-376,image/png,CREATIVE_COMMONS_CC_BY,"null","fruit_page_10_image_0001","/image/376.png",PNG
-377,image/jpeg,CREATIVE_COMMONS_CC_BY,"null","mimi na familia yangu","/image/377.jpg",JPG
-378,image/jpeg,CREATIVE_COMMONS_CC_BY,"null","mtoto aliyeleta amani","/image/378.jpg",JPG
-379,image/png,CREATIVE_COMMONS_CC_BY,"null","m_asp_1-strange_baby_page_01_image_00011","/image/379.png",PNG
-380,image/jpeg,CREATIVE_COMMONS_CC_BY,"null","asb_mtu_na_simba_cover","/image/380.jpg",JPG
 44,image/png,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/boy-afro-american-african-face-man-303687/","kichwa","/image/44.png",PNG
 45,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/hut-rustic-rural-village-cabin-311917/","nyumba","/image/45.jpg",JPG
 46,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/sheepfold-stable-barn-thatched-roof-1655767/","paa","/image/46.jpg",JPG
@@ -174,13 +165,6 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 336,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","zoo","/image/336.png",PNG
 337,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","televisheni","/image/337.png",PNG
 338,image/png,BSD_2_CLAUSE,"https://github.com/Norad-Eduapp4syria/Norad-Eduapp4syria","nguo","/image/338.png",PNG
-397,image/jpg,null,"null","39e5eb1614ea195e9e377f63f561aa8c","/image/397.jpg",JPG
-398,image/jpg,null,"null","badd7122aa68d2a339e359f03c03cc51","/image/398.jpg",JPG
-399,image/jpg,null,"null","Hindi_na_Ako_natatakot_coverImage","/image/399.jpg",JPG
-404,image/jpg,null,"null","99e3d3af620881991813482fb602a1f6","/image/404.jpg",JPG
-405,image/jpg,null,"null","15e689585b33730512e002e532f57ea9","/image/405.jpg",JPG
-406,image/jpg,null,"null","344cb250fee33bdabf4aff6603eb3506","/image/406.jpg",JPG
-407,image/jpg,null,"null","e27c3643f7ba51abda1f02f07549577c","/image/407.jpg",JPG
 458,image/jpg,null,"null","storybook-63-ch-13","/image/458.jpg",JPG
 452,image/jpg,null,"null","storybook-63-ch-7","/image/452.jpg",JPG
 453,image/jpg,null,"null","storybook-63-ch-8","/image/453.jpg",JPG
