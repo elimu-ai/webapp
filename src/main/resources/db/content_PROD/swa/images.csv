@@ -22,15 +22,14 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 42,image/jpeg,CREATIVE_COMMONS_CC_BY_SA,"https://pixabay.com/en/snake-python-serpent-green-reptile-312561/","nyoka","/image/42.jpg",JPG
 348,image/png,null,"null","ASP_175_I_like_to_read_Page_01_Image_0001","/image/348.png",PNG
 349,image/png,null,"null","M_ASP_55_Too_small_Page_02_Image_0001","/image/349.png",PNG
-350,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=10555","ajali mbaya - cover","/image/350.jpg",JPG
-351,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2912","barua - cover","/image/351.png",PNG
-353,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=2526","barua kwa mama - cover","/image/353.png",PNG
-354,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12428","basi kubwa la bluu - cover","/image/354.png",PNG
-355,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=18399","fahali na punda - cover","/image/355.jpg",JPG
-356,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=12621","meno aina gani? - cover","/image/356.jpg",JPG
-357,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=16088","mpira wangu mwekundu - cover","/image/357.jpg",JPG
-358,image/png,CREATIVE_COMMONS_CC_BY_NC_ND,"http://www.americanuniversitynigeria.org","ninaweza! - cover","/image/358.png",PNG
-359,image/png,CREATIVE_COMMONS_CC_BY,"http://www.africanstorybook.org/reader.php?id=7618","mtoto wa tembo mdadisi - cover","/image/359.png",PNG
+536,image/jpg,null,"null","storybook-68-ch-16","/image/536.jpg",JPG
+534,image/jpg,null,"null","storybook-68-ch-11","/image/534.jpg",JPG
+535,image/jpg,null,"null","storybook-68-ch-13","/image/535.jpg",JPG
+528,image/jpg,null,"null","storybook-68-cover","/image/528.jpg",JPG
+530,image/jpg,null,"null","storybook-68-ch-3","/image/530.jpg",JPG
+531,image/jpg,null,"null","storybook-68-ch-4","/image/531.jpg",JPG
+532,image/jpg,null,"null","storybook-68-ch-6","/image/532.jpg",JPG
+533,image/jpg,null,"null","storybook-68-ch-8","/image/533.jpg",JPG
 374,image/png,CREATIVE_COMMONS_CC_BY,"null","hyena_and_raven__page_13_image_0001","/image/374.png",PNG
 375,image/png,CREATIVE_COMMONS_CC_BY,"null","m_asp_22 crocodile_in_my_body_page_01_image_00011","/image/375.png",PNG
 376,image/png,CREATIVE_COMMONS_CC_BY,"null","fruit_page_10_image_0001","/image/376.png",PNG
@@ -182,7 +181,6 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 405,image/jpg,null,"null","15e689585b33730512e002e532f57ea9","/image/405.jpg",JPG
 406,image/jpg,null,"null","344cb250fee33bdabf4aff6603eb3506","/image/406.jpg",JPG
 407,image/jpg,null,"null","e27c3643f7ba51abda1f02f07549577c","/image/407.jpg",JPG
-408,image/jpg,null,"null","storybook-59-cover-image","/image/408.jpg",JPG
 458,image/jpg,null,"null","storybook-63-ch-13","/image/458.jpg",JPG
 452,image/jpg,null,"null","storybook-63-ch-7","/image/452.jpg",JPG
 453,image/jpg,null,"null","storybook-63-ch-8","/image/453.jpg",JPG
