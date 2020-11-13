@@ -8,6 +8,7 @@ import ai.elimu.model.content.StoryBookParagraph;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import java.util.Calendar;
@@ -60,6 +61,7 @@ public class StoryBookParagraphDeleteController {
         StoryBook storyBook = storyBookParagraphToBeDeleted.getStoryBookChapter().getStoryBook();
         storyBook.setTimeLastUpdate(Calendar.getInstance());
         storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
+        storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
         storyBookDao.update(storyBook);
         
         StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
