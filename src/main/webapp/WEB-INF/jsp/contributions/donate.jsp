@@ -313,7 +313,7 @@
                 </a>
             </c:when>
             <c:otherwise>
-                <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
+                <a href="https://client.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
                     View all transactions <i class="material-icons">launch</i>
                 </a>
             </c:otherwise>
@@ -339,7 +339,7 @@
                         <a href="https://rinkeby.aragon.org/#/elimuai/0x7a2711f547696fff3fc1788b9295c5464e4a7edd/" target="_blank">Finance App</a> 
                     </c:when>
                     <c:otherwise>
-                        <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">Finance App</a> 
+                        <a href="https://client.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">Finance App</a> 
                     </c:otherwise>
                 </c:choose>
                 and press "Connect account"
@@ -377,7 +377,7 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/"
+                    <a href="https://client.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/"
                             target="_blank"
                             class="btn-large waves-effect waves-light deep-purple lighten-2">
                         Donate now

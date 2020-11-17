@@ -15,7 +15,7 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="https://mainnet.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">
+                    <a href="https://client.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">
                         elimu.ai Community Token (ECT)
                     </a>
                 </c:otherwise>
@@ -238,7 +238,7 @@
                 </a>
             </c:when>
             <c:otherwise>
-                <a href="https://mainnet.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
+                <a href="https://client.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
                     View all transactions <i class="material-icons">launch</i>
                 </a>
             </c:otherwise>
