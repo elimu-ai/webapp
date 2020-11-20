@@ -20,6 +20,11 @@ Then, to run the application, type:
 
 Next, to access the application in your browser, go to [http://localhost:8080/webapp](http://localhost:8080/webapp)
 
+### Debug 🪲
+
+To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
+
+
 ## Test server
 
     http://<language>.test.elimu.ai
