@@ -1,6 +1,7 @@
 package ai.elimu.web.content.number;
 
 import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.NumberContributionEventDao;
 import java.util.Calendar;
 import java.util.List;
 import javax.validation.Valid;
@@ -11,8 +12,12 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.NumberContributionEvent;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +38,9 @@ public class NumberEditController {
     private NumberDao numberDao;
     
     @Autowired
+    private NumberContributionEventDao numberContributionEventDao;
+    
+    @Autowired
     private WordDao wordDao;
     
     @Autowired
@@ -47,6 +55,8 @@ public class NumberEditController {
         Number number = numberDao.read(id);
         model.addAttribute("number", number);
         
+        model.addAttribute("timeStart", System.currentTimeMillis());
+        
         model.addAttribute("words", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
 
@@ -55,6 +65,8 @@ public class NumberEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             @Valid Number number,
             BindingResult result,
             Model model) {
@@ -68,6 +80,8 @@ public class NumberEditController {
         if (result.hasErrors()) {
             model.addAttribute("number", number);
             
+            model.addAttribute("timeStart", System.currentTimeMillis());
+            
             model.addAttribute("words", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             
@@ -76,6 +90,15 @@ public class NumberEditController {
             number.setTimeLastUpdate(Calendar.getInstance());
             number.setRevisionNumber(number.getRevisionNumber() + 1);
             numberDao.update(number);
+            
+            NumberContributionEvent numberContributionEvent = new NumberContributionEvent();
+            numberContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            numberContributionEvent.setTime(Calendar.getInstance());
+            numberContributionEvent.setNumber(number);
+            numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
+            numberContributionEvent.setComment(request.getParameter("contributionComment"));
+            numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            numberContributionEventDao.create(numberContributionEvent);
             
             return "redirect:/content/number/list#" + number.getId();
         }
