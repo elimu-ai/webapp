@@ -59,6 +59,8 @@ public class NumberEditController {
         
         model.addAttribute("words", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
+        
+        model.addAttribute("numberContributionEvents", numberContributionEventDao.readAll(number));
 
         return "content/number/edit";
     }
@@ -80,10 +82,12 @@ public class NumberEditController {
         if (result.hasErrors()) {
             model.addAttribute("number", number);
             
-            model.addAttribute("timeStart", System.currentTimeMillis());
+            model.addAttribute("timeStart", request.getParameter("timeStart"));
             
             model.addAttribute("words", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
+            
+            model.addAttribute("numberContributionEvents", numberContributionEventDao.readAll(number));
             
             return "content/number/edit";
         } else {

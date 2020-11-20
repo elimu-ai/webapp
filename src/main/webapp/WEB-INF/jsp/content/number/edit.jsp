@@ -98,6 +98,22 @@
             <a href="<spring:url value='/content/number/delete/${number.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
+    
+    <div id="contributionEvents" class="collection">
+        <c:forEach var="numberContributionEvent" items="${numberContributionEvents}">
+            <div class="collection-item">
+                <span class="badge">
+                    <fmt:formatDate value="${numberContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                </span>
+                <div class="chip">
+                    <img src="<spring:url value='${numberContributionEvent.contributor.imageUrl}' />" alt="${numberContributionEvent.contributor.firstName}" /> 
+                    <c:out value="${numberContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${numberContributionEvent.contributor.lastName}" />
+                </div>
+                <blockquote><c:out value="${numberContributionEvent.comment}" /></blockquote>
+            </div>
+        </c:forEach>
+    </div>
 </content:section>
 
 <content:aside>

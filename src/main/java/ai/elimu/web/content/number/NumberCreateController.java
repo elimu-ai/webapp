@@ -78,7 +78,7 @@ public class NumberCreateController {
         if (result.hasErrors()) {
             model.addAttribute("number", number);
             
-            model.addAttribute("timeStart", System.currentTimeMillis());
+            model.addAttribute("timeStart", request.getParameter("timeStart"));
             
             model.addAttribute("words", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
