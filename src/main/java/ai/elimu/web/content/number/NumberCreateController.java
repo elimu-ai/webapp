@@ -37,13 +37,13 @@ public class NumberCreateController {
     private NumberDao numberDao;
     
     @Autowired
+    private NumberContributionEventDao numberContributionEventDao;
+    
+    @Autowired
     private WordDao wordDao;
     
     @Autowired
     private EmojiDao emojiDao;
-    
-    @Autowired
-    private NumberContributionEventDao numberContributionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
