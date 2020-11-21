@@ -9,6 +9,7 @@ import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.WordContributionEvent;
@@ -19,6 +20,7 @@ import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.LetterGson;
 import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
+import ai.elimu.model.v2.gson.content.NumberGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
@@ -130,6 +132,27 @@ public class JpaToGsonConverter {
             wordGson.setWordType(word.getWordType());
             
             return wordGson;
+        }
+    }
+    
+    public static NumberGson getNumberGson(Number number) {
+        if (number == null) {
+            return null;
+        } else {
+            NumberGson numberGson = new NumberGson();
+            
+            // BaseEntity
+            numberGson.setId(number.getId());
+            
+            // Content
+            numberGson.setRevisionNumber(number.getRevisionNumber());
+            numberGson.setUsageCount(number.getUsageCount());
+            
+            // Number
+            numberGson.setValue(number.getValue());
+            numberGson.setSymbol(number.getSymbol());
+            
+            return numberGson;
         }
     }
     
