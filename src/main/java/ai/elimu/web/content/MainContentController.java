@@ -13,6 +13,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
@@ -75,6 +76,9 @@ public class MainContentController {
     private WordContributionEventDao wordContributionEventDao;
     
     @Autowired
+    private NumberContributionEventDao numberContributionEventDao;
+    
+    @Autowired
     private ContributorDao contributorDao;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -131,6 +135,15 @@ public class MainContentController {
             wordContributionsCountMap.put(contributorWithContributions.getId(), wordContributionEventDao.readCount(contributorWithContributions));
         }
         model.addAttribute("wordContributionsCountMap", wordContributionsCountMap);
+        
+        List<Contributor> contributorsWithNumberContributions = contributorDao.readAllWithNumberContributions();
+        logger.info("contributorsWithNumberContributions.size(): " + contributorsWithNumberContributions.size());
+        model.addAttribute("contributorsWithNumberContributions", contributorsWithNumberContributions);
+        Map<Long, Long> numberContributionsCountMap = new HashMap<>();
+        for (Contributor contributorWithContributions : contributorsWithNumberContributions) {
+            numberContributionsCountMap.put(contributorWithContributions.getId(), numberContributionEventDao.readCount(contributorWithContributions));
+        }
+        model.addAttribute("numberContributionsCountMap", numberContributionsCountMap);
     	
         return "content/main";
     }

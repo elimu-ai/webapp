@@ -9,6 +9,7 @@
             <tag:formErrors modelAttribute="number" />
             
             <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -83,12 +84,35 @@
                     <a href="<spring:url value='/content/word/create' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                </div>
+            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
             <a href="<spring:url value='/content/number/delete/${number.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
+    </div>
+    
+    <div id="contributionEvents" class="collection">
+        <c:forEach var="numberContributionEvent" items="${numberContributionEvents}">
+            <div class="collection-item">
+                <span class="badge">
+                    <fmt:formatDate value="${numberContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                </span>
+                <div class="chip">
+                    <img src="<spring:url value='${numberContributionEvent.contributor.imageUrl}' />" alt="${numberContributionEvent.contributor.firstName}" /> 
+                    <c:out value="${numberContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${numberContributionEvent.contributor.lastName}" />
+                </div>
+                <blockquote><c:out value="${numberContributionEvent.comment}" /></blockquote>
+            </div>
+        </c:forEach>
     </div>
 </content:section>
 
