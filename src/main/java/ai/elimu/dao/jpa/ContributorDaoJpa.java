@@ -80,4 +80,13 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             "WHERE c IN (SELECT contributor FROM WordContributionEvent)")
             .getResultList();
     }
+    
+    @Override
+    public List<Contributor> readAllWithNumberContributions() throws DataAccessException {
+        return em.createQuery(
+            "SELECT c " +
+            "FROM Contributor c " +
+            "WHERE c IN (SELECT contributor FROM NumberContributionEvent)")
+            .getResultList();
+    }
 }

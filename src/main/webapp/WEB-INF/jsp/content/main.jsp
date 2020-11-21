@@ -164,6 +164,20 @@
         
         <div class="divider" style="margin: 1em 0;"></div>
         
+        <b><fmt:message key="numbers" /></b><br />
+        <ol style="list-style-type: inherit;">
+            <c:forEach var="contributorWithNumberContributions" items="${contributorsWithNumberContributions}">
+                <li>
+                    <div class="chip">
+                        <img src="<spring:url value='${contributorWithNumberContributions.imageUrl}' />" alt="${contributorWithNumberContributions.firstName}" /> 
+                        <c:out value="${contributorWithNumberContributions.firstName}" />&nbsp;<c:out value="${contributorWithNumberContributions.lastName}" />
+                    </div> (${numberContributionsCountMap[contributorWithNumberContributions.id]})
+                </li>
+            </c:forEach>
+        </ol>
+        
+        <div class="divider" style="margin: 1em 0;"></div>
+        
         <a href="<spring:url value='/contributions/most-recent' />">Most recent contributions</a>
     </div>
     
