@@ -8,12 +8,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +44,9 @@ public class ContributorRestController {
         
         String providerIdGoogle = contributorJSONObject.getString("providerIdGoogle");
         String email = contributorJSONObject.getString("email");
+        String firstName = contributorJSONObject.getString("firstName");
+        String lastName = contributorJSONObject.getString("lastName");
+        String imageUrl = contributorJSONObject.getString("imageUrl");
         
         JSONObject jsonObject = new JSONObject();
         
@@ -58,6 +59,9 @@ public class ContributorRestController {
             contributor.setRegistrationTime(Calendar.getInstance());
             contributor.setProviderIdGoogle(providerIdGoogle);
             contributor.setEmail(email);
+            contributor.setFirstName(firstName);
+            contributor.setLastName(lastName);
+            contributor.setImageUrl(imageUrl);
             contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
             contributorDao.create(contributor);
             
@@ -70,8 +74,7 @@ public class ContributorRestController {
                 String from = "elimu.ai <info@elimu.ai>";
                 String subject = "Welcome to the elimu.ai Community";
                 String title = "Welcome!";
-                String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
-                String htmlText = "<p>Hi, " + firstName + "</p>";
+                String htmlText = "<p>Hi, " + contributor.getFirstName() + "</p>";
                 htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai Community. We are glad to see you join us!</p>";
                 htmlText += "<h2>Purpose</h2>";
                 htmlText += "<p>The purpose of elimu.ai is to provide <i>every child</i> with access to quality basic education.</p>";
@@ -90,6 +93,9 @@ public class ContributorRestController {
         } else {
             // Return error message saying that the Contributor has already been created
             logger.warn("The Contributor has already been stored in the database");
+            
+            // Update existing contributor with latest account details fetched from provider
+            // TODO
 
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "The Contributor has already been stored in the database");
