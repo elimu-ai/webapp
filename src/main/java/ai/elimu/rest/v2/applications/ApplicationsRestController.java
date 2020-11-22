@@ -1,4 +1,4 @@
-package ai.elimu.rest.v2.application;
+package ai.elimu.rest.v2.applications;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
