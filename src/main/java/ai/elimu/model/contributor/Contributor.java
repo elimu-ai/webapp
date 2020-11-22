@@ -31,8 +31,13 @@ public class Contributor extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar registrationTime;
     
-    private String providerIdGoogle, providerIdGitHub;
+//    @Column(unique=true)
+    private String providerIdGoogle;
     
+//    @Column(unique=true)
+    private String providerIdGitHub;
+    
+//    @Column(unique=true)
     private String usernameGitHub;
     
     private String imageUrl;

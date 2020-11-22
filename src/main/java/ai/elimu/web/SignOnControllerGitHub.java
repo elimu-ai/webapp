@@ -195,7 +195,7 @@ public class SignOnControllerGitHub {
                 htmlText += "<p>The word \"elimu\" is Swahili for \"education\". We believe that a quality basic education is the right of every child no matter her social or geographical background.</p>";
                 htmlText += "<h2>How?</h2>";
                 htmlText += "<p>With your help, this is what we aim to achieve:</p>";
-                htmlText += "<p><blockquote>\"The elimu.ai Community develops open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
+                htmlText += "<p><blockquote>\"The elimu.ai Community develops free and open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
                 htmlText += "<p><img src=\"https://gallery.mailchimp.com/1a69583fdeec7d1888db043c0/images/72b31d67-58fd-443e-a6be-3ef2095cfe3b.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
                 htmlText += "<h2>Chat</h2>";
                 htmlText += "<p>In Slack you can chat with the other elimu.ai Community members:</p>";
