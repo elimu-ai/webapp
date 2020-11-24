@@ -28,7 +28,6 @@ import java.util.concurrent.ExecutionException;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.util.ConfigHelper;
-import ai.elimu.util.Mailer;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
@@ -180,26 +179,6 @@ public class SignOnControllerGitHub {
                     return "redirect:/content/contributor/add-email";
                 }
                 contributorDao.create(contributor);
-                
-                // Send welcome e-mail
-                String to = contributor.getEmail();
-                String from = "elimu.ai <info@elimu.ai>";
-                String subject = "Welcome to the elimu.ai Community";
-                String title = "Welcome!";
-                String firstName = StringUtils.isBlank(contributor.getFirstName()) ? "" : contributor.getFirstName();
-                String htmlText = "<p>Hi, " + firstName + "</p>";
-                htmlText += "<p>Thank you very much for registering as a contributor to the elimu.ai Community. We are glad to see you join us!</p>";
-                htmlText += "<h2>Purpose</h2>";
-                htmlText += "<p>The purpose of elimu.ai is to provide <i>every child</i> with access to quality basic education.</p>";
-                htmlText += "<h2>Why?</h2>";
-                htmlText += "<p>The word \"elimu\" is Swahili for \"education\". We believe that a quality basic education is the right of every child no matter her social or geographical background.</p>";
-                htmlText += "<h2>How?</h2>";
-                htmlText += "<p>With your help, this is what we aim to achieve:</p>";
-                htmlText += "<p><blockquote>\"The elimu.ai Community develops free and open source software for teaching children the basics of reading, writing and arithmetic.\"</blockquote></p>";
-                htmlText += "<p><img src=\"https://gallery.mailchimp.com/1a69583fdeec7d1888db043c0/images/72b31d67-58fd-443e-a6be-3ef2095cfe3b.jpg\" alt=\"\" style=\"width: 564px; max-width: 100%;\" /></p>";
-                htmlText += "<h2>Chat</h2>";
-                htmlText += "<p>In Slack you can chat with the other elimu.ai Community members:</p>";
-                Mailer.sendHtmlWithButton(to, null, from, subject, title, htmlText, "Open chat", "https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw");
             } else {
                 // Contributor already exists in database
                 
