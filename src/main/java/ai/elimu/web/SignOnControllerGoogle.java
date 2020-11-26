@@ -7,7 +7,6 @@ import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
@@ -15,16 +14,16 @@ import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Role;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import com.github.scribejava.apis.GoogleApi20;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuth20Service;
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
 import org.apache.logging.log4j.LogManager;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.Google2Api;
-import org.scribe.exceptions.OAuthException;
-import org.scribe.model.OAuthRequest;
-import org.scribe.model.Response;
-import org.scribe.model.Token;
-import org.scribe.model.Verb;
-import org.scribe.model.Verifier;
-import org.scribe.oauth.OAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,13 +32,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * See https://console.developers.google.com/apis
+ * <p />
+ * 
+ * Note that authentication for the same Google accounts are done in the Crowdsource 
+ * app: https://github.com/elimu-ai/crowdsource/tree/master/app/src/main/java/ai/elimu/crowdsource/authentication
  */
 @Controller
 public class SignOnControllerGoogle {
 	
-    private OAuthService oAuthService;
-
-    private Token requestToken;
+    private static final String PROTECTED_RESOURCE_URL = "https://www.googleapis.com/oauth2/v3/userinfo";
+    
+    private OAuth20Service oAuth20Service;
+    
+    private final String secretState = "secret_" + new Random().nextInt(999_999);
 
     private Logger logger = LogManager.getLogger();
     
@@ -50,29 +55,29 @@ public class SignOnControllerGoogle {
     public String handleAuthorization(HttpServletRequest request) throws IOException {
         logger.info("handleAuthorization");
 		
-        String apiKey = "108974530651-3g9r40r5s7it6p9vjh2e2eplgmm1to0d.apps.googleusercontent.com";
-        String apiSecret = "mGlUmzxL2eP69HdVmPKtVLR7";
+        String clientId = "108974530651-3g9r40r5s7it6p9vjh2e2eplgmm1to0d.apps.googleusercontent.com";
+        String clientSecret = "mGlUmzxL2eP69HdVmPKtVLR7";
         String baseUrl = "http://localhost:8080/webapp";
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-            apiKey = "108974530651-fskde869tac7imherk2k516shfuvij76.apps.googleusercontent.com";
-            apiSecret = ConfigHelper.getProperty("google.api.secret");
+            clientId = "108974530651-fskde869tac7imherk2k516shfuvij76.apps.googleusercontent.com";
+            clientSecret = ConfigHelper.getProperty("google.api.secret");
             baseUrl = "http://" + request.getServerName();
         } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-            apiKey = "108974530651-k68pccps2jb88fllofpcf8ht356v08e4.apps.googleusercontent.com";
-            apiSecret = ConfigHelper.getProperty("google.api.secret");
+            clientId = "108974530651-k68pccps2jb88fllofpcf8ht356v08e4.apps.googleusercontent.com";
+            clientSecret = ConfigHelper.getProperty("google.api.secret");
             baseUrl = "http://" + request.getServerName();
         }
-
-        oAuthService = new ServiceBuilder()
-                .provider(Google2Api.class) // See https://gist.github.com/2465453
-                .apiKey(apiKey)
-                .apiSecret(apiSecret)
+        
+        oAuth20Service = new ServiceBuilder(clientId)
+                .apiSecret(clientSecret)
+                .defaultScope("email profile") // See "OAuth Consent Screen" at https://console.developers.google.com/apis/
                 .callback(baseUrl + "/sign-on/google/callback")
-                .scope("email https://www.googleapis.com/auth/plus.login") // https://developers.google.com/+/web/api/rest/oauth#login-scopes
-                .build();
+                .build(GoogleApi20.instance());
 
         logger.info("Fetching the Authorization URL...");
-        String authorizationUrl = oAuthService.getAuthorizationUrl(requestToken);
+        String authorizationUrl = oAuth20Service.createAuthorizationUrlBuilder()
+                .state(secretState)
+                .build();
         logger.info("Got the Authorization URL!");
 
         return "redirect:" + authorizationUrl;
@@ -81,67 +86,63 @@ public class SignOnControllerGoogle {
     @RequestMapping(value="/sign-on/google/callback", method=RequestMethod.GET)
     public String handleCallback(HttpServletRequest request, Model model) {
         logger.info("handleCallback");
-
-        if (request.getParameter("error") != null) {
-            return "redirect:/sign-on?error=" + request.getParameter("error");
+        
+        String state = request.getParameter("state");
+        logger.debug("state: " + state);
+        if (!secretState.equals(state)) {
+            return "redirect:/sign-on?error=state_mismatch";
         } else {
-            String verifierParam = request.getParameter("code");
-            logger.debug("verifierParam: " + verifierParam);
-            Verifier verifier = new Verifier(verifierParam);
+            String code = request.getParameter("code");
+            logger.debug("code: " + code);
+            
             String responseBody = null;
+            
+            logger.info("Trading the Authorization Code for an Access Token...");
             try {
-                Token accessToken = oAuthService.getAccessToken(requestToken, verifier);
+                OAuth2AccessToken accessToken = oAuth20Service.getAccessToken(code);
                 logger.debug("accessToken: " + accessToken);
-
-                OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, "https://www.googleapis.com/oauth2/v1/userinfo");
-                oAuthService.signRequest(accessToken, oAuthRequest);
-                Response response = oAuthRequest.send();
+                logger.info("Got the Access Token!");
+                
+                // Access the protected resource
+                OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
+                oAuth20Service.signRequest(accessToken, oAuthRequest);
+                Response response = oAuth20Service.execute(oAuthRequest);
                 responseBody = response.getBody();
                 logger.info("response.getCode(): " + response.getCode());
-                logger.info("response.getBody(): " + responseBody);
-            } catch (OAuthException e) {
-                logger.error(e);
-                return "redirect:/sign-on?error=" + e.getMessage();
+                logger.info("response.getBody(): " +response.getBody());
+            } catch (IOException | InterruptedException | ExecutionException ex) {
+                logger.error(ex);
+                return "redirect:/sign-on?error=" + ex.getMessage();
             }
-
+            
+            JSONObject jsonObject = new JSONObject(responseBody);
+            logger.info("jsonObject: " + jsonObject);
+            
             Contributor contributor = new Contributor();
-            try {
-                JSONObject jsonObject = new JSONObject(responseBody);
-                logger.info("jsonObject: " + jsonObject);
-
-                if (jsonObject.has("email")) {
-                    // TODO: validate e-mail
-                    contributor.setEmail(jsonObject.getString("email"));
-                }
-                if (jsonObject.has("id")) {
-                    contributor.setProviderIdGoogle(jsonObject.getString("id"));
-                }
-                if (jsonObject.has("picture")) {
-                    contributor.setImageUrl(jsonObject.getString("picture"));
-                }
-                if (jsonObject.has("given_name")) {
-                    contributor.setFirstName(jsonObject.getString("given_name"));
-                }
-                if (jsonObject.has("family_name")) {
-                    contributor.setLastName(jsonObject.getString("family_name"));
-                }
-            } catch (JSONException e) {
-                logger.error(e);
+            contributor.setEmail(jsonObject.getString("email"));
+            contributor.setProviderIdGoogle(jsonObject.getString("sub"));
+            contributor.setImageUrl(jsonObject.getString("picture"));
+            if (jsonObject.has("given_name")) {
+                contributor.setFirstName(jsonObject.getString("given_name"));
             }
-
+            if (jsonObject.has("family_name")) {
+                contributor.setLastName(jsonObject.getString("family_name"));
+            }
+            
+            // Look for existing Contributor with matching e-mail address
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
+            if (existingContributor == null) {
+                // Look for existing Contributor with matching Google id
+                existingContributor = contributorDao.readByProviderIdGoogle(contributor.getProviderIdGoogle());
+            }
+            logger.info("existingContributor: " + existingContributor);
             if (existingContributor == null) {
                 // Store new Contributor in database
                 contributor.setRegistrationTime(Calendar.getInstance());
-                if (contributor.getEmail().endsWith("@elimu.ai")) {
-                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.ADMIN, Role.ANALYST, Role.CONTRIBUTOR)));
-                } else {
-                    contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
-                }
+                contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
                 contributorDao.create(contributor);
             } else {
                 // Contributor already exists in database
-                
                 // Update existing contributor with latest values fetched from provider
                 if (StringUtils.isNotBlank(contributor.getProviderIdGoogle())) {
                     existingContributor.setProviderIdGoogle(contributor.getProviderIdGoogle());
@@ -149,19 +150,23 @@ public class SignOnControllerGoogle {
                 if (StringUtils.isNotBlank(contributor.getImageUrl())) {
                     existingContributor.setImageUrl(contributor.getImageUrl());
                 }
-                // TODO: firstName/lastName
+                if (StringUtils.isNotBlank(contributor.getFirstName())) {
+                    existingContributor.setFirstName(contributor.getFirstName());
+                }
+                if (StringUtils.isNotBlank(contributor.getLastName())) {
+                    existingContributor.setLastName(contributor.getLastName());
+                }
                 contributorDao.update(existingContributor);
                 
-                // Contributor registered previously
                 contributor = existingContributor;
             }
 
             // Authenticate
             new CustomAuthenticationManager().authenticateUser(contributor);
-
+            
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
-
+            
             return "redirect:/content";
         }
     }
