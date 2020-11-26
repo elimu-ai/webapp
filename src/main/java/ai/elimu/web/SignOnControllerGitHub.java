@@ -147,6 +147,10 @@ public class SignOnControllerGitHub {
 
             // Look for existing Contributor with matching e-mail address
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
+            if (existingContributor == null) {
+                // Look for existing Contributor with matching GitHub id
+                existingContributor = contributorDao.readByProviderIdGitHub(contributor.getProviderIdGitHub());
+            }
             logger.info("existingContributor: " + existingContributor);
             if (existingContributor == null) {
                 // Store new Contributor in database
