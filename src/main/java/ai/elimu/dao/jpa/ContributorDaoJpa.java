@@ -40,6 +40,21 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             return null;
         }
     }
+    
+    @Override
+    public Contributor readByProviderIdGoogle(String id) throws DataAccessException {
+        try {
+            return (Contributor) em.createQuery(
+                "SELECT c " +
+                "FROM Contributor c " +
+                "WHERE c.providerIdGoogle = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("Contributor with Google id \"" + id + "\" was not found");
+            return null;
+        }
+    }
 
     @Override
     public List<Contributor> readAllOrderedDesc() throws DataAccessException {
