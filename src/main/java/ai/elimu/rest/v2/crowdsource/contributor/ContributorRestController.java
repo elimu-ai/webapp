@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -19,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Stores a Contributor in the database.
+ * <p />
+ * 
+ * Note that authentication for the same Google accounts are done in the 
+ * {@link SignOnControllerGoogle}.
  */
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/contributor", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -49,7 +54,7 @@ public class ContributorRestController {
         
         JSONObject jsonObject = new JSONObject();
         
-        // Check if the Contributor has already been stored in the database
+        // Look for existing Contributor with matching e-mail address
         Contributor existingContributor = contributorDao.read(email);
         logger.info("existingContributor: " + existingContributor);
         if (existingContributor == null) {
@@ -70,8 +75,20 @@ public class ContributorRestController {
             // Return error message saying that the Contributor has already been created
             logger.warn("The Contributor has already been stored in the database");
             
-            // Update existing contributor with latest account details fetched from provider
-            // TODO
+            // Update existing contributor with latest values fetched from provider
+            if (StringUtils.isNotBlank(providerIdGoogle)) {
+                existingContributor.setProviderIdGoogle(providerIdGoogle);
+            }
+            if (StringUtils.isNotBlank(imageUrl)) {
+                existingContributor.setImageUrl(imageUrl);
+            }
+            if (StringUtils.isNotBlank(firstName)) {
+                existingContributor.setFirstName(firstName);
+            }
+            if (StringUtils.isNotBlank(lastName)) {
+                existingContributor.setLastName(lastName);
+            }
+            contributorDao.update(existingContributor);
 
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "The Contributor has already been stored in the database");

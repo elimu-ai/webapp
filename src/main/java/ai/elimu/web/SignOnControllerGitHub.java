@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONException;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
@@ -148,10 +147,6 @@ public class SignOnControllerGitHub {
 
             // Look for existing Contributor with matching e-mail address
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
-            if (existingContributor == null) {
-                // Look for existing Contributor with matching GitHub id
-                existingContributor = contributorDao.readByProviderIdGitHub(contributor.getProviderIdGitHub());
-            }
             logger.info("existingContributor: " + existingContributor);
             if (existingContributor == null) {
                 // Store new Contributor in database

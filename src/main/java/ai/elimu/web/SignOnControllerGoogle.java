@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * <p />
  * 
  * Note that authentication for the same Google accounts are done in the Crowdsource 
- * app: https://github.com/elimu-ai/crowdsource/tree/master/app/src/main/java/ai/elimu/crowdsource/authentication
+ * app. See {@link ContributorRestController}.
  */
 @Controller
 public class SignOnControllerGoogle {
@@ -131,10 +131,6 @@ public class SignOnControllerGoogle {
             
             // Look for existing Contributor with matching e-mail address
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
-            if (existingContributor == null) {
-                // Look for existing Contributor with matching Google id
-                existingContributor = contributorDao.readByProviderIdGoogle(contributor.getProviderIdGoogle());
-            }
             logger.info("existingContributor: " + existingContributor);
             if (existingContributor == null) {
                 // Store new Contributor in database

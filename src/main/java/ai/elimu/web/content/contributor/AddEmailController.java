@@ -45,6 +45,7 @@ public class AddEmailController {
             return "content/contributor/add-email";
         }
         
+        // Look for existing Contributor with matching e-mail address
         Contributor existingContributor = contributorDao.read(email);
         if (existingContributor != null) {
             // TODO: display error message
