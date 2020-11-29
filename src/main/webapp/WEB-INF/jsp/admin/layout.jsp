@@ -45,7 +45,8 @@
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
                         <c:choose>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')
-                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                            || fn:contains(pageContext.request.requestURI, '/admin/application-version/')
+                                            && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/admin/application/list' />"><fmt:message key="applications" /></a>
                             </c:when>
                         </c:choose>
