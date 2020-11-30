@@ -7,9 +7,12 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.Calendar;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,12 +67,15 @@ public class StoryBookChapterCreateController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
+            HttpSession session,
             @PathVariable Long storyBookId,
             @Valid StoryBookChapter storyBookChapter,
             BindingResult result,
             Model model
     ) {
     	logger.info("handleSubmit");
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookChapter", storyBookChapter);
@@ -89,7 +95,13 @@ public class StoryBookChapterCreateController {
             storyBookDao.update(storyBook);
             
             // Store contribution event
-            // TODO
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            storyBookContributionEvent.setContributor(contributor);
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookContributionEvent.setComment("Created storybook chapter (🤖 auto-generated comment)");
+            storyBookContributionEventDao.create(storyBookContributionEvent);
             
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
         }
