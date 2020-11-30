@@ -45,7 +45,7 @@ public class StoryBookParagraphDeleteController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         logger.info("contributor.getRoles(): " + contributor.getRoles());
-        if (!contributor.getRoles().contains(Role.ADMIN)) {
+        if (!contributor.getRoles().contains(Role.EDITOR)) {
             // TODO: return HttpStatus.FORBIDDEN
             throw new IllegalAccessError("Missing role for access");
         }
