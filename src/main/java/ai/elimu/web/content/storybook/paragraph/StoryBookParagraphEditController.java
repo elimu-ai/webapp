@@ -9,7 +9,6 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Role;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -62,11 +61,6 @@ public class StoryBookParagraphEditController {
     	logger.info("handleSubmit");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
-        logger.info("contributor.getRoles(): " + contributor.getRoles());
-        if (!contributor.getRoles().contains(Role.ADMIN)) {
-            // TODO: return HttpStatus.FORBIDDEN
-            throw new IllegalAccessError("Missing role for access");
-        }
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
