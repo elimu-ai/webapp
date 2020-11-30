@@ -75,6 +75,12 @@ public class StoryBookChapterCreateController {
         } else {
             storyBookChapterDao.create(storyBookChapter);
             
+            // Update the storybook's metadata
+            // TODO
+            
+            // Store contribution event
+            // TODO
+            
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
         }
     }
