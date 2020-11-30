@@ -98,6 +98,7 @@ public class StoryBookChapterDeleteController {
         storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
         storyBookDao.update(storyBook);
         
+        // Store contribution event
         StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
         storyBookContributionEvent.setContributor(contributor);
         storyBookContributionEvent.setTime(Calendar.getInstance());

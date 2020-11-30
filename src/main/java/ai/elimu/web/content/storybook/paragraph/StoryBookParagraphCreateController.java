@@ -1,16 +1,20 @@
 package ai.elimu.web.content.storybook.paragraph;
 
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +33,9 @@ public class StoryBookParagraphCreateController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao; 
@@ -58,11 +65,14 @@ public class StoryBookParagraphCreateController {
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpServletRequest request,
+            HttpSession session,
             @Valid StoryBookParagraph storyBookParagraph,
             BindingResult result,
             Model model
     ) {
     	logger.info("handleSubmit");
+        
+        Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
@@ -79,7 +89,14 @@ public class StoryBookParagraphCreateController {
             storyBookDao.update(storyBook);
             
             // Store contribution event
-            // TODO
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            storyBookContributionEvent.setContributor(contributor);
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+            storyBookContributionEvent.setComment("Created storybook paragraph (🤖 auto-generated comment)");
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEventDao.create(storyBookContributionEvent);
             
             return "redirect:/content/storybook/edit/" + 
                     storyBookParagraph.getStoryBookChapter().getStoryBook().getId() + 

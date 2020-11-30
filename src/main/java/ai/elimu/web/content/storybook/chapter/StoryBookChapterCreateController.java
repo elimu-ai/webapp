@@ -2,6 +2,7 @@ package ai.elimu.web.content.storybook.chapter;
 
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
@@ -28,6 +29,9 @@ public class StoryBookChapterCreateController {
     
     @Autowired
     private StoryBookDao storyBookDao;
+    
+    @Autowired
+    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
