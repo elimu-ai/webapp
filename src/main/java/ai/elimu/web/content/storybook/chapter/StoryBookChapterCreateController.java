@@ -1,19 +1,21 @@
-package ai.elimu.web.content.storybook.paragraph;
+package ai.elimu.web.content.storybook.chapter;
 
+import ai.elimu.dao.ImageDao;
+import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
-import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.content.StoryBookChapter;
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.Calendar;
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/storybook/paragraph/edit")
-public class StoryBookParagraphEditController {
+@RequestMapping("/content/storybook/edit/{storyBookId}/chapter/create")
+public class StoryBookChapterCreateController {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -35,26 +37,39 @@ public class StoryBookParagraphEditController {
     private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
-    private StoryBookParagraphDao storyBookParagraphDao;
+    private StoryBookChapterDao storyBookChapterDao;
+    
+    @Autowired
+    private ImageDao imageDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String handleRequest(
+            @PathVariable Long storyBookId,
+            Model model
+    ) {
     	logger.info("handleRequest");
         
-        StoryBookParagraph storyBookParagraph = storyBookParagraphDao.read(id);
-        logger.info("storyBookParagraph: " + storyBookParagraph);
-        model.addAttribute("storyBookParagraph", storyBookParagraph);
+        StoryBookChapter storyBookChapter = new StoryBookChapter();
         
-        model.addAttribute("timeStart", System.currentTimeMillis());
+        StoryBook storyBook = storyBookDao.read(storyBookId);
+        storyBookChapter.setStoryBook(storyBook);
         
-        return "content/storybook/paragraph/edit";
+        List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
+        storyBookChapter.setSortOrder(storyBookChapters.size());
+        
+        model.addAttribute("storyBookChapter", storyBookChapter);
+        
+        List<Image> images = imageDao.readAllOrdered();
+        model.addAttribute("images", images);
+        
+        return "content/storybook/chapter/create";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            HttpServletRequest request,
             HttpSession session,
-            @Valid StoryBookParagraph storyBookParagraph,
+            @PathVariable Long storyBookId,
+            @Valid StoryBookChapter storyBookChapter,
             BindingResult result,
             Model model
     ) {
@@ -63,14 +78,17 @@ public class StoryBookParagraphEditController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         if (result.hasErrors()) {
-            model.addAttribute("storyBookParagraph", storyBookParagraph);
-            model.addAttribute("timeStart", System.currentTimeMillis());
-            return "content/storybook/paragraph/edit";
+            model.addAttribute("storyBookChapter", storyBookChapter);
+
+            List<Image> images = imageDao.readAllOrdered();
+            model.addAttribute("images", images);
+            
+            return "content/storybook/chapter/create";
         } else {
-            storyBookParagraphDao.update(storyBookParagraph);
+            storyBookChapterDao.create(storyBookChapter);
             
             // Update the storybook's metadata
-            StoryBook storyBook = storyBookParagraph.getStoryBookChapter().getStoryBook();
+            StoryBook storyBook = storyBookChapter.getStoryBook();
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
             storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
@@ -82,13 +100,10 @@ public class StoryBookParagraphEditController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment("Edited storybook paragraph (🤖 auto-generated comment)");
-            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEvent.setComment("Created storybook chapter (🤖 auto-generated comment)");
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
-            return "redirect:/content/storybook/edit/" + 
-                    storyBookParagraph.getStoryBookChapter().getStoryBook().getId() + 
-                    "#ch-id-" + storyBookParagraph.getStoryBookChapter().getId();
+            return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
         }
     }
 }

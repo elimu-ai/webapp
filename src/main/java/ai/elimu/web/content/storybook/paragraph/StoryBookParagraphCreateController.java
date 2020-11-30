@@ -1,15 +1,18 @@
 package ai.elimu.web.content.storybook.paragraph;
 
+import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -23,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/storybook/paragraph/edit")
-public class StoryBookParagraphEditController {
+@RequestMapping("/content/storybook/edit/{storyBookId}/chapter/{storyBookChapterId}/paragraph/create")
+public class StoryBookParagraphCreateController {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -35,22 +38,31 @@ public class StoryBookParagraphEditController {
     private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
+    private StoryBookChapterDao storyBookChapterDao; 
+    
+    @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String handleRequest(Model model, @PathVariable Long storyBookChapterId) {
     	logger.info("handleRequest");
+         
+        StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
         
-        StoryBookParagraph storyBookParagraph = storyBookParagraphDao.read(id);
-        logger.info("storyBookParagraph: " + storyBookParagraph);
+        StoryBookChapter storyBookChapter = storyBookChapterDao.read(storyBookChapterId);
+        storyBookParagraph.setStoryBookChapter(storyBookChapter);
+        
+        List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
+        storyBookParagraph.setSortOrder(storyBookParagraphs.size());
+        
         model.addAttribute("storyBookParagraph", storyBookParagraph);
         
         model.addAttribute("timeStart", System.currentTimeMillis());
         
-        return "content/storybook/paragraph/edit";
+        return "content/storybook/paragraph/create";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             HttpServletRequest request,
             HttpSession session,
@@ -64,10 +76,10 @@ public class StoryBookParagraphEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
-            model.addAttribute("timeStart", System.currentTimeMillis());
-            return "content/storybook/paragraph/edit";
+            model.addAttribute("timeStart", request.getParameter("timeStart"));
+            return "content/storybook/paragraph/create";
         } else {
-            storyBookParagraphDao.update(storyBookParagraph);
+            storyBookParagraphDao.create(storyBookParagraph);
             
             // Update the storybook's metadata
             StoryBook storyBook = storyBookParagraph.getStoryBookChapter().getStoryBook();
@@ -82,7 +94,7 @@ public class StoryBookParagraphEditController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment("Edited storybook paragraph (🤖 auto-generated comment)");
+            storyBookContributionEvent.setComment("Created storybook paragraph (🤖 auto-generated comment)");
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
             

@@ -118,8 +118,23 @@
                     </c:forEach>
                 </p>
             </c:forEach>
+            
+            <div class="center">
+                <a href="<spring:url value="/content/storybook/edit/${storyBook.id}/chapter/${storyBookChapter.id}/paragraph/create" />" 
+                   class="btn-floating waves-effect waves-light grey"
+                   style="margin-top: 1rem;"
+                   title="<fmt:message key="add.storybook.paragraph" />">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
         </div>
     </c:forEach>
+    
+    <div class="center">
+        <a href="<spring:url value="/content/storybook/edit/${storyBook.id}/chapter/create" />" class="btn waves-effect waves-light grey">
+            <fmt:message key="add.storybook.chapter" /> <i class="material-icons right">add</i>
+        </a>
+    </div>
     
     <div class="divider" style="margin: 2em 0;"></div>
     

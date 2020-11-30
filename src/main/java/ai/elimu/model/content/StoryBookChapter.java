@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class StoryBookChapter extends BaseEntity {
     
+//    @NotNull
     @ManyToOne
     private StoryBook storyBook;
     
