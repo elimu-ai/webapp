@@ -1,10 +1,14 @@
 package ai.elimu.web.content.storybook.paragraph;
 
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookDao;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.enums.PeerReviewStatus;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -22,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StoryBookParagraphCreateController {
     
     private final Logger logger = LogManager.getLogger();
+    
+    @Autowired
+    private StoryBookDao storyBookDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao; 
@@ -65,7 +72,11 @@ public class StoryBookParagraphCreateController {
             storyBookParagraphDao.create(storyBookParagraph);
             
             // Update the storybook's metadata
-            // TODO
+            StoryBook storyBook = storyBookParagraph.getStoryBookChapter().getStoryBook();
+            storyBook.setTimeLastUpdate(Calendar.getInstance());
+            storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
+            storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
+            storyBookDao.update(storyBook);
             
             // Store contribution event
             // TODO

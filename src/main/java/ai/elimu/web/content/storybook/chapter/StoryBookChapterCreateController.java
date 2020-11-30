@@ -6,6 +6,8 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.enums.PeerReviewStatus;
+import java.util.Calendar;
 import java.util.List;
 import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
@@ -76,7 +78,11 @@ public class StoryBookChapterCreateController {
             storyBookChapterDao.create(storyBookChapter);
             
             // Update the storybook's metadata
-            // TODO
+            StoryBook storyBook = storyBookChapter.getStoryBook();
+            storyBook.setTimeLastUpdate(Calendar.getInstance());
+            storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
+            storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
+            storyBookDao.update(storyBook);
             
             // Store contribution event
             // TODO
