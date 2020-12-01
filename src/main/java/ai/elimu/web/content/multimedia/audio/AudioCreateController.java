@@ -36,10 +36,16 @@ public class AudioCreateController {
     private AudioDao audioDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
+    public String handleRequest(Model model, @RequestParam(required = false) String autoFillTranscription) {
     	logger.info("handleRequest");
         
         Audio audio = new Audio();
+        
+        // Pre-fill the Audio's transcription (if the user arrived from /content/word/edit/{id}/)
+        if (StringUtils.isNotBlank(autoFillTranscription)) {
+            audio.setTranscription(autoFillTranscription);
+        }
+        
         model.addAttribute("audio", audio);
         
         model.addAttribute("contentLicenses", ContentLicense.values());
