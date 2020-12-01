@@ -73,7 +73,7 @@ public class WordCreateController {
         
         Word word = new Word();
         
-        // Pre-fill the Word's autoFillText (if the user arrived from /content/storybook/edit/{id}/)
+        // Pre-fill the Word's text (if the user arrived from /content/storybook/edit/{id}/)
         if (StringUtils.isNotBlank(autoFillText)) {
             word.setText(autoFillText);
         }
