@@ -23,6 +23,14 @@ public class ImageDeleteController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
+        // Before deleting, check if the image is used in any StoryBooks
+        // TODO
+        
+        // Before deleting, remove any labels
+        // TODO
+        
+        // Delete the image from the database
+        // TODO
 //        Image image = imageDao.read(id);
 //        imageDao.delete(image);
 
