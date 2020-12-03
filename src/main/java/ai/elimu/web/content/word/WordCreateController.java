@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
@@ -66,6 +67,9 @@ public class WordCreateController {
     
     @Autowired
     private WordContributionEventDao wordContributionEventDao;
+    
+    @Autowired
+    private AudioDao audioDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, @RequestParam(required = false) String autoFillText) {
@@ -76,6 +80,8 @@ public class WordCreateController {
         // Pre-fill the Word's text (if the user arrived from /content/storybook/edit/{id}/)
         if (StringUtils.isNotBlank(autoFillText)) {
             word.setText(autoFillText);
+            
+            model.addAttribute("audio", audioDao.read(word.getText()));
         }
         
         model.addAttribute("word", word);
@@ -117,6 +123,9 @@ public class WordCreateController {
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
+            
+            model.addAttribute("audio", audioDao.read(word.getText()));
+            
             return "content/word/create";
         } else {
             word.setTimeLastUpdate(Calendar.getInstance());

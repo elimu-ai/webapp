@@ -86,6 +86,7 @@ public class WordEditController {
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
         model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
+        
         model.addAttribute("audio", audioDao.read(word.getText()));
         
         // Look up variants of the same wordByTextMatch
@@ -130,8 +131,20 @@ public class WordEditController {
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
+            
             model.addAttribute("audio", audioDao.read(word.getText()));
+            
+            // Look up variants of the same wordByTextMatch
             model.addAttribute("wordInflections", wordDao.readInflections(word));
+
+            // Look up Multimedia content that has been labeled with this Word
+            // TODO: labeled Audios
+            List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word);
+            model.addAttribute("labeledEmojis", labeledEmojis);
+            List<Image> labeledImages = imageDao.readAllLabeled(word);
+            model.addAttribute("labeledImages", labeledImages);
+            // TODO: labeled Videos
+            
             return "content/word/edit";
         } else {
             word.setTimeLastUpdate(Calendar.getInstance());
