@@ -333,6 +333,7 @@ public class StoryBookCreateFromEPubController {
             storyBookDao.update(storyBook);
             
             // Store the StoryBookChapters in the database
+            int chapterSortOrder = 0;
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
                 storyBookChapter.setStoryBook(storyBook);
                 
@@ -365,6 +366,9 @@ public class StoryBookCreateFromEPubController {
                     continue;
                 }
                 
+                // Update the chapter's sort order (in case any of the previous chapters were excluded)
+                storyBookChapter.setSortOrder(chapterSortOrder);
+                
                 // Store the chapter's image (if any)
                 Image chapterImage = storyBookChapter.getImage();
                 if (chapterImage != null) {
@@ -375,6 +379,7 @@ public class StoryBookCreateFromEPubController {
                 // Only store the chapter if it has an image or at least one paragraph
                 if ((chapterImage != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
                     storyBookChapterDao.create(storyBookChapter);
+                    chapterSortOrder++;
                 }
                 
                 // Store the chapter's paragraphs in the database
