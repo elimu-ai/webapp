@@ -36,6 +36,7 @@
                 </div>
             </div>
         
+            <%--
             <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
@@ -110,6 +111,7 @@
                     <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
+            --%>
                 
             <div class="row">
                 <div class="col s12">
@@ -119,13 +121,15 @@
                         <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
                             <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
                             <div class="chip" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
-                                "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
-                                    <a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a>
-                                </c:forEach>" 
-                                → 
-                                /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
-                                    <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a>
-                                </c:forEach>/
+                                <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />">
+                                    "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
+                                        ${letter.text}
+                                    </c:forEach>" 
+                                    → 
+                                    /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
+                                        ${allophone.valueIpa}
+                                    </c:forEach>/
+                                </a>
                                 
                                 <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
                                     <i class="material-icons">clear</i>

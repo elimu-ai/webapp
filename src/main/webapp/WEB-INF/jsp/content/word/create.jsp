@@ -19,6 +19,41 @@
         
             <div class="row">
                 <div class="col s12">
+                    <label><fmt:message key="letters" /></label><br />
+                    
+                    <c:if test="${not empty word.text}">
+                        <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
+                        <div class="col s12 grey-text" style="font-size: 3em;">
+                            <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
+                                <c:set var="letterText" value="${fn:substring(word.text, status.index, status.index + 1)}" />
+                                <c:set var="matchingLetter" />
+                                <c:forEach var="letter" items="${letters}">
+                                    <c:if test="${letter.text eq letterText}">
+                                        <c:set var="matchingLetter" value="${letter}" />
+                                    </c:if>
+                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${empty matchingLetter}">
+                                        <c:out value="${letterText}" /><c:out value=" " />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="<spring:url value='/content/letter/edit/${matchingLetter.id}' />">
+                                            <c:if test="${status.index > 0}">&nbsp;</c:if>
+                                            <c:out value=" ${matchingLetter.text} " />&nbsp;
+                                        </a><c:if test="${matchingLetter.isDiacritic()}">&nbsp;&nbsp;</c:if>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </div>
+                    </c:if>
+                    
+                    <a href="<spring:url value='/content/letter/create' />" target="_blank"><fmt:message key="add.letter" /> <i class="material-icons">launch</i></a>
+                </div>
+            </div>
+        
+            <%--
+            <div class="row">
+                <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="selectedAllophonesContainer">
                         <c:forEach var="allophone" items="${word.allophones}">
@@ -91,6 +126,7 @@
                     <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
+            --%>
                 
             <div class="row">
                 <div class="col s12">
@@ -100,13 +136,15 @@
                         <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
                             <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
                             <div class="chip" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
-                                "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
-                                    <a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a>
-                                </c:forEach>" 
-                                → 
-                                /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
-                                    <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a>
-                                </c:forEach>/
+                                <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />">
+                                    "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
+                                        ${letter.text}
+                                    </c:forEach>" 
+                                    → 
+                                    /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
+                                        ${allophone.valueIpa}
+                                    </c:forEach>/
+                                </a>
                                 
                                 <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
                                     <i class="material-icons">clear</i>
