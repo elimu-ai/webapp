@@ -14,6 +14,7 @@ import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Syllable;
@@ -69,6 +70,9 @@ public class WordEditController {
     
     @Autowired
     private WordContributionEventDao wordContributionEventDao;
+    
+    @Autowired
+    private WordPeerReviewEventDao wordPeerReviewEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -85,7 +89,9 @@ public class WordEditController {
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
+        
         model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
+        model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
         
         model.addAttribute("audio", audioDao.read(word.getText()));
         
@@ -130,7 +136,9 @@ public class WordEditController {
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
+            
             model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
+            model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
             
             model.addAttribute("audio", audioDao.read(word.getText()));
             

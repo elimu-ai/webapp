@@ -3,6 +3,23 @@
 </content:title>
 
 <content:section cssId="wordEditPage">
+    <c:choose>
+        <c:when test="${word.peerReviewStatus == 'APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+        </c:when>
+        <c:when test="${word.peerReviewStatus == 'NOT_APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="peerReviewStatusColor" value="" />
+        </c:otherwise>
+    </c:choose>
+    <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
+        <a href="<spring:url value='/content/word/edit/${word.id}#contribution-events' />">
+            <fmt:message key="peer.review" />: ${word.peerReviewStatus}
+        </a>
+    </div>
+    
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="word">
@@ -246,6 +263,62 @@
         </form:form>
     </div>
     
+    <div class="divider" style="margin: 2em 0;"></div>
+    
+    <%-- Display peer review form if the current contributor is not the same as that of the latest contribution event --%>
+    <c:if test="${(not empty wordContributionEvents) 
+                  && (wordContributionEvents[0].contributor.id != contributor.id)}">
+        <a name="peer-review"></a>
+        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
+        
+        <form action="<spring:url value='/content/word-peer-review-event/create' />" method="POST" class="card-panel">
+            <p>
+                <fmt:message key="do.you.approve.quality.of.this.storybook?" />
+            </p>
+            
+            <input type="hidden" name="wordContributionEventId" value="${wordContributionEvents[0].id}" />
+            
+            <input type="radio" id="approved_true" name="approved" value="true" />
+            <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
+
+            <input type="radio" id="approved_false" name="approved" value="false" />
+            <label for="approved_false"><fmt:message key="no" /> (request changes)</label><br />
+            
+            <script>
+                $(function() {
+                    $('[name="approved"]').on('change', function() {
+                        console.info('[name="approved"] on change');
+                        
+                        var isApproved = $('#approved_true').is(':checked');
+                        console.info('isApproved: ' + isApproved);
+                        if (isApproved) {
+                            console.info('isApproved');
+                            $('#comment').removeAttr('required');
+                        } else {
+                            $('#comment').attr('required', 'required');
+                            console.info('!isApproved');
+                        }
+                        
+                        $('#peerReviewSubmitContainer').fadeIn();
+                    });
+                });
+            </script>
+            
+            <div id="peerReviewSubmitContainer" style="display: none;">
+                <label for="comment"><fmt:message key="comment" /></label>
+                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+
+                <button class="btn waves-effect waves-light" type="submit">
+                    <fmt:message key="submit" /> <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+        
+        <div class="divider" style="margin: 2em 0;"></div>
+    </c:if>
+    
+    <a name="contribution-events"></a>
+    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
             <div class="collection-item">
@@ -258,6 +331,40 @@
                     <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
                 </div>
                 <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+                
+                <%-- List peer reviews below each contribution event --%>
+                <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">
+                    <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
+                        <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                            <div class="col s4">
+                                <div class="chip">
+                                    <img src="<spring:url value='${wordPeerReviewEvent.contributor.imageUrl}' />" alt="${wordPeerReviewEvent.contributor.firstName}" /> 
+                                    <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
+                                </div>
+                            </div>
+                            <div class="col s4">
+                                <code class="peerReviewStatus">
+                                    <c:choose>
+                                        <c:when test="${wordPeerReviewEvent.isApproved()}">
+                                            APPROVED
+                                        </c:when>
+                                        <c:otherwise>
+                                            NOT_APPROVED
+                                        </c:otherwise>
+                                    </c:choose>
+                                </code>
+                            </div>
+                            <div class="col s4" style="text-align: right;">
+                                <fmt:formatDate value="${wordPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                            </div>
+                            <c:if test="${not empty wordPeerReviewEvent.comment}">
+                                <div class="col s12">
+                                    "<c:out value="${wordPeerReviewEvent.comment}" />"
+                                </div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </c:forEach>
     </div>
