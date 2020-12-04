@@ -69,4 +69,5 @@
     <bean id="wordContributionEventDao" class="ai.elimu.dao.jpa.WordContributionEventDaoJpa" />
     <bean id="wordDao" class="ai.elimu.dao.jpa.WordDaoJpa" />
     <bean id="wordLearningEventDao" class="ai.elimu.dao.jpa.WordLearningEventDaoJpa" />
+    <bean id="wordPeerReviewLearningEventDao" class="ai.elimu.dao.jpa.WordPeerReviewEventDaoJpa" />
 </beans>
