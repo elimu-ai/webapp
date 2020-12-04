@@ -97,8 +97,6 @@
 
     drop table if exists Word_Allophone CASCADE ;
 
-    drop table if exists Word_Letter CASCADE ;
-
     drop table if exists Word_LetterToAllophoneMapping CASCADE ;
 
     drop table if exists WordContributionEvent CASCADE ;
@@ -539,13 +537,6 @@
         primary key (Word_id, allophones_ORDER)
     );
 
-    create table Word_Letter (
-       Word_id bigint not null,
-        letters_id bigint not null,
-        letters_ORDER integer not null,
-        primary key (Word_id, letters_ORDER)
-    );
-
     create table Word_LetterToAllophoneMapping (
        Word_id bigint not null,
         letterToAllophoneMappings_id bigint not null,
@@ -901,16 +892,6 @@
 
     alter table Word_Allophone 
        add constraint FKdbjuslgis8ql7u97afs5vt52i 
-       foreign key (Word_id) 
-       references Word;
-
-    alter table Word_Letter 
-       add constraint FKjh49wqg5lyf3xg3awkfv4bnn9 
-       foreign key (letters_id) 
-       references Letter;
-
-    alter table Word_Letter 
-       add constraint FKgsivb1vwi2t2ejwsdasdwwjou 
        foreign key (Word_id) 
        references Word;
 

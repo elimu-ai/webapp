@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import javax.persistence.ManyToOne;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Word extends Content {
@@ -22,11 +21,6 @@ public class Word extends Content {
     private String text;
     
 //    @NotEmpty
-    @OrderColumn
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Letter> letters;
-    
-    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
@@ -59,14 +53,6 @@ public class Word extends Content {
     @Deprecated
     public void setText(String text) {
         this.text = text;
-    }
-    
-    public List<Letter> getLetters() {
-        return letters;
-    }
-
-    public void setLetters(List<Letter> letters) {
-        this.letters = letters;
     }
     
     public List<Allophone> getAllophones() {
