@@ -9,7 +9,6 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
@@ -48,9 +47,6 @@ public class WordEditController {
     private WordDao wordDao;
     
     @Autowired
-    private LetterDao letterDao;
-    
-    @Autowired
     private AllophoneDao allophoneDao;
     
     @Autowired
@@ -82,7 +78,6 @@ public class WordEditController {
                 
         model.addAttribute("word", word);
         model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
         model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
@@ -129,7 +124,6 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("allophones", allophones);
             model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
