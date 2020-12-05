@@ -10,6 +10,7 @@
 
             <div class="row">
                 <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
+                <input type="hidden" name="timeStart" value="${timeStart}" />
                 
                 <div class="input-field col s12">
                     <form:label path="transcription" cssErrorClass="error"><fmt:message key='transcription' /></form:label>

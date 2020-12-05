@@ -1,5 +1,6 @@
 package ai.elimu.web.content.multimedia.audio;
 
+import ai.elimu.dao.AudioContributionEventDao;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -19,6 +20,8 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.model.contributor.AudioContributionEvent;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
@@ -26,6 +29,7 @@ import ai.elimu.model.enums.content.NumeracySkill;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,6 +55,9 @@ public class AudioEditController {
     private AudioDao audioDao;
     
     @Autowired
+    private AudioContributionEventDao audioContributionEventDao;
+    
+    @Autowired
     private LetterDao letterDao;
     
     @Autowired
@@ -70,11 +77,12 @@ public class AudioEditController {
         
         Audio audio = audioDao.read(id);
         model.addAttribute("audio", audio);
-        
         model.addAttribute("contentLicenses", ContentLicense.values());
-        
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
+        
+        model.addAttribute("timeStart", System.currentTimeMillis());
+        model.addAttribute("audioContributionEvents", audioContributionEventDao.readAll(audio));
         
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
@@ -86,6 +94,8 @@ public class AudioEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             Audio audio,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
@@ -137,16 +147,30 @@ public class AudioEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
+            
+            model.addAttribute("timeStart", request.getParameter("timeStart"));
+            model.addAttribute("audioContributionEvents", audioContributionEventDao.readAll(audio));
+            
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());
             model.addAttribute("words", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
+            
             return "content/multimedia/audio/edit";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);
+            
+            AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+            audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            audioContributionEvent.setTime(Calendar.getInstance());
+            audioContributionEvent.setAudio(audio);
+            audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+            audioContributionEvent.setComment(request.getParameter("contributionComment"));
+            audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            audioContributionEventDao.create(audioContributionEvent);
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }
