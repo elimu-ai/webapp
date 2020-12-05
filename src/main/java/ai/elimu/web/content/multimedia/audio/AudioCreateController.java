@@ -1,5 +1,6 @@
 package ai.elimu.web.content.multimedia.audio;
 
+import ai.elimu.dao.AudioContributionEventDao;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.ServletException;
@@ -9,10 +10,13 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.model.contributor.AudioContributionEvent;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +38,9 @@ public class AudioCreateController {
     
     @Autowired
     private AudioDao audioDao;
+    
+    @Autowired
+    private AudioContributionEventDao audioContributionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, @RequestParam(required = false) String autoFillTranscription) {
@@ -52,12 +59,16 @@ public class AudioCreateController {
         
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
+        
+        model.addAttribute("timeStart", System.currentTimeMillis());
 
         return "content/multimedia/audio/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             /*@Valid*/ Audio audio,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
@@ -110,11 +121,22 @@ public class AudioCreateController {
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
             
+            model.addAttribute("timeStart", request.getParameter("timeStart"));
+            
             return "content/multimedia/audio/create";
         } else {
             audio.setTranscription(audio.getTranscription().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
+            
+            AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+            audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            audioContributionEvent.setTime(Calendar.getInstance());
+            audioContributionEvent.setAudio(audio);
+            audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+            audioContributionEvent.setComment(request.getParameter("contributionComment"));
+            audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            audioContributionEventDao.create(audioContributionEvent);
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

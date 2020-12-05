@@ -11,6 +11,7 @@
             <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
             <form:hidden path="audioFormat" value="${audio.audioFormat}" />
             <form:hidden path="contentType" value="${audio.contentType}" />
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -74,6 +75,58 @@
             </button>
             <a href="<spring:url value='/content/multimedia/audio/delete/${audio.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
+    </div>
+    
+    <a name="contribution-events"></a>
+    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
+    <div id="contributionEvents" class="collection">
+        <c:forEach var="audioContributionEvent" items="${audioContributionEvents}">
+            <div class="collection-item">
+                <span class="badge">
+                    <fmt:formatDate value="${audioContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${audioContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                </span>
+                <div class="chip">
+                    <img src="<spring:url value='${audioContributionEvent.contributor.imageUrl}' />" alt="${audioContributionEvent.contributor.firstName}" /> 
+                    <c:out value="${audioContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${audioContributionEvent.contributor.lastName}" />
+                </div>
+                <blockquote><c:out value="${audioContributionEvent.comment}" /></blockquote>
+                
+                <%-- List peer reviews below each contribution event --%>
+                <c:forEach var="audioPeerReviewEvent" items="${audioPeerReviewEvents}">
+                    <c:if test="${audioPeerReviewEvent.audioContributionEvent.id == audioContributionEvent.id}">
+                        <div class="row peerReviewEvent" data-approved="${audioPeerReviewEvent.isApproved()}">
+                            <div class="col s4">
+                                <div class="chip">
+                                    <img src="<spring:url value='${audioPeerReviewEvent.contributor.imageUrl}' />" alt="${audioPeerReviewEvent.contributor.firstName}" /> 
+                                    <c:out value="${audioPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${audioPeerReviewEvent.contributor.lastName}" />
+                                </div>
+                            </div>
+                            <div class="col s4">
+                                <code class="peerReviewStatus">
+                                    <c:choose>
+                                        <c:when test="${audioPeerReviewEvent.isApproved()}">
+                                            APPROVED
+                                        </c:when>
+                                        <c:otherwise>
+                                            NOT_APPROVED
+                                        </c:otherwise>
+                                    </c:choose>
+                                </code>
+                            </div>
+                            <div class="col s4" style="text-align: right;">
+                                <fmt:formatDate value="${audioPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                            </div>
+                            <c:if test="${not empty audioPeerReviewEvent.comment}">
+                                <div class="col s12">
+                                    "<c:out value="${audioPeerReviewEvent.comment}" />"
+                                </div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </div>
+        </c:forEach>
     </div>
 </content:section>
 

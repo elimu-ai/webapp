@@ -1,6 +1,7 @@
 package ai.elimu.web.content;
 
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.AudioContributionEventDao;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,6 +74,9 @@ public class MainContentController {
     private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
+    private AudioContributionEventDao audioContributionEventDao;
+    
+    @Autowired
     private WordContributionEventDao wordContributionEventDao;
     
     @Autowired
@@ -126,6 +130,15 @@ public class MainContentController {
             storyBookContributionsCountMap.put(contributorWithContributions.getId(), storyBookContributionEventDao.readCount(contributorWithContributions));
         }
         model.addAttribute("storyBookContributionsCountMap", storyBookContributionsCountMap);
+        
+        List<Contributor> contributorsWithAudioContributions = contributorDao.readAllWithAudioContributions();
+        logger.info("contributorsWithAudioContributions.size(): " + contributorsWithAudioContributions.size());
+        model.addAttribute("contributorsWithAudioContributions", contributorsWithAudioContributions);
+        Map<Long, Long> audioContributionsCountMap = new HashMap<>();
+        for (Contributor contributorWithContributions : contributorsWithAudioContributions) {
+            audioContributionsCountMap.put(contributorWithContributions.getId(), audioContributionEventDao.readCount(contributorWithContributions));
+        }
+        model.addAttribute("audioContributionsCountMap", audioContributionsCountMap);
         
         List<Contributor> contributorsWithWordContributions = contributorDao.readAllWithWordContributions();
         logger.info("contributorsWithWordContributions.size(): " + contributorsWithWordContributions.size());

@@ -47,6 +47,7 @@
     <bean id="allophoneDao" class="ai.elimu.dao.jpa.AllophoneDaoJpa" />
     <bean id="applicationDao" class="ai.elimu.dao.jpa.ApplicationDaoJpa" />
     <bean id="applicationVersionDao" class="ai.elimu.dao.jpa.ApplicationVersionDaoJpa" />
+    <bean id="audioContributionEventDao" class="ai.elimu.dao.jpa.AudioContributionEventDaoJpa" />
     <bean id="audioDao" class="ai.elimu.dao.jpa.AudioDaoJpa" />
     <bean id="contributorDao" class="ai.elimu.dao.jpa.ContributorDaoJpa" />
     <bean id="dbMigrationDao" class="ai.elimu.dao.jpa.DbMigrationDaoJpa" />

@@ -20,6 +20,8 @@ public interface ContributorDao extends GenericDao<Contributor> {
     
     List<Contributor> readAllWithStoryBookContributions() throws DataAccessException;
     
+    List<Contributor> readAllWithAudioContributions() throws DataAccessException;
+    
     List<Contributor> readAllWithWordContributions() throws DataAccessException;
     
     List<Contributor> readAllWithNumberContributions() throws DataAccessException;
