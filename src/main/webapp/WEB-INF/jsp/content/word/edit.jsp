@@ -243,7 +243,7 @@
         
         <form action="<spring:url value='/content/word-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
-                <fmt:message key="do.you.approve.quality.of.this.storybook?" />
+                <fmt:message key="do.you.approve.quality.of.this.word?" />
             </p>
             
             <input type="hidden" name="wordContributionEventId" value="${wordContributionEvents[0].id}" />
