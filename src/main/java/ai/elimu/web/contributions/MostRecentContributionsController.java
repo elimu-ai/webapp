@@ -1,9 +1,13 @@
 package ai.elimu.web.contributions;
 
+import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.ContributorDao;
+import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.WordContributionEventDao;
+import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import java.util.List;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +31,13 @@ public class MostRecentContributionsController {
     private StoryBookContributionEventDao storyBookContributionEventDao;
     
     @Autowired
+    private AudioContributionEventDao audioContributionEventDao;
+    
+    @Autowired
     private WordContributionEventDao wordContributionEventDao;
+    
+    @Autowired
+    private NumberContributionEventDao numberContributionEventDao;
     
     @Autowired
     private ContributorDao contributorDao;
@@ -40,9 +50,17 @@ public class MostRecentContributionsController {
         logger.info("storyBookContributionEvents.size(): " + storyBookContributionEvents.size());
         model.addAttribute("storyBookContributionEvents", storyBookContributionEvents);
         
+        List<AudioContributionEvent> audioContributionEvents = audioContributionEventDao.readMostRecent(10);
+        logger.info("audioContributionEvents.size(): " + audioContributionEvents.size());
+        model.addAttribute("audioContributionEvents", audioContributionEvents);
+        
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecent(10);
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
         model.addAttribute("wordContributionEvents", wordContributionEvents);
+        
+        List<NumberContributionEvent> numberContributionEvents = numberContributionEventDao.readMostRecent(10);
+        logger.info("numberContributionEvents.size(): " + numberContributionEvents.size());
+        model.addAttribute("numberContributionEvents", numberContributionEvents);
         
         List<Contributor> contributorsWithStoryBookContributions = contributorDao.readAllWithStoryBookContributions();
         logger.info("contributorsWithStoryBookContributions.size(): " + contributorsWithStoryBookContributions.size());

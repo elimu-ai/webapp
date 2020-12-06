@@ -9,8 +9,6 @@
             <tag:formErrors modelAttribute="video" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${video.revisionNumber}" />
-                
                 <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />

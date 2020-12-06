@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.AudioPeerReviewEventDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
@@ -58,6 +59,9 @@ public class AudioEditController {
     private AudioContributionEventDao audioContributionEventDao;
     
     @Autowired
+    private AudioPeerReviewEventDao audioPeerReviewEventDao;
+    
+    @Autowired
     private LetterDao letterDao;
     
     @Autowired
@@ -83,6 +87,7 @@ public class AudioEditController {
         
         model.addAttribute("timeStart", System.currentTimeMillis());
         model.addAttribute("audioContributionEvents", audioContributionEventDao.readAll(audio));
+        model.addAttribute("audioPeerReviewEvents", audioPeerReviewEventDao.readAll(audio));
         
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
@@ -150,6 +155,7 @@ public class AudioEditController {
             
             model.addAttribute("timeStart", request.getParameter("timeStart"));
             model.addAttribute("audioContributionEvents", audioContributionEventDao.readAll(audio));
+            model.addAttribute("audioPeerReviewEvents", audioPeerReviewEventDao.readAll(audio));
             
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());

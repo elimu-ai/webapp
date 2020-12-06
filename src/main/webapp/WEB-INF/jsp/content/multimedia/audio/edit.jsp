@@ -3,6 +3,23 @@
 </content:title>
 
 <content:section cssId="audioEditPage">
+    <c:choose>
+        <c:when test="${audio.peerReviewStatus == 'APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+        </c:when>
+        <c:when test="${audio.peerReviewStatus == 'NOT_APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="peerReviewStatusColor" value="" />
+        </c:otherwise>
+    </c:choose>
+    <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
+        <a href="#contribution-events">
+            <fmt:message key="peer.review" />: ${audio.peerReviewStatus}
+        </a>
+    </div>
+    
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="audio" enctype="multipart/form-data">
@@ -76,6 +93,60 @@
             <a href="<spring:url value='/content/multimedia/audio/delete/${audio.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
         </form:form>
     </div>
+    
+    <div class="divider" style="margin: 2em 0;"></div>
+    
+    <%-- Display peer review form if the current contributor is not the same as that of the latest contribution event --%>
+    <c:if test="${(not empty audioContributionEvents) 
+                  && (audioContributionEvents[0].contributor.id != contributor.id)}">
+        <a name="peer-review"></a>
+        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
+        
+        <form action="<spring:url value='/content/audio-peer-review-event/create' />" method="POST" class="card-panel">
+            <p>
+                <fmt:message key="do.you.approve.quality.of.this.audio?" />
+            </p>
+            
+            <input type="hidden" name="audioContributionEventId" value="${audioContributionEvents[0].id}" />
+            
+            <input type="radio" id="approved_true" name="approved" value="true" />
+            <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
+
+            <input type="radio" id="approved_false" name="approved" value="false" />
+            <label for="approved_false"><fmt:message key="no" /> (request changes)</label><br />
+            
+            <script>
+                $(function() {
+                    $('[name="approved"]').on('change', function() {
+                        console.info('[name="approved"] on change');
+                        
+                        var isApproved = $('#approved_true').is(':checked');
+                        console.info('isApproved: ' + isApproved);
+                        if (isApproved) {
+                            console.info('isApproved');
+                            $('#comment').removeAttr('required');
+                        } else {
+                            $('#comment').attr('required', 'required');
+                            console.info('!isApproved');
+                        }
+                        
+                        $('#peerReviewSubmitContainer').fadeIn();
+                    });
+                });
+            </script>
+            
+            <div id="peerReviewSubmitContainer" style="display: none;">
+                <label for="comment"><fmt:message key="comment" /></label>
+                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+
+                <button class="btn waves-effect waves-light" type="submit">
+                    <fmt:message key="submit" /> <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+        
+        <div class="divider" style="margin: 2em 0;"></div>
+    </c:if>
     
     <a name="contribution-events"></a>
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>

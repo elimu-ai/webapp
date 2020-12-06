@@ -9,8 +9,6 @@
             <tag:formErrors modelAttribute="emoji" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${emoji.revisionNumber}" />
-                
                 <div class="input-field col s12">
                     <form:label path="glyph" cssErrorClass="error"><fmt:message key='glyph' /></form:label>
                     <form:input path="glyph" cssErrorClass="error" placeholder="🦋" />

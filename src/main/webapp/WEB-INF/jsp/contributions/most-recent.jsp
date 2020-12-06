@@ -88,6 +88,20 @@
         
         <div class="divider" style="margin: 1em 0;"></div>
         
+        <b><fmt:message key="audios" /></b><br />
+        <ol style="list-style-type: inherit;">
+            <c:forEach var="contributorWithAudioContributions" items="${contributorsWithAudioContributions}">
+                <li>
+                    <div class="chip">
+                        <img src="<spring:url value='${contributorWithAudioContributions.imageUrl}' />" alt="${contributorWithAudioContributions.firstName}" /> 
+                        <c:out value="${contributorWithAudioContributions.firstName}" />&nbsp;<c:out value="${contributorWithAudioContributions.lastName}" />
+                    </div> (${audioContributionsCountMap[contributorWithAudioContributions.id]})
+                </li>
+            </c:forEach>
+        </ol>
+        
+        <div class="divider" style="margin: 1em 0;"></div>
+        
         <b><fmt:message key="words" /></b><br />
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributorWithWordContributions" items="${contributorsWithWordContributions}">
@@ -96,6 +110,20 @@
                         <img src="<spring:url value='${contributorWithWordContributions.imageUrl}' />" alt="${contributorWithWordContributions.firstName}" /> 
                         <c:out value="${contributorWithWordContributions.firstName}" />&nbsp;<c:out value="${contributorWithWordContributions.lastName}" />
                     </div> (${wordContributionsCountMap[contributorWithWordContributions.id]})
+                </li>
+            </c:forEach>
+        </ol>
+        
+        <div class="divider" style="margin: 1em 0;"></div>
+        
+        <b><fmt:message key="numbers" /></b><br />
+        <ol style="list-style-type: inherit;">
+            <c:forEach var="contributorWithNumberContributions" items="${contributorsWithNumberContributions}">
+                <li>
+                    <div class="chip">
+                        <img src="<spring:url value='${contributorWithNumberContributions.imageUrl}' />" alt="${contributorWithNumberContributions.firstName}" /> 
+                        <c:out value="${contributorWithNumberContributions.firstName}" />&nbsp;<c:out value="${contributorWithNumberContributions.lastName}" />
+                    </div> (${numberContributionsCountMap[contributorWithNumberContributions.id]})
                 </li>
             </c:forEach>
         </ol>
