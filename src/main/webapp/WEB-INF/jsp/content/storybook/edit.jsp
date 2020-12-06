@@ -15,7 +15,7 @@
         </c:otherwise>
     </c:choose>
     <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
-        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />">
+        <a href="#contribution-events">
             <fmt:message key="peer.review" />: ${storyBook.peerReviewStatus}
         </a>
     </div>

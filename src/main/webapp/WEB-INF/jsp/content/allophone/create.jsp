@@ -9,8 +9,6 @@
             <tag:formErrors modelAttribute="allophone" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
-                
                 <div class="input-field col s12">
                     <form:label path="valueIpa" cssErrorClass="error"><fmt:message key='value' /> (IPA)</form:label>
                     <form:input path="valueIpa" cssErrorClass="error" />

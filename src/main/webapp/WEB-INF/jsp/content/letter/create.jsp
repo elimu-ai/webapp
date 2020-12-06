@@ -8,8 +8,6 @@
         <form:form modelAttribute="letter">
             <tag:formErrors modelAttribute="letter" />
             
-            <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
-
             <div class="row">
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>

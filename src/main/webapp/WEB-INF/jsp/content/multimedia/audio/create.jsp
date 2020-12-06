@@ -7,11 +7,10 @@
     <div class="card-panel">
         <form:form modelAttribute="audio" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="audio" />
+            
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
-                <form:hidden path="revisionNumber" value="${audio.revisionNumber}" />
-                <input type="hidden" name="timeStart" value="${timeStart}" />
-                
                 <div class="input-field col s12">
                     <form:label path="transcription" cssErrorClass="error"><fmt:message key='transcription' /></form:label>
                     <form:input path="transcription" cssErrorClass="error" />

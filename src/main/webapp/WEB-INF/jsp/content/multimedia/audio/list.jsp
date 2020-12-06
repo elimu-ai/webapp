@@ -43,6 +43,24 @@
                             </td>
                             <td>
                                 <p>#${audio.revisionNumber}</p>
+                                <p>
+                                    <c:choose>
+                                        <c:when test="${audio.peerReviewStatus == 'APPROVED'}">
+                                            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                        </c:when>
+                                        <c:when test="${audio.peerReviewStatus == 'NOT_APPROVED'}">
+                                            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:set var="peerReviewStatusColor" value="" />
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <span class="chip ${peerReviewStatusColor}">
+                                        <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}#contribution-events' />">
+                                            ${audio.peerReviewStatus}
+                                        </a>
+                                    </span>
+                                </p>
                             </td>
                             <td><a class="editLink" href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
