@@ -164,7 +164,7 @@ public class AudioEditController {
             
             return "content/multimedia/audio/edit";
         } else {
-            audio.setTranscription(audio.getTranscription().toLowerCase());
+            audio.setTitle(audio.getTitle().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audio.setRevisionNumber(audio.getRevisionNumber() + 1);
             audioDao.update(audio);

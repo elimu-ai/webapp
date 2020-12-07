@@ -125,7 +125,7 @@ public class AudioCreateController {
             
             return "content/multimedia/audio/create";
         } else {
-            audio.setTranscription(audio.getTranscription().toLowerCase());
+            audio.setTitle(audio.getTitle().toLowerCase());
             audio.setTimeLastUpdate(Calendar.getInstance());
             audioDao.create(audio);
             
