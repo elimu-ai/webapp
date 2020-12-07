@@ -163,8 +163,9 @@
         <c:forEach var="audioContributionEvent" items="${audioContributionEvents}">
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:formatDate value="${audioContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${audioContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                    <fmt:message key="revision" /> #${audioContributionEvent.revisionNumber} 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${audioContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
+                    <fmt:formatDate value="${audioContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <div class="chip">
                     <img src="<spring:url value='${audioContributionEvent.contributor.imageUrl}' />" alt="${audioContributionEvent.contributor.firstName}" /> 
