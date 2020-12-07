@@ -5,6 +5,12 @@
 <content:section cssId="storyBookParagraphCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
+        <c:if test="${not empty storyBookParagraph.storyBookChapter.image}">
+            <a href="<spring:url value='/content/multimedia/image/edit/${storyBookParagraph.storyBookChapter.image.id}' />">
+                <img src="<spring:url value='/image/${storyBookParagraph.storyBookChapter.image.id}_r${storyBookParagraph.storyBookChapter.image.revisionNumber}.${fn:toLowerCase(storyBookParagraph.storyBookChapter.image.imageFormat)}' />" alt="${storyBookParagraph.storyBookChapter.storyBook.title}" />
+            </a>
+        </c:if>
+        
         <form:form modelAttribute="storyBookParagraph">
             <tag:formErrors modelAttribute="storyBookParagraph" />
             
