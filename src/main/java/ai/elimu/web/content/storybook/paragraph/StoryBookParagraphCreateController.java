@@ -1,5 +1,6 @@
 package ai.elimu.web.content.storybook.paragraph;
 
+import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
@@ -42,6 +43,9 @@ public class StoryBookParagraphCreateController {
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
+    
+    @Autowired
+    private AudioDao audioDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long storyBookChapterId) {
@@ -56,6 +60,8 @@ public class StoryBookParagraphCreateController {
         storyBookParagraph.setSortOrder(storyBookParagraphs.size());
         
         model.addAttribute("storyBookParagraph", storyBookParagraph);
+        
+        model.addAttribute("audios", audioDao.readAllOrdered());
         
         model.addAttribute("timeStart", System.currentTimeMillis());
         
@@ -76,6 +82,7 @@ public class StoryBookParagraphCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
+            model.addAttribute("audios", audioDao.readAllOrdered());
             model.addAttribute("timeStart", request.getParameter("timeStart"));
             return "content/storybook/paragraph/create";
         } else {
