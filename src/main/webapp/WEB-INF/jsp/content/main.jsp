@@ -101,6 +101,9 @@
                     <span class="card-title"><i class="material-icons">audiotrack</i> <fmt:message key="audios" /></span>
                 </div>
                 <div class="card-action">
+                    <div class="progress">
+                        <div class="determinate" style="width: ${audioCount/wordCount * 100}%"></div>
+                    </div>
                     <a href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="view.list" /> (${audioCount})</a>
                 </div>
             </div>
