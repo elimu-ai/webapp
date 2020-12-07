@@ -13,9 +13,11 @@ import ai.elimu.model.enums.content.AudioFormat;
 public class Audio extends Multimedia {
     
     @NotNull
+//    @Column(unique=true)
     private String title;
     
     @NotNull
+//    @Column(unique=true)
     private String transcription;
     
     @NotNull
