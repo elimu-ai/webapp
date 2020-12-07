@@ -88,7 +88,7 @@ public class ImageEditController {
         model.addAttribute("words", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         
-        Audio audio = audioDao.read(image.getTitle());
+        Audio audio = audioDao.readByTranscription(image.getTitle());
         model.addAttribute("audio", audio);
 
         return "content/multimedia/image/edit";
@@ -170,7 +170,7 @@ public class ImageEditController {
             model.addAttribute("numbers", numberDao.readAllOrdered());
             model.addAttribute("words", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
-            Audio audio = audioDao.read(image.getTitle());
+            Audio audio = audioDao.readByTranscription(image.getTitle());
             model.addAttribute("audio", audio);
             return "content/multimedia/image/edit";
         } else {

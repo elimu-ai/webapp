@@ -10,9 +10,24 @@ import org.springframework.dao.DataAccessException;
 import ai.elimu.model.content.multimedia.Audio;
 
 public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
+    
+    @Override
+    public Audio readByTitle(String title) throws DataAccessException {
+        try {
+            return (Audio) em.createQuery(
+                "SELECT a " +
+                "FROM Audio a " +
+                "WHERE a.title = :title")
+                .setParameter("title", title)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("Audio with title \"" + title + "\" was not found");
+            return null;
+        }
+    }
 
     @Override
-    public Audio read(String transcription) throws DataAccessException {
+    public Audio readByTranscription(String transcription) throws DataAccessException {
         try {
             return (Audio) em.createQuery(
                 "SELECT a " +
@@ -21,7 +36,7 @@ public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
                 .setParameter("transcription", transcription)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Audio \"" + transcription + "\" was not found");
+            logger.warn("Audio with transcription \"" + transcription + "\" was not found");
             return null;
         }
     }
@@ -31,7 +46,7 @@ public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
         return em.createQuery(
             "SELECT a " +
             "FROM Audio a " +
-            "ORDER BY a.transcription")
+            "ORDER BY a.title")
             .getResultList();
     }
 }

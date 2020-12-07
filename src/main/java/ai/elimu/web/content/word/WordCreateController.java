@@ -77,7 +77,7 @@ public class WordCreateController {
         if (StringUtils.isNotBlank(autoFillText)) {
             word.setText(autoFillText);
             
-            model.addAttribute("audio", audioDao.read(word.getText()));
+            model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
         }
         
         model.addAttribute("word", word);
@@ -118,7 +118,7 @@ public class WordCreateController {
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             
-            model.addAttribute("audio", audioDao.read(word.getText()));
+            model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
             
             return "content/word/create";
         } else {

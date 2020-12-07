@@ -7,7 +7,9 @@ import org.springframework.dao.DataAccessException;
 
 public interface AudioDao extends GenericDao<Audio> {
 	
-    Audio read(String transcription) throws DataAccessException;
+    Audio readByTitle(String title) throws DataAccessException;
+    
+    Audio readByTranscription(String transcription) throws DataAccessException;
 
     List<Audio> readAllOrdered() throws DataAccessException;
 }
