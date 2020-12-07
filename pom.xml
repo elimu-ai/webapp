@@ -9,7 +9,7 @@
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <model.version>2.0.27</model.version> <!-- https://github.com/elimu-ai/model/releases -->
+        <model.version>2.0.32</model.version> <!-- https://github.com/elimu-ai/model/releases -->
         <hibernate.version>5.4.25.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
         <spring.version>5.3.1</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
@@ -133,15 +133,16 @@
     </scm>
     <distributionManagement>
         <repository>
-            <id>bintray-elimu-ai-maven</id>
-            <name>elimu-ai-maven</name>
-            <url>https://api.bintray.com/maven/elimu-ai/maven/webapp/;publish=1</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/elimu-ai/webapp</url>
         </repository>
     </distributionManagement>
     <repositories>
         <repository>
-            <id>bintray-elimu-ai-maven</id>
-            <url>https://dl.bintray.com/elimu-ai/maven</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/elimu-ai/webapp</url>
         </repository>
         <repository>
             <id>nl.siegmann.epublib repo</id>
