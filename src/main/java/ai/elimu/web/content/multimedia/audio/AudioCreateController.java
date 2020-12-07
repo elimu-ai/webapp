@@ -43,12 +43,21 @@ public class AudioCreateController {
     private AudioContributionEventDao audioContributionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model, @RequestParam(required = false) String autoFillTranscription) {
+    public String handleRequest(
+            Model model,
+            @RequestParam(required = false) String autoFillTitle,
+            @RequestParam(required = false) String autoFillTranscription
+    ) {
     	logger.info("handleRequest");
         
         Audio audio = new Audio();
         
-        // Pre-fill the Audio's transcription (if the user arrived from /content/word/edit/{id}/)
+        // Pre-fill the Audio's title (if the contributor arrived from /content/word/edit/{id}/)
+        if (StringUtils.isNotBlank(autoFillTitle)) {
+            audio.setTitle(autoFillTitle);
+        }
+        
+        // Pre-fill the Audio's transcription (if the contributor arrived from /content/word/edit/{id}/)
         if (StringUtils.isNotBlank(autoFillTranscription)) {
             audio.setTranscription(autoFillTranscription);
         }
