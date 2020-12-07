@@ -78,7 +78,8 @@ public class AudioCreateController {
         if (StringUtils.isBlank(audio.getTitle())) {
             result.rejectValue("title", "NotNull");
         } else {
-            if (audioDao.readByTitle(audio.getTitle()) != null) {
+            Audio existingAudio = audioDao.readByTitle(audio.getTranscription());
+            if (existingAudio != null) {
                 result.rejectValue("title", "NonUnique");
             }
         }
@@ -86,7 +87,8 @@ public class AudioCreateController {
         if (StringUtils.isBlank(audio.getTranscription())) {
             result.rejectValue("transcription", "NotNull");
         } else {
-            if (audioDao.readByTranscription(audio.getTranscription()) != null) {
+            Audio existingAudio = audioDao.readByTranscription(audio.getTranscription());
+            if (existingAudio != null) {
                 result.rejectValue("transcription", "NonUnique");
             }
         }
