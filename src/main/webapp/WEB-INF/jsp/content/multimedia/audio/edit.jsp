@@ -52,6 +52,7 @@
                     <form:input path="attributionUrl" cssErrorClass="error" type="url" />
                 </div>
                 
+                <%--
                 <div class="col s12 m6">
                     <blockquote>
                         <fmt:message key="what.literacy.skills" />
@@ -75,6 +76,7 @@
                         </label><br />
                     </c:forEach>
                 </div>
+                --%>
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
@@ -84,6 +86,13 @@
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" />
                     </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
