@@ -13,6 +13,9 @@ import ai.elimu.model.enums.content.AudioFormat;
 public class Audio extends Multimedia {
     
     @NotNull
+    private String title;
+    
+    @NotNull
     private String transcription;
     
     @NotNull
@@ -26,6 +29,14 @@ public class Audio extends Multimedia {
     
     @Enumerated(EnumType.STRING)
     private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
+    
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
     
     public String getTranscription() {
         return transcription;
