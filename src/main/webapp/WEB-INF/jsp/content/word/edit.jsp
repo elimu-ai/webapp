@@ -220,7 +220,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <label for="contributionComment"><fmt:message key='comment' /></label>
-                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution (for example a URL pointing to the source you used for determining word's IPA transcription)."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
@@ -293,8 +293,9 @@
         <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                    <fmt:message key="revision" /> #${wordContributionEvent.revisionNumber} 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
+                    <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <div class="chip">
                     <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 

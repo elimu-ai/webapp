@@ -103,8 +103,9 @@
         <c:forEach var="numberContributionEvent" items="${numberContributionEvents}">
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:formatDate value="${numberContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                    <fmt:message key="revision" /> #${numberContributionEvent.revisionNumber} 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
+                    <fmt:formatDate value="${numberContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <div class="chip">
                     <img src="<spring:url value='${numberContributionEvent.contributor.imageUrl}' />" alt="${numberContributionEvent.contributor.firstName}" /> 
