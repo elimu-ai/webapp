@@ -32,8 +32,13 @@
 
             <div class="row">
                 <div class="input-field col s12">
+                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
+                    <form:input path="title" cssErrorClass="error" />
+                </div>
+                
+                <div class="input-field col s12">
                     <form:label path="transcription" cssErrorClass="error"><fmt:message key='transcription' /></form:label>
-                    <form:input path="transcription" cssErrorClass="error" />
+                    <form:textarea path="transcription" cssClass="materialize-textarea" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">

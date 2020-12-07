@@ -178,6 +178,7 @@
         audioFormat varchar(255),
         bytes blob(209715200),
         peerReviewStatus varchar(255),
+        title varchar(255),
         transcription varchar(255),
         primary key (id)
     );

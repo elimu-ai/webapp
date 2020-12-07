@@ -16,10 +16,12 @@
         <c:if test="${not empty audios}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="transcription" /></th>
+                    <th><fmt:message key="title" /></th>
                     <th><fmt:message key="audio" /></th>
+                    <%--
                     <th><fmt:message key="literacy.skills" /></th>
                     <th><fmt:message key="numeracy.skills" /></th>
+                    --%>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -28,19 +30,22 @@
                         <tr class="audio">
                             <td>
                                 <a name="${audio.id}"></a>
-                                "<c:out value="${audio.transcription}" />"
+                                <p>"<c:out value="${audio.title}" />"</p>
+                                <p class="grey-text">"<c:out value="${audio.transcription}" />"</p>
                             </td>
                             <td>
                                 <audio controls="true">
                                     <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
                                 </audio>
                             </td>
+                            <%--
                             <td>
                                 ${audio.literacySkills}
                             </td>
                             <td>
                                 ${audio.numeracySkills}
                             </td>
+                            --%>
                             <td>
                                 <p>#${audio.revisionNumber}</p>
                                 <p>
