@@ -1,5 +1,6 @@
 package ai.elimu.web.content.storybook.paragraph;
 
+import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import org.apache.logging.log4j.Logger;
@@ -36,6 +37,9 @@ public class StoryBookParagraphEditController {
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
+    
+    @Autowired
+    private AudioDao audioDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -44,6 +48,8 @@ public class StoryBookParagraphEditController {
         StoryBookParagraph storyBookParagraph = storyBookParagraphDao.read(id);
         logger.info("storyBookParagraph: " + storyBookParagraph);
         model.addAttribute("storyBookParagraph", storyBookParagraph);
+        
+        model.addAttribute("audios", audioDao.readAllOrdered());
         
         model.addAttribute("timeStart", System.currentTimeMillis());
         
@@ -64,6 +70,7 @@ public class StoryBookParagraphEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
+            model.addAttribute("audios", audioDao.readAllOrdered());
             model.addAttribute("timeStart", System.currentTimeMillis());
             return "content/storybook/paragraph/edit";
         } else {
