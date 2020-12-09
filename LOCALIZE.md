@@ -8,11 +8,11 @@ See [INSTALL.md](INSTALL.md#supported-languages-)
 
 See https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md
 
-### Adding Educational Content
+## Adding Educational Content
 
 The examples below use the Xhosa language as an example. If you will adding content using another language, simply replace `xho` in the URL with your language of choice.
 
-#### Adding Audio Recordings 🎶🎙️
+### Adding Audio Recordings 🎶🎙️
 
 Follow these steps to add a new audio file to the webapp's database:
 
@@ -38,7 +38,7 @@ Follow these steps to add a new audio file to the webapp's database:
 
    <img width="378" alt="Screen Shot 2020-12-09 at 4 32 43 PM" src="https://user-images.githubusercontent.com/15718174/101650579-c0b1d880-3a44-11eb-808a-4ffe292eef4b.png">
 
-##### Adding Audio Recording via Another Page
+#### Adding Audio Recording via Another Page
 
 Note that there are two other ways you can add audio recordings: 1) via the word edit page, and 2) via the storybook paragraph edit page:
 
