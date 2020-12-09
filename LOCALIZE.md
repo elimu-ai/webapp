@@ -42,26 +42,26 @@ Follow these steps to add a new audio file to the webapp's database:
 
 Note that there are two other ways you can add audio recordings: 1) via the word edit page, and 2) via the storybook paragraph edit page:
 
-1. **Via the word edit page:** 
+##### Via the word edit page
 
-   At http://xho.elimu.ai/content/word/list you can find a list of words. While editing a word, you will see a warning saying "This word has no corresponding audio." if an audio recording with a matching transcription does not already exist:
+1. At http://xho.elimu.ai/content/word/list you can find a list of words. While editing a word, you will see a warning saying "This word has no corresponding audio." if an audio recording with a matching transcription does not already exist:
 
    <img width="641" alt="Screen Shot 2020-12-09 at 4 44 43 PM" src="https://user-images.githubusercontent.com/15718174/101652036-69ad0300-3a46-11eb-8d77-2efe899a6c46.png">
 
-   Then, if you press the "Add audio" link, you will be redirected to the page for uploading an audio file, and the title and the transcription of the audio will be auto-filled:
+1. Then, if you press the "Add audio" link, you will be redirected to the page for uploading an audio file, and the title and the transcription of the audio will be auto-filled:
    
    <img width="210" alt="Screen Shot 2020-12-09 at 4 48 07 PM" src="https://user-images.githubusercontent.com/15718174/101652281-bc86ba80-3a46-11eb-95e1-728a277c0dc2.png">
 
-1. **Via the storybook paragraph edit page:**
+##### Via the storybook paragraph edit page
 
-   While editing a storybook paragrah, you'll find an "Add audio" link at the bottom:
+1. While editing a storybook paragrah, you'll find an "Add audio" link at the bottom:
    
    <img width="259" alt="Screen Shot 2020-12-09 at 4 54 18 PM" src="https://user-images.githubusercontent.com/15718174/101653094-a88f8880-3a47-11eb-9c7f-5612e3176c4b.png">
 
-   If you press the "Add audio" link, you will be redirected to the page for uploading an audio file, and the title and the transcription of the audio will be auto-filled to match the content of the paragraph:
+1. If you press the "Add audio" link, you will be redirected to the page for uploading an audio file, and the title and the transcription of the audio will be auto-filled to match the content of the paragraph:
 
    <img width="558" alt="Screen Shot 2020-12-09 at 4 56 18 PM" src="https://user-images.githubusercontent.com/15718174/101653310-dc6aae00-3a47-11eb-9296-91856d152ce9.png">
    
-   If you add an audio recording this way, remember to go back to the paragraph edit page after uploading the audio file, and select the corresponding audio in the drop-down:
+1. If you add an audio recording this way, remember to go back to the paragraph edit page after uploading the audio file, and select the corresponding audio in the drop-down:
    
    <img width="691" alt="Screen Shot 2020-12-09 at 4 58 48 PM" src="https://user-images.githubusercontent.com/15718174/101653932-96621a00-3a48-11eb-82e3-97598fdac82a.png">
