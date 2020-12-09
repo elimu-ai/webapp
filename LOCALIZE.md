@@ -99,3 +99,32 @@ Follow these steps to add a new word to the webapp's database:
 
    <img width="695" alt="Screen Shot 2020-12-09 at 7 56 42 PM" src="https://user-images.githubusercontent.com/15718174/101674457-31ff8480-3a61-11eb-815e-a28e085517f1.png">
 
+#### Adding Word via Another Page
+
+One strategy is to add words used in a particular storybook:
+
+1. Go to http://xho.elimu.ai/content/storybook/list and open a storybook that you want to add words for.
+
+1. In the sidebar you'll see a word frequency list:
+
+   <img width="337" alt="Screen Shot 2020-12-09 at 8 12 28 PM" src="https://user-images.githubusercontent.com/15718174/101676027-447abd80-3a63-11eb-8437-f391caeaabe6.png">
+
+1. Then, press the "Add word" link if you want to create it.
+
+1. You will then be redirected for the page for adding a word, with the word's text auto-filled:
+
+   <img width="392" alt="Screen Shot 2020-12-09 at 8 13 56 PM" src="https://user-images.githubusercontent.com/15718174/101676218-8dcb0d00-3a63-11eb-881d-f204ccecec29.png">
+
+1. Then, proceed as described above in ["Adding Words"](#adding-words).
+
+Another strategy for adding words is to go to the "Words Pending" page, where you can find a list of the most used words across _all storybooks_:
+
+1. Go to http://xho.elimu.ai/content/word/pending
+
+   <img width="1025" alt="Screen Shot 2020-12-09 at 8 10 35 PM" src="https://user-images.githubusercontent.com/15718174/101676596-0af68200-3a64-11eb-9e2c-5087e1c8f6d9.png">
+
+1. Here you can also choose the word to add by pressing the "Add word" link, which will redirect you to the page for adding a new word (with its text auto-filled):
+
+   <img width="329" alt="Screen Shot 2020-12-09 at 8 20 00 PM" src="https://user-images.githubusercontent.com/15718174/101676791-527d0e00-3a64-11eb-9937-a8299f4cd7e8.png">
+
+1. Then, proceed as described above in ["Adding Words"](#adding-words).
