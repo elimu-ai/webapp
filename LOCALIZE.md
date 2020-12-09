@@ -54,7 +54,7 @@ Note that there are two other ways you can add audio recordings: 1) via the word
 
 ##### Via the storybook paragraph edit page
 
-1. While editing a storybook paragrah, you'll find an "Add audio" link at the bottom:
+1. While editing a storybook paragrah, you'll find an "Add audio" link at the bottom:
 
    <img width="259" alt="Screen Shot 2020-12-09 at 4 54 18 PM" src="https://user-images.githubusercontent.com/15718174/101653094-a88f8880-3a47-11eb-9c7f-5612e3176c4b.png">
 
