@@ -12,6 +12,7 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,9 @@ public class StoryBookParagraphCreateController {
     
     @Autowired
     private AudioDao audioDao;
+    
+    @Autowired
+    private StoryBooksJsonService storyBooksJsonService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long storyBookChapterId) {
@@ -104,6 +108,9 @@ public class StoryBookParagraphCreateController {
             storyBookContributionEvent.setComment("Created storybook paragraph (🤖 auto-generated comment)");
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            // Refresh the REST API cache
+            storyBooksJsonService.refreshStoryBooksJSONArray();
             
             return "redirect:/content/storybook/edit/" + 
                     storyBookParagraph.getStoryBookChapter().getStoryBook().getId() + 
