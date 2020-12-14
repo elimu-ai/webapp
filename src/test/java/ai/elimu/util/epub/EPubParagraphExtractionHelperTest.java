@@ -89,8 +89,35 @@ public class EPubParagraphExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(3));
+        assertThat(storyBookParagraphs.get(0), is("WAAAAHHHH!"));
+        assertThat(storyBookParagraphs.get(1), is("Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol."));
+        assertThat(storyBookParagraphs.get(2), is("WAAAAHHHH!"));
+    }
+    
+    @Test
+    public void testExtractParagraphsFromChapterFile_FIL_LRA_7f877260_ch4() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("fil-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_4.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(2));
+        assertThat(storyBookParagraphs.get(0), is("Ano kaya kung kaya kang palundagin ng jelly beans nang napakataas?"));
+        assertThat(storyBookParagraphs.get(1), is("Maari kang makarating sa paaralan sa isang malaking hakbang."));
+    }
+    
+    @Test
+    public void testExtractParagraphsFromChapterFile_FIL_LRA_7f877260_ch13() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("fil-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_13.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
         assertThat(storyBookParagraphs.size(), is(1));
-        assertThat(storyBookParagraphs.get(0), is("WAAAAHHHH!Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol.WAAAAHHHH!"));
+        assertThat(storyBookParagraphs.get(0), is("\"Nagmumuni-muni lang,\" sabi niya."));
     }
     
     @Ignore // TODO: handle &#xa0; interpreted as white space: "कुत्ता &#xa0;सैर"
