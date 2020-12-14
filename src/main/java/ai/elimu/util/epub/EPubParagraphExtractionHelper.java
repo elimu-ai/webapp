@@ -83,13 +83,39 @@ public class EPubParagraphExtractionHelper {
                         logger.info("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
                         logger.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
                         
-                        // Look for "<p>" (StoryBookProvider#GLOBAL_DIGITAL_LIBRARY)
+                        // Look for "<p>" (StoryBookProvider#GLOBAL_DIGITAL_LIBRARY & StoryBookProvider#LETS_READ_ASIA)
                         if ("p".equals(bodyChildNode.getNodeName())) {
-                            String paragraph = bodyChildNode.getTextContent();
-                            logger.info("paragraph: \"" + paragraph + "\"");
-                            paragraph = getCleanedUpParagraph(paragraph);
-                            if (StringUtils.isNotBlank(paragraph)) {
-                                paragraphs.add(paragraph);
+                            // If double line-breaks ("<br/><br/>"), insert "</p><p>" into the Node's text content
+                            if (bodyChildNode.hasChildNodes()) {
+                                NodeList paragraphChildNodeList = bodyChildNode.getChildNodes();
+                                int consecutiveLineBreaksCount = 0;
+                                for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
+                                    Node paragraphChildNode = paragraphChildNodeList.item(k);
+                                    logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
+                                    if ("br".equals(paragraphChildNode.getNodeName())) {
+                                        consecutiveLineBreaksCount++;
+                                    } else {
+                                        consecutiveLineBreaksCount = 0;
+                                    }
+                                    logger.info("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
+                                    if (consecutiveLineBreaksCount == 1) {
+                                        // Replace "<br/>" with whitespace
+                                        paragraphChildNode.setTextContent(" ");
+                                    } else if (consecutiveLineBreaksCount == 2) {
+                                        // Replace "<br/><br/>" with whitespace
+                                        paragraphChildNode.setTextContent("</p><p>");
+                                        consecutiveLineBreaksCount = 0;
+                                    }
+                                }
+                            }
+                            
+                            String[] paragraphArray = bodyChildNode.getTextContent().split("</p><p>");
+                            for (String paragraph : paragraphArray) {
+                                logger.info("paragraph: \"" + paragraph + "\"");
+                                paragraph = getCleanedUpParagraph(paragraph);
+                                if (StringUtils.isNotBlank(paragraph)) {
+                                    paragraphs.add(paragraph);
+                                }
                             }
                         }
                         
@@ -194,20 +220,20 @@ public class EPubParagraphExtractionHelper {
     private static String getCleanedUpParagraph(String paragraph) {
         logger.info("getCleanedUpParagraph, paragraph: \"" + paragraph + "\"");
         
-        // Remove line-breaks
+        // Replace line-breaks with a whitespace
         paragraph = paragraph.replace("\n", " ");
         
         // Replace non-breaking spaces (&nbsp;) with a whitespace
         paragraph = paragraph.replace("\u00a0", " ");
+        
+        // Replace vertical bar with Danda (https://en.wikipedia.org/wiki/Danda)
+        paragraph = paragraph.replace("|", "।");
         
         // Remove leading/trailing whitespaces
         paragraph = paragraph.trim();
         
         // Remove duplicate whitespaces
         paragraph = paragraph.replaceAll(" +", " ");
-        
-        // Replace vertical bar with Danda (https://en.wikipedia.org/wiki/Danda)
-        paragraph = paragraph.replace("|", "।");
         
         // Remove spaces in front of punctuation marks
         paragraph = paragraph.replace(" ,", ",");
