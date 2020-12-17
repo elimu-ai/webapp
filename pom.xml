@@ -401,7 +401,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.1.6.Final</version>
+            <version>6.1.7.Final</version>
         </dependency>
 
         <dependency>
