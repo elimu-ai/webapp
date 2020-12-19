@@ -37,6 +37,13 @@ Follow these steps to add a new audio file to the webapp's database:
 
    <img width="308" alt="Screen Shot 2020-12-09 at 4 26 35 PM" src="https://user-images.githubusercontent.com/15718174/101649572-b6430f00-3a43-11eb-8324-e4afe720de8d.png">
 
+1. Remove silence before/after the audio, if any. This is to make sure that a child does not experience any delays while interacting with the software. We recommend using [Audacity](https://www.audacityteam.org) for editing audio recordings:
+
+   <img width="1053" alt="Screen Shot 2020-12-17 at 7 10 51 PM" src="https://user-images.githubusercontent.com/15718174/102526312-27b63980-40a4-11eb-89ce-244351b449e7.png">
+
+   <img width="1053" alt="Screen Shot 2020-12-17 at 7 11 14 PM" src="https://user-images.githubusercontent.com/15718174/102526322-2ab12a00-40a4-11eb-9f2a-ea85230da06a.png">
+
+
 1. Then select the audio file, and press the "Add" button. If you want to provide any additional details about your contribution, you can do so in the "Comment" field:
 
    <img width="378" alt="Screen Shot 2020-12-09 at 4 32 43 PM" src="https://user-images.githubusercontent.com/15718174/101650579-c0b1d880-3a44-11eb-808a-4ffe292eef4b.png">

@@ -22,6 +22,7 @@ public abstract class Content extends BaseEntity {
     @NotNull
     private Integer revisionNumber = 1; // [1, 2, 3, ...]
     
+    // TODO: rename to "usageCount"
     /**
      * See UsageCountSchedulers in {@link ai.elimu.tasks} for details on how this value is being updated on a regular 
      * basis.
