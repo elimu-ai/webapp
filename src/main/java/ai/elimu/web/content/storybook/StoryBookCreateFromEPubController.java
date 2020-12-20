@@ -357,6 +357,7 @@ public class StoryBookCreateFromEPubController {
                         || originalTextLowerCase.contains("creative commons")
                         || originalTextLowerCase.contains("pratham books")
                         || originalTextLowerCase.contains("storyweaver")
+                        || originalTextLowerCase.contains("copyright page")
                     ) {
                         isMetadata = true;
                         break;
