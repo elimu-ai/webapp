@@ -7,10 +7,14 @@ Clone `https://github.com/elimu-ai/webapp.git`
 ## Run application locally
 
 To be able to compile and execute the web application locally, you will first need to install the following:
+
 * Java Development Kit (JDK)
-   macOS: `brew install openjdk`
+
+  * macOS: `brew install openjdk`
+
 * Maven
-   macOS: `brew install maven`
+
+  * macOS: `brew install maven`
 
 Go to the project's folder:
 
