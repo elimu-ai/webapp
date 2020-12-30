@@ -44,6 +44,10 @@ public class EmojiCreateController {
         if (existingEmoji != null) {
             result.rejectValue("glyph", "NonUnique");
         }
+
+        if(emoji.getUnicodeVersion() > 9){
+            result.rejectValue("glyph", "emoji.unicode.version");
+        }
         
         if (result.hasErrors()) {
             model.addAttribute("emoji", emoji);
