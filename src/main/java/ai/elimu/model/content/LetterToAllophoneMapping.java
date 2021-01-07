@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class LetterToAllophoneMapping extends BaseEntity {
     
+//    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Letter> letters;
