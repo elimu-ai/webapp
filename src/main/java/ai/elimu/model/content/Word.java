@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Word extends Content {
 
-    @Deprecated // TODO: replace with list of Letters
+    @Deprecated // TODO: replace with list of LetterToAllophoneMappings
     @NotNull
     private String text;
     
