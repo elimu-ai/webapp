@@ -70,7 +70,7 @@ html[data-content-language="urd"] #wordCreatePage input#text,
 html[data-content-language="ben"] #wordEditPage input#text,
 html[data-content-language="hin"] #wordEditPage input#text,
 html[data-content-language="urd"] #wordEditPage input#text {
-    font-size: 3em;
+    font-size: 4rem;
     height: 2em;
     letter-spacing: 0.2em;
 }
