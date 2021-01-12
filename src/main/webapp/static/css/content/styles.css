@@ -136,3 +136,15 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
 .peerReviewEvent .peerReviewStatus {
     font-weight: bold;
 }
+
+#wordCreatePage input#text,
+#wordEditPage input#text {
+    font-size: 2em;
+}
+#letterToAllophoneMappingsContainer .chip {
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+    height: auto;
+    background-color: #EEE;
+}

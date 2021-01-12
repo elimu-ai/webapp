@@ -98,22 +98,21 @@
                 <div class="col s12">
                     <label><fmt:message key="letter.to.allophone.mappings" /></label><br />
                     
-                    <span id="letterToAllophoneMappingsContainer">
+                    <div id="letterToAllophoneMappingsContainer">
                         <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
                             <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
-                            <div class="chip" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
+                            <div class="chip">
+                                <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
+                                    <i class="material-icons">clear</i>
+                                </a>
                                 <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />">
                                     "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
                                         ${letter.text}
-                                    </c:forEach>" 
-                                    → 
+                                    </c:forEach>"<br />
+                                    ↓<br />
                                     /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
                                         ${allophone.valueIpa}
                                     </c:forEach>/
-                                </a>
-                                
-                                <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
-                                    <i class="material-icons">clear</i>
                                 </a>
                             </div>
                         </c:forEach>
@@ -132,12 +131,12 @@
                                 });
                             });
                         </script>
-                    </span>
+                    </div>
 
                     <select id="letterToAllophoneMappings" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="letterToAllophoneMapping" items="${letterToAllophoneMappings}">
-                            <option value="${letterToAllophoneMapping.id}">"<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>/</option>
+                            <option value="${letterToAllophoneMapping.id}" data-letters="<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>/</option>
                         </c:forEach>
                     </select>
                     <script>
@@ -147,11 +146,14 @@
                                 
                                 var letterToAllophoneMappingId = $(this).val();
                                 console.log('letterToAllophoneMappingId: ' + letterToAllophoneMappingId);
-                                var letterToAllophoneMappingValueIpa = $(this).find('option[value="' + letterToAllophoneMappingId + '"]').text();
-                                console.log('letterToAllophoneMappingValueIpa: ' + letterToAllophoneMappingValueIpa);
+                                var selectedOption = $(this).find('option[value="' + letterToAllophoneMappingId + '"]');
+                                var letterToAllophoneMappingLetters = selectedOption.attr('data-letters');
+                                console.log('letterToAllophoneMappingLetters "' + letterToAllophoneMappingLetters + '"');
+                                var letterToAllophoneMappingAllophones = selectedOption.attr('data-allophones');
+                                console.log('letterToAllophoneMappingAllophones "' + letterToAllophoneMappingAllophones + '"');
                                 if (letterToAllophoneMappingId != "") {
                                     $('#letterToAllophoneMappingsContainer').append('<input name="letterToAllophoneMappings" type="hidden" value="' + letterToAllophoneMappingId + '" />');
-                                    $('#letterToAllophoneMappingsContainer').append('<div class="chip">' + letterToAllophoneMappingValueIpa + '</div>');
+                                    $('#letterToAllophoneMappingsContainer').append('<div class="chip">"' + letterToAllophoneMappingLetters + '"<br />↓<br />/' + letterToAllophoneMappingAllophones + '/</div>');
                                     $(this).val("");
                                 }
                             });
