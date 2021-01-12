@@ -215,29 +215,31 @@ public class WordEditController {
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
+            boolean isMatch = false;
             for (LetterToAllophoneMapping letterToAllophoneMapping : allLetterToAllophoneMappingsOrderedByLettersLength) {
                 String letterToAllophoneMappingLetters = letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
                 logger.info("letterToAllophoneMappingLetters: \"" + letterToAllophoneMappingLetters + "\"");
 
                 if (wordText.startsWith(letterToAllophoneMappingLetters)) {
+                    isMatch = true;
                     logger.info("Found match at the beginning of \"" + wordText + "\"");
                     letterToAllophoneMappings.add(letterToAllophoneMapping);
 
                     // Remove the match from the word
                     wordText = wordText.substring(letterToAllophoneMappingLetters.length());
                     
-                    // Repeat the process on the remaining part of the word
                     break;
                 }
             }
             
-            // No matching mapping was found at the beginning of the word
-            if (wordText.length() > 1) {
-                // Remove the first letter, and try again
-                wordText = wordText.substring(1);
-            } else {
-                // Remove the letter
-                wordText = "";
+            if (!isMatch) {
+                if (wordText.length() > 1) {
+                    // Remove the first letter
+                    wordText = wordText.substring(1);
+                } else {
+                    // Remove the letter
+                    wordText = "";
+                }
             }
         }
         
