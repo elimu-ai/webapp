@@ -34,9 +34,22 @@
                     <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
+                
+                <c:if test="${not empty word.text}">
+                    <c:if test="${(applicationScope.configProperties['content.language'] == 'BEN')
+                          || (applicationScope.configProperties['content.language'] == 'HIN')
+                          || (applicationScope.configProperties['content.language'] == 'URD')}">
+                          <%-- Extract and display each letter of the word. E.g. "न ह ी ं" for "नहीं" --%>
+                        <div class="col s12 grey-text" style="font-size: 4em;">
+                            <c:forEach begin="0" end="${fn:length(word.text) - 1}" varStatus="status">
+                                <c:set var="letter" value="${fn:substring(word.text, status.index, status.index + 1)}" />
+                                <c:out value="${letter}" /><c:out value=" " />
+                            </c:forEach>
+                        </div>
+                    </c:if>
+                </c:if>
             </div>
         
-            <%--
             <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
@@ -69,49 +82,7 @@
                         </script>
                     </span>/
                 </div>
-                
-                <div class="input-field col s12">
-                    <div id="allophonesContainer">
-                        <c:forEach var="allophone" items="${allophones}">
-                            <a href="#" class="allophone chip <c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-valuesampa="${allophone.valueSampa}">${allophone.valueIpa}</a>
-                            <audio id="audio_sampa_${allophone.valueSampa}">
-                                <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
-                            </audio>
-                        </c:forEach>
-                        <script>
-                            $(function() {
-                                // Append IPA value to text field
-                                $('#allophonesContainer .chip').click(function(event) {
-                                    console.info('#allophonesContainer .chip click');
-                                    event.preventDefault();
-                                    
-                                    var allophoneId = $(this).attr("data-allophoneid");
-                                    console.log('allophoneId: ' + allophoneId);
-                                    
-                                    var allophoneValueIpa = $(this).html();
-                                    console.info('allophoneValueIpa: ' + allophoneValueIpa);
-                                    
-                                    $('#selectedAllophonesContainer').append('<input name="allophones" type="hidden" value="' + allophoneId + '" />');
-                                    $('#selectedAllophonesContainer').append('<div class="chip">' + allophoneValueIpa + '</div>');
-                                });
-                                
-                                // Play sound when hovering IPA value
-                                $('.allophone').mouseenter(function() {
-                                    console.info('.allophone mouseenter');
-                                    
-                                    var valueSampa = $(this).attr('data-valuesampa');
-                                    console.info('valueSampa: ' + valueSampa);
-                                    
-                                    var audio = $('#audio_sampa_' + valueSampa);
-                                    audio[0].play();
-                                });
-                            });
-                        </script>
-                    </div>
-                    <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
-                </div>
             </div>
-            --%>
                 
             <div class="row">
                 <div class="col s12">
