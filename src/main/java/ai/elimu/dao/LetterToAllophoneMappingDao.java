@@ -12,4 +12,6 @@ public interface LetterToAllophoneMappingDao extends GenericDao<LetterToAllophon
 //    LetterToAllophoneMapping read(List<Letter> letters, List<Allophone> allophones) throws DataAccessException;
     
     List<LetterToAllophoneMapping> readAllOrderedByUsage() throws DataAccessException;
+    
+    List<LetterToAllophoneMapping> readAllOrderedByLettersLength() throws DataAccessException;
 }
