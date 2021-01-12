@@ -4,13 +4,13 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.1.171-SNAPSHOT</version>
+    <version>2.1.172-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>2.0.33</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
-        <hibernate.version>5.4.26.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
+        <hibernate.version>5.4.27.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
         <spring.version>5.3.2</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>5.4.2</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
