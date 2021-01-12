@@ -252,6 +252,7 @@ public class CsvContentExtractionHelper {
                             "text",
                             "allophone_ids",
                             "allophone_values_ipa",
+                            "letter_to_allophone_mappings",
                             "usage_count",
                             "word_type",
                             "spelling_consistency",
@@ -282,6 +283,10 @@ public class CsvContentExtractionHelper {
                     allophones.add(allophone);
                 }
                 word.setAllophones(allophones);
+                
+                JSONArray letterToAllophoneMappingsJsonArray = new JSONArray(csvRecord.get("letter_to_allophone_mappings"));
+                logger.info("letterToAllophoneMappingsJsonArray: " + letterToAllophoneMappingsJsonArray);
+                // TODO
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 word.setUsageCount(usageCount);
