@@ -231,15 +231,9 @@ public class WordEditController {
                     break;
                 }
             }
-            
             if (!isMatch) {
-                if (wordText.length() > 1) {
-                    // Remove the first letter
-                    wordText = wordText.substring(1);
-                } else {
-                    // Remove the letter
-                    wordText = "";
-                }
+                // Skip auto-selection for the subsequent letters
+                break;
             }
         }
         
