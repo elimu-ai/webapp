@@ -38,7 +38,7 @@
                         </script>
                     </span>"
 
-                    <select id="letters" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0;">
+                    <select id="letters" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="letter" items="${letters}">
                             <option value="${letter.id}"><c:out value="${letter.text}" /></option>
@@ -96,7 +96,7 @@
                         </script>
                     </span>/
 
-                    <select id="allophones" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0;">
+                    <select id="allophones" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="allophone" items="${allophones}">
                             <option value="${allophone.id}"><c:out value="${allophone.valueIpa}" /></option>
