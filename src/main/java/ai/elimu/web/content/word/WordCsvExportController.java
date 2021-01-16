@@ -2,14 +2,12 @@ package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +79,16 @@ public class WordCsvExportController {
             for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
                 JSONObject letterToAllophoneMappingJsonObject = new JSONObject();
                 letterToAllophoneMappingJsonObject.put("id", letterToAllophoneMapping.getId());
-                letterToAllophoneMappingJsonObject.put("letters", letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining()));
-                letterToAllophoneMappingJsonObject.put("allophones", letterToAllophoneMapping.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining()));
+                String[] lettersArray = new String[letterToAllophoneMapping.getLetters().size()];
+                for (int i = 0; i < lettersArray.length; i++) {
+                    lettersArray[i] = letterToAllophoneMapping.getLetters().get(i).getText();
+                }
+                letterToAllophoneMappingJsonObject.put("letters", lettersArray);
+                String[] allophonesArray = new String[letterToAllophoneMapping.getAllophones().size()];
+                for (int i = 0; i < allophonesArray.length; i++) {
+                    allophonesArray[i] = letterToAllophoneMapping.getAllophones().get(i).getValueIpa();
+                }
+                letterToAllophoneMappingJsonObject.put("allophones", allophonesArray);
                 letterToAllophoneMappingJsonObject.put("usageCount", letterToAllophoneMapping.getUsageCount());
                 letterToAllophoneMappingsJsonArray.put(index, letterToAllophoneMappingJsonObject);
                 index++;

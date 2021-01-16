@@ -10,6 +10,7 @@ import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
+import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,10 @@ public class LetterToAllophoneMappingCreateController {
     	logger.info("handleSubmit");
         
         // Check if the LetterToAllophoneMapping already exists
-        // TODO
+        LetterToAllophoneMapping existingLetterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMapping.getLetters(), letterToAllophoneMapping.getAllophones());
+        if (existingLetterToAllophoneMapping != null) {
+            result.rejectValue("letterToAllophoneMapping", "NonUnique");
+        }
         
         if (result.hasErrors()) {
             model.addAttribute("letterToAllophoneMapping", letterToAllophoneMapping);

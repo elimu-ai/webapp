@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface LetterToAllophoneMappingDao extends GenericDao<LetterToAllophoneMapping> {
     
-//    LetterToAllophoneMapping read(List<Letter> letters, List<Allophone> allophones) throws DataAccessException;
+    LetterToAllophoneMapping read(List<Letter> letters, List<Allophone> allophones) throws DataAccessException;
     
     List<LetterToAllophoneMapping> readAllOrderedByUsage() throws DataAccessException;
     
