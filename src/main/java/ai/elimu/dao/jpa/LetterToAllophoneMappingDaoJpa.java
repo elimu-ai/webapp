@@ -1,12 +1,8 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.LetterToAllophoneMappingDao;
-import ai.elimu.model.content.Allophone;
-import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import java.util.List;
-import java.util.stream.Collectors;
-import javax.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 public class LetterToAllophoneMappingDaoJpa extends GenericDaoJpa<LetterToAllophoneMapping> implements LetterToAllophoneMappingDao {
@@ -14,6 +10,7 @@ public class LetterToAllophoneMappingDaoJpa extends GenericDaoJpa<LetterToAlloph
 //    @Override
 //    public LetterToAllophoneMapping read(List<Letter> letters, List<Allophone> allophones) throws DataAccessException {
 //        try {
+//            // TODO: use CriteriaQuery/CriteriaQuery
 //            return (LetterToAllophoneMapping) em.createQuery(
 //                "SELECT ltam " +
 //                "FROM LetterToAllophoneMapping ltam " +

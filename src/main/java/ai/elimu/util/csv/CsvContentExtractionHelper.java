@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -237,7 +238,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, AllophoneDao allophoneDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterToAllophoneMappingDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();
@@ -286,7 +287,22 @@ public class CsvContentExtractionHelper {
                 
                 JSONArray letterToAllophoneMappingsJsonArray = new JSONArray(csvRecord.get("letter_to_allophone_mappings"));
                 logger.info("letterToAllophoneMappingsJsonArray: " + letterToAllophoneMappingsJsonArray);
-                // TODO
+                List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
+                for (int i = 0; i < letterToAllophoneMappingsJsonArray.length(); i++) {
+                    JSONObject letterToAllophoneMappingJsonObject = letterToAllophoneMappingsJsonArray.getJSONObject(i);
+                    logger.info("letterToAllophoneMappingJsonObject: " + letterToAllophoneMappingJsonObject);
+                    String letterToAllophoneMappingLetters = letterToAllophoneMappingJsonObject.getString("letters");
+                    String letterToAllophoneMappingAllophones = letterToAllophoneMappingJsonObject.getString("allophones");
+                    for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAllOrderedByUsage()) {
+                        String lettersAsString = letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+                        String allophonesAsString = letterToAllophoneMapping.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining());
+                        if (lettersAsString.equals(letterToAllophoneMappingLetters) && allophonesAsString.equals(letterToAllophoneMappingAllophones)) {
+                            letterToAllophoneMappings.add(letterToAllophoneMapping);
+                            break;
+                        }
+                    }
+                }
+                word.setLetterToAllophoneMappings(letterToAllophoneMappings);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 word.setUsageCount(usageCount);
