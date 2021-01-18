@@ -216,7 +216,7 @@
                     <a href="https://forvo.com/word/<c:out value='${word.text}' />/#bn" target="_blank">Forvo</a>
                 </li>
                 <li>
-                    <a href="https://translate.google.com/#view=home&op=translate&sl=bn&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                    <a href="https://translate.google.com/?sl=bn&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
                 </li>
             </ol>
         </div>
@@ -234,7 +234,7 @@
                     <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
                 </li>
                 <li>
-                    <a href="https://translate.google.com/#view=home&op=translate&sl=hi&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                    <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
                 </li>
             </ol>
         </div>
@@ -252,7 +252,7 @@
                     <a href="https://forvo.com/word/<c:out value='${word.text}' />/#tl" target="_blank">Forvo</a>
                 </li>
                 <li>
-                    <a href="https://translate.google.com/#view=home&op=translate&sl=tl&tl=en&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                    <a href="https://translate.google.com/?sl=tl&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
                 </li>
                 <li>
                     <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
