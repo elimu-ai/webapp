@@ -61,7 +61,7 @@ public class LetterToAllophoneMappingEditController {
         // Check if the LetterToAllophoneMapping already exists
         LetterToAllophoneMapping existingLetterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMapping.getLetters(), letterToAllophoneMapping.getAllophones());
         if ((existingLetterToAllophoneMapping != null) && !existingLetterToAllophoneMapping.getId().equals(letterToAllophoneMapping.getId())) {
-            result.rejectValue("letterToAllophoneMapping", "NonUnique");
+            result.rejectValue("letters", "NonUnique");
         }
         
         if (result.hasErrors()) {
