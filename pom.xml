@@ -4,15 +4,15 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.1.170-SNAPSHOT</version>
+    <version>2.1.178-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>2.0.33</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
-        <hibernate.version>5.4.26.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
+        <hibernate.version>5.4.27.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
-        <spring.version>5.3.2</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
+        <spring.version>5.3.3</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>5.4.2</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.22.2</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
     </properties>
@@ -351,7 +351,7 @@
         <dependency>
             <groupId>com.github.scribejava</groupId>
             <artifactId>scribejava-apis</artifactId>
-            <version>8.0.0</version>
+            <version>8.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -378,7 +378,7 @@
         <dependency>
             <groupId>org.owasp.antisamy</groupId>
             <artifactId>antisamy</artifactId>
-            <version>1.5.11</version>
+            <version>1.5.13</version>
         </dependency>
 
         <dependency>
@@ -401,7 +401,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>7.0.0.Final</version>
+            <version>6.1.7.Final</version>
         </dependency>
 
         <dependency>

@@ -2,6 +2,7 @@ package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,6 +19,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
@@ -41,10 +43,11 @@ public class WordCsvExportController {
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
-                        "id", 
-                        "text", 
-                        "allophone_ids", 
-                        "allophone_values_ipa", 
+                        "id",
+                        "text",
+                        "allophone_ids",
+                        "allophone_values_ipa",
+                        "letter_to_allophone_mappings",
                         "usage_count",
                         "word_type",
                         "spelling_consistency",
@@ -71,6 +74,26 @@ public class WordCsvExportController {
                 index++;
             }
             
+            JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
+            index = 0;
+            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
+                JSONObject letterToAllophoneMappingJsonObject = new JSONObject();
+                letterToAllophoneMappingJsonObject.put("id", letterToAllophoneMapping.getId());
+                String[] lettersArray = new String[letterToAllophoneMapping.getLetters().size()];
+                for (int i = 0; i < lettersArray.length; i++) {
+                    lettersArray[i] = letterToAllophoneMapping.getLetters().get(i).getText();
+                }
+                letterToAllophoneMappingJsonObject.put("letters", lettersArray);
+                String[] allophonesArray = new String[letterToAllophoneMapping.getAllophones().size()];
+                for (int i = 0; i < allophonesArray.length; i++) {
+                    allophonesArray[i] = letterToAllophoneMapping.getAllophones().get(i).getValueIpa();
+                }
+                letterToAllophoneMappingJsonObject.put("allophones", allophonesArray);
+                letterToAllophoneMappingJsonObject.put("usageCount", letterToAllophoneMapping.getUsageCount());
+                letterToAllophoneMappingsJsonArray.put(index, letterToAllophoneMappingJsonObject);
+                index++;
+            }
+            
             Long rootWordId = null;
             String rootWordText = null;
             if (word.getRootWord() != null) {
@@ -83,6 +106,7 @@ public class WordCsvExportController {
                     word.getText(),
                     allophoneIdsJsonArray,
                     allophoneValuesIpaJsonArray,
+                    letterToAllophoneMappingsJsonArray,
                     word.getUsageCount(),
                     word.getWordType(),
                     word.getSpellingConsistency(),
