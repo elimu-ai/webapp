@@ -45,7 +45,7 @@ public class EmojiCreateController {
             result.rejectValue("glyph", "NonUnique");
         }
 
-        if(emoji.getUnicodeVersion() > 9){
+        if (emoji.getUnicodeVersion() > 9) {
             result.rejectValue("glyph", "emoji.unicode.version");
         }
         
