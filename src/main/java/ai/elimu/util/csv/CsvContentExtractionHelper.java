@@ -237,7 +237,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, AllophoneDao allophoneDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterToAllophoneMappingDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();
@@ -252,6 +252,7 @@ public class CsvContentExtractionHelper {
                             "text",
                             "allophone_ids",
                             "allophone_values_ipa",
+                            "letter_to_allophone_mappings",
                             "usage_count",
                             "word_type",
                             "spelling_consistency",
@@ -273,15 +274,39 @@ public class CsvContentExtractionHelper {
                 
                 JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
                 logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
-                List<Allophone> allophones = new ArrayList<>();
-                for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
-                    String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
-                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
-                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
-                    logger.info("allophone.getId(): " + allophone.getId());
-                    allophones.add(allophone);
+//                List<Allophone> allophones = new ArrayList<>();
+//                for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
+//                    String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
+//                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
+//                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
+//                    logger.info("allophone.getId(): " + allophone.getId());
+//                    allophones.add(allophone);
+//                }
+//                word.setAllophones(allophones);
+                
+                JSONArray letterToAllophoneMappingsJsonArray = new JSONArray(csvRecord.get("letter_to_allophone_mappings"));
+                logger.info("letterToAllophoneMappingsJsonArray: " + letterToAllophoneMappingsJsonArray);
+                List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
+                for (int i = 0; i < letterToAllophoneMappingsJsonArray.length(); i++) {
+                    JSONObject letterToAllophoneMappingJsonObject = letterToAllophoneMappingsJsonArray.getJSONObject(i);
+                    logger.info("letterToAllophoneMappingJsonObject: " + letterToAllophoneMappingJsonObject);
+                    List<Letter> letters = new ArrayList<>();
+                    JSONArray lettersJsonArray = letterToAllophoneMappingJsonObject.getJSONArray("letters");
+                    for (int j = 0; j < lettersJsonArray.length(); j++) {
+                        Letter letter = letterDao.readByText(lettersJsonArray.getString(j));
+                        letters.add(letter);
+                    }
+                    List<Allophone> allophones = new ArrayList<>();
+                    JSONArray allophonesJsonArray = letterToAllophoneMappingJsonObject.getJSONArray("allophones");
+                    for (int j = 0; j < allophonesJsonArray.length(); j++) {
+                        Allophone allophone = allophoneDao.readByValueIpa(allophonesJsonArray.getString(j));
+                        allophones.add(allophone);
+                    }
+                    LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(letters, allophones);
+                    logger.info("letterToAllophoneMapping.getId(): " + letterToAllophoneMapping.getId());
+                    letterToAllophoneMappings.add(letterToAllophoneMapping);
                 }
-                word.setAllophones(allophones);
+                word.setLetterToAllophoneMappings(letterToAllophoneMappings);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 word.setUsageCount(usageCount);

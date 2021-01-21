@@ -83,7 +83,8 @@ public class LetterToAllophoneMappingCsvExportController {
                 index++;
             }
             
-            csvPrinter.printRecord(letterToAllophoneMapping.getId(),
+            csvPrinter.printRecord(
+                    letterToAllophoneMapping.getId(),
                     letterIdsJsonArray,
                     letterTextsJsonArray,
                     allophoneIdsJsonArray,

@@ -16,6 +16,8 @@ import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
+import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
@@ -23,8 +25,10 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
@@ -76,6 +80,9 @@ public class WordCreateController {
         // Pre-fill the Word's text (if the user arrived from /content/storybook/edit/{id}/)
         if (StringUtils.isNotBlank(autoFillText)) {
             word.setText(autoFillText);
+            
+            autoSelectLetterToAllophoneMappings(word);
+            // TODO: display information message to the Contributor that the Letter-to-Allophone mappings were auto-selected, and that they should be verified
             
             model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
         }
@@ -176,5 +183,41 @@ public class WordCreateController {
         }
         
         return emojisByWordId;
+    }
+    
+    private void autoSelectLetterToAllophoneMappings(Word word) {
+        logger.info("autoSelectLetterToAllophoneMappings");
+        
+        String wordText = word.getText();
+        
+        List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
+        
+        List<LetterToAllophoneMapping> allLetterToAllophoneMappingsOrderedByLettersLength = letterToAllophoneMappingDao.readAllOrderedByLettersLength();
+        while (StringUtils.isNotBlank(wordText)) {
+            logger.info("wordText: \"" + wordText + "\"");
+            
+            boolean isMatch = false;
+            for (LetterToAllophoneMapping letterToAllophoneMapping : allLetterToAllophoneMappingsOrderedByLettersLength) {
+                String letterToAllophoneMappingLetters = letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+                logger.info("letterToAllophoneMappingLetters: \"" + letterToAllophoneMappingLetters + "\"");
+
+                if (wordText.startsWith(letterToAllophoneMappingLetters)) {
+                    isMatch = true;
+                    logger.info("Found match at the beginning of \"" + wordText + "\"");
+                    letterToAllophoneMappings.add(letterToAllophoneMapping);
+
+                    // Remove the match from the word
+                    wordText = wordText.substring(letterToAllophoneMappingLetters.length());
+                    
+                    break;
+                }
+            }
+            if (!isMatch) {
+                // Skip auto-selection for the subsequent letters
+                break;
+            }
+        }
+        
+        word.setLetterToAllophoneMappings(letterToAllophoneMappings);
     }
 }

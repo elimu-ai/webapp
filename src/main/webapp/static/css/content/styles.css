@@ -70,7 +70,7 @@ html[data-content-language="urd"] #wordCreatePage input#text,
 html[data-content-language="ben"] #wordEditPage input#text,
 html[data-content-language="hin"] #wordEditPage input#text,
 html[data-content-language="urd"] #wordEditPage input#text {
-    font-size: 3em;
+    font-size: 4rem;
     height: 2em;
     letter-spacing: 0.2em;
 }
@@ -135,4 +135,16 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
 }
 .peerReviewEvent .peerReviewStatus {
     font-weight: bold;
+}
+
+#wordCreatePage input#text,
+#wordEditPage input#text {
+    font-size: 2em;
+}
+#letterToAllophoneMappingsContainer .chip {
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+    height: auto;
+    background-color: #EEE;
 }
