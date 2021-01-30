@@ -15,7 +15,7 @@
     <div class="divider" style="margin: 1.5em 0;"></div>
     
     <p>
-        In order to achieve our purpose of providing out-of-school children with access to quality basic education, the 
+        In order to achieve our purpose of providing disadvantaged children with access to quality basic education, the 
         elimu.ai Community focuses on three <a href="https://github.com/elimu-ai/wiki/projects" target="_blank">main activities</a>:
     </p>
     <div class="chip deep-purple lighten-2 white-text">1. Content</div>

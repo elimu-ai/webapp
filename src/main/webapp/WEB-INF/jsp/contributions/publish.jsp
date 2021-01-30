@@ -6,7 +6,7 @@
     <h2><content:gettitle /></h2>
     
     <p>
-        Do you have (or wish to develop) an Android app which teaches literacy/numeracy skills to out-of-school children?
+        Do you have (or wish to develop) an Android app which teaches literacy/numeracy skills to disadvantaged children?
     </p>
     
     <p>
