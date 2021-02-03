@@ -275,9 +275,7 @@
                                     <c:out value="${word.text}" />
                                 </a><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /><br />
                                 <span class="grey-text">
-                                    /<c:forEach var="allophone" items="${word.allophones}">
-                                        ${allophone.valueIpa}
-                                    </c:forEach>/
+                                    /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                                 </span>
                             </c:otherwise>
                         </c:choose>
