@@ -64,6 +64,10 @@ public class EmojiEditController {
         if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
             result.rejectValue("glyph", "NonUnique");
         }
+
+        if (emoji.getUnicodeVersion() > 9) {
+            result.rejectValue("glyph", "emoji.unicode.version");
+        }
         
         if (result.hasErrors()) {
             model.addAttribute("emoji", emoji);
