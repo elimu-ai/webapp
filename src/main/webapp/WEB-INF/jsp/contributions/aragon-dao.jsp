@@ -92,7 +92,7 @@
         <script>
             <c:set var="ethereumNetwork" value="rinkeby" />
             <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
-                <c:set var="ethereumNetwork" value="mainnet" />
+                <c:set var="ethereumNetwork" value="client" />
             </c:if>
             $(function() {
                 $.ajax({
