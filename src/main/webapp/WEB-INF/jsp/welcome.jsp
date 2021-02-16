@@ -182,8 +182,7 @@
                   <h2><i class="material-icons medium">local_shipping</i></h2>
                   <h5><fmt:message key="distribute.the.software" /></h5>
                   
-                  <p>Do you live near a child who does not have access to quality basic education? Help us distribute 
-                  the learning software.</p>
+                  <p>Do you live near a child who does not have access to quality basic education? Help us <a href="https://github.com/elimu-ai/wiki/blob/master/SOFTWARE_ARCHITECTURE.md#distribution">distribute</a> the learning software.</p>
                 </div>
             </div>
         </div>
