@@ -9,6 +9,10 @@ import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Emoji;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
@@ -16,6 +20,9 @@ import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +45,12 @@ public class AudioCreateController {
     
     @Autowired
     private AudioDao audioDao;
+    
+    @Autowired
+    private WordDao wordDao;
+    
+    @Autowired
+    private EmojiDao emojiDao;
     
     @Autowired
     private AudioContributionEventDao audioContributionEventDao;
@@ -64,12 +77,16 @@ public class AudioCreateController {
         
         model.addAttribute("audio", audio);
         
+        model.addAttribute("words", wordDao.readAllOrdered());
+        
         model.addAttribute("contentLicenses", ContentLicense.values());
         
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
         
         model.addAttribute("timeStart", System.currentTimeMillis());
+        
+        model.addAttribute("emojisByWordId", getEmojisByWordId());
 
         return "content/multimedia/audio/create";
     }
@@ -134,12 +151,16 @@ public class AudioCreateController {
         }
         
         if (result.hasErrors()) {
+            model.addAttribute("words", wordDao.readAllOrdered());
+            
             model.addAttribute("contentLicenses", ContentLicense.values());
             
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
             
             model.addAttribute("timeStart", request.getParameter("timeStart"));
+            
+            model.addAttribute("emojisByWordId", getEmojisByWordId());
             
             return "content/multimedia/audio/create";
         } else {
@@ -170,5 +191,26 @@ public class AudioCreateController {
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
     	logger.info("initBinder");
     	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+    }
+    
+    private Map<Long, String> getEmojisByWordId() {
+        logger.info("getEmojisByWordId");
+        
+        Map<Long, String> emojisByWordId = new HashMap<>();
+        
+        for (Word word : wordDao.readAll()) {
+            String emojiGlyphs = "";
+            
+            List<Emoji> emojis = emojiDao.readAllLabeled(word);
+            for (Emoji emoji : emojis) {
+                emojiGlyphs += emoji.getGlyph();
+            }
+            
+            if (StringUtils.isNotBlank(emojiGlyphs)) {
+                emojisByWordId.put(word.getId(), emojiGlyphs);
+            }
+        }
+        
+        return emojisByWordId;
     }
 }

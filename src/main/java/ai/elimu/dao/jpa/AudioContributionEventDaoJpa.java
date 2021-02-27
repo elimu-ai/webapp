@@ -19,6 +19,17 @@ public class AudioContributionEventDaoJpa extends GenericDaoJpa<AudioContributio
             .setParameter("audio", audio)
             .getResultList();
     }
+    
+    @Override
+    public List<AudioContributionEvent> readAll(Contributor contributor) throws DataAccessException {
+        return em.createQuery(
+            "SELECT ace " + 
+            "FROM AudioContributionEvent ace " +
+            "WHERE ace.contributor = :contributor " + 
+            "ORDER BY ace.time DESC")
+            .setParameter("contributor", contributor)
+            .getResultList();
+    }
 
     @Override
     public List<AudioContributionEvent> readMostRecent(int maxResults) throws DataAccessException {

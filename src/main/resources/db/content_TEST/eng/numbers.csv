@@ -22,4 +22,5 @@ id,value,symbol,word_ids,word_texts
 31,20,,[34],"[""twenty""]"
 32,21,,[39],"[""twenty-one""]"
 45,22,,[40],"[""twenty-two""]"
+49,23,,[50],"[""twenty-three""]"
 46,30,,[41],"[""thirty""]"

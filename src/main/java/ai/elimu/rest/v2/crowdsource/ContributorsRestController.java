@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Stores a Contributor in the database.
+ * Stores a {@link Contributor} in the database.
  * <p />
  * 
  * Note that authentication for the same Google accounts are done in the 

@@ -1,5 +1,6 @@
 package ai.elimu.model.content.multimedia;
 
+import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.PeerReviewStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,16 @@ import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.enums.content.AudioFormat;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Audio extends Multimedia {
+    
+    /**
+     * Will be used if the Audio recording was made for a particular {@link Word}.
+     */
+    @ManyToOne
+    private Word word;
     
     @NotNull
 //    @Column(unique=true)
@@ -31,6 +39,14 @@ public class Audio extends Multimedia {
     
     @Enumerated(EnumType.STRING)
     private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
+    
+    public Word getWord() {
+        return word;
+    }
+    
+    public void setWord(Word word) {
+        this.word = word;
+    }
     
     public String getTitle() {
         return title;
