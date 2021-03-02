@@ -54,21 +54,20 @@ public class AudioContributionsRestController {
         
         JSONObject jsonObject = new JSONObject();
         
-        String contributorIdHeader = request.getHeader("contributorId");
-        logger.info("contributorIdHeader: " + contributorIdHeader);
-        if (StringUtils.isBlank(contributorIdHeader)) {
+        String providerIdGoogle = request.getHeader("providerIdGoogle");
+        logger.info("providerIdGoogle: " + providerIdGoogle);
+        if (StringUtils.isBlank(providerIdGoogle)) {
             jsonObject.put("result", "error");
-            jsonObject.put("errorMessage", "Missing contributorId");
+            jsonObject.put("errorMessage", "Missing providerIdGoogle");
             response.setStatus(HttpStatus.BAD_REQUEST.value());
             
             String jsonResponse = jsonObject.toString();
             logger.info("jsonResponse: " + jsonResponse);
             return jsonResponse;
         }
-        Long contributorId = Long.valueOf(contributorIdHeader);
         
         // Lookup the Contributor by ID
-        Contributor contributor = contributorDao.read(contributorId);
+        Contributor contributor = contributorDao.readByProviderIdGoogle(providerIdGoogle);
         logger.info("contributor: " + contributor);
         if (contributor == null) {
             jsonObject.put("result", "error");
