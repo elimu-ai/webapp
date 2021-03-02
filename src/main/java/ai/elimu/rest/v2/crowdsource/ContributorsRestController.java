@@ -1,4 +1,4 @@
-package ai.elimu.rest.v2.crowdsource.contributor;
+package ai.elimu.rest.v2.crowdsource;
 
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
@@ -19,15 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Stores a Contributor in the database.
+ * Stores a {@link Contributor} in the database.
  * <p />
  * 
  * Note that authentication for the same Google accounts are done in the 
  * {@link SignOnControllerGoogle}.
  */
 @RestController
-@RequestMapping(value = "/rest/v2/crowdsource/contributor", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class ContributorRestController {
+@RequestMapping(value = "/rest/v2/crowdsource/contributors", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public class ContributorsRestController {
     
     private Logger logger = LogManager.getLogger();
     

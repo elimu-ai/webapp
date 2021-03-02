@@ -180,6 +180,7 @@
         peerReviewStatus varchar(255),
         title varchar(255),
         transcription varchar(255),
+        word_id bigint,
         primary key (id)
     );
 
@@ -642,6 +643,11 @@
        add constraint FKbmfakjprck5g1jlh74xpmp0j7 
        foreign key (contributor_id) 
        references Contributor;
+
+    alter table Audio 
+       add constraint FK1bkjicci0k63irniwg0fm9ans 
+       foreign key (word_id) 
+       references Word;
 
     alter table Audio_Letter 
        add constraint FKqjf1gijq56ob68ug5048bfaci 

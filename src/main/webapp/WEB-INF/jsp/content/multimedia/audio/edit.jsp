@@ -32,6 +32,16 @@
 
             <div class="row">
                 <div class="input-field col s12">
+                    <select id="word" name="word">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="word" items="${words}">
+                            <option value="${word.id}" <c:if test="${word.id == audio.word.id}">selected="selected"</c:if>>${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /></option>
+                        </c:forEach>
+                    </select>
+                    <label for="word"><fmt:message key="word" /></label>
+                </div>
+                
+                <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>

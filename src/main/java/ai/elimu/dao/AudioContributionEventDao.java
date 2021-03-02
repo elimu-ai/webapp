@@ -10,6 +10,8 @@ public interface AudioContributionEventDao extends GenericDao<AudioContributionE
     
     List<AudioContributionEvent> readAll(Audio audio) throws DataAccessException;
     
+    List<AudioContributionEvent> readAll(Contributor contributor) throws DataAccessException;
+    
     List<AudioContributionEvent> readMostRecent(int maxResults) throws DataAccessException;
     
     Long readCount(Contributor contributor) throws DataAccessException;

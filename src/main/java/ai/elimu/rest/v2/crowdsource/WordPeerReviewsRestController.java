@@ -1,4 +1,4 @@
-package ai.elimu.rest.v2.crowdsource.peer_review;
+package ai.elimu.rest.v2.crowdsource;
 
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.model.contributor.WordContributionEvent;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/rest/v2/crowdsource/peer-review/words", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class WordPeerReviewRestController {
+@RequestMapping(value = "/rest/v2/crowdsource/word-peer-reviews", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public class WordPeerReviewsRestController {
     
     private Logger logger = LogManager.getLogger();
     

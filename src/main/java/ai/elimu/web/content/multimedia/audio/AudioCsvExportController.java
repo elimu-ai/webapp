@@ -31,7 +31,7 @@ public class AudioCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,content_type,content_license,attribution_url,title,transcription,download_url,audio_format" + "\n";
+        String csvFileContent = "id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format" + "\n";
         List<Audio> audios = audioDao.readAll();
         logger.info("audios.size(): " + audios.size());
         for (Audio audio : audios) {
@@ -40,6 +40,7 @@ public class AudioCsvExportController {
                     + audio.getContentType() + ","
                     + audio.getContentLicense()+ ","
                     + "\"" + audio.getAttributionUrl() + "\","
+                    + ((audio.getWord() != null) ? audio.getWord().getId() : "")
                     + "\"" + audio.getTitle() + "\","
                     + "\"" + audio.getTranscription() + "\","
                     + "\"" + downloadUrl + "\","

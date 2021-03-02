@@ -81,6 +81,7 @@ public class AudioEditController {
         
         Audio audio = audioDao.read(id);
         model.addAttribute("audio", audio);
+        model.addAttribute("words", wordDao.readAllOrdered());
         model.addAttribute("contentLicenses", ContentLicense.values());
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
@@ -158,6 +159,7 @@ public class AudioEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("audio", audio);
+            model.addAttribute("words", wordDao.readAllOrdered());
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
