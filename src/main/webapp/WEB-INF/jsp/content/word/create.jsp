@@ -186,23 +186,6 @@
 </content:section>
 
 <content:aside>
-    <c:if test="${not empty word.text}">
-        <h5 class="center"><fmt:message key="audio" /></h5>
-        <c:choose>
-            <c:when test="${empty audio}">
-                <div class="card-panel amber lighten-3">
-                    <b>Warning:</b> This word has no corresponding audio.
-                    <a href="<spring:url value='/content/multimedia/audio/create?autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
-                </div>
-            </c:when>
-            <c:otherwise>
-                <audio controls="true" autoplay="true">
-                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
-                </audio>
-            </c:otherwise>
-        </c:choose>
-    </c:if>
-    
     <c:if test="${applicationScope.configProperties['content.language'] == 'BEN'}">
         <c:if test="${not empty word.text}">
             <div class="divider" style="margin: 1.5em 0;"></div>

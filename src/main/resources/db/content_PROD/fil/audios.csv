@@ -1,1 +1,2 @@
-id,content_type,content_license,attribution_url,transcription,download_url,audio_format
+id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format
+1,audio/wav,CREATIVE_COMMONS_CC_BY,"http://fil.elimu.ai",,"mama","mama","/audio/1.wav",WAV
