@@ -38,9 +38,9 @@ public class AudioCsvExportController {
             String downloadUrl = "/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase();
             csvFileContent += audio.getId() + ","
                     + audio.getContentType() + ","
-                    + audio.getContentLicense()+ ","
+                    + audio.getContentLicense() + ","
                     + "\"" + audio.getAttributionUrl() + "\","
-                    + ((audio.getWord() != null) ? audio.getWord().getId() : "")
+                    + ((audio.getWord() != null) ? audio.getWord().getId() : "") + ","
                     + "\"" + audio.getTitle() + "\","
                     + "\"" + audio.getTranscription() + "\","
                     + "\"" + downloadUrl + "\","
