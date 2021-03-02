@@ -14,11 +14,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,16 +46,39 @@ public class AudioContributionsRestController {
      * Get {@link Word}s pending {@link Audio} recording for the current {@link Contributor}.
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String handleGetRequest(HttpServletRequest request) {
+    public String handleGetRequest(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) {
         logger.info("handleGetRequest");
         
-        Long contributorId = Long.valueOf(request.getHeader("contributorId"));
-        logger.info("contributorId: " + contributorId);
+        JSONObject jsonObject = new JSONObject();
+        
+        String contributorIdHeader = request.getHeader("contributorId");
+        logger.info("contributorIdHeader: " + contributorIdHeader);
+        if (StringUtils.isBlank(contributorIdHeader)) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "Missing contributorId");
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
+        Long contributorId = Long.valueOf(contributorIdHeader);
         
         // Lookup the Contributor by ID
         Contributor contributor = contributorDao.read(contributorId);
         logger.info("contributor: " + contributor);
-        // TODO: if null, return error message
+        if (contributor == null) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "The Contributor was not found.");
+            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
         
         // Get the IDs of Words that have already been recorded by the Contributor
         List<AudioContributionEvent> audioContributionEvents = audioContributionEventDao.readAll(contributor);
