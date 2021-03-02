@@ -108,24 +108,6 @@ public class AudioEditController {
             Model model) {
     	logger.info("handleSubmit");
         
-        if (StringUtils.isBlank(audio.getTitle())) {
-            result.rejectValue("title", "NotNull");
-        } else {
-            Audio existingAudio = audioDao.readByTitle(audio.getTranscription());
-            if ((existingAudio != null) && !existingAudio.getId().equals(audio.getId())) {
-                result.rejectValue("title", "NonUnique");
-            }
-        }
-        
-        if (StringUtils.isBlank(audio.getTranscription())) {
-            result.rejectValue("transcription", "NotNull");
-        } else {
-            Audio existingAudio = audioDao.readByTranscription(audio.getTranscription());
-            if ((existingAudio != null) && !existingAudio.getId().equals(audio.getId())) {
-                result.rejectValue("transcription", "NonUnique");
-            }
-        }
-        
         try {
             byte[] bytes = multipartFile.getBytes();
             if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
