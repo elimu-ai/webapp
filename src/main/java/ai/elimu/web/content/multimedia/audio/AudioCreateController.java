@@ -58,6 +58,7 @@ public class AudioCreateController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
             Model model,
+            @RequestParam(required = false) Long wordId,
             @RequestParam(required = false) String autoFillTitle,
             @RequestParam(required = false) String autoFillTranscription
     ) {
@@ -65,12 +66,18 @@ public class AudioCreateController {
         
         Audio audio = new Audio();
         
-        // Pre-fill the Audio's title (if the contributor arrived from /content/word/edit/{id}/)
+        // Pre-select the Audio's corresponding Word
+        if (wordId != null) {
+            Word word = wordDao.read(wordId);
+            audio.setWord(word);
+        }
+        
+        // Pre-fill the Audio's title
         if (StringUtils.isNotBlank(autoFillTitle)) {
             audio.setTitle(autoFillTitle);
         }
         
-        // Pre-fill the Audio's transcription (if the contributor arrived from /content/word/edit/{id}/)
+        // Pre-fill the Audio's transcription
         if (StringUtils.isNotBlank(autoFillTranscription)) {
             audio.setTranscription(autoFillTranscription);
         }
@@ -100,24 +107,6 @@ public class AudioCreateController {
             BindingResult result,
             Model model) {
     	logger.info("handleSubmit");
-        
-        if (StringUtils.isBlank(audio.getTitle())) {
-            result.rejectValue("title", "NotNull");
-        } else {
-            Audio existingAudio = audioDao.readByTitle(audio.getTranscription());
-            if (existingAudio != null) {
-                result.rejectValue("title", "NonUnique");
-            }
-        }
-        
-        if (StringUtils.isBlank(audio.getTranscription())) {
-            result.rejectValue("transcription", "NotNull");
-        } else {
-            Audio existingAudio = audioDao.readByTranscription(audio.getTranscription());
-            if (existingAudio != null) {
-                result.rejectValue("transcription", "NonUnique");
-            }
-        }
         
         try {
             byte[] bytes = multipartFile.getBytes();

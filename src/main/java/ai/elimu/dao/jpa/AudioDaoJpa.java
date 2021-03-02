@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 import ai.elimu.dao.AudioDao;
+import ai.elimu.model.content.Word;
 
 import org.springframework.dao.DataAccessException;
 
@@ -47,6 +48,17 @@ public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
             "SELECT a " +
             "FROM Audio a " +
             "ORDER BY a.title")
+            .getResultList();
+    }
+
+    @Override
+    public List<Audio> readAll(Word word) throws DataAccessException {
+        return em.createQuery(
+            "SELECT a " +
+            "FROM Audio a " +
+            "WHERE a.word = :word " + 
+            "ORDER BY a.timeLastUpdate DESC")
+            .setParameter("word", word)
             .getResultList();
     }
 }

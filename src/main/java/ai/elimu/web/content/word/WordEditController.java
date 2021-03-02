@@ -97,7 +97,7 @@ public class WordEditController {
         model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
         model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
         
-        model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
+        model.addAttribute("audios", audioDao.readAll(word));
         
         // Look up variants of the same wordByTextMatch
         model.addAttribute("wordInflections", wordDao.readInflections(word));
@@ -143,7 +143,7 @@ public class WordEditController {
             model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
             model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
             
-            model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
+            model.addAttribute("audios", audioDao.readAll(word));
             
             // Look up variants of the same wordByTextMatch
             model.addAttribute("wordInflections", wordDao.readInflections(word));
