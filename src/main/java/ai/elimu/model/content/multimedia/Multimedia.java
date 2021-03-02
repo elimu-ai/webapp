@@ -1,6 +1,5 @@
 package ai.elimu.model.content.multimedia;
 
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -45,18 +44,27 @@ public abstract class Multimedia extends Content {
     @Enumerated(EnumType.STRING)
     private Set<NumeracySkill> numeracySkills;
     
+    /**
+     * {@link Letter}s used as labels for this content.
+     */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             inverseJoinColumns = @JoinColumn(name = "letters_id", unique = false)
     )
     private Set<Letter> letters;
     
+    /**
+     * {@link Number}s used as labels for this content.
+     */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             inverseJoinColumns = @JoinColumn(name = "numbers_id", unique = false)
     )
     private Set<Number> numbers;
     
+    /**
+     * {@link Word}s used as labels for this content.
+     */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             inverseJoinColumns = @JoinColumn(name = "words_id", unique = false)

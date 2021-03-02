@@ -52,6 +52,7 @@ public class AudioContributionsRestController {
         // Lookup the Contributor by ID
         Contributor contributor = contributorDao.read(contributorId);
         logger.info("contributor: " + contributor);
+        // TODO: if null, return error message
         
         // Get the IDs of Words that have already been recorded by the Contributor
         List<AudioContributionEvent> audioContributionEvents = audioContributionEventDao.readAll(contributor);

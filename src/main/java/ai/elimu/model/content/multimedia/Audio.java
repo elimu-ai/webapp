@@ -20,12 +20,17 @@ public class Audio extends Multimedia {
     @ManyToOne
     private Word word;
     
+    /**
+     * A title describing the audio recording. This does not have match the 
+     * audio's actual content.
+     */
     @NotNull
-//    @Column(unique=true)
     private String title;
     
+    /**
+     * The actual content of the audio recording.
+     */
     @NotNull
-//    @Column(unique=true)
     private String transcription;
     
     @NotNull

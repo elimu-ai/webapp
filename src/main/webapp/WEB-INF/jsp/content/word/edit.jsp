@@ -317,16 +317,24 @@
 <content:aside>
     <h5 class="center"><fmt:message key="audio" /></h5>
     <c:choose>
-        <c:when test="${empty audio}">
+        <c:when test="${empty audios}">
             <div class="card-panel amber lighten-3">
                 <b>Warning:</b> This word has no corresponding audio.<br />
-                <a href="<spring:url value='/content/multimedia/audio/create?autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
             </div>
         </c:when>
         <c:otherwise>
-            <audio controls="true" autoplay="true">
-                <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
-            </audio>
+            <c:forEach var="audio" items="${audios}">
+                <audio controls="true">
+                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
+                </audio>
+                <div class="right" style="margin-bottom: 1rem; font-size: 0.8rem;">
+                    <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />" target="_blank">
+                        <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
+                    </a>
+                </div>
+                <div style="clear: both;"></div>
+            </c:forEach>
         </c:otherwise>
     </c:choose>
     
