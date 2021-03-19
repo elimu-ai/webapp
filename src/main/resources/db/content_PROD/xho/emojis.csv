@@ -1,6 +1,8 @@
 id,glyph,unicode_version,unicode_emoji_version,word_ids,word_texts
+22,❤️,1.1,1.0,[17],"[""abomvu""]"
 10,🌊,6.0,1.0,[4],"[""amanzi""]"
 5,🌳,6.0,1.0,[],[]
+20,🍎,6.0,1.0,[17],"[""abomvu""]"
 11,🎁,6.0,1.0,[5],"[""mpho""]"
 15,🏫,6.0,1.0,"[16,11]","[""esikolweni"",""isikolo""]"
 6,🐊,6.0,1.0,[],[]
@@ -11,6 +13,7 @@ id,glyph,unicode_version,unicode_emoji_version,word_ids,word_texts
 2,👄,6.0,1.0,[1],"[""umlomo""]"
 18,👨,6.0,1.0,[13],"[""umntu""]"
 14,👩,6.0,1.0,"[13,15]","[""umntu"",""mama""]"
+21,🔴,6.0,1.0,[17],"[""abomvu""]"
 19,🤗,8.0,1.0,[7],"[""mhlobo""]"
 12,🥚,9.0,3.0,[6],"[""iqanda""]"
 13,🦋,9.0,3.0,[14],"[""amaphiko""]"

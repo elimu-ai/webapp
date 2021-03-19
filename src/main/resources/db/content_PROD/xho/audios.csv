@@ -1,14 +1,14 @@
 id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format
-1,audio/mpeg,null,"https://forvo.com/word/inja/",,"inja","inja","/audio/1.mp3",MP3
-2,audio/mpeg,null,"https://forvo.com/word/amanzi/",,"amanzi","amanzi","/audio/2.mp3",MP3
-3,audio/mpeg,null,"https://forvo.com/word/mpho/",,"mpho","mpho","/audio/3.mp3",MP3
-4,audio/mpeg,null,"https://forvo.com/word/iqanda/",,"iqanda","iqanda","/audio/4.mp3",MP3
-5,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/content/storybook/",,"mhlobo","mhlobo","/audio/5.mp3",MP3
+1,audio/mpeg,null,"https://forvo.com/word/inja/",3,"inja","inja","/audio/1.mp3",MP3
+2,audio/mpeg,null,"https://forvo.com/word/amanzi/",4,"amanzi","amanzi","/audio/2.mp3",MP3
+3,audio/mpeg,null,"https://forvo.com/word/mpho/",5,"mpho","mpho","/audio/3.mp3",MP3
+4,audio/mpeg,null,"https://forvo.com/word/iqanda/",6,"iqanda","iqanda","/audio/4.mp3",MP3
+5,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/content/storybook/",7,"mhlobo","mhlobo","/audio/5.mp3",MP3
 6,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-2-par-1","ULara, ongubhantom, wayeyirhorho ekhethekileyo. Wayengafani tu nabahlobo bakhe, kuba yena wayenamaphiko akhazimlayo natyheli.","/audio/6.mp3",MP3
-7,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"amaphiko","amaphiko","/audio/7.mp3",MP3
-8,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"esikolweni","esikolweni","/audio/8.mp3",MP3
-9,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"abomvu","abomvu","/audio/9.mp3",MP3
-10,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"umtu","umntu","/audio/10.mp3",MP3
+7,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",14,"amaphiko","amaphiko","/audio/7.mp3",MP3
+8,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",16,"esikolweni","esikolweni","/audio/8.mp3",MP3
+9,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",17,"abomvu","abomvu","/audio/9.mp3",MP3
+10,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",12,"umtu","umtu","/audio/10.mp3",MP3
 12,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-3-par-2","Rhoqo kusasa, uBhibhi Bhabhathane wayebulisa uLara, kanti noManto Mntanezulu wayethanda ukumbulisa, ngokumwangawangisela.","/audio/12.mp3",MP3
 11,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-3-par-1","Wonke umntu wayewathanda amaphiko akhe atyheli.","/audio/11.mp3",MP3
 13,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-4-par-1","Nkqu noSesa Sigcawu onolunya kunene wayekuvuyela ukubona uLara.","/audio/13.mp3",MP3
@@ -29,7 +29,7 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 28,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"ekhaya","ekhaya","/audio/28.mp3",MP3
 29,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-1-par-1","enye","/audio/29.mp3",MP3
 30,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-1-par-1","inye","/audio/30.mp3",MP3
-31,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"mama","mama","/audio/31.mp3",MP3
+31,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",15,"mama","mama","/audio/31.mp3",MP3
 32,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"ongubhantom","ongubhantom","/audio/32.mp3",MP3
 33,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-2-par-1","zimbini","/audio/33.mp3",MP3
 34,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-3-par-1","zintathu","/audio/34.mp3",MP3

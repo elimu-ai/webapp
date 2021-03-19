@@ -26,6 +26,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 18,pʰ,p_h,,false,CONSONANT,0
 27,t',t,,false,CONSONANT,0
 2,uː,u:,,false,VOWEL,0
+31,v,v,,false,CONSONANT,0
 24,w,w,,false,CONSONANT,0
 28,ŋ,ng,,false,CONSONANT,0
 14,ʄ,j_<,,false,CONSONANT,0
