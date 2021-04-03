@@ -159,17 +159,14 @@ public class AudioContributionsRestController {
             return jsonResponse;
         }
         
-        String filename = multipartFile.getName();
-        logger.info("filename: " + filename);
-        
         // Expected format: "word_5.mp3"
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
-        AudioFormat audioFormat = CrowdsourceHelper.extractAudioFormatFromFilename(filename);
+        AudioFormat audioFormat = CrowdsourceHelper.extractAudioFormatFromFilename(originalFilename);
         logger.info("audioFormat: " + audioFormat);
         
-        Long wordIdExtractedFromFilename = CrowdsourceHelper.extractWordIdFromFilename(filename);
+        Long wordIdExtractedFromFilename = CrowdsourceHelper.extractWordIdFromFilename(originalFilename);
         logger.info("wordIdExtractedFromFilename: " + wordIdExtractedFromFilename);
         Word word = wordDao.read(wordIdExtractedFromFilename);
         logger.info("word: " + word);
