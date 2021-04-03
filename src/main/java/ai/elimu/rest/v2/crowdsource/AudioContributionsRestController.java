@@ -25,7 +25,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/audio-contributions", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -45,12 +47,12 @@ public class AudioContributionsRestController {
     /**
      * Get {@link Word}s pending {@link Audio} recording for the current {@link Contributor}.
      */
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleGetRequest(
+    @RequestMapping(value = "/words", method = RequestMethod.GET)
+    public String handleGetWordsRequest(
             HttpServletRequest request,
             HttpServletResponse response
     ) {
-        logger.info("handleGetRequest");
+        logger.info("handleGetWordsRequest");
         
         JSONObject jsonObject = new JSONObject();
         
@@ -111,6 +113,35 @@ public class AudioContributionsRestController {
         }
         
         String jsonResponse = wordsJsonArray.toString();
+        logger.info("jsonResponse: " + jsonResponse);
+        return jsonResponse;
+    }
+    
+    @RequestMapping(value = "/words", method = RequestMethod.POST)
+    public String handleUploadWordRecordingRequest(
+            @RequestParam("file") MultipartFile multipartFile,
+            HttpServletResponse response
+    ) {
+        logger.info("handleUploadWordRecordingRequest");
+        
+        String filename = multipartFile.getName();
+        logger.info("filename: " + filename);
+        
+        // Expected format: "word_5.mp3"
+        String originalFilename = multipartFile.getOriginalFilename();
+        logger.info("originalFilename: " + originalFilename);
+        
+        Long wordIdExtractedFromFilename = null; // TODO
+        logger.info("wordIdExtractedFromFilename: " + wordIdExtractedFromFilename);
+        
+        String contentType = multipartFile.getContentType();
+        logger.info("contentType: " + contentType);
+        
+        JSONObject jsonObject = new JSONObject();
+        
+        // TODO
+        
+        String jsonResponse = jsonObject.toString();
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }
