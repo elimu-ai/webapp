@@ -1,16 +1,20 @@
 package ai.elimu.rest.v2.crowdsource;
 
 import ai.elimu.dao.AudioContributionEventDao;
+import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
+import ai.elimu.util.CrowdsourceHelper;
 import com.google.gson.Gson;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +44,9 @@ public class AudioContributionsRestController {
     
     @Autowired
     private WordDao wordDao;
+    
+    @Autowired
+    private AudioDao audioDao;
     
     @Autowired
     private AudioContributionEventDao audioContributionEventDao;
@@ -119,10 +126,38 @@ public class AudioContributionsRestController {
     
     @RequestMapping(value = "/words", method = RequestMethod.POST)
     public String handleUploadWordRecordingRequest(
-            @RequestParam("file") MultipartFile multipartFile,
-            HttpServletResponse response
+            HttpServletRequest request,
+            HttpServletResponse response,
+            @RequestParam("file") MultipartFile multipartFile
     ) {
         logger.info("handleUploadWordRecordingRequest");
+        
+        JSONObject jsonObject = new JSONObject();
+        
+        String providerIdGoogle = request.getHeader("providerIdGoogle");
+        logger.info("providerIdGoogle: " + providerIdGoogle);
+        if (StringUtils.isBlank(providerIdGoogle)) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "Missing providerIdGoogle");
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
+        
+        // Lookup the Contributor by ID
+        Contributor contributor = contributorDao.readByProviderIdGoogle(providerIdGoogle);
+        logger.info("contributor: " + contributor);
+        if (contributor == null) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "The Contributor was not found.");
+            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
         
         String filename = multipartFile.getName();
         logger.info("filename: " + filename);
@@ -131,15 +166,54 @@ public class AudioContributionsRestController {
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
-        Long wordIdExtractedFromFilename = null; // TODO
+        AudioFormat audioFormat = CrowdsourceHelper.extractAudioFormatFromFilename(filename);
+        logger.info("audioFormat: " + audioFormat);
+        
+        Long wordIdExtractedFromFilename = CrowdsourceHelper.extractWordIdFromFilename(filename);
         logger.info("wordIdExtractedFromFilename: " + wordIdExtractedFromFilename);
+        Word word = wordDao.read(wordIdExtractedFromFilename);
+        logger.info("word: " + word);
+        if (word == null) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "A Word with ID " + wordIdExtractedFromFilename + " was not found.");
+            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
         
         String contentType = multipartFile.getContentType();
         logger.info("contentType: " + contentType);
         
-        JSONObject jsonObject = new JSONObject();
-        
-        // TODO
+        try {
+            byte[] bytes = multipartFile.getBytes();
+            logger.info("bytes.length: " + bytes.length);
+
+            // Store the audio recording in the database
+            Audio audio = new Audio();
+            audio.setTimeLastUpdate(Calendar.getInstance());
+            audio.setContentType(contentType);
+            audio.setWord(word);
+            audio.setTitle(word.getText().toLowerCase());
+            audio.setTranscription(word.getText().toLowerCase());
+            audio.setBytes(bytes);
+            audio.setAudioFormat(audioFormat);
+            audioDao.create(audio);
+            
+            AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+            audioContributionEvent.setContributor(contributor);
+            audioContributionEvent.setTime(Calendar.getInstance());
+            audioContributionEvent.setAudio(audio);
+            audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+            audioContributionEventDao.create(audioContributionEvent);
+        } catch (Exception ex) {
+            logger.error(ex);
+            
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", ex.getMessage());
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        }
         
         String jsonResponse = jsonObject.toString();
         logger.info("jsonResponse: " + jsonResponse);
