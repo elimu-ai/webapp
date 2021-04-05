@@ -146,6 +146,19 @@ public class AudioContributionsRestController {
             return jsonResponse;
         }
         
+        String timeSpentMsAsString = request.getHeader("timeSpentMs");
+        logger.info("timeSpentMsAsString: " + timeSpentMsAsString);
+        if (StringUtils.isBlank(timeSpentMsAsString)) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "Missing timeSpentMs");
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
+        Long timeSpentMs = Long.valueOf(timeSpentMsAsString);
+        
         // Lookup the Contributor by ID
         Contributor contributor = contributorDao.readByProviderIdGoogle(providerIdGoogle);
         logger.info("contributor: " + contributor);
@@ -186,6 +199,9 @@ public class AudioContributionsRestController {
         try {
             byte[] bytes = multipartFile.getBytes();
             logger.info("bytes.length: " + bytes.length);
+            
+            // Store a backup of the original CSV file on the filesystem (in case it will be needed for debugging)
+            // TODO
 
             // Store the audio recording in the database
             Audio audio = new Audio();
@@ -201,6 +217,7 @@ public class AudioContributionsRestController {
             AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
             audioContributionEvent.setContributor(contributor);
             audioContributionEvent.setTime(Calendar.getInstance());
+            audioContributionEvent.setTimeSpentMs(timeSpentMs);
             audioContributionEvent.setAudio(audio);
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
             audioContributionEventDao.create(audioContributionEvent);
