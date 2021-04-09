@@ -62,7 +62,7 @@ public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements Allopho
         return em.createQuery(
             "SELECT a " +
             "FROM Allophone a " +
-            "ORDER BY a.usageCount2 DESC, a.valueIpa")
+            "ORDER BY a.usageCount DESC, a.valueIpa")
             .getResultList();
     }
 }
