@@ -16,7 +16,7 @@
             <a href="https://github.com/elimu-ai/crowdsource" target="_blank">Crowdsource</a> 
             Android app for the first time, we store the anonymous provider ID (from 
             Google/GitHub) in order to recognize the same contributor when 
-            she returns at a later point in time.
+            she/he returns at a later point in time.
         </li>
         <li>
             A community member's e-mail address will never be shared with 
@@ -30,7 +30,7 @@
             quality approve the contribution.
         </li>
         <li>
-            A community member can request a deletion of her account and any 
+            A community member can request a deletion of her/his account and any 
             corresponding data (e.g. audio recordings) at any point in time. To 
             initiate deletion, send an e-mail to 
             <a href="mailto:info@elimu.ai">info@elimu.ai</a>.
