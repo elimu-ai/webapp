@@ -39,7 +39,7 @@ public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableD
         return em.createQuery(
             "SELECT s " +
             "FROM Syllable s " +
-            "ORDER BY s.usageCount2 DESC, s.text")
+            "ORDER BY s.usageCount DESC, s.text")
             .getResultList();
     }
 }
