@@ -85,6 +85,7 @@
                 
                 <prop key="/contributions/aragon-dao">viewController</prop>
                 <prop key="/contributions/donate">viewController</prop>
+                <prop key="/contributions/privacy-policy">viewController</prop>
                 <prop key="/contributions/publish">viewController</prop>
             </props>
         </property>
