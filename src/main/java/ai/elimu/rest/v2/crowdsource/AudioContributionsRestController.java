@@ -33,6 +33,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
+ */
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/audio-contributions", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class AudioContributionsRestController {
@@ -63,6 +66,7 @@ public class AudioContributionsRestController {
         
         JSONObject jsonObject = new JSONObject();
         
+        // Lookup the Contributor by ID
         String providerIdGoogle = request.getHeader("providerIdGoogle");
         logger.info("providerIdGoogle: " + providerIdGoogle);
         if (StringUtils.isBlank(providerIdGoogle)) {
@@ -74,8 +78,6 @@ public class AudioContributionsRestController {
             logger.info("jsonResponse: " + jsonResponse);
             return jsonResponse;
         }
-        
-        // Lookup the Contributor by ID
         Contributor contributor = contributorDao.readByProviderIdGoogle(providerIdGoogle);
         logger.info("contributor: " + contributor);
         if (contributor == null) {

@@ -14,6 +14,7 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
+import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.gson.application.ApplicationGson;
 import ai.elimu.model.v2.gson.application.ApplicationVersionGson;
@@ -29,6 +30,7 @@ import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.v2.gson.content.VideoGson;
 import ai.elimu.model.v2.gson.content.WordGson;
+import ai.elimu.model.v2.gson.crowdsource.AudioContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -157,24 +159,6 @@ public class JpaToGsonConverter {
             numberGson.setSymbol(number.getSymbol());
             
             return numberGson;
-        }
-    }
-    
-    public static WordContributionEventGson getWordContributionEventGson(WordContributionEvent wordContributionEvent) {
-        if (wordContributionEvent == null) {
-            return null;
-        } else {
-            WordContributionEventGson wordContributionEventGson = new WordContributionEventGson();
-            
-            // BaseEntity
-            wordContributionEventGson.setId(wordContributionEvent.getId());
-            
-            // WordContributionEvent
-            wordContributionEventGson.setWord(getWordGson(wordContributionEvent.getWord()));
-            wordContributionEventGson.setComment(wordContributionEvent.getComment());
-            wordContributionEventGson.setTime(wordContributionEvent.getTime());
-            
-            return wordContributionEventGson;
         }
     }
     
@@ -403,6 +387,42 @@ public class JpaToGsonConverter {
             videoGson.setWords(wordGsons);
             
             return videoGson;
+        }
+    }
+    
+    public static WordContributionEventGson getWordContributionEventGson(WordContributionEvent wordContributionEvent) {
+        if (wordContributionEvent == null) {
+            return null;
+        } else {
+            WordContributionEventGson wordContributionEventGson = new WordContributionEventGson();
+            
+            // BaseEntity
+            wordContributionEventGson.setId(wordContributionEvent.getId());
+            
+            // WordContributionEvent
+            wordContributionEventGson.setWord(getWordGson(wordContributionEvent.getWord()));
+            wordContributionEventGson.setComment(wordContributionEvent.getComment());
+            wordContributionEventGson.setTime(wordContributionEvent.getTime());
+            
+            return wordContributionEventGson;
+        }
+    }
+    
+    public static AudioContributionEventGson getAudioContributionEventGson(AudioContributionEvent audioContributionEvent) {
+        if (audioContributionEvent == null) {
+            return null;
+        } else {
+            AudioContributionEventGson audioContributionEventGson = new AudioContributionEventGson();
+            
+            // BaseEntity
+            audioContributionEventGson.setId(audioContributionEvent.getId());
+            
+            // AudioContributionEvent
+            audioContributionEventGson.setAudio(getAudioGson(audioContributionEvent.getAudio()));
+            audioContributionEventGson.setComment(audioContributionEvent.getComment());
+            audioContributionEventGson.setTime(audioContributionEvent.getTime());
+            
+            return audioContributionEventGson;
         }
     }
 }
