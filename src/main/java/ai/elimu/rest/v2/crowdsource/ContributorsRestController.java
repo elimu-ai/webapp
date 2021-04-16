@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
+ * <p />
+ * 
  * Stores a {@link Contributor} in the database.
  * <p />
  * 

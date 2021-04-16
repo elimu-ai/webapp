@@ -4,11 +4,30 @@ import ai.elimu.dao.AudioPeerReviewEventDao;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
+import ai.elimu.model.contributor.Contributor;
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 public class AudioPeerReviewEventDaoJpa extends GenericDaoJpa<AudioPeerReviewEvent> implements AudioPeerReviewEventDao {
 
+    @Override
+    public AudioPeerReviewEvent read(AudioContributionEvent audioContributionEvent, Contributor contributor) throws DataAccessException {
+        try {
+            return (AudioPeerReviewEvent) em.createQuery(
+                "SELECT apre " +
+                "FROM AudioPeerReviewEvent apre " +
+                "WHERE apre.audioContributionEvent = :audioContributionEvent " +
+                "AND apre.contributor = :contributor")
+                .setParameter("audioContributionEvent", audioContributionEvent)
+                .setParameter("contributor", contributor)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("AudioPeerReviewEvent was not found");
+            return null;
+        }
+    }
+    
     @Override
     public List<AudioPeerReviewEvent> readAll(Audio audio) throws DataAccessException {
         return em.createQuery(
