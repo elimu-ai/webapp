@@ -4,7 +4,6 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.AudioPeerReviewEventDao;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
@@ -52,12 +51,12 @@ public class AudioPeerReviewsRestController {
     /**
      * Get {@link AudioContributionEvent}s pending a {@link AudioPeerReviewEvent} for the current {@link Contributor}.
      */
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleGetRequest(
+    @RequestMapping(value = "/words", method = RequestMethod.GET)
+    public String getWordRecordingsPendingPeerReview(
             HttpServletRequest request,
             HttpServletResponse response
     ) {
-        logger.info("handleGetRequest");
+        logger.info("getWordRecordingsPendingPeerReview");
         
         JSONObject jsonObject = new JSONObject();
         

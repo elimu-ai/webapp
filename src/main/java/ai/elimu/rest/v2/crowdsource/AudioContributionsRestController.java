@@ -58,11 +58,11 @@ public class AudioContributionsRestController {
      * Get {@link Word}s pending {@link Audio} recording for the current {@link Contributor}.
      */
     @RequestMapping(value = "/words", method = RequestMethod.GET)
-    public String handleGetWordsRequest(
+    public String getWordsPendingRecording(
             HttpServletRequest request,
             HttpServletResponse response
     ) {
-        logger.info("handleGetWordsRequest");
+        logger.info("getWordsPendingRecording");
         
         JSONObject jsonObject = new JSONObject();
         
