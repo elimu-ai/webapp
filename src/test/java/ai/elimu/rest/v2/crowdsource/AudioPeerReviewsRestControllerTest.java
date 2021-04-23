@@ -17,8 +17,8 @@ public class AudioPeerReviewsRestControllerTest {
     private Logger logger = LogManager.getLogger();
     
     @Test
-    public void testHandleGetRequest_error() {
-        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/crowdsource/audio-peer-reviews");
+    public void testGetWordRecordingsPendingPeerReview_error() {
+        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/crowdsource/audio-peer-reviews/words");
         logger.info("jsonResponse: " + jsonResponse);
         
         JSONObject errorResponseJSONObject = new JSONObject(jsonResponse);
