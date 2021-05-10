@@ -18,6 +18,7 @@
                 <thead>
                     <th><fmt:message key="title" /></th>
                     <th><fmt:message key="audio" /></th>
+                    <th><fmt:message key="duration" /></th>
                     <%--
                     <th><fmt:message key="literacy.skills" /></th>
                     <th><fmt:message key="numeracy.skills" /></th>
@@ -37,6 +38,9 @@
                                 <audio controls="true">
                                     <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
                                 </audio>
+                            </td>
+                            <td>
+                                <fmt:formatNumber value="${audio.durationMs / 1000}" maxFractionDigits="0" /> sec
                             </td>
                             <%--
                             <td>

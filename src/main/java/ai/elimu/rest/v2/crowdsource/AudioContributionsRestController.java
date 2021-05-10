@@ -11,8 +11,10 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
+import ai.elimu.util.AudioMetadataExtractionHelper;
 import ai.elimu.util.CrowdsourceHelper;
 import com.google.gson.Gson;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -204,6 +206,16 @@ public class AudioContributionsRestController {
             
             // Store a backup of the original CSV file on the filesystem (in case it will be needed for debugging)
             // TODO
+            
+            // Convert from MultipartFile to File, and extract audio duration
+            String tmpDir = System.getProperty("java.io.tmpdir");
+            File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
+            tmpDirElimuAi.mkdir();
+            File file = new File(tmpDirElimuAi, multipartFile.getOriginalFilename());
+            logger.info("file: " + file);
+            multipartFile.transferTo(file);
+            Long durationMs = AudioMetadataExtractionHelper.getDurationInMilliseconds(file);
+            logger.info("durationMs: " + durationMs);
 
             // Store the audio recording in the database
             Audio audio = new Audio();
@@ -213,6 +225,7 @@ public class AudioContributionsRestController {
             audio.setTitle(word.getText().toLowerCase());
             audio.setTranscription(word.getText().toLowerCase());
             audio.setBytes(bytes);
+            audio.setDurationMs(durationMs);
             audio.setAudioFormat(audioFormat);
             audioDao.create(audio);
             

@@ -240,6 +240,7 @@ public class JpaToGsonConverter {
             audioGson.setAudioFormat(audio.getAudioFormat());
             audioGson.setBytesUrl("/audio/" + audio.getId() + "_r" + audio.getRevisionNumber() + "." + audio.getAudioFormat().toString().toLowerCase());
             audioGson.setBytesSize(audio.getBytes().length / 1024);
+            audioGson.setDurationMs(audio.getDurationMs());
             
             return audioGson;
         }
