@@ -22,6 +22,7 @@
                     <th><fmt:message key="literacy.skills" /></th>
                     <th><fmt:message key="numeracy.skills" /></th>
                     --%>
+                    <th><fmt:message key="time.last.update" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -46,6 +47,9 @@
                                 ${audio.numeracySkills}
                             </td>
                             --%>
+                            <td>
+                                <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
+                            </td>
                             <td>
                                 <p>#${audio.revisionNumber}</p>
                                 <p>
