@@ -43,11 +43,20 @@ public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
     }
 
     @Override
-    public List<Audio> readAllOrdered() throws DataAccessException {
+    public List<Audio> readAllOrderedByTitle() throws DataAccessException {
         return em.createQuery(
             "SELECT a " +
             "FROM Audio a " +
             "ORDER BY a.title")
+            .getResultList();
+    }
+    
+    @Override
+    public List<Audio> readAllOrderedByTimeLastUpdate() throws DataAccessException {
+        return em.createQuery(
+            "SELECT a " +
+            "FROM Audio a " +
+            "ORDER BY a.timeLastUpdate DESC")
             .getResultList();
     }
 

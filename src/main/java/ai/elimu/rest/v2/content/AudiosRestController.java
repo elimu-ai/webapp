@@ -30,7 +30,7 @@ public class AudiosRestController {
         logger.info("handleGetRequest");
         
         JSONArray audiosJsonArray = new JSONArray();
-        for (Audio audio : audioDao.readAllOrdered()) {
+        for (Audio audio : audioDao.readAllOrderedByTitle()) {
             AudioGson audioGson = JpaToGsonConverter.getAudioGson(audio);
             
             String json = new Gson().toJson(audioGson);
