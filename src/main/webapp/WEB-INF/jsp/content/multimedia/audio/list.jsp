@@ -23,6 +23,7 @@
                     <th><fmt:message key="numeracy.skills" /></th>
                     --%>
                     <th><fmt:message key="time.last.update" /></th>
+                    <th><fmt:message key="platform" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
@@ -49,6 +50,10 @@
                             --%>
                             <td>
                                 <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
+                            </td>
+                            <td>
+                                <code>// TODO</code>
+                                <%-- https://github.com/elimu-ai/webapp/projects/6#card-60872823 --%>
                             </td>
                             <td>
                                 <p>#${audio.revisionNumber}</p>

@@ -2,8 +2,11 @@ package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.model.enums.Platform;
 import java.util.Calendar;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,6 +37,13 @@ public class AudioContributionEvent extends BaseEntity {
      */
     @NotNull
     private Long timeSpentMs;
+    
+    /**
+     * The platform that the {@link Contributor} used.
+     */
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Platform platform;
 
     public String getComment() {
         return comment;
@@ -81,5 +91,13 @@ public class AudioContributionEvent extends BaseEntity {
 
     public void setTimeSpentMs(Long timeSpentMs) {
         this.timeSpentMs = timeSpentMs;
+    }
+    
+    public Platform getPlatform() {
+        return platform;
+    }
+    
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
     }
 }
