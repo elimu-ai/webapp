@@ -36,7 +36,7 @@ public class AudioRestController {
         logger.info("request.getQueryString(): " + request.getQueryString());
         
         JSONArray jsonArray = new JSONArray();
-        for (Audio audio : audioDao.readAllOrdered()) {
+        for (Audio audio : audioDao.readAllOrderedByTitle()) {
             AudioGson audioGson = JavaToGsonConverter.getAudioGson(audio);
             String json = new Gson().toJson(audioGson);
             jsonArray.put(new JSONObject(json));
