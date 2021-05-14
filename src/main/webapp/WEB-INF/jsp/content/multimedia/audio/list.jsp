@@ -22,6 +22,7 @@
                     <th><fmt:message key="literacy.skills" /></th>
                     <th><fmt:message key="numeracy.skills" /></th>
                     --%>
+                    <th><fmt:message key="word" /></th>
                     <th><fmt:message key="time.last.update" /></th>
                     <th><fmt:message key="platform" /></th>
                     <th><fmt:message key="revision" /></th>
@@ -48,6 +49,11 @@
                                 ${audio.numeracySkills}
                             </td>
                             --%>
+                            <td>
+                                <a href="<spring:url value='/content/word/edit/${audio.word.id}' />">
+                                    ${audio.word.text}
+                                </a>
+                            </td>
                             <td>
                                 <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
