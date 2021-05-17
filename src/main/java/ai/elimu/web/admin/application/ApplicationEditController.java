@@ -11,7 +11,6 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.enums.admin.ApplicationStatus;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.rest.v1.service.JsonService;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +25,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ApplicationEditController {
     
     private final Logger logger = LogManager.getLogger();
-    
-    @Autowired
-    private JsonService jsonService;
     
     @Autowired
     private ApplicationDao applicationDao;
@@ -89,9 +85,6 @@ public class ApplicationEditController {
                     applicationVersionDao.delete(applicationVersion);
                 }
             }
-            
-            // Refresh REST API cache
-            jsonService.refreshApplications();
             
             return "redirect:/admin/application/list";
         }
