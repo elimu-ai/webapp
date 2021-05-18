@@ -1,7 +1,6 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Word;
 import java.io.IOException;
@@ -45,8 +44,6 @@ public class WordCsvExportController {
                 .withHeader(
                         "id",
                         "text",
-                        "allophone_ids",
-                        "allophone_values_ipa",
                         "letter_to_allophone_mappings",
                         "usage_count",
                         "word_type",
@@ -60,22 +57,8 @@ public class WordCsvExportController {
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
             
-            JSONArray allophoneIdsJsonArray = new JSONArray();
-            int index = 0;
-            for (Allophone allophone : word.getAllophones()) {
-                allophoneIdsJsonArray.put(index, allophone.getId());
-                index++;
-            }
-            
-            JSONArray allophoneValuesIpaJsonArray = new JSONArray();
-            index = 0;
-            for (Allophone allophone : word.getAllophones()) {
-                allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
-                index++;
-            }
-            
             JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
-            index = 0;
+            int index = 0;
             for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
                 JSONObject letterToAllophoneMappingJsonObject = new JSONObject();
                 letterToAllophoneMappingJsonObject.put("id", letterToAllophoneMapping.getId());
@@ -104,8 +87,6 @@ public class WordCsvExportController {
             csvPrinter.printRecord(
                     word.getId(),
                     word.getText(),
-                    allophoneIdsJsonArray,
-                    allophoneValuesIpaJsonArray,
                     letterToAllophoneMappingsJsonArray,
                     word.getUsageCount(),
                     word.getWordType(),
