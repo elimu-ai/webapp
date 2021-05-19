@@ -21,11 +21,6 @@ public class Word extends Content {
     @NotNull
     private String text;
     
-    @Deprecated
-    @OrderColumn
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Allophone> allophones;
-    
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
@@ -55,16 +50,6 @@ public class Word extends Content {
     @Deprecated
     public void setText(String text) {
         this.text = text;
-    }
-    
-    @Deprecated
-    public List<Allophone> getAllophones() {
-        return allophones;
-    }
-
-    @Deprecated
-    public void setAllophones(List<Allophone> allophones) {
-        this.allophones = allophones;
     }
     
     public List<LetterToAllophoneMapping> getLetterToAllophoneMappings() {

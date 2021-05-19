@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Word;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Service;
  * StoryBooks.
  * <p />
  * For this to work, the frequency of each {@link Word} must have been calculated and stored previously 
- * (see {@link WordUsageCountScheduler}
+ * (see {@link WordUsageCountScheduler} and {@link LetterToAllophoneMappingUsageCountScheduler}).
  */
 @Service
 public class AllophoneUsageCountScheduler {
@@ -41,15 +42,18 @@ public class AllophoneUsageCountScheduler {
         // Integer = Usage count
         Map<Long, Integer> allophoneFrequencyMap = new HashMap<>();
 
-        // Summarize the usage count of each Word's Allophone based on the Word's usage count
+        // Summarize the usage count of each Word's Allophone based on the LetterToAllophoneMapping's 
+        // usage count (see LetterToAllophoneMappingUsageCountScheduler).
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            for (Allophone allophone : word.getAllophones()) {
-                if (!allophoneFrequencyMap.containsKey(allophone.getId())) {
-                    allophoneFrequencyMap.put(allophone.getId(), word.getUsageCount());
-                } else {
-                    allophoneFrequencyMap.put(allophone.getId(), allophoneFrequencyMap.get(allophone.getId()) + word.getUsageCount());
+            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
+                for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
+                    if (!allophoneFrequencyMap.containsKey(allophone.getId())) {
+                        allophoneFrequencyMap.put(allophone.getId(), letterToAllophoneMapping.getUsageCount());
+                    } else {
+                        allophoneFrequencyMap.put(allophone.getId(), allophoneFrequencyMap.get(allophone.getId()) + letterToAllophoneMapping.getUsageCount());
+                    }
                 }
             }
         }

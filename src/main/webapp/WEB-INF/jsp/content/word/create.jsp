@@ -30,40 +30,6 @@
                     </c:if>
                 </c:if>
             </div>
-            
-            <div class="row">
-                <div class="col s12">
-                    <label><fmt:message key="allophones" /></label><br />
-                    /<span id="selectedAllophonesContainer">
-                        <c:forEach var="allophone" items="${word.allophones}">
-                            <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip <c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
-                                <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">
-                                    ${allophone.valueIpa}
-                                </a> 
-                                <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
-                                    <i class="material-icons">clear</i>
-                                </a>
-                            </div>
-                        </c:forEach>
-                        <script>
-                            $(function() {
-                                $('.allophoneDeleteLink').on("click", function() {
-                                    console.log('.allophoneDeleteLink on click');
-                                    
-                                    var allophoneId = $(this).attr("data-allophoneid");
-                                    console.log('allophoneId: ' + allophoneId);
-                                    
-                                    $(this).parent().remove();
-                                    
-                                    var $hiddenInput = $('input[name="allophones"][value="' + allophoneId + '"]');
-                                    $hiddenInput.remove();
-                                });
-                            });
-                        </script>
-                    </span>/
-                </div>
-            </div>
                 
             <div class="row">
                 <div class="col s12">
