@@ -10,6 +10,7 @@ import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
+import ai.elimu.rest.v2.crowdsource.AudioPeerReviewsRestController;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +35,9 @@ public class AudioPeerReviewEventCreateController {
     @Autowired
     private AudioDao audioDao;
     
+    /**
+     * Note: The logic in this method is similar to the one used at {@link AudioPeerReviewsRestController#uploadAudioPeerReview}
+     */
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             @RequestParam Long audioContributionEventId,
