@@ -145,7 +145,7 @@ public class AudioPeerReviewsRestController {
     public String uploadAudioPeerReview(
             HttpServletRequest request,
             HttpServletResponse response,
-            @RequestBody AudioPeerReviewEventGson audioPeerReviewEventGson
+            @RequestBody String requestBody
     ) {
         logger.info("uploadAudioPeerReview");
         
@@ -178,6 +178,8 @@ public class AudioPeerReviewsRestController {
         
         try {
             // Convert from Gson (POJO) to JPA/Hibernate
+            logger.info("requestBody: " + requestBody);
+            AudioPeerReviewEventGson audioPeerReviewEventGson = new Gson().fromJson(requestBody, AudioPeerReviewEventGson.class);
             logger.info("audioPeerReviewEventGson: " + audioPeerReviewEventGson);
             AudioContributionEventGson audioContributionEventGson = audioPeerReviewEventGson.getAudioContributionEvent();
             logger.info("audioContributionEventGson: " + audioContributionEventGson);
