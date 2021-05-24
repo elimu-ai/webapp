@@ -102,7 +102,7 @@ footer.page-footer .footer-copyright {
 .card .card-image {
     border-radius: 8px 8px 0 0;
 }
-.card .card-action {
+.card .card-action:last-child {
     border-radius: 0 0 8px 8px;
 }
 .btn,
