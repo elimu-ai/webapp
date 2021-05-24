@@ -2,4 +2,4 @@
 
 # These owners will be the default owners for everything in the repo. Unless a later match takes precedence, 
 # @elimu-ai/codeowners (https://github.com/orgs/elimu-ai/teams/codeowners/members) will be requested for review when someone opens a pull request.
-*       @elimu-ai/codeowners
+*       @elimu-ai/codeowners @UmenR
