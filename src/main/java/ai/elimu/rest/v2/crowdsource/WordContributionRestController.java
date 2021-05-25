@@ -4,14 +4,11 @@ import ai.elimu.dao.*;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.gson.content.AllophoneGson;
 import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
 import ai.elimu.model.v2.gson.content.WordGson;
-import ai.elimu.model.v2.gson.crowdsource.AudioContributionEventGson;
-import ai.elimu.model.v2.gson.crowdsource.AudioPeerReviewEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
@@ -63,11 +60,12 @@ public class WordContributionRestController {
     private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
 
     @RequestMapping(value = "/word", method = RequestMethod.POST)
-    public String handleWordContribution (
+    public String handleWordContributionRequest (
             HttpServletRequest request,
             HttpServletResponse response,
             @RequestBody String requestBody) {
 
+        logger.info("Word Contribution");
         // Validate the Contributor.
         JSONObject jsonObject = new JSONObject();
 
@@ -96,7 +94,6 @@ public class WordContributionRestController {
             return jsonResponse;
         }
 
-        //TODO convert the current wordGson to a WORD POJO
         logger.info("requestBody: " + requestBody);
         WordGson wordGson = new Gson().fromJson(requestBody, WordGson.class);
         logger.info("wordGson: " + wordGson);
@@ -105,48 +102,60 @@ public class WordContributionRestController {
         if (existingWord != null) {
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "NonUnique");
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+
             String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
             return jsonResponse;
         }
 
-        // TODO validate word and return error response
+        try{
+            Word newWord = new Word();
+            newWord.setWordType(wordGson.getWordType());
+            newWord.setText(wordGson.getText());
+            List<LetterToAllophoneMappingGson> wordGsonLetterToAllophoneMappingsGson = wordGson.getLetterToAllophoneMappings();
+            List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
+            for(LetterToAllophoneMappingGson letterToAllophoneMappingGson : wordGsonLetterToAllophoneMappingsGson){
+                LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMappingGson.getId());
+                letterToAllophoneMappings.add(letterToAllophoneMapping);
+            }
+            newWord.setLetterToAllophoneMappings(letterToAllophoneMappings);
+            wordDao.create(newWord);
 
+            //Convert Request Body(String) to JSON.
+            JSONObject requestJson = new JSONObject(requestBody);
 
-        Word newWord = new Word();
-        newWord.setWordType(wordGson.getWordType());
-        newWord.setText(wordGson.getText());
-        List<LetterToAllophoneMappingGson> wordGsonLetterToAllophoneMappingsGson = wordGson.getLetterToAllophoneMappings();
-        List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
-        for(LetterToAllophoneMappingGson letterToAllophoneMappingGson : wordGsonLetterToAllophoneMappingsGson){
-            LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMappingGson.getId());
-            letterToAllophoneMappings.add(letterToAllophoneMapping);
+            WordContributionEvent wordContributionEvent = new WordContributionEvent();
+            wordContributionEvent.setContributor(contributor);
+            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setWord(newWord);
+            wordContributionEvent.setRevisionNumber(newWord.getRevisionNumber());
+            wordContributionEvent.setComment(requestJson.getString("contributionComment"));
+            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(requestJson.getString("timeStart")));
+            wordContributionEventDao.create(wordContributionEvent);
+
+            response.setStatus(HttpStatus.CREATED.value());
+        } catch (Exception ex){
+            logger.error(ex);
+
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", ex.getMessage());
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
-        newWord.setLetterToAllophoneMappings(letterToAllophoneMappings);
 
-        wordDao.create(newWord);
-
-
-        WordContributionEvent wordContributionEvent = new WordContributionEvent();
-        wordContributionEvent.setContributor(contributor);
-        wordContributionEvent.setTime(Calendar.getInstance());
-        wordContributionEvent.setWord(newWord);
-        wordContributionEvent.setRevisionNumber(newWord.getRevisionNumber());
-//        wordContributionEvent.setComment(request.getParameter("contributionComment"));
-        wordContributionEvent.setTimeSpentMs(System.currentTimeMillis());
-        wordContributionEventDao.create(wordContributionEvent);
-
-//        Word word = wordGson.ge
-        return "success";
+        String jsonResponse = jsonObject.toString();
+        logger.info("jsonResponse: " + jsonResponse);
+        return jsonResponse;
     }
 
     /**
-     * This method will return all the required information to create a word. eg: Allophones etc.
+     * This method will return all the required data to create a word. eg: Allophones etc.
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/information", method = RequestMethod.GET)
-    public String getAllophonesForCrowSourcing(
+    @RequestMapping(value = "/word-data", method = RequestMethod.GET)
+    public String getWordDataForCrowdSourcing(
             HttpServletRequest request,
             HttpServletResponse response
     ) {
