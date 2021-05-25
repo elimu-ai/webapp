@@ -1,8 +1,11 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
+import ai.elimu.model.enums.Platform;
 import java.util.Calendar;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,6 +44,13 @@ public class AudioPeerReviewEvent extends BaseEntity {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar time;
+    
+    /**
+     * The platform that the {@link Contributor} used.
+     */
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Platform platform;
 
     public Contributor getContributor() {
         return contributor;
@@ -80,5 +90,13 @@ public class AudioPeerReviewEvent extends BaseEntity {
 
     public void setTime(Calendar time) {
         this.time = time;
+    }
+    
+    public Platform getPlatform() {
+        return platform;
+    }
+    
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
     }
 }

@@ -14,7 +14,6 @@ import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.rest.v1.service.JsonService;
 import ai.elimu.util.ChecksumHelper;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
@@ -36,9 +35,6 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 public class ApplicationVersionCreateController {
     
     private final Logger logger = LogManager.getLogger();
-    
-    @Autowired
-    private JsonService jsonService;
     
     @Autowired
     private ApplicationDao applicationDao;
@@ -155,9 +151,6 @@ public class ApplicationVersionCreateController {
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
             }
             applicationDao.update(application);
-            
-            // Refresh REST API cache
-            jsonService.refreshApplications();
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
         }

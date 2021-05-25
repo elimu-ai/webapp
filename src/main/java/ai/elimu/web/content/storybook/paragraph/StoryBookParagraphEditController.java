@@ -53,7 +53,7 @@ public class StoryBookParagraphEditController {
         logger.info("storyBookParagraph: " + storyBookParagraph);
         model.addAttribute("storyBookParagraph", storyBookParagraph);
         
-        model.addAttribute("audios", audioDao.readAllOrdered());
+        model.addAttribute("audios", audioDao.readAllOrderedByTitle());
         
         model.addAttribute("timeStart", System.currentTimeMillis());
         
@@ -74,7 +74,7 @@ public class StoryBookParagraphEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
-            model.addAttribute("audios", audioDao.readAllOrdered());
+            model.addAttribute("audios", audioDao.readAllOrderedByTitle());
             model.addAttribute("timeStart", System.currentTimeMillis());
             return "content/storybook/paragraph/edit";
         } else {

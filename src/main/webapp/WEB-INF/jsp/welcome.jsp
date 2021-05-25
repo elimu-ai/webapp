@@ -40,7 +40,7 @@
               <h2 class="center"><i class="material-icons medium blue-grey-text">public</i></h2>
               <h4 class="center"><fmt:message key="purpose" /></h4>
 
-              <p class="light center">Worldwide, <a href="http://uis.unesco.org/en/news/new-education-data-sdg-4-and-more" target="_blank">64 million children</a> of primary age are out of school.</p>
+              <p class="light center">Worldwide, more than <a href="http://uis.unesco.org/en/news/new-education-data-sdg-4-and-more" target="_blank">64 million children</a> of primary age are out of school.</p>
               <p class="light center"><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
             </div>
           </div>

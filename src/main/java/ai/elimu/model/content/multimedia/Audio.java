@@ -38,6 +38,11 @@ public class Audio extends Multimedia {
     @Column(length=209715200) // 200MB
     private byte[] bytes;
     
+    /**
+     * The duration of the audio recording in milliseconds.
+     */
+    private Long durationMs;
+    
     @NotNull
     @Enumerated(EnumType.STRING)
     private AudioFormat audioFormat;
@@ -75,6 +80,14 @@ public class Audio extends Multimedia {
 
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
+    }
+    
+    public Long getDurationMs() {
+        return durationMs;
+    }
+    
+    public void setDurationMs(Long durationMs) {
+        this.durationMs = durationMs;
     }
 
     public AudioFormat getAudioFormat() {

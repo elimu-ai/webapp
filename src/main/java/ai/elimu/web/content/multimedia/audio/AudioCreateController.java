@@ -17,9 +17,12 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.util.AudioMetadataExtractionHelper;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,6 +136,17 @@ public class AudioCreateController {
                     audio.setBytes(bytes);
 
                     // TODO: convert to a default audio format?
+                    
+                    // Convert from MultipartFile to File, and extract audio duration
+                    String tmpDir = System.getProperty("java.io.tmpdir");
+                    File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
+                    tmpDirElimuAi.mkdir();
+                    File file = new File(tmpDirElimuAi, multipartFile.getOriginalFilename());
+                    logger.info("file: " + file);
+                    multipartFile.transferTo(file);
+                    Long durationMs = AudioMetadataExtractionHelper.getDurationInMilliseconds(file);
+                    logger.info("durationMs: " + durationMs);
+                    audio.setDurationMs(durationMs);
                 }
             }
         } catch (IOException e) {
@@ -164,6 +178,7 @@ public class AudioCreateController {
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
             audioContributionEvent.setComment(request.getParameter("contributionComment"));
             audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();

@@ -4,16 +4,16 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.1.189-SNAPSHOT</version>
+    <version>2.1.196-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <model.version>2.0.35</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
+        <model.version>2.0.38</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
         <hibernate.version>5.4.31.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
-        <spring.version>5.3.6</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
-        <spring.security.version>5.4.6</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
+        <spring.version>5.3.7</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
+        <spring.security.version>5.5.0</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.22.2</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
     </properties>
 
@@ -76,7 +76,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-javadoc-plugin/ -->
-                <version>3.2.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
@@ -351,7 +351,7 @@
         <dependency>
             <groupId>com.github.scribejava</groupId>
             <artifactId>scribejava-apis</artifactId>
-            <version>8.3.0</version>
+            <version>8.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -488,6 +488,13 @@
             <version>1.2</version>
         </dependency>
 
+        <!-- Audio Metadata -->
+        <dependency>
+            <groupId>org.bitbucket.ijabz</groupId>
+            <artifactId>jaudiotagger</artifactId>
+            <version>v2.2.5</version>
+        </dependency>
+
         <!-- Database -->
         <dependency>
             <groupId>javax.transaction</groupId>
@@ -502,7 +509,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.24</version>
+            <version>8.0.25</version>
         </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>

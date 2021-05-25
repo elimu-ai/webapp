@@ -25,7 +25,7 @@ public class AudioListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<Audio> audios = audioDao.readAllOrdered();
+        List<Audio> audios = audioDao.readAllOrderedByTimeLastUpdate();
         model.addAttribute("audios", audios);
 
         return "content/multimedia/audio/list";
