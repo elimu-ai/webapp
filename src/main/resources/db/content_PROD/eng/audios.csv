@@ -41,7 +41,6 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 361,audio/mp3,BSD_2_CLAUSE,"null",,"ice cream","","/audio/361.mp3",MP3
 362,audio/mp3,BSD_2_CLAUSE,"null",,"incredible","","/audio/362.mp3",MP3
 312,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_x","","/audio/312.wav",WAV
-360,audio/mp3,BSD_2_CLAUSE,"null",,"hello","","/audio/360.mp3",MP3
 313,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_y","","/audio/313.wav",WAV
 314,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_z","","/audio/314.wav",WAV
 315,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_a","","/audio/315.wav",WAV

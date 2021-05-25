@@ -35,7 +35,7 @@
                                     ${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" />
                                 </a>
                                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
-                                    <i class="material-icons">clear</i>
+                                    <i class="close material-icons">clear</i>
                                 </a>
                             </div>
                         </c:forEach>
