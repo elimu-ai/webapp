@@ -24,7 +24,7 @@
                             <div class="chip<c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
                                 ${allophone.valueIpa} 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
-                                    <i class="material-icons">clear</i>
+                                    <i class="close material-icons">clear</i>
                                 </a>
                             </div>
                         </c:forEach>
