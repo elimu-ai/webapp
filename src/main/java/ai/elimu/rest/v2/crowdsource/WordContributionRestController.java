@@ -32,7 +32,7 @@ import java.util.List;
 
 /**
  * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
- *
+ * <p>
  * This controller is responsible for handling the creation words and fetching data required for the creation of
  * a new word eg:(Allophones, existing words etc.).
  */
@@ -60,13 +60,14 @@ public class WordContributionRestController {
 
     /**
      * Handles the creation of a new word & the corresponding word contribution event.
+     *
      * @param request
      * @param response
      * @param requestBody JSON String
      * @return
      */
     @RequestMapping(value = "/word", method = RequestMethod.POST)
-    public String handleWordContributionRequest (
+    public String handleWordContributionRequest(
             HttpServletRequest request,
             HttpServletResponse response,
             @RequestBody String requestBody) {
@@ -117,14 +118,14 @@ public class WordContributionRestController {
             return jsonResponse;
         }
 
-        try{
+        try {
             //Convert the JSON String to WordGson Object.
             Word newWord = new Word();
             newWord.setWordType(wordGson.getWordType());
             newWord.setText(wordGson.getText());
             List<LetterToAllophoneMappingGson> wordGsonLetterToAllophoneMappingsGson = wordGson.getLetterToAllophoneMappings();
             List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
-            for(LetterToAllophoneMappingGson letterToAllophoneMappingGson : wordGsonLetterToAllophoneMappingsGson){
+            for (LetterToAllophoneMappingGson letterToAllophoneMappingGson : wordGsonLetterToAllophoneMappingsGson) {
                 LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMappingGson.getId());
                 letterToAllophoneMappings.add(letterToAllophoneMapping);
             }
@@ -144,7 +145,7 @@ public class WordContributionRestController {
             wordContributionEventDao.create(wordContributionEvent);
 
             response.setStatus(HttpStatus.CREATED.value());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             logger.error(ex);
 
             jsonObject.put("result", "error");
@@ -160,6 +161,7 @@ public class WordContributionRestController {
     /**
      * This method will return all the required data to create a word. eg: Allophones etc.
      * TODO : fetch other information that are optional when creating a new word eg: existing words(for Root word) etc.
+     *
      * @param request
      * @param response
      * @return
