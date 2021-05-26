@@ -1,5 +1,6 @@
-package ai.elimu.util;
+package ai.elimu.util.audio;
 
+import ai.elimu.util.audio.CrowdsourceHelper;
 import ai.elimu.model.enums.content.AudioFormat;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;

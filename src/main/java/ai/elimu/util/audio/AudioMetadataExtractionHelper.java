@@ -1,4 +1,4 @@
-package ai.elimu.util;
+package ai.elimu.util.audio;
 
 import java.io.File;
 import java.io.IOException;

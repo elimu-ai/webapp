@@ -28,7 +28,7 @@ import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.LiteracySkill;
 import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.AudioMetadataExtractionHelper;
+import ai.elimu.util.audio.AudioMetadataExtractionHelper;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
