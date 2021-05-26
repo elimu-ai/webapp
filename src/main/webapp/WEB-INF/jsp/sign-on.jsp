@@ -32,5 +32,18 @@
                 </a>
             </div>
         </div>
+
+        <div class="divider"></div>
+                
+        <div class="row section">
+            <p class="center"><fmt:message key="are.you.a.developer" /></p>
+            
+            <div class="col s12 m4 offset-m4" id="web3">
+                <p  class="col s12 btn-large waves-effect waves-light grey darken-1">
+                    
+                    &nbsp;Sign in with Web3 wallet
+                </p>
+            </div>
+        </div>
     </div>    
 </content:section>
