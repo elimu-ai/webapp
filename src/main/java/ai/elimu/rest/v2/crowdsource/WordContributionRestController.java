@@ -33,8 +33,7 @@ import java.util.List;
 /**
  * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
  * <p>
- * This controller is responsible for handling the creation words and fetching data required for the creation of
- * a new word eg:(Allophones, existing words etc.).
+ * This controller is responsible for handling the creation of words contributed through the crowdsource App
  */
 
 @RestController
@@ -53,9 +52,6 @@ public class WordContributionRestController {
     private ContributorDao contributorDao;
 
     @Autowired
-    private AllophoneDao allophoneDao;
-
-    @Autowired
     private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
 
     /**
@@ -63,7 +59,8 @@ public class WordContributionRestController {
      *
      * @param request
      * @param response
-     * @param requestBody JSON String
+     * @param requestBody JSON should contain fields required for the creation of a WordGson object and
+     *                   the fields required for the creation of WordContributionEventGson object
      * @return
      */
     @RequestMapping(value = "/word", method = RequestMethod.POST)
@@ -72,7 +69,7 @@ public class WordContributionRestController {
             HttpServletResponse response,
             @RequestBody String requestBody) {
 
-        logger.info("Word Contribution Event");
+        logger.info("handleWordContributionRequest");
 
         // Validate the Contributor.
         JSONObject jsonObject = new JSONObject();
@@ -111,7 +108,7 @@ public class WordContributionRestController {
         if (existingWord != null) {
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "NonUnique");
-            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            response.setStatus(HttpStatus.CONFLICT.value());
 
             String jsonResponse = jsonObject.toString();
             logger.info("jsonResponse: " + jsonResponse);
@@ -119,27 +116,27 @@ public class WordContributionRestController {
         }
 
         try {
-            //Convert the JSON String to WordGson Object.
-            Word newWord = new Word();
-            newWord.setWordType(wordGson.getWordType());
-            newWord.setText(wordGson.getText());
-            List<LetterToAllophoneMappingGson> wordGsonLetterToAllophoneMappingsGson = wordGson.getLetterToAllophoneMappings();
+            // Convert the JSON String to WordGson Object.
+            Word word = new Word();
+            word.setWordType(wordGson.getWordType());
+            word.setText(wordGson.getText());
+            List<LetterToAllophoneMappingGson> letterToAllophoneMappingsGsons = wordGson.getLetterToAllophoneMappings();
             List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
-            for (LetterToAllophoneMappingGson letterToAllophoneMappingGson : wordGsonLetterToAllophoneMappingsGson) {
+            for (LetterToAllophoneMappingGson letterToAllophoneMappingGson : letterToAllophoneMappingsGsons) {
                 LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMappingGson.getId());
                 letterToAllophoneMappings.add(letterToAllophoneMapping);
             }
-            newWord.setLetterToAllophoneMappings(letterToAllophoneMappings);
-            wordDao.create(newWord);
+            word.setLetterToAllophoneMappings(letterToAllophoneMappings);
+            wordDao.create(word);
 
-            //Convert Request Body(String) to JSON Object.
+            // Convert Request Body (String) to JSON Object.
             JSONObject requestJson = new JSONObject(requestBody);
 
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
             wordContributionEvent.setContributor(contributor);
             wordContributionEvent.setTime(Calendar.getInstance());
-            wordContributionEvent.setWord(newWord);
-            wordContributionEvent.setRevisionNumber(newWord.getRevisionNumber());
+            wordContributionEvent.setWord(word);
+            wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
             wordContributionEvent.setComment(requestJson.getString("contributionComment"));
             wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(requestJson.getString("timeStart")));
             wordContributionEventDao.create(wordContributionEvent);
@@ -154,32 +151,6 @@ public class WordContributionRestController {
         }
 
         String jsonResponse = jsonObject.toString();
-        logger.info("jsonResponse: " + jsonResponse);
-        return jsonResponse;
-    }
-
-    /**
-     * This method will return all the required data to create a word. eg: Allophones etc.
-     * TODO : fetch other information that are optional when creating a new word eg: existing words(for Root word) etc.
-     *
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/word-data", method = RequestMethod.GET)
-    public String getWordDataForCrowdSourcing(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) {
-
-        JSONArray allophonesJsonArray = new JSONArray();
-        for (Allophone allophone : allophoneDao.readAllOrdered()) {
-            AllophoneGson allophoneGson = JpaToGsonConverter.getAllophoneGson(allophone);
-            String json = new Gson().toJson(allophoneGson);
-            allophonesJsonArray.put(new JSONObject(json));
-        }
-
-        String jsonResponse = allophonesJsonArray.toString();
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }
