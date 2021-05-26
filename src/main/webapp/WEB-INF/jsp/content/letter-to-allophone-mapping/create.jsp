@@ -17,7 +17,7 @@
                             <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}">
                                 ${letter.text} 
                                 <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
-                                    <i class="material-icons">clear</i>
+                                    <i class="close material-icons">clear</i>
                                 </a>
                             </div>
                         </c:forEach>
@@ -75,7 +75,7 @@
                             <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
                                 ${allophone.valueIpa} 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
-                                    <i class="material-icons">clear</i>
+                                    <i class="close material-icons">clear</i>
                                 </a>
                             </div>
                         </c:forEach>

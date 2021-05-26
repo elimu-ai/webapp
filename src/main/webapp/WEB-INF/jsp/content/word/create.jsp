@@ -40,7 +40,7 @@
                             <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
                             <div class="chip">
                                 <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
-                                    <i class="material-icons">clear</i>
+                                    <i class="close material-icons">clear</i>
                                 </a>
                                 <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />">
                                     "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">

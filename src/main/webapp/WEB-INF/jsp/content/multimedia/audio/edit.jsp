@@ -246,7 +246,7 @@
             <div class="chip" data-letterid="${letter.id}">
                 ${letter.text} 
                 <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>
@@ -326,7 +326,7 @@
                     ${number.value}<c:if test="${not empty number.symbol}"> (${number.symbol})</c:if>
                 </a>
                 <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>
@@ -406,7 +406,7 @@
                     ${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if>
                 </a>
                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>
