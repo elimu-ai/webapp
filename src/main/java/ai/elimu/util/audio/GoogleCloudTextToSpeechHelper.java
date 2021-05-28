@@ -1,8 +1,14 @@
 package ai.elimu.util.audio;
 
 import ai.elimu.model.enums.Language;
+import com.google.cloud.texttospeech.v1beta1.AudioConfig;
+import com.google.cloud.texttospeech.v1beta1.AudioEncoding;
+import com.google.cloud.texttospeech.v1beta1.SsmlVoiceGender;
 import com.google.cloud.texttospeech.v1beta1.SynthesisInput;
+import com.google.cloud.texttospeech.v1beta1.SynthesizeSpeechResponse;
 import com.google.cloud.texttospeech.v1beta1.TextToSpeechClient;
+import com.google.cloud.texttospeech.v1beta1.VoiceSelectionParams;
+import com.google.protobuf.ByteString;
 import java.io.File;
 import java.io.IOException;
 import javax.transaction.NotSupportedException;
@@ -27,21 +33,30 @@ import org.apache.logging.log4j.Logger;
  */
 public class GoogleCloudTextToSpeechHelper {
     
-    private static final String GOOGLE_API_REQUEST_URL = "https://cloud.google.com/text-to-speech/docs/basics";
-    
     private static Logger logger = LogManager.getLogger();
     
-    public static File synthesizeText(String text, Language language) throws NotSupportedException, IOException {
+    public static byte[] synthesizeText(String text, Language language) throws NotSupportedException, IOException {
         logger.info("synthesizeText");
         
-        File audioFile = null;
+        byte[] byteArray = null;
         
         if ((language != Language.BEN)
                 && (language != Language.ENG)
-                && (language != Language.HIN)
-                && (language != Language.FIL)) {
+                && (language != Language.FIL)
+                && (language != Language.HIN)) {
             throw new NotSupportedException("This language (" + language + ") is not yet supported: https://cloud.google.com/text-to-speech/docs/voices");
         }
+        String languageCode = null;
+        if (language == Language.BEN) {
+            languageCode = "bn";
+        } else if (language == Language.ENG) {
+            languageCode = "en";
+        } else if (language == Language.FIL) {
+            language.getIsoCode();
+        } else if (language == Language.HIN) {
+            languageCode = "hi";
+        }
+        logger.info("languageCode: " + languageCode);
         
         // Instantiate the Google Cloud Text-to-Speech client
         // Prerequisite:
@@ -50,11 +65,34 @@ public class GoogleCloudTextToSpeechHelper {
         logger.info("textToSpeechClient: " + textToSpeechClient);
         
         // Set the text input to be synthesized
-        SynthesisInput synthesisInput = SynthesisInput.newBuilder().setText(text).build();
+        SynthesisInput synthesisInput = SynthesisInput.newBuilder()
+                .setText(text)
+                .build();
+        logger.info("synthesisInput: " + synthesisInput);
         
         // Build the voice request
-        // TODO
+        VoiceSelectionParams voiceSelectionParams = VoiceSelectionParams.newBuilder()
+                .setLanguageCode(languageCode) // TODO: fetch from Language enum
+                .setSsmlGender(SsmlVoiceGender.FEMALE)
+                .build();
+        logger.info("voiceSelectionParams: " + voiceSelectionParams);
         
-        return audioFile;
+        // Select the type of audio file to be returned
+        AudioConfig audioConfig = AudioConfig.newBuilder()
+                .setAudioEncoding(AudioEncoding.MP3)
+                .build();
+        logger.info("audioConfig: " + audioConfig);
+        
+        // Perform Text-to-Speech request
+        SynthesizeSpeechResponse synthesizeSpeechResponse = textToSpeechClient.synthesizeSpeech(synthesisInput, voiceSelectionParams, audioConfig);
+        logger.info("synthesizeSpeechResponse: " + synthesizeSpeechResponse);
+        
+        // Get the audio contents from the response
+        ByteString audioContentsByteString = synthesizeSpeechResponse.getAudioContent();
+        
+        // Convert to byte array
+        byteArray = audioContentsByteString.toByteArray();
+        
+        return byteArray;
     }
 }

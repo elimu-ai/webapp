@@ -25,11 +25,11 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -108,11 +108,28 @@ public class WordEditController {
         model.addAttribute("audios", audios);
         
         // Generate Audio for this Word (if it has not been done already)
-        if (audios == null) {
+        if (audios.isEmpty()) {
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
             try {
-                File audioFile = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
-                logger.info("audioFile: " + audioFile);
+                byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
+                logger.info("audioBytes: " + audioBytes);
+                if (audioBytes != null) {
+                    Audio audio = new Audio();
+                    audio.setTimeLastUpdate(Calendar.getInstance());
+                    audio.setContentType("audio/mpeg"); // TODO: fetch from AudioFormat enum
+                    audio.setWord(word);
+                    audio.setTitle("word-" + word.getId());
+                    audio.setTranscription(word.getText());
+                    audio.setBytes(audioBytes);
+                    audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
+                    audio.setAudioFormat(AudioFormat.MP3);
+                    audioDao.create(audio);
+                    
+                    audios.add(audio);
+                    model.addAttribute("audios", audios);
+                    
+                    // TODO: store AudioContributionEvent
+                }
             } catch (NotSupportedException | IOException ex) {
                 logger.error(ex);
             }
