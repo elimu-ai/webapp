@@ -22,9 +22,11 @@ import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
@@ -78,9 +80,16 @@ public class WordEditController {
     
     @Autowired
     private WordPeerReviewEventDao wordPeerReviewEventDao;
+    
+    @Autowired
+    private AudioContributionEvent audioContributionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id) {
+    public String handleRequest(
+            HttpSession session,
+            Model model,
+            @PathVariable Long id
+    ) {
     	logger.info("handleRequest");
         
         Word word = wordDao.read(id);
@@ -107,6 +116,7 @@ public class WordEditController {
         
         // Generate Audio for this Word (if it has not been done already)
         if (audios.isEmpty()) {
+            Calendar timeStart = Calendar.getInstance();
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
             try {
                 byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
@@ -126,7 +136,15 @@ public class WordEditController {
                     audios.add(audio);
                     model.addAttribute("audios", audios);
                     
-                    // TODO: store AudioContributionEvent
+                    AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+                    audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+                    audioContributionEvent.setTime(Calendar.getInstance());
+                    audioContributionEvent.setAudio(audio);
+                    audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+                    audioContributionEvent.setComment("🎶🎙️");
+                    audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis()));
+                    audioContributionEvent.setPlatform(Platform.WEBAPP);
+                    audioContributionEventDao.create(audioContributionEvent);
                 }
             } catch (Exception ex) {
                 logger.error(ex);
