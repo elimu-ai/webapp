@@ -36,6 +36,9 @@ public class Contributor extends BaseEntity {
     
 //    @Column(unique=true)
     private String providerIdGitHub;
+
+//    @Column(unique=true)
+    private String providerIdWeb3;
     
 //    @Column(unique=true)
     private String usernameGitHub;
@@ -81,6 +84,14 @@ public class Contributor extends BaseEntity {
 
     public void setProviderIdGoogle(String providerIdGoogle) {
         this.providerIdGoogle = providerIdGoogle;
+    }
+
+    public String getProviderIdWeb3() {
+        return providerIdWeb3;
+    }
+
+    public void setProviderIdWeb3(String providerIdWeb3) {
+        this.providerIdWeb3 = providerIdWeb3;
     }
 
     public String getProviderIdGitHub() {

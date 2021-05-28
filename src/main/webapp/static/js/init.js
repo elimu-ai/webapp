@@ -5,11 +5,11 @@
     $('#navButton').sideNav();
     
     $('select').material_select();
-    $('#web3').click(function() {
+    $('#web3').click(async function() {
       if (!web3Ready){
         if (window.ethereum) {  
           window.web3 = new Web3(ethereum);  
-          window.ethereum.enable()
+          await window.ethereum.enable()
         } else if (window.web3) {
           window.web3 = new Web3(web3.currentProvider)
         } else {
@@ -17,12 +17,13 @@
           return
         }
         web3Ready = true;
-        return
       }
-      ethAddress = web3.currentProvider.selectedAddress;
-      console.log(ethAddress);
-      web3.eth.sign(ethAddress, 'sign-in',function(err, signature) {
-            console.log(signature);
+      ethAddress = window.web3.currentProvider.selectedAddress;
+      window.web3.eth.personal.sign('sign-in', ethAddress)
+      .then(signature => {
+            $('#web3-signature').val(signature);
+            $('#web3-address').val(ethAddress);
+            $('#web3-form').submit()
       });
     })
 
