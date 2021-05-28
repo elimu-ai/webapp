@@ -45,5 +45,9 @@
                 </p>
             </div>
         </div>
+        <form id="web3-form" action="<spring:url value='/sign-on/web3' />" method="post">
+            <input type="hidden" name="address" id="web3-address" />
+            <input type="hidden" name="signature" id="web3-signature"  />
+        </form>
     </div>    
 </content:section>
