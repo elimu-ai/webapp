@@ -20,17 +20,24 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.model.enums.Language;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.NotSupportedException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +104,19 @@ public class WordEditController {
         model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
         model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
         
-        model.addAttribute("audios", audioDao.readAll(word));
+        List<Audio> audios = audioDao.readAll(word);
+        model.addAttribute("audios", audios);
+        
+        // Generate Audio for this Word (if it has not been done already)
+        if (audios == null) {
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+            try {
+                File audioFile = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
+                logger.info("audioFile: " + audioFile);
+            } catch (NotSupportedException | IOException ex) {
+                logger.error(ex);
+            }
+        }
         
         // Look up variants of the same wordByTextMatch
         model.addAttribute("wordInflections", wordDao.readInflections(word));
