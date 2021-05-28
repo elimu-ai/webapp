@@ -30,14 +30,12 @@ import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.transaction.NotSupportedException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,7 +128,7 @@ public class WordEditController {
                     
                     // TODO: store AudioContributionEvent
                 }
-            } catch (NotSupportedException | IOException ex) {
+            } catch (Exception ex) {
                 logger.error(ex);
             }
         }
