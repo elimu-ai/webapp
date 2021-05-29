@@ -9,6 +9,7 @@ import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.gson.content.AllophoneGson;
 import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
 import ai.elimu.model.v2.gson.content.WordGson;
+import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
@@ -100,8 +101,13 @@ public class WordContributionRestController {
         }
 
         logger.info("requestBody: " + requestBody);
-        WordGson wordGson = new Gson().fromJson(requestBody, WordGson.class);
-        logger.info("wordGson: " + wordGson);
+
+        // Convert the request body to a WordContributionEventGson
+        WordContributionEventGson wordContributionEventGson = new Gson().fromJson(requestBody, WordContributionEventGson.class);
+        logger.info("wordGson: " + wordContributionEventGson);
+
+        // Extract the WordGson from the WordContributionEventGson
+        WordGson wordGson = wordContributionEventGson.getWord();
 
         // Check if the word is already existing.
         Word existingWord = wordDao.readByText(wordGson.getText());
@@ -116,7 +122,7 @@ public class WordContributionRestController {
         }
 
         try {
-            // Convert the JSON String to WordGson Object.
+            // Convert the WordGson to Word POJO.
             Word word = new Word();
             word.setWordType(wordGson.getWordType());
             word.setText(wordGson.getText());
@@ -129,16 +135,13 @@ public class WordContributionRestController {
             word.setLetterToAllophoneMappings(letterToAllophoneMappings);
             wordDao.create(word);
 
-            // Convert Request Body (String) to JSON Object.
-            JSONObject requestJson = new JSONObject(requestBody);
-
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
             wordContributionEvent.setContributor(contributor);
             wordContributionEvent.setTime(Calendar.getInstance());
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
-            wordContributionEvent.setComment(requestJson.getString("contributionComment"));
-            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(requestJson.getString("timeStart")));
+            wordContributionEvent.setComment(wordContributionEvent.getComment());
+            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(wordContributionEvent.getTimeSpentMs()));
             wordContributionEventDao.create(wordContributionEvent);
 
             response.setStatus(HttpStatus.CREATED.value());
