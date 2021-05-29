@@ -141,7 +141,7 @@ public class WordContributionRestController {
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
             wordContributionEvent.setComment(wordContributionEvent.getComment());
-            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(wordContributionEvent.getTimeSpentMs()));
+            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - wordContributionEvent.getTime().getTimeInMillis());
             wordContributionEventDao.create(wordContributionEvent);
 
             response.setStatus(HttpStatus.CREATED.value());
