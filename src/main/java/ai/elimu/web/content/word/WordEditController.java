@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
@@ -82,7 +83,7 @@ public class WordEditController {
     private WordPeerReviewEventDao wordPeerReviewEventDao;
     
     @Autowired
-    private AudioContributionEvent audioContributionEventDao;
+    private AudioContributionEventDao audioContributionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -141,8 +142,8 @@ public class WordEditController {
                     audioContributionEvent.setTime(Calendar.getInstance());
                     audioContributionEvent.setAudio(audio);
                     audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-                    audioContributionEvent.setComment("🎶🎙️");
-                    audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis()));
+                    audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
+                    audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
                     audioContributionEvent.setPlatform(Platform.WEBAPP);
                     audioContributionEventDao.create(audioContributionEvent);
                 }

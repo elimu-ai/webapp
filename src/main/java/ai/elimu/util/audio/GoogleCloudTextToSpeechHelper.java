@@ -9,7 +9,6 @@ import com.google.cloud.texttospeech.v1beta1.SynthesizeSpeechResponse;
 import com.google.cloud.texttospeech.v1beta1.TextToSpeechClient;
 import com.google.cloud.texttospeech.v1beta1.VoiceSelectionParams;
 import com.google.protobuf.ByteString;
-import java.io.File;
 import java.io.IOException;
 import javax.transaction.NotSupportedException;
 import org.apache.logging.log4j.LogManager;
@@ -52,14 +51,15 @@ public class GoogleCloudTextToSpeechHelper {
         } else if (language == Language.ENG) {
             languageCode = "en";
         } else if (language == Language.FIL) {
-            language.getIsoCode();
+            languageCode = "fil";
         } else if (language == Language.HIN) {
             languageCode = "hi";
         }
         logger.info("languageCode: " + languageCode);
         
-        // Instantiate the Google Cloud Text-to-Speech client
-        // Prerequisite:
+        // For the Google Cloud TextToSpeechClient to work, an environment variable GOOGLE_APPLICATION_CREDENTIALS needs to exist.
+        // To enable this during development, download the JSON file from https://console.cloud.google.com/iam-admin/serviceaccounts 
+        // and run the following command:
         //   export GOOGLE_APPLICATION_CREDENTIALS=/path/to/google-cloud-service-account-key.json
         TextToSpeechClient textToSpeechClient = TextToSpeechClient.create();
         logger.info("textToSpeechClient: " + textToSpeechClient);
