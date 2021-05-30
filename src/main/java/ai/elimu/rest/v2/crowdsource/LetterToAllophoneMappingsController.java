@@ -45,7 +45,8 @@ public class LetterToAllophoneMappingsController {
 
         JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
         for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAllOrderedByUsage()) {
-            LetterToAllophoneMappingGson letterToAllophoneMappingGson = JpaToGsonConverter.getLetterToAllophoneMappingGson(letterToAllophoneMapping);
+            LetterToAllophoneMappingGson letterToAllophoneMappingGson =
+                    JpaToGsonConverter.getLetterToAllophoneMappingGson(letterToAllophoneMapping);
             String json = new Gson().toJson(letterToAllophoneMappingGson);
             letterToAllophoneMappingsJsonArray.put(new JSONObject(json));
         }

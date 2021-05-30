@@ -1,21 +1,16 @@
 package ai.elimu.rest.v2.crowdsource;
-
 import ai.elimu.dao.*;
-import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
-import ai.elimu.model.v2.gson.content.AllophoneGson;
 import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
-import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,8 +55,7 @@ public class WordContributionRestController {
      *
      * @param request
      * @param response
-     * @param requestBody JSON should contain fields required for the creation of a WordGson object and
-     *                   the fields required for the creation of WordContributionEventGson object
+     * @param requestBody JSON should contain fields required for the creation of a WordContributionEventGson object.
      * @return
      */
     @RequestMapping(value = "/word", method = RequestMethod.POST)
@@ -103,7 +97,8 @@ public class WordContributionRestController {
         logger.info("requestBody: " + requestBody);
 
         // Convert the request body to a WordContributionEventGson
-        WordContributionEventGson wordContributionEventGson = new Gson().fromJson(requestBody, WordContributionEventGson.class);
+        WordContributionEventGson wordContributionEventGson =
+                new Gson().fromJson(requestBody, WordContributionEventGson.class);
         logger.info("wordGson: " + wordContributionEventGson);
 
         // Extract the WordGson from the WordContributionEventGson
@@ -129,7 +124,8 @@ public class WordContributionRestController {
             List<LetterToAllophoneMappingGson> letterToAllophoneMappingsGsons = wordGson.getLetterToAllophoneMappings();
             List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
             for (LetterToAllophoneMappingGson letterToAllophoneMappingGson : letterToAllophoneMappingsGsons) {
-                LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMappingGson.getId());
+                LetterToAllophoneMapping letterToAllophoneMapping =
+                        letterToAllophoneMappingDao.read(letterToAllophoneMappingGson.getId());
                 letterToAllophoneMappings.add(letterToAllophoneMapping);
             }
             word.setLetterToAllophoneMappings(letterToAllophoneMappings);
@@ -141,7 +137,8 @@ public class WordContributionRestController {
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
             wordContributionEvent.setComment(wordContributionEvent.getComment());
-            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - wordContributionEvent.getTime().getTimeInMillis());
+            wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() -
+                    wordContributionEvent.getTime().getTimeInMillis());
             wordContributionEventDao.create(wordContributionEvent);
 
             response.setStatus(HttpStatus.CREATED.value());
@@ -159,5 +156,3 @@ public class WordContributionRestController {
     }
 
 }
-
-
