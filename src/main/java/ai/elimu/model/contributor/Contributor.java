@@ -34,6 +34,12 @@ public class Contributor extends BaseEntity {
 //    @Column(unique=true)
     private String providerIdGoogle;
     
+    /**
+     * An Ethereum address. Expected format: "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B"
+     */
+    @Column(unique=true, length=42)
+    private String providerIdWeb3;
+    
 //    @Column(unique=true)
     private String providerIdGitHub;
     
@@ -81,6 +87,14 @@ public class Contributor extends BaseEntity {
 
     public void setProviderIdGoogle(String providerIdGoogle) {
         this.providerIdGoogle = providerIdGoogle;
+    }
+    
+    public String getProviderIdWeb3() {
+        return providerIdWeb3;
+    }
+
+    public void setProviderIdWeb3(String providerIdWeb3) {
+        this.providerIdWeb3 = providerIdWeb3;
     }
 
     public String getProviderIdGitHub() {

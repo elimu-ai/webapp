@@ -4,8 +4,12 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.enums.Role;
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashSet;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +72,36 @@ public class SignOnControllerWeb3 {
             logger.warn("Invalid signature");
             return "redirect:/sign-on/web3?error=Invalid signature";
         }
-        logger.info("Valid signature 🎉");
+        logger.info("Valid signature ✍️");
+        
+        Contributor contributor = new Contributor();
+        contributor.setProviderIdWeb3(address);
         
         // Check if a Contributor with this ETH address already exists in the database
-        // TODO
-	
-        return "sign-on-web3";
+        Contributor existingContributor = contributorDao.readByProviderIdWeb3(address);
+        logger.info("existingContributor: " + existingContributor);
+        if (existingContributor == null) {
+            // Store new Contributor in database
+            contributor.setRegistrationTime(Calendar.getInstance());
+            contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+            if (contributor.getEmail() == null) {
+                // Ask the Contributor to add her e-mail manually
+                request.getSession().setAttribute("contributor", contributor);
+                new CustomAuthenticationManager().authenticateUser(contributor);
+                return "redirect:/content/contributor/add-email";
+            }
+            contributorDao.create(contributor);
+        } else {
+            contributor = existingContributor;
+        }
+        
+         // Authenticate
+        new CustomAuthenticationManager().authenticateUser(contributor);
+
+        // Add Contributor object to session
+        request.getSession().setAttribute("contributor", contributor);
+
+        return "redirect:/content";
     }
     
     private boolean isSignatureValid(final String address, final String signature, final String message) {
