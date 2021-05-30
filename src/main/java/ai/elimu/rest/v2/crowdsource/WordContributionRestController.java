@@ -98,10 +98,11 @@ public class WordContributionRestController {
         // Convert the request body to a WordContributionEventGson
         WordContributionEventGson wordContributionEventGson =
                 new Gson().fromJson(requestBody, WordContributionEventGson.class);
-        logger.info("wordGson: " + wordContributionEventGson);
+        logger.info("wordContributionEventGson: " + wordContributionEventGson);
 
         // Extract the WordGson from the WordContributionEventGson
         WordGson wordGson = wordContributionEventGson.getWord();
+        logger.info("wordGson: " + wordGson);
 
         // Check if the word is already existing.
         Word existingWord = wordDao.readByText(wordGson.getText().toLowerCase());
