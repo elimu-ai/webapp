@@ -380,6 +380,12 @@
             <artifactId>antisamy</artifactId>
             <version>1.6.3</version>
         </dependency>
+        
+         <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>core</artifactId>
+            <version>4.8.4</version>
+        </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>

@@ -82,15 +82,37 @@
                                 console.log('window.ethereum.enable() complete');
                                 
                                 // Request the currently selected address
-                                let selectedAddress = window.web3.currentProvider.selectedAddress;
-                                console.log('selectedAddress: ' + selectedAddress);
+                                let address = window.web3.currentProvider.selectedAddress;
+                                console.log('address ' + address);
+                                
+                                // Request signature to verify ownership of the address
+                                window.web3.eth.personal.sign('I verify ownership of this account 👍', address)
+                                    .then(signature => {
+                                        console.info('Signature provided. Logging in...');
+                                        
+                                        // Add ETH address and signature to the form to be submitted
+                                        $('#web3SignOnForm [name="address"]').val(address);
+                                        $('#web3SignOnForm [name="signature"]').val(signature);
+                                        
+                                        // Submit the information to the backend for verification
+                                        $('#metaMaskButton').hide();
+                                        $('#web3LoadingIndicator').show();
+                                        $('#web3SignOnForm').submit()
+                                    });
                             } catch(error) {
-                                console.error('window.ethereum.enable() failed: error: ' + error);
+                                console.error('error: ' + error);
                             }
                         });
                     }
                 });
             </script>
+            <div id="web3LoadingIndicator" class="progress" style="display: none;">
+                <div class="indeterminate"></div>
+            </div>
+            <form id="web3SignOnForm" action="<spring:url value='/sign-on/web3' />" method="POST">
+                <input type="hidden" name="address" />
+                <input type="hidden" name="signature" />   
+            </form>
         </div>
     </div>
 </content:section>
