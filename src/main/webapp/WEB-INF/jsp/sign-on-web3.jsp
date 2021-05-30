@@ -11,7 +11,7 @@
         <div class="divider" style="margin-bottom: 1em;"></div>
         
         <div class="center">
-            <a href="#" id="metaMaskButton" class="btn-large waves-effect waves-light deep-orange lighten-5">
+            <a id="metaMaskButton" class="btn-large waves-effect waves-light deep-orange lighten-5">
                 <svg width="172" height="33" style="margin-top: 10px;" viewBox="0 0 172 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M151.256 16.64C150.372 16.0569 149.398 15.6423 148.476 15.124C147.878 14.7871 147.241 14.489 146.722 14.0614C145.838 13.3358 146.02 11.9105 146.943 11.2885C148.268 10.4074 150.463 10.8997 150.697 12.7009C150.697 12.7397 150.736 12.7657 150.775 12.7657H152.776C152.828 12.7657 152.867 12.7268 152.854 12.675C152.75 11.431 152.269 10.3944 151.386 9.73355C150.541 9.09862 149.58 8.76172 148.553 8.76172C143.266 8.76172 142.785 14.3465 145.63 16.1088C145.955 16.3161 148.748 17.7155 149.736 18.3245C150.723 18.9335 151.035 20.0479 150.606 20.929C150.216 21.7324 149.203 22.2896 148.19 22.2248C147.085 22.16 146.228 21.564 145.929 20.631C145.877 20.4626 145.851 20.1386 145.851 19.9961C145.851 19.9572 145.812 19.9183 145.773 19.9183H143.604C143.565 19.9183 143.526 19.9572 143.526 19.9961C143.526 21.564 143.916 22.4321 144.981 23.2226C145.981 23.9741 147.072 24.2851 148.203 24.2851C151.165 24.2851 152.698 22.6135 153.009 20.8772C153.282 19.1797 152.776 17.6507 151.256 16.64Z" fill="#161616"/>
                     <path d="M57.0569 9.04688H56.0956H55.0433C55.0043 9.04688 54.9783 9.07279 54.9653 9.09871L53.1856 14.9556C53.1596 15.0334 53.0557 15.0334 53.0297 14.9556L51.2499 9.09871C51.2369 9.05983 51.2109 9.04688 51.1719 9.04688H50.1197H49.1583H47.8592C47.8202 9.04688 47.7812 9.08575 47.7812 9.12462V24.0779C47.7812 24.1167 47.8202 24.1556 47.8592 24.1556H50.0287C50.0677 24.1556 50.1067 24.1167 50.1067 24.0779V12.7139C50.1067 12.6232 50.2366 12.6103 50.2626 12.688L52.0553 18.5838L52.1852 18.9984C52.1982 19.0373 52.2242 19.0503 52.2632 19.0503H53.9261C53.965 19.0503 53.991 19.0243 54.004 18.9984L54.1339 18.5838L55.9267 12.688C55.9527 12.5973 56.0826 12.6232 56.0826 12.7139V24.0779C56.0826 24.1167 56.1216 24.1556 56.1605 24.1556H58.3301C58.369 24.1556 58.408 24.1167 58.408 24.0779V9.12462C58.408 9.08575 58.369 9.04688 58.3301 9.04688H57.0569Z" fill="#161616"/>
@@ -62,14 +62,32 @@
             <script>
                 $(function() {
                     var isMetaMaskInstalled = (window.ethereum && window.ethereum.isMetaMask);
-                    console.log("isMetaMaskInstalled: " + isMetaMaskInstalled)
+                    console.info('isMetaMaskInstalled: ' + isMetaMaskInstalled)
                     if (!isMetaMaskInstalled) {
                         // Show "Install" button
-                        $('#metaMaskButton').addClass("disabled");
+                        $('#metaMaskButton').addClass('disabled');
                         $('#metaMaskInstallButton').fadeIn();
                     } else {
-                        // When the button is pressed, request a MetaMask account
-                        // TODO
+                        // When the MetaMask button is pressed, request access to view account(s)
+                        $('#metaMaskButton').click(async function() {
+                            console.info('#metaMaskButton click');
+                            
+                            // Initialize Web3
+                            window.web3 = new Web3(window.ethereum);
+                            console.info('window.web3: ' + window.web3);
+                            
+                            try {
+                                // Request permission to connect to Web3 provider
+                                await window.ethereum.enable();
+                                console.log('window.ethereum.enable() complete');
+                                
+                                // Request the currently selected address
+                                let selectedAddress = window.web3.currentProvider.selectedAddress;
+                                console.log('selectedAddress: ' + selectedAddress);
+                            } catch(error) {
+                                console.error('window.ethereum.enable() failed: error: ' + error);
+                            }
+                        });
                     }
                 });
             </script>
