@@ -54,7 +54,7 @@
             </a>
             <a style="display: none;"
                     id="metaMaskInstallButton"
-                    class="btn-large waves-effect waves-light deep-purple lighten-2"
+                    class="btn-large waves-effect waves-light deep-purple lighten-2 pulse"
                     href="https://metamask.io/download.html"
                     target="_blank">
                 Install
