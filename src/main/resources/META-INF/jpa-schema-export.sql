@@ -244,6 +244,7 @@
         occupation varchar(255),
         providerIdGitHub varchar(255),
         providerIdGoogle varchar(255),
+        providerIdWeb3 varchar(42),
         registrationTime timestamp,
         usernameGitHub varchar(255),
         primary key (id)
@@ -601,6 +602,9 @@
 
     alter table Contributor 
        add constraint UK_se15thb3bqtr3sw28rgf1v8ia unique (email);
+
+    alter table Contributor 
+       add constraint UK_g3my0evexejqgidmkse6suxt3 unique (providerIdWeb3);
 
     alter table DbMigration 
        add constraint UK_gdl53lyf9qvi56fmbrk9nfrg9 unique (version);
