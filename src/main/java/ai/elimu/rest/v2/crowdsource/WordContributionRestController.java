@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -105,7 +104,7 @@ public class WordContributionRestController {
         WordGson wordGson = wordContributionEventGson.getWord();
 
         // Check if the word is already existing.
-        Word existingWord = wordDao.readByText(wordGson.getText());
+        Word existingWord = wordDao.readByText(wordGson.getText().toLowerCase());
         if (existingWord != null) {
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "NonUnique");
@@ -120,7 +119,7 @@ public class WordContributionRestController {
             // Convert the WordGson to Word POJO.
             Word word = new Word();
             word.setWordType(wordGson.getWordType());
-            word.setText(wordGson.getText());
+            word.setText(wordGson.getText().toLowerCase());
             List<LetterToAllophoneMappingGson> letterToAllophoneMappingsGsons = wordGson.getLetterToAllophoneMappings();
             List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
             for (LetterToAllophoneMappingGson letterToAllophoneMappingGson : letterToAllophoneMappingsGsons) {
@@ -133,12 +132,19 @@ public class WordContributionRestController {
 
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
             wordContributionEvent.setContributor(contributor);
-            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setTime(wordContributionEventGson.getTime());
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
-            wordContributionEvent.setComment(wordContributionEvent.getComment());
+            wordContributionEvent.setComment(wordContributionEventGson.getComment());
             wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() -
                     wordContributionEvent.getTime().getTimeInMillis());
+
+            // TODO: wordContributionEvent.setTimeSpentMs(wordContributionEventGson.getTimeSpentMs());
+            //  refer to: https://github.com/elimu-ai/webapp/pull/1289#discussion_r642024541
+
+            // TODO: wordContributionEvent.setPlatform(Platform.CROWDSOURCE_APP);
+            //  refer to : https://github.com/elimu-ai/webapp/pull/1289#discussion_r638936145
+
             wordContributionEventDao.create(wordContributionEvent);
 
             response.setStatus(HttpStatus.CREATED.value());

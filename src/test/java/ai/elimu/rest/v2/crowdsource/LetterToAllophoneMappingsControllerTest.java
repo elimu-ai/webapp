@@ -12,19 +12,23 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class LetterToAllophoneMappingsControllerTest {
+
     private Logger logger = LogManager.getLogger();
 
     @Test
-    public void testGetWordDataForCrowdSourcing() {
-        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/crowdsource/word-contributions/letter-to-allophone-mappings");
-        logger.info("word-dataResponse: " + jsonResponse);
+    public void testGetRequest() {
+        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() +
+                "/crowdsource/letter-to-allophone-mappings");
 
-        JSONArray allophoneJSONArray = new JSONArray(jsonResponse);
-        logger.info("wordsJSONArray.length(): " + allophoneJSONArray.length());
-        assertThat(allophoneJSONArray.length() > 0, is(true));
+        logger.info("jsonResponse: " + jsonResponse);
 
-        JSONObject allophoneJsonObject = allophoneJSONArray.getJSONObject(0);
-        assertThat(allophoneJsonObject.getLong("id"), not(nullValue()));
-        assertThat(allophoneJsonObject.getString("valueIpa"), not(nullValue()));
+        JSONArray letterToAllophoneMappingsJSONArray = new JSONArray(jsonResponse);
+        logger.info("letterToAllophoneMappingsJSONArray.length(): " + letterToAllophoneMappingsJSONArray.length());
+        assertThat(letterToAllophoneMappingsJSONArray.length() > 0, is(true));
+
+        JSONObject letterToAllophoneMappingJsonObject = letterToAllophoneMappingsJSONArray.getJSONObject(0);
+        assertThat(letterToAllophoneMappingJsonObject.getLong("id"), not(nullValue()));
+        assertThat(letterToAllophoneMappingJsonObject.has("letters"), is(true));
+        assertThat(letterToAllophoneMappingJsonObject.has("allophones"), is(true));
     }
 }

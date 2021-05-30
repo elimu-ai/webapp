@@ -19,7 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping(value = "/rest/v2/crowdsource/word-contributions", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/crowdsource/letter-to-allophone-mappings",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class LetterToAllophoneMappingsController {
 
     private final Logger logger = LogManager.getLogger();
@@ -28,15 +29,13 @@ public class LetterToAllophoneMappingsController {
     private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
 
     /**
-     * This method will return the letter to allophone mappings
-     * TODO : fetch other information that are optional when creating a new word eg: existing words(for Root word) etc.
-     *
+     * This method will return all the current letter to allophone mappings
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/letter-to-allophone-mappings", method = RequestMethod.GET)
-    public String getWordDataForCrowdSourcing(
+    @RequestMapping(method = RequestMethod.GET)
+    public String handleGetRequest(
             HttpServletRequest request,
             HttpServletResponse response
     ) {
