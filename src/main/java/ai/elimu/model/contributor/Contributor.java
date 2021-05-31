@@ -18,7 +18,7 @@ import ai.elimu.model.enums.Role;
 @Entity
 public class Contributor extends BaseEntity {
 
-    @NotNull
+    @NotNull // TODO: remove requirement of providing an e-mail address
     @Column(unique=true)
     private String email;
     
