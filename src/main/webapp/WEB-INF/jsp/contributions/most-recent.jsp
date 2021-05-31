@@ -82,7 +82,7 @@
                         <c:choose>
                             <c:when test="${empty contributor.providerIdWeb3}">
                                 <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt;
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
                             </c:when>
                             <c:otherwise>
                                 <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
@@ -104,7 +104,7 @@
                         <c:choose>
                             <c:when test="${empty contributor.providerIdWeb3}">
                                 <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt;
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
                             </c:when>
                             <c:otherwise>
                                 <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
@@ -126,7 +126,7 @@
                         <c:choose>
                             <c:when test="${empty contributor.providerIdWeb3}">
                                 <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt;
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
                             </c:when>
                             <c:otherwise>
                                 <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
@@ -148,7 +148,7 @@
                         <c:choose>
                             <c:when test="${empty contributor.providerIdWeb3}">
                                 <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt;
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
                             </c:when>
                             <c:otherwise>
                                 <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
