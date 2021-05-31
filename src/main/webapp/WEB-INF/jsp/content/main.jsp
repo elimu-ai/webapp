@@ -141,12 +141,20 @@
     <div class="card-panel deep-purple lighten-5">
         <b><fmt:message key="storybooks" /></b><br />
         <ol style="list-style-type: inherit;">
-            <c:forEach var="contributorWithStoryBookContributions" items="${contributorsWithStoryBookContributions}">
+            <c:forEach var="contributor" items="${contributorsWithStoryBookContributions}">
                 <li>
                     <div class="chip">
-                        <img src="<spring:url value='${contributorWithStoryBookContributions.imageUrl}' />" alt="${contributorWithStoryBookContributions.firstName}" /> 
-                        <c:out value="${contributorWithStoryBookContributions.firstName}" />&nbsp;<c:out value="${contributorWithStoryBookContributions.lastName}" />
-                    </div> (${storyBookContributionsCountMap[contributorWithStoryBookContributions.id]})
+                        <c:choose>
+                            <c:when test="${empty contributor.providerIdWeb3}">
+                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                            </c:otherwise>
+                        </c:choose>
+                    </div> (${storyBookContributionsCountMap[contributor.id]})
                 </li>
             </c:forEach>
         </ol>
@@ -155,12 +163,20 @@
         
         <b><fmt:message key="audios" /></b><br />
         <ol style="list-style-type: inherit;">
-            <c:forEach var="contributorWithAudioContributions" items="${contributorsWithAudioContributions}">
+            <c:forEach var="contributor" items="${contributorsWithAudioContributions}">
                 <li>
                     <div class="chip">
-                        <img src="<spring:url value='${contributorWithAudioContributions.imageUrl}' />" alt="${contributorWithAudioContributions.firstName}" /> 
-                        <c:out value="${contributorWithAudioContributions.firstName}" />&nbsp;<c:out value="${contributorWithAudioContributions.lastName}" />
-                    </div> (${audioContributionsCountMap[contributorWithAudioContributions.id]})
+                        <c:choose>
+                            <c:when test="${empty contributor.providerIdWeb3}">
+                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                            </c:otherwise>
+                        </c:choose>
+                    </div> (${audioContributionsCountMap[contributor.id]})
                 </li>
             </c:forEach>
         </ol>
@@ -169,12 +185,20 @@
         
         <b><fmt:message key="words" /></b><br />
         <ol style="list-style-type: inherit;">
-            <c:forEach var="contributorWithWordContributions" items="${contributorsWithWordContributions}">
+            <c:forEach var="contributor" items="${contributorsWithWordContributions}">
                 <li>
                     <div class="chip">
-                        <img src="<spring:url value='${contributorWithWordContributions.imageUrl}' />" alt="${contributorWithWordContributions.firstName}" /> 
-                        <c:out value="${contributorWithWordContributions.firstName}" />&nbsp;<c:out value="${contributorWithWordContributions.lastName}" />
-                    </div> (${wordContributionsCountMap[contributorWithWordContributions.id]})
+                        <c:choose>
+                            <c:when test="${empty contributor.providerIdWeb3}">
+                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                            </c:otherwise>
+                        </c:choose>
+                    </div> (${wordContributionsCountMap[contributor.id]})
                 </li>
             </c:forEach>
         </ol>
@@ -183,12 +207,20 @@
         
         <b><fmt:message key="numbers" /></b><br />
         <ol style="list-style-type: inherit;">
-            <c:forEach var="contributorWithNumberContributions" items="${contributorsWithNumberContributions}">
+            <c:forEach var="contributor" items="${contributorsWithNumberContributions}">
                 <li>
                     <div class="chip">
-                        <img src="<spring:url value='${contributorWithNumberContributions.imageUrl}' />" alt="${contributorWithNumberContributions.firstName}" /> 
-                        <c:out value="${contributorWithNumberContributions.firstName}" />&nbsp;<c:out value="${contributorWithNumberContributions.lastName}" />
-                    </div> (${numberContributionsCountMap[contributorWithNumberContributions.id]})
+                        <c:choose>
+                            <c:when test="${empty contributor.providerIdWeb3}">
+                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                            </c:otherwise>
+                        </c:choose>
+                    </div> (${numberContributionsCountMap[contributor.id]})
                 </li>
             </c:forEach>
         </ol>

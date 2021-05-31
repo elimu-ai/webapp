@@ -21,6 +21,7 @@
         <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
     </head>
 
@@ -103,8 +104,16 @@
                     <ul class="right">
                         <a class="dropdown-button" data-activates="contributorDropdown" data-beloworigin="true" >
                             <div class="chip">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt;
+                                <c:choose>
+                                    <c:when test="${empty contributor.providerIdWeb3}">
+                                        <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
+                                        <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" /> &lt;${contributor.email}&gt;
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                        <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </a>
                         <ul id='contributorDropdown' class='dropdown-content'>
