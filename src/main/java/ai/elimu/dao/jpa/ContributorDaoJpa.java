@@ -55,6 +55,21 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             return null;
         }
     }
+    
+    @Override
+    public Contributor readByProviderIdWeb3(String id) throws DataAccessException {
+        try {
+            return (Contributor) em.createQuery(
+                "SELECT c " +
+                "FROM Contributor c " +
+                "WHERE c.providerIdWeb3 = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("Contributor with Web3 id \"" + id + "\" was not found");
+            return null;
+        }
+    }
 
     @Override
     public List<Contributor> readAllOrderedDesc() throws DataAccessException {
