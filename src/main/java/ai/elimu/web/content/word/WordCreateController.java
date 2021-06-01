@@ -182,7 +182,7 @@ public class WordCreateController {
                     if (audioBytes != null) {
                         Audio audio = new Audio();
                         audio.setTimeLastUpdate(Calendar.getInstance());
-                        audio.setContentType("audio/mpeg"); // TODO: fetch from AudioFormat enum
+                        audio.setContentType(AudioFormat.MP3.getContentType());
                         audio.setWord(word);
                         audio.setTitle("word-" + word.getId());
                         audio.setTranscription(word.getText());

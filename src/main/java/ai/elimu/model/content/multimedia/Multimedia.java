@@ -26,6 +26,11 @@ import ai.elimu.model.enums.content.NumeracySkill;
 @MappedSuperclass
 public abstract class Multimedia extends Content {
     
+    /**
+     * The MIME type - https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+     * <p>
+     * Example: "audio/mpeg"
+     */
     @NotNull
     private String contentType;
     
