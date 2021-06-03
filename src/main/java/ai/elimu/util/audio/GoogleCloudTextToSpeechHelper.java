@@ -35,6 +35,8 @@ public class GoogleCloudTextToSpeechHelper {
         
         byte[] byteArray = null;
         
+        logger.info("text: \"" + text + "\"");
+        
         if ((language != Language.BEN)
                 && (language != Language.ENG)
                 && (language != Language.FIL)
@@ -57,8 +59,7 @@ public class GoogleCloudTextToSpeechHelper {
         // To enable this during development, download the JSON file from https://console.cloud.google.com/iam-admin/serviceaccounts 
         // and run the following command:
         //   export GOOGLE_APPLICATION_CREDENTIALS=/path/to/google-cloud-service-account-key.json
-        String googleApplicationCredentials = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
-        logger.info("googleApplicationCredentials: \"" + googleApplicationCredentials + "\"");
+        logger.info("System.getenv(\"GOOGLE_APPLICATION_CREDENTIALS\"): \"" + System.getenv("GOOGLE_APPLICATION_CREDENTIALS") + "\"");
         TextToSpeechClient textToSpeechClient = TextToSpeechClient.create();
         logger.info("textToSpeechClient: " + textToSpeechClient);
         
