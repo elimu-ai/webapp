@@ -17,17 +17,13 @@ import org.apache.logging.log4j.Logger;
 /**
  * Utility class for connecting to Google Cloud Text-to-Speech (https://cloud.google.com/text-to-speech/) 
  * to synthesize an audio file from text.
- * <p />
- * 
+ * <p>
  * Supported voices and languages: https://cloud.google.com/text-to-speech/docs/voices
- * <p />
- * 
+ * <p>
  * Supported audio formats: https://cloud.google.com/speech-to-text/docs/encoding
- * <p />
- * 
+ * <p>
  * Google Cloud Console: https://console.cloud.google.com/apis/api/texttospeech.googleapis.com
- * <p />
- * 
+ * <p>
  * See sample code at https://github.com/googleapis/java-texttospeech/blob/master/samples/snippets/src/main/java/com/example/texttospeech/SynthesizeTextBeta.javas
  */
 public class GoogleCloudTextToSpeechHelper {
@@ -61,6 +57,8 @@ public class GoogleCloudTextToSpeechHelper {
         // To enable this during development, download the JSON file from https://console.cloud.google.com/iam-admin/serviceaccounts 
         // and run the following command:
         //   export GOOGLE_APPLICATION_CREDENTIALS=/path/to/google-cloud-service-account-key.json
+        String googleApplicationCredentials = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
+        logger.info("googleApplicationCredentials: \"" + googleApplicationCredentials + "\"");
         TextToSpeechClient textToSpeechClient = TextToSpeechClient.create();
         logger.info("textToSpeechClient: " + textToSpeechClient);
         
