@@ -138,6 +138,10 @@
             You no longer need to remember a username/password for every website or app you interact 
             with, because you can use your Web3 account instead.
         </p>
+        <p>
+            But not just that; You can use Web3 to do so much more! Payments, anonymity and decentralization are
+            some of the core features of Web3! Take a look at this short video to learn more:
+        </p>
 
         <iframe style="border-radius: 8px;" width="100%" height="160" src="https://www.youtube.com/embed/YVgfHZMFFFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
