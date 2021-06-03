@@ -1,4 +1,4 @@
-package ai.elimu.util;
+package ai.elimu.util.audio;
 
 import ai.elimu.model.enums.content.AudioFormat;
 

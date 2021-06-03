@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
@@ -20,11 +21,18 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.model.enums.Language;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.model.enums.content.SpellingConsistency;
 import ai.elimu.model.enums.content.WordType;
+import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,9 +81,16 @@ public class WordEditController {
     
     @Autowired
     private WordPeerReviewEventDao wordPeerReviewEventDao;
+    
+    @Autowired
+    private AudioContributionEventDao audioContributionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id) {
+    public String handleRequest(
+            HttpSession session,
+            Model model,
+            @PathVariable Long id
+    ) {
     	logger.info("handleRequest");
         
         Word word = wordDao.read(id);
@@ -97,7 +112,45 @@ public class WordEditController {
         model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
         model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
         
-        model.addAttribute("audios", audioDao.readAll(word));
+        List<Audio> audios = audioDao.readAll(word);
+        model.addAttribute("audios", audios);
+        
+        // Generate Audio for this Word (if it has not been done already)
+        if (audios.isEmpty()) {
+            Calendar timeStart = Calendar.getInstance();
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+            try {
+                byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
+                logger.info("audioBytes: " + audioBytes);
+                if (audioBytes != null) {
+                    Audio audio = new Audio();
+                    audio.setTimeLastUpdate(Calendar.getInstance());
+                    audio.setContentType(AudioFormat.MP3.getContentType());
+                    audio.setWord(word);
+                    audio.setTitle("word-" + word.getId());
+                    audio.setTranscription(word.getText());
+                    audio.setBytes(audioBytes);
+                    audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
+                    audio.setAudioFormat(AudioFormat.MP3);
+                    audioDao.create(audio);
+                    
+                    audios.add(audio);
+                    model.addAttribute("audios", audios);
+                    
+                    AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+                    audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+                    audioContributionEvent.setTime(Calendar.getInstance());
+                    audioContributionEvent.setAudio(audio);
+                    audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+                    audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
+                    audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
+                    audioContributionEvent.setPlatform(Platform.WEBAPP);
+                    audioContributionEventDao.create(audioContributionEvent);
+                }
+            } catch (Exception ex) {
+                logger.error(ex);
+            }
+        }
         
         // Look up variants of the same wordByTextMatch
         model.addAttribute("wordInflections", wordDao.readInflections(word));

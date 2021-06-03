@@ -1,5 +1,6 @@
-package ai.elimu.util;
+package ai.elimu.util.audio;
 
+import ai.elimu.util.audio.AudioMetadataExtractionHelper;
 import java.io.File;
 import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
