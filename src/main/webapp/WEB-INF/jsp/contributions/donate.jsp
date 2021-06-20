@@ -22,12 +22,6 @@
     <div class="chip light-green darken-2 white-text">2. Engineering</div>
     <div class="chip cyan darken-1 white-text">3. Distribution</div>
     
-    <p>
-        When you donate, you can tell us where you would like us to allocate your funds. You can also tell us 
-        <a href="https://github.com/elimu-ai/wiki#milestones" target="_blank">which language</a> you want us to prioritize when 
-        we add more educational content.
-    </p>
-    
     <div class="divider" style="margin: 1.5em 0;"></div>
     
     <a name="donate-cryptocurrency"></a>
@@ -67,6 +61,79 @@
             </c:otherwise>
         </c:choose>
     </div>
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
+    <h3>Allocation of Donated Funds</h3>
+    <div id="allocationChartLoadingContainer">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+        <p>
+            Loading...
+        </p>
+    </div>
+    <div id="allocationChartContainer" style="display: none;">
+        <canvas id="chart-area"></canvas>
+    </div>
+    <script>
+        function displayPieChart(
+                sumContent,
+                sumEngineering,
+                sumDistribution
+        ) {
+            console.info('displayPieChart');
+            
+            var chartColors = {
+                cyan: 'rgb(0,172,193)',
+                green: 'rgb(104,159,56)',
+                purple: 'rgb(149,117,205)'
+                
+            };
+
+            var config = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            sumContent,
+                            sumEngineering,
+                            sumDistribution
+                        ],
+                        backgroundColor: [
+                            chartColors.purple,
+                            chartColors.green,
+                            chartColors.cyan
+                        ],
+                        label: 'Allocation of Donated Funds'
+                    }],
+                    labels: [
+                        'Content (33%)',
+                        'Engineering (33%)',
+                        'Distribution (33%)'
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            
+            var context = document.getElementById('chart-area').getContext('2d');
+            window.myPie = new Chart(context, config);
+        }
+        
+        $(function() {
+            $('#allocationChartLoadingContainer').remove();
+            $('#allocationChartContainer').show();
+            displayPieChart(0.33, 0.33, 0.33);
+        });
+    </script>
+    
+    <p>
+        When you donate, you can tell us where you would like us to allocate your funds. You can also tell us 
+        <a href="https://github.com/elimu-ai/wiki#milestones" target="_blank">which language</a> you want us to prioritize when 
+        we add more educational content.
+    </p>
 </content:section>
 
 <content:aside>
