@@ -1,15 +1,15 @@
 <content:title>
-    <fmt:message key="pending.review" /> (${fn:length(wordContributionEvents)})
+    <fmt:message key="pending.review" /> (${fn:length(wordContributionEventsPendingPeerReview)})
 </content:title>
 
 <content:section cssId="wordPeerReviewsPendingPage">
     <div class="section row">
-        <c:if test="${empty wordContributionEvents}">
+        <c:if test="${empty wordContributionEventsPendingPeerReview}">
             <p>
                 You have no pending peer reviews 🎉
             </p>
         </c:if>
-        <c:if test="${not empty wordContributionEvents}">
+        <c:if test="${not empty wordContributionEventsPendingPeerReview}">
             <p>
                 Press a word to peer-review it:
             </p>
@@ -23,7 +23,7 @@
                     <th><fmt:message key="time" /></th>
                 </thead>
                 <tbody>
-                    <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
+                    <c:forEach var="wordContributionEvent" items="${wordContributionEventsPendingPeerReview}">
                         <c:set var="word" value="${wordContributionEvent.word}" />
                         <tr>
                             <td style="font-size: 2em;">
