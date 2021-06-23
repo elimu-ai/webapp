@@ -185,7 +185,7 @@
             
             <div id="peerReviewSubmitContainer" style="display: none;">
                 <label for="comment"><fmt:message key="comment" /></label>
-                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+                <textarea id="comment" name="comment" class="materialize-textarea" maxlength="1000"></textarea>
 
                 <button class="btn waves-effect waves-light" type="submit">
                     <fmt:message key="submit" /> <i class="material-icons right">send</i>
