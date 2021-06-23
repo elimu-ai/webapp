@@ -12,6 +12,7 @@ import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEvent.setContributor(contributor);
         storyBookPeerReviewEvent.setStoryBookContributionEvent(storyBookContributionEvent);
         storyBookPeerReviewEvent.setApproved(approved);
-        storyBookPeerReviewEvent.setComment(comment);
+        storyBookPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         storyBookPeerReviewEvent.setTime(Calendar.getInstance());
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
 
