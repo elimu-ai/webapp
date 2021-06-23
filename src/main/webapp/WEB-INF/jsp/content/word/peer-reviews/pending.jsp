@@ -27,7 +27,7 @@
                         <c:set var="word" value="${wordContributionEvent.word}" />
                         <tr>
                             <td style="font-size: 2em;">
-                                <a href="<spring:url value='/content/word/edit/${word.id}' />" target="_blank">"<c:out value="${word.text}" />"</a>
+                                <a href="<spring:url value='/content/word/edit/${word.id}#contribution-events' />" target="_blank">"<c:out value="${word.text}" />"</a>
                             </td>
                             <td style="font-size: 2em;">
                                 /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/

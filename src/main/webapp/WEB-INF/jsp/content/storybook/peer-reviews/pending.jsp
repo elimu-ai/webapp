@@ -28,13 +28,13 @@
                         <c:set var="storyBook" value="${storyBookContributionEvent.storyBook}" />
                         <tr>
                             <td>
-                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />" target="_blank">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" target="_blank">
                                     <c:out value="${storyBook.title}" />
                                 </a>
                             </td>
                             <td>
                                 <c:if test="${not empty storyBook.coverImage}">
-                                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />" target="_blank">
+                                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" target="_blank">
                                         <img 
                                             src="<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" 
                                             style="max-width: 64px; border-radius: 8px;"/>
