@@ -2,12 +2,31 @@ package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerReviewEvent> implements StoryBookPeerReviewEventDao {
+    
+    @Override
+    public StoryBookPeerReviewEvent read(StoryBookContributionEvent storyBookContributionEvent, Contributor contributor) throws DataAccessException {
+        try {
+            return (StoryBookPeerReviewEvent) em.createQuery(
+                "SELECT sbpre " +
+                "FROM StoryBookPeerReviewEvent sbpre " +
+                "WHERE sbpre.storyBookContributionEvent = :storyBookContributionEvent " +
+                "AND sbpre.contributor = :contributor")
+                .setParameter("storyBookContributionEvent", storyBookContributionEvent)
+                .setParameter("contributor", contributor)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            logger.warn("StoryBookPeerReviewEvent was not found");
+            return null;
+        }
+    }
 
     @Override
     public List<StoryBookPeerReviewEvent> readAll(StoryBook storyBook) throws DataAccessException {

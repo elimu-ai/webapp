@@ -6,7 +6,7 @@
     <div class="section row">
         <c:if test="${empty wordContributionEventsPendingPeerReview}">
             <p>
-                You have no pending peer reviews 🎉
+                You have no pending peer-reviews 🎉
             </p>
         </c:if>
         <c:if test="${not empty wordContributionEventsPendingPeerReview}">
