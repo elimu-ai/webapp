@@ -10,7 +10,7 @@
         </a>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" /> You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer review</a> words.
+            <fmt:message key="to.add.new.content.click.the.button.below" /> You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer-review</a> words.
         </p>
         
         <c:if test="${not empty words}">
