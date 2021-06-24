@@ -1,9 +1,14 @@
-package ai.elimu.rest.v2.crowdsource;
+package ai.elimu;
 
+import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
+import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.enums.content.allophone.SoundType;
+import ai.elimu.rest.v2.crowdsource.LetterToAllophoneMappingsController;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
@@ -11,11 +16,6 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,57 +30,54 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
-@RunWith(MockitoJUnitRunner.class)
-public class LetterToAllophoneMappingsControllerTest {
-
-    @Mock
+public class LetterToAllophoneMappingsControllerTest extends RestControllerTest{
+    @Autowired
     LetterToAllophoneMappingDao letterToAllophoneMappingDao;
 
-    @InjectMocks
-    LetterToAllophoneMappingsController letterToAllophoneMappingsController = new LetterToAllophoneMappingsController();
+    @Autowired
+    private AllophoneDao allophoneDao;
 
     @Autowired
+    private LetterDao letterDao;
+
+    @Autowired
+    LetterToAllophoneMappingsController letterToAllophoneMappingsController;
+
     private MockMvc mockMvc;
 
     private Logger logger = LogManager.getLogger();
 
     @Before
-    public void setup() throws JsonProcessingException {
-        JSONObject tesJson = new JSONObject("{\n" +
-                "    \"allophones\": [\n" +
-                "        {\n" +
-                "            \"revisionNumber\": 2,\n" +
-                "            \"diacritic\": false,\n" +
-                "            \"valueIpa\": \"æ\",\n" +
-                "            \"id\": 5,\n" +
-                "            \"soundType\": \"VOWEL\",\n" +
-                "            \"usageCount\": 770\n" +
-                "        }\n" +
-                "    ],\n" +
-                "    \"id\": 2,\n" +
-                "    \"letters\": [\n" +
-                "        {\n" +
-                "            \"revisionNumber\": 18,\n" +
-                "            \"diacritic\": false,\n" +
-                "            \"text\": \"a\",\n" +
-                "            \"id\": 1,\n" +
-                "            \"usageCount\": 914\n" +
-                "        }\n" +
-                "    ],\n" +
-                "    \"usageCount\": 77\n" +
-                "}");
-        ObjectMapper mapper = new ObjectMapper();
-        LetterToAllophoneMapping letterToAllophoneMapping =
-                mapper.readValue(tesJson.toString(), LetterToAllophoneMapping.class);
+    public void setup() throws JsonProcessingException {Allophone allophone = new Allophone();
+        allophone.setValueIpa("ɛɛ");
+        allophone.setValueSampa("EE");
+        allophone.setSoundType(SoundType.VOWEL);
+        allophoneDao.create(allophone);
 
-        List<LetterToAllophoneMapping> testList = new ArrayList<>();
-        testList.add(letterToAllophoneMapping);
-        Mockito.when(letterToAllophoneMappingDao.readAllOrderedByUsage()).thenReturn(testList);
+        Letter letter = new Letter();
+        letter.setDiacritic(true);
+        letter.setText("c");
+        letterDao.create(letter);
+
+        List<Allophone> allophones = new ArrayList<>();
+        List<Letter> letters = new ArrayList<>();
+
+        allophones.add(allophone);
+        letters.add(letter);
+
+
+        LetterToAllophoneMapping letterToAllophoneMapping = new LetterToAllophoneMapping();
+        letterToAllophoneMapping.setAllophones(allophones);
+        letterToAllophoneMapping.setLetters(letters);
+
+        letterToAllophoneMappingDao.create(letterToAllophoneMapping);
+
         mockMvc = MockMvcBuilders.standaloneSetup(letterToAllophoneMappingsController).build();
     }
 
     @Test
     public void testGetRequest() throws Exception {
+
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                 "/rest/v2/crowdsource/letter-to-allophone-mappings").accept(
                 MediaType.APPLICATION_JSON);
@@ -89,6 +86,7 @@ public class LetterToAllophoneMappingsControllerTest {
         String jsonResponse = result.getResponse().getContentAsString();
 
         logger.info("jsonResponse: " + jsonResponse);
+        logger.info("**************************************************************************************************");
 
         JSONArray letterToAllophoneMappingsJSONArray = new JSONArray(jsonResponse);
         logger.info("letterToAllophoneMappingsJSONArray.length(): " + letterToAllophoneMappingsJSONArray.length());
@@ -101,3 +99,4 @@ public class LetterToAllophoneMappingsControllerTest {
         assertThat(letterToAllophoneMappingJsonObject.has("allophones"), is(true));
     }
 }
+
