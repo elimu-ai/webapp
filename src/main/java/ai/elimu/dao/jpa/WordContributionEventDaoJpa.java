@@ -8,6 +8,15 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionEvent> implements WordContributionEventDao {
+    
+    @Override
+    public List<WordContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException {
+        return em.createQuery(
+            "SELECT wce " + 
+            "FROM WordContributionEvent wce " +
+            "ORDER BY wce.time DESC")
+            .getResultList();
+    }
 
     @Override
     public List<WordContributionEvent> readAll(Word word) throws DataAccessException {

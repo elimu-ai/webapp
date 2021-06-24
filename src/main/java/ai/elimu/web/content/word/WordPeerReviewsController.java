@@ -57,7 +57,7 @@ public class WordPeerReviewsController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         logger.info("contributor: " + contributor);
         
-        List<WordContributionEvent> allWordContributionEvents = wordContributionEventDao.readAll();
+        List<WordContributionEvent> allWordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
         logger.info("allWordContributionEvents.size(): " + allWordContributionEvents.size());
         
         // Get the most recent WordContributionEvent for each Word
