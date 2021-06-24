@@ -8,6 +8,8 @@ import org.springframework.dao.DataAccessException;
 
 public interface StoryBookContributionEventDao extends GenericDao<StoryBookContributionEvent> {
     
+    List<StoryBookContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException;
+    
     List<StoryBookContributionEvent> readAll(StoryBook storyBook) throws DataAccessException;
     
     List<StoryBookContributionEvent> readMostRecent(int maxResults) throws DataAccessException;

@@ -8,6 +8,15 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookContributionEvent> implements StoryBookContributionEventDao {
+    
+    @Override
+    public List<StoryBookContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException {
+        return em.createQuery(
+            "SELECT sce " + 
+            "FROM StoryBookContributionEvent sce " +
+            "ORDER BY sce.time DESC")
+            .getResultList();
+    }
 
     @Override
     public List<StoryBookContributionEvent> readAll(StoryBook storyBook) throws DataAccessException {

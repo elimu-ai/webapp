@@ -47,7 +47,7 @@ public class StoryBookPeerReviewsController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         logger.info("contributor: " + contributor);
         
-        List<StoryBookContributionEvent> allStoryBookContributionEvents = storyBookContributionEventDao.readAll();
+        List<StoryBookContributionEvent> allStoryBookContributionEvents = storyBookContributionEventDao.readAllOrderedByTimeDesc();
         logger.info("allStoryBookContributionEvents.size(): " + allStoryBookContributionEvents.size());
         
         // Get the most recent StoryBookContributionEvent for each StoryBook
