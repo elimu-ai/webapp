@@ -6,26 +6,21 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import java.util.List;
-import javax.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerReviewEvent> implements StoryBookPeerReviewEventDao {
     
     @Override
-    public StoryBookPeerReviewEvent read(StoryBookContributionEvent storyBookContributionEvent, Contributor contributor) throws DataAccessException {
-        try {
-            return (StoryBookPeerReviewEvent) em.createQuery(
-                "SELECT sbpre " +
-                "FROM StoryBookPeerReviewEvent sbpre " +
-                "WHERE sbpre.storyBookContributionEvent = :storyBookContributionEvent " +
-                "AND sbpre.contributor = :contributor")
-                .setParameter("storyBookContributionEvent", storyBookContributionEvent)
-                .setParameter("contributor", contributor)
-                .getSingleResult();
-        } catch (NoResultException e) {
-            logger.warn("StoryBookPeerReviewEvent was not found");
-            return null;
-        }
+    public List<StoryBookPeerReviewEvent> readAll(StoryBookContributionEvent storyBookContributionEvent, Contributor contributor) throws DataAccessException {
+        return em.createQuery(
+            "SELECT sbpre " +
+            "FROM StoryBookPeerReviewEvent sbpre " +
+            "WHERE sbpre.storyBookContributionEvent = :storyBookContributionEvent " +
+            "AND sbpre.contributor = :contributor " + 
+            "ORDER BY sbpre.time DESC")
+            .setParameter("storyBookContributionEvent", storyBookContributionEvent)
+            .setParameter("contributor", contributor)
+            .getResultList();
     }
 
     @Override

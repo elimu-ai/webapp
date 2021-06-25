@@ -75,8 +75,8 @@ public class StoryBookPeerReviewsController {
         // If not, add it to the list of pending peer reviews.
         List<StoryBookContributionEvent> storyBookContributionEventsPendingPeerReview = new ArrayList<>();
         for (StoryBookContributionEvent mostRecentStoryBookContributionEvent : mostRecentStoryBookContributionEvents) {
-            StoryBookPeerReviewEvent storyBookPeerReviewEvent = storyBookPeerReviewEventDao.read(mostRecentStoryBookContributionEvent, contributor);
-            if (storyBookPeerReviewEvent == null) {
+            List<StoryBookPeerReviewEvent> storyBookPeerReviewEvents = storyBookPeerReviewEventDao.readAll(mostRecentStoryBookContributionEvent, contributor);
+            if (storyBookPeerReviewEvents.isEmpty()) {
                 storyBookContributionEventsPendingPeerReview.add(mostRecentStoryBookContributionEvent);
             }
         }
