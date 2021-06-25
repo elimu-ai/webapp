@@ -1,15 +1,29 @@
 package ai.elimu.rest.v2.crowdsource;
 
+import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.WordContributionEventDao;
+import ai.elimu.dao.WordPeerReviewEventDao;
+import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.model.contributor.WordPeerReviewEvent;
 import ai.elimu.web.content.word.WordPeerReviewsController;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
@@ -25,15 +39,91 @@ public class WordPeerReviewsRestController {
     
     @Autowired
     private WordContributionEventDao wordContributionEventDao;
+
+    @Autowired
+    private ContributorDao contributorDao;
+
+    @Autowired
+    private WordPeerReviewEventDao wordPeerReviewEventDao;
     
     /**
      * Get {@link WordContributionEvent}s pending a {@link WordPeerReviewEvent} for the current {@link Contributor}.
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String handleGetRequest() {
+    public String handleGetRequest(HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   @RequestBody String requestBody) {
         logger.info("handleGetRequest");
-        
-        // TODO
+
+
+        // Validate the Contributor.
+        JSONObject jsonObject = new JSONObject();
+
+        String providerIdGoogle = request.getHeader("providerIdGoogle");
+        logger.info("providerIdGoogle: " + providerIdGoogle);
+        if (StringUtils.isBlank(providerIdGoogle)) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "Missing providerIdGoogle");
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
+
+        // Lookup the Contributor by ID
+        Contributor contributor = contributorDao.readByProviderIdGoogle(providerIdGoogle);
+        logger.info("contributor: " + contributor);
+        if (contributor == null) {
+            jsonObject.put("result", "error");
+            jsonObject.put("errorMessage", "The Contributor was not found.");
+            response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+
+            String jsonResponse = jsonObject.toString();
+            logger.info("jsonResponse: " + jsonResponse);
+            return jsonResponse;
+        }
+
+        List<WordContributionEvent> allWordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
+        logger.info("allWordContributionEvents.size(): " + allWordContributionEvents.size());
+
+        // Get the most recent WordContributionEvent for each Word
+        List<WordContributionEvent> mostRecentWordContributionEvents = new ArrayList<>();
+        HashMap<Long, Void> idsOfWordsWithContributionEventHashMap = new HashMap<>();
+        for (WordContributionEvent wordContributionEvent : allWordContributionEvents) {
+            // Ignore WordContributionEvent if one has already been added for this Word
+            if (idsOfWordsWithContributionEventHashMap.containsKey(wordContributionEvent.getWord().getId())) {
+                continue;
+            }
+
+            // Keep track of the Word ID
+            idsOfWordsWithContributionEventHashMap.put(wordContributionEvent.getWord().getId(), null);
+
+            // Ignore WordContributionEvents made by the current Contributor
+            if (wordContributionEvent.getContributor().getId().equals(contributor.getId())) {
+                continue;
+            }
+
+            mostRecentWordContributionEvents.add(wordContributionEvent);
+        }
+
+        logger.info("mostRecentWordContributionEvents.size(): " + mostRecentWordContributionEvents.size());
+
+        // For each WordContributionEvent, check if the Contributor has already performed a peer review.
+        // If not, add it to the list of pending peer reviews.
+        List<WordContributionEvent> wordContributionEventsPendingPeerReview = new ArrayList<>();
+        for (WordContributionEvent mostRecentWordContributionEvent : mostRecentWordContributionEvents) {
+            WordPeerReviewEvent wordPeerReviewEvent = wordPeerReviewEventDao.read(mostRecentWordContributionEvent, contributor);
+            if (wordPeerReviewEvent == null) {
+                wordContributionEventsPendingPeerReview.add(mostRecentWordContributionEvent);
+            }
+        }
+
+        logger.info("wordContributionEventsPendingPeerReview.size(): " + wordContributionEventsPendingPeerReview.size());
+
+        logger.info("requestBody: " + requestBody);
+
+        // TODO emoji glyphs ?
         return null;
     }
 }
