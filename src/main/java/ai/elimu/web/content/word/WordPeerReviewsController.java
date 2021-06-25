@@ -6,8 +6,6 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.AudioContributionEvent;
-import ai.elimu.model.contributor.AudioPeerReviewEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
@@ -85,8 +83,8 @@ public class WordPeerReviewsController {
         // If not, add it to the list of pending peer reviews.
         List<WordContributionEvent> wordContributionEventsPendingPeerReview = new ArrayList<>();
         for (WordContributionEvent mostRecentWordContributionEvent : mostRecentWordContributionEvents) {
-            WordPeerReviewEvent wordPeerReviewEvent = wordPeerReviewEventDao.read(mostRecentWordContributionEvent, contributor);
-            if (wordPeerReviewEvent == null) {
+            List<WordPeerReviewEvent> wordPeerReviewEvents = wordPeerReviewEventDao.readAll(mostRecentWordContributionEvent, contributor);
+            if (wordPeerReviewEvents.isEmpty()) {
                 wordContributionEventsPendingPeerReview.add(mostRecentWordContributionEvent);
             }
         }

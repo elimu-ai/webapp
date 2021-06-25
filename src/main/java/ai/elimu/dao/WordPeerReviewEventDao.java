@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface WordPeerReviewEventDao extends GenericDao<WordPeerReviewEvent> {
     
-    WordPeerReviewEvent read(WordContributionEvent wordContributionEvent, Contributor contributor) throws DataAccessException;
+    List<WordPeerReviewEvent> readAll(WordContributionEvent wordContributionEvent, Contributor contributor) throws DataAccessException;
     
     List<WordPeerReviewEvent> readAll(Word word) throws DataAccessException;
     
