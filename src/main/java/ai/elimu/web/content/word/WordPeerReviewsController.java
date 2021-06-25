@@ -55,34 +55,20 @@ public class WordPeerReviewsController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         logger.info("contributor: " + contributor);
         
-        List<WordContributionEvent> allWordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
-        logger.info("allWordContributionEvents.size(): " + allWordContributionEvents.size());
-        
-        // Get the most recent WordContributionEvent for each Word
-        List<WordContributionEvent> mostRecentWordContributionEvents = new ArrayList<>();
-        HashMap<Long, Void> idsOfWordsWithContributionEventHashMap = new HashMap<>();
-        for (WordContributionEvent wordContributionEvent : allWordContributionEvents) {
-            // Ignore WordContributionEvent if one has already been added for this Word
-            if (idsOfWordsWithContributionEventHashMap.containsKey(wordContributionEvent.getWord().getId())) {
-                continue;
-            }
-            
-            // Keep track of the Word ID
-            idsOfWordsWithContributionEventHashMap.put(wordContributionEvent.getWord().getId(), null);
-            
-            // Ignore WordContributionEvents made by the current Contributor
-            if (wordContributionEvent.getContributor().getId().equals(contributor.getId())) {
-                continue;
-            }
-            
-            mostRecentWordContributionEvents.add(wordContributionEvent);
-        }
+        // Get the most recent WordContributionEvent for each Word, including those made by the current Contributor
+        List<WordContributionEvent> mostRecentWordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
         logger.info("mostRecentWordContributionEvents.size(): " + mostRecentWordContributionEvents.size());
         
-        // For each WordContributionEvent, check if the Contributor has already performed a peer review.
+        // For each WordContributionEvent, check if the Contributor has already performed a peer-review.
         // If not, add it to the list of pending peer reviews.
         List<WordContributionEvent> wordContributionEventsPendingPeerReview = new ArrayList<>();
         for (WordContributionEvent mostRecentWordContributionEvent : mostRecentWordContributionEvents) {
+            // Ignore WordContributionEvents made by the current Contributor
+            if (mostRecentWordContributionEvent.getContributor().getId().equals(contributor.getId())) {
+                continue;
+            }
+            
+            // Check if the current Contributor has already peer-reviewed this Word contribution
             List<WordPeerReviewEvent> wordPeerReviewEvents = wordPeerReviewEventDao.readAll(mostRecentWordContributionEvent, contributor);
             if (wordPeerReviewEvents.isEmpty()) {
                 wordContributionEventsPendingPeerReview.add(mostRecentWordContributionEvent);
