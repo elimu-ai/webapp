@@ -14,5 +14,7 @@ public interface StoryBookContributionEventDao extends GenericDao<StoryBookContr
     
     List<StoryBookContributionEvent> readMostRecent(int maxResults) throws DataAccessException;
     
+    List<StoryBookContributionEvent> readMostRecentPerStoryBook() throws DataAccessException;
+    
     Long readCount(Contributor contributor) throws DataAccessException;
 }

@@ -44,7 +44,7 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
         return em.createQuery(
             "SELECT wce " + 
             "FROM WordContributionEvent wce " +
-            "WHERE wce.time IN (SELECT MAX(time) FROM WordContributionEvent GROUP BY word_id)" + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "WHERE wce.time IN (SELECT MAX(time) FROM WordContributionEvent GROUP BY word_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
             "ORDER BY wce.time ASC")
             .getResultList();
     }

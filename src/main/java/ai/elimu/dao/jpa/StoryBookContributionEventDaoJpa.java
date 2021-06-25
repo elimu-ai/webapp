@@ -40,6 +40,16 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
     }
     
     @Override
+    public List<StoryBookContributionEvent> readMostRecentPerStoryBook() throws DataAccessException {
+        return em.createQuery(
+            "SELECT sce " + 
+            "FROM StoryBookContributionEvent sce " +
+            "WHERE sce.time IN (SELECT MAX(time) FROM StoryBookContributionEvent GROUP BY storyBook_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "ORDER BY sce.time ASC")
+            .getResultList();
+    }
+    
+    @Override
     public Long readCount(Contributor contributor) throws DataAccessException {
         return (Long) em.createQuery("SELECT COUNT(sce) " +
                 "FROM StoryBookContributionEvent sce " +
