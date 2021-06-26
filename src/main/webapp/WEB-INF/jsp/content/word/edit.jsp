@@ -290,8 +290,8 @@
             </div>
         </c:when>
         <c:otherwise>
-            <c:forEach var="audio" items="${audios}">
-                <audio controls="true">
+            <c:forEach var="audio" items="${audios}" varStatus="status">
+                <audio controls="true"<c:if test="${status.index == 0}"> autoplay="true"</c:if>>
                     <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
                 </audio>
                 <div class="right" style="margin-bottom: 1rem; font-size: 0.8rem;">

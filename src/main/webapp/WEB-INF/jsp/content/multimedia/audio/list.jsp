@@ -51,7 +51,7 @@
                             --%>
                             <td>
                                 <a href="<spring:url value='/content/word/edit/${audio.word.id}' />">
-                                    ${audio.word.text}
+                                    "${audio.word.text}"
                                 </a>
                             </td>
                             <td>
