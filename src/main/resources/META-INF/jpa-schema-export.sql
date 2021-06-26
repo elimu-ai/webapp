@@ -179,6 +179,7 @@
         peerReviewStatus varchar(255),
         title varchar(255),
         transcription varchar(255),
+        storyBookParagraph_id bigint,
         word_id bigint,
         primary key (id)
     );
@@ -641,6 +642,11 @@
        add constraint FKbmfakjprck5g1jlh74xpmp0j7 
        foreign key (contributor_id) 
        references Contributor;
+
+    alter table Audio 
+       add constraint FKohdvhlrrancsjct22f3y0os89 
+       foreign key (storyBookParagraph_id) 
+       references StoryBookParagraph;
 
     alter table Audio 
        add constraint FK1bkjicci0k63irniwg0fm9ans 
