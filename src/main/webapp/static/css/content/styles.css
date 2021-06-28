@@ -148,3 +148,16 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
     height: auto;
     background-color: #EEE;
 }
+
+.diff-addition {
+    background-color: #e0f2f1;
+    border-bottom: 2px solid #009688;
+    border-radius: 4px;
+    padding: 4px;
+}
+.diff-deletion {
+    background-color: #ffccbc;
+    border-bottom: 2px solid #f4511e;
+    border-radius: 4px;
+    padding: 4px;
+}

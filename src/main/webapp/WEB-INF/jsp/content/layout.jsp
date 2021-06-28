@@ -22,6 +22,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+        <script src="<spring:url value='/static/js/difflib-0.2.4.min.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
     </head>
 

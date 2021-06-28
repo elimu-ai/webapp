@@ -211,6 +211,26 @@
                     <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
                 </div>
                 <blockquote>"<c:out value="${storyBookContributionEvent.comment}" />"</blockquote>
+                <c:if test="${not empty storyBookContributionEvent.paragraphTextBefore}">
+                    <p id="textDiffContainer_${storyBookContributionEvent.id}"></p>
+                    <script>
+                        $(function() {
+                            var textBefore = ['${fn:join(fn:split(storyBookContributionEvent.paragraphTextBefore, ' '), '\', \'')}'];
+                            var textAfter = ['${fn:join(fn:split(storyBookContributionEvent.paragraphTextAfter, ' '), '\', \'')}'];
+                            var unifiedDiff = difflib.unifiedDiff(textBefore, textAfter);
+                            console.info('unifiedDiff: \n' + unifiedDiff);
+                            for (var i = 3; i < unifiedDiff.length; i++) {
+                                var diff = unifiedDiff[i];
+                                if (diff.startsWith('-')) {
+                                    diff = '<span class="diff-deletion">' + diff.substring(1) + '<span>';
+                                } else if (diff.startsWith('+')) {
+                                    diff = '<span class="diff-addition">' + diff.substring(1) + '<span>';
+                                }
+                                $('#textDiffContainer_${storyBookContributionEvent.id}').append(diff);
+                            }
+                        });
+                    </script>
+                </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEvents}">

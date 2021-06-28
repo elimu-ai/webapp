@@ -23,6 +23,7 @@ import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -130,6 +131,10 @@ public class StoryBookParagraphEditController {
             model.addAttribute("timeStart", System.currentTimeMillis());
             return "content/storybook/paragraph/edit";
         } else {
+            // Fetch previously stored paragraph to make it possible to check if the text was modified or not when 
+            // storing the StoryBookContributionEvent below.
+            StoryBookParagraph storyBookParagraphBeforeEdit = storyBookParagraphDao.read(storyBookParagraph.getId());
+            
             storyBookParagraphDao.update(storyBookParagraph);
             
             // Update the storybook's metadata
@@ -146,6 +151,10 @@ public class StoryBookParagraphEditController {
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment("Edited storybook paragraph (🤖 auto-generated comment)");
+            if (!storyBookParagraphBeforeEdit.getOriginalText().equals(storyBookParagraph.getOriginalText())) {
+                storyBookContributionEvent.setParagraphTextBefore(StringUtils.abbreviate(storyBookParagraphBeforeEdit.getOriginalText(), 1000));
+                storyBookContributionEvent.setParagraphTextAfter(StringUtils.abbreviate(storyBookParagraph.getOriginalText(), 1000));
+            }
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
