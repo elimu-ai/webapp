@@ -26,6 +26,20 @@
     </head>
 
     <body>
+        <div id="formLoadingOverlay">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <nav class="deep-purple lighten-1">
             <div class="row nav-wrapper">
                 <div class="col s1">
