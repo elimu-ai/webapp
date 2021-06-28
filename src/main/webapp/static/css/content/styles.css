@@ -150,14 +150,16 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
 }
 
 .diff-addition {
+    color: #43a047;
     background-color: #e0f2f1;
-    border-bottom: 2px solid #009688;
+    border-bottom: 2px solid #43a047;
     border-radius: 4px;
     padding: 4px;
 }
 .diff-deletion {
+    color: #b71c1c;
     background-color: #ffccbc;
-    border-bottom: 2px solid #f4511e;
+    border-bottom: 2px solid #b71c1c;
     border-radius: 4px;
     padding: 4px;
 }
