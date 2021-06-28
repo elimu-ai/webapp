@@ -219,9 +219,14 @@
                             var textAfter = ['${fn:join(fn:split(storyBookContributionEvent.paragraphTextAfter, ' '), '\', \'')}'];
                             var unifiedDiff = difflib.unifiedDiff(textBefore, textAfter);
                             console.info('unifiedDiff: \n' + unifiedDiff);
-                            for (var i = 3; i < unifiedDiff.length; i++) {
+                            for (var i = 2; i < unifiedDiff.length; i++) {
                                 var diff = unifiedDiff[i];
-                                if (diff.startsWith('-')) {
+                                if (diff.startsWith('@@')) {
+                                    diff = '<span class="grey-text">' + diff + '</span><br />';
+                                    if (i > 2) {
+                                        diff = '<br /><br />' + diff;
+                                    }
+                                } else if (diff.startsWith('-')) {
                                     diff = '<span class="diff-deletion">' + diff.substring(1) + '<span>';
                                 } else if (diff.startsWith('+')) {
                                     diff = '<span class="diff-addition">' + diff.substring(1) + '<span>';
