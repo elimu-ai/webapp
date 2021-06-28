@@ -184,7 +184,6 @@ form {
     position: relative;
 }
 #formLoadingOverlay {
-    display: none;
     z-index: 2;
     background: rgba(255, 255, 255, 0.8);
     height: 100%;
