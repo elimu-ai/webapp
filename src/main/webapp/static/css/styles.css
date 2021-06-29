@@ -180,6 +180,10 @@ a,
   border-bottom: 2px solid #9575cd;
 }
 
+blockquote {
+    border-color: #673ab7; /* deep-purple */
+}
+
 form {
     position: relative;
 }
