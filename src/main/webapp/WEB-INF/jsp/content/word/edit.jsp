@@ -240,7 +240,9 @@
                     <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 
                     <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
                 </div>
-                <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+                <c:if test="${not empty wordContributionEvent.comment}">
+                    <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+                </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">
@@ -268,9 +270,7 @@
                                 <fmt:formatDate value="${wordPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty wordPeerReviewEvent.comment}">
-                                <div class="col s12">
-                                    "<c:out value="${wordPeerReviewEvent.comment}" />"
-                                </div>
+                                <div class="col s12 comment"><c:out value="${wordPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
@@ -294,7 +294,7 @@
                 <audio controls="true"<c:if test="${status.index == 0}"> autoplay="true"</c:if>>
                     <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
                 </audio>
-                <div class="right" style="margin-bottom: 1rem; font-size: 0.8rem;">
+                <div style="margin-bottom: 1rem; font-size: 0.8rem;">
                     <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />" target="_blank">
                         <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
                     </a>

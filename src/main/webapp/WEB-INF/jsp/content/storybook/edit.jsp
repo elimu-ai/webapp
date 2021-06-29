@@ -211,7 +211,7 @@
                     <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
                 </div>
                 <c:if test="${not empty storyBookContributionEvent.comment}">
-                    <blockquote>"<c:out value="${storyBookContributionEvent.comment}" />"</blockquote>
+                    <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
                 </c:if>
                 <c:if test="${not empty storyBookContributionEvent.paragraphTextBefore}">
                     <p id="textDiffContainer_${storyBookContributionEvent.id}"></p>
@@ -265,7 +265,7 @@
                                 <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty storyBookPeerReviewEvent.comment}">
-                                <div class="col s12 comment">"<c:out value="${fn:replace(storyBookPeerReviewEvent.comment, '/n', '<br />')}" />"</div>
+                                <div class="col s12 comment"><c:out value="${storyBookPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
