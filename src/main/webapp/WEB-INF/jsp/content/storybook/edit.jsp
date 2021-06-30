@@ -217,8 +217,9 @@
                     <p id="textDiffContainer_${storyBookContributionEvent.id}"></p>
                     <script>
                         $(function() {
-                            var textBefore = ['${fn:join(fn:split(storyBookContributionEvent.paragraphTextBefore, ' '), '\', \'')}'];
-                            var textAfter = ['${fn:join(fn:split(storyBookContributionEvent.paragraphTextAfter, ' '), '\', \'')}'];
+                            // Visualize before/after diff
+                            var textBefore = ['${fn:join(fn:split(fn:replace(storyBookContributionEvent.paragraphTextBefore, newLineCharRn, '<br/>'), ' '), '\', \'')}'];
+                            var textAfter = ['${fn:join(fn:split(fn:replace(storyBookContributionEvent.paragraphTextAfter, newLineCharRn, '<br/>'), ' '), '\', \'')}'];
                             var unifiedDiff = difflib.unifiedDiff(textBefore, textAfter);
                             console.info('unifiedDiff: \n' + unifiedDiff);
                             for (var i = 2; i < unifiedDiff.length; i++) {

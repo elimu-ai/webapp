@@ -153,6 +153,10 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
 
         // Add config properties to application scope
         servletContext.setAttribute("configProperties", PROPERTIES);
+        
+        servletContext.setAttribute("newLineCharRn", "\r\n");
+        servletContext.setAttribute("newLineCharR", "\r");
+        servletContext.setAttribute("newLineCharR", "\n");
 
         super.customizeContext(servletContext, applicationContext);
     }
