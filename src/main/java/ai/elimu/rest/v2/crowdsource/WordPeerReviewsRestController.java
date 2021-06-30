@@ -6,10 +6,14 @@ import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
+import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
+import ai.elimu.rest.v2.JpaToGsonConverter;
 import ai.elimu.web.content.word.WordPeerReviewsController;
+import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,6 +52,9 @@ public class WordPeerReviewsRestController {
     
     /**
      * Get {@link WordContributionEvent}s pending a {@link WordPeerReviewEvent} for the current {@link Contributor}.
+     *
+     * Note: Currently The list of Emojis are not delivered in this method as opposed to the handleGetRequest method in
+     *       WordPeerReviewsController
      */
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest(HttpServletRequest request,
@@ -118,12 +125,17 @@ public class WordPeerReviewsRestController {
                 wordContributionEventsPendingPeerReview.add(mostRecentWordContributionEvent);
             }
         }
-
         logger.info("wordContributionEventsPendingPeerReview.size(): " + wordContributionEventsPendingPeerReview.size());
 
-        logger.info("requestBody: " + requestBody);
+        JSONArray wordContributionEventsJsonArray = new JSONArray();
+        for(WordContributionEvent wordContributionEvent : wordContributionEventsPendingPeerReview){
+            WordContributionEventGson wordContributionEventGson = JpaToGsonConverter.getWordContributionEventGson(wordContributionEvent);
+            String json = new Gson().toJson(wordContributionEventGson);
+            wordContributionEventsJsonArray.put(new JSONObject(json));
+        }
 
-        // TODO emoji glyphs ?
-        return null;
+        String jsonResponse = wordContributionEventsJsonArray.toString();
+        logger.info("jsonResponse: " + jsonResponse);
+        return jsonResponse;
     }
 }
