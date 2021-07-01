@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,7 @@ public class SignOnControllerWeb3 {
     @RequestMapping(value="/sign-on/web3", method=RequestMethod.POST, consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String handleAuthorization(
             HttpServletRequest request,
+            HttpSession session,
             @RequestParam String address,
             @RequestParam String signature
     ) throws IOException {
@@ -73,6 +75,21 @@ public class SignOnControllerWeb3 {
             return "redirect:/sign-on/web3?error=Invalid signature";
         }
         logger.info("Valid signature ✍️");
+        
+        // Check if the Contributor is currently signed on (via Google/GitHub)
+        Contributor authenticatedContributor = (Contributor) session.getAttribute("contributor");
+        logger.info("authenticatedContributor: " + authenticatedContributor);
+        if ((authenticatedContributor != null) && (authenticatedContributor.getId() != null)) {
+            // Check if a Contributor with this ETH address already exists in the database.
+            // If so, merge the two Contributors into one.
+            // TODO
+
+            // Update Web3 details of existing Contributor
+            authenticatedContributor.setProviderIdWeb3(address);
+            contributorDao.update(authenticatedContributor);
+            
+            return "redirect:/content";
+        }
         
         Contributor contributor = new Contributor();
         contributor.setProviderIdWeb3(address);

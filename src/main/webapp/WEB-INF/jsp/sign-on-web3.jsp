@@ -95,20 +95,21 @@
                                         $('#web3SignOnForm [name="signature"]').val(signature);
                                         
                                         // Submit the information to the backend for verification
-                                        $('#metaMaskButton').hide();
-                                        $('#web3LoadingIndicator').show();
-                                        $('#web3SignOnForm').submit()
+                                        $('#web3SignOnForm').submit();
+                                        
+                                        // Display loading overlay while the signature is being verified
+                                        var $formLoadingOverlayHtml = $('#formLoadingOverlay');
+                                        $('body').prepend($formLoadingOverlayHtml);
+                                        $formLoadingOverlayHtml.show();
                                     });
                             } catch(error) {
                                 console.error('error: ' + error);
+                                Materialize.toast('An error occurred', 4000, 'rounded');
                             }
                         });
                     }
                 });
             </script>
-            <div id="web3LoadingIndicator" class="progress" style="display: none;">
-                <div class="indeterminate"></div>
-            </div>
             <form id="web3SignOnForm" action="<spring:url value='/sign-on/web3' />" method="POST">
                 <input type="hidden" name="address" />
                 <input type="hidden" name="signature" />   
@@ -138,10 +139,6 @@
             You no longer need to remember a username/password for every website or app you interact 
             with, because you can use your Web3 account instead.
         </p>
-        <p>
-            But not just that; You can use Web3 to do so much more! Payments, anonymity and decentralization are
-            some of the core features of Web3! Take a look at this short video to learn more:
-        </p>
 
         <iframe style="border-radius: 8px;" width="100%" height="160" src="https://www.youtube.com/embed/YVgfHZMFFFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
@@ -150,7 +147,7 @@
         <p>To get started, we recommend these Web3 providers:</p>
         <ul>
             <li>Laptop: <a href="https://metamask.io/download.html" target="_blank">MetaMask</a></li>
-            <li>Smartphone: <a href="https://status.im/get" target="_blank">Status</a></li>
+            <li>Smartphone: <a href="https://status.im/get" target="_blank">Status</a>/<a href="https://www.myetherwallet.com/" target="_blank">MyEtherWallet</a></li>
         </ul>
     </div>
 </content:aside>

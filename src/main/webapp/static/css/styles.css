@@ -73,6 +73,11 @@ footer.page-footer .footer-copyright {
     margin-left: 1rem;
 }
 
+#tokenButton {
+    border-radius: 32px;
+    background: linear-gradient(135deg, #b39ddb 0%, #9575cd 100%);
+}
+
 .card.image .card-image,
 .card.storyBook .card-image {
     height: 20em;
