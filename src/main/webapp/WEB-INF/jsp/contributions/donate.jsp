@@ -1,5 +1,5 @@
 <content:title>
-    Donate
+    Donate 💜
 </content:title>
 
 <content:section cssId="appealPage">
@@ -42,9 +42,10 @@
                 </g>
             </svg><code>0x883753Beab357A2c29f3766C6ad158e72A78ce51</code>
         </p>
+        <p>
+            Thank you! 💜
+        </p>
     </div>
-    
-    <div class="divider" style="margin: 1.5em 0;"></div>
     
     <h4>Most Recent Donations</h4>
     <div class="card-panel">
@@ -134,6 +135,51 @@
         <a href="https://github.com/elimu-ai/wiki#milestones" target="_blank">which language</a> you want us to prioritize when 
         we add more educational content.
     </p>
+    
+    <h4>Most Recent Payouts</h4>
+    <div class="card-panel">
+        <h5>#content 🎶🎙</h5>
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.etherscan.io/address/0xa406C9B6c115A65da97EC7256d0A1fF51F281f71" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://etherscan.io/address/0xa406C9B6c115A65da97EC7256d0A1fF51F281f71" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:otherwise>
+        </c:choose>
+        
+        <h5>#engineering 👩🏽‍💻📱</h5>
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.etherscan.io/address/0xB1C409722B23Cba26dE8660b180d4B55Ed8CB4c0" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://etherscan.io/address/0xB1C409722B23Cba26dE8660b180d4B55Ed8CB4c0" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:otherwise>
+        </c:choose>
+        
+        <h5>#distribution 🛵💨</h5>
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.etherscan.io/address/0x282EF5377C35E90C33a94833d69dBA880430c9cB" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://etherscan.io/address/0x282EF5377C35E90C33a94833d69dBA880430c9cB" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </content:section>
 
 <content:aside>
