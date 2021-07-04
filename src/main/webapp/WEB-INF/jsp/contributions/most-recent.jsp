@@ -163,7 +163,7 @@
     
     <div class="divider" style="margin: 1.5em 0;"></div>
     
-    <h5 class="center">Token Holders</h5>
+    <h5 class="center">Token Holders 💎</h5>
     <div class="card-panel deep-purple lighten-5">
         <p>
             Active contributors get rewarded with 

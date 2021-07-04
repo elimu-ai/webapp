@@ -195,7 +195,7 @@
         <div class="section">
             <div class="row">
                 <div class="col s12 offset-m3 m6 center">
-                    <h4>Sign up for updates</h4>
+                    <h4>Sign up for updates ✉️</h4>
                     
                     <form action="https://elimu.us12.list-manage.com/subscribe/post?u=1a69583fdeec7d1888db043c0&amp;id=97b79a9d90" method="post" target="_blank">
                         <div class="input-field col s12">
