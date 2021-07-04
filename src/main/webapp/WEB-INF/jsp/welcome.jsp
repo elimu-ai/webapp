@@ -40,7 +40,10 @@
               <h2 class="center"><i class="material-icons medium blue-grey-text">public</i></h2>
               <h4 class="center"><fmt:message key="purpose" /></h4>
 
-              <p class="light center">Worldwide, more than <a href="http://uis.unesco.org/en/news/new-education-data-sdg-4-and-more" target="_blank">64 million children</a> of primary age are out of school.</p>
+              <p class="light center">
+                  Worldwide, <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
+                  of primary school age are not achieving minimum proficiency levels in reading &amp; math.
+              </p>
               <p class="light center"><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
             </div>
           </div>
@@ -59,7 +62,7 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">We develop software for teaching children the basics of reading, writing and arithmetic.</p>
+              <p class="light center">We develop Free and Open Source Software for teaching children the basics of reading, writing and arithmetic.</p>
               <p class="light center">An AI tutor guides each child through the necessary steps.</p>
             </div>
           </div>
@@ -71,7 +74,7 @@
     <div class="section">
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Educational Apps & Games</h5>
+                <h5 class="header">Educational Apps & Games 🎲🕹</h5>
                 <p>
                     A collection of educational Android apps teaches children basic 
                     literacy and numeracy in a fun and engaging way.    
@@ -103,7 +106,7 @@
         
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Learning Platform</h5>
+                <h5 class="header">Learning Platform 🧩</h5>
                 <p>
                     The elimu.ai software is a <i>platform</i> of educational content and Android apps.
                 </p>
@@ -129,7 +132,7 @@
                     The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
                 </p>
                 <p>
-                    Anyone is welcome to take the existing code and adapt it to their local needs.
+                    Anyone is welcome to take the existing code and <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">adapt</a> it to their local needs.
                 </p>
             </div>
             <div class="col s12 m4">

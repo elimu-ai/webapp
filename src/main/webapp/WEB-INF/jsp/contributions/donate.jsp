@@ -186,7 +186,8 @@
     <h5 class="center">Global Learning Crisis 🌍</h5>
     <div class="card-panel deep-purple lighten-5">
         <p>
-            Worldwide, 64 million children of primary school age (about 6 to 11 years) are still out of school.
+            Worldwide, <a href="https://data.unicef.org/topic/education/primary-education/" target="_blank">58 million</a> 
+            children of primary school age (about 6 to 11 years) are still out-of-school.
         </p>
 
         <p>
