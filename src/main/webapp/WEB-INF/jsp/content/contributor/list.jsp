@@ -69,7 +69,7 @@
                         </c:if>
                     </div>
                     <div class="card-action">
-                        <a href="#">View contributions</a>
+                        <a href="<spring:url value='/content/contributor/${contributor.id}' />">View contributions</a>
                     </div>
                 </div>
             </div>
