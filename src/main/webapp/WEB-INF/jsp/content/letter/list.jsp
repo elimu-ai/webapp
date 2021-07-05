@@ -22,7 +22,6 @@
                     <th><fmt:message key="diacritic" /></th>
                     <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="letter" items="${letters}">
@@ -35,7 +34,7 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <a name="${letter.id}"></a>
-                                ${letter.text}
+                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">"<c:out value='${letter.text}' />"</a>
                             </td>
                             <td style="font-size: 2em;">
                                 /<c:forEach var="allophone" items="${letter.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
@@ -52,9 +51,6 @@
                             </td>
                             <td>
                                 #${letter.revisionNumber}
-                            </td>
-                            <td>
-                                <a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />"><span class="material-icons">edit</span></a>
                             </td>
                         </tr>
                     </c:forEach>

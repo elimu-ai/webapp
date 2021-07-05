@@ -26,14 +26,13 @@
                     <th><fmt:message key="time.last.update" /></th>
                     <th><fmt:message key="platform" /></th>
                     <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="audio" items="${audios}">
                         <tr class="audio">
                             <td>
                                 <a name="${audio.id}"></a>
-                                <p>"<c:out value="${audio.title}" />"</p>
+                                <p><a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />">"<c:out value="${audio.title}" />"</a></p>
                                 <p class="grey-text">"<c:out value="${audio.transcription}" />"</p>
                             </td>
                             <td>
@@ -82,7 +81,6 @@
                                     </span>
                                 </p>
                             </td>
-                            <td><a class="editLink" href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

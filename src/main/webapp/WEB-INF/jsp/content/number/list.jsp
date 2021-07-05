@@ -20,14 +20,13 @@
                 <th><fmt:message key="number.words" /></th>
                 <th><fmt:message key="allophones" /></th>
                 <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="edit" /></th>
             </thead>
             <tbody>
                 <c:forEach var="number" items="${numbers}">
                     <tr class="letter">
                         <td style="font-size: 2em;">
                             <a name="${number.id}"></a>
-                            ${number.value}
+                            <a href="<spring:url value='/content/number/edit/${number.id}' />">${number.value}</a>
                         </td>
                         <td style="font-size: 2em;">
                             ${number.symbol}
@@ -45,9 +44,6 @@
                         </td>
                         <td>
                             #${number.revisionNumber}
-                        </td>
-                        <td>
-                            <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                         </td>
                     </tr>
                 </c:forEach>

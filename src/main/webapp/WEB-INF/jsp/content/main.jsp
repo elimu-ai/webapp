@@ -147,14 +147,23 @@
                 <li>
                     <div class="chip">
                         <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            <c:when test="${not empty contributor.imageUrl}">
+                                <img src="${contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
                             </c:when>
                             <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
                             </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty contributor.firstName}">
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
                         </c:choose>
                     </div> (${storyBookContributionsCountMap[contributor.id]})
                 </li>
@@ -169,14 +178,23 @@
                 <li>
                     <div class="chip">
                         <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            <c:when test="${not empty contributor.imageUrl}">
+                                <img src="${contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
                             </c:when>
                             <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
                             </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty contributor.firstName}">
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
                         </c:choose>
                     </div> (${audioContributionsCountMap[contributor.id]})
                 </li>
@@ -191,14 +209,23 @@
                 <li>
                     <div class="chip">
                         <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            <c:when test="${not empty contributor.imageUrl}">
+                                <img src="${contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
                             </c:when>
                             <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
                             </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty contributor.firstName}">
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
                         </c:choose>
                     </div> (${wordContributionsCountMap[contributor.id]})
                 </li>
@@ -213,14 +240,23 @@
                 <li>
                     <div class="chip">
                         <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            <c:when test="${not empty contributor.imageUrl}">
+                                <img src="${contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
                             </c:when>
                             <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
                             </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty contributor.firstName}">
+                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty contributor.providerIdWeb3}">
+                                ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
                         </c:choose>
                     </div> (${numberContributionsCountMap[contributor.id]})
                 </li>

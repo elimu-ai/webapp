@@ -29,6 +29,7 @@
                                 console.info('#bytes on change');
                                 
                                 $(this).parents('form').submit();
+                                Materialize.toast('Processing ePUB. Please wait...', 4000, 'rounded');
                             });
                         });
                     </script>

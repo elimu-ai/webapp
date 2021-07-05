@@ -21,14 +21,13 @@
                     <th><fmt:message key="unicode.emoji.version" /></th>
                     <th><fmt:message key="content.labels" /></th>
                     <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="emoji" items="${emojis}">
                         <tr class="emoji">
                             <td style="font-size: 6em;">
                                 <a name="${emoji.id}"></a>
-                                ${emoji.glyph}
+                                <a href="<spring:url value='/content/emoji/edit/${emoji.id}' />">${emoji.glyph}</a>
                             </td>
                             <td>
                                 ${emoji.unicodeVersion}
@@ -48,7 +47,6 @@
                             <td>
                                 #${emoji.revisionNumber}
                             </td>
-                            <td><a class="editLink" href="<spring:url value='/content/emoji/edit/${emoji.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

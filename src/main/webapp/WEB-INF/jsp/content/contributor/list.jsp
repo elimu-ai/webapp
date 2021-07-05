@@ -16,7 +16,7 @@
                                 <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
                             </c:when>
                             <c:otherwise>
-                                <img src="<spring:url value='/static/img/logo-512x512.png' />" />
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
                             </c:otherwise>
                         </c:choose>
                         <span class="card-title">
