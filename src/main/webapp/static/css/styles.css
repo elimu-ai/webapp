@@ -87,7 +87,8 @@ footer.page-footer .footer-copyright {
     text-overflow: ellipsis;
 }
 .card.image .card-title,
-.card.storyBook .card-title {
+.card.storyBook .card-title,
+.card.contributor .card-title {
     text-shadow: 1px 1px rgba(0,0,0, .8), 
         0 -0.5rem 1.5rem rgba(0,0,0, .4), 
         1rem 0 1.5rem rgba(0,0,0, .4), 
