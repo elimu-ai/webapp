@@ -28,7 +28,7 @@
                         <c:set var="storyBook" value="${storyBookContributionEvent.storyBook}" />
                         <tr>
                             <td>
-                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" target="_blank">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#peer-review' />" target="_blank">
                                     <c:out value="${storyBook.title}" />
                                 </a>
                             </td>

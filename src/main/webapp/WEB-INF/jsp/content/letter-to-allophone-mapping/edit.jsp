@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.letter.to.allophone.mapping" />
+    <fmt:message key="edit.mapping" />
 </content:title>
 
 <content:section cssId="letterToAllophoneMappingEditPage">

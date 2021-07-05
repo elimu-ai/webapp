@@ -4,10 +4,18 @@
 
 <content:section cssId="allophoneListPage">
     <div class="section row">
-        <a class="right btn waves-effect waves-light grey-text white" 
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/allophone/list/allophones.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
@@ -22,7 +30,6 @@
                     <th><fmt:message key="sound.type" /></th>
                     <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="allophone" items="${allophones}">
@@ -35,7 +42,7 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <a name="${allophone.id}"></a>
-                                /${allophone.valueIpa}/
+                                <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">/${allophone.valueIpa}/</a>
                             </td>
                             <td>
                                 ${allophone.valueSampa}
@@ -51,7 +58,6 @@
                             <td>
                                 <p>#${allophone.revisionNumber}</p>
                             </td>
-                            <td><a class="editLink" href="<spring:url value='/content/allophone/edit/${allophone.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

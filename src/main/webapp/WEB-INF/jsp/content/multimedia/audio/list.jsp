@@ -4,10 +4,18 @@
 
 <content:section cssId="audioListPage">
     <div class="section row">
-        <a class="right btn waves-effect waves-light grey-text white" 
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/audio/list/audios.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
@@ -16,7 +24,7 @@
         <c:if test="${not empty audios}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="title" /></th>
+                    <th><fmt:message key="title" />/<br /><fmt:message key="transcription" /></th>
                     <th><fmt:message key="audio" /></th>
                     <%--
                     <th><fmt:message key="literacy.skills" /></th>

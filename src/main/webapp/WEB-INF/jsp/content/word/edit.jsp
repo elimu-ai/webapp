@@ -267,8 +267,25 @@
                         <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.isApproved()}">
                             <div class="col s4">
                                 <div class="chip">
-                                    <img src="<spring:url value='${wordPeerReviewEvent.contributor.imageUrl}' />" alt="${wordPeerReviewEvent.contributor.firstName}" /> 
-                                    <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
+                                    <c:choose>
+                                        <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">
+                                            <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
+                                        </c:when>
+                                        <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${not empty wordPeerReviewEvent.contributor.firstName}">
+                                            <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
+                                        </c:when>
+                                        <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                            ${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                        </c:when>
+                                    </c:choose>
                                 </div>
                             </div>
                             <div class="col s4">

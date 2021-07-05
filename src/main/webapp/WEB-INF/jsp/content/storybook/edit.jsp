@@ -263,8 +263,25 @@
                         <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                             <div class="col s4">
                                 <div class="chip">
-                                    <img src="<spring:url value='${storyBookPeerReviewEvent.contributor.imageUrl}' />" alt="${storyBookPeerReviewEvent.contributor.firstName}" /> 
-                                    <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
+                                    <c:choose>
+                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
+                                            <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
+                                        </c:when>
+                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.firstName}">
+                                            <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
+                                        </c:when>
+                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                            ${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                        </c:when>
+                                    </c:choose>
                                 </div>
                             </div>
                             <div class="col s4">
