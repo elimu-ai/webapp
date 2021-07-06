@@ -129,7 +129,7 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
     white-space: pre-line;
 }
 
-#contributionEvents .peerReviewEvent {
+.peerReviewEvent {
     padding: 0.5rem;
     margin-left: 1.5rem;
 }

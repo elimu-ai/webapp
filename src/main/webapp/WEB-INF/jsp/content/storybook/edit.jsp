@@ -200,6 +200,7 @@
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
+            <a name="contribution-event_${storyBookContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
                     <fmt:message key="revision" /> #${storyBookContributionEvent.revisionNumber} 

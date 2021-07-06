@@ -13,5 +13,9 @@ public interface StoryBookPeerReviewEventDao extends GenericDao<StoryBookPeerRev
     
     List<StoryBookPeerReviewEvent> readAll(StoryBook storyBook) throws DataAccessException;
     
+    List<StoryBookPeerReviewEvent> readAll(Contributor contributor) throws DataAccessException;
+    
     List<StoryBookPeerReviewEvent> readAll(StoryBookContributionEvent storyBookContributionEvent) throws DataAccessException;
+    
+    Long readCount(Contributor contributor) throws DataAccessException;
 }

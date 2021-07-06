@@ -63,10 +63,6 @@
                                 </a>
                             </span>
                         </p>
-
-                        <div class="divider" style="margin: 1em 0;"></div>
-
-                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
                 </div>
             </div>
@@ -114,10 +110,6 @@
                                 </a>
                             </span>
                         </p>
-
-                        <div class="divider" style="margin: 1em 0;"></div>
-
-                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
                 </div>
             </div>
@@ -165,10 +157,6 @@
                                 </a>
                             </span>
                         </p>
-
-                        <div class="divider" style="margin: 1em 0;"></div>
-
-                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
                 </div>
             </div>
@@ -216,10 +204,6 @@
                                 </a>
                             </span>
                         </p>
-
-                        <div class="divider" style="margin: 1em 0;"></div>
-
-                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                     </div>
                 </div>
             </div>
@@ -265,10 +249,6 @@
                                     </a>
                                 </span>
                             </p>
-
-                            <div class="divider" style="margin: 1em 0;"></div>
-
-                            <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                         </div>
                     </div>
                 </div>

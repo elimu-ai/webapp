@@ -35,6 +35,17 @@ public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerR
     }
     
     @Override
+    public List<StoryBookPeerReviewEvent> readAll(Contributor contributor) throws DataAccessException {
+        return em.createQuery(
+            "SELECT sbpre " + 
+            "FROM StoryBookPeerReviewEvent sbpre " +
+            "WHERE sbpre.contributor = :contributor " + 
+            "ORDER BY sbpre.time DESC")
+            .setParameter("contributor", contributor)
+            .getResultList();
+    }
+    
+    @Override
     public List<StoryBookPeerReviewEvent> readAll(StoryBookContributionEvent storyBookContributionEvent) throws DataAccessException {
         return em.createQuery(
             "SELECT sbpre " + 
@@ -43,5 +54,14 @@ public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerR
             "ORDER BY sbpre.time DESC")
             .setParameter("storyBookContributionEvent", storyBookContributionEvent)
             .getResultList();
+    }
+
+    @Override
+    public Long readCount(Contributor contributor) throws DataAccessException {
+        return (Long) em.createQuery("SELECT COUNT(sbpre) " +
+                "FROM StoryBookPeerReviewEvent sbpre " +
+                "WHERE sbpre.contributor = :contributor")
+                .setParameter("contributor", contributor)
+                .getSingleResult();
     }
 }

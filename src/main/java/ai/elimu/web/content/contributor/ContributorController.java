@@ -4,6 +4,7 @@ import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
+import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +27,9 @@ public class ContributorController {
     
     @Autowired
     private StoryBookContributionEventDao storyBookContributionEventDao;
+    
+    @Autowired
+    private StoryBookPeerReviewEventDao storyBookPeerReviewEventDao;
     
     @Autowired
     private AudioContributionEventDao audioContributionEventDao;
@@ -56,12 +60,16 @@ public class ContributorController {
         Contributor contributor = contributorDao.read(contributorId);
         model.addAttribute("contributor2", contributor);
         
+        // For contributor-summarized.jsp
         model.addAttribute("storyBookContributionsCount", storyBookContributionEventDao.readCount(contributor));
+        model.addAttribute("storyBookPeerReviewsCount", storyBookPeerReviewEventDao.readCount(contributor));
         model.addAttribute("audioContributionsCount", audioContributionEventDao.readCount(contributor));
         model.addAttribute("wordContributionsCount", wordContributionEventDao.readCount(contributor));
         model.addAttribute("numberContributionsCount", numberContributionEventDao.readCount(contributor));
         
+        // For contributor-storybooks.jsp
         model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(contributor));
+        model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
         
         return "content/contributor/contributor-storybooks";
     }
