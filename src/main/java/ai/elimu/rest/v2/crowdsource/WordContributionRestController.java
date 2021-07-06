@@ -7,6 +7,7 @@ import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
+import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -24,13 +25,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
 
 /**
  * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
  * <p>
- * This controller is responsible for handling the creation of words contributed through the crowdsource App
+ * 
+ * This controller is responsible for handling the creation of words contributed through the Crowdsource app
  */
-
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/word-contributions", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class WordContributionRestController {
@@ -48,22 +50,40 @@ public class WordContributionRestController {
 
     @Autowired
     private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    
+    /**
+     * Returns a list of {@link LetterToAllophoneMapping}s that will be used to construct a {@link Word}.
+     */
+    @RequestMapping(value = "/letter-to-allophone-mappings", method = RequestMethod.GET)
+    public String getLetterToAllophoneMappings(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("getLetterToAllophoneMappings");
+
+        JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
+        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAllOrderedByUsage()) {
+            LetterToAllophoneMappingGson letterToAllophoneMappingGson =
+                    JpaToGsonConverter.getLetterToAllophoneMappingGson(letterToAllophoneMapping);
+            String json = new Gson().toJson(letterToAllophoneMappingGson);
+            letterToAllophoneMappingsJsonArray.put(new JSONObject(json));
+        }
+
+        String jsonResponse = letterToAllophoneMappingsJsonArray.toString();
+        logger.info("jsonResponse: " + jsonResponse);
+        return jsonResponse;
+    }
 
     /**
-     * Handles the creation of a new word & the corresponding word contribution event.
+     * Handles the creation of a new {@link Word} & the corresponding {@link WordContributionEvent}.
      *
-     * @param request
-     * @param response
-     * @param requestBody JSON should contain fields required for the creation of a WordContributionEventGson object.
-     * @return
+     * @param requestBody JSON should contain fields required for the creation of a {@link WordContributionEventGson} 
+     * object.
      */
     @RequestMapping(value = "/word", method = RequestMethod.POST)
-    public String handleWordContributionRequest(
+    public String postWordContribution(
             HttpServletRequest request,
             HttpServletResponse response,
-            @RequestBody String requestBody) {
-
-        logger.info("handleWordContributionRequest");
+            @RequestBody String requestBody
+    ) {
+        logger.info("postWordContribution");
 
         // Validate the Contributor.
         JSONObject jsonObject = new JSONObject();
@@ -161,5 +181,4 @@ public class WordContributionRestController {
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }
-
 }
