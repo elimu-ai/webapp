@@ -156,7 +156,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookPeerReviewEvent.id}' />" target="_blank">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookPeerReviewEvent.storyBookContributionEvent.id}' />" target="_blank">
                                     <c:out value="${storyBook.title}" />
                                 </a>
                             </td>
