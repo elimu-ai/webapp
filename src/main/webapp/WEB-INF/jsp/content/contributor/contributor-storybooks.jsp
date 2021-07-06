@@ -52,9 +52,7 @@
                                 <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
                             <td>
-                                <blockquote>
-                                    <c:out value="${storyBookContributionEvent.comment}" />
-                                </blockquote>
+                                <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
                                 <c:if test="${not empty storyBookContributionEvent.paragraphTextBefore}">
                                     <p id="textDiffContainer_${storyBookContributionEvent.id}"></p>
                                     <script>

@@ -263,7 +263,7 @@
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEvents}">
                     <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
-                        <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                             <div class="col s4">
                                 <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">

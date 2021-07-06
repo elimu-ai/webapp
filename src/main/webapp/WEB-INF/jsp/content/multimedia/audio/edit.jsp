@@ -212,7 +212,7 @@
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="audioPeerReviewEvent" items="${audioPeerReviewEvents}">
                     <c:if test="${audioPeerReviewEvent.audioContributionEvent.id == audioContributionEvent.id}">
-                        <div class="row peerReviewEvent" data-approved="${audioPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${audioPeerReviewEvent.isApproved()}">
                             <div class="col s4">
                                 <a href="<spring:url value='/content/contributor/${audioPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">

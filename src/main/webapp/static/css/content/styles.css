@@ -129,13 +129,13 @@ blockquote,
     white-space: pre-line;
 }
 
-.peerReviewEvent {
+.row.peerReviewEvent {
     padding: 0.5rem;
-    margin-left: 1.5rem;
-}
-.peerReviewEvent.row {
     margin: 0 0 1px 0;
     border-radius: 4px;
+}
+.row.peerReviewEvent.indent {
+    margin-left: 1.5rem;
 }
 .peerReviewEvent[data-approved="true"] {
     background-color: #e0f2f1; /* teal lighten-5 */
