@@ -124,8 +124,8 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
     font-size: 3em;
 }
 
-#contributionEvents blockquote,
-#contributionEvents .comment {
+blockquote,
+.comment {
     white-space: pre-line;
 }
 
