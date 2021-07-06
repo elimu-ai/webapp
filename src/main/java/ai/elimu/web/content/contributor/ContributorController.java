@@ -42,6 +42,16 @@ public class ContributorController {
             Model model
     ) {
     	logger.info("handleRequest");
+
+        return "redirect:/content/contributor/" + contributorId + "/storybooks";
+    }
+    
+    @RequestMapping(value = "/storybooks", method = RequestMethod.GET)
+    public String handleStoryBooksRequest(
+            @PathVariable Long contributorId,
+            Model model
+    ) {
+    	logger.info("handleStoryBooksRequest");
         
         Contributor contributor = contributorDao.read(contributorId);
         model.addAttribute("contributor2", contributor);
@@ -50,7 +60,9 @@ public class ContributorController {
         model.addAttribute("audioContributionsCount", audioContributionEventDao.readCount(contributor));
         model.addAttribute("wordContributionsCount", wordContributionEventDao.readCount(contributor));
         model.addAttribute("numberContributionsCount", numberContributionEventDao.readCount(contributor));
-
-        return "content/contributor/contributor";
+        
+        model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(contributor));
+        
+        return "content/contributor/contributor-storybooks";
     }
 }

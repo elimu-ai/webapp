@@ -206,27 +206,29 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <div class="chip">
-                    <c:choose>
-                        <c:when test="${not empty storyBookContributionEvent.contributor.imageUrl}">
-                            <img src="${storyBookContributionEvent.contributor.imageUrl}" />
-                        </c:when>
-                        <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
-                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />" />
-                        </c:when>
-                        <c:otherwise>
-                            <img src="<spring:url value='/static/img/placeholder.png' />" />
-                        </c:otherwise>
-                    </c:choose>
-                    <c:choose>
-                        <c:when test="${not empty storyBookContributionEvent.contributor.firstName}">
-                            <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
-                        </c:when>
-                        <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
-                            ${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 38, 42)}
-                        </c:when>
-                    </c:choose>
-                </div>
+                <a href="<spring:url value='/content/contributor/${storyBookContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.imageUrl}">
+                                <img src="${storyBookContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.firstName}">
+                                <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
                 <c:if test="${not empty storyBookContributionEvent.comment}">
                     <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
                 </c:if>
@@ -262,27 +264,29 @@
                     <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
                         <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <div class="chip">
-                                    <c:choose>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
-                                            <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
-                                        </c:when>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.firstName}">
-                                            <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
-                                        </c:when>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                            ${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
-                                        </c:when>
-                                    </c:choose>
-                                </div>
+                                <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col s4">
                                 <code class="peerReviewStatus">

@@ -78,6 +78,10 @@
                     <a href="<spring:url value='/content' />" class="breadcrumb"><fmt:message key="educational.content" /></a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/main.jsp')}">
                         <c:choose>
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/contributor/')
+                                    && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
+                                <a class="breadcrumb" href="<spring:url value='/content/contributor/list' />"><fmt:message key="contributors" /></a>
+                            </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>

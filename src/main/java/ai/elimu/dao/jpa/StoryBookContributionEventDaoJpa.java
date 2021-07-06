@@ -30,6 +30,17 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
     }
     
     @Override
+    public List<StoryBookContributionEvent> readAll(Contributor contributor) throws DataAccessException {
+        return em.createQuery(
+            "SELECT sce " + 
+            "FROM StoryBookContributionEvent sce " +
+            "WHERE sce.contributor = :contributor " + 
+            "ORDER BY sce.time DESC")
+            .setParameter("contributor", contributor)
+            .getResultList();
+    }
+    
+    @Override
     public List<StoryBookContributionEvent> readMostRecent(int maxResults) throws DataAccessException {
         return em.createQuery(
             "SELECT sce " + 

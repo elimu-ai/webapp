@@ -182,38 +182,61 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${audioContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${audioContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <div class="chip">
-                    <img src="<spring:url value='${audioContributionEvent.contributor.imageUrl}' />" alt="${audioContributionEvent.contributor.firstName}" /> 
-                    <c:out value="${audioContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${audioContributionEvent.contributor.lastName}" />
-                </div>
-                <blockquote><c:out value="${audioContributionEvent.comment}" /></blockquote>
+                <a href="<spring:url value='/content/contributor/${audioContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty audioContributionEvent.contributor.imageUrl}">
+                                <img src="${audioContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty audioContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${audioContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty audioContributionEvent.contributor.firstName}">
+                                <c:out value="${audioContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${audioContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty audioContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(audioContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(audioContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
+                <c:if test="${not empty audioContributionEvent.comment}">
+                    <blockquote><c:out value="${audioContributionEvent.comment}" /></blockquote>
+                </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="audioPeerReviewEvent" items="${audioPeerReviewEvents}">
                     <c:if test="${audioPeerReviewEvent.audioContributionEvent.id == audioContributionEvent.id}">
                         <div class="row peerReviewEvent" data-approved="${audioPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <div class="chip">
-                                    <c:choose>
-                                        <c:when test="${not empty audioContributionEvent.contributor.imageUrl}">
-                                            <img src="${audioContributionEvent.contributor.imageUrl}" />
-                                        </c:when>
-                                        <c:when test="${not empty audioContributionEvent.contributor.providerIdWeb3}">
-                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${audioContributionEvent.contributor.providerIdWeb3}" />" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${not empty audioContributionEvent.contributor.firstName}">
-                                            <c:out value="${audioContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${audioContributionEvent.contributor.lastName}" />
-                                        </c:when>
-                                        <c:when test="${not empty audioContributionEvent.contributor.providerIdWeb3}">
-                                            ${fn:substring(audioContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(audioContributionEvent.contributor.providerIdWeb3, 38, 42)}
-                                        </c:when>
-                                    </c:choose>
-                                </div>
+                                <a href="<spring:url value='/content/contributor/${audioPeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${audioPeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${audioPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${audioPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${audioPeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(audioPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(audioPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col s4">
                                 <code class="peerReviewStatus">
@@ -231,9 +254,7 @@
                                 <fmt:formatDate value="${audioPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty audioPeerReviewEvent.comment}">
-                                <div class="col s12">
-                                    "<c:out value="${audioPeerReviewEvent.comment}" />"
-                                </div>
+                                <div class="col s12 comment"><c:out value="${audioPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
