@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/letter-to-allophone-mappings",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class LetterToAllophoneMappingsController {
+public class LetterToAllophoneMappingsRestController {
 
     private final Logger logger = LogManager.getLogger();
 

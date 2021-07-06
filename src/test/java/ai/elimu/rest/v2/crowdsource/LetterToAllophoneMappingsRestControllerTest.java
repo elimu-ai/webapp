@@ -11,7 +11,7 @@ import selenium.DomainHelper;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
-public class LetterToAllophoneMappingsControllerTest {
+public class LetterToAllophoneMappingsRestControllerTest {
 
     private Logger logger = LogManager.getLogger();
 
