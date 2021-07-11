@@ -40,7 +40,7 @@
                     <polygon fill="#141414" fill-rule="nonzero" points="392.07,882.29 784.13,650.54 392.07,472.33 "/>
                     <polygon fill="#393939" fill-rule="nonzero" points="0,650.54 392.07,882.29 392.07,472.33 "/>
                 </g>
-            </svg><code>0x883753Beab357A2c29f3766C6ad158e72A78ce51</code>
+            </svg><code>0x883753Beab357A2c29f3766C6ad158e72A78ce51 (elimu.eth)</code>
         </p>
         <p>
             Thank you! 💜
