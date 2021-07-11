@@ -41,7 +41,7 @@
               <h4 class="center"><fmt:message key="purpose" /></h4>
 
               <p class="light center">
-                  Worldwide, <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
+                  Worldwide, more than <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
                   of primary school age are not achieving minimum proficiency levels in reading &amp; math.
               </p>
               <p class="light center"><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
