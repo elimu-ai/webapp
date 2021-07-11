@@ -42,7 +42,8 @@
                             <td>
                                 <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookContributionEvent.id}' />" target="_blank">
                                     <c:out value="${storyBook.title}" />
-                                </a>
+                                </a><br/>
+                                <fmt:message key="reading.level.${storyBook.readingLevel}" />
                             </td>
                             <td>
                                 #${storyBookContributionEvent.revisionNumber}<br />
@@ -94,7 +95,7 @@
         <h5><fmt:message key="peer.reviews" /> (${fn:length(storyBookPeerReviewEvents)})</h5>
         <c:if test="${empty storyBookPeerReviewEvents}">
             <p>
-                No storybook contributions.
+                No storybook peer-reviews.
             </p>
         </c:if>
         <c:if test="${not empty storyBookPeerReviewEvents}">
@@ -158,7 +159,8 @@
                             <td>
                                 <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookPeerReviewEvent.storyBookContributionEvent.id}' />" target="_blank">
                                     <c:out value="${storyBook.title}" />
-                                </a>
+                                </a><br />
+                                <fmt:message key="reading.level.${storyBook.readingLevel}" />
                             </td>
                             <td>
                                 <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.id}' />">
