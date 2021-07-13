@@ -129,7 +129,7 @@
                 <a href="<spring:url value="/content/storybook/edit/${storyBook.id}/chapter/${storyBookChapter.id}/paragraph/create" />" 
                    class="btn-floating waves-effect waves-light grey"
                    style="margin-top: 1rem;"
-                   title="<fmt:message key="add.storybook.paragraph" />">
+                   title="<fmt:message key="add.paragraph" />">
                     <i class="material-icons">add</i>
                 </a>
             </div>
