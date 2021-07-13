@@ -1,5 +1,6 @@
 package ai.elimu.model.content.multimedia;
 
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.PeerReviewStatus;
 import javax.persistence.Column;
@@ -19,6 +20,12 @@ public class Audio extends Multimedia {
      */
     @ManyToOne
     private Word word;
+    
+    /**
+     * Will be used if the Audio recording was made for a particular {@link StoryBookParagraph}.
+     */
+    @ManyToOne
+    private StoryBookParagraph storyBookParagraph;
     
     /**
      * A title describing the audio recording. This does not have match the 
@@ -56,6 +63,14 @@ public class Audio extends Multimedia {
     
     public void setWord(Word word) {
         this.word = word;
+    }
+    
+    public StoryBookParagraph getStoryBookParagraph() {
+        return storyBookParagraph;
+    }
+    
+    public void setStoryBookParagraph(StoryBookParagraph storyBookParagraph) {
+        this.storyBookParagraph = storyBookParagraph;
     }
     
     public String getTitle() {

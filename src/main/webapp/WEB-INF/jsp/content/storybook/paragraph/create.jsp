@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.storybook.paragraph" />
+    <fmt:message key="add.paragraph" />
 </content:title>
 
 <content:section cssId="storyBookParagraphCreatePage">
@@ -48,7 +48,7 @@
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                <fmt:message key="add" /> <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>

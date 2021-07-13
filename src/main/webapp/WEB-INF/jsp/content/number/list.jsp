@@ -4,10 +4,18 @@
 
 <content:section cssId="numberListPage">
     <div class="section row">
-        <a class="right btn waves-effect waves-light grey-text white" 
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/number/list/numbers.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
@@ -20,14 +28,13 @@
                 <th><fmt:message key="number.words" /></th>
                 <th><fmt:message key="allophones" /></th>
                 <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="edit" /></th>
             </thead>
             <tbody>
                 <c:forEach var="number" items="${numbers}">
                     <tr class="letter">
                         <td style="font-size: 2em;">
                             <a name="${number.id}"></a>
-                            ${number.value}
+                            <a href="<spring:url value='/content/number/edit/${number.id}' />">${number.value}</a>
                         </td>
                         <td style="font-size: 2em;">
                             ${number.symbol}
@@ -45,9 +52,6 @@
                         </td>
                         <td>
                             #${number.revisionNumber}
-                        </td>
-                        <td>
-                            <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
                         </td>
                     </tr>
                 </c:forEach>

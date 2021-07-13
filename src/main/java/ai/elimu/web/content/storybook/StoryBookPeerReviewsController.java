@@ -8,7 +8,6 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -50,33 +49,22 @@ public class StoryBookPeerReviewsController {
         List<StoryBookContributionEvent> allStoryBookContributionEvents = storyBookContributionEventDao.readAllOrderedByTimeDesc();
         logger.info("allStoryBookContributionEvents.size(): " + allStoryBookContributionEvents.size());
         
-        // Get the most recent StoryBookContributionEvent for each StoryBook
-        List<StoryBookContributionEvent> mostRecentStoryBookContributionEvents = new ArrayList<>();
-        HashMap<Long, Void> idsOfStoryBooksWithContributionEventHashMap = new HashMap<>();
-        for (StoryBookContributionEvent storyBookContributionEvent : allStoryBookContributionEvents) {
-            // Ignore StoryBookContributionEvent if one has already been added for this StoryBook
-            if (idsOfStoryBooksWithContributionEventHashMap.containsKey(storyBookContributionEvent.getStoryBook().getId())) {
-                continue;
-            }
-            
-            // Keep track of the StoryBook ID
-            idsOfStoryBooksWithContributionEventHashMap.put(storyBookContributionEvent.getStoryBook().getId(), null);
-            
-            // Ignore StoryBookContributionEvents made by the current Contributor
-            if (storyBookContributionEvent.getContributor().getId().equals(contributor.getId())) {
-                continue;
-            }
-            
-            mostRecentStoryBookContributionEvents.add(storyBookContributionEvent);
-        }
+        // Get the most recent StoryBookContributionEvent for each StoryBook, including those made by the current Contributor
+        List<StoryBookContributionEvent> mostRecentStoryBookContributionEvents = storyBookContributionEventDao.readMostRecentPerStoryBook();
         logger.info("mostRecentStoryBookContributionEvents.size(): " + mostRecentStoryBookContributionEvents.size());
         
-        // For each StoryBookContributionEvent, check if the Contributor has already performed a peer review.
+        // For each StoryBookContributionEvent, check if the Contributor has already performed a peer-review.
         // If not, add it to the list of pending peer reviews.
         List<StoryBookContributionEvent> storyBookContributionEventsPendingPeerReview = new ArrayList<>();
         for (StoryBookContributionEvent mostRecentStoryBookContributionEvent : mostRecentStoryBookContributionEvents) {
-            StoryBookPeerReviewEvent storyBookPeerReviewEvent = storyBookPeerReviewEventDao.read(mostRecentStoryBookContributionEvent, contributor);
-            if (storyBookPeerReviewEvent == null) {
+            // Ignore StoryBookContributionEvents made by the current Contributor
+            if (mostRecentStoryBookContributionEvent.getContributor().getId().equals(contributor.getId())) {
+                continue;
+            }
+            
+            // Check if the current Contributor has already peer-reviewed this StoryBook contribution
+            List<StoryBookPeerReviewEvent> storyBookPeerReviewEvents = storyBookPeerReviewEventDao.readAll(mostRecentStoryBookContributionEvent, contributor);
+            if (storyBookPeerReviewEvents.isEmpty()) {
                 storyBookContributionEventsPendingPeerReview.add(mostRecentStoryBookContributionEvent);
             }
         }

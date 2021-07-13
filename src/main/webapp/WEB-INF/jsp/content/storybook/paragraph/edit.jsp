@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.storybook.paragraph" />
+    <fmt:message key="edit.paragraph" />
 </content:title>
 
 <content:section cssId="storyBookParagraphEditPage">

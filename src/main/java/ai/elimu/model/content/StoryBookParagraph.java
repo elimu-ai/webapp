@@ -31,6 +31,7 @@ public class StoryBookParagraph extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Word> words;
     
+    @Deprecated
     @ManyToOne
     private Audio audio;
     

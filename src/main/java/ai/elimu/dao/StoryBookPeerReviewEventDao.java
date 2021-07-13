@@ -9,9 +9,13 @@ import org.springframework.dao.DataAccessException;
 
 public interface StoryBookPeerReviewEventDao extends GenericDao<StoryBookPeerReviewEvent> {
     
-    StoryBookPeerReviewEvent read(StoryBookContributionEvent storyBookContributionEvent, Contributor contributor) throws DataAccessException;
+    List<StoryBookPeerReviewEvent> readAll(StoryBookContributionEvent storyBookContributionEvent, Contributor contributor) throws DataAccessException;
     
     List<StoryBookPeerReviewEvent> readAll(StoryBook storyBook) throws DataAccessException;
     
+    List<StoryBookPeerReviewEvent> readAll(Contributor contributor) throws DataAccessException;
+    
     List<StoryBookPeerReviewEvent> readAll(StoryBookContributionEvent storyBookContributionEvent) throws DataAccessException;
+    
+    Long readCount(Contributor contributor) throws DataAccessException;
 }

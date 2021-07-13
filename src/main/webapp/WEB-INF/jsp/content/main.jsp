@@ -145,18 +145,29 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithStoryBookContributions}">
                 <li>
-                    <div class="chip">
-                        <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
-                            </c:when>
-                            <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
-                            </c:otherwise>
-                        </c:choose>
-                    </div> (${storyBookContributionsCountMap[contributor.id]})
+                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                        <div class="chip">
+                            <c:choose>
+                                <c:when test="${not empty contributor.imageUrl}">
+                                    <img src="${contributor.imageUrl}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${not empty contributor.firstName}">
+                                    <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                                </c:when>
+                            </c:choose>
+                        </div> (${storyBookContributionsCountMap[contributor.id]})
+                    </a>
                 </li>
             </c:forEach>
         </ol>
@@ -167,18 +178,29 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithAudioContributions}">
                 <li>
-                    <div class="chip">
-                        <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
-                            </c:when>
-                            <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
-                            </c:otherwise>
-                        </c:choose>
-                    </div> (${audioContributionsCountMap[contributor.id]})
+                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                        <div class="chip">
+                            <c:choose>
+                                <c:when test="${not empty contributor.imageUrl}">
+                                    <img src="${contributor.imageUrl}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${not empty contributor.firstName}">
+                                    <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                                </c:when>
+                            </c:choose>
+                        </div> (${audioContributionsCountMap[contributor.id]})
+                    </a>
                 </li>
             </c:forEach>
         </ol>
@@ -189,18 +211,29 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithWordContributions}">
                 <li>
-                    <div class="chip">
-                        <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
-                            </c:when>
-                            <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
-                            </c:otherwise>
-                        </c:choose>
-                    </div> (${wordContributionsCountMap[contributor.id]})
+                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                        <div class="chip">
+                            <c:choose>
+                                <c:when test="${not empty contributor.imageUrl}">
+                                    <img src="${contributor.imageUrl}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${not empty contributor.firstName}">
+                                    <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                                </c:when>
+                            </c:choose>
+                        </div> (${wordContributionsCountMap[contributor.id]})
+                    </a>
                 </li>
             </c:forEach>
         </ol>
@@ -211,18 +244,29 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithNumberContributions}">
                 <li>
-                    <div class="chip">
-                        <c:choose>
-                            <c:when test="${empty contributor.providerIdWeb3}">
-                                <img src="<spring:url value='${contributor.imageUrl}' />" alt="${contributor.firstName}" /> 
-                                <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
-                            </c:when>
-                            <c:otherwise>
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
-                                <c:out value="${fn:substring(contributor.providerIdWeb3, 0, 6)}" />&#8230;<c:out value="${fn:substring(contributor.providerIdWeb3, 38, 42)}" />
-                            </c:otherwise>
-                        </c:choose>
-                    </div> (${numberContributionsCountMap[contributor.id]})
+                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                        <div class="chip">
+                            <c:choose>
+                                <c:when test="${not empty contributor.imageUrl}">
+                                    <img src="${contributor.imageUrl}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    <img src="http://62.75.236.14:3000/identicon/<c:out value="${contributor.providerIdWeb3}" />" />
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${not empty contributor.firstName}">
+                                    <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                                </c:when>
+                                <c:when test="${not empty contributor.providerIdWeb3}">
+                                    ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
+                                </c:when>
+                            </c:choose>
+                        </div> (${numberContributionsCountMap[contributor.id]})
+                    </a>
                 </li>
             </c:forEach>
         </ol>
@@ -234,77 +278,36 @@
     
     <div class="divider" style="margin: 1.5em 0;"></div>
     
-    <h5 class="center">Token Holders</h5>
+    <h5 class="center">Token Holders 💎</h5>
     <div class="card-panel deep-purple lighten-5">
         <p>
             Active contributors get rewarded with 
             <c:choose>
                 <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.aragon.org/#/elimuai/0xcfc816708740e121dd280969f05cc7e95d977177/" target="_blank">elimu.ai Community Tokens</a>.
+                    <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>ELIMU</code></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="https://client.aragon.org/#/elimuai/0xee45d21cb426420257bd4a1d9513bcb499ff443a/" target="_blank">elimu.ai Community Tokens</a>.
+                    <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>ELIMU</code></a>
                 </c:otherwise>
-            </c:choose>
+            </c:choose> 
+            tokens.
         </p>
         <p>
             All token holders can participate in the community's <a href="<spring:url value='/contributions/aragon-dao' />">decision making</a>.
         </p>
         <div id="tokenHoldersContainer">
-            <div class="progress">
-                <div class="indeterminate"></div>
-            </div>
-            <p>
-                Loading...
-            </p>
+            <c:choose>
+                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                    <a href="https://rinkeby.etherscan.io/token/tokenholderchart/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
+                        View all token holders <i class="material-icons">launch</i>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="https://etherscan.io/token/tokenholderchart/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
+                        View all token holders <i class="material-icons">launch</i>
+                    </a>
+                </c:otherwise>
+            </c:choose>
         </div>
-        <script>
-            /**
-             * Copied from AragonRestController.java
-             */
-            function getBaseUrl() {
-                console.info("getBaseUrl")
-                let domain = "62.75.236.14"; // DEV/TEST
-                <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
-                    domain = "85.93.91.26";
-                </c:if>
-                return "http://" + domain + ":3000";
-            }
-
-            $(function() {
-                // Fetch token holders from Aragon Connect (via the REST API)
-                $.ajax({
-                    dataType: "json",
-                    url: "<spring:url value='/rest/v2/aragon/token-holders' />",
-                    success: function(tokenHolders) {
-                        console.info("success");
-
-                        let htmlString = '<table class="striped">';
-                        htmlString += '    <thead>';
-                        htmlString += '        <tr>';
-                        htmlString += '            <th>Holder</th>';
-                        htmlString += '            <th>Balance</th>';
-                        htmlString += '        </tr>';
-                        htmlString += '    </thead>';
-                        htmlString += '    <tbody>';
-                        tokenHolders.forEach(function(tokenHolder, index) {
-                            htmlString += '<tr>';
-                            htmlString += '    <td>';
-                            htmlString += '        <div class="chip">';
-                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + tokenHolder.address + '" />' + tokenHolder.address.substring(0, 6) + "..." + tokenHolder.address.substring(tokenHolder.address.length - 4, tokenHolder.address.length);
-                            htmlString += '        </div>';
-                            htmlString += '    </td>';
-                            htmlString += '    <td>';
-                            htmlString += '        ' + tokenHolder.balance/1000000000000000000;
-                            htmlString += '    </td>';
-                            htmlString += '</tr>';
-                        });
-                        htmlString += '</tbody>';
-                        htmlString += '</table>';
-                        $('#tokenHoldersContainer').html(htmlString);
-                    }
-                });
-            });
-        </script>
     </div>
 </content:aside>

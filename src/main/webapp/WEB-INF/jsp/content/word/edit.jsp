@@ -230,27 +230,68 @@
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
+            <a name="contribution-event_${wordContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
                     <fmt:message key="revision" /> #${wordContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <div class="chip">
-                    <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 
-                    <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
-                </div>
-                <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+                <a href="<spring:url value='/content/contributor/${wordContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty wordContributionEvent.contributor.imageUrl}">
+                                <img src="${wordContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty wordContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${wordContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty wordContributionEvent.contributor.firstName}">
+                                <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty wordContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(wordContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(wordContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
+                <c:if test="${not empty wordContributionEvent.comment}">
+                    <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+                </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">
                     <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
-                        <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <div class="chip">
-                                    <img src="<spring:url value='${wordPeerReviewEvent.contributor.imageUrl}' />" alt="${wordPeerReviewEvent.contributor.firstName}" /> 
-                                    <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
-                                </div>
+                                <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col s4">
                                 <code class="peerReviewStatus">
@@ -268,9 +309,7 @@
                                 <fmt:formatDate value="${wordPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty wordPeerReviewEvent.comment}">
-                                <div class="col s12">
-                                    "<c:out value="${wordPeerReviewEvent.comment}" />"
-                                </div>
+                                <div class="col s12 comment"><c:out value="${wordPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
@@ -290,11 +329,11 @@
             </div>
         </c:when>
         <c:otherwise>
-            <c:forEach var="audio" items="${audios}">
-                <audio controls="true">
+            <c:forEach var="audio" items="${audios}" varStatus="status">
+                <audio controls="true"<c:if test="${status.index == 0}"> autoplay="true"</c:if>>
                     <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
                 </audio>
-                <div class="right" style="margin-bottom: 1rem; font-size: 0.8rem;">
+                <div style="margin-bottom: 1rem; font-size: 0.8rem;">
                     <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />" target="_blank">
                         <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
                     </a>

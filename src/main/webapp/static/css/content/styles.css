@@ -54,8 +54,16 @@ nav {
     letter-spacing: .5rem;
 }
 
-#contributionEvents blockquote {
-    white-space: pre-line;
+#wordCreatePage input#text,
+#wordEditPage input#text {
+    font-size: 2em;
+}
+#letterToAllophoneMappingsContainer .chip {
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+    height: auto;
+    background-color: #EEE;
 }
 
 html[data-content-language="ben"] #letterCreatePage input#text,
@@ -116,35 +124,44 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
     font-size: 3em;
 }
 
-.peerReviewEvent {
-    padding: 0.5rem;
+blockquote,
+.comment {
+    white-space: pre-line;
 }
-.peerReviewEvent.row {
+
+.row.peerReviewEvent {
+    padding: 0.5rem;
     margin: 0 0 1px 0;
     border-radius: 4px;
 }
+.row.peerReviewEvent.indent {
+    margin-left: 1.5rem;
+}
 .peerReviewEvent[data-approved="true"] {
     background-color: #e0f2f1; /* teal lighten-5 */
-    border-left: 5px solid #009688; /* teal */
-    color: #009688; /* teal */
+    border-left: 5px solid #00897b; /* teal darken-1 */
+    color: #00897b; /* teal darken-1 */
 }
 .peerReviewEvent[data-approved="false"] {
     background-color: #ffccbc; /* deep-orange lighten-4 */
-    border-left: 5px solid #f4511e; /* deep-orange darken-1 */
-    color: #f4511e; /* deep-orange darken-1 */
+    border-left: 5px solid #b71c1c; /* red darken-4 */
+    color: #b71c1c; /* red darken-4 */
 }
 .peerReviewEvent .peerReviewStatus {
     font-weight: bold;
 }
 
-#wordCreatePage input#text,
-#wordEditPage input#text {
-    font-size: 2em;
+.diff-addition {
+    background-color: #e0f2f1; /* teal lighten-5 */
+    border-bottom: 2px solid #388e3c; /* green darken-2 */
+    color: #388e3c; /* green darken-2 */
+    border-radius: 4px;
+    padding: 4px;
 }
-#letterToAllophoneMappingsContainer .chip {
-    text-align: center;
-    font-size: 2rem;
-    padding: 1rem;
-    height: auto;
-    background-color: #EEE;
+.diff-deletion {
+    background-color: #ffccbc; /* deep-orange lighten-4 */
+    border-bottom: 2px solid #b71c1c; /* red darken-4 */
+    color: #b71c1c; /* red darken-4 */
+    border-radius: 4px;
+    padding: 4px;
 }

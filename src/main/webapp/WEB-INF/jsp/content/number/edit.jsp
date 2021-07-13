@@ -107,10 +107,29 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${numberContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <div class="chip">
-                    <img src="<spring:url value='${numberContributionEvent.contributor.imageUrl}' />" alt="${numberContributionEvent.contributor.firstName}" /> 
-                    <c:out value="${numberContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${numberContributionEvent.contributor.lastName}" />
-                </div>
+                <a href="<spring:url value='/content/contributor/${numberContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty numberContributionEvent.contributor.imageUrl}">
+                                <img src="${numberContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty numberContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${numberContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty numberContributionEvent.contributor.firstName}">
+                                <c:out value="${numberContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${numberContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty numberContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(numberContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(numberContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
                 <blockquote><c:out value="${numberContributionEvent.comment}" /></blockquote>
             </div>
         </c:forEach>

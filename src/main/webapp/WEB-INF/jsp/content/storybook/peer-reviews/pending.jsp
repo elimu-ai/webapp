@@ -28,18 +28,20 @@
                         <c:set var="storyBook" value="${storyBookContributionEvent.storyBook}" />
                         <tr>
                             <td>
-                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" target="_blank">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#peer-review' />" target="_blank">
                                     <c:out value="${storyBook.title}" />
                                 </a>
                             </td>
                             <td>
+                                <c:set var="coverImageUrl" value="/static/img/placeholder.png" />
                                 <c:if test="${not empty storyBook.coverImage}">
-                                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" target="_blank">
-                                        <img 
-                                            src="<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" 
-                                            style="max-width: 64px; border-radius: 8px;"/>
-                                    </a>
+                                    <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
                                 </c:if>
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" target="_blank">
+                                    <img 
+                                        src="<spring:url value='${coverImageUrl}' />" 
+                                        style="max-width: 64px; border-radius: 8px;"/>
+                                </a>
                             </td>
                             <td>
                                 <c:if test="${not empty storyBook.description}">
@@ -50,10 +52,29 @@
                                 <fmt:message key="reading.level.${storyBook.readingLevel}" />
                             </td>
                             <td>
-                                <div class="chip">
-                                    <img src="<spring:url value='${storyBookContributionEvent.contributor.imageUrl}' />" alt="${storyBookContributionEvent.contributor.firstName}" /> 
-                                    <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
-                                </div>
+                                <a href="<spring:url value='/content/contributor/${storyBookContributionEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty storyBookContributionEvent.contributor.imageUrl}">
+                                                <img src="${storyBookContributionEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty storyBookContributionEvent.contributor.firstName}">
+                                                <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
                             </td>
                             <td>
                                 #${storyBookContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min)

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/word/pending")
-public class WordsPendingController {
+public class WordCreationsPendingController {
     
     private final Logger logger = LogManager.getLogger();
     
