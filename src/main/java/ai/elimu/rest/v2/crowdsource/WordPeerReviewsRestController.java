@@ -18,7 +18,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,21 +25,20 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
  * <p>
- * 
+ * <p>
  * This controller has similar functionality as the {@link WordPeerReviewsController}.
  */
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/word-peer-reviews", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class WordPeerReviewsRestController {
-    
+
     private Logger logger = LogManager.getLogger();
-    
+
     @Autowired
     private WordContributionEventDao wordContributionEventDao;
 
@@ -49,12 +47,12 @@ public class WordPeerReviewsRestController {
 
     @Autowired
     private WordPeerReviewEventDao wordPeerReviewEventDao;
-    
+
     /**
      * Get {@link WordContributionEvent}s pending a {@link WordPeerReviewEvent} for the current {@link Contributor}.
-     *
-     * Note: Currently The list of Emojis are not delivered in this method as opposed to the handleGetRequest method in
-     *       WordPeerReviewsController
+     * <p>
+     * Note: Currently The list of Emojis are not delivered in this method compared to the handleGetRequest method in
+     * {@link WordPeerReviewsController}
      */
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest(HttpServletRequest request,
@@ -111,7 +109,7 @@ public class WordPeerReviewsRestController {
         logger.info("wordContributionEventsPendingPeerReview.size(): " + wordContributionEventsPendingPeerReview.size());
 
         JSONArray wordContributionEventsJsonArray = new JSONArray();
-        for(WordContributionEvent wordContributionEvent : wordContributionEventsPendingPeerReview){
+        for (WordContributionEvent wordContributionEvent : wordContributionEventsPendingPeerReview) {
             WordContributionEventGson wordContributionEventGson = JpaToGsonConverter.getWordContributionEventGson(wordContributionEvent);
             String json = new Gson().toJson(wordContributionEventGson);
             wordContributionEventsJsonArray.put(new JSONObject(json));
