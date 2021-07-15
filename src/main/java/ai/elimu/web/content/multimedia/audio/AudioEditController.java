@@ -15,6 +15,7 @@ import ai.elimu.dao.AudioPeerReviewEventDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
@@ -74,6 +75,9 @@ public class AudioEditController {
     private WordDao wordDao;
     
     @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
+    
+    @Autowired
     private EmojiDao emojiDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -85,6 +89,7 @@ public class AudioEditController {
         Audio audio = audioDao.read(id);
         model.addAttribute("audio", audio);
         model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
         model.addAttribute("contentLicenses", ContentLicense.values());
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
@@ -156,6 +161,7 @@ public class AudioEditController {
         if (result.hasErrors()) {
             model.addAttribute("audio", audio);
             model.addAttribute("words", wordDao.readAllOrdered());
+            model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
