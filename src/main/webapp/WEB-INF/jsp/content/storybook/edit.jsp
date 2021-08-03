@@ -116,12 +116,6 @@
                             <c:otherwise><a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${wordInOriginalText}" /></a><c:out value="${emojisByWordId[word.id]}" /><c:out value=" " /></c:otherwise>
                         </c:choose>
                     </c:forEach>
-                    
-                    <c:if test="${not empty storyBookParagraph.audio}">
-                        <audio controls="true">
-                            <source src="<spring:url value='/audio/${storyBookParagraph.audio.id}_r${storyBookParagraph.audio.revisionNumber}.${fn:toLowerCase(storyBookParagraph.audio.audioFormat)}' />" />
-                        </audio>
-                    </c:if>
                 </p>
             </c:forEach>
             

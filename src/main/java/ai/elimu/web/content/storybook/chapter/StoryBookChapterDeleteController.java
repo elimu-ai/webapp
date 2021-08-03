@@ -73,9 +73,9 @@ public class StoryBookChapterDeleteController {
         List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapterToBeDeleted);
         logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         for (StoryBookParagraph storyBookParagraphToBeDeleted : storyBookParagraphs) {
-            // Delete the paragraph's reference from the corresponding audio (if any)
-            Audio paragraphAudio = storyBookParagraphToBeDeleted.getAudio();
-            if (paragraphAudio != null) {
+            // Delete the paragraph's reference from corresponding audios (if any)
+            List<Audio> paragraphAudios = audioDao.readAll(storyBookParagraphToBeDeleted);
+            for (Audio paragraphAudio : paragraphAudios) {
                 paragraphAudio.setStoryBookParagraph(null);
                 audioDao.update(paragraphAudio);
             }
