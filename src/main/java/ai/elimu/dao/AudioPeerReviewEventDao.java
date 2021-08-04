@@ -14,4 +14,6 @@ public interface AudioPeerReviewEventDao extends GenericDao<AudioPeerReviewEvent
     List<AudioPeerReviewEvent> readAll(Audio audio) throws DataAccessException;
     
     List<AudioPeerReviewEvent> readAll(AudioContributionEvent audioContributionEvent) throws DataAccessException;
+    
+    Long readCount(Contributor contributor) throws DataAccessException;
 }

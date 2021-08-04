@@ -55,4 +55,13 @@ public class WordPeerReviewEventDaoJpa extends GenericDaoJpa<WordPeerReviewEvent
             .setParameter("wordContributionEvent", wordContributionEvent)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Contributor contributor) throws DataAccessException {
+        return (Long) em.createQuery("SELECT COUNT(wpre) " +
+                "FROM WordPeerReviewEvent wpre " +
+                "WHERE wpre.contributor = :contributor")
+                .setParameter("contributor", contributor)
+                .getSingleResult();
+    }
 }

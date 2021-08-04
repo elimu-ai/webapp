@@ -1,6 +1,7 @@
 package ai.elimu.web.content.contributor;
 
 import ai.elimu.dao.AudioContributionEventDao;
+import ai.elimu.dao.AudioPeerReviewEventDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -36,6 +37,9 @@ public class ContributorController {
     private AudioContributionEventDao audioContributionEventDao;
     
     @Autowired
+    private AudioPeerReviewEventDao audioPeerReviewEventDao;
+    
+    @Autowired
     private WordContributionEventDao wordContributionEventDao;
     
     @Autowired
@@ -58,8 +62,11 @@ public class ContributorController {
         model.addAttribute("storyBookContributionsCount", storyBookContributionEventDao.readCount(contributor));
         model.addAttribute("storyBookPeerReviewsCount", storyBookPeerReviewEventDao.readCount(contributor));
         model.addAttribute("audioContributionsCount", audioContributionEventDao.readCount(contributor));
+        model.addAttribute("audioPeerReviewsCount", audioPeerReviewEventDao.readCount(contributor));
         model.addAttribute("wordContributionsCount", wordContributionEventDao.readCount(contributor));
+        model.addAttribute("wordPeerReviewsCount", wordPeerReviewEventDao.readCount(contributor));
         model.addAttribute("numberContributionsCount", numberContributionEventDao.readCount(contributor));
+        model.addAttribute("numberPeerReviewsCount", 0); // TODO
         
         // For contributor-storybooks.jsp
         model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(contributor));

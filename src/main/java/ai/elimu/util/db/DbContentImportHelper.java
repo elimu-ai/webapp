@@ -7,6 +7,7 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordContributionEventDao;
@@ -21,6 +22,7 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
@@ -66,6 +68,8 @@ public class DbContentImportHelper {
     private ContributorDao contributorDao;
     
     private WordContributionEventDao wordContributionEventDao;
+    
+    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -183,6 +187,7 @@ public class DbContentImportHelper {
         storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
         storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
         storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
+        storyBookContributionEventDao = (StoryBookContributionEventDao) webApplicationContext.getBean("storyBookContributionEventDao");
         for (StoryBookGson storyBookGson : storyBookGsons) {
             // Convert from GSON to JPA
             StoryBook storyBook = new StoryBook();
@@ -225,6 +230,9 @@ public class DbContentImportHelper {
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
+            
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            ...
         }
         
         // Extract and import Videos
