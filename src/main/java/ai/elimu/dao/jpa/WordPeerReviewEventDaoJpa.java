@@ -35,6 +35,17 @@ public class WordPeerReviewEventDaoJpa extends GenericDaoJpa<WordPeerReviewEvent
     }
     
     @Override
+    public List<WordPeerReviewEvent> readAll(Contributor contributor) throws DataAccessException {
+        return em.createQuery(
+            "SELECT wpre " + 
+            "FROM WordPeerReviewEvent wpre " +
+            "WHERE wpre.contributor = :contributor " + 
+            "ORDER BY wpre.time DESC")
+            .setParameter("contributor", contributor)
+            .getResultList();
+    }
+    
+    @Override
     public List<WordPeerReviewEvent> readAll(WordContributionEvent wordContributionEvent) throws DataAccessException {
         return em.createQuery(
             "SELECT wpre " + 

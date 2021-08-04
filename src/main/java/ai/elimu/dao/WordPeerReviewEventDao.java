@@ -13,5 +13,7 @@ public interface WordPeerReviewEventDao extends GenericDao<WordPeerReviewEvent> 
     
     List<WordPeerReviewEvent> readAll(Word word) throws DataAccessException;
     
+    List<WordPeerReviewEvent> readAll(Contributor contributor) throws DataAccessException;
+    
     List<WordPeerReviewEvent> readAll(WordContributionEvent wordContributionEvent) throws DataAccessException;
 }

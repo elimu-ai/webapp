@@ -6,6 +6,7 @@ import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.dao.WordContributionEventDao;
+import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -38,6 +39,9 @@ public class ContributorController {
     private WordContributionEventDao wordContributionEventDao;
     
     @Autowired
+    private WordPeerReviewEventDao wordPeerReviewEventDao;
+    
+    @Autowired
     private NumberContributionEventDao numberContributionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -46,16 +50,6 @@ public class ContributorController {
             Model model
     ) {
     	logger.info("handleRequest");
-
-        return "redirect:/content/contributor/" + contributorId + "/storybooks";
-    }
-    
-    @RequestMapping(value = "/storybooks", method = RequestMethod.GET)
-    public String handleStoryBooksRequest(
-            @PathVariable Long contributorId,
-            Model model
-    ) {
-    	logger.info("handleStoryBooksRequest");
         
         Contributor contributor = contributorDao.read(contributorId);
         model.addAttribute("contributor2", contributor);
@@ -71,6 +65,10 @@ public class ContributorController {
         model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(contributor));
         model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
         
-        return "content/contributor/contributor-storybooks";
+        // For contributor-words.jsp
+        model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(contributor));
+        model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(contributor));
+        
+        return "content/contributor/contributor";
     }
 }
