@@ -22,7 +22,7 @@ public class WordContributionEvent extends BaseEntity {
     
     @NotNull
     private Integer revisionNumber;
-
+    @Column(length=1000)
     private String comment;
     
     @NotNull
