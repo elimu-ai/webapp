@@ -232,7 +232,11 @@ public class DbContentImportHelper {
             }
             
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
-            ...
+            storyBookContributionEvent.setContributor(contributor);
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(1);
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEventDao.create(storyBookContributionEvent);
         }
         
         // Extract and import Videos
