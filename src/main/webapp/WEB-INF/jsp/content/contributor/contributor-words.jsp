@@ -19,7 +19,8 @@
                     <c:set var="word" value="${wordContributionEvent.word}" />
                     <tr>
                         <td>
-                            <a href="<spring:url value='/content/word/edit/${word.id}#contribution-events' />" target="_blank">"<c:out value="${word.text}" />"</a>
+                            <a href="<spring:url value='/content/word/edit/${word.id}#contribution-events' />" target="_blank">"<c:out value="${word.text}" />"</a><br />
+                            /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
                             #${wordContributionEvent.revisionNumber}<br />
@@ -32,7 +33,55 @@
                             <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
                         </td>
                         <td>
-                            // TODO
+                            <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEventsByContributionMap[wordContributionEvent.id]}">
+                                <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
+                                    <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                                        <div class="col s4">
+                                            <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.contributor.id}' />">
+                                                <div class="chip">
+                                                    <c:choose>
+                                                        <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">
+                                                            <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
+                                                        </c:when>
+                                                        <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <c:choose>
+                                                        <c:when test="${not empty wordPeerReviewEvent.contributor.firstName}">
+                                                            <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
+                                                        </c:when>
+                                                        <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                                            ${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col s4">
+                                            <code class="peerReviewStatus">
+                                                <c:choose>
+                                                    <c:when test="${wordPeerReviewEvent.isApproved()}">
+                                                        APPROVED
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        NOT_APPROVED
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </code>
+                                        </div>
+                                        <div class="col s4" style="text-align: right;">
+                                            <fmt:formatDate value="${wordPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                        </div>
+                                        <c:if test="${not empty wordPeerReviewEvent.comment}">
+                                            <div class="col s12 comment"><c:out value="${wordPeerReviewEvent.comment}" /></div>
+                                        </c:if>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
                         </td>
                     </tr>
                 </c:forEach>
@@ -107,10 +156,8 @@
                             </div>
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/word/edit/${word.id}#contribution-event_${wordPeerReviewEvent.wordContributionEvent.id}' />" target="_blank">
-                                <c:out value="${word.title}" />
-                            </a><br />
-                            <fmt:message key="reading.level.${word.readingLevel}" />
+                            <a href="<spring:url value='/content/word/edit/${word.id}#contribution-event_${wordPeerReviewEvent.wordContributionEvent.id}' />" target="_blank">"<c:out value="${word.text}" />"</a><br />
+                            /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
                             <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.wordContributionEvent.contributor.id}' />">

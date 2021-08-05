@@ -9,6 +9,11 @@ import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.model.contributor.WordPeerReviewEvent;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,8 +78,15 @@ public class ContributorController {
         model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
         
         // For contributor-words.jsp
+        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(contributor);
         model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(contributor));
         model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(contributor));
+        Map<Long, List<WordPeerReviewEvent>> wordPeerReviewEventsByContributionMap = new HashMap<>();
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            List<WordPeerReviewEvent> wordPeerReviewEvents = wordPeerReviewEventDao.readAll(wordContributionEvent);
+            wordPeerReviewEventsByContributionMap.put(wordContributionEvent.getId(), wordPeerReviewEvents);
+        }
+        model.addAttribute("wordPeerReviewEventsByContributionMap", wordPeerReviewEventsByContributionMap);
         
         return "content/contributor/contributor";
     }
