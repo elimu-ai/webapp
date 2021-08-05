@@ -32,33 +32,7 @@
                             <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
-                            <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
-                            <c:if test="${not empty storyBookContributionEvent.paragraphTextBefore}">
-                                <p id="textDiffContainer_${storyBookContributionEvent.id}"></p>
-                                <script>
-                                    $(function() {
-                                        // Visualize before/after diff
-                                        var textBefore = ['${fn:join(fn:split(fn:replace(storyBookContributionEvent.paragraphTextBefore, newLineCharRn, '<br/>'), ' '), '\', \'')}'];
-                                        var textAfter = ['${fn:join(fn:split(fn:replace(storyBookContributionEvent.paragraphTextAfter, newLineCharRn, '<br/>'), ' '), '\', \'')}'];
-                                        var unifiedDiff = difflib.unifiedDiff(textBefore, textAfter);
-                                        console.info('unifiedDiff: \n' + unifiedDiff);
-                                        for (var i = 2; i < unifiedDiff.length; i++) {
-                                            var diff = unifiedDiff[i];
-                                            if (diff.startsWith('@@')) {
-                                                diff = '<span class="grey-text">' + diff + '</span><br />';
-                                                if (i > 2) {
-                                                    diff = '<br /><br />' + diff;
-                                                }
-                                            } else if (diff.startsWith('-')) {
-                                                diff = '<span class="diff-deletion">' + diff.substring(1) + '<span>';
-                                            } else if (diff.startsWith('+')) {
-                                                diff = '<span class="diff-addition">' + diff.substring(1) + '<span>';
-                                            }
-                                            $('#textDiffContainer_${storyBookContributionEvent.id}').append(diff);
-                                        }
-                                    });
-                                </script>
-                            </c:if>
+                            <blockquote><c:out value="${fn:substring(storyBookContributionEvent.comment, 0, 25)}" />...</blockquote>
                         </td>
                         <td>
                             <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEventsByContributionMap[storyBookContributionEvent.id]}">
@@ -105,7 +79,7 @@
                                             <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                                         </div>
                                         <c:if test="${not empty storyBookPeerReviewEvent.comment}">
-                                            <div class="col s12 comment"><c:out value="${storyBookPeerReviewEvent.comment}" /></div>
+                                            <div class="col s12 comment"><c:out value="${fn:substring(storyBookPeerReviewEvent.comment, 0, 25)}" />...</div>
                                         </c:if>
                                     </div>
                                 </c:if>
@@ -179,7 +153,7 @@
                                     <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                                 </div>
                                 <c:if test="${not empty storyBookPeerReviewEvent.comment}">
-                                    <div class="col s12 comment"><c:out value="${storyBookPeerReviewEvent.comment}" /></div>
+                                    <div class="col s12 comment"><c:out value="${fn:substring(storyBookPeerReviewEvent.comment, 0, 25)}" />...</div>
                                 </c:if>
                             </div>
                         </td>
