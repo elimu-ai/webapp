@@ -9,6 +9,8 @@ import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
 import java.util.HashMap;
@@ -74,8 +76,15 @@ public class ContributorController {
         model.addAttribute("numberPeerReviewsCount", 0); // TODO
         
         // For contributor-storybooks.jsp
+        List<StoryBookContributionEvent> storyBookContributionEvents = storyBookContributionEventDao.readAll(contributor);
         model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(contributor));
         model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
+        Map<Long, List<StoryBookPeerReviewEvent>> storyBookPeerReviewEventsByContributionMap = new HashMap<>();
+        for (StoryBookContributionEvent storyBookContributionEvent : storyBookContributionEvents) {
+            List<StoryBookPeerReviewEvent> storyBookPeerReviewEvents = storyBookPeerReviewEventDao.readAll(storyBookContributionEvent);
+            storyBookPeerReviewEventsByContributionMap.put(storyBookContributionEvent.getId(), storyBookPeerReviewEvents);
+        }
+        model.addAttribute("storyBookPeerReviewEventsByContributionMap", storyBookPeerReviewEventsByContributionMap);
         
         // For contributor-words.jsp
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(contributor);

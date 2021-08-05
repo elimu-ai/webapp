@@ -61,7 +61,55 @@
                             </c:if>
                         </td>
                         <td>
-                            // TODO
+                            <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEventsByContributionMap[storyBookContributionEvent.id]}">
+                                <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
+                                    <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
+                                        <div class="col s4">
+                                            <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
+                                                <div class="chip">
+                                                    <c:choose>
+                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
+                                                            <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
+                                                        </c:when>
+                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <c:choose>
+                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.firstName}">
+                                                            <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
+                                                        </c:when>
+                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                                            ${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col s4">
+                                            <code class="peerReviewStatus">
+                                                <c:choose>
+                                                    <c:when test="${storyBookPeerReviewEvent.isApproved()}">
+                                                        APPROVED
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        NOT_APPROVED
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </code>
+                                        </div>
+                                        <div class="col s4" style="text-align: right;">
+                                            <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                        </div>
+                                        <c:if test="${not empty storyBookPeerReviewEvent.comment}">
+                                            <div class="col s12 comment"><c:out value="${storyBookPeerReviewEvent.comment}" /></div>
+                                        </c:if>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
                         </td>
                     </tr>
                 </c:forEach>
