@@ -127,7 +127,7 @@ footer.page-footer .footer-copyright {
 
 .btn.tokenButton {
     border-radius: 32px;
-    background: linear-gradient(135deg, #b39ddb 0%, #9575cd 100%); /* deep-purple lighten-3 --> #9575cd deep-purple lighten-2 */
+    background: linear-gradient(135deg, rgba(255,255,255, .4) 0%, rgba(255,255,255, .2) 100%);
 }
 
 .collection {
