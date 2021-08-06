@@ -151,7 +151,7 @@
                                     <fmt:formatDate value="${wordPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                                 </div>
                                 <c:if test="${not empty wordPeerReviewEvent.comment}">
-                                    <div class="col s12 comment"><c:out value="${wordPeerReviewEvent.comment}" /></div>
+                                    <div class="col s12 comment"><c:out value="${fn:substring(wordPeerReviewEvent.comment, 0, 25)}" />...</div>
                                 </c:if>
                             </div>
                         </td>
