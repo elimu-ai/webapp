@@ -1,13 +1,16 @@
 package ai.elimu.util.db;
 
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
@@ -18,8 +21,12 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Environment;
 import ai.elimu.model.enums.Language;
+import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
@@ -28,6 +35,9 @@ import ai.elimu.util.csv.CsvContentExtractionHelper;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,6 +64,12 @@ public class DbContentImportHelper {
     private StoryBookChapterDao storyBookChapterDao;
     
     private StoryBookParagraphDao storyBookParagraphDao;
+    
+    private ContributorDao contributorDao;
+    
+    private WordContributionEventDao wordContributionEventDao;
+    
+    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -82,6 +98,15 @@ public class DbContentImportHelper {
         }
         File contentDirectory = new File(contentDirectoryURL.getPath());
         logger.info("contentDirectory: " + contentDirectory);
+        
+        contributorDao = (ContributorDao) webApplicationContext.getBean("contributorDao");
+        Contributor contributor = new Contributor();
+        contributor.setEmail("dev@elimu.ai");
+        contributor.setFirstName("Dev");
+        contributor.setLastName("Contributor");
+        contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+        contributor.setRegistrationTime(Calendar.getInstance());
+        contributorDao.create(contributor);
         
         // Extract and import Allophones from CSV file in src/main/resources/
         File allophonesCsvFile = new File(contentDirectory, "allophones.csv");
@@ -115,8 +140,17 @@ public class DbContentImportHelper {
         List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, allophoneDao, letterToAllophoneMappingDao, wordDao);
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
+        wordContributionEventDao = (WordContributionEventDao) webApplicationContext.getBean("wordContributionEventDao");
         for (Word word : words) {
             wordDao.create(word);
+            
+            WordContributionEvent wordContributionEvent = new WordContributionEvent();
+            wordContributionEvent.setContributor(contributor);
+            wordContributionEvent.setWord(word);
+            wordContributionEvent.setRevisionNumber(1);
+            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+            wordContributionEventDao.create(wordContributionEvent);
         }
         
         // Extract and import Numbers from CSV file in src/main/resources/
@@ -153,6 +187,7 @@ public class DbContentImportHelper {
         storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
         storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
         storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
+        storyBookContributionEventDao = (StoryBookContributionEventDao) webApplicationContext.getBean("storyBookContributionEventDao");
         for (StoryBookGson storyBookGson : storyBookGsons) {
             // Convert from GSON to JPA
             StoryBook storyBook = new StoryBook();
@@ -195,6 +230,13 @@ public class DbContentImportHelper {
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
+            
+            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+            storyBookContributionEvent.setContributor(contributor);
+            storyBookContributionEvent.setStoryBook(storyBook);
+            storyBookContributionEvent.setRevisionNumber(1);
+            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEventDao.create(storyBookContributionEvent);
         }
         
         // Extract and import Videos

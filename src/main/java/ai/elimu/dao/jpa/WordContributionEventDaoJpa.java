@@ -28,6 +28,17 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
             .setParameter("word", word)
             .getResultList();
     }
+    
+    @Override
+    public List<WordContributionEvent> readAll(Contributor contributor) throws DataAccessException {
+        return em.createQuery(
+            "SELECT wce " + 
+            "FROM WordContributionEvent wce " +
+            "WHERE wce.contributor = :contributor " + 
+            "ORDER BY wce.time DESC")
+            .setParameter("contributor", contributor)
+            .getResultList();
+    }
 
     @Override
     public List<WordContributionEvent> readMostRecent(int maxResults) throws DataAccessException {

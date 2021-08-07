@@ -127,6 +127,7 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
 blockquote,
 .comment {
     white-space: pre-line;
+    overflow: scroll;
 }
 
 .row.peerReviewEvent {

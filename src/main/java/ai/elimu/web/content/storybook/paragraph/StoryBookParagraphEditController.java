@@ -20,6 +20,7 @@ import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -66,7 +67,8 @@ public class StoryBookParagraphEditController {
         model.addAttribute("storyBookParagraph", storyBookParagraph);
         
         // Generate Audio for this StoryBookParagraph (if it has not been done already)
-        if (storyBookParagraph.getAudio() == null) {
+        List<Audio> paragraphAudios = audioDao.readAll(storyBookParagraph);
+        if (paragraphAudios.isEmpty()) {
             Calendar timeStart = Calendar.getInstance();
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
             try {
@@ -88,9 +90,6 @@ public class StoryBookParagraphEditController {
                     audio.setAudioFormat(AudioFormat.MP3);
                     audioDao.create(audio);
                     
-                    storyBookParagraph.setAudio(audio);
-                    storyBookParagraphDao.update(storyBookParagraph);
-                    
                     AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
                     audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
                     audioContributionEvent.setTime(Calendar.getInstance());
@@ -100,13 +99,15 @@ public class StoryBookParagraphEditController {
                     audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
                     audioContributionEvent.setPlatform(Platform.WEBAPP);
                     audioContributionEventDao.create(audioContributionEvent);
+                    
+                    paragraphAudios = audioDao.readAll(storyBookParagraph);
                 }
             } catch (Exception ex) {
                 logger.error(ex);
             }
         }
         
-        model.addAttribute("audios", audioDao.readAllOrderedByTitle());
+        model.addAttribute("audios", paragraphAudios);
         
         model.addAttribute("timeStart", System.currentTimeMillis());
         
@@ -127,7 +128,6 @@ public class StoryBookParagraphEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("storyBookParagraph", storyBookParagraph);
-            model.addAttribute("audios", audioDao.readAllOrderedByTitle());
             model.addAttribute("timeStart", System.currentTimeMillis());
             return "content/storybook/paragraph/edit";
         } else {
@@ -150,7 +150,7 @@ public class StoryBookParagraphEditController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment("Edited storybook paragraph (🤖 auto-generated comment)");
+            storyBookContributionEvent.setComment("Edited storybook paragraph in chapter " + (storyBookParagraph.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
             if (!storyBookParagraphBeforeEdit.getOriginalText().equals(storyBookParagraph.getOriginalText())) {
                 storyBookContributionEvent.setParagraphTextBefore(StringUtils.abbreviate(storyBookParagraphBeforeEdit.getOriginalText(), 1000));
                 storyBookContributionEvent.setParagraphTextAfter(StringUtils.abbreviate(storyBookParagraph.getOriginalText(), 1000));

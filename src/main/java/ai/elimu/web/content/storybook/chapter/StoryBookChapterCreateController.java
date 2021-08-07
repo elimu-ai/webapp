@@ -100,7 +100,7 @@ public class StoryBookChapterCreateController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment("Created storybook chapter (🤖 auto-generated comment)");
+            storyBookContributionEvent.setComment("Created storybook chapter " + (storyBookChapter.getSortOrder() + 1) + " (🤖 auto-generated comment)");
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
