@@ -101,6 +101,7 @@
                 </div>
             </div>
             
+            <%--
             <div class="row">
                 <div class="input-field col s12">
                     <select id="spellingConsistency" name="spellingConsistency">
@@ -112,6 +113,7 @@
                     <label for="spellingConsistency"><fmt:message key="spelling.consistency" /></label>
                 </div>
             </div>
+            --%>
                 
             <div class="row">
                 <div class="input-field col s12">
