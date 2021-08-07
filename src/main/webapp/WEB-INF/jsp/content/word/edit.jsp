@@ -441,10 +441,16 @@
     <h5 class="center"><fmt:message key="labeled.content" /></h5>
     
     <b><fmt:message key="audios" /></b><br />
+    <div id="labeledAudios">
+        // TODO
+    </div>
     <br />
     
     <b><fmt:message key="emojis" /></b><br />
     <div id="labeledEmojis">
+        <c:if test="${empty labeledEmojis}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="emoji" items="${labeledEmojis}">
             <a href="<spring:url value='/content/emoji/edit/${emoji.id}' />">
                 <span style="font-size: 6em;">${emoji.glyph}</span>
@@ -455,6 +461,9 @@
     
     <b><fmt:message key="images" /></b><br />
     <div id="labeledImages">
+        <c:if test="${empty labeledImages}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="image" items="${labeledImages}">
             <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
                 <img src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
@@ -464,4 +473,19 @@
     <br />
     
     <b><fmt:message key="videos" /></b><br />
+    <div id="labeledVideos">
+        // TODO
+    </div>
+    <br />
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
+    <h5 class="center"><fmt:message key="storybook.paragaphs.containing.word" /></h5>
+    <c:forEach var="storyBookParagraph" items="${storyBookParagraphsContainingWord}">
+        <p>
+            <c:set var="wordTextInBold" value="<span class='diff-addition'>${word.text}</span>" />
+             "${fn:replace(storyBookParagraph.originalText, word.text, wordTextInBold)}"<br />
+            <a href="<spring:url value='/content/storybook/edit/${storyBookParagraph.storyBookChapter.storyBook.id}#ch-id-${storyBookParagraph.storyBookChapter.id}' />" target="_blank"><c:out value="${storyBookParagraph.storyBookChapter.storyBook.title}" /></a>
+        </p>
+    </c:forEach>
 </content:aside>
