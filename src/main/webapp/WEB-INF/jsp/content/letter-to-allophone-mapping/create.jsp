@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.letter.to.allophone.mapping" />
+    <fmt:message key="add.letter.sound.correspondence" />
 </content:title>
 
 <content:section cssId="letterToAllophoneMappingCreatePage">

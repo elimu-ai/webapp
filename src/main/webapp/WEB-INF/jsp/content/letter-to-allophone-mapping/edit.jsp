@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.mapping" />
+    <fmt:message key="edit.letter.sound.correspondence" />
 </content:title>
 
 <content:section cssId="letterToAllophoneMappingEditPage">
