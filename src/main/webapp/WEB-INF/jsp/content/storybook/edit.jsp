@@ -116,12 +116,6 @@
                             <c:otherwise><a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${wordInOriginalText}" /></a><c:out value="${emojisByWordId[word.id]}" /><c:out value=" " /></c:otherwise>
                         </c:choose>
                     </c:forEach>
-                    
-                    <c:if test="${not empty storyBookParagraph.audio}">
-                        <audio controls="true">
-                            <source src="<spring:url value='/audio/${storyBookParagraph.audio.id}_r${storyBookParagraph.audio.revisionNumber}.${fn:toLowerCase(storyBookParagraph.audio.audioFormat)}' />" />
-                        </audio>
-                    </c:if>
                 </p>
             </c:forEach>
             
@@ -129,7 +123,7 @@
                 <a href="<spring:url value="/content/storybook/edit/${storyBook.id}/chapter/${storyBookChapter.id}/paragraph/create" />" 
                    class="btn-floating waves-effect waves-light grey"
                    style="margin-top: 1rem;"
-                   title="<fmt:message key="add.storybook.paragraph" />">
+                   title="<fmt:message key="add.paragraph" />">
                     <i class="material-icons">add</i>
                 </a>
             </div>

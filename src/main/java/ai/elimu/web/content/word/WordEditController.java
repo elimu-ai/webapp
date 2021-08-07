@@ -11,6 +11,7 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterToAllophoneMappingDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
@@ -19,6 +20,7 @@ import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
@@ -84,6 +86,9 @@ public class WordEditController {
     
     @Autowired
     private AudioContributionEventDao audioContributionEventDao;
+    
+    @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -162,6 +167,10 @@ public class WordEditController {
         List<Image> labeledImages = imageDao.readAllLabeled(word);
         model.addAttribute("labeledImages", labeledImages);
         // TODO: labeled Videos
+        
+        // Look up StoryBook Paragraphs that contain this Word
+        List<StoryBookParagraph> storyBookParagraphsContainingWord = storyBookParagraphDao.readAllContainingWord(word.getText());
+        model.addAttribute("storyBookParagraphsContainingWord", storyBookParagraphsContainingWord);
 
         return "content/word/edit";
     }

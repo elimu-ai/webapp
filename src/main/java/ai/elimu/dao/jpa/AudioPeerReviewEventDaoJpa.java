@@ -49,4 +49,13 @@ public class AudioPeerReviewEventDaoJpa extends GenericDaoJpa<AudioPeerReviewEve
             .setParameter("audioContributionEvent", audioContributionEvent)
             .getResultList();
     }
+    
+    @Override
+    public Long readCount(Contributor contributor) throws DataAccessException {
+        return (Long) em.createQuery("SELECT COUNT(apre) " +
+                "FROM AudioPeerReviewEvent apre " +
+                "WHERE apre.contributor = :contributor")
+                .setParameter("contributor", contributor)
+                .getSingleResult();
+    }
 }

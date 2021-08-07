@@ -24,28 +24,6 @@
                     <form:textarea path="originalText" cssClass="materialize-textarea" cssErrorClass="error" />
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <select id="audio" name="audio">
-                        <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="audio" items="${audios}">
-                            <option value="${audio.id}" <c:if test="${audio.id == storyBookParagraph.audio.id}">selected="selected"</c:if>>${audio.title}</option>
-                        </c:forEach>
-                    </select>
-                    <label for="audio"><fmt:message key="audio" /></label>
-                    
-                    <c:if test="${not empty storyBookParagraph.audio}">
-                        <audio controls="true" autoplay="true">
-                            <source src="<spring:url value='/audio/${storyBookParagraph.audio.id}_r${storyBookParagraph.audio.revisionNumber}.${fn:toLowerCase(storyBookParagraph.audio.audioFormat)}' />" />
-                        </audio><br />
-                    </c:if>
-                    
-                    <a href="<spring:url value='/content/multimedia/audio/create' />?autoFillTitle=storybook-${storyBookParagraph.storyBookChapter.storyBook.id}-ch-${storyBookParagraph.storyBookChapter.sortOrder + 1}-par-${storyBookParagraph.sortOrder + 1}&autoFillTranscription=${storyBookParagraph.originalText}" target="_blank">
-                        <fmt:message key="add.audio" /> <i class="material-icons">launch</i>
-                    </a>
-                </div>
-            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
@@ -58,6 +36,29 @@
 </content:section>
 
 <content:aside>
+    <h5 class="center"><fmt:message key="audios" /></h5>
+    <c:choose>
+        <c:when test="${empty audios}">
+            <div class="card-panel amber lighten-3">
+                <b>Warning:</b> This paragraph has no corresponding audio.<br />
+                <a href="<spring:url value='/content/multimedia/audio/create?paragraphId=${storyBookParagraph.id}&autoFillTitle=storybook-${storyBookParagraph.storyBookChapter.storyBook.id}-ch-${storyBookParagraph.storyBookChapter.sortOrder + 1}-par-${storyBookParagraph.sortOrder + 1}&autoFillTranscription=${storyBookParagraph.originalText}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <c:forEach var="audio" items="${audios}" varStatus="status">
+                <audio controls="true"<c:if test="${status.index == 0}"> autoplay="true"</c:if>>
+                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
+                </audio>
+                <div style="margin-bottom: 1rem; font-size: 0.8rem;">
+                    <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />" target="_blank">
+                        <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
+                    </a>
+                </div>
+                <div style="clear: both;"></div>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+    
     <h5 class="center"><fmt:message key='original.text' /></h5>
     <div class="card-panel grey lighten-5">
         <code class="language-markup">

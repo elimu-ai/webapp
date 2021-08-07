@@ -4,15 +4,15 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.1.223-SNAPSHOT</version>
+    <version>2.1.230-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>2.0.39</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
-        <hibernate.version>5.5.3.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
+        <hibernate.version>5.5.5.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
-        <spring.version>5.3.8</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
+        <spring.version>5.3.9</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>5.5.1</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.22.2</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
     </properties>
@@ -418,7 +418,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.10.0</version>
+            <version>2.11.0</version>
         </dependency>
         <dependency>
             <groupId>commons-validator</groupId>
@@ -428,7 +428,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
-            <version>1.8</version>
+            <version>1.9.0</version>
         </dependency>
 
         <dependency>
@@ -521,7 +521,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.25</version>
+            <version>8.0.26</version>
         </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>

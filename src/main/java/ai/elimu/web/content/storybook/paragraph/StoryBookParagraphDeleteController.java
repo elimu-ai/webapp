@@ -1,10 +1,12 @@
 package ai.elimu.web.content.storybook.paragraph;
 
+import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.model.content.multimedia.Audio;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
@@ -37,6 +39,9 @@ public class StoryBookParagraphDeleteController {
     private StoryBookParagraphDao storyBookParagraphDao;
     
     @Autowired
+    private AudioDao audioDao;
+    
+    @Autowired
     private StoryBooksJsonService storyBooksJsonService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -52,6 +57,16 @@ public class StoryBookParagraphDeleteController {
         
         StoryBookParagraph storyBookParagraphToBeDeleted = storyBookParagraphDao.read(id);
         logger.info("storyBookParagraphToBeDeleted: " + storyBookParagraphToBeDeleted);
+        logger.info("storyBookParagraphToBeDeleted.getSortOrder(): " + storyBookParagraphToBeDeleted.getSortOrder());
+        
+        String paragraphTextBeforeDeletion = storyBookParagraphToBeDeleted.getOriginalText();
+        
+        // Delete the paragraph's reference from corresponding audios (if any)
+        List<Audio> paragraphAudios = audioDao.readAll(storyBookParagraphToBeDeleted);
+        for (Audio paragraphAudio : paragraphAudios) {
+            paragraphAudio.setStoryBookParagraph(null);
+            audioDao.update(paragraphAudio);
+        }
         
         // Delete the paragraph
         logger.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());
@@ -70,11 +85,11 @@ public class StoryBookParagraphDeleteController {
         storyBookContributionEvent.setTime(Calendar.getInstance());
         storyBookContributionEvent.setStoryBook(storyBook);
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-        storyBookContributionEvent.setComment("Deleted storybook paragraph (🤖 auto-generated comment)");
+        storyBookContributionEvent.setComment("Deleted storybook paragraph in chapter " + (storyBookParagraphToBeDeleted.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
+        storyBookContributionEvent.setParagraphTextBefore(paragraphTextBeforeDeletion);
         storyBookContributionEventDao.create(storyBookContributionEvent);
         
         // Update the sorting order of the remaining paragraphs
-        logger.info("storyBookParagraphToBeDeleted.getSortOrder(): " + storyBookParagraphToBeDeleted.getSortOrder());
         List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookParagraphToBeDeleted.getStoryBookChapter());
         logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
