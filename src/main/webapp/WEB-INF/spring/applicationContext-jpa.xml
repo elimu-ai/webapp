@@ -57,7 +57,7 @@
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
     <bean id="letterLearningEventDao" class="ai.elimu.dao.jpa.LetterLearningEventDaoJpa" />
-    <bean id="letterToAllophoneMappingDao" class="ai.elimu.dao.jpa.LetterToAllophoneMappingDaoJpa" />
+    <bean id="letterSoundCorrespondenceDao" class="ai.elimu.dao.jpa.LetterToAllophoneMappingDaoJpa" />
     <bean id="numberContributionEventDao" class="ai.elimu.dao.jpa.NumberContributionEventDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
     <bean id="storyBookDao" class="ai.elimu.dao.jpa.StoryBookDaoJpa" />

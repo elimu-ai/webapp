@@ -14,19 +14,19 @@ public class LetterToAllophoneMappingDaoJpa extends GenericDaoJpa<LetterToAlloph
     public LetterToAllophoneMapping read(List<Letter> letters, List<Allophone> allophones) throws DataAccessException {
         // TODO: implement usage of CriteriaQuery/CriteriaQuery
         
-        String letterToAllophoneMappingLetters = letters.stream().map(Letter::getText).collect(Collectors.joining());
-        String letterToAllophoneMappingAllophones = allophones.stream().map(Allophone::getValueIpa).collect(Collectors.joining());
-        for (LetterToAllophoneMapping letterToAllophoneMapping : readAllOrderedByUsage()) {
-            String lettersAsString = letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-            String allophonesAsString = letterToAllophoneMapping.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining());
-            if (lettersAsString.equals(letterToAllophoneMappingLetters) && allophonesAsString.equals(letterToAllophoneMappingAllophones)) {
-                return letterToAllophoneMapping;
+        String letterSoundCorrespondenceLetters = letters.stream().map(Letter::getText).collect(Collectors.joining());
+        String letterSoundCorrespondenceAllophones = allophones.stream().map(Allophone::getValueIpa).collect(Collectors.joining());
+        for (LetterToAllophoneMapping letterSoundCorrespondence : readAllOrderedByUsage()) {
+            String lettersAsString = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+            String allophonesAsString = letterSoundCorrespondence.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining());
+            if (lettersAsString.equals(letterSoundCorrespondenceLetters) && allophonesAsString.equals(letterSoundCorrespondenceAllophones)) {
+                return letterSoundCorrespondence;
             }
         }
         
         logger.warn("LetterToAllophoneMapping was not found for Letter(s)/Allophone(s): " +
-                    "\"" + letterToAllophoneMappingLetters + "\"" +
-                    " /" + letterToAllophoneMappingAllophones + "/");
+                    "\"" + letterSoundCorrespondenceLetters + "\"" +
+                    " /" + letterSoundCorrespondenceAllophones + "/");
         return null;
     }
     

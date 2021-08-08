@@ -22,20 +22,20 @@ public class LetterToAllophoneMappingsRestController {
     private Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
     
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest() {
         logger.info("handleGetRequest");
         
-        JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAllOrderedByUsage()) {
-            LetterToAllophoneMappingGson letterToAllophoneMappingGson = JpaToGsonConverter.getLetterToAllophoneMappingGson(letterToAllophoneMapping);
-            String json = new Gson().toJson(letterToAllophoneMappingGson);
-            letterToAllophoneMappingsJsonArray.put(new JSONObject(json));
+        JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
+        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
+            LetterToAllophoneMappingGson letterSoundCorrespondenceGson = JpaToGsonConverter.getLetterToAllophoneMappingGson(letterSoundCorrespondence);
+            String json = new Gson().toJson(letterSoundCorrespondenceGson);
+            letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
         
-        String jsonResponse = letterToAllophoneMappingsJsonArray.toString();
+        String jsonResponse = letterSoundCorrespondencesJsonArray.toString();
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }

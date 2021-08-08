@@ -51,7 +51,7 @@ public class DbContentImportHelper {
     
     private LetterDao letterDao;
     
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
     
     private WordDao wordDao;
     
@@ -128,16 +128,16 @@ public class DbContentImportHelper {
         
         // Extraxct and import Letter-to-Allophone mappings in src/main/resources/
         File letterToAllophioneMappingsCsvFile = new File(contentDirectory, "letter-to-allophone-mappings.csv");
-        List<LetterToAllophoneMapping> letterToAllophioneMappings = CsvContentExtractionHelper.getLetterToAllophoneMappingsFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, allophoneDao, letterToAllophoneMappingDao);
+        List<LetterToAllophoneMapping> letterToAllophioneMappings = CsvContentExtractionHelper.getLetterToAllophoneMappingsFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, allophoneDao, letterSoundCorrespondenceDao);
         logger.info("letterToAllophioneMappings.size(): " + letterToAllophioneMappings.size());
-        letterToAllophoneMappingDao = (LetterToAllophoneMappingDao) webApplicationContext.getBean("letterToAllophoneMappingDao");
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophioneMappings) {
-            letterToAllophoneMappingDao.create(letterToAllophoneMapping);
+        letterSoundCorrespondenceDao = (LetterToAllophoneMappingDao) webApplicationContext.getBean("letterSoundCorrespondenceDao");
+        for (LetterToAllophoneMapping letterSoundCorrespondence : letterToAllophioneMappings) {
+            letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
         }
         
         // Extract and import Words from CSV file in src/main/resources/
         File wordsCsvFile = new File(contentDirectory, "words.csv");
-        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, allophoneDao, letterToAllophoneMappingDao, wordDao);
+        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, allophoneDao, letterSoundCorrespondenceDao, wordDao);
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
         wordContributionEventDao = (WordContributionEventDao) webApplicationContext.getBean("wordContributionEventDao");
