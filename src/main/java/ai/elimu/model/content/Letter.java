@@ -18,7 +18,7 @@ public class Letter extends Content {
     @Column(length = 1)
     private String text;
     
-    @Deprecated // Will be replaced by LetterToAllophoneMappings
+    @Deprecated // Will be replaced by LetterSoundCorrespondences
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)

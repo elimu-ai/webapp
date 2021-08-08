@@ -101,7 +101,7 @@ public class WordEditController {
         Word word = wordDao.read(id);
         
         if (word.getLetterSoundCorrespondences().isEmpty()) {
-            autoSelectLetterToAllophoneMappings(word);
+            autoSelectLetterSoundCorrespondences(word);
             // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
         }
                 
@@ -266,8 +266,8 @@ public class WordEditController {
         return emojisByWordId;
     }
     
-    private void autoSelectLetterToAllophoneMappings(Word word) {
-        logger.info("autoSelectLetterToAllophoneMappings");
+    private void autoSelectLetterSoundCorrespondences(Word word) {
+        logger.info("autoSelectLetterSoundCorrespondences");
         
         String wordText = word.getText();
         

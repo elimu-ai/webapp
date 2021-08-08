@@ -95,7 +95,7 @@ public class JpaToGsonConverter {
             // BaseEntity
             letterSoundCorrespondenceGson.setId(letterSoundCorrespondence.getId());
             
-            // LetterToAllophoneMapping
+            // LetterSoundCorrespondence
             List<LetterGson> letters = new ArrayList<>();
             for (Letter letter : letterSoundCorrespondence.getLetters()) {
                 LetterGson letterGson = getLetterGson(letter);
