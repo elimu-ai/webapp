@@ -250,7 +250,7 @@ public class CsvContentExtractionHelper {
                     .withHeader(
                             "id",
                             "text",
-                            "letter_to_allophone_mappings",
+                            "letter_sound_correspondences",
                             "usage_count",
                             "word_type",
                             "spelling_consistency",
@@ -267,7 +267,7 @@ public class CsvContentExtractionHelper {
                 String text = csvRecord.get("text");
                 word.setText(text);
                 
-                JSONArray letterSoundCorrespondencesJsonArray = new JSONArray(csvRecord.get("letter_to_allophone_mappings"));
+                JSONArray letterSoundCorrespondencesJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
                 logger.info("letterSoundCorrespondencesJsonArray: " + letterSoundCorrespondencesJsonArray);
                 List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
                 for (int i = 0; i < letterSoundCorrespondencesJsonArray.length(); i++) {

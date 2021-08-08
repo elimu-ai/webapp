@@ -44,7 +44,7 @@ public class WordCsvExportController {
                 .withHeader(
                         "id",
                         "text",
-                        "letter_to_allophone_mappings",
+                        "letter_sound_correspondences",
                         "usage_count",
                         "word_type",
                         "spelling_consistency",

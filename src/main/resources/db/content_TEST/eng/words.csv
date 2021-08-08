@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 21,a,"[{""allophones"":[""æ""],""id"":2,""letters"":[""a""],""usageCount"":77}]",48,,HIGHLY_NON_PHONEMIC,,
 47,cats,"[{""allophones"":[""k""],""id"":1,""letters"":[""c""],""usageCount"":29},{""allophones"":[""æ""],""id"":2,""letters"":[""a""],""usageCount"":77},{""allophones"":[""t""],""id"":3,""letters"":[""t""],""usageCount"":35},{""allophones"":[""s""],""id"":4,""letters"":[""s""],""usageCount"":18}]",16,NOUN,,48,cat
 2,one,"[{""allophones"":[""w"",""ʌ""],""id"":12,""letters"":[""o""],""usageCount"":16},{""allophones"":[""n""],""id"":11,""letters"":[""n"",""e""],""usageCount"":16}]",16,,,,

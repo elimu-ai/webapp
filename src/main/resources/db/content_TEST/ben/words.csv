@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 2,তার,"[{""allophones"":[""t""],""id"":3,""letters"":[""ত""],""usageCount"":19},{""allophones"":[""ɐ""],""id"":4,""letters"":[""া""],""usageCount"":25},{""allophones"":[""ɾ""],""id"":2,""letters"":[""র""],""usageCount"":18}]",18,,PERFECT,,
 44,এক,"[{""allophones"":[""e""],""id"":16,""letters"":[""এ""],""usageCount"":7},{""allophones"":[""k""],""id"":17,""letters"":[""ক""],""usageCount"":7}]",7,NUMBER,,,
 42,মৌমাছি,"[{""allophones"":[""m""],""id"":7,""letters"":[""ম""],""usageCount"":14},{""allophones"":[""o"",""uː""],""id"":8,""letters"":[""ৌ""],""usageCount"":7},{""allophones"":[""m""],""id"":7,""letters"":[""ম""],""usageCount"":14},{""allophones"":[""ɐ""],""id"":4,""letters"":[""া""],""usageCount"":25},{""allophones"":[""t"",""ʃʰ""],""id"":9,""letters"":[""ছ""],""usageCount"":7},{""allophones"":[""iː""],""id"":10,""letters"":[""ি""],""usageCount"":8}]",7,NOUN,,,
