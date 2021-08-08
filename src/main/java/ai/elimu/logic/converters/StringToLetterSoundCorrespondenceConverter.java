@@ -12,7 +12,7 @@ public class StringToLetterSoundCorrespondenceConverter implements Converter<Str
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     /**
-     * Convert LetterToAllophoneMapping id to LetterToAllophoneMapping entity
+     * Convert LetterSoundCorrespondence id to LetterSoundCorrespondence entity
      */
     public LetterSoundCorrespondence convert(String id) {
         if (StringUtils.isBlank(id)) {

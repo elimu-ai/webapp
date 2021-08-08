@@ -24,7 +24,7 @@ public class LetterSoundCorrespondenceDaoJpa extends GenericDaoJpa<LetterSoundCo
             }
         }
         
-        logger.warn("LetterToAllophoneMapping was not found for Letter(s)/Allophone(s): " +
+        logger.warn("LetterSoundCorrespondence was not found for Letter(s)/Allophone(s): " +
                     "\"" + letterSoundCorrespondenceLetters + "\"" +
                     " /" + letterSoundCorrespondenceAllophones + "/");
         return null;
@@ -34,7 +34,7 @@ public class LetterSoundCorrespondenceDaoJpa extends GenericDaoJpa<LetterSoundCo
     public List<LetterSoundCorrespondence> readAllOrderedByUsage() throws DataAccessException {
         return em.createQuery(
             "SELECT lsc " +
-            "FROM LetterToAllophoneMapping lsc " +
+            "FROM LetterSoundCorrespondence lsc " +
             "ORDER BY lsc.usageCount DESC")
             .getResultList();
     }
@@ -43,7 +43,7 @@ public class LetterSoundCorrespondenceDaoJpa extends GenericDaoJpa<LetterSoundCo
     public List<LetterSoundCorrespondence> readAllOrderedByLettersLength() throws DataAccessException {
         return em.createQuery(
             "SELECT lsc " +
-            "FROM LetterToAllophoneMapping lsc " +
+            "FROM LetterSoundCorrespondence lsc " +
             "ORDER BY lsc.letters.size DESC, lsc.usageCount DESC")
             .getResultList();
     }

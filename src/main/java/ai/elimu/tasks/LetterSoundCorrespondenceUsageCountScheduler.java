@@ -31,7 +31,7 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        logger.info("Calculating usage count for LetterToAllophoneMappings");
+        logger.info("Calculating usage count for LetterSoundCorrespondences");
 
         // <id, usageCount>
         Map<Long, Integer> letterSoundCorrespondenceFrequencyMap = new HashMap<>();

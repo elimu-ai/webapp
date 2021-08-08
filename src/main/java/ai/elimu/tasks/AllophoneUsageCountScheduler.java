@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * StoryBooks.
  * <p />
  * For this to work, the frequency of each {@link Word} must have been calculated and stored previously 
- * (see {@link WordUsageCountScheduler} and {@link LetterToAllophoneMappingUsageCountScheduler}).
+ * (see {@link WordUsageCountScheduler} and {@link LetterSoundCorrespondenceUsageCountScheduler}).
  */
 @Service
 public class AllophoneUsageCountScheduler {
@@ -43,7 +43,7 @@ public class AllophoneUsageCountScheduler {
         Map<Long, Integer> allophoneFrequencyMap = new HashMap<>();
 
         // Summarize the usage count of each Word's Allophone based on the LetterSoundCorrespondence's 
-        // usage count (see LetterToAllophoneMappingUsageCountScheduler).
+        // usage count (see LetterSoundCorrespondenceUsageCountScheduler).
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {

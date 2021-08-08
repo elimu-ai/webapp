@@ -273,12 +273,12 @@ public class WordEditController {
         
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         
-        List<LetterSoundCorrespondence> allLetterToAllophoneMappingsOrderedByLettersLength = letterSoundCorrespondenceDao.readAllOrderedByLettersLength();
+        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundCorrespondenceDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
             boolean isMatch = false;
-            for (LetterSoundCorrespondence letterSoundCorrespondence : allLetterToAllophoneMappingsOrderedByLettersLength) {
+            for (LetterSoundCorrespondence letterSoundCorrespondence : allLetterSoundCorrespondencesOrderedByLettersLength) {
                 String letterSoundCorrespondenceLetters = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
                 logger.info("letterSoundCorrespondenceLetters: \"" + letterSoundCorrespondenceLetters + "\"");
 

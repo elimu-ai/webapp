@@ -167,8 +167,8 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
      */
-    public static List<LetterSoundCorrespondence> getLetterToAllophoneMappingsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
-        logger.info("getLetterToAllophoneMappingsFromCsvBackup");
+    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
+        logger.info("getLetterSoundCorrespondencesFromCsvBackup");
         
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         

@@ -58,9 +58,9 @@ public class LetterSoundCorrespondenceEditController {
     ) {
     	logger.info("handleSubmit");
         
-        // Check if the LetterToAllophoneMapping already exists
-        LetterSoundCorrespondence existingLetterToAllophoneMapping = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getAllophones());
-        if ((existingLetterToAllophoneMapping != null) && !existingLetterToAllophoneMapping.getId().equals(letterSoundCorrespondence.getId())) {
+        // Check if the LetterSoundCorrespondence already exists
+        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getAllophones());
+        if ((existingLetterSoundCorrespondence != null) && !existingLetterSoundCorrespondence.getId().equals(letterSoundCorrespondence.getId())) {
             result.rejectValue("letters", "NonUnique");
         }
         
