@@ -93,7 +93,7 @@ public class WordCreateController {
             word.setText(autoFillText);
             
             autoSelectLetterToAllophoneMappings(word);
-            // TODO: display information message to the Contributor that the Letter-to-Allophone mappings were auto-selected, and that they should be verified
+            // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
             
             model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
         }
