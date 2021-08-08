@@ -129,6 +129,10 @@ footer.page-footer .footer-copyright {
     border-radius: 32px;
     background: linear-gradient(135deg, rgba(255,255,255, .4) 0%, rgba(255,255,255, .2) 100%);
 }
+.nav-wrapper .btn.tokenButton {
+    border-radius: 32px;
+    background: linear-gradient(135deg, #b39ddb 0%, #9575cd 100%); /* deep-purple lighten-3 --> #9575cd deep-purple lighten-2 */
+}
 
 .collection {
     border-radius: 8px;
