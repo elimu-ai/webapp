@@ -98,7 +98,7 @@ Follow these steps to add a new word to the webapp's database:
    
       <img width="613" alt="Screen Shot 2020-12-09 at 7 50 47 PM" src="https://user-images.githubusercontent.com/15718174/101674020-9f5ee580-3a60-11eb-898f-76ff99eaa518.png">
 
-1. Select the Grapheme-to-phoneme correspondence, according to how well the letters match the sounds. If you are unsure about this step, leave it unselected.
+1. Select the _Grapheme-phoneme correspondence_, according to how well the letters match the sounds. If you are unsure about this step, leave it unselected.
 
    <img width="505" alt="Screen Shot 2020-12-09 at 7 54 34 PM" src="https://user-images.githubusercontent.com/15718174/101674210-dfbe6380-3a60-11eb-8d78-fc3afccf43cf.png">
 

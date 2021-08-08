@@ -52,10 +52,10 @@
                 
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="letter.to.allophone.mappings" /></label><br />
+                    <label><fmt:message key="letter.sound.correspondences" /></label><br />
                     
                     <div id="letterToAllophoneMappingsContainer">
-                        <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
+                        <c:forEach var="letterToAllophoneMapping" items="${word.letterSoundCorrespondences}">
                             <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
                             <div class="chip">
                                 <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
@@ -116,10 +116,11 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter-to-allophone-mapping/create' />" target="_blank"><fmt:message key="add.letter.to.allophone.mapping" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter-to-allophone-mapping/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
+            <%--
             <div class="row">
                 <div class="input-field col s12">
                     <select id="spellingConsistency" name="spellingConsistency">
@@ -131,6 +132,7 @@
                     <label for="spellingConsistency"><fmt:message key="spelling.consistency" /></label>
                 </div>
             </div>
+            --%>
                 
             <div class="row">
                 <div class="input-field col s12">

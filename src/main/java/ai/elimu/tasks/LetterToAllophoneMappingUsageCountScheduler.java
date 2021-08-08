@@ -41,7 +41,7 @@ public class LetterToAllophoneMappingUsageCountScheduler {
         for (Word word : words) {
             logger.info("word.getText(): " + word.getText());
             
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
+            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterSoundCorrespondences()) {
                 if (!letterToAllophoneMappingFrequencyMap.containsKey(letterToAllophoneMapping.getId())) {
                     letterToAllophoneMappingFrequencyMap.put(letterToAllophoneMapping.getId(), word.getUsageCount());
                 } else {

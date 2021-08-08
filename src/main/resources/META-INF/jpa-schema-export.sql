@@ -565,9 +565,9 @@
 
     create table Word_LetterToAllophoneMapping (
        Word_id bigint not null,
-        letterToAllophoneMappings_id bigint not null,
-        letterToAllophoneMappings_ORDER integer not null,
-        primary key (Word_id, letterToAllophoneMappings_ORDER)
+        letterSoundCorrespondences_id bigint not null,
+        letterSoundCorrespondences_ORDER integer not null,
+        primary key (Word_id, letterSoundCorrespondences_ORDER)
     );
 
     create table WordContributionEvent (
@@ -945,8 +945,8 @@
        references Word;
 
     alter table Word_LetterToAllophoneMapping 
-       add constraint FKm7vce3xh4xlabwgjtt5x9urvm 
-       foreign key (letterToAllophoneMappings_id) 
+       add constraint FKa1jm2manj750pgwh6pc6xlmi6 
+       foreign key (letterSoundCorrespondences_id) 
        references LetterToAllophoneMapping;
 
     alter table Word_LetterToAllophoneMapping 

@@ -24,7 +24,7 @@ public class Word extends Content {
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<LetterToAllophoneMapping> letterToAllophoneMappings;
+    private List<LetterToAllophoneMapping> letterSoundCorrespondences;
     
     /**
      * As an example, the verb "reading" will be linked to the root verb "read".
@@ -52,12 +52,12 @@ public class Word extends Content {
         this.text = text;
     }
     
-    public List<LetterToAllophoneMapping> getLetterToAllophoneMappings() {
-        return letterToAllophoneMappings;
+    public List<LetterToAllophoneMapping> getLetterSoundCorrespondences() {
+        return letterSoundCorrespondences;
     }
 
-    public void setLetterToAllophoneMappings(List<LetterToAllophoneMapping> letterToAllophoneMappings) {
-        this.letterToAllophoneMappings = letterToAllophoneMappings;
+    public void setLetterToAllophoneMappings(List<LetterToAllophoneMapping> letterSoundCorrespondences) {
+        this.letterSoundCorrespondences = letterSoundCorrespondences;
     }
     
     public Word getRootWord() {

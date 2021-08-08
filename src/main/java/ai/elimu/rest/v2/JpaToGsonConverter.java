@@ -130,7 +130,7 @@ public class JpaToGsonConverter {
             // Word
             wordGson.setText(word.getText());
             List<LetterToAllophoneMappingGson> letterToAllophoneMappings = new ArrayList<>();
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
+            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterSoundCorrespondences()) {
                 LetterToAllophoneMappingGson letterToAllophoneMappingGson = getLetterToAllophoneMappingGson(letterToAllophoneMapping);
                 letterToAllophoneMappings.add(letterToAllophoneMappingGson);
             }

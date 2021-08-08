@@ -47,7 +47,7 @@ public class AllophoneUsageCountScheduler {
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
+            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterSoundCorrespondences()) {
                 for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
                     if (!allophoneFrequencyMap.containsKey(allophone.getId())) {
                         allophoneFrequencyMap.put(allophone.getId(), letterToAllophoneMapping.getUsageCount());
