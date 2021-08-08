@@ -1,10 +1,10 @@
 package ai.elimu.rest.v2.crowdsource;
 import ai.elimu.dao.*;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
-import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
+import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
@@ -49,19 +49,19 @@ public class WordContributionRestController {
     private ContributorDao contributorDao;
 
     @Autowired
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     /**
-     * Returns a list of {@link LetterToAllophoneMapping}s that will be used to construct a {@link Word}.
+     * Returns a list of {@link LetterSoundCorrespondence}s that will be used to construct a {@link Word}.
      */
     @RequestMapping(value = "/letter-sound-correspondences", method = RequestMethod.GET)
-    public String getLetterToAllophoneMappings(HttpServletRequest request, HttpServletResponse response) {
-        logger.info("getLetterToAllophoneMappings");
+    public String getLetterSoundCorrespondences(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("getLetterSoundCorrespondences");
 
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
-        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
-            LetterToAllophoneMappingGson letterSoundCorrespondenceGson =
-                    JpaToGsonConverter.getLetterToAllophoneMappingGson(letterSoundCorrespondence);
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
+            LetterSoundCorrespondenceGson letterSoundCorrespondenceGson =
+                    JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
             String json = new Gson().toJson(letterSoundCorrespondenceGson);
             letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
@@ -141,10 +141,10 @@ public class WordContributionRestController {
             Word word = new Word();
             word.setWordType(wordGson.getWordType());
             word.setText(wordGson.getText().toLowerCase());
-            List<LetterToAllophoneMappingGson> letterSoundCorrespondencesGsons = wordGson.getLetterToAllophoneMappings();
-            List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
-            for (LetterToAllophoneMappingGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
-                LetterToAllophoneMapping letterSoundCorrespondence =
+            List<LetterSoundCorrespondenceGson> letterSoundCorrespondencesGsons = wordGson.getLetterSoundCorrespondences();
+            List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
+            for (LetterSoundCorrespondenceGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
+                LetterSoundCorrespondence letterSoundCorrespondence =
                         letterSoundCorrespondenceDao.read(letterSoundCorrespondenceGson.getId());
                 letterSoundCorrespondences.add(letterSoundCorrespondence);
             }

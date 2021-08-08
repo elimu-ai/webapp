@@ -5,7 +5,7 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
@@ -23,7 +23,7 @@ import ai.elimu.model.v2.gson.content.AudioGson;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.LetterGson;
-import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
+import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
 import ai.elimu.model.v2.gson.content.NumberGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
@@ -86,11 +86,11 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static LetterToAllophoneMappingGson getLetterToAllophoneMappingGson(LetterToAllophoneMapping letterSoundCorrespondence) {
+    public static LetterSoundCorrespondenceGson getLetterSoundCorrespondenceGson(LetterSoundCorrespondence letterSoundCorrespondence) {
         if (letterSoundCorrespondence == null) {
             return null;
         } else {
-            LetterToAllophoneMappingGson letterSoundCorrespondenceGson = new LetterToAllophoneMappingGson();
+            LetterSoundCorrespondenceGson letterSoundCorrespondenceGson = new LetterSoundCorrespondenceGson();
             
             // BaseEntity
             letterSoundCorrespondenceGson.setId(letterSoundCorrespondence.getId());
@@ -129,12 +129,12 @@ public class JpaToGsonConverter {
             
             // Word
             wordGson.setText(word.getText());
-            List<LetterToAllophoneMappingGson> letterSoundCorrespondences = new ArrayList<>();
-            for (LetterToAllophoneMapping letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
-                LetterToAllophoneMappingGson letterSoundCorrespondenceGson = getLetterToAllophoneMappingGson(letterSoundCorrespondence);
+            List<LetterSoundCorrespondenceGson> letterSoundCorrespondences = new ArrayList<>();
+            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+                LetterSoundCorrespondenceGson letterSoundCorrespondenceGson = getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
                 letterSoundCorrespondences.add(letterSoundCorrespondenceGson);
             }
-            wordGson.setLetterToAllophoneMappings(letterSoundCorrespondences);
+            wordGson.setLetterSoundCorrespondences(letterSoundCorrespondences);
             wordGson.setWordType(word.getWordType());
             
             return wordGson;

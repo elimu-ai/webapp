@@ -4,20 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @Service
-public class LetterToAllophoneMappingUsageCountScheduler {
+public class LetterSoundCorrespondenceUsageCountScheduler {
     
     private Logger logger = LogManager.getLogger();
     
@@ -25,13 +25,13 @@ public class LetterToAllophoneMappingUsageCountScheduler {
     private WordDao wordDao;
 
     @Autowired
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     @Scheduled(cron="00 15 06 * * *") // At 06:15 every day
     public synchronized void execute() {
         logger.info("execute");
         
-        logger.info("Calculating usage count for LetterToAllophoneMappings");
+        logger.info("Calculating usage count for LetterSoundCorrespondences");
 
         // <id, usageCount>
         Map<Long, Integer> letterSoundCorrespondenceFrequencyMap = new HashMap<>();
@@ -41,7 +41,7 @@ public class LetterToAllophoneMappingUsageCountScheduler {
         for (Word word : words) {
             logger.info("word.getText(): " + word.getText());
             
-            for (LetterToAllophoneMapping letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
                 if (!letterSoundCorrespondenceFrequencyMap.containsKey(letterSoundCorrespondence.getId())) {
                     letterSoundCorrespondenceFrequencyMap.put(letterSoundCorrespondence.getId(), word.getUsageCount());
                 } else {
@@ -51,7 +51,7 @@ public class LetterToAllophoneMappingUsageCountScheduler {
         }
 
         // Update the values previously stored in the database
-        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondenceDao.readAll()) {
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAll()) {
             logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
             logger.info("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
             logger.info("letterSoundCorrespondence Allophones: /" + letterSoundCorrespondence.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining()) + "/");

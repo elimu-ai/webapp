@@ -1,7 +1,7 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -44,7 +44,7 @@ public class WordCsvExportController {
                 .withHeader(
                         "id",
                         "text",
-                        "letter_to_allophone_mappings",
+                        "letter_sound_correspondences",
                         "usage_count",
                         "word_type",
                         "spelling_consistency",
@@ -59,7 +59,7 @@ public class WordCsvExportController {
             
             JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
             int index = 0;
-            for (LetterToAllophoneMapping letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
                 JSONObject letterSoundCorrespondenceJsonObject = new JSONObject();
                 letterSoundCorrespondenceJsonObject.put("id", letterSoundCorrespondence.getId());
                 String[] lettersArray = new String[letterSoundCorrespondence.getLetters().size()];

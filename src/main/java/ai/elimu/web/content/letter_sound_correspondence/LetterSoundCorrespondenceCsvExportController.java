@@ -1,9 +1,8 @@
 package ai.elimu.web.content.letter_sound_correspondence;
 
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -20,15 +19,16 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @Controller
 @RequestMapping("/content/letter-sound-correspondence/list")
-public class LetterToAllophoneMappingCsvExportController {
+public class LetterSoundCorrespondenceCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     @RequestMapping(value="/letter-sound-correspondences.csv", method = RequestMethod.GET)
     public void handleRequest(
@@ -37,7 +37,7 @@ public class LetterToAllophoneMappingCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<LetterToAllophoneMapping> letterSoundCorrespondences = letterSoundCorrespondenceDao.readAllOrderedByUsage();
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundCorrespondenceDao.readAllOrderedByUsage();
         logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -52,7 +52,7 @@ public class LetterToAllophoneMappingCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondences) {
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
             logger.info("letterSoundCorrespondence.getId(): \"" + letterSoundCorrespondence.getId() + "\"");
             
             JSONArray letterIdsJsonArray = new JSONArray();

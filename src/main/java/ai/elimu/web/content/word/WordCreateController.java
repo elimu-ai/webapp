@@ -11,14 +11,13 @@ import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
@@ -48,6 +47,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @Controller
 @RequestMapping("/content/word/create")
@@ -65,7 +65,7 @@ public class WordCreateController {
     private AllophoneDao allophoneDao;
     
     @Autowired
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     @Autowired
     private ImageDao imageDao;
@@ -239,14 +239,14 @@ public class WordCreateController {
         
         String wordText = word.getText();
         
-        List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         
-        List<LetterToAllophoneMapping> allLetterToAllophoneMappingsOrderedByLettersLength = letterSoundCorrespondenceDao.readAllOrderedByLettersLength();
+        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundCorrespondenceDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
             boolean isMatch = false;
-            for (LetterToAllophoneMapping letterSoundCorrespondence : allLetterToAllophoneMappingsOrderedByLettersLength) {
+            for (LetterSoundCorrespondence letterSoundCorrespondence : allLetterSoundCorrespondencesOrderedByLettersLength) {
                 String letterSoundCorrespondenceLetters = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
                 logger.info("letterSoundCorrespondenceLetters: \"" + letterSoundCorrespondenceLetters + "\"");
 
