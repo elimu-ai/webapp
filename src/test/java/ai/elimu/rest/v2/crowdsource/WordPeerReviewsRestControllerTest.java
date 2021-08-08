@@ -23,12 +23,8 @@ public class WordPeerReviewsRestControllerTest {
 
         logger.info("jsonResponse: " + jsonResponse);
 
-        JSONArray wordPeerReviewsJSONArray = new JSONArray(jsonResponse);
-        logger.info("wordPeerReviewsJSONArray.length(): " + wordPeerReviewsJSONArray.length());
-        assertThat(wordPeerReviewsJSONArray.length() > 0, is(true));
-
-        JSONObject wordPeerReviewsJsonObject = wordPeerReviewsJSONArray.getJSONObject(0);
-        assertThat(wordPeerReviewsJsonObject.getLong("id"), not(nullValue()));
-        assertThat(wordPeerReviewsJsonObject.has("wordText"), is(true));
+        JSONObject errorResponseJSONObject = new JSONObject(jsonResponse);
+        assertThat(errorResponseJSONObject.get("result"), is("error"));
+        assertThat(errorResponseJSONObject.get("errorMessage"), is("Missing providerIdGoogle"));
     }
 }
