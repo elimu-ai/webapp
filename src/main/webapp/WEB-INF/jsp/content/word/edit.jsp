@@ -55,7 +55,7 @@
                     <label><fmt:message key="letter.sound.correspondences" /></label><br />
                     
                     <div id="letterToAllophoneMappingsContainer">
-                        <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
+                        <c:forEach var="letterToAllophoneMapping" items="${word.letterSoundCorrespondences}">
                             <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
                             <div class="chip">
                                 <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">

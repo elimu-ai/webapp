@@ -100,7 +100,7 @@ public class WordEditController {
         
         Word word = wordDao.read(id);
         
-        if (word.getLetterToAllophoneMappings().isEmpty()) {
+        if (word.getLetterSoundCorrespondences().isEmpty()) {
             autoSelectLetterToAllophoneMappings(word);
             // TODO: display information message to the Contributor that the Letter-to-Allophone mappings were auto-selected, and that they should be verified
         }

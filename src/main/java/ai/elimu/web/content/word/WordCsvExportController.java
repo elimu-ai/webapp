@@ -59,7 +59,7 @@ public class WordCsvExportController {
             
             JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
             int index = 0;
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
+            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterSoundCorrespondences()) {
                 JSONObject letterToAllophoneMappingJsonObject = new JSONObject();
                 letterToAllophoneMappingJsonObject.put("id", letterToAllophoneMapping.getId());
                 String[] lettersArray = new String[letterToAllophoneMapping.getLetters().size()];
