@@ -33,18 +33,18 @@ public class LetterToAllophoneMappingDaoJpa extends GenericDaoJpa<LetterToAlloph
     @Override
     public List<LetterToAllophoneMapping> readAllOrderedByUsage() throws DataAccessException {
         return em.createQuery(
-            "SELECT ltam " +
-            "FROM LetterToAllophoneMapping ltam " +
-            "ORDER BY ltam.usageCount DESC")
+            "SELECT lsc " +
+            "FROM LetterToAllophoneMapping lsc " +
+            "ORDER BY lsc.usageCount DESC")
             .getResultList();
     }
     
     @Override
     public List<LetterToAllophoneMapping> readAllOrderedByLettersLength() throws DataAccessException {
         return em.createQuery(
-            "SELECT ltam " +
-            "FROM LetterToAllophoneMapping ltam " +
-            "ORDER BY ltam.letters.size DESC, ltam.usageCount DESC")
+            "SELECT lsc " +
+            "FROM LetterToAllophoneMapping lsc " +
+            "ORDER BY lsc.letters.size DESC, lsc.usageCount DESC")
             .getResultList();
     }
 }
