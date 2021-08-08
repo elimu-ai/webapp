@@ -1,25 +1,25 @@
 package ai.elimu.logic.converters;
 
 import org.apache.commons.lang.StringUtils;
-import ai.elimu.dao.LetterToAllophoneMappingDao;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
-public class StringToLetterToAllophoneMappingConverter implements Converter<String, LetterToAllophoneMapping> {
+public class StringToLetterSoundCorrespondenceConverter implements Converter<String, LetterSoundCorrespondence> {
 
     @Autowired
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     /**
      * Convert LetterToAllophoneMapping id to LetterToAllophoneMapping entity
      */
-    public LetterToAllophoneMapping convert(String id) {
+    public LetterSoundCorrespondence convert(String id) {
         if (StringUtils.isBlank(id)) {
             return null;
         } else {
             Long letterSoundCorrespondenceId = Long.parseLong(id);
-            LetterToAllophoneMapping letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondenceId);
+            LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondenceId);
             return letterSoundCorrespondence;
         }
     }

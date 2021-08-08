@@ -17,7 +17,7 @@ public class WordContributionRestControllerTest {
     private Logger logger = LogManager.getLogger();
     
     @Test
-    public void testGetLetterToAllophoneMappings() {
+    public void testGetLetterSoundCorrespondences() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() +
                 "/crowdsource/word-contributions/letter-sound-correspondences");
 

@@ -6,27 +6,27 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
-import java.util.stream.Collectors;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/create")
-public class LetterToAllophoneMappingCreateController {
+@RequestMapping("/content/letter-sound-correspondence/edit")
+public class LetterSoundCorrespondenceEditController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     @Autowired
     private LetterDao letterDao;
@@ -34,11 +34,11 @@ public class LetterToAllophoneMappingCreateController {
     @Autowired
     private AllophoneDao allophoneDao;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        LetterToAllophoneMapping letterSoundCorrespondence = new LetterToAllophoneMapping();
+        LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(id);
         model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
         
         List<Letter> letters = letterDao.readAllOrdered();
@@ -47,20 +47,20 @@ public class LetterToAllophoneMappingCreateController {
         List<Allophone> allophones = allophoneDao.readAllOrdered();
         model.addAttribute("allophones", allophones);
 
-        return "content/letter-sound-correspondence/create";
+        return "content/letter-sound-correspondence/edit";
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            @Valid LetterToAllophoneMapping letterSoundCorrespondence,
+            @Valid LetterSoundCorrespondence letterSoundCorrespondence,
             BindingResult result,
             Model model
     ) {
     	logger.info("handleSubmit");
         
-        // Check if the LetterSoundCorrespondence already exists
-        LetterToAllophoneMapping existingLetterToAllophoneMapping = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getAllophones());
-        if (existingLetterToAllophoneMapping != null) {
+        // Check if the LetterToAllophoneMapping already exists
+        LetterSoundCorrespondence existingLetterToAllophoneMapping = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getAllophones());
+        if ((existingLetterToAllophoneMapping != null) && !existingLetterToAllophoneMapping.getId().equals(letterSoundCorrespondence.getId())) {
             result.rejectValue("letters", "NonUnique");
         }
         
@@ -73,9 +73,9 @@ public class LetterToAllophoneMappingCreateController {
             List<Allophone> allophones = allophoneDao.readAllOrdered();
             model.addAttribute("allophones", allophones);
             
-            return "content/letter-sound-correspondence/create";
+            return "content/letter-sound-correspondence/edit";
         } else {
-            letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
+            letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
             
             return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }

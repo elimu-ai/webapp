@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * Contains information about the various sounds a letter can represent.
  */
 @Entity
-public class LetterToAllophoneMapping extends BaseEntity {
+public class LetterSoundCorrespondence extends BaseEntity {
     
 //    @NotEmpty
     @OrderColumn

@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class AllophoneUsageCountScheduler {
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            for (LetterToAllophoneMapping letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
                 for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
                     if (!allophoneFrequencyMap.containsKey(allophone.getId())) {
                         allophoneFrequencyMap.put(allophone.getId(), letterSoundCorrespondence.getUsageCount());

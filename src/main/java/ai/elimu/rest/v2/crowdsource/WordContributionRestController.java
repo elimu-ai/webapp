@@ -1,6 +1,6 @@
 package ai.elimu.rest.v2.crowdsource;
 import ai.elimu.dao.*;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
@@ -49,17 +49,17 @@ public class WordContributionRestController {
     private ContributorDao contributorDao;
 
     @Autowired
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     /**
-     * Returns a list of {@link LetterToAllophoneMapping}s that will be used to construct a {@link Word}.
+     * Returns a list of {@link LetterSoundCorrespondence}s that will be used to construct a {@link Word}.
      */
     @RequestMapping(value = "/letter-sound-correspondences", method = RequestMethod.GET)
     public String getLetterToAllophoneMappings(HttpServletRequest request, HttpServletResponse response) {
         logger.info("getLetterToAllophoneMappings");
 
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
-        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
             LetterToAllophoneMappingGson letterSoundCorrespondenceGson =
                     JpaToGsonConverter.getLetterToAllophoneMappingGson(letterSoundCorrespondence);
             String json = new Gson().toJson(letterSoundCorrespondenceGson);
@@ -142,9 +142,9 @@ public class WordContributionRestController {
             word.setWordType(wordGson.getWordType());
             word.setText(wordGson.getText().toLowerCase());
             List<LetterToAllophoneMappingGson> letterSoundCorrespondencesGsons = wordGson.getLetterToAllophoneMappings();
-            List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
+            List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
             for (LetterToAllophoneMappingGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
-                LetterToAllophoneMapping letterSoundCorrespondence =
+                LetterSoundCorrespondence letterSoundCorrespondence =
                         letterSoundCorrespondenceDao.read(letterSoundCorrespondenceGson.getId());
                 letterSoundCorrespondences.add(letterSoundCorrespondence);
             }

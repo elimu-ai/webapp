@@ -2,12 +2,11 @@ package ai.elimu.util.csv;
 
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.ContentLicense;
@@ -21,7 +20,7 @@ import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
-import ai.elimu.web.content.letter_sound_correspondence.LetterToAllophoneMappingCsvExportController;
+import ai.elimu.web.content.letter_sound_correspondence.LetterSoundCorrespondenceCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
 import ai.elimu.web.content.word.WordCsvExportController;
@@ -43,6 +42,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 public class CsvContentExtractionHelper {
     
@@ -165,12 +165,12 @@ public class CsvContentExtractionHelper {
     }
     
     /**
-     * For information on how the CSV files were generated, see {@link LetterToAllophoneMappingCsvExportController#handleRequest}.
+     * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
      */
-    public static List<LetterToAllophoneMapping> getLetterToAllophoneMappingsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterSoundCorrespondenceDao) {
+    public static List<LetterSoundCorrespondence> getLetterToAllophoneMappingsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
         logger.info("getLetterToAllophoneMappingsFromCsvBackup");
         
-        List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -190,7 +190,7 @@ public class CsvContentExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                LetterToAllophoneMapping letterSoundCorrespondence = new LetterToAllophoneMapping();
+                LetterSoundCorrespondence letterSoundCorrespondence = new LetterSoundCorrespondence();
                 
                 JSONArray letterIdsJsonArray = new JSONArray(csvRecord.get("letter_ids"));
                 logger.info("letterIdsJsonArray: " + letterIdsJsonArray);
@@ -237,7 +237,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterSoundCorrespondenceDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();
@@ -269,7 +269,7 @@ public class CsvContentExtractionHelper {
                 
                 JSONArray letterSoundCorrespondencesJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
                 logger.info("letterSoundCorrespondencesJsonArray: " + letterSoundCorrespondencesJsonArray);
-                List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
+                List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
                 for (int i = 0; i < letterSoundCorrespondencesJsonArray.length(); i++) {
                     JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJsonArray.getJSONObject(i);
                     logger.info("letterSoundCorrespondenceJsonObject: " + letterSoundCorrespondenceJsonObject);
@@ -285,7 +285,7 @@ public class CsvContentExtractionHelper {
                         Allophone allophone = allophoneDao.readByValueIpa(allophonesJsonArray.getString(j));
                         allophones.add(allophone);
                     }
-                    LetterToAllophoneMapping letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, allophones);
+                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, allophones);
                     logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
                     letterSoundCorrespondences.add(letterSoundCorrespondence);
                 }

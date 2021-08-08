@@ -4,7 +4,6 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -15,7 +14,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
@@ -42,6 +41,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 public class DbContentImportHelper {
     
@@ -51,7 +51,7 @@ public class DbContentImportHelper {
     
     private LetterDao letterDao;
     
-    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     private WordDao wordDao;
     
@@ -128,10 +128,10 @@ public class DbContentImportHelper {
         
         // Extract and import letter-sound correspondences in src/main/resources/
         File letterToAllophioneMappingsCsvFile = new File(contentDirectory, "letter-sound-correspondences.csv");
-        List<LetterToAllophoneMapping> letterToAllophioneMappings = CsvContentExtractionHelper.getLetterToAllophoneMappingsFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, allophoneDao, letterSoundCorrespondenceDao);
-        logger.info("letterToAllophioneMappings.size(): " + letterToAllophioneMappings.size());
-        letterSoundCorrespondenceDao = (LetterToAllophoneMappingDao) webApplicationContext.getBean("letterSoundCorrespondenceDao");
-        for (LetterToAllophoneMapping letterSoundCorrespondence : letterToAllophioneMappings) {
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterToAllophoneMappingsFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, allophoneDao, letterSoundCorrespondenceDao);
+        logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
+        letterSoundCorrespondenceDao = (LetterSoundCorrespondenceDao) webApplicationContext.getBean("letterSoundCorrespondenceDao");
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
             letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
         }
         
