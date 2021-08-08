@@ -28,7 +28,7 @@ public class LetterToAllophoneMappingCsvExportController {
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
     
     @RequestMapping(value="/letter-to-allophone-mappings.csv", method = RequestMethod.GET)
     public void handleRequest(
@@ -37,8 +37,8 @@ public class LetterToAllophoneMappingCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<LetterToAllophoneMapping> letterToAllophoneMappings = letterToAllophoneMappingDao.readAllOrderedByUsage();
-        logger.info("letterToAllophoneMappings.size(): " + letterToAllophoneMappings.size());
+        List<LetterToAllophoneMapping> letterSoundCorrespondences = letterSoundCorrespondenceDao.readAllOrderedByUsage();
+        logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
@@ -52,44 +52,44 @@ public class LetterToAllophoneMappingCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappings) {
-            logger.info("letterToAllophoneMapping.getId(): \"" + letterToAllophoneMapping.getId() + "\"");
+        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondences) {
+            logger.info("letterSoundCorrespondence.getId(): \"" + letterSoundCorrespondence.getId() + "\"");
             
             JSONArray letterIdsJsonArray = new JSONArray();
             int index = 0;
-            for (Letter letter : letterToAllophoneMapping.getLetters()) {
+            for (Letter letter : letterSoundCorrespondence.getLetters()) {
                 letterIdsJsonArray.put(index, letter.getId());
                 index++;
             }
             
             JSONArray letterTextsJsonArray = new JSONArray();
             index = 0;
-            for (Letter letter : letterToAllophoneMapping.getLetters()) {
+            for (Letter letter : letterSoundCorrespondence.getLetters()) {
                 letterTextsJsonArray.put(index, letter.getText());
                 index++;
             }
             
             JSONArray allophoneIdsJsonArray = new JSONArray();
             index = 0;
-            for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
+            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
                 allophoneIdsJsonArray.put(index, allophone.getId());
                 index++;
             }
             
             JSONArray allophoneValuesIpaJsonArray = new JSONArray();
             index = 0;
-            for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
+            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
                 allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
                 index++;
             }
             
             csvPrinter.printRecord(
-                    letterToAllophoneMapping.getId(),
+                    letterSoundCorrespondence.getId(),
                     letterIdsJsonArray,
                     letterTextsJsonArray,
                     allophoneIdsJsonArray,
                     allophoneValuesIpaJsonArray,
-                    letterToAllophoneMapping.getUsageCount()
+                    letterSoundCorrespondence.getUsageCount()
             );
             
             csvPrinter.flush();

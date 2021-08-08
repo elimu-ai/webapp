@@ -26,7 +26,7 @@ public class LetterToAllophoneMappingEditController {
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
     
     @Autowired
     private LetterDao letterDao;
@@ -38,8 +38,8 @@ public class LetterToAllophoneMappingEditController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(id);
-        model.addAttribute("letterToAllophoneMapping", letterToAllophoneMapping);
+        LetterToAllophoneMapping letterSoundCorrespondence = letterSoundCorrespondenceDao.read(id);
+        model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
         
         List<Letter> letters = letterDao.readAllOrdered();
         model.addAttribute("letters", letters);
@@ -52,20 +52,20 @@ public class LetterToAllophoneMappingEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
-            @Valid LetterToAllophoneMapping letterToAllophoneMapping,
+            @Valid LetterToAllophoneMapping letterSoundCorrespondence,
             BindingResult result,
             Model model
     ) {
     	logger.info("handleSubmit");
         
         // Check if the LetterToAllophoneMapping already exists
-        LetterToAllophoneMapping existingLetterToAllophoneMapping = letterToAllophoneMappingDao.read(letterToAllophoneMapping.getLetters(), letterToAllophoneMapping.getAllophones());
-        if ((existingLetterToAllophoneMapping != null) && !existingLetterToAllophoneMapping.getId().equals(letterToAllophoneMapping.getId())) {
+        LetterToAllophoneMapping existingLetterToAllophoneMapping = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getAllophones());
+        if ((existingLetterToAllophoneMapping != null) && !existingLetterToAllophoneMapping.getId().equals(letterSoundCorrespondence.getId())) {
             result.rejectValue("letters", "NonUnique");
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("letterToAllophoneMapping", letterToAllophoneMapping);
+            model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
             
             List<Letter> letters = letterDao.readAllOrdered();
             model.addAttribute("letters", letters);
@@ -75,9 +75,9 @@ public class LetterToAllophoneMappingEditController {
             
             return "content/letter-to-allophone-mapping/edit";
         } else {
-            letterToAllophoneMappingDao.update(letterToAllophoneMapping);
+            letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
             
-            return "redirect:/content/letter-to-allophone-mapping/list#" + letterToAllophoneMapping.getId();
+            return "redirect:/content/letter-to-allophone-mapping/list#" + letterSoundCorrespondence.getId();
         }
     }
 }

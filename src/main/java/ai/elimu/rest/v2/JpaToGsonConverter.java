@@ -86,31 +86,31 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static LetterToAllophoneMappingGson getLetterToAllophoneMappingGson(LetterToAllophoneMapping letterToAllophoneMapping) {
-        if (letterToAllophoneMapping == null) {
+    public static LetterToAllophoneMappingGson getLetterToAllophoneMappingGson(LetterToAllophoneMapping letterSoundCorrespondence) {
+        if (letterSoundCorrespondence == null) {
             return null;
         } else {
-            LetterToAllophoneMappingGson letterToAllophoneMappingGson = new LetterToAllophoneMappingGson();
+            LetterToAllophoneMappingGson letterSoundCorrespondenceGson = new LetterToAllophoneMappingGson();
             
             // BaseEntity
-            letterToAllophoneMappingGson.setId(letterToAllophoneMapping.getId());
+            letterSoundCorrespondenceGson.setId(letterSoundCorrespondence.getId());
             
             // LetterToAllophoneMapping
             List<LetterGson> letters = new ArrayList<>();
-            for (Letter letter : letterToAllophoneMapping.getLetters()) {
+            for (Letter letter : letterSoundCorrespondence.getLetters()) {
                 LetterGson letterGson = getLetterGson(letter);
                 letters.add(letterGson);
             }
-            letterToAllophoneMappingGson.setLetters(letters);
+            letterSoundCorrespondenceGson.setLetters(letters);
             List<AllophoneGson> allophones = new ArrayList<>();
-            for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
+            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
                 AllophoneGson allophoneGson = getAllophoneGson(allophone);
                 allophones.add(allophoneGson);
             }
-            letterToAllophoneMappingGson.setAllophones(allophones);
-            letterToAllophoneMappingGson.setUsageCount(letterToAllophoneMapping.getUsageCount());
+            letterSoundCorrespondenceGson.setAllophones(allophones);
+            letterSoundCorrespondenceGson.setUsageCount(letterSoundCorrespondence.getUsageCount());
             
-            return letterToAllophoneMappingGson;
+            return letterSoundCorrespondenceGson;
         }
     }
     
@@ -129,12 +129,12 @@ public class JpaToGsonConverter {
             
             // Word
             wordGson.setText(word.getText());
-            List<LetterToAllophoneMappingGson> letterToAllophoneMappings = new ArrayList<>();
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterSoundCorrespondences()) {
-                LetterToAllophoneMappingGson letterToAllophoneMappingGson = getLetterToAllophoneMappingGson(letterToAllophoneMapping);
-                letterToAllophoneMappings.add(letterToAllophoneMappingGson);
+            List<LetterToAllophoneMappingGson> letterSoundCorrespondences = new ArrayList<>();
+            for (LetterToAllophoneMapping letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+                LetterToAllophoneMappingGson letterSoundCorrespondenceGson = getLetterToAllophoneMappingGson(letterSoundCorrespondence);
+                letterSoundCorrespondences.add(letterSoundCorrespondenceGson);
             }
-            wordGson.setLetterToAllophoneMappings(letterToAllophoneMappings);
+            wordGson.setLetterToAllophoneMappings(letterSoundCorrespondences);
             wordGson.setWordType(word.getWordType());
             
             return wordGson;

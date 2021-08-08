@@ -49,7 +49,7 @@ public class WordContributionRestController {
     private ContributorDao contributorDao;
 
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
     
     /**
      * Returns a list of {@link LetterToAllophoneMapping}s that will be used to construct a {@link Word}.
@@ -58,15 +58,15 @@ public class WordContributionRestController {
     public String getLetterToAllophoneMappings(HttpServletRequest request, HttpServletResponse response) {
         logger.info("getLetterToAllophoneMappings");
 
-        JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAllOrderedByUsage()) {
-            LetterToAllophoneMappingGson letterToAllophoneMappingGson =
-                    JpaToGsonConverter.getLetterToAllophoneMappingGson(letterToAllophoneMapping);
-            String json = new Gson().toJson(letterToAllophoneMappingGson);
-            letterToAllophoneMappingsJsonArray.put(new JSONObject(json));
+        JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
+        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
+            LetterToAllophoneMappingGson letterSoundCorrespondenceGson =
+                    JpaToGsonConverter.getLetterToAllophoneMappingGson(letterSoundCorrespondence);
+            String json = new Gson().toJson(letterSoundCorrespondenceGson);
+            letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
 
-        String jsonResponse = letterToAllophoneMappingsJsonArray.toString();
+        String jsonResponse = letterSoundCorrespondencesJsonArray.toString();
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }
@@ -141,14 +141,14 @@ public class WordContributionRestController {
             Word word = new Word();
             word.setWordType(wordGson.getWordType());
             word.setText(wordGson.getText().toLowerCase());
-            List<LetterToAllophoneMappingGson> letterToAllophoneMappingsGsons = wordGson.getLetterToAllophoneMappings();
-            List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
-            for (LetterToAllophoneMappingGson letterToAllophoneMappingGson : letterToAllophoneMappingsGsons) {
-                LetterToAllophoneMapping letterToAllophoneMapping =
-                        letterToAllophoneMappingDao.read(letterToAllophoneMappingGson.getId());
-                letterToAllophoneMappings.add(letterToAllophoneMapping);
+            List<LetterToAllophoneMappingGson> letterSoundCorrespondencesGsons = wordGson.getLetterToAllophoneMappings();
+            List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
+            for (LetterToAllophoneMappingGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
+                LetterToAllophoneMapping letterSoundCorrespondence =
+                        letterSoundCorrespondenceDao.read(letterSoundCorrespondenceGson.getId());
+                letterSoundCorrespondences.add(letterSoundCorrespondence);
             }
-            word.setLetterToAllophoneMappings(letterToAllophoneMappings);
+            word.setLetterToAllophoneMappings(letterSoundCorrespondences);
             wordDao.create(word);
 
             WordContributionEvent wordContributionEvent = new WordContributionEvent();

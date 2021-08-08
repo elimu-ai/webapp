@@ -57,23 +57,23 @@ public class WordCsvExportController {
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
             
-            JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
+            JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
             int index = 0;
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterSoundCorrespondences()) {
-                JSONObject letterToAllophoneMappingJsonObject = new JSONObject();
-                letterToAllophoneMappingJsonObject.put("id", letterToAllophoneMapping.getId());
-                String[] lettersArray = new String[letterToAllophoneMapping.getLetters().size()];
+            for (LetterToAllophoneMapping letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+                JSONObject letterSoundCorrespondenceJsonObject = new JSONObject();
+                letterSoundCorrespondenceJsonObject.put("id", letterSoundCorrespondence.getId());
+                String[] lettersArray = new String[letterSoundCorrespondence.getLetters().size()];
                 for (int i = 0; i < lettersArray.length; i++) {
-                    lettersArray[i] = letterToAllophoneMapping.getLetters().get(i).getText();
+                    lettersArray[i] = letterSoundCorrespondence.getLetters().get(i).getText();
                 }
-                letterToAllophoneMappingJsonObject.put("letters", lettersArray);
-                String[] allophonesArray = new String[letterToAllophoneMapping.getAllophones().size()];
+                letterSoundCorrespondenceJsonObject.put("letters", lettersArray);
+                String[] allophonesArray = new String[letterSoundCorrespondence.getAllophones().size()];
                 for (int i = 0; i < allophonesArray.length; i++) {
-                    allophonesArray[i] = letterToAllophoneMapping.getAllophones().get(i).getValueIpa();
+                    allophonesArray[i] = letterSoundCorrespondence.getAllophones().get(i).getValueIpa();
                 }
-                letterToAllophoneMappingJsonObject.put("allophones", allophonesArray);
-                letterToAllophoneMappingJsonObject.put("usageCount", letterToAllophoneMapping.getUsageCount());
-                letterToAllophoneMappingsJsonArray.put(index, letterToAllophoneMappingJsonObject);
+                letterSoundCorrespondenceJsonObject.put("allophones", allophonesArray);
+                letterSoundCorrespondenceJsonObject.put("usageCount", letterSoundCorrespondence.getUsageCount());
+                letterSoundCorrespondencesJsonArray.put(index, letterSoundCorrespondenceJsonObject);
                 index++;
             }
             
@@ -87,7 +87,7 @@ public class WordCsvExportController {
             csvPrinter.printRecord(
                     word.getId(),
                     word.getText(),
-                    letterToAllophoneMappingsJsonArray,
+                    letterSoundCorrespondencesJsonArray,
                     word.getUsageCount(),
                     word.getWordType(),
                     word.getSpellingConsistency(),

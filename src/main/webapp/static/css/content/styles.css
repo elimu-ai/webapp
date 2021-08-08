@@ -58,7 +58,7 @@ nav {
 #wordEditPage input#text {
     font-size: 2em;
 }
-#letterToAllophoneMappingsContainer .chip {
+#letterSoundCorrespondencesContainer .chip {
     text-align: center;
     font-size: 2rem;
     padding: 1rem;

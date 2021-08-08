@@ -54,19 +54,19 @@
                 <div class="col s12">
                     <label><fmt:message key="letter.sound.correspondences" /></label><br />
                     
-                    <div id="letterToAllophoneMappingsContainer">
-                        <c:forEach var="letterToAllophoneMapping" items="${word.letterSoundCorrespondences}">
-                            <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
+                    <div id="letterSoundCorrespondencesContainer">
+                        <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
+                            <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
                             <div class="chip">
-                                <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
+                                <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-to-allophone-mapping-id="${letterSoundCorrespondence.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
-                                <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />">
-                                    "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
+                                <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterSoundCorrespondence.id}' />">
+                                    "<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
                                         ${letter.text}
                                     </c:forEach>"<br />
                                     ↓<br />
-                                    /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
+                                    /<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
                                         ${allophone.valueIpa}
                                     </c:forEach>/
                                 </a>
@@ -74,42 +74,42 @@
                         </c:forEach>
                         <script>
                             $(function() {
-                                $('.letterToAllophoneMappingDeleteLink').on("click", function() {
-                                    console.log('.letterToAllophoneMappingDeleteLink on click');
+                                $('.letterSoundCorrespondenceDeleteLink').on("click", function() {
+                                    console.log('.letterSoundCorrespondenceDeleteLink on click');
                                     
-                                    var letterToAllophoneMappingId = $(this).attr("data-letter-to-allophone-mapping-id");
-                                    console.log('letterToAllophoneMappingId: ' + letterToAllophoneMappingId);
+                                    var letterSoundCorrespondenceId = $(this).attr("data-letter-to-allophone-mapping-id");
+                                    console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
                                     
                                     $(this).parent().remove();
                                     
-                                    var $hiddenInput = $('input[name="letterToAllophoneMappings"][value="' + letterToAllophoneMappingId + '"]');
+                                    var $hiddenInput = $('input[name="letterSoundCorrespondences"][value="' + letterSoundCorrespondenceId + '"]');
                                     $hiddenInput.remove();
                                 });
                             });
                         </script>
                     </div>
 
-                    <select id="letterToAllophoneMappings" class="browser-default" style="margin: 0.5em 0;">
+                    <select id="letterSoundCorrespondences" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="letterToAllophoneMapping" items="${letterToAllophoneMappings}">
-                            <option value="${letterToAllophoneMapping.id}" data-letters="<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>/</option>
+                        <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
+                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">${allophone.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">${allophone.valueIpa}</c:forEach>/</option>
                         </c:forEach>
                     </select>
                     <script>
                         $(function() {
-                            $('#letterToAllophoneMappings').on("change", function() {
-                                console.log('#letterToAllophoneMappings on change');
+                            $('#letterSoundCorrespondences').on("change", function() {
+                                console.log('#letterSoundCorrespondences on change');
                                 
-                                var letterToAllophoneMappingId = $(this).val();
-                                console.log('letterToAllophoneMappingId: ' + letterToAllophoneMappingId);
-                                var selectedOption = $(this).find('option[value="' + letterToAllophoneMappingId + '"]');
-                                var letterToAllophoneMappingLetters = selectedOption.attr('data-letters');
-                                console.log('letterToAllophoneMappingLetters "' + letterToAllophoneMappingLetters + '"');
-                                var letterToAllophoneMappingAllophones = selectedOption.attr('data-allophones');
-                                console.log('letterToAllophoneMappingAllophones "' + letterToAllophoneMappingAllophones + '"');
-                                if (letterToAllophoneMappingId != "") {
-                                    $('#letterToAllophoneMappingsContainer').append('<input name="letterToAllophoneMappings" type="hidden" value="' + letterToAllophoneMappingId + '" />');
-                                    $('#letterToAllophoneMappingsContainer').append('<div class="chip">"' + letterToAllophoneMappingLetters + '"<br />↓<br />/' + letterToAllophoneMappingAllophones + '/</div>');
+                                var letterSoundCorrespondenceId = $(this).val();
+                                console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
+                                var selectedOption = $(this).find('option[value="' + letterSoundCorrespondenceId + '"]');
+                                var letterSoundCorrespondenceLetters = selectedOption.attr('data-letters');
+                                console.log('letterSoundCorrespondenceLetters "' + letterSoundCorrespondenceLetters + '"');
+                                var letterSoundCorrespondenceAllophones = selectedOption.attr('data-allophones');
+                                console.log('letterSoundCorrespondenceAllophones "' + letterSoundCorrespondenceAllophones + '"');
+                                if (letterSoundCorrespondenceId != "") {
+                                    $('#letterSoundCorrespondencesContainer').append('<input name="letterSoundCorrespondences" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
+                                    $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceAllophones + '/</div>');
                                     $(this).val("");
                                 }
                             });

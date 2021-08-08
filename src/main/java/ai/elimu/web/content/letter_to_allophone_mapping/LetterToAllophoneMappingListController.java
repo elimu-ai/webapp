@@ -18,19 +18,19 @@ public class LetterToAllophoneMappingListController {
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<LetterToAllophoneMapping> letterToAllophoneMappings = letterToAllophoneMappingDao.readAllOrderedByUsage();
-        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappings);
+        List<LetterToAllophoneMapping> letterSoundCorrespondences = letterSoundCorrespondenceDao.readAllOrderedByUsage();
+        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondences);
         
         int maxUsageCount = 0;
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappings) {
-            if (letterToAllophoneMapping.getUsageCount() > maxUsageCount) {
-                maxUsageCount = letterToAllophoneMapping.getUsageCount();
+        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondences) {
+            if (letterSoundCorrespondence.getUsageCount() > maxUsageCount) {
+                maxUsageCount = letterSoundCorrespondence.getUsageCount();
             }
         }
         model.addAttribute("maxUsageCount", maxUsageCount);

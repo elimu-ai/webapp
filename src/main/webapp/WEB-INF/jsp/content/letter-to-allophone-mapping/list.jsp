@@ -1,8 +1,8 @@
 <content:title>
-    <fmt:message key="letter.sound.correspondences" /> (${fn:length(letterToAllophoneMappings)})
+    <fmt:message key="letter.sound.correspondences" /> (${fn:length(letterSoundCorrespondences)})
 </content:title>
 
-<content:section cssId="letterToAllophoneMappingListPage">
+<content:section cssId="letterSoundCorrespondenceListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/letter-to-allophone-mapping/list/letter-to-allophone-mappings.csv' />">
@@ -21,7 +21,7 @@
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
     
-        <c:if test="${not empty letterToAllophoneMappings}">
+        <c:if test="${not empty letterSoundCorrespondences}">
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="usage.count" /></th>
@@ -31,24 +31,24 @@
                     <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
-                    <c:forEach var="letterToAllophoneMapping" items="${letterToAllophoneMappings}">
-                        <tr class="letterToAllophoneMapping">
+                    <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
+                        <tr class="letterSoundCorrespondence">
                             <td>
-                                <a name="${letterToAllophoneMapping.id}"></a>
+                                <a name="${letterSoundCorrespondence.id}"></a>
                                 
-                                ${letterToAllophoneMapping.usageCount}
+                                ${letterSoundCorrespondence.usageCount}
                             </td>
                             <td style="font-size: 2em;">
-                                " <c:forEach var="letter" items="${letterToAllophoneMapping.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
+                                " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
                             </td>
                             <td style="font-size: 2em;">
                                 ➞
                             </td>
                             <td style="font-size: 2em;">
-                                / <c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a> </c:forEach> /
+                                / <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a> </c:forEach> /
                             </td>
                             <td>
-                                <a class="editLink" href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />"><span class="material-icons">edit</span></a>
+                                <a class="editLink" href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterSoundCorrespondence.id}' />"><span class="material-icons">edit</span></a>
                             </td>
                         </tr>
                     </c:forEach>

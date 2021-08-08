@@ -167,10 +167,10 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterToAllophoneMappingCsvExportController#handleRequest}.
      */
-    public static List<LetterToAllophoneMapping> getLetterToAllophoneMappingsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterToAllophoneMappingDao) {
+    public static List<LetterToAllophoneMapping> getLetterToAllophoneMappingsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterSoundCorrespondenceDao) {
         logger.info("getLetterToAllophoneMappingsFromCsvBackup");
         
-        List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
+        List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -190,7 +190,7 @@ public class CsvContentExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                LetterToAllophoneMapping letterToAllophoneMapping = new LetterToAllophoneMapping();
+                LetterToAllophoneMapping letterSoundCorrespondence = new LetterToAllophoneMapping();
                 
                 JSONArray letterIdsJsonArray = new JSONArray(csvRecord.get("letter_ids"));
                 logger.info("letterIdsJsonArray: " + letterIdsJsonArray);
@@ -205,7 +205,7 @@ public class CsvContentExtractionHelper {
                     logger.info("letter.getId(): " + letter.getId());
                     letters.add(letter);
                 }
-                letterToAllophoneMapping.setLetters(letters);
+                letterSoundCorrespondence.setLetters(letters);
                 
                 JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
                 logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
@@ -220,24 +220,24 @@ public class CsvContentExtractionHelper {
                     logger.info("allophone.getId(): " + allophone.getId());
                     allophones.add(allophone);
                 }
-                letterToAllophoneMapping.setAllophones(allophones);
+                letterSoundCorrespondence.setAllophones(allophones);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
-                letterToAllophoneMapping.setUsageCount(usageCount);
+                letterSoundCorrespondence.setUsageCount(usageCount);
                 
-                letterToAllophoneMappings.add(letterToAllophoneMapping);
+                letterSoundCorrespondences.add(letterSoundCorrespondence);
             }
         } catch (IOException ex) {
             logger.error(ex);
         }
         
-        return letterToAllophoneMappings;
+        return letterSoundCorrespondences;
     }
     
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterToAllophoneMappingDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterToAllophoneMappingDao letterSoundCorrespondenceDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();
@@ -267,29 +267,29 @@ public class CsvContentExtractionHelper {
                 String text = csvRecord.get("text");
                 word.setText(text);
                 
-                JSONArray letterToAllophoneMappingsJsonArray = new JSONArray(csvRecord.get("letter_to_allophone_mappings"));
-                logger.info("letterToAllophoneMappingsJsonArray: " + letterToAllophoneMappingsJsonArray);
-                List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
-                for (int i = 0; i < letterToAllophoneMappingsJsonArray.length(); i++) {
-                    JSONObject letterToAllophoneMappingJsonObject = letterToAllophoneMappingsJsonArray.getJSONObject(i);
-                    logger.info("letterToAllophoneMappingJsonObject: " + letterToAllophoneMappingJsonObject);
+                JSONArray letterSoundCorrespondencesJsonArray = new JSONArray(csvRecord.get("letter_to_allophone_mappings"));
+                logger.info("letterSoundCorrespondencesJsonArray: " + letterSoundCorrespondencesJsonArray);
+                List<LetterToAllophoneMapping> letterSoundCorrespondences = new ArrayList<>();
+                for (int i = 0; i < letterSoundCorrespondencesJsonArray.length(); i++) {
+                    JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJsonArray.getJSONObject(i);
+                    logger.info("letterSoundCorrespondenceJsonObject: " + letterSoundCorrespondenceJsonObject);
                     List<Letter> letters = new ArrayList<>();
-                    JSONArray lettersJsonArray = letterToAllophoneMappingJsonObject.getJSONArray("letters");
+                    JSONArray lettersJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("letters");
                     for (int j = 0; j < lettersJsonArray.length(); j++) {
                         Letter letter = letterDao.readByText(lettersJsonArray.getString(j));
                         letters.add(letter);
                     }
                     List<Allophone> allophones = new ArrayList<>();
-                    JSONArray allophonesJsonArray = letterToAllophoneMappingJsonObject.getJSONArray("allophones");
+                    JSONArray allophonesJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("allophones");
                     for (int j = 0; j < allophonesJsonArray.length(); j++) {
                         Allophone allophone = allophoneDao.readByValueIpa(allophonesJsonArray.getString(j));
                         allophones.add(allophone);
                     }
-                    LetterToAllophoneMapping letterToAllophoneMapping = letterToAllophoneMappingDao.read(letters, allophones);
-                    logger.info("letterToAllophoneMapping.getId(): " + letterToAllophoneMapping.getId());
-                    letterToAllophoneMappings.add(letterToAllophoneMapping);
+                    LetterToAllophoneMapping letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, allophones);
+                    logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
+                    letterSoundCorrespondences.add(letterSoundCorrespondence);
                 }
-                word.setLetterToAllophoneMappings(letterToAllophoneMappings);
+                word.setLetterToAllophoneMappings(letterSoundCorrespondences);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 word.setUsageCount(usageCount);

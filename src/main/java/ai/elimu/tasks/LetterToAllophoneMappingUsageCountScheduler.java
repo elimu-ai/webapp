@@ -25,7 +25,7 @@ public class LetterToAllophoneMappingUsageCountScheduler {
     private WordDao wordDao;
 
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
     
     @Scheduled(cron="00 15 06 * * *") // At 06:15 every day
     public synchronized void execute() {
@@ -34,38 +34,38 @@ public class LetterToAllophoneMappingUsageCountScheduler {
         logger.info("Calculating usage count for LetterToAllophoneMappings");
 
         // <id, usageCount>
-        Map<Long, Integer> letterToAllophoneMappingFrequencyMap = new HashMap<>();
+        Map<Long, Integer> letterSoundCorrespondenceFrequencyMap = new HashMap<>();
 
         List<Word> words = wordDao.readAll();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): " + word.getText());
             
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterSoundCorrespondences()) {
-                if (!letterToAllophoneMappingFrequencyMap.containsKey(letterToAllophoneMapping.getId())) {
-                    letterToAllophoneMappingFrequencyMap.put(letterToAllophoneMapping.getId(), word.getUsageCount());
+            for (LetterToAllophoneMapping letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+                if (!letterSoundCorrespondenceFrequencyMap.containsKey(letterSoundCorrespondence.getId())) {
+                    letterSoundCorrespondenceFrequencyMap.put(letterSoundCorrespondence.getId(), word.getUsageCount());
                 } else {
-                    letterToAllophoneMappingFrequencyMap.put(letterToAllophoneMapping.getId(), letterToAllophoneMappingFrequencyMap.get(letterToAllophoneMapping.getId()) + word.getUsageCount());
+                    letterSoundCorrespondenceFrequencyMap.put(letterSoundCorrespondence.getId(), letterSoundCorrespondenceFrequencyMap.get(letterSoundCorrespondence.getId()) + word.getUsageCount());
                 }
             }
         }
 
         // Update the values previously stored in the database
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappingDao.readAll()) {
-            logger.info("letterToAllophoneMapping.getId(): " + letterToAllophoneMapping.getId());
-            logger.info("letterToAllophoneMapping Letters: \"" + letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
-            logger.info("letterToAllophoneMapping Allophones: /" + letterToAllophoneMapping.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining()) + "/");
-            logger.info("letterToAllophoneMapping.getUsageCount() (before update): " + letterToAllophoneMapping.getUsageCount());
+        for (LetterToAllophoneMapping letterSoundCorrespondence : letterSoundCorrespondenceDao.readAll()) {
+            logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
+            logger.info("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
+            logger.info("letterSoundCorrespondence Allophones: /" + letterSoundCorrespondence.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining()) + "/");
+            logger.info("letterSoundCorrespondence.getUsageCount() (before update): " + letterSoundCorrespondence.getUsageCount());
             
             int newUsageCount = 0;
-            if (letterToAllophoneMappingFrequencyMap.containsKey(letterToAllophoneMapping.getId())) {
-                newUsageCount = letterToAllophoneMappingFrequencyMap.get(letterToAllophoneMapping.getId());
+            if (letterSoundCorrespondenceFrequencyMap.containsKey(letterSoundCorrespondence.getId())) {
+                newUsageCount = letterSoundCorrespondenceFrequencyMap.get(letterSoundCorrespondence.getId());
             }
             logger.info("newUsageCount: " + newUsageCount);
             
-            letterToAllophoneMapping.setUsageCount(newUsageCount);
-            letterToAllophoneMappingDao.update(letterToAllophoneMapping);
-            logger.info("letterToAllophoneMapping.getUsageCount() (after update): " + letterToAllophoneMapping.getUsageCount());
+            letterSoundCorrespondence.setUsageCount(newUsageCount);
+            letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
+            logger.info("letterSoundCorrespondence.getUsageCount() (after update): " + letterSoundCorrespondence.getUsageCount());
         }
         
         logger.info("execute complete");

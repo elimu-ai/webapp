@@ -2,17 +2,17 @@
     <fmt:message key="add.letter.sound.correspondence" />
 </content:title>
 
-<content:section cssId="letterToAllophoneMappingCreatePage">
+<content:section cssId="letterSoundCorrespondenceCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="letterToAllophoneMapping">
-            <tag:formErrors modelAttribute="letterToAllophoneMapping" />
+        <form:form modelAttribute="letterSoundCorrespondence">
+            <tag:formErrors modelAttribute="letterSoundCorrespondence" />
             
             <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="letters" /></label><br />
                     "<span id="lettersContainer">
-                        <c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
+                        <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
                             <input name="letters" type="hidden" value="${letter.id}" />
                             <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}">
                                 ${letter.text} 
@@ -70,7 +70,7 @@
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="allophonesContainer">
-                        <c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
+                        <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />
                             <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
                                 ${allophone.valueIpa} 
