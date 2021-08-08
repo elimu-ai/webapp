@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.model.content.LetterSoundCorrespondence;
-import ai.elimu.model.v2.gson.content.LetterToAllophoneMappingGson;
+import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +30,7 @@ public class LetterSoundCorrespondencesRestController {
         
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
-            LetterToAllophoneMappingGson letterSoundCorrespondenceGson = JpaToGsonConverter.getLetterToAllophoneMappingGson(letterSoundCorrespondence);
+            LetterSoundCorrespondenceGson letterSoundCorrespondenceGson = JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
             String json = new Gson().toJson(letterSoundCorrespondenceGson);
             letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
