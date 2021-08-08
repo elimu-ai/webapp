@@ -42,7 +42,7 @@ public class AllophoneUsageCountScheduler {
         // Integer = Usage count
         Map<Long, Integer> allophoneFrequencyMap = new HashMap<>();
 
-        // Summarize the usage count of each Word's Allophone based on the LetterToAllophoneMapping's 
+        // Summarize the usage count of each Word's Allophone based on the LetterSoundCorrespondence's 
         // usage count (see LetterToAllophoneMappingUsageCountScheduler).
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());

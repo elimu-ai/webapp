@@ -58,7 +58,7 @@ public class LetterToAllophoneMappingCreateController {
     ) {
     	logger.info("handleSubmit");
         
-        // Check if the LetterToAllophoneMapping already exists
+        // Check if the LetterSoundCorrespondence already exists
         LetterToAllophoneMapping existingLetterToAllophoneMapping = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getAllophones());
         if (existingLetterToAllophoneMapping != null) {
             result.rejectValue("letters", "NonUnique");

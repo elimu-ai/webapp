@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Word extends Content {
 
-    @Deprecated // TODO: replace with list of LetterToAllophoneMappings
+    @Deprecated // TODO: replace with list of LetterSoundCorrespondences
     @NotNull
     private String text;
     
