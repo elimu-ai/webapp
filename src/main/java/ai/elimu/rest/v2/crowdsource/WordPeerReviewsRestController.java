@@ -88,12 +88,13 @@ public class WordPeerReviewsRestController {
             return jsonResponse;
         }
 
+        // Get the most recent WordContributionEvent for each Word, including those made by the current Contributor
         List<WordContributionEvent> mostRecentWordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
         logger.info("mostRecentWordContributionEvents.size(): " + mostRecentWordContributionEvents.size());
 
         // For each WordContributionEvent, check if the Contributor has already performed a peer-review.
         // If not, add it to the list of pending peer reviews.
-        List<WordContributionEvent> wordContributionEventsPendingPeerReview = new ArrayList<>();
+        JSONArray wordContributionEventsPendingPeerReviewJsonArray = new JSONArray();
         for (WordContributionEvent mostRecentWordContributionEvent : mostRecentWordContributionEvents) {
             // Ignore WordContributionEvents made by the current Contributor
             if (mostRecentWordContributionEvent.getContributor().getId().equals(contributor.getId())) {
@@ -101,21 +102,20 @@ public class WordPeerReviewsRestController {
             }
 
             // Check if the current Contributor has already peer-reviewed this Word contribution
-            List<WordPeerReviewEvent> wordPeerReviewEvents = wordPeerReviewEventDao.readAll(mostRecentWordContributionEvent, contributor);
+            List<WordPeerReviewEvent> wordPeerReviewEvents = wordPeerReviewEventDao.
+                    readAll(mostRecentWordContributionEvent, contributor);
             if (wordPeerReviewEvents.isEmpty()) {
-                wordContributionEventsPendingPeerReview.add(mostRecentWordContributionEvent);
+                WordContributionEventGson mostRecentWordContributionEventGson = JpaToGsonConverter.
+                        getWordContributionEventGson(mostRecentWordContributionEvent);
+
+                String json = new Gson().toJson(mostRecentWordContributionEventGson);
+                wordContributionEventsPendingPeerReviewJsonArray.put(new JSONObject(json));
             }
         }
-        logger.info("wordContributionEventsPendingPeerReview.size(): " + wordContributionEventsPendingPeerReview.size());
+        logger.info("wordContributionEventsPendingPeerReviewJsonArray.size(): " +
+                wordContributionEventsPendingPeerReviewJsonArray.length());
 
-        JSONArray wordContributionEventsJsonArray = new JSONArray();
-        for (WordContributionEvent wordContributionEvent : wordContributionEventsPendingPeerReview) {
-            WordContributionEventGson wordContributionEventGson = JpaToGsonConverter.getWordContributionEventGson(wordContributionEvent);
-            String json = new Gson().toJson(wordContributionEventGson);
-            wordContributionEventsJsonArray.put(new JSONObject(json));
-        }
-
-        String jsonResponse = wordContributionEventsJsonArray.toString();
+        String jsonResponse = wordContributionEventsPendingPeerReviewJsonArray.toString();
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }
