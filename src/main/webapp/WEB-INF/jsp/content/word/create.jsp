@@ -39,10 +39,10 @@
                         <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
                             <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
                             <div class="chip">
-                                <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-to-allophone-mapping-id="${letterSoundCorrespondence.id}">
+                                <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-sound-correspondence-id="${letterSoundCorrespondence.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
-                                <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterSoundCorrespondence.id}' />">
+                                <a href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />">
                                     "<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
                                         ${letter.text}
                                     </c:forEach>"<br />
@@ -58,7 +58,7 @@
                                 $('.letterSoundCorrespondenceDeleteLink').on("click", function() {
                                     console.log('.letterSoundCorrespondenceDeleteLink on click');
                                     
-                                    var letterSoundCorrespondenceId = $(this).attr("data-letter-to-allophone-mapping-id");
+                                    var letterSoundCorrespondenceId = $(this).attr("data-letter-sound-correspondence-id");
                                     console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
                                     
                                     $(this).parent().remove();
@@ -97,7 +97,7 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter-to-allophone-mapping/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter-sound-correspondence/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             

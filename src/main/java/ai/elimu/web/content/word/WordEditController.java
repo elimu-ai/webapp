@@ -102,7 +102,7 @@ public class WordEditController {
         
         if (word.getLetterSoundCorrespondences().isEmpty()) {
             autoSelectLetterToAllophoneMappings(word);
-            // TODO: display information message to the Contributor that the Letter-to-Allophone mappings were auto-selected, and that they should be verified
+            // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
         }
                 
         model.addAttribute("word", word);
@@ -299,6 +299,6 @@ public class WordEditController {
             }
         }
         
-        word.setLetterToAllophoneMappings(letterSoundCorrespondences);
+        word.setLetterSoundCorrespondences(letterSoundCorrespondences);
     }
 }

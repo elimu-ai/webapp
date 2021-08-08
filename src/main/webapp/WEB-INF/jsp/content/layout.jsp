@@ -94,9 +94,9 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/letter/list' />"><fmt:message key="letters" /></a>
                             </c:when>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-to-allophone-mapping/')
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-sound-correspondence/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/letter-to-allophone-mapping/list' />"><fmt:message key="letter.sound.correspondences" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/content/letter-sound-correspondence/list' />"><fmt:message key="letter.sound.correspondences" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/rest/v2/content/letter-to-allophone-mappings", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/content/letter-sound-correspondences", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class LetterToAllophoneMappingsRestController {
     
     private Logger logger = LogManager.getLogger();

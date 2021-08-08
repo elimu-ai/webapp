@@ -56,7 +56,7 @@ public class Word extends Content {
         return letterSoundCorrespondences;
     }
 
-    public void setLetterToAllophoneMappings(List<LetterToAllophoneMapping> letterSoundCorrespondences) {
+    public void setLetterSoundCorrespondences(List<LetterToAllophoneMapping> letterSoundCorrespondences) {
         this.letterSoundCorrespondences = letterSoundCorrespondences;
     }
     

@@ -1,4 +1,4 @@
-package ai.elimu.web.content.letter_to_allophone_mapping;
+package ai.elimu.web.content.letter_sound_correspondence;
 
 import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.model.content.Allophone;
@@ -22,7 +22,7 @@ import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/letter-to-allophone-mapping/list")
+@RequestMapping("/content/letter-sound-correspondence/list")
 public class LetterToAllophoneMappingCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
@@ -30,7 +30,7 @@ public class LetterToAllophoneMappingCsvExportController {
     @Autowired
     private LetterToAllophoneMappingDao letterSoundCorrespondenceDao;
     
-    @RequestMapping(value="/letter-to-allophone-mappings.csv", method = RequestMethod.GET)
+    @RequestMapping(value="/letter-sound-correspondences.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream

@@ -54,7 +54,7 @@ public class WordContributionRestController {
     /**
      * Returns a list of {@link LetterToAllophoneMapping}s that will be used to construct a {@link Word}.
      */
-    @RequestMapping(value = "/letter-to-allophone-mappings", method = RequestMethod.GET)
+    @RequestMapping(value = "/letter-sound-correspondences", method = RequestMethod.GET)
     public String getLetterToAllophoneMappings(HttpServletRequest request, HttpServletResponse response) {
         logger.info("getLetterToAllophoneMappings");
 
@@ -148,7 +148,7 @@ public class WordContributionRestController {
                         letterSoundCorrespondenceDao.read(letterSoundCorrespondenceGson.getId());
                 letterSoundCorrespondences.add(letterSoundCorrespondence);
             }
-            word.setLetterToAllophoneMappings(letterSoundCorrespondences);
+            word.setLetterSoundCorrespondences(letterSoundCorrespondences);
             wordDao.create(word);
 
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
