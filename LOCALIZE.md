@@ -90,11 +90,11 @@ Follow these steps to add a new word to the webapp's database:
 
    <img width="217" alt="Screen Shot 2020-12-09 at 7 44 29 PM" src="https://user-images.githubusercontent.com/15718174/101673126-6b36f500-3a5f-11eb-814d-19762e2d3138.png">
 
-1. Select the word's letter-to-allophone mappings:
+1. Select the word's letter-sound correspondences:
 
    <img width="580" alt="Screen Shot 2020-12-09 at 7 52 55 PM" src="https://user-images.githubusercontent.com/15718174/101673981-90783300-3a60-11eb-8875-cab1caafb498.png">
    
-   If letter-to-allophone mapping you want to use does not exist in the drop-down, press the "Add letter-to-allophone mapping" link. Then select the sound (allophone) corresponding to the letter(s):
+   If the letter-sound correspondence you want to use does not exist in the drop-down, press the "Add letter-sound correspondence" link. Then select the sound (allophone) corresponding to the letter(s):
    
       <img width="613" alt="Screen Shot 2020-12-09 at 7 50 47 PM" src="https://user-images.githubusercontent.com/15718174/101674020-9f5ee580-3a60-11eb-898f-76ff99eaa518.png">
 

@@ -19,7 +19,7 @@ public class WordContributionRestControllerTest {
     @Test
     public void testGetLetterToAllophoneMappings() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() +
-                "/crowdsource/word-contributions/letter-to-allophone-mappings");
+                "/crowdsource/word-contributions/letter-sound-correspondences");
 
         logger.info("jsonResponse: " + jsonResponse);
 

@@ -21,7 +21,7 @@ import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.allophone.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
-import ai.elimu.web.content.letter_to_allophone_mapping.LetterToAllophoneMappingCsvExportController;
+import ai.elimu.web.content.letter_sound_correspondence.LetterToAllophoneMappingCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
 import ai.elimu.web.content.word.WordCsvExportController;
@@ -289,7 +289,7 @@ public class CsvContentExtractionHelper {
                     logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
                     letterSoundCorrespondences.add(letterSoundCorrespondence);
                 }
-                word.setLetterToAllophoneMappings(letterSoundCorrespondences);
+                word.setLetterSoundCorrespondences(letterSoundCorrespondences);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 word.setUsageCount(usageCount);

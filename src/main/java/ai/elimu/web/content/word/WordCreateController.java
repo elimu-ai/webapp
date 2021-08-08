@@ -267,6 +267,6 @@ public class WordCreateController {
             }
         }
         
-        word.setLetterToAllophoneMappings(letterSoundCorrespondences);
+        word.setLetterSoundCorrespondences(letterSoundCorrespondences);
     }
 }

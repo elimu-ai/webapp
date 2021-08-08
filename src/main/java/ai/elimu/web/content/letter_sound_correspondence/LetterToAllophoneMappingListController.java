@@ -1,4 +1,4 @@
-package ai.elimu.web.content.letter_to_allophone_mapping;
+package ai.elimu.web.content.letter_sound_correspondence;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/letter-to-allophone-mapping/list")
+@RequestMapping("/content/letter-sound-correspondence/list")
 public class LetterToAllophoneMappingListController {
     
     private final Logger logger = LogManager.getLogger();
@@ -35,6 +35,6 @@ public class LetterToAllophoneMappingListController {
         }
         model.addAttribute("maxUsageCount", maxUsageCount);
 
-        return "content/letter-to-allophone-mapping/list";
+        return "content/letter-sound-correspondence/list";
     }
 }

@@ -16,7 +16,7 @@ public class LetterToAllophoneMappingsRestControllerTest {
     
     @Test
     public void testHandleGetRequest() {
-        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/content/letter-to-allophone-mappings");
+        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/content/letter-sound-correspondences");
         logger.info("jsonResponse: " + jsonResponse);
         
         JSONArray letterSoundCorrespondencesJSONArray = new JSONArray(jsonResponse);

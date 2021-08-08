@@ -5,7 +5,7 @@
 <content:section cssId="letterSoundCorrespondenceListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
-           href="<spring:url value='/content/letter-to-allophone-mapping/list/letter-to-allophone-mappings.csv' />">
+           href="<spring:url value='/content/letter-sound-correspondence/list/letter-sound-correspondences.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
@@ -48,7 +48,7 @@
                                 / <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a> </c:forEach> /
                             </td>
                             <td>
-                                <a class="editLink" href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterSoundCorrespondence.id}' />"><span class="material-icons">edit</span></a>
+                                <a class="editLink" href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />"><span class="material-icons">edit</span></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -58,6 +58,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/letter-to-allophone-mapping/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter.sound.correspondence" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/content/letter-sound-correspondence/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter.sound.correspondence" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

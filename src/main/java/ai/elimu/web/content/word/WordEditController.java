@@ -299,6 +299,6 @@ public class WordEditController {
             }
         }
         
-        word.setLetterToAllophoneMappings(letterSoundCorrespondences);
+        word.setLetterSoundCorrespondences(letterSoundCorrespondences);
     }
 }

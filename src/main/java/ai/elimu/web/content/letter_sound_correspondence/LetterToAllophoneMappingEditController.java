@@ -1,4 +1,4 @@
-package ai.elimu.web.content.letter_to_allophone_mapping;
+package ai.elimu.web.content.letter_sound_correspondence;
 
 import java.util.List;
 import javax.validation.Valid;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/letter-to-allophone-mapping/edit")
+@RequestMapping("/content/letter-sound-correspondence/edit")
 public class LetterToAllophoneMappingEditController {
     
     private final Logger logger = LogManager.getLogger();
@@ -47,7 +47,7 @@ public class LetterToAllophoneMappingEditController {
         List<Allophone> allophones = allophoneDao.readAllOrdered();
         model.addAttribute("allophones", allophones);
 
-        return "content/letter-to-allophone-mapping/edit";
+        return "content/letter-sound-correspondence/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
@@ -73,11 +73,11 @@ public class LetterToAllophoneMappingEditController {
             List<Allophone> allophones = allophoneDao.readAllOrdered();
             model.addAttribute("allophones", allophones);
             
-            return "content/letter-to-allophone-mapping/edit";
+            return "content/letter-sound-correspondence/edit";
         } else {
             letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
             
-            return "redirect:/content/letter-to-allophone-mapping/list#" + letterSoundCorrespondence.getId();
+            return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }
     }
 }
