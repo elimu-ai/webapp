@@ -17,14 +17,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Word extends Content {
 
-    @Deprecated // TODO: replace with list of LetterToAllophoneMappings
+    @Deprecated // TODO: replace with list of LetterSoundCorrespondences
     @NotNull
     private String text;
     
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<LetterToAllophoneMapping> letterToAllophoneMappings;
+    private List<LetterSoundCorrespondence> letterSoundCorrespondences;
     
     /**
      * As an example, the verb "reading" will be linked to the root verb "read".
@@ -52,12 +52,12 @@ public class Word extends Content {
         this.text = text;
     }
     
-    public List<LetterToAllophoneMapping> getLetterToAllophoneMappings() {
-        return letterToAllophoneMappings;
+    public List<LetterSoundCorrespondence> getLetterSoundCorrespondences() {
+        return letterSoundCorrespondences;
     }
 
-    public void setLetterToAllophoneMappings(List<LetterToAllophoneMapping> letterToAllophoneMappings) {
-        this.letterToAllophoneMappings = letterToAllophoneMappings;
+    public void setLetterSoundCorrespondences(List<LetterSoundCorrespondence> letterSoundCorrespondences) {
+        this.letterSoundCorrespondences = letterSoundCorrespondences;
     }
     
     public Word getRootWord() {

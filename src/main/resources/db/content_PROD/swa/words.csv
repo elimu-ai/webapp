@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 308,afrika,[],0,NOUN,PERFECT,,
 598,aina,[],0,VERB,PERFECT,,
 299,akasema,[],0,VERB,PERFECT,,

@@ -1,9 +1,8 @@
-package ai.elimu.web.content.letter_to_allophone_mapping;
+package ai.elimu.web.content.letter_sound_correspondence;
 
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -20,25 +19,26 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @Controller
-@RequestMapping("/content/letter-to-allophone-mapping/list")
-public class LetterToAllophoneMappingCsvExportController {
+@RequestMapping("/content/letter-sound-correspondence/list")
+public class LetterSoundCorrespondenceCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
-    @RequestMapping(value="/letter-to-allophone-mappings.csv", method = RequestMethod.GET)
+    @RequestMapping(value="/letter-sound-correspondences.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<LetterToAllophoneMapping> letterToAllophoneMappings = letterToAllophoneMappingDao.readAllOrderedByUsage();
-        logger.info("letterToAllophoneMappings.size(): " + letterToAllophoneMappings.size());
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundCorrespondenceDao.readAllOrderedByUsage();
+        logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
@@ -52,44 +52,44 @@ public class LetterToAllophoneMappingCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (LetterToAllophoneMapping letterToAllophoneMapping : letterToAllophoneMappings) {
-            logger.info("letterToAllophoneMapping.getId(): \"" + letterToAllophoneMapping.getId() + "\"");
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
+            logger.info("letterSoundCorrespondence.getId(): \"" + letterSoundCorrespondence.getId() + "\"");
             
             JSONArray letterIdsJsonArray = new JSONArray();
             int index = 0;
-            for (Letter letter : letterToAllophoneMapping.getLetters()) {
+            for (Letter letter : letterSoundCorrespondence.getLetters()) {
                 letterIdsJsonArray.put(index, letter.getId());
                 index++;
             }
             
             JSONArray letterTextsJsonArray = new JSONArray();
             index = 0;
-            for (Letter letter : letterToAllophoneMapping.getLetters()) {
+            for (Letter letter : letterSoundCorrespondence.getLetters()) {
                 letterTextsJsonArray.put(index, letter.getText());
                 index++;
             }
             
             JSONArray allophoneIdsJsonArray = new JSONArray();
             index = 0;
-            for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
+            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
                 allophoneIdsJsonArray.put(index, allophone.getId());
                 index++;
             }
             
             JSONArray allophoneValuesIpaJsonArray = new JSONArray();
             index = 0;
-            for (Allophone allophone : letterToAllophoneMapping.getAllophones()) {
+            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
                 allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
                 index++;
             }
             
             csvPrinter.printRecord(
-                    letterToAllophoneMapping.getId(),
+                    letterSoundCorrespondence.getId(),
                     letterIdsJsonArray,
                     letterTextsJsonArray,
                     allophoneIdsJsonArray,
                     allophoneValuesIpaJsonArray,
-                    letterToAllophoneMapping.getUsageCount()
+                    letterSoundCorrespondence.getUsageCount()
             );
             
             csvPrinter.flush();

@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 26,है,"[{""allophones"":[""ɦ""],""id"":1,""letters"":[""ह""],""usageCount"":2642},{""allophones"":[""ɛː""],""id"":2,""letters"":[""ै""],""usageCount"":1188}]",606,VERB,,,
 22,के,"[{""allophones"":[""k""],""id"":14,""letters"":[""क""],""usageCount"":2407},{""allophones"":[""eː""],""id"":4,""letters"":[""े""],""usageCount"":3354}]",515,,,,
 1,से,"[{""allophones"":[""s""],""id"":5,""letters"":[""स""],""usageCount"":1005},{""allophones"":[""eː""],""id"":4,""letters"":[""े""],""usageCount"":3354}]",447,PREPOSITION,PERFECT,,

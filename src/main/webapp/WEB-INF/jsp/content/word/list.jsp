@@ -27,7 +27,7 @@
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="text" /></th>
                     <th><fmt:message key="allophones" /></th>
-                    <th><fmt:message key="spelling.consistency" /></th>
+                    <%--<th><fmt:message key="spelling.consistency" /></th>--%>
                     <th><fmt:message key="word.type" /></th>
                     <th><fmt:message key="root.word" /></th>
                     <th><fmt:message key="revision" /></th>
@@ -46,8 +46,9 @@
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />">"<c:out value="${word.text}" />"</a>
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="allophone" items="${lsc.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                             </td>
+                            <%--
                             <td>
                                 <c:choose>
                                     <c:when test="${word.spellingConsistency == 'PERFECT'}">
@@ -73,6 +74,7 @@
                                     <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
                                 </div>
                             </td>
+                            --%>
                             <td>
                                 ${word.wordType}<br />
                                 <c:out value=" ${emojisByWordId[word.id]}" />
