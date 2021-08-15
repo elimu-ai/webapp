@@ -133,22 +133,7 @@ public class CsvContentExtractionHelper {
                 
                 String text = csvRecord.get("text");
                 letter.setText(text);
-                
-                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
-                logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
-                
-                JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
-                logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
-                List<Allophone> allophones = new ArrayList<>();
-                for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
-                    String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
-                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
-                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
-                    logger.info("allophone.getId(): " + allophone.getId());
-                    allophones.add(allophone);
-                }
-                letter.setAllophones(allophones);
-                
+
                 boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
                 letter.setDiacritic(diacritic);
                 

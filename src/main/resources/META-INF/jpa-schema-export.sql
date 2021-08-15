@@ -51,8 +51,6 @@
 
     drop table if exists Letter CASCADE ;
 
-    drop table if exists Letter_Allophone CASCADE ;
-
     drop table if exists LetterLearningEvent CASCADE ;
 
     drop table if exists LetterSoundCorrespondence CASCADE ;
@@ -347,13 +345,6 @@
         diacritic boolean not null,
         text varchar(1),
         primary key (id)
-    );
-
-    create table Letter_Allophone (
-       Letter_id bigint not null,
-        allophones_id bigint not null,
-        allophones_ORDER integer not null,
-        primary key (Letter_id, allophones_ORDER)
     );
 
     create table LetterLearningEvent (
@@ -768,16 +759,6 @@
        add constraint FKm6hxhjn1og47ovf4xyt6uaqff 
        foreign key (Image_id) 
        references Image;
-
-    alter table Letter_Allophone 
-       add constraint FKnwhfkqcsswqc4h2yikja7bo0j 
-       foreign key (allophones_id) 
-       references Allophone;
-
-    alter table Letter_Allophone 
-       add constraint FK9aa1w37o6fexpp3d1yrralcqs 
-       foreign key (Letter_id) 
-       references Letter;
 
     alter table LetterLearningEvent 
        add constraint FKbgt0ocoif6wvshp6lyasfdmq7 
