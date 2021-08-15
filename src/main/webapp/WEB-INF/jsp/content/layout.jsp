@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="<spring:url value='/static/css/content/styles.css' />" />
         
         <%-- JavaScripts --%>
-        <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
+        <script src="<spring:url value='/static/js/jquery-3.6.0.min.js' />"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
