@@ -19,15 +19,6 @@
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="allophonesContainer">
-                        <c:forEach var="allophone" items="${letter.allophones}">
-                            <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip<c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
-                                ${allophone.valueIpa} 
-                                <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
-                                    <i class="close material-icons">clear</i>
-                                </a>
-                            </div>
-                        </c:forEach>
                         <script>
                             $(function() {
                                 $('.allophoneDeleteLink').on("click", function() {

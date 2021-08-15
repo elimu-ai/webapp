@@ -22,18 +22,6 @@
                 <div class="col s12">
                     <label><fmt:message key="allophones" /></label><br />
                     /<span id="allophonesContainer">
-                        <c:forEach var="allophone" items="${letter.allophones}">
-                            <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <audio id="audio_sampa_${allophone.valueSampa}">
-                                <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
-                            </audio>
-                            <div class="allophone chip<c:if test="${allophone.soundType == 'VOWEL'}"> purple lighten-5</c:if><c:if test="${allophone.soundType == 'CONSONANT'}"> teal lighten-5</c:if>" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}" data-valuesampa="${allophone.valueSampa}">
-                                ${allophone.valueIpa} 
-                                <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
-                                    <i class="close material-icons">clear</i>
-                                </a>
-                            </div>
-                        </c:forEach>
                         <script>
                             $(function() {
                                 $('.allophoneDeleteLink').on("click", function() {
@@ -110,11 +98,6 @@
 
 <content:aside>
     <h5 class="center"><fmt:message key="audio" /></h5>
-    <c:forEach var="allophone" items="${letter.allophones}">
-        <audio controls="true" autoplay="true">
-            <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
-        </audio><br />
-    </c:forEach>
     <div class="divider" style="margin: 1em 0;"></div>
     
     <h5 class="center"><fmt:message key="resources" /></h5>

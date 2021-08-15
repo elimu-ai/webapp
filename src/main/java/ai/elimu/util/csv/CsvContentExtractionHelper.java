@@ -133,10 +133,7 @@ public class CsvContentExtractionHelper {
                 
                 String text = csvRecord.get("text");
                 letter.setText(text);
-                
-                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
-                logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
-                
+
                 boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
                 letter.setDiacritic(diacritic);
                 
