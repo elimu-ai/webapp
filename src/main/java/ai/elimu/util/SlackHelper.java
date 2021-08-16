@@ -26,7 +26,9 @@ public class SlackHelper {
             jsonBody.addProperty("text", text);
             logger.info("jsonBody: " + jsonBody);
             CloseableHttpClient client = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost("https://hooks.slack.com/services/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");
+            String slackWebhook = ConfigHelper.getProperty("slack.webhook");
+            logger.info("slackWebhook: " + slackWebhook);
+            HttpPost httpPost = new HttpPost(slackWebhook);
             try {
                 StringEntity entity = new StringEntity(jsonBody.toString());
                 httpPost.setEntity(entity);
