@@ -37,9 +37,6 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="audio" /></h5>
-    <div class="divider" style="margin: 1em 0;"></div>
-    
     <h5 class="center"><fmt:message key="resources" /></h5>
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
