@@ -26,6 +26,10 @@ See [INSTALL.md](INSTALL.md)
 ## Localization
 See [LOCALIZE.md](LOCALIZE.md)
 
+## Database migration
+
+See [DB_MIGRATION.md](DB_MIGRATION.md)
+
 ## Contributing guidelines
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
