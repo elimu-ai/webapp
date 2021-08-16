@@ -9,7 +9,6 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
-import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 @Controller
 @RequestMapping("/content/letter-sound-correspondence/create")
@@ -76,6 +77,8 @@ public class LetterSoundCorrespondenceCreateController {
             return "content/letter-sound-correspondence/create";
         } else {
             letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Letter-sound correspondence created: ID " + letterSoundCorrespondence.getId());
             
             return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }

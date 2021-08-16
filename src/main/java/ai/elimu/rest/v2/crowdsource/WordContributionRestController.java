@@ -8,6 +8,8 @@ import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -159,14 +161,13 @@ public class WordContributionRestController {
             wordContributionEvent.setComment(wordContributionEventGson.getComment());
             wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() -
                     wordContributionEvent.getTime().getTimeInMillis());
-
             // TODO: wordContributionEvent.setTimeSpentMs(wordContributionEventGson.getTimeSpentMs());
             //  refer to: https://github.com/elimu-ai/webapp/pull/1289#discussion_r642024541
-
             // TODO: wordContributionEvent.setPlatform(Platform.CROWDSOURCE_APP);
             //  refer to : https://github.com/elimu-ai/webapp/pull/1289#discussion_r638936145
-
             wordContributionEventDao.create(wordContributionEvent);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Word created: \"" + word.getText() + "\"");
 
             response.setStatus(HttpStatus.CREATED.value());
         } catch (Exception ex) {

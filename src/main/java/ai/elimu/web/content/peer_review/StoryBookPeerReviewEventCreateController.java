@@ -9,14 +9,14 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,6 +59,8 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         storyBookPeerReviewEvent.setTime(Calendar.getInstance());
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
+        
+        SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Storybook peer-reviewed: \"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"");
 
         // Update the storybook's peer review status
         int approvedCount = 0;

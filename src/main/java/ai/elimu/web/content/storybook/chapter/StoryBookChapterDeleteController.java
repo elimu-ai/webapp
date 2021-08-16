@@ -16,6 +16,8 @@ import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -119,6 +121,8 @@ public class StoryBookChapterDeleteController {
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
         storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + " (🤖 auto-generated comment)");
         storyBookContributionEventDao.create(storyBookContributionEvent);
+        
+        SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Storybook chapter deleted: \"" + storyBook.getTitle() + "\"");
         
         // Update the sorting order of the remaining chapters
         List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);

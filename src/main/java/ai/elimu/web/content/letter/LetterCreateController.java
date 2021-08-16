@@ -9,6 +9,8 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,6 +67,8 @@ public class LetterCreateController {
         } else {
             letter.setTimeLastUpdate(Calendar.getInstance());
             letterDao.create(letter);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Letter created: '" + letter.getText() + "'");
             
             return "redirect:/content/letter/list#" + letter.getId();
         }
