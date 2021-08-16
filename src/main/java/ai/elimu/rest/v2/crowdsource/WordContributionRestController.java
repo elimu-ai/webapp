@@ -156,7 +156,7 @@ public class WordContributionRestController {
             wordContributionEvent.setTime(wordContributionEventGson.getTime());
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
-            wordContributionEvent.setComment(wordContributionEventGson.getComment());
+            wordContributionEvent.setComment(StringUtils.abbreviate(wordContributionEventGson.getComment(), 1000));
             wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() -
                     wordContributionEvent.getTime().getTimeInMillis());
 
