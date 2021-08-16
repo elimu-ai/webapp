@@ -3,6 +3,8 @@ package ai.elimu.model.contributor;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.content.Word;
 import java.util.Calendar;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -23,6 +25,7 @@ public class WordContributionEvent extends BaseEntity {
     @NotNull
     private Integer revisionNumber;
 
+    @Column(length = 1000)
     private String comment;
     
     @NotNull
