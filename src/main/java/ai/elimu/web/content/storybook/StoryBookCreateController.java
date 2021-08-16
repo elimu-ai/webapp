@@ -14,6 +14,8 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.ReadingLevel;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -97,6 +99,8 @@ public class StoryBookCreateController {
             storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Storybook created: \"" + storyBook.getTitle() + "\"");
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 @Controller
 @RequestMapping("/content/letter-sound-correspondence/edit")
@@ -76,6 +78,8 @@ public class LetterSoundCorrespondenceEditController {
             return "content/letter-sound-correspondence/edit";
         } else {
             letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Letter-sound correspondence edited: ID " + letterSoundCorrespondence.getId());
             
             return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }
