@@ -367,12 +367,7 @@
                                 <c:set var="letter" value="${letterMap[letterText]}" />
                                 <a href="<spring:url value='/content/letter/edit/${letter.id}' />" target="_blank">
                                     <c:out value="${letter.text}" />
-                                </a><br />
-                                <span class="grey-text">
-                                    /<c:forEach var="allophone" items="${letter.allophones}">
-                                        ${allophone.valueIpa}
-                                    </c:forEach>/
-                                </span>
+                                </a>
                             </c:otherwise>
                         </c:choose>
                     </td>

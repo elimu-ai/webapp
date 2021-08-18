@@ -26,9 +26,7 @@
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="letter" /></th>
-                    <th><fmt:message key="allophones" /></th>
                     <th><fmt:message key="diacritic" /></th>
-                    <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
                 </thead>
                 <tbody>
@@ -44,18 +42,8 @@
                                 <a name="${letter.id}"></a>
                                 <a href="<spring:url value='/content/letter/edit/${letter.id}' />">"<c:out value='${letter.text}' />"</a>
                             </td>
-                            <td style="font-size: 2em;">
-                                /<c:forEach var="allophone" items="${letter.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
-                            </td>
                             <td>
                                 ${letter.diacritic}
-                            </td>
-                            <td>
-                                <c:forEach var="allophone" items="${letter.allophones}">
-                                    <audio controls="true">
-                                        <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
-                                    </audio><br />
-                                </c:forEach>
                             </td>
                             <td>
                                 #${letter.revisionNumber}

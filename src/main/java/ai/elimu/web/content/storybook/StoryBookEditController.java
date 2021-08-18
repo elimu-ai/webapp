@@ -31,7 +31,9 @@ import ai.elimu.model.enums.Language;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.util.WordFrequencyHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
@@ -220,6 +222,8 @@ public class StoryBookEditController {
             storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Storybook edited: \"" + storyBook.getTitle() + "\"");
             
             // Refresh REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();
