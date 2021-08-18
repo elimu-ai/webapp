@@ -100,7 +100,8 @@ public class StoryBookCreateController {
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
-            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Storybook created: \"" + storyBook.getTitle() + "\"");
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+            SlackHelper.postChatMessage("Storybook created: " + contentUrl);
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

@@ -167,7 +167,8 @@ public class WordContributionRestController {
             //  refer to : https://github.com/elimu-ai/webapp/pull/1289#discussion_r638936145
             wordContributionEventDao.create(wordContributionEvent);
             
-            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Word created: \"" + word.getText() + "\"");
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+            SlackHelper.postChatMessage("Word created: " + contentUrl);
 
             response.setStatus(HttpStatus.CREATED.value());
         } catch (Exception ex) {

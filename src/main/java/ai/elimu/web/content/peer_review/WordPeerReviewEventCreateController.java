@@ -59,7 +59,8 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEvent.setTime(Calendar.getInstance());
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
         
-        SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Word peer-reviewed: \"" + wordContributionEvent.getWord().getText() + "\"");
+        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
+        SlackHelper.postChatMessage("Word peer-reviewed: " + contentUrl);
 
         // Update the word's peer review status
         int approvedCount = 0;

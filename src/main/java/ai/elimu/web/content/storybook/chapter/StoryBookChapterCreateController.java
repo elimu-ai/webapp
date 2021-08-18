@@ -105,7 +105,8 @@ public class StoryBookChapterCreateController {
             storyBookContributionEvent.setComment("Created storybook chapter " + (storyBookChapter.getSortOrder() + 1) + " (🤖 auto-generated comment)");
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
-            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Storybook chapter created: \"" + storyBook.getTitle() + "\"");
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+            SlackHelper.postChatMessage("Storybook chapter created: " + contentUrl);
             
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
         }

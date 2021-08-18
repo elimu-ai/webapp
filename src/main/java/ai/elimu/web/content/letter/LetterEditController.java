@@ -71,7 +71,8 @@ public class LetterEditController {
             letter.setRevisionNumber(letter.getRevisionNumber() + 1);
             letterDao.update(letter);
             
-            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Letter edited: '" + letter.getText() + "'");
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
+            SlackHelper.postChatMessage("Letter edited: " + contentUrl);
             
             return "redirect:/content/letter/list#" + letter.getId();
         }

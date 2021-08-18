@@ -241,7 +241,8 @@ public class AudioContributionsRestController {
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
             audioContributionEventDao.create(audioContributionEvent);
             
-            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Audio created: \"" + audio.getTitle() + "\"");
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+            SlackHelper.postChatMessage("Audio created: " + contentUrl);
         } catch (Exception ex) {
             logger.error(ex);
             

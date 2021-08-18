@@ -78,7 +78,8 @@ public class LetterSoundCorrespondenceCreateController {
         } else {
             letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
             
-            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Letter-sound correspondence created: ID " + letterSoundCorrespondence.getId());
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
+            SlackHelper.postChatMessage("Letter-sound correpondence created: " + contentUrl);
             
             return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }

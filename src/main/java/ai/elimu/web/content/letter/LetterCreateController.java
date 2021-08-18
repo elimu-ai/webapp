@@ -68,7 +68,8 @@ public class LetterCreateController {
             letter.setTimeLastUpdate(Calendar.getInstance());
             letterDao.create(letter);
             
-            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Letter created: '" + letter.getText() + "'");
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
+            SlackHelper.postChatMessage("Letter created: " + contentUrl);
             
             return "redirect:/content/letter/list#" + letter.getId();
         }
