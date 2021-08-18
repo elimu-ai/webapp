@@ -54,25 +54,9 @@ public class LetterCsvExportController {
         for (Letter letter : letters) {
             logger.info("letter.getText(): \"" + letter.getText() + "\"");
             
-            JSONArray allophoneIdsJsonArray = new JSONArray();
-            int index = 0;
-            for (Allophone allophone : letter.getAllophones()) {
-                allophoneIdsJsonArray.put(index, allophone.getId());
-                index++;
-            }
-            
-            JSONArray allophoneValuesIpaJsonArray = new JSONArray();
-            index = 0;
-            for (Allophone allophone : letter.getAllophones()) {
-                allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
-                index++;
-            }
-            
             csvPrinter.printRecord(
                     letter.getId(),
                     letter.getText(),
-                    allophoneIdsJsonArray,
-                    allophoneValuesIpaJsonArray,
                     letter.isDiacritic(),
                     letter.getUsageCount()
             );

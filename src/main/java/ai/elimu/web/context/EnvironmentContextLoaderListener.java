@@ -121,6 +121,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
                 
+                if (env == Environment.PROD) {
+                    String slackWebhook = (String) servletContext.getAttribute("slack_webhook");
+                    PROPERTIES.put("slack.webhook", slackWebhook);
+                }
+                
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
                 logger.error(ex);

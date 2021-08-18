@@ -18,7 +18,9 @@ import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.content.AudioFormat;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -157,6 +159,8 @@ public class StoryBookParagraphEditController {
             }
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Storybook paragraph edited: \"" + storyBook.getTitle() + "\"");
             
             // Refresh the REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

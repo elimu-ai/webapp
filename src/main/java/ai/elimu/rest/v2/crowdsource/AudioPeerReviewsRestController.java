@@ -13,7 +13,9 @@ import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.gson.crowdsource.AudioContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.AudioPeerReviewEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.web.content.peer_review.AudioPeerReviewEventCreateController;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -195,9 +197,9 @@ public class AudioPeerReviewsRestController {
             audioPeerReviewEvent.setComment(audioPeerReviewEventGson.getComment());
             audioPeerReviewEvent.setTime(audioPeerReviewEventGson.getTime());
             audioPeerReviewEvent.setPlatform(Platform.CROWDSOURCE_APP);
-
-            // Store the peer review event in the database
             audioPeerReviewEventDao.create(audioPeerReviewEvent);
+            
+            SlackHelper.postChatMessage("[" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "] Audio peer-reviewed: \"" + audioContributionEvent.getAudio().getTitle() + "\"");
 
             // Update the audio's peer review status
             int approvedCount = 0;
