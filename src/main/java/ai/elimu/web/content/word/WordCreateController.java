@@ -125,6 +125,9 @@ public class WordCreateController {
         if (existingWord != null) {
             result.rejectValue("text", "NonUnique");
         }
+        if(word.getText().contains(" ")) {
+            result.rejectValue("text", "WordSpace");
+        }
         
         List<Allophone> allophones = allophoneDao.readAllOrdered();
         
