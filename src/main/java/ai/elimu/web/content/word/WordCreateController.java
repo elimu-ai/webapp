@@ -40,7 +40,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
-import org.hsqldb.lib.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -126,7 +125,7 @@ public class WordCreateController {
         if (existingWord != null) {
             result.rejectValue("text", "NonUnique");
         }
-        if (org.springframework.util.StringUtils.containsWhitespace(word.getText())){
+        if (StringUtils.containsAny(word.getText()," ")){
             result.rejectValue("text", "WordSpace");
         }
         
