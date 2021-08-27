@@ -1,6 +1,6 @@
 package ai.elimu.util;
 
-import ai.elimu.model.enums.Environment;
+import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.JsonObject;
 import java.io.IOException;

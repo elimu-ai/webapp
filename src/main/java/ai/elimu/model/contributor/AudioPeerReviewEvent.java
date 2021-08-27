@@ -1,7 +1,7 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.enums.Platform;
+import ai.elimu.model.v2.enums.Platform;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

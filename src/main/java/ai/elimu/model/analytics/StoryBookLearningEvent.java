@@ -1,7 +1,7 @@
 package ai.elimu.model.analytics;
 
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.analytics.LearningEventType;
+import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

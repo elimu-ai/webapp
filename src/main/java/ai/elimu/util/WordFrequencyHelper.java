@@ -1,6 +1,6 @@
 package ai.elimu.util;
 
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;

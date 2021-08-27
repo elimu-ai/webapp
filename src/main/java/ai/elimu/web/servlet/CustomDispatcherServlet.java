@@ -1,7 +1,7 @@
 package ai.elimu.web.servlet;
 
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Environment;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.db.DbContentImportHelper;
 import org.springframework.web.context.WebApplicationContext;

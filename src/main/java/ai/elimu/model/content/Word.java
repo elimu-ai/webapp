@@ -1,6 +1,6 @@
 package ai.elimu.model.content;
 
-import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,8 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
-import ai.elimu.model.enums.content.SpellingConsistency;
-import ai.elimu.model.enums.content.WordType;
+import ai.elimu.model.v2.enums.content.SpellingConsistency;
+import ai.elimu.model.v2.enums.content.WordType;
 import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 
