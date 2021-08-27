@@ -37,7 +37,7 @@
                                 <c:if test="${not empty storyBook.coverImage}">
                                     <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
                                 </c:if>
-                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-events' />" target="_blank">
+                                <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#peer-review' />" target="_blank">
                                     <img 
                                         src="<spring:url value='${coverImageUrl}' />" 
                                         style="max-width: 64px; border-radius: 8px;"/>
