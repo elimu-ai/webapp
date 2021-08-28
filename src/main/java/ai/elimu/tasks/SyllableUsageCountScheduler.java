@@ -73,15 +73,7 @@ public class SyllableUsageCountScheduler {
             }
 
             Map<String, Integer> syllableFrequencyMapForBook = SyllableFrequencyHelper.getSyllableFrequency(paragraphs, language);
-            for (String key : syllableFrequencyMapForBook.keySet()) {
-                String syllableText = key;
-                int syllableFrequency = syllableFrequencyMapForBook.get(key);
-                if (!syllableFrequencyMap.containsKey(syllableText)) {
-                    syllableFrequencyMap.put(syllableText, syllableFrequency);
-                } else {
-                    syllableFrequencyMap.put(syllableText, syllableFrequencyMap.get(syllableText) + syllableFrequency);
-                }
-            }
+            syllableFrequencyMapForBook.keySet().forEach(key -> syllableFrequencyMap.put(key, syllableFrequencyMap.getOrDefault(key, 0) + syllableFrequencyMapForBook.get(key)));
         }
 
         logger.info("syllableFrequencyMap: " + syllableFrequencyMap);

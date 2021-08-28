@@ -105,8 +105,7 @@ public class StoryBookEditController {
         // Map<StoryBookChapter.id, List<StoryBookParagraph>>
         Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
         for (StoryBookChapter storyBookChapter : storyBookChapters) {
-            List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-            paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+            paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphDao.readAll(storyBookChapter));
         }
         model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
         
@@ -174,8 +173,7 @@ public class StoryBookEditController {
             // Map<StoryBookChapter.id, List<StoryBookParagraph>>
             Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-                paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+                paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphDao.readAll(storyBookChapter));
             }
             model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
 
