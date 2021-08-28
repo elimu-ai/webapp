@@ -194,7 +194,7 @@ public class AudioPeerReviewsRestController {
             audioPeerReviewEvent.setContributor(contributor);
             audioPeerReviewEvent.setAudioContributionEvent(audioContributionEvent);
             audioPeerReviewEvent.setApproved(audioPeerReviewEventGson.isApproved());
-            audioPeerReviewEvent.setComment(audioPeerReviewEventGson.getComment());
+            audioPeerReviewEvent.setComment(StringUtils.abbreviate(audioPeerReviewEventGson.getComment(), 1000));
             audioPeerReviewEvent.setTime(audioPeerReviewEventGson.getTime());
             audioPeerReviewEvent.setPlatform(Platform.CROWDSOURCE_APP);
             audioPeerReviewEventDao.create(audioPeerReviewEvent);

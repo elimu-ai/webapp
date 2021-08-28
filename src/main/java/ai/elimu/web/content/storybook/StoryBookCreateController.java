@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -96,7 +97,7 @@ public class StoryBookCreateController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
+            storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
             

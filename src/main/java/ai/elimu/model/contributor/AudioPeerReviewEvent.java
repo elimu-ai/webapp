@@ -3,12 +3,7 @@ package ai.elimu.model.contributor;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.v2.enums.Platform;
 import java.util.Calendar;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -39,6 +34,7 @@ public class AudioPeerReviewEvent extends BaseEntity {
      * Any additional explanations. This field is mandatory only if the 
      * {@link #audioContributionEvent} was <i>not</i> approved.
      */
+    @Column(length = 1000)
     private String comment;
     
     @NotNull
