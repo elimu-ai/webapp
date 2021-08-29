@@ -68,7 +68,6 @@ public class StoryBookPeerReviewEvent extends BaseEntity {
         this.approved = isApproved;
     }
 
-    @Column(length = 1000)
     public String getComment() {
         return comment;
     }

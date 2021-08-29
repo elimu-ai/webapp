@@ -163,7 +163,6 @@ public class AudioCreateController {
                 }
             }
         } catch (IOException e) {
-            logger.error("Here we are writing error");
             logger.error(e);
         }
         
