@@ -35,6 +35,7 @@
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookChapterConverter" />
+                <bean class="ai.elimu.logic.converters.StringToStoryBookParagraphConverter" />
                 <bean class="ai.elimu.logic.converters.StringToWordConverter" />
             </list>
         </property>
