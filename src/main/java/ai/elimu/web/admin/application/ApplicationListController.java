@@ -42,8 +42,7 @@ public class ApplicationListController {
         }
         for (Application application : activeApplications) {
             for (LiteracySkill literacySkill : application.getLiteracySkills()) {
-                int count = literacySkillCountMap.get(literacySkill);
-                literacySkillCountMap.put(literacySkill, count + 1);
+                literacySkillCountMap.put(literacySkill, literacySkillCountMap.getOrDefault(literacySkill, 0) + 1);
             }
         }
         model.addAttribute("literacySkillCountMap", literacySkillCountMap);
@@ -62,8 +61,7 @@ public class ApplicationListController {
         }
         for (Application application : activeApplications) {
             for (NumeracySkill numeracySkill : application.getNumeracySkills()) {
-                int count = numeracySkillCountMap.get(numeracySkill);
-                numeracySkillCountMap.put(numeracySkill, count + 1);
+                numeracySkillCountMap.put(numeracySkill, numeracySkillCountMap.getOrDefault(numeracySkill, 0) + 1);
             }
         }
         model.addAttribute("numeracySkillCountMap", numeracySkillCountMap);

@@ -20,14 +20,7 @@ public class WordFrequencyHelper {
         
         for (String paragraph : paragraphs) {
             List<String> words = WordExtractionHelper.getWords(paragraph, language);
-            for (String word : words) {
-                String wordLowerCase = word.toLowerCase();
-                if (!wordFrequencyMap.containsKey(wordLowerCase)) {
-                    wordFrequencyMap.put(wordLowerCase, 1);
-                } else {
-                    wordFrequencyMap.put(wordLowerCase, wordFrequencyMap.get(wordLowerCase) + 1);
-                }
-            }
+            words.forEach(word -> wordFrequencyMap.put(word.toLowerCase(), wordFrequencyMap.getOrDefault(word.toLowerCase(), 0) + 1));
         }
         
         return sortByValue(wordFrequencyMap);
@@ -36,12 +29,7 @@ public class WordFrequencyHelper {
     private static Map<String, Integer> sortByValue(Map<String, Integer> map) {
         List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(map.entrySet());
 
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-            
-            public int compare(Map.Entry<String, Integer> m1, Map.Entry<String, Integer> m2) {
-                return (m2.getValue()).compareTo(m1.getValue());
-            }
-        });
+        list.sort((m1, m2) -> (m2.getValue()).compareTo(m1.getValue()));
     	
         Map<String, Integer> result = new LinkedHashMap<String, Integer>();
         for (Map.Entry<String, Integer> entry : list) {
