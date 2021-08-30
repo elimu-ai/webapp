@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -17,8 +18,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import java.util.Calendar;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
 
 @Controller
 @RequestMapping("/content/letter-sound-correspondence/create")
@@ -28,6 +35,9 @@ public class LetterSoundCorrespondenceCreateController {
     
     @Autowired
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    
+    @Autowired
+    private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
     
     @Autowired
     private LetterDao letterDao;
@@ -47,12 +57,16 @@ public class LetterSoundCorrespondenceCreateController {
         
         List<Allophone> allophones = allophoneDao.readAllOrdered();
         model.addAttribute("allophones", allophones);
+        
+        model.addAttribute("timeStart", System.currentTimeMillis());
 
         return "content/letter-sound-correspondence/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             @Valid LetterSoundCorrespondence letterSoundCorrespondence,
             BindingResult result,
             Model model
@@ -74,9 +88,21 @@ public class LetterSoundCorrespondenceCreateController {
             List<Allophone> allophones = allophoneDao.readAllOrdered();
             model.addAttribute("allophones", allophones);
             
+            model.addAttribute("timeStart", System.currentTimeMillis());
+            
             return "content/letter-sound-correspondence/create";
         } else {
             letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
+            
+            LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            letterSoundCorrespondenceContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
+            letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
+//            letterSoundCorrespondenceContributionEvent.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber());
+            letterSoundCorrespondenceContributionEvent.setRevisionNumber(1); // TODO: make LetterSoundCorrespondenceContributionEvent inherit from Content
+            letterSoundCorrespondenceContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
+            letterSoundCorrespondenceContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
             SlackHelper.postChatMessage("Letter-sound correpondence created: " + contentUrl);
