@@ -43,8 +43,6 @@ public class LetterCsvExportController {
                 .withHeader(
                         "id", 
                         "text", 
-                        "allophone_ids", 
-                        "allophone_values_ipa", 
                         "diacritic", 
                         "usage_count"
                 );
