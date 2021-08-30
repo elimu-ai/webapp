@@ -8,6 +8,7 @@
         <form:form modelAttribute="letterSoundCorrespondence">
             <tag:formErrors modelAttribute="letterSoundCorrespondence" />
             
+            <form:hidden path="revisionNumber" value="${letterSoundCorrespondence.revisionNumber}" />
             <form:hidden path="usageCount" value="${letterSoundCorrespondence.usageCount}" />
             <input type="hidden" name="timeStart" value="${timeStart}" />
             

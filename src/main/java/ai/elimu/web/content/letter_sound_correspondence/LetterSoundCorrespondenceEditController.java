@@ -97,14 +97,15 @@ public class LetterSoundCorrespondenceEditController {
             
             return "content/letter-sound-correspondence/edit";
         } else {
+            letterSoundCorrespondence.setTimeLastUpdate(Calendar.getInstance());
+            letterSoundCorrespondence.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber() + 1);
             letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
             
             LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
             letterSoundCorrespondenceContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
             letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
             letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
-            //            letterSoundCorrespondenceContributionEvent.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber());
-            letterSoundCorrespondenceContributionEvent.setRevisionNumber(2); // TODO: make LetterSoundCorrespondenceContributionEvent inherit from Content
+            letterSoundCorrespondenceContributionEvent.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber());
             letterSoundCorrespondenceContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             letterSoundCorrespondenceContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
