@@ -73,14 +73,12 @@ public class SyllableUsageCountScheduler {
             }
 
             Map<String, Integer> syllableFrequencyMapForBook = SyllableFrequencyHelper.getSyllableFrequency(paragraphs, language);
-            syllableFrequencyMapForBook.keySet().forEach(key -> syllableFrequencyMap.put(key, syllableFrequencyMap.getOrDefault(key, 0) + syllableFrequencyMapForBook.get(key)));
+            syllableFrequencyMapForBook.keySet().forEach(syllableText -> syllableFrequencyMap.put(syllableText, syllableFrequencyMap.getOrDefault(syllableText, 0) + syllableFrequencyMapForBook.get(syllableText)));
         }
 
         logger.info("syllableFrequencyMap: " + syllableFrequencyMap);
 
-        for (String key : syllableFrequencyMap.keySet()) {
-            String syllableText = key;
-
+        for (String syllableText : syllableFrequencyMap.keySet()) {
             // Skip syllables that are actual words
             // TODO: add logic to Word editing
             Word word = wordDao.readByText(syllableText);

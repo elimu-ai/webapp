@@ -40,9 +40,10 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): " + word.getText());
-            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences())
-                    letterSoundCorrespondenceFrequencyMap.put(letterSoundCorrespondence.getId(),
-                            letterSoundCorrespondenceFrequencyMap.getOrDefault(letterSoundCorrespondence.getId(), 0) + word.getUsageCount());
+            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+                letterSoundCorrespondenceFrequencyMap.put(letterSoundCorrespondence.getId(),
+                        letterSoundCorrespondenceFrequencyMap.getOrDefault(letterSoundCorrespondence.getId(), 0) + word.getUsageCount());
+            }
         }
 
         // Update the values previously stored in the database
