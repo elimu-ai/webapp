@@ -191,6 +191,9 @@ public class WordEditController {
         if ((existingWord != null) && !existingWord.getId().equals(word.getId())) {
             result.rejectValue("text", "NonUnique");
         }
+        if (StringUtils.containsAny(word.getText(), " ")) {
+            result.rejectValue("text", "WordSpace");
+        }
         
         List<Allophone> allophones = allophoneDao.readAllOrdered();
         
