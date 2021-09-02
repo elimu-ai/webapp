@@ -14,6 +14,7 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.model.v2.enums.Platform;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -102,6 +103,7 @@ public class NumberEditController {
             numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
             numberContributionEvent.setComment(request.getParameter("contributionComment"));
             numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
             
             return "redirect:/content/number/list#" + number.getId();

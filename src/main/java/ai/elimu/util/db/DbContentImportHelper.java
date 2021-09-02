@@ -42,6 +42,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.model.v2.enums.Platform;
 
 public class DbContentImportHelper {
     
@@ -150,6 +151,7 @@ public class DbContentImportHelper {
             wordContributionEvent.setRevisionNumber(1);
             wordContributionEvent.setTime(Calendar.getInstance());
             wordContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+            wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
         }
         
@@ -236,6 +238,8 @@ public class DbContentImportHelper {
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(1);
             storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+            storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
         }
         

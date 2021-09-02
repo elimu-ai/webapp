@@ -4,6 +4,7 @@ import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.model.v2.enums.Platform;
 import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
@@ -163,8 +164,7 @@ public class WordContributionRestController {
                     wordContributionEvent.getTime().getTimeInMillis());
             // TODO: wordContributionEvent.setTimeSpentMs(wordContributionEventGson.getTimeSpentMs());
             //  refer to: https://github.com/elimu-ai/webapp/pull/1289#discussion_r642024541
-            // TODO: wordContributionEvent.setPlatform(Platform.CROWDSOURCE_APP);
-            //  refer to : https://github.com/elimu-ai/webapp/pull/1289#discussion_r638936145
+            wordContributionEvent.setPlatform(Platform.CROWDSOURCE_APP);
             wordContributionEventDao.create(wordContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
