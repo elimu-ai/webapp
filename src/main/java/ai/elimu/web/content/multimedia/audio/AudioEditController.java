@@ -187,7 +187,7 @@ public class AudioEditController {
             audioContributionEvent.setTime(Calendar.getInstance());
             audioContributionEvent.setAudio(audio);
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-            audioContributionEvent.setComment(request.getParameter("contributionComment"));
+            audioContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
