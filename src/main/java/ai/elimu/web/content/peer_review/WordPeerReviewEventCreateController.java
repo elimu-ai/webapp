@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
-import ai.elimu.model.v2.enums.PeerReviewStatus;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;

@@ -9,7 +9,7 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.v2.enums.ContentLicense;
+import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;

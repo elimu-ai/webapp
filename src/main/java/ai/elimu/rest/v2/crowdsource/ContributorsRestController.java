@@ -2,7 +2,7 @@ package ai.elimu.rest.v2.crowdsource;
 
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.v2.enums.Role;
+import ai.elimu.model.enums.Role;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
