@@ -98,6 +98,8 @@ public class StoryBookCreateFromEPubController {
     ) throws IOException {
     	logger.info("handleSubmit");
         
+        Calendar timeStart = Calendar.getInstance();
+        
         Image storyBookCoverImage = null;
         
         List<StoryBookChapter> storyBookChapters = new ArrayList<>();
@@ -325,7 +327,7 @@ public class StoryBookCreateFromEPubController {
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
-            // TODO: setTimeSpentMs
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
             storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
             

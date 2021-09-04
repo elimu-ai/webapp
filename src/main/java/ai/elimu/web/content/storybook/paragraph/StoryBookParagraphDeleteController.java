@@ -90,7 +90,7 @@ public class StoryBookParagraphDeleteController {
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
         storyBookContributionEvent.setComment("Deleted storybook paragraph in chapter " + (storyBookParagraphToBeDeleted.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
         storyBookContributionEvent.setParagraphTextBefore(paragraphTextBeforeDeletion);
-        // TODO: setTimeSpentMs
+        storyBookContributionEvent.setTimeSpentMs(0L);
         storyBookContributionEvent.setPlatform(Platform.WEBAPP);
         storyBookContributionEventDao.create(storyBookContributionEvent);
         
