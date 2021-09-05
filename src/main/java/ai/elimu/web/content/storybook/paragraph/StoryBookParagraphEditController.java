@@ -12,13 +12,15 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.Language;
-import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
-import ai.elimu.model.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.Language;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
+import ai.elimu.model.v2.enums.Platform;
+import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -157,6 +159,9 @@ public class StoryBookParagraphEditController {
             }
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+            SlackHelper.postChatMessage("Storybook paragraph edited: " + contentUrl);
             
             // Refresh the REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

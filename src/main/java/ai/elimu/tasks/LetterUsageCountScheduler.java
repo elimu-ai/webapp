@@ -12,7 +12,7 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import java.util.ArrayList;
@@ -67,21 +67,12 @@ public class LetterUsageCountScheduler {
             }
 
             Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
-            for (String key : letterFrequencyMapForBook.keySet()) {
-                String letterText = key;
-                int letterFrequency = letterFrequencyMapForBook.get(key);
-                if (!letterFrequencyMap.containsKey(letterText)) {
-                    letterFrequencyMap.put(letterText, letterFrequency);
-                } else {
-                    letterFrequencyMap.put(letterText, letterFrequencyMap.get(letterText) + letterFrequency);
-                }
-            }
+            letterFrequencyMapForBook.keySet().forEach(letterText -> letterFrequencyMap.put(letterText, letterFrequencyMap.getOrDefault(letterText, 0) + letterFrequencyMapForBook.get(letterText)));
         }
 
         logger.info("letterFrequencyMap: " + letterFrequencyMap);
 
-        for (String key : letterFrequencyMap.keySet()) {
-            String letterText = key;
+        for (String letterText : letterFrequencyMap.keySet()) {
             Letter existingLetter = letterDao.readByText(letterText);
             if (existingLetter != null) {
                 existingLetter.setUsageCount(letterFrequencyMap.get(letterText));

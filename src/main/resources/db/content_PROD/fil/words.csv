@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 215,agad,[],0,,PERFECT,,
 230,aking,"[{""allophones"":[""ɑ"",""ː""],""id"":27,""letters"":[""a""],""usageCount"":0},{""allophones"":[""k""],""id"":17,""letters"":[""k""],""usageCount"":0},{""allophones"":[""ɪ""],""id"":14,""letters"":[""i""],""usageCount"":0},{""allophones"":[""ŋ""],""id"":23,""letters"":[""n"",""g""],""usageCount"":0}]",0,PRONOUN,PHONEMIC,,
 319,aklat,"[{""allophones"":[""ɑ""],""id"":1,""letters"":[""a""],""usageCount"":0},{""allophones"":[""k""],""id"":17,""letters"":[""k""],""usageCount"":0},{""allophones"":[""l""],""id"":16,""letters"":[""l""],""usageCount"":0},{""allophones"":[""ɑ""],""id"":1,""letters"":[""a""],""usageCount"":0},{""allophones"":[""t""],""id"":7,""letters"":[""t""],""usageCount"":0}]",0,NOUN,PERFECT,,

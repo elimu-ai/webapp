@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="<spring:url value='/static/css/content/styles.css' />" />
         
         <%-- JavaScripts --%>
-        <script src="<spring:url value='/static/js/jquery-2.1.4.min.js' />"></script>
+        <script src="<spring:url value='/static/js/jquery-3.6.0.min.js' />"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
@@ -94,9 +94,9 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/letter/list' />"><fmt:message key="letters" /></a>
                             </c:when>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-to-allophone-mapping/')
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-sound-correspondence/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/letter-to-allophone-mapping/list' />"><fmt:message key="letter.to.allophone.mappings" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/content/letter-sound-correspondence/list' />"><fmt:message key="letter.sound.correspondences" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">

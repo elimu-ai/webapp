@@ -8,9 +8,11 @@ import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
-import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
+import ai.elimu.model.v2.enums.Platform;
 import ai.elimu.rest.v2.crowdsource.AudioPeerReviewsRestController;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -62,6 +64,9 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEvent.setTime(Calendar.getInstance());
         audioPeerReviewEvent.setPlatform(Platform.WEBAPP);
         audioPeerReviewEventDao.create(audioPeerReviewEvent);
+        
+        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
+        SlackHelper.postChatMessage("Audio peer-reviewed: " + contentUrl);
 
         // Update the audio's peer review status
         int approvedCount = 0;

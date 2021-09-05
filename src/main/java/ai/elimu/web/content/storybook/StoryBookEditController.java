@@ -25,13 +25,15 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.ReadingLevel;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.ContentLicense;
+import ai.elimu.model.v2.enums.ReadingLevel;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.util.WordFrequencyHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
@@ -103,8 +105,7 @@ public class StoryBookEditController {
         // Map<StoryBookChapter.id, List<StoryBookParagraph>>
         Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
         for (StoryBookChapter storyBookChapter : storyBookChapters) {
-            List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-            paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+            paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphDao.readAll(storyBookChapter));
         }
         model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
         
@@ -172,8 +173,7 @@ public class StoryBookEditController {
             // Map<StoryBookChapter.id, List<StoryBookParagraph>>
             Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-                paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+                paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphDao.readAll(storyBookChapter));
             }
             model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
 
@@ -220,6 +220,9 @@ public class StoryBookEditController {
             storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+            SlackHelper.postChatMessage("Storybook edited: " + contentUrl);
             
             // Refresh REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

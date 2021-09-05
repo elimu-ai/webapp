@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 7,نے,"[{""allophones"":[""n""],""id"":1,""letters"":[""ن""],""usageCount"":82},{""allophones"":[""ɛː""],""id"":9,""letters"":[""ے""],""usageCount"":221}]",82,,PERFECT,,
 3,کے,"[{""allophones"":[""k""],""id"":6,""letters"":[""ک""],""usageCount"":218},{""allophones"":[""ɛː""],""id"":9,""letters"":[""ے""],""usageCount"":221}]",79,,PERFECT,,
 4,اس,"[{""allophones"":[""ɑː""],""id"":5,""letters"":[""ا""],""usageCount"":68},{""allophones"":[""s""],""id"":8,""letters"":[""س""],""usageCount"":128}]",68,,PERFECT,,

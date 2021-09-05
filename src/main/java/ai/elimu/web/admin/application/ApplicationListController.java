@@ -7,9 +7,9 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
-import ai.elimu.model.enums.admin.ApplicationStatus;
-import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.model.v2.enums.admin.ApplicationStatus;
+import ai.elimu.model.v2.enums.content.LiteracySkill;
+import ai.elimu.model.v2.enums.content.NumeracySkill;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,8 +42,7 @@ public class ApplicationListController {
         }
         for (Application application : activeApplications) {
             for (LiteracySkill literacySkill : application.getLiteracySkills()) {
-                int count = literacySkillCountMap.get(literacySkill);
-                literacySkillCountMap.put(literacySkill, count + 1);
+                literacySkillCountMap.put(literacySkill, literacySkillCountMap.getOrDefault(literacySkill, 0) + 1);
             }
         }
         model.addAttribute("literacySkillCountMap", literacySkillCountMap);
@@ -62,8 +61,7 @@ public class ApplicationListController {
         }
         for (Application application : activeApplications) {
             for (NumeracySkill numeracySkill : application.getNumeracySkills()) {
-                int count = numeracySkillCountMap.get(numeracySkill);
-                numeracySkillCountMap.put(numeracySkill, count + 1);
+                numeracySkillCountMap.put(numeracySkill, numeracySkillCountMap.getOrDefault(numeracySkill, 0) + 1);
             }
         }
         model.addAttribute("numeracySkillCountMap", numeracySkillCountMap);

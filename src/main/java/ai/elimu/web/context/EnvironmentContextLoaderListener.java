@@ -19,8 +19,8 @@ import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.ServletContextResourceLoader;
 
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Environment;
+import ai.elimu.model.v2.enums.Language;
 import java.net.URL;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.config.Configurator;
@@ -120,6 +120,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
+                
+                if (env == Environment.PROD) {
+                    String slackWebhook = (String) servletContext.getAttribute("slack_webhook");
+                    PROPERTIES.put("slack.webhook", slackWebhook);
+                }
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {

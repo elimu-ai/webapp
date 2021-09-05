@@ -8,12 +8,14 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Platform;
-import ai.elimu.model.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.Platform;
+import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.util.audio.AudioMetadataExtractionHelper;
 import ai.elimu.util.audio.CrowdsourceHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.Gson;
 import java.io.File;
 import java.util.ArrayList;
@@ -238,6 +240,9 @@ public class AudioContributionsRestController {
             audioContributionEvent.setAudio(audio);
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
             audioContributionEventDao.create(audioContributionEvent);
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+            SlackHelper.postChatMessage("Audio created: " + contentUrl);
         } catch (Exception ex) {
             logger.error(ex);
             

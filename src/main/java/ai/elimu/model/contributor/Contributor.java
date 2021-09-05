@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
-import ai.elimu.model.enums.Role;
+import ai.elimu.model.v2.enums.Role;
 
 @Entity
 public class Contributor extends BaseEntity {

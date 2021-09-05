@@ -2,7 +2,7 @@ package ai.elimu.rest.v2.analytics;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.AnalyticsHelper;
 import ai.elimu.util.ConfigHelper;
 import java.io.File;

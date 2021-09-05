@@ -2,14 +2,14 @@ package ai.elimu.model.content.multimedia;
 
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import ai.elimu.model.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.content.AudioFormat;
 import javax.persistence.ManyToOne;
 
 @Entity

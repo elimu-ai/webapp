@@ -8,7 +8,9 @@ import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
-import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -56,6 +58,9 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEvent.setComment(comment);
         wordPeerReviewEvent.setTime(Calendar.getInstance());
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
+        
+        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
+        SlackHelper.postChatMessage("Word peer-reviewed: " + contentUrl);
 
         // Update the word's peer review status
         int approvedCount = 0;

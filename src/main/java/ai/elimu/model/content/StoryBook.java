@@ -8,9 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.ReadingLevel;
+import ai.elimu.model.v2.enums.ContentLicense;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
+import ai.elimu.model.v2.enums.ReadingLevel;
 
 @Entity
 public class StoryBook extends Content {

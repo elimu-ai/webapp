@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 21,a,"[{""allophones"":[""ə""],""id"":28,""letters"":[""a""],""usageCount"":0}]",0,,HIGHLY_NON_PHONEMIC,,
 60,africa,"[{""allophones"":[""æ""],""id"":2,""letters"":[""a""],""usageCount"":0},{""allophones"":[""f""],""id"":33,""letters"":[""f""],""usageCount"":0},{""allophones"":[""r""],""id"":1,""letters"":[""r""],""usageCount"":0},{""allophones"":[""ə""],""id"":4,""letters"":[""i""],""usageCount"":0},{""allophones"":[""k""],""id"":47,""letters"":[""c""],""usageCount"":0},{""allophones"":[""ə""],""id"":28,""letters"":[""a""],""usageCount"":0}]",0,,,,
 108,all,[],0,NOUN,NON_PHONEMIC,,

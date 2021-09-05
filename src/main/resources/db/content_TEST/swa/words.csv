@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 36,na,"[{""allophones"":[""n""],""id"":1,""letters"":[""n""],""usageCount"":24},{""allophones"":[""ɑ""],""id"":2,""letters"":[""a""],""usageCount"":60}]",24,,,,
 44,maji,"[{""allophones"":[""m""],""id"":3,""letters"":[""m""],""usageCount"":33},{""allophones"":[""ɑ""],""id"":2,""letters"":[""a""],""usageCount"":60},{""allophones"":[""ʄ""],""id"":4,""letters"":[""j""],""usageCount"":24},{""allophones"":[""i""],""id"":5,""letters"":[""i""],""usageCount"":27}]",16,NOUN,PERFECT,,
 12,moja,"[{""allophones"":[""m""],""id"":3,""letters"":[""m""],""usageCount"":33},{""allophones"":[""ɔ""],""id"":6,""letters"":[""o""],""usageCount"":8},{""allophones"":[""ʄ""],""id"":4,""letters"":[""j""],""usageCount"":24},{""allophones"":[""ɑ""],""id"":2,""letters"":[""a""],""usageCount"":60}]",8,,,,

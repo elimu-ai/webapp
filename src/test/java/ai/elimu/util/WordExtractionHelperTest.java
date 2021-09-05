@@ -1,6 +1,6 @@
 package ai.elimu.util;
 
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;

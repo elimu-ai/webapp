@@ -334,7 +334,7 @@
                                     <c:out value="${word.text}" />
                                 </a><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /><br />
                                 <span class="grey-text">
-                                    /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                    /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="allophone" items="${lsc.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                                 </span>
                             </c:otherwise>
                         </c:choose>
@@ -367,12 +367,7 @@
                                 <c:set var="letter" value="${letterMap[letterText]}" />
                                 <a href="<spring:url value='/content/letter/edit/${letter.id}' />" target="_blank">
                                     <c:out value="${letter.text}" />
-                                </a><br />
-                                <span class="grey-text">
-                                    /<c:forEach var="allophone" items="${letter.allophones}">
-                                        ${allophone.valueIpa}
-                                    </c:forEach>/
-                                </span>
+                                </a>
                             </c:otherwise>
                         </c:choose>
                     </td>

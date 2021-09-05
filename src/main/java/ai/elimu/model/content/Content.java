@@ -8,7 +8,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.enums.content.ContentStatus;
+import ai.elimu.model.v2.enums.content.ContentStatus;
 
 /**
  * Parent class for different types of educational content.

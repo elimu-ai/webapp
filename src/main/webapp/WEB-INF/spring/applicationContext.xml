@@ -31,10 +31,11 @@
                 <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
                 <bean class="ai.elimu.logic.converters.StringToImageConverter" />
                 <bean class="ai.elimu.logic.converters.StringToLetterConverter" />
-                <bean class="ai.elimu.logic.converters.StringToLetterToAllophoneMappingConverter" />
+                <bean class="ai.elimu.logic.converters.StringToLetterSoundCorrespondenceConverter" />
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookChapterConverter" />
+                <bean class="ai.elimu.logic.converters.StringToStoryBookParagraphConverter" />
                 <bean class="ai.elimu.logic.converters.StringToWordConverter" />
             </list>
         </property>

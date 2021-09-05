@@ -1,4 +1,4 @@
-id,text,letter_to_allophone_mappings,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
+id,text,letter_sound_correspondences,usage_count,word_type,spelling_consistency,root_word_id,root_word_text
 2,তার,"[{""allophones"":[""t""],""id"":3,""letters"":[""ত""],""usageCount"":53},{""allophones"":[""ɐ""],""id"":4,""letters"":[""া""],""usageCount"":140},{""allophones"":[""ɾ""],""id"":2,""letters"":[""র""],""usageCount"":78}]",42,,PERFECT,,
 1,আমি,"[{""allophones"":[""ɐ""],""id"":11,""letters"":[""আ""],""usageCount"":47},{""allophones"":[""m""],""id"":7,""letters"":[""ম""],""usageCount"":81},{""allophones"":[""iː""],""id"":10,""letters"":[""ি""],""usageCount"":67}]",38,PRONOUN,,,
 3,সে,"[{""allophones"":[""ʃ""],""id"":6,""letters"":[""স""],""usageCount"":53},{""allophones"":[""e""],""id"":12,""letters"":[""ে""],""usageCount"":87}]",34,PRONOUN,,,

@@ -11,14 +11,13 @@ import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.dao.LetterToAllophoneMappingDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
@@ -26,11 +25,11 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
-import ai.elimu.model.enums.Language;
-import ai.elimu.model.enums.Platform;
-import ai.elimu.model.enums.content.AudioFormat;
-import ai.elimu.model.enums.content.SpellingConsistency;
-import ai.elimu.model.enums.content.WordType;
+import ai.elimu.model.v2.enums.Language;
+import ai.elimu.model.v2.enums.Platform;
+import ai.elimu.model.v2.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.content.SpellingConsistency;
+import ai.elimu.model.v2.enums.content.WordType;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
 import java.util.ArrayList;
@@ -48,6 +47,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.util.SlackHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 @Controller
 @RequestMapping("/content/word/create")
@@ -65,7 +67,7 @@ public class WordCreateController {
     private AllophoneDao allophoneDao;
     
     @Autowired
-    private LetterToAllophoneMappingDao letterToAllophoneMappingDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     @Autowired
     private ImageDao imageDao;
@@ -92,8 +94,8 @@ public class WordCreateController {
         if (StringUtils.isNotBlank(autoFillText)) {
             word.setText(autoFillText);
             
-            autoSelectLetterToAllophoneMappings(word);
-            // TODO: display information message to the Contributor that the Letter-to-Allophone mappings were auto-selected, and that they should be verified
+            autoSelectLetterSoundCorrespondences(word);
+            // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
             
             model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
         }
@@ -101,7 +103,7 @@ public class WordCreateController {
         model.addAttribute("word", word);
         model.addAttribute("timeStart", System.currentTimeMillis());
         model.addAttribute("allophones", allophoneDao.readAllOrdered());
-        model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
@@ -130,7 +132,7 @@ public class WordCreateController {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
             model.addAttribute("allophones", allophones);
-            model.addAttribute("letterToAllophoneMappings", letterToAllophoneMappingDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+            model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
@@ -148,9 +150,12 @@ public class WordCreateController {
             wordContributionEvent.setTime(Calendar.getInstance());
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
-            wordContributionEvent.setComment(request.getParameter("contributionComment"));
+            wordContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             wordContributionEventDao.create(wordContributionEvent);
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+            SlackHelper.postChatMessage("Word created: " + contentUrl);
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
             
@@ -234,29 +239,29 @@ public class WordCreateController {
         return emojisByWordId;
     }
     
-    private void autoSelectLetterToAllophoneMappings(Word word) {
-        logger.info("autoSelectLetterToAllophoneMappings");
+    private void autoSelectLetterSoundCorrespondences(Word word) {
+        logger.info("autoSelectLetterSoundCorrespondences");
         
         String wordText = word.getText();
         
-        List<LetterToAllophoneMapping> letterToAllophoneMappings = new ArrayList<>();
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         
-        List<LetterToAllophoneMapping> allLetterToAllophoneMappingsOrderedByLettersLength = letterToAllophoneMappingDao.readAllOrderedByLettersLength();
+        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundCorrespondenceDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
             boolean isMatch = false;
-            for (LetterToAllophoneMapping letterToAllophoneMapping : allLetterToAllophoneMappingsOrderedByLettersLength) {
-                String letterToAllophoneMappingLetters = letterToAllophoneMapping.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-                logger.info("letterToAllophoneMappingLetters: \"" + letterToAllophoneMappingLetters + "\"");
+            for (LetterSoundCorrespondence letterSoundCorrespondence : allLetterSoundCorrespondencesOrderedByLettersLength) {
+                String letterSoundCorrespondenceLetters = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+                logger.info("letterSoundCorrespondenceLetters: \"" + letterSoundCorrespondenceLetters + "\"");
 
-                if (wordText.startsWith(letterToAllophoneMappingLetters)) {
+                if (wordText.startsWith(letterSoundCorrespondenceLetters)) {
                     isMatch = true;
                     logger.info("Found match at the beginning of \"" + wordText + "\"");
-                    letterToAllophoneMappings.add(letterToAllophoneMapping);
+                    letterSoundCorrespondences.add(letterSoundCorrespondence);
 
                     // Remove the match from the word
-                    wordText = wordText.substring(letterToAllophoneMappingLetters.length());
+                    wordText = wordText.substring(letterSoundCorrespondenceLetters.length());
                     
                     break;
                 }
@@ -267,6 +272,6 @@ public class WordCreateController {
             }
         }
         
-        word.setLetterToAllophoneMappings(letterToAllophoneMappings);
+        word.setLetterSoundCorrespondences(letterSoundCorrespondences);
     }
 }
