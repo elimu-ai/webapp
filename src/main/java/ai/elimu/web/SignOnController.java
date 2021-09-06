@@ -1,15 +1,11 @@
 package ai.elimu.web;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Environment;
-import ai.elimu.model.enums.Role;
+import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,18 +39,8 @@ public class SignOnController {
     	logger.info("handleOfflineSignOnRequest");
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            // Create and store test user in database
+            // Fetch the test user that was created in DbContentImportHelper during application launch
             Contributor contributor = contributorDao.read("dev@elimu.ai");
-            if (contributor == null) {
-                contributor = new Contributor();
-                contributor.setEmail("dev@elimu.ai");
-                contributor.setFirstName("Dev");
-                contributor.setLastName("Contributor");
-                contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR, Role.EDITOR, Role.ANALYST, Role.ADMIN)));
-                contributor.setRegistrationTime(Calendar.getInstance());
-                contributor.setProviderIdGoogle("123412341234123412341");
-                contributorDao.create(contributor);
-            }
             
             // Authenticate
             new CustomAuthenticationManager().authenticateUser(contributor);

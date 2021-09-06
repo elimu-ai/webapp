@@ -26,8 +26,8 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.ReadingLevel;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.ReadingLevel;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.LetterFrequencyHelper;
@@ -105,8 +105,7 @@ public class StoryBookEditController {
         // Map<StoryBookChapter.id, List<StoryBookParagraph>>
         Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
         for (StoryBookChapter storyBookChapter : storyBookChapters) {
-            List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-            paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+            paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphDao.readAll(storyBookChapter));
         }
         model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
         
@@ -174,8 +173,7 @@ public class StoryBookEditController {
             // Map<StoryBookChapter.id, List<StoryBookParagraph>>
             Map<Long, List<StoryBookParagraph>> paragraphsPerStoryBookChapterMap = new HashMap<>();
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapter);
-                paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphs);
+                paragraphsPerStoryBookChapterMap.put(storyBookChapter.getId(), storyBookParagraphDao.readAll(storyBookChapter));
             }
             model.addAttribute("paragraphsPerStoryBookChapterMap", paragraphsPerStoryBookChapterMap);
 
@@ -219,7 +217,7 @@ public class StoryBookEditController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
+            storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
             

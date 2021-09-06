@@ -2,7 +2,7 @@ package ai.elimu.web.content.storybook;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.enums.ReadingLevel;
+import ai.elimu.model.v2.enums.ReadingLevel;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

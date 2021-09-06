@@ -1,6 +1,6 @@
 package ai.elimu.util;
 
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -20,13 +20,7 @@ public class LetterFrequencyHelper {
         
         for (String paragraph : paragraphs) {
             List<String> letters = LetterExtractionHelper.getLetters(paragraph, language);
-            for (String letter : letters) {
-                if (!letterFrequencyMap.containsKey(letter)) {
-                    letterFrequencyMap.put(letter, 1);
-                } else {
-                    letterFrequencyMap.put(letter, letterFrequencyMap.get(letter) + 1);
-                }
-            }
+            letters.forEach(letter -> letterFrequencyMap.put(letter, letterFrequencyMap.getOrDefault(letter, 0) + 1));
         }
         
         return sortByValue(letterFrequencyMap);

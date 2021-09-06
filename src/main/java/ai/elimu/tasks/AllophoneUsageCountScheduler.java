@@ -49,15 +49,10 @@ public class AllophoneUsageCountScheduler {
         for (Word word : words) {
             for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
                 for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
-                    if (!allophoneFrequencyMap.containsKey(allophone.getId())) {
-                        allophoneFrequencyMap.put(allophone.getId(), letterSoundCorrespondence.getUsageCount());
-                    } else {
-                        allophoneFrequencyMap.put(allophone.getId(), allophoneFrequencyMap.get(allophone.getId()) + letterSoundCorrespondence.getUsageCount());
-                    }
+                    allophoneFrequencyMap.put(allophone.getId(), allophoneFrequencyMap.getOrDefault(allophone.getId(), 0) + letterSoundCorrespondence.getUsageCount());
                 }
             }
         }
-
         // Update each Allophone's usage count in the database
         for (Long allophoneId : allophoneFrequencyMap.keySet()) {
             Allophone allophone = allophoneDao.read(allophoneId);

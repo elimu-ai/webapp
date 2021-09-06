@@ -5,7 +5,7 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordExtractionHelper;

@@ -12,7 +12,7 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import java.util.ArrayList;
@@ -67,15 +67,7 @@ public class WordUsageCountScheduler {
             }
 
             Map<String, Integer> wordFrequencyMapForBook = WordFrequencyHelper.getWordFrequency(paragraphs, language);
-            for (String key : wordFrequencyMapForBook.keySet()) {
-                int wordFrequency = wordFrequencyMapForBook.get(key);
-                String word = key;
-                if (!wordFrequencyMap.containsKey(word)) {
-                    wordFrequencyMap.put(word, wordFrequency);
-                } else {
-                    wordFrequencyMap.put(word, wordFrequencyMap.get(word) + wordFrequency);
-                }
-            }
+            wordFrequencyMapForBook.keySet().forEach(word -> wordFrequencyMap.put(word, wordFrequencyMap.getOrDefault(word, 0) + wordFrequencyMapForBook.get(word)));
         }
 
         for (String key : wordFrequencyMap.keySet()) {

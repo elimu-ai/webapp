@@ -1,6 +1,6 @@
 package selenium;
 
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

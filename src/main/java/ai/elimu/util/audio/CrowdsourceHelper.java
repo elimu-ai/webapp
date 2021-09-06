@@ -1,6 +1,6 @@
 package ai.elimu.util.audio;
 
-import ai.elimu.model.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.content.AudioFormat;
 
 public class CrowdsourceHelper {
     

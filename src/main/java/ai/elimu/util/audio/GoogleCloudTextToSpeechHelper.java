@@ -1,6 +1,6 @@
 package ai.elimu.util.audio;
 
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import com.google.cloud.texttospeech.v1beta1.AudioConfig;
 import com.google.cloud.texttospeech.v1beta1.AudioEncoding;
 import com.google.cloud.texttospeech.v1beta1.SsmlVoiceGender;

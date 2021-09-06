@@ -5,6 +5,7 @@ import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.AudioPeerReviewEventDao;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.Contributor;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
@@ -60,7 +61,7 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEvent.setContributor(contributor);
         audioPeerReviewEvent.setAudioContributionEvent(audioContributionEvent);
         audioPeerReviewEvent.setApproved(approved);
-        audioPeerReviewEvent.setComment(comment);
+        audioPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         audioPeerReviewEvent.setTime(Calendar.getInstance());
         audioPeerReviewEvent.setPlatform(Platform.WEBAPP);
         audioPeerReviewEventDao.create(audioPeerReviewEvent);

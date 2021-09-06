@@ -81,8 +81,7 @@ public class ContributorController {
         model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
         Map<Long, List<StoryBookPeerReviewEvent>> storyBookPeerReviewEventsByContributionMap = new HashMap<>();
         for (StoryBookContributionEvent storyBookContributionEvent : storyBookContributionEvents) {
-            List<StoryBookPeerReviewEvent> storyBookPeerReviewEvents = storyBookPeerReviewEventDao.readAll(storyBookContributionEvent);
-            storyBookPeerReviewEventsByContributionMap.put(storyBookContributionEvent.getId(), storyBookPeerReviewEvents);
+            storyBookPeerReviewEventsByContributionMap.put(storyBookContributionEvent.getId(), storyBookPeerReviewEventDao.readAll(storyBookContributionEvent));
         }
         model.addAttribute("storyBookPeerReviewEventsByContributionMap", storyBookPeerReviewEventsByContributionMap);
         
@@ -92,8 +91,7 @@ public class ContributorController {
         model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(contributor));
         Map<Long, List<WordPeerReviewEvent>> wordPeerReviewEventsByContributionMap = new HashMap<>();
         for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
-            List<WordPeerReviewEvent> wordPeerReviewEvents = wordPeerReviewEventDao.readAll(wordContributionEvent);
-            wordPeerReviewEventsByContributionMap.put(wordContributionEvent.getId(), wordPeerReviewEvents);
+            wordPeerReviewEventsByContributionMap.put(wordContributionEvent.getId(), wordPeerReviewEventDao.readAll(wordContributionEvent));
         }
         model.addAttribute("wordPeerReviewEventsByContributionMap", wordPeerReviewEventsByContributionMap);
         

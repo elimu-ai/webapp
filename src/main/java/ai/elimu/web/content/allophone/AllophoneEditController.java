@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.enums.content.allophone.SoundType;
+import ai.elimu.model.v2.enums.content.allophone.SoundType;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

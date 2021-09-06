@@ -9,7 +9,7 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import ai.elimu.util.SlackHelper;

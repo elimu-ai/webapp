@@ -5,6 +5,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
@@ -55,7 +56,7 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEvent.setContributor(contributor);
         wordPeerReviewEvent.setWordContributionEvent(wordContributionEvent);
         wordPeerReviewEvent.setApproved(approved);
-        wordPeerReviewEvent.setComment(comment);
+        wordPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         wordPeerReviewEvent.setTime(Calendar.getInstance());
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
         

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import java.util.ArrayList;
