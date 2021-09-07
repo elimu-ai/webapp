@@ -16,7 +16,7 @@ public class Emoji extends Content {
     @NotNull
     @Length(max = 4)
     @Column(length = 4)
-    private String glyph; // E.g. '🦋'
+    private String glyph; // E.g. '🦋' or
     
     /**
      * The Unicode version when the glyph was first introduced.
