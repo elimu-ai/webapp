@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * Contains information about the various sounds a letter can represent.
  */
 @Entity
-public class LetterSoundCorrespondence extends Content {
+public class LetterSoundCorrespondence extends BaseEntity {
     
 //    @NotEmpty
     @OrderColumn
@@ -23,6 +23,8 @@ public class LetterSoundCorrespondence extends Content {
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Allophone> allophones;
+    
+    private int usageCount;
     
     public List<Letter> getLetters() {
         return letters;
@@ -38,5 +40,13 @@ public class LetterSoundCorrespondence extends Content {
 
     public void setAllophones(List<Allophone> allophones) {
         this.allophones = allophones;
+    }
+
+    public int getUsageCount() {
+        return usageCount;
+    }
+
+    public void setUsageCount(int usageCount) {
+        this.usageCount = usageCount;
     }
 }

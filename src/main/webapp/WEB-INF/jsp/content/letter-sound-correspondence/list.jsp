@@ -28,7 +28,6 @@
                     <th><fmt:message key="letters" /></th>
                     <th></th>
                     <th><fmt:message key="allophones" /></th>
-                    <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
@@ -47,9 +46,6 @@
                             </td>
                             <td style="font-size: 2em;">
                                 / <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a> </c:forEach> /
-                            </td>
-                            <td>
-                                <p>#${letterSoundCorrespondence.revisionNumber}</p>
                             </td>
                             <td>
                                 <a class="editLink" href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />"><span class="material-icons">edit</span></a>
