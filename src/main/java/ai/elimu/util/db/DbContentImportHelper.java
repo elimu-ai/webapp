@@ -25,7 +25,7 @@ import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.model.enums.Role;
+import ai.elimu.model.v2.enums.Role;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
@@ -104,9 +104,8 @@ public class DbContentImportHelper {
         contributor.setEmail("dev@elimu.ai");
         contributor.setFirstName("Dev");
         contributor.setLastName("Contributor");
-        contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR, Role.EDITOR, Role.ANALYST, Role.ADMIN)));
+        contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
         contributor.setRegistrationTime(Calendar.getInstance());
-        contributor.setProviderIdGoogle("123412341234123412341");
         contributorDao.create(contributor);
         
         // Extract and import Allophones from CSV file in src/main/resources/

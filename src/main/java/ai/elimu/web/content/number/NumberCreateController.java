@@ -93,7 +93,7 @@ public class NumberCreateController {
             numberContributionEvent.setTime(Calendar.getInstance());
             numberContributionEvent.setNumber(number);
             numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
-            numberContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
+            numberContributionEvent.setComment(request.getParameter("contributionComment"));
             numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             numberContributionEventDao.create(numberContributionEvent);
             

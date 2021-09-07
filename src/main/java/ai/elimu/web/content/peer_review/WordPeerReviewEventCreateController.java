@@ -5,11 +5,10 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
-import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
-import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -56,7 +55,7 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEvent.setContributor(contributor);
         wordPeerReviewEvent.setWordContributionEvent(wordContributionEvent);
         wordPeerReviewEvent.setApproved(approved);
-        wordPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
+        wordPeerReviewEvent.setComment(comment);
         wordPeerReviewEvent.setTime(Calendar.getInstance());
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
         

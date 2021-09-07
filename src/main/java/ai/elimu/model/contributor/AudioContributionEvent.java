@@ -2,9 +2,14 @@ package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.content.multimedia.Audio;
-import ai.elimu.model.enums.Platform;
+import ai.elimu.model.v2.enums.Platform;
 import java.util.Calendar;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -21,7 +26,6 @@ public class AudioContributionEvent extends BaseEntity {
     @NotNull
     private Integer revisionNumber;
 
-    @Column(length = 1000)
     private String comment;
     
     @NotNull

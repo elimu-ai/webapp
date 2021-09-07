@@ -19,7 +19,7 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.v2.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
