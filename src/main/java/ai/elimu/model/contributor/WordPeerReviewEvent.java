@@ -2,10 +2,7 @@ package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
 import java.util.Calendar;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -36,6 +33,7 @@ public class WordPeerReviewEvent extends BaseEntity {
      * Any additional explanations. This field is mandatory only if the 
      * {@link #wordContributionEvent} was <i>not</i> approved.
      */
+    @Column(length = 1000)
     private String comment;
     
     @NotNull
