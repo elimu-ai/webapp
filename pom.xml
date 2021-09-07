@@ -9,7 +9,7 @@
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <model.version>2.0.46</model.version>
+        <model.version>2.0.44</model.version>
         <hibernate.version>5.5.5.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
         <spring.version>5.3.9</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
