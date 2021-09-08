@@ -25,7 +25,7 @@ import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.model.v2.enums.Role;
+import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;

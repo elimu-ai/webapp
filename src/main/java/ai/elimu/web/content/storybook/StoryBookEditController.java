@@ -25,7 +25,7 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.v2.enums.ContentLicense;
+import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;

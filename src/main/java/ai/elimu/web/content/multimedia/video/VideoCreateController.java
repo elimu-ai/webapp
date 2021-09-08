@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.v2.enums.ContentLicense;
+import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
