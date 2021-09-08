@@ -43,18 +43,8 @@ public class SignOnController {
     	logger.info("handleOfflineSignOnRequest");
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            // Create and store test user in database
+            // Fetch the test user that was created in DbContentImportHelper during application launch
             Contributor contributor = contributorDao.read("dev@elimu.ai");
-            if (contributor == null) {
-                contributor = new Contributor();
-                contributor.setEmail("dev@elimu.ai");
-                contributor.setFirstName("Dev");
-                contributor.setLastName("Contributor");
-                contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR, Role.EDITOR, Role.ANALYST, Role.ADMIN)));
-                contributor.setRegistrationTime(Calendar.getInstance());
-                contributor.setProviderIdGoogle("123412341234123412341");
-                contributorDao.create(contributor);
-            }
             
             // Authenticate
             new CustomAuthenticationManager().authenticateUser(contributor);

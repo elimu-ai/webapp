@@ -104,7 +104,7 @@ public class DbContentImportHelper {
         contributor.setEmail("dev@elimu.ai");
         contributor.setFirstName("Dev");
         contributor.setLastName("Contributor");
-        contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+        contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR, Role.EDITOR, Role.ANALYST, Role.ADMIN)));
         contributor.setRegistrationTime(Calendar.getInstance());
         contributorDao.create(contributor);
         

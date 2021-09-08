@@ -13,6 +13,7 @@ import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEvent.setContributor(contributor);
         wordPeerReviewEvent.setWordContributionEvent(wordContributionEvent);
         wordPeerReviewEvent.setApproved(approved);
-        wordPeerReviewEvent.setComment(comment);
+        wordPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         wordPeerReviewEvent.setTime(Calendar.getInstance());
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
         
