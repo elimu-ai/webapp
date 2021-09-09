@@ -8,6 +8,8 @@
         <form:form modelAttribute="letterSoundCorrespondence">
             <tag:formErrors modelAttribute="letterSoundCorrespondence" />
             
+            <input type="hidden" name="timeStart" value="${timeStart}" />
+            
             <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="letters" /></label><br />
@@ -121,6 +123,13 @@
                     </script>
                     
                     <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 

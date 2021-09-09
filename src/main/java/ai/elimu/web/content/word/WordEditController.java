@@ -28,7 +28,7 @@ import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.model.v2.enums.Platform;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
@@ -190,6 +190,10 @@ public class WordEditController {
         Word existingWord = wordDao.readByText(word.getText());
         if ((existingWord != null) && !existingWord.getId().equals(word.getId())) {
             result.rejectValue("text", "NonUnique");
+        }
+        
+        if (StringUtils.containsAny(word.getText(), " ")) {
+            result.rejectValue("text", "WordSpace");
         }
         
         List<Allophone> allophones = allophoneDao.readAllOrdered();

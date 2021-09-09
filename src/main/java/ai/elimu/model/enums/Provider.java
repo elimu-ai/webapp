@@ -1,4 +1,4 @@
-package ai.elimu.model.v2.enums;
+package ai.elimu.model.enums;
 
 /**
  * Sign-On Providers.
