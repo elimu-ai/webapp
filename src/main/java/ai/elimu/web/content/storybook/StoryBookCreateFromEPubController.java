@@ -17,6 +17,7 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
@@ -96,6 +97,8 @@ public class StoryBookCreateFromEPubController {
             HttpSession session
     ) throws IOException {
     	logger.info("handleSubmit");
+        
+        Calendar timeStart = Calendar.getInstance();
         
         Image storyBookCoverImage = null;
         
@@ -324,6 +327,8 @@ public class StoryBookCreateFromEPubController {
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
+            storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook

@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.SlackHelper;
@@ -89,6 +90,8 @@ public class StoryBookParagraphDeleteController {
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
         storyBookContributionEvent.setComment("Deleted storybook paragraph in chapter " + (storyBookParagraphToBeDeleted.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
         storyBookContributionEvent.setParagraphTextBefore(paragraphTextBeforeDeletion);
+        storyBookContributionEvent.setTimeSpentMs(0L);
+        storyBookContributionEvent.setPlatform(Platform.WEBAPP);
         storyBookContributionEventDao.create(storyBookContributionEvent);
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
