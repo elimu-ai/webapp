@@ -125,7 +125,8 @@ footer.page-footer .footer-copyright {
     background-color: #9575cd;
 }
 
-.btn.tokenButton {
+.btn.tokenButton,
+#nav-mobile .btn.tokenButton {
     border-radius: 32px;
     background: linear-gradient(135deg, #b39ddb 0%, #9575cd 100%); /* deep-purple lighten-3 --> #9575cd deep-purple lighten-2 */
 }
