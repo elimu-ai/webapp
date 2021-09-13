@@ -133,12 +133,12 @@
     <c:choose>
         <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
             <a href="https://voice-rinkeby.aragon.org/tokens/info/#/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" alt="Powered by Aragon" />
+                <img src="https://assets.website-files.com/5e997428d0f2eb13a90aec8c/607d7a325c2f05f0b33c500b_Logo%20white-1.svg" alt="Powered by Aragon" />
             </a>
         </c:when>
         <c:otherwise>
             <a href="https://voice.aragon.org/tokens/info/#/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" alt="Powered by Aragon" />
+                <img src="https://assets.website-files.com/5e997428d0f2eb13a90aec8c/607d7a325c2f05f0b33c500b_Logo%20white-1.svg" alt="Powered by Aragon" />
             </a>
         </c:otherwise>
     </c:choose>
