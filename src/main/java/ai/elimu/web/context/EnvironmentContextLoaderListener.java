@@ -121,6 +121,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
                 
+                String covalentApiKey = (String) servletContext.getAttribute("covalent_api_key");
+                PROPERTIES.put("covalent.api.key", covalentApiKey);
+                
                 if (env == Environment.PROD) {
                     String slackWebhook = (String) servletContext.getAttribute("slack_webhook");
                     PROPERTIES.put("slack.webhook", slackWebhook);

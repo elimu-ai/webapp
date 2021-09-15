@@ -250,7 +250,7 @@
 
     <!-- Get donations list using Covalent API -->
     <script type="text/javascript">
-        var url = 'https://api.covalenthq.com/v1/1/address/${applicationScope.configProperties['donationAddress']}/transactions_v2/?no-logs=true&limit=10&match=%7B%22to_address%22%3A+%22${applicationScope.configProperties['donationAddress']}%22%2C+%22value%22%3A+%7B+%22%24gt%22%3A+0+%7D++%7D&key=${applicationScope.configProperties['covalentApiKey']}';
+        var url = 'https://api.covalenthq.com/v1/1/address/${applicationScope.configProperties['donationAddress']}/transactions_v2/?no-logs=true&limit=10&match=%7B%22to_address%22%3A+%22${applicationScope.configProperties['donationAddress']}%22%2C+%22value%22%3A+%7B+%22%24gt%22%3A+0+%7D++%7D&key=${applicationScope.configProperties['covalent.api.key']}';
         fetch(new Request(url)).then(function(response) {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
