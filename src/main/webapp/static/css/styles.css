@@ -208,8 +208,8 @@ form {
     top: 50%;
 }
 
-.donations-list {
-    margin-bottom: 20px;
+.donation-list {
+    margin-bottom: 1rem;
 }
 
 .donation-list .donation-address {
