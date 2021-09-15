@@ -9,7 +9,7 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.content.Content.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;

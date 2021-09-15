@@ -2,7 +2,6 @@ package ai.elimu.model.content.multimedia;
 
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.PeerReviewStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

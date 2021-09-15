@@ -1,6 +1,5 @@
 package ai.elimu.model.content;
 
-import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

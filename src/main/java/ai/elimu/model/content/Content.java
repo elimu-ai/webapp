@@ -64,4 +64,11 @@ public abstract class Content extends BaseEntity {
     public void setContentStatus(ContentStatus contentStatus) {
         this.contentStatus = contentStatus;
     }
+
+    public enum PeerReviewStatus {
+
+        PENDING,
+        APPROVED,
+        NOT_APPROVED
+    }
 }
