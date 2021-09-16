@@ -29,6 +29,16 @@
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" />
                 </div>
+                <script>
+                    $(function() {
+                        $('#bytes').on('change', function() {
+                            console.info('#bytes on change');
+
+                            $(this).parents('form').submit();
+                            Materialize.toast('Processing APK. Please wait...', 4000, 'rounded');
+                        });
+                    });
+                </script>
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
