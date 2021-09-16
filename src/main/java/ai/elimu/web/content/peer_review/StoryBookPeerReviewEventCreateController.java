@@ -8,7 +8,7 @@ import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
-import ai.elimu.model.content.Content.PeerReviewStatus;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;

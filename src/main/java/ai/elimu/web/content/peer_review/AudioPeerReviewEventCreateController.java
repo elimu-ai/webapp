@@ -8,7 +8,7 @@ import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
-import ai.elimu.model.content.Content.PeerReviewStatus;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.rest.v2.crowdsource.AudioPeerReviewsRestController;
 import ai.elimu.util.SlackHelper;

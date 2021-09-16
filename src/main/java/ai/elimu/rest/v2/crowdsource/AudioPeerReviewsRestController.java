@@ -8,7 +8,7 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
-import ai.elimu.model.content.Content.PeerReviewStatus;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.gson.crowdsource.AudioContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.AudioPeerReviewEventGson;
