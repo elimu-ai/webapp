@@ -207,3 +207,14 @@ form {
 #formLoadingOverlay > .preloader-wrapper {
     top: 50%;
 }
+
+.donation-list {
+    margin-bottom: 1rem;
+}
+
+.donation-list .donation-address {
+    max-width: 200px;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+}
