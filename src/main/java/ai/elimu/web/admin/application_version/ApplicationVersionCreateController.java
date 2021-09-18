@@ -105,7 +105,7 @@ public class ApplicationVersionCreateController {
                     List<ApplicationVersion> existingApplicationVersions = applicationVersionDao
                             .readAll(applicationVersion.getApplication());
                     for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
-                        if (existingApplicationVersion.getVersionCode() >= applicationVersion.getVersionCode()) {
+                        if (existingApplicationVersion.getVersionCode() >= versionCode) {
                             result.rejectValue("versionCode", "TooLow");
                             break;
                         }
