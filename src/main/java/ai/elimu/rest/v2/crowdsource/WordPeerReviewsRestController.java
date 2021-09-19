@@ -209,6 +209,9 @@ public class WordPeerReviewsRestController {
         }
 
 
-        return "test";
+        String jsonResponse = jsonObject.toString();
+        logger.info("jsonResponse: " + jsonResponse);
+        response.setStatus(HttpStatus.CREATED.value());
+        return jsonResponse;
     }
 }
