@@ -2,16 +2,17 @@ package ai.elimu.rest.v2.crowdsource;
 
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.WordContributionEventDao;
+import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.*;
-import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
-import ai.elimu.model.v2.gson.crowdsource.AudioContributionEventGson;
-import ai.elimu.model.v2.gson.crowdsource.AudioPeerReviewEventGson;
+import ai.elimu.model.v2.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
+import ai.elimu.model.v2.gson.crowdsource.WordPeerReviewEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.web.content.word.WordPeerReviewsController;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -51,6 +52,9 @@ public class WordPeerReviewsRestController {
 
     @Autowired
     private WordPeerReviewEventDao wordPeerReviewEventDao;
+
+    @Autowired
+    private WordDao wordDao;
 
     /**
      * Get {@link WordContributionEvent}s pending a {@link WordPeerReviewEvent} for the current {@link Contributor}.
@@ -161,48 +165,41 @@ public class WordPeerReviewsRestController {
         try {
             // Convert from Gson (POJO) to JPA/Hibernate
             logger.info("requestBody: " + requestBody);
-            // Missing WordPeerReviewEventGSON in model ?????
+            WordPeerReviewEventGson wordPeerReviewEventGson = new Gson().fromJson(requestBody, WordPeerReviewEventGson.class);
+            WordContributionEvent wordContributionEvent = wordContributionEventDao.read(wordPeerReviewEventGson
+                    .getWordContributionEvent().getId());
 
+            WordPeerReviewEvent wordPeerReviewEvent = new WordPeerReviewEvent();
+            wordPeerReviewEvent.setContributor(contributor);
+            wordPeerReviewEvent.setWordContributionEvent(wordContributionEvent);
+            wordPeerReviewEvent.setApproved(wordPeerReviewEventGson.isApproved());
+            wordPeerReviewEvent.setComment(wordPeerReviewEventGson.getComment());
+            wordPeerReviewEvent.setTime(Calendar.getInstance());
+            wordPeerReviewEventDao.create(wordPeerReviewEvent);
 
-//            WordContributionEventGson wordPeerReviewEvent = new Gson().fromJson(requestBody, WordContributionEventGson.class);
-//            logger.info("audioPeerReviewEventGson: " + audioPeerReviewEventGson);
-//            AudioContributionEventGson audioContributionEventGson = audioPeerReviewEventGson.getAudioContributionEvent();
-//            logger.info("audioContributionEventGson: " + audioContributionEventGson);
-//            Long audioContributionEventGsonId = audioContributionEventGson.getId();
-//            logger.info("audioContributionEventGsonId: " + audioContributionEventGsonId);
-//            AudioContributionEvent audioContributionEvent = audioContributionEventDao.read(audioContributionEventGsonId);
-//            logger.info("audioContributionEvent: " + audioContributionEvent);
-//
-//            AudioPeerReviewEvent audioPeerReviewEvent = new AudioPeerReviewEvent();
-//            audioPeerReviewEvent.setContributor(contributor);
-//            audioPeerReviewEvent.setAudioContributionEvent(audioContributionEvent);
-//            audioPeerReviewEvent.setApproved(audioPeerReviewEventGson.isApproved());
-//            audioPeerReviewEvent.setComment(audioPeerReviewEventGson.getComment());
-//            audioPeerReviewEvent.setTime(audioPeerReviewEventGson.getTime());
-//            audioPeerReviewEvent.setPlatform(Platform.CROWDSOURCE_APP);
-//
-//            // Store the peer review event in the database
-//            audioPeerReviewEventDao.create(audioPeerReviewEvent);
-//
-//            // Update the audio's peer review status
-//            int approvedCount = 0;
-//            int notApprovedCount = 0;
-//            for (AudioPeerReviewEvent peerReviewEvent : audioPeerReviewEventDao.readAll(audioContributionEvent)) {
-//                if (peerReviewEvent.isApproved()) {
-//                    approvedCount++;
-//                } else {
-//                    notApprovedCount++;
-//                }
-//            }
-//            logger.info("approvedCount: " + approvedCount);
-//            logger.info("notApprovedCount: " + notApprovedCount);
-//            Audio audio = audioContributionEvent.getAudio();
-//            if (approvedCount >= notApprovedCount) {
-//                audio.setPeerReviewStatus(PeerReviewStatus.APPROVED);
-//            } else {
-//                audio.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
-//            }
-//            audioDao.update(audio);
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
+            SlackHelper.postChatMessage("Word peer-reviewed: " + contentUrl);
+
+            // Update the word's peer review status
+            int approvedCount = 0;
+            int notApprovedCount = 0;
+            for (WordPeerReviewEvent peerReviewEvent : wordPeerReviewEventDao.readAll(wordContributionEvent)) {
+                if (peerReviewEvent.isApproved()) {
+                    approvedCount++;
+                } else {
+                    notApprovedCount++;
+                }
+            }
+            logger.info("approvedCount: " + approvedCount);
+            logger.info("notApprovedCount: " + notApprovedCount);
+            Word word = wordContributionEvent.getWord();
+            if (approvedCount >= notApprovedCount) {
+                word.setPeerReviewStatus(PeerReviewStatus.APPROVED);
+            } else {
+                word.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
+            }
+            wordDao.update(word);
+
         } catch (Exception ex) {
             logger.error(ex);
 
