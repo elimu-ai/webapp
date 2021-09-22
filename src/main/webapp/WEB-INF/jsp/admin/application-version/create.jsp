@@ -15,10 +15,6 @@
             <div class="row">
                 <form:hidden path="application" value="${applicationVersion.application.id}" />
                 <form:hidden path="contributor" value="${contributor.id}" />
-                <div class="input-field col s6">
-                    <form:label path="versionCode" cssErrorClass="error"><fmt:message key='version.code' /></form:label>
-                    <form:input path="versionCode" cssErrorClass="error" type="number" />
-                </div>
             </div>
             
             <div class="col s12" style="padding: 3em; background: #F4F4F4; border: 2px dashed #CCC; border-radius: 8px;">

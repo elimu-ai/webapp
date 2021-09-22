@@ -69,20 +69,6 @@ public class ApplicationVersionCreateController {
     ) {
     	logger.info("handleSubmit");
         
-        logger.info("applicationVersion.getVersionCode(): " + applicationVersion.getVersionCode());
-        if (applicationVersion.getVersionCode() == null) {
-            result.rejectValue("versionCode", "NotNull");
-        } else {
-            // Verify that the versionCode is higher than previous ones
-            List<ApplicationVersion> existingApplicationVersions = applicationVersionDao.readAll(applicationVersion.getApplication());
-            for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
-                if (existingApplicationVersion.getVersionCode() >= applicationVersion.getVersionCode()) {
-                    result.rejectValue("versionCode", "TooLow");
-                    break;
-                }
-            }
-        }
-        
         if (multipartFile.isEmpty()) {
             result.rejectValue("bytes", "NotNull");
         } else {
@@ -111,6 +97,20 @@ public class ApplicationVersionCreateController {
                     
                     ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
                     ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
+                    
+                    Integer versionCode = apkMeta.getVersionCode().intValue();
+                    logger.info("versionCode: " + versionCode);
+
+                    // Verify that the versionCode is higher than previous ones
+                    List<ApplicationVersion> existingApplicationVersions = applicationVersionDao
+                            .readAll(applicationVersion.getApplication());
+                    for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
+                        if (existingApplicationVersion.getVersionCode() >= versionCode) {
+                            result.rejectValue("versionCode", "TooLow");
+                            break;
+                        }
+                    }
+                    applicationVersion.setVersionCode(versionCode);
                     
                     String versionName = apkMeta.getVersionName();
                     logger.info("versionName: " + versionName);
