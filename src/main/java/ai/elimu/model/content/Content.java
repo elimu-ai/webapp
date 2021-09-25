@@ -9,6 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.v2.enums.content.ContentStatus;
+import ai.elimu.model.enums.PeerReviewStatus;
 
 /**
  * Parent class for different types of educational content.
@@ -63,5 +64,15 @@ public abstract class Content extends BaseEntity {
 
     public void setContentStatus(ContentStatus contentStatus) {
         this.contentStatus = contentStatus;
+    }
+
+    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
+
+    public PeerReviewStatus getPeerReviewStatus() {
+        return peerReviewStatus;
+    }
+
+    public void setPeerReviewStatus(PeerReviewStatus peerReviewStatus) {
+        this.peerReviewStatus = peerReviewStatus;
     }
 }

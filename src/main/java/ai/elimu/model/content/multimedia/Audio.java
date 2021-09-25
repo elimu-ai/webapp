@@ -2,7 +2,6 @@ package ai.elimu.model.content.multimedia;
 
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.PeerReviewStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -53,10 +52,7 @@ public class Audio extends Multimedia {
     @NotNull
     @Enumerated(EnumType.STRING)
     private AudioFormat audioFormat;
-    
-    @Enumerated(EnumType.STRING)
-    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
-    
+
     public Word getWord() {
         return word;
     }
@@ -111,13 +107,5 @@ public class Audio extends Multimedia {
 
     public void setAudioFormat(AudioFormat audioFormat) {
         this.audioFormat = audioFormat;
-    }
-
-    public PeerReviewStatus getPeerReviewStatus() {
-        return peerReviewStatus;
-    }
-
-    public void setPeerReviewStatus(PeerReviewStatus peerReviewStatus) {
-        this.peerReviewStatus = peerReviewStatus;
     }
 }

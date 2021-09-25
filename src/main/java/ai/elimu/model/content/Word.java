@@ -1,6 +1,5 @@
 package ai.elimu.model.content;
 
-import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,9 +37,6 @@ public class Word extends Content {
 //    @NotNull
     @Enumerated(EnumType.STRING)
     private SpellingConsistency spellingConsistency;
-    
-    @Enumerated(EnumType.STRING)
-    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
 
     @Deprecated
     public String getText() {
@@ -82,13 +78,5 @@ public class Word extends Content {
 
     public void setSpellingConsistency(SpellingConsistency spellingConsistency) {
         this.spellingConsistency = spellingConsistency;
-    }
-    
-    public PeerReviewStatus getPeerReviewStatus() {
-        return peerReviewStatus;
-    }
-
-    public void setPeerReviewStatus(PeerReviewStatus peerReviewStatus) {
-        this.peerReviewStatus = peerReviewStatus;
     }
 }
