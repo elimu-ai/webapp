@@ -6,7 +6,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.*;
-import ai.elimu.model.v2.enums.PeerReviewStatus;
+import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.WordPeerReviewEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
