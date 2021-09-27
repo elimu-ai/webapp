@@ -2,7 +2,10 @@ package ai.elimu.model.analytics;
 
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.admin.Application;
+import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import java.util.Calendar;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -24,6 +27,10 @@ public abstract class LearningEvent extends BaseEntity {
     
     @ManyToOne
     private Application application;
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private LearningEventType learningEventType;
 
     public Calendar getTime() {
         return time;
@@ -47,5 +54,13 @@ public abstract class LearningEvent extends BaseEntity {
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public LearningEventType getLearningEventType() {
+        return learningEventType;
+    }
+
+    public void setLearningEventType(LearningEventType learningEventType) {
+        this.learningEventType = learningEventType;
     }
 }

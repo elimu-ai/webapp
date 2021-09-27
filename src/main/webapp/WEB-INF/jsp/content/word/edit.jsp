@@ -482,7 +482,7 @@
     
     <div class="divider" style="margin: 1.5em 0;"></div>
     
-    <h5 class="center"><fmt:message key="storybook.paragaphs.containing.word" /></h5>
+    <h5 class="center"><fmt:message key="storybook.paragraphs.containing.word" /> (${fn:length(storyBookParagraphsContainingWord)})</h5>
     <c:forEach var="storyBookParagraph" items="${storyBookParagraphsContainingWord}">
         <p>
             <c:set var="wordTextInBold" value="<span class='diff-addition'>${word.text}</span>" />
