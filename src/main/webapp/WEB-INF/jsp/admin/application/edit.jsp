@@ -16,7 +16,7 @@
             <div class="row">
                 <form:hidden path="contributor" value="${application.contributor.id}" />
                 <div class="input-field col s6">
-                    <fmt:message key='package.name' />: ${application.packageName}
+                    <fmt:message key='package.name' />: <code>${application.packageName}</code>
                     <form:hidden path="packageName" value="${application.packageName}" />
                 </div>
                 <div class="input-field col s6">
