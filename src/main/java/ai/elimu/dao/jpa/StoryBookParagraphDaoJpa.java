@@ -26,7 +26,7 @@ public class StoryBookParagraphDaoJpa extends GenericDaoJpa<StoryBookParagraph> 
         return em.createQuery(
             "SELECT paragraph " +
             "FROM StoryBookParagraph paragraph " +
-            "WHERE paragraph.originalText LIKE '%" + wordText + "%' " +
+            "WHERE paragraph.originalText LIKE '% " + wordText + " %' " +
             "ORDER BY paragraph.storyBookChapter.id, paragraph.sortOrder")
             .getResultList();
     }
