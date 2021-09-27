@@ -16,7 +16,7 @@ import ai.elimu.model.enums.PeerReviewStatus;
  */
 @MappedSuperclass
 public abstract class Content extends BaseEntity {
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeLastUpdate;
     
@@ -33,6 +33,9 @@ public abstract class Content extends BaseEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ContentStatus contentStatus = ContentStatus.ACTIVE;
+
+    @Enumerated(EnumType.STRING)
+    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
 
     public Calendar getTimeLastUpdate() {
         return timeLastUpdate;
@@ -65,8 +68,6 @@ public abstract class Content extends BaseEntity {
     public void setContentStatus(ContentStatus contentStatus) {
         this.contentStatus = contentStatus;
     }
-
-    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
 
     public PeerReviewStatus getPeerReviewStatus() {
         return peerReviewStatus;
