@@ -10,10 +10,10 @@
         <p>
             <c:choose>
                 <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>ELIMU</code></a>
+                    <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>ELIMU</code></a>
+                    <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
                 </c:otherwise>
             </c:choose>  
             is the governance token used by the elimu.ai Community DAO. Active contributors get rewarded with tokens, 
