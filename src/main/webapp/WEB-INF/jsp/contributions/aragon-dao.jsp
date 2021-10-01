@@ -128,17 +128,17 @@
         Aragon gives internet communities the power to freely organize and collaborate without borders or intermediaries.
     </p>
     <p>
-        For more information, see our blog post: <a href="https://medium.com/elimu-ai/why-did-the-elimu-ai-community-decide-to-use-aragon-e9863c135111" target="_blank">Why Did the elimu.ai Community Decide to Use Aragon? 🦅</a>.
+        For more information, see our blog post: <a href="https://medium.com/elimu-ai/introducing-elimu-our-community-token-7767eebed862" target="_blank">Introducing $ELIMU, Our Community Token 💎</a>
     </p>
     <c:choose>
         <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
             <a href="https://govern-rinkeby.aragon.org/#/daos/elimu.eth" target="_blank">
-                <img src="https://assets.website-files.com/5e997428d0f2eb13a90aec8c/607d7a325c2f05f0b33c500b_Logo%20white-1.svg" alt="Powered by Aragon" />
+                <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F864e9475-a67e-48a9-aa2f-bbe8486c5e1d%2FPbA_Blue_x2.png?table=block&id=31c8dd03-2199-4ef4-8a35-bf09a549f071&spaceId=8aa5c046-dbcf-434f-ad2c-03852eac0072&width=200" alt="Powered by Aragon" />
             </a>
         </c:when>
         <c:otherwise>
             <a href="https://govern.aragon.org/#/daos/elimu.eth" target="_blank">
-                <img src="https://assets.website-files.com/5e997428d0f2eb13a90aec8c/607d7a325c2f05f0b33c500b_Logo%20white-1.svg" alt="Powered by Aragon" />
+                <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F864e9475-a67e-48a9-aa2f-bbe8486c5e1d%2FPbA_Blue_x2.png?table=block&id=31c8dd03-2199-4ef4-8a35-bf09a549f071&spaceId=8aa5c046-dbcf-434f-ad2c-03852eac0072&width=200" alt="Powered by Aragon" />
             </a>
         </c:otherwise>
     </c:choose>
