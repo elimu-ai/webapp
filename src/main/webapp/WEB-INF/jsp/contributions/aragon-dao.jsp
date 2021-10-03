@@ -133,12 +133,12 @@
     <c:choose>
         <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
             <a href="https://govern-rinkeby.aragon.org/#/daos/elimu.eth" target="_blank">
-                <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F864e9475-a67e-48a9-aa2f-bbe8486c5e1d%2FPbA_Blue_x2.png?table=block&id=31c8dd03-2199-4ef4-8a35-bf09a549f071&spaceId=8aa5c046-dbcf-434f-ad2c-03852eac0072&width=200" alt="Powered by Aragon" />
+                <img src="https://user-images.githubusercontent.com/15718174/135745588-c9bf363b-b591-4f4f-a0b6-70ad9ab42263.png" alt="Powered by Aragon" />
             </a>
         </c:when>
         <c:otherwise>
             <a href="https://govern.aragon.org/#/daos/elimu.eth" target="_blank">
-                <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F864e9475-a67e-48a9-aa2f-bbe8486c5e1d%2FPbA_Blue_x2.png?table=block&id=31c8dd03-2199-4ef4-8a35-bf09a549f071&spaceId=8aa5c046-dbcf-434f-ad2c-03852eac0072&width=200" alt="Powered by Aragon" />
+                <img src="https://user-images.githubusercontent.com/15718174/135745588-c9bf363b-b591-4f4f-a0b6-70ad9ab42263.png" alt="Powered by Aragon" />
             </a>
         </c:otherwise>
     </c:choose>
