@@ -19,6 +19,11 @@
             is the governance token used by the elimu.ai Community DAO. Active contributors get rewarded with tokens, 
             and token holders can participate in the community's decision-making.
         </p>
+        <p>
+            The token can also be obtained through decentralized exchanges like 
+            <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">Uniswap 🦄</a> or 
+            <a href="https://app.sushi.com/en/swap?inputCurrency=ETH&outputCurrency=0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">SushiSwap 🍣</a>.
+        </p>
         <div id="tokenHoldersContainer">
             <c:choose>
                 <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
