@@ -207,10 +207,10 @@
                             <h5 class="white-text"><fmt:message key="contact.us" /> 👋🏽</h5>
                             <p class="grey-text text-lighten-2">
                                 Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;"><fmt:message key="email" /></a> 
-                                or talk with us directly in our chat room:
+                                or talk with us directly in Discord:
                             </p>
-                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw">
-                                <fmt:message key="open.chat" /><i class="material-icons right">forum</i>
+                            <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://discord.gg/9rz4XYJJDE">
+                                Discord<i class="material-icons right">forum</i>
                             </a>
                           </div>
                           <div class="col l2 s12">

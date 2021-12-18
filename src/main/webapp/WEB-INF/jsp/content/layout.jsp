@@ -55,7 +55,7 @@
                         
                         <li class="grey-text"><b><fmt:message key="community" /></b></li>
                         <li><a href="<spring:url value='/content/contributor/list' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
-                        <li><a href="https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw" target="_blank"><i class="material-icons left">forum</i><fmt:message key="open.chat" /></a></li>
+                        <li><a href="https://discord.gg/9rz4XYJJDE" target="_blank"><i class="material-icons left">forum</i>Discord</a></li>
                         
                         <li class="divider"></li>
                         

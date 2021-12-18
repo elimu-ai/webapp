@@ -63,8 +63,8 @@
     <div class="divider"></div>
     
     <p>
-        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our 
-        <a href="https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw">chat room (Slack)</a>.
+        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via 
+        <a href="https://discord.gg/9rz4XYJJDE">Discord</a>.
     </p>
 </content:section>
 
