@@ -147,7 +147,7 @@
         <p>To get started, we recommend these Web3 providers:</p>
         <ul>
             <li>Laptop: <a href="https://metamask.io/download.html" target="_blank">MetaMask</a></li>
-            <li>Smartphone: <a href="https://status.im/get" target="_blank">Status</a>/<a href="https://www.myetherwallet.com/" target="_blank">MyEtherWallet</a></li>
+            <li>Smartphone: <a href="https://www.myetherwallet.com/" target="_blank">MyEtherWallet</a></li>
         </ul>
     </div>
     
