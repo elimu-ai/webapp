@@ -41,7 +41,7 @@
         
         <div class="divider" style="margin: 1.5em 0;"></div>
         
-        <h4>Votes 👍👎</h4>
+        <h4>Votes 🗳</h4>
         <div id="votesContainer">
             <p>
                 Token holders can make new proposals, and can voice their support (or not support) for proposals made by 
