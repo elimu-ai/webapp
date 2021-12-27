@@ -133,7 +133,7 @@
                 </a>
             </c:otherwise>
         </c:choose>
-        is empowered by <a href="https://aragon.org" target="_blank">Aragon</a>. 
+        is empowered by <a href="https://aragon.org" target="_blank">Aragon 🦅</a>. 
         Aragon gives internet communities the power to freely organize and collaborate without borders or intermediaries.
     </p>
     <p>
