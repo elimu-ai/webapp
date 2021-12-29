@@ -202,7 +202,7 @@
                             <h5 class="white-text">About the elimu.ai Community</h5>
                             <p class="grey-text text-lighten-2">The purpose of the elimu.ai Community is to provide disadvantaged children with access to quality basic education.</p>
                             <p class="grey-text text-lighten-2">Read more about the project at <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">github.com/elimu-ai/wiki</a></p>
-                            <p class="grey-text text-lighten-2">Listed at <a class="white-text" href="https://nomics.com/assets/elimu-elimuai" target="_blank">Nomics</a></p>
+                            <p class="grey-text text-lighten-2">Listed on <a class="white-text" href="https://nomics.com/assets/elimu-elimuai" target="_blank">Nomics</a></p>
                           </div>
                           <div class="col l3 offset-l1 s12 ">
                             <h5 class="white-text"><fmt:message key="contact.us" /> 👋🏽</h5>
