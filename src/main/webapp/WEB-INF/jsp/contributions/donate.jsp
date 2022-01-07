@@ -61,19 +61,22 @@
             </p>
         </div>
         <script>
-            var url = 'https://api.covalenthq.com/v1/1/address/${applicationScope.configProperties['donationAddress']}/transactions_v2/?no-logs=true&limit=10&match=%7B%22to_address%22%3A+%22${applicationScope.configProperties['donationAddress']}%22%2C+%22value%22%3A+%7B+%22%24gt%22%3A+0+%7D++%7D&key=${applicationScope.configProperties['covalent.api.key']}';
+            var url = 'https://api.covalenthq.com/v1/1/address/${applicationScope.configProperties['donationAddress']}/transactions_v2/?key=${applicationScope.configProperties['covalent.api.key']}';
             fetch(new Request(url)).then(function(response) {
                 if (!response.ok) {
                     throw new Error('response.status: ${response.status}');
                 }
                 response.json().then(function(responseJson) {
-                    var $table = $('<table class="donation-list"><tr><th>Donation date</th><th>Donating address</th><th>Donated amount</th></tr></table>')
+                    var $table = $('<table class="donation-list"><tr><th>Donation date</th><th>Donor address</th><th>Donated amount</th></tr></table>')
                     responseJson.data.items.forEach((item) => {
-                        var dateTime = new Date(item.block_signed_at);
-                        var cell1 = '<td>' + dateTime.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) + '</td>';
-                        var cell2 = '<td><a class="donation-address" href="https://etherscan.io/address/' + item.from_address + '" title="' + item.from_address + '">' + item.from_address + '</a></td>';
-                        var cell3 = '<td>' + (item.value / 1000000000000000000).toFixed(4) + ' ETH</td>';
-                        $('<tr>' + cell1 + cell2 + cell3 + '</tr>').appendTo($table);
+                        if ((item.from_address != ${applicationScope.configProperties['donationAddress']}) 
+                                && (item.value > 0)) {
+                            var dateTime = new Date(item.block_signed_at);
+                            var cell1 = '<td><code>' + dateTime.toISOString().split('T')[0] + '</code></td>';
+                            var cell2 = '<td><code>' + item.from_address.substring(0, 6) + '...' + item.from_address.substring(38, 42) + '</code></td>';
+                            var cell3 = '<td><code><a href="https://etherscan.io/tx/' + item.tx_hash + '" target="_blank">' + (item.value / 1000000000000000000).toFixed(4) + ' ETH</a></code></td>';
+                            $('<tr>' + cell1 + cell2 + cell3 + '</tr>').appendTo($table);
+                        }
                     });
                     $('#eth-donations-container').html($table);
                 });
