@@ -11,6 +11,7 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -110,6 +111,7 @@ public class StoryBookChapterCreateController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
             SlackHelper.postChatMessage("Storybook chapter created: " + contentUrl);
+            DiscordHelper.postChatMessage("Storybook chapter created: " + contentUrl);
             
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
         }

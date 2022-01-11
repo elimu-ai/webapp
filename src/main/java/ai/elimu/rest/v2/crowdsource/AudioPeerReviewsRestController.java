@@ -13,6 +13,7 @@ import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.gson.crowdsource.AudioContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.AudioPeerReviewEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.content.peer_review.AudioPeerReviewEventCreateController;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -201,6 +202,7 @@ public class AudioPeerReviewsRestController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
             SlackHelper.postChatMessage("Audio peer-reviewed: " + contentUrl);
+            DiscordHelper.postChatMessage("Audio peer-reviewed: " + contentUrl);
 
             // Update the audio's peer review status
             int approvedCount = 0;

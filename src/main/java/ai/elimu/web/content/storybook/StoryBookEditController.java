@@ -31,6 +31,7 @@ import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.util.WordFrequencyHelper;
@@ -225,6 +226,7 @@ public class StoryBookEditController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
             SlackHelper.postChatMessage("Storybook edited: " + contentUrl);
+            DiscordHelper.postChatMessage("Storybook edited: " + contentUrl);
             
             // Refresh REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

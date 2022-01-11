@@ -14,6 +14,7 @@ import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -115,6 +116,7 @@ public class StoryBookParagraphCreateController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
             SlackHelper.postChatMessage("Storybook paragraph created: " + contentUrl);
+            DiscordHelper.postChatMessage("Storybook paragraph created: " + contentUrl);
             
             // Refresh the REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();
