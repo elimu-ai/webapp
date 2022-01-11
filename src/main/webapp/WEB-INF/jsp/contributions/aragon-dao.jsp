@@ -24,10 +24,6 @@
             <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">Uniswap 🦄</a> or 
             <a href="https://app.sushi.com/en/swap?inputCurrency=ETH&outputCurrency=0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">SushiSwap 🍣</a>.
         </p>
-        <div style="margin-bottom: 1em;">
-            <div class="nomics-ticker-widget" data-name="elimu.ai" data-base="ELIMU" data-quote="ETH"></div>
-            <script src="https://widget.nomics.com/embed.js"></script>
-        </div>
         <div id="tokenHoldersContainer">
             <c:choose>
                 <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
