@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Helper class for posting notifications in Discord.
+ * <p />
+ * Documentation: https://discord.com/developers/docs/resources/webhook
  */
 public class DiscordHelper {
 
