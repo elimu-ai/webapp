@@ -23,6 +23,8 @@ import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.SlackHelper;
 import ai.elimu.util.audio.AudioMetadataExtractionHelper;
 import java.io.File;
 import java.util.HashMap;
@@ -194,6 +196,14 @@ public class AudioCreateController {
             audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
+            
+            SlackHelper.postChatMessage("Audio created: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Audio created: " + contentUrl, 
+                    "\"" + audio.getTranscription() + "\"",
+                    "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                    null
+            );
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

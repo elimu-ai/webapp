@@ -204,7 +204,7 @@ public class AudioPeerReviewsRestController {
             SlackHelper.postChatMessage("Audio peer-reviewed: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Audio peer-reviewed: " + contentUrl, 
-                    "\"" + audioContributionEvent.getAudio().getTitle() + "\"",
+                    "\"" + audioContributionEvent.getAudio().getTranscription() + "\"",
                     "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
                     audioPeerReviewEvent.isApproved()
             );

@@ -246,7 +246,7 @@ public class AudioContributionsRestController {
             SlackHelper.postChatMessage("Audio created: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Audio created: " + contentUrl, 
-                    "\"" + audio.getTitle() + "\"",
+                    "\"" + audio.getTranscription() + "\"",
                     "Comment: \"" + audioContributionEvent.getComment() + "\"",
                     null
             );
