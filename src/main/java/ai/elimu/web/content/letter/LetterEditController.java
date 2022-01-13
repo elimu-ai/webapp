@@ -9,6 +9,7 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;
@@ -73,6 +74,7 @@ public class LetterEditController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
             SlackHelper.postChatMessage("Letter edited: " + contentUrl);
+            DiscordHelper.postChatMessage("Letter edited: " + contentUrl);
             
             return "redirect:/content/letter/list#" + letter.getId();
         }

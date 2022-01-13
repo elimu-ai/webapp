@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -114,6 +115,7 @@ public class LetterSoundCorrespondenceEditController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
             SlackHelper.postChatMessage("Letter-sound correspondence edited: " + contentUrl);
+            DiscordHelper.postChatMessage("Letter-sound correspondence edited: " + contentUrl);
             
             return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }
