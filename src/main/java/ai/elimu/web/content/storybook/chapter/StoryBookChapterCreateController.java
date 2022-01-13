@@ -111,7 +111,12 @@ public class StoryBookChapterCreateController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
             SlackHelper.postChatMessage("Storybook chapter created: " + contentUrl);
-            DiscordHelper.postChatMessage("Storybook chapter created: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Storybook chapter created: " + contentUrl,
+                    "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                    "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                    null
+            );
             
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
         }

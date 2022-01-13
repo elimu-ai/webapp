@@ -162,7 +162,12 @@ public class WordCreateController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
             SlackHelper.postChatMessage("Word created: " + contentUrl);
-            DiscordHelper.postChatMessage("Word created: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Word created: " + contentUrl,
+                    "\"" + wordContributionEvent.getWord().getText() + "\"",
+                    "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                    null
+            );
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
             

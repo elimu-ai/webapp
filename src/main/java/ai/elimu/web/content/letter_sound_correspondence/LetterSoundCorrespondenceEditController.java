@@ -115,7 +115,12 @@ public class LetterSoundCorrespondenceEditController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
             SlackHelper.postChatMessage("Letter-sound correspondence edited: " + contentUrl);
-            DiscordHelper.postChatMessage("Letter-sound correspondence edited: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Letter-sound correspondence edited: " + contentUrl,
+                    "\"" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence() + "\"",
+                    "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
+                    null
+            );
             
             return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }

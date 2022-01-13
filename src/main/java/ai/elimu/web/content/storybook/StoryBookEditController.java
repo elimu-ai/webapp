@@ -226,7 +226,12 @@ public class StoryBookEditController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
             SlackHelper.postChatMessage("Storybook edited: " + contentUrl);
-            DiscordHelper.postChatMessage("Storybook edited: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Storybook edited: " + contentUrl,
+                    "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                    "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                    null
+            );
             
             // Refresh REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

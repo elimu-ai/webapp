@@ -63,7 +63,12 @@ public class StoryBookPeerReviewEventCreateController {
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId();
         SlackHelper.postChatMessage("Storybook peer-reviewed: " + contentUrl);
-        DiscordHelper.postChatMessage("Storybook peer-reviewed: " + contentUrl);
+        DiscordHelper.postChatMessage(
+                "Storybook peer-reviewed: " + contentUrl, 
+                "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",
+                storyBookPeerReviewEvent.isApproved()
+        );
 
         // Update the storybook's peer review status
         int approvedCount = 0;

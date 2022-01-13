@@ -72,9 +72,16 @@ public class LetterEditController {
             letter.setRevisionNumber(letter.getRevisionNumber() + 1);
             letterDao.update(letter);
             
+            // TODO: Store contribution event
+            
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
             SlackHelper.postChatMessage("Letter edited: " + contentUrl);
-            DiscordHelper.postChatMessage("Letter edited: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Letter created: " + contentUrl, 
+                    "'" + letter.getText() + "'",
+                    null,
+                    null
+            );
             
             return "redirect:/content/letter/list#" + letter.getId();
         }
