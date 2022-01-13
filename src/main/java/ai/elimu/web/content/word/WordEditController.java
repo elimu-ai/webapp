@@ -135,7 +135,7 @@ public class WordEditController {
                     audio.setTimeLastUpdate(Calendar.getInstance());
                     audio.setContentType(AudioFormat.MP3.getContentType());
                     audio.setWord(word);
-                    audio.setTitle("word-" + word.getId());
+                    audio.setTitle("word-id-" + word.getId());
                     audio.setTranscription(word.getText());
                     audio.setBytes(audioBytes);
                     audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
