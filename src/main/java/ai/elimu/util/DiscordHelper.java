@@ -54,7 +54,7 @@ public class DiscordHelper {
             if (language == Language.BEN) {
                 discordWebhookUrl = "https://discord.com/api/webhooks/931147996744278097/5yzw51lR3O6eRXDSuIelHI__dIohCJiUrxHT9vXmKa84E9D9siHdkiLqj7idIUUV54PX";
             } else if (language == Language.ENG) {
-                discordWebhookUrl = "https://discord.com/api/webhooks/931135672188821504/UasWAZY6A4NEWV3P8UEZYPB-8NwwZqsUGr-UcbuPEiMrPNX1mQyYNGSpkOJFWW4G9riX";
+                discordWebhookUrl = "https://discord.com/api/webhooks/931230205228507226/lfoNh8qtkZe-_GpKkG4DoXzNuMaw2iackwY-oTdLDZvbtxUB0vjbNW0lYkAp4EcBIGd6";
             } else if (language == Language.FIL) {
                 discordWebhookUrl = "https://discord.com/api/webhooks/930524667318509689/P8aziLBP8Km39zRIjIwex8rijislt5WpHVobPEiwIycBfB1DnSyOpF256LfMMX8opBF4";
             } else if (language == Language.HIN) {
