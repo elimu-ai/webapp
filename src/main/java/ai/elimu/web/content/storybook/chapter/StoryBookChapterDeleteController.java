@@ -128,7 +128,12 @@ public class StoryBookChapterDeleteController {
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
         SlackHelper.postChatMessage("Storybook chapter deleted: " + contentUrl);
-        DiscordHelper.postChatMessage("Storybook chapter deleted: " + contentUrl);
+        DiscordHelper.postChatMessage(
+                "Storybook chapter deleted: " + contentUrl,
+                "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                null
+        );
         
         // Update the sorting order of the remaining chapters
         List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);

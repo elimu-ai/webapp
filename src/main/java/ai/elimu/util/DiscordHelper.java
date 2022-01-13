@@ -3,8 +3,10 @@ package ai.elimu.util;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -20,20 +22,37 @@ public class DiscordHelper {
 
     private static Logger logger = LogManager.getLogger();
     
-    public static void postChatMessage(String content) {
+    public static void postChatMessage(String content, String embedTitle, String embedDescription, Boolean embedPeerReviewApproved) {
         logger.info("postChatMessage");
         
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             JsonObject jsonBody = new JsonObject();
             jsonBody.addProperty("content", content);
+            if (StringUtils.isNotBlank(embedTitle)) {
+                JsonObject embedsJsonObject = new JsonObject();
+                embedsJsonObject.addProperty("title", embedTitle);
+                if (StringUtils.isNotBlank(embedDescription)) {
+                    embedsJsonObject.addProperty("description", embedDescription);
+                }
+                if (embedPeerReviewApproved != null) {
+                    if (embedPeerReviewApproved) {
+                        embedsJsonObject.addProperty("color", 35195); // #00897b
+                    } else {
+                        embedsJsonObject.addProperty("color", 12000284); // #B71C1C
+                    }
+                }
+                JsonArray embedsJsonArray = new JsonArray();
+                embedsJsonArray.add(embedsJsonObject);
+                jsonBody.add("embeds", embedsJsonArray);
+            }
             logger.info("jsonBody: " + jsonBody);
             CloseableHttpClient client = HttpClients.createDefault();
             String discordWebhookUrl = null;
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
             if (language == Language.BEN) {
-                discordWebhookUrl = "https://discord.com/api/webhooks/930530315070488636/oAiS_s3oVrks2LUYnNeax7OxGFFJIUIshjCirDCFK7Eu8voImCj0PH2GGAcnpebgdcck";
+                discordWebhookUrl = "https://discord.com/api/webhooks/931147996744278097/5yzw51lR3O6eRXDSuIelHI__dIohCJiUrxHT9vXmKa84E9D9siHdkiLqj7idIUUV54PX";
             } else if (language == Language.ENG) {
-                discordWebhookUrl = "https://discord.com/api/webhooks/930517228544208966/wzN2iU4AnLrJKIgKdzXPmv51YPFf3oNxwsjRA7XDYlt4H76ELgkDuipGiAHF9B4AlKEB";
+                discordWebhookUrl = "https://discord.com/api/webhooks/931135672188821504/UasWAZY6A4NEWV3P8UEZYPB-8NwwZqsUGr-UcbuPEiMrPNX1mQyYNGSpkOJFWW4G9riX";
             } else if (language == Language.FIL) {
                 discordWebhookUrl = "https://discord.com/api/webhooks/930524667318509689/P8aziLBP8Km39zRIjIwex8rijislt5WpHVobPEiwIycBfB1DnSyOpF256LfMMX8opBF4";
             } else if (language == Language.HIN) {

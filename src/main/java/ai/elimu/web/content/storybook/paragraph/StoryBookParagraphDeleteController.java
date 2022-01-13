@@ -97,7 +97,12 @@ public class StoryBookParagraphDeleteController {
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
         SlackHelper.postChatMessage("Storybook paragraph deleted: " + contentUrl);
-        DiscordHelper.postChatMessage("Storybook paragraph deleted: " + contentUrl);
+        DiscordHelper.postChatMessage(
+                "Storybook paragraph deleted: " + contentUrl,
+                "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                null
+        );
         
         // Update the sorting order of the remaining paragraphs
         List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookParagraphToBeDeleted.getStoryBookChapter());

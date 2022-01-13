@@ -116,7 +116,12 @@ public class StoryBookParagraphCreateController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
             SlackHelper.postChatMessage("Storybook paragraph created: " + contentUrl);
-            DiscordHelper.postChatMessage("Storybook paragraph created: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Storybook paragraph created: " + contentUrl,
+                    "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                    "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                    null
+            );
             
             // Refresh the REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

@@ -202,7 +202,12 @@ public class AudioPeerReviewsRestController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
             SlackHelper.postChatMessage("Audio peer-reviewed: " + contentUrl);
-            DiscordHelper.postChatMessage("Audio peer-reviewed: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Audio peer-reviewed: " + contentUrl, 
+                    "\"" + audioContributionEvent.getAudio().getTitle() + "\"",
+                    "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
+                    audioPeerReviewEvent.isApproved()
+            );
 
             // Update the audio's peer review status
             int approvedCount = 0;

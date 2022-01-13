@@ -244,7 +244,12 @@ public class AudioContributionsRestController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
             SlackHelper.postChatMessage("Audio created: " + contentUrl);
-            DiscordHelper.postChatMessage("Audio created: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Audio created: " + contentUrl, 
+                    "\"" + audio.getTitle() + "\"",
+                    "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                    null
+            );
         } catch (Exception ex) {
             logger.error(ex);
             

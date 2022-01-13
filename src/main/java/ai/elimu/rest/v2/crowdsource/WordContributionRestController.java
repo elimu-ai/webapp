@@ -170,7 +170,12 @@ public class WordContributionRestController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
             SlackHelper.postChatMessage("Word created: " + contentUrl);
-            DiscordHelper.postChatMessage("Word created: " + contentUrl);
+            DiscordHelper.postChatMessage(
+                    "Word created: " + contentUrl,
+                    "\"" + wordContributionEvent.getWord().getText() + "\"",
+                    "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                    null
+            );
 
             response.setStatus(HttpStatus.CREATED.value());
         } catch (Exception ex) {
