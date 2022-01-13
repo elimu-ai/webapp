@@ -327,7 +327,7 @@
         <c:when test="${empty audios}">
             <div class="card-panel amber lighten-3">
                 <b>Warning:</b> This word has no corresponding audio.<br />
-                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=word_${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
             </div>
         </c:when>
         <c:otherwise>
