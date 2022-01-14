@@ -127,6 +127,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 if (env == Environment.PROD) {
                     String slackWebhook = (String) servletContext.getAttribute("slack_webhook");
                     PROPERTIES.put("slack.webhook", slackWebhook);
+                    
+                    String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");
+                    PROPERTIES.put("discord.webhook.url", discordWebhookUrl);
                 }
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
