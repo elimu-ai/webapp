@@ -48,7 +48,7 @@ public class DiscordHelper {
             }
             logger.info("jsonBody: " + jsonBody);
             CloseableHttpClient client = HttpClients.createDefault();
-            String discordWebhookUrl = ConfigHelper.getProperty("content.language");
+            String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");
             logger.info("discordWebhookUrl: " + discordWebhookUrl);
             HttpPost httpPost = new HttpPost(discordWebhookUrl);
             try {
