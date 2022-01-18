@@ -49,7 +49,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 @Controller
@@ -161,7 +160,6 @@ public class WordCreateController {
             wordContributionEventDao.create(wordContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
-            SlackHelper.postChatMessage("Word created: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Word created: " + contentUrl,
                     "\"" + wordContributionEvent.getWord().getText() + "\"",

@@ -10,7 +10,6 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +74,6 @@ public class LetterEditController {
             // TODO: Store contribution event
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
-            SlackHelper.postChatMessage("Letter edited: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Letter created: " + contentUrl, 
                     "'" + letter.getText() + "'",

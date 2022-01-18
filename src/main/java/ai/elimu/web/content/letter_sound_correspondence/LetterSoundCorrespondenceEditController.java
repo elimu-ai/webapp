@@ -24,13 +24,11 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 @Controller
@@ -122,7 +120,6 @@ public class LetterSoundCorrespondenceEditController {
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
-            SlackHelper.postChatMessage("Letter-sound correspondence edited: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Letter-sound correspondence edited: " + contentUrl,
                     "\"" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence() + "\"",

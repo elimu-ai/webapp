@@ -11,7 +11,6 @@ import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.WordPeerReviewEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.content.word.WordPeerReviewsController;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.Gson;
@@ -179,7 +178,6 @@ public class WordPeerReviewsRestController {
             wordPeerReviewEventDao.create(wordPeerReviewEvent);
 
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
-            SlackHelper.postChatMessage("Word peer-reviewed: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Word peer-reviewed: " + contentUrl, 
                     "\"" + wordContributionEvent.getWord().getText() + "\"",

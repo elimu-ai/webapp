@@ -12,7 +12,6 @@ import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.rest.v2.crowdsource.AudioPeerReviewsRestController;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
@@ -68,7 +67,6 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEventDao.create(audioPeerReviewEvent);
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
-        SlackHelper.postChatMessage("Audio peer-reviewed: " + contentUrl);
         DiscordHelper.postChatMessage(
                 "Audio peer-reviewed: " + contentUrl, 
                 "\"" + audioContributionEvent.getAudio().getTitle() + "\"",

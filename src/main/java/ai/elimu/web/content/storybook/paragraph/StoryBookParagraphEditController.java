@@ -19,7 +19,6 @@ import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -163,7 +162,6 @@ public class StoryBookParagraphEditController {
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-            SlackHelper.postChatMessage("Storybook paragraph edited: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Storybook paragraph edited: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",

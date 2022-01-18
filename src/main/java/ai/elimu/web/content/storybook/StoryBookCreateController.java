@@ -16,7 +16,6 @@ import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -105,7 +104,6 @@ public class StoryBookCreateController {
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-            SlackHelper.postChatMessage("Storybook created: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Storybook created: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",

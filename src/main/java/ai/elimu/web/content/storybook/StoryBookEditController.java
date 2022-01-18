@@ -33,7 +33,6 @@ import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.LetterFrequencyHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.ArrayList;
@@ -225,7 +224,6 @@ public class StoryBookEditController {
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-            SlackHelper.postChatMessage("Storybook edited: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Storybook edited: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",

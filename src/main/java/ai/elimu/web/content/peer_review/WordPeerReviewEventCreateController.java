@@ -10,7 +10,6 @@ import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
@@ -62,7 +61,6 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
-        SlackHelper.postChatMessage("Word peer-reviewed: " + contentUrl);
         DiscordHelper.postChatMessage(
                 "Word peer-reviewed: " + contentUrl, 
                 "\"" + wordContributionEvent.getWord().getText() + "\"",

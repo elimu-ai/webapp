@@ -24,7 +24,6 @@ import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.util.audio.AudioMetadataExtractionHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
@@ -199,7 +198,6 @@ public class AudioCreateController {
             audioContributionEventDao.create(audioContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
-            SlackHelper.postChatMessage("Audio created: " + contentUrl);
             DiscordHelper.postChatMessage(
                     "Audio created: " + contentUrl, 
                     "\"" + audio.getTranscription() + "\"",

@@ -15,7 +15,6 @@ import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.SlackHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import java.util.List;
@@ -96,7 +95,6 @@ public class StoryBookParagraphDeleteController {
         storyBookContributionEventDao.create(storyBookContributionEvent);
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-        SlackHelper.postChatMessage("Storybook paragraph deleted: " + contentUrl);
         DiscordHelper.postChatMessage(
                 "Storybook paragraph deleted: " + contentUrl,
                 "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",

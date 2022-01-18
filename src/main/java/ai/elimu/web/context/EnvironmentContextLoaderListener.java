@@ -125,9 +125,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 PROPERTIES.put("covalent.api.key", covalentApiKey);
                 
                 if (env == Environment.PROD) {
-                    String slackWebhook = (String) servletContext.getAttribute("slack_webhook");
-                    PROPERTIES.put("slack.webhook", slackWebhook);
-                    
                     String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");
                     PROPERTIES.put("discord.webhook.url", discordWebhookUrl);
                 }
