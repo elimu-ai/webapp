@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.util.DiscordHelper;
@@ -48,6 +50,9 @@ public class LetterSoundCorrespondenceEditController {
     
     @Autowired
     private AllophoneDao allophoneDao;
+    
+    @Autowired
+    private WordDao wordDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -65,7 +70,10 @@ public class LetterSoundCorrespondenceEditController {
         model.addAttribute("allophones", allophones);
         
         model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
-
+        
+        List<Word> words = wordDao.readAllOrderedByUsage();
+        model.addAttribute("words", words);
+        
         return "content/letter-sound-correspondence/edit";
     }
     
