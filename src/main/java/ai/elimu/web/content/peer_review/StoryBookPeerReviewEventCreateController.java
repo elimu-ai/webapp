@@ -61,12 +61,16 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
         
         String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId();
+        String embedThumbnailUrl = null;
+        if (storyBookContributionEvent.getStoryBook().getCoverImage() != null) {
+            embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBookContributionEvent.getStoryBook().getCoverImage().getId() + "_r" + storyBookContributionEvent.getStoryBook().getCoverImage().getRevisionNumber() + "." + storyBookContributionEvent.getStoryBook().getCoverImage().getImageFormat().toString().toLowerCase();
+        }
         DiscordHelper.postChatMessage(
                 "Storybook peer-reviewed: " + contentUrl, 
                 "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                 "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",
                 storyBookPeerReviewEvent.isApproved(),
-                null
+                embedThumbnailUrl
         );
 
         // Update the storybook's peer review status

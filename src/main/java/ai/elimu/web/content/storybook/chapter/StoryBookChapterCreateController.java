@@ -109,12 +109,16 @@ public class StoryBookChapterCreateController {
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+            String embedThumbnailUrl = null;
+            if (storyBook.getCoverImage() != null) {
+                embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+            }
             DiscordHelper.postChatMessage(
                     "Storybook chapter created: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                     "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
                     null,
-                    null
+                    embedThumbnailUrl
             );
             
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
