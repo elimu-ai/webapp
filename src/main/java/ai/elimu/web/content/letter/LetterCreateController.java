@@ -75,6 +75,7 @@ public class LetterCreateController {
                     "Letter created: " + contentUrl, 
                     "'" + letter.getText() + "'",
                     null,
+                    null,
                     null
             );
             

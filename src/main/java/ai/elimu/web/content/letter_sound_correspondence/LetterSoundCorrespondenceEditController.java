@@ -124,6 +124,7 @@ public class LetterSoundCorrespondenceEditController {
                     "Letter-sound correspondence edited: " + contentUrl,
                     "\"" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence() + "\"",
                     "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

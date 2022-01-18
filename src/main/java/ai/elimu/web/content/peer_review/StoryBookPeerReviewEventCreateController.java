@@ -65,7 +65,8 @@ public class StoryBookPeerReviewEventCreateController {
                 "Storybook peer-reviewed: " + contentUrl, 
                 "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                 "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",
-                storyBookPeerReviewEvent.isApproved()
+                storyBookPeerReviewEvent.isApproved(),
+                null
         );
 
         // Update the storybook's peer review status

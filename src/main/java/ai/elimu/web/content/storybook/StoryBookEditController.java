@@ -224,11 +224,15 @@ public class StoryBookEditController {
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-            DiscordHelper.postChatMessage(
-                    "Storybook edited: " + contentUrl,
+            String embedThumbnailUrl = null;
+            if (storyBook.getCoverImage() != null) {
+                embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase());
+            }
+            DiscordHelper.postChatMessage("Storybook edited: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                     "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-                    null
+                    null,
+                    embedThumbnailUrl
             );
             
             // Refresh REST API cache

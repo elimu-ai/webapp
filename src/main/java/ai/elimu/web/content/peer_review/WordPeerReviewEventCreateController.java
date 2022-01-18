@@ -65,7 +65,8 @@ public class WordPeerReviewEventCreateController {
                 "Word peer-reviewed: " + contentUrl, 
                 "\"" + wordContributionEvent.getWord().getText() + "\"",
                 "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",
-                wordPeerReviewEvent.isApproved()
+                wordPeerReviewEvent.isApproved(),
+                null
         );
 
         // Update the word's peer review status

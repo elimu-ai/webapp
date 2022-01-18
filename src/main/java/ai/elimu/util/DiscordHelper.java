@@ -23,13 +23,20 @@ public class DiscordHelper {
 
     private static Logger logger = LogManager.getLogger();
     
-    public static void postChatMessage(String content, String embedTitle, String embedDescription, Boolean embedPeerReviewApproved) {
+    public static void postChatMessage(
+            String content,
+            String embedTitle,
+            String embedDescription,
+            Boolean embedPeerReviewApproved,
+            String embedThumbnailUrl
+    ) {
         logger.info("postChatMessage");
         
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             JsonObject jsonBody = new JsonObject();
             jsonBody.addProperty("content", content);
             if (StringUtils.isNotBlank(embedTitle)) {
+                // See https://discord.com/developers/docs/resources/channel#embed-object
                 JsonObject embedsJsonObject = new JsonObject();
                 embedsJsonObject.addProperty("title", embedTitle);
                 if (StringUtils.isNotBlank(embedDescription)) {
@@ -41,6 +48,11 @@ public class DiscordHelper {
                     } else {
                         embedsJsonObject.addProperty("color", 12000284); // #B71C1C
                     }
+                }
+                if (StringUtils.isNotBlank(embedThumbnailUrl)) {
+                    JsonObject thumbnailJsonObject = new JsonObject();
+                    thumbnailJsonObject.addProperty("url", embedThumbnailUrl);
+                    embedsJsonObject.add("thumbnail", thumbnailJsonObject);
                 }
                 JsonArray embedsJsonArray = new JsonArray();
                 embedsJsonArray.add(embedsJsonObject);

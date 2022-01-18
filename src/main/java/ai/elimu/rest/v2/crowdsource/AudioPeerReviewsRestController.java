@@ -204,7 +204,8 @@ public class AudioPeerReviewsRestController {
                     "Audio peer-reviewed: " + contentUrl, 
                     "\"" + audioContributionEvent.getAudio().getTranscription() + "\"",
                     "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
-                    audioPeerReviewEvent.isApproved()
+                    audioPeerReviewEvent.isApproved(),
+                    null
             );
 
             // Update the audio's peer review status

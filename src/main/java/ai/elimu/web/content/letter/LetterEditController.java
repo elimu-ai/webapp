@@ -78,6 +78,7 @@ public class LetterEditController {
                     "Letter created: " + contentUrl, 
                     "'" + letter.getText() + "'",
                     null,
+                    null,
                     null
             );
             

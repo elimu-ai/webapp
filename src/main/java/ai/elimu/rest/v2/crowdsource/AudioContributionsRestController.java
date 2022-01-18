@@ -246,6 +246,7 @@ public class AudioContributionsRestController {
                     "Audio created: " + contentUrl, 
                     "\"" + audio.getTranscription() + "\"",
                     "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
         } catch (Exception ex) {

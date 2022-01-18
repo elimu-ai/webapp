@@ -130,6 +130,7 @@ public class StoryBookChapterDeleteController {
                 "Storybook chapter deleted: " + contentUrl,
                 "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                 "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                null,
                 null
         );
         

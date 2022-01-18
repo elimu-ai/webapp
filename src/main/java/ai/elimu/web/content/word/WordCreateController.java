@@ -164,6 +164,7 @@ public class WordCreateController {
                     "Word created: " + contentUrl,
                     "\"" + wordContributionEvent.getWord().getText() + "\"",
                     "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

@@ -172,6 +172,7 @@ public class WordContributionRestController {
                     "Word created: " + contentUrl,
                     "\"" + wordContributionEvent.getWord().getText() + "\"",
                     "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
 

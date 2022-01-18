@@ -202,6 +202,7 @@ public class AudioCreateController {
                     "Audio created: " + contentUrl, 
                     "\"" + audio.getTranscription() + "\"",
                     "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

@@ -108,6 +108,7 @@ public class StoryBookCreateController {
                     "Storybook created: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                     "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

@@ -71,7 +71,8 @@ public class AudioPeerReviewEventCreateController {
                 "Audio peer-reviewed: " + contentUrl, 
                 "\"" + audioContributionEvent.getAudio().getTitle() + "\"",
                 "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
-                audioPeerReviewEvent.isApproved()
+                audioPeerReviewEvent.isApproved(),
+                null
         );
 
         // Update the audio's peer review status

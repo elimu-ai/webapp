@@ -109,6 +109,7 @@ public class LetterSoundCorrespondenceCreateController {
                     "Letter-sound correspondence created: " + contentUrl,
                     "\"" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence() + "\"",
                     "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

@@ -166,6 +166,7 @@ public class StoryBookParagraphEditController {
                     "Storybook paragraph edited: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                     "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

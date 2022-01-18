@@ -245,6 +245,7 @@ public class WordEditController {
                     "Word edited: " + contentUrl, 
                     "\"" + word.getText() + "\"",
                     "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

@@ -99,6 +99,7 @@ public class StoryBookParagraphDeleteController {
                 "Storybook paragraph deleted: " + contentUrl,
                 "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                 "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                null,
                 null
         );
         

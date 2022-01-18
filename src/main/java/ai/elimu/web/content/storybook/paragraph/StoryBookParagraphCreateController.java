@@ -118,6 +118,7 @@ public class StoryBookParagraphCreateController {
                     "Storybook paragraph created: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                     "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             

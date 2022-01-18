@@ -199,6 +199,7 @@ public class AudioEditController {
                     "Audio edited: " + contentUrl, 
                     "\"" + audio.getTranscription() + "\"",
                     "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                    null,
                     null
             );
             
