@@ -19,12 +19,14 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -394,6 +396,19 @@ public class StoryBookCreateFromEPubController {
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+            String embedThumbnailUrl = null;
+            if (storyBook.getCoverImage() != null) {
+                embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+            }
+            DiscordHelper.postChatMessage(
+                    "Storybook created (imported from ePUB): " + contentUrl,
+                    "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                    "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                    null,
+                    embedThumbnailUrl
+            );
             
             return "redirect:/content/storybook/edit/" + storyBook.getId();
         }
