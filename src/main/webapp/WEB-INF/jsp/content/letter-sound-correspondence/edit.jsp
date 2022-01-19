@@ -186,7 +186,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="words" /></h5>
+    <h5 class="center"><fmt:message key="words" /> (${fn:length(words)})</h5>
     
     <table class="bordered highlight">
         <thead>
@@ -206,8 +206,8 @@
                     <tr>
                         <td>
                             <a href="<spring:url value='/content/word/edit/${word.id}' />">
-                                <c:out value="${word.text}" />
-                            </a><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /><br />
+                                "<c:out value="${word.text}" />"
+                            </a><br />
                             <span class="grey-text">
                                 /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSoundCorrespondence.id}"><span class='diff-addition'></c:if><c:forEach var="allophone" items="${lsc.allophones}">${allophone.valueIpa}</c:forEach><c:if test="${lsc.id == letterSoundCorrespondence.id}"></span></c:if></a>&nbsp;</c:forEach>/
                             </span>
