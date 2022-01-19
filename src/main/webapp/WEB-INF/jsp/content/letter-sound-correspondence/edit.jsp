@@ -186,7 +186,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="words" /> (${fn:length(words)})</h5>
+    <h5 class="center"><fmt:message key="usages" /></h5>
     
     <table class="bordered highlight">
         <thead>
