@@ -32,6 +32,7 @@ public class DiscordHelper {
     ) {
         logger.info("postChatMessage");
         
+        // Prepare the JSON body
         JsonObject jsonBody = new JsonObject();
         jsonBody.addProperty("content", content);
         if (StringUtils.isNotBlank(embedTitle)) {
@@ -60,6 +61,7 @@ public class DiscordHelper {
         logger.info("jsonBody: " + jsonBody);
         
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+            // Send the message to Discord
             CloseableHttpClient client = HttpClients.createDefault();
             String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");
             logger.info("discordWebhookUrl: " + discordWebhookUrl);
