@@ -198,7 +198,7 @@ public class AudioCreateController {
             audioContributionEventDao.create(audioContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
-            DiscordHelper.postChatMessage(
+            DiscordHelper.sendChannelMessage(
                     "Audio created: " + contentUrl, 
                     "\"" + audio.getTranscription() + "\"",
                     "Comment: \"" + audioContributionEvent.getComment() + "\"",

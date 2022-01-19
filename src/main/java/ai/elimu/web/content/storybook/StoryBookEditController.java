@@ -228,7 +228,7 @@ public class StoryBookEditController {
             if (storyBook.getCoverImage() != null) {
                 embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
             }
-            DiscordHelper.postChatMessage("Storybook edited: " + contentUrl,
+            DiscordHelper.sendChannelMessage("Storybook edited: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                     "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
                     null,

@@ -23,6 +23,7 @@ import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
@@ -105,9 +106,9 @@ public class LetterSoundCorrespondenceCreateController {
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
-            DiscordHelper.postChatMessage(
+            DiscordHelper.sendChannelMessage(
                     "Letter-sound correspondence created: " + contentUrl,
-                    "\"" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence() + "\"",
+                    "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
                     "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
                     null,
                     null

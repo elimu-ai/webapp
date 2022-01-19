@@ -166,7 +166,7 @@ public class StoryBookParagraphEditController {
             if (storyBook.getCoverImage() != null) {
                 embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
             }
-            DiscordHelper.postChatMessage(
+            DiscordHelper.sendChannelMessage(
                     "Storybook paragraph edited: " + contentUrl,
                     "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
                     "Comment: \"" + storyBookContributionEvent.getComment() + "\"",

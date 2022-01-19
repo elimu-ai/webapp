@@ -23,14 +23,14 @@ public class DiscordHelper {
 
     private static Logger logger = LogManager.getLogger();
     
-    public static void postChatMessage(
+    public static void sendChannelMessage(
             String content,
             String embedTitle,
             String embedDescription,
             Boolean embedPeerReviewApproved,
             String embedThumbnailUrl
     ) {
-        logger.info("postChatMessage");
+        logger.info("sendChannelMessage");
         
         // Prepare the JSON body
         JsonObject jsonBody = new JsonObject();

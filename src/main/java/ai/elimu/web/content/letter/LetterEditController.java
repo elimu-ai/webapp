@@ -74,7 +74,7 @@ public class LetterEditController {
             // TODO: Store contribution event
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
-            DiscordHelper.postChatMessage(
+            DiscordHelper.sendChannelMessage(
                     "Letter created: " + contentUrl, 
                     "'" + letter.getText() + "'",
                     null,

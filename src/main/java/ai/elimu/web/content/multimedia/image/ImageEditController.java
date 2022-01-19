@@ -210,7 +210,7 @@ public class ImageEditController {
             
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
             String embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
-            DiscordHelper.postChatMessage(
+            DiscordHelper.sendChannelMessage(
                     "Image edited: " + contentUrl, 
                     "\"" + image.getTitle() + "\"",
                     "Comment: \"" + imageContributionEvent.getComment() + "\"",

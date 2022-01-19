@@ -178,7 +178,7 @@ public class WordPeerReviewsRestController {
             wordPeerReviewEventDao.create(wordPeerReviewEvent);
 
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
-            DiscordHelper.postChatMessage(
+            DiscordHelper.sendChannelMessage(
                     "Word peer-reviewed: " + contentUrl, 
                     "\"" + wordContributionEvent.getWord().getText() + "\"",
                     "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",
