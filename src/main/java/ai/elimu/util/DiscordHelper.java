@@ -32,33 +32,36 @@ public class DiscordHelper {
     ) {
         logger.info("postChatMessage");
         
-        if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-            JsonObject jsonBody = new JsonObject();
-            jsonBody.addProperty("content", content);
-            if (StringUtils.isNotBlank(embedTitle)) {
-                // See https://discord.com/developers/docs/resources/channel#embed-object
-                JsonObject embedsJsonObject = new JsonObject();
-                embedsJsonObject.addProperty("title", embedTitle);
-                if (StringUtils.isNotBlank(embedDescription)) {
-                    embedsJsonObject.addProperty("description", embedDescription);
-                }
-                if (embedPeerReviewApproved != null) {
-                    if (embedPeerReviewApproved) {
-                        embedsJsonObject.addProperty("color", 35195); // #00897b
-                    } else {
-                        embedsJsonObject.addProperty("color", 12000284); // #B71C1C
-                    }
-                }
-                if (StringUtils.isNotBlank(embedThumbnailUrl)) {
-                    JsonObject thumbnailJsonObject = new JsonObject();
-                    thumbnailJsonObject.addProperty("url", embedThumbnailUrl);
-                    embedsJsonObject.add("thumbnail", thumbnailJsonObject);
-                }
-                JsonArray embedsJsonArray = new JsonArray();
-                embedsJsonArray.add(embedsJsonObject);
-                jsonBody.add("embeds", embedsJsonArray);
+        // Prepare the JSON body
+        JsonObject jsonBody = new JsonObject();
+        jsonBody.addProperty("content", content);
+        if (StringUtils.isNotBlank(embedTitle)) {
+            // See https://discord.com/developers/docs/resources/channel#embed-object
+            JsonObject embedsJsonObject = new JsonObject();
+            embedsJsonObject.addProperty("title", embedTitle);
+            if (StringUtils.isNotBlank(embedDescription)) {
+                embedsJsonObject.addProperty("description", embedDescription);
             }
-            logger.info("jsonBody: " + jsonBody);
+            if (embedPeerReviewApproved != null) {
+                if (embedPeerReviewApproved) {
+                    embedsJsonObject.addProperty("color", 35195); // #00897b
+                } else {
+                    embedsJsonObject.addProperty("color", 12000284); // #B71C1C
+                }
+            }
+            if (StringUtils.isNotBlank(embedThumbnailUrl)) {
+                JsonObject thumbnailJsonObject = new JsonObject();
+                thumbnailJsonObject.addProperty("url", embedThumbnailUrl);
+                embedsJsonObject.add("thumbnail", thumbnailJsonObject);
+            }
+            JsonArray embedsJsonArray = new JsonArray();
+            embedsJsonArray.add(embedsJsonObject);
+            jsonBody.add("embeds", embedsJsonArray);
+        }
+        logger.info("jsonBody: " + jsonBody);
+        
+        if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+            // Send the message to Discord
             CloseableHttpClient client = HttpClients.createDefault();
             String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");
             logger.info("discordWebhookUrl: " + discordWebhookUrl);

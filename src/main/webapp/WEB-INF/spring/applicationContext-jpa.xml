@@ -55,6 +55,7 @@
     <bean id="deviceDao" class="ai.elimu.dao.jpa.DeviceDaoJpa" />
     <bean id="emojiDao" class="ai.elimu.dao.jpa.EmojiDaoJpa" />
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
+    <bean id="imageContributionEventDao" class="ai.elimu.dao.jpa.ImageContributionEventDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
     <bean id="letterLearningEventDao" class="ai.elimu.dao.jpa.LetterLearningEventDaoJpa" />
     <bean id="letterSoundCorrespondenceDao" class="ai.elimu.dao.jpa.LetterSoundCorrespondenceDaoJpa" />
