@@ -1,6 +1,7 @@
 package ai.elimu.web.content.storybook.chapter;
 
 import ai.elimu.dao.AudioDao;
+import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -12,6 +13,7 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
@@ -53,6 +55,9 @@ public class StoryBookChapterDeleteController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private ImageContributionEventDao imageContributionEventDao;
     
     @Autowired
     private StoryBooksJsonService storyBooksJsonService;
@@ -102,6 +107,12 @@ public class StoryBookChapterDeleteController {
             chapterImage.setNumbers(null);
             chapterImage.setWords(null);
             imageDao.update(chapterImage);
+            
+            // Remove contribution events
+            for (ImageContributionEvent imageContributionEvent : imageContributionEventDao.readAll(chapterImage)) {
+                logger.warn("Deleting ImageContributionEvent from the database");
+                imageContributionEventDao.delete(imageContributionEvent);
+            }
             
             logger.warn("Deleting the chapter image from the database");
             imageDao.delete(chapterImage);

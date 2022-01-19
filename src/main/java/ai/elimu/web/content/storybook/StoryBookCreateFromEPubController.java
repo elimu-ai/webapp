@@ -1,5 +1,6 @@
 package ai.elimu.web.content.storybook;
 
+import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -16,6 +17,7 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.ImageFormat;
@@ -70,6 +72,9 @@ public class StoryBookCreateFromEPubController {
     
     @Autowired
     private ImageDao imageDao;
+    
+    @Autowired
+    private ImageContributionEventDao imageContributionEventDao;
     
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
@@ -336,6 +341,7 @@ public class StoryBookCreateFromEPubController {
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook
             storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
             imageDao.create(storyBookCoverImage);
+            storeImageContributionEvent(storyBookCoverImage, session, request);
             storyBook.setCoverImage(storyBookCoverImage);
             storyBookDao.update(storyBook);
             
@@ -382,6 +388,7 @@ public class StoryBookCreateFromEPubController {
                 if (chapterImage != null) {
                     chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
                     imageDao.create(chapterImage);
+                    storeImageContributionEvent(chapterImage, session, request);
                 }
                 
                 // Only store the chapter if it has an image or at least one paragraph
@@ -482,5 +489,29 @@ public class StoryBookCreateFromEPubController {
         }
         
         return unzippedFiles;
+    }
+    
+    private void storeImageContributionEvent(Image image, HttpSession session, HttpServletRequest request) {
+        logger.info("storeImageContributionEvent");
+        
+        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+        imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        imageContributionEvent.setTime(Calendar.getInstance());
+        imageContributionEvent.setImage(image);
+        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+        imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
+        imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+        imageContributionEvent.setPlatform(Platform.WEBAPP);
+        imageContributionEventDao.create(imageContributionEvent);
+
+        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+        String embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
+        DiscordHelper.postChatMessage(
+                "Image created: " + contentUrl, 
+                "\"" + image.getTitle() + "\"",
+                "Comment: \"" + imageContributionEvent.getComment() + "\"",
+                null,
+                embedThumbnailUrl
+        );
     }
 }

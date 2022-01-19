@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
@@ -21,15 +22,21 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +62,9 @@ public class ImageEditController {
     private ImageDao imageDao;
     
     @Autowired
+    private ImageContributionEventDao imageContributionEventDao;
+    
+    @Autowired
     private LetterDao letterDao;
     
     @Autowired
@@ -77,11 +87,12 @@ public class ImageEditController {
         
         Image image = imageDao.read(id);
         model.addAttribute("image", image);
-        
         model.addAttribute("contentLicenses", ContentLicense.values());
-        
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
+        
+        model.addAttribute("timeStart", System.currentTimeMillis());
+        model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
         
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
@@ -96,6 +107,8 @@ public class ImageEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             Image image,
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
@@ -166,18 +179,44 @@ public class ImageEditController {
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
+            
+            model.addAttribute("timeStart", System.currentTimeMillis());
+            model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
+            
             model.addAttribute("letters", letterDao.readAllOrdered());
             model.addAttribute("numbers", numberDao.readAllOrdered());
             model.addAttribute("words", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
+            
             Audio audio = audioDao.readByTranscription(image.getTitle());
             model.addAttribute("audio", audio);
+            
             return "content/multimedia/image/edit";
         } else {
             image.setTitle(image.getTitle().toLowerCase());
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(image.getRevisionNumber() + 1);
             imageDao.update(image);
+            
+            ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+            imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            imageContributionEvent.setTime(Calendar.getInstance());
+            imageContributionEvent.setImage(image);
+            imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+            imageContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
+            imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            imageContributionEvent.setPlatform(Platform.WEBAPP);
+            imageContributionEventDao.create(imageContributionEvent);
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+            String embedThumbnailUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
+            DiscordHelper.postChatMessage(
+                    "Image edited: " + contentUrl, 
+                    "\"" + image.getTitle() + "\"",
+                    "Comment: \"" + imageContributionEvent.getComment() + "\"",
+                    null,
+                    embedThumbnailUrl
+            );
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
         }
