@@ -14,6 +14,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -41,13 +42,16 @@ public class MainContentController {
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
+    private LetterDao letterDao;
+    
+    @Autowired
     private AllophoneDao allophoneDao;
     
     @Autowired
-    private NumberDao numberDao;
+    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
     @Autowired
-    private LetterDao letterDao;
+    private NumberDao numberDao;
     
     @Autowired
     private SyllableDao syllableDao;
@@ -111,9 +115,10 @@ public class MainContentController {
             }
         }
         
-        model.addAttribute("allophoneCount", allophoneDao.readCount());
-        model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("letterCount", letterDao.readCount());
+        model.addAttribute("allophoneCount", allophoneDao.readCount());
+        model.addAttribute("letterSoundCorrespondenceCount", letterSoundCorrespondenceDao.readCount());
+        model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount());
         model.addAttribute("wordCount", wordDao.readCount());
         model.addAttribute("emojiCount", emojiDao.readCount());

@@ -4,6 +4,7 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -42,6 +43,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.enums.Platform;
 
 public class DbContentImportHelper {
@@ -54,7 +56,11 @@ public class DbContentImportHelper {
     
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
+    private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
+    
     private WordDao wordDao;
+    
+    private WordContributionEventDao wordContributionEventDao;
     
     private NumberDao numberDao;
     
@@ -62,15 +68,13 @@ public class DbContentImportHelper {
     
     private StoryBookDao storyBookDao;
     
+    private StoryBookContributionEventDao storyBookContributionEventDao;
+    
     private StoryBookChapterDao storyBookChapterDao;
     
     private StoryBookParagraphDao storyBookParagraphDao;
     
     private ContributorDao contributorDao;
-    
-    private WordContributionEventDao wordContributionEventDao;
-    
-    private StoryBookContributionEventDao storyBookContributionEventDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -132,8 +136,18 @@ public class DbContentImportHelper {
         List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, allophoneDao, letterSoundCorrespondenceDao);
         logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
         letterSoundCorrespondenceDao = (LetterSoundCorrespondenceDao) webApplicationContext.getBean("letterSoundCorrespondenceDao");
+        letterSoundCorrespondenceContributionEventDao = (LetterSoundCorrespondenceContributionEventDao) webApplicationContext.getBean("letterSoundCorrespondenceContributionEventDao");
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
             letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
+            
+            LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            letterSoundCorrespondenceContributionEvent.setContributor(contributor);
+            letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
+            letterSoundCorrespondenceContributionEvent.setRevisionNumber(1);
+            letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
+            letterSoundCorrespondenceContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+//            letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
+            letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
         }
         
         // Extract and import Words from CSV file in src/main/resources/

@@ -60,10 +60,11 @@
                         <li class="divider"></li>
                         
                         <li class="grey-text"><b><fmt:message key="text" /></b></li>
-                        <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">record_voice_over</i><fmt:message key="allophones" /></a></li>
-                        <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
-                        <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
+                        <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_fields</i><fmt:message key="letters" /></a></li>
+                        <li><a href="<spring:url value='/content/allophone/list' />"><i class="material-icons left">music_note</i><fmt:message key="sounds" /></a></li>
+                        <li><a href="<spring:url value='/content/letter-sound-correspondence/list' />"><i class="material-icons left">emoji_symbols</i><fmt:message key="letter.sounds" /></a></li>
                         <li><a href="<spring:url value='/content/syllable/list' />"><i class="material-icons left">queue_music</i><fmt:message key="syllables" /></a></li>
+                        <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
                         <li><a href="<spring:url value='/content/emoji/list' />"><i class="material-icons left">emoji_emotions</i><fmt:message key="emojis" /></a></li>
                         <li class="grey-text"><b><fmt:message key="multimedia" /></b></li>
