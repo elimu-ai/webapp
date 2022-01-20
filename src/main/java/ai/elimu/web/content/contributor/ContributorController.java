@@ -77,7 +77,7 @@ public class ContributorController {
         
         // For contributor-storybooks.jsp
         List<StoryBookContributionEvent> storyBookContributionEvents = storyBookContributionEventDao.readAll(contributor);
-        model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(contributor));
+        model.addAttribute("storyBookContributionEvents", storyBookContributionEvents);
         model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
         Map<Long, List<StoryBookPeerReviewEvent>> storyBookPeerReviewEventsByContributionMap = new HashMap<>();
         for (StoryBookContributionEvent storyBookContributionEvent : storyBookContributionEvents) {
@@ -87,7 +87,7 @@ public class ContributorController {
         
         // For contributor-words.jsp
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(contributor);
-        model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(contributor));
+        model.addAttribute("wordContributionEvents", wordContributionEvents);
         model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(contributor));
         Map<Long, List<WordPeerReviewEvent>> wordPeerReviewEventsByContributionMap = new HashMap<>();
         for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
