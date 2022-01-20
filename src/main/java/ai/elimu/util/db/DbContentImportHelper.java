@@ -146,7 +146,7 @@ public class DbContentImportHelper {
             letterSoundCorrespondenceContributionEvent.setRevisionNumber(1);
             letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
             letterSoundCorrespondenceContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-//            letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
+            letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
         }
         
