@@ -7,6 +7,7 @@ import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.*;
 import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.WordPeerReviewEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
@@ -175,6 +176,7 @@ public class WordPeerReviewsRestController {
             wordPeerReviewEvent.setApproved(wordPeerReviewEventGson.isApproved());
             wordPeerReviewEvent.setComment(wordPeerReviewEventGson.getComment());
             wordPeerReviewEvent.setTime(Calendar.getInstance());
+            wordPeerReviewEvent.setPlatform(Platform.CROWDSOURCE_APP);
             wordPeerReviewEventDao.create(wordPeerReviewEvent);
 
             String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
