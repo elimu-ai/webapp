@@ -18,7 +18,7 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 38,image/jpg,null,"null","storybook-22-ch-8","/image/38.jpg",JPG
 39,image/jpg,null,"null","storybook-22-ch-9","/image/39.jpg",JPG
 40,image/jpg,null,"null","storybook-22-ch-10","/image/40.jpg",JPG
-41,image/jpg,null,"null","storybook-22-ch-11","/image/41.jpg",JPG
+41,image/jpeg,null,"null","storybook-22-ch-11","/image/41.jpg",JPG
 42,image/png,null,"null","storybook-22-ch-12","/image/42.png",PNG
 43,image/png,null,"null","storybook-22-ch-13","/image/43.png",PNG
 44,image/png,null,"null","storybook-22-ch-14","/image/44.png",PNG

@@ -117,11 +117,9 @@ public class CsvContentExtractionHelper {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
                     .withHeader(
-                            "id", 
-                            "text", 
-                            "allophone_ids", 
-                            "allophone_values_ipa", 
-                            "diacritic", 
+                            "id",
+                            "text",
+                            "diacritic",
                             "usage_count"
                     )
                     .withSkipHeaderRecord();
