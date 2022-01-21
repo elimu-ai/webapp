@@ -1,6 +1,7 @@
 package ai.elimu.util.db;
 
 import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
@@ -43,16 +44,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.StoryBookLearningEventDao;
+import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.enums.Platform;
+import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 
 public class DbContentImportHelper {
     
     private Logger logger = LogManager.getLogger();
     
-    private AllophoneDao allophoneDao;
-    
     private LetterDao letterDao;
+    
+    private AllophoneDao allophoneDao;
     
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
@@ -68,6 +72,8 @@ public class DbContentImportHelper {
     
     private StoryBookDao storyBookDao;
     
+    private StoryBookLearningEventDao storyBookLearningEventDao;
+    
     private StoryBookContributionEventDao storyBookContributionEventDao;
     
     private StoryBookChapterDao storyBookChapterDao;
@@ -75,6 +81,8 @@ public class DbContentImportHelper {
     private StoryBookParagraphDao storyBookParagraphDao;
     
     private ContributorDao contributorDao;
+    
+    private ApplicationDao applicationDao;
     
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
@@ -113,15 +121,6 @@ public class DbContentImportHelper {
         contributor.setRegistrationTime(Calendar.getInstance());
         contributorDao.create(contributor);
         
-        // Extract and import Allophones from CSV file in src/main/resources/
-        File allophonesCsvFile = new File(contentDirectory, "allophones.csv");
-        List<Allophone> allophones = CsvContentExtractionHelper.getAllophonesFromCsvBackup(allophonesCsvFile);
-        logger.info("allophones.size(): " + allophones.size());
-        allophoneDao = (AllophoneDao) webApplicationContext.getBean("allophoneDao");
-        for (Allophone allophone : allophones) {
-            allophoneDao.create(allophone);
-        }
-        
         // Extract and import Letters from CSV file in src/main/resources/
         File lettersCsvFile = new File(contentDirectory, "letters.csv");
         List<Letter> letters = CsvContentExtractionHelper.getLettersFromCsvBackup(lettersCsvFile, allophoneDao);
@@ -129,6 +128,15 @@ public class DbContentImportHelper {
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         for (Letter letter : letters) {
             letterDao.create(letter);
+        }
+        
+        // Extract and import Allophones from CSV file in src/main/resources/
+        File allophonesCsvFile = new File(contentDirectory, "allophones.csv");
+        List<Allophone> allophones = CsvContentExtractionHelper.getAllophonesFromCsvBackup(allophonesCsvFile);
+        logger.info("allophones.size(): " + allophones.size());
+        allophoneDao = (AllophoneDao) webApplicationContext.getBean("allophoneDao");
+        for (Allophone allophone : allophones) {
+            allophoneDao.create(allophone);
         }
         
         // Extract and import letter-sound correspondences in src/main/resources/
@@ -260,6 +268,18 @@ public class DbContentImportHelper {
         // Extract and import Videos from CSV file in src/main/resources/
         // TODO
         
+        
+        String analyticsDirectoryPath = "db" + File.separator + "analytics_" + environment + File.separator + language.toString().toLowerCase();
+        logger.info("analyticsDirectoryPath: \"" + analyticsDirectoryPath + "\"");
+        URL analyticsDirectoryURL = getClass().getClassLoader().getResource(analyticsDirectoryPath);
+        logger.info("analyticsDirectoryURL: " + analyticsDirectoryURL);
+        if (analyticsDirectoryURL == null) {
+            logger.warn("The analytics directory was not found. Aborting analytics import.");
+            return;
+        }
+        File analyticsDirectory = new File(analyticsDirectoryURL.getPath());
+        logger.info("analyticsDirectory: " + analyticsDirectory);
+        
         // Extract and import LetterLearningEvents from CSV file in src/main/resources/
         // TODO
         
@@ -267,7 +287,14 @@ public class DbContentImportHelper {
         // TODO
         
         // Extract and import StoryBookLearningEvents from CSV file in src/main/resources/
-        // TODO
+        File storyBookLearningEventsCsvFile = new File(analyticsDirectory, "storybook-learning-events.csv");
+        applicationDao = (ApplicationDao) webApplicationContext.getBean("applicationDao");
+        List<StoryBookLearningEvent> storyBookLearningEvents = CsvAnalyticsExtractionHelper.getStoryBookLearningEventsFromCsvBackup(storyBookLearningEventsCsvFile, applicationDao, storyBookDao);
+        logger.info("storyBookLearningEvents.size(): " + storyBookLearningEvents.size());
+        storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
+        for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
+            storyBookLearningEventDao.create(storyBookLearningEvent);
+        }
         
         logger.info("Content import complete");
     }

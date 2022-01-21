@@ -1,11 +1,13 @@
 package ai.elimu.util.csv;
 
-import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.v2.enums.ReadingLevel;
-import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
-import ai.elimu.model.v2.gson.content.StoryBookGson;
-import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
-import ai.elimu.web.content.storybook.StoryBookCsvExportController;
+import ai.elimu.dao.ApplicationDao;
+import ai.elimu.dao.StoryBookDao;
+import ai.elimu.model.admin.Application;
+import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.model.content.StoryBook;
+import ai.elimu.model.v2.enums.analytics.LearningEventType;
+import ai.elimu.rest.v2.analytics.StoryBookLearningEventsRestController;
+import ai.elimu.web.analytics.StoryBookLearningEventCsvExportController;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
@@ -13,29 +15,27 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class CsvAnalyticsExtractionHelper {
     
     private static final Logger logger = LogManager.getLogger();
     
     /**
-     * For information on how the CSV files were generated, see {@link StoryBookCsvExportController#handleRequest}.
+     * For information on how the CSV files were generated, see {@link StoryBookLearningEventCsvExportController#handleRequest}.
      * <p />
-     * Also see {@link #getStoryBookChaptersFromCsvBackup}
+     * Also see {@link StoryBookLearningEventsRestController#handleUploadCsvRequest}
      */
-    public static List<StoryBookGson> getStoryBooksFromCsvBackup(File csvFile) {
-        logger.info("getStoryBooksFromCsvBackup");
+    public static List<StoryBookLearningEvent> getStoryBookLearningEventsFromCsvBackup(File csvFile, ApplicationDao applicationDao, StoryBookDao storyBookDao) {
+        logger.info("getStoryBookLearningEventsFromCsvBackup");
         
-        List<StoryBookGson> storyBookGsons = new ArrayList<>();
+        List<StoryBookLearningEvent> storyBookLearningEvents = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -43,84 +43,50 @@ public class CsvAnalyticsExtractionHelper {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
                     .withHeader(
-                            "id",
-                            "title",
-                            "description",
-                            "content_license",
-                            "attribution_url",
-                            "reading_level",
-                            "cover_image_id",
-                            "chapters"
+                            "id", // The Room database ID
+                            "time",
+                            "android_id",
+                            "package_name",
+                            "storybook_id",
+                            "learning_event_type"
                     )
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                // Convert from CSV to GSON
+                // Convert from CSV to Java (see similar code in StoryBookLearningEventsRestController)
                 
-                StoryBookGson storyBookGson = new StoryBookGson();
+                StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                 
-                String title = csvRecord.get("title");
-                storyBookGson.setTitle(title);
+                long timeInMillis = Long.valueOf(csvRecord.get("time"));
+                Calendar time = Calendar.getInstance();
+                time.setTimeInMillis(timeInMillis);
+                storyBookLearningEvent.setTime(time);
                 
-                String description = csvRecord.get("description");
-                storyBookGson.setDescription(description);
+                String androidId = csvRecord.get("android_id");
+                storyBookLearningEvent.setAndroidId(androidId);
                 
-                if (StringUtils.isNotBlank(csvRecord.get("content_license"))) {
-                    ContentLicense contentLicense = ContentLicense.valueOf(csvRecord.get("content_license"));
-//                    storyBookGson.setContentLicense(contentLicense);
-                }
+                String packageName = csvRecord.get("package_name");
+                Application application = applicationDao.readByPackageName(packageName);
+                logger.info("application: " + application);
+                storyBookLearningEvent.setApplication(application);
                 
-                String attributionUrl = csvRecord.get("attribution_url");
-//                storyBookGson.setAttributionUrl(attributionUrl);
+                Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
+                StoryBook storyBook = storyBookDao.read(storyBookId);
+                logger.info("storyBook: " + storyBook);
+                storyBookLearningEvent.setStoryBook(storyBook);
                 
-                if (StringUtils.isNotBlank(csvRecord.get("reading_level"))) {
-                    ReadingLevel readingLevel = ReadingLevel.valueOf(csvRecord.get("reading_level"));
-                    storyBookGson.setReadingLevel(readingLevel);
-                }
+                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                logger.info("learningEventType: " + learningEventType);
+                storyBookLearningEvent.setLearningEventType(learningEventType);
                 
-                if (StringUtils.isNotBlank(csvRecord.get("cover_image_id"))) {
-                    Long coverImageId = Long.valueOf(csvRecord.get("cover_image_id"));
-//                    storyBookGson.setCoverImage();
-                }
-                
-                List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
-                JSONArray chaptersJsonArray = new JSONArray(csvRecord.get("chapters"));
-                logger.info("chaptersJsonArray: " + chaptersJsonArray);
-                for (int i = 0; i < chaptersJsonArray.length(); i++) {
-                    JSONObject chapterJsonObject = chaptersJsonArray.getJSONObject(i);
-                    logger.info("chapterJsonObject: " + chapterJsonObject);
-                    
-                    StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
-                    storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
-                    
-                    List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
-                    JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");
-                    logger.info("paragraphsJsonArray: " + paragraphsJsonArray);
-                    for (int j = 0; j < paragraphsJsonArray.length(); j++) {
-                        JSONObject paragraphJsonObject = paragraphsJsonArray.getJSONObject(j);
-                        logger.info("paragraphJsonObject: " + paragraphJsonObject);
-
-                        StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
-                        storyBookParagraphGson.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
-                        storyBookParagraphGson.setOriginalText(paragraphJsonObject.getString("originalText"));
-                        // TODO: setWords
-                        
-                        storyBookParagraphGsons.add(storyBookParagraphGson);
-                    }
-                    storyBookChapterGson.setStoryBookParagraphs(storyBookParagraphGsons);
-                    
-                    storyBookChapterGsons.add(storyBookChapterGson);
-                }
-                storyBookGson.setStoryBookChapters(storyBookChapterGsons);
-                
-                storyBookGsons.add(storyBookGson);
+                storyBookLearningEvents.add(storyBookLearningEvent);
             }
         } catch (IOException ex) {
             logger.error(ex);
         }
         
-        return storyBookGsons;
+        return storyBookLearningEvents;
     }
 }

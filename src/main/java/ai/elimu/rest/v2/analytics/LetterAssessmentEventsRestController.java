@@ -56,9 +56,10 @@ public class LetterAssessmentEventsRestController {
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
-        // TODO: Send notification to analytics channel in Discord
-        String anonymizedOriginalFilename = "****************" + originalFilename.substring(16);
-        DiscordHelper.sendChannelMessage("Received dataset: " + anonymizedOriginalFilename, null, null, null, null);
+        // TODO: Send notification to the #📊-data-collection channel in Discord
+        // Hide parts of the Android ID, e.g. "7161***51cd_word-learning-events_2020-04-23.csv"
+        String anonymizedOriginalFilename = originalFilename.substring(0, 3) + "***" + originalFilename.substring(12);
+        DiscordHelper.sendChannelMessage("Received dataset: _" + anonymizedOriginalFilename + "_", null, null, null, null);
         
         String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
         logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
