@@ -178,7 +178,7 @@ public class DbContentImportHelper {
             numberDao.create(number);
         }
         
-        // Extract and import Syllables
+        // Extract and import Syllables from CSV file in src/main/resources/
         // TODO
         
         // Extract and import Emojis from CSV file in src/main/resources/
@@ -190,10 +190,10 @@ public class DbContentImportHelper {
             emojiDao.create(emoji);
         }
         
-        // Extract and import Images
+        // Extract and import Images from CSV file in src/main/resources/
         // TODO
         
-        // Extract and import Audios
+        // Extract and import Audios from CSV file in src/main/resources/
         // TODO
         
         // Extract and import StoryBooks from CSV file in src/main/resources/
@@ -257,7 +257,16 @@ public class DbContentImportHelper {
             storyBookContributionEventDao.create(storyBookContributionEvent);
         }
         
-        // Extract and import Videos
+        // Extract and import Videos from CSV file in src/main/resources/
+        // TODO
+        
+        // Extract and import LetterLearningEvents from CSV file in src/main/resources/
+        // TODO
+        
+        // Extract and import WordLearningEvents from CSV file in src/main/resources/
+        // TODO
+        
+        // Extract and import StoryBookLearningEvents from CSV file in src/main/resources/
         // TODO
         
         logger.info("Content import complete");
