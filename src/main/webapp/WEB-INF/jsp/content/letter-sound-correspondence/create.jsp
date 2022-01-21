@@ -16,7 +16,8 @@
                     "<span id="lettersContainer">
                         <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
                             <input name="letters" type="hidden" value="${letter.id}" />
-                            <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}">
+                            <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}"
+                                 style="font-size: 2rem; padding: 1rem; height: auto;">
                                 ${letter.text} 
                                 <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
                                     <i class="close material-icons">clear</i>
@@ -74,7 +75,8 @@
                     /<span id="allophonesContainer">
                         <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}">
+                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}"
+                                 style="font-size: 2rem; padding: 1rem; height: auto;">
                                 ${allophone.valueIpa} 
                                 <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
                                     <i class="close material-icons">clear</i>
