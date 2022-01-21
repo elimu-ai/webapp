@@ -3,6 +3,8 @@ package ai.elimu.rest.v2.crowdsource;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -71,6 +73,19 @@ public class ContributorsRestController {
             contributor.setImageUrl(imageUrl);
             contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
             contributorDao.create(contributor);
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
+            String embedThumbnailUrl = null;
+            if (StringUtils.isNotBlank(contributor.getImageUrl())) {
+                embedThumbnailUrl = contributor.getImageUrl();
+            }
+            DiscordHelper.sendChannelMessage(
+                    "Contributor joined via the Crowdsource app: " + contentUrl,
+                    contributor.getFirstName() + " " + contributor.getLastName(),
+                    null,
+                    null,
+                    embedThumbnailUrl
+            );
             
             jsonObject.put("result", "success");
             jsonObject.put("successMessage", "The Contributor was stored in the database");

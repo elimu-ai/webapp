@@ -31,6 +31,8 @@ public class Contributor extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar registrationTime;
     
+    // TODO: add registrationPlatform
+    
 //    @Column(unique=true)
     private String providerIdGoogle;
     
