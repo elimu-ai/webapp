@@ -5,6 +5,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.AnalyticsHelper;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
 import java.io.File;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -54,6 +55,10 @@ public class WordAssessmentEventsRestController {
         // Expected format: "7161a85a0e4751cd_word-assessment-events_2020-04-23.csv"
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
+        
+        // TODO: Send notification to analytics channel in Discord
+        String anonymizedOriginalFilename = "****************" + originalFilename.substring(16);
+        DiscordHelper.sendChannelMessage("Received dataset: " + anonymizedOriginalFilename, null, null, null, null);
         
         String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
         logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
