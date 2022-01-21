@@ -137,6 +137,7 @@ public class SignOnControllerGoogle {
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
                 contributorDao.create(contributor);
+                logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
             } else {
                 // Contributor already exists in database
                 // Update existing contributor with latest values fetched from provider

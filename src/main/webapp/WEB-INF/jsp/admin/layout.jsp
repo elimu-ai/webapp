@@ -166,7 +166,7 @@
                                             var tokenBalance = result / 1000000000000000000;
                                             console.info('tokenBalance: ' + tokenBalance);
 
-                                            var tokenBalanceFormatted = Intl.NumberFormat().format(tokenBalance);
+                                            var tokenBalanceFormatted = Intl.NumberFormat().format(Math.round(tokenBalance));
                                             console.info('tokenBalanceFormatted ' + tokenBalanceFormatted);
 
                                             $('#tokenBalance').html(tokenBalanceFormatted);

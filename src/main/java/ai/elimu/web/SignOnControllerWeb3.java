@@ -108,6 +108,7 @@ public class SignOnControllerWeb3 {
                 return "redirect:/content/contributor/add-email";
             }
             contributorDao.create(contributor);
+            logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
         } else {
             contributor = existingContributor;
         }

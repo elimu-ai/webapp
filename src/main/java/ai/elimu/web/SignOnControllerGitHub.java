@@ -163,6 +163,7 @@ public class SignOnControllerGitHub {
                     return "redirect:/content/contributor/add-email";
                 }
                 contributorDao.create(contributor);
+                logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
             } else {
                 // Contributor already exists in database
                 // Update existing contributor with latest values fetched from provider
