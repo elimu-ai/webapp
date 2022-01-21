@@ -149,6 +149,7 @@ public class StoryBookLearningEventsRestController {
                     break;
                 }
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                logger.info("learningEventType: " + learningEventType);
                 storyBookLearningEvent.setLearningEventType(learningEventType);
                 
                 // Check if the event has already been stored in the database
