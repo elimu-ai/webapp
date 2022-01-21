@@ -53,18 +53,18 @@
     
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="time" /></th>
-                <th>Android ID</th>
-                <th><fmt:message key="application" /></th>
-                <th><fmt:message key="storybook" /></th>
-                <th><fmt:message key="storybook.title" /></th>
-                <th><fmt:message key="learning.event.type" /></th>
+                <th>time</th>
+                <th>android_id</th>
+                <th>package_name</th>
+                <th>storybook_id</th>
+                <th>storybook_title</th>
+                <th>learning_event_type</th>
             </thead>
             <tbody>
                 <c:forEach var="storyBookLearningEvent" items="${storyBookLearningEvents}">
                     <tr class="storyBookLearningEvent">
                         <td>
-                            <fmt:formatDate value="${storyBookLearningEvent.time.time}" pattern="yyyy-MM-dd HH:mm:ss" />
+                            <fmt:formatDate value="${storyBookLearningEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             ${storyBookLearningEvent.androidId}
@@ -75,12 +75,12 @@
                             </a>
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/storybook/edit/${storyBookLearningEvent.storyBook.id}' />">
-                                ${storyBookLearningEvent.storyBook.title}
-                            </a>
+                            ${storyBookLearningEvent.storyBook.id}
                         </td>
                         <td>
-                            "TODO"
+                            <a href="<spring:url value='/content/storybook/edit/${storyBookLearningEvent.storyBook.id}' />">
+                                "<c:out value="${storyBookLearningEvent.storyBook.title}" />"
+                            </a>
                         </td>
                         <td>
                             ${storyBookLearningEvent.learningEventType}
