@@ -79,7 +79,7 @@ public class CsvAnalyticsExtractionHelper {
                 logger.info("storyBookId: " + storyBookId);
                 storyBookLearningEvent.setStoryBookId(storyBookId);
                 
-                String storyBookTitle = Long.valueOf(csvRecord.get("storybook_title"));
+                String storyBookTitle = csvRecord.get("storybook_title");
                 logger.info("storyBookTitle: \"" + storyBookTitle + "\"");
                 storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
                 
