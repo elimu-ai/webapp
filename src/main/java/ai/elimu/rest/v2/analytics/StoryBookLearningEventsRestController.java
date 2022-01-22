@@ -64,7 +64,7 @@ public class StoryBookLearningEventsRestController {
         
         // TODO: Send notification to the #📊-data-collection channel in Discord
         // Hide parts of the Android ID, e.g. "7161***51cd_word-learning-events_2020-04-23.csv"
-        String anonymizedOriginalFilename = originalFilename.substring(0, 3) + "***" + originalFilename.substring(12);
+        String anonymizedOriginalFilename = originalFilename.substring(0, 4) + "***" + originalFilename.substring(12);
         DiscordHelper.sendChannelMessage("Received dataset: `" + anonymizedOriginalFilename + "`", null, null, null, null);
         
         String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
