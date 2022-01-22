@@ -58,7 +58,7 @@
                                 console.log('letterText: ' + letterText);
                                 if (letterId != "") {
                                     $('#lettersContainer').append('<input name="letters" type="hidden" value="' + letterId + '" />');
-                                    $('#lettersContainer').append('<div class="chip">' + letterText + '</div>');
+                                    $('#lettersContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + letterText + '</div>');
                                     $(this).val("");
                                 }
                             });
@@ -117,7 +117,7 @@
                                 console.log('allophoneValueIpa: ' + allophoneValueIpa);
                                 if (allophoneId != "") {
                                     $('#allophonesContainer').append('<input name="allophones" type="hidden" value="' + allophoneId + '" />');
-                                    $('#allophonesContainer').append('<div class="chip">' + allophoneValueIpa + '</div>');
+                                    $('#allophonesContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + allophoneValueIpa + '</div>');
                                     $(this).val("");
                                 }
                             });
