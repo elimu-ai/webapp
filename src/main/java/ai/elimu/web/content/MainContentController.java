@@ -26,7 +26,6 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
