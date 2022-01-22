@@ -87,9 +87,7 @@
                         <td>
                             <c:choose>
                                 <c:when test="${not empty storyBookLearningEvent.storyBook}">
-                                    "<a href="<spring:url value='/content/storybook/edit/${storyBookLearningEvent.storyBook.id}' />">
-                                        ${storyBookLearningEvent.storyBookTitle}
-                                    </a>"
+                                    "<a href="<spring:url value='/content/storybook/edit/${storyBookLearningEvent.storyBook.id}' />">${storyBookLearningEvent.storyBookTitle}</a>"
                                 </c:when>
                                 <c:otherwise>
                                     "${storyBookLearningEvent.storyBookTitle}"
