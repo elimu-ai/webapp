@@ -25,6 +25,12 @@ public abstract class LearningEvent extends BaseEntity {
     @NotNull
     private String androidId;
     
+    /**
+     * The package name of the {@link #application}.
+     */
+    @NotNull
+    private String packageName;
+    
     @ManyToOne
     private Application application;
     
@@ -46,6 +52,14 @@ public abstract class LearningEvent extends BaseEntity {
 
     public void setAndroidId(String androidId) {
         this.androidId = androidId;
+    }
+    
+    public String getPackageName() {
+        return packageName;
+    }
+    
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 
     public Application getApplication() {

@@ -122,6 +122,8 @@ public class WordLearningEventsRestController {
                 wordLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
+                wordLearningEvent.setPackageName(packageName);
+                
                 Application application = applicationDao.readByPackageName(packageName);
                 logger.info("application: " + application);
                 if (application == null) {

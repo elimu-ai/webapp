@@ -64,23 +64,28 @@
                 <c:forEach var="storyBookLearningEvent" items="${storyBookLearningEvents}">
                     <tr class="storyBookLearningEvent">
                         <td>
-                            <fmt:formatDate value="${storyBookLearningEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
-                        </td>
+                            <fmt:formatDate value="${storyBookLearningEvent.time.time}" pattern="yyyy-MM-dd" />
+                        </td>   
                         <td>
                             ${storyBookLearningEvent.androidId}
                         </td>
                         <td>
-                            <a href="<spring:url value='/admin/application/edit/${storyBookLearningEvent.application.id}' />">
-                                ${storyBookLearningEvent.application.packageName}
-                            </a>
+                            <c:choose>
+                                <c:when test="${not empty storyBookLearningEvent.application}">
+                                    <a href="<spring:url value='/admin/application/edit/${storyBookLearningEvent.application.id}' />">
+                                        ${storyBookLearningEvent.packageName}
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    ${storyBookLearningEvent.packageName}
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                         <td>
                             ${storyBookLearningEvent.storyBook.id}
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/storybook/edit/${storyBookLearningEvent.storyBook.id}' />">
-                                "<c:out value="${storyBookLearningEvent.storyBook.title}" />"
-                            </a>
+                            "<a href="<spring:url value='/content/storybook/edit/${storyBookLearningEvent.storyBook.id}' />"><c:out value="${storyBookLearningEvent.storyBook.title}" /></a>"
                         </td>
                         <td>
                             ${storyBookLearningEvent.learningEventType}

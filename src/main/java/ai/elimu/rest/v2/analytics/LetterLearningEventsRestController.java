@@ -122,6 +122,8 @@ public class LetterLearningEventsRestController {
                 letterLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
+                letterLearningEvent.setPackageName(packageName);
+                
                 Application application = applicationDao.readByPackageName(packageName);
                 logger.info("application: " + application);
                 if (application == null) {

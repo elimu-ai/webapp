@@ -121,6 +121,8 @@ public class StoryBookLearningEventsRestController {
                 storyBookLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
+                storyBookLearningEvent.setPackageName(packageName);
+                
                 Application application = applicationDao.readByPackageName(packageName);
                 logger.info("application: " + application);
                 if (application == null) {

@@ -68,6 +68,8 @@ public class CsvAnalyticsExtractionHelper {
                 storyBookLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
+                storyBookLearningEvent.setPackageName(packageName);
+                
                 Application application = applicationDao.readByPackageName(packageName);
                 logger.info("application: " + application);
                 storyBookLearningEvent.setApplication(application);
