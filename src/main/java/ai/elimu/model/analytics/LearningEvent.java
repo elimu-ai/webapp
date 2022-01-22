@@ -31,6 +31,10 @@ public abstract class LearningEvent extends BaseEntity {
     @NotNull
     private String packageName;
     
+    /**
+     * This field will only be populated if a corresponding {@link Application} can be 
+     * found in the database for the {@link #packageName}.
+     */
     @ManyToOne
     private Application application;
     

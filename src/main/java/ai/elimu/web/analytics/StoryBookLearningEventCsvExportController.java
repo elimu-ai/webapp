@@ -52,6 +52,7 @@ public class StoryBookLearningEventCsvExportController {
                         "android_id",
                         "package_name",
                         "storybook_id",
+                        "storybook_title",
                         "learning_event_type"
                 );
         
@@ -67,6 +68,7 @@ public class StoryBookLearningEventCsvExportController {
                     storyBookLearningEvent.getAndroidId(),
                     storyBookLearningEvent.getApplication().getPackageName(),
                     storyBookLearningEvent.getStoryBook().getId(),
+                    storyBookLearningEvent.getStoryBookTitle(),
                     storyBookLearningEvent.getLearningEventType()
             );
             

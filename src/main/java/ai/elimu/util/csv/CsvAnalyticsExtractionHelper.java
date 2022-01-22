@@ -48,6 +48,7 @@ public class CsvAnalyticsExtractionHelper {
                             "android_id",
                             "package_name",
                             "storybook_id",
+                            "storybook_title",
                             "learning_event_type"
                     )
                     .withSkipHeaderRecord();
@@ -75,6 +76,13 @@ public class CsvAnalyticsExtractionHelper {
                 storyBookLearningEvent.setApplication(application);
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
+                logger.info("storyBookId: " + storyBookId);
+                storyBookLearningEvent.setStoryBookId(storyBookId);
+                
+                String storyBookTitle = Long.valueOf(csvRecord.get("storybook_title"));
+                logger.info("storyBookTitle: \"" + storyBookTitle + "\"");
+                storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
+                
                 StoryBook storyBook = storyBookDao.read(storyBookId);
                 logger.info("storyBook: " + storyBook);
                 storyBookLearningEvent.setStoryBook(storyBook);

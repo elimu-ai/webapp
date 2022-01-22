@@ -490,6 +490,8 @@
         learningEventType varchar(255),
         packageName varchar(255),
         time timestamp,
+        storyBookId bigint,
+        storyBookTitle varchar(255),
         application_id bigint,
         storyBook_id bigint,
         primary key (id)

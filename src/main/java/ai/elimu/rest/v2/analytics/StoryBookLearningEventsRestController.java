@@ -101,6 +101,7 @@ public class StoryBookLearningEventsRestController {
                             "android_id",
                             "package_name",
                             "storybook_id",
+                            "storybook_title",
                             "learning_event_type"
                     )
                     .withSkipHeaderRecord();
@@ -125,32 +126,17 @@ public class StoryBookLearningEventsRestController {
                 
                 Application application = applicationDao.readByPackageName(packageName);
                 logger.info("application: " + application);
-                if (application == null) {
-                    // Return error message saying that the reporting Application has not yet been added
-                    logger.warn("An Application with package name " + packageName + " was not found");
-                    
-                    jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "An Application with package name " + packageName + " was not found");
-                    response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
-                    
-                    break;
-                }
                 storyBookLearningEvent.setApplication(application);
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
+                storyBookLearningEvent.setStoryBookId(storyBookId);
+                
+                String storyBookTitle = csvRecord.get("storybook_title");
+                storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
+                
                 StoryBook storyBook = storyBookDao.read(storyBookId);
                 logger.info("storyBook: " + storyBook);
                 storyBookLearningEvent.setStoryBook(storyBook);
-                if (storyBook == null) {
-                    // Return error message saying that the StoryBook ID was not found
-                    logger.warn("A StoryBook with ID " + storyBookId + " was not found");
-                    
-                    jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "A StoryBook with ID " + storyBookId + " was not found");
-                    response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
-                    
-                    break;
-                }
                 
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 logger.info("learningEventType: " + learningEventType);
