@@ -4,6 +4,7 @@ import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
 import ai.elimu.dao.NumberDao;
@@ -46,6 +47,7 @@ import org.springframework.web.context.WebApplicationContext;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.model.contributor.LetterContributionEvent;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
@@ -55,6 +57,8 @@ public class DbContentImportHelper {
     private Logger logger = LogManager.getLogger();
     
     private LetterDao letterDao;
+    
+    private LetterContributionEventDao letterContributionEventDao;
     
     private AllophoneDao allophoneDao;
     
@@ -126,8 +130,18 @@ public class DbContentImportHelper {
         List<Letter> letters = CsvContentExtractionHelper.getLettersFromCsvBackup(lettersCsvFile, allophoneDao);
         logger.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
+        letterContributionEventDao = (LetterContributionEventDao) webApplicationContext.getBean("letterContributionEventDao");
         for (Letter letter : letters) {
             letterDao.create(letter);
+            
+            LetterContributionEvent letterContributionEvent = new LetterContributionEvent();
+            letterContributionEvent.setContributor(contributor);
+            letterContributionEvent.setLetter(letter);
+            letterContributionEvent.setRevisionNumber(1);
+            letterContributionEvent.setTime(Calendar.getInstance());
+            letterContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+            letterContributionEvent.setPlatform(Platform.WEBAPP);
+            letterContributionEventDao.create(letterContributionEvent);
         }
         
         // Extract and import Allophones from CSV file in src/main/resources/
