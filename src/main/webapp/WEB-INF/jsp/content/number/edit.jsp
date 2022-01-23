@@ -166,6 +166,9 @@
                 <li>
                     <a href="https://en.wikibooks.org/wiki/Hindi/Numbers" target="_blank">Wikibooks</a>
                 </li>
+                <li>
+                    <a href="https://omniglot.com/language/numbers/hindi.htm" target="_blank">Omniglot</a>
+                </li>
             </ol>
         </div>
         
@@ -175,9 +178,6 @@
     <div class="card-panel deep-purple lighten-5">
         General resources:
         <ol style="list-style-type: inherit;">
-            <li>
-                <a href="<spring:url value='/content/word/pending' />"><fmt:message key="words.pending" /></a>
-            </li>
             <li>
                 <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
             </li>

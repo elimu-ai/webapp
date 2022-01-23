@@ -188,6 +188,39 @@
 </content:section>
 
 <content:aside>
+    <h5 class="center"><fmt:message key="resources" /></h5>
+    <div class="card-panel deep-purple lighten-5">
+        <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+            Hindi resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Hindi_and_Urdu" target="_blank">IPA for Hindi and Urdu</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Hindustani_phonology" target="_blank">Hindustani phonology</a>
+                </li>
+                <li>
+                    <a href="https://omniglot.com/writing/hindi.htm#alphabet" target="_blank">Devanāgarī alphabet for Hindi</a>
+                </li>
+            </ol>
+        </c:if>
+        
+        General resources:
+        <ol style="list-style-type: inherit;">
+            <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
+            </li>
+            <li>
+                <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
+            </li>
+            <li>
+                <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">International Phonetic Alphabet (IPA)</a>
+            </li>
+        </ol>
+    </div>
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
     <h5 class="center"><fmt:message key="usages" /></h5>
     
     <table class="bordered highlight">

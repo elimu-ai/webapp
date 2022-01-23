@@ -41,38 +41,38 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
-    
-    <audio controls="true" autoplay="true">
-        <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
-    </audio>
-    
-    <div class="divider" style="margin: 1em 0;"></div>
-    
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentGrapheme">
-
-            </div>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            Hindi resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Hindi_and_Urdu" target="_blank">IPA for Hindi and Urdu</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Hindustani_phonology" target="_blank">Hindustani phonology</a>
+                </li>
+                <li>
+                    <a href="https://omniglot.com/writing/hindi.htm#alphabet" target="_blank">Devanāgarī alphabet for Hindi</a>
+                </li>
+            </ol>
         </div>
+        
+        <div class="divider" style="margin: 1.5em 0;"></div>
+    </c:if>
+        
+    <div class="card-panel deep-purple lighten-5">
+        General resources:
+        <ol style="list-style-type: inherit;">
+            <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
+            </li>
+            <li>
+                <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
+            </li>
+            <li>
+                <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">International Phonetic Alphabet (IPA)</a>
+            </li>
+        </ol>
     </div>
-    <script>
-        $(function() {
-            initializePreview();
-            
-            $('#valueIpa').on("change", function() {
-                console.debug('#valueIpa on change');
-                initializePreview();
-            });
-            
-            function initializePreview() {
-                console.debug('initializePreview');
-                var value = $('#valueIpa').val();
-                if (value != '') {
-                    $('#previewContent').html('/' + value + '/');
-                }
-            };
-        });
-    </script>
 </content:aside>
