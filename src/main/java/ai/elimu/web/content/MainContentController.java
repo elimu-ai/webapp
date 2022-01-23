@@ -105,7 +105,7 @@ public class MainContentController {
             return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if (StringUtils.isBlank(contributor.getMotivation()) && EnvironmentContextLoaderListener.env!=Environment.DEV) {
+        } else if (StringUtils.isBlank(contributor.getMotivation()) && (EnvironmentContextLoaderListener.env != Environment.DEV)) {
             return "redirect:/content/contributor/edit-motivation";
         } else {
             // Redirect to originally requested URL
