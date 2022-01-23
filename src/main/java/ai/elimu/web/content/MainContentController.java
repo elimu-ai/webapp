@@ -24,6 +24,8 @@ import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.v2.enums.Environment;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,7 +105,7 @@ public class MainContentController {
             return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if (StringUtils.isBlank(contributor.getMotivation())) {
+        } else if (StringUtils.isBlank(contributor.getMotivation()) && (EnvironmentContextLoaderListener.env != Environment.DEV)) {
             return "redirect:/content/contributor/edit-motivation";
         } else {
             // Redirect to originally requested URL
