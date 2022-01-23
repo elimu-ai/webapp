@@ -57,9 +57,9 @@
                     <a href="https://www.omniglot.com/writing/hindi.htm" target="_blank">Omniglot: Hindi (हिन्दी)</a>
                 </li>
             </ul>
+            
+            <div class="divider" style="margin: 1em 0;"></div>
         </c:if>
-        
-        <div class="divider" style="margin: 1em 0;"></div>
         
         General resources:
         <ul>
