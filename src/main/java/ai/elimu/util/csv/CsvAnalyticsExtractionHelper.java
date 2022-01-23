@@ -83,7 +83,7 @@ public class CsvAnalyticsExtractionHelper {
                 logger.info("storyBookTitle: \"" + storyBookTitle + "\"");
                 storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
                 
-                StoryBook storyBook = storyBookDao.read(storyBookId);
+                StoryBook storyBook = storyBookDao.readByTitle(storyBookTitle);
                 logger.info("storyBook: " + storyBook);
                 storyBookLearningEvent.setStoryBook(storyBook);
                 
