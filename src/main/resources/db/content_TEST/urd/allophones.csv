@@ -1,9 +1,9 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
-8,ɛː,E,,false,VOWEL,221
-4,k,k,,false,CONSONANT,218
-9,s,s,,false,CONSONANT,128
-3,ɑː,A,,false,VOWEL,89
+4,k,k,,false,CONSONANT,872
+8,ɛː,E,,false,VOWEL,663
+9,s,s,,false,CONSONANT,256
 10,n,n,,false,CONSONANT,82
+3,ɑː,A,,false,VOWEL,68
 1,j,j,,false,CONSONANT,54
 7,ʋ,v\,,false,CONSONANT,54
 6,ɦ,h\,,false,CONSONANT,31
