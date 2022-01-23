@@ -3,6 +3,23 @@
 </content:title>
 
 <content:section cssId="numberEditPage">
+    <c:choose>
+        <c:when test="${number.peerReviewStatus == 'APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+        </c:when>
+        <c:when test="${number.peerReviewStatus == 'NOT_APPROVED'}">
+            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="peerReviewStatusColor" value="" />
+        </c:otherwise>
+    </c:choose>
+    <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
+        <a href="#contribution-events">
+            <fmt:message key="peer.review" />: ${number.peerReviewStatus}
+        </a>
+    </div>
+    
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="number">
@@ -99,6 +116,10 @@
         </form:form>
     </div>
     
+    <div class="divider" style="margin: 2em 0;"></div>
+    
+    <a name="contribution-events"></a>
+    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="numberContributionEvent" items="${numberContributionEvents}">
             <div class="collection-item">
