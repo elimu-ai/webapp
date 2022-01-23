@@ -59,7 +59,7 @@
                 </div>
                 <div class="card-action">
                     <div class="progress">
-                        <div class="determinate" style="width: ${numberCount/333 * 100}%"></div>
+                        <div class="determinate" style="width: ${numberCount/500 * 100}%"></div>
                     </div>
                     <a href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
                 </div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="card-action">
                     <div class="progress">
-                        <div class="determinate" style="width: ${wordCount/666 * 100}%"></div>
+                        <div class="determinate" style="width: ${wordCount/1000 * 100}%"></div>
                     </div>
                     <a href="<spring:url value='/content/word/list' />"><fmt:message key="view.list" /> (${wordCount})</a>
                     <a href="<spring:url value='/content/word/peer-reviews' />"><fmt:message key="peer.review" /></a>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="card-action">
                     <div class="progress">
-                        <div class="determinate" style="width: ${storyBookCount/33 * 100}%"></div>
+                        <div class="determinate" style="width: ${storyBookCount/50 * 100}%"></div>
                     </div>
                     <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
                     <a href="<spring:url value='/content/storybook/peer-reviews' />"><fmt:message key="peer.review" /></a>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="card-action">
                     <div class="progress">
-                        <div class="determinate" style="width: ${videoCount/12 * 100}%"></div>
+                        <div class="determinate" style="width: ${videoCount/18 * 100}%"></div>
                     </div>
                     <a href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="view.list" /> (${videoCount})</a>
                 </div>
