@@ -5,7 +5,7 @@
 <content:section cssId="allophoneListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
-           href="<spring:url value='/content/sound/list/allophones.csv' />">
+           href="<spring:url value='/content/sound/list/sounds.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>

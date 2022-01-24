@@ -25,17 +25,17 @@ public class SoundCsvExportController {
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private AllophoneDao soundDao;
     
-    @RequestMapping(value="/allophones.csv", method = RequestMethod.GET)
+    @RequestMapping(value="/sounds.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage();
-        logger.info("allophones.size(): " + allophones.size());
+        List<Allophone> sounds = soundDao.readAllOrderedByUsage();
+        logger.info("sounds.size(): " + sounds.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
@@ -50,7 +50,7 @@ public class SoundCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (Allophone allophone : allophones) {
+        for (Allophone allophone : sounds) {
             Long audioId = null;
             if (allophone.getAudio() != null) {
                 audioId = allophone.getAudio().getId();

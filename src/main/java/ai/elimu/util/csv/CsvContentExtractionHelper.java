@@ -51,10 +51,10 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link SoundCsvExportController#handleRequest}.
      */
-    public static List<Allophone> getAllophonesFromCsvBackup(File csvFile) {
-        logger.info("getAllophonesFromCsvBackup");
+    public static List<Allophone> getSoundsFromCsvBackup(File csvFile) {
+        logger.info("getSoundsFromCsvBackup");
         
-        List<Allophone> allophones = new ArrayList<>();
+        List<Allophone> sounds = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -75,32 +75,32 @@ public class CsvContentExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                Allophone allophone = new Allophone();
+                Allophone sound = new Allophone();
                 
                 String valueIpa = csvRecord.get("value_ipa");
-                allophone.setValueIpa(valueIpa);
+                sound.setValueIpa(valueIpa);
                 
                 String valueSampa = csvRecord.get("value_sampa");
-                allophone.setValueSampa(valueSampa);
+                sound.setValueSampa(valueSampa);
                 
                 boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
-                allophone.setDiacritic(diacritic);
+                sound.setDiacritic(diacritic);
                 
                 if (StringUtils.isNotBlank(csvRecord.get("sound_type"))) {
                     SoundType soundType = SoundType.valueOf(csvRecord.get("sound_type"));
-                    allophone.setSoundType(soundType);
+                    sound.setSoundType(soundType);
                 }
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
-                allophone.setUsageCount(usageCount);
+                sound.setUsageCount(usageCount);
                 
-                allophones.add(allophone);
+                sounds.add(sound);
             }
         } catch (IOException ex) {
             logger.error(ex);
         }
         
-        return allophones;
+        return sounds;
     }
     
     /**
