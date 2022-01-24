@@ -33,7 +33,7 @@
                 </thead>
                 <tbody>
                     <c:forEach var="sound" items="${allophones}">
-                        <tr class="allophone">
+                        <tr>
                             <td>
                                 ${sound.usageCount}<br />
                                 <div class="progress">
