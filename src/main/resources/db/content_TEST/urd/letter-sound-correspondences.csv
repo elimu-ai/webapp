@@ -1,4 +1,4 @@
-id,letter_ids,letter_texts,sound_ids,allophone_values_ipa,usage_count
+id,letter_ids,letter_texts,sound_ids,sound_values_ipa,usage_count
 9,[8],"[""ے""]",[8],"[""ɛː""]",221
 6,[4],"[""ک""]",[4],"[""k""]",218
 8,[9],"[""س""]",[9],"[""s""]",128

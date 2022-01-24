@@ -1,4 +1,4 @@
-id,text,sound_ids,allophone_values_ipa,diacritic,usage_count
+id,text,sound_ids,sound_values_ipa,diacritic,usage_count
 3,ا,[3],"[""ɑː""]",false,1266
 1,ی,[1],"[""j""]",false,931
 7,و,[7],"[""ʋ""]",false,716

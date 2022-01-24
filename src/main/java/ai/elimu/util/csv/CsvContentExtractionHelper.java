@@ -106,7 +106,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterCsvExportController#handleRequest}.
      */
-    public static List<Letter> getLettersFromCsvBackup(File csvFile, AllophoneDao allophoneDao) {
+    public static List<Letter> getLettersFromCsvBackup(File csvFile, AllophoneDao soundDao) {
         logger.info("getLettersFromCsvBackup");
         
         List<Letter> letters = new ArrayList<>();
@@ -150,7 +150,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
      */
-    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
+    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
         logger.info("getLetterSoundCorrespondencesFromCsvBackup");
         
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
@@ -165,7 +165,7 @@ public class CsvContentExtractionHelper {
                             "letter_ids",
                             "letter_texts",
                             "sound_ids",
-                            "allophone_values_ipa",
+                            "sound_values_ipa",
                             "usage_count"
                     )
                     .withSkipHeaderRecord();
@@ -190,20 +190,20 @@ public class CsvContentExtractionHelper {
                 }
                 letterSoundCorrespondence.setLetters(letters);
                 
-                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("sound_ids"));
-                logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
+                JSONArray soundIdsJsonArray = new JSONArray(csvRecord.get("sound_ids"));
+                logger.info("soundIdsJsonArray: " + soundIdsJsonArray);
                 
-                JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
-                logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
-                List<Allophone> allophones = new ArrayList<>();
-                for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
-                    String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
-                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
-                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
-                    logger.info("allophone.getId(): " + allophone.getId());
-                    allophones.add(allophone);
+                JSONArray soundValuesIpaJsonArray = new JSONArray(csvRecord.get("sound_values_ipa"));
+                logger.info("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
+                List<Allophone> sounds = new ArrayList<>();
+                for (int i = 0; i < soundValuesIpaJsonArray.length(); i++) {
+                    String soundValueIpa = soundValuesIpaJsonArray.getString(i);
+                    logger.info("Looking up Sound with IPA value /" + soundValueIpa + "/");
+                    Allophone sound = soundDao.readByValueIpa(soundValueIpa);
+                    logger.info("sound.getId(): " + sound.getId());
+                    sounds.add(sound);
                 }
-                letterSoundCorrespondence.setAllophones(allophones);
+                letterSoundCorrespondence.setAllophones(sounds);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 letterSoundCorrespondence.setUsageCount(usageCount);
@@ -220,7 +220,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();
@@ -262,13 +262,13 @@ public class CsvContentExtractionHelper {
                         Letter letter = letterDao.readByText(lettersJsonArray.getString(j));
                         letters.add(letter);
                     }
-                    List<Allophone> allophones = new ArrayList<>();
-                    JSONArray allophonesJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("allophones");
-                    for (int j = 0; j < allophonesJsonArray.length(); j++) {
-                        Allophone allophone = allophoneDao.readByValueIpa(allophonesJsonArray.getString(j));
-                        allophones.add(allophone);
+                    List<Allophone> sounds = new ArrayList<>();
+                    JSONArray soundsJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("sounds");
+                    for (int j = 0; j < soundsJsonArray.length(); j++) {
+                        Allophone sound = soundDao.readByValueIpa(soundsJsonArray.getString(j));
+                        sounds.add(sound);
                     }
-                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, allophones);
+                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, sounds);
                     logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
                     letterSoundCorrespondences.add(letterSoundCorrespondence);
                 }
