@@ -126,7 +126,7 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.sound" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
