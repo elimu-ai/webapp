@@ -48,7 +48,7 @@ public class AllophoneUsageCountScheduler {
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
-                for (Allophone sound : letterSoundCorrespondence.getAllophones()) {
+                for (Allophone sound : letterSoundCorrespondence.getSounds()) {
                     soundFrequencyMap.put(sound.getId(), soundFrequencyMap.getOrDefault(sound.getId(), 0) + letterSoundCorrespondence.getUsageCount());
                 }
             }

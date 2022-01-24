@@ -203,7 +203,7 @@ public class CsvContentExtractionHelper {
                     logger.info("sound.getId(): " + sound.getId());
                     sounds.add(sound);
                 }
-                letterSoundCorrespondence.setAllophones(sounds);
+                letterSoundCorrespondence.setSounds(sounds);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 letterSoundCorrespondence.setUsageCount(usageCount);

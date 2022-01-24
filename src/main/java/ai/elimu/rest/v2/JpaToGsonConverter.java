@@ -103,7 +103,7 @@ public class JpaToGsonConverter {
             }
             letterSoundCorrespondenceGson.setLetters(letters);
             List<SoundGson> sounds = new ArrayList<>();
-            for (Allophone sound : letterSoundCorrespondence.getAllophones()) {
+            for (Allophone sound : letterSoundCorrespondence.getSounds()) {
                 SoundGson soundGson = getSoundGson(sound);
                 sounds.add(soundGson);
             }

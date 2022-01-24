@@ -72,35 +72,35 @@
             <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="sounds" /></label><br />
-                    /<span id="allophonesContainer">
-                        <c:forEach var="sound" items="${letterSoundCorrespondence.allophones}">
-                            <input name="allophones" type="hidden" value="${sound.id}" />
-                            <div class="chip" data-allophoneid="${sound.id}" data-allophonevalue="${sound.valueIpa}"
+                    /<span id="soundsContainer">
+                        <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                            <input name="sounds" type="hidden" value="${sound.id}" />
+                            <div class="chip" data-soundid="${sound.id}" data-soundvalue="${sound.valueIpa}"
                                  style="font-size: 2rem; padding: 1rem; height: auto;">
                                 ${sound.valueIpa} 
-                                <a href="#" class="allophoneDeleteLink" data-allophoneid="${sound.id}">
+                                <a href="#" class="soundDeleteLink" data-soundid="${sound.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
                             </div>
                         </c:forEach>
                         <script>
                             $(function() {
-                                $('.allophoneDeleteLink').on("click", function() {
-                                    console.log('.allophoneDeleteLink on click');
+                                $('.soundDeleteLink').on("click", function() {
+                                    console.log('.soundDeleteLink on click');
                                     
-                                    var allophoneId = $(this).attr("data-allophoneid");
-                                    console.log('allophoneId: ' + allophoneId);
+                                    var soundId = $(this).attr("data-soundid");
+                                    console.log('soundId: ' + soundId);
                                     
                                     $(this).parent().remove();
                                     
-                                    var $hiddenInput = $('input[name="allophones"][value="' + allophoneId + '"]');
+                                    var $hiddenInput = $('input[name="sounds"][value="' + soundId + '"]');
                                     $hiddenInput.remove();
                                 });
                             });
                         </script>
                     </span>/
 
-                    <select id="allophones" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
+                    <select id="sounds" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="sound" items="${sounds}">
                             <option value="${sound.id}"><c:out value="${sound.valueIpa}" /></option>
@@ -108,16 +108,16 @@
                     </select>
                     <script>
                         $(function() {
-                            $('#allophones').on("change", function() {
-                                console.log('#allophones on change');
+                            $('#sounds').on("change", function() {
+                                console.log('#sounds on change');
                                 
-                                var allophoneId = $(this).val();
-                                console.log('allophoneId: ' + allophoneId);
-                                var allophoneValueIpa = $(this).find('option[value="' + allophoneId + '"]').text();
-                                console.log('allophoneValueIpa: ' + allophoneValueIpa);
-                                if (allophoneId != "") {
-                                    $('#allophonesContainer').append('<input name="allophones" type="hidden" value="' + allophoneId + '" />');
-                                    $('#allophonesContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + allophoneValueIpa + '</div>');
+                                var soundId = $(this).val();
+                                console.log('soundId: ' + soundId);
+                                var soundValueIpa = $(this).find('option[value="' + soundId + '"]').text();
+                                console.log('soundValueIpa: ' + soundValueIpa);
+                                if (soundId != "") {
+                                    $('#soundsContainer').append('<input name="sounds" type="hidden" value="' + soundId + '" />');
+                                    $('#soundsContainer').append('<div class="chip" style="font-size: 2rem; padding: 1rem; height: auto;">' + soundValueIpa + '</div>');
                                     $(this).val("");
                                 }
                             });

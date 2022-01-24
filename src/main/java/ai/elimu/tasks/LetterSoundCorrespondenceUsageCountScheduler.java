@@ -50,7 +50,7 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAll()) {
             logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
             logger.info("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
-            logger.info("letterSoundCorrespondence Allophones: /" + letterSoundCorrespondence.getAllophones().stream().map(Allophone::getValueIpa).collect(Collectors.joining()) + "/");
+            logger.info("letterSoundCorrespondence Sounds: /" + letterSoundCorrespondence.getSounds().stream().map(Allophone::getValueIpa).collect(Collectors.joining()) + "/");
             logger.info("letterSoundCorrespondence.getUsageCount() (before update): " + letterSoundCorrespondence.getUsageCount());
             
             int newUsageCount = 0;

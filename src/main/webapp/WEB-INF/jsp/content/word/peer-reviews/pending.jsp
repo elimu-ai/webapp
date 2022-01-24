@@ -30,7 +30,7 @@
                                 <a href="<spring:url value='/content/word/edit/${word.id}#peer-review' />" target="_blank">"<c:out value="${word.text}" />"</a>
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.allophones}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                             </td>
                             <td>
                                 ${word.wordType}<br />
