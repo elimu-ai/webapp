@@ -66,7 +66,7 @@ public class LetterSoundCorrespondenceEditController {
         model.addAttribute("letters", letters);
         
         List<Allophone> sounds = soundDao.readAllOrdered();
-        model.addAttribute("allophones", sounds);
+        model.addAttribute("sounds", sounds);
         
         model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
         
@@ -101,7 +101,7 @@ public class LetterSoundCorrespondenceEditController {
             model.addAttribute("letters", letters);
             
             List<Allophone> allophones = soundDao.readAllOrdered();
-            model.addAttribute("allophones", allophones);
+            model.addAttribute("sounds", allophones);
             
             model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
             

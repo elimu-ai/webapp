@@ -102,7 +102,7 @@
 
                     <select id="allophones" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
                         <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="sound" items="${allophones}">
+                        <c:forEach var="sound" items="${sounds}">
                             <option value="${sound.id}"><c:out value="${sound.valueIpa}" /></option>
                         </c:forEach>
                     </select>

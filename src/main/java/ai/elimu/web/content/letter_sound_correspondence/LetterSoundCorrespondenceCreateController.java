@@ -87,8 +87,8 @@ public class LetterSoundCorrespondenceCreateController {
             List<Letter> letters = letterDao.readAllOrdered();
             model.addAttribute("letters", letters);
             
-            List<Allophone> allophones = soundDao.readAllOrdered();
-            model.addAttribute("allophones", allophones);
+            List<Allophone> sounds = soundDao.readAllOrdered();
+            model.addAttribute("allophones", sounds);
             
             model.addAttribute("timeStart", System.currentTimeMillis());
             

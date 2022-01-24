@@ -25,7 +25,7 @@ public class SoundListController {
     	logger.info("handleRequest");
         
         List<Allophone> sounds = soundDao.readAllOrderedByUsage();
-        model.addAttribute("allophones", sounds);
+        model.addAttribute("sounds", sounds);
         
         int maxUsageCount = 0;
         for (Allophone sound : sounds) {

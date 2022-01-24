@@ -32,7 +32,7 @@
                     <th><fmt:message key="revision" /></th>
                 </thead>
                 <tbody>
-                    <c:forEach var="sound" items="${allophones}">
+                    <c:forEach var="sound" items="${sounds}">
                         <tr>
                             <td>
                                 ${sound.usageCount}<br />
