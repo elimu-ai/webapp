@@ -26,11 +26,11 @@ public class Syllable extends Content {
         this.text = text;
     }
     
-    public List<Allophone> getAllophones() {
+    public List<Allophone> getSounds() {
         return allophones;
     }
 
-    public void setAllophones(List<Allophone> allophones) {
-        this.allophones = allophones;
+    public void setSounds(List<Allophone> sounds) {
+        this.allophones = sounds;
     }
 }

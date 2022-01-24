@@ -87,7 +87,7 @@ public class LetterSoundCorrespondenceEditController {
     	logger.info("handleSubmit");
         
         // Check if the LetterSoundCorrespondence already exists
-        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getAllophones());
+        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getSounds());
         if ((existingLetterSoundCorrespondence != null) && !existingLetterSoundCorrespondence.getId().equals(letterSoundCorrespondence.getId())) {
             result.rejectValue("letters", "NonUnique");
         }

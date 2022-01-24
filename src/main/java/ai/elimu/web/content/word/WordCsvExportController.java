@@ -67,9 +67,9 @@ public class WordCsvExportController {
                     lettersArray[i] = letterSoundCorrespondence.getLetters().get(i).getText();
                 }
                 letterSoundCorrespondenceJsonObject.put("letters", lettersArray);
-                String[] soundsArray = new String[letterSoundCorrespondence.getAllophones().size()];
+                String[] soundsArray = new String[letterSoundCorrespondence.getSounds().size()];
                 for (int i = 0; i < soundsArray.length; i++) {
-                    soundsArray[i] = letterSoundCorrespondence.getAllophones().get(i).getValueIpa();
+                    soundsArray[i] = letterSoundCorrespondence.getSounds().get(i).getValueIpa();
                 }
                 letterSoundCorrespondenceJsonObject.put("sounds", soundsArray);
                 letterSoundCorrespondenceJsonObject.put("usageCount", letterSoundCorrespondence.getUsageCount());

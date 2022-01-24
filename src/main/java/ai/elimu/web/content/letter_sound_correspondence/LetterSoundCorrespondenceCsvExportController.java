@@ -71,14 +71,14 @@ public class LetterSoundCorrespondenceCsvExportController {
             
             JSONArray soundIdsJsonArray = new JSONArray();
             index = 0;
-            for (Allophone sound : letterSoundCorrespondence.getAllophones()) {
+            for (Allophone sound : letterSoundCorrespondence.getSounds()) {
                 soundIdsJsonArray.put(index, sound.getId());
                 index++;
             }
             
             JSONArray soundValuesIpaJsonArray = new JSONArray();
             index = 0;
-            for (Allophone sound : letterSoundCorrespondence.getAllophones()) {
+            for (Allophone sound : letterSoundCorrespondence.getSounds()) {
                 soundValuesIpaJsonArray.put(index, sound.getValueIpa());
                 index++;
             }

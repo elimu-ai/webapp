@@ -30,7 +30,7 @@ public class WordContributionRestControllerTest {
         JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJSONArray.getJSONObject(0);
         assertThat(letterSoundCorrespondenceJsonObject.getLong("id"), not(nullValue()));
         assertThat(letterSoundCorrespondenceJsonObject.has("letters"), is(true));
-        assertThat(letterSoundCorrespondenceJsonObject.has("allophones"), is(true));
+        assertThat(letterSoundCorrespondenceJsonObject.has("sounds"), is(true));
     }
 
     // TODO: test POST requests.
