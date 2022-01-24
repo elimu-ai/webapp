@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="allophones" /> (${fn:length(allophones)})
+    <fmt:message key="sounds" /> (${fn:length(allophones)})
 </content:title>
 
 <content:section cssId="allophoneListPage">
@@ -66,6 +66,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/allophone/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.allophone" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/content/allophone/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.sound" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

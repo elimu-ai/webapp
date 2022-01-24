@@ -71,7 +71,7 @@
             
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="allophones" /></label><br />
+                    <label><fmt:message key="sounds" /></label><br />
                     /<span id="allophonesContainer">
                         <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />
@@ -124,7 +124,7 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.allophone" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/allophone/create' />" target="_blank"><fmt:message key="add.sound" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             

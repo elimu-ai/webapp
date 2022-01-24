@@ -16,7 +16,7 @@
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="allophones" /></th>
+                    <th><fmt:message key="sounds" /></th>
                     <th><fmt:message key="word.type" /></th>
                     <th><fmt:message key="contributor" /></th>
                     <th><fmt:message key="revision" /></th>

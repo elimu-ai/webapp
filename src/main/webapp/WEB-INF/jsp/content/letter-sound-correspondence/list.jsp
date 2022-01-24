@@ -27,7 +27,7 @@
                     <th><fmt:message key="usage.count" /></th>
                     <th><fmt:message key="letters" /></th>
                     <th></th>
-                    <th><fmt:message key="allophones" /></th>
+                    <th><fmt:message key="sounds" /></th>
                     <th><fmt:message key="revision" /></th>
                     <th><fmt:message key="edit" /></th>
                 </thead>
