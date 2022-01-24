@@ -52,7 +52,7 @@
                             </td>
                             <td>
                                 <audio controls="true">
-                                    <source src="<spring:url value='/static/allophone/sampa_${sound.valueSampa}.wav' />" />
+                                    <source src="<spring:url value='/static/sound/sampa_${sound.valueSampa}.wav' />" />
                                 </audio>
                             </td>
                             <td>
