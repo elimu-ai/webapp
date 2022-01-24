@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/sound/list")
-public class AllophoneListController {
+public class SoundListController {
     
     private final Logger logger = LogManager.getLogger();
     

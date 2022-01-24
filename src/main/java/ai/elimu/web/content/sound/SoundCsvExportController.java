@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/sound/list")
-public class AllophoneCsvExportController {
+public class SoundCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
     

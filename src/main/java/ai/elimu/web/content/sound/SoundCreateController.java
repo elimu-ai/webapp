@@ -14,34 +14,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/sound/edit")
-public class AllophoneEditController {
+@RequestMapping("/content/sound/create")
+public class SoundCreateController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
     private AllophoneDao allophoneDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String handleRequest(Model model, @PathVariable Long id) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        Allophone allophone = allophoneDao.read(id);
+        Allophone allophone = new Allophone();
         model.addAttribute("allophone", allophone);
         
         model.addAttribute("soundTypes", SoundType.values());
 
-        return "content/sound/edit";
+        return "content/sound/create";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            @PathVariable Long id,
             @Valid Allophone allophone,
             BindingResult result,
             Model model,
@@ -51,14 +49,14 @@ public class AllophoneEditController {
         
         if (StringUtils.isNotBlank(allophone.getValueIpa())) {
             Allophone existingAllophone = allophoneDao.readByValueIpa(allophone.getValueIpa());
-            if ((existingAllophone != null) && !existingAllophone.getId().equals(allophone.getId())) {
+            if (existingAllophone != null) {
                 result.rejectValue("valueIpa", "NonUnique");
             }
         }
         
         if (StringUtils.isNotBlank(allophone.getValueSampa())) {
             Allophone existingAllophone = allophoneDao.readByValueSampa(allophone.getValueSampa());
-            if ((existingAllophone != null) && !existingAllophone.getId().equals(allophone.getId())) {
+            if (existingAllophone != null) {
                 result.rejectValue("valueSampa", "NonUnique");
             }
         }
@@ -66,11 +64,10 @@ public class AllophoneEditController {
         if (result.hasErrors()) {
             model.addAttribute("allophone", allophone);
             model.addAttribute("soundTypes", SoundType.values());
-            return "content/sound/edit";
+            return "content/sound/create";
         } else {
             allophone.setTimeLastUpdate(Calendar.getInstance());
-            allophone.setRevisionNumber(allophone.getRevisionNumber() + 1);
-            allophoneDao.update(allophone);            
+            allophoneDao.create(allophone);
             return "redirect:/content/sound/list#" + allophone.getId();
         }
     }
