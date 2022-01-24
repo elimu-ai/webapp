@@ -1,4 +1,4 @@
-id,text,allophone_ids,allophone_values_ipa,diacritic,usage_count
+id,text,sound_ids,allophone_values_ipa,diacritic,usage_count
 11,a,[15],"[""a""]",false,4376
 7,i,[10],"[""ɪ""]",false,2780
 9,n,[12],"[""n""]",false,2669

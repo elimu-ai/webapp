@@ -5,8 +5,8 @@
 <content:section cssId="allophoneCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="allophone">
-            <tag:formErrors modelAttribute="allophone" />
+        <form:form modelAttribute="sound">
+            <tag:formErrors modelAttribute="sound" />
 
             <div class="row">
                 <div class="input-field col s12">

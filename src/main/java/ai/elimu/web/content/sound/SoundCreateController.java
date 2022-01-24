@@ -31,7 +31,7 @@ public class SoundCreateController {
     	logger.info("handleRequest");
         
         Allophone allophone = new Allophone();
-        model.addAttribute("allophone", allophone);
+        model.addAttribute("sound", allophone);
         
         model.addAttribute("soundTypes", SoundType.values());
 
@@ -62,7 +62,7 @@ public class SoundCreateController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("allophone", allophone);
+            model.addAttribute("sound", allophone);
             model.addAttribute("soundTypes", SoundType.values());
             return "content/sound/create";
         } else {

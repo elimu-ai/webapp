@@ -45,7 +45,7 @@ public class LetterSoundCorrespondenceCsvExportController {
                         "id",
                         "letter_ids",
                         "letter_texts",
-                        "allophone_ids",
+                        "sound_ids",
                         "allophone_values_ipa",
                         "usage_count"
                 );

@@ -32,7 +32,7 @@ public class SoundEditController {
     	logger.info("handleRequest");
         
         Allophone allophone = allophoneDao.read(id);
-        model.addAttribute("allophone", allophone);
+        model.addAttribute("sound", allophone);
         
         model.addAttribute("soundTypes", SoundType.values());
 
@@ -64,7 +64,7 @@ public class SoundEditController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("allophone", allophone);
+            model.addAttribute("sound", allophone);
             model.addAttribute("soundTypes", SoundType.values());
             return "content/sound/edit";
         } else {

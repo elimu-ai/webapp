@@ -164,7 +164,7 @@ public class CsvContentExtractionHelper {
                             "id",
                             "letter_ids",
                             "letter_texts",
-                            "allophone_ids",
+                            "sound_ids",
                             "allophone_values_ipa",
                             "usage_count"
                     )
@@ -190,7 +190,7 @@ public class CsvContentExtractionHelper {
                 }
                 letterSoundCorrespondence.setLetters(letters);
                 
-                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
+                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("sound_ids"));
                 logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
                 
                 JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));

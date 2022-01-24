@@ -5,8 +5,8 @@
 <content:section cssId="allophoneEditPage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="allophone">
-            <tag:formErrors modelAttribute="allophone" />
+        <form:form modelAttribute="sound">
+            <tag:formErrors modelAttribute="sound" />
             
             <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
             <form:hidden path="usageCount" value="${allophone.usageCount}" />
