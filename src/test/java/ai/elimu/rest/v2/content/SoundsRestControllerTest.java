@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import selenium.DomainHelper;
 
-public class AllophonesRestControllerTest {
+public class SoundsRestControllerTest {
     
     private Logger logger = LogManager.getLogger();
     

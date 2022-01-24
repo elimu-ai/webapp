@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/rest/v2/content/allophones", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class AllophonesRestController {
+public class SoundsRestController {
     
     private Logger logger = LogManager.getLogger();
     
