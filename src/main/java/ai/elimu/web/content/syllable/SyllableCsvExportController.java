@@ -33,7 +33,7 @@ public class SyllableCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,text,allophone_ids,usage_count" + "\n";
+        String csvFileContent = "id,text,sound_ids,usage_count" + "\n";
         List<Syllable> syllables = syllableDao.readAllOrderedByUsage();
         logger.info("syllables.size(): " + syllables.size());
         for (Syllable syllable : syllables) {

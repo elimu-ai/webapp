@@ -1,4 +1,4 @@
-id,letter_ids,letter_texts,allophone_ids,allophone_values_ipa,usage_count
+id,letter_ids,letter_texts,sound_ids,sound_values_ipa,usage_count
 4,[1],"[""া""]",[1],"[""ɐ""]",140
 12,[2],"[""ে""]",[7],"[""e""]",87
 7,[9],"[""ম""]",[4],"[""m""]",81

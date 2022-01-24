@@ -47,7 +47,7 @@
                         
                         <td style="font-size: 2em;">
                             <c:forEach var="word" items="${number.words}">
-                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="allophone" items="${lsc.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.allophones}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                             </c:forEach>
                         </td>
                         <td>

@@ -1,6 +1,5 @@
 package ai.elimu.web.content;
 
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.AudioContributionEventDao;
 import java.security.Principal;
 
@@ -36,6 +35,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content")
@@ -47,7 +47,7 @@ public class MainContentController {
     private LetterDao letterDao;
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private SoundDao soundDao;
     
     @Autowired
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
@@ -118,7 +118,7 @@ public class MainContentController {
         }
         
         model.addAttribute("letterCount", letterDao.readCount());
-        model.addAttribute("allophoneCount", allophoneDao.readCount());
+        model.addAttribute("allophoneCount", soundDao.readCount());
         model.addAttribute("letterSoundCorrespondenceCount", letterSoundCorrespondenceDao.readCount());
         model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount());

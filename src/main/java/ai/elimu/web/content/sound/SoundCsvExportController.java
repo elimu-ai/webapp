@@ -1,6 +1,5 @@
-package ai.elimu.web.content.allophone;
+package ai.elimu.web.content.sound;
 
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,25 +16,26 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ai.elimu.dao.SoundDao;
 
 @Controller
-@RequestMapping("/content/allophone/list")
-public class AllophoneCsvExportController {
+@RequestMapping("/content/sound/list")
+public class SoundCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private SoundDao soundDao;
     
-    @RequestMapping(value="/allophones.csv", method = RequestMethod.GET)
+    @RequestMapping(value="/sounds.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Allophone> allophones = allophoneDao.readAllOrderedByUsage();
-        logger.info("allophones.size(): " + allophones.size());
+        List<Allophone> sounds = soundDao.readAllOrderedByUsage();
+        logger.info("sounds.size(): " + sounds.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
@@ -50,20 +50,19 @@ public class AllophoneCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (Allophone allophone : allophones) {
+        for (Allophone sound : sounds) {
             Long audioId = null;
-            if (allophone.getAudio() != null) {
-                audioId = allophone.getAudio().getId();
+            if (sound.getAudio() != null) {
+                audioId = sound.getAudio().getId();
             }
             
-            csvPrinter.printRecord(
-                    allophone.getId(),
-                    allophone.getValueIpa(),
-                    allophone.getValueSampa(),
+            csvPrinter.printRecord(sound.getId(),
+                    sound.getValueIpa(),
+                    sound.getValueSampa(),
                     audioId,
-                    allophone.isDiacritic(),
-                    allophone.getSoundType(),
-                    allophone.getUsageCount()
+                    sound.isDiacritic(),
+                    sound.getSoundType(),
+                    sound.getUsageCount()
             );
             
             csvPrinter.flush();

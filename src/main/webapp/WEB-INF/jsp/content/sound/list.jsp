@@ -5,7 +5,7 @@
 <content:section cssId="allophoneListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
-           href="<spring:url value='/content/allophone/list/allophones.csv' />">
+           href="<spring:url value='/content/sound/list/sounds.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
@@ -32,31 +32,31 @@
                     <th><fmt:message key="revision" /></th>
                 </thead>
                 <tbody>
-                    <c:forEach var="allophone" items="${allophones}">
-                        <tr class="allophone">
+                    <c:forEach var="sound" items="${sounds}">
+                        <tr>
                             <td>
-                                ${allophone.usageCount}<br />
+                                ${sound.usageCount}<br />
                                 <div class="progress">
-                                    <div class="determinate" style="width: ${allophone.usageCount * 100 / maxUsageCount}%"></div>
+                                    <div class="determinate" style="width: ${sound.usageCount * 100 / maxUsageCount}%"></div>
                                 </div>
                             </td>
                             <td style="font-size: 2em;">
-                                <a name="${allophone.id}"></a>
-                                <a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">/${allophone.valueIpa}/</a>
+                                <a name="${sound.id}"></a>
+                                <a href="<spring:url value='/content/sound/edit/${sound.id}' />">/${sound.valueIpa}/</a>
                             </td>
                             <td>
-                                ${allophone.valueSampa}
+                                ${sound.valueSampa}
                             </td>
                             <td>
-                                ${allophone.soundType}
+                                ${sound.soundType}
                             </td>
                             <td>
                                 <audio controls="true">
-                                    <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
+                                    <source src="<spring:url value='/static/sound/sampa_${sound.valueSampa}.wav' />" />
                                 </audio>
                             </td>
                             <td>
-                                <p>#${allophone.revisionNumber}</p>
+                                <p>#${sound.revisionNumber}</p>
                             </td>
                         </tr>
                     </c:forEach>
@@ -66,6 +66,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/allophone/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.sound" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/content/sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.sound" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

@@ -1,12 +1,15 @@
 <content:title>
-    <fmt:message key="add.sound" />
+    <fmt:message key="edit.sound" />
 </content:title>
 
-<content:section cssId="allophoneCreatePage">
+<content:section cssId="allophoneEditPage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="allophone">
-            <tag:formErrors modelAttribute="allophone" />
+        <form:form modelAttribute="sound">
+            <tag:formErrors modelAttribute="sound" />
+            
+            <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
+            <form:hidden path="usageCount" value="${allophone.usageCount}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -18,7 +21,7 @@
                     <form:label path="valueSampa" cssErrorClass="error"><fmt:message key='value' /> (X-SAMPA)</form:label>
                     <form:input path="valueSampa" cssErrorClass="error" />
                 </div>
-            
+                
                 <div class="input-field col s12">
                     <select id="soundType" name="soundType">
                         <option value="">-- <fmt:message key='select' /> --</option>
@@ -31,7 +34,7 @@
             </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>

@@ -45,8 +45,8 @@ public class LetterSoundCorrespondenceCsvExportController {
                         "id",
                         "letter_ids",
                         "letter_texts",
-                        "allophone_ids",
-                        "allophone_values_ipa",
+                        "sound_ids",
+                        "sound_values_ipa",
                         "usage_count"
                 );
         StringWriter stringWriter = new StringWriter();
@@ -69,26 +69,25 @@ public class LetterSoundCorrespondenceCsvExportController {
                 index++;
             }
             
-            JSONArray allophoneIdsJsonArray = new JSONArray();
+            JSONArray soundIdsJsonArray = new JSONArray();
             index = 0;
-            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
-                allophoneIdsJsonArray.put(index, allophone.getId());
+            for (Allophone sound : letterSoundCorrespondence.getAllophones()) {
+                soundIdsJsonArray.put(index, sound.getId());
                 index++;
             }
             
-            JSONArray allophoneValuesIpaJsonArray = new JSONArray();
+            JSONArray soundValuesIpaJsonArray = new JSONArray();
             index = 0;
-            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
-                allophoneValuesIpaJsonArray.put(index, allophone.getValueIpa());
+            for (Allophone sound : letterSoundCorrespondence.getAllophones()) {
+                soundValuesIpaJsonArray.put(index, sound.getValueIpa());
                 index++;
             }
             
-            csvPrinter.printRecord(
-                    letterSoundCorrespondence.getId(),
+            csvPrinter.printRecord(letterSoundCorrespondence.getId(),
                     letterIdsJsonArray,
                     letterTextsJsonArray,
-                    allophoneIdsJsonArray,
-                    allophoneValuesIpaJsonArray,
+                    soundIdsJsonArray,
+                    soundValuesIpaJsonArray,
                     letterSoundCorrespondence.getUsageCount()
             );
             

@@ -20,32 +20,32 @@ public class AllophoneDaoTest {
     private Logger logger = LogManager.getLogger();
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private SoundDao soundDao;
     
     @Test
     public void testStoreSoundType() {
-        Allophone allophone = new Allophone();
-        allophone.setValueIpa("ɛ");
-        allophone.setValueSampa("E");
-        allophone.setSoundType(SoundType.VOWEL);
-        allophoneDao.create(allophone);
+        Allophone sound = new Allophone();
+        sound.setValueIpa("ɛ");
+        sound.setValueSampa("E");
+        sound.setSoundType(SoundType.VOWEL);
+        soundDao.create(sound);
         
-        assertThat(allophoneDao.readByValueSampa("E").getSoundType(), is(SoundType.VOWEL));
+        assertThat(soundDao.readByValueSampa("E").getSoundType(), is(SoundType.VOWEL));
     }
     
     @Test
     public void testLowerCaseVsUpperCase() {
-        Allophone allophoneLowerCaseT = new Allophone();
-        allophoneLowerCaseT.setValueIpa("t");
-        allophoneLowerCaseT.setValueSampa("t");
-        allophoneDao.create(allophoneLowerCaseT);
+        Allophone soundLowerCaseT = new Allophone();
+        soundLowerCaseT.setValueIpa("t");
+        soundLowerCaseT.setValueSampa("t");
+        soundDao.create(soundLowerCaseT);
         
-        Allophone allophoneUpperCaseT = new Allophone();
-        allophoneUpperCaseT.setValueIpa("θ");
-        allophoneUpperCaseT.setValueSampa("T");
-        allophoneDao.create(allophoneUpperCaseT);
+        Allophone soundUpperCaseT = new Allophone();
+        soundUpperCaseT.setValueIpa("θ");
+        soundUpperCaseT.setValueSampa("T");
+        soundDao.create(soundUpperCaseT);
         
-        assertThat(allophoneDao.readByValueSampa("t").getValueSampa(), is("t"));
-        assertThat(allophoneDao.readByValueSampa("T").getValueSampa(), is("T"));
+        assertThat(soundDao.readByValueSampa("t").getValueSampa(), is("t"));
+        assertThat(soundDao.readByValueSampa("T").getValueSampa(), is("T"));
     }
 }

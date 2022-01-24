@@ -47,8 +47,8 @@
                                         ${letter.text}
                                     </c:forEach>"<br />
                                     ↓<br />
-                                    /<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
-                                        ${allophone.valueIpa}
+                                    /<c:forEach var="sound" items="${letterSoundCorrespondence.allophones}">
+                                        ${sound.valueIpa}
                                     </c:forEach>/
                                 </a>
                             </div>
@@ -73,7 +73,7 @@
                     <select id="letterSoundCorrespondences" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
-                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">${allophone.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">${allophone.valueIpa}</c:forEach>/</option>
+                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="sound" items="${letterSoundCorrespondence.allophones}">${sound.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" → /<c:forEach var="sound" items="${letterSoundCorrespondence.allophones}">${sound.valueIpa}</c:forEach>/</option>
                         </c:forEach>
                     </select>
                     <script>

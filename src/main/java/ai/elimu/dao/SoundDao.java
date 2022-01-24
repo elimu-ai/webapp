@@ -5,7 +5,7 @@ import ai.elimu.model.content.Allophone;
 
 import org.springframework.dao.DataAccessException;
 
-public interface AllophoneDao extends GenericDao<Allophone> {
+public interface SoundDao extends GenericDao<Allophone> {
 	
     Allophone readByValueIpa(String value) throws DataAccessException;
     

@@ -1,4 +1,4 @@
-id,letter_ids,letter_texts,allophone_ids,allophone_values_ipa,usage_count
+id,letter_ids,letter_texts,sound_ids,sound_values_ipa,usage_count
 1,[1],"[""a""]",[1],"[""ɑ""]",0
 2,[18],"[""A""]",[1],"[""ɑ""]",0
 3,[11],"[""y""]",[10],"[""j""]",0

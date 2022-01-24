@@ -1,6 +1,5 @@
 package ai.elimu.util.csv;
 
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
@@ -17,7 +16,7 @@ import ai.elimu.model.v2.enums.content.allophone.SoundType;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
-import ai.elimu.web.content.allophone.AllophoneCsvExportController;
+import ai.elimu.web.content.sound.SoundCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
 import ai.elimu.web.content.letter_sound_correspondence.LetterSoundCorrespondenceCsvExportController;
@@ -43,18 +42,19 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.SoundDao;
 
 public class CsvContentExtractionHelper {
     
     private static final Logger logger = LogManager.getLogger();
     
     /**
-     * For information on how the CSV files were generated, see {@link AllophoneCsvExportController#handleRequest}.
+     * For information on how the CSV files were generated, see {@link SoundCsvExportController#handleRequest}.
      */
-    public static List<Allophone> getAllophonesFromCsvBackup(File csvFile) {
-        logger.info("getAllophonesFromCsvBackup");
+    public static List<Allophone> getSoundsFromCsvBackup(File csvFile) {
+        logger.info("getSoundsFromCsvBackup");
         
-        List<Allophone> allophones = new ArrayList<>();
+        List<Allophone> sounds = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -75,38 +75,38 @@ public class CsvContentExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                Allophone allophone = new Allophone();
+                Allophone sound = new Allophone();
                 
                 String valueIpa = csvRecord.get("value_ipa");
-                allophone.setValueIpa(valueIpa);
+                sound.setValueIpa(valueIpa);
                 
                 String valueSampa = csvRecord.get("value_sampa");
-                allophone.setValueSampa(valueSampa);
+                sound.setValueSampa(valueSampa);
                 
                 boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
-                allophone.setDiacritic(diacritic);
+                sound.setDiacritic(diacritic);
                 
                 if (StringUtils.isNotBlank(csvRecord.get("sound_type"))) {
                     SoundType soundType = SoundType.valueOf(csvRecord.get("sound_type"));
-                    allophone.setSoundType(soundType);
+                    sound.setSoundType(soundType);
                 }
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
-                allophone.setUsageCount(usageCount);
+                sound.setUsageCount(usageCount);
                 
-                allophones.add(allophone);
+                sounds.add(sound);
             }
         } catch (IOException ex) {
             logger.error(ex);
         }
         
-        return allophones;
+        return sounds;
     }
     
     /**
      * For information on how the CSV files were generated, see {@link LetterCsvExportController#handleRequest}.
      */
-    public static List<Letter> getLettersFromCsvBackup(File csvFile, AllophoneDao allophoneDao) {
+    public static List<Letter> getLettersFromCsvBackup(File csvFile, SoundDao soundDao) {
         logger.info("getLettersFromCsvBackup");
         
         List<Letter> letters = new ArrayList<>();
@@ -150,7 +150,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
      */
-    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
+    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
         logger.info("getLetterSoundCorrespondencesFromCsvBackup");
         
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
@@ -164,8 +164,8 @@ public class CsvContentExtractionHelper {
                             "id",
                             "letter_ids",
                             "letter_texts",
-                            "allophone_ids",
-                            "allophone_values_ipa",
+                            "sound_ids",
+                            "sound_values_ipa",
                             "usage_count"
                     )
                     .withSkipHeaderRecord();
@@ -190,20 +190,20 @@ public class CsvContentExtractionHelper {
                 }
                 letterSoundCorrespondence.setLetters(letters);
                 
-                JSONArray allophoneIdsJsonArray = new JSONArray(csvRecord.get("allophone_ids"));
-                logger.info("allophoneIdsJsonArray: " + allophoneIdsJsonArray);
+                JSONArray soundIdsJsonArray = new JSONArray(csvRecord.get("sound_ids"));
+                logger.info("soundIdsJsonArray: " + soundIdsJsonArray);
                 
-                JSONArray allophoneValuesIpaJsonArray = new JSONArray(csvRecord.get("allophone_values_ipa"));
-                logger.info("allophoneValuesIpaJsonArray: " + allophoneValuesIpaJsonArray);
-                List<Allophone> allophones = new ArrayList<>();
-                for (int i = 0; i < allophoneValuesIpaJsonArray.length(); i++) {
-                    String allophoneValueIpa = allophoneValuesIpaJsonArray.getString(i);
-                    logger.info("Looking up Allophone with IPA value /" + allophoneValueIpa + "/");
-                    Allophone allophone = allophoneDao.readByValueIpa(allophoneValueIpa);
-                    logger.info("allophone.getId(): " + allophone.getId());
-                    allophones.add(allophone);
+                JSONArray soundValuesIpaJsonArray = new JSONArray(csvRecord.get("sound_values_ipa"));
+                logger.info("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
+                List<Allophone> sounds = new ArrayList<>();
+                for (int i = 0; i < soundValuesIpaJsonArray.length(); i++) {
+                    String soundValueIpa = soundValuesIpaJsonArray.getString(i);
+                    logger.info("Looking up Sound with IPA value /" + soundValueIpa + "/");
+                    Allophone sound = soundDao.readByValueIpa(soundValueIpa);
+                    logger.info("sound.getId(): " + sound.getId());
+                    sounds.add(sound);
                 }
-                letterSoundCorrespondence.setAllophones(allophones);
+                letterSoundCorrespondence.setAllophones(sounds);
                 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 letterSoundCorrespondence.setUsageCount(usageCount);
@@ -220,7 +220,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao allophoneDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();
@@ -262,13 +262,13 @@ public class CsvContentExtractionHelper {
                         Letter letter = letterDao.readByText(lettersJsonArray.getString(j));
                         letters.add(letter);
                     }
-                    List<Allophone> allophones = new ArrayList<>();
-                    JSONArray allophonesJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("allophones");
-                    for (int j = 0; j < allophonesJsonArray.length(); j++) {
-                        Allophone allophone = allophoneDao.readByValueIpa(allophonesJsonArray.getString(j));
-                        allophones.add(allophone);
+                    List<Allophone> sounds = new ArrayList<>();
+                    JSONArray soundsJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("sounds");
+                    for (int j = 0; j < soundsJsonArray.length(); j++) {
+                        Allophone sound = soundDao.readByValueIpa(soundsJsonArray.getString(j));
+                        sounds.add(sound);
                     }
-                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, allophones);
+                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, sounds);
                     logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
                     letterSoundCorrespondences.add(letterSoundCorrespondence);
                 }

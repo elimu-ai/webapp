@@ -2,12 +2,12 @@ package ai.elimu.dao.jpa;
 
 import java.util.List;
 import javax.persistence.NoResultException;
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;
 
 import org.springframework.dao.DataAccessException;
+import ai.elimu.dao.SoundDao;
 
-public class AllophoneDaoJpa extends GenericDaoJpa<Allophone> implements AllophoneDao {
+public class SoundDaoJpa extends GenericDaoJpa<Allophone> implements SoundDao {
 
     @Override
     public Allophone readByValueIpa(String value) throws DataAccessException {

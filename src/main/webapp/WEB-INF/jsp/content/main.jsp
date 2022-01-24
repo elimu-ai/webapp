@@ -25,7 +25,7 @@
                     <span class="card-title"><i class="material-icons">music_note</i> <fmt:message key="sounds" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/allophone/list' />"><fmt:message key="view.list" /> (${allophoneCount})</a>
+                    <a href="<spring:url value='/content/sound/list' />"><fmt:message key="view.list" /> (${allophoneCount})</a>
                 </div>
             </div>
         </div>
