@@ -102,12 +102,12 @@ public class JpaToGsonConverter {
                 letters.add(letterGson);
             }
             letterSoundCorrespondenceGson.setLetters(letters);
-            List<SoundGson> allophones = new ArrayList<>();
-            for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
-                SoundGson soundGson = getSoundGson(allophone);
-                allophones.add(soundGson);
+            List<SoundGson> sounds = new ArrayList<>();
+            for (Allophone sound : letterSoundCorrespondence.getAllophones()) {
+                SoundGson soundGson = getSoundGson(sound);
+                sounds.add(soundGson);
             }
-            letterSoundCorrespondenceGson.setSounds(allophones);
+            letterSoundCorrespondenceGson.setSounds(sounds);
             letterSoundCorrespondenceGson.setUsageCount(letterSoundCorrespondence.getUsageCount());
             
             return letterSoundCorrespondenceGson;
