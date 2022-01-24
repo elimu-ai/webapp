@@ -16,15 +16,15 @@ public class SoundsRestControllerTest {
     
     @Test
     public void testHandleGetRequest() {
-        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/content/allophones");
+        String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() + "/content/sounds");
         logger.info("jsonResponse: " + jsonResponse);
         
-        JSONArray allophonesJSONArray = new JSONArray(jsonResponse);
-        logger.info("allophonesJSONArray.length(): " + allophonesJSONArray.length());
-        assertThat(allophonesJSONArray.length() > 0, is(true));
+        JSONArray soundsJSONArray = new JSONArray(jsonResponse);
+        logger.info("soundsJSONArray.length(): " + soundsJSONArray.length());
+        assertThat(soundsJSONArray.length() > 0, is(true));
         
-        JSONObject allophoneJsonObject = allophonesJSONArray.getJSONObject(0);
-        assertThat(allophoneJsonObject.getLong("id"), not(nullValue()));
-        assertThat(allophoneJsonObject.getString("valueIpa"), not(nullValue()));
+        JSONObject soundJsonObject = soundsJSONArray.getJSONObject(0);
+        assertThat(soundJsonObject.getLong("id"), not(nullValue()));
+        assertThat(soundJsonObject.getString("valueIpa"), not(nullValue()));
     }
 }

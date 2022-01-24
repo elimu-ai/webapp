@@ -94,7 +94,7 @@ Follow these steps to add a new word to the webapp's database:
 
    <img width="580" alt="Screen Shot 2020-12-09 at 7 52 55 PM" src="https://user-images.githubusercontent.com/15718174/101673981-90783300-3a60-11eb-8875-cab1caafb498.png">
    
-   If the letter-sound correspondence you want to use does not exist in the drop-down, press the "Add letter-sound correspondence" link. Then select the sound (allophone) corresponding to the letter(s):
+   If the letter-sound correspondence you want to use does not exist in the drop-down, press the "Add letter-sound correspondence" link. Then select the sound corresponding to the letter(s):
    
       <img width="613" alt="Screen Shot 2020-12-09 at 7 50 47 PM" src="https://user-images.githubusercontent.com/15718174/101674020-9f5ee580-3a60-11eb-898f-76ff99eaa518.png">
 

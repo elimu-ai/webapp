@@ -18,8 +18,8 @@ public class LetterSoundCorrespondenceDaoJpa extends GenericDaoJpa<LetterSoundCo
         String letterSoundCorrespondenceAllophones = sounds.stream().map(Allophone::getValueIpa).collect(Collectors.joining());
         for (LetterSoundCorrespondence letterSoundCorrespondence : readAllOrderedByUsage()) {
             String lettersAsString = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-            String allophonesAsString = letterSoundCorrespondence.getSounds().stream().map(Allophone::getValueIpa).collect(Collectors.joining());
-            if (lettersAsString.equals(letterSoundCorrespondenceLetters) && allophonesAsString.equals(letterSoundCorrespondenceAllophones)) {
+            String soundsAsString = letterSoundCorrespondence.getSounds().stream().map(Allophone::getValueIpa).collect(Collectors.joining());
+            if (lettersAsString.equals(letterSoundCorrespondenceLetters) && soundsAsString.equals(letterSoundCorrespondenceAllophones)) {
                 return letterSoundCorrespondence;
             }
         }

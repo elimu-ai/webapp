@@ -37,15 +37,15 @@ public class SyllableCsvExportController {
         List<Syllable> syllables = syllableDao.readAllOrderedByUsage();
         logger.info("syllables.size(): " + syllables.size());
         for (Syllable syllable : syllables) {
-            long[] allophoneIdsArray = new long[syllable.getSounds().size()];
+            long[] soundIdsArray = new long[syllable.getSounds().size()];
             int index = 0;
             for (Allophone sound : syllable.getSounds()) {
-                allophoneIdsArray[index] = sound.getId();
+                soundIdsArray[index] = sound.getId();
                 index++;
             }
             csvFileContent += syllable.getId() + ","
                     + "\"" + syllable.getText() + "\","
-                    + Arrays.toString(allophoneIdsArray) + ","
+                    + Arrays.toString(soundIdsArray) + ","
                     + syllable.getUsageCount() + "\n";
         }
         

@@ -100,8 +100,8 @@ public class LetterSoundCorrespondenceEditController {
             List<Letter> letters = letterDao.readAllOrdered();
             model.addAttribute("letters", letters);
             
-            List<Allophone> allophones = soundDao.readAllOrdered();
-            model.addAttribute("sounds", allophones);
+            List<Allophone> sounds = soundDao.readAllOrdered();
+            model.addAttribute("sounds", sounds);
             
             model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
             

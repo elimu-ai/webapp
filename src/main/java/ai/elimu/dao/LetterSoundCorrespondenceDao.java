@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface LetterSoundCorrespondenceDao extends GenericDao<LetterSoundCorrespondence> {
     
-    LetterSoundCorrespondence read(List<Letter> letters, List<Allophone> allophones) throws DataAccessException;
+    LetterSoundCorrespondence read(List<Letter> letters, List<Allophone> sounds) throws DataAccessException;
     
     List<LetterSoundCorrespondence> readAllOrderedByUsage() throws DataAccessException;
     

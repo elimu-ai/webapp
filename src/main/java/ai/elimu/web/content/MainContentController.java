@@ -118,7 +118,7 @@ public class MainContentController {
         }
         
         model.addAttribute("letterCount", letterDao.readCount());
-        model.addAttribute("allophoneCount", soundDao.readCount());
+        model.addAttribute("soundCount", soundDao.readCount());
         model.addAttribute("letterSoundCorrespondenceCount", letterSoundCorrespondenceDao.readCount());
         model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount());

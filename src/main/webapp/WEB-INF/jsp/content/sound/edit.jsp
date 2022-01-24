@@ -2,14 +2,14 @@
     <fmt:message key="edit.sound" />
 </content:title>
 
-<content:section cssId="allophoneEditPage">
+<content:section cssId="soundEditPage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="sound">
             <tag:formErrors modelAttribute="sound" />
             
-            <form:hidden path="revisionNumber" value="${allophone.revisionNumber}" />
-            <form:hidden path="usageCount" value="${allophone.usageCount}" />
+            <form:hidden path="revisionNumber" value="${sound.revisionNumber}" />
+            <form:hidden path="usageCount" value="${sound.usageCount}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -26,7 +26,7 @@
                     <select id="soundType" name="soundType">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="soundType" items="${soundTypes}">
-                            <option value="${soundType}" <c:if test="${soundType == allophone.soundType}">selected="selected"</c:if>><c:out value="${soundType}" /></option>
+                            <option value="${soundType}" <c:if test="${soundType == sound.soundType}">selected="selected"</c:if>><c:out value="${soundType}" /></option>
                         </c:forEach>
                     </select>
                     <label for="soundType"><fmt:message key="sound.type" /></label>

@@ -1,8 +1,8 @@
 <content:title>
-    <fmt:message key="sounds" /> (${fn:length(allophones)})
+    <fmt:message key="sounds" /> (${fn:length(sounds)})
 </content:title>
 
-<content:section cssId="allophoneListPage">
+<content:section cssId="soundListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/sound/list/sounds.csv' />">

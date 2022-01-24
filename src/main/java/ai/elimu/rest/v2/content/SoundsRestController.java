@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ai.elimu.dao.SoundDao;
 
 @RestController
-@RequestMapping(value = "/rest/v2/content/allophones", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/content/sounds", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class SoundsRestController {
     
     private Logger logger = LogManager.getLogger();

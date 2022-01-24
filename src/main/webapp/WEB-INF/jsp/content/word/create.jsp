@@ -73,7 +73,7 @@
                     <select id="letterSoundCorrespondences" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
-                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" → /<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}</c:forEach>/</option>
+                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" → /<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}</c:forEach>/</option>
                         </c:forEach>
                     </select>
                     <script>
@@ -86,7 +86,7 @@
                                 var selectedOption = $(this).find('option[value="' + letterSoundCorrespondenceId + '"]');
                                 var letterSoundCorrespondenceLetters = selectedOption.attr('data-letters');
                                 console.log('letterSoundCorrespondenceLetters "' + letterSoundCorrespondenceLetters + '"');
-                                var letterSoundCorrespondenceAllophones = selectedOption.attr('data-allophones');
+                                var letterSoundCorrespondenceAllophones = selectedOption.attr('data-sounds');
                                 console.log('letterSoundCorrespondenceAllophones "' + letterSoundCorrespondenceAllophones + '"');
                                 if (letterSoundCorrespondenceId != "") {
                                     $('#letterSoundCorrespondencesContainer').append('<input name="letterSoundCorrespondences" type="hidden" value="' + letterSoundCorrespondenceId + '" />');

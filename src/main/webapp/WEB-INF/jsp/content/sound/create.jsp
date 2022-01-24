@@ -2,7 +2,7 @@
     <fmt:message key="add.sound" />
 </content:title>
 
-<content:section cssId="allophoneCreatePage">
+<content:section cssId="soundCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="sound">
@@ -23,7 +23,7 @@
                     <select id="soundType" name="soundType">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="soundType" items="${soundTypes}">
-                            <option value="${soundType}" <c:if test="${soundType == allophone.soundType}">selected="selected"</c:if>><c:out value="${soundType}" /></option>
+                            <option value="${soundType}" <c:if test="${soundType == sound.soundType}">selected="selected"</c:if>><c:out value="${soundType}" /></option>
                         </c:forEach>
                     </select>
                     <label for="soundType"><fmt:message key="sound.type" /></label>

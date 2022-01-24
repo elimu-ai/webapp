@@ -64,23 +64,23 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static SoundGson getSoundGson(Allophone allophone) {
-        if (allophone == null) {
+    public static SoundGson getSoundGson(Allophone sound) {
+        if (sound == null) {
             return null;
         } else {
             SoundGson soundGson = new SoundGson();
             
             // BaseEntity
-            soundGson.setId(allophone.getId());
+            soundGson.setId(sound.getId());
             
             // Content
-            soundGson.setRevisionNumber(allophone.getRevisionNumber());
-            soundGson.setUsageCount(allophone.getUsageCount());
+            soundGson.setRevisionNumber(sound.getRevisionNumber());
+            soundGson.setUsageCount(sound.getUsageCount());
             
             // Allophone
-            soundGson.setValueIpa(allophone.getValueIpa());
-            soundGson.setDiacritic(allophone.isDiacritic());
-            soundGson.setSoundType(allophone.getSoundType());
+            soundGson.setValueIpa(sound.getValueIpa());
+            soundGson.setDiacritic(sound.isDiacritic());
+            soundGson.setSoundType(sound.getSoundType());
             
             return soundGson;
         }
