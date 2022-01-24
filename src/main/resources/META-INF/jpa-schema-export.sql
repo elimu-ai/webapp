@@ -405,9 +405,9 @@
 
     create table LetterSoundCorrespondence_Allophone (
        LetterSoundCorrespondence_id bigint not null,
-        allophones_id bigint not null,
-        allophones_ORDER integer not null,
-        primary key (LetterSoundCorrespondence_id, allophones_ORDER)
+        sounds_id bigint not null,
+        sounds_ORDER integer not null,
+        primary key (LetterSoundCorrespondence_id, sounds_ORDER)
     );
 
     create table LetterSoundCorrespondence_Letter (
@@ -854,8 +854,8 @@
        references Letter;
 
     alter table LetterSoundCorrespondence_Allophone 
-       add constraint FKhjhleuuxtqfd1dsw2mv4v1tcs 
-       foreign key (allophones_id) 
+       add constraint FK8i7vql8uf88hpcpl6f7g526gu 
+       foreign key (sounds_id) 
        references Allophone;
 
     alter table LetterSoundCorrespondence_Allophone 
