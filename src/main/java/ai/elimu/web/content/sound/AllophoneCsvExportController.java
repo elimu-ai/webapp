@@ -1,4 +1,4 @@
-package ai.elimu.web.content.allophone;
+package ai.elimu.web.content.sound;
 
 import ai.elimu.dao.AllophoneDao;
 import ai.elimu.model.content.Allophone;

@@ -17,7 +17,7 @@ import ai.elimu.model.v2.enums.content.allophone.SoundType;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
-import ai.elimu.web.content.allophone.AllophoneCsvExportController;
+import ai.elimu.web.content.sound.AllophoneCsvExportController;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
 import ai.elimu.web.content.letter.LetterCsvExportController;
 import ai.elimu.web.content.letter_sound_correspondence.LetterSoundCorrespondenceCsvExportController;

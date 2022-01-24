@@ -1,4 +1,4 @@
-package ai.elimu.web.content.allophone;
+package ai.elimu.web.content.sound;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
