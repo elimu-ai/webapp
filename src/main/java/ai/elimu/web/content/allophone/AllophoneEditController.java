@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/sounds/edit")
+@RequestMapping("/content/sound/edit")
 public class AllophoneEditController {
     
     private final Logger logger = LogManager.getLogger();
@@ -36,7 +36,7 @@ public class AllophoneEditController {
         
         model.addAttribute("soundTypes", SoundType.values());
 
-        return "content/sounds/edit";
+        return "content/sound/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
@@ -66,12 +66,12 @@ public class AllophoneEditController {
         if (result.hasErrors()) {
             model.addAttribute("allophone", allophone);
             model.addAttribute("soundTypes", SoundType.values());
-            return "content/sounds/edit";
+            return "content/sound/edit";
         } else {
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophone.setRevisionNumber(allophone.getRevisionNumber() + 1);
             allophoneDao.update(allophone);            
-            return "redirect:/content/sounds/list#" + allophone.getId();
+            return "redirect:/content/sound/list#" + allophone.getId();
         }
     }
 }

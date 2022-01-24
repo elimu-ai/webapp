@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/sounds/list")
+@RequestMapping("/content/sound/list")
 public class AllophoneListController {
     
     private final Logger logger = LogManager.getLogger();
@@ -35,6 +35,6 @@ public class AllophoneListController {
         }
         model.addAttribute("maxUsageCount", maxUsageCount);
 
-        return "content/sounds/list";
+        return "content/sound/list";
     }
 }

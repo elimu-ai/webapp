@@ -19,7 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/sounds/list")
+@RequestMapping("/content/sound/list")
 public class AllophoneCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
