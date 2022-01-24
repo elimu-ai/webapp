@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/allophone/create")
+@RequestMapping("/content/sounds/create")
 public class AllophoneCreateController {
     
     private final Logger logger = LogManager.getLogger();
@@ -35,7 +35,7 @@ public class AllophoneCreateController {
         
         model.addAttribute("soundTypes", SoundType.values());
 
-        return "content/allophone/create";
+        return "content/sounds/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
@@ -64,11 +64,11 @@ public class AllophoneCreateController {
         if (result.hasErrors()) {
             model.addAttribute("allophone", allophone);
             model.addAttribute("soundTypes", SoundType.values());
-            return "content/allophone/create";
+            return "content/sounds/create";
         } else {
             allophone.setTimeLastUpdate(Calendar.getInstance());
             allophoneDao.create(allophone);
-            return "redirect:/content/allophone/list#" + allophone.getId();
+            return "redirect:/content/sounds/list#" + allophone.getId();
         }
     }
 }

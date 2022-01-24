@@ -46,7 +46,7 @@
                                 ➞
                             </td>
                             <td style="font-size: 2em;">
-                                / <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a> </c:forEach> /
+                                / <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}"><a href="<spring:url value='/content/sounds/edit/${allophone.id}' />">${allophone.valueIpa}</a> </c:forEach> /
                             </td>
                             <td>
                                 <p>#${letterSoundCorrespondence.revisionNumber}</p>
