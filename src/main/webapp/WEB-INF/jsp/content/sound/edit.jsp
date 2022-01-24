@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.allophone" />
+    <fmt:message key="edit.sound" />
 </content:title>
 
 <content:section cssId="allophoneEditPage">
