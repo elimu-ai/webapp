@@ -26,7 +26,7 @@
                 <th><fmt:message key="value" /></th>
                 <th><fmt:message key="symbol" /></th>
                 <th><fmt:message key="number.words" /></th>
-                <th><fmt:message key="allophones" /></th>
+                <th><fmt:message key="sounds" /></th>
                 <th><fmt:message key="revision" /></th>
             </thead>
             <tbody>

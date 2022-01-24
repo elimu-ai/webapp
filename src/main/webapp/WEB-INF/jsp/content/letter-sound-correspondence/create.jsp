@@ -71,7 +71,7 @@
             
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="allophones" /></label><br />
+                    <label><fmt:message key="sounds" /></label><br />
                     /<span id="allophonesContainer">
                         <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
                             <input name="allophones" type="hidden" value="${allophone.id}" />

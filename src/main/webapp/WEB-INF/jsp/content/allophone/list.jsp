@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="allophones" /> (${fn:length(allophones)})
+    <fmt:message key="sounds" /> (${fn:length(allophones)})
 </content:title>
 
 <content:section cssId="allophoneListPage">

@@ -85,7 +85,7 @@
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/allophone/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="allophones" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/content/allophone/list' />"><fmt:message key="sounds" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/number/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">

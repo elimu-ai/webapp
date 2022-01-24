@@ -37,7 +37,7 @@
         <table class="bordered striped highlight">
             <thead>
                 <th><fmt:message key="text" /></th>
-                <th><fmt:message key="allophones" /></th>
+                <th><fmt:message key="sounds" /></th>
                 <th><fmt:message key="word.type" /></th>
                 <th><fmt:message key="revision" /></th>
             </thead>
