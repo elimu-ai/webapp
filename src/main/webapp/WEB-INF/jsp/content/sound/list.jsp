@@ -21,7 +21,7 @@
             <fmt:message key="to.add.new.content.click.the.button.below" />
         </p>
     
-        <c:if test="${not empty allophones}">
+        <c:if test="${not empty sounds}">
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="frequency" /></th>

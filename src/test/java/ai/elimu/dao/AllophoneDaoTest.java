@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.v2.enums.content.allophone.SoundType;
+import ai.elimu.model.v2.enums.content.sound.SoundType;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
