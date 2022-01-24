@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.model.content.Allophone;
-import ai.elimu.model.v2.gson.content.AllophoneGson;
+import ai.elimu.model.v2.gson.content.SoundGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +30,7 @@ public class SoundsRestController {
         
         JSONArray soundsJsonArray = new JSONArray();
         for (Allophone sound : soundDao.readAllOrdered()) {
-            AllophoneGson soundGson = JpaToGsonConverter.getAllophoneGson(sound);
+            SoundGson soundGson = JpaToGsonConverter.getSoundGson(sound);
             String json = new Gson().toJson(soundGson);
             soundsJsonArray.put(new JSONObject(json));
         }

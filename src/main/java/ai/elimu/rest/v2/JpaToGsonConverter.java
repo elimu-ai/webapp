@@ -18,7 +18,7 @@ import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.gson.application.ApplicationGson;
 import ai.elimu.model.v2.gson.application.ApplicationVersionGson;
-import ai.elimu.model.v2.gson.content.AllophoneGson;
+import ai.elimu.model.v2.gson.content.SoundGson;
 import ai.elimu.model.v2.gson.content.AudioGson;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
@@ -64,25 +64,25 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static AllophoneGson getAllophoneGson(Allophone allophone) {
+    public static SoundGson getSoundGson(Allophone allophone) {
         if (allophone == null) {
             return null;
         } else {
-            AllophoneGson allophoneGson = new AllophoneGson();
+            SoundGson soundGson = new SoundGson();
             
             // BaseEntity
-            allophoneGson.setId(allophone.getId());
+            soundGson.setId(allophone.getId());
             
             // Content
-            allophoneGson.setRevisionNumber(allophone.getRevisionNumber());
-            allophoneGson.setUsageCount(allophone.getUsageCount());
+            soundGson.setRevisionNumber(allophone.getRevisionNumber());
+            soundGson.setUsageCount(allophone.getUsageCount());
             
             // Allophone
-            allophoneGson.setValueIpa(allophone.getValueIpa());
-            allophoneGson.setDiacritic(allophone.isDiacritic());
-            allophoneGson.setSoundType(allophone.getSoundType());
+            soundGson.setValueIpa(allophone.getValueIpa());
+            soundGson.setDiacritic(allophone.isDiacritic());
+            soundGson.setSoundType(allophone.getSoundType());
             
-            return allophoneGson;
+            return soundGson;
         }
     }
     
@@ -102,12 +102,12 @@ public class JpaToGsonConverter {
                 letters.add(letterGson);
             }
             letterSoundCorrespondenceGson.setLetters(letters);
-            List<AllophoneGson> allophones = new ArrayList<>();
+            List<SoundGson> allophones = new ArrayList<>();
             for (Allophone allophone : letterSoundCorrespondence.getAllophones()) {
-                AllophoneGson allophoneGson = getAllophoneGson(allophone);
-                allophones.add(allophoneGson);
+                SoundGson soundGson = getSoundGson(allophone);
+                allophones.add(soundGson);
             }
-            letterSoundCorrespondenceGson.setAllophones(allophones);
+            letterSoundCorrespondenceGson.setSounds(allophones);
             letterSoundCorrespondenceGson.setUsageCount(letterSoundCorrespondence.getUsageCount());
             
             return letterSoundCorrespondenceGson;
