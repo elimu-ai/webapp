@@ -16,7 +16,7 @@ public class Syllable extends Content {
 //    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Allophone> allophones;
+    private List<Allophone> sounds;
     
     public String getText() {
         return text;
@@ -27,10 +27,10 @@ public class Syllable extends Content {
     }
     
     public List<Allophone> getSounds() {
-        return allophones;
+        return sounds;
     }
 
     public void setSounds(List<Allophone> sounds) {
-        this.allophones = sounds;
+        this.sounds = sounds;
     }
 }

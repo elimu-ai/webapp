@@ -550,9 +550,9 @@
 
     create table Syllable_Allophone (
        Syllable_id bigint not null,
-        allophones_id bigint not null,
-        allophones_ORDER integer not null,
-        primary key (Syllable_id, allophones_ORDER)
+        sounds_id bigint not null,
+        sounds_ORDER integer not null,
+        primary key (Syllable_id, sounds_ORDER)
     );
 
     create table Video (
@@ -964,8 +964,8 @@
        references StoryBookContributionEvent;
 
     alter table Syllable_Allophone 
-       add constraint FKf12kmgbjhv3s9sytf9k0w04ap 
-       foreign key (allophones_id) 
+       add constraint FKd1ma12dblw7cvvxfi8o265q8 
+       foreign key (sounds_id) 
        references Allophone;
 
     alter table Syllable_Allophone 
