@@ -1,19 +1,19 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 
 import org.springframework.dao.DataAccessException;
 
-public interface SoundDao extends GenericDao<Allophone> {
+public interface SoundDao extends GenericDao<Sound> {
 	
-    Allophone readByValueIpa(String value) throws DataAccessException;
+    Sound readByValueIpa(String value) throws DataAccessException;
     
-    Allophone readByValueSampa(String value) throws DataAccessException;
+    Sound readByValueSampa(String value) throws DataAccessException;
 
-    List<Allophone> readAllOrdered() throws DataAccessException;
+    List<Sound> readAllOrdered() throws DataAccessException;
     
-    List<Allophone> readAllOrderedByIpaValueCharacterLength() throws DataAccessException;
+    List<Sound> readAllOrderedByIpaValueCharacterLength() throws DataAccessException;
     
-    List<Allophone> readAllOrderedByUsage() throws DataAccessException;
+    List<Sound> readAllOrderedByUsage() throws DataAccessException;
 }

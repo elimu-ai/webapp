@@ -21,7 +21,7 @@ import ai.elimu.model.v2.enums.content.sound.VowelLength;
  * Speech sound
  */
 @Entity
-public class Allophone extends Content {
+public class Sound extends Content {
     
     /**
      * IPA - International Phonetic Alphabet

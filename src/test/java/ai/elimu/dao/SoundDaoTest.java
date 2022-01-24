@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml")
-public class AllophoneDaoTest {
+public class SoundDaoTest {
     
     private Logger logger = LogManager.getLogger();
     
@@ -24,7 +24,7 @@ public class AllophoneDaoTest {
     
     @Test
     public void testStoreSoundType() {
-        Allophone sound = new Allophone();
+        Sound sound = new Sound();
         sound.setValueIpa("ɛ");
         sound.setValueSampa("E");
         sound.setSoundType(SoundType.VOWEL);
@@ -35,12 +35,12 @@ public class AllophoneDaoTest {
     
     @Test
     public void testLowerCaseVsUpperCase() {
-        Allophone soundLowerCaseT = new Allophone();
+        Sound soundLowerCaseT = new Sound();
         soundLowerCaseT.setValueIpa("t");
         soundLowerCaseT.setValueSampa("t");
         soundDao.create(soundLowerCaseT);
         
-        Allophone soundUpperCaseT = new Allophone();
+        Sound soundUpperCaseT = new Sound();
         soundUpperCaseT.setValueIpa("θ");
         soundUpperCaseT.setValueSampa("T");
         soundDao.create(soundUpperCaseT);

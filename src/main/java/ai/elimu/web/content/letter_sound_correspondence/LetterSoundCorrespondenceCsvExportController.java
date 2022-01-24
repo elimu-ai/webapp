@@ -1,6 +1,6 @@
 package ai.elimu.web.content.letter_sound_correspondence;
 
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import java.io.IOException;
@@ -71,14 +71,14 @@ public class LetterSoundCorrespondenceCsvExportController {
             
             JSONArray soundIdsJsonArray = new JSONArray();
             index = 0;
-            for (Allophone sound : letterSoundCorrespondence.getSounds()) {
+            for (Sound sound : letterSoundCorrespondence.getSounds()) {
                 soundIdsJsonArray.put(index, sound.getId());
                 index++;
             }
             
             JSONArray soundValuesIpaJsonArray = new JSONArray();
             index = 0;
-            for (Allophone sound : letterSoundCorrespondence.getSounds()) {
+            for (Sound sound : letterSoundCorrespondence.getSounds()) {
                 soundValuesIpaJsonArray.put(index, sound.getValueIpa());
                 index++;
             }

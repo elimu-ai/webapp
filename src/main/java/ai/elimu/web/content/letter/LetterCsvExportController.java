@@ -1,7 +1,7 @@
 package ai.elimu.web.content.letter;
 
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
 import java.io.IOException;
 import java.io.OutputStream;

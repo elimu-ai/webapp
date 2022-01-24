@@ -2,7 +2,7 @@ package ai.elimu.util.csv;
 
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -51,10 +51,10 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link SoundCsvExportController#handleRequest}.
      */
-    public static List<Allophone> getSoundsFromCsvBackup(File csvFile) {
+    public static List<Sound> getSoundsFromCsvBackup(File csvFile) {
         logger.info("getSoundsFromCsvBackup");
         
-        List<Allophone> sounds = new ArrayList<>();
+        List<Sound> sounds = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -75,7 +75,7 @@ public class CsvContentExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
                 
-                Allophone sound = new Allophone();
+                Sound sound = new Sound();
                 
                 String valueIpa = csvRecord.get("value_ipa");
                 sound.setValueIpa(valueIpa);
@@ -195,11 +195,11 @@ public class CsvContentExtractionHelper {
                 
                 JSONArray soundValuesIpaJsonArray = new JSONArray(csvRecord.get("sound_values_ipa"));
                 logger.info("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
-                List<Allophone> sounds = new ArrayList<>();
+                List<Sound> sounds = new ArrayList<>();
                 for (int i = 0; i < soundValuesIpaJsonArray.length(); i++) {
                     String soundValueIpa = soundValuesIpaJsonArray.getString(i);
                     logger.info("Looking up Sound with IPA value /" + soundValueIpa + "/");
-                    Allophone sound = soundDao.readByValueIpa(soundValueIpa);
+                    Sound sound = soundDao.readByValueIpa(soundValueIpa);
                     logger.info("sound.getId(): " + sound.getId());
                     sounds.add(sound);
                 }
@@ -262,10 +262,10 @@ public class CsvContentExtractionHelper {
                         Letter letter = letterDao.readByText(lettersJsonArray.getString(j));
                         letters.add(letter);
                     }
-                    List<Allophone> sounds = new ArrayList<>();
+                    List<Sound> sounds = new ArrayList<>();
                     JSONArray soundsJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("sounds");
                     for (int j = 0; j < soundsJsonArray.length(); j++) {
-                        Allophone sound = soundDao.readByValueIpa(soundsJsonArray.getString(j));
+                        Sound sound = soundDao.readByValueIpa(soundsJsonArray.getString(j));
                         sounds.add(sound);
                     }
                     LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, sounds);

@@ -1,6 +1,6 @@
 package ai.elimu.web.content.sound;
 
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -34,7 +34,7 @@ public class SoundCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Allophone> sounds = soundDao.readAllOrderedByUsage();
+        List<Sound> sounds = soundDao.readAllOrderedByUsage();
         logger.info("sounds.size(): " + sounds.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -50,7 +50,7 @@ public class SoundCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (Allophone sound : sounds) {
+        for (Sound sound : sounds) {
             Long audioId = null;
             if (sound.getAudio() != null) {
                 audioId = sound.getAudio().getId();

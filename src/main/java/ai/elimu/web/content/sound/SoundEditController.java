@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class SoundEditController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Allophone sound = soundDao.read(id);
+        Sound sound = soundDao.read(id);
         model.addAttribute("sound", sound);
         
         model.addAttribute("soundTypes", SoundType.values());
@@ -42,7 +42,7 @@ public class SoundEditController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
             @PathVariable Long id,
-            @Valid Allophone sound,
+            @Valid Sound sound,
             BindingResult result,
             Model model,
             HttpSession session
@@ -50,14 +50,14 @@ public class SoundEditController {
     	logger.info("handleSubmit");
         
         if (StringUtils.isNotBlank(sound.getValueIpa())) {
-            Allophone existingSound = soundDao.readByValueIpa(sound.getValueIpa());
+            Sound existingSound = soundDao.readByValueIpa(sound.getValueIpa());
             if ((existingSound != null) && !existingSound.getId().equals(sound.getId())) {
                 result.rejectValue("valueIpa", "NonUnique");
             }
         }
         
         if (StringUtils.isNotBlank(sound.getValueSampa())) {
-            Allophone existingSound = soundDao.readByValueSampa(sound.getValueSampa());
+            Sound existingSound = soundDao.readByValueSampa(sound.getValueSampa());
             if ((existingSound != null) && !existingSound.getId().equals(sound.getId())) {
                 result.rejectValue("valueSampa", "NonUnique");
             }

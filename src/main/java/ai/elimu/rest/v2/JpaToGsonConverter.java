@@ -2,7 +2,7 @@ package ai.elimu.rest.v2;
 
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -64,7 +64,7 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static SoundGson getSoundGson(Allophone sound) {
+    public static SoundGson getSoundGson(Sound sound) {
         if (sound == null) {
             return null;
         } else {
@@ -103,7 +103,7 @@ public class JpaToGsonConverter {
             }
             letterSoundCorrespondenceGson.setLetters(letters);
             List<SoundGson> sounds = new ArrayList<>();
-            for (Allophone sound : letterSoundCorrespondence.getSounds()) {
+            for (Sound sound : letterSoundCorrespondence.getSounds()) {
                 SoundGson soundGson = getSoundGson(sound);
                 sounds.add(soundGson);
             }

@@ -2,19 +2,19 @@ package ai.elimu.dao.jpa;
 
 import java.util.List;
 import javax.persistence.NoResultException;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 
 import org.springframework.dao.DataAccessException;
 import ai.elimu.dao.SoundDao;
 
-public class SoundDaoJpa extends GenericDaoJpa<Allophone> implements SoundDao {
+public class SoundDaoJpa extends GenericDaoJpa<Sound> implements SoundDao {
 
     @Override
-    public Allophone readByValueIpa(String value) throws DataAccessException {
+    public Sound readByValueIpa(String value) throws DataAccessException {
         try {
-            return (Allophone) em.createQuery(
+            return (Sound) em.createQuery(
                 "SELECT s " +
-                "FROM Allophone s " +
+                "FROM Sound s " +
                 "WHERE s.valueIpa = :value")
                 .setParameter("value", value)
                 .getSingleResult();
@@ -25,11 +25,11 @@ public class SoundDaoJpa extends GenericDaoJpa<Allophone> implements SoundDao {
     }
     
     @Override
-    public Allophone readByValueSampa(String value) throws DataAccessException {
+    public Sound readByValueSampa(String value) throws DataAccessException {
         try {
-            return (Allophone) em.createQuery(
+            return (Sound) em.createQuery(
                 "SELECT s " +
-                "FROM Allophone s " +
+                "FROM Sound s " +
                 "WHERE s.valueSampa = :value")
                 .setParameter("value", value)
                 .getSingleResult();
@@ -40,28 +40,28 @@ public class SoundDaoJpa extends GenericDaoJpa<Allophone> implements SoundDao {
     }
 
     @Override
-    public List<Allophone> readAllOrdered() throws DataAccessException {
+    public List<Sound> readAllOrdered() throws DataAccessException {
         return em.createQuery(
             "SELECT s " +
-            "FROM Allophone s " +
+            "FROM Sound s " +
             "ORDER BY s.valueIpa")
             .getResultList();
     }
     
     @Override
-    public List<Allophone> readAllOrderedByIpaValueCharacterLength() throws DataAccessException {
+    public List<Sound> readAllOrderedByIpaValueCharacterLength() throws DataAccessException {
         return em.createQuery(
             "SELECT s " +
-            "FROM Allophone s " +
+            "FROM Sound s " +
             "ORDER BY CHAR_LENGTH(s.valueIpa) DESC, s.valueIpa")
             .getResultList();
     }
     
     @Override
-    public List<Allophone> readAllOrderedByUsage() throws DataAccessException {
+    public List<Sound> readAllOrderedByUsage() throws DataAccessException {
         return em.createQuery(
             "SELECT s " +
-            "FROM Allophone s " +
+            "FROM Sound s " +
             "ORDER BY s.usageCount DESC, s.valueIpa")
             .getResultList();
     }

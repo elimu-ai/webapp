@@ -13,7 +13,7 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -146,10 +146,10 @@ public class DbContentImportHelper {
         
         // Extract and import Sounds from CSV file in src/main/resources/
         File soundsCsvFile = new File(contentDirectory, "sounds.csv");
-        List<Allophone> sounds = CsvContentExtractionHelper.getSoundsFromCsvBackup(soundsCsvFile);
+        List<Sound> sounds = CsvContentExtractionHelper.getSoundsFromCsvBackup(soundsCsvFile);
         logger.info("sounds.size(): " + sounds.size());
         soundDao = (SoundDao) webApplicationContext.getBean("soundDao");
-        for (Allophone sound : sounds) {
+        for (Sound sound : sounds) {
             soundDao.create(sound);
         }
         

@@ -1,7 +1,7 @@
 package ai.elimu.web.content.syllable;
 
 import ai.elimu.dao.SyllableDao;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Syllable;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -39,7 +39,7 @@ public class SyllableCsvExportController {
         for (Syllable syllable : syllables) {
             long[] soundIdsArray = new long[syllable.getSounds().size()];
             int index = 0;
-            for (Allophone sound : syllable.getSounds()) {
+            for (Sound sound : syllable.getSounds()) {
                 soundIdsArray[index] = sound.getId();
                 index++;
             }

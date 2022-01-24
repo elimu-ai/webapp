@@ -21,7 +21,7 @@ public class LetterSoundCorrespondence extends Content {
 //    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Allophone> sounds;
+    private List<Sound> sounds;
     
     public List<Letter> getLetters() {
         return letters;
@@ -31,11 +31,11 @@ public class LetterSoundCorrespondence extends Content {
         this.letters = letters;
     }
 
-    public List<Allophone> getSounds() {
+    public List<Sound> getSounds() {
         return sounds;
     }
 
-    public void setSounds(List<Allophone> sounds) {
+    public void setSounds(List<Sound> sounds) {
         this.sounds = sounds;
     }
 }

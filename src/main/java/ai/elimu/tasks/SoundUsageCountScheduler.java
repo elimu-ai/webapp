@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import org.apache.logging.log4j.LogManager;
@@ -48,14 +48,14 @@ public class SoundUsageCountScheduler {
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
-                for (Allophone sound : letterSoundCorrespondence.getSounds()) {
+                for (Sound sound : letterSoundCorrespondence.getSounds()) {
                     soundFrequencyMap.put(sound.getId(), soundFrequencyMap.getOrDefault(sound.getId(), 0) + letterSoundCorrespondence.getUsageCount());
                 }
             }
         }
         // Update each Sound's usage count in the database
         for (Long soundId : soundFrequencyMap.keySet()) {
-            Allophone sound = soundDao.read(soundId);
+            Sound sound = soundDao.read(soundId);
             sound.setUsageCount(soundFrequencyMap.get(soundId));
             soundDao.update(sound);
         }

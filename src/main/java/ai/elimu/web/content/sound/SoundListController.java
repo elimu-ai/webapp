@@ -2,7 +2,7 @@ package ai.elimu.web.content.sound;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +24,11 @@ public class SoundListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<Allophone> sounds = soundDao.readAllOrderedByUsage();
+        List<Sound> sounds = soundDao.readAllOrderedByUsage();
         model.addAttribute("sounds", sounds);
         
         int maxUsageCount = 0;
-        for (Allophone sound : sounds) {
+        for (Sound sound : sounds) {
             if (sound.getUsageCount() > maxUsageCount) {
                 maxUsageCount = sound.getUsageCount();
             }

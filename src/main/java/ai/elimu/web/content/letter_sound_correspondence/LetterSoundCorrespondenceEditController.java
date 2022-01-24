@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import org.apache.logging.log4j.LogManager;
@@ -65,7 +65,7 @@ public class LetterSoundCorrespondenceEditController {
         List<Letter> letters = letterDao.readAllOrdered();
         model.addAttribute("letters", letters);
         
-        List<Allophone> sounds = soundDao.readAllOrdered();
+        List<Sound> sounds = soundDao.readAllOrdered();
         model.addAttribute("sounds", sounds);
         
         model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
@@ -100,7 +100,7 @@ public class LetterSoundCorrespondenceEditController {
             List<Letter> letters = letterDao.readAllOrdered();
             model.addAttribute("letters", letters);
             
-            List<Allophone> sounds = soundDao.readAllOrdered();
+            List<Sound> sounds = soundDao.readAllOrdered();
             model.addAttribute("sounds", sounds);
             
             model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
