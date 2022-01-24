@@ -4,7 +4,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
 import ai.elimu.model.content.Allophone;
@@ -31,6 +30,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.stream.Collectors;
+import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content/letter-sound-correspondence/edit")
@@ -48,7 +48,7 @@ public class LetterSoundCorrespondenceEditController {
     private LetterDao letterDao;
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private SoundDao soundDao;
     
     @Autowired
     private WordDao wordDao;
@@ -65,8 +65,8 @@ public class LetterSoundCorrespondenceEditController {
         List<Letter> letters = letterDao.readAllOrdered();
         model.addAttribute("letters", letters);
         
-        List<Allophone> allophones = allophoneDao.readAllOrdered();
-        model.addAttribute("allophones", allophones);
+        List<Allophone> sounds = soundDao.readAllOrdered();
+        model.addAttribute("allophones", sounds);
         
         model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
         
@@ -100,7 +100,7 @@ public class LetterSoundCorrespondenceEditController {
             List<Letter> letters = letterDao.readAllOrdered();
             model.addAttribute("letters", letters);
             
-            List<Allophone> allophones = allophoneDao.readAllOrdered();
+            List<Allophone> allophones = soundDao.readAllOrdered();
             model.addAttribute("allophones", allophones);
             
             model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));

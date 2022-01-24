@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
@@ -50,6 +49,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content/word/create")
@@ -64,7 +64,7 @@ public class WordCreateController {
     private EmojiDao emojiDao;
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private SoundDao soundDao;
     
     @Autowired
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
@@ -102,7 +102,7 @@ public class WordCreateController {
         
         model.addAttribute("word", word);
         model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("allophones", allophoneDao.readAllOrdered());
+        model.addAttribute("allophones", soundDao.readAllOrdered());
         model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -130,12 +130,12 @@ public class WordCreateController {
             result.rejectValue("text", "WordSpace");
         }
         
-        List<Allophone> allophones = allophoneDao.readAllOrdered();
+        List<Allophone> sounds = soundDao.readAllOrdered();
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("allophones", allophones);
+            model.addAttribute("allophones", sounds);
             model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());

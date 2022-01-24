@@ -1,6 +1,5 @@
 package ai.elimu.util.csv;
 
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Allophone;
@@ -43,6 +42,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.SoundDao;
 
 public class CsvContentExtractionHelper {
     
@@ -106,7 +106,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterCsvExportController#handleRequest}.
      */
-    public static List<Letter> getLettersFromCsvBackup(File csvFile, AllophoneDao soundDao) {
+    public static List<Letter> getLettersFromCsvBackup(File csvFile, SoundDao soundDao) {
         logger.info("getLettersFromCsvBackup");
         
         List<Letter> letters = new ArrayList<>();
@@ -150,7 +150,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
      */
-    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
+    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
         logger.info("getLetterSoundCorrespondencesFromCsvBackup");
         
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
@@ -220,7 +220,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, AllophoneDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
         
         List<Word> words = new ArrayList<>();

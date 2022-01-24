@@ -1,6 +1,5 @@
 package ai.elimu.util.db;
 
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
@@ -51,6 +50,7 @@ import ai.elimu.model.contributor.LetterContributionEvent;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
+import ai.elimu.dao.SoundDao;
 
 public class DbContentImportHelper {
     
@@ -60,7 +60,7 @@ public class DbContentImportHelper {
     
     private LetterContributionEventDao letterContributionEventDao;
     
-    private AllophoneDao soundDao;
+    private SoundDao soundDao;
     
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
@@ -145,12 +145,12 @@ public class DbContentImportHelper {
         }
         
         // Extract and import Sounds from CSV file in src/main/resources/
-        File allophonesCsvFile = new File(contentDirectory, "sounds.csv");
-        List<Allophone> sounds = CsvContentExtractionHelper.getSoundsFromCsvBackup(allophonesCsvFile);
+        File soundsCsvFile = new File(contentDirectory, "sounds.csv");
+        List<Allophone> sounds = CsvContentExtractionHelper.getSoundsFromCsvBackup(soundsCsvFile);
         logger.info("sounds.size(): " + sounds.size());
-        soundDao = (AllophoneDao) webApplicationContext.getBean("soundDao");
-        for (Allophone allophone : sounds) {
-            soundDao.create(allophone);
+        soundDao = (SoundDao) webApplicationContext.getBean("soundDao");
+        for (Allophone sound : sounds) {
+            soundDao.create(sound);
         }
         
         // Extract and import letter-sound correspondences in src/main/resources/
