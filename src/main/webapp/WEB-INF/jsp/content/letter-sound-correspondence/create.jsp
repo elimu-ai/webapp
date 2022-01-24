@@ -73,12 +73,12 @@
                 <div class="col s12">
                     <label><fmt:message key="sounds" /></label><br />
                     /<span id="allophonesContainer">
-                        <c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
-                            <input name="allophones" type="hidden" value="${allophone.id}" />
-                            <div class="chip" data-allophoneid="${allophone.id}" data-allophonevalue="${allophone.valueIpa}"
+                        <c:forEach var="sound" items="${letterSoundCorrespondence.allophones}">
+                            <input name="allophones" type="hidden" value="${sound.id}" />
+                            <div class="chip" data-allophoneid="${sound.id}" data-allophonevalue="${sound.valueIpa}"
                                  style="font-size: 2rem; padding: 1rem; height: auto;">
-                                ${allophone.valueIpa} 
-                                <a href="#" class="allophoneDeleteLink" data-allophoneid="${allophone.id}">
+                                ${sound.valueIpa} 
+                                <a href="#" class="allophoneDeleteLink" data-allophoneid="${sound.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
                             </div>
@@ -102,8 +102,8 @@
 
                     <select id="allophones" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
                         <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="allophone" items="${allophones}">
-                            <option value="${allophone.id}"><c:out value="${allophone.valueIpa}" /></option>
+                        <c:forEach var="sound" items="${allophones}">
+                            <option value="${sound.id}"><c:out value="${sound.valueIpa}" /></option>
                         </c:forEach>
                     </select>
                     <script>
