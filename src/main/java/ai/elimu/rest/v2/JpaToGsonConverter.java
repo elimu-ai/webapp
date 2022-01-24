@@ -77,7 +77,7 @@ public class JpaToGsonConverter {
             soundGson.setRevisionNumber(sound.getRevisionNumber());
             soundGson.setUsageCount(sound.getUsageCount());
             
-            // Allophone
+            // Sound
             soundGson.setValueIpa(sound.getValueIpa());
             soundGson.setDiacritic(sound.isDiacritic());
             soundGson.setSoundType(sound.getSoundType());

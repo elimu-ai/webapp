@@ -22,7 +22,7 @@ import ai.elimu.dao.SoundDao;
  * (see {@link WordUsageCountScheduler} and {@link LetterSoundCorrespondenceUsageCountScheduler}).
  */
 @Service
-public class AllophoneUsageCountScheduler {
+public class SoundUsageCountScheduler {
     
     private final Logger logger = LogManager.getLogger();
     

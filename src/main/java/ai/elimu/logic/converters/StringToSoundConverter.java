@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import ai.elimu.dao.SoundDao;
 
-public class StringToAllophoneConverter implements Converter<String, Allophone> {
+public class StringToSoundConverter implements Converter<String, Allophone> {
 
     @Autowired
     private SoundDao soundDao;

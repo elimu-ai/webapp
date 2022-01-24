@@ -15,18 +15,18 @@ public class LetterSoundCorrespondenceDaoJpa extends GenericDaoJpa<LetterSoundCo
         // TODO: implement usage of CriteriaQuery/CriteriaQuery
         
         String letterSoundCorrespondenceLetters = letters.stream().map(Letter::getText).collect(Collectors.joining());
-        String letterSoundCorrespondenceAllophones = sounds.stream().map(Allophone::getValueIpa).collect(Collectors.joining());
+        String letterSoundCorrespondenceSounds = sounds.stream().map(Allophone::getValueIpa).collect(Collectors.joining());
         for (LetterSoundCorrespondence letterSoundCorrespondence : readAllOrderedByUsage()) {
             String lettersAsString = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
             String soundsAsString = letterSoundCorrespondence.getSounds().stream().map(Allophone::getValueIpa).collect(Collectors.joining());
-            if (lettersAsString.equals(letterSoundCorrespondenceLetters) && soundsAsString.equals(letterSoundCorrespondenceAllophones)) {
+            if (lettersAsString.equals(letterSoundCorrespondenceLetters) && soundsAsString.equals(letterSoundCorrespondenceSounds)) {
                 return letterSoundCorrespondence;
             }
         }
         
         logger.warn("LetterSoundCorrespondence was not found for Letter(s)/Sound(s): " +
                     "\"" + letterSoundCorrespondenceLetters + "\"" +
-                    " /" + letterSoundCorrespondenceAllophones + "/");
+                    " /" + letterSoundCorrespondenceSounds + "/");
         return null;
     }
     

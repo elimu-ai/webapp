@@ -85,12 +85,12 @@
                                 console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
                                 var selectedOption = $(this).find('option[value="' + letterSoundCorrespondenceId + '"]');
                                 var letterSoundCorrespondenceLetters = selectedOption.attr('data-letters');
-                                console.log('letterSoundCorrespondenceLetters "' + letterSoundCorrespondenceLetters + '"');
-                                var letterSoundCorrespondenceAllophones = selectedOption.attr('data-sounds');
-                                console.log('letterSoundCorrespondenceAllophones "' + letterSoundCorrespondenceAllophones + '"');
+                                console.log('letterSoundCorrespondenceLetters: "' + letterSoundCorrespondenceLetters + '"');
+                                var letterSoundCorrespondenceSounds = selectedOption.attr('data-sounds');
+                                console.log('letterSoundCorrespondenceSounds: "' + letterSoundCorrespondenceSounds'"');
                                 if (letterSoundCorrespondenceId != "") {
                                     $('#letterSoundCorrespondencesContainer').append('<input name="letterSoundCorrespondences" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
-                                    $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceAllophones + '/</div>');
+                                    $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceSounds + '/</div>');
                                     $(this).val("");
                                 }
                             });

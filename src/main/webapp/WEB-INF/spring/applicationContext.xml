@@ -25,7 +25,6 @@
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
-                <bean class="ai.elimu.logic.converters.StringToAllophoneConverter" />
                 <bean class="ai.elimu.logic.converters.StringToApplicationConverter" />
                 <bean class="ai.elimu.logic.converters.StringToAudioConverter" />
                 <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
@@ -33,6 +32,7 @@
                 <bean class="ai.elimu.logic.converters.StringToLetterConverter" />
                 <bean class="ai.elimu.logic.converters.StringToLetterSoundCorrespondenceConverter" />
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
+                <bean class="ai.elimu.logic.converters.StringToSoundConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookChapterConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookParagraphConverter" />
