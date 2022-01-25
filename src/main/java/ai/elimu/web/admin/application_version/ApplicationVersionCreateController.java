@@ -15,6 +15,7 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.DiscordHelper;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
 import org.apache.logging.log4j.LogManager;
@@ -151,6 +152,14 @@ public class ApplicationVersionCreateController {
                 application.setApplicationStatus(ApplicationStatus.ACTIVE);
             }
             applicationDao.update(application);
+            
+            DiscordHelper.sendChannelMessage(
+                    "A new Application version (APK) was uploaded: " + application.getPackageName(),
+                    "Version: " + applicationVersion.getVersionName(),
+                    null,
+                    null,
+                    null
+            );
             
             return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
         }
