@@ -7,6 +7,8 @@
     <div class="card-panel">
         <form:form modelAttribute="sound">
             <tag:formErrors modelAttribute="sound" />
+            
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -27,6 +29,13 @@
                         </c:forEach>
                     </select>
                     <label for="soundType"><fmt:message key="sound.type" /></label>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 

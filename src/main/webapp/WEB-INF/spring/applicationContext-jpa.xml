@@ -62,6 +62,7 @@
     <bean id="letterSoundCorrespondenceContributionEventDao" class="ai.elimu.dao.jpa.LetterSoundCorrespondenceContributionEventDaoJpa" />
     <bean id="numberContributionEventDao" class="ai.elimu.dao.jpa.NumberContributionEventDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
+    <bean id="soundContributionEventDao" class="ai.elimu.dao.jpa.SoundContributionEventDaoJpa" />
     <bean id="soundDao" class="ai.elimu.dao.jpa.SoundDaoJpa" />
     <bean id="storyBookDao" class="ai.elimu.dao.jpa.StoryBookDaoJpa" />
     <bean id="storyBookChapterDao" class="ai.elimu.dao.jpa.StoryBookChapterDaoJpa" />

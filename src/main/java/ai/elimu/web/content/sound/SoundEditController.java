@@ -1,5 +1,6 @@
 package ai.elimu.web.content.sound;
 
+import ai.elimu.dao.SoundContributionEventDao;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -17,6 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.SoundDao;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.SoundContributionEvent;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/content/sound/edit")
@@ -26,6 +33,9 @@ public class SoundEditController {
     
     @Autowired
     private SoundDao soundDao;
+    
+    @Autowired
+    private SoundContributionEventDao soundContributionEventDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -33,19 +43,23 @@ public class SoundEditController {
         
         Sound sound = soundDao.read(id);
         model.addAttribute("sound", sound);
+        model.addAttribute("timeStart", System.currentTimeMillis());
         
         model.addAttribute("soundTypes", SoundType.values());
+        
+        model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
 
         return "content/sound/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             @PathVariable Long id,
             @Valid Sound sound,
             BindingResult result,
-            Model model,
-            HttpSession session
+            Model model
     ) {
     	logger.info("handleSubmit");
         
@@ -65,12 +79,34 @@ public class SoundEditController {
         
         if (result.hasErrors()) {
             model.addAttribute("sound", sound);
+            model.addAttribute("timeStart", System.currentTimeMillis());
             model.addAttribute("soundTypes", SoundType.values());
+            model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
             return "content/sound/edit";
         } else {
             sound.setTimeLastUpdate(Calendar.getInstance());
             sound.setRevisionNumber(sound.getRevisionNumber() + 1);
-            soundDao.update(sound);            
+            soundDao.update(sound);      
+            
+            SoundContributionEvent soundContributionEvent = new SoundContributionEvent();
+            soundContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            soundContributionEvent.setTime(Calendar.getInstance());
+            soundContributionEvent.setSound(sound);
+            soundContributionEvent.setRevisionNumber(sound.getRevisionNumber());
+            soundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
+            soundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            soundContributionEvent.setPlatform(Platform.WEBAPP);
+            soundContributionEventDao.create(soundContributionEvent);
+            
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/sound/edit/" + sound.getId();
+            DiscordHelper.sendChannelMessage(
+                    "Sound edited: " + contentUrl,
+                    "/" + soundContributionEvent.getSound().getValueIpa() + "/",
+                    "Comment: \"" + soundContributionEvent.getComment() + "\"",
+                    null,
+                    null
+            );
+            
             return "redirect:/content/sound/list#" + sound.getId();
         }
     }
