@@ -21,7 +21,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("email", email)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor with e-mail \"" + email + "\" was not found");
             return null;
         }
     }
@@ -36,7 +35,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("id", id)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor with GitHub id \"" + id + "\" was not found");
             return null;
         }
     }
@@ -51,7 +49,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("id", id)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor with Google id \"" + id + "\" was not found");
             return null;
         }
     }
@@ -66,7 +63,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("id", id)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor with Web3 id \"" + id + "\" was not found");
             return null;
         }
     }

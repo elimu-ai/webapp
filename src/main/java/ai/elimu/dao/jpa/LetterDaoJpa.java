@@ -20,7 +20,6 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
                 .setParameter("text", text)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Letter '" + text + "' was not found");
             return null;
         }
     }

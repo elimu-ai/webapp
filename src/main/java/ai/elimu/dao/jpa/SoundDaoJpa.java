@@ -19,7 +19,6 @@ public class SoundDaoJpa extends GenericDaoJpa<Sound> implements SoundDao {
                 .setParameter("value", value)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Sound \"" + value + "\" was not found");
             return null;
         }
     }
@@ -34,7 +33,6 @@ public class SoundDaoJpa extends GenericDaoJpa<Sound> implements SoundDao {
                 .setParameter("value", value)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Sound \"" + value + "\" was not found");
             return null;
         }
     }

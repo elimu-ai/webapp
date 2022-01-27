@@ -24,9 +24,6 @@ public class LetterSoundCorrespondenceDaoJpa extends GenericDaoJpa<LetterSoundCo
             }
         }
         
-        logger.warn("LetterSoundCorrespondence was not found for Letter(s)/Sound(s): " +
-                    "\"" + letterSoundCorrespondenceLetters + "\"" +
-                    " /" + letterSoundCorrespondenceSounds + "/");
         return null;
     }
     

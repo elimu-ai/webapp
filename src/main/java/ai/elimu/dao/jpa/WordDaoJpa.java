@@ -20,7 +20,6 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
                 .setParameter("text", text)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Word \"" + text + "\" was not found");
             return null;
         }
     }

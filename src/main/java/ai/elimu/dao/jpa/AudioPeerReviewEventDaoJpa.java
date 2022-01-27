@@ -23,7 +23,6 @@ public class AudioPeerReviewEventDaoJpa extends GenericDaoJpa<AudioPeerReviewEve
                 .setParameter("contributor", contributor)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("AudioPeerReviewEvent was not found");
             return null;
         }
     }

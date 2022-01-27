@@ -22,7 +22,6 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
                 .setParameter("title", title)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Image \"" + title + "\" was not found");
             return null;
         }
     }

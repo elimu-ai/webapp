@@ -19,7 +19,6 @@ public class DeviceDaoJpa extends GenericDaoJpa<Device> implements DeviceDao {
                 .setParameter("deviceId", deviceId)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Device \"" + deviceId + "\" was not found");
             return null;
         }
     }
