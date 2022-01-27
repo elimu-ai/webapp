@@ -154,9 +154,9 @@ public class ApplicationVersionCreateController {
             applicationDao.update(application);
             
             DiscordHelper.sendChannelMessage(
-                    "A new Application version (APK) was uploaded: " + application.getPackageName(),
-                    "Version: " + applicationVersion.getVersionName(),
-                    null,
+                    "A new Application version (`.apk`) was uploaded:",
+                    application.getPackageName(),
+                    "Version: `" + applicationVersion.getVersionName() + "`",
                     null,
                     null
             );
