@@ -18,7 +18,7 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            <fmt:message key="to.add.new.content.click.the.button.below" />  You can also <a href="<spring:url value='/content/number/peer-reviews' />">peer-review</a> numbers.
         </p>
         
         <table class="bordered highlight">

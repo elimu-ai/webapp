@@ -15,6 +15,7 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.contributor.AudioContributionEvent;
+import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.v2.gson.application.ApplicationGson;
 import ai.elimu.model.v2.gson.application.ApplicationVersionGson;
@@ -31,6 +32,7 @@ import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.v2.gson.content.VideoGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.AudioContributionEventGson;
+import ai.elimu.model.v2.gson.crowdsource.NumberContributionEventGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -406,6 +408,24 @@ public class JpaToGsonConverter {
             wordContributionEventGson.setTime(wordContributionEvent.getTime());
             
             return wordContributionEventGson;
+        }
+    }
+    
+    public static NumberContributionEventGson getNumberContributionEventGson(NumberContributionEvent numberContributionEvent) {
+        if (numberContributionEvent == null) {
+            return null;
+        } else {
+            NumberContributionEventGson numberContributionEventGson = new NumberContributionEventGson();
+            
+            // BaseEntity
+            numberContributionEventGson.setId(numberContributionEvent.getId());
+            
+            // NumberContributionEvent
+            numberContributionEventGson.setNumber(getNumberGson(numberContributionEvent.getNumber()));
+            numberContributionEventGson.setComment(numberContributionEvent.getComment());
+            numberContributionEventGson.setTime(numberContributionEvent.getTime());
+            
+            return numberContributionEventGson;
         }
     }
     
