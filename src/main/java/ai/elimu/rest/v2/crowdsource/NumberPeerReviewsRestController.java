@@ -59,9 +59,6 @@ public class NumberPeerReviewsRestController {
 
     /**
      * Get {@link NumberContributionEvent}s pending a {@link NumberPeerReviewEvent} for the current {@link Contributor}.
-     * <p>
-     * Note: Currently The list of Emojis are not delivered in this method compared to the handleGetRequest method in
-     * {@link NumberPeerReviewsController}
      */
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest(HttpServletRequest request,
