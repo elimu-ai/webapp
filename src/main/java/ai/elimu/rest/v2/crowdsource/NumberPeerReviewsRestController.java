@@ -65,7 +65,6 @@ public class NumberPeerReviewsRestController {
                                    HttpServletResponse response) {
         logger.info("handleGetRequest");
 
-
         // Validate the Contributor.
         JSONObject jsonObject = new JSONObject();
 
