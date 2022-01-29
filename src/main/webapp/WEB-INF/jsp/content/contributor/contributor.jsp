@@ -24,4 +24,7 @@
     <div id="words">
         <%@ include file="/WEB-INF/jsp/content/contributor/contributor-words.jsp" %>
     </div>
+    <div id="numbers">
+        <%@ include file="/WEB-INF/jsp/content/contributor/contributor-numbers.jsp" %>
+    </div>
 </content:section>

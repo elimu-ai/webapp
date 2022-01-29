@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.NumberPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Number;
@@ -44,6 +45,9 @@ public class NumberEditController {
     private NumberContributionEventDao numberContributionEventDao;
     
     @Autowired
+    private NumberPeerReviewEventDao numberPeerReviewEventDao;
+    
+    @Autowired
     private WordDao wordDao;
     
     @Autowired
@@ -64,6 +68,7 @@ public class NumberEditController {
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         
         model.addAttribute("numberContributionEvents", numberContributionEventDao.readAll(number));
+        model.addAttribute("numberPeerReviewEvents", numberPeerReviewEventDao.readAll(number));
 
         return "content/number/edit";
     }
@@ -91,6 +96,7 @@ public class NumberEditController {
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             
             model.addAttribute("numberContributionEvents", numberContributionEventDao.readAll(number));
+            model.addAttribute("numberPeerReviewEvents", numberPeerReviewEventDao.readAll(number));
             
             return "content/number/edit";
         } else {

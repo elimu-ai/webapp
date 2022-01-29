@@ -4,11 +4,14 @@ import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioPeerReviewEventDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.NumberContributionEventDao;
+import ai.elimu.dao.NumberPeerReviewEventDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.model.contributor.NumberPeerReviewEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
@@ -54,6 +57,9 @@ public class ContributorController {
     
     @Autowired
     private NumberContributionEventDao numberContributionEventDao;
+    
+    @Autowired
+    private NumberPeerReviewEventDao numberPeerReviewEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -73,7 +79,7 @@ public class ContributorController {
         model.addAttribute("wordContributionsCount", wordContributionEventDao.readCount(contributor));
         model.addAttribute("wordPeerReviewsCount", wordPeerReviewEventDao.readCount(contributor));
         model.addAttribute("numberContributionsCount", numberContributionEventDao.readCount(contributor));
-        model.addAttribute("numberPeerReviewsCount", 0); // TODO
+        model.addAttribute("numberPeerReviewsCount", numberPeerReviewEventDao.readCount(contributor));
         
         // For contributor-storybooks.jsp
         List<StoryBookContributionEvent> storyBookContributionEvents = storyBookContributionEventDao.readAll(contributor);
@@ -94,6 +100,16 @@ public class ContributorController {
             wordPeerReviewEventsByContributionMap.put(wordContributionEvent.getId(), wordPeerReviewEventDao.readAll(wordContributionEvent));
         }
         model.addAttribute("wordPeerReviewEventsByContributionMap", wordPeerReviewEventsByContributionMap);
+        
+        // For contributor-numbers.jsp
+        List<NumberContributionEvent> numberContributionEvents = numberContributionEventDao.readAll(contributor);
+        model.addAttribute("numberContributionEvents", numberContributionEvents);
+        model.addAttribute("numberPeerReviewEvents", numberPeerReviewEventDao.readAll(contributor));
+        Map<Long, List<NumberPeerReviewEvent>> numberPeerReviewEventsByContributionMap = new HashMap<>();
+        for (NumberContributionEvent numberContributionEvent : numberContributionEvents) {
+            numberPeerReviewEventsByContributionMap.put(numberContributionEvent.getId(), numberPeerReviewEventDao.readAll(numberContributionEvent));
+        }
+        model.addAttribute("numberPeerReviewEventsByContributionMap", numberPeerReviewEventsByContributionMap);
         
         return "content/contributor/contributor";
     }

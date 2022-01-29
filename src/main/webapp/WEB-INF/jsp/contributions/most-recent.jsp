@@ -62,6 +62,39 @@
                 </c:forEach>
             </tbody>
         </table>
+        
+        <div class="divider" style="margin: 1.5em 0 2em 0;"></div>
+        
+        <h5>Most Recent Number Contributions</h5>
+        <table class="bordered striped highlight">
+            <thead>
+                <th><fmt:message key="value" /></th>
+                <th><fmt:message key="symbol" /></th>
+                <th><fmt:message key="number.words" /></th>
+                <th><fmt:message key="revision" /></th>
+            </thead>
+            <tbody>
+                <c:forEach var="numberContributionEvent" items="${numberContributionEvents}">
+                    <c:set var="number" value="${numberContributionEvent.number}" />
+                    <tr>
+                        <td>
+                            <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />">${number.value}</a>
+                        </td>
+                        <td>
+                            ${number.symbol}
+                        </td>
+                        <td>
+                            <c:forEach var="word" items="${number.words}">
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />">${word.text}</a>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <p>#${numberContributionEvent.revisionNumber}</p>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
 </content:section>
 

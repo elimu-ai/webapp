@@ -118,10 +118,63 @@
     
     <div class="divider" style="margin: 2em 0;"></div>
     
+    <%-- Display peer review form if the current contributor is not the same as that of the latest contribution event --%>
+    <c:if test="${(not empty numberContributionEvents) 
+                  && (numberContributionEvents[0].contributor.id != contributor.id)}">
+        <a name="peer-review"></a>
+        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
+        
+        <form action="<spring:url value='/content/number-peer-review-event/create' />" method="POST" class="card-panel">
+            <p>
+                <fmt:message key="do.you.approve.quality.of.this.number?" />
+            </p>
+            
+            <input type="hidden" name="numberContributionEventId" value="${numberContributionEvents[0].id}" />
+            
+            <input type="radio" id="approved_true" name="approved" value="true" />
+            <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
+
+            <input type="radio" id="approved_false" name="approved" value="false" />
+            <label for="approved_false"><fmt:message key="no" /> (request changes)</label><br />
+            
+            <script>
+                $(function() {
+                    $('[name="approved"]').on('change', function() {
+                        console.info('[name="approved"] on change');
+                        
+                        var isApproved = $('#approved_true').is(':checked');
+                        console.info('isApproved: ' + isApproved);
+                        if (isApproved) {
+                            console.info('isApproved');
+                            $('#comment').removeAttr('required');
+                        } else {
+                            $('#comment').attr('required', 'required');
+                            console.info('!isApproved');
+                        }
+                        
+                        $('#peerReviewSubmitContainer').fadeIn();
+                    });
+                });
+            </script>
+            
+            <div id="peerReviewSubmitContainer" style="display: none;">
+                <label for="comment"><fmt:message key="comment" /></label>
+                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+
+                <button class="btn waves-effect waves-light" type="submit">
+                    <fmt:message key="submit" /> <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+        
+        <div class="divider" style="margin: 2em 0;"></div>
+    </c:if>
+    
     <a name="contribution-events"></a>
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="numberContributionEvent" items="${numberContributionEvents}">
+            <a name="contribution-event_${numberContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
                     <fmt:message key="revision" /> #${numberContributionEvent.revisionNumber} 
@@ -151,7 +204,60 @@
                         </c:choose>
                     </div>
                 </a>
-                <blockquote><c:out value="${numberContributionEvent.comment}" /></blockquote>
+                <c:if test="${not empty numberContributionEvent.comment}">
+                    <blockquote><c:out value="${numberContributionEvent.comment}" /></blockquote>
+                </c:if>
+                
+                <%-- List peer reviews below each contribution event --%>
+                <c:forEach var="numberPeerReviewEvent" items="${numberPeerReviewEvents}">
+                    <c:if test="${numberPeerReviewEvent.numberContributionEvent.id == numberContributionEvent.id}">
+                        <div class="row peerReviewEvent indent" data-approved="${numberPeerReviewEvent.isApproved()}">
+                            <div class="col s4">
+                                <a href="<spring:url value='/content/contributor/${numberPeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty numberPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${numberPeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty numberPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty numberPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${numberPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${numberPeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty numberPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(numberPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(numberPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col s4">
+                                <code class="peerReviewStatus">
+                                    <c:choose>
+                                        <c:when test="${numberPeerReviewEvent.isApproved()}">
+                                            APPROVED
+                                        </c:when>
+                                        <c:otherwise>
+                                            NOT_APPROVED
+                                        </c:otherwise>
+                                    </c:choose>
+                                </code>
+                            </div>
+                            <div class="col s4" style="text-align: right;">
+                                <fmt:formatDate value="${numberPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                            </div>
+                            <c:if test="${not empty numberPeerReviewEvent.comment}">
+                                <div class="col s12 comment"><c:out value="${numberPeerReviewEvent.comment}" /></div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </c:forEach>
     </div>

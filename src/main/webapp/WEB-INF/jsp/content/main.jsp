@@ -62,6 +62,7 @@
                         <div class="determinate" style="width: ${numberCount/500 * 100}%"></div>
                     </div>
                     <a href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
+                    <a href="<spring:url value='/content/number/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
             </div>
         </div>

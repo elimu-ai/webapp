@@ -44,6 +44,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.contributor.LetterContributionEvent;
@@ -51,6 +52,7 @@ import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 import ai.elimu.dao.SoundDao;
+import ai.elimu.model.contributor.NumberContributionEvent;
 
 public class DbContentImportHelper {
     
@@ -71,6 +73,8 @@ public class DbContentImportHelper {
     private WordContributionEventDao wordContributionEventDao;
     
     private NumberDao numberDao;
+    
+    private NumberContributionEventDao numberContributionEventDao;
     
     private EmojiDao emojiDao;
     
@@ -196,8 +200,18 @@ public class DbContentImportHelper {
         List<Number> numbers = CsvContentExtractionHelper.getNumbersFromCsvBackup(numbersCsvFile, wordDao);
         logger.info("numbers.size(): " + numbers.size());
         numberDao = (NumberDao) webApplicationContext.getBean("numberDao");
+        numberContributionEventDao = (NumberContributionEventDao) webApplicationContext.getBean("numberContributionEventDao");
         for (Number number : numbers) {
             numberDao.create(number);
+            
+            NumberContributionEvent numberContributionEvent = new NumberContributionEvent();
+            numberContributionEvent.setContributor(contributor);
+            numberContributionEvent.setNumber(number);
+            numberContributionEvent.setRevisionNumber(1);
+            numberContributionEvent.setTime(Calendar.getInstance());
+            numberContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+            numberContributionEvent.setPlatform(Platform.WEBAPP);
+            numberContributionEventDao.create(numberContributionEvent);
         }
         
         // Extract and import Syllables from CSV file in src/main/resources/
