@@ -99,6 +99,12 @@ public class ApplicationVersionCreateController {
                     ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
                     ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
                     
+                    String packageName = apkMeta.getPackageName();
+                    logger.info("packageName: " + packageName);
+                    if (!packageName.equals(applicationVersion.getApplication().getPackageName())) {
+                        result.reject("packageName.mismatch");
+                    }
+                    
                     Integer versionCode = apkMeta.getVersionCode().intValue();
                     logger.info("versionCode: " + versionCode);
 
