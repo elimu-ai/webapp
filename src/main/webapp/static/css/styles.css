@@ -100,7 +100,8 @@ footer.page-footer .footer-copyright {
 .card-panel {
     border-radius: 8px;
 }
-.card .card-image {
+.card .card-image,
+.card .card-image img {
     border-radius: 8px 8px 0 0;
 }
 .card .card-action:last-child {
