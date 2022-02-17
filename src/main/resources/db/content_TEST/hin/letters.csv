@@ -54,3 +54,4 @@ id,text,diacritic,usage_count
 40,ऊ,false,58
 53,ढ,false,39
 48,ग़,false,5
+56," ़",true,0

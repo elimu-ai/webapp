@@ -47,3 +47,7 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 46,audio/mpeg,null,"null",60,"word-60","बहुत","/audio/46.mp3",MP3
 47,audio/mpeg,null,"null",52,"word-52","की","/audio/47.mp3",MP3
 48,audio/mpeg,null,"null",68,"word-68","हैं","/audio/48.mp3",MP3
+49,audio/mpeg,null,"null",147,"word_शून्य","शून्य","/audio/49.mp3",MP3
+50,audio/mpeg,null,"null",34,"word_नहीं","नहीं","/audio/50.mp3",MP3
+51,audio/mpeg,null,"null",73,"word_का","का","/audio/51.mp3",MP3
+52,audio/mpeg,null,"null",93,"word_कपड़े","कपड़े","/audio/52.mp3",MP3
