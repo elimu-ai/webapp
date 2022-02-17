@@ -347,7 +347,7 @@
         timeLastUpdate timestamp,
         usageCount integer,
         diacritic boolean not null,
-        text varchar(1),
+        text varchar(2),
         primary key (id)
     );
 
