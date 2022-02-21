@@ -108,7 +108,7 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Learning Platform 🧩</h5>
                 <p>
-                    The elimu.ai software is a <i>platform</i> of educational content and Android apps.
+                    The elimu.ai software is a <i>platform</i> of educational content and Android apps/games.
                 </p>
                 <p>
                     Each child is provided with a clear instructional path for learning literacy and numeracy as efficiently as possible.
