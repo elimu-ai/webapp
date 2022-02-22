@@ -14,5 +14,7 @@ public interface LetterSoundCorrespondenceContributionEventDao extends GenericDa
 
     List<LetterSoundCorrespondenceContributionEvent> readAll(Contributor contributor) throws DataAccessException;
 
+    List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSoundCorrespondence() throws DataAccessException;
+    
     Long readCount(Contributor contributor) throws DataAccessException;
 }
