@@ -19,14 +19,14 @@
         
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" /> You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer-review</a> words.
-        </p>
+        </p>s
         
         <c:if test="${not empty words}">
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="sounds" /></th>
+                    <th><fmt:message key="letter.sound.correspondences" /></th>
                     <%--<th><fmt:message key="spelling.consistency" /></th>--%>
                     <th><fmt:message key="word.type" /></th>
                     <th><fmt:message key="root.word" /></th>
@@ -46,7 +46,21 @@
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />">"<c:out value="${word.text}" />"</a>
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                <div id="letterSoundCorrespondencesContainer">
+                                    <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
+                                        <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
+                                        <div class="chip">
+                                            <a href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />">
+                                                "<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                                    ${letter.text}
+                                                </c:forEach>"<br />
+                                                /<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                                    ${sound.valueIpa}
+                                                </c:forEach>/
+                                            </a>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                             <%--
                             <td>
