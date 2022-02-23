@@ -127,3 +127,9 @@ blockquote,
     border-radius: 4px;
     padding: 4px;
 }
+.diff-highlight {
+    background-color: #ffecb3; /* amber lighten-4 */
+    border-bottom: 2px solid #ffc107; /* amber */
+    border-radius: 4px;
+    padding: 4px;
+}
