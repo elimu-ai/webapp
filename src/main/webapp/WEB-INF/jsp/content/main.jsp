@@ -37,6 +37,7 @@
                 </div>
                 <div class="card-action">
                     <a href="<spring:url value='/content/letter-sound-correspondence/list' />"><fmt:message key="view.list" /> (${letterSoundCorrespondenceCount})</a>
+                    <a href="<spring:url value='/content/letter-sound-correspondence/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
             </div>
         </div>
