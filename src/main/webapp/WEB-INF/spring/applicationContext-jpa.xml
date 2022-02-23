@@ -46,8 +46,8 @@
     <!-- DAOs that will be autowired -->
     <bean id="applicationDao" class="ai.elimu.dao.jpa.ApplicationDaoJpa" />
     <bean id="applicationVersionDao" class="ai.elimu.dao.jpa.ApplicationVersionDaoJpa" />
-    <bean id="audioContributionEventDao" class="ai.elimu.dao.jpa.AudioContributionEventDaoJpa" />
     <bean id="audioDao" class="ai.elimu.dao.jpa.AudioDaoJpa" />
+    <bean id="audioContributionEventDao" class="ai.elimu.dao.jpa.AudioContributionEventDaoJpa" />
     <bean id="audioPeerReviewLearningEventDao" class="ai.elimu.dao.jpa.AudioPeerReviewEventDaoJpa" />
     <bean id="contributorDao" class="ai.elimu.dao.jpa.ContributorDaoJpa" />
     <bean id="dbMigrationDao" class="ai.elimu.dao.jpa.DbMigrationDaoJpa" />
@@ -55,27 +55,27 @@
     <bean id="emojiDao" class="ai.elimu.dao.jpa.EmojiDaoJpa" />
     <bean id="imageDao" class="ai.elimu.dao.jpa.ImageDaoJpa" />
     <bean id="imageContributionEventDao" class="ai.elimu.dao.jpa.ImageContributionEventDaoJpa" />
-    <bean id="letterContributionEventDao" class="ai.elimu.dao.jpa.LetterContributionEventDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
+    <bean id="letterContributionEventDao" class="ai.elimu.dao.jpa.LetterContributionEventDaoJpa" />
     <bean id="letterLearningEventDao" class="ai.elimu.dao.jpa.LetterLearningEventDaoJpa" />
     <bean id="letterSoundCorrespondenceDao" class="ai.elimu.dao.jpa.LetterSoundCorrespondenceDaoJpa" />
     <bean id="letterSoundCorrespondenceContributionEventDao" class="ai.elimu.dao.jpa.LetterSoundCorrespondenceContributionEventDaoJpa" />
     <bean id="letterSoundCorrespondencePeerReviewEventDao" class="ai.elimu.dao.jpa.LetterSoundCorrespondencePeerReviewEventDaoJpa" />
-    <bean id="numberContributionEventDao" class="ai.elimu.dao.jpa.NumberContributionEventDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
+    <bean id="numberContributionEventDao" class="ai.elimu.dao.jpa.NumberContributionEventDaoJpa" />
     <bean id="numberPeerReviewEventDao" class="ai.elimu.dao.jpa.NumberPeerReviewEventDaoJpa" />
-    <bean id="soundContributionEventDao" class="ai.elimu.dao.jpa.SoundContributionEventDaoJpa" />
     <bean id="soundDao" class="ai.elimu.dao.jpa.SoundDaoJpa" />
+    <bean id="soundContributionEventDao" class="ai.elimu.dao.jpa.SoundContributionEventDaoJpa" />
     <bean id="storyBookDao" class="ai.elimu.dao.jpa.StoryBookDaoJpa" />
-    <bean id="storyBookChapterDao" class="ai.elimu.dao.jpa.StoryBookChapterDaoJpa" />
     <bean id="storyBookContributionEventDao" class="ai.elimu.dao.jpa.StoryBookContributionEventDaoJpa" />
     <bean id="storyBookLearningEventDao" class="ai.elimu.dao.jpa.StoryBookLearningEventDaoJpa" />
-    <bean id="storyBookParagraphDao" class="ai.elimu.dao.jpa.StoryBookParagraphDaoJpa" />
     <bean id="storyBookPeerReviewEventDao" class="ai.elimu.dao.jpa.StoryBookPeerReviewEventDaoJpa" />
+    <bean id="storyBookChapterDao" class="ai.elimu.dao.jpa.StoryBookChapterDaoJpa" />
+    <bean id="storyBookParagraphDao" class="ai.elimu.dao.jpa.StoryBookParagraphDaoJpa" />
     <bean id="syllableDao" class="ai.elimu.dao.jpa.SyllableDaoJpa" />
     <bean id="videoDao" class="ai.elimu.dao.jpa.VideoDaoJpa" />
-    <bean id="wordContributionEventDao" class="ai.elimu.dao.jpa.WordContributionEventDaoJpa" />
     <bean id="wordDao" class="ai.elimu.dao.jpa.WordDaoJpa" />
+    <bean id="wordContributionEventDao" class="ai.elimu.dao.jpa.WordContributionEventDaoJpa" />
     <bean id="wordLearningEventDao" class="ai.elimu.dao.jpa.WordLearningEventDaoJpa" />
     <bean id="wordPeerReviewLearningEventDao" class="ai.elimu.dao.jpa.WordPeerReviewEventDaoJpa" />
 </beans>
