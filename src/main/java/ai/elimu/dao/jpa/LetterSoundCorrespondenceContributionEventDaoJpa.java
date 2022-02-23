@@ -39,6 +39,16 @@ public class LetterSoundCorrespondenceContributionEventDaoJpa extends GenericDao
             .setParameter("contributor", contributor)
             .getResultList();
     }
+    
+    @Override
+    public List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSoundCorrespondence() throws DataAccessException {
+        return em.createQuery(
+            "SELECT e " + 
+            "FROM LetterSoundCorrespondenceContributionEvent e " +
+            "WHERE e.time IN (SELECT MAX(time) FROM LetterSoundCorrespondenceContributionEvent GROUP BY letterSoundCorrespondence_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "ORDER BY e.time ASC")
+            .getResultList();
+    }
 
     @Override
     public Long readCount(Contributor contributor) throws DataAccessException {

@@ -144,6 +144,58 @@
     </div>
     
     <div class="divider" style="margin: 2em 0;"></div>
+    
+    <%-- Display peer review form if the current contributor is not the same as that of the latest contribution event --%>
+    <c:if test="${(not empty letterSoundCorrespondenceContributionEvents) 
+                  && (letterSoundCorrespondenceContributionEvents[0].contributor.id != contributor.id)}">
+        <a name="peer-review"></a>
+        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
+        
+        <form action="<spring:url value='/content/letter-sound-correspondence-peer-review-event/create' />" method="POST" class="card-panel">
+            <p>
+                <fmt:message key="do.you.approve.quality.of.this.letter.sound.correspondence?" />
+            </p>
+            
+            <input type="hidden" name="letterSoundCorrespondenceContributionEventId" value="${letterSoundCorrespondenceContributionEvents[0].id}" />
+            
+            <input type="radio" id="approved_true" name="approved" value="true" />
+            <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
+
+            <input type="radio" id="approved_false" name="approved" value="false" />
+            <label for="approved_false"><fmt:message key="no" /> (request changes)</label><br />
+            
+            <script>
+                $(function() {
+                    $('[name="approved"]').on('change', function() {
+                        console.info('[name="approved"] on change');
+                        
+                        var isApproved = $('#approved_true').is(':checked');
+                        console.info('isApproved: ' + isApproved);
+                        if (isApproved) {
+                            console.info('isApproved');
+                            $('#comment').removeAttr('required');
+                        } else {
+                            $('#comment').attr('required', 'required');
+                            console.info('!isApproved');
+                        }
+                        
+                        $('#peerReviewSubmitContainer').fadeIn();
+                    });
+                });
+            </script>
+            
+            <div id="peerReviewSubmitContainer" style="display: none;">
+                <label for="comment"><fmt:message key="comment" /></label>
+                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+
+                <button class="btn waves-effect waves-light" type="submit">
+                    <fmt:message key="submit" /> <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+        
+        <div class="divider" style="margin: 2em 0;"></div>
+    </c:if>
 
     <a name="contribution-events"></a>
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
@@ -182,6 +234,57 @@
                 <c:if test="${not empty letterSoundCorrespondenceContributionEvent.comment}">
                     <blockquote><c:out value="${letterSoundCorrespondenceContributionEvent.comment}" /></blockquote>
                 </c:if>
+                
+                <%-- List peer reviews below each contribution event --%>
+                <c:forEach var="letterSoundCorrespondencePeerReviewEvent" items="${letterSoundCorrespondencePeerReviewEvents}">
+                    <c:if test="${letterSoundCorrespondencePeerReviewEvent.letterSoundCorrespondenceContributionEvent.id == letterSoundCorrespondenceContributionEvent.id}">
+                        <div class="row peerReviewEvent indent" data-approved="${letterSoundCorrespondencePeerReviewEvent.isApproved()}">
+                            <div class="col s4">
+                                <a href="<spring:url value='/content/contributor/${letterSoundCorrespondencePeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${letterSoundCorrespondencePeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${letterSoundCorrespondencePeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${letterSoundCorrespondencePeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col s4">
+                                <code class="peerReviewStatus">
+                                    <c:choose>
+                                        <c:when test="${letterSoundCorrespondencePeerReviewEvent.isApproved()}">
+                                            APPROVED
+                                        </c:when>
+                                        <c:otherwise>
+                                            NOT_APPROVED
+                                        </c:otherwise>
+                                    </c:choose>
+                                </code>
+                            </div>
+                            <div class="col s4" style="text-align: right;">
+                                <fmt:formatDate value="${letterSoundCorrespondencePeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                            </div>
+                            <c:if test="${not empty letterSoundCorrespondencePeerReviewEvent.comment}">
+                                <div class="col s12 comment"><c:out value="${letterSoundCorrespondencePeerReviewEvent.comment}" /></div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </c:forEach>
     </div>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
@@ -45,6 +46,9 @@ public class LetterSoundCorrespondenceEditController {
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
     
     @Autowired
+    private LetterSoundCorrespondencePeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
+    
+    @Autowired
     private LetterDao letterDao;
     
     @Autowired
@@ -69,6 +73,7 @@ public class LetterSoundCorrespondenceEditController {
         model.addAttribute("sounds", sounds);
         
         model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
+        model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
         
         List<Word> words = wordDao.readAllOrderedByUsage();
         model.addAttribute("words", words);
@@ -104,6 +109,7 @@ public class LetterSoundCorrespondenceEditController {
             model.addAttribute("sounds", sounds);
             
             model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
+            model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
             
             return "content/letter-sound-correspondence/edit";
         } else {
