@@ -485,7 +485,7 @@
     <h5 class="center"><fmt:message key="storybook.paragraphs.containing.word" /> (${fn:length(storyBookParagraphsContainingWord)})</h5>
     <c:forEach var="storyBookParagraph" items="${storyBookParagraphsContainingWord}">
         <p>
-            <c:set var="wordTextInBold" value="<span class='diff-addition'>${word.text}</span>" />
+            <c:set var="wordTextInBold" value="<span class='diff-highlight'>${word.text}</span>" />
              "${fn:replace(storyBookParagraph.originalText, word.text, wordTextInBold)}"<br />
             <a href="<spring:url value='/content/storybook/edit/${storyBookParagraph.storyBookChapter.storyBook.id}#ch-id-${storyBookParagraph.storyBookChapter.id}' />" target="_blank"><c:out value="${storyBookParagraph.storyBookChapter.storyBook.title}" /></a>
         </p>
