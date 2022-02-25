@@ -504,7 +504,7 @@
         <dependency>
             <groupId>org.bitbucket.ijabz</groupId>
             <artifactId>jaudiotagger</artifactId>
-            <version>v2.2.5</version>
+            <version>3.0.1</version>
         </dependency>
 
         <!-- Database -->
