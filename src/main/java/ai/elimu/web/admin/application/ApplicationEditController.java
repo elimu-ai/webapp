@@ -86,7 +86,7 @@ public class ApplicationEditController {
                 }
             }
             
-            return "redirect:/admin/application/list";
+            return "redirect:/admin/application/list#" + application.getId();
         }
     }
 }
