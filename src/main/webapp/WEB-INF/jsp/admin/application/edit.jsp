@@ -92,6 +92,7 @@
     <div class="card-panel">    
         <div class="row">
             <div class="col s12">
+                <a name="versions"></a>
                 <h5><fmt:message key="application.versions" /></h5>
                 <p>
                     <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">file_upload</i><fmt:message key='upload.new.apk.file' /></a>

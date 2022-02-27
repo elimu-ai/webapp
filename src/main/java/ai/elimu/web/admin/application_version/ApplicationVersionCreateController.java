@@ -167,7 +167,7 @@ public class ApplicationVersionCreateController {
                     null
             );
             
-            return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
+            return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId() + "#versions";
         }
     }
     
