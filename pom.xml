@@ -4,7 +4,7 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.2.86-SNAPSHOT</version>
+    <version>2.2.87-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
