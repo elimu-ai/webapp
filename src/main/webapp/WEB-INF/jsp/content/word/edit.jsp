@@ -363,24 +363,6 @@
             </ol>
         </div>
     </c:if>
-    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
-        <c:if test="${not empty word.text}">
-            <div class="divider" style="margin: 1.5em 0;"></div>
-        </c:if>
-
-        <h5 class="center"><fmt:message key="resources" /></h5>
-        <div class="card-panel deep-purple lighten-5">
-            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
-            <ol style="list-style-type: inherit;">
-                <li>
-                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
-                </li>
-                <li>
-                    <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
-                </li>
-            </ol>
-        </div>
-    </c:if>
     <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
         <c:if test="${not empty word.text}">
             <div class="divider" style="margin: 1.5em 0;"></div>
@@ -400,8 +382,24 @@
                     <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
                 </li>
             </ol>
-            
+        </div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+        <c:if test="${not empty word.text}">
             <div class="divider" style="margin: 1.5em 0;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
         </div>
     </c:if>
     
