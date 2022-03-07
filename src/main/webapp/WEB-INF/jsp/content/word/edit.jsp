@@ -402,6 +402,24 @@
             </ol>
         </div>
     </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'SWA'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin: 1.5em 0;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#sw" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=sw&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
     
     <div class="divider" style="margin: 1.5em 0;"></div>
     
