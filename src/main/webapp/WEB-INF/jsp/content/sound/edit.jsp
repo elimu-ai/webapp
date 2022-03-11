@@ -160,6 +160,13 @@
 </content:section>
 
 <content:aside>
+    <h5 class="center"><fmt:message key="audio" /></h5>
+    <audio controls="true">
+        <source src="<spring:url value='/static/sound/sampa_${sound.valueSampa}.wav' />" />
+    </audio>
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
     <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
         <h5 class="center"><fmt:message key="resources" /></h5>
         <div class="card-panel deep-purple lighten-5">
