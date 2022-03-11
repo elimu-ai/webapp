@@ -42,6 +42,8 @@ public class ParagraphWordScheduler {
         List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
         logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+            logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+            
             List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
             logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
             
