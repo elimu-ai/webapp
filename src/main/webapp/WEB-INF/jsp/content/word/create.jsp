@@ -87,7 +87,7 @@
                                 var letterSoundCorrespondenceLetters = selectedOption.attr('data-letters');
                                 console.log('letterSoundCorrespondenceLetters: "' + letterSoundCorrespondenceLetters + '"');
                                 var letterSoundCorrespondenceSounds = selectedOption.attr('data-sounds');
-                                console.log('letterSoundCorrespondenceSounds: "' + letterSoundCorrespondenceSounds'"');
+                                console.log('letterSoundCorrespondenceSounds: "' + letterSoundCorrespondenceSounds + '"');
                                 if (letterSoundCorrespondenceId != "") {
                                     $('#letterSoundCorrespondencesContainer').append('<input name="letterSoundCorrespondences" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
                                     $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceSounds + '/</div>');
