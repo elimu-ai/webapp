@@ -201,4 +201,44 @@
             </li>
         </ol>
     </div>
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
+    <h5 class="center"><fmt:message key="usages" /></h5>
+    
+    <table class="bordered highlight">
+        <thead>
+            <th><fmt:message key="frequency" /></th>
+            <th><fmt:message key="letters" /></th>
+            <th></th>
+            <th><fmt:message key="sounds" /></th>
+        </thead>
+        <tbody>
+            <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
+                <%-- Check if the current sound is used by the letter-sound correspondence. --%>
+                <c:set var="isUsedByLetterSoundCorrespondence" value="false" />
+                <c:forEach var="s" items="${letterSoundCorrespondence.sounds}">
+                    <c:if test="${sound.id == s.id}">
+                        <c:set var="isUsedByLetterSoundCorrespondence" value="true" />
+                    </c:if>
+                </c:forEach>
+                <c:if test="${isUsedByLetterSoundCorrespondence}">
+                    <tr>
+                        <td>
+                            ${letterSoundCorrespondence.usageCount}
+                        </td>
+                        <td>
+                            " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
+                        </td>
+                        <td>
+                            ➞
+                        </td>
+                        <td>
+                            / <c:forEach var="s" items="${letterSoundCorrespondence.sounds}"><a href="<spring:url value='/content/sound/edit/${s.id}' />"><c:if test="${s.id == sound.id}"><span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if></a> </c:forEach> /
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </tbody>
+    </table>
 </content:aside>
