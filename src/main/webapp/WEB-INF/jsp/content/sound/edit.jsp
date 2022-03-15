@@ -204,7 +204,7 @@
     
     <div class="divider" style="margin: 1.5em 0;"></div>
     
-    <h5 class="center"><fmt:message key="usages" /></h5>
+    <h5 class="center"><fmt:message key="letter.sound.correspondences" /></h5>
     
     <table class="bordered highlight">
         <thead>
