@@ -18,7 +18,9 @@
                             <input name="letters" type="hidden" value="${letter.id}" />
                             <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}"
                                  style="font-size: 2rem; padding: 1rem; height: auto;">
-                                ${letter.text} 
+                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">
+                                    ${letter.text} 
+                                </a>
                                 <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
@@ -77,7 +79,9 @@
                             <input name="sounds" type="hidden" value="${sound.id}" />
                             <div class="chip" data-soundid="${sound.id}" data-soundvalue="${sound.valueIpa}"
                                  style="font-size: 2rem; padding: 1rem; height: auto;">
-                                ${sound.valueIpa} 
+                                <a href="<spring:url value='/content/sound/edit/${sound.id}' />">
+                                    ${sound.valueIpa} 
+                                </a>
                                 <a href="#" class="soundDeleteLink" data-soundid="${sound.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
