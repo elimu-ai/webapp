@@ -15,10 +15,6 @@ nav {
     transition: all .5s;
 }
 
-#wordCreatePage input#text,
-#wordEditPage input#text {
-    font-size: 2em;
-}
 #letterSoundCorrespondencesContainer .chip {
     text-align: center;
     font-size: 2rem;
@@ -27,18 +23,12 @@ nav {
     background-color: #EEE;
 }
 
-html[data-content-language="ben"] #letterCreatePage input#text,
-html[data-content-language="hin"] #letterCreatePage input#text,
-html[data-content-language="urd"] #letterCreatePage input#text,
-html[data-content-language="ben"] #letterEditPage input#text,
-html[data-content-language="hin"] #letterEditPage input#text,
-html[data-content-language="urd"] #letterEditPage input#text,
-html[data-content-language="ben"] #wordCreatePage input#text,
-html[data-content-language="hin"] #wordCreatePage input#text,
-html[data-content-language="urd"] #wordCreatePage input#text,
-html[data-content-language="ben"] #wordEditPage input#text,
-html[data-content-language="hin"] #wordEditPage input#text,
-html[data-content-language="urd"] #wordEditPage input#text {
+#letterCreatePage input#text,
+#letterEditPage input#text,
+#wordCreatePage input#text,
+#wordEditPage input#text,
+#soundCreatePage input#valueIpa,
+#soundEditPage input#valueIpa {
     font-size: 4rem;
     height: 2em;
     letter-spacing: 0.2em;
