@@ -43,7 +43,10 @@
                                 <a href="<spring:url value='/content/letter/edit/${letter.id}' />">"<c:out value='${letter.text}' />"</a>
                             </td>
                             <td>
-                                ${letter.diacritic}
+                                <c:choose>
+                                	<c:when test="${letter.diacritic}">Yes</c:when>
+                                	<c:otherwise>No</c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
                                 <p>#${letter.revisionNumber}</p>
