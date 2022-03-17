@@ -27,3 +27,6 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 34,audio/mpeg,null,"null",152,"word_ngunit","ngunit","/audio/34.mp3",MP3
 35,audio/mpeg,null,"null",249,"word_gusto","gusto","/audio/35.mp3",MP3
 36,audio/mpeg,null,"null",243,"word_rin","rin","/audio/36.mp3",MP3
+37,audio/mpeg,null,"null",429,"word-id-429","isa","/audio/37.mp3",MP3
+38,audio/mpeg,null,"null",430,"word-id-430","dalawa","/audio/38.mp3",MP3
+39,audio/mpeg,null,"null",431,"word-id-431","tatlo","/audio/39.mp3",MP3

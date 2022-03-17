@@ -1,7 +1,7 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
-41,ɑ,A,,false,VOWEL,720
-43,i,i,,false,VOWEL,405
-55,n,n,,false,CONSONANT,192
+41,ɑ,A,,false,VOWEL,840
+43,i,i,,false,VOWEL,576
+55,n,n,,false,CONSONANT,387
 46,m,m,,false,CONSONANT,165
 66,ʄ,j_<,,false,CONSONANT,48
 62,ɾ,4,,false,CONSONANT,24

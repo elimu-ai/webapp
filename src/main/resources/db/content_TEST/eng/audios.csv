@@ -68,3 +68,5 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 67,audio/mpeg,null,"null",,"storybook-26-ch-11-par-2","Tomorrow, what will I be?","/audio/67.mp3",MP3
 68,audio/mpeg,null,"null",54,"word-54","bb","/audio/68.mp3",MP3
 69,audio/mpeg,null,"null",52,"word-52","ball","/audio/69.mp3",MP3
+70,audio/mpeg,null,"null",53,"his","his","/audio/70.mp3",MP3
+71,audio/mpeg,null,"null",52,"ball","ball","/audio/71.mp3",MP3

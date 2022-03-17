@@ -51,3 +51,7 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 50,audio/mpeg,null,"null",34,"word_नहीं","नहीं","/audio/50.mp3",MP3
 51,audio/mpeg,null,"null",73,"word_का","का","/audio/51.mp3",MP3
 52,audio/mpeg,null,"null",93,"word_कपड़े","कपड़े","/audio/52.mp3",MP3
+53,audio/mpeg,null,"null",125,"word_पानी","पानी","/audio/53.mp3",MP3
+54,audio/mpeg,null,"null",8,"word_भी","भी","/audio/54.mp3",MP3
+55,audio/mpeg,null,"null",33,"word_मैं","मैं","/audio/55.mp3",MP3
+56,audio/mpeg,null,"null",99,"word_कि","कि","/audio/56.mp3",MP3
