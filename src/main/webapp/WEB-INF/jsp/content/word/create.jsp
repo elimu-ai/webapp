@@ -229,8 +229,6 @@
             </ol>
         </div>
     </c:if>
-    
-    <div class="divider" style="margin: 1.5em 0;"></div>
         
     <div class="card-panel deep-purple lighten-5">
         General resources:
