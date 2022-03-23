@@ -76,6 +76,13 @@ public class WordUsageCountScheduler {
             Word word = wordDao.readByText(wordLowerCase);
             if (word != null) {
                 word.setUsageCount(wordFrequencyMap.get(wordLowerCase));
+                
+                // Temporary fix for "javax.validation.ConstraintViolationException"
+                if (word.getLetterSoundCorrespondences() == null) {
+                    logger.warn("Letter-sound correspondences not yet added. Skipping usage count update for word...");
+                    continue;
+                }
+                
                 wordDao.update(word);
             }
         }
