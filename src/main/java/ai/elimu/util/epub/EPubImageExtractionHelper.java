@@ -149,6 +149,55 @@ public class EPubImageExtractionHelper {
                             }
                         }
                         
+                        // Look for images within `<div lang="en">` (StoryBookProvider#LETS_READ_ASIA)
+                        // Expected format:
+                        /*
+                            <div lang="en">
+                                <div class="container">
+                                    <img src="p-1.jpg" alt=""/>
+                                </div>
+                                <p dir="auto">The moon rises.</p>
+                            </div>
+                        */
+                        if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("lang") != null)) {
+                            NodeList langDivChildNodeList = bodyChildNode.getChildNodes();
+                            logger.info("langDivChildNodeList: " + langDivChildNodeList);
+                            for (int k = 0; k < langDivChildNodeList.getLength(); k++) {
+                                Node langDivChildNode = langDivChildNodeList.item(k);
+                                logger.info("langDivChildNode: " + langDivChildNode);
+                                
+                                // Look for "<div class="container">" (StoryBookProvider#LETS_READ_ASIA)
+                                if ("div".equals(langDivChildNode.getNodeName())) {
+                                    NamedNodeMap itemAttributes = langDivChildNode.getAttributes();
+                                    logger.info("itemAttributes (LETS_READ_ASIA): " + itemAttributes);
+
+                                    Node classAttributeNode = itemAttributes.getNamedItem("class");
+                                    logger.info("classAttributeNode (LETS_READ_ASIA): " + classAttributeNode);
+                                    if ((classAttributeNode != null) && "container".equals(classAttributeNode.getNodeValue())) {
+                                        NodeList containerDivChildNodeList = langDivChildNode.getChildNodes();
+                                        logger.info("containerDivChildNodeList.getLength() (LETS_READ_ASIA): " + containerDivChildNodeList.getLength());
+                                        for (int l = 0; l < containerDivChildNodeList.getLength(); l++) {
+                                            Node containerDivChildNode = containerDivChildNodeList.item(l);
+                                            logger.info("containerDivChildNode (LETS_READ_ASIA): " + containerDivChildNode);
+                                            logger.info("containerDivChildNode.getTextContent() (LETS_READ_ASIA): \"" + containerDivChildNode.getTextContent() + "\"");
+
+                                            // Look for "<img>"
+                                            if ("img".equals(containerDivChildNode.getNodeName())) {
+                                                // Expected format: <img src = 'image_3.jpg' />
+
+                                                NamedNodeMap imageAttributes = containerDivChildNode.getAttributes();
+                                                logger.info("imageAttributes (LETS_READ_ASIA): " + imageAttributes);
+
+                                                Node srcAttributeNode = imageAttributes.getNamedItem("src");
+                                                logger.info("srcAttributeNode (LETS_READ_ASIA): " + srcAttributeNode);
+                                                return srcAttributeNode.getNodeValue();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
                         // Look for "<div id="story_epub">" (StoryBookProvider#STORYWEAVER)
                         if ("div".equals(bodyChildNode.getNodeName())) {
                             if ((bodyChildNode.getAttributes().getNamedItem("id") != null) 

@@ -119,7 +119,7 @@ public class EPubParagraphExtractionHelper {
                             }
                         }
                         
-                        // Look for paragraphs within "<div lang="en">" (StoryBookProvider#LETS_READ_ASIA)
+                        // Look for paragraphs within `<div lang="en">` (StoryBookProvider#LETS_READ_ASIA)
                         // Expected format:
                         /*
                             <div lang="en">
