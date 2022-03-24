@@ -369,6 +369,7 @@ public class StoryBookCreateFromEPubController {
                         || originalTextLowerCase.contains("pratham books")
                         || originalTextLowerCase.contains("storyweaver")
                         || originalTextLowerCase.contains("copyright page")
+                        || originalTextLowerCase.contains("by smart axiata") // StoryBookProvider#LETS_READ_ASIA
                     ) {
                         isMetadata = true;
                         break;
