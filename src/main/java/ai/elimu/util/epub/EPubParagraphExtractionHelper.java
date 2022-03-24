@@ -119,6 +119,61 @@ public class EPubParagraphExtractionHelper {
                             }
                         }
                         
+                        // Look for paragraphs within "<div lang="en">" (StoryBookProvider#LETS_READ_ASIA)
+                        // Expected format:
+                        /*
+                            <div lang="en">
+                                <div class="container">
+                                    <img src="p-1.jpg" alt=""/>
+                                </div>
+                                <p dir="auto">The moon rises.</p>
+                            </div>
+                        */
+                        if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("lang") != null)) {
+                            NodeList langDivChildNodeList = bodyChildNode.getChildNodes();
+                            logger.info("langDivChildNodeList: " + langDivChildNodeList);
+                            for (int k = 0; k < langDivChildNodeList.getLength(); k++) {
+                                Node langDivChildNode = langDivChildNodeList.item(k);
+                                logger.info("langDivChildNode: " + langDivChildNode);
+                                
+                                // Look for "<p>"
+                                if ("p".equals(langDivChildNode.getNodeName())) {
+                                    // If double line-breaks ("<br/><br/>"), insert "</p><p>" into the Node's text content
+                                    if (langDivChildNode.hasChildNodes()) {
+                                        NodeList paragraphChildNodeList = langDivChildNode.getChildNodes();
+                                        int consecutiveLineBreaksCount = 0;
+                                        for (int l = 0; l < paragraphChildNodeList.getLength(); l++) {
+                                            Node paragraphChildNode = paragraphChildNodeList.item(l);
+                                            logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
+                                            if ("br".equals(paragraphChildNode.getNodeName())) {
+                                                consecutiveLineBreaksCount++;
+                                            } else {
+                                                consecutiveLineBreaksCount = 0;
+                                            }
+                                            logger.info("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
+                                            if (consecutiveLineBreaksCount == 1) {
+                                                // Replace "<br/>" with whitespace
+                                                paragraphChildNode.setTextContent(" ");
+                                            } else if (consecutiveLineBreaksCount == 2) {
+                                                // Replace "<br/><br/>" with whitespace
+                                                paragraphChildNode.setTextContent("</p><p>");
+                                                consecutiveLineBreaksCount = 0;
+                                            }
+                                        }
+                                    }
+
+                                    String[] paragraphArray = langDivChildNode.getTextContent().split("</p><p>");
+                                    for (String paragraph : paragraphArray) {
+                                        logger.info("paragraph: \"" + paragraph + "\"");
+                                        paragraph = getCleanedUpParagraph(paragraph);
+                                        if (StringUtils.isNotBlank(paragraph)) {
+                                            paragraphs.add(paragraph);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
                         // Look for text content
                         // In some cases, <p> tags are missing, and "#text" is the node name
                         if ("#text".equals(bodyChildNode.getNodeName())) {
@@ -199,61 +254,6 @@ public class EPubParagraphExtractionHelper {
                                                     }
                                                 }
                                             }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        
-                        // Look for paragraphs within "<div lang="en">" (StoryBookProvider#LETS_READ_ASIA)
-                        // Expected format:
-                        /*
-                            <div lang="en">
-                                <div class="container">
-                                    <img src="p-1.jpg" alt=""/>
-                                </div>
-                                <p dir="auto">The moon rises.</p>
-                            </div>
-                        */
-                        if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("lang") != null)) {
-                            NodeList langDivChildNodeList = bodyChildNode.getChildNodes();
-                            logger.info("langDivChildNodeList: " + langDivChildNodeList);
-                            for (int k = 0; k < langDivChildNodeList.getLength(); k++) {
-                                Node langDivChildNode = langDivChildNodeList.item(k);
-                                logger.info("langDivChildNode: " + langDivChildNode);
-                                
-                                // Look for "<p>"
-                                if ("p".equals(langDivChildNode.getNodeName())) {
-                                    // If double line-breaks ("<br/><br/>"), insert "</p><p>" into the Node's text content
-                                    if (langDivChildNode.hasChildNodes()) {
-                                        NodeList paragraphChildNodeList = langDivChildNode.getChildNodes();
-                                        int consecutiveLineBreaksCount = 0;
-                                        for (int l = 0; l < paragraphChildNodeList.getLength(); l++) {
-                                            Node paragraphChildNode = paragraphChildNodeList.item(l);
-                                            logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
-                                            if ("br".equals(paragraphChildNode.getNodeName())) {
-                                                consecutiveLineBreaksCount++;
-                                            } else {
-                                                consecutiveLineBreaksCount = 0;
-                                            }
-                                            logger.info("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
-                                            if (consecutiveLineBreaksCount == 1) {
-                                                // Replace "<br/>" with whitespace
-                                                paragraphChildNode.setTextContent(" ");
-                                            } else if (consecutiveLineBreaksCount == 2) {
-                                                // Replace "<br/><br/>" with whitespace
-                                                paragraphChildNode.setTextContent("</p><p>");
-                                                consecutiveLineBreaksCount = 0;
-                                            }
-                                        }
-                                    }
-
-                                    String[] paragraphArray = langDivChildNode.getTextContent().split("</p><p>");
-                                    for (String paragraph : paragraphArray) {
-                                        logger.info("paragraph: \"" + paragraph + "\"");
-                                        paragraph = getCleanedUpParagraph(paragraph);
-                                        if (StringUtils.isNotBlank(paragraph)) {
-                                            paragraphs.add(paragraph);
                                         }
                                     }
                                 }
