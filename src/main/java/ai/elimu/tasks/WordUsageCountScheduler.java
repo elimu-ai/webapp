@@ -70,20 +70,19 @@ public class WordUsageCountScheduler {
             wordFrequencyMapForBook.keySet().forEach(word -> wordFrequencyMap.put(word, wordFrequencyMap.getOrDefault(word, 0) + wordFrequencyMapForBook.get(word)));
         }
 
-        for (String key : wordFrequencyMap.keySet()) {
-            String wordLowerCase = key.toLowerCase();
-            logger.info("wordLowerCase: \"" + wordLowerCase + "\"");
-            Word word = wordDao.readByText(wordLowerCase);
-            if (word != null) {
-                word.setUsageCount(wordFrequencyMap.get(wordLowerCase));
+        for (String word : wordFrequencyMap.keySet()) {
+            logger.info("word: \"" + word + "\"");
+            Word existingWord = wordDao.readByText(word);
+            if (existingWord != null) {
+                existingWord.setUsageCount(wordFrequencyMap.get(word));
                 
                 // Temporary fix for "javax.validation.ConstraintViolationException"
-                if (word.getLetterSoundCorrespondences() == null) {
+                if (existingWord.getLetterSoundCorrespondences() == null) {
                     logger.warn("Letter-sound correspondences not yet added. Skipping usage count update for word...");
                     continue;
                 }
                 
-                wordDao.update(word);
+                wordDao.update(existingWord);
             }
         }
         
