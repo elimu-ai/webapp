@@ -370,6 +370,7 @@ public class StoryBookCreateFromEPubController {
                         || originalTextLowerCase.contains("storyweaver")
                         || originalTextLowerCase.contains("copyright page")
                         || originalTextLowerCase.contains("by smart axiata") // StoryBookProvider#LETS_READ_ASIA
+                        || originalTextLowerCase.contains("the asia foundation") // StoryBookProvider#LETS_READ_ASIA
                     ) {
                         isMetadata = true;
                         break;
