@@ -79,6 +79,7 @@ footer.page-footer .footer-copyright {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-color: #ede7f6; /* deep-purple lighten-5 */
 }
 .card.image .card-content > p,
 .card.storyBook .card-content > p {
