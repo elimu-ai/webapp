@@ -103,7 +103,7 @@ public class EPubParagraphExtractionHelper {
                                 
                                 // Look for "<p>"
                                 if ("p".equals(langDivChildNode.getNodeName())) {
-                                    processParagraphNode(StoryBookProvider.LETS_READ_ASIA, bodyChildNode, paragraphs);
+                                    processParagraphNode(StoryBookProvider.LETS_READ_ASIA, langDivChildNode, paragraphs);
                                 }
                             }
                         }
@@ -232,7 +232,9 @@ public class EPubParagraphExtractionHelper {
                 int consecutiveLineBreaksCount = 0;
                 for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
                     Node paragraphChildNode = paragraphChildNodeList.item(k);
+                    logger.info("paragraphChildNode: " + paragraphChildNode);
                     logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
+                    logger.info("paragraphChildNode.getTextContent(): \"" + paragraphChildNode.getTextContent() + "\"");
                     if ("br".equals(paragraphChildNode.getNodeName())) {
                         consecutiveLineBreaksCount++;
                     } else {

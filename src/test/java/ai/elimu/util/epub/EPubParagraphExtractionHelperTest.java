@@ -94,6 +94,18 @@ public class EPubParagraphExtractionHelperTest {
     }
     
     @Test
+    public void testExtractParagraphsFromChapterFile_ENG_LRA_377b7e63_ch5() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("eng-lra-377b7e63-6126-4cfe-bcee-1538d75c1b2f_Page_5.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        assertThat(storyBookParagraphs.size(), is(1));
+        assertThat(storyBookParagraphs.get(0), is("What if I try talking to them? The moon slowly moves toward the group of stars."));
+    }
+    
+    @Test
     public void testExtractParagraphsFromChapterFile_FIL_LRA_faa0d66e() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("fil-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");
