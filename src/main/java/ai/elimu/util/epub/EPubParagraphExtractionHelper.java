@@ -1,5 +1,6 @@
 package ai.elimu.util.epub;
 
+import ai.elimu.model.enums.StoryBookProvider;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,40 +21,7 @@ public class EPubParagraphExtractionHelper {
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * Expected file format:
-     * <pre>
-     *     
-     *     <html xmlns="http://www.w3.org/1999/xhtml">
-     *     <head>
-     *         <title>Chapter 3</title>
-     *         <link href="epub.css" rel="stylesheet" type="text/css"/>
-     *     </head>
-     *     <body><img src="21f0ca572d1f21c4813bfb910ccb935d.jpg" />
-     *     <p>
-     *      Fifth grade student, Little Miss Grace,
-     *     </p>
-     *     <p>
-     *      was totally fascinated by outer space .
-     *     </p></body>
-     *     </html>
-     *         
-     * </pre>
-     * <p />
-     * <pre>
-     *     
-     *     <html xmlns="http://www.w3.org/1999/xhtml">
-     *     <head>
-     *         <title>Chapter 2</title>
-     *         <link href="epub.css" rel="stylesheet" type="text/css"/>
-     *     </head>
-     *     <body><img src="9822eebad600b3ae74537c05c786208a.jpg" />
-     *     <br />
-     *     Kuku na Jongoo walikuwa marafiki.
-     *     </body>
-     *     </html>
-     *         
-     *         
-     * </pre>
+     * Examples of the expected file format can be found at <code>src/test/resources/ai/elimu/util/epub/</code>
      * 
      * @param xhtmlFile The XHTML file containing the paragraphs, e.g. {@code chapter-2.xhtml}.
      * @return A list of paragraphs.
@@ -83,54 +51,92 @@ public class EPubParagraphExtractionHelper {
                         logger.info("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
                         logger.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
                         
-                        // Look for "<p>" (StoryBookProvider#GLOBAL_DIGITAL_LIBRARY & StoryBookProvider#LETS_READ_ASIA)
-                        if ("p".equals(bodyChildNode.getNodeName())) {
-                            // If double line-breaks ("<br/><br/>"), insert "</p><p>" into the Node's text content
-                            if (bodyChildNode.hasChildNodes()) {
-                                NodeList paragraphChildNodeList = bodyChildNode.getChildNodes();
-                                int consecutiveLineBreaksCount = 0;
-                                for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
-                                    Node paragraphChildNode = paragraphChildNodeList.item(k);
-                                    logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
-                                    if ("br".equals(paragraphChildNode.getNodeName())) {
-                                        consecutiveLineBreaksCount++;
-                                    } else {
-                                        consecutiveLineBreaksCount = 0;
-                                    }
-                                    logger.info("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
-                                    if (consecutiveLineBreaksCount == 1) {
-                                        // Replace "<br/>" with whitespace
-                                        paragraphChildNode.setTextContent(" ");
-                                    } else if (consecutiveLineBreaksCount == 2) {
-                                        // Replace "<br/><br/>" with whitespace
-                                        paragraphChildNode.setTextContent("</p><p>");
-                                        consecutiveLineBreaksCount = 0;
-                                    }
-                                }
-                            }
-                            
-                            String[] paragraphArray = bodyChildNode.getTextContent().split("</p><p>");
-                            for (String paragraph : paragraphArray) {
-                                logger.info("paragraph: \"" + paragraph + "\"");
-                                paragraph = getCleanedUpParagraph(paragraph);
-                                if (StringUtils.isNotBlank(paragraph)) {
-                                    paragraphs.add(paragraph);
+                        // StoryBookProvider: GLOBAL_DIGITAL_LIBRARY
+                        // Look for paragraphs within `<body>`
+                        // Expected format:
+                        /*
+                            <body><img src="1e8e58cc7d627a7896737cfb3eba8270.jpg" />
+                            <p>
+                             আজকে ছুটির দিন আনন্দে হারাই!
+                             চলো সবে পোশাকের উৎসবে যাই!
+                            </p>
+                            </body>
+                        */
+                        if ("p".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("dir") == null)) {
+                            processParagraphNode(StoryBookProvider.GLOBAL_DIGITAL_LIBRARY, bodyChildNode, paragraphs);
+                        }
+                        
+                        // StoryBookProvider: LETS_READ_ASIA
+                        // Look for paragraphs within `<body>`
+                        // Expected format:
+                        /*
+                            <body>
+                                <div class="container">
+                                    <img src = 'p-16.jpg' />
+                                </div>
+                                <p dir="auto">"Nagmumuni-muni lang," sabi niya.</p>
+                            </body>
+                        */
+                        if ("p".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("dir") != null)) {
+                            processParagraphNode(StoryBookProvider.LETS_READ_ASIA, bodyChildNode, paragraphs);
+                        }
+                        
+                        // StoryBookProvider: LETS_READ_ASIA
+                        // Look for paragraphs within `<div lang="en">`
+                        // Expected format:
+                        /*
+                            <body dir="auto">
+                                <div lang="en">
+                                    <div class="container">
+                                        <img src="p-1.jpg" alt=""/>
+                                    </div>
+                                    <p dir="auto">The moon rises.</p>
+                                </div>
+                            </body>
+                        */
+                        if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("lang") != null)) {
+                            NodeList langDivChildNodeList = bodyChildNode.getChildNodes();
+                            logger.info("langDivChildNodeList: " + langDivChildNodeList);
+                            for (int k = 0; k < langDivChildNodeList.getLength(); k++) {
+                                Node langDivChildNode = langDivChildNodeList.item(k);
+                                logger.info("langDivChildNode: " + langDivChildNode);
+                                
+                                // Look for "<p>"
+                                if ("p".equals(langDivChildNode.getNodeName())) {
+                                    processParagraphNode(StoryBookProvider.LETS_READ_ASIA, bodyChildNode, paragraphs);
                                 }
                             }
                         }
                         
-                        // Look for text content
-                        // In some cases, <p> tags are missing, and "#text" is the node name
-                        if ("#text".equals(bodyChildNode.getNodeName())) {
-                            String paragraph = bodyChildNode.getTextContent();
-                            logger.info("paragraph: \"" + paragraph + "\"");
-                            paragraph = getCleanedUpParagraph(paragraph);
-                            if (StringUtils.isNotBlank(paragraph)) {
-                                paragraphs.add(paragraph);
-                            }
-                        }
-                        
-                        // Look for "<div>" (StoryBookProvider#STORYWEAVER)
+                        // StoryBookProvider: STORYWEAVER
+                        // Look for paragraphs within `<div class='text-font-normal sp_h_iT66_cB33 content ' dir="auto">`
+                        // Expected format:
+                        /*
+                            <body id="story_epub_body">
+                                <div id="story_epub">
+                                  <div id="storyReader" class="bengali">
+                                    <div id="selected_page" class=" page-container-landscape story-page">
+                                        <div class='sp_h_iT66_cB33 has_illustration illustration'>
+                                            <img class='responsive_illustration' src="image_2.jpg" />
+                                        </div>
+                                        <div class='text-font-normal sp_h_iT66_cB33 content ' dir="auto">
+                                            <p>
+                                                ভীমের
+                                                শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।
+                                            </p>
+                                            <p>
+                                                <br/></p><p>ধোপা
+                                                রামু সুযোগ পেলেই ভীমকে বকা দেয়। 
+                                            </p>
+                                        </div>
+                                        <div class="page_number">
+                                            2
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </body>
+                        */
                         if ("div".equals(bodyChildNode.getNodeName())) {
                             Node bodyChildNodeIdAttribute = bodyChildNode.getAttributes().getNamedItem("id");
                             logger.info("bodyChildNodeIdAttribute: " + bodyChildNodeIdAttribute);
@@ -179,18 +185,7 @@ public class EPubParagraphExtractionHelper {
                                                                         
                                                                         // Expected format: <p>ভীমের শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।</p>
                                                                         if ("p".equals(contentDivChildNode.getNodeName())) {
-                                                                            String paragraph = contentDivChildNode.getTextContent();
-                                                                            logger.info("paragraph: \"" + paragraph + "\"");
-                                                                            paragraph = getCleanedUpParagraph(paragraph);
-                                                                            
-                                                                            // Skip paragraphs containing CSS code
-                                                                            if (paragraph.contains("@page")) {
-                                                                                continue;
-                                                                            }
-                                                                            
-                                                                            if (StringUtils.isNotBlank(paragraph)) {
-                                                                                paragraphs.add(paragraph);
-                                                                            }
+                                                                            processParagraphNode(StoryBookProvider.STORYWEAVER, contentDivChildNode, paragraphs);
                                                                         }
                                                                     }
                                                                 }
@@ -204,6 +199,17 @@ public class EPubParagraphExtractionHelper {
                                 }
                             }
                         }
+                        
+                        // Look for text content
+                        // In some cases, <p> tags are missing, and "#text" is the node name
+                        if ("#text".equals(bodyChildNode.getNodeName())) {
+                            String paragraph = bodyChildNode.getTextContent();
+                            logger.info("paragraph: \"" + paragraph + "\"");
+                            paragraph = getCleanedUpParagraph(paragraph);
+                            if (StringUtils.isNotBlank(paragraph)) {
+                                paragraphs.add(paragraph);
+                            }
+                        }
                     }
                 }
             }
@@ -212,6 +218,61 @@ public class EPubParagraphExtractionHelper {
         }
         
         return paragraphs;
+    }
+    
+    private static void processParagraphNode(StoryBookProvider storyBookProvider, Node paragraphNode, List<String> paragraphs) {
+        logger.info("processParagraphNode");
+        
+        logger.info("storyBookProvider: " + storyBookProvider);
+        if ((storyBookProvider == StoryBookProvider.GLOBAL_DIGITAL_LIBRARY) 
+                || (storyBookProvider == StoryBookProvider.LETS_READ_ASIA)) {
+            // If double line-breaks ("<br/><br/>"), treat the subsequent text as a new paragraph.
+            if (paragraphNode.hasChildNodes()) {
+                NodeList paragraphChildNodeList = paragraphNode.getChildNodes();
+                int consecutiveLineBreaksCount = 0;
+                for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
+                    Node paragraphChildNode = paragraphChildNodeList.item(k);
+                    logger.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
+                    if ("br".equals(paragraphChildNode.getNodeName())) {
+                        consecutiveLineBreaksCount++;
+                    } else {
+                        consecutiveLineBreaksCount = 0;
+                    }
+                    logger.info("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
+                    if (consecutiveLineBreaksCount == 1) {
+                        // Replace "<br/>" with " "
+                        paragraphChildNode.setTextContent(" ");
+                    } else if (consecutiveLineBreaksCount == 2) {
+                        // Replace "<br/><br/>" with "</p><p>"
+                        paragraphChildNode.setTextContent("</p><p>");
+                        consecutiveLineBreaksCount = 0;
+                    }
+                }
+            }
+
+            String[] paragraphArray = paragraphNode.getTextContent().split("</p><p>");
+            for (String paragraph : paragraphArray) {
+                logger.info("paragraph: \"" + paragraph + "\"");
+                paragraph = getCleanedUpParagraph(paragraph);
+                if (StringUtils.isNotBlank(paragraph)) {
+                    paragraphs.add(paragraph);
+                }
+            }
+        } else if (storyBookProvider == StoryBookProvider.STORYWEAVER) {
+            String paragraph = paragraphNode.getTextContent();
+            logger.info("paragraph: \"" + paragraph + "\"");
+            paragraph = getCleanedUpParagraph(paragraph);
+
+            // Skip paragraphs containing CSS code
+            // See example at src/test/resources/ai/elimu/util/epub/hin-sw-10145-ek-sau-saintisvan-paer.epub_4.xhtml
+            if (paragraph.contains("@page")) {
+                return;
+            }
+
+            if (StringUtils.isNotBlank(paragraph)) {
+                paragraphs.add(paragraph);
+            }
+        }
     }
     
     /**
