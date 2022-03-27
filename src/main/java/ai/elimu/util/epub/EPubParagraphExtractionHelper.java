@@ -249,6 +249,24 @@ public class EPubParagraphExtractionHelper {
                         paragraphChildNode.setTextContent("</p><p>");
                         consecutiveLineBreaksCount = 0;
                     }
+                    
+                    if (storyBookProvider == StoryBookProvider.LETS_READ_ASIA) {
+                        // Look for line-breaks within `<em>`
+                        // Expected format: 
+                        /*
+                            <p dir="auto"><em>Will they play with me? I am so different from them.<br/>I should try</em>.</p>
+                        */
+                        if ("em".equals(paragraphChildNode.getNodeName())) {
+                            NodeList emChildNodeList = paragraphChildNode.getChildNodes();
+                            for (int l = 0; l < emChildNodeList.getLength(); l++) {
+                                Node emChildNode = emChildNodeList.item(l);
+                                if ("br".equals(emChildNode.getNodeName())) {
+                                    // Replace "<br/>" with " "
+                                    emChildNode.setTextContent(" ");
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
