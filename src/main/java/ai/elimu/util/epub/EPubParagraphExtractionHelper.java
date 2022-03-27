@@ -224,8 +224,8 @@ public class EPubParagraphExtractionHelper {
         logger.info("processParagraphNode");
         
         logger.info("storyBookProvider: " + storyBookProvider);
-        if ((storyBookProvider == StoryBookProvider.GLOBAL_DIGITAL_LIBRARY) 
-                || (storyBookProvider == StoryBookProvider.LETS_READ_ASIA)) {
+        if ((storyBookProvider == StoryBookProvider.GLOBAL_DIGITAL_LIBRARY) || (storyBookProvider == StoryBookProvider.LETS_READ_ASIA)) {
+            // If single line-break ("<br/>"), replace it with whitespace.
             // If double line-breaks ("<br/><br/>"), treat the subsequent text as a new paragraph.
             if (paragraphNode.hasChildNodes()) {
                 NodeList paragraphChildNodeList = paragraphNode.getChildNodes();
@@ -252,6 +252,7 @@ public class EPubParagraphExtractionHelper {
                 }
             }
 
+            // Add each paragraph separately
             String[] paragraphArray = paragraphNode.getTextContent().split("</p><p>");
             for (String paragraph : paragraphArray) {
                 logger.info("paragraph: \"" + paragraph + "\"");
