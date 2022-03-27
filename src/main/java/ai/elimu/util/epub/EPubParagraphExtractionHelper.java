@@ -223,6 +223,7 @@ public class EPubParagraphExtractionHelper {
     private static void processParagraphNode(StoryBookProvider storyBookProvider, Node paragraphNode, List<String> paragraphs) {
         logger.info("processParagraphNode");
         
+        logger.info("storyBookProvider: " + storyBookProvider);
         if ((storyBookProvider == StoryBookProvider.GLOBAL_DIGITAL_LIBRARY) 
                 || (storyBookProvider == StoryBookProvider.LETS_READ_ASIA)) {
             // If double line-breaks ("<br/><br/>"), treat the subsequent text as a new paragraph.
