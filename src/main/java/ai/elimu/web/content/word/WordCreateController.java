@@ -91,8 +91,6 @@ public class WordCreateController {
             
             autoSelectLetterSoundCorrespondences(word);
             // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
-            
-            model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
         }
         
         model.addAttribute("word", word);
@@ -132,8 +130,6 @@ public class WordCreateController {
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            
-            model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
             
             return "content/word/create";
         } else {
