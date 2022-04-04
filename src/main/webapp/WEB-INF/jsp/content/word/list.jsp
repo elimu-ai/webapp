@@ -51,12 +51,12 @@
                                         <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
                                         <div class="chip">
                                             <a href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />">
-                                                "<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
-                                                    ${letter.text}
-                                                </c:forEach>"<br />
-                                                /<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
-                                                    ${sound.valueIpa}
-                                                </c:forEach>/
+                                                " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                                    ${letter.text}<c:out value=" " />
+                                                </c:forEach> "<br />
+                                                / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                                    ${sound.valueIpa}<c:out value=" " />
+                                                </c:forEach> /
                                             </a>
                                         </div>
                                     </c:forEach>

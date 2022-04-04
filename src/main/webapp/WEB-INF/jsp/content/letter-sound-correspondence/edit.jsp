@@ -350,7 +350,7 @@
                             <a href="<spring:url value='/content/word/edit/${word.id}' />">
                                 "<c:out value="${word.text}" />"
                             </a><br />
-                            "<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSoundCorrespondence.id}"><span class='diff-highlight'></c:if><c:forEach var="letter" items="${lsc.letters}">${letter.text}</c:forEach><c:if test="${lsc.id == letterSoundCorrespondence.id}"></span></c:if></a>&nbsp;</c:forEach>"<br />
+                            "<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSoundCorrespondence.id}"><span class='diff-highlight'></c:if><c:forEach var="letter" items="${lsc.letters}">${letter.text}<c:out value=" " /></c:forEach><c:if test="${lsc.id == letterSoundCorrespondence.id}"></span></c:if></a>&nbsp;</c:forEach>"<br />
                             <span class="grey-text">
                                 /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSoundCorrespondence.id}"><span class='diff-highlight'></c:if><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach><c:if test="${lsc.id == letterSoundCorrespondence.id}"></span></c:if></a>&nbsp;</c:forEach>/
                             </span>
