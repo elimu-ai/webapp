@@ -203,7 +203,9 @@ public class StoryBookCreateFromEPubController {
             // Extract the ePUB's chapters
             File tableOfContentsFile = null;
             for (File file : filesInEPub) {
-                if (file.getName().startsWith("toc.")) {
+                logger.info("file: " + file);
+                if (file.getName().startsWith("toc.")
+                        || file.getName().startsWith("nav.")) {
                     tableOfContentsFile = file;
                 }
             }

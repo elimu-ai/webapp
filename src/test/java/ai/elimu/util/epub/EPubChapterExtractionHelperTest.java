@@ -28,6 +28,17 @@ public class EPubChapterExtractionHelperTest {
     }
     
     @Test
+    public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY_hin_nav() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-gdl-bear-walk.epub_nav.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
+        assertThat(chapterReferences.size(), is(32));
+    }
+    
+    @Test
     public void testExtractChapterReferencesFromTableOfContentsFile_LETS_READ_ASIA() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("fil-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_toc.xhtml");
