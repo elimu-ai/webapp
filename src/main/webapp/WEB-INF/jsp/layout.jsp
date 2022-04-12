@@ -25,10 +25,10 @@
                 <meta property="twitter:image" content="http://${pageContext.request.serverName}/static/img/logo-256x256.png" />
 
                 <%-- CSS --%>
-                <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
-                <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Poppins" />
-                <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Amaranth" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth" />
                 <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
                 
                 <%-- JavaScripts --%>
