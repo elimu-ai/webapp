@@ -175,7 +175,7 @@ public class NumberPeerReviewsRestController {
             numberPeerReviewEvent.setPlatform(Platform.CROWDSOURCE_APP);
             numberPeerReviewEventDao.create(numberPeerReviewEvent);
 
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + numberContributionEvent.getNumber().getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + numberContributionEvent.getNumber().getId();
             DiscordHelper.sendChannelMessage(
                     "Number peer-reviewed: " + contentUrl, 
                     "\"" + numberContributionEvent.getNumber().getValue() + "\"",

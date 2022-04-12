@@ -74,7 +74,7 @@ public class ContributorsRestController {
             contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
             contributorDao.create(contributor);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
             String embedThumbnailUrl = null;
             if (StringUtils.isNotBlank(contributor.getImageUrl())) {
                 embedThumbnailUrl = contributor.getImageUrl();

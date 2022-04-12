@@ -60,11 +60,11 @@ public class SignOnControllerGitHub {
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             clientId = "57aad0f85f09ef18d8e6";
             clientSecret = ConfigHelper.getProperty("github.api.secret");
-            baseUrl = "http://" + request.getServerName();
+            baseUrl = "https://" + request.getServerName();
         } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             clientId = "7018e4e57438eb0191a7";
             clientSecret = ConfigHelper.getProperty("github.api.secret");
-            baseUrl = "http://" + request.getServerName();
+            baseUrl = "https://" + request.getServerName();
         }
 
         oAuth20Service = new ServiceBuilder(clientId)

@@ -1,6 +1,6 @@
 id,content_type,content_license,attribution_url,title,download_url,image_format
 1,image/gif,null,"null","dinosaur","/image/1.gif",GIF
-2,image/jpeg,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai","giraffs","/image/2.jpg",JPG
+2,image/jpeg,CREATIVE_COMMONS_CC_BY,"https://eng.elimu.ai","giraffs","/image/2.jpg",JPG
 3,image/gif,null,"null","sheep","/image/3.gif",GIF
 4,image/gif,null,"null","balance","/image/4.gif",GIF
 9,image/jpeg,CREATIVE_COMMONS_CC_BY,"https://pixabay.com/en/happy-face-smiley-flashing-v-35164/","happy","/image/9.jpg",JPG

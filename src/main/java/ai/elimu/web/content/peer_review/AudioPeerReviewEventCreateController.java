@@ -66,7 +66,7 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEvent.setPlatform(Platform.WEBAPP);
         audioPeerReviewEventDao.create(audioPeerReviewEvent);
         
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
+        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
         DiscordHelper.sendChannelMessage(
                 "Audio peer-reviewed: " + contentUrl, 
                 "\"" + audioContributionEvent.getAudio().getTitle() + "\"",

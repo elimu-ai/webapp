@@ -87,7 +87,7 @@ public class LetterEditController {
             letterContributionEvent.setPlatform(Platform.WEBAPP);
             letterContributionEventDao.create(letterContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
             DiscordHelper.sendChannelMessage(
                     "Letter edited: " + contentUrl,
                     "\"" + letterContributionEvent.getLetter().getText() + "\"",

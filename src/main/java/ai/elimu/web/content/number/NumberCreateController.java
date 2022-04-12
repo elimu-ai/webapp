@@ -101,7 +101,7 @@ public class NumberCreateController {
             numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + number.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + number.getId();
             DiscordHelper.sendChannelMessage(
                     "Number created: " + contentUrl,
                     String.valueOf(numberContributionEvent.getNumber().getValue()),

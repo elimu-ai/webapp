@@ -57,7 +57,7 @@
                 </c:if>
                 <p style="margin-top: 1em;">
                     <c:if test="${not empty contributor2.usernameGitHub}">
-                        <a href="http://github.com/${contributor2.usernameGitHub}" target="_blank" title="GitHub">
+                        <a href="https://github.com/${contributor2.usernameGitHub}" target="_blank" title="GitHub">
                             <svg width="32px" height="32px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     fill-rule="evenodd"

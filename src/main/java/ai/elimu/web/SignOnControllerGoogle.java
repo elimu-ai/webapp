@@ -61,11 +61,11 @@ public class SignOnControllerGoogle {
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             clientId = "108974530651-fskde869tac7imherk2k516shfuvij76.apps.googleusercontent.com";
             clientSecret = ConfigHelper.getProperty("google.api.secret");
-            baseUrl = "http://" + request.getServerName();
+            baseUrl = "https://" + request.getServerName();
         } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             clientId = "108974530651-k68pccps2jb88fllofpcf8ht356v08e4.apps.googleusercontent.com";
             clientSecret = ConfigHelper.getProperty("google.api.secret");
-            baseUrl = "http://" + request.getServerName();
+            baseUrl = "https://" + request.getServerName();
         }
         
         oAuth20Service = new ServiceBuilder(clientId)

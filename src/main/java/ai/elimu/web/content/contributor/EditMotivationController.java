@@ -51,7 +51,7 @@ public class EditMotivationController {
             if (StringUtils.isBlank(contributor.getMotivation())) {
                 // The Contributor completed the on-boarding wizard for the first time
                 
-                String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
                 String embedThumbnailUrl = null;
                 if (StringUtils.isNotBlank(contributor.getImageUrl())) {
                     embedThumbnailUrl = contributor.getImageUrl();

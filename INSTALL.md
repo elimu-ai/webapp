@@ -35,12 +35,12 @@ To run the application in debug mode, replace `mvn` with `mvnDebug` in the comma
 
 ## Test server
 
-    http://<language>.test.elimu.ai
+    https://<language>.test.elimu.ai
 
 
 ## Prod server
 
-    http://<language>.elimu.ai
+    https://<language>.elimu.ai
 
 
 ## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿

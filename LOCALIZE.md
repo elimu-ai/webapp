@@ -19,7 +19,7 @@ The examples below use the Xhosa language as an example. If you will adding cont
 
 Follow these steps to add a new audio file to the webapp's database:
 
-1. Go to http://xho.elimu.ai/content/multimedia/audio/list
+1. Go to https://xho.elimu.ai/content/multimedia/audio/list
 
 1. Press the "Add audio" button.
   
@@ -54,7 +54,7 @@ Note that there are two other ways you can add audio recordings: 1) via the word
 
 ##### Via the word edit page
 
-1. At http://xho.elimu.ai/content/word/list you can find a list of words. While editing a word, you will see a warning saying "This word has no corresponding audio." if an audio recording with a matching transcription does not already exist:
+1. At https://xho.elimu.ai/content/word/list you can find a list of words. While editing a word, you will see a warning saying "This word has no corresponding audio." if an audio recording with a matching transcription does not already exist:
 
    <img width="641" alt="Screen Shot 2020-12-09 at 4 44 43 PM" src="https://user-images.githubusercontent.com/15718174/101652036-69ad0300-3a46-11eb-8d77-2efe899a6c46.png">
 
@@ -80,7 +80,7 @@ Note that there are two other ways you can add audio recordings: 1) via the word
 
 Follow these steps to add a new word to the webapp's database:
 
-1. Go to http://xho.elimu.ai/content/word/list
+1. Go to https://xho.elimu.ai/content/word/list
 
 1. Press the "Add word" button:
    
@@ -110,7 +110,7 @@ Follow these steps to add a new word to the webapp's database:
 
 One strategy is to add words used in a particular storybook:
 
-1. Go to http://xho.elimu.ai/content/storybook/list and open a storybook that you want to add words for.
+1. Go to https://xho.elimu.ai/content/storybook/list and open a storybook that you want to add words for.
 
 1. In the sidebar you'll see a word frequency list:
 
@@ -126,7 +126,7 @@ One strategy is to add words used in a particular storybook:
 
 Another strategy for adding words is to go to the "Words Pending" page, where you can find a list of the most used words across _all storybooks_:
 
-1. Go to http://xho.elimu.ai/content/word/pending
+1. Go to https://xho.elimu.ai/content/word/pending
 
    <img width="1025" alt="Screen Shot 2020-12-09 at 8 10 35 PM" src="https://user-images.githubusercontent.com/15718174/101676596-0af68200-3a64-11eb-9e2c-5087e1c8f6d9.png">
 
