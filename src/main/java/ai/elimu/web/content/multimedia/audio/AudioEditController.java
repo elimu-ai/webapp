@@ -194,7 +194,7 @@ public class AudioEditController {
             audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
             DiscordHelper.sendChannelMessage(
                     "Audio edited: " + contentUrl, 
                     "\"" + audio.getTranscription() + "\"",

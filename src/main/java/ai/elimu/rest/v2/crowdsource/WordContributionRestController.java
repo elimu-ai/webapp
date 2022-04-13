@@ -167,7 +167,7 @@ public class WordContributionRestController {
             wordContributionEvent.setPlatform(Platform.CROWDSOURCE_APP);
             wordContributionEventDao.create(wordContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
             DiscordHelper.sendChannelMessage(
                     "Word created: " + contentUrl,
                     "\"" + wordContributionEvent.getWord().getText() + "\"",

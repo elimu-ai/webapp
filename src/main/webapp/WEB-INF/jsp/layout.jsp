@@ -21,8 +21,8 @@
                 <meta name="description" content="<fmt:message key="we.are.an.open.community.with" />" />
                 <link rel="shortcut icon" href="<spring:url value='/static/img/favicon.ico' />" />
 
-                <meta property="og:image" content="http://${pageContext.request.serverName}/static/img/logo-256x256.png" />
-                <meta property="twitter:image" content="http://${pageContext.request.serverName}/static/img/logo-256x256.png" />
+                <meta property="og:image" content="https://${pageContext.request.serverName}/static/img/logo-256x256.png" />
+                <meta property="twitter:image" content="https://${pageContext.request.serverName}/static/img/logo-256x256.png" />
 
                 <%-- CSS --%>
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -250,7 +250,7 @@
                                             <c:if test="${status.index > 0}">
                                                 • 
                                             </c:if>
-                                            <a class="white-text" href="http://${supportedLanguage.isoCode}.test.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
+                                            <a class="white-text" href="https://${supportedLanguage.isoCode}.test.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
                                         </c:forEach>
                                     </c:when>
                                     <c:otherwise>
@@ -258,7 +258,7 @@
                                             <c:if test="${status.index > 0}">
                                                 • 
                                             </c:if>
-                                            <a class="white-text" href="http://${supportedLanguage.isoCode}.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
+                                            <a class="white-text" href="https://${supportedLanguage.isoCode}.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
                                         </c:forEach>
                                     </c:otherwise>
                                 </c:choose>

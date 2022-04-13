@@ -241,7 +241,7 @@ public class AudioContributionsRestController {
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
             audioContributionEventDao.create(audioContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
             DiscordHelper.sendChannelMessage(
                     "Audio created: " + contentUrl, 
                     "\"" + audio.getTranscription() + "\"",

@@ -92,7 +92,7 @@ public class SoundCreateController {
             soundContributionEvent.setPlatform(Platform.WEBAPP);
             soundContributionEventDao.create(soundContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/sound/edit/" + sound.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/sound/edit/" + sound.getId();
             DiscordHelper.sendChannelMessage(
                     "Sound created: " + contentUrl,
                     "/" + soundContributionEvent.getSound().getValueIpa() + "/",

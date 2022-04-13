@@ -231,7 +231,7 @@ public class WordEditController {
             wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
             DiscordHelper.sendChannelMessage(
                     "Word edited: " + contentUrl, 
                     "\"" + word.getText() + "\"",
