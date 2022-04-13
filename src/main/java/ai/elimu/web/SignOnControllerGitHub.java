@@ -66,6 +66,7 @@ public class SignOnControllerGitHub {
             clientSecret = ConfigHelper.getProperty("github.api.secret");
             baseUrl = "https://" + request.getServerName();
         }
+        logger.info("baseUrl: " + baseUrl);
 
         oAuth20Service = new ServiceBuilder(clientId)
                 .apiSecret(clientSecret)
