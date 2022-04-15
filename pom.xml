@@ -129,7 +129,7 @@
         <connection>scm:git:git@github.com:elimu-ai/webapp.git</connection>
         <developerConnection>scm:git:git@github.com:elimu-ai/webapp.git</developerConnection>
         <url>https://github.com/elimu-ai/webapp</url>
-        <tag>webapp-2.2.111</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
