@@ -88,6 +88,8 @@
                 <prop key="/contributions/donate">viewController</prop>
                 <prop key="/contributions/privacy-policy">viewController</prop>
                 <prop key="/contributions/publish">viewController</prop>
+                
+                <prop key="/apps">viewController</prop>
             </props>
         </property>
     </bean>
