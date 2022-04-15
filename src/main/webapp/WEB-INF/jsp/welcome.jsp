@@ -132,7 +132,7 @@
                     The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
                 </p>
                 <p>
-                    Also, anyone is welcome to take the existing code and <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">adapt</a> it to their local needs.
+                    Also, anyone is welcome to take the existing code and <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">adapt</a> it to their local needs.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -185,7 +185,7 @@
                   <h2><i class="material-icons medium">local_shipping</i></h2>
                   <h5><fmt:message key="distribute.the.software" /></h5>
                   
-                  <p>Do you live near a child who does not have access to quality basic education? Help us <a href="https://github.com/elimu-ai/wiki/blob/master/SOFTWARE_ARCHITECTURE.md#distribution">distribute</a> the learning software.</p>
+                  <p>Do you live near a child who does not have access to quality basic education? Help us <a href="https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md#distribution">distribute</a> the learning software.</p>
                 </div>
             </div>
         </div>

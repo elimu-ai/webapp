@@ -1,1 +1,1 @@
-See https://github.com/elimu-ai/wiki/blob/master/CONTRIBUTING.md#workflow-example-webapp
+See https://github.com/elimu-ai/wiki/blob/main/CONTRIBUTING.md#workflow-example-webapp
