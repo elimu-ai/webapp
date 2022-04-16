@@ -8,7 +8,7 @@ See [INSTALL.md](INSTALL.md#supported-languages-)
 
 ## Adding Support for a New Language
 
-See https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md
+See https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md
 
 
 ## Adding Educational Content

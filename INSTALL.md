@@ -45,7 +45,7 @@ To run the application in debug mode, replace `mvn` with `mvnDebug` in the comma
 
 ## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿
 
-A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/master/src/main/java/ai/elimu/model/enums/Language.java
+A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/enums/Language.java
 
 The default language used during development is English (`ENG`). To switch to another language, edit the `content.language` property in [src/main/resources/config.properties](src/main/resources/config.properties).
 
