@@ -58,17 +58,20 @@ public class LetterLearningEventsRestController {
         String name = multipartFile.getName();
         logger.info("name: " + name);
         
-        // Expected format: "7161a85a0e4751cd_letter-learning-events_2020-04-23.csv"
+        // Expected format: "7161a85a0e4751cd_3001012_letter-learning-events_2020-04-23.csv"
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
         // TODO: Send notification to the #📊-data-collection channel in Discord
-        // Hide parts of the Android ID, e.g. "7161***51cd_word-learning-events_2020-04-23.csv"
+        // Hide parts of the Android ID, e.g. "7161***51cd_3001012_word-learning-events_2020-04-23.csv"
         String anonymizedOriginalFilename = originalFilename.substring(0, 4) + "***" + originalFilename.substring(12);
         DiscordHelper.sendChannelMessage("Received dataset: `" + anonymizedOriginalFilename + "`", null, null, null, null);
         
         String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
         logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
+        
+        Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
+        logger.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
         
         String contentType = multipartFile.getContentType();
         logger.info("contentType: " + contentType);
