@@ -10,9 +10,9 @@
     </p>
     
     <p>
-        We are building a platform of educational apps and games that teaches a child to read, write and perform 
-        arithmetic fully autonomously and without the aid of a qualified teacher. This will help bring quality basic 
-        education to the more than <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
+        We are building a platform of educational <a href="<spring:url value='/apps' />">apps and games</a> that teaches 
+        a child to read, write and perform arithmetic fully autonomously and without the aid of a qualified teacher. 
+        This will help bring quality basic education to the more than <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
         worldwide who are not achieving minimum proficiency levels.
     </p>
     

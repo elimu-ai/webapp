@@ -76,8 +76,8 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Educational Apps & Games 🎲🕹</h5>
                 <p>
-                    A collection of educational Android apps teaches children basic 
-                    literacy and numeracy in a fun and engaging way.    
+                    A collection of educational Android <a href="<spring:url value='/apps' />">apps</a> teaches children 
+                    basic literacy and numeracy in a fun and engaging way.    
                 </p>
                 <p>
                     Each child can learn <i>fully autonomously</i>, without depending on the availability of qualified teachers.  
@@ -95,8 +95,9 @@
                     Each child is guided through the curriculum by our AI tutor <i>Nya</i> and her robot companion.
                 </p>
                 <p>
-                    Nya automatically detects the current knowledge level of the child, and adapts the apps and content 
-                    to best fit the child's current skill level.
+                    Nya automatically detects the current knowledge level of the child, and adapts the 
+                    <a href="<spring:url value='/apps' />">apps</a> and content to best fit the child's current skill 
+                    level.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -108,7 +109,8 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Learning Platform 🧩</h5>
                 <p>
-                    The elimu.ai software is a <i>platform</i> of educational content and Android apps/games.
+                    The elimu.ai software is a <i>platform</i> of educational content and Android 
+                    <a href="<spring:url value='/apps' />">apps/games</a>.
                 </p>
                 <p>
                     Each child is provided with a clear instructional path for learning literacy and numeracy as efficiently as possible.
