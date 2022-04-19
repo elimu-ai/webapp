@@ -80,8 +80,9 @@ public class WordAssessmentEventsRestController {
             File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
-            File androidIdDir = new File(analyticsDir, "android-id_" + androidIdExtractedFromFilename);
-            File wordAssessmentEventsDir = new File(androidIdDir, "word-assessment-events");
+            File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
+            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
+            File wordAssessmentEventsDir = new File(versionCodeDir, "word-assessment-events");
             wordAssessmentEventsDir.mkdirs();
             File csvFile = new File(wordAssessmentEventsDir, originalFilename);
             logger.info("Storing CSV file at " + csvFile);

@@ -86,8 +86,9 @@ public class LetterLearningEventsRestController {
             File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
-            File androidIdDir = new File(analyticsDir, "android-id_" + androidIdExtractedFromFilename);
-            File letterLearningEventsDir = new File(androidIdDir, "letter-learning-events");
+            File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
+            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
+            File letterLearningEventsDir = new File(versionCodeDir, "letter-learning-events");
             letterLearningEventsDir.mkdirs();
             File csvFile = new File(letterLearningEventsDir, originalFilename);
             logger.info("Storing CSV file at " + csvFile);
