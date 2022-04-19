@@ -86,8 +86,9 @@ public class StoryBookLearningEventsRestController {
             File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
-            File androidIdDir = new File(analyticsDir, "android-id_" + androidIdExtractedFromFilename);
-            File storyBookLearningEventsDir = new File(androidIdDir, "storybook-learning-events");
+            File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
+            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
+            File storyBookLearningEventsDir = new File(versionCodeDir, "storybook-learning-events");
             storyBookLearningEventsDir.mkdirs();
             File csvFile = new File(storyBookLearningEventsDir, originalFilename);
             logger.info("Storing CSV file at " + csvFile);
