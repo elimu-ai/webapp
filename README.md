@@ -1,6 +1,10 @@
 # elimu.ai Webapp
 
-Web application: http://elimu.ai
+Web application:
+
+ * 🇺🇸 English: https://eng.elimu.ai
+ * 🇵🇭 Filipino: https://fil.elimu.ai
+ * 🇮🇳 Hindi: https://hin.elimu.ai
 
 <img width="1438" alt="Screenshot 2020-06-17 at 19 54 15" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
 
