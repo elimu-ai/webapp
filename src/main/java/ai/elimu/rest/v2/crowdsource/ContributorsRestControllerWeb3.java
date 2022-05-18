@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/rest/v2/crowdsource/contributors", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class ContributorsRestController {
+public class ContributorsRestControllerWeb3 {
     
     private Logger logger = LogManager.getLogger();
     
