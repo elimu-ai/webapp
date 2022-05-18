@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
  * Stores a {@link Contributor} in the database.
  * <p />
  * 
- * Note that authentication for the same Google accounts are done in the 
- * {@link SignOnControllerGoogle}.
+ * Note that authentication for the same Web3 accounts are done in the 
+ * {@link SignOnControllerWeb3}.
  */
 @RestController
-@RequestMapping(value = "/rest/v2/crowdsource/contributors", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/crowdsource/contributors/web3", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ContributorsRestControllerWeb3 {
     
     private Logger logger = LogManager.getLogger();
