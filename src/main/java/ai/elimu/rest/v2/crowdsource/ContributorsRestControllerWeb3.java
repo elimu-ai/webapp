@@ -3,7 +3,7 @@ package ai.elimu.rest.v2.crowdsource;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
-import java.math.BigInteger;
+import ai.elimu.util.Web3Helper;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -19,11 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.web3j.crypto.ECDSASignature;
-import org.web3j.crypto.Hash;
-import org.web3j.crypto.Keys;
-import org.web3j.crypto.Sign;
-import org.web3j.utils.Numeric;
 
 /**
  * REST API for the Crowdsource application: https://github.com/elimu-ai/crowdsource
@@ -88,7 +83,7 @@ public class ContributorsRestControllerWeb3 {
         }
         
         // Check if the signature is valid
-        if (!isSignatureValid(providerIdWeb3, providerIdWeb3Signature, SIGNATURE_MESSAGE)) {
+        if (!Web3Helper.isSignatureValid(providerIdWeb3, providerIdWeb3Signature, SIGNATURE_MESSAGE)) {
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "Invalid signature");
             response.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -122,53 +117,5 @@ public class ContributorsRestControllerWeb3 {
         String jsonResponse = jsonObject.toString();
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
-    }
-    
-    private boolean isSignatureValid(final String address, final String signature, final String message) {
-        logger.info("isSignatureValid");
-        
-        boolean match = false;
-        
-        // Note: The label prefix is part of the standard
-        String label = "\u0019Ethereum Signed Message:\n" + String.valueOf(message.getBytes().length) + message;
-        
-        // Get message hash using SHA-3
-        final byte[] msgHash = Hash.sha3((label).getBytes());
-
-        // Convert signature HEX string to bytes
-        final byte[] signatureBytes = Numeric.hexStringToByteArray(signature);
-        byte v = signatureBytes[64];
-        if (v < 27) {
-            v += 27;
-        }
-
-        // Create signature data from the signature bytes
-        final Sign.SignatureData sd = new Sign.SignatureData(
-                v,
-                Arrays.copyOfRange(signatureBytes, 0, 32),
-                Arrays.copyOfRange(signatureBytes, 32, 64)
-        );
-        
-        for (int i = 0; i < 4; i++) {
-            final BigInteger publicKey = Sign.recoverFromSignature(
-                    (byte) i,
-                    new ECDSASignature(
-                            new BigInteger(1, sd.getR()),
-                            new BigInteger(1, sd.getS())
-                    ),
-                    msgHash
-            );
-
-            if (publicKey != null) {
-                String recoveredAddress = "0x" + Keys.getAddress(publicKey);
-                logger.info("recoveredAddress: " + recoveredAddress);
-                if (recoveredAddress.equalsIgnoreCase(address)) {
-                    match = true;
-                    break;
-                }
-            }
-        }
-        
-        return match;
     }
 }
