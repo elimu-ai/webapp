@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.Role;
-import java.math.BigInteger;
+import ai.elimu.util.Web3Helper;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -19,12 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.web3j.crypto.ECDSASignature;
-import org.web3j.crypto.Hash;
-import org.web3j.crypto.Keys;
-import org.web3j.crypto.Sign;
-import org.web3j.crypto.Sign.SignatureData;
-import org.web3j.utils.Numeric;
 
 @Controller
 public class SignOnControllerWeb3 {
@@ -70,7 +64,7 @@ public class SignOnControllerWeb3 {
         }
         
         // Check if the signature is valid
-        if (!isSignatureValid(address, signature, SIGNATURE_MESSAGE)) {
+        if (!Web3Helper.isSignatureValid(address, signature, SIGNATURE_MESSAGE)) {
             logger.warn("Invalid signature");
             return "redirect:/sign-on/web3?error=Invalid signature";
         }
@@ -120,53 +114,5 @@ public class SignOnControllerWeb3 {
         request.getSession().setAttribute("contributor", contributor);
 
         return "redirect:/content";
-    }
-    
-    private boolean isSignatureValid(final String address, final String signature, final String message) {
-        logger.info("isSignatureValid");
-        
-        boolean match = false;
-        
-        // Note: The label prefix is part of the standard
-        String label = "\u0019Ethereum Signed Message:\n" + String.valueOf(message.getBytes().length) + message;
-        
-        // Get message hash using SHA-3
-        final byte[] msgHash = Hash.sha3((label).getBytes());
-
-        // Convert signature HEX string to bytes
-        final byte[] signatureBytes = Numeric.hexStringToByteArray(signature);
-        byte v = signatureBytes[64];
-        if (v < 27) {
-            v += 27;
-        }
-
-        // Create signature data from the signature bytes
-        final SignatureData sd = new SignatureData(
-                v,
-                Arrays.copyOfRange(signatureBytes, 0, 32),
-                Arrays.copyOfRange(signatureBytes, 32, 64)
-        );
-        
-        for (int i = 0; i < 4; i++) {
-            final BigInteger publicKey = Sign.recoverFromSignature(
-                    (byte) i,
-                    new ECDSASignature(
-                            new BigInteger(1, sd.getR()),
-                            new BigInteger(1, sd.getS())
-                    ),
-                    msgHash
-            );
-
-            if (publicKey != null) {
-                String recoveredAddress = "0x" + Keys.getAddress(publicKey);
-                logger.info("recoveredAddress: " + recoveredAddress);
-                if (recoveredAddress.equalsIgnoreCase(address)) {
-                    match = true;
-                    break;
-                }
-            }
-        }
-        
-        return match;
     }
 }
