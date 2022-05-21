@@ -93,14 +93,9 @@ public class SignOnControllerWeb3 {
         logger.info("existingContributor: " + existingContributor);
         if (existingContributor == null) {
             // Store new Contributor in database
+            contributor.setEmail(address + "@ethmail.cc");
             contributor.setRegistrationTime(Calendar.getInstance());
             contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
-            if (contributor.getEmail() == null) {
-                // Ask the Contributor to add her e-mail manually
-                request.getSession().setAttribute("contributor", contributor);
-                new CustomAuthenticationManager().authenticateUser(contributor);
-                return "redirect:/content/contributor/add-email";
-            }
             contributorDao.create(contributor);
             logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
         } else {
