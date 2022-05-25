@@ -38,6 +38,20 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             return null;
         }
     }
+
+    @Override
+    public Contributor readByProviderIdDiscord(String id) throws DataAccessException {
+        try {
+            return (Contributor) em.createQuery(
+                "SELECT c " +
+                "FROM Contributor c " +
+                "WHERE c.providerIdDiscord = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
     
     @Override
     public Contributor readByProviderIdGoogle(String id) throws DataAccessException {

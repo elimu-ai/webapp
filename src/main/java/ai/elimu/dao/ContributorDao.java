@@ -12,6 +12,8 @@ public interface ContributorDao extends GenericDao<Contributor> {
     
     Contributor readByProviderIdGitHub(String id) throws DataAccessException;
     
+    Contributor readByProviderIdDiscord(String id) throws DataAccessException;
+
     Contributor readByProviderIdWeb3(String id) throws DataAccessException;
     
     Contributor readByProviderIdGoogle(String id) throws DataAccessException;
