@@ -232,10 +232,12 @@
         lastName varchar(255),
         motivation varchar(1000),
         occupation varchar(255),
+        providerIdDiscord varchar(255),
         providerIdGitHub varchar(255),
         providerIdGoogle varchar(255),
         providerIdWeb3 varchar(42),
         registrationTime timestamp,
+        usernameDiscord varchar(255),
         usernameGitHub varchar(255),
         primary key (id)
     );

@@ -44,9 +44,13 @@ public class Contributor extends BaseEntity {
     
 //    @Column(unique=true)
     private String providerIdGitHub;
+
+    private String providerIdDiscord;
     
 //    @Column(unique=true)
     private String usernameGitHub;
+
+    private String usernameDiscord;
     
     private String imageUrl;
     
@@ -113,6 +117,20 @@ public class Contributor extends BaseEntity {
 
     public void setUsernameGitHub(String usernameGitHub) {
         this.usernameGitHub = usernameGitHub;
+    }
+    public String getProviderIdDiscord() {
+        return providerIdDiscord;
+    }
+
+    public void setProviderIdDiscord(String providerIdDiscord) {
+        this.providerIdDiscord = providerIdDiscord;
+    }
+    public String getUsernameDiscord() {
+        return usernameDiscord;
+    }
+
+    public void setUsernameDiscord(String usernameDiscord) {
+        this.usernameDiscord = usernameDiscord;
     }
     
     public String getImageUrl() {
