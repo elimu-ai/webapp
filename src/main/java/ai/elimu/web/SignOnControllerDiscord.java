@@ -138,7 +138,7 @@ public class SignOnControllerDiscord {
                 contributor.setFirstName(jsonObject.getString("username"));
             }
             if (jsonObject.has("discriminator")) {
-                contributor.setLastName(jsonObject.getString("discriminator"));
+                contributor.setLastName("#" + jsonObject.getString("discriminator"));
             }
             
 
