@@ -129,9 +129,18 @@ public class SignOnControllerDiscord {
                 String id = String.valueOf(idAsLong);
                 contributor.setProviderIdDiscord(id);
             }
-            if (jsonObject.has("avatar_url")) {
-                contributor.setImageUrl(jsonObject.getString("avatar_url"));
+            if (jsonObject.has("avatar")) {
+                String uriAvatar = "https://cdn.discordapp.com/avatars/" + jsonObject.getLong("id") + "/" + jsonObject.getString("avatar") + ".png";
+                logger.info(uriAvatar);
+                contributor.setImageUrl(uriAvatar);
             }
+            if (jsonObject.has("username")) {
+                contributor.setFirstName(jsonObject.getString("username"));
+            }
+            if (jsonObject.has("discriminator")) {
+                contributor.setLastName(jsonObject.getString("discriminator"));
+            }
+            
 
             // Look for existing Contributor with matching e-mail address
             Contributor existingContributor = contributorDao.read(contributor.getEmail());
