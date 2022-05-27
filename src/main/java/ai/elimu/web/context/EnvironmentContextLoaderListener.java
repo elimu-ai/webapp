@@ -115,6 +115,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String jdbcPasswordAttr = (String) servletContext.getAttribute("jdbc_password");
                 PROPERTIES.put("jdbc.password", jdbcPasswordAttr);
                 
+                String discordApiSecret = (String) servletContext.getAttribute("discord_api_secret");
+                PROPERTIES.put("discord.api.secret", discordApiSecret);
+                
                 String googleApiSecret = (String) servletContext.getAttribute("google_api_secret");
                 PROPERTIES.put("google.api.secret", googleApiSecret);
                 
