@@ -63,7 +63,7 @@ public class SignOnControllerDiscord {
             clientSecret = ConfigHelper.getProperty("discord.api.secret");
             baseUrl = "https://" + request.getServerName();
         } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-            clientId = "7018e4e57438eb0191a7";
+            clientId = "979686718909341716";
             clientSecret = ConfigHelper.getProperty("discord.api.secret");
             baseUrl = "https://" + request.getServerName();
         }
