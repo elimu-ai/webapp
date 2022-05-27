@@ -52,9 +52,12 @@ public class SignOnControllerDiscord {
     @RequestMapping("/sign-on/discord")
     public String handleAuthorization(HttpServletRequest request) throws IOException {
         logger.info("handleAuthorization");
+        
+        // EnvironmentContextLoaderListener.env == Environment.DEV
         String clientId = "978873481649348668";
         String clientSecret = "Lf0O65Zk0Qv9cXyC7igPgljIjSJJBZbv";
         String baseUrl = "http://localhost:8080/webapp";
+        
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             clientId = "57aad0f85f09ef18d8e6";
             clientSecret = ConfigHelper.getProperty("discord.api.secret");
