@@ -59,7 +59,7 @@ public class SignOnControllerDiscord {
         String baseUrl = "http://localhost:8080/webapp";
         
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-            clientId = "57aad0f85f09ef18d8e6";
+            clientId = "979655702081597460";
             clientSecret = ConfigHelper.getProperty("discord.api.secret");
             baseUrl = "https://" + request.getServerName();
         } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
