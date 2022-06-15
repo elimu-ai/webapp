@@ -45,4 +45,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
  * For a high-level description of the project, see https://github.com/elimu-ai/wiki#readme
  * For project milestones, see https://github.com/elimu-ai/wiki/projects
- * For paid Dework tasks, see https://app.dework.xyz/elimuai
+ * For paid tasks, see https://app.dework.xyz/elimuai
