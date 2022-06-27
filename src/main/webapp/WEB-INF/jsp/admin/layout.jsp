@@ -21,6 +21,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+        <script src="<spring:url value='/static/js/web3provider.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
     </head>
 
@@ -111,7 +115,7 @@
                                 <li><a href="<spring:url value='/analytics' />"><i class="material-icons left">timeline</i><fmt:message key="analytics" /></a></li>
                             </sec:authorize>
                             <li class="divider"></li>
-                            <li><a href="<spring:url value='/logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
+                            <li><a id="logout" href="<spring:url value='/logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
                     
@@ -123,7 +127,9 @@
                             async function getBalance(contributorAddress) {
                                 console.info('getBalance');
 
-                                window.web3 = new Web3(window.ethereum);
+                                // Connect to the web3 provider.
+                                const provider = await Connect()
+                                window.web3 = new Web3(provider);
                                 console.info('window.web3: ' + window.web3);
 
                                 var contractAbi = [{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
