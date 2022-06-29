@@ -39,14 +39,7 @@ function init() {
         // Mikko's test key - don't copy as your mileage may vary
         infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
       }
-    },
-
-    fortmatic: {
-      package: Fortmatic,
-      options: {
-        // Mikko's TESTNET api key
-        key: "pk_test_391E26A3B43A3350"
-      }
+    }
     }
   };
 
@@ -89,11 +82,11 @@ async function Connect() {
   return provider;
 }
 
-async function Disconnect() {
+async function disconnect() {
   console.log("Killing the wallet connection", provider);
 
   // TODO: Which providers have close method?
-  if(provider.close) {
+  if (provider.close) {
     await provider.close();
 
     // If the cached provider is not cleared,
@@ -113,7 +106,7 @@ $( document ).ready(function() {
 
   $('#logout').on('click', async function(e) {
     e.preventDefault();
-    await Disconnect();
+    await disconnect();
     window.location = $(this).attr('href');
   });
 });
