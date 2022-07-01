@@ -53,7 +53,7 @@ function init() {
 /**
  * Connect to the wallet provider.
  */
-async function Connect() {
+async function connect() {
   init();
   console.log("Opening a dialog", web3Modal);
   try {

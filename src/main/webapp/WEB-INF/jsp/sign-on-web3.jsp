@@ -11,8 +11,8 @@
         <div class="divider" style="margin-bottom: 1em;"></div>
         
         <div class="center">
-            <a id="connectWeb3Wallet" class="btn-large waves-effect waves-light deep-orange lighten-5">
-                <svg width="172" height="33" style="margin-top: 10px;" viewBox="0 0 172 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a id="connectWeb3Wallet" class="btn-large waves-effect waves-dark deep-blue darken-5">
+                <svg style="width: 24px; height: 24px; top: 6px; position: relative; right: 5px;" viewBox="0 0 784.37 1277.39" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
                     <g>
                         <polygon fill="#343434" fill-rule="nonzero" points="392.07,0 383.5,29.11 383.5,873.74 392.07,882.29 784.13,650.54 "/>
                         <polygon fill="#8C8C8C" fill-rule="nonzero" points="392.07,0 -0,650.54 392.07,882.29 392.07,472.33 "/>
@@ -22,6 +22,7 @@
                         <polygon fill="#393939" fill-rule="nonzero" points="0,650.54 392.07,882.29 392.07,472.33 "/>
                     </g>
                 </svg>
+                Connect wallet
             </a>
             <script>
                 $(function() {
@@ -32,7 +33,7 @@
    
                         try {
                             // Request permission to connect to Web3 provider
-                            const provider = await Connect()
+                            const provider = await connect()
                             window.web3 = new Web3(provider);
 
                             // Request the currently selected address

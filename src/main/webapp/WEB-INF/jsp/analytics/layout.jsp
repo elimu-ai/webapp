@@ -123,7 +123,7 @@
                                 console.info('getBalance');
 
                                 // Connect to the web3 provider.
-                                const provider = await Connect()
+                                const provider = await connect()
                                 window.web3 = new Web3(provider);
                                 console.info('window.web3: ' + window.web3);
 
