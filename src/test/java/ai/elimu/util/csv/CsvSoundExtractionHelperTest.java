@@ -88,4 +88,22 @@ public class CsvSoundExtractionHelperTest {
         verifySoundField(soundsFromCsvBackup, "æ", Sound::getValueIpa);
     }
 
+    @Test
+    public void extracted_sound_without_valueSampa() throws Exception {
+        writeSoundValuesToCsv("5,æ,,,false,VOWEL,616\n");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, "", Sound::getValueSampa);
+    }
+
+    @Test
+    public void extracted_sound_with_valueSampa() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, "{", Sound::getValueSampa);
+    }
+
 }
