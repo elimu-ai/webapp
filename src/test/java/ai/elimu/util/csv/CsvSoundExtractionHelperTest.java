@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.function.Function;
@@ -33,6 +34,16 @@ public class CsvSoundExtractionHelperTest {
         assertEquals(expectedValue, fieldValueSupplier.apply(sound));
     }
 
+    private void writeSoundValuesToCsv(String soundValuesCsvRow) throws IOException {
+        Files.write(
+            soundsCsv.toPath(),
+            List.of(
+                HEADERS_LINE,
+                soundValuesCsvRow
+            )
+        );
+    }
+
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
@@ -52,10 +63,7 @@ public class CsvSoundExtractionHelperTest {
 
     @Test
     public void extracted_empty_sounds_for_csv_file_only_with_headers() throws Exception {
-        Files.writeString(
-            soundsCsv.toPath(),
-            HEADERS_LINE
-        );
+        writeSoundValuesToCsv("");
 
         List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
 
@@ -64,13 +72,7 @@ public class CsvSoundExtractionHelperTest {
 
     @Test
     public void extracted_sound_without_valueIpa() throws Exception {
-        Files.write(
-            soundsCsv.toPath(),
-            List.of(
-                HEADERS_LINE,
-                "5,,{,,false,VOWEL,616"
-            )
-        );
+        writeSoundValuesToCsv("5,,{,,false,VOWEL,616");
 
         List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
 
@@ -79,13 +81,7 @@ public class CsvSoundExtractionHelperTest {
 
     @Test
     public void extracted_sound_with_valueIpa() throws Exception {
-        Files.write(
-            soundsCsv.toPath(),
-            List.of(
-                HEADERS_LINE,
-                "5,æ,{,,false,VOWEL,616"
-            )
-        );
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,616");
 
         List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
 
