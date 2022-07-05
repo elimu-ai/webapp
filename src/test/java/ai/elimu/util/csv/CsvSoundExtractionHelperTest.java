@@ -106,4 +106,32 @@ public class CsvSoundExtractionHelperTest {
         verifySoundField(soundsFromCsvBackup, "{", Sound::getValueSampa);
     }
 
+
+    @Test
+    public void extracted_sound_without_diacritic() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,,VOWEL,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, false, Sound::isDiacritic);
+    }
+
+    @Test
+    public void extracted_sound_with_diacritic() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,true,VOWEL,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, true, Sound::isDiacritic);
+    }
+
+    @Test
+    public void extracted_sound_without_diacritic_in_case_csv_value_was_not_boolean() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,not_boolean_value,VOWEL,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, false, Sound::isDiacritic);
+    }
+
 }
