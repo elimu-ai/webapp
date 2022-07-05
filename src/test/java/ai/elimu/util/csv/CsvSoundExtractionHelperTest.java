@@ -1,6 +1,7 @@
 package ai.elimu.util.csv;
 
 import ai.elimu.model.content.Sound;
+import ai.elimu.model.v2.enums.content.sound.SoundType;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -132,6 +133,24 @@ public class CsvSoundExtractionHelperTest {
         List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
 
         verifySoundField(soundsFromCsvBackup, false, Sound::isDiacritic);
+    }
+
+    @Test
+    public void extracted_sound_without_soundType() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, null, Sound::getSoundType);
+    }
+
+    @Test
+    public void extracted_sound_with_soundType() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, SoundType.VOWEL, Sound::getSoundType);
     }
 
 }
