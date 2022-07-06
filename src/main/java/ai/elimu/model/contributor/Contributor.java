@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.enums.Role;
 
@@ -40,6 +42,7 @@ public class Contributor extends BaseEntity {
      * An Ethereum address. Expected format: "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B"
      */
     @Column(unique=true, length=42)
+    @ColumnTransformer(write = "LOWER(?)")
     private String providerIdWeb3;
     
 //    @Column(unique=true)
