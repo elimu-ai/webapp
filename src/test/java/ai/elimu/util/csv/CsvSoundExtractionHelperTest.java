@@ -153,4 +153,13 @@ public class CsvSoundExtractionHelperTest {
         verifySoundField(soundsFromCsvBackup, SoundType.VOWEL, Sound::getSoundType);
     }
 
+    @Test
+    public void extracted_sound_without_soundType_in_case_csv_value_was_not_in_enum_declaration() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,NULL,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, null, Sound::getSoundType);
+    }
+
 }

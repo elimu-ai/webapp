@@ -61,10 +61,8 @@ public class CsvSoundExtractionHelper {
                 boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
                 sound.setDiacritic(diacritic);
 
-                if (StringUtils.isNotBlank(csvRecord.get("sound_type"))) {
-                    SoundType soundType = SoundType.valueOf(csvRecord.get("sound_type"));
-                    sound.setSoundType(soundType);
-                }
+                SoundType soundType = extractSoundType(csvRecord.get("sound_type"));
+                sound.setSoundType(soundType);
 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 sound.setUsageCount(usageCount);
@@ -76,5 +74,23 @@ public class CsvSoundExtractionHelper {
         }
 
         return sounds;
+    }
+
+    // TODO: 05.07.2022 This method can be replaced by a {@link org.apache.commons.lang3.EnumUtils::getEnum}
+    private static SoundType extractSoundType(String soundTypeCsvValue) {
+        if (StringUtils.isBlank(soundTypeCsvValue)) {
+            return null;
+        }
+
+        try {
+            return SoundType.valueOf(soundTypeCsvValue);
+        } catch (IllegalArgumentException e) {
+            logger.error(
+                "Tried to extract incorrect value: {} of {} enum",
+                soundTypeCsvValue,
+                SoundType.class.getSimpleName()
+            );
+            return null;
+        }
     }
 }
