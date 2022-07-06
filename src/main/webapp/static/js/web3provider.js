@@ -12,7 +12,6 @@ let web3Modal;
 // Chosen wallet provider given by the dialog window
 let provider;
 
-
 /**
  * Setup the orchestra
  */
@@ -54,7 +53,9 @@ function init() {
  * Connect to the wallet provider.
  */
 async function connect() {
-  init();
+  if (web3Modal === undefined){
+    init();
+  }
   console.log("Opening a dialog", web3Modal);
   try {
     provider = await web3Modal.connect();
@@ -94,7 +95,6 @@ async function disconnect() {
     provider = null;
   }
   await web3Modal.clearCachedProvider();
-
 }
 
 /**
