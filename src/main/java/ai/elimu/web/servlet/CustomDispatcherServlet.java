@@ -4,12 +4,17 @@ import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.db.DbContentImportHelper;
+import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import ai.elimu.util.db.DbMigrationHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.EnumSet;
 import javax.persistence.Entity;
 import org.apache.logging.log4j.LogManager;
@@ -33,7 +38,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
     	logger.info("initWebApplicationContext");
     	
         WebApplicationContext webApplicationContext = super.initWebApplicationContext();
-        
+
         // Database migration
         logger.info("Performing database migration...");
         new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
@@ -60,11 +65,12 @@ public class CustomDispatcherServlet extends DispatcherServlet {
      */
     private void createJpaSchemaExport() {
         logger.info("createJpaSchemaExport");
-        
+
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 //                .configure("META-INF/jpa-persistence.xml")
                 .applySetting("hibernate.dialect", ConfigHelper.getProperty("jpa.databasePlatform"))
                 .applySetting("hibernate.hbm2ddl.auto", "update")
+                .applySetting(AvailableSettings.CONNECTION_PROVIDER, getConnectionProvider())
                 .build();
 
         MetadataSources metadataSources = (MetadataSources) new MetadataSources(serviceRegistry);
@@ -98,4 +104,32 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         schemaExport.setFormat(true);
         schemaExport.create(EnumSet.of(TargetType.SCRIPT), metadata);
     }
+
+    private ConnectionProvider getConnectionProvider() {
+        return new ConnectionProvider() {
+            @Override
+            public Connection getConnection() throws SQLException {
+                return DriverManager.getConnection(ConfigHelper.getProperty("jdbc.url"), ConfigHelper.getProperty("jdbc.username"), ConfigHelper.getProperty("jdbc.password"));
+            }
+
+            @Override
+            public void closeConnection(Connection connection) throws SQLException {}
+
+            @Override
+            public boolean supportsAggressiveRelease() {
+                return true;
+            }
+
+            @Override
+            public boolean isUnwrappableAs(Class aClass) {
+                return false;
+            }
+
+            @Override
+            public <T> T unwrap(Class<T> aClass) {
+                return null;
+            }
+        };
+    }
+
 }
