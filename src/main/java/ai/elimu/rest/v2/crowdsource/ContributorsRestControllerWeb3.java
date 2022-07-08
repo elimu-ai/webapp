@@ -58,7 +58,7 @@ public class ContributorsRestControllerWeb3 {
         
         JSONObject jsonObject = new JSONObject();
         
-        String providerIdWeb3 = contributorJSONObject.getString("providerIdWeb3");
+        String providerIdWeb3 = contributorJSONObject.getString("providerIdWeb3").toLowerCase();
         logger.info("providerIdWeb3: " + providerIdWeb3);
         if (StringUtils.isBlank(providerIdWeb3)) {
             jsonObject.put("result", "error");
