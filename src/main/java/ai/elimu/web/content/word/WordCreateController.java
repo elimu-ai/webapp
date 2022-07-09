@@ -113,14 +113,7 @@ public class WordCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Word existingWord = wordDao.readByText(word.getText());
-        if (existingWord != null) {
-            result.rejectValue("text", "NonUnique");
-        }
-        
-        if (StringUtils.containsAny(word.getText(), " ")) {
-            result.rejectValue("text", "WordSpace");
-        }
+        validWord(word, result);
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);
@@ -271,5 +264,21 @@ public class WordCreateController {
         }
         
         word.setLetterSoundCorrespondences(letterSoundCorrespondences);
+    }
+
+    private void validWord(Word word, BindingResult result) {
+        Word existingWord = wordDao.readByText(word.getText());
+
+        if (existingWord != null) {
+            result.rejectValue("text", "NonUnique");
+        }
+
+        if (StringUtils.containsAny(word.getText(), " ")) {
+            result.rejectValue("text", "WordSpace");
+        }
+
+        if (word.getText().matches(".*[0-9].*")) {
+            result.rejectValue("text", "WordContainsNumber");
+        }
     }
 }
