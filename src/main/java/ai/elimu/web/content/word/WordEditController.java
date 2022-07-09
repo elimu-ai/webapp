@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
@@ -165,7 +166,7 @@ public class WordEditController {
         // TODO: labeled Videos
         
         // Look up StoryBook Paragraphs that contain this Word
-        List<StoryBookParagraph> storyBookParagraphsContainingWord = storyBookParagraphDao.readAllContainingWord(word.getText());
+        List<StoryBookParagraph> storyBookParagraphsContainingWord = storyBookParagraphDao.readAllContainingWord(StringEscapeUtils.escapeSql(word.getText()));
         model.addAttribute("storyBookParagraphsContainingWord", storyBookParagraphsContainingWord);
 
         return "content/word/edit";
