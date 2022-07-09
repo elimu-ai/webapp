@@ -3,6 +3,7 @@ package ai.elimu.dao.jpa;
 import java.util.List;
 import javax.persistence.NoResultException;
 
+import ai.elimu.model.v2.enums.content.WordType;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.dao.WordDao;
@@ -19,6 +20,20 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
                 "WHERE w.text = :text")
                 .setParameter("text", text)
                 .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Word readByTextAndType(String text, WordType wordType) throws DataAccessException {
+        String select = "SELECT w FROM Word w WHERE w.text = :text AND w.wordType ";
+        try {
+            return (Word) em.createQuery(
+                            select + (wordType == null ? "IS NULL AND :wordType IS NULL" : "= :wordType"))
+                    .setParameter("text", text)
+                    .setParameter("wordType", wordType)
+                    .getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
