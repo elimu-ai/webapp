@@ -162,4 +162,40 @@ public class CsvSoundExtractionHelperTest {
         verifySoundField(soundsFromCsvBackup, null, Sound::getSoundType);
     }
 
+    @Test
+    public void extracted_sound_without_usageCount() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, 0, Sound::getUsageCount);
+    }
+
+    @Test
+    public void extracted_sound_with_usageCount() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,616");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, 616, Sound::getUsageCount);
+    }
+
+    @Test
+    public void extracted_sound_without_usageCount_in_case_csv_value_is_NULL() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,NULL");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, 0, Sound::getUsageCount);
+    }
+
+    @Test
+    public void extracted_sound_without_usageCount_in_case_csv_value_is_word() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,One");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(soundsCsv);
+
+        verifySoundField(soundsFromCsvBackup, 0, Sound::getUsageCount);
+    }
+
 }

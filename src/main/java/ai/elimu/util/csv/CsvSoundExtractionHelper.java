@@ -7,6 +7,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -64,7 +65,7 @@ public class CsvSoundExtractionHelper {
                 SoundType soundType = extractSoundType(csvRecord.get("sound_type"));
                 sound.setSoundType(soundType);
 
-                Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
+                Integer usageCount = NumberUtils.toInt(csvRecord.get("usage_count"));
                 sound.setUsageCount(usageCount);
 
                 sounds.add(sound);
