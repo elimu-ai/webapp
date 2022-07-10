@@ -59,7 +59,7 @@ public class CsvSoundExtractionHelper {
                 String valueSampa = csvRecord.get("value_sampa");
                 sound.setValueSampa(valueSampa);
 
-                boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
+                boolean diacritic = Boolean.parseBoolean(csvRecord.get("diacritic"));
                 sound.setDiacritic(diacritic);
 
                 SoundType soundType = extractSoundType(csvRecord.get("sound_type"));
