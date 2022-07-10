@@ -10,6 +10,7 @@ import org.junit.rules.TemporaryFolder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Function;
 
@@ -198,4 +199,15 @@ public class CsvSoundExtractionHelperTest {
         verifySoundField(soundsFromCsvBackup, 0, Sound::getUsageCount);
     }
 
+    @Test
+    public void try_extract_sounds_for_missing_file() throws Exception {
+        writeSoundValuesToCsv("5,æ,{,,false,VOWEL,1");
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(
+            Paths.get("not_existing_file.txt")
+                .toFile()
+        );
+
+        assertEquals(emptyList(), soundsFromCsvBackup);
+    }
 }
