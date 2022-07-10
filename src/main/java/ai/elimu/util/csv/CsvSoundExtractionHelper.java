@@ -33,7 +33,7 @@ public class CsvSoundExtractionHelper {
         List<Sound> sounds = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        logger.info("csvFilePath: {}", csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -49,7 +49,7 @@ public class CsvSoundExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                logger.info("csvRecord: {}", csvRecord);
 
                 Sound sound = new Sound();
 
