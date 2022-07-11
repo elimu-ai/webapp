@@ -1,5 +1,11 @@
-name: CI on PR
-on: pull_request
+name: Maven CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
   build:
     strategy:
@@ -13,5 +19,9 @@ jobs:
         distribution: 'temurin'
         java-version: 11
         cache: maven
-    - name: Build with Maven
-      run: mvn clean install
+    - run: mvn clean install
+    - run: mvn clean test
+    - uses: codecov/codecov-action@v3
+      with:
+        fail_ci_if_error: true
+        verbose: true
