@@ -1,5 +1,7 @@
 # elimu.ai Webapp
 
+[![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+
 Web application:
 
  * 🇺🇸 English: https://eng.elimu.ai
