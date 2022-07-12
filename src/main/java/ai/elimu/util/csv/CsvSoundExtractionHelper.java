@@ -37,8 +37,8 @@ public class CsvSoundExtractionHelper {
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: {}", csvFilePath);
 
-        CSVFormat csvFormat = CSVFormat.DEFAULT
-            .withHeader(
+        CSVFormat csvFormat = CSVFormat.Builder.create()
+            .setHeader(
                 "id",
                 "value_ipa",
                 "value_sampa",
@@ -47,7 +47,8 @@ public class CsvSoundExtractionHelper {
                 "sound_type",
                 "usage_count"
             )
-            .withSkipHeaderRecord();
+            .setSkipHeaderRecord(true)
+            .build();
 
         try (var csvParser = new CSVParser(Files.newBufferedReader(csvFilePath), csvFormat)) {
             for (CSVRecord csvRecord : csvParser) {
