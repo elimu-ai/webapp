@@ -59,6 +59,7 @@ A list of the currently supported languages is available at https://github.com/e
 
 The default language used during development is English (`ENG`). To switch to another language, edit the `content.language` property in [src/main/resources/config.properties](src/main/resources/config.properties).
 
+
 ## Contributing guidelines
 
 For guidelines on how to work on issues, see [CONTRIBUTING.md](CONTRIBUTING.md)
