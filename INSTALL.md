@@ -16,11 +16,9 @@ To be able to compile and execute the web application locally, you will first ne
 
   * macOS: `brew install maven`
 
-Get Covalent API KEY from https://www.covalenthq.com/platform/#/auth/register/ and update it in src/main/resources/config.properties file
-
 Go to the project's folder:
 
-    cd webapp
+    cd webapp/
 
 Then, to run the application, type:
     
