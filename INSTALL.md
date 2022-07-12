@@ -18,7 +18,7 @@ To be able to compile and execute the web application locally, you will first ne
 
 Go to the project's folder:
 
-    cd webapp
+    cd webapp/
 
 Then, to run the application, type:
     
