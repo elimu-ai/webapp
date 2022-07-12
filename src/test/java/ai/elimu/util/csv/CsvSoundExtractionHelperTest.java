@@ -9,6 +9,7 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -18,6 +19,7 @@ import static ai.elimu.util.csv.CsvSoundExtractionHelper.getSoundsFromCsvBackup;
 import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 public class CsvSoundExtractionHelperTest {
 
@@ -209,5 +211,36 @@ public class CsvSoundExtractionHelperTest {
         );
 
         assertEquals(emptyList(), soundsFromCsvBackup);
+    }
+
+    @Test
+    public void extracted_sound_from_a_test_sounds_csv_resource() {
+        String soundsCsvResourcePath = "db/content_TEST/eng/sounds.csv";
+
+        URL soundsCsvUrl = getClass()
+            .getClassLoader()
+            .getResource(soundsCsvResourcePath);
+
+        assertNotNull(
+            "Test resource with CSV data not found for path: " + soundsCsvResourcePath,
+            soundsCsvUrl
+        );
+
+        List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(
+            Paths.get(soundsCsvUrl.getPath())
+                .toFile()
+        );
+
+        assertFalse(
+            "Expecting that resource: '" + soundsCsvResourcePath + "' has lines to extract",
+            soundsFromCsvBackup.isEmpty()
+        );
+
+        Sound sound = soundsFromCsvBackup.get(0);
+        assertEquals("æ", sound.getValueIpa());
+        assertEquals("{", sound.getValueSampa());
+        assertEquals(Boolean.FALSE, sound.isDiacritic());
+        assertEquals(SoundType.VOWEL, sound.getSoundType());
+        assertEquals((Integer) 616, sound.getUsageCount());
     }
 }
