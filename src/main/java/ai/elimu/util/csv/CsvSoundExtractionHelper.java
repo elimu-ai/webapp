@@ -17,8 +17,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class CsvSoundExtractionHelper {
 
@@ -32,8 +34,6 @@ public class CsvSoundExtractionHelper {
      */
     public static List<Sound> getSoundsFromCsvBackup(File csvFile) {
         logger.info("getSoundsFromCsvBackup");
-
-        List<Sound> sounds = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: {}", csvFilePath);
@@ -52,24 +52,20 @@ public class CsvSoundExtractionHelper {
             .build();
 
         try (var csvParser = new CSVParser(Files.newBufferedReader(csvFilePath), csvFormat)) {
-            for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: {}", csvRecord);
-
-                Sound sound = toSound(csvRecord);
-
-                sounds.add(sound);
-            }
-
-            return sounds;
+            return csvParser.stream()
+                .map(CsvSoundExtractionHelper::toSound)
+                .collect(toUnmodifiableList());
         } catch (IOException ex) {
             logger.error(ex);
         }
 
-        return sounds;
+        return emptyList();
     }
 
     @NotNull
     private static Sound toSound(CSVRecord csvRecord) {
+        logger.info("csvRecord: {}", csvRecord);
+
         Sound sound = new Sound();
 
         String valueIpa = csvRecord.get("value_ipa");
