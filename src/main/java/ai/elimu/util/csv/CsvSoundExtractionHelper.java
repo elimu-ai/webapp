@@ -13,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,20 +33,20 @@ public class CsvSoundExtractionHelper {
 
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: {}", csvFilePath);
-        try {
-            Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT
-                    .withHeader(
-                            "id",
-                            "value_ipa",
-                            "value_sampa",
-                            "audio_id",
-                            "diacritic",
-                            "sound_type",
-                            "usage_count"
-                    )
-                    .withSkipHeaderRecord();
-            CSVParser csvParser = new CSVParser(reader, csvFormat);
+
+        CSVFormat csvFormat = CSVFormat.DEFAULT
+            .withHeader(
+                "id",
+                "value_ipa",
+                "value_sampa",
+                "audio_id",
+                "diacritic",
+                "sound_type",
+                "usage_count"
+            )
+            .withSkipHeaderRecord();
+
+        try (var csvParser = new CSVParser(Files.newBufferedReader(csvFilePath), csvFormat)) {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: {}", csvRecord);
 
