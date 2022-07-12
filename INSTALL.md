@@ -33,6 +33,8 @@ To run the application in debug mode, replace `mvn` with `mvnDebug` in the comma
 
 ## Code Coverage
 
+[![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+
 [![](https://codecov.io/gh/elimu-ai/webapp/branch/main/graphs/tree.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 
 ```
