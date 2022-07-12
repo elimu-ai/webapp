@@ -31,6 +31,16 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
 
 
+## Code Coverage
+
+[![](https://codecov.io/gh/elimu-ai/webapp/branch/main/graphs/tree.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+
+```
+mvn test
+open target/site/jacoco/index.html 
+```
+
+
 ## Test server
 
     https://<language>.test.elimu.ai
