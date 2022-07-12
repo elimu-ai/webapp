@@ -21,6 +21,9 @@ import java.util.List;
 
 public class CsvSoundExtractionHelper {
 
+    private CsvSoundExtractionHelper() {
+    }
+
     private static final Logger logger = LogManager.getLogger();
 
     /**
