@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,30 +55,39 @@ public class CsvSoundExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: {}", csvRecord);
 
-                Sound sound = new Sound();
-
-                String valueIpa = csvRecord.get("value_ipa");
-                sound.setValueIpa(valueIpa);
-
-                String valueSampa = csvRecord.get("value_sampa");
-                sound.setValueSampa(valueSampa);
-
-                boolean diacritic = Boolean.parseBoolean(csvRecord.get("diacritic"));
-                sound.setDiacritic(diacritic);
-
-                SoundType soundType = extractSoundType(csvRecord.get("sound_type"));
-                sound.setSoundType(soundType);
-
-                Integer usageCount = NumberUtils.toInt(csvRecord.get("usage_count"));
-                sound.setUsageCount(usageCount);
+                Sound sound = toSound(csvRecord);
 
                 sounds.add(sound);
             }
+
+            return sounds;
         } catch (IOException ex) {
             logger.error(ex);
         }
 
         return sounds;
+    }
+
+    @NotNull
+    private static Sound toSound(CSVRecord csvRecord) {
+        Sound sound = new Sound();
+
+        String valueIpa = csvRecord.get("value_ipa");
+        sound.setValueIpa(valueIpa);
+
+        String valueSampa = csvRecord.get("value_sampa");
+        sound.setValueSampa(valueSampa);
+
+        boolean diacritic = Boolean.parseBoolean(csvRecord.get("diacritic"));
+        sound.setDiacritic(diacritic);
+
+        SoundType soundType = extractSoundType(csvRecord.get("sound_type"));
+        sound.setSoundType(soundType);
+
+        Integer usageCount = NumberUtils.toInt(csvRecord.get("usage_count"));
+        sound.setUsageCount(usageCount);
+
+        return sound;
     }
 
     // TODO: 05.07.2022 This method can be replaced by a {@link org.apache.commons.lang3.EnumUtils::getEnum}
