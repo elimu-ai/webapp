@@ -6,33 +6,49 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Sound;
+import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Number;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterContributionEvent;
+import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.util.WordExtractionHelper;
+import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
+import ai.elimu.util.csv.CsvLetterExtractionHelper;
+import ai.elimu.util.csv.CsvSoundExtractionHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.web.context.WebApplicationContext;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,21 +56,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
-
-import ai.elimu.util.csv.CsvSoundExtractionHelper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.web.context.WebApplicationContext;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
-import ai.elimu.dao.NumberContributionEventDao;
-import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
-import ai.elimu.model.contributor.LetterContributionEvent;
-import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
-import ai.elimu.model.enums.Platform;
-import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
-import ai.elimu.dao.SoundDao;
-import ai.elimu.model.contributor.NumberContributionEvent;
 
 public class DbContentImportHelper {
 
@@ -133,7 +134,7 @@ public class DbContentImportHelper {
 
         // Extract and import Letters from CSV file in src/main/resources/
         File lettersCsvFile = new File(contentDirectory, "letters.csv");
-        List<Letter> letters = CsvContentExtractionHelper.getLettersFromCsvBackup(lettersCsvFile, soundDao);
+        List<Letter> letters = CsvLetterExtractionHelper.getLettersFromCsvBackup(lettersCsvFile, soundDao);
         logger.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         letterContributionEventDao = (LetterContributionEventDao) webApplicationContext.getBean("letterContributionEventDao");

@@ -18,7 +18,6 @@ import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
-import ai.elimu.web.content.letter.LetterCsvExportController;
 import ai.elimu.web.content.letter_sound_correspondence.LetterSoundCorrespondenceCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
@@ -46,50 +45,6 @@ import java.util.Set;
 public class CsvContentExtractionHelper {
 
     private static final Logger logger = LogManager.getLogger();
-
-    /**
-     * For information on how the CSV files were generated, see {@link LetterCsvExportController#handleRequest}.
-     */
-    public static List<Letter> getLettersFromCsvBackup(File csvFile, SoundDao soundDao) {
-        logger.info("getLettersFromCsvBackup");
-
-        List<Letter> letters = new ArrayList<>();
-
-        Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
-        try {
-            Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT
-                    .withHeader(
-                            "id",
-                            "text",
-                            "diacritic",
-                            "usage_count"
-                    )
-                    .withSkipHeaderRecord();
-            CSVParser csvParser = new CSVParser(reader, csvFormat);
-            for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
-
-                Letter letter = new Letter();
-
-                String text = csvRecord.get("text");
-                letter.setText(text);
-
-                boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
-                letter.setDiacritic(diacritic);
-
-                Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
-                letter.setUsageCount(usageCount);
-
-                letters.add(letter);
-            }
-        } catch (IOException ex) {
-            logger.error(ex);
-        }
-
-        return letters;
-    }
 
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
