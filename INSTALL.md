@@ -16,11 +16,9 @@ To be able to compile and execute the web application locally, you will first ne
 
   * macOS: `brew install maven`
 
-Get Covalent API KEY from https://www.covalenthq.com/platform/#/auth/register/ and update it in src/main/resources/config.properties file
-
 Go to the project's folder:
 
-    cd webapp
+    cd webapp/
 
 Then, to run the application, type:
     
@@ -31,6 +29,18 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 ### Debug 🪲
 
 To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
+
+
+## Code Coverage
+
+[![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+
+[![](https://codecov.io/gh/elimu-ai/webapp/branch/main/graphs/tree.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+
+```
+mvn test
+open target/site/jacoco/index.html 
+```
 
 
 ## Test server
@@ -48,6 +58,7 @@ To run the application in debug mode, replace `mvn` with `mvnDebug` in the comma
 A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/enums/Language.java
 
 The default language used during development is English (`ENG`). To switch to another language, edit the `content.language` property in [src/main/resources/config.properties](src/main/resources/config.properties).
+
 
 ## Contributing guidelines
 
