@@ -33,7 +33,7 @@ public class SignOnControllerWeb3 {
     @Autowired
     private ContributorDao contributorDao;
 
-    @RequestMapping("/sign-on/web3")
+    @RequestMapping(value="/sign-on/web3", method=RequestMethod.GET)
     public String handleGetRequest(HttpServletRequest request) throws IOException {
         logger.info("handleGetRequest");
 		
