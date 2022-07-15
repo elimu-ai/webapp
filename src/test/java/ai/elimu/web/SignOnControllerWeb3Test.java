@@ -41,6 +41,7 @@ public class SignOnControllerWeb3Test {
                 .get("/sign-on/web3");
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
+        assertEquals("sign-on-web3", mvcResult.getModelAndView().getViewName());
     }
     
     @Test
@@ -50,6 +51,7 @@ public class SignOnControllerWeb3Test {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
+        assertNull(mvcResult.getModelAndView());
     }
     
     @Test
@@ -61,6 +63,7 @@ public class SignOnControllerWeb3Test {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
+        assertEquals("redirect:/sign-on/web3?error=Missing address", mvcResult.getModelAndView().getViewName());
         
         requestBuilder = MockMvcRequestBuilders
                 .post("/sign-on/web3")
@@ -69,6 +72,7 @@ public class SignOnControllerWeb3Test {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
         mvcResult = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
+        assertEquals("redirect:/sign-on/web3?error=Missing signature", mvcResult.getModelAndView().getViewName());
     }
     
     @Test
@@ -80,5 +84,6 @@ public class SignOnControllerWeb3Test {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
+        assertEquals("redirect:/sign-on/web3?error=Invalid signature", mvcResult.getModelAndView().getViewName());
     }
 }
