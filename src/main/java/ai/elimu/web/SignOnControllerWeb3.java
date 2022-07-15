@@ -52,12 +52,12 @@ public class SignOnControllerWeb3 {
             @RequestParam String signature
     ) throws IOException {
         logger.info("handleAuthorization");
-        
         logger.info("address: " + address);
         if (StringUtils.isBlank(address)) {
             return "redirect:/sign-on/web3?error=Missing address";
         }
-        
+        address = address.toLowerCase();
+
         logger.info("signature: " + signature);
         if (StringUtils.isBlank(signature)) {
             return "redirect:/sign-on/web3?error=Missing signature";

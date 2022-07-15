@@ -33,6 +33,8 @@ public class Contributor extends BaseEntity {
     
     // TODO: add registrationPlatform
     
+    // TODO: add registrationProvider
+    
 //    @Column(unique=true)
     private String providerIdGoogle;
     
@@ -45,9 +47,9 @@ public class Contributor extends BaseEntity {
 //    @Column(unique=true)
     private String providerIdGitHub;
 
+//    @Column(unique=true)
     private String providerIdDiscord;
     
-//    @Column(unique=true)
     private String usernameGitHub;
 
     private String usernameDiscord;
