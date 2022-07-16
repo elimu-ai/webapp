@@ -90,6 +90,8 @@ public class DbMigrationHelper {
                         dbMigration.setScript(script);
                         dbMigration.setCalendar(Calendar.getInstance());
                         dbMigrationDao.create(dbMigration);
+                        
+                        logger.info("Database migration complete!");
                     }
                 }
             }
