@@ -70,4 +70,22 @@ public class CsvLetterExtractionHelperTest {
         assertEquals(emptyList(), lettersFromCsvBackup);
     }
 
+    @Test
+    public void extracted_letter_without_text() throws Exception {
+        writeLetterValuesToCsv("5,,false,1271");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, "", Letter::getText);
+    }
+
+    @Test
+    public void extracted_letter_with_text() throws Exception {
+        writeLetterValuesToCsv("5,e,false,1271");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, "e", Letter::getText);
+    }
+
 }
