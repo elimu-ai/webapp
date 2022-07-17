@@ -9,6 +9,7 @@ import org.junit.rules.TemporaryFolder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Function;
 
@@ -149,6 +150,19 @@ public class CsvLetterExtractionHelperTest {
         List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
 
         verifyLetterField(lettersFromCsvBackup, 0, Letter::getUsageCount);
+    }
+
+    @Test
+    public void try_extract_letters_for_missing_file() throws Exception {
+        writeLetterValuesToCsv("5,e,true,1271");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(
+            Paths.get("not_existing_file.txt")
+                .toFile(),
+            null
+        );
+
+        assertEquals(emptyList(), lettersFromCsvBackup);
     }
 
 }
