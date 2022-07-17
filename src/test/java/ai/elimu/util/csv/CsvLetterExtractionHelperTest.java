@@ -3,6 +3,7 @@ package ai.elimu.util.csv;
 import ai.elimu.model.content.Letter;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
@@ -11,6 +12,8 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.function.Function;
 
+import static ai.elimu.util.csv.CsvLetterExtractionHelper.getLettersFromCsvBackup;
+import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -49,6 +52,22 @@ public class CsvLetterExtractionHelperTest {
     @Before
     public void setUp() throws Exception {
         lettersCsv = folder.newFile("letters.csv");
+    }
+
+    @Test
+    public void extracted_empty_sounds_for_csv_file_with_empty_content() {
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        assertEquals(emptyList(), lettersFromCsvBackup);
+    }
+
+    @Test
+    public void extracted_empty_sounds_for_csv_file_only_with_headers() throws Exception {
+        writeLetterValuesToCsv("");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        assertEquals(emptyList(), lettersFromCsvBackup);
     }
 
 }
