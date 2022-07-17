@@ -115,4 +115,40 @@ public class CsvLetterExtractionHelperTest {
         verifyLetterField(lettersFromCsvBackup, false, Letter::isDiacritic);
     }
 
+    @Test
+    public void extracted_letter_without_usageCount() throws Exception {
+        writeLetterValuesToCsv("5,e,true,");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, 0, Letter::getUsageCount);
+    }
+
+    @Test
+    public void extracted_letter_with_usageCount() throws Exception {
+        writeLetterValuesToCsv("5,e,true,1271");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup,1271, Letter::getUsageCount);
+    }
+
+    @Test
+    public void extracted_letter_without_usageCount_in_case_csv_value_is_NULL() throws Exception {
+        writeLetterValuesToCsv("5,e,true,NULL");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, 0, Letter::getUsageCount);
+    }
+
+    @Test
+    public void extracted_letter_without_usageCount_in_case_csv_value_is_word() throws Exception {
+        writeLetterValuesToCsv("5,e,true,One");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, 0, Letter::getUsageCount);
+    }
+
 }

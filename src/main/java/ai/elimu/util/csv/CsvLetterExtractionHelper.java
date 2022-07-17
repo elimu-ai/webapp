@@ -6,6 +6,7 @@ import ai.elimu.web.content.letter.LetterCsvExportController;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,7 +55,7 @@ public class CsvLetterExtractionHelper {
                 boolean diacritic = Boolean.valueOf(csvRecord.get("diacritic"));
                 letter.setDiacritic(diacritic);
 
-                Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
+                Integer usageCount = NumberUtils.toInt(csvRecord.get("usage_count"));
                 letter.setUsageCount(usageCount);
 
                 letters.add(letter);
