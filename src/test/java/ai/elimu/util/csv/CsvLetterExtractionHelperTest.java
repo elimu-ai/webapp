@@ -8,6 +8,7 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -17,6 +18,7 @@ import static ai.elimu.util.csv.CsvLetterExtractionHelper.getLettersFromCsvBacku
 import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 public class CsvLetterExtractionHelperTest {
 
@@ -165,4 +167,33 @@ public class CsvLetterExtractionHelperTest {
         assertEquals(emptyList(), lettersFromCsvBackup);
     }
 
+    @Test
+    public void extracted_letter_from_a_test_letters_csv_resource() {
+        String lettersCsvResourcePath = "db/content_TEST/eng/letters.csv";
+
+        URL lettersCsvUrl = getClass()
+            .getClassLoader()
+            .getResource(lettersCsvResourcePath);
+
+        assertNotNull(
+            "Test resource with CSV data not found for path: " + lettersCsvResourcePath,
+            lettersCsvUrl
+        );
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(
+            Paths.get(lettersCsvUrl.getPath())
+                .toFile(),
+            null
+        );
+
+        assertFalse(
+            "Expecting that resource: '" + lettersCsvResourcePath + "' has lines to extract",
+            lettersFromCsvBackup.isEmpty()
+        );
+
+        Letter letter = lettersFromCsvBackup.get(0);
+        assertEquals("e", letter.getText());
+        assertEquals(Boolean.FALSE, letter.isDiacritic());
+        assertEquals((Integer) 1271, letter.getUsageCount());
+    }
 }
