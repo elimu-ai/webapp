@@ -88,4 +88,31 @@ public class CsvLetterExtractionHelperTest {
         verifyLetterField(lettersFromCsvBackup, "e", Letter::getText);
     }
 
+    @Test
+    public void extracted_letter_without_diacritic() throws Exception {
+        writeLetterValuesToCsv("5,e,,1271");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, false, Letter::isDiacritic);
+    }
+
+    @Test
+    public void extracted_letter_with_diacritic() throws Exception {
+        writeLetterValuesToCsv("5,e,true,1271");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, true, Letter::isDiacritic);
+    }
+
+    @Test
+    public void extracted_letter_without_diacritic_in_case_csv_value_was_not_boolean() throws Exception {
+        writeLetterValuesToCsv("5,e,not_boolean_value,1271");
+
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+
+        verifyLetterField(lettersFromCsvBackup, false, Letter::isDiacritic);
+    }
+
 }
