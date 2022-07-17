@@ -12,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,9 +43,7 @@ public class CsvLetterExtractionHelper {
             .setSkipHeaderRecord(true)
             .build();
 
-        try {
-            Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVParser csvParser = new CSVParser(reader, csvFormat);
+        try (var csvParser = new CSVParser(Files.newBufferedReader(csvFilePath), csvFormat)) {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: {}", csvRecord);
 
