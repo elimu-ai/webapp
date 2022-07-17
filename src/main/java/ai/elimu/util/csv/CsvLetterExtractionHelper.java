@@ -33,16 +33,19 @@ public class CsvLetterExtractionHelper {
 
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: {}", csvFilePath);
+
+        CSVFormat csvFormat = CSVFormat.Builder.create()
+            .setHeader(
+                "id",
+                "text",
+                "diacritic",
+                "usage_count"
+            )
+            .setSkipHeaderRecord(true)
+            .build();
+
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT
-                    .withHeader(
-                            "id",
-                            "text",
-                            "diacritic",
-                            "usage_count"
-                    )
-                    .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: {}", csvRecord);
