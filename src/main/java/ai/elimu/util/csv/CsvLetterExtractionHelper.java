@@ -20,6 +20,9 @@ import java.util.List;
 
 public class CsvLetterExtractionHelper {
 
+    private CsvLetterExtractionHelper() {
+    }
+
     private static final Logger logger = LogManager.getLogger();
 
     /**
