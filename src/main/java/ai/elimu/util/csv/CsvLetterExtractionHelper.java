@@ -16,8 +16,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class CsvLetterExtractionHelper {
 
@@ -31,8 +33,6 @@ public class CsvLetterExtractionHelper {
      */
     public static List<Letter> getLettersFromCsvBackup(File csvFile, SoundDao soundDao) {
         logger.info("getLettersFromCsvBackup");
-
-        List<Letter> letters = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: {}", csvFilePath);
@@ -48,16 +48,14 @@ public class CsvLetterExtractionHelper {
             .build();
 
         try (var csvParser = new CSVParser(Files.newBufferedReader(csvFilePath), csvFormat)) {
-            for (CSVRecord csvRecord : csvParser) {
-                Letter letter = toLetter(csvRecord);
-
-                letters.add(letter);
-            }
+            return csvParser.stream()
+                .map(CsvLetterExtractionHelper::toLetter)
+                .collect(toUnmodifiableList());
         } catch (IOException ex) {
             logger.error(ex);
         }
 
-        return letters;
+        return emptyList();
     }
 
     @NotNull
