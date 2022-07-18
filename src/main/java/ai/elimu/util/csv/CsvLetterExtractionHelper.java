@@ -1,6 +1,5 @@
 package ai.elimu.util.csv;
 
-import ai.elimu.dao.SoundDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.web.content.letter.LetterCsvExportController;
 import org.apache.commons.csv.CSVFormat;
@@ -31,7 +30,7 @@ public class CsvLetterExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterCsvExportController#handleRequest}.
      */
-    public static List<Letter> getLettersFromCsvBackup(File csvFile, SoundDao soundDao) {
+    public static List<Letter> getLettersFromCsvBackup(File csvFile) {
         logger.info("getLettersFromCsvBackup");
 
         Path csvFilePath = Paths.get(csvFile.toURI());

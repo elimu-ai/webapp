@@ -134,7 +134,7 @@ public class DbContentImportHelper {
 
         // Extract and import Letters from CSV file in src/main/resources/
         File lettersCsvFile = new File(contentDirectory, "letters.csv");
-        List<Letter> letters = CsvLetterExtractionHelper.getLettersFromCsvBackup(lettersCsvFile, soundDao);
+        List<Letter> letters = CsvLetterExtractionHelper.getLettersFromCsvBackup(lettersCsvFile);
         logger.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         letterContributionEventDao = (LetterContributionEventDao) webApplicationContext.getBean("letterContributionEventDao");

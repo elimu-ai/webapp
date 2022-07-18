@@ -59,7 +59,7 @@ public class CsvLetterExtractionHelperTest {
 
     @Test
     public void extracted_empty_sounds_for_csv_file_with_empty_content() {
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         assertEquals(emptyList(), lettersFromCsvBackup);
     }
@@ -68,7 +68,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_empty_sounds_for_csv_file_only_with_headers() throws Exception {
         writeLetterValuesToCsv("");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         assertEquals(emptyList(), lettersFromCsvBackup);
     }
@@ -77,7 +77,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_without_text() throws Exception {
         writeLetterValuesToCsv("5,,false,1271");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, "", Letter::getText);
     }
@@ -86,7 +86,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_with_text() throws Exception {
         writeLetterValuesToCsv("5,e,false,1271");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, "e", Letter::getText);
     }
@@ -95,7 +95,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_without_diacritic() throws Exception {
         writeLetterValuesToCsv("5,e,,1271");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, false, Letter::isDiacritic);
     }
@@ -104,7 +104,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_with_diacritic() throws Exception {
         writeLetterValuesToCsv("5,e,true,1271");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, true, Letter::isDiacritic);
     }
@@ -113,7 +113,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_without_diacritic_in_case_csv_value_was_not_boolean() throws Exception {
         writeLetterValuesToCsv("5,e,not_boolean_value,1271");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, false, Letter::isDiacritic);
     }
@@ -122,7 +122,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_without_usageCount() throws Exception {
         writeLetterValuesToCsv("5,e,true,");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, 0, Letter::getUsageCount);
     }
@@ -131,7 +131,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_with_usageCount() throws Exception {
         writeLetterValuesToCsv("5,e,true,1271");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup,1271, Letter::getUsageCount);
     }
@@ -140,7 +140,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_without_usageCount_in_case_csv_value_is_NULL() throws Exception {
         writeLetterValuesToCsv("5,e,true,NULL");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, 0, Letter::getUsageCount);
     }
@@ -149,7 +149,7 @@ public class CsvLetterExtractionHelperTest {
     public void extracted_letter_without_usageCount_in_case_csv_value_is_word() throws Exception {
         writeLetterValuesToCsv("5,e,true,One");
 
-        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv, null);
+        List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(lettersCsv);
 
         verifyLetterField(lettersFromCsvBackup, 0, Letter::getUsageCount);
     }
@@ -160,8 +160,7 @@ public class CsvLetterExtractionHelperTest {
 
         List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(
             Paths.get("not_existing_file.txt")
-                .toFile(),
-            null
+                .toFile()
         );
 
         assertEquals(emptyList(), lettersFromCsvBackup);
@@ -182,8 +181,7 @@ public class CsvLetterExtractionHelperTest {
 
         List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(
             Paths.get(lettersCsvUrl.getPath())
-                .toFile(),
-            null
+                .toFile()
         );
 
         assertFalse(
