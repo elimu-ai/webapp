@@ -9,6 +9,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,18 +49,7 @@ public class CsvLetterExtractionHelper {
 
         try (var csvParser = new CSVParser(Files.newBufferedReader(csvFilePath), csvFormat)) {
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: {}", csvRecord);
-
-                Letter letter = new Letter();
-
-                String text = csvRecord.get("text");
-                letter.setText(text);
-
-                boolean diacritic = Boolean.parseBoolean(csvRecord.get("diacritic"));
-                letter.setDiacritic(diacritic);
-
-                Integer usageCount = NumberUtils.toInt(csvRecord.get("usage_count"));
-                letter.setUsageCount(usageCount);
+                Letter letter = toLetter(csvRecord);
 
                 letters.add(letter);
             }
@@ -68,5 +58,23 @@ public class CsvLetterExtractionHelper {
         }
 
         return letters;
+    }
+
+    @NotNull
+    private static Letter toLetter(CSVRecord csvRecord) {
+        logger.info("csvRecord: {}", csvRecord);
+
+        Letter letter = new Letter();
+
+        String text = csvRecord.get("text");
+        letter.setText(text);
+
+        boolean diacritic = Boolean.parseBoolean(csvRecord.get("diacritic"));
+        letter.setDiacritic(diacritic);
+
+        Integer usageCount = NumberUtils.toInt(csvRecord.get("usage_count"));
+        letter.setUsageCount(usageCount);
+
+        return letter;
     }
 }
