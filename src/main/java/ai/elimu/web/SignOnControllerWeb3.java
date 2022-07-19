@@ -33,7 +33,7 @@ public class SignOnControllerWeb3 {
     @Autowired
     private ContributorDao contributorDao;
 
-    @RequestMapping("/sign-on/web3")
+    @RequestMapping(value="/sign-on/web3", method=RequestMethod.GET)
     public String handleGetRequest(HttpServletRequest request) throws IOException {
         logger.info("handleGetRequest");
 		
@@ -52,12 +52,12 @@ public class SignOnControllerWeb3 {
             @RequestParam String signature
     ) throws IOException {
         logger.info("handleAuthorization");
-        
         logger.info("address: " + address);
         if (StringUtils.isBlank(address)) {
             return "redirect:/sign-on/web3?error=Missing address";
         }
-        
+        address = address.toLowerCase();
+
         logger.info("signature: " + signature);
         if (StringUtils.isBlank(signature)) {
             return "redirect:/sign-on/web3?error=Missing signature";
