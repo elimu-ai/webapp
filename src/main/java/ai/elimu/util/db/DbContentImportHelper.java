@@ -6,33 +6,49 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
+import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Sound;
+import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Number;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterContributionEvent;
+import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.util.WordExtractionHelper;
+import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
+import ai.elimu.util.csv.CsvLetterExtractionHelper;
+import ai.elimu.util.csv.CsvSoundExtractionHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.web.context.WebApplicationContext;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,75 +56,62 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.web.context.WebApplicationContext;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
-import ai.elimu.dao.NumberContributionEventDao;
-import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
-import ai.elimu.model.contributor.LetterContributionEvent;
-import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
-import ai.elimu.model.enums.Platform;
-import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
-import ai.elimu.dao.SoundDao;
-import ai.elimu.model.contributor.NumberContributionEvent;
 
 public class DbContentImportHelper {
-    
+
     private Logger logger = LogManager.getLogger();
-    
+
     private LetterDao letterDao;
-    
+
     private LetterContributionEventDao letterContributionEventDao;
-    
+
     private SoundDao soundDao;
-    
+
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
-    
+
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
-    
+
     private WordDao wordDao;
-    
+
     private WordContributionEventDao wordContributionEventDao;
-    
+
     private NumberDao numberDao;
-    
+
     private NumberContributionEventDao numberContributionEventDao;
-    
+
     private EmojiDao emojiDao;
-    
+
     private StoryBookDao storyBookDao;
-    
+
     private StoryBookLearningEventDao storyBookLearningEventDao;
-    
+
     private StoryBookContributionEventDao storyBookContributionEventDao;
-    
+
     private StoryBookChapterDao storyBookChapterDao;
-    
+
     private StoryBookParagraphDao storyBookParagraphDao;
-    
+
     private ContributorDao contributorDao;
-    
+
     private ApplicationDao applicationDao;
-    
+
     /**
-     * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and 
+     * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and
      * stores it in the database.
-     * 
+     *
      * @param environment The environment from which to import the database content.
      * @param language The language to use during the import.
      * @param webApplicationContext Context needed to access DAOs.
      */
     public synchronized void performDatabaseContentImport(Environment environment, Language language, WebApplicationContext webApplicationContext) {
         logger.info("performDatabaseContentImport");
-        
+
         logger.info("environment: " + environment + ", language: " + language);
-        
+
         if (!((environment == Environment.TEST) || (environment == Environment.PROD))) {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
         }
-        
+
         String contentDirectoryPath = "db" + File.separator + "content_" + environment + File.separator + language.toString().toLowerCase();
         logger.info("contentDirectoryPath: \"" + contentDirectoryPath + "\"");
         URL contentDirectoryURL = getClass().getClassLoader().getResource(contentDirectoryPath);
@@ -119,7 +122,7 @@ public class DbContentImportHelper {
         }
         File contentDirectory = new File(contentDirectoryURL.getPath());
         logger.info("contentDirectory: " + contentDirectory);
-        
+
         contributorDao = (ContributorDao) webApplicationContext.getBean("contributorDao");
         Contributor contributor = new Contributor();
         contributor.setEmail("dev@elimu.ai");
@@ -128,16 +131,16 @@ public class DbContentImportHelper {
         contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR, Role.EDITOR, Role.ANALYST, Role.ADMIN)));
         contributor.setRegistrationTime(Calendar.getInstance());
         contributorDao.create(contributor);
-        
+
         // Extract and import Letters from CSV file in src/main/resources/
         File lettersCsvFile = new File(contentDirectory, "letters.csv");
-        List<Letter> letters = CsvContentExtractionHelper.getLettersFromCsvBackup(lettersCsvFile, soundDao);
+        List<Letter> letters = CsvLetterExtractionHelper.getLettersFromCsvBackup(lettersCsvFile);
         logger.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         letterContributionEventDao = (LetterContributionEventDao) webApplicationContext.getBean("letterContributionEventDao");
         for (Letter letter : letters) {
             letterDao.create(letter);
-            
+
             LetterContributionEvent letterContributionEvent = new LetterContributionEvent();
             letterContributionEvent.setContributor(contributor);
             letterContributionEvent.setLetter(letter);
@@ -147,16 +150,16 @@ public class DbContentImportHelper {
             letterContributionEvent.setPlatform(Platform.WEBAPP);
             letterContributionEventDao.create(letterContributionEvent);
         }
-        
+
         // Extract and import Sounds from CSV file in src/main/resources/
         File soundsCsvFile = new File(contentDirectory, "sounds.csv");
-        List<Sound> sounds = CsvContentExtractionHelper.getSoundsFromCsvBackup(soundsCsvFile);
+        List<Sound> sounds = CsvSoundExtractionHelper.getSoundsFromCsvBackup(soundsCsvFile);
         logger.info("sounds.size(): " + sounds.size());
         soundDao = (SoundDao) webApplicationContext.getBean("soundDao");
         for (Sound sound : sounds) {
             soundDao.create(sound);
         }
-        
+
         // Extract and import letter-sound correspondences in src/main/resources/
         File letterToAllophioneMappingsCsvFile = new File(contentDirectory, "letter-sound-correspondences.csv");
         List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao);
@@ -165,7 +168,7 @@ public class DbContentImportHelper {
         letterSoundCorrespondenceContributionEventDao = (LetterSoundCorrespondenceContributionEventDao) webApplicationContext.getBean("letterSoundCorrespondenceContributionEventDao");
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
             letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
-            
+
             LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
             letterSoundCorrespondenceContributionEvent.setContributor(contributor);
             letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
@@ -175,7 +178,7 @@ public class DbContentImportHelper {
             letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
         }
-        
+
         // Extract and import Words from CSV file in src/main/resources/
         File wordsCsvFile = new File(contentDirectory, "words.csv");
         List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao, wordDao);
@@ -184,7 +187,7 @@ public class DbContentImportHelper {
         wordContributionEventDao = (WordContributionEventDao) webApplicationContext.getBean("wordContributionEventDao");
         for (Word word : words) {
             wordDao.create(word);
-            
+
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
             wordContributionEvent.setContributor(contributor);
             wordContributionEvent.setWord(word);
@@ -194,7 +197,7 @@ public class DbContentImportHelper {
             wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
         }
-        
+
         // Extract and import Numbers from CSV file in src/main/resources/
         File numbersCsvFile = new File(contentDirectory, "numbers.csv");
         List<Number> numbers = CsvContentExtractionHelper.getNumbersFromCsvBackup(numbersCsvFile, wordDao);
@@ -203,7 +206,7 @@ public class DbContentImportHelper {
         numberContributionEventDao = (NumberContributionEventDao) webApplicationContext.getBean("numberContributionEventDao");
         for (Number number : numbers) {
             numberDao.create(number);
-            
+
             NumberContributionEvent numberContributionEvent = new NumberContributionEvent();
             numberContributionEvent.setContributor(contributor);
             numberContributionEvent.setNumber(number);
@@ -213,10 +216,10 @@ public class DbContentImportHelper {
             numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
         }
-        
+
         // Extract and import Syllables from CSV file in src/main/resources/
         // TODO
-        
+
         // Extract and import Emojis from CSV file in src/main/resources/
         File emojisCsvFile = new File(contentDirectory, "emojis.csv");
         List<Emoji> emojis = CsvContentExtractionHelper.getEmojisFromCsvBackup(emojisCsvFile, wordDao);
@@ -225,13 +228,13 @@ public class DbContentImportHelper {
         for (Emoji emoji : emojis) {
             emojiDao.create(emoji);
         }
-        
+
         // Extract and import Images from CSV file in src/main/resources/
         // TODO
-        
+
         // Extract and import Audios from CSV file in src/main/resources/
         // TODO
-        
+
         // Extract and import StoryBooks from CSV file in src/main/resources/
         File storyBooksCsvFile = new File(contentDirectory, "storybooks.csv");
         List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
@@ -249,7 +252,7 @@ public class DbContentImportHelper {
 //            TODO: storyBook.setAttributionUrl();
             storyBook.setReadingLevel(storyBookGson.getReadingLevel());
             storyBookDao.create(storyBook);
-            
+
             for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {
                 // Convert from GSON to JPA
                 StoryBookChapter storyBookChapter = new StoryBookChapter();
@@ -257,14 +260,14 @@ public class DbContentImportHelper {
                 storyBookChapter.setSortOrder(storyBookChapterGson.getSortOrder());
                 // TODO: storyBookChapter.setImage();
                 storyBookChapterDao.create(storyBookChapter);
-                
+
                 for (StoryBookParagraphGson storyBookParagraphGson : storyBookChapterGson.getStoryBookParagraphs()) {
                     // Convert from GSON to JPA
                     StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
                     storyBookParagraph.setStoryBookChapter(storyBookChapter);
                     storyBookParagraph.setSortOrder(storyBookParagraphGson.getSortOrder());
                     storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
-                    
+
                     List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
                     logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
                     List<Word> paragraphWords = new ArrayList<>();
@@ -278,11 +281,11 @@ public class DbContentImportHelper {
                         paragraphWords.add(word);
                     }
                     storyBookParagraph.setWords(paragraphWords);
-                    
+
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
-            
+
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
             storyBookContributionEvent.setContributor(contributor);
             storyBookContributionEvent.setStoryBook(storyBook);
@@ -292,11 +295,11 @@ public class DbContentImportHelper {
             storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
         }
-        
+
         // Extract and import Videos from CSV file in src/main/resources/
         // TODO
-        
-        
+
+
         String analyticsDirectoryPath = "db" + File.separator + "analytics_" + environment + File.separator + language.toString().toLowerCase();
         logger.info("analyticsDirectoryPath: \"" + analyticsDirectoryPath + "\"");
         URL analyticsDirectoryURL = getClass().getClassLoader().getResource(analyticsDirectoryPath);
@@ -307,13 +310,13 @@ public class DbContentImportHelper {
         }
         File analyticsDirectory = new File(analyticsDirectoryURL.getPath());
         logger.info("analyticsDirectory: " + analyticsDirectory);
-        
+
         // Extract and import LetterLearningEvents from CSV file in src/main/resources/
         // TODO
-        
+
         // Extract and import WordLearningEvents from CSV file in src/main/resources/
         // TODO
-        
+
         // Extract and import StoryBookLearningEvents from CSV file in src/main/resources/
         File storyBookLearningEventsCsvFile = new File(analyticsDirectory, "storybook-learning-events.csv");
         applicationDao = (ApplicationDao) webApplicationContext.getBean("applicationDao");
@@ -323,7 +326,7 @@ public class DbContentImportHelper {
         for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
             storyBookLearningEventDao.create(storyBookLearningEvent);
         }
-        
+
         logger.info("Content import complete");
     }
 }
