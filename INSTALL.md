@@ -39,7 +39,7 @@ To run the application in debug mode, replace `mvn` with `mvnDebug` in the comma
 
 ```
 mvn test
-open target/site/jacoco/index.html 
+open target/site/jacoco/index.html
 ```
 
 
