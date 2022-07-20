@@ -85,7 +85,7 @@ async function disconnect() {
   console.log("Killing the wallet connection", provider);
 
   // TODO: Which providers have close method?
-  if (provider.close) {
+  if (provider && provider.close) {
     await provider.close();
 
     // If the cached provider is not cleared,
@@ -94,7 +94,9 @@ async function disconnect() {
     // Depending on your use case you may want or want not his behavir.
     provider = null;
   }
-  await web3Modal.clearCachedProvider();
+  if (web3Modal) {
+    await web3Modal.clearCachedProvider();
+  }
 }
 
 /**
