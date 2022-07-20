@@ -34,6 +34,7 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 39,audio/mpeg,null,"null",349,"word-349","हस्कर","/audio/39.mp3",MP3
 40,audio/mpeg,null,"null",350,"word-350","गुलाबजामुन","/audio/40.mp3",MP3
 41,audio/mpeg,null,"null",351,"word-351","नारंगी","/audio/41.mp3",MP3
+530,audio/mpeg,null,"null",443,"word-id-443","सड़सठ","/audio/530.mp3",MP3
 43,audio/mpeg,null,"null",353,"word-353","चाहते","/audio/43.mp3",MP3
 44,audio/mpeg,null,"null",354,"word-354","सूरज","/audio/44.mp3",MP3
 45,audio/mpeg,null,"null",355,"word-355","तितलियों","/audio/45.mp3",MP3
@@ -192,7 +193,9 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 201,audio/mpeg,null,"null",374,"word-374","जुगनू","/audio/201.mp3",MP3
 202,audio/mpeg,null,"null",375,"word-375","तितलियाँ","/audio/202.mp3",MP3
 203,audio/mpeg,null,"null",376,"word-376","पतंगे","/audio/203.mp3",MP3
+533,audio/mpeg,null,"null",308,"word_कुत्ते","कुत्ते","/audio/533.mp3",MP3
 213,audio/mpeg,null,"null",386,"word-386","मणि","/audio/213.mp3",MP3
+532,audio/mpeg,null,"null",65,"word_कुत्ता","कुत्ता","/audio/532.mp3",MP3
 215,audio/mpeg,null,"null",388,"word-388","गुबरैले","/audio/215.mp3",MP3
 216,audio/mpeg,null,"null",389,"word-389","व्याध","/audio/216.mp3",MP3
 217,audio/mpeg,null,"null",390,"word-390","सेमल","/audio/217.mp3",MP3
@@ -220,6 +223,7 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 239,audio/mpeg,null,"null",412,"word-412","लो","/audio/239.mp3",MP3
 240,audio/mpeg,null,"null",413,"word-413","डिब्बा","/audio/240.mp3",MP3
 241,audio/mpeg,null,"null",414,"word-414","जन्मदिन","/audio/241.mp3",MP3
+531,audio/mpeg,null,"null",444,"word-id-444","अड़सठ","/audio/531.mp3",MP3
 243,audio/mpeg,null,"null",416,"word-416","हमेशा","/audio/243.mp3",MP3
 244,audio/mpeg,null,"null",417,"word-417","दोस्तों","/audio/244.mp3",MP3
 245,audio/mpeg,null,"null",418,"word-418","सुंदर","/audio/245.mp3",MP3
@@ -506,3 +510,21 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 526,audio/mpeg,null,"null",441,"word-id-441","पैंसठ","/audio/526.mp3",MP3
 527,audio/mpeg,null,"null",442,"word-id-442","छयासठ","/audio/527.mp3",MP3
 528,audio/mpeg,null,"null",329,"word_ हिचकी"," हिचकी","/audio/528.mp3",MP3
+534,audio/mpeg,null,"null",445,"word-id-445","उनहत्तर","/audio/534.mp3",MP3
+535,audio/mpeg,null,"null",446,"word-id-446","सत्तर","/audio/535.mp3",MP3
+536,audio/mpeg,null,"null",328,"word_मच्छर","मच्छर","/audio/536.mp3",MP3
+537,audio/mpeg,null,"null",39,"word_ची","ची","/audio/537.mp3",MP3
+538,audio/mpeg,null,"null",190,"word_जाते","जाते","/audio/538.mp3",MP3
+539,audio/mpeg,null,"null",194,"word_अगर","अगर","/audio/539.mp3",MP3
+540,audio/mpeg,null,"null",212,"word_फट","फट","/audio/540.mp3",MP3
+541,audio/mpeg,null,"null",218,"word_ओर","ओर","/audio/541.mp3",MP3
+542,audio/mpeg,null,"null",232,"word_मेरा","मेरा","/audio/542.mp3",MP3
+543,audio/mpeg,null,"null",447,"word_चलना","चलना","/audio/543.mp3",MP3
+544,audio/mpeg,null,"null",448,"word-id-448","बेतरतीब","/audio/544.mp3",MP3
+545,audio/mpeg,null,"null",449,"word-id-449","विषमता","/audio/545.mp3",MP3
+546,audio/mpeg,null,"null",450,"word-id-450","नया","/audio/546.mp3",MP3
+547,audio/mpeg,null,"null",451,"word-id-451","नयासाल","/audio/547.mp3",MP3
+548,audio/mpeg,null,"null",452,"word-id-452","शेर","/audio/548.mp3",MP3
+549,audio/mpeg,null,"null",453,"word-id-453","काला","/audio/549.mp3",MP3
+550,audio/mpeg,null,"null",227,"word_गई","गई","/audio/550.mp3",MP3
+551,audio/mpeg,null,"null",147,"word_शून्य","शून्य","/audio/551.mp3",MP3
