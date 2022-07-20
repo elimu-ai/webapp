@@ -83,11 +83,15 @@ public class DbMigrationHelper {
                             logger.error(ex);
                         }
                         
+                        // Update current version
+                        logger.info("Updating current version (" + scriptVersion + ")");
                         DbMigration dbMigration = new DbMigration();
                         dbMigration.setVersion(scriptVersion);
                         dbMigration.setScript(script);
                         dbMigration.setCalendar(Calendar.getInstance());
                         dbMigrationDao.create(dbMigration);
+                        
+                        logger.info("Database migration complete!");
                     }
                 }
             }
