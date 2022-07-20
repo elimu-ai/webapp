@@ -8,6 +8,8 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -167,12 +169,10 @@ public class CsvLetterExtractionHelperTest {
     }
 
     @Test
-    public void extracted_letter_from_a_test_letters_csv_resource() {
+    public void extracted_letter_from_a_test_letters_csv_resource() throws URISyntaxException {
         String lettersCsvResourcePath = "db/content_TEST/eng/letters.csv";
 
-        URL lettersCsvUrl = getClass()
-            .getClassLoader()
-            .getResource(lettersCsvResourcePath);
+        URI lettersCsvUrl = ClassLoader.getSystemResource(lettersCsvResourcePath).toURI();
 
         assertNotNull(
             "Test resource with CSV data not found for path: " + lettersCsvResourcePath,
@@ -180,7 +180,7 @@ public class CsvLetterExtractionHelperTest {
         );
 
         List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(
-            Paths.get(lettersCsvUrl.getPath())
+            Paths.get(lettersCsvUrl)
                 .toFile()
         );
 
