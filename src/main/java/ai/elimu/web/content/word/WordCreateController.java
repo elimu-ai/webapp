@@ -113,7 +113,7 @@ public class WordCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        validWord(word, result);
+        validateWord(word, result);
         
         if (result.hasErrors()) {
             model.addAttribute("word", word);
@@ -266,7 +266,7 @@ public class WordCreateController {
         word.setLetterSoundCorrespondences(letterSoundCorrespondences);
     }
 
-    private void validWord(Word word, BindingResult result) {
+    private void validateWord(Word word, BindingResult result) {
         Word existingWord = wordDao.readByText(word.getText());
 
         if (existingWord != null) {
@@ -278,7 +278,7 @@ public class WordCreateController {
         }
 
         if (word.getText().matches(".*[0-9].*")) {
-            result.rejectValue("text", "WordContainsNumber");
+            result.rejectValue("text", "WordNumbers");
         }
     }
 }
