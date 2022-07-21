@@ -19,8 +19,9 @@ jobs:
         distribution: 'temurin'
         java-version: 11
         cache: maven
-    - run: mvn clean install
-    - run: mvn clean test
+    - run: mvn clean
+    - run: mvn compile
+    - run: mvn test
     - uses: codecov/codecov-action@v3
       with:
         fail_ci_if_error: true
