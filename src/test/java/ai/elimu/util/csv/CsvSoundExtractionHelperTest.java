@@ -9,6 +9,8 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -214,12 +216,10 @@ public class CsvSoundExtractionHelperTest {
     }
 
     @Test
-    public void extracted_sound_from_a_test_sounds_csv_resource() {
+    public void extracted_sound_from_a_test_sounds_csv_resource() throws URISyntaxException {
         String soundsCsvResourcePath = "db/content_TEST/eng/sounds.csv";
 
-        URL soundsCsvUrl = getClass()
-            .getClassLoader()
-            .getResource(soundsCsvResourcePath);
+        URI soundsCsvUrl = ClassLoader.getSystemResource(soundsCsvResourcePath).toURI();
 
         assertNotNull(
             "Test resource with CSV data not found for path: " + soundsCsvResourcePath,
@@ -227,7 +227,7 @@ public class CsvSoundExtractionHelperTest {
         );
 
         List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(
-            Paths.get(soundsCsvUrl.getPath())
+            Paths.get(soundsCsvUrl)
                 .toFile()
         );
 
