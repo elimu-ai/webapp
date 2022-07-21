@@ -21,6 +21,7 @@ jobs:
         cache: maven
     - run: mvn clean
     - run: mvn compile
+    - run: mvn package -P Jspc
     - run: mvn test
     - uses: codecov/codecov-action@v3
       with:
