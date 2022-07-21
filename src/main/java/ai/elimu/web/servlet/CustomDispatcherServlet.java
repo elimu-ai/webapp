@@ -67,7 +67,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
 //                .configure("META-INF/jpa-persistence.xml")
                 .applySetting("hibernate.dialect", ConfigHelper.getProperty("jpa.databasePlatform"))
                 .applySetting("hibernate.hbm2ddl.auto", "update")
-                .applySetting(AvailableSettings.CONNECTION_PROVIDER, new ConnectionProviderWeb())
+                .applySetting(AvailableSettings.CONNECTION_PROVIDER, new ConnectionProviderWeb(ConfigHelper.getProperty("jdbc.url"), ConfigHelper.getProperty("jdbc.username"), ConfigHelper.getProperty("jdbc.password")))
                 .build();
 
         MetadataSources metadataSources = (MetadataSources) new MetadataSources(serviceRegistry);
