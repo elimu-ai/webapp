@@ -114,8 +114,6 @@ public class DbContentImportHelper {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
         }
 
-        String contentDirectoryPath = "db" + File.separator + "content_" + environment + File.separator + language.toString().toLowerCase();
-
         String contentDirectoryPath = "db" + SLASH + "content_" + environment + SLASH + language.toString().toLowerCase();
         logger.info("contentDirectoryPath: \"" + contentDirectoryPath + "\"");
         URL contentDirectoryURL = getClass().getClassLoader().getResource(contentDirectoryPath);
