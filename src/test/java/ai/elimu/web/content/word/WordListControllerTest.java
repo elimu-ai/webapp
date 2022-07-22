@@ -35,7 +35,7 @@ public class WordListControllerTest {
     }
     
     @Test
-    public void testHandleRequest() throws Exception {
+    public void testHandleGetRequest() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/content/word/list");
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
