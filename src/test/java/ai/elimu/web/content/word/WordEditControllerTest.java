@@ -37,7 +37,7 @@ public class WordEditControllerTest {
     
     @Test
     public void testHandleGetRequest() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/content/word/create");
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/content/word/edit");
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
         assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
         assertEquals("content/word/edit", mvcResult.getModelAndView().getViewName());
