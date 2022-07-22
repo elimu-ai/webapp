@@ -13,8 +13,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml")
+@ContextConfiguration(locations={
+        "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
+        "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
+})
 public class WordDaoTest extends TestCase {
+
     @Autowired
     private WordDao wordDao;
 

@@ -27,10 +27,16 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
 
     @Override
     public Word readByTextAndType(String text, WordType wordType) throws DataAccessException {
-        String select = "SELECT w FROM Word w WHERE w.text = :text AND w.wordType ";
+        String query = "SELECT w " +
+                "FROM Word w " +
+                "WHERE w.text = :text ";
+        if (wordType == null) {
+            query += "AND w.wordType IS NULL AND :wordType IS NULL";
+        } else {
+            query += "AND w.wordType = :wordType";
+        }
         try {
-            return (Word) em.createQuery(
-                            select + (wordType == null ? "IS NULL AND :wordType IS NULL" : "= :wordType"))
+            return (Word) em.createQuery(query)
                     .setParameter("text", text)
                     .setParameter("wordType", wordType)
                     .getSingleResult();
