@@ -1,7 +1,5 @@
 package ai.elimu.web.content.word;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +13,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={
@@ -54,4 +58,45 @@ public class WordCreateControllerTest {
 //        assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
 //        assertEquals("content/word/create", mvcResult.getModelAndView().getViewName());
     }
+
+    @Test
+    public void testValidateDigitsInWord() throws Exception {
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("10")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("'10'")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("\\\"10\\\"")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("Test10Test")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("Test 10 Test")).getAllErrors(), "WordNumbers"));
+    }
+
+    @Test
+    public void testValidateSpacesInWord() throws Exception {
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("Test Test")).getAllErrors(), "WordSpace"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText(" Test")).getAllErrors(), "WordSpace"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("Test ")).getAllErrors(), "WordSpace"));
+    }
+
+    private RequestBuilder getRequestWithSpecificText(String text) {
+        return MockMvcRequestBuilders
+                .post("/content/word/create")
+                .param("timeStart", String.valueOf(System.currentTimeMillis()))
+                .param("text", text)
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+    }
+
+    private BindingResult getBindingResult(RequestBuilder requestBuilder) throws Exception {
+        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+        return  (BindingResult) mvcResult.getModelAndView().getModel().get("org.springframework.validation.BindingResult.word");
+    }
+
+    private boolean containGivenErrorCode(List<ObjectError> objectErrorList, String error) {
+        for (ObjectError objectError : objectErrorList) {
+            for (String errorCode : objectError.getCodes()) {
+                if (errorCode.equals(error)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

@@ -277,7 +277,7 @@ public class WordCreateController {
             result.rejectValue("text", "WordSpace");
         }
 
-        if (word.getText().matches(".*[0-9].*")) {
+        if (word.getText() != null && word.getText().matches(".*[0-9].*")) {
             result.rejectValue("text", "WordNumbers");
         }
     }
