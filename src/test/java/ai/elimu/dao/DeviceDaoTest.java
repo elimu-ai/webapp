@@ -1,4 +1,4 @@
-package ai.elimu.dao.jpa;
+package ai.elimu.dao;
 
 import ai.elimu.dao.DeviceDao;
 import ai.elimu.model.Device;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
         "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
-public class DeviceDaoJpaTest extends TestCase {
+public class DeviceDaoTest extends TestCase {
 
     @Autowired
     DeviceDao deviceDao;

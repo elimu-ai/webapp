@@ -1,4 +1,4 @@
-package ai.elimu.dao.jpa;
+package ai.elimu.dao;
 
 import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Letter;
@@ -21,7 +21,7 @@ import java.util.List;
         "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LetterDaoJpaTest extends TestCase {
+public class LetterDaoTest extends TestCase {
 
     @Autowired
     LetterDao letterDao;
