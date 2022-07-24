@@ -95,8 +95,6 @@ public class DbContentImportHelper {
 
     private ApplicationDao applicationDao;
 
-    private static final char SLASH = '/';
-
     /**
      * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and
      * stores it in the database.
@@ -114,7 +112,7 @@ public class DbContentImportHelper {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
         }
 
-        String contentDirectoryPath = "db" + SLASH + "content_" + environment + SLASH + language.toString().toLowerCase();
+        String contentDirectoryPath = "db/content_" + environment + "/" + language.toString().toLowerCase();
         logger.info("contentDirectoryPath: \"" + contentDirectoryPath + "\"");
         URL contentDirectoryURL = getClass().getClassLoader().getResource(contentDirectoryPath);
         logger.info("contentDirectoryURL: " + contentDirectoryURL);
@@ -302,7 +300,7 @@ public class DbContentImportHelper {
         // TODO
         
         
-        String analyticsDirectoryPath = "db" + SLASH + "analytics_" + environment + SLASH + language.toString().toLowerCase();
+        String analyticsDirectoryPath = "db/analytics_" + environment + "/" + language.toString().toLowerCase();
         logger.info("analyticsDirectoryPath: \"" + analyticsDirectoryPath + "\"");
         URL analyticsDirectoryURL = getClass().getClassLoader().getResource(analyticsDirectoryPath);
         logger.info("analyticsDirectoryURL: " + analyticsDirectoryURL);
