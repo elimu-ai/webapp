@@ -63,9 +63,20 @@ public class WordCreateControllerTest {
     public void testValidateDigitsInWord() throws Exception {
         assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("10")).getAllErrors(), "WordNumbers"));
         assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("'10'")).getAllErrors(), "WordNumbers"));
-        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("\\\"10\\\"")).getAllErrors(), "WordNumbers"));
-        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("Test10Test")).getAllErrors(), "WordNumbers"));
-        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("Test 10 Test")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("\"10\"")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("[10]")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1'0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1-0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1*0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1/0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1!0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1#0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1%0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1()0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1_0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1+0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1{}0")).getAllErrors(), "WordNumbers"));
+        assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1|?><.,0")).getAllErrors(), "WordNumbers"));
     }
 
     @Test
