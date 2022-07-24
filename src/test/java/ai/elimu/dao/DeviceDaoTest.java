@@ -1,6 +1,5 @@
 package ai.elimu.dao;
 
-import ai.elimu.dao.DeviceDao;
 import ai.elimu.model.Device;
 import junit.framework.TestCase;
 import org.junit.Test;

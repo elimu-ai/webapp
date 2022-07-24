@@ -1,6 +1,5 @@
 package ai.elimu.dao;
 
-import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Letter;
 import junit.framework.TestCase;
 import org.junit.Assert;

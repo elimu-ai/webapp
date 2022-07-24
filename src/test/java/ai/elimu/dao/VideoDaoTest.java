@@ -1,6 +1,5 @@
 package ai.elimu.dao;
 
-import ai.elimu.dao.VideoDao;
 import ai.elimu.model.content.multimedia.Video;
 import junit.framework.TestCase;
 import org.junit.Assert;

@@ -2,7 +2,6 @@ package ai.elimu.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -12,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import org.apache.logging.log4j.LogManager;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,9 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NumberDaoTest {
-    
-    private Logger logger = LogManager.getLogger();
-    
+
     @Autowired
     private NumberDao numberDao;
     
@@ -54,7 +50,7 @@ public class NumberDaoTest {
     }
 
     @Test
-    public void aTestReadAllOrdered() {
+    public void TestReadAllOrdered() {
         List<Number> expectedNumbers = new ArrayList<>();
         expectedNumbers.add(getNumber(1));
         expectedNumbers.add(getNumber(22));
