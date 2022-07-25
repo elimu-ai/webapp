@@ -29,7 +29,7 @@ public class WordCreateControllerTest {
 
     @Autowired
     private WordCreateController wordCreateController;
-    
+
     private MockMvc mockMvc;
     
     @Before
@@ -96,7 +96,7 @@ public class WordCreateControllerTest {
 
     private BindingResult getBindingResult(RequestBuilder requestBuilder) throws Exception {
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-        return  (BindingResult) mvcResult.getModelAndView().getModel().get("org.springframework.validation.BindingResult.word");
+        return (BindingResult) mvcResult.getModelAndView().getModel().get("org.springframework.validation.BindingResult.word");
     }
 
     private boolean containGivenErrorCode(List<ObjectError> objectErrorList, String error) {
