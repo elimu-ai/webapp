@@ -63,7 +63,11 @@ public class CustomDispatcherServlet extends DispatcherServlet {
     private void createJpaSchemaExport() {
         logger.info("createJpaSchemaExport");
 
-        ConnectionProviderWeb connectionProviderWeb = new ConnectionProviderWeb(ConfigHelper.getProperty("jdbc.url"), ConfigHelper.getProperty("jdbc.username"), ConfigHelper.getProperty("jdbc.password"));
+        ConnectionProviderWeb connectionProviderWeb = new ConnectionProviderWeb(
+                ConfigHelper.getProperty("jdbc.url"),
+                ConfigHelper.getProperty("jdbc.username"),
+                ConfigHelper.getProperty("jdbc.password")
+        );
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 //                .configure("META-INF/jpa-persistence.xml")
@@ -103,5 +107,4 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         schemaExport.setFormat(true);
         schemaExport.create(EnumSet.of(TargetType.SCRIPT), metadata);
     }
-
 }
