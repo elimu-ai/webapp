@@ -23,33 +23,31 @@ import java.util.List;
 public class VideoDaoTest extends TestCase {
 
     @Autowired
-    VideoDao videoDao;
+    private VideoDao videoDao;
 
     @Test
     public void testReadAllOrdered() {
         List<Video> expectedVideos = new ArrayList<>();
-        expectedVideos.add(getVideo("Alaska"));
-        expectedVideos.add(getVideo("Back to the Future"));
-        expectedVideos.add(getVideo("Dirty Harry"));
-        expectedVideos.add(getVideo("Predator"));
-        expectedVideos.add(getVideo("The Wind"));
+        expectedVideos.add(getVideo("count to ten with me"));
+        expectedVideos.add(getVideo("letter a"));
+        expectedVideos.add(getVideo("one two three song"));
 
-        videoDao.create(getVideo("Predator"));
-        videoDao.create(getVideo("Back to the Future"));
-        videoDao.create(getVideo("Dirty Harry"));
-        videoDao.create(getVideo("Alaska"));
-        videoDao.create(getVideo("The Wind"));
+        videoDao.create(getVideo("letter a"));
+        videoDao.create(getVideo("one two three song"));
+        videoDao.create(getVideo("count to ten with me"));
 
         List<Video> videosActual = videoDao.readAllOrdered();
 
-        Assert.assertArrayEquals(expectedVideos.stream().map(Video::getTitle).toArray(), videosActual.stream().map(Video::getTitle).toArray());
+        Assert.assertArrayEquals(
+                expectedVideos.stream().map(Video::getTitle).toArray(),
+                videosActual.stream().map(Video::getTitle).toArray()
+        );
     }
 
     @Test
     public void testReadByTitle() {
-        videoDao.create(getVideo("Madagascar"));
-
-        assertTrue("Madagascar".equals(videoDao.read("Madagascar").getTitle()));
+        videoDao.create(getVideo("the rectangle song"));
+        assertTrue("the rectangle song".equals(videoDao.read("the rectangle song").getTitle()));
         assertNull(videoDao.read("None"));
     }
 

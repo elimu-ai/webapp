@@ -23,7 +23,7 @@ import java.util.List;
 public class EmojiDaoTest extends TestCase {
 
     @Autowired
-    EmojiDao emojiDao;
+    private EmojiDao emojiDao;
 
     public void testReadAllOrdered() {
         List<Emoji> expectedEmojis = new ArrayList<>();
@@ -41,13 +41,15 @@ public class EmojiDaoTest extends TestCase {
 
         List<Emoji> actualEmojis = emojiDao.readAllOrdered();
 
-        Assert.assertArrayEquals(expectedEmojis.stream().map(Emoji::getGlyph).toArray(), actualEmojis.stream().map(Emoji::getGlyph).toArray());
+        Assert.assertArrayEquals(
+                expectedEmojis.stream().map(Emoji::getGlyph).toArray(),
+                actualEmojis.stream().map(Emoji::getGlyph).toArray()
+        );
     }
 
     @Test
     public void testReadByGlyph() {
         emojiDao.create(getEmoji("F1F6"));
-
         assertTrue("F1F6".equals(emojiDao.readByGlyph("F1F6").getGlyph()));
     }
 
@@ -56,5 +58,4 @@ public class EmojiDaoTest extends TestCase {
         emoji.setGlyph(glyph);
         return emoji;
     }
-
 }

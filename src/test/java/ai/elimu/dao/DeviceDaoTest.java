@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class DeviceDaoTest extends TestCase {
 
     @Autowired
-    DeviceDao deviceDao;
+    private DeviceDao deviceDao;
 
     @Test
     public void testRead() {
@@ -33,5 +33,4 @@ public class DeviceDaoTest extends TestCase {
         device.setDeviceId(deviceId);
         return device;
     }
-
 }

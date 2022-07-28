@@ -23,7 +23,7 @@ import java.util.List;
 public class LetterDaoTest extends TestCase {
 
     @Autowired
-    LetterDao letterDao;
+    private LetterDao letterDao;
 
     @Test
     public void testReadAllOrdered() {
@@ -40,7 +40,10 @@ public class LetterDaoTest extends TestCase {
 
         List<Letter> lettersActual = letterDao.readAllOrdered();
 
-        Assert.assertArrayEquals(lettersExpected.stream().map(Letter::getText).toArray(), lettersActual.stream().map(Letter::getText).toArray());
+        Assert.assertArrayEquals(
+                lettersExpected.stream().map(Letter::getText).toArray(),
+                lettersActual.stream().map(Letter::getText).toArray()
+        );
     }
 
     @Test
@@ -58,13 +61,15 @@ public class LetterDaoTest extends TestCase {
 
         List<Letter> lettersActual = letterDao.readAllOrderedByUsage();
 
-        Assert.assertArrayEquals(lettersExpected.stream().map(Letter::getText).toArray(), lettersActual.stream().filter(i -> i.getUsageCount() != 0).map(Letter::getText).toArray());
+        Assert.assertArrayEquals(
+                lettersExpected.stream().map(Letter::getText).toArray(),
+                lettersActual.stream().filter(i -> i.getUsageCount() != 0).map(Letter::getText).toArray()
+        );
     }
 
     @Test
     public void testReadByText() {
         letterDao.create(getLetter("T"));
-
         assertTrue("T".equals(letterDao.readByText("T").getText()));
         assertNull(letterDao.readByText(""));
     }
@@ -80,5 +85,4 @@ public class LetterDaoTest extends TestCase {
        letter.setUsageCount(usageCount);
        return letter;
     }
-
 }

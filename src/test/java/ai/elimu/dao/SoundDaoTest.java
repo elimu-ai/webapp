@@ -45,7 +45,10 @@ public class SoundDaoTest {
 
         List<Sound> actualSounds = soundDao.readAllOrdered();
 
-        Assert.assertArrayEquals(expectedSounds.stream().map(Sound::getValueIpa).toArray(), actualSounds.stream().filter(i -> i.getValueIpa().length() == 1).map(Sound::getValueIpa).toArray());
+        Assert.assertArrayEquals(
+                expectedSounds.stream().map(Sound::getValueIpa).toArray(),
+                actualSounds.stream().filter(i -> i.getValueIpa().length() == 1).map(Sound::getValueIpa).toArray()
+        );
     }
 
     @Test
@@ -59,7 +62,10 @@ public class SoundDaoTest {
 
         List<Sound> actualSounds = soundDao.readAllOrderedByIpaValueCharacterLength();
 
-        Assert.assertArrayEquals(expectedSounds.stream().map(Sound::getValueIpa).toArray(), actualSounds.stream().map(Sound::getValueIpa).toArray());
+        Assert.assertArrayEquals(
+                expectedSounds.stream().map(Sound::getValueIpa).toArray(),
+                actualSounds.stream().map(Sound::getValueIpa).toArray()
+        );
     }
 
     @Test
@@ -79,7 +85,10 @@ public class SoundDaoTest {
 
         List<Sound> actualSounds = soundDao.readAllOrderedByUsage();
 
-        Assert.assertArrayEquals(expectedSounds.stream().map(Sound::getUsageCount).toArray(), actualSounds.stream().filter(i -> i.getUsageCount() != 0).map(Sound::getUsageCount).toArray());
+        Assert.assertArrayEquals(
+                expectedSounds.stream().map(Sound::getUsageCount).toArray(),
+                actualSounds.stream().filter(i -> i.getUsageCount() != 0).map(Sound::getUsageCount).toArray()
+        );
     }
 
     @Test
