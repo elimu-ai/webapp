@@ -18,7 +18,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml")
+@ContextConfiguration(locations={
+    "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
+    "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
+})
 public class NumberDaoTest {
     
     private Logger logger = LogManager.getLogger();
