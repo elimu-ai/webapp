@@ -3,6 +3,7 @@ package ai.elimu.dao;
 import java.util.List;
 import ai.elimu.model.content.StoryBook;
 
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.v2.enums.ReadingLevel;
 
 import org.springframework.dao.DataAccessException;
@@ -16,4 +17,6 @@ public interface StoryBookDao extends GenericDao<StoryBook> {
     List<StoryBook> readAllOrdered(ReadingLevel readingLevel) throws DataAccessException;
     
     List<StoryBook> readAllUnleveled() throws DataAccessException;
+
+    List<StoryBook> readAllWithImage(Image image) throws DataAccessException;
 }

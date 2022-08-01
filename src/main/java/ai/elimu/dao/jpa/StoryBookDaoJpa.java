@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import ai.elimu.dao.StoryBookDao;
 
+import ai.elimu.model.content.multimedia.Image;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.StoryBook;
@@ -54,4 +55,16 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
             "ORDER BY book.title")
             .getResultList();
     }
+
+    @Override
+    public List<StoryBook> readAllWithImage(Image image) throws DataAccessException {
+        return em.createQuery(
+                        "SELECT book " +
+                                "FROM StoryBook book " +
+                                "WHERE book.coverImage.id = :image ")
+                .setParameter("image", image.getId())
+                .getResultList();
+
+    }
+
 }

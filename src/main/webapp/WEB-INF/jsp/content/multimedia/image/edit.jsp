@@ -8,7 +8,13 @@
     <div class="card-panel">
         <form:form modelAttribute="image" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="image" />
-            
+
+            <c:if test="${not empty errorCode}">
+                <div id="errorPanel" class="card-panel red lighten-3">
+                    <fmt:message key="${errorCode}" />
+                </div>
+            </c:if>
+
             <form:hidden path="revisionNumber" value="${image.revisionNumber}" />
             <form:hidden path="imageFormat" value="${image.imageFormat}" />
             <form:hidden path="contentType" value="${image.contentType}" />
