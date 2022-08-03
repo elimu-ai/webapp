@@ -40,6 +40,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
+import static ai.elimu.util.ImageHelper.MAX_MB;
+
 @Controller
 @RequestMapping("/content/multimedia/image/create")
 public class ImageCreateController {
@@ -95,7 +97,7 @@ public class ImageCreateController {
             } else {
                 String originalFileName = multipartFile.getOriginalFilename();
                 logger.info("originalFileName: " + originalFileName);
-                
+
                 byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
                 byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
                 byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
@@ -133,6 +135,11 @@ public class ImageCreateController {
                         }
                     }
                 }
+
+                if (bytes.length > MAX_MB) {
+                    result.rejectValue("bytes", "image.too.big");
+                }
+
             }
         } catch (IOException e) {
             logger.error(e);

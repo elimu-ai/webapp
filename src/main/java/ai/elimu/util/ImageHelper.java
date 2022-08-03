@@ -13,7 +13,9 @@ import org.imgscalr.Scalr;
 public class ImageHelper {
     
     public static final int MINIMUM_WIDTH = 640;
-    
+
+    public static final int MAX_MB = 4194304; // 4MB
+
     private static Logger logger = LogManager.getLogger();
     
     /** 
