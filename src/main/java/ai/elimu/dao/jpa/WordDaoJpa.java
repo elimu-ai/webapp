@@ -32,7 +32,6 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
         String query = "SELECT w " +
                 "FROM Word w " +
                 "WHERE w.text = :text ";
-
         if (wordType == null) {
             query += "AND w.wordType IS NULL";
             queryBuilder = em.createQuery(query)
