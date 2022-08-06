@@ -107,14 +107,16 @@ public class LetterSoundCorrespondenceCreateController {
             letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
-            DiscordHelper.sendChannelMessage(
-                    "Letter-sound correspondence created: " + contentUrl,
-                    "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
-                    "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
-                    null,
-                    null
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Letter-sound correspondence created: " + contentUrl,
+                        "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
+                        "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
         }

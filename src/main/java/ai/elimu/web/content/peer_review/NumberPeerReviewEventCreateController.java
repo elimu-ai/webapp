@@ -62,14 +62,16 @@ public class NumberPeerReviewEventCreateController {
         numberPeerReviewEvent.setPlatform(Platform.WEBAPP);
         numberPeerReviewEventDao.create(numberPeerReviewEvent);
         
-        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + numberContributionEvent.getNumber().getId();
-        DiscordHelper.sendChannelMessage(
-                "Number peer-reviewed: " + contentUrl, 
-                "\"" + numberContributionEvent.getNumber().getValue() + "\"",
-                "Comment: \"" + numberPeerReviewEvent.getComment() + "\"",
-                numberPeerReviewEvent.isApproved(),
-                null
-        );
+        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + numberContributionEvent.getNumber().getId();
+            DiscordHelper.sendChannelMessage(
+                    "Number peer-reviewed: " + contentUrl, 
+                    "\"" + numberContributionEvent.getNumber().getValue() + "\"",
+                    "Comment: \"" + numberPeerReviewEvent.getComment() + "\"",
+                    numberPeerReviewEvent.isApproved(),
+                    null
+            );
+        }
 
         // Update the number's peer review status
         int approvedCount = 0;

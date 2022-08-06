@@ -103,18 +103,20 @@ public class StoryBookCreateController {
             storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-            String embedThumbnailUrl = null;
-            if (storyBook.getCoverImage() != null) {
-                embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+                String embedThumbnailUrl = null;
+                if (storyBook.getCoverImage() != null) {
+                    embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+                }
+                DiscordHelper.sendChannelMessage(
+                        "Storybook created: " + contentUrl,
+                        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                        null,
+                        embedThumbnailUrl
+                );
             }
-            DiscordHelper.sendChannelMessage(
-                    "Storybook created: " + contentUrl,
-                    "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-                    "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-                    null,
-                    embedThumbnailUrl
-            );
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

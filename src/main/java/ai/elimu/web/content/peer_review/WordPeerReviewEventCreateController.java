@@ -62,14 +62,16 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEvent.setPlatform(Platform.WEBAPP);
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
         
-        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
-        DiscordHelper.sendChannelMessage(
-                "Word peer-reviewed: " + contentUrl, 
-                "\"" + wordContributionEvent.getWord().getText() + "\"",
-                "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",
-                wordPeerReviewEvent.isApproved(),
-                null
-        );
+        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
+            DiscordHelper.sendChannelMessage(
+                    "Word peer-reviewed: " + contentUrl, 
+                    "\"" + wordContributionEvent.getWord().getText() + "\"",
+                    "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",
+                    wordPeerReviewEvent.isApproved(),
+                    null
+            );
+        }
 
         // Update the word's peer review status
         int approvedCount = 0;

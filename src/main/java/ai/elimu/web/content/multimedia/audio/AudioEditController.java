@@ -194,14 +194,16 @@ public class AudioEditController {
             audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
-            DiscordHelper.sendChannelMessage(
-                    "Audio edited: " + contentUrl, 
-                    "\"" + audio.getTranscription() + "\"",
-                    "Comment: \"" + audioContributionEvent.getComment() + "\"",
-                    null,
-                    null
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Audio edited: " + contentUrl, 
+                        "\"" + audio.getTranscription() + "\"",
+                        "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }
