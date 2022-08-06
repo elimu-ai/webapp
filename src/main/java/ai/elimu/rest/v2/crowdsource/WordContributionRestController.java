@@ -128,7 +128,7 @@ public class WordContributionRestController {
         logger.info("wordGson: " + wordGson);
 
         // Check if the word is already existing.
-        Word existingWord = wordDao.readByText(wordGson.getText().toLowerCase());
+        Word existingWord = wordDao.readByTextAndType(wordGson.getText().toLowerCase(), wordGson.getWordType());
         if (existingWord != null) {
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "NonUnique");
