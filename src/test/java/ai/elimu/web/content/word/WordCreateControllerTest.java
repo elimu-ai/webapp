@@ -1,7 +1,13 @@
 package ai.elimu.web.content.word;
 
+import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Word;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +34,9 @@ public class WordCreateControllerTest {
     
     private MockMvc mockMvc;
     
+    @Autowired
+    private WordDao wordDao;
+    
     @Before
     public void setup() {
         assertNotNull(wordCreateController);
@@ -50,8 +59,33 @@ public class WordCreateControllerTest {
                 .param("timeStart", String.valueOf(System.currentTimeMillis()))
                 .param("text", "")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-//        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
 //        assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
 //        assertEquals("content/word/create", mvcResult.getModelAndView().getViewName());
+    }
+    
+    @Test
+    public void testHandleSubmit_success() throws Exception {
+        Word wordHello = wordDao.readByText("hello");
+        assertThat(wordHello, is(nullValue()));
+        
+        int numberOfWordsBefore = wordDao.readAll().size();
+        
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/content/word/create")
+                .param("timeStart", String.valueOf(System.currentTimeMillis()))
+                .param("text", "hello")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+        
+        wordHello = wordDao.readByText("hello");
+        assertThat(wordHello, not(nullValue()));
+        assertThat(wordHello.getText(), is("hello"));
+        
+        int numberOfWordsAfter = wordDao.readAll().size();
+        assertThat(numberOfWordsAfter, is(numberOfWordsBefore + 1));
+        
+        assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
+        assertEquals("redirect:/content/word/list#" + wordHello.getId(), mvcResult.getModelAndView().getViewName());
     }
 }
