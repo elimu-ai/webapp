@@ -112,7 +112,7 @@ public class DbContentImportHelper {
             throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
         }
 
-        String contentDirectoryPath = "db" + File.separator + "content_" + environment + File.separator + language.toString().toLowerCase();
+        String contentDirectoryPath = "db/content_" + environment + "/" + language.toString().toLowerCase();
         logger.info("contentDirectoryPath: \"" + contentDirectoryPath + "\"");
         URL contentDirectoryURL = getClass().getClassLoader().getResource(contentDirectoryPath);
         logger.info("contentDirectoryURL: " + contentDirectoryURL);
@@ -298,9 +298,9 @@ public class DbContentImportHelper {
 
         // Extract and import Videos from CSV file in src/main/resources/
         // TODO
-
-
-        String analyticsDirectoryPath = "db" + File.separator + "analytics_" + environment + File.separator + language.toString().toLowerCase();
+        
+        
+        String analyticsDirectoryPath = "db/analytics_" + environment + "/" + language.toString().toLowerCase();
         logger.info("analyticsDirectoryPath: \"" + analyticsDirectoryPath + "\"");
         URL analyticsDirectoryURL = getClass().getClassLoader().getResource(analyticsDirectoryPath);
         logger.info("analyticsDirectoryURL: " + analyticsDirectoryURL);
