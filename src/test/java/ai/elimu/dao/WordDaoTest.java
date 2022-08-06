@@ -51,5 +51,4 @@ public class WordDaoTest extends TestCase {
         word.setWordType(wordType);
         return word;
     }
-
 }
