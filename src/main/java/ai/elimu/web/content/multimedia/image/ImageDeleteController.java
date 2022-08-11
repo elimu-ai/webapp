@@ -31,13 +31,16 @@ public class ImageDeleteController {
     @Autowired
     private ImageContributionEventDao imageContributionEventDao;
 
+    @Autowired
+    private StoryBookChapterDao storyBookChapterDao;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
         // Before deleting, check if the image is used in any StoryBooks
         Image image = imageDao.read(id);
-        if (storyBookDao.readAllWithImage(image).size() > 0) {
+        if (storyBookDao.readAllWithImage(image).size() > 0 || storyBookChapterDao.readAllWithImage(image).size() > 0) {
             imageComponent.setImageModel(model, image);
             model.addAttribute("errorCode", "StoryBookContainImage");
 
