@@ -115,9 +115,9 @@ public class SignOnControllerGitHub {
             }
             
             JSONObject jsonObjectUser = new JSONObject(responseBodyUser);
-            JSONObject jsonObjectUserEmails = new JSONArray(responseBodyUserEmails).getJSONObject(0);
-
             logger.info("jsonObjectUser: " + jsonObjectUser);
+            JSONObject jsonObjectUserEmails = new JSONArray(responseBodyUserEmails).getJSONObject(0);
+            logger.info("jsonObjectUserEmails: " + jsonObjectUserEmails);
             
             Contributor contributor = new Contributor();
             if (jsonObjectUser.has("email") && !jsonObjectUser.isNull("email")) {
