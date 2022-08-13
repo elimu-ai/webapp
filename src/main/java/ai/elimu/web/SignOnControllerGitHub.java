@@ -116,14 +116,16 @@ public class SignOnControllerGitHub {
             
             JSONObject jsonObjectUser = new JSONObject(responseBodyUser);
             logger.info("jsonObjectUser: " + jsonObjectUser);
-            JSONObject jsonObjectUserEmails = new JSONArray(responseBodyUserEmails).getJSONObject(0);
-            logger.info("jsonObjectUserEmails: " + jsonObjectUserEmails);
+            JSONArray jsonArrayUserEmails = new JSONArray(responseBodyUserEmails);
+            logger.info("jsonArrayUserEmails: " + jsonArrayUserEmails);
+            JSONObject jsonObjectUserEmail = new JSONObject(jsonArrayUserEmails.getJSONObject(0));
+            logger.info("jsonObjectUserEmail: " + jsonObjectUserEmail);
             
             Contributor contributor = new Contributor();
             if (jsonObjectUser.has("email") && !jsonObjectUser.isNull("email")) {
                 contributor.setEmail(jsonObjectUser.getString("email"));
-            } else if (jsonObjectUserEmails.has("email") && !jsonObjectUserEmails.isNull("email")) {
-                contributor.setEmail(jsonObjectUserEmails.getString("email"));
+            } else if (jsonObjectUserEmail.has("email") && !jsonObjectUserEmail.isNull("email")) {
+                contributor.setEmail(jsonObjectUserEmail.getString("email"));
             }
             if (jsonObjectUser.has("login")) {
                 contributor.setUsernameGitHub(jsonObjectUser.getString("login"));
