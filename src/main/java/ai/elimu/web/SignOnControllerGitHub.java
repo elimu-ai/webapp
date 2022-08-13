@@ -118,7 +118,7 @@ public class SignOnControllerGitHub {
             logger.info("jsonObjectUser: " + jsonObjectUser);
             JSONArray jsonArrayUserEmails = new JSONArray(responseBodyUserEmails);
             logger.info("jsonArrayUserEmails: " + jsonArrayUserEmails);
-            JSONObject jsonObjectUserEmail = new JSONObject(jsonArrayUserEmails.getJSONObject(0));
+            JSONObject jsonObjectUserEmail = jsonArrayUserEmails.getJSONObject(0);
             logger.info("jsonObjectUserEmail: " + jsonObjectUserEmail);
             
             Contributor contributor = new Contributor();
