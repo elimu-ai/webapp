@@ -202,6 +202,8 @@ public class SignOnControllerGitHub {
     }
 
     private String executeGithubRequest(OAuth2AccessToken accessToken, String url) throws IOException, ExecutionException, InterruptedException {
+        logger.info("executeGithubRequest");
+        logger.info("url: " + url);
         OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, url);
         oAuth20Service.signRequest(accessToken, oAuthRequest);
         Response response = oAuth20Service.execute(oAuthRequest);
@@ -209,5 +211,4 @@ public class SignOnControllerGitHub {
         logger.info("response.getBody(): " + response.getBody());
         return response.getBody();
     }
-
 }
