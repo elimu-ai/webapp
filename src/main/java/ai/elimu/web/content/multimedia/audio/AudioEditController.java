@@ -3,10 +3,11 @@ package ai.elimu.web.content.multimedia.audio;
 import ai.elimu.dao.AudioContributionEventDao;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
+import ai.elimu.model.BaseEntity;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
@@ -18,8 +19,6 @@ import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
@@ -202,40 +201,19 @@ public class AudioEditController {
         String letterIdParameter = request.getParameter("letterId");
         logger.info("letterIdParameter: " + letterIdParameter);
         if (StringUtils.isNotBlank(letterIdParameter)) {
-            Long letterId = Long.valueOf(letterIdParameter);
-            Letter letter = letterDao.read(letterId);
-            Set<Letter> letters = audio.getLetters();
-            if (!letters.contains(letter)) {
-                letters.add(letter);
-                audio.setRevisionNumber(audio.getRevisionNumber() + 1);
-                audioDao.update(audio);
-            }
+            updateLabel(audio, audio.getLetters(),  letterDao.read(Long.valueOf(letterIdParameter)));
         }
         
         String numberIdParameter = request.getParameter("numberId");
         logger.info("numberIdParameter: " + numberIdParameter);
         if (StringUtils.isNotBlank(numberIdParameter)) {
-            Long numberId = Long.valueOf(numberIdParameter);
-            Number number = numberDao.read(numberId);
-            Set<Number> numbers = audio.getNumbers();
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-                audio.setRevisionNumber(audio.getRevisionNumber() + 1);
-                audioDao.update(audio);
-            }
+            updateLabel(audio, audio.getNumbers(), numberDao.read(Long.valueOf(numberIdParameter)));
         }
         
         String wordIdParameter = request.getParameter("wordId");
         logger.info("wordIdParameter: " + wordIdParameter);
         if (StringUtils.isNotBlank(wordIdParameter)) {
-            Long wordId = Long.valueOf(wordIdParameter);
-            Word word = wordDao.read(wordId);
-            Set<Word> words = audio.getWords();
-            if (!words.contains(word)) {
-                words.add(word);
-                audio.setRevisionNumber(audio.getRevisionNumber() + 1);
-                audioDao.update(audio);
-            }
+            updateLabel(audio, audio.getWords(), wordDao.read(Long.valueOf(wordIdParameter)));
         }
         
         return "success";
@@ -254,52 +232,19 @@ public class AudioEditController {
         String letterIdParameter = request.getParameter("letterId");
         logger.info("letterIdParameter: " + letterIdParameter);
         if (StringUtils.isNotBlank(letterIdParameter)) {
-            Long letterId = Long.valueOf(letterIdParameter);
-            Letter letter = letterDao.read(letterId);
-            Set<Letter> letters = audio.getLetters();
-            Iterator<Letter> iterator = letters.iterator();
-            while (iterator.hasNext()) {
-                Letter existingLetter = iterator.next();
-                if (existingLetter.getId().equals(letter.getId())) {
-                    iterator.remove();
-                }
-            }
-            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
-            audioDao.update(audio);
+            deleteLabel(audio, audio.getLetters(), letterDao.read(Long.valueOf(letterIdParameter)));
         }
         
         String numberIdParameter = request.getParameter("numberId");
         logger.info("numberIdParameter: " + numberIdParameter);
         if (StringUtils.isNotBlank(numberIdParameter)) {
-            Long numberId = Long.valueOf(numberIdParameter);
-            Number number = numberDao.read(numberId);
-            Set<Number> numbers = audio.getNumbers();
-            Iterator<Number> iterator = numbers.iterator();
-            while (iterator.hasNext()) {
-                Number existingNumber = iterator.next();
-                if (existingNumber.getId().equals(number.getId())) {
-                    iterator.remove();
-                }
-            }
-            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
-            audioDao.update(audio);
+            deleteLabel(audio, audio.getNumbers(), numberDao.read(Long.valueOf(numberIdParameter)));
         }
         
         String wordIdParameter = request.getParameter("wordId");
         logger.info("wordIdParameter: " + wordIdParameter);
         if (StringUtils.isNotBlank(wordIdParameter)) {
-            Long wordId = Long.valueOf(wordIdParameter);
-            Word word = wordDao.read(wordId);
-            Set<Word> words = audio.getWords();
-            Iterator<Word> iterator = words.iterator();
-            while (iterator.hasNext()) {
-                Word existingWord = iterator.next();
-                if (existingWord.getId().equals(word.getId())) {
-                    iterator.remove();
-                }
-            }
-            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
-            audioDao.update(audio);
+            deleteLabel(audio, audio.getWords(), wordDao.read(Long.valueOf(wordIdParameter)));
         }
         
         return "success";
@@ -313,8 +258,7 @@ public class AudioEditController {
         for (Word word : wordDao.readAll()) {
             String emojiGlyphs = "";
             
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
+            for (Emoji emoji : emojiDao.readAllLabeled(word)) {
                 emojiGlyphs += emoji.getGlyph();
             }
             
@@ -341,6 +285,20 @@ public class AudioEditController {
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
+    }
+
+    private <T> void updateLabel(Audio audio, Set<T> labels, T label) {
+        if (!labels.contains(label)) {
+            labels.add(label);
+            audio.setRevisionNumber(audio.getRevisionNumber() + 1);
+            audioDao.update(audio);
+        }
+    }
+
+    private <T extends BaseEntity> void deleteLabel(Audio audio, Set<T> labels, T label) {
+        labels.removeIf(existingLetter -> existingLetter.getId().equals(label.getId()));
+        audio.setRevisionNumber(audio.getRevisionNumber() + 1);
+        audioDao.update(audio);
     }
 
 }
