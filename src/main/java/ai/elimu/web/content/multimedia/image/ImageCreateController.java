@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
-import static ai.elimu.util.ImageHelper.MAX_MB;
+import static ai.elimu.util.ImageHelper.MAX_BYTE_SIZE;
 
 @Controller
 @RequestMapping("/content/multimedia/image/create")
@@ -136,8 +136,8 @@ public class ImageCreateController {
                     }
                 }
 
-                if (bytes.length > MAX_MB) {
-                    result.rejectValue("bytes", "image.too.big");
+                if (bytes.length > MAX_BYTE_SIZE) {
+                    result.rejectValue("bytes", "file.size.too.big");
                 }
 
             }
