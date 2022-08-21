@@ -87,23 +87,8 @@ public class AudioEditController {
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
-        
-        Audio audio = audioDao.read(id);
-        model.addAttribute("audio", audio);
-        model.addAttribute("words", wordDao.readAllOrdered());
-        model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
-        model.addAttribute("contentLicenses", ContentLicense.values());
-        model.addAttribute("literacySkills", LiteracySkill.values());
-        model.addAttribute("numeracySkills", NumeracySkill.values());
-        
-        model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("audioContributionEvents", audioContributionEventDao.readAll(audio));
-        model.addAttribute("audioPeerReviewEvents", audioPeerReviewEventDao.readAll(audio));
-        
-        model.addAttribute("letters", letterDao.readAllOrdered());
-        model.addAttribute("numbers", numberDao.readAllOrdered());
-        model.addAttribute("words", wordDao.readAllOrdered());
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+
+        setModel(model, audioDao.read(id), System.currentTimeMillis());
 
         return "content/multimedia/audio/edit";
     }
@@ -161,22 +146,7 @@ public class AudioEditController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("audio", audio);
-            model.addAttribute("words", wordDao.readAllOrdered());
-            model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
-            model.addAttribute("contentLicenses", ContentLicense.values());
-            model.addAttribute("literacySkills", LiteracySkill.values());
-            model.addAttribute("numeracySkills", NumeracySkill.values());
-            
-            model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("audioContributionEvents", audioContributionEventDao.readAll(audio));
-            model.addAttribute("audioPeerReviewEvents", audioPeerReviewEventDao.readAll(audio));
-            
-            model.addAttribute("letters", letterDao.readAllOrdered());
-            model.addAttribute("numbers", numberDao.readAllOrdered());
-            model.addAttribute("words", wordDao.readAllOrdered());
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
-            
+            setModel(model, audio, Long.valueOf(request.getParameter("timeStart")));
             return "content/multimedia/audio/edit";
         } else {
             audio.setTitle(audio.getTitle().toLowerCase());
@@ -355,4 +325,22 @@ public class AudioEditController {
         
         return emojisByWordId;
     }
+
+    private void setModel(Model model, Audio audio, Long timeStart) {
+        model.addAttribute("audio", audio);
+        model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
+        model.addAttribute("contentLicenses", ContentLicense.values());
+        model.addAttribute("literacySkills", LiteracySkill.values());
+        model.addAttribute("numeracySkills", NumeracySkill.values());
+
+        model.addAttribute("timeStart", timeStart);
+        model.addAttribute("audioContributionEvents", audioContributionEventDao.readAll(audio));
+        model.addAttribute("audioPeerReviewEvents", audioPeerReviewEventDao.readAll(audio));
+
+        model.addAttribute("letters", letterDao.readAllOrdered());
+        model.addAttribute("numbers", numberDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", getEmojisByWordId());
+    }
+
 }
