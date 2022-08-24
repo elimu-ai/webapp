@@ -113,7 +113,7 @@ public class WordCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Word existingWord = wordDao.readByText(word.getText());
+        Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
         if (existingWord != null) {
             result.rejectValue("text", "NonUnique");
         }

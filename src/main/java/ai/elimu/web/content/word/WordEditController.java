@@ -183,7 +183,7 @@ public class WordEditController {
     ) {
     	logger.info("handleSubmit");
         
-        Word existingWord = wordDao.readByText(word.getText());
+        Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
         if ((existingWord != null) && !existingWord.getId().equals(word.getId())) {
             result.rejectValue("text", "NonUnique");
         }
