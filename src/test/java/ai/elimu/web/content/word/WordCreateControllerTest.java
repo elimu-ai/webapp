@@ -2,8 +2,6 @@ package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
