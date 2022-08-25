@@ -119,37 +119,39 @@ public class WordEditController {
         // Generate Audio for this Word (if it has not been done already)
         if (audios.isEmpty()) {
             Calendar timeStart = Calendar.getInstance();
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-            try {
-                byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
-                logger.info("audioBytes: " + audioBytes);
-                if (audioBytes != null) {
-                    Audio audio = new Audio();
-                    audio.setTimeLastUpdate(Calendar.getInstance());
-                    audio.setContentType(AudioFormat.MP3.getContentType());
-                    audio.setWord(word);
-                    audio.setTitle("word_" + word.getText());
-                    audio.setTranscription(word.getText());
-                    audio.setBytes(audioBytes);
-                    audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
-                    audio.setAudioFormat(AudioFormat.MP3);
-                    audioDao.create(audio);
-                    
-                    audios.add(audio);
-                    model.addAttribute("audios", audios);
-                    
-                    AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
-                    audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-                    audioContributionEvent.setTime(Calendar.getInstance());
-                    audioContributionEvent.setAudio(audio);
-                    audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-                    audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
-                    audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
-                    audioContributionEvent.setPlatform(Platform.WEBAPP);
-                    audioContributionEventDao.create(audioContributionEvent);
+                try {
+                    byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
+                    logger.info("audioBytes: " + audioBytes);
+                    if (audioBytes != null) {
+                        Audio audio = new Audio();
+                        audio.setTimeLastUpdate(Calendar.getInstance());
+                        audio.setContentType(AudioFormat.MP3.getContentType());
+                        audio.setWord(word);
+                        audio.setTitle("word_" + word.getText());
+                        audio.setTranscription(word.getText());
+                        audio.setBytes(audioBytes);
+                        audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
+                        audio.setAudioFormat(AudioFormat.MP3);
+                        audioDao.create(audio);
+
+                        audios.add(audio);
+                        model.addAttribute("audios", audios);
+
+                        AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+                        audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+                        audioContributionEvent.setTime(Calendar.getInstance());
+                        audioContributionEvent.setAudio(audio);
+                        audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+                        audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
+                        audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
+                        audioContributionEvent.setPlatform(Platform.WEBAPP);
+                        audioContributionEventDao.create(audioContributionEvent);
+                    }
+                } catch (Exception ex) {
+                    logger.error(ex);
                 }
-            } catch (Exception ex) {
-                logger.error(ex);
             }
         }
         
@@ -231,14 +233,16 @@ public class WordEditController {
             wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
-            DiscordHelper.sendChannelMessage(
-                    "Word edited: " + contentUrl, 
-                    "\"" + word.getText() + "\"",
-                    "Comment: \"" + wordContributionEvent.getComment() + "\"",
-                    null,
-                    null
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Word edited: " + contentUrl, 
+                        "\"" + word.getText() + "\"",
+                        "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
             

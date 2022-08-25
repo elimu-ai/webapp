@@ -176,15 +176,17 @@ public class ImageCreateController {
             imageContributionEvent.setPlatform(Platform.WEBAPP);
             imageContributionEventDao.create(imageContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
-            String embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
-            DiscordHelper.sendChannelMessage(
-                    "Image created: " + contentUrl, 
-                    "\"" + image.getTitle() + "\"",
-                    "Comment: \"" + imageContributionEvent.getComment() + "\"",
-                    null,
-                    embedThumbnailUrl
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+                String embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
+                DiscordHelper.sendChannelMessage(
+                        "Image created: " + contentUrl, 
+                        "\"" + image.getTitle() + "\"",
+                        "Comment: \"" + imageContributionEvent.getComment() + "\"",
+                        null,
+                        embedThumbnailUrl
+                );
+            }
             
             return "redirect:/content/multimedia/image/list#" + image.getId();
         }
