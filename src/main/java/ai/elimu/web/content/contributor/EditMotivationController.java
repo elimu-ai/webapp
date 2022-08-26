@@ -51,18 +51,20 @@ public class EditMotivationController {
             if (StringUtils.isBlank(contributor.getMotivation())) {
                 // The Contributor completed the on-boarding wizard for the first time
                 
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
-                String embedThumbnailUrl = null;
-                if (StringUtils.isNotBlank(contributor.getImageUrl())) {
-                    embedThumbnailUrl = contributor.getImageUrl();
+                if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                    String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
+                    String embedThumbnailUrl = null;
+                    if (StringUtils.isNotBlank(contributor.getImageUrl())) {
+                        embedThumbnailUrl = contributor.getImageUrl();
+                    }
+                    DiscordHelper.sendChannelMessage(
+                            "Contributor joined: " + contentUrl,
+                            contributor.getFirstName() + " " + contributor.getLastName(),
+                            "Motivation: \"" + motivation + "\"",
+                            null,
+                            embedThumbnailUrl
+                    );
                 }
-                DiscordHelper.sendChannelMessage(
-                        "Contributor joined: " + contentUrl,
-                        contributor.getFirstName() + " " + contributor.getLastName(),
-                        "Motivation: \"" + motivation + "\"",
-                        null,
-                        embedThumbnailUrl
-                );
             }
             
             contributor.setMotivation(motivation);
