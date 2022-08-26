@@ -5,15 +5,14 @@ import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
 
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Syllable;
@@ -31,8 +30,6 @@ import ai.elimu.model.v2.enums.content.WordType;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -59,7 +56,7 @@ public class WordCreateController {
     private WordDao wordDao;
     
     @Autowired
-    private EmojiDao emojiDao;
+    private EmojiComponent emojiComponent;
     
     @Autowired
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
@@ -92,14 +89,7 @@ public class WordCreateController {
             autoSelectLetterSoundCorrespondences(word);
             // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
         }
-        
-        model.addAttribute("word", word);
-        model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
-        model.addAttribute("rootWords", wordDao.readAllOrdered());
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
-        model.addAttribute("wordTypes", WordType.values());
-        model.addAttribute("spellingConsistencies", SpellingConsistency.values());
+        setModel(model, word, String.valueOf(System.currentTimeMillis()));
 
         return "content/word/create";
     }
@@ -123,14 +113,7 @@ public class WordCreateController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("word", word);
-            model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
-            model.addAttribute("rootWords", wordDao.readAllOrdered());
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
-            model.addAttribute("wordTypes", WordType.values());
-            model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            
+            setModel(model, word, request.getParameter("timeStart"));
             return "content/word/create";
         } else {
             word.setTimeLastUpdate(Calendar.getInstance());
@@ -215,28 +198,7 @@ public class WordCreateController {
             return "redirect:/content/word/list#" + word.getId();
         }
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
-    }
-    
+
     private void autoSelectLetterSoundCorrespondences(Word word) {
         logger.info("autoSelectLetterSoundCorrespondences");
         
@@ -272,4 +234,15 @@ public class WordCreateController {
         
         word.setLetterSoundCorrespondences(letterSoundCorrespondences);
     }
+
+    private void setModel(Model model, Word word, String timeStart) {
+        model.addAttribute("word", word);
+        model.addAttribute("timeStart", timeStart);
+        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+        model.addAttribute("rootWords", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
+        model.addAttribute("wordTypes", WordType.values());
+        model.addAttribute("spellingConsistencies", SpellingConsistency.values());
+    }
+
 }

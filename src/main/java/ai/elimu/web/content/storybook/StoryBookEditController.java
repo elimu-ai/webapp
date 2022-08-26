@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
@@ -76,7 +77,7 @@ public class StoryBookEditController {
     private WordDao wordDao;
     
     @Autowired
-    private EmojiDao emojiDao;
+    private EmojiComponent emojiComponent;
     
     @Autowired
     private LetterDao letterDao;
@@ -129,7 +130,7 @@ public class StoryBookEditController {
             wordMap.put(word.getText(), word);
         }
         model.addAttribute("wordMap", wordMap);
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
         
         Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
         model.addAttribute("letterFrequencyMap", letterFrequencyMap);
@@ -197,7 +198,7 @@ public class StoryBookEditController {
                 wordMap.put(word.getText(), word);
             }
             model.addAttribute("wordMap", wordMap);
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
+            model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
 
             Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
             model.addAttribute("letterFrequencyMap", letterFrequencyMap);
@@ -241,25 +242,5 @@ public class StoryBookEditController {
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
-    }
+
 }

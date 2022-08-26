@@ -10,12 +10,8 @@ public class ConfigHelper {
      * {@link EnvironmentContextLoaderListener}.
      */
     public static String getProperty(String key) {
-        String value = null;
-
         Properties properties = EnvironmentContextLoaderListener.PROPERTIES;
-        value = properties.getProperty(key);
-
-        return value;
+        return properties.getProperty(key);
     }
 
     public static boolean getBooleanProperty(String key) {

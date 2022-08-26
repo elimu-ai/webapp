@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.validation.Valid;
 
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
@@ -33,8 +34,6 @@ import ai.elimu.model.v2.enums.content.WordType;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -87,6 +86,9 @@ public class WordEditController {
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
 
+    @Autowired
+    private EmojiComponent emojiComponent;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
             HttpSession session,
@@ -106,7 +108,7 @@ public class WordEditController {
         model.addAttribute("timeStart", System.currentTimeMillis());
         model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
         model.addAttribute("spellingConsistencies", SpellingConsistency.values());
         
@@ -195,7 +197,7 @@ public class WordEditController {
             model.addAttribute("timeStart", request.getParameter("timeStart"));
             model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
+            model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
             
@@ -250,27 +252,6 @@ public class WordEditController {
             
             return "redirect:/content/word/list#" + word.getId();
         }
-    }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
     }
     
     private void autoSelectLetterSoundCorrespondences(Word word) {

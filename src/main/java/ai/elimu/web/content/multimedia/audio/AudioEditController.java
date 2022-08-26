@@ -8,18 +8,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import ai.elimu.model.BaseEntity;
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.AudioPeerReviewEventDao;
-import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
@@ -32,9 +30,6 @@ import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.audio.AudioMetadataExtractionHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +72,9 @@ public class AudioEditController {
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
-    
+
     @Autowired
-    private EmojiDao emojiDao;
+    private EmojiComponent emojiComponent;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -249,26 +244,6 @@ public class AudioEditController {
         
         return "success";
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            for (Emoji emoji : emojiDao.readAllLabeled(word)) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
-    }
 
     private void setModel(Model model, Audio audio, Long timeStart) {
         model.addAttribute("audio", audio);
@@ -284,7 +259,7 @@ public class AudioEditController {
 
         model.addAttribute("letters", letterDao.readAllOrdered());
         model.addAttribute("numbers", numberDao.readAllOrdered());
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
     }
 
     private <T> void updateLabel(Audio audio, Set<T> labels, T label) {

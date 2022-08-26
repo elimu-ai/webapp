@@ -6,17 +6,17 @@ import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -33,9 +33,6 @@ import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,12 +69,12 @@ public class ImageEditController {
     
     @Autowired
     private WordDao wordDao;
-    
-    @Autowired
-    private EmojiDao emojiDao;
-    
+
     @Autowired
     private AudioDao audioDao;
+
+    @Autowired
+    private EmojiComponent emojiComponent;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -86,21 +83,8 @@ public class ImageEditController {
     	logger.info("handleRequest");
         
         Image image = imageDao.read(id);
-        model.addAttribute("image", image);
-        model.addAttribute("contentLicenses", ContentLicense.values());
-        model.addAttribute("literacySkills", LiteracySkill.values());
-        model.addAttribute("numeracySkills", NumeracySkill.values());
-        
-        model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
-        
-        model.addAttribute("letters", letterDao.readAllOrdered());
-        model.addAttribute("numbers", numberDao.readAllOrdered());
-        model.addAttribute("words", wordDao.readAllOrdered());
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
-        
         Audio audio = audioDao.readByTranscription(image.getTitle());
-        model.addAttribute("audio", audio);
+        setModel(model, image, audio);
 
         return "content/multimedia/image/edit";
     }
@@ -175,22 +159,8 @@ public class ImageEditController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("image", image);
-            model.addAttribute("contentLicenses", ContentLicense.values());
-            model.addAttribute("literacySkills", LiteracySkill.values());
-            model.addAttribute("numeracySkills", NumeracySkill.values());
-            
-            model.addAttribute("timeStart", System.currentTimeMillis());
-            model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
-            
-            model.addAttribute("letters", letterDao.readAllOrdered());
-            model.addAttribute("numbers", numberDao.readAllOrdered());
-            model.addAttribute("words", wordDao.readAllOrdered());
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
-            
             Audio audio = audioDao.readByTranscription(image.getTitle());
-            model.addAttribute("audio", audio);
-            
+            setModel(model, image, audio);
             return "content/multimedia/image/edit";
         } else {
             image.setTitle(image.getTitle().toLowerCase());
@@ -349,25 +319,22 @@ public class ImageEditController {
         
         return "success";
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
+
+    private void setModel(Model model, Image image, Audio audio) {
+        model.addAttribute("image", image);
+        model.addAttribute("contentLicenses", ContentLicense.values());
+        model.addAttribute("literacySkills", LiteracySkill.values());
+        model.addAttribute("numeracySkills", NumeracySkill.values());
+
+        model.addAttribute("timeStart", System.currentTimeMillis());
+        model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
+
+        model.addAttribute("letters", letterDao.readAllOrdered());
+        model.addAttribute("numbers", numberDao.readAllOrdered());
+        model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
+
+        model.addAttribute("audio", audio);
     }
+
 }

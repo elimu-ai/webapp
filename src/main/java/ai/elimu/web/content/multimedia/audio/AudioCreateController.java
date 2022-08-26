@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
@@ -27,9 +27,6 @@ import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.audio.AudioMetadataExtractionHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +55,12 @@ public class AudioCreateController {
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
-    
-    @Autowired
-    private EmojiDao emojiDao;
-    
+
     @Autowired
     private AudioContributionEventDao audioContributionEventDao;
+
+    @Autowired
+    private EmojiComponent emojiComponent;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -100,18 +97,7 @@ public class AudioCreateController {
         }
         
         model.addAttribute("audio", audio);
-        
-        model.addAttribute("words", wordDao.readAllOrdered());
-        model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
-        
-        model.addAttribute("contentLicenses", ContentLicense.values());
-        
-        model.addAttribute("literacySkills", LiteracySkill.values());
-        model.addAttribute("numeracySkills", NumeracySkill.values());
-        
-        model.addAttribute("timeStart", System.currentTimeMillis());
-        
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+        setModel(model, String.valueOf(System.currentTimeMillis()));
 
         return "content/multimedia/audio/create";
     }
@@ -169,18 +155,7 @@ public class AudioCreateController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("words", wordDao.readAllOrdered());
-            model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
-            
-            model.addAttribute("contentLicenses", ContentLicense.values());
-            
-            model.addAttribute("literacySkills", LiteracySkill.values());
-            model.addAttribute("numeracySkills", NumeracySkill.values());
-            
-            model.addAttribute("timeStart", request.getParameter("timeStart"));
-            
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
-            
+            setModel(model, request.getParameter("timeStart"));
             return "content/multimedia/audio/create";
         } else {
             audio.setTitle(audio.getTitle().toLowerCase());
@@ -221,25 +196,18 @@ public class AudioCreateController {
     	logger.info("initBinder");
     	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
+
+    private void setModel(Model model, String timeStart) {
+        model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
+
+        model.addAttribute("contentLicenses", ContentLicense.values());
+
+        model.addAttribute("literacySkills", LiteracySkill.values());
+        model.addAttribute("numeracySkills", NumeracySkill.values());
+
+        model.addAttribute("timeStart", timeStart);
+
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
     }
 }

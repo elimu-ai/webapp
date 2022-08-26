@@ -1,24 +1,19 @@
 package ai.elimu.web.content.number;
 
-import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import java.util.Calendar;
-import java.util.List;
 import javax.validation.Valid;
 
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Number;
-import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
@@ -46,20 +41,14 @@ public class NumberCreateController {
     private WordDao wordDao;
     
     @Autowired
-    private EmojiDao emojiDao;
+    private EmojiComponent emojiComponent;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
             Model model) {
     	logger.info("handleRequest");
         
-        Number number = new Number();
-        model.addAttribute("number", number);
-        
-        model.addAttribute("timeStart", System.currentTimeMillis());
-        
-        model.addAttribute("words", wordDao.readAllOrdered());
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+        setModel(model, new Number(), String.valueOf(System.currentTimeMillis()));
         
         return "content/number/create";
     }
@@ -79,13 +68,8 @@ public class NumberCreateController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("number", number);
-            
-            model.addAttribute("timeStart", request.getParameter("timeStart"));
-            
-            model.addAttribute("words", wordDao.readAllOrdered());
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
-            
+            setModel(model, number, request.getParameter("timeStart"));
+
             return "content/number/create";
         } else {            
             number.setTimeLastUpdate(Calendar.getInstance());
@@ -113,25 +97,12 @@ public class NumberCreateController {
             return "redirect:/content/number/list#" + number.getId();
         }
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
+
+    private void setModel(Model model, Number number, String timeStart) {
+        model.addAttribute("number", number);
+        model.addAttribute("timeStart", timeStart);
+        model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
     }
+
 }
