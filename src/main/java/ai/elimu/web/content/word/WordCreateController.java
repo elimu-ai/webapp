@@ -279,7 +279,7 @@ public class WordCreateController {
     }
 
     private void validateWord(Word word, BindingResult result) {
-        Word existingWord = wordDao.readByTextAndType(word.getText());
+        Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
 
         if (existingWord != null) {
             result.rejectValue("text", "NonUnique");

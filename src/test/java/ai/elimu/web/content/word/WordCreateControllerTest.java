@@ -111,6 +111,7 @@ public class WordCreateControllerTest {
         assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1+0")).getAllErrors(), "WordNumbers"));
         assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1{}0")).getAllErrors(), "WordNumbers"));
         assertTrue(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("1|?><.,0")).getAllErrors(), "WordNumbers"));
+        assertFalse(containGivenErrorCode(getBindingResult(getRequestWithSpecificText("10th")).getAllErrors(), "WordNumbers"));
     }
 
     @Test
