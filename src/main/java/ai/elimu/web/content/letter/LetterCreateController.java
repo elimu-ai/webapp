@@ -80,14 +80,16 @@ public class LetterCreateController {
             letterContributionEvent.setPlatform(Platform.WEBAPP);
             letterContributionEventDao.create(letterContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
-            DiscordHelper.sendChannelMessage(
-                    "Letter created: " + contentUrl,
-                    "\"" + letterContributionEvent.getLetter().getText() + "\"",
-                    "Comment: \"" + letterContributionEvent.getComment() + "\"",
-                    null,
-                    null
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Letter created: " + contentUrl,
+                        "\"" + letterContributionEvent.getLetter().getText() + "\"",
+                        "Comment: \"" + letterContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/letter/list#" + letter.getId();
         }
