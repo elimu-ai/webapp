@@ -66,14 +66,16 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEvent.setPlatform(Platform.WEBAPP);
         audioPeerReviewEventDao.create(audioPeerReviewEvent);
         
-        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
-        DiscordHelper.sendChannelMessage(
-                "Audio peer-reviewed: " + contentUrl, 
-                "\"" + audioContributionEvent.getAudio().getTitle() + "\"",
-                "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
-                audioPeerReviewEvent.isApproved(),
-                null
-        );
+        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
+            DiscordHelper.sendChannelMessage(
+                    "Audio peer-reviewed: " + contentUrl, 
+                    "\"" + audioContributionEvent.getAudio().getTitle() + "\"",
+                    "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
+                    audioPeerReviewEvent.isApproved(),
+                    null
+            );
+        }
 
         // Update the audio's peer review status
         int approvedCount = 0;
