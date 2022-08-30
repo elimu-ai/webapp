@@ -1,6 +1,5 @@
 package ai.elimu.web.content.multimedia.image;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Set;
@@ -26,13 +25,11 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.ImageHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +76,9 @@ public class ImageEditController {
     @Autowired
     private AudioDao audioDao;
 
+    @Autowired
+    private ImageComponent imageComponent;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
             Model model, 
@@ -123,57 +123,9 @@ public class ImageEditController {
                 result.rejectValue("title", "NonUnique");
             }
         }
-        
-        try {
-            byte[] bytes = multipartFile.getBytes();
-            if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
-                result.rejectValue("bytes", "NotNull");
-            } else {
-                String originalFileName = multipartFile.getOriginalFilename();
-                logger.info("originalFileName: " + originalFileName);
-                
-                byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
-                byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
-                byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
-                if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
-                    image.setImageFormat(ImageFormat.GIF);
-                } else if (originalFileName.toLowerCase().endsWith(".png")) {
-                    image.setImageFormat(ImageFormat.PNG);
-                } else if (originalFileName.toLowerCase().endsWith(".jpg") || originalFileName.toLowerCase().endsWith(".jpeg")) {
-                    image.setImageFormat(ImageFormat.JPG);
-                } else if (originalFileName.toLowerCase().endsWith(".gif")) {
-                    image.setImageFormat(ImageFormat.GIF);
-                } else {
-                    result.rejectValue("bytes", "typeMismatch");
-                }
 
-                if (image.getImageFormat() != null) {
-                    String contentType = multipartFile.getContentType();
-                    logger.info("contentType: " + contentType);
-                    image.setContentType(contentType);
+        imageComponent.validImageTypeAndSize(multipartFile, result, image);
 
-                    image.setBytes(bytes);
-
-                    if (image.getImageFormat() != ImageFormat.GIF) {
-                        int width = ImageHelper.getWidth(bytes);
-                        logger.info("width: " + width + "px");
-
-                        if (width < ImageHelper.MINIMUM_WIDTH) {
-                            result.rejectValue("bytes", "image.too.small");
-                            image.setBytes(null);
-                        } else {
-                            if (width > ImageHelper.MINIMUM_WIDTH) {
-                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
-                                image.setBytes(bytes);
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (IOException e) {
-            logger.error(e);
-        }
-        
         if (result.hasErrors()) {
             model.addAttribute("image", image);
             model.addAttribute("contentLicenses", ContentLicense.values());
