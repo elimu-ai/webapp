@@ -57,12 +57,12 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
     }
 
     @Override
-    public List<StoryBook> readAllWithImage(Image image) throws DataAccessException {
+    public List<StoryBook> readAllWithCoverImage(Image image) throws DataAccessException {
         return em.createQuery(
                         "SELECT book " +
                                 "FROM StoryBook book " +
-                                "WHERE book.coverImage.id = :image ")
-                .setParameter("image", image.getId())
+                                "WHERE book.coverImage = :image")
+                .setParameter("image", image)
                 .getResultList();
 
     }

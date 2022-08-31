@@ -33,15 +33,15 @@ public class StoryBookDaoTest extends TestCase {
     }
 
     @Test
-    public void testReadAllWithImage() {
+    public void testReadAllWithCoverImage() {
         imageDao.create(ImageUtil.getImage("test read all with image"));
         Image image = imageDao.read("test read all with image");
 
-        assertEquals(0, storyBookDao.readAllWithImage(image).size());
+        assertEquals(0, storyBookDao.readAllWithCoverImage(image).size());
 
         storyBookDao.create(getStoryBook("test read all with image", image));
 
-        assertEquals(1, storyBookDao.readAllWithImage(image).size());
+        assertEquals(1, storyBookDao.readAllWithCoverImage(image).size());
     }
 
     private StoryBook getStoryBook(String title) {

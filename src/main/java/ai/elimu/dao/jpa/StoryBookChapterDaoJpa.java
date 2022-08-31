@@ -27,8 +27,8 @@ public class StoryBookChapterDaoJpa extends GenericDaoJpa<StoryBookChapter> impl
         return em.createQuery(
                         "SELECT ch " +
                                 "FROM StoryBookChapter ch " +
-                                "WHERE ch.image.id = :image ")
-                .setParameter("image", image.getId())
+                                "WHERE ch.image = :image ")
+                .setParameter("image", image)
                 .getResultList();
 
     }

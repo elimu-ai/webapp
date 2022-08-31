@@ -18,5 +18,5 @@ public interface StoryBookDao extends GenericDao<StoryBook> {
     
     List<StoryBook> readAllUnleveled() throws DataAccessException;
 
-    List<StoryBook> readAllWithImage(Image image) throws DataAccessException;
+    List<StoryBook> readAllWithCoverImage(Image image) throws DataAccessException;
 }

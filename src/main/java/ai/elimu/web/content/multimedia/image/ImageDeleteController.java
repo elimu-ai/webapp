@@ -40,7 +40,7 @@ public class ImageDeleteController {
         
         // Before deleting, check if the image is used in any StoryBooks
         Image image = imageDao.read(id);
-        if (storyBookDao.readAllWithImage(image).size() > 0 || storyBookChapterDao.readAllWithImage(image).size() > 0) {
+        if (storyBookDao.readAllWithCoverImage(image).size() > 0 || storyBookChapterDao.readAllWithImage(image).size() > 0) {
             imageComponent.setImageModel(model, image);
             model.addAttribute("errorCode", "StoryBookContainImage");
 
