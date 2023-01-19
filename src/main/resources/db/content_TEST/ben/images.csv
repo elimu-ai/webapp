@@ -90,3 +90,9 @@ id,content_type,content_license,attribution_url,title,download_url,image_format
 93,image/jpg,null,"null","storybook-6-ch-21","/image/93.jpg",JPG
 94,image/jpg,null,"null","storybook-6-ch-22","/image/94.jpg",JPG
 95,image/jpg,null,"null","storybook-6-ch-23","/image/95.jpg",JPG
+97,image/jpg,null,"null","storybook-7-cover","/image/97.jpg",JPG
+98,image/jpg,null,"null","storybook-7-ch-1","/image/98.jpg",JPG
+99,image/jpg,null,"null","storybook-7-ch-2","/image/99.jpg",JPG
+100,image/jpg,null,"null","storybook-7-ch-3","/image/100.jpg",JPG
+101,image/jpg,null,"null","storybook-7-ch-4","/image/101.jpg",JPG
+102,image/jpg,null,"null","storybook-7-ch-5","/image/102.jpg",JPG
