@@ -1,1 +1,20 @@
 id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format
+1,audio/mpeg,null,"null",2,"word-2","তার","/audio/1.mp3",MP3
+2,audio/mpeg,null,"null",1,"word-1","আমি","/audio/2.mp3",MP3
+3,audio/mpeg,null,"null",,"storybook-6-ch-1-par-1","অর্জুন এক তিন চাকাওয়ালা অটো। তার আছে একটি হেডলাইট এবং সবুজ-হলুদ কোট। পুরো দিল্লীর সবচেয়ে বড় পরিবারটি তার মালিক। অর্জুন যেখানেই যায় দেখা পায় ভাই, বোন, চাচা, চাচী ও কাজিনদের। “সাবধানে যেও,” তারা চেঁচিয়ে বলে।","/audio/3.mp3",MP3
+4,audio/mpeg,null,"null",43,"word-id-43","এটা","/audio/4.mp3",MP3
+5,audio/mpeg,null,"null",44,"word-id-44","তেইশ","/audio/5.mp3",MP3
+6,audio/mpeg,null,"null",2,"তার","তার","/audio/6.mp3",MP3
+7,audio/mpeg,null,"null",1,"আমি","আমি","/audio/7.mp3",MP3
+8,audio/mpeg,null,"null",3,"সে","সে","/audio/8.mp3",MP3
+9,audio/mpeg,null,"null",4,"ও","ও","/audio/9.mp3",MP3
+10,audio/mpeg,null,"null",9,"মা","মা","/audio/10.mp3",MP3
+11,audio/mpeg,null,"null",6,"এক","এক","/audio/11.mp3",MP3
+12,audio/mpeg,null,"null",41,"সোফি","সোফি","/audio/12.mp3",MP3
+13,audio/mpeg,null,"null",8,"বাজারে","বাজারে","/audio/13.mp3",MP3
+14,audio/mpeg,null,"null",5,"আমার","আমার","/audio/14.mp3",MP3
+15,audio/mpeg,null,"null",7,"তারা","তারা","/audio/15.mp3",MP3
+16,audio/mpeg,null,"null",12,"দেখাবে","দেখাবে","/audio/16.mp3",MP3
+17,audio/mpeg,null,"null",43,"এটা","এটা","/audio/17.mp3",MP3
+18,audio/mpeg,null,"null",18,"দেখেছো","দেখেছো","/audio/18.mp3",MP3
+19,audio/mpeg,null,"null",2,"তার","তার","/audio/19.mp3",MP3
