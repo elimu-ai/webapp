@@ -1,8 +1,8 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
-15,a,a,,false,VOWEL,1417
+15,a,a,,false,VOWEL,1635
 10,ɪ,I,,false,VOWEL,703
 1,u,u,,false,VOWEL,680
-4,l,l,,false,CONSONANT,520
+4,l,l,,false,CONSONANT,572
 2,uː,u:,,false,VOWEL,480
 25,k,k,,false,CONSONANT,460
 3,m,m,,false,CONSONANT,408
@@ -12,7 +12,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 9,iː,i:,,false,VOWEL,220
 7,ɛ,E,,false,VOWEL,175
 16,z,z,,false,CONSONANT,100
-8,s,S,,false,CONSONANT,65
+8,s,S,,false,CONSONANT,78
 27,t',t,,false,CONSONANT,45
 26,kʰ,k_h,,false,CONSONANT,32
 17,aː,a:,,false,VOWEL,24
@@ -25,10 +25,10 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 11,p,p,,false,CONSONANT,3
 31,v,v,,false,CONSONANT,3
 34,x,kǁʼ,,false,CONSONANT,2
+14,ʄ,j_<,,false,CONSONANT,2
 29,b̥ʱ,bh,,false,CONSONANT,1
 19,h,h,,false,CONSONANT,1
 35,ʃ,ʃ,,false,,1
-14,ʄ,j_<,,false,CONSONANT,1
 20,d,d,,false,CONSONANT,0
 13,eː,e:,,false,VOWEL,0
 30,f,f,,false,CONSONANT,0

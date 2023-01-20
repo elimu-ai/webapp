@@ -3,43 +3,43 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 2,audio/mpeg,null,"https://forvo.com/word/amanzi/",4,"amanzi","amanzi","/audio/2.mp3",MP3
 3,audio/mpeg,null,"https://forvo.com/word/mpho/",5,"mpho","mpho","/audio/3.mp3",MP3
 4,audio/mpeg,null,"https://forvo.com/word/iqanda/",6,"iqanda","iqanda","/audio/4.mp3",MP3
-5,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/content/storybook/",7,"mhlobo","mhlobo","/audio/5.mp3",MP3
-6,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-2-par-1","ULara, ongubhantom, wayeyirhorho ekhethekileyo. Wayengafani tu nabahlobo bakhe, kuba yena wayenamaphiko akhazimlayo natyheli.","/audio/6.mp3",MP3
-7,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",14,"amaphiko","amaphiko","/audio/7.mp3",MP3
-8,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",16,"esikolweni","esikolweni","/audio/8.mp3",MP3
-9,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",17,"abomvu","abomvu","/audio/9.mp3",MP3
-10,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",12,"umtu","umtu","/audio/10.mp3",MP3
-12,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-3-par-2","Rhoqo kusasa, uBhibhi Bhabhathane wayebulisa uLara, kanti noManto Mntanezulu wayethanda ukumbulisa, ngokumwangawangisela.","/audio/12.mp3",MP3
-11,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-3-par-1","Wonke umntu wayewathanda amaphiko akhe atyheli.","/audio/11.mp3",MP3
-13,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-4-par-1","Nkqu noSesa Sigcawu onolunya kunene wayekuvuyela ukubona uLara.","/audio/13.mp3",MP3
-14,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-4-par-2","Esikolweni, uLara wayedlala nabahlobo bakhe abaninzi.","/audio/14.mp3",MP3
-15,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-5-par-1","Kodwa uLara wayefuna ukufana nabanye oobhantom. “Akwaba bendinamaphiko abomvu njengawe lo, Mama,” watsho elila.","/audio/15.mp3",MP3
-16,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-6-par-1","Ngenye imini, umama kaLara wapeyinta amaphiko akhe abomvu krwe, ngelizama ukumonwabisa.","/audio/16.mp3",MP3
-17,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-7-par-1","Ngentsasa elandelayo, akukho nomnye umntu owambulisayo uLara endleleni eya esikolweni.","/audio/17.mp3",MP3
-18,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-8-par-1","Akufika esikolweni, akukho namnye kubahlobo bakhe owamnika nomolo lo.","/audio/18.mp3",MP3
-19,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-9-par-1","ULara wahlala yedwa tshu.","/audio/19.mp3",MP3
-20,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-9-par-2","Akho namnye owawaqaphelayo amaphiko akhe amatsha abomvu wade uNkosazana Miya wambona wathi, “Lara, uwapeyintile na amaphiko akho atyheli!”","/audio/20.mp3",MP3
-21,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-10-par-1","Oothuka kakhulu amaqabane kaLara. “Amaphiko akho atyheli akhethekile!”","/audio/21.mp3",MP3
-22,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-10-par-2","“Awaqhelekanga tu! Anqabile kakhulu!” batsho.","/audio/22.mp3",MP3
-23,audio/mpeg,null,"https://xho.elimu.ai/",,"storybook-5-ch-11-par-1","“Lara,” wakhwaza watsho uNkosazana Miya, “amaphiko akho atyheli ngawo akwenza ube ngulo mntu unguye – njengechokoza likaSipho nemilenze kaSally.”","/audio/23.mp3",MP3
-24,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-12-par-1","Akufika ekhaya uLara, wahlamba wayikhucula yonke loo peyinti kumaphiko akhe abengezela bugolide.","/audio/24.mp3",MP3
-25,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-12-par-2","“Soze ndiphinde ndiwapeyinte amaphiko am!” wacinga njalo. “Mhlawumbi ndakukwenza oko kanye okanye kabini ...”","/audio/25.mp3",MP3
-26,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-5-ch-13-par-1","“...ndizame umbala omfusa ... okanye enye nje into entle. Kodwa ingabi yinto esisigxina, ibe yinto nje yokuzonbisa.”","/audio/26.mp3",MP3
-27,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"unkosazana","unkosazana","/audio/27.mp3",MP3
-28,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"ekhaya","ekhaya","/audio/28.mp3",MP3
-29,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-1-par-1","enye","/audio/29.mp3",MP3
-30,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-1-par-1","inye","/audio/30.mp3",MP3
-31,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",15,"mama","mama","/audio/31.mp3",MP3
-32,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"ongubhantom","ongubhantom","/audio/32.mp3",MP3
-33,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-2-par-1","zimbini","/audio/33.mp3",MP3
-34,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-3-par-1","zintathu","/audio/34.mp3",MP3
-35,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-4-par-1","zine","/audio/35.mp3",MP3
-36,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-5-par-1","zintlanu","/audio/36.mp3",MP3
-37,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-6-par-1","zinthandathu","/audio/37.mp3",MP3
-38,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-7-par-1","zisixhenxe","/audio/38.mp3",MP3
-39,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-8-par-1","zisibhozo","/audio/39.mp3",MP3
-40,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-9-par-1","lithoba","/audio/40.mp3",MP3
-41,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai/",,"storybook-23-ch-10-par-1","lishumi","/audio/41.mp3",MP3
+5,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/content/storybook/",7,"mhlobo","mhlobo","/audio/5.mp3",MP3
+6,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-2-par-1","ULara, ongubhantom, wayeyirhorho ekhethekileyo. Wayengafani tu nabahlobo bakhe, kuba yena wayenamaphiko akhazimlayo natyheli.","/audio/6.mp3",MP3
+7,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",14,"amaphiko","amaphiko","/audio/7.mp3",MP3
+8,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",16,"esikolweni","esikolweni","/audio/8.mp3",MP3
+9,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",17,"abomvu","abomvu","/audio/9.mp3",MP3
+10,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",12,"umtu","umtu","/audio/10.mp3",MP3
+12,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-3-par-2","Rhoqo kusasa, uBhibhi Bhabhathane wayebulisa uLara, kanti noManto Mntanezulu wayethanda ukumbulisa, ngokumwangawangisela.","/audio/12.mp3",MP3
+11,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-3-par-1","Wonke umntu wayewathanda amaphiko akhe atyheli.","/audio/11.mp3",MP3
+13,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-4-par-1","Nkqu noSesa Sigcawu onolunya kunene wayekuvuyela ukubona uLara.","/audio/13.mp3",MP3
+14,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-4-par-2","Esikolweni, uLara wayedlala nabahlobo bakhe abaninzi.","/audio/14.mp3",MP3
+15,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-5-par-1","Kodwa uLara wayefuna ukufana nabanye oobhantom. “Akwaba bendinamaphiko abomvu njengawe lo, Mama,” watsho elila.","/audio/15.mp3",MP3
+16,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-6-par-1","Ngenye imini, umama kaLara wapeyinta amaphiko akhe abomvu krwe, ngelizama ukumonwabisa.","/audio/16.mp3",MP3
+17,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-7-par-1","Ngentsasa elandelayo, akukho nomnye umntu owambulisayo uLara endleleni eya esikolweni.","/audio/17.mp3",MP3
+18,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-8-par-1","Akufika esikolweni, akukho namnye kubahlobo bakhe owamnika nomolo lo.","/audio/18.mp3",MP3
+19,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-9-par-1","ULara wahlala yedwa tshu.","/audio/19.mp3",MP3
+20,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-9-par-2","Akho namnye owawaqaphelayo amaphiko akhe amatsha abomvu wade uNkosazana Miya wambona wathi, “Lara, uwapeyintile na amaphiko akho atyheli!”","/audio/20.mp3",MP3
+21,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-10-par-1","Oothuka kakhulu amaqabane kaLara. “Amaphiko akho atyheli akhethekile!”","/audio/21.mp3",MP3
+22,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-10-par-2","“Awaqhelekanga tu! Anqabile kakhulu!” batsho.","/audio/22.mp3",MP3
+23,audio/mpeg,null,"http://xho.elimu.ai/",,"storybook-5-ch-11-par-1","“Lara,” wakhwaza watsho uNkosazana Miya, “amaphiko akho atyheli ngawo akwenza ube ngulo mntu unguye – njengechokoza likaSipho nemilenze kaSally.”","/audio/23.mp3",MP3
+24,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-12-par-1","Akufika ekhaya uLara, wahlamba wayikhucula yonke loo peyinti kumaphiko akhe abengezela bugolide.","/audio/24.mp3",MP3
+25,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-12-par-2","“Soze ndiphinde ndiwapeyinte amaphiko am!” wacinga njalo. “Mhlawumbi ndakukwenza oko kanye okanye kabini ...”","/audio/25.mp3",MP3
+26,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-5-ch-13-par-1","“...ndizame umbala omfusa ... okanye enye nje into entle. Kodwa ingabi yinto esisigxina, ibe yinto nje yokuzonbisa.”","/audio/26.mp3",MP3
+27,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"unkosazana","unkosazana","/audio/27.mp3",MP3
+28,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"ekhaya","ekhaya","/audio/28.mp3",MP3
+29,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-1-par-1","enye","/audio/29.mp3",MP3
+30,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-1-par-1","inye","/audio/30.mp3",MP3
+31,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",15,"mama","mama","/audio/31.mp3",MP3
+32,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"ongubhantom","ongubhantom","/audio/32.mp3",MP3
+33,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-2-par-1","zimbini","/audio/33.mp3",MP3
+34,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-3-par-1","zintathu","/audio/34.mp3",MP3
+35,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-4-par-1","zine","/audio/35.mp3",MP3
+36,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-5-par-1","zintlanu","/audio/36.mp3",MP3
+37,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-6-par-1","zinthandathu","/audio/37.mp3",MP3
+38,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-7-par-1","zisixhenxe","/audio/38.mp3",MP3
+39,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-8-par-1","zisibhozo","/audio/39.mp3",MP3
+40,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-9-par-1","lithoba","/audio/40.mp3",MP3
+41,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai/",,"storybook-23-ch-10-par-1","lishumi","/audio/41.mp3",MP3
 42,audio/mpeg,CREATIVE_COMMONS_CC_BY,"null",18,"inye","inye","/audio/42.mp3",MP3
 43,audio/mpeg,CREATIVE_COMMONS_CC_BY,"null",19,"zimbini","zimbini","/audio/43.mp3",MP3
 44,audio/mpeg,CREATIVE_COMMONS_CC_BY,"null",20,"zintathu","zintathu","/audio/44.mp3",MP3
