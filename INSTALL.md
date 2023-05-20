@@ -11,10 +11,12 @@ To be able to compile and execute the web application locally, you will first ne
 * Java Development Kit (JDK)
 
   * macOS: `brew install openjdk`
+  * Windows: Download from https://learn.microsoft.com/en-us/java/openjdk/download
 
 * Maven
 
   * macOS: `brew install maven`
+  * Windows: Download ZIP file from https://maven.apache.org/download.cgi
 
 Go to the project's folder:
 
