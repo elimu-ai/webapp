@@ -5,7 +5,7 @@
 Web application:
 
  * 🇺🇸 English: https://eng.elimu.ai
- * 🇵🇭 Filipino: https://fil.elimu.ai
+ * 🇵🇭 Tagalog: https://tgl.elimu.ai
  * 🇮🇳 Hindi: https://hin.elimu.ai
 
 <img width="1438" alt="Screenshot 2020-06-17 at 19 54 15" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
@@ -41,7 +41,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
-## About the elimu.ai Community DAO
+## About elimu.ai
 
 ![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/54360503-e8e88980-465c-11e9-9792-32b513105cf3.png)
 
