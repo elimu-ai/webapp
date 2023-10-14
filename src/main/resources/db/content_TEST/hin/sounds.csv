@@ -5,7 +5,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 16,iː,i,,false,VOWEL,43998
 2,k,k,,false,CONSONANT,30431
 6,s,s,,false,CONSONANT,21960
-7,t,t,,false,CONSONANT,21190
+7,t,t,,false,CONSONANT,20638
 1,n,n,,false,CONSONANT,17840
 10,ɾ,4,,false,CONSONANT,15714
 4,m,m,,false,CONSONANT,13826
