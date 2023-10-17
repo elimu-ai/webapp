@@ -4,11 +4,10 @@
 
 Web application:
 
- * 🇺🇸 English: https://eng.elimu.ai
- * 🇵🇭 Tagalog: https://tgl.elimu.ai
- * 🇮🇳 Hindi: https://hin.elimu.ai
+ * https://hin.elimu.ai - Hindi
+ * https://tgl.elimu.ai - Tagalog
 
-<img width="1438" alt="Screenshot 2020-06-17 at 19 54 15" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
+<img width="1438" alt="" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
 
 This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
@@ -39,12 +38,9 @@ See [DB_MIGRATION.md](DB_MIGRATION.md)
 ## Contributing guidelines
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
+
 ---
 
-## About elimu.ai
+elimu.ai - Free personalized learning for every child on Earth 🌍🌏🌎
 
-![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/54360503-e8e88980-465c-11e9-9792-32b513105cf3.png)
-
- * For a high-level description of the project, see https://github.com/elimu-ai/wiki#readme
- * For project milestones, see https://github.com/elimu-ai/wiki/projects
- * For paid tasks, see https://app.dework.xyz/elimuai
+[Website 🌐](https://elimu.ai) &nbsp; [Wiki 📃](https://github.com/elimu-ai/wiki#readme) &nbsp; [Projects 👩🏽‍💻](https://github.com/elimu-ai/wiki/projects) &nbsp; [Milestones 🎯](https://github.com/elimu-ai/wiki/milestones) &nbsp; [Community 👋🏽](https://github.com/elimu-ai/wiki#open-source-community)
