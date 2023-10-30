@@ -30,7 +30,7 @@ import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.SoundDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/create")
+@RequestMapping("/content/letter-sound/create")
 public class LetterSoundCorrespondenceCreateController {
     
     private final Logger logger = LogManager.getLogger();
@@ -62,7 +62,7 @@ public class LetterSoundCorrespondenceCreateController {
         
         model.addAttribute("timeStart", System.currentTimeMillis());
 
-        return "content/letter-sound-correspondence/create";
+        return "content/letter-sound/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
@@ -92,7 +92,7 @@ public class LetterSoundCorrespondenceCreateController {
             
             model.addAttribute("timeStart", System.currentTimeMillis());
             
-            return "content/letter-sound-correspondence/create";
+            return "content/letter-sound/create";
         } else {
             letterSoundCorrespondence.setTimeLastUpdate(Calendar.getInstance());
             letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
@@ -108,7 +108,7 @@ public class LetterSoundCorrespondenceCreateController {
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSoundCorrespondence.getId();
                 DiscordHelper.sendChannelMessage(
                         "Letter-sound correspondence created: " + contentUrl,
                         "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
@@ -118,7 +118,7 @@ public class LetterSoundCorrespondenceCreateController {
                 );
             }
             
-            return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
+            return "redirect:/content/letter-sound/list#" + letterSoundCorrespondence.getId();
         }
     }
 }

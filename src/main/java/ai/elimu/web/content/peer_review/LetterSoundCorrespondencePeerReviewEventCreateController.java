@@ -95,6 +95,6 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
         }
         letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
 
-        return "redirect:/content/letter-sound-correspondence/edit/" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence().getId() + "#contribution-events";
+        return "redirect:/content/letter-sound/edit/" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence().getId() + "#contribution-events";
     }
 }

@@ -68,7 +68,7 @@
                                 <fmt:formatDate value="${letterSoundCorrespondenceContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
                             <td>
-                                <a href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondenceContributionEvent.letterSoundCorrespondence.id}#peer-review' />" target="_blank"><fmt:message key="peer.review" /></a>
+                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondenceContributionEvent.letterSoundCorrespondence.id}#peer-review' />" target="_blank"><fmt:message key="peer.review" /></a>
                             </td>
                         </tr>
                     </c:forEach>

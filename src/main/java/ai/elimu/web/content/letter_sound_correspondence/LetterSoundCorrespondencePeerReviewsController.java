@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/peer-reviews")
+@RequestMapping("/content/letter-sound/peer-reviews")
 public class LetterSoundCorrespondencePeerReviewsController {
     
     private Logger logger = LogManager.getLogger();
@@ -68,6 +68,6 @@ public class LetterSoundCorrespondencePeerReviewsController {
         logger.info("letterSoundCorrespondenceContributionEventsPendingPeerReview.size(): " + letterSoundCorrespondenceContributionEventsPendingPeerReview.size());
         model.addAttribute("letterSoundCorrespondenceContributionEventsPendingPeerReview", letterSoundCorrespondenceContributionEventsPendingPeerReview);
         
-        return "content/letter-sound-correspondence/peer-reviews/pending";
+        return "content/letter-sound/peer-reviews/pending";
     }
 }

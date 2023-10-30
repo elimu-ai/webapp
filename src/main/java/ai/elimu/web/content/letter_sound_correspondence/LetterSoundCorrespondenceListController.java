@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/list")
+@RequestMapping("/content/letter-sound/list")
 public class LetterSoundCorrespondenceListController {
     
     private final Logger logger = LogManager.getLogger();
@@ -35,6 +35,6 @@ public class LetterSoundCorrespondenceListController {
         }
         model.addAttribute("maxUsageCount", maxUsageCount);
 
-        return "content/letter-sound-correspondence/list";
+        return "content/letter-sound/list";
     }
 }

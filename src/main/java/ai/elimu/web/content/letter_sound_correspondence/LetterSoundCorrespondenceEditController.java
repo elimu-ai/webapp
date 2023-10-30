@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 import ai.elimu.dao.SoundDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/edit")
+@RequestMapping("/content/letter-sound/edit")
 public class LetterSoundCorrespondenceEditController {
     
     private final Logger logger = LogManager.getLogger();
@@ -78,7 +78,7 @@ public class LetterSoundCorrespondenceEditController {
         List<Word> words = wordDao.readAllOrderedByUsage();
         model.addAttribute("words", words);
         
-        return "content/letter-sound-correspondence/edit";
+        return "content/letter-sound/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
@@ -111,7 +111,7 @@ public class LetterSoundCorrespondenceEditController {
             model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
             model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
             
-            return "content/letter-sound-correspondence/edit";
+            return "content/letter-sound/edit";
         } else {
             letterSoundCorrespondence.setTimeLastUpdate(Calendar.getInstance());
             letterSoundCorrespondence.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber() + 1);
@@ -128,7 +128,7 @@ public class LetterSoundCorrespondenceEditController {
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSoundCorrespondence.getId();
                 DiscordHelper.sendChannelMessage(
                         "Letter-sound correspondence edited: " + contentUrl,
                         "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
@@ -138,7 +138,7 @@ public class LetterSoundCorrespondenceEditController {
                 );
             }
             
-            return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
+            return "redirect:/content/letter-sound/list#" + letterSoundCorrespondence.getId();
         }
     }
 }

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/list")
+@RequestMapping("/content/letter-sound/list")
 public class LetterSoundCorrespondenceCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
