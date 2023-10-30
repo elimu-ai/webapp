@@ -52,7 +52,7 @@ public class WordContributionRestController {
     private ContributorDao contributorDao;
 
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     /**
      * Returns a list of {@link LetterSoundCorrespondence}s that will be used to construct a {@link Word}.
@@ -62,9 +62,9 @@ public class WordContributionRestController {
         logger.info("getLetterSoundCorrespondences");
 
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAllOrderedByUsage()) {
             LetterSoundCorrespondenceGson letterSoundCorrespondenceGson =
-                    JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
+                    JpaToGsonConverter.getLetterSoundGson(letterSoundCorrespondence);
             String json = new Gson().toJson(letterSoundCorrespondenceGson);
             letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
@@ -148,7 +148,7 @@ public class WordContributionRestController {
             List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
             for (LetterSoundCorrespondenceGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
                 LetterSoundCorrespondence letterSoundCorrespondence =
-                        letterSoundCorrespondenceDao.read(letterSoundCorrespondenceGson.getId());
+                        letterSoundDao.read(letterSoundCorrespondenceGson.getId());
                 letterSoundCorrespondences.add(letterSoundCorrespondence);
             }
             word.setLetterSoundCorrespondences(letterSoundCorrespondences);

@@ -19,25 +19,25 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/list")
+@RequestMapping("/content/letter-sound/list")
 public class LetterSoundCorrespondenceCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
-    @RequestMapping(value="/letter-sound-correspondences.csv", method = RequestMethod.GET)
+    @RequestMapping(value="/letter-sounds.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundCorrespondenceDao.readAllOrderedByUsage();
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundDao.readAllOrderedByUsage();
         logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

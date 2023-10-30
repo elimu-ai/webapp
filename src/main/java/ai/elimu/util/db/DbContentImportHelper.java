@@ -6,7 +6,7 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.SoundDao;
@@ -67,7 +67,7 @@ public class DbContentImportHelper {
 
     private SoundDao soundDao;
 
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
 
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
 
@@ -161,13 +161,13 @@ public class DbContentImportHelper {
         }
 
         // Extract and import letter-sound correspondences in src/main/resources/
-        File letterToAllophioneMappingsCsvFile = new File(contentDirectory, "letter-sound-correspondences.csv");
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao);
+        File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
         logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
-        letterSoundCorrespondenceDao = (LetterSoundCorrespondenceDao) webApplicationContext.getBean("letterSoundCorrespondenceDao");
+        letterSoundDao = (LetterSoundDao) webApplicationContext.getBean("letterSoundDao");
         letterSoundCorrespondenceContributionEventDao = (LetterSoundCorrespondenceContributionEventDao) webApplicationContext.getBean("letterSoundCorrespondenceContributionEventDao");
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
-            letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
+            letterSoundDao.create(letterSoundCorrespondence);
 
             LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
             letterSoundCorrespondenceContributionEvent.setContributor(contributor);
@@ -181,7 +181,7 @@ public class DbContentImportHelper {
 
         // Extract and import Words from CSV file in src/main/resources/
         File wordsCsvFile = new File(contentDirectory, "words.csv");
-        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao, wordDao);
+        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, soundDao, letterSoundDao, wordDao);
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
         wordContributionEventDao = (WordContributionEventDao) webApplicationContext.getBean("wordContributionEventDao");

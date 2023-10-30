@@ -17,7 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
@@ -34,13 +34,13 @@ import java.util.stream.Collectors;
 import ai.elimu.dao.SoundDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/edit")
+@RequestMapping("/content/letter-sound/edit")
 public class LetterSoundCorrespondenceEditController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
@@ -61,7 +61,7 @@ public class LetterSoundCorrespondenceEditController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(id);
+        LetterSoundCorrespondence letterSoundCorrespondence = letterSoundDao.read(id);
         model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
         
         model.addAttribute("timeStart", System.currentTimeMillis());
@@ -78,7 +78,7 @@ public class LetterSoundCorrespondenceEditController {
         List<Word> words = wordDao.readAllOrderedByUsage();
         model.addAttribute("words", words);
         
-        return "content/letter-sound-correspondence/edit";
+        return "content/letter-sound/edit";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
@@ -92,7 +92,7 @@ public class LetterSoundCorrespondenceEditController {
     	logger.info("handleSubmit");
         
         // Check if the LetterSoundCorrespondence already exists
-        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getSounds());
+        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getSounds());
         if ((existingLetterSoundCorrespondence != null) && !existingLetterSoundCorrespondence.getId().equals(letterSoundCorrespondence.getId())) {
             result.rejectValue("letters", "NonUnique");
         }
@@ -111,11 +111,11 @@ public class LetterSoundCorrespondenceEditController {
             model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
             model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
             
-            return "content/letter-sound-correspondence/edit";
+            return "content/letter-sound/edit";
         } else {
             letterSoundCorrespondence.setTimeLastUpdate(Calendar.getInstance());
             letterSoundCorrespondence.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber() + 1);
-            letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
+            letterSoundDao.update(letterSoundCorrespondence);
             
             LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
             letterSoundCorrespondenceContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
@@ -128,7 +128,7 @@ public class LetterSoundCorrespondenceEditController {
             letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound-correspondence/edit/" + letterSoundCorrespondence.getId();
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSoundCorrespondence.getId();
                 DiscordHelper.sendChannelMessage(
                         "Letter-sound correspondence edited: " + contentUrl,
                         "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
@@ -138,7 +138,7 @@ public class LetterSoundCorrespondenceEditController {
                 );
             }
             
-            return "redirect:/content/letter-sound-correspondence/list#" + letterSoundCorrespondence.getId();
+            return "redirect:/content/letter-sound/list#" + letterSoundCorrespondence.getId();
         }
     }
 }

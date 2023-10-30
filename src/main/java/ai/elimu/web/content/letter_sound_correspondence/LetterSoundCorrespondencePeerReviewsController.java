@@ -2,7 +2,7 @@ package ai.elimu.web.content.letter_sound_correspondence;
 
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/peer-reviews")
+@RequestMapping("/content/letter-sound/peer-reviews")
 public class LetterSoundCorrespondencePeerReviewsController {
     
     private Logger logger = LogManager.getLogger();
@@ -31,7 +31,7 @@ public class LetterSoundCorrespondencePeerReviewsController {
     private LetterSoundCorrespondencePeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private EmojiDao emojiDao;
@@ -68,6 +68,6 @@ public class LetterSoundCorrespondencePeerReviewsController {
         logger.info("letterSoundCorrespondenceContributionEventsPendingPeerReview.size(): " + letterSoundCorrespondenceContributionEventsPendingPeerReview.size());
         model.addAttribute("letterSoundCorrespondenceContributionEventsPendingPeerReview", letterSoundCorrespondenceContributionEventsPendingPeerReview);
         
-        return "content/letter-sound-correspondence/peer-reviews/pending";
+        return "content/letter-sound/peer-reviews/pending";
     }
 }

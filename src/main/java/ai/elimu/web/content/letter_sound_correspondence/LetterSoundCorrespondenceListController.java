@@ -9,22 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence/list")
+@RequestMapping("/content/letter-sound/list")
 public class LetterSoundCorrespondenceListController {
     
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundCorrespondenceDao.readAllOrderedByUsage();
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundDao.readAllOrderedByUsage();
         model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondences);
         
         int maxUsageCount = 0;
@@ -35,6 +35,6 @@ public class LetterSoundCorrespondenceListController {
         }
         model.addAttribute("maxUsageCount", maxUsageCount);
 
-        return "content/letter-sound-correspondence/list";
+        return "content/letter-sound/list";
     }
 }
