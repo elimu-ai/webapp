@@ -30,7 +30,7 @@ public class LetterSoundCorrespondenceCsvExportController {
     @Autowired
     private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
     
-    @RequestMapping(value="/letter-sound-correspondences.csv", method = RequestMethod.GET)
+    @RequestMapping(value="/letter-sounds.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream

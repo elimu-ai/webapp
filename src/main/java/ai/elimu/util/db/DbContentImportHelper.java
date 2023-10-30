@@ -161,8 +161,8 @@ public class DbContentImportHelper {
         }
 
         // Extract and import letter-sound correspondences in src/main/resources/
-        File letterToAllophioneMappingsCsvFile = new File(contentDirectory, "letter-sound-correspondences.csv");
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao);
+        File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao);
         logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
         letterSoundCorrespondenceDao = (LetterSoundCorrespondenceDao) webApplicationContext.getBean("letterSoundCorrespondenceDao");
         letterSoundCorrespondenceContributionEventDao = (LetterSoundCorrespondenceContributionEventDao) webApplicationContext.getBean("letterSoundCorrespondenceContributionEventDao");

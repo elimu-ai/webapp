@@ -5,7 +5,7 @@
 <content:section cssId="letterSoundCorrespondenceListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
-           href="<spring:url value='/content/letter-sound-correspondence/list/letter-sound-correspondences.csv' />">
+           href="<spring:url value='/content/letter-sound-correspondence/list/letter-sounds.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
