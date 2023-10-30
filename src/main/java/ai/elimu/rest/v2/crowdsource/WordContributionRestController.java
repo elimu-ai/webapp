@@ -64,7 +64,7 @@ public class WordContributionRestController {
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAllOrderedByUsage()) {
             LetterSoundCorrespondenceGson letterSoundCorrespondenceGson =
-                    JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
+                    JpaToGsonConverter.getLetterSoundGson(letterSoundCorrespondence);
             String json = new Gson().toJson(letterSoundCorrespondenceGson);
             letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }

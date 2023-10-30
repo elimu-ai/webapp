@@ -30,7 +30,7 @@ public class LetterSoundsRestController {
         
         JSONArray letterSoundsJsonArray = new JSONArray();
         for (LetterSoundCorrespondence letterSound : letterSoundDao.readAllOrderedByUsage()) {
-            LetterSoundCorrespondenceGson letterSoundGson = JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSound);
+            LetterSoundCorrespondenceGson letterSoundGson = JpaToGsonConverter.getLetterSoundGson(letterSound);
             String json = new Gson().toJson(letterSoundGson);
             letterSoundsJsonArray.put(new JSONObject(json));
         }
