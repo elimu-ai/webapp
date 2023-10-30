@@ -16,26 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 import ai.elimu.dao.LetterSoundCorrespondenceDao;
 
 @RestController
-@RequestMapping(value = "/rest/v2/content/letter-sound-correspondences", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class LetterSoundCorrespondencesRestController {
+@RequestMapping(value = "/rest/v2/content/letter-sounds", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public class LetterSoundsRestController {
     
     private Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundCorrespondenceDao letterSoundDao;
     
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest() {
         logger.info("handleGetRequest");
         
-        JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
-            LetterSoundCorrespondenceGson letterSoundCorrespondenceGson = JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
-            String json = new Gson().toJson(letterSoundCorrespondenceGson);
-            letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
+        JSONArray letterSoundsJsonArray = new JSONArray();
+        for (LetterSoundCorrespondence letterSound : letterSoundDao.readAllOrderedByUsage()) {
+            LetterSoundCorrespondenceGson letterSoundGson = JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSound);
+            String json = new Gson().toJson(letterSoundGson);
+            letterSoundsJsonArray.put(new JSONObject(json));
         }
         
-        String jsonResponse = letterSoundCorrespondencesJsonArray.toString();
+        String jsonResponse = letterSoundsJsonArray.toString();
         logger.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }
