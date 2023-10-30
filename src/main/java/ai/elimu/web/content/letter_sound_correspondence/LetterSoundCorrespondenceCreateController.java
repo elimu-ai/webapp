@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.enums.Platform;
@@ -36,7 +36,7 @@ public class LetterSoundCorrespondenceCreateController {
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
@@ -76,7 +76,7 @@ public class LetterSoundCorrespondenceCreateController {
     	logger.info("handleSubmit");
         
         // Check if the LetterSoundCorrespondence already exists
-        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getSounds());
+        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getSounds());
         if (existingLetterSoundCorrespondence != null) {
             result.rejectValue("letters", "NonUnique");
         }
@@ -95,7 +95,7 @@ public class LetterSoundCorrespondenceCreateController {
             return "content/letter-sound/create";
         } else {
             letterSoundCorrespondence.setTimeLastUpdate(Calendar.getInstance());
-            letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
+            letterSoundDao.create(letterSoundCorrespondence);
             
             LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
             letterSoundCorrespondenceContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));

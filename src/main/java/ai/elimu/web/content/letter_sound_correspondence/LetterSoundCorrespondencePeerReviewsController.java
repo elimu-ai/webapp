@@ -2,7 +2,7 @@ package ai.elimu.web.content.letter_sound_correspondence;
 
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
@@ -31,7 +31,7 @@ public class LetterSoundCorrespondencePeerReviewsController {
     private LetterSoundCorrespondencePeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private EmojiDao emojiDao;

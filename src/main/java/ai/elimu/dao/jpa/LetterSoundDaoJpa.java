@@ -6,9 +6,9 @@ import ai.elimu.model.content.LetterSoundCorrespondence;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.dao.DataAccessException;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 
-public class LetterSoundCorrespondenceDaoJpa extends GenericDaoJpa<LetterSoundCorrespondence> implements LetterSoundCorrespondenceDao {
+public class LetterSoundDaoJpa extends GenericDaoJpa<LetterSoundCorrespondence> implements LetterSoundDao {
 
     @Override
     public LetterSoundCorrespondence read(List<Letter> letters, List<Sound> sounds) throws DataAccessException {

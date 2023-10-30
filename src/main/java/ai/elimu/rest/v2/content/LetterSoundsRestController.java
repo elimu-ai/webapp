@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 
 @RestController
 @RequestMapping(value = "/rest/v2/content/letter-sounds", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -22,7 +22,7 @@ public class LetterSoundsRestController {
     private Logger logger = LogManager.getLogger();
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundDao;
+    private LetterSoundDao letterSoundDao;
     
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest() {

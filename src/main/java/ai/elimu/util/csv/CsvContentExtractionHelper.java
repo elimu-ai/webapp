@@ -1,7 +1,7 @@
 package ai.elimu.util.csv;
 
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
@@ -49,7 +49,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
      */
-    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao) {
+    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
         logger.info("getLetterSoundCorrespondencesFromCsvBackup");
 
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
@@ -119,7 +119,7 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
-    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundCorrespondenceDao letterSoundCorrespondenceDao, WordDao wordDao) {
+    public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao, WordDao wordDao) {
         logger.info("getWordsFromCsvBackup");
 
         List<Word> words = new ArrayList<>();
@@ -167,7 +167,7 @@ public class CsvContentExtractionHelper {
                         Sound sound = soundDao.readByValueIpa(soundsJsonArray.getString(j));
                         sounds.add(sound);
                     }
-                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letters, sounds);
+                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundDao.read(letters, sounds);
                     logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
                     letterSoundCorrespondences.add(letterSoundCorrespondence);
                 }

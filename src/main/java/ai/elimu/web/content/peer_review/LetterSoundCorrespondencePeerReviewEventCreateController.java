@@ -1,7 +1,7 @@
 package ai.elimu.web.content.peer_review;
 
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -37,7 +37,7 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
     private LetterSoundCorrespondencePeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
@@ -93,7 +93,7 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
         } else {
             letterSoundCorrespondence.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
         }
-        letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
+        letterSoundDao.update(letterSoundCorrespondence);
 
         return "redirect:/content/letter-sound/edit/" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence().getId() + "#contribution-events";
     }
