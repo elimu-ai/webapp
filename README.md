@@ -7,7 +7,7 @@ Web application:
  * https://hin.elimu.ai - Hindi
  * https://tgl.elimu.ai - Tagalog
 
-<img width="1438" alt="" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
+<img width="1438" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
 
 This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
@@ -25,7 +25,7 @@ The webapp's REST API is used by four Android applications:
 
 See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md)
 
-## Run application locally 👩🏽‍💻
+## Run webapp locally 👩🏽‍💻
 See [INSTALL.md](INSTALL.md)
 
 ## Localization
@@ -41,6 +41,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
-elimu.ai - Free personalized learning for every child on Earth 🌍🌏🌎
+elimu.ai - Free open source learning software for out-of-school children ✨🚀
 
-[Website 🌐](https://elimu.ai) &nbsp; [Wiki 📃](https://github.com/elimu-ai/wiki#readme) &nbsp; [Projects 👩🏽‍💻](https://github.com/elimu-ai/wiki/projects) &nbsp; [Milestones 🎯](https://github.com/elimu-ai/wiki/milestones) &nbsp; [Community 👋🏽](https://github.com/elimu-ai/wiki#open-source-community)
+[Website 🌐](https://elimu.ai) &nbsp; [Wiki 📃](https://github.com/elimu-ai/wiki#readme) &nbsp; [Projects 👩🏽‍💻](https://github.com/orgs/elimu-ai/projects?query=is%3Aopen) &nbsp; [Milestones 🎯](https://github.com/elimu-ai/wiki/milestones) &nbsp; [Community 👋🏽](https://github.com/elimu-ai/wiki#open-source-community)
