@@ -37,8 +37,8 @@ public class LetterSoundCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundDao.readAllOrderedByUsage();
-        logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
+        List<LetterSoundCorrespondence> letterSounds = letterSoundDao.readAllOrderedByUsage();
+        logger.info("letterSounds.size(): " + letterSounds.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
@@ -52,43 +52,43 @@ public class LetterSoundCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
-            logger.info("letterSoundCorrespondence.getId(): \"" + letterSoundCorrespondence.getId() + "\"");
+        for (LetterSoundCorrespondence letterSound : letterSounds) {
+            logger.info("letterSound.getId(): \"" + letterSound.getId() + "\"");
             
             JSONArray letterIdsJsonArray = new JSONArray();
             int index = 0;
-            for (Letter letter : letterSoundCorrespondence.getLetters()) {
+            for (Letter letter : letterSound.getLetters()) {
                 letterIdsJsonArray.put(index, letter.getId());
                 index++;
             }
             
             JSONArray letterTextsJsonArray = new JSONArray();
             index = 0;
-            for (Letter letter : letterSoundCorrespondence.getLetters()) {
+            for (Letter letter : letterSound.getLetters()) {
                 letterTextsJsonArray.put(index, letter.getText());
                 index++;
             }
             
             JSONArray soundIdsJsonArray = new JSONArray();
             index = 0;
-            for (Sound sound : letterSoundCorrespondence.getSounds()) {
+            for (Sound sound : letterSound.getSounds()) {
                 soundIdsJsonArray.put(index, sound.getId());
                 index++;
             }
             
             JSONArray soundValuesIpaJsonArray = new JSONArray();
             index = 0;
-            for (Sound sound : letterSoundCorrespondence.getSounds()) {
+            for (Sound sound : letterSound.getSounds()) {
                 soundValuesIpaJsonArray.put(index, sound.getValueIpa());
                 index++;
             }
             
-            csvPrinter.printRecord(letterSoundCorrespondence.getId(),
+            csvPrinter.printRecord(letterSound.getId(),
                     letterIdsJsonArray,
                     letterTextsJsonArray,
                     soundIdsJsonArray,
                     soundValuesIpaJsonArray,
-                    letterSoundCorrespondence.getUsageCount()
+                    letterSound.getUsageCount()
             );
             
             csvPrinter.flush();
