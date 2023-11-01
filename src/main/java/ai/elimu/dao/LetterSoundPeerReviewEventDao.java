@@ -7,7 +7,7 @@ import ai.elimu.model.contributor.LetterSoundCorrespondencePeerReviewEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 
-public interface LetterSoundCorrespondencePeerReviewEventDao extends GenericDao<LetterSoundCorrespondencePeerReviewEvent> {
+public interface LetterSoundPeerReviewEventDao extends GenericDao<LetterSoundCorrespondencePeerReviewEvent> {
     
     List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent, Contributor contributor) throws DataAccessException;
     

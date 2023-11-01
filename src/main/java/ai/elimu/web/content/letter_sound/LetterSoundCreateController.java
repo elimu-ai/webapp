@@ -1,11 +1,11 @@
-package ai.elimu.web.content.letter_sound_correspondence;
+package ai.elimu.web.content.letter_sound;
 
 import java.util.List;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
+import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -31,7 +31,7 @@ import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content/letter-sound/create")
-public class LetterSoundCorrespondenceCreateController {
+public class LetterSoundCreateController {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -39,7 +39,7 @@ public class LetterSoundCorrespondenceCreateController {
     private LetterSoundDao letterSoundDao;
     
     @Autowired
-    private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
+    private LetterSoundContributionEventDao letterSoundContributionEventDao;
     
     @Autowired
     private LetterDao letterDao;
@@ -51,8 +51,8 @@ public class LetterSoundCorrespondenceCreateController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        LetterSoundCorrespondence letterSoundCorrespondence = new LetterSoundCorrespondence();
-        model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
+        LetterSoundCorrespondence letterSound = new LetterSoundCorrespondence();
+        model.addAttribute("letterSound", letterSound);
         
         List<Letter> letters = letterDao.readAllOrdered();
         model.addAttribute("letters", letters);
@@ -69,20 +69,20 @@ public class LetterSoundCorrespondenceCreateController {
     public String handleSubmit(
             HttpServletRequest request,
             HttpSession session,
-            @Valid LetterSoundCorrespondence letterSoundCorrespondence,
+            @Valid LetterSoundCorrespondence letterSound,
             BindingResult result,
             Model model
     ) {
     	logger.info("handleSubmit");
         
-        // Check if the LetterSoundCorrespondence already exists
-        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getSounds());
-        if (existingLetterSoundCorrespondence != null) {
+        // Check if the LetterSound already exists
+        LetterSoundCorrespondence existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());
+        if (existingLetterSound != null) {
             result.rejectValue("letters", "NonUnique");
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
+            model.addAttribute("letterSound", letterSound);
             
             List<Letter> letters = letterDao.readAllOrdered();
             model.addAttribute("letters", letters);
@@ -94,31 +94,31 @@ public class LetterSoundCorrespondenceCreateController {
             
             return "content/letter-sound/create";
         } else {
-            letterSoundCorrespondence.setTimeLastUpdate(Calendar.getInstance());
-            letterSoundDao.create(letterSoundCorrespondence);
+            letterSound.setTimeLastUpdate(Calendar.getInstance());
+            letterSoundDao.create(letterSound);
             
-            LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
-            letterSoundCorrespondenceContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
-            letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
-            letterSoundCorrespondenceContributionEvent.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber());
-            letterSoundCorrespondenceContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-            letterSoundCorrespondenceContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
-            letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
+            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            letterSoundContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            letterSoundContributionEvent.setTime(Calendar.getInstance());
+            letterSoundContributionEvent.setLetterSoundCorrespondence(letterSound);
+            letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
+            letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
+            letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            letterSoundContributionEvent.setPlatform(Platform.WEBAPP);
+            letterSoundContributionEventDao.create(letterSoundContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSoundCorrespondence.getId();
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSound.getId();
                 DiscordHelper.sendChannelMessage(
                         "Letter-sound correspondence created: " + contentUrl,
-                        "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
-                        "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
+                        "\"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
+                        "Comment: \"" + letterSoundContributionEvent.getComment() + "\"",
                         null,
                         null
                 );
             }
             
-            return "redirect:/content/letter-sound/list#" + letterSoundCorrespondence.getId();
+            return "redirect:/content/letter-sound/list#" + letterSound.getId();
         }
     }
 }

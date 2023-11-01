@@ -1,6 +1,6 @@
 package ai.elimu.dao.jpa;
 
-import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
+import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
@@ -8,29 +8,29 @@ import ai.elimu.model.contributor.LetterSoundCorrespondencePeerReviewEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 
-public class LetterSoundCorrespondencePeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundCorrespondencePeerReviewEvent> implements LetterSoundCorrespondencePeerReviewEventDao {
+public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundCorrespondencePeerReviewEvent> implements LetterSoundPeerReviewEventDao {
     
     @Override
-    public List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent, Contributor contributor) throws DataAccessException {
+    public List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent, Contributor contributor) throws DataAccessException {
         return em.createQuery(
             "SELECT event " +
             "FROM LetterSoundCorrespondencePeerReviewEvent event " +
             "WHERE event.letterSoundCorrespondenceContributionEvent = :letterSoundCorrespondenceContributionEvent " +
             "AND event.contributor = :contributor " +
             "ORDER BY event.time DESC")
-            .setParameter("letterSoundCorrespondenceContributionEvent", letterSoundCorrespondenceContributionEvent)
+            .setParameter("letterSoundCorrespondenceContributionEvent", letterSoundContributionEvent)
             .setParameter("contributor", contributor)
             .getResultList();
     }
 
     @Override
-    public List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondence letterSoundCorrespondence) throws DataAccessException {
+    public List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondence letterSound) throws DataAccessException {
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterSoundCorrespondencePeerReviewEvent event " +
             "WHERE event.letterSoundCorrespondenceContributionEvent.letterSoundCorrespondence = :letterSoundCorrespondence " + 
             "ORDER BY event.time DESC")
-            .setParameter("letterSoundCorrespondence", letterSoundCorrespondence)
+            .setParameter("letterSoundCorrespondence", letterSound)
             .getResultList();
     }
     
@@ -46,13 +46,13 @@ public class LetterSoundCorrespondencePeerReviewEventDaoJpa extends GenericDaoJp
     }
     
     @Override
-    public List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent) throws DataAccessException {
+    public List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent) throws DataAccessException {
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterSoundCorrespondencePeerReviewEvent event " +
             "WHERE event.letterSoundCorrespondenceContributionEvent = :letterSoundCorrespondenceContributionEvent " + 
             "ORDER BY event.time DESC")
-            .setParameter("letterSoundCorrespondenceContributionEvent", letterSoundCorrespondenceContributionEvent)
+            .setParameter("letterSoundCorrespondenceContributionEvent", letterSoundContributionEvent)
             .getResultList();
     }
     

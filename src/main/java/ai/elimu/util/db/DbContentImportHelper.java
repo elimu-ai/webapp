@@ -5,7 +5,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
+import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
@@ -69,7 +69,7 @@ public class DbContentImportHelper {
 
     private LetterSoundDao letterSoundDao;
 
-    private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
+    private LetterSoundContributionEventDao letterSoundContributionEventDao;
 
     private WordDao wordDao;
 
@@ -162,21 +162,21 @@ public class DbContentImportHelper {
 
         // Extract and import letter-sound correspondences in src/main/resources/
         File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
-        logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
+        List<LetterSoundCorrespondence> letterSounds = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
+        logger.info("letterSounds.size(): " + letterSounds.size());
         letterSoundDao = (LetterSoundDao) webApplicationContext.getBean("letterSoundDao");
-        letterSoundCorrespondenceContributionEventDao = (LetterSoundCorrespondenceContributionEventDao) webApplicationContext.getBean("letterSoundCorrespondenceContributionEventDao");
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
-            letterSoundDao.create(letterSoundCorrespondence);
+        letterSoundContributionEventDao = (LetterSoundContributionEventDao) webApplicationContext.getBean("letterSoundContributionEventDao");
+        for (LetterSoundCorrespondence letterSound : letterSounds) {
+            letterSoundDao.create(letterSound);
 
-            LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
-            letterSoundCorrespondenceContributionEvent.setContributor(contributor);
-            letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
-            letterSoundCorrespondenceContributionEvent.setRevisionNumber(1);
-            letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
-            letterSoundCorrespondenceContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-            letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
-            letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
+            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            letterSoundContributionEvent.setContributor(contributor);
+            letterSoundContributionEvent.setLetterSoundCorrespondence(letterSound);
+            letterSoundContributionEvent.setRevisionNumber(1);
+            letterSoundContributionEvent.setTime(Calendar.getInstance());
+            letterSoundContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+            letterSoundContributionEvent.setPlatform(Platform.WEBAPP);
+            letterSoundContributionEventDao.create(letterSoundContributionEvent);
         }
 
         // Extract and import Words from CSV file in src/main/resources/

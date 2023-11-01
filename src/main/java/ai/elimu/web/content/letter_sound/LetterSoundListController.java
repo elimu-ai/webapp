@@ -1,4 +1,4 @@
-package ai.elimu.web.content.letter_sound_correspondence;
+package ai.elimu.web.content.letter_sound;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +13,7 @@ import ai.elimu.dao.LetterSoundDao;
 
 @Controller
 @RequestMapping("/content/letter-sound/list")
-public class LetterSoundCorrespondenceListController {
+public class LetterSoundListController {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -24,13 +24,13 @@ public class LetterSoundCorrespondenceListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundDao.readAllOrderedByUsage();
-        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondences);
+        List<LetterSoundCorrespondence> letterSounds = letterSoundDao.readAllOrderedByUsage();
+        model.addAttribute("letterSounds", letterSounds);
         
         int maxUsageCount = 0;
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
-            if (letterSoundCorrespondence.getUsageCount() > maxUsageCount) {
-                maxUsageCount = letterSoundCorrespondence.getUsageCount();
+        for (LetterSoundCorrespondence letterSound : letterSounds) {
+            if (letterSound.getUsageCount() > maxUsageCount) {
+                maxUsageCount = letterSound.getUsageCount();
             }
         }
         model.addAttribute("maxUsageCount", maxUsageCount);
