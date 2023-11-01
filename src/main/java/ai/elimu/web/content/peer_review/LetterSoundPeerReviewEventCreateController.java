@@ -75,7 +75,7 @@ public class LetterSoundPeerReviewEventCreateController {
             );
         }
 
-        // Update the letterSoundCorrespondence's peer review status
+        // Update the peer review status
         int approvedCount = 0;
         int notApprovedCount = 0;
         for (LetterSoundCorrespondencePeerReviewEvent peerReviewEvent : letterSoundPeerReviewEventDao.readAll(letterSoundContributionEvent)) {
@@ -87,13 +87,13 @@ public class LetterSoundPeerReviewEventCreateController {
         }
         logger.info("approvedCount: " + approvedCount);
         logger.info("notApprovedCount: " + notApprovedCount);
-        LetterSoundCorrespondence letterSoundCorrespondence = letterSoundContributionEvent.getLetterSoundCorrespondence();
+        LetterSoundCorrespondence letterSound = letterSoundContributionEvent.getLetterSoundCorrespondence();
         if (approvedCount >= notApprovedCount) {
-            letterSoundCorrespondence.setPeerReviewStatus(PeerReviewStatus.APPROVED);
+            letterSound.setPeerReviewStatus(PeerReviewStatus.APPROVED);
         } else {
-            letterSoundCorrespondence.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
+            letterSound.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
         }
-        letterSoundDao.update(letterSoundCorrespondence);
+        letterSoundDao.update(letterSound);
 
         return "redirect:/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSoundCorrespondence().getId() + "#contribution-events";
     }
