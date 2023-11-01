@@ -24,13 +24,13 @@ public class LetterSoundListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = letterSoundDao.readAllOrderedByUsage();
-        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondences);
+        List<LetterSoundCorrespondence> letterSounds = letterSoundDao.readAllOrderedByUsage();
+        model.addAttribute("letterSounds", letterSounds);
         
         int maxUsageCount = 0;
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
-            if (letterSoundCorrespondence.getUsageCount() > maxUsageCount) {
-                maxUsageCount = letterSoundCorrespondence.getUsageCount();
+        for (LetterSoundCorrespondence letterSound : letterSounds) {
+            if (letterSound.getUsageCount() > maxUsageCount) {
+                maxUsageCount = letterSound.getUsageCount();
             }
         }
         model.addAttribute("maxUsageCount", maxUsageCount);
