@@ -6,7 +6,7 @@
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="letterSound">
-            <tag:formErrors modelAttribute="letterSound" />
+            <tag:formErrors modelAttribute="letterSoundCorrespondence" />
             
             <form:hidden path="revisionNumber" value="${letterSound.revisionNumber}" />
             <form:hidden path="usageCount" value="${letterSound.usageCount}" />
