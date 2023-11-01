@@ -82,7 +82,7 @@ public class LetterSoundCreateController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("letterSoundCorrespondence", letterSound);
+            model.addAttribute("letterSound", letterSound);
             
             List<Letter> letters = letterDao.readAllOrdered();
             model.addAttribute("letters", letters);

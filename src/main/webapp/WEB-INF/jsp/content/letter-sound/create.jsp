@@ -2,11 +2,11 @@
     <fmt:message key="add.letter.sound.correspondence" />
 </content:title>
 
-<content:section cssId="letterSoundCorrespondenceCreatePage">
+<content:section cssId="letterSoundCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="letterSoundCorrespondence">
-            <tag:formErrors modelAttribute="letterSoundCorrespondence" />
+        <form:form modelAttribute="letterSound">
+            <tag:formErrors modelAttribute="letterSound" />
             
             <input type="hidden" name="timeStart" value="${timeStart}" />
             
@@ -14,7 +14,7 @@
                 <div class="col s12">
                     <label><fmt:message key="letters" /></label><br />
                     "<span id="lettersContainer">
-                        <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                        <c:forEach var="letter" items="${letterSound.letters}">
                             <input name="letters" type="hidden" value="${letter.id}" />
                             <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}"
                                  style="font-size: 2rem; padding: 1rem; height: auto;">
@@ -75,7 +75,7 @@
                 <div class="col s12">
                     <label><fmt:message key="sounds" /></label><br />
                     /<span id="soundsContainer">
-                        <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                        <c:forEach var="sound" items="${letterSound.sounds}">
                             <input name="sounds" type="hidden" value="${sound.id}" />
                             <div class="chip" data-soundid="${sound.id}" data-soundvalue="${sound.valueIpa}"
                                  style="font-size: 2rem; padding: 1rem; height: auto;">
