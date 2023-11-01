@@ -18,7 +18,7 @@ import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
-import ai.elimu.web.content.letter_sound.LetterSoundCorrespondenceCsvExportController;
+import ai.elimu.web.content.letter_sound.LetterSoundCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
 import ai.elimu.web.content.word.WordCsvExportController;
@@ -47,7 +47,7 @@ public class CsvContentExtractionHelper {
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
+     * For information on how the CSV files were generated, see {@link LetterSoundCsvExportController#handleRequest}.
      */
     public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
         logger.info("getLetterSoundCorrespondencesFromCsvBackup");

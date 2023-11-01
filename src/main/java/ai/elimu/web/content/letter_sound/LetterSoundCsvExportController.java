@@ -23,7 +23,7 @@ import ai.elimu.dao.LetterSoundDao;
 
 @Controller
 @RequestMapping("/content/letter-sound/list")
-public class LetterSoundCorrespondenceCsvExportController {
+public class LetterSoundCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
     

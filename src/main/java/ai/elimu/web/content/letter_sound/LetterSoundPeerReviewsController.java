@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/letter-sound/peer-reviews")
-public class LetterSoundCorrespondencePeerReviewsController {
+public class LetterSoundPeerReviewsController {
     
     private Logger logger = LogManager.getLogger();
     

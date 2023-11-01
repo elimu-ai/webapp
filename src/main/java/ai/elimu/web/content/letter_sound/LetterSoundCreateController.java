@@ -31,7 +31,7 @@ import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content/letter-sound/create")
-public class LetterSoundCorrespondenceCreateController {
+public class LetterSoundCreateController {
     
     private final Logger logger = LogManager.getLogger();
     
