@@ -41,7 +41,7 @@ public class LetterSoundCorrespondenceContributionEventDaoJpa extends GenericDao
     }
     
     @Override
-    public List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSoundCorrespondence() throws DataAccessException {
+    public List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSound() throws DataAccessException {
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundCorrespondenceContributionEvent e " +

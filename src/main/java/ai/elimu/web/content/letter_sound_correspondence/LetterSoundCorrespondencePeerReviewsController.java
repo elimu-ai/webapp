@@ -3,7 +3,7 @@ package ai.elimu.web.content.letter_sound_correspondence;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
+import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.contributor.LetterSoundCorrespondencePeerReviewEvent;
@@ -28,7 +28,7 @@ public class LetterSoundCorrespondencePeerReviewsController {
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
     
     @Autowired
-    private LetterSoundCorrespondencePeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
+    private LetterSoundPeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
     
     @Autowired
     private LetterSoundDao letterSoundDao;
@@ -47,7 +47,7 @@ public class LetterSoundCorrespondencePeerReviewsController {
         logger.info("contributor: " + contributor);
         
         // Get the most recent LetterSoundCorrespondenceContributionEvent for each LetterSoundCorrespondence, including those made by the current Contributor
-        List<LetterSoundCorrespondenceContributionEvent> mostRecentLetterSoundCorrespondenceContributionEvents = letterSoundCorrespondenceContributionEventDao.readMostRecentPerLetterSoundCorrespondence();
+        List<LetterSoundCorrespondenceContributionEvent> mostRecentLetterSoundCorrespondenceContributionEvents = letterSoundCorrespondenceContributionEventDao.readMostRecentPerLetterSound();
         logger.info("mostRecentLetterSoundCorrespondenceContributionEvents.size(): " + mostRecentLetterSoundCorrespondenceContributionEvents.size());
         
         // For each LetterSoundCorrespondenceContributionEvent, check if the Contributor has already performed a peer-review.

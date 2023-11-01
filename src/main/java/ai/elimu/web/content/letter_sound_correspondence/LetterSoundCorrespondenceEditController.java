@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
+import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
@@ -46,7 +46,7 @@ public class LetterSoundCorrespondenceEditController {
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
     
     @Autowired
-    private LetterSoundCorrespondencePeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
+    private LetterSoundPeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
     
     @Autowired
     private LetterDao letterDao;

@@ -10,11 +10,11 @@ public interface LetterSoundCorrespondenceContributionEventDao extends GenericDa
 
     List<LetterSoundCorrespondenceContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException;
 
-    List<LetterSoundCorrespondenceContributionEvent> readAll(LetterSoundCorrespondence letterSoundCorrespondence) throws DataAccessException;
+    List<LetterSoundCorrespondenceContributionEvent> readAll(LetterSoundCorrespondence letterSound) throws DataAccessException;
 
     List<LetterSoundCorrespondenceContributionEvent> readAll(Contributor contributor) throws DataAccessException;
 
-    List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSoundCorrespondence() throws DataAccessException;
+    List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSound() throws DataAccessException;
     
     Long readCount(Contributor contributor) throws DataAccessException;
 }

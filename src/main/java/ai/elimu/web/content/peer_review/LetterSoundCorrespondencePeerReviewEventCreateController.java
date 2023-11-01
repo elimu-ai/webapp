@@ -2,7 +2,7 @@ package ai.elimu.web.content.peer_review;
 
 import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.dao.LetterSoundCorrespondencePeerReviewEventDao;
+import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;
@@ -34,7 +34,7 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
     private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
     
     @Autowired
-    private LetterSoundCorrespondencePeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
+    private LetterSoundPeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
     
     @Autowired
     private LetterSoundDao letterSoundDao;
