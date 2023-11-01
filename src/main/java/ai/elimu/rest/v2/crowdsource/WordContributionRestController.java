@@ -63,9 +63,9 @@ public class WordContributionRestController {
 
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAllOrderedByUsage()) {
-            LetterSoundGson letterSoundCorrespondenceGson =
+            LetterSoundGson letterSoundGson =
                     JpaToGsonConverter.getLetterSoundGson(letterSoundCorrespondence);
-            String json = new Gson().toJson(letterSoundCorrespondenceGson);
+            String json = new Gson().toJson(letterSoundGson);
             letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
 
@@ -146,9 +146,9 @@ public class WordContributionRestController {
             word.setText(wordGson.getText().toLowerCase());
             List<LetterSoundGson> letterSoundCorrespondencesGsons = wordGson.getLetterSounds();
             List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
-            for (LetterSoundGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
+            for (LetterSoundGson letterSoundGson : letterSoundCorrespondencesGsons) {
                 LetterSoundCorrespondence letterSoundCorrespondence =
-                        letterSoundDao.read(letterSoundCorrespondenceGson.getId());
+                        letterSoundDao.read(letterSoundGson.getId());
                 letterSoundCorrespondences.add(letterSoundCorrespondence);
             }
             word.setLetterSoundCorrespondences(letterSoundCorrespondences);
