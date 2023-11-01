@@ -28,7 +28,7 @@ public class LetterSoundPeerReviewsController {
     private LetterSoundContributionEventDao letterSoundContributionEventDao;
     
     @Autowired
-    private LetterSoundPeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
+    private LetterSoundPeerReviewEventDao letterSoundPeerReviewEventDao;
     
     @Autowired
     private LetterSoundDao letterSoundDao;
@@ -46,27 +46,27 @@ public class LetterSoundPeerReviewsController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         logger.info("contributor: " + contributor);
         
-        // Get the most recent LetterSoundCorrespondenceContributionEvent for each LetterSoundCorrespondence, including those made by the current Contributor
-        List<LetterSoundCorrespondenceContributionEvent> mostRecentLetterSoundCorrespondenceContributionEvents = letterSoundContributionEventDao.readMostRecentPerLetterSound();
-        logger.info("mostRecentLetterSoundCorrespondenceContributionEvents.size(): " + mostRecentLetterSoundCorrespondenceContributionEvents.size());
+        // Get the most recent LetterSoundCorrespondenceContributionEvent for each LetterSound, including those made by the current Contributor
+        List<LetterSoundCorrespondenceContributionEvent> mostRecentLetterSoundContributionEvents = letterSoundContributionEventDao.readMostRecentPerLetterSound();
+        logger.info("mostRecentLetterSoundContributionEvents.size(): " + mostRecentLetterSoundContributionEvents.size());
         
         // For each LetterSoundCorrespondenceContributionEvent, check if the Contributor has already performed a peer-review.
         // If not, add it to the list of pending peer reviews.
-        List<LetterSoundCorrespondenceContributionEvent> letterSoundCorrespondenceContributionEventsPendingPeerReview = new ArrayList<>();
-        for (LetterSoundCorrespondenceContributionEvent mostRecentLetterSoundCorrespondenceContributionEvent : mostRecentLetterSoundCorrespondenceContributionEvents) {
+        List<LetterSoundCorrespondenceContributionEvent> letterSoundContributionEventsPendingPeerReview = new ArrayList<>();
+        for (LetterSoundCorrespondenceContributionEvent mostRecentLetterSoundContributionEvent : mostRecentLetterSoundContributionEvents) {
             // Ignore LetterSoundCorrespondenceContributionEvents made by the current Contributor
-            if (mostRecentLetterSoundCorrespondenceContributionEvent.getContributor().getId().equals(contributor.getId())) {
+            if (mostRecentLetterSoundContributionEvent.getContributor().getId().equals(contributor.getId())) {
                 continue;
             }
             
             // Check if the current Contributor has already peer-reviewed this LetterSoundCorrespondence contribution
-            List<LetterSoundCorrespondencePeerReviewEvent> letterSoundCorrespondencePeerReviewEvents = letterSoundCorrespondencePeerReviewEventDao.readAll(mostRecentLetterSoundCorrespondenceContributionEvent, contributor);
-            if (letterSoundCorrespondencePeerReviewEvents.isEmpty()) {
-                letterSoundCorrespondenceContributionEventsPendingPeerReview.add(mostRecentLetterSoundCorrespondenceContributionEvent);
+            List<LetterSoundCorrespondencePeerReviewEvent> letterSoundPeerReviewEvents = letterSoundPeerReviewEventDao.readAll(mostRecentLetterSoundContributionEvent, contributor);
+            if (letterSoundPeerReviewEvents.isEmpty()) {
+                letterSoundContributionEventsPendingPeerReview.add(mostRecentLetterSoundContributionEvent);
             }
         }
-        logger.info("letterSoundCorrespondenceContributionEventsPendingPeerReview.size(): " + letterSoundCorrespondenceContributionEventsPendingPeerReview.size());
-        model.addAttribute("letterSoundCorrespondenceContributionEventsPendingPeerReview", letterSoundCorrespondenceContributionEventsPendingPeerReview);
+        logger.info("letterSoundContributionEventsPendingPeerReview.size(): " + letterSoundContributionEventsPendingPeerReview.size());
+        model.addAttribute("letterSoundContributionEventsPendingPeerReview", letterSoundContributionEventsPendingPeerReview);
         
         return "content/letter-sound/peer-reviews/pending";
     }

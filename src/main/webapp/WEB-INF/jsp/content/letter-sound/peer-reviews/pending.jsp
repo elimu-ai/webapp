@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <c:forEach var="letterSoundContributionEvent" items="${letterSoundContributionEventsPendingPeerReview}">
-                        <c:set var="letterSound" value="${letterSoundContributionEvent.letterSound}" />
+                        <c:set var="letterSound" value="${letterSoundContributionEvent.letterSoundCorrespondence}" />
                         <tr>
                             <td style="font-size: 2em;">
                                 " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
@@ -68,7 +68,7 @@
                                 <fmt:formatDate value="${letterSoundContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
                             <td>
-                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundContributionEvent.letterSound.id}#peer-review' />" target="_blank"><fmt:message key="peer.review" /></a>
+                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundContributionEvent.letterSoundCorrespondence.id}#peer-review' />" target="_blank"><fmt:message key="peer.review" /></a>
                             </td>
                         </tr>
                     </c:forEach>
