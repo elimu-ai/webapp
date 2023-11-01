@@ -18,7 +18,7 @@ import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
-import ai.elimu.web.content.letter_sound_correspondence.LetterSoundCorrespondenceCsvExportController;
+import ai.elimu.web.content.letter_sound.LetterSoundCorrespondenceCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
 import ai.elimu.web.content.word.WordCsvExportController;

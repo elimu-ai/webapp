@@ -1,4 +1,4 @@
-package ai.elimu.web.content.letter_sound_correspondence;
+package ai.elimu.web.content.letter_sound;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
