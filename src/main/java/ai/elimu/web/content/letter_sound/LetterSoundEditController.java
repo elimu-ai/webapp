@@ -46,7 +46,7 @@ public class LetterSoundEditController {
     private LetterSoundContributionEventDao letterSoundContributionEventDao;
     
     @Autowired
-    private LetterSoundPeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
+    private LetterSoundPeerReviewEventDao letterSoundPeerReviewEventDao;
     
     @Autowired
     private LetterDao letterDao;
@@ -61,8 +61,8 @@ public class LetterSoundEditController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        LetterSoundCorrespondence letterSoundCorrespondence = letterSoundDao.read(id);
-        model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
+        LetterSoundCorrespondence letterSound = letterSoundDao.read(id);
+        model.addAttribute("letterSound", letterSound);
         
         model.addAttribute("timeStart", System.currentTimeMillis());
         
@@ -72,8 +72,8 @@ public class LetterSoundEditController {
         List<Sound> sounds = soundDao.readAllOrdered();
         model.addAttribute("sounds", sounds);
         
-        model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundContributionEventDao.readAll(letterSoundCorrespondence));
-        model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
+        model.addAttribute("letterSoundContributionEvents", letterSoundContributionEventDao.readAll(letterSound));
+        model.addAttribute("letterSoundPeerReviewEvents", letterSoundPeerReviewEventDao.readAll(letterSound));
         
         List<Word> words = wordDao.readAllOrderedByUsage();
         model.addAttribute("words", words);
@@ -85,20 +85,20 @@ public class LetterSoundEditController {
     public String handleSubmit(
             HttpServletRequest request,
             HttpSession session,
-            @Valid LetterSoundCorrespondence letterSoundCorrespondence,
+            @Valid LetterSoundCorrespondence letterSound,
             BindingResult result,
             Model model
     ) {
     	logger.info("handleSubmit");
         
-        // Check if the LetterSoundCorrespondence already exists
-        LetterSoundCorrespondence existingLetterSoundCorrespondence = letterSoundDao.read(letterSoundCorrespondence.getLetters(), letterSoundCorrespondence.getSounds());
-        if ((existingLetterSoundCorrespondence != null) && !existingLetterSoundCorrespondence.getId().equals(letterSoundCorrespondence.getId())) {
+        // Check if the LetterSound already exists
+        LetterSoundCorrespondence existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());
+        if ((existingLetterSound != null) && !existingLetterSound.getId().equals(letterSound.getId())) {
             result.rejectValue("letters", "NonUnique");
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("letterSoundCorrespondence", letterSoundCorrespondence);
+            model.addAttribute("letterSound", letterSound);
             
             model.addAttribute("timeStart", System.currentTimeMillis());
             
@@ -108,37 +108,37 @@ public class LetterSoundEditController {
             List<Sound> sounds = soundDao.readAllOrdered();
             model.addAttribute("sounds", sounds);
             
-            model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundContributionEventDao.readAll(letterSoundCorrespondence));
-            model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
+            model.addAttribute("letterSoundContributionEvents", letterSoundContributionEventDao.readAll(letterSound));
+            model.addAttribute("letterSoundPeerReviewEvents", letterSoundPeerReviewEventDao.readAll(letterSound));
             
             return "content/letter-sound/edit";
         } else {
-            letterSoundCorrespondence.setTimeLastUpdate(Calendar.getInstance());
-            letterSoundCorrespondence.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber() + 1);
-            letterSoundDao.update(letterSoundCorrespondence);
+            letterSound.setTimeLastUpdate(Calendar.getInstance());
+            letterSound.setRevisionNumber(letterSound.getRevisionNumber() + 1);
+            letterSoundDao.update(letterSound);
             
-            LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
-            letterSoundCorrespondenceContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
-            letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
-            letterSoundCorrespondenceContributionEvent.setRevisionNumber(letterSoundCorrespondence.getRevisionNumber());
-            letterSoundCorrespondenceContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-            letterSoundCorrespondenceContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
-            letterSoundContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
+            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            letterSoundContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            letterSoundContributionEvent.setTime(Calendar.getInstance());
+            letterSoundContributionEvent.setLetterSoundCorrespondence(letterSound);
+            letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
+            letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
+            letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            letterSoundContributionEvent.setPlatform(Platform.WEBAPP);
+            letterSoundContributionEventDao.create(letterSoundContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSoundCorrespondence.getId();
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSound.getId();
                 DiscordHelper.sendChannelMessage(
                         "Letter-sound correspondence edited: " + contentUrl,
-                        "\"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
-                        "Comment: \"" + letterSoundCorrespondenceContributionEvent.getComment() + "\"",
+                        "\"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
+                        "Comment: \"" + letterSoundContributionEvent.getComment() + "\"",
                         null,
                         null
                 );
             }
             
-            return "redirect:/content/letter-sound/list#" + letterSoundCorrespondence.getId();
+            return "redirect:/content/letter-sound/list#" + letterSound.getId();
         }
     }
 }

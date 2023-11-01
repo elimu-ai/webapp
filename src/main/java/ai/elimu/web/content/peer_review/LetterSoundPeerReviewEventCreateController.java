@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/content/letter-sound-correspondence-peer-review-event/create")
-public class LetterSoundCorrespondencePeerReviewEventCreateController {
+@RequestMapping("/content/letter-sound-peer-review-event/create")
+public class LetterSoundPeerReviewEventCreateController {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -34,14 +34,14 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
     private LetterSoundContributionEventDao letterSoundContributionEventDao;
     
     @Autowired
-    private LetterSoundPeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
+    private LetterSoundPeerReviewEventDao letterSoundPeerReviewEventDao;
     
     @Autowired
     private LetterSoundDao letterSoundDao;
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
-            @RequestParam Long letterSoundCorrespondenceContributionEventId,
+            @RequestParam Long letterSoundContributionEventId,
             @RequestParam Boolean approved,
             @RequestParam(required = false) String comment,
             HttpSession session
@@ -50,27 +50,27 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
-        logger.info("letterSoundCorrespondenceContributionEventId: " + letterSoundCorrespondenceContributionEventId);
-        LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = letterSoundContributionEventDao.read(letterSoundCorrespondenceContributionEventId);
-        logger.info("letterSoundCorrespondenceContributionEvent: " + letterSoundCorrespondenceContributionEvent);
+        logger.info("letterSoundContributionEventId: " + letterSoundContributionEventId);
+        LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = letterSoundContributionEventDao.read(letterSoundContributionEventId);
+        logger.info("letterSoundContributionEvent: " + letterSoundContributionEvent);
         
         // Store the peer review event
-        LetterSoundCorrespondencePeerReviewEvent letterSoundCorrespondencePeerReviewEvent = new LetterSoundCorrespondencePeerReviewEvent();
-        letterSoundCorrespondencePeerReviewEvent.setContributor(contributor);
-        letterSoundCorrespondencePeerReviewEvent.setLetterSoundCorrespondenceContributionEvent(letterSoundCorrespondenceContributionEvent);
-        letterSoundCorrespondencePeerReviewEvent.setApproved(approved);
-        letterSoundCorrespondencePeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
-        letterSoundCorrespondencePeerReviewEvent.setTime(Calendar.getInstance());
-        letterSoundCorrespondencePeerReviewEvent.setPlatform(Platform.WEBAPP);
-        letterSoundCorrespondencePeerReviewEventDao.create(letterSoundCorrespondencePeerReviewEvent);
+        LetterSoundCorrespondencePeerReviewEvent letterSoundPeerReviewEvent = new LetterSoundCorrespondencePeerReviewEvent();
+        letterSoundPeerReviewEvent.setContributor(contributor);
+        letterSoundPeerReviewEvent.setLetterSoundCorrespondenceContributionEvent(letterSoundContributionEvent);
+        letterSoundPeerReviewEvent.setApproved(approved);
+        letterSoundPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
+        letterSoundPeerReviewEvent.setTime(Calendar.getInstance());
+        letterSoundPeerReviewEvent.setPlatform(Platform.WEBAPP);
+        letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letterSoundCorrespondence/edit/" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence().getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letterSoundCorrespondence/edit/" + letterSoundContributionEvent.getLetterSoundCorrespondence().getId();
             DiscordHelper.sendChannelMessage(
-                    "LetterSoundCorrespondence peer-reviewed: " + contentUrl, 
-                    "\"" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
-                    "Comment: \"" + letterSoundCorrespondencePeerReviewEvent.getComment() + "\"",
-                    letterSoundCorrespondencePeerReviewEvent.isApproved(),
+                    "Letter-sound correspondence peer-reviewed: " + contentUrl, 
+                    "\"" + letterSoundContributionEvent.getLetterSoundCorrespondence().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
+                    "Comment: \"" + letterSoundPeerReviewEvent.getComment() + "\"",
+                    letterSoundPeerReviewEvent.isApproved(),
                     null
             );
         }
@@ -78,7 +78,7 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
         // Update the letterSoundCorrespondence's peer review status
         int approvedCount = 0;
         int notApprovedCount = 0;
-        for (LetterSoundCorrespondencePeerReviewEvent peerReviewEvent : letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondenceContributionEvent)) {
+        for (LetterSoundCorrespondencePeerReviewEvent peerReviewEvent : letterSoundPeerReviewEventDao.readAll(letterSoundContributionEvent)) {
             if (peerReviewEvent.isApproved()) {
                 approvedCount++;
             } else {
@@ -87,7 +87,7 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
         }
         logger.info("approvedCount: " + approvedCount);
         logger.info("notApprovedCount: " + notApprovedCount);
-        LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence();
+        LetterSoundCorrespondence letterSoundCorrespondence = letterSoundContributionEvent.getLetterSoundCorrespondence();
         if (approvedCount >= notApprovedCount) {
             letterSoundCorrespondence.setPeerReviewStatus(PeerReviewStatus.APPROVED);
         } else {
@@ -95,6 +95,6 @@ public class LetterSoundCorrespondencePeerReviewEventCreateController {
         }
         letterSoundDao.update(letterSoundCorrespondence);
 
-        return "redirect:/content/letter-sound/edit/" + letterSoundCorrespondenceContributionEvent.getLetterSoundCorrespondence().getId() + "#contribution-events";
+        return "redirect:/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSoundCorrespondence().getId() + "#contribution-events";
     }
 }
