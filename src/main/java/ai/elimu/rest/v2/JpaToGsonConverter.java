@@ -24,7 +24,7 @@ import ai.elimu.model.v2.gson.content.AudioGson;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.LetterGson;
-import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
+import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.model.v2.gson.content.NumberGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
@@ -88,11 +88,11 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static LetterSoundCorrespondenceGson getLetterSoundGson(LetterSoundCorrespondence letterSound) {
+    public static LetterSoundGson getLetterSoundGson(LetterSoundCorrespondence letterSound) {
         if (letterSound == null) {
             return null;
         } else {
-            LetterSoundCorrespondenceGson letterSoundGson = new LetterSoundCorrespondenceGson();
+            LetterSoundGson letterSoundGson = new LetterSoundGson();
             
             // BaseEntity
             letterSoundGson.setId(letterSound.getId());
@@ -131,12 +131,12 @@ public class JpaToGsonConverter {
             
             // Word
             wordGson.setText(word.getText());
-            List<LetterSoundCorrespondenceGson> letterSounds = new ArrayList<>();
+            List<LetterSoundGson> letterSounds = new ArrayList<>();
             for (LetterSoundCorrespondence letterSound : word.getLetterSoundCorrespondences()) {
-                LetterSoundCorrespondenceGson letterSoundGson = getLetterSoundGson(letterSound);
+                LetterSoundGson letterSoundGson = getLetterSoundGson(letterSound);
                 letterSounds.add(letterSoundGson);
             }
-            wordGson.setLetterSoundCorrespondences(letterSounds);
+            wordGson.setLetterSounds(letterSounds);
             wordGson.setWordType(word.getWordType());
             
             return wordGson;
