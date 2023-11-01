@@ -5,7 +5,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
+import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -43,7 +43,7 @@ public class LetterSoundCorrespondenceEditController {
     private LetterSoundDao letterSoundDao;
     
     @Autowired
-    private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
+    private LetterSoundContributionEventDao letterSoundContributionEventDao;
     
     @Autowired
     private LetterSoundPeerReviewEventDao letterSoundCorrespondencePeerReviewEventDao;
@@ -72,7 +72,7 @@ public class LetterSoundCorrespondenceEditController {
         List<Sound> sounds = soundDao.readAllOrdered();
         model.addAttribute("sounds", sounds);
         
-        model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
+        model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundContributionEventDao.readAll(letterSoundCorrespondence));
         model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
         
         List<Word> words = wordDao.readAllOrderedByUsage();
@@ -108,7 +108,7 @@ public class LetterSoundCorrespondenceEditController {
             List<Sound> sounds = soundDao.readAllOrdered();
             model.addAttribute("sounds", sounds);
             
-            model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundCorrespondenceContributionEventDao.readAll(letterSoundCorrespondence));
+            model.addAttribute("letterSoundCorrespondenceContributionEvents", letterSoundContributionEventDao.readAll(letterSoundCorrespondence));
             model.addAttribute("letterSoundCorrespondencePeerReviewEvents", letterSoundCorrespondencePeerReviewEventDao.readAll(letterSoundCorrespondence));
             
             return "content/letter-sound/edit";
@@ -125,7 +125,7 @@ public class LetterSoundCorrespondenceEditController {
             letterSoundCorrespondenceContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             letterSoundCorrespondenceContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
-            letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
+            letterSoundContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
                 String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSoundCorrespondence.getId();
