@@ -3,6 +3,7 @@ package ai.elimu.util.db;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundContributionEventDao;
@@ -27,6 +28,7 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterContributionEvent;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
@@ -80,6 +82,8 @@ public class DbContentImportHelper {
     private NumberContributionEventDao numberContributionEventDao;
 
     private EmojiDao emojiDao;
+
+    private ImageDao imageDao;
 
     private StoryBookDao storyBookDao;
 
@@ -230,7 +234,13 @@ public class DbContentImportHelper {
         }
 
         // Extract and import Images from CSV file in src/main/resources/
-        // TODO
+        File imagesCsvFile = new File(contentDirectory, "images.csv");
+        List<Image> images = CsvContentExtractionHelper.getImagesFromCsvBackup(imagesCsvFile);
+        logger.info("images.size(): " + emojis.size());
+        imageDao = (ImageDao) webApplicationContext.getBean("imageDao");
+        for (Image image : images) {
+            imageDao.create(image);
+        }
 
         // Extract and import Audios from CSV file in src/main/resources/
         // TODO
