@@ -270,7 +270,10 @@ public class DbContentImportHelper {
                 StoryBookChapter storyBookChapter = new StoryBookChapter();
                 storyBookChapter.setStoryBook(storyBook);
                 storyBookChapter.setSortOrder(storyBookChapterGson.getSortOrder());
-                // TODO: storyBookChapter.setImage();
+                if (storyBookChapterGson.getImage() != null) {
+                    Image chapterImage = imageDao.read(storyBookChapterGson.getImage().getId());
+                    storyBookChapter.setImage(chapterImage);
+                }
                 storyBookChapterDao.create(storyBookChapter);
 
                 for (StoryBookParagraphGson storyBookParagraphGson : storyBookChapterGson.getStoryBookParagraphs()) {

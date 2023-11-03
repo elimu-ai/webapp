@@ -459,6 +459,14 @@ public class CsvContentExtractionHelper {
                     StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
                     storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
 
+                    if (chapterJsonObject.has("image")) {
+                        JSONObject chapterImageJsonObject = chapterJsonObject.getJSONObject("image");
+                        logger.info("chapterImageJsonObject: " + chapterImageJsonObject);
+                        ImageGson chapterImageGson = new ImageGson();
+                        chapterImageGson.setId(chapterImageJsonObject.getLong("id"));
+                        storyBookChapterGson.setImage(chapterImageGson);
+                    }
+
                     List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
                     JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");
                     logger.info("paragraphsJsonArray: " + paragraphsJsonArray);
