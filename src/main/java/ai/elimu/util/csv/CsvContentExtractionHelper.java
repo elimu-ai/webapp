@@ -16,6 +16,7 @@ import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
+import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
@@ -443,7 +444,9 @@ public class CsvContentExtractionHelper {
 
                 if (StringUtils.isNotBlank(csvRecord.get("cover_image_id"))) {
                     Long coverImageId = Long.valueOf(csvRecord.get("cover_image_id"));
-//                    storyBookGson.setCoverImage();
+                    ImageGson coverImageGson = new ImageGson();
+                    coverImageGson.setId(coverImageId);
+                   storyBookGson.setCoverImage(coverImageGson);
                 }
 
                 List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();

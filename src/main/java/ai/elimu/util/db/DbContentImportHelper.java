@@ -261,6 +261,8 @@ public class DbContentImportHelper {
 //            TODO: storyBook.setContentLicense();
 //            TODO: storyBook.setAttributionUrl();
             storyBook.setReadingLevel(storyBookGson.getReadingLevel());
+            Image coverImage = imageDao.read(storyBookGson.getCoverImage().getId());
+            storyBook.setCoverImage(coverImage);
             storyBookDao.create(storyBook);
 
             for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {
