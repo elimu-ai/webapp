@@ -1,8 +1,8 @@
 <content:title>
-    <fmt:message key="letter.sound.correspondences" /> (${fn:length(letterSoundCorrespondences)})
+    <fmt:message key="letter.sound.correspondences" /> (${fn:length(letterSounds)})
 </content:title>
 
-<content:section cssId="letterSoundCorrespondenceListPage">
+<content:section cssId="letterSoundListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/letter-sound/list/letter-sounds.csv' />">
@@ -22,7 +22,7 @@
             <a href="<spring:url value='/content/letter-sound/peer-reviews' />">peer-review</a> letter-sound correspondences.
         </p>
     
-        <c:if test="${not empty letterSoundCorrespondences}">
+        <c:if test="${not empty letterSounds}">
             <table class="bordered highlight">
                 <thead>
                     <th><fmt:message key="usage.count" /></th>
@@ -33,30 +33,30 @@
                     <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
-                    <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
-                        <tr class="letterSoundCorrespondence">
+                    <c:forEach var="letterSound" items="${letterSounds}">
+                        <tr class="letterSound">
                             <td>
-                                <a name="${letterSoundCorrespondence.id}"></a>
+                                <a name="${letterSound.id}"></a>
                                 
-                                ${letterSoundCorrespondence.usageCount}
+                                ${letterSound.usageCount}
                             </td>
                             <td style="font-size: 2em;">
-                                " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a> </c:forEach> "
+                                " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a> </c:forEach> "
                             </td>
                             <td style="font-size: 2em;">
                                 ➞
                             </td>
                             <td style="font-size: 2em;">
-                                / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
+                                / <c:forEach var="sound" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
                             </td>
                             <td>
-                                <p>#${letterSoundCorrespondence.revisionNumber}</p>
+                                <p>#${letterSound.revisionNumber}</p>
                                 <p>
                                     <c:choose>
-                                        <c:when test="${letterSoundCorrespondence.peerReviewStatus == 'APPROVED'}">
+                                        <c:when test="${letterSound.peerReviewStatus == 'APPROVED'}">
                                             <c:set var="peerReviewStatusColor" value="teal lighten-5" />
                                         </c:when>
-                                        <c:when test="${letterSoundCorrespondence.peerReviewStatus == 'NOT_APPROVED'}">
+                                        <c:when test="${letterSound.peerReviewStatus == 'NOT_APPROVED'}">
                                             <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
                                         </c:when>
                                         <c:otherwise>
@@ -64,14 +64,14 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <span class="chip ${peerReviewStatusColor}">
-                                        <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}#contribution-events' />">
-                                            ${letterSoundCorrespondence.peerReviewStatus}
+                                        <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}#contribution-events' />">
+                                            ${letterSound.peerReviewStatus}
                                         </a>
                                     </span>
                                 </p>
                             </td>
                             <td>
-                                <a class="editLink" href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />"><span class="material-icons">edit</span></a>
+                                <a class="editLink" href="<spring:url value='/content/letter-sound/edit/${letterSound.id}' />"><span class="material-icons">edit</span></a>
                             </td>
                         </tr>
                     </c:forEach>

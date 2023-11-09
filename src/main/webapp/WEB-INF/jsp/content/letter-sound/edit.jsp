@@ -2,21 +2,21 @@
     <fmt:message key="edit.letter.sound.correspondence" />
 </content:title>
 
-<content:section cssId="letterSoundCorrespondenceEditPage">
+<content:section cssId="letterSoundEditPage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="letterSoundCorrespondence">
+        <form:form modelAttribute="letterSound">
             <tag:formErrors modelAttribute="letterSoundCorrespondence" />
             
-            <form:hidden path="revisionNumber" value="${letterSoundCorrespondence.revisionNumber}" />
-            <form:hidden path="usageCount" value="${letterSoundCorrespondence.usageCount}" />
+            <form:hidden path="revisionNumber" value="${letterSound.revisionNumber}" />
+            <form:hidden path="usageCount" value="${letterSound.usageCount}" />
             <input type="hidden" name="timeStart" value="${timeStart}" />
             
             <div class="row">
                 <div class="col s12">
                     <label><fmt:message key="letters" /></label><br />
                     "<span id="lettersContainer">
-                        <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                        <c:forEach var="letter" items="${letterSound.letters}">
                             <input name="letters" type="hidden" value="${letter.id}" />
                             <div class="chip" data-letterid="${letter.id}" data-lettervalue="${letter.text}"
                                     style="font-size: 2rem; padding: 1rem; height: auto;">
@@ -77,7 +77,7 @@
                 <div class="col s12">
                     <label><fmt:message key="sounds" /></label><br />
                     /<span id="soundsContainer">
-                        <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                        <c:forEach var="sound" items="${letterSound.sounds}">
                             <input name="sounds" type="hidden" value="${sound.id}" />
                             <div class="chip" data-soundid="${sound.id}" data-soundvalue="${sound.valueIpa}"
                                  style="font-size: 2rem; padding: 1rem; height: auto;">
@@ -150,17 +150,17 @@
     <div class="divider" style="margin: 2em 0;"></div>
     
     <%-- Display peer review form if the current contributor is not the same as that of the latest contribution event --%>
-    <c:if test="${(not empty letterSoundCorrespondenceContributionEvents) 
-                  && (letterSoundCorrespondenceContributionEvents[0].contributor.id != contributor.id)}">
+    <c:if test="${(not empty letterSoundContributionEvents) 
+                  && (letterSoundContributionEvents[0].contributor.id != contributor.id)}">
         <a name="peer-review"></a>
         <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
         
-        <form action="<spring:url value='/content/letter-sound-correspondence-peer-review-event/create' />" method="POST" class="card-panel">
+        <form action="<spring:url value='/content/letter-sound-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
                 <fmt:message key="do.you.approve.quality.of.this.letter.sound.correspondence?" />
             </p>
             
-            <input type="hidden" name="letterSoundCorrespondenceContributionEventId" value="${letterSoundCorrespondenceContributionEvents[0].id}" />
+            <input type="hidden" name="letterSoundContributionEventId" value="${letterSoundContributionEvents[0].id}" />
             
             <input type="radio" id="approved_true" name="approved" value="true" />
             <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
@@ -204,65 +204,65 @@
     <a name="contribution-events"></a>
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
-        <c:forEach var="letterSoundCorrespondenceContributionEvent" items="${letterSoundCorrespondenceContributionEvents}">
-            <a name="contribution-event_${letterSoundCorrespondenceContributionEvent.id}"></a>
+        <c:forEach var="letterSoundContributionEvent" items="${letterSoundContributionEvents}">
+            <a name="contribution-event_${letterSoundContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:message key="revision" /> #${letterSoundCorrespondenceContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${letterSoundCorrespondenceContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${letterSoundCorrespondenceContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:message key="revision" /> #${letterSoundContributionEvent.revisionNumber} 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${letterSoundContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
+                    <fmt:formatDate value="${letterSoundContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${letterSoundCorrespondenceContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/content/contributor/${letterSoundContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
-                            <c:when test="${not empty letterSoundCorrespondenceContributionEvent.contributor.imageUrl}">
-                                <img src="${letterSoundCorrespondenceContributionEvent.contributor.imageUrl}" />
+                            <c:when test="${not empty letterSoundContributionEvent.contributor.imageUrl}">
+                                <img src="${letterSoundContributionEvent.contributor.imageUrl}" />
                             </c:when>
-                            <c:when test="${not empty letterSoundCorrespondenceContributionEvent.contributor.providerIdWeb3}">
-                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${letterSoundCorrespondenceContributionEvent.contributor.providerIdWeb3}" />" />
+                            <c:when test="${not empty letterSoundContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${letterSoundContributionEvent.contributor.providerIdWeb3}" />" />
                             </c:when>
                             <c:otherwise>
                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
-                            <c:when test="${not empty letterSoundCorrespondenceContributionEvent.contributor.firstName}">
-                                <c:out value="${letterSoundCorrespondenceContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${letterSoundCorrespondenceContributionEvent.contributor.lastName}" />
+                            <c:when test="${not empty letterSoundContributionEvent.contributor.firstName}">
+                                <c:out value="${letterSoundContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${letterSoundContributionEvent.contributor.lastName}" />
                             </c:when>
-                            <c:when test="${not empty letterSoundCorrespondenceContributionEvent.contributor.providerIdWeb3}">
-                                ${fn:substring(letterSoundCorrespondenceContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(letterSoundCorrespondenceContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            <c:when test="${not empty letterSoundContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(letterSoundContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(letterSoundContributionEvent.contributor.providerIdWeb3, 38, 42)}
                             </c:when>
                         </c:choose>
                     </div>
                 </a>
-                <c:if test="${not empty letterSoundCorrespondenceContributionEvent.comment}">
-                    <blockquote><c:out value="${letterSoundCorrespondenceContributionEvent.comment}" /></blockquote>
+                <c:if test="${not empty letterSoundContributionEvent.comment}">
+                    <blockquote><c:out value="${letterSoundContributionEvent.comment}" /></blockquote>
                 </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
-                <c:forEach var="letterSoundCorrespondencePeerReviewEvent" items="${letterSoundCorrespondencePeerReviewEvents}">
-                    <c:if test="${letterSoundCorrespondencePeerReviewEvent.letterSoundCorrespondenceContributionEvent.id == letterSoundCorrespondenceContributionEvent.id}">
-                        <div class="row peerReviewEvent indent" data-approved="${letterSoundCorrespondencePeerReviewEvent.isApproved()}">
+                <c:forEach var="letterSoundPeerReviewEvent" items="${letterSoundPeerReviewEvents}">
+                    <c:if test="${letterSoundPeerReviewEvent.letterSoundCorrespondenceContributionEvent.id == letterSoundContributionEvent.id}">
+                        <div class="row peerReviewEvent indent" data-approved="${letterSoundPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <a href="<spring:url value='/content/contributor/${letterSoundCorrespondencePeerReviewEvent.contributor.id}' />">
+                                <a href="<spring:url value='/content/contributor/${letterSoundPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
-                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.imageUrl}">
-                                                <img src="${letterSoundCorrespondencePeerReviewEvent.contributor.imageUrl}" />
+                                            <c:when test="${not empty letterSoundPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${letterSoundPeerReviewEvent.contributor.imageUrl}" />
                                             </c:when>
-                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3}">
-                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            <c:when test="${not empty letterSoundPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${letterSoundPeerReviewEvent.contributor.providerIdWeb3}" />" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
                                             </c:otherwise>
                                         </c:choose>
                                         <c:choose>
-                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.firstName}">
-                                                <c:out value="${letterSoundCorrespondencePeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${letterSoundCorrespondencePeerReviewEvent.contributor.lastName}" />
+                                            <c:when test="${not empty letterSoundPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${letterSoundPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${letterSoundPeerReviewEvent.contributor.lastName}" />
                                             </c:when>
-                                            <c:when test="${not empty letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3}">
-                                                ${fn:substring(letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(letterSoundCorrespondencePeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            <c:when test="${not empty letterSoundPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(letterSoundPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(letterSoundPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
                                             </c:when>
                                         </c:choose>
                                     </div>
@@ -271,7 +271,7 @@
                             <div class="col s4">
                                 <code class="peerReviewStatus">
                                     <c:choose>
-                                        <c:when test="${letterSoundCorrespondencePeerReviewEvent.isApproved()}">
+                                        <c:when test="${letterSoundPeerReviewEvent.isApproved()}">
                                             APPROVED
                                         </c:when>
                                         <c:otherwise>
@@ -281,10 +281,10 @@
                                 </code>
                             </div>
                             <div class="col s4" style="text-align: right;">
-                                <fmt:formatDate value="${letterSoundCorrespondencePeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                <fmt:formatDate value="${letterSoundPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
-                            <c:if test="${not empty letterSoundCorrespondencePeerReviewEvent.comment}">
-                                <div class="col s12 comment"><c:out value="${letterSoundCorrespondencePeerReviewEvent.comment}" /></div>
+                            <c:if test="${not empty letterSoundPeerReviewEvent.comment}">
+                                <div class="col s12 comment"><c:out value="${letterSoundPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
@@ -340,7 +340,7 @@
                 <%-- Check if the current letter-sound correspondence is used by the word. --%>
                 <c:set var="isUsedByWord" value="false" />
                 <c:forEach var="lsc" items="${word.letterSoundCorrespondences}">
-                    <c:if test="${lsc.id == letterSoundCorrespondence.id}">
+                    <c:if test="${lsc.id == letterSound.id}">
                         <c:set var="isUsedByWord" value="true" />
                     </c:if>
                 </c:forEach>
@@ -350,9 +350,9 @@
                             <a href="<spring:url value='/content/word/edit/${word.id}' />">
                                 "<c:out value="${word.text}" />"
                             </a><br />
-                            "<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSoundCorrespondence.id}"><span class='diff-highlight'></c:if><c:forEach var="letter" items="${lsc.letters}">${letter.text}<c:out value=" " /></c:forEach><c:if test="${lsc.id == letterSoundCorrespondence.id}"></span></c:if></a>&nbsp;</c:forEach>"<br />
+                            "<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSound.id}"><span class='diff-highlight'></c:if><c:forEach var="letter" items="${lsc.letters}">${letter.text}<c:out value=" " /></c:forEach><c:if test="${lsc.id == letterSound.id}"></span></c:if></a>&nbsp;</c:forEach>"<br />
                             <span class="grey-text">
-                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSoundCorrespondence.id}"><span class='diff-highlight'></c:if><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach><c:if test="${lsc.id == letterSoundCorrespondence.id}"></span></c:if></a>&nbsp;</c:forEach>/
+                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:if test="${lsc.id == letterSound.id}"><span class='diff-highlight'></c:if><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach><c:if test="${lsc.id == letterSound.id}"></span></c:if></a>&nbsp;</c:forEach>/
                             </span>
                         </td>
                         <td>${word.usageCount}</td>

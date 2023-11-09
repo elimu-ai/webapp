@@ -10,15 +10,19 @@ import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.v2.enums.ReadingLevel;
+import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
+import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.web.content.emoji.EmojiCsvExportController;
-import ai.elimu.web.content.letter_sound_correspondence.LetterSoundCorrespondenceCsvExportController;
+import ai.elimu.web.content.letter_sound.LetterSoundCsvExportController;
+import ai.elimu.web.content.multimedia.image.ImageCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
 import ai.elimu.web.content.word.WordCsvExportController;
@@ -30,6 +34,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.core.io.ClassRelativeResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +54,7 @@ public class CsvContentExtractionHelper {
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * For information on how the CSV files were generated, see {@link LetterSoundCorrespondenceCsvExportController#handleRequest}.
+     * For information on how the CSV files were generated, see {@link LetterSoundCsvExportController#handleRequest}.
      */
     public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
         logger.info("getLetterSoundCorrespondencesFromCsvBackup");
@@ -321,6 +328,68 @@ public class CsvContentExtractionHelper {
     }
 
     /**
+     * For information on how the CSV files were generated, see {@link ImageCsvExportController#handleRequest}.
+     */
+    public static List<Image> getImagesFromCsvBackup(File csvFile) {
+        logger.info("getImagesFromCsvBackup");
+
+        List<Image> images = new ArrayList<>();
+
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        logger.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath); 
+            CSVFormat csvFormat = CSVFormat.DEFAULT
+                    .withHeader(
+                            "id",
+                            "content_type",
+                            "content_license",
+                            "attribution_url",
+                            "title",
+                            "download_url",
+                            "image_format"
+                    )
+                    .withSkipHeaderRecord();
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                logger.info("csvRecord: " + csvRecord);
+
+                Image image = new Image();
+
+                String contentType = csvRecord.get("content_type");
+                image.setContentType(contentType);
+
+                if (StringUtils.isNotBlank(csvRecord.get("content_license"))) {
+                    ContentLicense contentLicense = ContentLicense.valueOf(csvRecord.get("content_license"));
+                    image.setContentLicense(contentLicense);
+                }
+
+                String attributionUrl = csvRecord.get("attribution_url");
+                image.setAttributionUrl(attributionUrl);
+
+                String title = csvRecord.get("title");
+                image.setTitle(title);
+
+                ResourceLoader resourceLoader = new ClassRelativeResourceLoader(CsvContentExtractionHelper.class);
+                Resource resource = resourceLoader.getResource("placeholder.png");
+                File bytesFile = resource.getFile();
+                Path bytesPath = bytesFile.toPath();
+                byte[] bytes = Files.readAllBytes(bytesPath);
+                image.setBytes(bytes);
+
+                ImageFormat imageFormat = ImageFormat.valueOf(csvRecord.get("image_format"));
+                image.setImageFormat(imageFormat);
+
+                images.add(image);
+            }
+        } catch (IOException ex) {
+            logger.error(ex);
+        }
+
+        return images;
+    }
+
+    /**
      * For information on how the CSV files were generated, see {@link StoryBookCsvExportController#handleRequest}.
      * <p />
      * Also see {@link #getStoryBookChaptersFromCsvBackup}
@@ -375,7 +444,9 @@ public class CsvContentExtractionHelper {
 
                 if (StringUtils.isNotBlank(csvRecord.get("cover_image_id"))) {
                     Long coverImageId = Long.valueOf(csvRecord.get("cover_image_id"));
-//                    storyBookGson.setCoverImage();
+                    ImageGson coverImageGson = new ImageGson();
+                    coverImageGson.setId(coverImageId);
+                   storyBookGson.setCoverImage(coverImageGson);
                 }
 
                 List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
@@ -387,6 +458,14 @@ public class CsvContentExtractionHelper {
 
                     StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
                     storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
+
+                    if (chapterJsonObject.has("image")) {
+                        JSONObject chapterImageJsonObject = chapterJsonObject.getJSONObject("image");
+                        logger.info("chapterImageJsonObject: " + chapterImageJsonObject);
+                        ImageGson chapterImageGson = new ImageGson();
+                        chapterImageGson.setId(chapterImageJsonObject.getLong("id"));
+                        storyBookChapterGson.setImage(chapterImageGson);
+                    }
 
                     List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
                     JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");

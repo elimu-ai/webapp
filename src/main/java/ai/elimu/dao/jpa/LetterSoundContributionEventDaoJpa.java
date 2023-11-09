@@ -1,13 +1,13 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
-import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
+import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 
-public class LetterSoundCorrespondenceContributionEventDaoJpa extends GenericDaoJpa<LetterSoundCorrespondenceContributionEvent> implements LetterSoundCorrespondenceContributionEventDao {
+public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoundCorrespondenceContributionEvent> implements LetterSoundContributionEventDao {
 
     @Override
     public List<LetterSoundCorrespondenceContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException {
@@ -19,13 +19,13 @@ public class LetterSoundCorrespondenceContributionEventDaoJpa extends GenericDao
     }
 
     @Override
-    public List<LetterSoundCorrespondenceContributionEvent> readAll(LetterSoundCorrespondence letterSoundCorrespondence) throws DataAccessException {
+    public List<LetterSoundCorrespondenceContributionEvent> readAll(LetterSoundCorrespondence letterSound) throws DataAccessException {
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundCorrespondenceContributionEvent e " +
             "WHERE e.letterSoundCorrespondence = :letterSoundCorrespondence " + 
             "ORDER BY e.time DESC")
-            .setParameter("letterSoundCorrespondence", letterSoundCorrespondence)
+            .setParameter("letterSoundCorrespondence", letterSound)
             .getResultList();
     }
 
@@ -41,7 +41,7 @@ public class LetterSoundCorrespondenceContributionEventDaoJpa extends GenericDao
     }
     
     @Override
-    public List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSoundCorrespondence() throws DataAccessException {
+    public List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSound() throws DataAccessException {
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundCorrespondenceContributionEvent e " +
