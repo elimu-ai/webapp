@@ -96,6 +96,10 @@ public class JpaToGsonConverter {
             
             // BaseEntity
             letterSoundGson.setId(letterSound.getId());
+
+            // Content
+            letterSoundGson.setRevisionNumber(letterSound.getRevisionNumber());
+            letterSoundGson.setUsageCount(letterSound.getUsageCount());
             
             // LetterSound
             List<LetterGson> letters = new ArrayList<>();
@@ -110,7 +114,6 @@ public class JpaToGsonConverter {
                 sounds.add(soundGson);
             }
             letterSoundGson.setSounds(sounds);
-            letterSoundGson.setUsageCount(letterSound.getUsageCount());
             
             return letterSoundGson;
         }
