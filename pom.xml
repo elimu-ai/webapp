@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>2.0.66</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
         <hibernate.version>5.5.7.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
-        <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
+        <jetty.version>9.4.53.v20231009</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
         <spring.version>5.3.18</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>5.6.2</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.22.2</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
@@ -130,7 +130,7 @@
             </resource>
         </resources>
      </build>
-	
+
     <!-- More Project Information -->
     <name>webapp</name>
     <url>http://localhost:8080/webapp</url>
@@ -306,13 +306,13 @@
             <artifactId>model</artifactId>
             <version>model-${model.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId> <!-- https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/ -->
             <version>1.4</version>
         </dependency>
-        
+
         <!-- Spring Framework -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -399,7 +399,7 @@
             <artifactId>antisamy</artifactId>
             <version>1.6.5</version>
         </dependency>
-        
+
          <dependency>
             <groupId>org.web3j</groupId>
             <artifactId>core</artifactId>
@@ -473,19 +473,19 @@
           <artifactId>mp3spi</artifactId>
           <version>1.9.5.4</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.googlecode.texhyphj</groupId>
             <artifactId>texhyphj</artifactId>
             <version>1.2</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-texttospeech</artifactId>
             <version>2.2.0</version>
         </dependency>
-        
+
         <dependency>
             <groupId>net.dongliu</groupId>
             <artifactId>apk-parser</artifactId>
