@@ -141,8 +141,8 @@
         <url>https://github.com/elimu-ai/webapp/projects</url>
     </issueManagement>
     <ciManagement>
-        <system>Travis CI</system>
-        <url>https://travis-ci.org/elimu-ai/webapp</url>
+        <system>GitHub Actions</system>
+        <url>https://github.com/elimu-ai/webapp/actions</url>
     </ciManagement>
     <scm>
         <connection>scm:git:git@github.com:elimu-ai/webapp.git</connection>
