@@ -242,7 +242,7 @@ public class WordCreateController {
     private void setModel(Model model, Word word, String timeStart) {
         model.addAttribute("word", word);
         model.addAttribute("timeStart", timeStart);
-        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+        model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
