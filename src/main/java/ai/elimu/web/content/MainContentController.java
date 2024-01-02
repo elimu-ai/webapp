@@ -13,7 +13,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -50,7 +50,7 @@ public class MainContentController {
     private SoundDao soundDao;
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private NumberDao numberDao;
@@ -119,7 +119,7 @@ public class MainContentController {
         
         model.addAttribute("letterCount", letterDao.readCount());
         model.addAttribute("soundCount", soundDao.readCount());
-        model.addAttribute("letterSoundCorrespondenceCount", letterSoundCorrespondenceDao.readCount());
+        model.addAttribute("letterSoundCorrespondenceCount", letterSoundDao.readCount());
         model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount());
         model.addAttribute("wordCount", wordDao.readCount());
