@@ -1,6 +1,6 @@
 package ai.elimu.web.content.sound;
 
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.SoundContributionEventDao;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
@@ -39,7 +39,7 @@ public class SoundEditController {
     private SoundContributionEventDao soundContributionEventDao;
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
@@ -53,7 +53,7 @@ public class SoundEditController {
         
         model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
         
-        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAll());
+        model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAll());
 
         return "content/sound/edit";
     }
@@ -88,7 +88,7 @@ public class SoundEditController {
             model.addAttribute("timeStart", System.currentTimeMillis());
             model.addAttribute("soundTypes", SoundType.values());
             model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
-            model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAll());
+            model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAll());
             return "content/sound/edit";
         } else {
             sound.setTimeLastUpdate(Calendar.getInstance());

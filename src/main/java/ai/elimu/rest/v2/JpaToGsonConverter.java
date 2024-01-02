@@ -24,7 +24,7 @@ import ai.elimu.model.v2.gson.content.AudioGson;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.LetterGson;
-import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
+import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.model.v2.gson.content.NumberGson;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
@@ -88,31 +88,34 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static LetterSoundCorrespondenceGson getLetterSoundCorrespondenceGson(LetterSoundCorrespondence letterSoundCorrespondence) {
-        if (letterSoundCorrespondence == null) {
+    public static LetterSoundGson getLetterSoundGson(LetterSoundCorrespondence letterSound) {
+        if (letterSound == null) {
             return null;
         } else {
-            LetterSoundCorrespondenceGson letterSoundCorrespondenceGson = new LetterSoundCorrespondenceGson();
+            LetterSoundGson letterSoundGson = new LetterSoundGson();
             
             // BaseEntity
-            letterSoundCorrespondenceGson.setId(letterSoundCorrespondence.getId());
+            letterSoundGson.setId(letterSound.getId());
+
+            // Content
+            letterSoundGson.setRevisionNumber(letterSound.getRevisionNumber());
+            letterSoundGson.setUsageCount(letterSound.getUsageCount());
             
-            // LetterSoundCorrespondence
+            // LetterSound
             List<LetterGson> letters = new ArrayList<>();
-            for (Letter letter : letterSoundCorrespondence.getLetters()) {
+            for (Letter letter : letterSound.getLetters()) {
                 LetterGson letterGson = getLetterGson(letter);
                 letters.add(letterGson);
             }
-            letterSoundCorrespondenceGson.setLetters(letters);
+            letterSoundGson.setLetters(letters);
             List<SoundGson> sounds = new ArrayList<>();
-            for (Sound sound : letterSoundCorrespondence.getSounds()) {
+            for (Sound sound : letterSound.getSounds()) {
                 SoundGson soundGson = getSoundGson(sound);
                 sounds.add(soundGson);
             }
-            letterSoundCorrespondenceGson.setSounds(sounds);
-            letterSoundCorrespondenceGson.setUsageCount(letterSoundCorrespondence.getUsageCount());
+            letterSoundGson.setSounds(sounds);
             
-            return letterSoundCorrespondenceGson;
+            return letterSoundGson;
         }
     }
     
@@ -131,12 +134,12 @@ public class JpaToGsonConverter {
             
             // Word
             wordGson.setText(word.getText());
-            List<LetterSoundCorrespondenceGson> letterSoundCorrespondences = new ArrayList<>();
-            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
-                LetterSoundCorrespondenceGson letterSoundCorrespondenceGson = getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
-                letterSoundCorrespondences.add(letterSoundCorrespondenceGson);
+            List<LetterSoundGson> letterSounds = new ArrayList<>();
+            for (LetterSoundCorrespondence letterSound : word.getLetterSoundCorrespondences()) {
+                LetterSoundGson letterSoundGson = getLetterSoundGson(letterSound);
+                letterSounds.add(letterSoundGson);
             }
-            wordGson.setLetterSoundCorrespondences(letterSoundCorrespondences);
+            wordGson.setLetterSounds(letterSounds);
             wordGson.setWordType(word.getWordType());
             
             return wordGson;

@@ -3,10 +3,11 @@ package ai.elimu.util.db;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.LetterSoundCorrespondenceContributionEventDao;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundContributionEventDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.SoundDao;
@@ -27,6 +28,7 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
+import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterContributionEvent;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
@@ -67,9 +69,9 @@ public class DbContentImportHelper {
 
     private SoundDao soundDao;
 
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
 
-    private LetterSoundCorrespondenceContributionEventDao letterSoundCorrespondenceContributionEventDao;
+    private LetterSoundContributionEventDao letterSoundContributionEventDao;
 
     private WordDao wordDao;
 
@@ -80,6 +82,8 @@ public class DbContentImportHelper {
     private NumberContributionEventDao numberContributionEventDao;
 
     private EmojiDao emojiDao;
+
+    private ImageDao imageDao;
 
     private StoryBookDao storyBookDao;
 
@@ -161,27 +165,27 @@ public class DbContentImportHelper {
         }
 
         // Extract and import letter-sound correspondences in src/main/resources/
-        File letterToAllophioneMappingsCsvFile = new File(contentDirectory, "letter-sound-correspondences.csv");
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterToAllophioneMappingsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao);
-        logger.info("letterSoundCorrespondences.size(): " + letterSoundCorrespondences.size());
-        letterSoundCorrespondenceDao = (LetterSoundCorrespondenceDao) webApplicationContext.getBean("letterSoundCorrespondenceDao");
-        letterSoundCorrespondenceContributionEventDao = (LetterSoundCorrespondenceContributionEventDao) webApplicationContext.getBean("letterSoundCorrespondenceContributionEventDao");
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondences) {
-            letterSoundCorrespondenceDao.create(letterSoundCorrespondence);
+        File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
+        List<LetterSoundCorrespondence> letterSounds = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
+        logger.info("letterSounds.size(): " + letterSounds.size());
+        letterSoundDao = (LetterSoundDao) webApplicationContext.getBean("letterSoundDao");
+        letterSoundContributionEventDao = (LetterSoundContributionEventDao) webApplicationContext.getBean("letterSoundContributionEventDao");
+        for (LetterSoundCorrespondence letterSound : letterSounds) {
+            letterSoundDao.create(letterSound);
 
-            LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent = new LetterSoundCorrespondenceContributionEvent();
-            letterSoundCorrespondenceContributionEvent.setContributor(contributor);
-            letterSoundCorrespondenceContributionEvent.setLetterSoundCorrespondence(letterSoundCorrespondence);
-            letterSoundCorrespondenceContributionEvent.setRevisionNumber(1);
-            letterSoundCorrespondenceContributionEvent.setTime(Calendar.getInstance());
-            letterSoundCorrespondenceContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-            letterSoundCorrespondenceContributionEvent.setPlatform(Platform.WEBAPP);
-            letterSoundCorrespondenceContributionEventDao.create(letterSoundCorrespondenceContributionEvent);
+            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            letterSoundContributionEvent.setContributor(contributor);
+            letterSoundContributionEvent.setLetterSoundCorrespondence(letterSound);
+            letterSoundContributionEvent.setRevisionNumber(1);
+            letterSoundContributionEvent.setTime(Calendar.getInstance());
+            letterSoundContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
+            letterSoundContributionEvent.setPlatform(Platform.WEBAPP);
+            letterSoundContributionEventDao.create(letterSoundContributionEvent);
         }
 
         // Extract and import Words from CSV file in src/main/resources/
         File wordsCsvFile = new File(contentDirectory, "words.csv");
-        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, soundDao, letterSoundCorrespondenceDao, wordDao);
+        List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, soundDao, letterSoundDao, wordDao);
         logger.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
         wordContributionEventDao = (WordContributionEventDao) webApplicationContext.getBean("wordContributionEventDao");
@@ -230,7 +234,13 @@ public class DbContentImportHelper {
         }
 
         // Extract and import Images from CSV file in src/main/resources/
-        // TODO
+        File imagesCsvFile = new File(contentDirectory, "images.csv");
+        List<Image> images = CsvContentExtractionHelper.getImagesFromCsvBackup(imagesCsvFile);
+        logger.info("images.size(): " + emojis.size());
+        imageDao = (ImageDao) webApplicationContext.getBean("imageDao");
+        for (Image image : images) {
+            imageDao.create(image);
+        }
 
         // Extract and import Audios from CSV file in src/main/resources/
         // TODO
@@ -251,6 +261,9 @@ public class DbContentImportHelper {
 //            TODO: storyBook.setContentLicense();
 //            TODO: storyBook.setAttributionUrl();
             storyBook.setReadingLevel(storyBookGson.getReadingLevel());
+            // Image coverImage = imageDao.read(storyBookGson.getCoverImage().getId());
+            Image coverImage = imageDao.read(1L);
+            storyBook.setCoverImage(coverImage);
             storyBookDao.create(storyBook);
 
             for (StoryBookChapterGson storyBookChapterGson : storyBookGson.getStoryBookChapters()) {
@@ -258,7 +271,10 @@ public class DbContentImportHelper {
                 StoryBookChapter storyBookChapter = new StoryBookChapter();
                 storyBookChapter.setStoryBook(storyBook);
                 storyBookChapter.setSortOrder(storyBookChapterGson.getSortOrder());
-                // TODO: storyBookChapter.setImage();
+                if (storyBookChapterGson.getImage() != null) {
+                    Image chapterImage = imageDao.read(storyBookChapterGson.getImage().getId());
+                    storyBookChapter.setImage(chapterImage);
+                }
                 storyBookChapterDao.create(storyBookChapter);
 
                 for (StoryBookParagraphGson storyBookParagraphGson : storyBookChapterGson.getStoryBookParagraphs()) {
