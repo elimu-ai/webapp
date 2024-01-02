@@ -4,11 +4,10 @@
 
 Web application:
 
- * 🇺🇸 English: https://eng.elimu.ai
- * 🇵🇭 Filipino: https://fil.elimu.ai
- * 🇮🇳 Hindi: https://hin.elimu.ai
+ * https://hin.elimu.ai - Hindi
+ * https://tgl.elimu.ai - Tagalog
 
-<img width="1438" alt="Screenshot 2020-06-17 at 19 54 15" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
+<img width="1438" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
 
 This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
@@ -26,7 +25,7 @@ The webapp's REST API is used by four Android applications:
 
 See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md)
 
-## Run application locally 👩🏽‍💻
+## Run webapp locally 👩🏽‍💻
 See [INSTALL.md](INSTALL.md)
 
 ## Localization
@@ -39,12 +38,9 @@ See [DB_MIGRATION.md](DB_MIGRATION.md)
 ## Contributing guidelines
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
+
 ---
 
-## About the elimu.ai Community DAO
+elimu.ai - Free open source learning software for out-of-school children ✨🚀
 
-![elimu ai-tagline](https://user-images.githubusercontent.com/15718174/54360503-e8e88980-465c-11e9-9792-32b513105cf3.png)
-
- * For a high-level description of the project, see https://github.com/elimu-ai/wiki#readme
- * For project milestones, see https://github.com/elimu-ai/wiki/projects
- * For paid tasks, see https://app.dework.xyz/elimuai
+[Website 🌐](https://elimu.ai) &nbsp; [Wiki 📃](https://github.com/elimu-ai/wiki#readme) &nbsp; [Projects 👩🏽‍💻](https://github.com/orgs/elimu-ai/projects?query=is%3Aopen) &nbsp; [Milestones 🎯](https://github.com/elimu-ai/wiki/milestones) &nbsp; [Community 👋🏽](https://github.com/elimu-ai/wiki#open-source-community)
