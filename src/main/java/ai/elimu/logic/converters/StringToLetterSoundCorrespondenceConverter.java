@@ -4,12 +4,12 @@ import org.apache.commons.lang.StringUtils;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 
 public class StringToLetterSoundCorrespondenceConverter implements Converter<String, LetterSoundCorrespondence> {
 
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     /**
      * Convert LetterSoundCorrespondence id to LetterSoundCorrespondence entity
@@ -19,7 +19,7 @@ public class StringToLetterSoundCorrespondenceConverter implements Converter<Str
             return null;
         } else {
             Long letterSoundCorrespondenceId = Long.parseLong(id);
-            LetterSoundCorrespondence letterSoundCorrespondence = letterSoundCorrespondenceDao.read(letterSoundCorrespondenceId);
+            LetterSoundCorrespondence letterSoundCorrespondence = letterSoundDao.read(letterSoundCorrespondenceId);
             return letterSoundCorrespondence;
         }
     }
