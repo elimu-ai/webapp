@@ -36,8 +36,10 @@ public class WordContributionEventDaoTest {
     
     @Test
     public void testReadMostRecent() {
+        logger.info("testReadMostRecent");
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecent(10);
         int numberOfWordContributionEventsBefore = wordContributionEvents.size();
+        logger.info("numberOfWordContributionEventsBefore: " + numberOfWordContributionEventsBefore);
         
         Contributor contributor = new Contributor();
         contributorDao.create(contributor);
@@ -56,13 +58,16 @@ public class WordContributionEventDaoTest {
         
         wordContributionEvents = wordContributionEventDao.readMostRecent(10);
         int numberOfWordContributionEventsAfter = wordContributionEvents.size();
+        logger.info("numberOfWordContributionEventsAfter: " + numberOfWordContributionEventsAfter);
         assertThat(numberOfWordContributionEventsAfter, is(numberOfWordContributionEventsBefore + 1));
     }
     
     @Test
     public void testReadMostRecentPerWord() {
+        logger.info("testReadMostRecentPerWord");
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
         int numberOfWordContributionEventsBefore = wordContributionEvents.size();
+        logger.info("numberOfWordContributionEventsBefore: " + numberOfWordContributionEventsBefore);
         
         Contributor contributor = new Contributor();
         contributorDao.create(contributor);
@@ -80,7 +85,9 @@ public class WordContributionEventDaoTest {
         wordContributionEventDao.create(wordContributionEvent2);
         
         wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
-        assertThat(wordContributionEvents.size(), is(numberOfWordContributionEventsBefore + 1));
+        int numberOfWordContributionEventsAfter = wordContributionEvents.size();
+        logger.info("numberOfWordContributionEventsAfter: " + numberOfWordContributionEventsAfter);
+        assertThat(numberOfWordContributionEventsAfter, is(numberOfWordContributionEventsBefore + 1));
         
         Word word3 = new Word();
         word3.setText("word3");
@@ -95,7 +102,9 @@ public class WordContributionEventDaoTest {
         wordContributionEventDao.create(wordContributionEvent3);
         
         wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
-        assertThat(wordContributionEvents.size(), is(numberOfWordContributionEventsBefore + 2));
+        numberOfWordContributionEventsAfter = wordContributionEvents.size();
+        logger.info("numberOfWordContributionEventsAfter: " + numberOfWordContributionEventsAfter);
+        assertThat(numberOfWordContributionEventsAfter, is(numberOfWordContributionEventsBefore + 2));
         
         // Re-use a word (word3) that was used in a previous contribution event
         WordContributionEvent wordContributionEvent4 = new WordContributionEvent();
@@ -106,8 +115,10 @@ public class WordContributionEventDaoTest {
         wordContributionEvent4.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent4);
         
-        // The number of contribution events returned should not increase
+        // The number of contribution events returned should remain the same (since word3 was used twice)
         wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
-        assertThat(wordContributionEvents.size(), is(numberOfWordContributionEventsBefore + 2));
+        numberOfWordContributionEventsAfter = wordContributionEvents.size();
+        logger.info("numberOfWordContributionEventsAfter: " + numberOfWordContributionEventsAfter);
+        assertThat(numberOfWordContributionEventsAfter, is(numberOfWordContributionEventsBefore + 2));
     }
 }
