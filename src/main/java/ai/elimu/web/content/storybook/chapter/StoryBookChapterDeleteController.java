@@ -62,16 +62,14 @@ public class StoryBookChapterDeleteController {
     @Autowired
     private StoryBooksJsonService storyBooksJsonService;
 
+    @Autowired
+    private StoryBookChapterComponent storyBookChapterComponent;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(HttpSession session, @PathVariable Long storyBookId, @PathVariable Long id) {
     	logger.info("handleRequest");
-        
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        logger.info("contributor.getRoles(): " + contributor.getRoles());
-        if (!contributor.getRoles().contains(Role.EDITOR)) {
-            // TODO: return HttpStatus.FORBIDDEN
-            throw new IllegalAccessError("Missing role for access");
-        }
+
+        storyBookChapterComponent.checkEditorRole(session);
         
         StoryBookChapter storyBookChapterToBeDeleted = storyBookChapterDao.read(id);
         logger.info("storyBookChapterToBeDeleted: " + storyBookChapterToBeDeleted);
@@ -127,7 +125,7 @@ public class StoryBookChapterDeleteController {
         
         // Store contribution event
         StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
-        storyBookContributionEvent.setContributor(contributor);
+        storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
         storyBookContributionEvent.setTime(Calendar.getInstance());
         storyBookContributionEvent.setStoryBook(storyBook);
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
