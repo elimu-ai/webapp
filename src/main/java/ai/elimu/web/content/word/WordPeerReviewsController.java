@@ -1,21 +1,17 @@
 package ai.elimu.web.content.word;
 
-import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
 import ai.elimu.rest.v2.crowdsource.WordPeerReviewsRestController;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.lang.StringUtils;
+
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +39,7 @@ public class WordPeerReviewsController {
     private WordDao wordDao;
     
     @Autowired
-    private EmojiDao emojiDao;
+    private EmojiComponent emojiComponent;
     
     /**
      * Get {@link WordContributionEvent}s pending a {@link WordPeerReviewEvent} for the current {@link Contributor}.
@@ -77,29 +73,9 @@ public class WordPeerReviewsController {
         logger.info("wordContributionEventsPendingPeerReview.size(): " + wordContributionEventsPendingPeerReview.size());
         model.addAttribute("wordContributionEventsPendingPeerReview", wordContributionEventsPendingPeerReview);
         
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
         
         return "content/word/peer-reviews/pending";
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
-    }
+
 }
