@@ -41,10 +41,6 @@ See [DB_MIGRATION.md](DB_MIGRATION.md)
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Maintainer splits
-
-See https://www.drips.network/app/projects/github/elimu-ai/webapp
-
 ---
 
 <p align="center">
