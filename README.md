@@ -26,9 +26,11 @@ The webapp's REST API is used by four Android applications:
 See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md)
 
 ## Run webapp locally 👩🏽‍💻
+
 See [INSTALL.md](INSTALL.md)
 
 ## Localization
+
 See [LOCALIZE.md](LOCALIZE.md)
 
 ## Database migration
@@ -36,7 +38,12 @@ See [LOCALIZE.md](LOCALIZE.md)
 See [DB_MIGRATION.md](DB_MIGRATION.md)
 
 ## Contributing guidelines
+
 See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## Maintainer splits
+
+See https://www.drips.network/app/projects/github/elimu-ai/webapp
 
 ---
 
