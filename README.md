@@ -1,6 +1,10 @@
 # elimu.ai Webapp
 
 [![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+[![commits](https://img.shields.io/github/commit-activity/m/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
+[![last commit](https://img.shields.io/github/last-commit/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
+[![contributors](https://img.shields.io/github/contributors/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/graphs/contributors)
+[![closed issues](https://img.shields.io/github/issues-closed/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/issues?q=is%3Aissue+is%3Aclosed)
 
 Web application:
 
