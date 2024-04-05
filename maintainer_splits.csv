@@ -1,4 +1,4 @@
-github_username,ethereum_address,impact_percentage
+ethereum_address,github_username,impact_percentage
 0x5D388Ec24Cc2C0C77458338696aa63AFB706A7b1,nya-elimu,51.02
 0xd46Cc93E3eE6a4fb532D9B48E95be7eD8f8f1DA0,jo-elimu,38.77
 0x3965d420cde24fe00f742cb31257ca90e04556a7,tomaszsmy,1.20
@@ -7,5 +7,5 @@ github_username,ethereum_address,impact_percentage
 ,aschworer,0.73
 0x6321286F9B73f427C72e1f9F1bC6b3d25eF06605,hhio618,0.57
 ,urosht,0.57
-0x4709ebf314c6492d57f4c6d4f57357d5b2bb074evrudas,0.56
+0x4709ebf314c6492d57f4c6d4f57357d5b2bb074e,vrudas,0.56
 0x914dBEe36BcAb63B2D15fAED08839Be43797b421,watr-sheep,0.38
