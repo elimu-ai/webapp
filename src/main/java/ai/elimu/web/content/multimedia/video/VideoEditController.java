@@ -1,12 +1,13 @@
 package ai.elimu.web.content.multimedia.video;
 
-import ai.elimu.dao.EmojiDao;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
+import ai.elimu.web.content.emoji.EmojiComponent;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,6 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
@@ -23,9 +23,6 @@ import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,26 +57,15 @@ public class VideoEditController {
     private WordDao wordDao;
     
     @Autowired
-    private EmojiDao emojiDao;
+    private EmojiComponent emojiComponent;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
     	logger.info("handleRequest");
-        
-        Video video = videoDao.read(id);
-        model.addAttribute("video", video);
-        
-        model.addAttribute("contentLicenses", ContentLicense.values());
-        
-        model.addAttribute("literacySkills", LiteracySkill.values());
-        model.addAttribute("numeracySkills", NumeracySkill.values());
-        
-        model.addAttribute("letters", letterDao.readAllOrdered());
-        model.addAttribute("numbers", numberDao.readAllOrdered());
-        model.addAttribute("words", wordDao.readAllOrdered());
-        model.addAttribute("emojisByWordId", getEmojisByWordId());
+
+        setModel(model, videoDao.read(id));
 
         return "content/multimedia/video/edit";
     }
@@ -131,14 +117,7 @@ public class VideoEditController {
         }
         
         if (result.hasErrors()) {
-            model.addAttribute("video", video);
-            model.addAttribute("contentLicenses", ContentLicense.values());
-            model.addAttribute("literacySkills", LiteracySkill.values());
-            model.addAttribute("numeracySkills", NumeracySkill.values());
-            model.addAttribute("letters", letterDao.readAllOrdered());
-            model.addAttribute("numbers", numberDao.readAllOrdered());
-            model.addAttribute("words", wordDao.readAllOrdered());
-            model.addAttribute("emojisByWordId", getEmojisByWordId());
+            setModel(model, video);
             return "content/multimedia/video/edit";
         } else {
             video.setTitle(video.getTitle().toLowerCase());
@@ -277,25 +256,16 @@ public class VideoEditController {
         
         return "success";
     }
-    
-    private Map<Long, String> getEmojisByWordId() {
-        logger.info("getEmojisByWordId");
-        
-        Map<Long, String> emojisByWordId = new HashMap<>();
-        
-        for (Word word : wordDao.readAll()) {
-            String emojiGlyphs = "";
-            
-            List<Emoji> emojis = emojiDao.readAllLabeled(word);
-            for (Emoji emoji : emojis) {
-                emojiGlyphs += emoji.getGlyph();
-            }
-            
-            if (StringUtils.isNotBlank(emojiGlyphs)) {
-                emojisByWordId.put(word.getId(), emojiGlyphs);
-            }
-        }
-        
-        return emojisByWordId;
+
+    private void setModel(Model model, Video video) {
+        model.addAttribute("video", video);
+        model.addAttribute("contentLicenses", ContentLicense.values());
+        model.addAttribute("literacySkills", LiteracySkill.values());
+        model.addAttribute("numeracySkills", NumeracySkill.values());
+        model.addAttribute("letters", letterDao.readAllOrdered());
+        model.addAttribute("numbers", numberDao.readAllOrdered());
+        model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("emojisByWordId", emojiComponent.getEmojisByWordId());
     }
+
 }
