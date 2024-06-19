@@ -2,7 +2,8 @@
 
 By using the Java Persistence API (JPA), classed annotated by @Entity (in the [`model`](src/main/java/ai/elimu/model) package) get mapped automatically to database tables/columns: [`src/main/resources/META-INF/jpa-persistence.xml`](https://github.com/elimu-ai/webapp/blob/main/src/main/resources/META-INF/jpa-persistence.xml)
 
-However, when _deleting, modifying or renaming_ an entity class/attribute, we have to manually update the underlying database structure.
+> [!IMPORTANT]
+> However, when _deleting, modifying or renaming_ an entity class/attribute, we have to manually update the underlying database structure.
 
 ## Migration Scripts
 
@@ -27,4 +28,5 @@ For an example of a previous database migration script, see https://github.com/e
 
 ## Caveats 😅
 
-Note that DB migration performed automatically by the ORM provider (Hibernate), e.g. when adding a new property to an @Entity, is executed _before_ our custom migration scripts.
+> [!WARNING]
+> Note that DB migration performed automatically by the ORM provider (Hibernate), e.g. when adding a new property to an `@Entity`, is executed _before_ our custom migration scripts.
