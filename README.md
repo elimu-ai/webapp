@@ -19,11 +19,10 @@ This web application hosts Android apps and educational content (e.g. texts, aud
 
 See [src/main/java/ai/elimu/rest/](src/main/java/ai/elimu/rest/)
 
-The webapp's REST API is used by four Android applications:
+The webapp's REST API is used by three Android applications:
   1. [elimu.ai Appstore](https://github.com/elimu-ai/appstore)
   1. [elimu.ai Content Provider](https://github.com/elimu-ai/content-provider)
   1. [elimu.ai Analytics](https://github.com/elimu-ai/analytics)
-  1. [elimu.ai Crowdsource](https://github.com/elimu-ai/crowdsource)
 
 ## Software architecture
 
