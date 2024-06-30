@@ -132,24 +132,24 @@ public class SignOnControllerDiscord {
                 String id = String.valueOf(idAsLong);
                 contributor.setProviderIdDiscord(id);
             }
+            private static final String DEFAULT_AVATAR_URL = "https://e7.pngegg.com/pngimages/84/165/"
+        + "png-clipart-united-states-avatar-organization-information"
+        + "-user-avatar-service-computer-wallpaper-thumbnail.png";
+
+
             if (jsonObject.has("avatar")) {
-                 if (jsonObject.get("avatar") instanceof String) {
+                if (jsonObject.get("avatar") instanceof String) {
                     String avatar = jsonObject.getString("avatar");
                     if (!avatar.isEmpty()) {
                         String uriAvatar = "https://cdn.discordapp.com/avatars/" + jsonObject.getLong("id") + "/" + avatar + ".png";
                         logger.info(uriAvatar);
                         contributor.setImageUrl(uriAvatar);
                     } else {
-                        // Handle case where avatar field is empty or not provided
-                        contributor.setImageUrl("https://e7.pngegg.com/pngimages/84/165/"
-                        +"png-clipart-united-states-avatar-organization-information"
-                                +"-user-avatar-service-computer-wallpaper-thumbnail.png");
+                        contributor.setImageUrl(DEFAULT_AVATAR_URL);
                     } 
                 } else {
                     logger.warn("Avatar field is not a string: " + jsonObject.get("avatar"));
-                    contributor.setImageUrl("https://e7.pngegg.com/pngimages/84/165/"
-                        +"png-clipart-united-states-avatar-organization-information"
-                                +"-user-avatar-service-computer-wallpaper-thumbnail.png"); // Replace with your default avatar URL
+                    contributor.setImageUrl(DEFAULT_AVATAR_URL);
                 }
             }
             if (jsonObject.has("username")) {
