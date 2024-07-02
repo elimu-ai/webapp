@@ -50,7 +50,7 @@
                                     <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
                                         <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
                                         <div class="chip">
-                                            <a href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />">
+                                            <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
                                                 " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
                                                     ${letter.text}<c:out value=" " />
                                                 </c:forEach> "<br />

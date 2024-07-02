@@ -20,7 +20,7 @@
                     <tr>
                         <td>
                             <a href="<spring:url value='/content/word/edit/${word.id}#contribution-events' />" target="_blank">"<c:out value="${word.text}" />"</a><br />
-                            /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                            /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
                             #${wordContributionEvent.revisionNumber}<br />
@@ -157,7 +157,7 @@
                         </td>
                         <td>
                             <a href="<spring:url value='/content/word/edit/${word.id}#contribution-event_${wordPeerReviewEvent.wordContributionEvent.id}' />" target="_blank">"<c:out value="${word.text}" />"</a><br />
-                            /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                            /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
                             <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.wordContributionEvent.contributor.id}' />">
