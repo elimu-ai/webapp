@@ -5,7 +5,7 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.WordExtractionHelper;
@@ -42,6 +42,8 @@ public class ParagraphWordScheduler {
         List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
         logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+            logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+            
             List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
             logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
             

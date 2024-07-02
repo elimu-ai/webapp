@@ -39,7 +39,7 @@
     <servlet-mapping>
         <!-- Map static resources to the default servlet -->
         <servlet-name>default</servlet-name>
-        <url-pattern>/static/allophone/*</url-pattern>
+        <url-pattern>/static/sound/*</url-pattern>
         <url-pattern>/static/css/*</url-pattern>
         <url-pattern>/static/img/*</url-pattern>
         <url-pattern>/static/js/*</url-pattern>

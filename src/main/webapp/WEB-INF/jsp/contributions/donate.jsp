@@ -1,5 +1,5 @@
 <content:title>
-    Donate
+    Donate 💜
 </content:title>
 
 <content:section cssId="appealPage">
@@ -18,10 +18,86 @@
         In order to achieve our purpose of providing disadvantaged children with access to quality basic education, the 
         elimu.ai Community focuses on three <a href="https://github.com/elimu-ai/wiki/projects" target="_blank">main activities</a>:
     </p>
-    <div class="chip deep-purple lighten-2 white-text">1. Content</div>
-    <div class="chip light-green darken-2 white-text">2. Engineering</div>
-    <div class="chip cyan darken-1 white-text">3. Distribution</div>
+    <div class="chip deep-purple lighten-2 white-text">1. Content 🎶🎙</div>
+    <div class="chip light-green darken-2 white-text">2. Engineering 👩🏽‍💻📱</div>
+    <div class="chip cyan darken-1 white-text">3. Distribution 🛵💨</div>
     
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
+    <a name="donate-cryptocurrency"></a>
+    <h3>Donate Cryptocurrency</h3>
+    <div class="card-panel">
+        <p>
+            To donate, use this Ethereum address:
+        </p>
+        <p>
+            <svg style="width: 24px; height: 24px; top: 6px; position: relative; right: 5px;" viewBox="0 0 784.37 1277.39" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                <g>
+                    <polygon fill="#343434" fill-rule="nonzero" points="392.07,0 383.5,29.11 383.5,873.74 392.07,882.29 784.13,650.54 "/>
+                    <polygon fill="#8C8C8C" fill-rule="nonzero" points="392.07,0 -0,650.54 392.07,882.29 392.07,472.33 "/>
+                    <polygon fill="#3C3C3B" fill-rule="nonzero" points="392.07,956.52 387.24,962.41 387.24,1263.28 392.07,1277.38 784.37,724.89 "/>
+                    <polygon fill="#8C8C8C" fill-rule="nonzero" points="392.07,1277.38 392.07,956.52 -0,724.89 "/>
+                    <polygon fill="#141414" fill-rule="nonzero" points="392.07,882.29 784.13,650.54 392.07,472.33 "/>
+                    <polygon fill="#393939" fill-rule="nonzero" points="0,650.54 392.07,882.29 392.07,472.33 "/>
+                </g>
+            </svg><code>${applicationScope.configProperties['donationAddress']} (elimu.eth)</code>
+        </p>
+        <p>
+            <img alt="QR code" src="data:image/png;base64,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" />
+        </p>
+        <p>
+            Thank you! 💜
+        </p>
+    </div>
+    
+    <h4>Most Recent Donations</h4>
+    <div class="card-panel">
+        <div id="eth-donations-container">
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+            <p>
+                Loading...
+            </p>
+        </div>
+        <script>
+            var url = 'https://api.covalenthq.com/v1/1/address/${applicationScope.configProperties['donationAddress']}/transactions_v2/?key=${applicationScope.configProperties['covalent.api.key']}';
+            fetch(new Request(url)).then(function(response) {
+                if (!response.ok) {
+                    throw new Error('response.status: ${response.status}');
+                }
+                response.json().then(function(responseJson) {
+                    var $table = $('<table class="donation-list"><tr><th>Donation date</th><th>Donor address</th><th>Donated amount</th></tr></table>')
+                    responseJson.data.items.forEach((item) => {
+                        if ((item.from_address != ${applicationScope.configProperties['donationAddress']}) 
+                                && (item.value > 0)) {
+                            var dateTime = new Date(item.block_signed_at);
+                            var cell1 = '<td><code>' + dateTime.toISOString().split('T')[0] + '</code></td>';
+                            var cell2 = '<td><code>' + item.from_address.substring(0, 6) + '...' + item.from_address.substring(38, 42) + '</code></td>';
+                            var cell3 = '<td><code><a href="https://etherscan.io/tx/' + item.tx_hash + '" target="_blank">' + (item.value / 1000000000000000000).toFixed(4) + ' ETH</a></code></td>';
+                            $('<tr>' + cell1 + cell2 + cell3 + '</tr>').appendTo($table);
+                        }
+                    });
+                    $('#eth-donations-container').html($table);
+                });
+            });
+        </script>
+        
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.etherscan.io/address/0x883753Beab357A2c29f3766C6ad158e72A78ce51" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://etherscan.io/address/0x883753Beab357A2c29f3766C6ad158e72A78ce51" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:otherwise>
+        </c:choose>
+    </div>
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
     
     <h3>Allocation of Donated Funds</h3>
     <div id="allocationChartLoadingContainer">
@@ -38,23 +114,16 @@
     <script>
         function displayPieChart(
                 sumContent,
-                sumContentBen,
-                sumContentEng,
-                sumContentFil,
-                sumContentHin,
-                sumContentSwa,
-                sumContentUrd,
                 sumEngineering,
-                sumDistribution,
-                sumUnallocated
+                sumDistribution
         ) {
             console.info('displayPieChart');
             
             var chartColors = {
                 cyan: 'rgb(0,172,193)',
-                gray: 'rgb(176,190,197)',
                 green: 'rgb(104,159,56)',
                 purple: 'rgb(149,117,205)'
+                
             };
 
             var config = {
@@ -63,41 +132,20 @@
                     datasets: [{
                         data: [
                             sumContent,
-                            sumContentBen,
-                            sumContentEng,
-                            sumContentFil,
-                            sumContentHin,
-                            sumContentSwa,
-                            sumContentUrd,
                             sumEngineering,
-                            sumDistribution,
-                            sumUnallocated
+                            sumDistribution
                         ],
                         backgroundColor: [
                             chartColors.purple,
-                            chartColors.purple,
-                            chartColors.purple,
-                            chartColors.purple,
-                            chartColors.purple,
-                            chartColors.purple,
-                            chartColors.purple,
                             chartColors.green,
-                            chartColors.cyan,
-                            chartColors.gray
+                            chartColors.cyan
                         ],
                         label: 'Allocation of Donated Funds'
                     }],
                     labels: [
-                        'Content (any language)',
-                        'Content (Bengali)',
-                        'Content (English)',
-                        'Content (Filipino)',
-                        'Content (Hindi)',
-                        'Content (Swahili)',
-                        'Content (Urdu)',
-                        'Engineering',
-                        'Distribution',
-                        'Unallocated (no preference)'
+                        'Content (33%)',
+                        'Engineering (33%)',
+                        'Distribution (33%)'
                     ]
                 },
                 options: {
@@ -108,288 +156,63 @@
             var context = document.getElementById('chart-area').getContext('2d');
             window.myPie = new Chart(context, config);
         }
+        
+        $(function() {
+            $('#allocationChartLoadingContainer').remove();
+            $('#allocationChartContainer').show();
+            displayPieChart(0.33, 0.33, 0.33);
+        });
     </script>
+    
     <p>
         When you donate, you can tell us where you would like us to allocate your funds. You can also tell us 
         <a href="https://github.com/elimu-ai/wiki#milestones" target="_blank">which language</a> you want us to prioritize when 
         we add more educational content.
     </p>
     
-    <div class="divider" style="margin: 1.5em 0;"></div>
-    
-    <h4>Most Recent Donations</h4>
+    <h4>Most Recent Payouts</h4>
     <div class="card-panel">
-        <div id="donationsContainer">
-            <div class="progress">
-                <div class="indeterminate"></div>
-            </div>
-            <p>
-                Loading...
-            </p>
-        </div>
-        <script>
-            /**
-             * Copied from AragonRestController.java
-             */
-            function getBaseUrl() {
-                console.info("getBaseUrl");
-                let domain = "62.75.236.14"; // DEV/TEST
-                <c:if test="${applicationScope.configProperties['env'] == 'PROD'}">
-                    domain = "85.93.91.26";
-                </c:if>
-                return "http://" + domain + ":3000";
-            }
-            
-            /**
-             * E.g. "2020-03-31 13:35"
-             */
-            function getFormattedDate(timestamp) {
-                console.info("getFormattedDate");
-                let date = new Date(timestamp * 1000);
-                let year = date.getFullYear();
-                let month = (date.getMonth() + 1).toString();
-                if (month.length == 1) {
-                    month = "0" + month;
-                }
-                let day = date.getDate().toString();
-                if (day.length == 1) {
-                    day = "0" + day;
-                }
-                let hour = date.getHours().toString();
-                if (hour.length == 1) {
-                    hour = "0" + hour;
-                }
-                let minute = date.getMinutes().toString();
-                if (minute.length == 1) {
-                    minute = "0" + minute;
-                }
-                return year + "-" + month + "-" + day + " " + hour + ":" + minute;
-            }
-            
-            /**
-             * E.g. "#content" --> "<span class="chip deep-purple lighten-2 white-text">#content</span>"
-             */
-            function getLabeledReference(reference) {
-                console.info("getLabeledReference");
-                if (reference.includes('#content') 
-                        && !reference.includes('#content-')) {
-                    reference = reference.replace('#content', '<span class="chip deep-purple lighten-2 white-text">#content</span>');
-                } else if (reference.includes('#content-ben')) {
-                    reference = reference.replace('#content-ben', '<span class="chip deep-purple lighten-2 white-text">#content-ben</span>');
-                } else if (reference.includes('#content-eng')) {
-                    reference = reference.replace('#content-eng', '<span class="chip deep-purple lighten-2 white-text">#content-eng</span>');
-                } else if (reference.includes('#content-fil')) {
-                    reference = reference.replace('#content-fil', '<span class="chip deep-purple lighten-2 white-text">#content-fil</span>');
-                } else if (reference.includes('#content-hin')) {
-                    reference = reference.replace('#content-hin', '<span class="chip deep-purple lighten-2 white-text">#content-hin</span>');
-                } else if (reference.includes('#content-swa')) {
-                    reference = reference.replace('#content-creatio-swan', '<span class="chip deep-purple lighten-2 white-text">#content-swa</span>');
-                } else if (reference.includes('#content-urd')) {
-                    reference = reference.replace('#content-urd', '<span class="chip deep-purple lighten-2 white-text">#content-urd</span>');
-                } else if (reference.includes('#engineering')) {
-                    reference = reference.replace('#engineering', '<span class="chip light-green darken-2 white-text">#engineering</span>');
-                } else if (reference.includes('#distribution')) {
-                    reference = reference.replace('#distribution', '<span class="chip cyan darken-1 white-text">#distribution</span>');
-                }
-                return reference;
-            }
-
-            $(function() {
-                // Fetch finance transactions from Aragon Connect (via the REST API)
-                $.ajax({
-                    dataType: "json",
-                    url: "<spring:url value='/rest/v2/aragon/finance-transactions' />",
-                    success: function(financeTransactions) {
-                        console.info("success");
-                        
-                        // Prepare values to be displayed in the pie-chart for allocation of funds
-                        let sumContent = 0.00;
-                        let sumContentBen = 0.00;
-                        let sumContentEng = 0.00;
-                        let sumContentFil = 0.00;
-                        let sumContentHin = 0.00;
-                        let sumContentSwa = 0.00;
-                        let sumContentUrd = 0.00;
-                        let sumEngineering = 0.00;
-                        let sumDistribution = 0.00;
-                        let sumUnallocated = 0.00;
-                        
-                        // Display newest transactions on top
-                        financeTransactions.reverse();
-
-                        let htmlString = '<table class="striped responsive-table">';
-                        htmlString += '    <thead>';
-                        htmlString += '        <tr>';
-                        htmlString += '            <th>Source</th>';
-                        htmlString += '            <th>Amount</th>';
-                        htmlString += '            <th>Reference</th>';
-                        htmlString += '        </tr>';
-                        htmlString += '    </thead>';
-                        htmlString += '    <tbody>';
-                        financeTransactions.forEach(function(financeTransaction, index) {
-                            // Exclude outgoing transactions
-                            if (!financeTransaction.isIncoming) {
-                                return;
-                            }
-                            
-                            // TODO: add support for any type of token
-                            // Exclude tokens that are not ETH
-                            if (financeTransaction.token !== '0x0000000000000000000000000000000000000000') {
-                                return;
-                            }
-                            
-                            let ethAmount = Number((financeTransaction.amount/1000000000000000000).toFixed(5));
-                            
-                            // Summarize funds per activity
-                            if (financeTransaction.reference.includes('#content') 
-                                    && !financeTransaction.reference.includes('#content-')) {
-                                sumContent += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-ben')) {
-                                sumContentBen += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-eng')) {
-                                sumContentEng += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-fil')) {
-                                sumContentFil += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-hin')) {
-                                sumContentHin += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-swa')) {
-                                sumContentSwa += ethAmount;
-                            } else if (financeTransaction.reference.includes('#content-urd')) {
-                                sumContentUrd += ethAmount;
-                            } else if (financeTransaction.reference.includes('#engineering')) {
-                                sumEngineering += ethAmount;
-                            } else if (financeTransaction.reference.includes('#distribution')) {
-                                sumDistribution += ethAmount;
-                            } else {
-                                sumUnallocated += ethAmount;
-                            }
-                            
-                            htmlString += '<tr>';
-                            htmlString += '    <td>';
-                            htmlString += '        <div class="chip">';
-                            htmlString += '            <img src="' + getBaseUrl() +'/identicon/' + financeTransaction.entity + '" />' + financeTransaction.entity.substring(0, 6) + "..." + financeTransaction.entity.substring(financeTransaction.entity.length - 4, financeTransaction.entity.length);
-                            htmlString += '        </div><br />';
-//                            htmlString += '        ' + getFormattedDate(financeTransaction.date);
-                            htmlString += '    </td>';
-                            htmlString += '    <td>';
-                            htmlString += '        ' + ethAmount.toFixed(5) + ' ETH';
-                            htmlString += '    </td>';
-                            htmlString += '    <td>';
-                            htmlString += '        ' + getLabeledReference(financeTransaction.reference);
-                            htmlString += '    </td>';                
-
-                            htmlString += '</tr>';
-                        });
-                        htmlString += '    </tbody>';
-                        htmlString += '</table>';
-                        $('#donationsContainer').html(htmlString);
-                        
-                        // Display in the pie-chart for allocation of funds
-                        $('#allocationChartLoadingContainer').remove();
-                        $('#allocationChartContainer').show();
-                        displayPieChart(
-                                sumContent,
-                                sumContentBen,
-                                sumContentEng,
-                                sumContentFil,
-                                sumContentHin,
-                                sumContentSwa,
-                                sumContentUrd,
-                                sumEngineering,
-                                sumDistribution,
-                                sumUnallocated
-                        );
-                    }
-                });
-            });
-        </script>
-        
-        <div class="divider" style="margin: 1em 0;"></div>
-        
+        <h5>#content 🎶🎙</h5>
         <c:choose>
             <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                <a href="https://rinkeby.aragon.org/#/elimuai/0x7a2711f547696fff3fc1788b9295c5464e4a7edd/" target="_blank">
+                <a href="https://rinkeby.etherscan.io/address/0xa406C9B6c115A65da97EC7256d0A1fF51F281f71" target="_blank">
                     View all transactions <i class="material-icons">launch</i>
                 </a>
             </c:when>
             <c:otherwise>
-                <a href="https://client.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">
+                <a href="https://etherscan.io/address/0xa406C9B6c115A65da97EC7256d0A1fF51F281f71" target="_blank">
                     View all transactions <i class="material-icons">launch</i>
                 </a>
             </c:otherwise>
         </c:choose>
-    </div>
-    
-    <div class="divider" style="margin: 1.5em 0;"></div>
-    
-    <a name="donate-cryptocurrency"></a>
-    <h3>Donate Cryptocurrency</h3>
-    <div class="card-panel">
-        <p>
-            To donate, follow these steps:
-        </p>
-        <ol>
-            <li>
-                Make sure to <a href="https://www.youtube.com/watch?v=sO3WVSFd5ng" target="_blank">enable Web3</a> in your browser
-            </li>
-            <li>
-                Go to the elimu.ai Community's 
-                <c:choose>
-                    <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                        <a href="https://rinkeby.aragon.org/#/elimuai/0x7a2711f547696fff3fc1788b9295c5464e4a7edd/" target="_blank">Finance App</a> 
-                    </c:when>
-                    <c:otherwise>
-                        <a href="https://client.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/" target="_blank">Finance App</a> 
-                    </c:otherwise>
-                </c:choose>
-                and press "Connect account"
-            </li>
-            <li>
-                Then press "New transfer"
-            </li>
-            <li>
-                Let us know where to allocate your funds by typing any of these values into the "Reference" field: 
-                <ul>
-                    <li>
-                        <span class="chip deep-purple lighten-2 white-text">#content</span>
-                        <span class="chip light-green darken-2 white-text">#engineering</span>
-                        <span class="chip cyan darken-1 white-text">#distribution</span>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                Finally, press "Submit deposit". Then sign the transaction, and verify that your donation appears in the list above.
-            </li>
-            <li>
-                Thank you! 😀
-            </li>
-        </ol>
         
-        <div class="divider" style="margin: 1.5em 0;"></div>
+        <h5>#engineering 👩🏽‍💻📱</h5>
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.etherscan.io/address/0xB1C409722B23Cba26dE8660b180d4B55Ed8CB4c0" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://etherscan.io/address/0xB1C409722B23Cba26dE8660b180d4B55Ed8CB4c0" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:otherwise>
+        </c:choose>
         
-        <div class="center">
-            <c:choose>
-                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.aragon.org/#/elimuai/0x7a2711f547696fff3fc1788b9295c5464e4a7edd/"
-                            target="_blank"
-                            class="btn-large waves-effect waves-light deep-purple lighten-2">
-                        Donate now
-                    </a>
-                </c:when>
-                <c:otherwise>
-                    <a href="https://client.aragon.org/#/elimuai/0x25e71ca07476c2a65c289c7c6bd6910079e119e6/"
-                            target="_blank"
-                            class="btn-large waves-effect waves-light deep-purple lighten-2">
-                        Donate now
-                    </a>
-                </c:otherwise>
-            </c:choose><br />
-            <br />
-            <a href="https://aragon.org" target="_blank">
-                <img src="https://wiki.aragon.org/design/artwork/Powered_By/SVG/Powered_By_White.svg" 
-                     alt="Powered by Aragon" height="64px" />
-            </a>
-        </div>
+        <h5>#distribution 🛵💨</h5>
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.etherscan.io/address/0x282EF5377C35E90C33a94833d69dBA880430c9cB" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://etherscan.io/address/0x282EF5377C35E90C33a94833d69dBA880430c9cB" target="_blank">
+                    View all transactions <i class="material-icons">launch</i>
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </content:section>
 
@@ -397,7 +220,8 @@
     <h5 class="center">Global Learning Crisis 🌍</h5>
     <div class="card-panel deep-purple lighten-5">
         <p>
-            Worldwide, 64 million children of primary school age (about 6 to 11 years) are still out of school.
+            Worldwide, more than <a href="https://data.unicef.org/topic/education/primary-education/" target="_blank">58 million</a> 
+            children of primary school age (about 6 to 11 years) are still out-of-school.
         </p>
 
         <p>

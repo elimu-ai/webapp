@@ -22,6 +22,16 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <select id="storyBookParagraph" name="storyBookParagraph">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="storyBookParagraph" items="${storyBookParagraphs}">
+                            <option value="${storyBookParagraph.id}" <c:if test="${storyBookParagraph.id == audio.storyBookParagraph.id}">selected="selected"</c:if>>${storyBookParagraph.id} (<c:out value="${storyBookParagraph.storyBookChapter.storyBook.title}" />)</option>
+                        </c:forEach>
+                    </select>
+                    <label for="storyBookParagraph"><fmt:message key="storybook.paragraph" /></label>
+                </div>
+                
+                <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>
@@ -87,7 +97,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <label for="contributionComment"><fmt:message key='comment' /></label>
-                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 

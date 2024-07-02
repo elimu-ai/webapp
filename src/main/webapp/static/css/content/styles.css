@@ -15,61 +15,20 @@ nav {
     transition: all .5s;
 }
 
-.previewContainer {
-    position: relative;
-}
-.previewContainer #previewContentContainer {
-    position: absolute;
-    top: 15.15%;
-    height: 66.75%;
-    width: 100%;
+#letterSoundCorrespondencesContainer .chip {
     text-align: center;
-}
-#videoEditPage .previewContainer #previewContentContainer {
-    top: 25%;
-    height: 53%;
-}
-.previewContainer #previewContent {
-    position: relative;
-    width: 90%;
-    margin: -2% 10% 0 0;
-    height: 100%;
-    display: inline-block;
-    font-size: 5em;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: 50% 50%;
-    -ms-transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
-    -webkit-transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
-    transform: perspective( 1200px ) rotateY( -43deg ) rotateX(20deg);
-}
-.previewContainer #previewContent.previewContentGrapheme {
-    background: #FFF;
-    font-size: 10em;
-}
-#wordCreatePage .previewContainer #previewContent.previewContentGrapheme,
-#wordEditPage .previewContainer #previewContent.previewContentGrapheme {
-    font-size: 4em;
-    padding-top: 4rem;
-    letter-spacing: .5rem;
+    font-size: 2rem;
+    padding: 1rem;
+    height: auto;
+    background-color: #EEE;
 }
 
-#contributionEvents blockquote {
-    white-space: pre-line;
-}
-
-html[data-content-language="ben"] #letterCreatePage input#text,
-html[data-content-language="hin"] #letterCreatePage input#text,
-html[data-content-language="urd"] #letterCreatePage input#text,
-html[data-content-language="ben"] #letterEditPage input#text,
-html[data-content-language="hin"] #letterEditPage input#text,
-html[data-content-language="urd"] #letterEditPage input#text,
-html[data-content-language="ben"] #wordCreatePage input#text,
-html[data-content-language="hin"] #wordCreatePage input#text,
-html[data-content-language="urd"] #wordCreatePage input#text,
-html[data-content-language="ben"] #wordEditPage input#text,
-html[data-content-language="hin"] #wordEditPage input#text,
-html[data-content-language="urd"] #wordEditPage input#text {
+#letterCreatePage input#text,
+#letterEditPage input#text,
+#wordCreatePage input#text,
+#wordEditPage input#text,
+#soundCreatePage input#valueIpa,
+#soundEditPage input#valueIpa {
     font-size: 4rem;
     height: 2em;
     letter-spacing: 0.2em;
@@ -91,6 +50,15 @@ html[data-content-language="urd"] #wordEditPage input#text {
 #imageEditPage #image img {
     display: block;
     margin: auto;
+}
+
+.storyBook .headband {
+    position: absolute;
+    z-index: 1;
+    width: 1em;
+    height: 100%;
+    background: linear-gradient(90deg,hsla(0,0%,100%,.22) 19.38%,rgba(0,0,0,.15) 51.67%,rgba(0,0,0,.34) 64.17%,hsla(0,0%,82%,.27) 75.63%,hsla(0,0%,100%,0) 94.38%);
+    opacity: .3;
 }
 
 #storyBookEditPage #coverImageContainer img,
@@ -116,35 +84,51 @@ html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBoo
     font-size: 3em;
 }
 
-.peerReviewEvent {
-    padding: 0.5rem;
+blockquote,
+.comment {
+    white-space: pre-line;
+    overflow: scroll;
 }
-.peerReviewEvent.row {
+
+.row.peerReviewEvent {
+    padding: 0.5rem;
     margin: 0 0 1px 0;
     border-radius: 4px;
 }
+.row.peerReviewEvent.indent {
+    margin-left: 1.5rem;
+}
 .peerReviewEvent[data-approved="true"] {
     background-color: #e0f2f1; /* teal lighten-5 */
-    border-left: 5px solid #009688; /* teal */
-    color: #009688; /* teal */
+    border-left: 5px solid #00897b; /* teal darken-1 */
+    color: #00897b; /* teal darken-1 */
 }
 .peerReviewEvent[data-approved="false"] {
     background-color: #ffccbc; /* deep-orange lighten-4 */
-    border-left: 5px solid #f4511e; /* deep-orange darken-1 */
-    color: #f4511e; /* deep-orange darken-1 */
+    border-left: 5px solid #b71c1c; /* red darken-4 */
+    color: #b71c1c; /* red darken-4 */
 }
 .peerReviewEvent .peerReviewStatus {
     font-weight: bold;
 }
 
-#wordCreatePage input#text,
-#wordEditPage input#text {
-    font-size: 2em;
+.diff-addition {
+    background-color: #e0f2f1; /* teal lighten-5 */
+    border-bottom: 2px solid #388e3c; /* green darken-2 */
+    color: #388e3c; /* green darken-2 */
+    border-radius: 4px;
+    padding: 4px;
 }
-#letterToAllophoneMappingsContainer .chip {
-    text-align: center;
-    font-size: 2rem;
-    padding: 1rem;
-    height: auto;
-    background-color: #EEE;
+.diff-deletion {
+    background-color: #ffccbc; /* deep-orange lighten-4 */
+    border-bottom: 2px solid #b71c1c; /* red darken-4 */
+    color: #b71c1c; /* red darken-4 */
+    border-radius: 4px;
+    padding: 4px;
+}
+.diff-highlight {
+    background-color: #ffecb3; /* amber lighten-4 */
+    border-bottom: 2px solid #ffc107; /* amber */
+    border-radius: 4px;
+    padding: 4px;
 }

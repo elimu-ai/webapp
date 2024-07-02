@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.storybook.paragraph" />
+    <fmt:message key="add.paragraph" />
 </content:title>
 
 <content:section cssId="storyBookParagraphCreatePage">
@@ -24,31 +24,9 @@
                     <form:textarea path="originalText" cssClass="materialize-textarea" cssErrorClass="error" />
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <select id="audio" name="audio">
-                        <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="audio" items="${audios}">
-                            <option value="${audio.id}" <c:if test="${audio.id == storyBookParagraph.audio.id}">selected="selected"</c:if>>${audio.title}</option>
-                        </c:forEach>
-                    </select>
-                    <label for="audio"><fmt:message key="audio" /></label>
-                    
-                    <c:if test="${not empty storyBookParagraph.audio}">
-                        <audio controls="true" autoplay="true">
-                            <source src="<spring:url value='/audio/${storyBookParagraph.audio.id}_r${storyBookParagraph.audio.revisionNumber}.${fn:toLowerCase(storyBookParagraph.audio.audioFormat)}' />" />
-                        </audio><br />
-                    </c:if>
-                    
-                    <a href="<spring:url value='/content/multimedia/audio/create' />?autoFillTitle=storybook-${storyBookParagraph.storyBookChapter.storyBook.id}-ch-${storyBookParagraph.storyBookChapter.sortOrder + 1}-par-${storyBookParagraph.sortOrder + 1}&autoFillTranscription=${storyBookParagraph.originalText}" target="_blank">
-                        <fmt:message key="add.audio" /> <i class="material-icons">launch</i>
-                    </a>
-                </div>
-            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                <fmt:message key="add" /> <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>

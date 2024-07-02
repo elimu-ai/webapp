@@ -6,9 +6,9 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
-import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.v2.enums.content.LiteracySkill;
+import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +61,7 @@ public class ApplicationCreateController {
             return "admin/application/create";
         } else {
             applicationDao.create(application);
-            return "redirect:/admin/application/list";
+            return "redirect:/admin/application/list#" + application.getId();
         }
     }
 }

@@ -1,1 +1,58 @@
-id,content_type,content_license,attribution_url,title,transcription,download_url,audio_format
+id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format
+1,audio/mpeg,null,"null",26,"है","है","/audio/1.mp3",MP3
+2,audio/mpeg,null,"null",22,"के","के","/audio/2.mp3",MP3
+3,audio/mpeg,null,"null",19,"और","और","/audio/3.mp3",MP3
+4,audio/mpeg,null,"null",78,"word-78","में","/audio/4.mp3",MP3
+5,audio/mpeg,null,"null",207,"word-207","भि","/audio/5.mp3",MP3
+6,audio/mpeg,null,"null",1,"word-1","से","/audio/6.mp3",MP3
+7,audio/mpeg,null,"null",173,"word-173","सब","/audio/7.mp3",MP3
+8,audio/mpeg,null,"null",11,"word-11","एक","/audio/8.mp3",MP3
+9,audio/mpeg,null,"null",130,"word-130","अब","/audio/9.mp3",MP3
+10,audio/mpeg,null,"null",,"storybook-37-ch-1-par-1","टिड्डा","/audio/10.mp3",MP3
+11,audio/mpeg,null,"null",,"storybook-37-ch-1-par-2","1","/audio/11.mp3",MP3
+12,audio/mpeg,null,"null",,"storybook-37-ch-2-par-1","तितलियाँ","/audio/12.mp3",MP3
+13,audio/mpeg,null,"null",,"storybook-37-ch-2-par-2","2","/audio/13.mp3",MP3
+14,audio/mpeg,null,"null",,"storybook-37-ch-3-par-1","पत्तियों वाले कीड़े","/audio/14.mp3",MP3
+15,audio/mpeg,null,"null",,"storybook-37-ch-3-par-2","3","/audio/15.mp3",MP3
+16,audio/mpeg,null,"null",,"storybook-30-ch-1-par-1","मलार आज एक बहुत-बड़ा सा घर बनाने वाली है!","/audio/16.mp3",MP3
+17,audio/mpeg,null,"null",,"storybook-30-ch-2-par-1","“मैं इनका प्रयोग कर सकती हूँ!”","/audio/17.mp3",MP3
+18,audio/mpeg,null,"null",,"storybook-30-ch-3-par-1","मलार ने कहा, “मेरा घर इतना ऊँचा और इतना बड़ा होगा!”","/audio/18.mp3",MP3
+19,audio/mpeg,null,"null",,"storybook-30-ch-4-par-1","मलार ने गिलासों को एक के ऊपर एक रखना शुरू किया।","/audio/19.mp3",MP3
+20,audio/mpeg,null,"null",,"storybook-30-ch-5-par-1","सभी गिलास गिर गए।","/audio/20.mp3",MP3
+21,audio/mpeg,null,"null",,"storybook-30-ch-5-par-2","टनाटन! धड़ाम...!","/audio/21.mp3",MP3
+22,audio/mpeg,null,"null",,"storybook-30-ch-6-par-1","मलार ने गिलासों को उठाया और फिर से एक के ऊपर एक रखना शुरू किया।","/audio/22.mp3",MP3
+23,audio/mpeg,null,"null",,"storybook-30-ch-7-par-1","टन्न! टनाटन! धड़ाम!","/audio/23.mp3",MP3
+24,audio/mpeg,null,"null",,"storybook-30-ch-7-par-2","वो दोबारा गिर गए!","/audio/24.mp3",MP3
+25,audio/mpeg,null,"null",,"storybook-30-ch-8-par-1","इस बार गिलास नहीं गिरे।ऊँचे...और ऊँचे वे बढ़ते गए!","/audio/25.mp3",MP3
+26,audio/mpeg,null,"null",,"storybook-30-ch-8-par-2","मलार ने अच्छे से सोचा।","/audio/26.mp3",MP3
+27,audio/mpeg,null,"null",,"storybook-30-ch-8-par-3","उसने दोबारा कोशिश की।","/audio/27.mp3",MP3
+28,audio/mpeg,null,"null",,"storybook-30-ch-9-par-1","मलार का बड़ा, चमकदार घर बनकर लगभग तैयार है।","/audio/28.mp3",MP3
+29,audio/mpeg,null,"null",,"storybook-30-ch-10-par-1","मलार रसोई घर की तरफ दौड़ी। सभी व्यस्त हैं।","/audio/29.mp3",MP3
+30,audio/mpeg,null,"null",,"storybook-30-ch-10-par-2","पापा ने पूछा, “तुम्हें कुछ चाहिए मलार बेटा?”","/audio/30.mp3",MP3
+31,audio/mpeg,null,"null",,"storybook-30-ch-10-par-3","“पापा क्या आप मुझे आधा नारियल देंगे? मुझे मेरे घर के लिए छत बनानी है।”","/audio/31.mp3",MP3
+32,audio/mpeg,null,"null",,"storybook-30-ch-10-par-4","“हाँ,  ज़रूर ले लो,” पापा ने कहा","/audio/32.mp3",MP3
+33,audio/mpeg,null,"null",,"storybook-30-ch-11-par-1","“पापा मेरा बड़ा सा घर आपको अच्छा लगा?”","/audio/33.mp3",MP3
+34,audio/mpeg,null,"null",,"storybook-30-ch-11-par-2","“हाँ बहुत अच्छा। ये तो बहुत सुंदर महल बन गया है!”","/audio/34.mp3",MP3
+35,audio/mpeg,null,"null",,"storybook-30-ch-12-par-1","धड़धड़धड़...धम्म! धड़ाम!","/audio/35.mp3",MP3
+36,audio/mpeg,null,"null",,"storybook-30-ch-12-par-2","मलार अब आगे क्या बनाएगी?","/audio/36.mp3",MP3
+37,audio/mpeg,null,"null",,"storybook-30-ch-13-par-1","अपना खुद का महल बनाइए","/audio/37.mp3",MP3
+38,audio/mpeg,null,"null",,"storybook-30-ch-13-par-2","आपको ज़रूरत है:","/audio/38.mp3",MP3
+39,audio/mpeg,null,"null",,"storybook-30-ch-13-par-3","- जितने पेपर कप आप को मिल सकें उतने पेपर कप","/audio/39.mp3",MP3
+40,audio/mpeg,null,"null",,"storybook-30-ch-13-par-4","- अपनी रसोई से एक गोल बर्तन","/audio/40.mp3",MP3
+41,audio/mpeg,null,"null",,"storybook-30-ch-13-par-5","- रंगीन पेंसिलें या क्रेयोन","/audio/41.mp3",MP3
+42,audio/mpeg,null,"null",,"storybook-30-ch-13-par-6","- नारियल का खोल, आधा-आधा कटा हुआ","/audio/42.mp3",MP3
+43,audio/mpeg,null,"null",,"storybook-30-ch-13-par-7","हेहे...! आपका महल तैयार है!","/audio/43.mp3",MP3
+44,audio/mpeg,null,"null",,"storybook-1-ch-8-par-1","...","/audio/44.mp3",MP3
+45,audio/mpeg,null,"null",,"storybook-32-ch-1-par-1","मैं हूँ श्याम। मैं दस साल का हूँ।","/audio/45.mp3",MP3
+46,audio/mpeg,null,"null",60,"word-60","बहुत","/audio/46.mp3",MP3
+47,audio/mpeg,null,"null",52,"word-52","की","/audio/47.mp3",MP3
+48,audio/mpeg,null,"null",68,"word-68","हैं","/audio/48.mp3",MP3
+49,audio/mpeg,null,"null",147,"word_शून्य","शून्य","/audio/49.mp3",MP3
+50,audio/mpeg,null,"null",34,"word_नहीं","नहीं","/audio/50.mp3",MP3
+51,audio/mpeg,null,"null",73,"word_का","का","/audio/51.mp3",MP3
+52,audio/mpeg,null,"null",93,"word_कपड़े","कपड़े","/audio/52.mp3",MP3
+53,audio/mpeg,null,"null",125,"word_पानी","पानी","/audio/53.mp3",MP3
+54,audio/mpeg,null,"null",8,"word_भी","भी","/audio/54.mp3",MP3
+55,audio/mpeg,null,"null",33,"word_मैं","मैं","/audio/55.mp3",MP3
+56,audio/mpeg,null,"null",99,"word_कि","कि","/audio/56.mp3",MP3
+57,audio/mpeg,null,"null",198,"word_छत्तीस","छत्तीस","/audio/57.mp3",MP3

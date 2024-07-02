@@ -24,7 +24,7 @@ public class StoryBookLearningEventListController {
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
         
-        List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll();
+        List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAllOrderedByTime();
         model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
 
         return "analytics/storybook-learning-event/list";

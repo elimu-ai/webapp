@@ -116,12 +116,6 @@
                             <c:otherwise><a href="<spring:url value='/content/word/edit/${word.id}' />"><c:out value="${wordInOriginalText}" /></a><c:out value="${emojisByWordId[word.id]}" /><c:out value=" " /></c:otherwise>
                         </c:choose>
                     </c:forEach>
-                    
-                    <c:if test="${not empty storyBookParagraph.audio}">
-                        <audio controls="true">
-                            <source src="<spring:url value='/audio/${storyBookParagraph.audio.id}_r${storyBookParagraph.audio.revisionNumber}.${fn:toLowerCase(storyBookParagraph.audio.audioFormat)}' />" />
-                        </audio>
-                    </c:if>
                 </p>
             </c:forEach>
             
@@ -129,7 +123,7 @@
                 <a href="<spring:url value="/content/storybook/edit/${storyBook.id}/chapter/${storyBookChapter.id}/paragraph/create" />" 
                    class="btn-floating waves-effect waves-light grey"
                    style="margin-top: 1rem;"
-                   title="<fmt:message key="add.storybook.paragraph" />">
+                   title="<fmt:message key="add.paragraph" />">
                     <i class="material-icons">add</i>
                 </a>
             </div>
@@ -185,7 +179,7 @@
             
             <div id="peerReviewSubmitContainer" style="display: none;">
                 <label for="comment"><fmt:message key="comment" /></label>
-                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+                <textarea id="comment" name="comment" class="materialize-textarea" maxlength="1000"></textarea>
 
                 <button class="btn waves-effect waves-light" type="submit">
                     <fmt:message key="submit" /> <i class="material-icons right">send</i>
@@ -200,27 +194,94 @@
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
+            <a name="contribution-event_${storyBookContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
                     <fmt:message key="revision" /> #${storyBookContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <div class="chip">
-                    <img src="<spring:url value='${storyBookContributionEvent.contributor.imageUrl}' />" alt="${storyBookContributionEvent.contributor.firstName}" /> 
-                    <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
-                </div>
-                <blockquote>"<c:out value="${storyBookContributionEvent.comment}" />"</blockquote>
+                <a href="<spring:url value='/content/contributor/${storyBookContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.imageUrl}">
+                                <img src="${storyBookContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.firstName}">
+                                <c:out value="${storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
+                <c:if test="${not empty storyBookContributionEvent.comment}">
+                    <blockquote><c:out value="${storyBookContributionEvent.comment}" /></blockquote>
+                </c:if>
+                <c:if test="${not empty storyBookContributionEvent.paragraphTextBefore}">
+                    <p id="textDiffContainer_${storyBookContributionEvent.id}"></p>
+                    <script>
+                        $(function() {
+                            // Visualize before/after diff
+                            var textBefore = ['${fn:join(fn:split(fn:replace(storyBookContributionEvent.paragraphTextBefore, newLineCharRn, '<br/>'), ' '), '\', \'')}'];
+                            var textAfter = ['${fn:join(fn:split(fn:replace(storyBookContributionEvent.paragraphTextAfter, newLineCharRn, '<br/>'), ' '), '\', \'')}'];
+                            var unifiedDiff = difflib.unifiedDiff(textBefore, textAfter);
+                            console.info('unifiedDiff: \n' + unifiedDiff);
+                            for (var i = 2; i < unifiedDiff.length; i++) {
+                                var diff = unifiedDiff[i];
+                                if (diff.startsWith('@@')) {
+                                    diff = '<span class="grey-text">' + diff + '</span><br />';
+                                    if (i > 2) {
+                                        diff = '<br /><br />' + diff;
+                                    }
+                                } else if (diff.startsWith('-')) {
+                                    diff = '<span class="diff-deletion">' + diff.substring(1) + '<span>';
+                                } else if (diff.startsWith('+')) {
+                                    diff = '<span class="diff-addition">' + diff.substring(1) + '<span>';
+                                }
+                                $('#textDiffContainer_${storyBookContributionEvent.id}').append(diff);
+                            }
+                        });
+                    </script>
+                </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEvents}">
                     <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
-                        <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <div class="chip">
-                                    <img src="<spring:url value='${storyBookPeerReviewEvent.contributor.imageUrl}' />" alt="${storyBookPeerReviewEvent.contributor.firstName}" /> 
-                                    <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
-                                </div>
+                                <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col s4">
                                 <code class="peerReviewStatus">
@@ -238,9 +299,7 @@
                                 <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty storyBookPeerReviewEvent.comment}">
-                                <div class="col s12">
-                                    "<c:out value="${storyBookPeerReviewEvent.comment}" />"
-                                </div>
+                                <div class="col s12 comment"><c:out value="${storyBookPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
@@ -275,7 +334,7 @@
                                     <c:out value="${word.text}" />
                                 </a><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /><br />
                                 <span class="grey-text">
-                                    /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                    /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                                 </span>
                             </c:otherwise>
                         </c:choose>
@@ -308,12 +367,7 @@
                                 <c:set var="letter" value="${letterMap[letterText]}" />
                                 <a href="<spring:url value='/content/letter/edit/${letter.id}' />" target="_blank">
                                     <c:out value="${letter.text}" />
-                                </a><br />
-                                <span class="grey-text">
-                                    /<c:forEach var="allophone" items="${letter.allophones}">
-                                        ${allophone.valueIpa}
-                                    </c:forEach>/
-                                </span>
+                                </a>
                             </c:otherwise>
                         </c:choose>
                     </td>

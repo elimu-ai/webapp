@@ -17,8 +17,8 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.content.NumeracySkill;
+import ai.elimu.model.v2.enums.content.LiteracySkill;
+import ai.elimu.model.v2.enums.content.NumeracySkill;
 
 /**
  * Parent class for different types of multimedia (images, audios, etc).
@@ -26,6 +26,11 @@ import ai.elimu.model.enums.content.NumeracySkill;
 @MappedSuperclass
 public abstract class Multimedia extends Content {
     
+    /**
+     * The MIME type - https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+     * <p>
+     * Example: "audio/mpeg"
+     */
     @NotNull
     private String contentType;
     

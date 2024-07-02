@@ -7,6 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,8 +50,21 @@ public class EditMotivationController {
             
             if (StringUtils.isBlank(contributor.getMotivation())) {
                 // The Contributor completed the on-boarding wizard for the first time
-                // Update registration time to trigger ContributorRegistrationSummaryScheduler
-                contributor.setRegistrationTime(Calendar.getInstance());
+                
+                if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                    String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/contributor/" + contributor.getId();
+                    String embedThumbnailUrl = null;
+                    if (StringUtils.isNotBlank(contributor.getImageUrl())) {
+                        embedThumbnailUrl = contributor.getImageUrl();
+                    }
+                    DiscordHelper.sendChannelMessage(
+                            "Contributor joined: " + contentUrl,
+                            contributor.getFirstName() + " " + contributor.getLastName(),
+                            "Motivation: \"" + motivation + "\"",
+                            null,
+                            embedThumbnailUrl
+                    );
+                }
             }
             
             contributor.setMotivation(motivation);

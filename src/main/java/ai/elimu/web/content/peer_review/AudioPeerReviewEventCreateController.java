@@ -11,8 +11,11 @@ import ai.elimu.model.contributor.AudioPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.rest.v2.crowdsource.AudioPeerReviewsRestController;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,10 +61,21 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEvent.setContributor(contributor);
         audioPeerReviewEvent.setAudioContributionEvent(audioContributionEvent);
         audioPeerReviewEvent.setApproved(approved);
-        audioPeerReviewEvent.setComment(comment);
+        audioPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         audioPeerReviewEvent.setTime(Calendar.getInstance());
         audioPeerReviewEvent.setPlatform(Platform.WEBAPP);
         audioPeerReviewEventDao.create(audioPeerReviewEvent);
+        
+        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audioContributionEvent.getAudio().getId();
+            DiscordHelper.sendChannelMessage(
+                    "Audio peer-reviewed: " + contentUrl, 
+                    "\"" + audioContributionEvent.getAudio().getTitle() + "\"",
+                    "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
+                    audioPeerReviewEvent.isApproved(),
+                    null
+            );
+        }
 
         // Update the audio's peer review status
         int approvedCount = 0;

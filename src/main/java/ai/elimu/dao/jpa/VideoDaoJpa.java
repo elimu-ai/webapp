@@ -21,7 +21,6 @@ public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
                 .setParameter("title", title)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Video \"" + title + "\" was not found");
             return null;
         }
     }

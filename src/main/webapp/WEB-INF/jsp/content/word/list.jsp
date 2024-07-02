@@ -4,13 +4,21 @@
 
 <content:section cssId="wordListPage">
     <div class="section row">
-        <a class="right btn waves-effect waves-light grey-text white" 
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/word/list/words.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            <fmt:message key="to.add.new.content.click.the.button.below" /> You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer-review</a> words.
         </p>
         
         <c:if test="${not empty words}">
@@ -18,12 +26,11 @@
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="allophones" /></th>
-                    <th><fmt:message key="spelling.consistency" /></th>
+                    <th><fmt:message key="letter.sound.correspondences" /></th>
+                    <%--<th><fmt:message key="spelling.consistency" /></th>--%>
                     <th><fmt:message key="word.type" /></th>
                     <th><fmt:message key="root.word" /></th>
                     <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="word" items="${words}">
@@ -36,11 +43,26 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <a name="${word.id}"></a>
-                                "${word.text}"
+                                <a href="<spring:url value='/content/word/edit/${word.id}' />">"<c:out value="${word.text}" />"</a>
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                <div id="letterSoundCorrespondencesContainer">
+                                    <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
+                                        <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
+                                        <div class="chip">
+                                            <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
+                                                " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                                    ${letter.text}<c:out value=" " />
+                                                </c:forEach> "<br />
+                                                / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                                    ${sound.valueIpa}<c:out value=" " />
+                                                </c:forEach> /
+                                            </a>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
+                            <%--
                             <td>
                                 <c:choose>
                                     <c:when test="${word.spellingConsistency == 'PERFECT'}">
@@ -66,6 +88,7 @@
                                     <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
                                 </div>
                             </td>
+                            --%>
                             <td>
                                 ${word.wordType}<br />
                                 <c:out value=" ${emojisByWordId[word.id]}" />
@@ -98,7 +121,6 @@
                                     </span>
                                 </p>
                             </td>
-                            <td><a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

@@ -1,7 +1,7 @@
 id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format
 1,audio/mpeg,null,"null",6,"amanzi","amanzi","/audio/1.mp3",MP3
 2,audio/mpeg,null,"null",2,"inja","inja","/audio/2.mp3",MP3
-3,audio/mpeg,CREATIVE_COMMONS_CC_BY,"http://xho.elimu.ai",4,"mhlobo","mhlobo","/audio/3.mp3",MP3
+3,audio/mpeg,CREATIVE_COMMONS_CC_BY,"https://xho.elimu.ai",4,"mhlobo","mhlobo","/audio/3.mp3",MP3
 4,audio/mpeg,null,"null",,"abomvu","abomvu","/audio/4.mp3",MP3
 5,audio/mpeg,null,"null",8,"amaphiko","amaphiko","/audio/5.mp3",MP3
 6,audio/mpeg,null,"null",,"esikolweni","esikolweni","/audio/6.mp3",MP3
@@ -9,3 +9,4 @@ id,content_type,content_license,attribution_url,word_id,title,transcription,down
 8,audio/mpeg,null,"null",,"storybook-9-ch-2-par-1","ULara, ongubhantom, wayeyirhorho ekhethekileyo. Wayengafani tu nabahlobo bakhe, kuba yena wayenamaphiko akhazimlayo natyheli.","/audio/8.mp3",MP3
 9,audio/mpeg,null,"null",,"storybook-9-ch-3-par-1","Wonke umntu wayewathanda amaphiko akhe atyheli.","/audio/9.mp3",MP3
 10,audio/mpeg,null,"null",,"storybook-9-ch-3-par-2","Rhoqo kusasa, uBhibhi Bhabhathane wayebulisa uLara, kanti noManto Mntanezulu wayethanda ukumbulisa, ngokumwangawangisela.","/audio/10.mp3",MP3
+11,audio/mpeg,null,"null",8,"amaphiko","amaphiko","/audio/11.mp3",MP3

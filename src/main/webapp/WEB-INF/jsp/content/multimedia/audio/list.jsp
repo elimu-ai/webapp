@@ -4,10 +4,18 @@
 
 <content:section cssId="audioListPage">
     <div class="section row">
-        <a class="right btn waves-effect waves-light grey-text white" 
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/audio/list/audios.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
@@ -16,7 +24,7 @@
         <c:if test="${not empty audios}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="title" /></th>
+                    <th><fmt:message key="title" />/<br /><fmt:message key="transcription" /></th>
                     <th><fmt:message key="audio" /></th>
                     <%--
                     <th><fmt:message key="literacy.skills" /></th>
@@ -26,14 +34,13 @@
                     <th><fmt:message key="time.last.update" /></th>
                     <th><fmt:message key="platform" /></th>
                     <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="audio" items="${audios}">
                         <tr class="audio">
                             <td>
                                 <a name="${audio.id}"></a>
-                                <p>"<c:out value="${audio.title}" />"</p>
+                                <p><a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />">"<c:out value="${audio.title}" />"</a></p>
                                 <p class="grey-text">"<c:out value="${audio.transcription}" />"</p>
                             </td>
                             <td>
@@ -51,7 +58,7 @@
                             --%>
                             <td>
                                 <a href="<spring:url value='/content/word/edit/${audio.word.id}' />">
-                                    ${audio.word.text}
+                                    "${audio.word.text}"
                                 </a>
                             </td>
                             <td>
@@ -82,7 +89,6 @@
                                     </span>
                                 </p>
                             </td>
-                            <td><a class="editLink" href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />"><span class="material-icons">edit</span></a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

@@ -15,7 +15,7 @@
                     Drag & drop your ePUB file here, or select a file.
                 </p>
                 <div class="file-field input-field col s8 offset-s2 center">
-                    <div class="btn deep-purple">
+                    <div class="btn">
                         <span><fmt:message key='file' /></span>
                         <%--<form:input path="bytes" type="file" />--%>
                         <input name="bytes" id="bytes" type="file" />
@@ -29,6 +29,7 @@
                                 console.info('#bytes on change');
                                 
                                 $(this).parents('form').submit();
+                                Materialize.toast('Processing ePUB. Please wait...', 4000, 'rounded');
                             });
                         });
                     </script>

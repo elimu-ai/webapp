@@ -4,13 +4,21 @@
 
 <content:section cssId="numberListPage">
     <div class="section row">
-        <a class="right btn waves-effect waves-light grey-text white" 
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/number/list/numbers.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            <fmt:message key="to.add.new.content.click.the.button.below" />  You can also <a href="<spring:url value='/content/number/peer-reviews' />">peer-review</a> numbers.
         </p>
         
         <table class="bordered highlight">
@@ -18,16 +26,15 @@
                 <th><fmt:message key="value" /></th>
                 <th><fmt:message key="symbol" /></th>
                 <th><fmt:message key="number.words" /></th>
-                <th><fmt:message key="allophones" /></th>
+                <th><fmt:message key="sounds" /></th>
                 <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="edit" /></th>
             </thead>
             <tbody>
                 <c:forEach var="number" items="${numbers}">
                     <tr class="letter">
                         <td style="font-size: 2em;">
                             <a name="${number.id}"></a>
-                            ${number.value}
+                            <a href="<spring:url value='/content/number/edit/${number.id}' />">${number.value}</a>
                         </td>
                         <td style="font-size: 2em;">
                             ${number.symbol}
@@ -40,14 +47,29 @@
                         
                         <td style="font-size: 2em;">
                             <c:forEach var="word" items="${number.words}">
-                                /<c:forEach var="ltam" items="${word.letterToAllophoneMappings}">&nbsp;<a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${ltam.id}' />"><c:forEach var="allophone" items="${ltam.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                             </c:forEach>
                         </td>
                         <td>
-                            #${number.revisionNumber}
-                        </td>
-                        <td>
-                            <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                            <p>#${number.revisionNumber}</p>
+                            <p>
+                                <c:choose>
+                                    <c:when test="${number.peerReviewStatus == 'APPROVED'}">
+                                        <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                    </c:when>
+                                    <c:when test="${number.peerReviewStatus == 'NOT_APPROVED'}">
+                                        <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="peerReviewStatusColor" value="" />
+                                    </c:otherwise>
+                                </c:choose>
+                                <span class="chip ${peerReviewStatusColor}">
+                                    <a href="<spring:url value='/content/number/edit/${number.id}#contribution-events' />">
+                                        ${number.peerReviewStatus}
+                                    </a>
+                                </span>
+                            </p>
                         </td>
                     </tr>
                 </c:forEach>

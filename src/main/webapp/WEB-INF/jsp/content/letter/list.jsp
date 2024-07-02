@@ -4,10 +4,18 @@
 
 <content:section cssId="letterListPage">
     <div class="section row">
-        <a class="right btn waves-effect waves-light grey-text white" 
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/letter/list/letters.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         
         <p>
             <fmt:message key="to.add.new.content.click.the.button.below" />
@@ -18,11 +26,8 @@
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="letter" /></th>
-                    <th><fmt:message key="allophones" /></th>
                     <th><fmt:message key="diacritic" /></th>
-                    <th><fmt:message key="audio" /></th>
                     <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="letter" items="${letters}">
@@ -35,26 +40,38 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <a name="${letter.id}"></a>
-                                ${letter.text}
-                            </td>
-                            <td style="font-size: 2em;">
-                                /<c:forEach var="allophone" items="${letter.allophones}"><a href="<spring:url value='/content/allophone/edit/${allophone.id}' />">${allophone.valueIpa}</a></c:forEach>/
+                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">"<c:out value='${letter.text}' />"</a>
                             </td>
                             <td>
-                                ${letter.diacritic}
+                                <c:choose>
+                                	<c:when test="${letter.diacritic}">
+                                		<fmt:message key="yes" />
+                                	</c:when>
+                                	<c:otherwise>
+                                		<fmt:message key="no" />
+                                	</c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
-                                <c:forEach var="allophone" items="${letter.allophones}">
-                                    <audio controls="true">
-                                        <source src="<spring:url value='/static/allophone/sampa_${allophone.valueSampa}.wav' />" />
-                                    </audio><br />
-                                </c:forEach>
-                            </td>
-                            <td>
-                                #${letter.revisionNumber}
-                            </td>
-                            <td>
-                                <a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />"><span class="material-icons">edit</span></a>
+                                <p>#${letter.revisionNumber}</p>
+                                <p>
+                                    <c:choose>
+                                        <c:when test="${letter.peerReviewStatus == 'APPROVED'}">
+                                            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                        </c:when>
+                                        <c:when test="${letter.peerReviewStatus == 'NOT_APPROVED'}">
+                                            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:set var="peerReviewStatusColor" value="" />
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <span class="chip ${peerReviewStatusColor}">
+                                        <a href="<spring:url value='/content/letter/edit/${letter.id}#contribution-events' />">
+                                            ${letter.peerReviewStatus}
+                                        </a>
+                                    </span>
+                                </p>
                             </td>
                         </tr>
                     </c:forEach>

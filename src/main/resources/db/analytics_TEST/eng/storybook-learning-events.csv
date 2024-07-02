@@ -1,0 +1,455 @@
+id,time,android_id,package_name,storybook_id,storybook_title,learning_event_type
+3,1585034784000,3a3ced4f9062a685,ai.elimu.vitabu.debug,23,The Candy Planet,STORYBOOK_OPENED
+4,1603230777000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+5,1603229883000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+6,1603229716000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+7,1603146925000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+8,1603146924000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+9,1603146830000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+10,1603146163000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+11,1603146154000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+12,1603146104000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+13,1603232297000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+14,1603231509000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+15,1603231489000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+16,1603231379000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+17,1603403929000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+18,1603403840000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+19,1603401981000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+20,1603406879000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+21,1603406495000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+22,1603405626000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+23,1603405621000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+24,1603495877000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+25,1603495780000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+26,1603495757000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+27,1603494702000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+28,1603494681000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+29,1603494581000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+30,1603494430000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+31,1603494363000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+32,1603494110000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+33,1603493867000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+34,1603493388000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+35,1603493323000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+36,1603493261000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+37,1603493235000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+38,1603493014000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+39,1603492973000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+40,1603492930000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+41,1603492919000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+42,1603492918000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+43,1603492908000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+44,1603492907000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+45,1603492903000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+46,1603492807000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+47,1603492757000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+48,1603492731000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+49,1603495976000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+50,1603495965000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+51,1603495951000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+52,1603495917000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+53,1603754433000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+54,1603754425000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+55,1603753215000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+56,1604104521000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+57,1604104513000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+58,1604104494000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+59,1604104488000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+60,1604104483000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+61,1604104471000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+62,1604104452000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+63,1604104430000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+64,1604104428000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+65,1604104299000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+66,1604104298000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+67,1604104292000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+68,1604104287000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+69,1604104277000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+70,1604104257000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+71,1604104256000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+72,1604104243000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+73,1604104238000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+74,1604104233000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+75,1604104221000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+76,1604104216000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+77,1604104210000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+78,1604104204000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+79,1604104198000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+80,1604104190000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+81,1604104183000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+82,1604104172000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+83,1604104146000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+84,1604104144000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+85,1604103827000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+86,1604103825000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+87,1604103680000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+88,1604103679000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+89,1604103609000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+90,1604103608000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+91,1604103583000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+92,1604103581000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+93,1604103571000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+94,1604103569000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+95,1604102940000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+96,1604102934000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+97,1604102918000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+98,1604102916000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+99,1604102765000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+100,1604102754000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+101,1604102747000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+102,1604102739000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+103,1604102637000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+104,1604102628000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+105,1604102619000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+106,1604102599000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+107,1604102585000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+108,1604102583000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+109,1604102528000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+110,1604102527000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+111,1604102503000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+112,1604102502000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+113,1604102492000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+114,1604102487000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+115,1604102474000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+116,1604102437000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+117,1604102227000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+118,1604102226000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+119,1604102192000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+120,1604102023000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+121,1604102021000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+122,1604101956000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+123,1604101873000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+124,1604101869000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+125,1604101863000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+126,1604101821000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+127,1604101757000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+128,1604101614000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+129,1604101613000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+130,1604101585000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+131,1604101584000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+132,1604101294000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+133,1604101292000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+134,1604101277000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+135,1604101276000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+136,1604100917000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+137,1604100913000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+138,1604532228000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+139,1604532223000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+140,1604532219000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+141,1604532213000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+142,1604532211000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+143,1606343243000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+144,1607644869000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+145,1607644855000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+146,1607644717000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+147,1607644695000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+148,1607644682000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+149,1607644653000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+150,1607644641000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+151,1607644629000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+152,1607644622000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+153,1607644611000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+154,1607644603000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+155,1607644593000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+156,1608340406000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+157,1608340400000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+158,1608340394000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+159,1608340389000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+160,1608340384000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+161,1608339617000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+162,1608339612000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+163,1608339604000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+164,1608339598000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+165,1608339553000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+166,1608339549000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+167,1608339543000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+168,1608339538000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+169,1608339531000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+170,1608339526000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+171,1608339148000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+172,1608339144000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+173,1608339140000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+174,1608339123000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+175,1608339022000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+176,1608339016000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+177,1608339010000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+178,1608339004000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+179,1608338999000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+180,1608338992000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+181,1608338986000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+182,1608337926000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+183,1608337829000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+184,1608337822000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+185,1608337816000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+186,1608337809000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+187,1608337797000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+188,1608337391000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+189,1608337383000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+190,1608337373000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+191,1608337364000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+192,1608421532000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+193,1608421528000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+194,1608424811000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+195,1608424530000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+196,1608424524000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+197,1608424505000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+198,1608424228000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+199,1608424170000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+200,1608424160000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+201,1608424156000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+202,1608424152000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+203,1608424137000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+204,1608424122000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+205,1608424117000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+206,1608424112000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+207,1608424066000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+208,1608423726000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+209,1608423487000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+210,1608423403000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+211,1608423356000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+212,1608423330000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+213,1608423078000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+214,1608504729000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+215,1608504576000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+216,1608504563000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+217,1608504543000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+218,1608504189000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+219,1608503550000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+220,1608503546000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+221,1608503541000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+222,1608503537000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+223,1608503532000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+224,1608503528000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+225,1608503522000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+226,1608503517000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+227,1608503507000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+228,1608503503000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+229,1608503498000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+230,1608503493000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+231,1608503489000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+232,1608503484000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+233,1608503472000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+234,1608503387000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+235,1608503363000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+236,1608503328000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+237,1608503322000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+238,1608503315000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+239,1608503309000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+240,1608503299000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+241,1608503285000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+242,1608503146000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+243,1608503140000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+244,1608493062000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+245,1608493062000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+246,1613687296000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+247,1615328906000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+248,1615328356000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+249,1615328273000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+250,1615597724000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+251,1615597687000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+252,1615759017000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+253,1615921174000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+254,1616284211000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+255,1616284177000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+256,1616351744000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+257,1616351521000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+258,1616354068000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+259,1616353727000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+260,1616353157000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+261,1616353028000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+262,1616352618000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+263,1616456574000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+264,1616542605000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+265,1616879369000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+266,1616879723000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+267,1617227970000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+268,1617323284000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+269,1617323196000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+270,1617409452000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+271,1617409288000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+272,1617409125000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+273,1617408808000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+274,1617408715000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+275,1617408615000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+276,1617408381000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+277,1617745825000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+278,1617748666000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+279,1617834393000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+280,1617834326000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+281,1617834323000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+282,1617834312000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+283,1617834302000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+284,1617834276000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+285,1617834270000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+286,1617834251000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+287,1617834072000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+288,1617834052000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+289,1617833822000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+290,1617833779000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+291,1617922706000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+292,1617922699000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+293,1617922689000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+294,1617922672000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+295,1617922642000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+296,1617922635000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+297,1617922603000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+298,1617922586000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+299,1617922551000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+300,1617922535000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+301,1617922513000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+302,1617922509000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+303,1617922503000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+304,1617922495000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+305,1617922455000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+306,1617922078000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+307,1617921824000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+308,1617921706000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+309,1617921670000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+310,1617921414000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+311,1617921399000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+312,1617920530000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+313,1617920524000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+314,1617920513000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+315,1617920447000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+316,1617919933000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+317,1617919887000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+318,1618012462000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+319,1618012450000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+320,1618012398000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+321,1618012391000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+322,1618012382000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+323,1618012364000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+324,1618012112000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+325,1618012094000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+326,1618012029000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+327,1618012005000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+328,1618011960000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+329,1618011917000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+330,1618011814000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+331,1618011785000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+332,1618011776000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+333,1618011775000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+334,1618014468000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+335,1618014394000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+336,1618014267000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+337,1618014246000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+338,1618014240000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+339,1618014236000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+340,1618014230000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+341,1618014225000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+342,1618014220000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+343,1618014214000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+344,1618014180000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+345,1618014141000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+346,1618013141000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+347,1618013042000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+348,1618013036000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+349,1618013019000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+350,1618012979000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+351,1618095699000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+352,1618095571000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+353,1618095514000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+354,1618095478000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+355,1618095435000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+356,1618095081000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+357,1618095039000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+358,1618093483000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+359,1618093144000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+360,1618093112000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+361,1619128689000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+362,1619128675000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+363,1619128636000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+364,1619128486000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+365,1619128192000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+366,1619128115000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+367,1619131894000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+368,1619129587000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+369,1619129466000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+370,1619129331000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+371,1619298193000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+372,1619298143000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+373,1619297062000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+374,1619296833000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+375,1619296595000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+376,1619296583000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+377,1619296569000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+378,1619296537000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+379,1619295822000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+380,1619295524000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+381,1619295497000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+382,1619306811000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+383,1619306806000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+384,1619306801000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+385,1619371692000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+386,1619371565000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+387,1619371472000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+388,1619371461000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+389,1619371425000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+390,1619387789000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+391,1619387448000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+392,1619387078000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+393,1619385956000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+394,1619385873000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+395,1619385701000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+396,1619385643000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+397,1619385385000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+398,1619384868000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+399,1619384787000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+400,1619384774000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+401,1619384766000,7394f9d23bfd74af,ai.elimu.vitabu.test,22,Wild Cat! Wild Cat!,STORYBOOK_OPENED
+402,1619473950000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+403,1619389363000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+404,1619389340000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+405,1619388773000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+406,1619388629000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+407,1619388541000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+408,1619388312000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+409,1619388147000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+410,1619388039000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+411,1619908587000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+412,1619908476000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+413,1619908463000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+414,1620064469000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+415,1620064344000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+416,1620079020000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+417,1620078829000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+418,1620078721000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+419,1620078405000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+420,1620078330000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+421,1620067418000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+422,1620080474000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+423,1621980176000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+424,1622066313000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+425,1622066250000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+426,1622066109000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+427,1622065635000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+428,1621981484000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+429,1621981422000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+430,1621981075000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+431,1621980904000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+432,1621980837000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+433,1621980795000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+434,1621980754000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+435,1621980634000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+436,1621980523000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+437,1621980513000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+438,1622067405000,7394f9d23bfd74af,ai.elimu.vitabu.test,23,The Candy Planet,STORYBOOK_OPENED
+439,1626904520000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+440,1626989563000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+441,1626989260000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+442,1626989132000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+443,1626989113000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+444,1626989089000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+445,1626988759000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+446,1626988372000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+447,1626988075000,7394f9d23bfd74af,ai.elimu.vitabu.test,24,Shoecat Thoocat,STORYBOOK_OPENED
+448,1626988057000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+449,1626988034000,7394f9d23bfd74af,ai.elimu.vitabu.test,30,The Elephant in My House,STORYBOOK_OPENED
+450,1626987981000,7394f9d23bfd74af,ai.elimu.vitabu.test,27,Grace in Space,STORYBOOK_OPENED
+451,1626987963000,7394f9d23bfd74af,ai.elimu.vitabu.test,26,Today I Am,STORYBOOK_OPENED
+452,1626987928000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+453,1626987886000,7394f9d23bfd74af,ai.elimu.vitabu.test,28,Bounthy's Singing Birds,STORYBOOK_OPENED
+454,1631050776000,7394f9d23bfd74af,ai.elimu.vitabu.test,25,Lara the Yellow Ladybird,STORYBOOK_OPENED
+455,1631050765000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED
+456,1631050485000,7394f9d23bfd74af,ai.elimu.vitabu.test,29,Keeper And His Special Nursery,STORYBOOK_OPENED

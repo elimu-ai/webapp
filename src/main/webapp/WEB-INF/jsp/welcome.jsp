@@ -40,7 +40,10 @@
               <h2 class="center"><i class="material-icons medium blue-grey-text">public</i></h2>
               <h4 class="center"><fmt:message key="purpose" /></h4>
 
-              <p class="light center">Worldwide, more than <a href="http://uis.unesco.org/en/news/new-education-data-sdg-4-and-more" target="_blank">64 million children</a> of primary age are out of school.</p>
+              <p class="light center">
+                  Worldwide, more than <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
+                  of primary school age are not achieving minimum proficiency levels in reading &amp; math.
+              </p>
               <p class="light center"><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
             </div>
           </div>
@@ -59,7 +62,7 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">We develop software for teaching children the basics of reading, writing and arithmetic.</p>
+              <p class="light center">We develop Free and Open Source Software (FOSS) for teaching children the basics of reading, writing and arithmetic.</p>
               <p class="light center">An AI tutor guides each child through the necessary steps.</p>
             </div>
           </div>
@@ -71,10 +74,10 @@
     <div class="section">
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Educational Apps & Games</h5>
+                <h5 class="header">Educational Apps & Games 🎲🕹</h5>
                 <p>
-                    A collection of educational Android apps teaches children basic 
-                    literacy and numeracy in a fun and engaging way.    
+                    A collection of educational Android <a href="<spring:url value='/apps' />">apps</a> teaches children 
+                    basic literacy and numeracy in a fun and engaging way.    
                 </p>
                 <p>
                     Each child can learn <i>fully autonomously</i>, without depending on the availability of qualified teachers.  
@@ -92,8 +95,9 @@
                     Each child is guided through the curriculum by our AI tutor <i>Nya</i> and her robot companion.
                 </p>
                 <p>
-                    Nya automatically detects the current knowledge level of the child, and adapts the apps and content 
-                    to best fit the child's current skill level.
+                    Nya automatically detects the current knowledge level of the child, and adapts the 
+                    <a href="<spring:url value='/apps' />">apps</a> and content to best fit the child's current skill 
+                    level.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -103,9 +107,10 @@
         
         <div class="row">
             <div class="col s12 offset-m2 m4">
-                <h5 class="header">Learning Platform</h5>
+                <h5 class="header">Learning Platform 🧩</h5>
                 <p>
-                    The elimu.ai software is a <i>platform</i> of educational content and Android apps.
+                    The elimu.ai software is a <i>platform</i> of educational content and Android 
+                    <a href="<spring:url value='/apps' />">apps/games</a>.
                 </p>
                 <p>
                     Each child is provided with a clear instructional path for learning literacy and numeracy as efficiently as possible.
@@ -129,7 +134,7 @@
                     The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
                 </p>
                 <p>
-                    Anyone is welcome to take the existing code and adapt it to their local needs.
+                    Also, anyone is welcome to take the existing code and <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">adapt</a> it to their local needs.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -182,7 +187,7 @@
                   <h2><i class="material-icons medium">local_shipping</i></h2>
                   <h5><fmt:message key="distribute.the.software" /></h5>
                   
-                  <p>Do you live near a child who does not have access to quality basic education? Help us <a href="https://github.com/elimu-ai/wiki/blob/master/SOFTWARE_ARCHITECTURE.md#distribution">distribute</a> the learning software.</p>
+                  <p>Do you live near a child who does not have access to quality basic education? Help us <a href="https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md#distribution">distribute</a> the learning software.</p>
                 </div>
             </div>
         </div>
@@ -192,7 +197,7 @@
         <div class="section">
             <div class="row">
                 <div class="col s12 offset-m3 m6 center">
-                    <h4>Sign up for updates</h4>
+                    <h4>Sign up for updates ✉️</h4>
                     
                     <form action="https://elimu.us12.list-manage.com/subscribe/post?u=1a69583fdeec7d1888db043c0&amp;id=97b79a9d90" method="post" target="_blank">
                         <div class="input-field col s12">

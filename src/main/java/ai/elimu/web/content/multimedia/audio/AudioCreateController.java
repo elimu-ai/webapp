@@ -10,18 +10,22 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.enums.content.AudioFormat;
-import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.AudioMetadataExtractionHelper;
+import ai.elimu.model.v2.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.content.LiteracySkill;
+import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.audio.AudioMetadataExtractionHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +57,9 @@ public class AudioCreateController {
     private WordDao wordDao;
     
     @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
+    
+    @Autowired
     private EmojiDao emojiDao;
     
     @Autowired
@@ -62,6 +69,7 @@ public class AudioCreateController {
     public String handleRequest(
             Model model,
             @RequestParam(required = false) Long wordId,
+            @RequestParam(required = false) Long storyBookParagraphId,
             @RequestParam(required = false) String autoFillTitle,
             @RequestParam(required = false) String autoFillTranscription
     ) {
@@ -73,6 +81,12 @@ public class AudioCreateController {
         if (wordId != null) {
             Word word = wordDao.read(wordId);
             audio.setWord(word);
+        }
+        
+        // Pre-select the Audio's corresponding StoryBookParagraph
+        if (storyBookParagraphId != null) {
+            StoryBookParagraph storyBookParagraph = storyBookParagraphDao.read(storyBookParagraphId);
+            audio.setStoryBookParagraph(storyBookParagraph);
         }
         
         // Pre-fill the Audio's title
@@ -88,6 +102,7 @@ public class AudioCreateController {
         model.addAttribute("audio", audio);
         
         model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
         
         model.addAttribute("contentLicenses", ContentLicense.values());
         
@@ -155,6 +170,7 @@ public class AudioCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("words", wordDao.readAllOrdered());
+            model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
             
             model.addAttribute("contentLicenses", ContentLicense.values());
             
@@ -176,10 +192,21 @@ public class AudioCreateController {
             audioContributionEvent.setTime(Calendar.getInstance());
             audioContributionEvent.setAudio(audio);
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-            audioContributionEvent.setComment(request.getParameter("contributionComment"));
+            audioContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Audio created: " + contentUrl, 
+                        "\"" + audio.getTranscription() + "\"",
+                        "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

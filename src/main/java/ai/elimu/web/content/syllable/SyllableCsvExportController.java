@@ -1,7 +1,7 @@
 package ai.elimu.web.content.syllable;
 
 import ai.elimu.dao.SyllableDao;
-import ai.elimu.model.content.Allophone;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Syllable;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -33,19 +33,19 @@ public class SyllableCsvExportController {
         logger.info("handleRequest");
         
         // Generate CSV file
-        String csvFileContent = "id,text,allophone_ids,usage_count" + "\n";
+        String csvFileContent = "id,text,sound_ids,usage_count" + "\n";
         List<Syllable> syllables = syllableDao.readAllOrderedByUsage();
         logger.info("syllables.size(): " + syllables.size());
         for (Syllable syllable : syllables) {
-            long[] allophoneIdsArray = new long[syllable.getAllophones().size()];
+            long[] soundIdsArray = new long[syllable.getSounds().size()];
             int index = 0;
-            for (Allophone allophone : syllable.getAllophones()) {
-                allophoneIdsArray[index] = allophone.getId();
+            for (Sound sound : syllable.getSounds()) {
+                soundIdsArray[index] = sound.getId();
                 index++;
             }
             csvFileContent += syllable.getId() + ","
                     + "\"" + syllable.getText() + "\","
-                    + Arrays.toString(allophoneIdsArray) + ","
+                    + Arrays.toString(soundIdsArray) + ","
                     + syllable.getUsageCount() + "\n";
         }
         

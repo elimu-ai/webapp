@@ -13,9 +13,13 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.ReadingLevel;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.model.v2.enums.ReadingLevel;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -94,9 +98,25 @@ public class StoryBookCreateController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment(request.getParameter("contributionComment"));
+            storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+                String embedThumbnailUrl = null;
+                if (storyBook.getCoverImage() != null) {
+                    embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+                }
+                DiscordHelper.sendChannelMessage(
+                        "Storybook created: " + contentUrl,
+                        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                        null,
+                        embedThumbnailUrl
+                );
+            }
             
             return "redirect:/content/storybook/list#" + storyBook.getId();
         }

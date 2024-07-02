@@ -13,8 +13,9 @@ import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.DiscordHelper;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
 import org.apache.logging.log4j.LogManager;
@@ -69,20 +70,6 @@ public class ApplicationVersionCreateController {
     ) {
     	logger.info("handleSubmit");
         
-        logger.info("applicationVersion.getVersionCode(): " + applicationVersion.getVersionCode());
-        if (applicationVersion.getVersionCode() == null) {
-            result.rejectValue("versionCode", "NotNull");
-        } else {
-            // Verify that the versionCode is higher than previous ones
-            List<ApplicationVersion> existingApplicationVersions = applicationVersionDao.readAll(applicationVersion.getApplication());
-            for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
-                if (existingApplicationVersion.getVersionCode() >= applicationVersion.getVersionCode()) {
-                    result.rejectValue("versionCode", "TooLow");
-                    break;
-                }
-            }
-        }
-        
         if (multipartFile.isEmpty()) {
             result.rejectValue("bytes", "NotNull");
         } else {
@@ -111,6 +98,26 @@ public class ApplicationVersionCreateController {
                     
                     ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
                     ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
+                    
+                    String packageName = apkMeta.getPackageName();
+                    logger.info("packageName: " + packageName);
+                    if (!packageName.equals(applicationVersion.getApplication().getPackageName())) {
+                        result.reject("packageName.mismatch");
+                    }
+                    
+                    Integer versionCode = apkMeta.getVersionCode().intValue();
+                    logger.info("versionCode: " + versionCode);
+
+                    // Verify that the versionCode is higher than previous ones
+                    List<ApplicationVersion> existingApplicationVersions = applicationVersionDao
+                            .readAll(applicationVersion.getApplication());
+                    for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
+                        if (existingApplicationVersion.getVersionCode() >= versionCode) {
+                            result.rejectValue("versionCode", "TooLow");
+                            break;
+                        }
+                    }
+                    applicationVersion.setVersionCode(versionCode);
                     
                     String versionName = apkMeta.getVersionName();
                     logger.info("versionName: " + versionName);
@@ -152,7 +159,15 @@ public class ApplicationVersionCreateController {
             }
             applicationDao.update(application);
             
-            return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId();
+            DiscordHelper.sendChannelMessage(
+                    "A new Application version (`.apk`) was uploaded:",
+                    application.getPackageName(),
+                    "Version: `" + applicationVersion.getVersionName() + "`",
+                    null,
+                    null
+            );
+            
+            return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId() + "#versions";
         }
     }
     

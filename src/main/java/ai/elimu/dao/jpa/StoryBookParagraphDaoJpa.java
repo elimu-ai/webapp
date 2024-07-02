@@ -3,6 +3,7 @@ package ai.elimu.dao.jpa;
 import ai.elimu.dao.StoryBookParagraphDao;
 import java.util.List;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.StoryBookChapter;
@@ -26,7 +27,7 @@ public class StoryBookParagraphDaoJpa extends GenericDaoJpa<StoryBookParagraph> 
         return em.createQuery(
             "SELECT paragraph " +
             "FROM StoryBookParagraph paragraph " +
-            "WHERE paragraph.originalText LIKE '%" + wordText + "%' " +
+            "WHERE paragraph.originalText LIKE '% " + StringEscapeUtils.escapeSql(wordText) + " %' " +
             "ORDER BY paragraph.storyBookChapter.id, paragraph.sortOrder")
             .getResultList();
     }

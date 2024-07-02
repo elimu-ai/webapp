@@ -12,7 +12,10 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.model.enums.Platform;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -105,9 +108,25 @@ public class StoryBookParagraphCreateController {
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment("Created storybook paragraph (🤖 auto-generated comment)");
+            storyBookContributionEvent.setComment("Created storybook paragraph in chapter " + (storyBookParagraph.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+                String embedThumbnailUrl = null;
+                if (storyBook.getCoverImage() != null) {
+                    embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+                }
+                DiscordHelper.sendChannelMessage(
+                        "Storybook paragraph created: " + contentUrl,
+                        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                        null,
+                        embedThumbnailUrl
+                );
+            }
             
             // Refresh the REST API cache
             storyBooksJsonService.refreshStoryBooksJSONArray();

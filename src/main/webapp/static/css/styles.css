@@ -79,6 +79,7 @@ footer.page-footer .footer-copyright {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-color: #ede7f6; /* deep-purple lighten-5 */
 }
 .card.image .card-content > p,
 .card.storyBook .card-content > p {
@@ -87,7 +88,8 @@ footer.page-footer .footer-copyright {
     text-overflow: ellipsis;
 }
 .card.image .card-title,
-.card.storyBook .card-title {
+.card.storyBook .card-title,
+.card.contributor .card-title {
     text-shadow: 1px 1px rgba(0,0,0, .8), 
         0 -0.5rem 1.5rem rgba(0,0,0, .4), 
         1rem 0 1.5rem rgba(0,0,0, .4), 
@@ -99,10 +101,11 @@ footer.page-footer .footer-copyright {
 .card-panel {
     border-radius: 8px;
 }
-.card .card-image {
+.card .card-image,
+.card .card-image img {
     border-radius: 8px 8px 0 0;
 }
-.card .card-action {
+.card .card-action:last-child {
     border-radius: 0 0 8px 8px;
 }
 .btn,
@@ -122,6 +125,14 @@ footer.page-footer .footer-copyright {
 .btn-large:hover,
 .btn-large:focus {
     background-color: #9575cd;
+}
+
+.btn.tokenButton {
+    border-radius: 32px;
+    background: linear-gradient(135deg, #b39ddb 0%, #9575cd 100%); /* deep-purple lighten-3 --> #9575cd deep-purple lighten-2 */
+}
+.nav-wrapper .btn.tokenButton {
+    background: linear-gradient(135deg, rgba(255,255,255, .4) 0%, rgba(255,255,255, .2) 100%);
 }
 
 .collection {
@@ -178,4 +189,23 @@ a,
 [type="checkbox"]:checked + label:before {
   border-right: 2px solid #9575cd;
   border-bottom: 2px solid #9575cd;
+}
+
+blockquote {
+    border-color: #9575cd; /* deep-purple lighten-2 */
+}
+
+form {
+    position: relative;
+}
+#formLoadingOverlay {
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.8);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+}
+#formLoadingOverlay > .preloader-wrapper {
+    top: 50%;
 }

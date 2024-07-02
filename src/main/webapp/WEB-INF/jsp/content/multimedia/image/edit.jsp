@@ -13,6 +13,7 @@
             <form:hidden path="imageFormat" value="${image.imageFormat}" />
             <form:hidden path="contentType" value="${image.contentType}" />
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
+            <input type="hidden" name="timeStart" value="${timeStart}" />
             
             <img 
                 src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />"
@@ -83,6 +84,13 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                </div>
+            </div>
 
             <button id="submitButton" class="btn waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
@@ -91,6 +99,52 @@
                 <a href="<spring:url value='/content/multimedia/image/delete/${image.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
             </sec:authorize>
         </form:form>
+    </div>
+    
+    <div class="divider" style="margin: 2em 0;"></div>
+    
+    <%-- TODO: peer-review event form --%>
+    
+    <a name="contribution-events"></a>
+    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
+    <div id="contributionEvents" class="collection">
+        <c:forEach var="imageContributionEvent" items="${imageContributionEvents}">
+            <div class="collection-item">
+                <span class="badge">
+                    <fmt:message key="revision" /> #${imageContributionEvent.revisionNumber} 
+                    (<fmt:formatNumber maxFractionDigits="0" value="${imageContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
+                    <fmt:formatDate value="${imageContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                </span>
+                <a href="<spring:url value='/content/contributor/${imageContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty imageContributionEvent.contributor.imageUrl}">
+                                <img src="${imageContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty imageContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${imageContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty imageContributionEvent.contributor.firstName}">
+                                <c:out value="${imageContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${imageContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty imageContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(imageContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(imageContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
+                <c:if test="${not empty imageContributionEvent.comment}">
+                    <blockquote><c:out value="${imageContributionEvent.comment}" /></blockquote>
+                </c:if>
+                
+                <%-- TODO: peer-review events --%>
+            </div>
+        </c:forEach>
     </div>
 </content:section>
 
@@ -124,7 +178,7 @@
             <div class="chip" data-letterid="${letter.id}">
                 ${letter.text} 
                 <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>
@@ -204,7 +258,7 @@
                     ${number.value}<c:if test="${not empty number.symbol}"> (${number.symbol})</c:if>
                 </a>
                 <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>
@@ -284,7 +338,7 @@
                     ${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" />
                 </a>
                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>

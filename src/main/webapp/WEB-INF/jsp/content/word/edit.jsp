@@ -52,74 +52,75 @@
                 
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="letter.to.allophone.mappings" /></label><br />
+                    <label><fmt:message key="letter.sound.correspondences" /></label><br />
                     
-                    <div id="letterToAllophoneMappingsContainer">
-                        <c:forEach var="letterToAllophoneMapping" items="${word.letterToAllophoneMappings}">
-                            <input name="letterToAllophoneMappings" type="hidden" value="${letterToAllophoneMapping.id}" />
+                    <div id="letterSoundCorrespondencesContainer">
+                        <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
+                            <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
                             <div class="chip">
-                                <a href="#" class="letterToAllophoneMappingDeleteLink" data-letter-to-allophone-mapping-id="${letterToAllophoneMapping.id}">
-                                    <i class="material-icons">clear</i>
+                                <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-sound-correspondence-id="${letterSoundCorrespondence.id}">
+                                    <i class="close material-icons">clear</i>
                                 </a>
-                                <a href="<spring:url value='/content/letter-to-allophone-mapping/edit/${letterToAllophoneMapping.id}' />">
-                                    "<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">
-                                        ${letter.text}
-                                    </c:forEach>"<br />
+                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
+                                    " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                        ${letter.text}<c:out value=" " />
+                                    </c:forEach> "<br />
                                     ↓<br />
-                                    /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">
-                                        ${allophone.valueIpa}
-                                    </c:forEach>/
+                                    / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                        ${sound.valueIpa}<c:out value=" " />
+                                    </c:forEach> /
                                 </a>
                             </div>
                         </c:forEach>
                         <script>
                             $(function() {
-                                $('.letterToAllophoneMappingDeleteLink').on("click", function() {
-                                    console.log('.letterToAllophoneMappingDeleteLink on click');
+                                $('.letterSoundCorrespondenceDeleteLink').on("click", function() {
+                                    console.log('.letterSoundCorrespondenceDeleteLink on click');
                                     
-                                    var letterToAllophoneMappingId = $(this).attr("data-letter-to-allophone-mapping-id");
-                                    console.log('letterToAllophoneMappingId: ' + letterToAllophoneMappingId);
+                                    var letterSoundCorrespondenceId = $(this).attr("data-letter-sound-correspondence-id");
+                                    console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
                                     
                                     $(this).parent().remove();
                                     
-                                    var $hiddenInput = $('input[name="letterToAllophoneMappings"][value="' + letterToAllophoneMappingId + '"]');
+                                    var $hiddenInput = $('input[name="letterSoundCorrespondences"][value="' + letterSoundCorrespondenceId + '"]');
                                     $hiddenInput.remove();
                                 });
                             });
                         </script>
                     </div>
 
-                    <select id="letterToAllophoneMappings" class="browser-default" style="margin: 0.5em 0;">
+                    <select id="letterSoundCorrespondences" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="letterToAllophoneMapping" items="${letterToAllophoneMappings}">
-                            <option value="${letterToAllophoneMapping.id}" data-letters="<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterToAllophoneMapping.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterToAllophoneMapping.allophones}">${allophone.valueIpa}</c:forEach>/</option>
+                        <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
+                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}</c:forEach>">" <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}<c:out value=" " /></c:forEach> " → / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}<c:out value=" " /></c:forEach> /</option>
                         </c:forEach>
                     </select>
                     <script>
                         $(function() {
-                            $('#letterToAllophoneMappings').on("change", function() {
-                                console.log('#letterToAllophoneMappings on change');
+                            $('#letterSoundCorrespondences').on("change", function() {
+                                console.log('#letterSoundCorrespondences on change');
                                 
-                                var letterToAllophoneMappingId = $(this).val();
-                                console.log('letterToAllophoneMappingId: ' + letterToAllophoneMappingId);
-                                var selectedOption = $(this).find('option[value="' + letterToAllophoneMappingId + '"]');
-                                var letterToAllophoneMappingLetters = selectedOption.attr('data-letters');
-                                console.log('letterToAllophoneMappingLetters "' + letterToAllophoneMappingLetters + '"');
-                                var letterToAllophoneMappingAllophones = selectedOption.attr('data-allophones');
-                                console.log('letterToAllophoneMappingAllophones "' + letterToAllophoneMappingAllophones + '"');
-                                if (letterToAllophoneMappingId != "") {
-                                    $('#letterToAllophoneMappingsContainer').append('<input name="letterToAllophoneMappings" type="hidden" value="' + letterToAllophoneMappingId + '" />');
-                                    $('#letterToAllophoneMappingsContainer').append('<div class="chip">"' + letterToAllophoneMappingLetters + '"<br />↓<br />/' + letterToAllophoneMappingAllophones + '/</div>');
+                                var letterSoundCorrespondenceId = $(this).val();
+                                console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
+                                var selectedOption = $(this).find('option[value="' + letterSoundCorrespondenceId + '"]');
+                                var letterSoundCorrespondenceLetters = selectedOption.attr('data-letters');
+                                console.log('letterSoundCorrespondenceLetters: "' + letterSoundCorrespondenceLetters + '"');
+                                var letterSoundCorrespondenceSounds = selectedOption.attr('data-sounds');
+                                console.log('letterSoundCorrespondenceSounds: "' + letterSoundCorrespondenceSounds + '"');
+                                if (letterSoundCorrespondenceId != "") {
+                                    $('#letterSoundCorrespondencesContainer').append('<input name="letterSoundCorrespondences" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
+                                    $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceSounds + '/</div>');
                                     $(this).val("");
                                 }
                             });
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter-to-allophone-mapping/create' />" target="_blank"><fmt:message key="add.letter.to.allophone.mapping" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter-sound/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
+            <%--
             <div class="row">
                 <div class="input-field col s12">
                     <select id="spellingConsistency" name="spellingConsistency">
@@ -131,6 +132,7 @@
                     <label for="spellingConsistency"><fmt:message key="spelling.consistency" /></label>
                 </div>
             </div>
+            --%>
                 
             <div class="row">
                 <div class="input-field col s12">
@@ -159,7 +161,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <label for="contributionComment"><fmt:message key='comment' /></label>
-                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
@@ -230,27 +232,68 @@
     <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
+            <a name="contribution-event_${wordContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
                     <fmt:message key="revision" /> #${wordContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <div class="chip">
-                    <img src="<spring:url value='${wordContributionEvent.contributor.imageUrl}' />" alt="${wordContributionEvent.contributor.firstName}" /> 
-                    <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
-                </div>
-                <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+                <a href="<spring:url value='/content/contributor/${wordContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty wordContributionEvent.contributor.imageUrl}">
+                                <img src="${wordContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty wordContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${wordContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty wordContributionEvent.contributor.firstName}">
+                                <c:out value="${wordContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${wordContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty wordContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(wordContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(wordContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
+                <c:if test="${not empty wordContributionEvent.comment}">
+                    <blockquote><c:out value="${wordContributionEvent.comment}" /></blockquote>
+                </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">
                     <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
-                        <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <div class="chip">
-                                    <img src="<spring:url value='${wordPeerReviewEvent.contributor.imageUrl}' />" alt="${wordPeerReviewEvent.contributor.firstName}" /> 
-                                    <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
-                                </div>
+                                <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${wordPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${wordPeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(wordPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col s4">
                                 <code class="peerReviewStatus">
@@ -268,9 +311,7 @@
                                 <fmt:formatDate value="${wordPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty wordPeerReviewEvent.comment}">
-                                <div class="col s12">
-                                    "<c:out value="${wordPeerReviewEvent.comment}" />"
-                                </div>
+                                <div class="col s12 comment"><c:out value="${wordPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
@@ -286,15 +327,15 @@
         <c:when test="${empty audios}">
             <div class="card-panel amber lighten-3">
                 <b>Warning:</b> This word has no corresponding audio.<br />
-                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=word_${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
             </div>
         </c:when>
         <c:otherwise>
-            <c:forEach var="audio" items="${audios}">
-                <audio controls="true">
+            <c:forEach var="audio" items="${audios}" varStatus="status">
+                <audio controls="true"<c:if test="${status.index == 0}"> autoplay="true"</c:if>>
                     <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
                 </audio>
-                <div class="right" style="margin-bottom: 1rem; font-size: 0.8rem;">
+                <div style="margin-bottom: 1rem; font-size: 0.8rem;">
                     <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />" target="_blank">
                         <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
                     </a>
@@ -322,24 +363,6 @@
             </ol>
         </div>
     </c:if>
-    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
-        <c:if test="${not empty word.text}">
-            <div class="divider" style="margin: 1.5em 0;"></div>
-        </c:if>
-
-        <h5 class="center"><fmt:message key="resources" /></h5>
-        <div class="card-panel deep-purple lighten-5">
-            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
-            <ol style="list-style-type: inherit;">
-                <li>
-                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
-                </li>
-                <li>
-                    <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
-                </li>
-            </ol>
-        </div>
-    </c:if>
     <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
         <c:if test="${not empty word.text}">
             <div class="divider" style="margin: 1.5em 0;"></div>
@@ -359,12 +382,44 @@
                     <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
                 </li>
             </ol>
-            
-            <div class="divider" style="margin: 1.5em 0;"></div>
         </div>
     </c:if>
-    
-    <div class="divider" style="margin: 1.5em 0;"></div>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin: 1.5em 0;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'SWA'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin: 1.5em 0;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#sw" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=sw&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
     
     <div class="card-panel deep-purple lighten-5">
         General resources:
@@ -373,7 +428,7 @@
                 <a href="<spring:url value='/content/word/pending' />"><fmt:message key="words.pending" /></a>
             </li>
             <li>
-                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
+                <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
             </li>
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
@@ -402,10 +457,16 @@
     <h5 class="center"><fmt:message key="labeled.content" /></h5>
     
     <b><fmt:message key="audios" /></b><br />
+    <div id="labeledAudios">
+        // TODO
+    </div>
     <br />
     
     <b><fmt:message key="emojis" /></b><br />
     <div id="labeledEmojis">
+        <c:if test="${empty labeledEmojis}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="emoji" items="${labeledEmojis}">
             <a href="<spring:url value='/content/emoji/edit/${emoji.id}' />">
                 <span style="font-size: 6em;">${emoji.glyph}</span>
@@ -416,6 +477,9 @@
     
     <b><fmt:message key="images" /></b><br />
     <div id="labeledImages">
+        <c:if test="${empty labeledImages}">
+            <fmt:message key="none" />
+        </c:if>
         <c:forEach var="image" items="${labeledImages}">
             <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
                 <img src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
@@ -425,4 +489,19 @@
     <br />
     
     <b><fmt:message key="videos" /></b><br />
+    <div id="labeledVideos">
+        // TODO
+    </div>
+    <br />
+    
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
+    <h5 class="center"><fmt:message key="storybook.paragraphs.containing.word" /> (${fn:length(storyBookParagraphsContainingWord)})</h5>
+    <c:forEach var="storyBookParagraph" items="${storyBookParagraphsContainingWord}">
+        <p>
+            <c:set var="wordTextInBold" value="<span class='diff-highlight'>${word.text}</span>" />
+             "${fn:replace(storyBookParagraph.originalText, word.text, wordTextInBold)}"<br />
+            <a href="<spring:url value='/content/storybook/edit/${storyBookParagraph.storyBookChapter.storyBook.id}#ch-id-${storyBookParagraph.storyBookChapter.id}' />" target="_blank"><c:out value="${storyBookParagraph.storyBookChapter.storyBook.title}" /></a>
+        </p>
+    </c:forEach>
 </content:aside>

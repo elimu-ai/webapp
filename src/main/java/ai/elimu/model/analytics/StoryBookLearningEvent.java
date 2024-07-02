@@ -1,22 +1,41 @@
 package ai.elimu.model.analytics;
 
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.analytics.LearningEventType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class StoryBookLearningEvent extends LearningEvent {
     
+    @NotNull
+    private Long storyBookId;
+    
+    @NotNull
+    private String storyBookTitle;
+    
+    /**
+     * This field will only be populated if a corresponding {@link StoryBook} can be 
+     * found in the database for the {@link #storyBookId}.
+     */
     @ManyToOne
     private StoryBook storyBook;
     
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private LearningEventType learningEventType;
+    public Long getStoryBookId() {
+        return storyBookId;
+    }
+
+    public void setStoryBookId(Long storyBookId) {
+        this.storyBookId = storyBookId;
+    }
+
+    public String getStoryBookTitle() {
+        return storyBookTitle;
+    }
+
+    public void setStoryBookTitle(String storyBookTitle) {
+        this.storyBookTitle = storyBookTitle;
+    }
 
     public StoryBook getStoryBook() {
         return storyBook;
@@ -24,13 +43,5 @@ public class StoryBookLearningEvent extends LearningEvent {
 
     public void setStoryBook(StoryBook storyBook) {
         this.storyBook = storyBook;
-    }
-
-    public LearningEventType getLearningEventType() {
-        return learningEventType;
-    }
-
-    public void setLearningEventType(LearningEventType learningEventType) {
-        this.learningEventType = learningEventType;
     }
 }

@@ -6,7 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import ai.elimu.model.enums.content.VideoFormat;
+import ai.elimu.model.v2.enums.content.VideoFormat;
 
 @Entity
 public class Video extends Multimedia {

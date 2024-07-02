@@ -42,6 +42,16 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <select id="storyBookParagraph" name="storyBookParagraph">
+                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <c:forEach var="storyBookParagraph" items="${storyBookParagraphs}">
+                            <option value="${storyBookParagraph.id}" <c:if test="${storyBookParagraph.id == audio.storyBookParagraph.id}">selected="selected"</c:if>>${storyBookParagraph.id} (<c:out value="${storyBookParagraph.storyBookChapter.storyBook.title}" />)</option>
+                        </c:forEach>
+                    </select>
+                    <label for="storyBookParagraph"><fmt:message key="storybook.paragraph" /></label>
+                </div>
+                
+                <div class="input-field col s12">
                     <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>
@@ -107,7 +117,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <label for="contributionComment"><fmt:message key='comment' /></label>
-                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
@@ -161,7 +171,7 @@
             
             <div id="peerReviewSubmitContainer" style="display: none;">
                 <label for="comment"><fmt:message key="comment" /></label>
-                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+                <textarea id="comment" name="comment" class="materialize-textarea" maxlength="1000"></textarea>
 
                 <button class="btn waves-effect waves-light" type="submit">
                     <fmt:message key="submit" /> <i class="material-icons right">send</i>
@@ -182,21 +192,61 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${audioContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${audioContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <div class="chip">
-                    <img src="<spring:url value='${audioContributionEvent.contributor.imageUrl}' />" alt="${audioContributionEvent.contributor.firstName}" /> 
-                    <c:out value="${audioContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${audioContributionEvent.contributor.lastName}" />
-                </div>
-                <blockquote><c:out value="${audioContributionEvent.comment}" /></blockquote>
+                <a href="<spring:url value='/content/contributor/${audioContributionEvent.contributor.id}' />">
+                    <div class="chip">
+                        <c:choose>
+                            <c:when test="${not empty audioContributionEvent.contributor.imageUrl}">
+                                <img src="${audioContributionEvent.contributor.imageUrl}" />
+                            </c:when>
+                            <c:when test="${not empty audioContributionEvent.contributor.providerIdWeb3}">
+                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${audioContributionEvent.contributor.providerIdWeb3}" />" />
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${not empty audioContributionEvent.contributor.firstName}">
+                                <c:out value="${audioContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${audioContributionEvent.contributor.lastName}" />
+                            </c:when>
+                            <c:when test="${not empty audioContributionEvent.contributor.providerIdWeb3}">
+                                ${fn:substring(audioContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(audioContributionEvent.contributor.providerIdWeb3, 38, 42)}
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </a>
+                <c:if test="${not empty audioContributionEvent.comment}">
+                    <blockquote><c:out value="${audioContributionEvent.comment}" /></blockquote>
+                </c:if>
                 
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="audioPeerReviewEvent" items="${audioPeerReviewEvents}">
                     <c:if test="${audioPeerReviewEvent.audioContributionEvent.id == audioContributionEvent.id}">
-                        <div class="row peerReviewEvent" data-approved="${audioPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${audioPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <div class="chip">
-                                    <img src="<spring:url value='${audioPeerReviewEvent.contributor.imageUrl}' />" alt="${audioPeerReviewEvent.contributor.firstName}" /> 
-                                    <c:out value="${audioPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${audioPeerReviewEvent.contributor.lastName}" />
-                                </div>
+                                <a href="<spring:url value='/content/contributor/${audioPeerReviewEvent.contributor.id}' />">
+                                    <div class="chip">
+                                        <c:choose>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.imageUrl}">
+                                                <img src="${audioPeerReviewEvent.contributor.imageUrl}" />
+                                            </c:when>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.providerIdWeb3}">
+                                                <img src="http://62.75.236.14:3000/identicon/<c:out value="${audioPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.firstName}">
+                                                <c:out value="${audioPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${audioPeerReviewEvent.contributor.lastName}" />
+                                            </c:when>
+                                            <c:when test="${not empty audioPeerReviewEvent.contributor.providerIdWeb3}">
+                                                ${fn:substring(audioPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(audioPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
+                                            </c:when>
+                                        </c:choose>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col s4">
                                 <code class="peerReviewStatus">
@@ -214,9 +264,7 @@
                                 <fmt:formatDate value="${audioPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty audioPeerReviewEvent.comment}">
-                                <div class="col s12">
-                                    "<c:out value="${audioPeerReviewEvent.comment}" />"
-                                </div>
+                                <div class="col s12 comment"><c:out value="${audioPeerReviewEvent.comment}" /></div>
                             </c:if>
                         </div>
                     </c:if>
@@ -246,7 +294,7 @@
             <div class="chip" data-letterid="${letter.id}">
                 ${letter.text} 
                 <a href="#" class="letterDeleteLink" data-letterid="${letter.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>
@@ -326,7 +374,7 @@
                     ${number.value}<c:if test="${not empty number.symbol}"> (${number.symbol})</c:if>
                 </a>
                 <a href="#" class="numberDeleteLink" data-numberid="${number.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>
@@ -406,7 +454,7 @@
                     ${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if>
                 </a>
                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>

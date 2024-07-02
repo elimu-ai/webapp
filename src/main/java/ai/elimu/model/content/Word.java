@@ -1,6 +1,5 @@
 package ai.elimu.model.content;
 
-import ai.elimu.model.enums.PeerReviewStatus;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,22 +8,22 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
-import ai.elimu.model.enums.content.SpellingConsistency;
-import ai.elimu.model.enums.content.WordType;
+import ai.elimu.model.v2.enums.content.SpellingConsistency;
+import ai.elimu.model.v2.enums.content.WordType;
 import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Word extends Content {
 
-    @Deprecated // TODO: replace with list of LetterToAllophoneMappings
+    @Deprecated // TODO: replace with list of LetterSoundCorrespondences
     @NotNull
     private String text;
     
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<LetterToAllophoneMapping> letterToAllophoneMappings;
+    private List<LetterSoundCorrespondence> letterSoundCorrespondences;
     
     /**
      * As an example, the verb "reading" will be linked to the root verb "read".
@@ -38,9 +37,6 @@ public class Word extends Content {
 //    @NotNull
     @Enumerated(EnumType.STRING)
     private SpellingConsistency spellingConsistency;
-    
-    @Enumerated(EnumType.STRING)
-    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
 
     @Deprecated
     public String getText() {
@@ -52,12 +48,12 @@ public class Word extends Content {
         this.text = text;
     }
     
-    public List<LetterToAllophoneMapping> getLetterToAllophoneMappings() {
-        return letterToAllophoneMappings;
+    public List<LetterSoundCorrespondence> getLetterSoundCorrespondences() {
+        return letterSoundCorrespondences;
     }
 
-    public void setLetterToAllophoneMappings(List<LetterToAllophoneMapping> letterToAllophoneMappings) {
-        this.letterToAllophoneMappings = letterToAllophoneMappings;
+    public void setLetterSoundCorrespondences(List<LetterSoundCorrespondence> letterSoundCorrespondences) {
+        this.letterSoundCorrespondences = letterSoundCorrespondences;
     }
     
     public Word getRootWord() {
@@ -82,13 +78,5 @@ public class Word extends Content {
 
     public void setSpellingConsistency(SpellingConsistency spellingConsistency) {
         this.spellingConsistency = spellingConsistency;
-    }
-    
-    public PeerReviewStatus getPeerReviewStatus() {
-        return peerReviewStatus;
-    }
-
-    public void setPeerReviewStatus(PeerReviewStatus peerReviewStatus) {
-        this.peerReviewStatus = peerReviewStatus;
     }
 }

@@ -43,7 +43,7 @@
                 <a href="https://emojipedia.org/<c:out value='${emoji.glyph}' />" target="_blank">📙 Emojipedia</a>
             </li>
             <li>
-                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md#" target="_blank">elimu.ai Wiki: Localization</a>
+                <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md#" target="_blank">elimu.ai Wiki: Localization</a>
             </li>
         </ul>
     </div>
@@ -63,7 +63,7 @@
                     ${word.text}<c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" />
                 </a>
                 <a href="#" class="wordDeleteLink" data-wordid="${word.id}">
-                    <i class="material-icons">clear</i>
+                    <i class="close material-icons">clear</i>
                 </a>
             </div>
         </c:forEach>

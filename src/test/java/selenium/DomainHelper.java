@@ -1,6 +1,6 @@
 package selenium;
 
-import ai.elimu.model.enums.Language;
+import ai.elimu.model.v2.enums.Language;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -14,7 +14,7 @@ public class DomainHelper {
     
     public static String getBaseUrl() {
         // Read property set on the command line: 
-        //    mvn clean verify -P regression-testing-rest -D base.url=http://eng.test.elimu.ai
+        //    mvn clean verify -P regression-testing-rest -D base.url=https://eng.test.elimu.ai
         String baseUrlSystemProperty = System.getProperty("base.url");
         logger.info("baseUrlSystemProperty: \"" + baseUrlSystemProperty + "\"");
         
@@ -30,7 +30,7 @@ public class DomainHelper {
                 String contentLanguageProperty = properties.getProperty("content.language");
                 logger.info("contentLanguageProperty: \"" + contentLanguageProperty + "\"");
                 Language language = Language.valueOf(contentLanguageProperty);
-                baseUrl = "http://" + language.toString().toLowerCase() + ".test.elimu.ai";
+                baseUrl = "https://" + language.toString().toLowerCase() + ".test.elimu.ai";
             } catch (IOException ex) {
                 logger.error(ex);
             }

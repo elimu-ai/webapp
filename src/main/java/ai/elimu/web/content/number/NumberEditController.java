@@ -8,12 +8,16 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.NumberPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +45,9 @@ public class NumberEditController {
     private NumberContributionEventDao numberContributionEventDao;
     
     @Autowired
+    private NumberPeerReviewEventDao numberPeerReviewEventDao;
+    
+    @Autowired
     private WordDao wordDao;
     
     @Autowired
@@ -61,6 +68,7 @@ public class NumberEditController {
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         
         model.addAttribute("numberContributionEvents", numberContributionEventDao.readAll(number));
+        model.addAttribute("numberPeerReviewEvents", numberPeerReviewEventDao.readAll(number));
 
         return "content/number/edit";
     }
@@ -88,6 +96,7 @@ public class NumberEditController {
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             
             model.addAttribute("numberContributionEvents", numberContributionEventDao.readAll(number));
+            model.addAttribute("numberPeerReviewEvents", numberPeerReviewEventDao.readAll(number));
             
             return "content/number/edit";
         } else {
@@ -102,7 +111,19 @@ public class NumberEditController {
             numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
             numberContributionEvent.setComment(request.getParameter("contributionComment"));
             numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + number.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Number edited: " + contentUrl,
+                        String.valueOf(numberContributionEvent.getNumber().getValue()),
+                        "Comment: \"" + numberContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/number/list#" + number.getId();
         }

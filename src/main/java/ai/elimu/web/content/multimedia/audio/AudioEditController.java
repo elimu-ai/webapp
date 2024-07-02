@@ -15,6 +15,7 @@ import ai.elimu.dao.AudioPeerReviewEventDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
@@ -25,10 +26,12 @@ import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.enums.content.AudioFormat;
-import ai.elimu.model.enums.content.LiteracySkill;
-import ai.elimu.model.enums.content.NumeracySkill;
-import ai.elimu.util.AudioMetadataExtractionHelper;
+import ai.elimu.model.v2.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.content.LiteracySkill;
+import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.audio.AudioMetadataExtractionHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +77,9 @@ public class AudioEditController {
     private WordDao wordDao;
     
     @Autowired
+    private StoryBookParagraphDao storyBookParagraphDao;
+    
+    @Autowired
     private EmojiDao emojiDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -85,6 +91,7 @@ public class AudioEditController {
         Audio audio = audioDao.read(id);
         model.addAttribute("audio", audio);
         model.addAttribute("words", wordDao.readAllOrdered());
+        model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
         model.addAttribute("contentLicenses", ContentLicense.values());
         model.addAttribute("literacySkills", LiteracySkill.values());
         model.addAttribute("numeracySkills", NumeracySkill.values());
@@ -156,6 +163,7 @@ public class AudioEditController {
         if (result.hasErrors()) {
             model.addAttribute("audio", audio);
             model.addAttribute("words", wordDao.readAllOrdered());
+            model.addAttribute("storyBookParagraphs", storyBookParagraphDao.readAll());
             model.addAttribute("contentLicenses", ContentLicense.values());
             model.addAttribute("literacySkills", LiteracySkill.values());
             model.addAttribute("numeracySkills", NumeracySkill.values());
@@ -181,10 +189,21 @@ public class AudioEditController {
             audioContributionEvent.setTime(Calendar.getInstance());
             audioContributionEvent.setAudio(audio);
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-            audioContributionEvent.setComment(request.getParameter("contributionComment"));
+            audioContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/audio/edit/" + audio.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Audio edited: " + contentUrl, 
+                        "\"" + audio.getTranscription() + "\"",
+                        "Comment: \"" + audioContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/multimedia/audio/list#" + audio.getId();
         }

@@ -1,7 +1,7 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.LetterToAllophoneMapping;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -44,7 +44,7 @@ public class WordCsvExportController {
                 .withHeader(
                         "id",
                         "text",
-                        "letter_to_allophone_mappings",
+                        "letter_sound_correspondences",
                         "usage_count",
                         "word_type",
                         "spelling_consistency",
@@ -57,23 +57,23 @@ public class WordCsvExportController {
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
             
-            JSONArray letterToAllophoneMappingsJsonArray = new JSONArray();
+            JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
             int index = 0;
-            for (LetterToAllophoneMapping letterToAllophoneMapping : word.getLetterToAllophoneMappings()) {
-                JSONObject letterToAllophoneMappingJsonObject = new JSONObject();
-                letterToAllophoneMappingJsonObject.put("id", letterToAllophoneMapping.getId());
-                String[] lettersArray = new String[letterToAllophoneMapping.getLetters().size()];
+            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+                JSONObject letterSoundCorrespondenceJsonObject = new JSONObject();
+                letterSoundCorrespondenceJsonObject.put("id", letterSoundCorrespondence.getId());
+                String[] lettersArray = new String[letterSoundCorrespondence.getLetters().size()];
                 for (int i = 0; i < lettersArray.length; i++) {
-                    lettersArray[i] = letterToAllophoneMapping.getLetters().get(i).getText();
+                    lettersArray[i] = letterSoundCorrespondence.getLetters().get(i).getText();
                 }
-                letterToAllophoneMappingJsonObject.put("letters", lettersArray);
-                String[] allophonesArray = new String[letterToAllophoneMapping.getAllophones().size()];
-                for (int i = 0; i < allophonesArray.length; i++) {
-                    allophonesArray[i] = letterToAllophoneMapping.getAllophones().get(i).getValueIpa();
+                letterSoundCorrespondenceJsonObject.put("letters", lettersArray);
+                String[] soundsArray = new String[letterSoundCorrespondence.getSounds().size()];
+                for (int i = 0; i < soundsArray.length; i++) {
+                    soundsArray[i] = letterSoundCorrespondence.getSounds().get(i).getValueIpa();
                 }
-                letterToAllophoneMappingJsonObject.put("allophones", allophonesArray);
-                letterToAllophoneMappingJsonObject.put("usageCount", letterToAllophoneMapping.getUsageCount());
-                letterToAllophoneMappingsJsonArray.put(index, letterToAllophoneMappingJsonObject);
+                letterSoundCorrespondenceJsonObject.put("sounds", soundsArray);
+                letterSoundCorrespondenceJsonObject.put("usageCount", letterSoundCorrespondence.getUsageCount());
+                letterSoundCorrespondencesJsonArray.put(index, letterSoundCorrespondenceJsonObject);
                 index++;
             }
             
@@ -87,7 +87,7 @@ public class WordCsvExportController {
             csvPrinter.printRecord(
                     word.getId(),
                     word.getText(),
-                    letterToAllophoneMappingsJsonArray,
+                    letterSoundCorrespondencesJsonArray,
                     word.getUsageCount(),
                     word.getWordType(),
                     word.getSpellingConsistency(),

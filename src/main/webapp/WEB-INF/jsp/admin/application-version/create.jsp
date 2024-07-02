@@ -9,31 +9,51 @@
             <tag:formErrors modelAttribute="applicationVersion" />
             
             <p>
-                <fmt:message key='package.name' />: ${applicationVersion.application.packageName}
+                <fmt:message key='package.name' />: <code>${applicationVersion.application.packageName}</code>
             </p>
 
             <div class="row">
                 <form:hidden path="application" value="${applicationVersion.application.id}" />
                 <form:hidden path="contributor" value="${contributor.id}" />
-                <div class="input-field col s6">
-                    <form:label path="versionCode" cssErrorClass="error"><fmt:message key='version.code' /></form:label>
-                    <form:input path="versionCode" cssErrorClass="error" type="number" />
-                </div>
             </div>
             
-            <div class="file-field input-field col s12">
-                <div class="btn">
-                    <span><fmt:message key='file' /></span>
-                    <form:input path="bytes" type="file" />
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" />
+            <div class="col s12" style="padding: 3em; background: #F4F4F4; border: 2px dashed #CCC; border-radius: 8px;">
+                <p class="center grey-text">
+                    Drag & drop your APK file here, or select a file.
+                </p>
+                <div class="file-field input-field col s8 offset-s2 center">
+                    <div class="btn">
+                        <span><fmt:message key='file' /></span>
+                        <form:input path="bytes" type="file" />
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" />
+                    </div>
+                    <script>
+                        $(function() {
+                            $('#bytes').on('change', function() {
+                                console.info('#bytes on change');
+
+                                $(this).parents('form').submit();
+                                Materialize.toast('Processing APK. Please wait...', 4000, 'rounded');
+                            });
+                        });
+                    </script>
                 </div>
             </div>
-
-            <button id="submitButton" class="btn waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
-            </button>
+            <div style="clear: both;"></div>
         </form:form>
     </div>
 </content:section>
+
+<content:aside>
+    <h5 class="center"><fmt:message key="resources" /></h5>
+    <div class="card-panel deep-purple lighten-5">
+        Once uploaded, the APK will become available for download to an Android device through the Appstore application:
+        <ol style="list-style-type: inherit;">
+            <li>
+                <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a>
+            </li>
+        </ol>
+    </div>
+</content:aside>

@@ -1,19 +1,19 @@
 <content:title>
-    <fmt:message key="publish.your.educational.app" />
+    <fmt:message key="publish.your.educational.app" /> 🎲🕹
 </content:title>
 
 <content:section cssId="publishPage">
     <h2><content:gettitle /></h2>
     
     <p>
-        Do you have (or wish to develop) an Android app which teaches literacy/numeracy skills to disadvantaged children?
+        Do you have (or wish to develop) an Android app/game/puzzle which teaches literacy/numeracy skills to disadvantaged children?
     </p>
     
     <p>
-        We are building a platform of educational apps and games that teaches a child to read, write and perform 
-        arithmetic fully autonomously and without the aid of a qualified teacher. This will help bring quality basic 
-        education to the <a href="http://uis.unesco.org/en/news/new-education-data-sdg-4-and-more" target="_blank">64 
-        million children</a> who are currently out of school.
+        We are building a platform of educational <a href="<spring:url value='/apps' />">apps and games</a> that teaches 
+        a child to read, write and perform arithmetic fully autonomously and without the aid of a qualified teacher. 
+        This will help bring quality basic education to the more than <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
+        worldwide who are not achieving minimum proficiency levels.
     </p>
     
     <div class="row section">
@@ -30,25 +30,41 @@
     
     <p>
         <i class="left material-icons medium deep-purple-text">grade</i>
-        For each literacy and numeracy skill our machine learning algorithms detect the apps that are most 
+        For each literacy and numeracy skill our learning platform detect the apps that are most 
         effective at teaching the children. The best-performing apps are then automatically promoted.
     </p>
     
     <h4><fmt:message key="instructions" /></h4>
     
     <ol class="browser-default">
-        <li>Select <b>one</b> literacy/numeracy skill that your app/game will be teaching</li>
-        <li>Create a new repository for the project on <a href="https://github.com/elimu-ai" target="_blank">GitHub</a></li>
-        <li>Upload the source code (we will perform code reviews of your pull requests)</li>
-        <li>Add <a href="https://github.com/elimu-ai/analytics">learning event reporting</a> to the source code</li>
-        <li>Add build and release instructions for generating APK files</li>
-        <li>Once quality approved, we release the app and initiate user testing and usage data collection</li>
-        <li>Analyze usage data and update the software as needed</li>
+        <li>Select <b>one</b> literacy/numeracy skill that your app/game will be teaching.</li>
+        <li>Create a new repository for the project on <a href="https://github.com/elimu-ai" target="_blank">GitHub</a>.</li>
+        <li>Upload the source code (we will perform code reviews of your pull requests).</li>
+        <li>Add <a href="https://github.com/elimu-ai/analytics">learning event reporting</a> to the source code.</li>
+        <li>Add build and release instructions for generating APK files.</li>
+        <li>Once quality-approved, we release the app and initiate user testing and usage data collection.</li>
     </ol>
     
+    <h4>Reward 💎</h4>
+    
     <p>
-        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via our 
-        <a href="https://join.slack.com/t/elimu-ai/shared_invite/zt-eoc921ow-0cfjATlIF2X~zHhSgSyaAw">chat room (Slack)</a>.
+        Contributors get rewarded with 
+        <c:choose>
+            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
+                <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
+            </c:otherwise>
+        </c:choose> 
+        tokens. All token holders can participate in the community's <a href="<spring:url value='/contributions/aragon-dao' />">decision making</a>.
+    </p>
+    
+    <div class="divider"></div>
+    
+    <p>
+        If you have any questions, contact us at <a href="mailto:info@elimu.ai">info@elimu.ai</a> or via 
+        <a href="https://discord.gg/9rz4XYJJDE">Discord</a>.
     </p>
 </content:section>
 

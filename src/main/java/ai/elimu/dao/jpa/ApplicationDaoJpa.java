@@ -7,7 +7,7 @@ import ai.elimu.model.admin.Application;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.enums.admin.ApplicationStatus;
+import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 
 public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements ApplicationDao {
     
@@ -21,7 +21,6 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
                 .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Application with packageName \"" + packageName + "\" was not found", e);
             return null;
         }
     }

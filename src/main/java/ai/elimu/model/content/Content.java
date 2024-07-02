@@ -8,14 +8,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.enums.content.ContentStatus;
+import ai.elimu.model.v2.enums.content.ContentStatus;
+import ai.elimu.model.enums.PeerReviewStatus;
 
 /**
  * Parent class for different types of educational content.
  */
 @MappedSuperclass
 public abstract class Content extends BaseEntity {
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar timeLastUpdate;
     
@@ -32,6 +33,9 @@ public abstract class Content extends BaseEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ContentStatus contentStatus = ContentStatus.ACTIVE;
+
+    @Enumerated(EnumType.STRING)
+    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
 
     public Calendar getTimeLastUpdate() {
         return timeLastUpdate;
@@ -63,5 +67,13 @@ public abstract class Content extends BaseEntity {
 
     public void setContentStatus(ContentStatus contentStatus) {
         this.contentStatus = contentStatus;
+    }
+
+    public PeerReviewStatus getPeerReviewStatus() {
+        return peerReviewStatus;
+    }
+
+    public void setPeerReviewStatus(PeerReviewStatus peerReviewStatus) {
+        this.peerReviewStatus = peerReviewStatus;
     }
 }

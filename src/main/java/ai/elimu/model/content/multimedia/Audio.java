@@ -1,14 +1,14 @@
 package ai.elimu.model.content.multimedia;
 
+import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.enums.PeerReviewStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
-import ai.elimu.model.enums.content.AudioFormat;
+import ai.elimu.model.v2.enums.content.AudioFormat;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,6 +19,12 @@ public class Audio extends Multimedia {
      */
     @ManyToOne
     private Word word;
+    
+    /**
+     * Will be used if the Audio recording was made for a particular {@link StoryBookParagraph}.
+     */
+    @ManyToOne
+    private StoryBookParagraph storyBookParagraph;
     
     /**
      * A title describing the audio recording. This does not have match the 
@@ -46,16 +52,21 @@ public class Audio extends Multimedia {
     @NotNull
     @Enumerated(EnumType.STRING)
     private AudioFormat audioFormat;
-    
-    @Enumerated(EnumType.STRING)
-    private PeerReviewStatus peerReviewStatus = PeerReviewStatus.PENDING;
-    
+
     public Word getWord() {
         return word;
     }
     
     public void setWord(Word word) {
         this.word = word;
+    }
+    
+    public StoryBookParagraph getStoryBookParagraph() {
+        return storyBookParagraph;
+    }
+    
+    public void setStoryBookParagraph(StoryBookParagraph storyBookParagraph) {
+        this.storyBookParagraph = storyBookParagraph;
     }
     
     public String getTitle() {
@@ -96,13 +107,5 @@ public class Audio extends Multimedia {
 
     public void setAudioFormat(AudioFormat audioFormat) {
         this.audioFormat = audioFormat;
-    }
-
-    public PeerReviewStatus getPeerReviewStatus() {
-        return peerReviewStatus;
-    }
-
-    public void setPeerReviewStatus(PeerReviewStatus peerReviewStatus) {
-        this.peerReviewStatus = peerReviewStatus;
     }
 }

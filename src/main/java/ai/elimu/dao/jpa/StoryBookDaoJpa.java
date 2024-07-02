@@ -7,7 +7,7 @@ import ai.elimu.dao.StoryBookDao;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.enums.ReadingLevel;
+import ai.elimu.model.v2.enums.ReadingLevel;
 
 public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBookDao {
 
@@ -21,7 +21,6 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
                 .setParameter("title", title)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("StoryBook \"" + title + "\" was not found");
             return null;
         }
     }

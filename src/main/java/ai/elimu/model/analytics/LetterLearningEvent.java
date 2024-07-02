@@ -1,10 +1,7 @@
 package ai.elimu.model.analytics;
 
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.enums.analytics.LearningEventType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -21,10 +18,6 @@ public class LetterLearningEvent extends LearningEvent {
      */
     @NotNull
     private String letterText;
-    
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private LearningEventType learningEventType;
 
     public Letter getLetter() {
         return letter;
@@ -40,13 +33,5 @@ public class LetterLearningEvent extends LearningEvent {
 
     public void setLetterText(String letterText) {
         this.letterText = letterText;
-    }
-
-    public LearningEventType getLearningEventType() {
-        return learningEventType;
-    }
-
-    public void setLearningEventType(LearningEventType learningEventType) {
-        this.learningEventType = learningEventType;
     }
 }

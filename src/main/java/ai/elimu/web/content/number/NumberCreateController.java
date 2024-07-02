@@ -14,6 +14,9 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -93,9 +96,21 @@ public class NumberCreateController {
             numberContributionEvent.setTime(Calendar.getInstance());
             numberContributionEvent.setNumber(number);
             numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
-            numberContributionEvent.setComment(request.getParameter("contributionComment"));
+            numberContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + number.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Number created: " + contentUrl,
+                        String.valueOf(numberContributionEvent.getNumber().getValue()),
+                        "Comment: \"" + numberContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/number/list#" + number.getId();
         }

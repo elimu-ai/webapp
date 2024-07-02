@@ -21,7 +21,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("email", email)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor with e-mail \"" + email + "\" was not found");
             return null;
         }
     }
@@ -36,7 +35,20 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("id", id)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor with GitHub id \"" + id + "\" was not found");
+            return null;
+        }
+    }
+
+    @Override
+    public Contributor readByProviderIdDiscord(String id) throws DataAccessException {
+        try {
+            return (Contributor) em.createQuery(
+                "SELECT c " +
+                "FROM Contributor c " +
+                "WHERE c.providerIdDiscord = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -51,7 +63,20 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 .setParameter("id", id)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Contributor with Google id \"" + id + "\" was not found");
+            return null;
+        }
+    }
+    
+    @Override
+    public Contributor readByProviderIdWeb3(String id) throws DataAccessException {
+        try {
+            return (Contributor) em.createQuery(
+                "SELECT c " +
+                "FROM Contributor c " +
+                "WHERE c.providerIdWeb3 = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
     }
