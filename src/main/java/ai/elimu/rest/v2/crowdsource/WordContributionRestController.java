@@ -5,7 +5,7 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
+import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
@@ -52,7 +52,7 @@ public class WordContributionRestController {
     private ContributorDao contributorDao;
 
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     /**
      * Returns a list of {@link LetterSoundCorrespondence}s that will be used to construct a {@link Word}.
@@ -62,10 +62,10 @@ public class WordContributionRestController {
         logger.info("getLetterSoundCorrespondences");
 
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
-            LetterSoundCorrespondenceGson letterSoundCorrespondenceGson =
-                    JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
-            String json = new Gson().toJson(letterSoundCorrespondenceGson);
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAllOrderedByUsage()) {
+            LetterSoundGson letterSoundGson =
+                    JpaToGsonConverter.getLetterSoundGson(letterSoundCorrespondence);
+            String json = new Gson().toJson(letterSoundGson);
             letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
 
@@ -144,11 +144,11 @@ public class WordContributionRestController {
             Word word = new Word();
             word.setWordType(wordGson.getWordType());
             word.setText(wordGson.getText().toLowerCase());
-            List<LetterSoundCorrespondenceGson> letterSoundCorrespondencesGsons = wordGson.getLetterSoundCorrespondences();
+            List<LetterSoundGson> letterSoundCorrespondencesGsons = wordGson.getLetterSounds();
             List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
-            for (LetterSoundCorrespondenceGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
+            for (LetterSoundGson letterSoundGson : letterSoundCorrespondencesGsons) {
                 LetterSoundCorrespondence letterSoundCorrespondence =
-                        letterSoundCorrespondenceDao.read(letterSoundCorrespondenceGson.getId());
+                        letterSoundDao.read(letterSoundGson.getId());
                 letterSoundCorrespondences.add(letterSoundCorrespondence);
             }
             word.setLetterSoundCorrespondences(letterSoundCorrespondences);

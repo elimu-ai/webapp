@@ -61,7 +61,7 @@
                                 <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-sound-correspondence-id="${letterSoundCorrespondence.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
-                                <a href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />">
+                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
                                     " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
                                         ${letter.text}<c:out value=" " />
                                     </c:forEach> "<br />
@@ -116,7 +116,7 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter-sound-correspondence/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter-sound/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
