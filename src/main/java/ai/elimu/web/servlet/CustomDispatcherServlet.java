@@ -4,6 +4,8 @@ import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.db.DbContentImportHelper;
+import ai.elimu.web.ConnectionProviderWeb;
+import org.hibernate.cfg.AvailableSettings;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -33,7 +35,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
     	logger.info("initWebApplicationContext");
     	
         WebApplicationContext webApplicationContext = super.initWebApplicationContext();
-        
+
         // Database migration
         logger.info("Performing database migration...");
         new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
@@ -60,11 +62,18 @@ public class CustomDispatcherServlet extends DispatcherServlet {
      */
     private void createJpaSchemaExport() {
         logger.info("createJpaSchemaExport");
-        
+
+        ConnectionProviderWeb connectionProviderWeb = new ConnectionProviderWeb(
+                ConfigHelper.getProperty("jdbc.url"),
+                ConfigHelper.getProperty("jdbc.username"),
+                ConfigHelper.getProperty("jdbc.password")
+        );
+
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 //                .configure("META-INF/jpa-persistence.xml")
                 .applySetting("hibernate.dialect", ConfigHelper.getProperty("jpa.databasePlatform"))
                 .applySetting("hibernate.hbm2ddl.auto", "update")
+                .applySetting(AvailableSettings.CONNECTION_PROVIDER, connectionProviderWeb)
                 .build();
 
         MetadataSources metadataSources = (MetadataSources) new MetadataSources(serviceRegistry);

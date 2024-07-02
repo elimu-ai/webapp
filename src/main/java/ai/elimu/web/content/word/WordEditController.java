@@ -47,7 +47,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
@@ -61,7 +61,7 @@ public class WordEditController {
     private WordDao wordDao;
     
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private AudioDao audioDao;
@@ -104,7 +104,7 @@ public class WordEditController {
                 
         model.addAttribute("word", word);
         model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+        model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
@@ -119,37 +119,39 @@ public class WordEditController {
         // Generate Audio for this Word (if it has not been done already)
         if (audios.isEmpty()) {
             Calendar timeStart = Calendar.getInstance();
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-            try {
-                byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
-                logger.info("audioBytes: " + audioBytes);
-                if (audioBytes != null) {
-                    Audio audio = new Audio();
-                    audio.setTimeLastUpdate(Calendar.getInstance());
-                    audio.setContentType(AudioFormat.MP3.getContentType());
-                    audio.setWord(word);
-                    audio.setTitle("word_" + word.getText());
-                    audio.setTranscription(word.getText());
-                    audio.setBytes(audioBytes);
-                    audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
-                    audio.setAudioFormat(AudioFormat.MP3);
-                    audioDao.create(audio);
-                    
-                    audios.add(audio);
-                    model.addAttribute("audios", audios);
-                    
-                    AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
-                    audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-                    audioContributionEvent.setTime(Calendar.getInstance());
-                    audioContributionEvent.setAudio(audio);
-                    audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-                    audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
-                    audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
-                    audioContributionEvent.setPlatform(Platform.WEBAPP);
-                    audioContributionEventDao.create(audioContributionEvent);
+                try {
+                    byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
+                    logger.info("audioBytes: " + audioBytes);
+                    if (audioBytes != null) {
+                        Audio audio = new Audio();
+                        audio.setTimeLastUpdate(Calendar.getInstance());
+                        audio.setContentType(AudioFormat.MP3.getContentType());
+                        audio.setWord(word);
+                        audio.setTitle("word_" + word.getText());
+                        audio.setTranscription(word.getText());
+                        audio.setBytes(audioBytes);
+                        audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
+                        audio.setAudioFormat(AudioFormat.MP3);
+                        audioDao.create(audio);
+
+                        audios.add(audio);
+                        model.addAttribute("audios", audios);
+
+                        AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+                        audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+                        audioContributionEvent.setTime(Calendar.getInstance());
+                        audioContributionEvent.setAudio(audio);
+                        audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+                        audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
+                        audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
+                        audioContributionEvent.setPlatform(Platform.WEBAPP);
+                        audioContributionEventDao.create(audioContributionEvent);
+                    }
+                } catch (Exception ex) {
+                    logger.error(ex);
                 }
-            } catch (Exception ex) {
-                logger.error(ex);
             }
         }
         
@@ -181,7 +183,7 @@ public class WordEditController {
     ) {
     	logger.info("handleSubmit");
         
-        Word existingWord = wordDao.readByText(word.getText());
+        Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
         if ((existingWord != null) && !existingWord.getId().equals(word.getId())) {
             result.rejectValue("text", "NonUnique");
         }
@@ -193,7 +195,7 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+            model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
@@ -231,14 +233,16 @@ public class WordEditController {
             wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
-            DiscordHelper.sendChannelMessage(
-                    "Word edited: " + contentUrl, 
-                    "\"" + word.getText() + "\"",
-                    "Comment: \"" + wordContributionEvent.getComment() + "\"",
-                    null,
-                    null
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Word edited: " + contentUrl, 
+                        "\"" + word.getText() + "\"",
+                        "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
             
@@ -280,7 +284,7 @@ public class WordEditController {
         
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         
-        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundCorrespondenceDao.readAllOrderedByLettersLength();
+        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             

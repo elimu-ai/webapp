@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
+import ai.elimu.dao.LetterSoundDao;
 
 @Service
 public class LetterSoundCorrespondenceUsageCountScheduler {
@@ -25,7 +25,7 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
     private WordDao wordDao;
 
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Scheduled(cron="00 15 06 * * *") // At 06:15 every day
     public synchronized void execute() {
@@ -47,7 +47,7 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
         }
 
         // Update the values previously stored in the database
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAll()) {
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAll()) {
             logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
             logger.info("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
             logger.info("letterSoundCorrespondence Sounds: /" + letterSoundCorrespondence.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
@@ -60,7 +60,7 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
             logger.info("newUsageCount: " + newUsageCount);
             
             letterSoundCorrespondence.setUsageCount(newUsageCount);
-            letterSoundCorrespondenceDao.update(letterSoundCorrespondence);
+            letterSoundDao.update(letterSoundCorrespondence);
             logger.info("letterSoundCorrespondence.getUsageCount() (after update): " + letterSoundCorrespondence.getUsageCount());
         }
         

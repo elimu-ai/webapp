@@ -114,14 +114,16 @@ public class NumberEditController {
             numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + number.getId();
-            DiscordHelper.sendChannelMessage(
-                    "Number edited: " + contentUrl,
-                    String.valueOf(numberContributionEvent.getNumber().getValue()),
-                    "Comment: \"" + numberContributionEvent.getComment() + "\"",
-                    null,
-                    null
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + number.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Number edited: " + contentUrl,
+                        String.valueOf(numberContributionEvent.getNumber().getValue()),
+                        "Comment: \"" + numberContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/number/list#" + number.getId();
         }

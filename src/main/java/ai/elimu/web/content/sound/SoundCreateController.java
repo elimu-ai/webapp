@@ -92,14 +92,16 @@ public class SoundCreateController {
             soundContributionEvent.setPlatform(Platform.WEBAPP);
             soundContributionEventDao.create(soundContributionEvent);
             
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/sound/edit/" + sound.getId();
-            DiscordHelper.sendChannelMessage(
-                    "Sound created: " + contentUrl,
-                    "/" + soundContributionEvent.getSound().getValueIpa() + "/",
-                    "Comment: \"" + soundContributionEvent.getComment() + "\"",
-                    null,
-                    null
-            );
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/sound/edit/" + sound.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Sound created: " + contentUrl,
+                        "/" + soundContributionEvent.getSound().getValueIpa() + "/",
+                        "Comment: \"" + soundContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/sound/list#" + sound.getId();
         }
