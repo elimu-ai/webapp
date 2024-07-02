@@ -12,9 +12,8 @@
     
     <ol class="browser-default">
         <li>
-            When a community contributor signs onto this website or the 
-            <a href="https://github.com/elimu-ai/crowdsource" target="_blank">Crowdsource</a> 
-            Android app for the first time, we store the anonymous provider ID (from 
+            When a community contributor signs onto this website 
+            for the first time, we store the anonymous provider ID (from 
             Google/GitHub) in order to recognize the same contributor when 
             she/he returns at a later point in time.
         </li>
