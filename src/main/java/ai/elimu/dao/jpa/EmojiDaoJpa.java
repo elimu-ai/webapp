@@ -21,7 +21,6 @@ public class EmojiDaoJpa extends GenericDaoJpa<Emoji> implements EmojiDao {
                 .setParameter("glyph", glyph)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Emoji '" + glyph + "' was not found");
             return null;
         }
     }

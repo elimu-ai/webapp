@@ -9,7 +9,8 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.util.SlackHelper;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
@@ -58,10 +59,23 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEvent.setApproved(approved);
         storyBookPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         storyBookPeerReviewEvent.setTime(Calendar.getInstance());
+        storyBookPeerReviewEvent.setPlatform(Platform.WEBAPP);
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
         
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId();
-        SlackHelper.postChatMessage("Storybook peer-reviewed: " + contentUrl);
+        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId();
+            String embedThumbnailUrl = null;
+            if (storyBookContributionEvent.getStoryBook().getCoverImage() != null) {
+                embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBookContributionEvent.getStoryBook().getCoverImage().getId() + "_r" + storyBookContributionEvent.getStoryBook().getCoverImage().getRevisionNumber() + "." + storyBookContributionEvent.getStoryBook().getCoverImage().getImageFormat().toString().toLowerCase();
+            }
+            DiscordHelper.sendChannelMessage(
+                    "Storybook peer-reviewed: " + contentUrl, 
+                    "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                    "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",
+                    storyBookPeerReviewEvent.isApproved(),
+                    embedThumbnailUrl
+            );
+        }
 
         // Update the storybook's peer review status
         int approvedCount = 0;

@@ -61,7 +61,7 @@ public class ApplicationCreateController {
             return "admin/application/create";
         } else {
             applicationDao.create(application);
-            return "redirect:/admin/application/list";
+            return "redirect:/admin/application/list#" + application.getId();
         }
     }
 }

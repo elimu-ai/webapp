@@ -21,7 +21,6 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
                 .setParameter("title", title)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("StoryBook \"" + title + "\" was not found");
             return null;
         }
     }

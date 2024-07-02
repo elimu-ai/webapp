@@ -61,12 +61,13 @@ public class SignOnControllerGoogle {
         if (EnvironmentContextLoaderListener.env == Environment.TEST) {
             clientId = "108974530651-fskde869tac7imherk2k516shfuvij76.apps.googleusercontent.com";
             clientSecret = ConfigHelper.getProperty("google.api.secret");
-            baseUrl = "http://" + request.getServerName();
+            baseUrl = "https://" + request.getServerName();
         } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             clientId = "108974530651-k68pccps2jb88fllofpcf8ht356v08e4.apps.googleusercontent.com";
             clientSecret = ConfigHelper.getProperty("google.api.secret");
-            baseUrl = "http://" + request.getServerName();
+            baseUrl = "https://" + request.getServerName();
         }
+        logger.info("baseUrl: " + baseUrl);
         
         oAuth20Service = new ServiceBuilder(clientId)
                 .apiSecret(clientSecret)
@@ -137,6 +138,7 @@ public class SignOnControllerGoogle {
                 contributor.setRegistrationTime(Calendar.getInstance());
                 contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
                 contributorDao.create(contributor);
+                logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
             } else {
                 // Contributor already exists in database
                 // Update existing contributor with latest values fetched from provider

@@ -20,7 +20,6 @@ public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableD
                 .setParameter("text", text)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Syllable '" + text + "' was not found");
             return null;
         }
     }

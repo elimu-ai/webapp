@@ -1,16 +1,20 @@
 package ai.elimu.web.content.letter;
 
 import java.util.Calendar;
-import java.util.List;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
+import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Letter;
-import ai.elimu.util.SlackHelper;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterContributionEvent;
+import ai.elimu.model.enums.Platform;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +33,7 @@ public class LetterCreateController {
     private LetterDao letterDao;
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private LetterContributionEventDao letterContributionEventDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
@@ -38,15 +42,15 @@ public class LetterCreateController {
         
         Letter letter = new Letter();
         model.addAttribute("letter", letter);
-        
-        List<Allophone> allophones = allophoneDao.readAllOrdered();
-        model.addAttribute("allophones", allophones);
+        model.addAttribute("timeStart", System.currentTimeMillis());    
 
         return "content/letter/create";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
+            HttpServletRequest request,
+            HttpSession session,
             @Valid Letter letter,
             BindingResult result,
             Model model) {
@@ -59,17 +63,33 @@ public class LetterCreateController {
         
         if (result.hasErrors()) {
             model.addAttribute("letter", letter);
-            
-            List<Allophone> allophones = allophoneDao.readAllOrdered();
-            model.addAttribute("allophones", allophones);
+            model.addAttribute("timeStart", System.currentTimeMillis());
             
             return "content/letter/create";
         } else {
             letter.setTimeLastUpdate(Calendar.getInstance());
             letterDao.create(letter);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
-            SlackHelper.postChatMessage("Letter created: " + contentUrl);
+            LetterContributionEvent letterContributionEvent = new LetterContributionEvent();
+            letterContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            letterContributionEvent.setTime(Calendar.getInstance());
+            letterContributionEvent.setLetter(letter);
+            letterContributionEvent.setRevisionNumber(letter.getRevisionNumber());
+            letterContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
+            letterContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+            letterContributionEvent.setPlatform(Platform.WEBAPP);
+            letterContributionEventDao.create(letterContributionEvent);
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Letter created: " + contentUrl,
+                        "\"" + letterContributionEvent.getLetter().getText() + "\"",
+                        "Comment: \"" + letterContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             return "redirect:/content/letter/list#" + letter.getId();
         }

@@ -4,16 +4,16 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.2.16-SNAPSHOT</version>
+    <version>2.2.133-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <model.version>2.0.47</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
+        <model.version>2.0.66</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
         <hibernate.version>5.5.7.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
-        <jetty.version>9.4.31.v20200723</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
-        <spring.version>5.3.9</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
-        <spring.security.version>5.5.2</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
+        <jetty.version>10.0.18</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
+        <spring.version>5.3.18</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
+        <spring.security.version>5.6.2</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.22.2</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
     </properties>
 
@@ -24,7 +24,7 @@
             <plugin>
             	<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/ -->
-                <version>3.8.1</version>
+                <version>3.11.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -93,6 +93,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -111,7 +130,7 @@
             </resource>
         </resources>
      </build>
-	
+
     <!-- More Project Information -->
     <name>webapp</name>
     <url>http://localhost:8080/webapp</url>
@@ -122,8 +141,8 @@
         <url>https://github.com/elimu-ai/webapp/projects</url>
     </issueManagement>
     <ciManagement>
-        <system>Travis CI</system>
-        <url>https://travis-ci.org/elimu-ai/webapp</url>
+        <system>GitHub Actions</system>
+        <url>https://github.com/elimu-ai/webapp/actions</url>
     </ciManagement>
     <scm>
         <connection>scm:git:git@github.com:elimu-ai/webapp.git</connection>
@@ -287,13 +306,13 @@
             <artifactId>model</artifactId>
             <version>model-${model.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId> <!-- https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/ -->
             <version>1.4</version>
         </dependency>
-        
+
         <!-- Spring Framework -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -356,18 +375,18 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20210307</version>
+            <version>20220320</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.14.1</version>
+            <version>2.16.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.14.1</version>
+            <version>2.16.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -378,9 +397,9 @@
         <dependency>
             <groupId>org.owasp.antisamy</groupId>
             <artifactId>antisamy</artifactId>
-            <version>1.6.4</version>
+            <version>1.6.5</version>
         </dependency>
-        
+
          <dependency>
             <groupId>org.web3j</groupId>
             <artifactId>core</artifactId>
@@ -390,7 +409,7 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.7</version>
+            <version>1.9.8</version>
         </dependency>
 
         <dependency>
@@ -454,19 +473,19 @@
           <artifactId>mp3spi</artifactId>
           <version>1.9.5.4</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.googlecode.texhyphj</groupId>
             <artifactId>texhyphj</artifactId>
             <version>1.2</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-texttospeech</artifactId>
-            <version>2.0.3</version>
+            <version>2.2.0</version>
         </dependency>
-        
+
         <dependency>
             <groupId>net.dongliu</groupId>
             <artifactId>apk-parser</artifactId>
@@ -504,7 +523,7 @@
         <dependency>
             <groupId>org.bitbucket.ijabz</groupId>
             <artifactId>jaudiotagger</artifactId>
-            <version>v2.2.5</version>
+            <version>3.0.1</version>
         </dependency>
 
         <!-- Database -->
@@ -516,12 +535,12 @@
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.6.0</version>
+            <version>2.6.1</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
+            <version>8.0.28</version>
         </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -538,8 +557,8 @@
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.2</version>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
 

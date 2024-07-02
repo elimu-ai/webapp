@@ -7,6 +7,8 @@
     <div class="card-panel">
         <form:form modelAttribute="image" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="image" />
+            
+            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -62,6 +64,13 @@
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" />
                     </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 

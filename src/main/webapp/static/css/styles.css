@@ -79,6 +79,7 @@ footer.page-footer .footer-copyright {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-color: #ede7f6; /* deep-purple lighten-5 */
 }
 .card.image .card-content > p,
 .card.storyBook .card-content > p {
@@ -100,7 +101,8 @@ footer.page-footer .footer-copyright {
 .card-panel {
     border-radius: 8px;
 }
-.card .card-image {
+.card .card-image,
+.card .card-image img {
     border-radius: 8px 8px 0 0;
 }
 .card .card-action:last-child {

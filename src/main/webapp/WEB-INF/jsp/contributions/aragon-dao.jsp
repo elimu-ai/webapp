@@ -10,14 +10,19 @@
         <p>
             <c:choose>
                 <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>ELIMU</code></a>
+                    <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>ELIMU</code></a>
+                    <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
                 </c:otherwise>
             </c:choose>  
             is the governance token used by the elimu.ai Community DAO. Active contributors get rewarded with tokens, 
             and token holders can participate in the community's decision-making.
+        </p>
+        <p>
+            The token can also be obtained through decentralized exchanges like 
+            <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">Uniswap 🦄</a> or 
+            <a href="https://app.sushi.com/en/swap?inputCurrency=ETH&outputCurrency=0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">SushiSwap 🍣</a>.
         </p>
         <div id="tokenHoldersContainer">
             <c:choose>
@@ -36,7 +41,7 @@
         
         <div class="divider" style="margin: 1.5em 0;"></div>
         
-        <h4>Votes 👍👎</h4>
+        <h4>Votes 🗳</h4>
         <div id="votesContainer">
             <p>
                 Token holders can make new proposals, and can voice their support (or not support) for proposals made by 
@@ -114,31 +119,31 @@
         The 
         <c:choose>
             <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                <a href="https://voice-rinkeby.aragon.org/tokens/info/#/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
+                <a href="https://govern-rinkeby.aragon.org/#/daos/elimu.eth" target="_blank">
                     elimu.ai Community DAO
                 </a>
             </c:when>
             <c:otherwise>
-                <a href="https://voice.aragon.org/tokens/info/#/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
+                <a href="https://govern.aragon.org/#/daos/elimu.eth" target="_blank">
                     elimu.ai Community DAO
                 </a>
             </c:otherwise>
         </c:choose>
-        is empowered by <a href="https://aragon.org" target="_blank">Aragon</a>. 
+        is empowered by <a href="https://aragon.org" target="_blank">Aragon 🦅</a>. 
         Aragon gives internet communities the power to freely organize and collaborate without borders or intermediaries.
     </p>
     <p>
-        For more information, see our blog post: <a href="https://medium.com/elimu-ai/why-did-the-elimu-ai-community-decide-to-use-aragon-e9863c135111" target="_blank">Why Did the elimu.ai Community Decide to Use Aragon? 🦅</a>.
+        For more information, see our blog post: <a href="https://medium.com/elimu-ai/introducing-elimu-our-community-token-7767eebed862" target="_blank">Introducing $ELIMU, Our Community Token 💎</a>
     </p>
     <c:choose>
         <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-            <a href="https://voice-rinkeby.aragon.org/tokens/info/#/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                <img src="https://assets.website-files.com/5e997428d0f2eb13a90aec8c/607d7a325c2f05f0b33c500b_Logo%20white-1.svg" alt="Powered by Aragon" />
+            <a href="https://govern-rinkeby.aragon.org/#/daos/elimu.eth" target="_blank">
+                <img src="https://user-images.githubusercontent.com/15718174/135745588-c9bf363b-b591-4f4f-a0b6-70ad9ab42263.png" alt="Powered by Aragon" />
             </a>
         </c:when>
         <c:otherwise>
-            <a href="https://voice.aragon.org/tokens/info/#/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                <img src="https://assets.website-files.com/5e997428d0f2eb13a90aec8c/607d7a325c2f05f0b33c500b_Logo%20white-1.svg" alt="Powered by Aragon" />
+            <a href="https://govern.aragon.org/#/daos/elimu.eth" target="_blank">
+                <img src="https://user-images.githubusercontent.com/15718174/135745588-c9bf363b-b591-4f4f-a0b6-70ad9ab42263.png" alt="Powered by Aragon" />
             </a>
         </c:otherwise>
     </c:choose>

@@ -31,6 +31,10 @@ public class Contributor extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar registrationTime;
     
+    // TODO: add registrationPlatform
+    
+    // TODO: add registrationProvider
+    
 //    @Column(unique=true)
     private String providerIdGoogle;
     
@@ -42,9 +46,13 @@ public class Contributor extends BaseEntity {
     
 //    @Column(unique=true)
     private String providerIdGitHub;
-    
+
 //    @Column(unique=true)
+    private String providerIdDiscord;
+    
     private String usernameGitHub;
+
+    private String usernameDiscord;
     
     private String imageUrl;
     
@@ -111,6 +119,20 @@ public class Contributor extends BaseEntity {
 
     public void setUsernameGitHub(String usernameGitHub) {
         this.usernameGitHub = usernameGitHub;
+    }
+    public String getProviderIdDiscord() {
+        return providerIdDiscord;
+    }
+
+    public void setProviderIdDiscord(String providerIdDiscord) {
+        this.providerIdDiscord = providerIdDiscord;
+    }
+    public String getUsernameDiscord() {
+        return usernameDiscord;
+    }
+
+    public void setUsernameDiscord(String usernameDiscord) {
+        this.usernameDiscord = usernameDiscord;
     }
     
     public String getImageUrl() {

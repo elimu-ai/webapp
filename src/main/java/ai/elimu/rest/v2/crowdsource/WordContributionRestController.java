@@ -5,11 +5,11 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.v2.gson.content.LetterSoundCorrespondenceGson;
+import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.model.v2.gson.crowdsource.WordContributionEventGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
-import ai.elimu.util.SlackHelper;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
@@ -52,7 +52,7 @@ public class WordContributionRestController {
     private ContributorDao contributorDao;
 
     @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     /**
      * Returns a list of {@link LetterSoundCorrespondence}s that will be used to construct a {@link Word}.
@@ -62,10 +62,10 @@ public class WordContributionRestController {
         logger.info("getLetterSoundCorrespondences");
 
         JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundCorrespondenceDao.readAllOrderedByUsage()) {
-            LetterSoundCorrespondenceGson letterSoundCorrespondenceGson =
-                    JpaToGsonConverter.getLetterSoundCorrespondenceGson(letterSoundCorrespondence);
-            String json = new Gson().toJson(letterSoundCorrespondenceGson);
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAllOrderedByUsage()) {
+            LetterSoundGson letterSoundGson =
+                    JpaToGsonConverter.getLetterSoundGson(letterSoundCorrespondence);
+            String json = new Gson().toJson(letterSoundGson);
             letterSoundCorrespondencesJsonArray.put(new JSONObject(json));
         }
 
@@ -128,7 +128,7 @@ public class WordContributionRestController {
         logger.info("wordGson: " + wordGson);
 
         // Check if the word is already existing.
-        Word existingWord = wordDao.readByText(wordGson.getText().toLowerCase());
+        Word existingWord = wordDao.readByTextAndType(wordGson.getText().toLowerCase(), wordGson.getWordType());
         if (existingWord != null) {
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", "NonUnique");
@@ -144,11 +144,11 @@ public class WordContributionRestController {
             Word word = new Word();
             word.setWordType(wordGson.getWordType());
             word.setText(wordGson.getText().toLowerCase());
-            List<LetterSoundCorrespondenceGson> letterSoundCorrespondencesGsons = wordGson.getLetterSoundCorrespondences();
+            List<LetterSoundGson> letterSoundCorrespondencesGsons = wordGson.getLetterSounds();
             List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
-            for (LetterSoundCorrespondenceGson letterSoundCorrespondenceGson : letterSoundCorrespondencesGsons) {
+            for (LetterSoundGson letterSoundGson : letterSoundCorrespondencesGsons) {
                 LetterSoundCorrespondence letterSoundCorrespondence =
-                        letterSoundCorrespondenceDao.read(letterSoundCorrespondenceGson.getId());
+                        letterSoundDao.read(letterSoundGson.getId());
                 letterSoundCorrespondences.add(letterSoundCorrespondence);
             }
             word.setLetterSoundCorrespondences(letterSoundCorrespondences);
@@ -167,8 +167,14 @@ public class WordContributionRestController {
             wordContributionEvent.setPlatform(Platform.CROWDSOURCE_APP);
             wordContributionEventDao.create(wordContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
-            SlackHelper.postChatMessage("Word created: " + contentUrl);
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+            DiscordHelper.sendChannelMessage(
+                    "Word created: " + contentUrl,
+                    "\"" + wordContributionEvent.getWord().getText() + "\"",
+                    "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                    null,
+                    null
+            );
 
             response.setStatus(HttpStatus.CREATED.value());
         } catch (Exception ex) {

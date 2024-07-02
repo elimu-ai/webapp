@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
@@ -14,7 +13,6 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Allophone;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
@@ -47,8 +45,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ai.elimu.dao.LetterSoundCorrespondenceDao;
-import ai.elimu.util.SlackHelper;
+import ai.elimu.dao.LetterSoundDao;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 @Controller
@@ -64,10 +62,7 @@ public class WordCreateController {
     private EmojiDao emojiDao;
     
     @Autowired
-    private AllophoneDao allophoneDao;
-    
-    @Autowired
-    private LetterSoundCorrespondenceDao letterSoundCorrespondenceDao;
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private ImageDao imageDao;
@@ -96,14 +91,11 @@ public class WordCreateController {
             
             autoSelectLetterSoundCorrespondences(word);
             // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
-            
-            model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
         }
         
         model.addAttribute("word", word);
         model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("allophones", allophoneDao.readAllOrdered());
-        model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+        model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
@@ -121,7 +113,7 @@ public class WordCreateController {
             Model model) {
     	logger.info("handleSubmit");
         
-        Word existingWord = wordDao.readByText(word.getText());
+        Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
         if (existingWord != null) {
             result.rejectValue("text", "NonUnique");
         }
@@ -130,19 +122,14 @@ public class WordCreateController {
             result.rejectValue("text", "WordSpace");
         }
         
-        List<Allophone> allophones = allophoneDao.readAllOrdered();
-        
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("allophones", allophones);
-            model.addAttribute("letterSoundCorrespondences", letterSoundCorrespondenceDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+            model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
             model.addAttribute("spellingConsistencies", SpellingConsistency.values());
-            
-            model.addAttribute("audio", audioDao.readByTranscription(word.getText()));
             
             return "content/word/create";
         } else {
@@ -159,8 +146,16 @@ public class WordCreateController {
             wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
-            SlackHelper.postChatMessage("Word created: " + contentUrl);
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+                DiscordHelper.sendChannelMessage(
+                        "Word created: " + contentUrl,
+                        "\"" + wordContributionEvent.getWord().getText() + "\"",
+                        "Comment: \"" + wordContributionEvent.getComment() + "\"",
+                        null,
+                        null
+                );
+            }
             
             // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
             
@@ -185,37 +180,39 @@ public class WordCreateController {
             List<Audio> audios = audioDao.readAll(word);
             if (audios.isEmpty()) {
                 Calendar timeStart = Calendar.getInstance();
-                Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-                try {
-                    byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
-                    logger.info("audioBytes: " + audioBytes);
-                    if (audioBytes != null) {
-                        Audio audio = new Audio();
-                        audio.setTimeLastUpdate(Calendar.getInstance());
-                        audio.setContentType(AudioFormat.MP3.getContentType());
-                        audio.setWord(word);
-                        audio.setTitle("word-" + word.getId());
-                        audio.setTranscription(word.getText());
-                        audio.setBytes(audioBytes);
-                        audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
-                        audio.setAudioFormat(AudioFormat.MP3);
-                        audioDao.create(audio);
+                if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                    Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+                    try {
+                        byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
+                        logger.info("audioBytes: " + audioBytes);
+                        if (audioBytes != null) {
+                            Audio audio = new Audio();
+                            audio.setTimeLastUpdate(Calendar.getInstance());
+                            audio.setContentType(AudioFormat.MP3.getContentType());
+                            audio.setWord(word);
+                            audio.setTitle("word-id-" + word.getId());
+                            audio.setTranscription(word.getText());
+                            audio.setBytes(audioBytes);
+                            audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
+                            audio.setAudioFormat(AudioFormat.MP3);
+                            audioDao.create(audio);
 
-                        audios.add(audio);
-                        model.addAttribute("audios", audios);
+                            audios.add(audio);
+                            model.addAttribute("audios", audios);
 
-                        AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
-                        audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-                        audioContributionEvent.setTime(Calendar.getInstance());
-                        audioContributionEvent.setAudio(audio);
-                        audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-                        audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
-                        audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
-                        audioContributionEvent.setPlatform(Platform.WEBAPP);
-                        audioContributionEventDao.create(audioContributionEvent);
+                            AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
+                            audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+                            audioContributionEvent.setTime(Calendar.getInstance());
+                            audioContributionEvent.setAudio(audio);
+                            audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
+                            audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
+                            audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
+                            audioContributionEvent.setPlatform(Platform.WEBAPP);
+                            audioContributionEventDao.create(audioContributionEvent);
+                        }
+                    } catch (Exception ex) {
+                        logger.error(ex);
                     }
-                } catch (Exception ex) {
-                    logger.error(ex);
                 }
             }
             
@@ -251,7 +248,7 @@ public class WordCreateController {
         
         List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         
-        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundCorrespondenceDao.readAllOrderedByLettersLength();
+        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             

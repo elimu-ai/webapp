@@ -18,7 +18,7 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            <fmt:message key="to.add.new.content.click.the.button.below" />  You can also <a href="<spring:url value='/content/number/peer-reviews' />">peer-review</a> numbers.
         </p>
         
         <table class="bordered highlight">
@@ -26,7 +26,7 @@
                 <th><fmt:message key="value" /></th>
                 <th><fmt:message key="symbol" /></th>
                 <th><fmt:message key="number.words" /></th>
-                <th><fmt:message key="allophones" /></th>
+                <th><fmt:message key="sounds" /></th>
                 <th><fmt:message key="revision" /></th>
             </thead>
             <tbody>
@@ -47,11 +47,29 @@
                         
                         <td style="font-size: 2em;">
                             <c:forEach var="word" items="${number.words}">
-                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="allophone" items="${lsc.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                             </c:forEach>
                         </td>
                         <td>
-                            #${number.revisionNumber}
+                            <p>#${number.revisionNumber}</p>
+                            <p>
+                                <c:choose>
+                                    <c:when test="${number.peerReviewStatus == 'APPROVED'}">
+                                        <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                    </c:when>
+                                    <c:when test="${number.peerReviewStatus == 'NOT_APPROVED'}">
+                                        <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="peerReviewStatusColor" value="" />
+                                    </c:otherwise>
+                                </c:choose>
+                                <span class="chip ${peerReviewStatusColor}">
+                                    <a href="<spring:url value='/content/number/edit/${number.id}#contribution-events' />">
+                                        ${number.peerReviewStatus}
+                                    </a>
+                                </span>
+                            </p>
                         </td>
                     </tr>
                 </c:forEach>

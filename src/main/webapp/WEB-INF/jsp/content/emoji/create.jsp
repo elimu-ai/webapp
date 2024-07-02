@@ -40,7 +40,7 @@
                 <a href="https://emojipedia.org" target="_blank">📙 Emojipedia</a>
             </li>
             <li>
-                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki: Localization</a>
+                <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">elimu.ai Wiki: Localization</a>
             </li>
         </ul>
     </div>

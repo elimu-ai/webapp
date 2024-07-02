@@ -8,7 +8,7 @@ import javax.persistence.OrderColumn;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Contains information about the various sounds a letter can represent.
+ * Contains information about the various sounds a letter (or letter combination) can represent.
  */
 @Entity
 public class LetterSoundCorrespondence extends Content {
@@ -21,7 +21,7 @@ public class LetterSoundCorrespondence extends Content {
 //    @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Allophone> allophones;
+    private List<Sound> sounds;
     
     public List<Letter> getLetters() {
         return letters;
@@ -31,11 +31,11 @@ public class LetterSoundCorrespondence extends Content {
         this.letters = letters;
     }
 
-    public List<Allophone> getAllophones() {
-        return allophones;
+    public List<Sound> getSounds() {
+        return sounds;
     }
 
-    public void setAllophones(List<Allophone> allophones) {
-        this.allophones = allophones;
+    public void setSounds(List<Sound> sounds) {
+        this.sounds = sounds;
     }
 }

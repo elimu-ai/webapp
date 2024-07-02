@@ -1,1 +1,13 @@
-id,content_type,content_license,attribution_url,transcription,download_url,audio_format
+id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format
+1,audio/mpeg,null,"null",2,"word-2","তার","/audio/1.mp3",MP3
+2,audio/mpeg,null,"null",44,"word-44","এক","/audio/2.mp3",MP3
+3,audio/mpeg,null,"null",42,"word-42","মৌমাছি","/audio/3.mp3",MP3
+4,audio/mpeg,null,"null",,"storybook-1-ch-6-par-1","মা! মা! আমি ওয়াগনের শক্ত চাকা দেখছি, খড় ও কাঠ বহন করে নিয়ে যাচ্ছে।","/audio/4.mp3",MP3
+5,audio/mpeg,null,"null",,"storybook-1-ch-7-par-1","মা! মা! আমি দেখছি বিশাল ওয়াগন চলছে, তিন তলা দালানের সমান উঁচু!","/audio/5.mp3",MP3
+6,audio/mpeg,null,"null",46,"word_তিন","তিন","/audio/6.mp3",MP3
+7,audio/mpeg,null,"null",47,"word-id-47","মা","/audio/7.mp3",MP3
+8,audio/mpeg,null,"null",48,"word-id-48","আমি","/audio/8.mp3",MP3
+9,audio/mpeg,null,"null",49,"word-id-49","কী","/audio/9.mp3",MP3
+10,audio/mpeg,null,"null",,"storybook-5-ch-6-par-1","অরিওল ওদের আলাদা করে ধরে রেখে শান্ত করতে চাইল। ঝগড়ার মধ্যে ছোট্ট পাখিটার হলুদ রঙ কাঠঠোকরার লাল রঙের সাথে মিশে গেল। অরিওল হয়ে গেল...... কমলা!","/audio/10.mp3",MP3
+11,audio/mpeg,null,"null",,"storybook-5-ch-11-par-1","এতে কাঠঠোকরার গায়ের একটু লাল রঙ মাছরাঙার নীলের সাথে মিশে গেল।পায়রা তার গায়ের বেগুনি ছোপের দিকে তাকিয়ে ভাবল, "বেগুনি রঙে আমাকে তো সুন্দর দেখায়।"","/audio/11.mp3",MP3
+12,audio/mpeg,null,"null",,"storybook-2-ch-10-par-1","আমার যে-রকম চুল আছে আমি তাই পছন্দ করি। আমি নেপালি হ্যাট পড়বো এবং আমাকে নেপালি শিশুর মতো দেখাবে।","/audio/12.mp3",MP3

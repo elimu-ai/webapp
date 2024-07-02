@@ -34,6 +34,9 @@ public class ImageDeleteController {
 //        Image image = imageDao.read(id);
 //        imageDao.delete(image);
 
+        // Store contribution event
+        // TODO
+
         return "redirect:/content/multimedia/image/list";
     }
 }

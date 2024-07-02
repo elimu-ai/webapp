@@ -1,6 +1,5 @@
 package ai.elimu.web.content;
 
-import ai.elimu.dao.AllophoneDao;
 import ai.elimu.dao.AudioContributionEventDao;
 import java.security.Principal;
 
@@ -14,6 +13,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -23,6 +23,8 @@ import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.v2.enums.Environment;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +35,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content")
@@ -41,13 +44,16 @@ public class MainContentController {
     private final Logger logger = LogManager.getLogger();
     
     @Autowired
-    private AllophoneDao allophoneDao;
+    private LetterDao letterDao;
+    
+    @Autowired
+    private SoundDao soundDao;
+    
+    @Autowired
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private NumberDao numberDao;
-    
-    @Autowired
-    private LetterDao letterDao;
     
     @Autowired
     private SyllableDao syllableDao;
@@ -99,7 +105,7 @@ public class MainContentController {
             return "redirect:/content/contributor/add-email";
         } else if (StringUtils.isBlank(contributor.getFirstName()) || StringUtils.isBlank(contributor.getLastName())) {
             return "redirect:/content/contributor/edit-name";
-        } else if (StringUtils.isBlank(contributor.getMotivation())) {
+        } else if (StringUtils.isBlank(contributor.getMotivation()) && (EnvironmentContextLoaderListener.env != Environment.DEV)) {
             return "redirect:/content/contributor/edit-motivation";
         } else {
             // Redirect to originally requested URL
@@ -111,9 +117,10 @@ public class MainContentController {
             }
         }
         
-        model.addAttribute("allophoneCount", allophoneDao.readCount());
-        model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("letterCount", letterDao.readCount());
+        model.addAttribute("soundCount", soundDao.readCount());
+        model.addAttribute("letterSoundCorrespondenceCount", letterSoundDao.readCount());
+        model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount());
         model.addAttribute("wordCount", wordDao.readCount());
         model.addAttribute("emojiCount", emojiDao.readCount());

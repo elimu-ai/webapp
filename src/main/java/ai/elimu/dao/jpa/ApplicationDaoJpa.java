@@ -21,7 +21,6 @@ public class ApplicationDaoJpa extends GenericDaoJpa<Application> implements App
                 .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("Application with packageName \"" + packageName + "\" was not found", e);
             return null;
         }
     }

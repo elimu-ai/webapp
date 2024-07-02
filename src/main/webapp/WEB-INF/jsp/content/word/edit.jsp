@@ -61,14 +61,14 @@
                                 <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-sound-correspondence-id="${letterSoundCorrespondence.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
-                                <a href="<spring:url value='/content/letter-sound-correspondence/edit/${letterSoundCorrespondence.id}' />">
-                                    "<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
-                                        ${letter.text}
-                                    </c:forEach>"<br />
+                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
+                                    " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                        ${letter.text}<c:out value=" " />
+                                    </c:forEach> "<br />
                                     ↓<br />
-                                    /<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">
-                                        ${allophone.valueIpa}
-                                    </c:forEach>/
+                                    / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                        ${sound.valueIpa}<c:out value=" " />
+                                    </c:forEach> /
                                 </a>
                             </div>
                         </c:forEach>
@@ -92,7 +92,7 @@
                     <select id="letterSoundCorrespondences" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
                         <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
-                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-allophones="<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">${allophone.valueIpa}</c:forEach>">"<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" → /<c:forEach var="allophone" items="${letterSoundCorrespondence.allophones}">${allophone.valueIpa}</c:forEach>/</option>
+                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}</c:forEach>">" <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}<c:out value=" " /></c:forEach> " → / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}<c:out value=" " /></c:forEach> /</option>
                         </c:forEach>
                     </select>
                     <script>
@@ -104,19 +104,19 @@
                                 console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
                                 var selectedOption = $(this).find('option[value="' + letterSoundCorrespondenceId + '"]');
                                 var letterSoundCorrespondenceLetters = selectedOption.attr('data-letters');
-                                console.log('letterSoundCorrespondenceLetters "' + letterSoundCorrespondenceLetters + '"');
-                                var letterSoundCorrespondenceAllophones = selectedOption.attr('data-allophones');
-                                console.log('letterSoundCorrespondenceAllophones "' + letterSoundCorrespondenceAllophones + '"');
+                                console.log('letterSoundCorrespondenceLetters: "' + letterSoundCorrespondenceLetters + '"');
+                                var letterSoundCorrespondenceSounds = selectedOption.attr('data-sounds');
+                                console.log('letterSoundCorrespondenceSounds: "' + letterSoundCorrespondenceSounds + '"');
                                 if (letterSoundCorrespondenceId != "") {
                                     $('#letterSoundCorrespondencesContainer').append('<input name="letterSoundCorrespondences" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
-                                    $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceAllophones + '/</div>');
+                                    $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceSounds + '/</div>');
                                     $(this).val("");
                                 }
                             });
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter-sound-correspondence/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter-sound/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
@@ -327,7 +327,7 @@
         <c:when test="${empty audios}">
             <div class="card-panel amber lighten-3">
                 <b>Warning:</b> This word has no corresponding audio.<br />
-                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
+                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=word_${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
             </div>
         </c:when>
         <c:otherwise>
@@ -363,24 +363,6 @@
             </ol>
         </div>
     </c:if>
-    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
-        <c:if test="${not empty word.text}">
-            <div class="divider" style="margin: 1.5em 0;"></div>
-        </c:if>
-
-        <h5 class="center"><fmt:message key="resources" /></h5>
-        <div class="card-panel deep-purple lighten-5">
-            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
-            <ol style="list-style-type: inherit;">
-                <li>
-                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
-                </li>
-                <li>
-                    <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
-                </li>
-            </ol>
-        </div>
-    </c:if>
     <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
         <c:if test="${not empty word.text}">
             <div class="divider" style="margin: 1.5em 0;"></div>
@@ -400,12 +382,44 @@
                     <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
                 </li>
             </ol>
-            
-            <div class="divider" style="margin: 1.5em 0;"></div>
         </div>
     </c:if>
-    
-    <div class="divider" style="margin: 1.5em 0;"></div>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin: 1.5em 0;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'SWA'}">
+        <c:if test="${not empty word.text}">
+            <div class="divider" style="margin: 1.5em 0;"></div>
+        </c:if>
+
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#sw" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=sw&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
     
     <div class="card-panel deep-purple lighten-5">
         General resources:
@@ -414,7 +428,7 @@
                 <a href="<spring:url value='/content/word/pending' />"><fmt:message key="words.pending" /></a>
             </li>
             <li>
-                <a href="https://github.com/elimu-ai/wiki/blob/master/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
+                <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
             </li>
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
@@ -482,10 +496,10 @@
     
     <div class="divider" style="margin: 1.5em 0;"></div>
     
-    <h5 class="center"><fmt:message key="storybook.paragaphs.containing.word" /></h5>
+    <h5 class="center"><fmt:message key="storybook.paragraphs.containing.word" /> (${fn:length(storyBookParagraphsContainingWord)})</h5>
     <c:forEach var="storyBookParagraph" items="${storyBookParagraphsContainingWord}">
         <p>
-            <c:set var="wordTextInBold" value="<span class='diff-addition'>${word.text}</span>" />
+            <c:set var="wordTextInBold" value="<span class='diff-highlight'>${word.text}</span>" />
              "${fn:replace(storyBookParagraph.originalText, word.text, wordTextInBold)}"<br />
             <a href="<spring:url value='/content/storybook/edit/${storyBookParagraph.storyBookChapter.storyBook.id}#ch-id-${storyBookParagraph.storyBookChapter.id}' />" target="_blank"><c:out value="${storyBookParagraph.storyBookChapter.storyBook.title}" /></a>
         </p>

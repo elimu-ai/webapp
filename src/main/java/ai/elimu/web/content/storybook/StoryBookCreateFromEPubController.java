@@ -1,5 +1,6 @@
 package ai.elimu.web.content.storybook;
 
+import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -16,15 +17,18 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -70,6 +74,9 @@ public class StoryBookCreateFromEPubController {
     private ImageDao imageDao;
     
     @Autowired
+    private ImageContributionEventDao imageContributionEventDao;
+    
+    @Autowired
     private StoryBookChapterDao storyBookChapterDao;
     
     @Autowired
@@ -97,8 +104,6 @@ public class StoryBookCreateFromEPubController {
             HttpSession session
     ) throws IOException {
     	logger.info("handleSubmit");
-        
-        Calendar timeStart = Calendar.getInstance();
         
         Image storyBookCoverImage = null;
         
@@ -198,7 +203,9 @@ public class StoryBookCreateFromEPubController {
             // Extract the ePUB's chapters
             File tableOfContentsFile = null;
             for (File file : filesInEPub) {
-                if (file.getName().startsWith("toc.")) {
+                logger.info("file: " + file);
+                if (file.getName().startsWith("toc.")
+                        || file.getName().startsWith("nav.")) {
                     tableOfContentsFile = file;
                 }
             }
@@ -327,13 +334,14 @@ public class StoryBookCreateFromEPubController {
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
-            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
+            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook
             storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
             imageDao.create(storyBookCoverImage);
+            storeImageContributionEvent(storyBookCoverImage, session, request);
             storyBook.setCoverImage(storyBookCoverImage);
             storyBookDao.update(storyBook);
             
@@ -363,6 +371,9 @@ public class StoryBookCreateFromEPubController {
                         || originalTextLowerCase.contains("pratham books")
                         || originalTextLowerCase.contains("storyweaver")
                         || originalTextLowerCase.contains("copyright page")
+                        || originalTextLowerCase.contains("by smart axiata") // StoryBookProvider#LETS_READ_ASIA
+                        || originalTextLowerCase.contains("the asia foundation") // StoryBookProvider#LETS_READ_ASIA
+                        || originalTextLowerCase.contains("এশিয়া ফাউন্ডেশনের") // StoryBookProvider#LETS_READ_ASIA
                     ) {
                         isMetadata = true;
                         break;
@@ -380,6 +391,7 @@ public class StoryBookCreateFromEPubController {
                 if (chapterImage != null) {
                     chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
                     imageDao.create(chapterImage);
+                    storeImageContributionEvent(chapterImage, session, request);
                 }
                 
                 // Only store the chapter if it has an image or at least one paragraph
@@ -393,6 +405,21 @@ public class StoryBookCreateFromEPubController {
                     storyBookParagraph.setStoryBookChapter(storyBookChapter);
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
+            }
+            
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+                String embedThumbnailUrl = null;
+                if (storyBook.getCoverImage() != null) {
+                    embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+                }
+                DiscordHelper.sendChannelMessage(
+                        "Storybook created (imported from ePUB): " + contentUrl,
+                        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                        null,
+                        embedThumbnailUrl
+                );
             }
             
             return "redirect:/content/storybook/edit/" + storyBook.getId();
@@ -467,5 +494,31 @@ public class StoryBookCreateFromEPubController {
         }
         
         return unzippedFiles;
+    }
+    
+    private void storeImageContributionEvent(Image image, HttpSession session, HttpServletRequest request) {
+        logger.info("storeImageContributionEvent");
+        
+        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+        imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        imageContributionEvent.setTime(Calendar.getInstance());
+        imageContributionEvent.setImage(image);
+        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+        imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
+        imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+        imageContributionEvent.setPlatform(Platform.WEBAPP);
+        imageContributionEventDao.create(imageContributionEvent);
+
+        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+            String embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
+            DiscordHelper.sendChannelMessage(
+                    "Image created: " + contentUrl, 
+                    "\"" + image.getTitle() + "\"",
+                    "Comment: \"" + imageContributionEvent.getComment() + "\"",
+                    null,
+                    embedThumbnailUrl
+            );
+        }
     }
 }

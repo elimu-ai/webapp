@@ -11,7 +11,7 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.util.SlackHelper;
+import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
 import java.util.List;
@@ -108,8 +108,20 @@ public class StoryBookChapterCreateController {
             storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-            SlackHelper.postChatMessage("Storybook chapter created: " + contentUrl);
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+                String embedThumbnailUrl = null;
+                if (storyBook.getCoverImage() != null) {
+                    embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+                }
+                DiscordHelper.sendChannelMessage(
+                        "Storybook chapter created: " + contentUrl,
+                        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+                        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+                        null,
+                        embedThumbnailUrl
+                );
+            }
             
             return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
         }

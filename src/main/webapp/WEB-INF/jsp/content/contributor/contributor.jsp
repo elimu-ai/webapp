@@ -13,15 +13,18 @@
     <%@ include file="/WEB-INF/jsp/content/contributor/contributor-summarized.jsp" %>
     
     <ul class="tabs tabs-transparent deep-purple lighten-1 z-depth-1" style="border-radius: 8px;">
-        <li class="tab"><a class="active" href="#storybooks">Storybooks (${storyBookContributionsCount + storyBookPeerReviewsCount})</a></li>
-        <li class="tab"><a href="#audios">Audios (${audioContributionsCount + audioPeerReviewsCount})</a></li>
-        <li class="tab"><a href="#words">Words (${wordContributionsCount + wordPeerReviewsCount})</a></li>
-        <li class="tab"><a href="#numbers">Numbers (${numberContributionsCount + numberPeerReviewsCount})</a></li>
+        <li class="tab"><a class="active" href="#storybooks">Storybooks (${storyBookContributionsCount} + ${storyBookPeerReviewsCount})</a></li>
+        <li class="tab"><a href="#audios">Audios (${audioContributionsCount} + ${audioPeerReviewsCount})</a></li>
+        <li class="tab"><a href="#words">Words (${wordContributionsCount} + ${wordPeerReviewsCount})</a></li>
+        <li class="tab"><a href="#numbers">Numbers (${numberContributionsCount} + ${numberPeerReviewsCount})</a></li>
     </ul>
     <div id="storybooks">
         <%@ include file="/WEB-INF/jsp/content/contributor/contributor-storybooks.jsp" %>
     </div>
     <div id="words">
         <%@ include file="/WEB-INF/jsp/content/contributor/contributor-words.jsp" %>
+    </div>
+    <div id="numbers">
+        <%@ include file="/WEB-INF/jsp/content/contributor/contributor-numbers.jsp" %>
     </div>
 </content:section>

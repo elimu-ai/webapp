@@ -22,7 +22,6 @@ public class ApplicationVersionDaoJpa extends GenericDaoJpa<ApplicationVersion> 
                 .setParameter("versionCode", versionCode)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("ApplicationVersion \"" + versionCode + "\" was not found for Application " + application.getPackageName());
             return null;
         }
     }

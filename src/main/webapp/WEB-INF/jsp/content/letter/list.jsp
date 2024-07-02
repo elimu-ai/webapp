@@ -43,10 +43,35 @@
                                 <a href="<spring:url value='/content/letter/edit/${letter.id}' />">"<c:out value='${letter.text}' />"</a>
                             </td>
                             <td>
-                                ${letter.diacritic}
+                                <c:choose>
+                                	<c:when test="${letter.diacritic}">
+                                		<fmt:message key="yes" />
+                                	</c:when>
+                                	<c:otherwise>
+                                		<fmt:message key="no" />
+                                	</c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
-                                #${letter.revisionNumber}
+                                <p>#${letter.revisionNumber}</p>
+                                <p>
+                                    <c:choose>
+                                        <c:when test="${letter.peerReviewStatus == 'APPROVED'}">
+                                            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
+                                        </c:when>
+                                        <c:when test="${letter.peerReviewStatus == 'NOT_APPROVED'}">
+                                            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:set var="peerReviewStatusColor" value="" />
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <span class="chip ${peerReviewStatusColor}">
+                                        <a href="<spring:url value='/content/letter/edit/${letter.id}#contribution-events' />">
+                                            ${letter.peerReviewStatus}
+                                        </a>
+                                    </span>
+                                </p>
                             </td>
                         </tr>
                     </c:forEach>

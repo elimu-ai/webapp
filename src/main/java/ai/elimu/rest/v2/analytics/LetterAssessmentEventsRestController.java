@@ -5,6 +5,7 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.AnalyticsHelper;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
 import java.io.File;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -51,12 +52,20 @@ public class LetterAssessmentEventsRestController {
         String name = multipartFile.getName();
         logger.info("name: " + name);
         
-        // Expected format: "7161a85a0e4751cd_letter-assessment-events_2020-04-23.csv"
+        // Expected format: "7161a85a0e4751cd_3001012_letter-assessment-events_2020-04-23.csv"
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
+        // TODO: Send notification to the #📊-data-collection channel in Discord
+        // Hide parts of the Android ID, e.g. "7161***51cd_3001012_word-learning-events_2020-04-23.csv"
+        String anonymizedOriginalFilename = originalFilename.substring(0, 4) + "***" + originalFilename.substring(12);
+        DiscordHelper.sendChannelMessage("Received dataset: `" + anonymizedOriginalFilename + "`", null, null, null, null);
+        
         String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
         logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
+        
+        Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
+        logger.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
         
         String contentType = multipartFile.getContentType();
         logger.info("contentType: " + contentType);
@@ -71,8 +80,9 @@ public class LetterAssessmentEventsRestController {
             File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
-            File androidIdDir = new File(analyticsDir, "android-id_" + androidIdExtractedFromFilename);
-            File letterAssessmentEventsDir = new File(androidIdDir, "letter-assessment-events");
+            File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
+            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
+            File letterAssessmentEventsDir = new File(versionCodeDir, "letter-assessment-events");
             letterAssessmentEventsDir.mkdirs();
             File csvFile = new File(letterAssessmentEventsDir, originalFilename);
             logger.info("Storing CSV file at " + csvFile);

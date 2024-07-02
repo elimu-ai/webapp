@@ -26,7 +26,7 @@
                 <thead>
                     <th><fmt:message key="frequency" /></th>
                     <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="allophones" /></th>
+                    <th><fmt:message key="letter.sound.correspondences" /></th>
                     <%--<th><fmt:message key="spelling.consistency" /></th>--%>
                     <th><fmt:message key="word.type" /></th>
                     <th><fmt:message key="root.word" /></th>
@@ -46,7 +46,21 @@
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />">"<c:out value="${word.text}" />"</a>
                             </td>
                             <td style="font-size: 2em;">
-                                /<c:forEach var="lsc" items="${word.letterSoundCorrespondences}">&nbsp;<a href="<spring:url value='/content/letter-sound-correspondence/edit/${lsc.id}' />"><c:forEach var="allophone" items="${lsc.allophones}">${allophone.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
+                                <div id="letterSoundCorrespondencesContainer">
+                                    <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
+                                        <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
+                                        <div class="chip">
+                                            <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
+                                                " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                                    ${letter.text}<c:out value=" " />
+                                                </c:forEach> "<br />
+                                                / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                                    ${sound.valueIpa}<c:out value=" " />
+                                                </c:forEach> /
+                                            </a>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                             <%--
                             <td>

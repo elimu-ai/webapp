@@ -10,6 +10,7 @@ import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import ai.elimu.util.AnalyticsHelper;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
 import java.io.File;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -57,12 +58,20 @@ public class StoryBookLearningEventsRestController {
         String name = multipartFile.getName();
         logger.info("name: " + name);
         
-        // Expected format: "7161a85a0e4751cd_storybook-learning-events_2020-04-23.csv"
+        // Expected format: "7161a85a0e4751cd_3001012_storybook-learning-events_2020-04-23.csv"
         String originalFilename = multipartFile.getOriginalFilename();
         logger.info("originalFilename: " + originalFilename);
         
+        // TODO: Send notification to the #📊-data-collection channel in Discord
+        // Hide parts of the Android ID, e.g. "7161***51cd_3001012_word-learning-events_2020-04-23.csv"
+        String anonymizedOriginalFilename = originalFilename.substring(0, 4) + "***" + originalFilename.substring(12);
+        DiscordHelper.sendChannelMessage("Received dataset: `" + anonymizedOriginalFilename + "`", null, null, null, null);
+        
         String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
         logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
+        
+        Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
+        logger.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
         
         String contentType = multipartFile.getContentType();
         logger.info("contentType: " + contentType);
@@ -77,8 +86,9 @@ public class StoryBookLearningEventsRestController {
             File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
-            File androidIdDir = new File(analyticsDir, "android-id_" + androidIdExtractedFromFilename);
-            File storyBookLearningEventsDir = new File(androidIdDir, "storybook-learning-events");
+            File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
+            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
+            File storyBookLearningEventsDir = new File(versionCodeDir, "storybook-learning-events");
             storyBookLearningEventsDir.mkdirs();
             File csvFile = new File(storyBookLearningEventsDir, originalFilename);
             logger.info("Storing CSV file at " + csvFile);
@@ -95,6 +105,7 @@ public class StoryBookLearningEventsRestController {
                             "android_id",
                             "package_name",
                             "storybook_id",
+                            "storybook_title",
                             "learning_event_type"
                     )
                     .withSkipHeaderRecord();
@@ -115,35 +126,24 @@ public class StoryBookLearningEventsRestController {
                 storyBookLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
+                storyBookLearningEvent.setPackageName(packageName);
+                
                 Application application = applicationDao.readByPackageName(packageName);
                 logger.info("application: " + application);
-                if (application == null) {
-                    // Return error message saying that the reporting Application has not yet been added
-                    logger.warn("An Application with package name " + packageName + " was not found");
-                    
-                    jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "An Application with package name " + packageName + " was not found");
-                    response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
-                    
-                    break;
-                }
                 storyBookLearningEvent.setApplication(application);
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
+                storyBookLearningEvent.setStoryBookId(storyBookId);
+                
+                String storyBookTitle = csvRecord.get("storybook_title");
+                storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
+                
                 StoryBook storyBook = storyBookDao.read(storyBookId);
                 logger.info("storyBook: " + storyBook);
                 storyBookLearningEvent.setStoryBook(storyBook);
-                if (storyBook == null) {
-                    // Return error message saying that the StoryBook ID was not found
-                    logger.warn("A StoryBook with ID " + storyBookId + " was not found");
-                    
-                    jsonObject.put("result", "error");
-                    jsonObject.put("errorMessage", "A StoryBook with ID " + storyBookId + " was not found");
-                    response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
-                    
-                    break;
-                }
+                
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                logger.info("learningEventType: " + learningEventType);
                 storyBookLearningEvent.setLearningEventType(learningEventType);
                 
                 // Check if the event has already been stored in the database

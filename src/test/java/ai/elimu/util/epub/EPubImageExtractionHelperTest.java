@@ -38,6 +38,17 @@ public class EPubImageExtractionHelperTest {
     }
     
     @Test
+    public void testExtractImageReferenceFromChapterFile_ENG_LRA_377b7e63() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("eng-lra-377b7e63-6126-4cfe-bcee-1538d75c1b2f_Page_1.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+        
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertThat(imageReference, is("p-1.jpg"));
+    }
+    
+    @Test
     public void testExtractImageReferenceFromChapterFile_FIL_LRA_faa0d66e() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
         Resource resource = resourceLoader.getResource("fil-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");

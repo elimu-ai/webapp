@@ -2,7 +2,10 @@ package ai.elimu.model.analytics;
 
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.admin.Application;
+import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import java.util.Calendar;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -22,8 +25,22 @@ public abstract class LearningEvent extends BaseEntity {
     @NotNull
     private String androidId;
     
+    /**
+     * The package name of the {@link #application}.
+     */
+    @NotNull
+    private String packageName;
+    
+    /**
+     * This field will only be populated if a corresponding {@link Application} can be 
+     * found in the database for the {@link #packageName}.
+     */
     @ManyToOne
     private Application application;
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private LearningEventType learningEventType;
 
     public Calendar getTime() {
         return time;
@@ -40,6 +57,14 @@ public abstract class LearningEvent extends BaseEntity {
     public void setAndroidId(String androidId) {
         this.androidId = androidId;
     }
+    
+    public String getPackageName() {
+        return packageName;
+    }
+    
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 
     public Application getApplication() {
         return application;
@@ -47,5 +72,13 @@ public abstract class LearningEvent extends BaseEntity {
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public LearningEventType getLearningEventType() {
+        return learningEventType;
+    }
+
+    public void setLearningEventType(LearningEventType learningEventType) {
+        this.learningEventType = learningEventType;
     }
 }

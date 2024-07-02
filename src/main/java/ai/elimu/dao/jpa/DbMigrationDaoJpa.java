@@ -20,7 +20,6 @@ public class DbMigrationDaoJpa extends GenericDaoJpa<DbMigration> implements DbM
                 .setParameter("version", version)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.warn("DbMigration for version \"" + version + "\" was not found");
             return null;
         }
     }

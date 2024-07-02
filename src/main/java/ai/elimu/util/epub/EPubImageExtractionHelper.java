@@ -1,5 +1,6 @@
 package ai.elimu.util.epub;
 
+import ai.elimu.model.enums.StoryBookProvider;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
@@ -18,73 +19,9 @@ public class EPubImageExtractionHelper {
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * Expected file format (GLOBAL_DIGITAL_LIBRARY):
-     * <pre>
-     *     
-     *     <body><img src="21f0ca572d1f21c4813bfb910ccb935d.jpg" />
-     *     <p>
-     *      Fifth grade student, Little Miss Grace,
-     *     </p>
-     *     <p>
-     *      was totally fascinated by outer space .
-     *     </p></body>
-     *         
-     * </pre>
-     * <p />
+     * Examples of the expected file format can be found at <code>src/test/resources/ai/elimu/util/epub/</code>
      * 
-     * Expected file format (LETS_READ_ASIA):
-     * <pre>
-     *     
-     *     <body>
-     *         <div class="container">
-     *             <img src = 'image_3.jpg' />
-     *         </div>
-     *         <p dir="auto">WAAAAHHHH!<br/><br/>Ang ibong Brahminy ay umiiyak tulad ng isang gutom na sanggol.<br/><br/>WAAAAHHHH!</p>
-     *     </body>
-     *         
-     * </pre>
-     * 
-     * Expected file format (STORYWEAVER):
-     * <pre>
-     * 
-     *     <body id="story_epub_body">
-     *         <div id="story_epub">
-     *           <div id="storyReader" class="bengali">
-     *             <div
-     *       id="selected_page"
-     *       class=" page-container-landscape story-page">
-     *       <div class='sp_h_iT66_cB33 has_illustration illustration'>
-     *           <img class='responsive_illustration'
-     *             data-size1-src="https://storage.googleapis.com/story-weaver-e2e-production/illustration_crops/4094/size1/a1f14ac7a1ac0484043689848e2d42b8.jpg"
-     *             data-size2-src="https://storage.googleapis.com/story-weaver-e2e-production/illustration_crops/4094/size2/a1f14ac7a1ac0484043689848e2d42b8.jpg"
-     *             data-size3-src="https://storage.googleapis.com/story-weaver-e2e-production/illustration_crops/4094/size3/a1f14ac7a1ac0484043689848e2d42b8.jpg"
-     *             data-size4-src="https://storage.googleapis.com/story-weaver-e2e-production/illustration_crops/4094/size4/a1f14ac7a1ac0484043689848e2d42b8.jpg"
-     *             data-size5-src="https://storage.googleapis.com/story-weaver-e2e-production/illustration_crops/4094/size5/a1f14ac7a1ac0484043689848e2d42b8.jpg"
-     *             data-size6-src="https://storage.googleapis.com/story-weaver-e2e-production/illustration_crops/4094/size6/a1f14ac7a1ac0484043689848e2d42b8.jpg"
-     *             data-size7-src="https://storage.googleapis.com/story-weaver-e2e-production/illustration_crops/4094/size7/a1f14ac7a1ac0484043689848e2d42b8.jpg"
-     *               src="image_2.jpg"
-     *           />
-     *       </div>
-     *         <div class='text-font-normal sp_h_iT66_cB33 content ' dir="auto"><p>
-     *     
-     *     ভীমের
-     *     শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।</p>
-     *     
-     *     <p><br/></p><p>ধোপা
-     *     রামু সুযোগ পেলেই ভীমকে বকা দেয়। </p>
-     *     
-     *     <p></p></div>
-     *     <div class="page_number">2</div>
-     *     
-     *     </div>
-     *     
-     *           </div>
-     *         </div>
-     *     </body>
-     * 
-     * </pre>
-     * 
-     * @param xhtmlFile The XHTML file containing the image, e.g. {@code chapter-2.xhtml}.
+     * @param xhtmlFile The XHTML file containing the image, e.g. {@code image_4.jpg}.
      * @return An image file reference.
      */
     public static String extractImageReferenceFromChapterFile(File xhtmlFile) {
@@ -107,49 +44,109 @@ public class EPubImageExtractionHelper {
                     for (int j = 0; j < bodyChildNodeList.getLength(); j++) {
                         Node bodyChildNode = bodyChildNodeList.item(j);
                         logger.info("bodyChildNode: " + bodyChildNode);
+                        logger.info("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
                         logger.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
                         
-                        // Look for "<img>" (StoryBookProvider#GLOBAL_DIGITAL_LIBRARY)
+                        // StoryBookProvider: GLOBAL_DIGITAL_LIBRARY
+                        // Look for an image within `<body>`
+                        // Expected format:
+                        /*
+                            <body><img src="1e8e58cc7d627a7896737cfb3eba8270.jpg" />
+                            <p>
+                             আজকে ছুটির দিন আনন্দে হারাই!
+                             চলো সবে পোশাকের উৎসবে যাই!
+                            </p>
+                            </body>
+                        */
                         if ("img".equals(bodyChildNode.getNodeName())) {
-                            NamedNodeMap itemAttributes = bodyChildNode.getAttributes();
-                            logger.info("itemAttributes: " + itemAttributes);
-                            
-                            Node srcAttributeNode = itemAttributes.getNamedItem("src");
-                            logger.info("srcAttributeNode: " + srcAttributeNode);
-                            return srcAttributeNode.getNodeValue();
+                            return getFileReferenceFromImageNode(StoryBookProvider.GLOBAL_DIGITAL_LIBRARY, bodyChildNode);
                         }
                         
-                        // Look for "<div class="container">" (StoryBookProvider#LETS_READ_ASIA)
-                        if ("div".equals(bodyChildNode.getNodeName())) {
-                            NamedNodeMap itemAttributes = bodyChildNode.getAttributes();
-                            logger.info("itemAttributes (LETS_READ_ASIA): " + itemAttributes);
-                            
-                            Node classAttributeNode = itemAttributes.getNamedItem("class");
-                            logger.info("classAttributeNode (LETS_READ_ASIA): " + classAttributeNode);
-                            if ((classAttributeNode != null) && "container".equals(classAttributeNode.getNodeValue())) {
-                                NodeList containerDivChildNodeList = bodyChildNode.getChildNodes();
-                                logger.info("containerDivChildNodeList.getLength() (LETS_READ_ASIA): " + containerDivChildNodeList.getLength());
-                                for (int k = 0; k < containerDivChildNodeList.getLength(); k++) {
-                                    Node containerDivChildNode = containerDivChildNodeList.item(k);
-                                    logger.info("containerDivChildNode (LETS_READ_ASIA): " + containerDivChildNode);
-                                    logger.info("containerDivChildNode.getTextContent() (LETS_READ_ASIA): \"" + containerDivChildNode.getTextContent() + "\"");
-
-                                    // Look for "<img>"
-                                    if ("img".equals(containerDivChildNode.getNodeName())) {
-                                        // Expected format: <img src = 'image_3.jpg' />
-                                        
-                                        NamedNodeMap imageAttributes = containerDivChildNode.getAttributes();
-                                        logger.info("imageAttributes (LETS_READ_ASIA): " + imageAttributes);
-
-                                        Node srcAttributeNode = imageAttributes.getNamedItem("src");
-                                        logger.info("srcAttributeNode (LETS_READ_ASIA): " + srcAttributeNode);
-                                        return srcAttributeNode.getNodeValue();
+                        // StoryBookProvider: LETS_READ_ASIA
+                        // Look for an image within `<div class="container">`
+                        // Expected format:
+                        /*
+                            <body>
+                                <div class="container">
+                                    <img src = 'p-16.jpg' />
+                                </div>
+                                <p dir="auto">"Nagmumuni-muni lang," sabi niya.</p>
+                            </body>
+                        */
+                        if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("class") != null)) {
+                            NodeList containerDivChildNodeList = bodyChildNode.getChildNodes();
+                            logger.info("containerDivChildNodeList: " + containerDivChildNodeList);
+                            for (int l = 0; l < containerDivChildNodeList.getLength(); l++) {
+                                Node containerDivChildNode = containerDivChildNodeList.item(l);
+                                if ("img".equals(containerDivChildNode.getNodeName())) {
+                                    return getFileReferenceFromImageNode(StoryBookProvider.LETS_READ_ASIA, containerDivChildNode);
+                                }
+                            }
+                        }
+                        
+                        // StoryBookProvider: LETS_READ_ASIA
+                        // Look for an image within `<div lang="en">`
+                        // Expected format:
+                        /*
+                            <body dir="auto">
+                                <div lang="en">
+                                    <div class="container">
+                                        <img src="p-1.jpg" alt=""/>
+                                    </div>
+                                    <p dir="auto">The moon rises.</p>
+                                </div>
+                            </body>
+                        */
+                        if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("lang") != null)) {
+                            NodeList langDivChildNodeList = bodyChildNode.getChildNodes();
+                            logger.info("langDivChildNodeList: " + langDivChildNodeList);
+                            for (int k = 0; k < langDivChildNodeList.getLength(); k++) {
+                                Node langDivChildNode = langDivChildNodeList.item(k);
+                                logger.info("langDivChildNode: " + langDivChildNode);
+                                
+                                // Look for `<div class="container">`
+                                if ("div".equals(langDivChildNode.getNodeName()) && (langDivChildNode.getAttributes().getNamedItem("class") != null)) {
+                                    NodeList containerDivChildNodeList = langDivChildNode.getChildNodes();
+                                    logger.info("containerDivChildNodeList: " + containerDivChildNodeList);
+                                    for (int l = 0; l < containerDivChildNodeList.getLength(); l++) {
+                                        Node containerDivChildNode = containerDivChildNodeList.item(l);
+                                        if ("img".equals(containerDivChildNode.getNodeName())) {
+                                            return getFileReferenceFromImageNode(StoryBookProvider.LETS_READ_ASIA, containerDivChildNode);
+                                        }
                                     }
                                 }
                             }
                         }
                         
-                        // Look for "<div id="story_epub">" (StoryBookProvider#STORYWEAVER)
+                        // StoryBookProvider: STORYWEAVER
+                        // Look for an image within `<div class='sp_h_iT66_cB33 has_illustration illustration'>`
+                        // Expected format:
+                        /*
+                            <body id="story_epub_body">
+                                <div id="story_epub">
+                                  <div id="storyReader" class="bengali">
+                                    <div id="selected_page" class=" page-container-landscape story-page">
+                                        <div class='sp_h_iT66_cB33 has_illustration illustration'>
+                                            <img class='responsive_illustration' src="image_2.jpg" />
+                                        </div>
+                                        <div class='text-font-normal sp_h_iT66_cB33 content ' dir="auto">
+                                            <p>
+                                                ভীমের
+                                                শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।
+                                            </p>
+                                            <p>
+                                                <br/></p><p>ধোপা
+                                                রামু সুযোগ পেলেই ভীমকে বকা দেয়। 
+                                            </p>
+                                        </div>
+                                        <div class="page_number">
+                                            2
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </body>
+                        */
                         if ("div".equals(bodyChildNode.getNodeName())) {
                             if ((bodyChildNode.getAttributes().getNamedItem("id") != null) 
                                     && "story_epub".equals(bodyChildNode.getAttributes().getNamedItem("id").getNodeValue())) {
@@ -191,12 +188,7 @@ public class EPubImageExtractionHelper {
                                                                         
                                                                         // Look for "<img class='responsive_illustration' />
                                                                         if ("img".equals(illustrationChildNode.getNodeName())) {
-                                                                            NamedNodeMap imageAttributes = illustrationChildNode.getAttributes();
-                                                                            logger.info("imageAttributes (STORYWEAVER): " + imageAttributes);
-
-                                                                            Node srcAttributeNode = imageAttributes.getNamedItem("src");
-                                                                            logger.info("srcAttributeNode (STORYWEAVER): " + srcAttributeNode);
-                                                                            return srcAttributeNode.getNodeValue();
+                                                                            return getFileReferenceFromImageNode(StoryBookProvider.STORYWEAVER, illustrationChildNode);
                                                                         }
                                                                     }
                                                                 }
@@ -218,5 +210,21 @@ public class EPubImageExtractionHelper {
         }
         
         return null;
+    }
+    
+    private static String getFileReferenceFromImageNode(StoryBookProvider storyBookProvider, Node imageNode) {
+        logger.info("getFileReferenceFromImageNode");
+        
+        logger.info("storyBookProvider: " + storyBookProvider);
+        
+        NamedNodeMap itemAttributes = imageNode.getAttributes();
+        logger.info("itemAttributes: " + itemAttributes);
+
+        Node srcAttributeNode = itemAttributes.getNamedItem("src");
+        logger.info("srcAttributeNode: " + srcAttributeNode);
+        
+        String imageSource = srcAttributeNode.getNodeValue();
+        logger.info("imageSource: \"" + imageSource + "\"");
+        return imageSource;
     }
 }

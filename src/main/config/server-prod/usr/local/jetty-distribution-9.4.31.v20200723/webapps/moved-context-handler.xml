@@ -7,7 +7,7 @@ This file is placed on the prod server under $JETTY_HOME/webapps/
 
 <Configure class="org.eclipse.jetty.server.handler.MovedContextHandler">
   <Set name="contextPath">/</Set>
-  <Set name="newContextURL">http://eng.elimu.ai</Set>
+  <Set name="newContextURL">https://eng.elimu.ai</Set>
   <Set name="permanent">true</Set>
   <Set name="discardPathInfo">true</Set>
   <Set name="discardQuery">true</Set>

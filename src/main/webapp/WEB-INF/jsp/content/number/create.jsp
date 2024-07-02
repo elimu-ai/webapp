@@ -99,35 +99,32 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
-    
-    <div class="previewContainer valignwrapper">
-        <img src="<spring:url value='/static/img/device-pixel-c.png' />" alt="<fmt:message key="preview" />" />
-        <div id="previewContentContainer">
-            <div id="previewContent" class="previewContentGrapheme">
-
-            </div>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
+        <h5 class="center"><fmt:message key="resources" /></h5>
+        <div class="card-panel deep-purple lighten-5">
+            Hindi resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikibooks.org/wiki/Hindi/Numbers" target="_blank">Wikibooks</a>
+                </li>
+                <li>
+                    <a href="https://omniglot.com/language/numbers/hindi.htm" target="_blank">Omniglot</a>
+                </li>
+            </ol>
         </div>
+        
+        <div class="divider" style="margin: 1.5em 0;"></div>
+    </c:if>
+        
+    <div class="card-panel deep-purple lighten-5">
+        General resources:
+        <ol style="list-style-type: inherit;">
+            <li>
+                <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>
+            </li>
+            <li>
+                <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
+            </li>
+        </ol>
     </div>
-    <script>
-        $(function() {
-            initializePreview();
-            
-            $('#symbol, #value').on("change", function() {
-                console.debug('#symbol/#value on change');
-                initializePreview();
-            });
-            
-            function initializePreview() {
-                console.debug('initializePreview');
-                var symbol = $('#symbol').val();
-                var value = $('#value').val();
-                if ((symbol != undefined) && (symbol != "")) {
-                    $('#previewContent').html(symbol);
-                } else {
-                    $('#previewContent').html(value);
-                }
-            };
-        });
-    </script>
 </content:aside>
