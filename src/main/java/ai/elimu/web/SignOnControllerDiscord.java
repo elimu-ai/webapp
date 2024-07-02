@@ -132,9 +132,9 @@ public class SignOnControllerDiscord {
                 String id = String.valueOf(idAsLong);
                 contributor.setProviderIdDiscord(id);
             }
-            if (jsonObject.has("avatar")) {
+            if (!jsonObject.isNull("avatar")) {
                 String uriAvatar = "https://cdn.discordapp.com/avatars/" + jsonObject.getLong("id") + "/" + jsonObject.getString("avatar") + ".png";
-                logger.info(uriAvatar);
+                logger.info("Avatar URL: " + uriAvatar);
                 contributor.setImageUrl(uriAvatar);
             }
             if (jsonObject.has("username")) {
