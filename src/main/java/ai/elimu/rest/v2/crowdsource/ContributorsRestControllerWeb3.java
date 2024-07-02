@@ -69,7 +69,7 @@ public class ContributorsRestControllerWeb3 {
             logger.info("jsonResponse: " + jsonResponse);
             return jsonResponse;
         }
-        
+        providerIdWeb3 = providerIdWeb3.toLowerCase();
         String providerIdWeb3Signature = contributorJSONObject.getString("providerIdWeb3Signature");
         logger.info("providerIdWeb3Signature: " + providerIdWeb3Signature);
         if (StringUtils.isBlank(providerIdWeb3Signature)) {

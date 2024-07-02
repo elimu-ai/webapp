@@ -11,16 +11,16 @@ To be able to compile and execute the web application locally, you will first ne
 * Java Development Kit (JDK)
 
   * macOS: `brew install openjdk`
+  * Windows: Download from https://learn.microsoft.com/en-us/java/openjdk/download
 
 * Maven
 
   * macOS: `brew install maven`
-
-Get Covalent API KEY from https://www.covalenthq.com/platform/#/auth/register/ and update it in src/main/resources/config.properties file
+  * Windows: Download ZIP file from https://maven.apache.org/download.cgi
 
 Go to the project's folder:
 
-    cd webapp
+    cd webapp/
 
 Then, to run the application, type:
     
@@ -30,7 +30,20 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 
 ### Debug 🪲
 
-To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
+> [!TIP]
+> To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
+
+
+## Code Coverage
+
+[![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+
+[![](https://codecov.io/gh/elimu-ai/webapp/branch/main/graphs/tree.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+
+```
+mvn test
+open target/site/jacoco/index.html
+```
 
 
 ## Test server
@@ -45,10 +58,29 @@ To run the application in debug mode, replace `mvn` with `mvnDebug` in the comma
 
 ## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿
 
-A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/enums/Language.java
+A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/v2/enums/Language.java
 
-The default language used during development is English (`ENG`). To switch to another language, edit the `content.language` property in [src/main/resources/config.properties](src/main/resources/config.properties).
+> [!NOTE]
+> The default language used during development is English (`ENG`). To switch to another language, edit the `content.language` property in [src/main/resources/config.properties](src/main/resources/config.properties).
 
-## Contributing guidelines
+---
 
-For guidelines on how to work on issues, see [CONTRIBUTING.md](CONTRIBUTING.md)
+<p align="center">
+  <img src="https://github.com/elimu-ai/webapp/blob/main/src/main/webapp/static/img/logo-text-256x78.png" />
+</p>
+<p align="center">
+  elimu.ai - Free open-source learning software for out-of-school children ✨🚀
+</p>
+<p align="center">
+  <a href="https://elimu.ai">Website 🌐</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki#readme">Wiki 📃</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/orgs/elimu-ai/projects?query=is%3Aopen">Projects 👩🏽‍💻</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki/milestones">Milestones 🎯</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki#open-source-community">Community 👋🏽</a>
+  &nbsp;•&nbsp;
+  <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698">Support 💜</a>
+</p>

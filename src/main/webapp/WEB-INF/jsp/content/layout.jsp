@@ -21,8 +21,13 @@
         <script src="<spring:url value='/static/js/jquery-3.6.0.min.js' />"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
-        <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
         <script src="<spring:url value='/static/js/difflib-0.2.4.min.js' />"></script>
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.8/dist/index.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+        <script src="<spring:url value='/static/js/web3provider.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
     </head>
 
@@ -62,7 +67,7 @@
                         <li class="grey-text"><b><fmt:message key="text" /></b></li>
                         <li><a href="<spring:url value='/content/letter/list' />"><i class="material-icons left">text_fields</i><fmt:message key="letters" /></a></li>
                         <li><a href="<spring:url value='/content/sound/list' />"><i class="material-icons left">music_note</i><fmt:message key="sounds" /></a></li>
-                        <li><a href="<spring:url value='/content/letter-sound-correspondence/list' />"><i class="material-icons left">emoji_symbols</i><fmt:message key="letter.sounds" /></a></li>
+                        <li><a href="<spring:url value='/content/letter-sound/list' />"><i class="material-icons left">emoji_symbols</i><fmt:message key="letter.sounds" /></a></li>
                         <li><a href="<spring:url value='/content/syllable/list' />"><i class="material-icons left">queue_music</i><fmt:message key="syllables" /></a></li>
                         <li><a href="<spring:url value='/content/number/list' />"><i class="material-icons left">looks_one</i><fmt:message key="numbers" /></a></li>
                         <li><a href="<spring:url value='/content/word/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
@@ -95,9 +100,9 @@
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
                                 <a class="breadcrumb" href="<spring:url value='/content/letter/list' />"><fmt:message key="letters" /></a>
                             </c:when>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-sound-correspondence/')
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/content/letter-sound/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/letter-sound-correspondence/list' />"><fmt:message key="letter.sound.correspondences" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/content/letter-sound/list' />"><fmt:message key="letter.sound.correspondences" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/word/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
@@ -170,7 +175,7 @@
                                 <li><a href="<spring:url value='/analytics' />"><i class="material-icons left">timeline</i><fmt:message key="analytics" /></a></li>
                             </sec:authorize>
                             <li class="divider"></li>
-                            <li><a href="<spring:url value='/logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
+                            <li><a  id="logout" href="<spring:url value='/logout' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
                         </ul>
                     </ul>
                     
@@ -181,8 +186,10 @@
                             */
                             async function getBalance(contributorAddress) {
                                 console.info('getBalance');
-
-                                window.web3 = new Web3(window.ethereum);
+                                
+                                // Connect to the web3 provider.
+                                const provider = await connect()
+                                window.web3 = new Web3(provider);
                                 console.info('window.web3: ' + window.web3);
 
                                 var contractAbi = [{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];

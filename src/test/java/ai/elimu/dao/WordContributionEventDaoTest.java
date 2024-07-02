@@ -17,7 +17,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml")
+@ContextConfiguration(locations={
+    "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
+    "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
+})
 public class WordContributionEventDaoTest {
     
     private Logger logger = LogManager.getLogger();
@@ -34,59 +37,42 @@ public class WordContributionEventDaoTest {
     @Test
     public void testReadMostRecent() {
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecent(10);
-        assertThat(wordContributionEvents.isEmpty(), is(true));
+        int numberOfWordContributionEventsBefore = wordContributionEvents.size();
         
         Contributor contributor = new Contributor();
         contributorDao.create(contributor);
         
-        Word word = new Word();
-        wordDao.create(word);
-        
-        WordContributionEvent wordContributionEvent = new WordContributionEvent();
-        wordContributionEvent.setContributor(contributor);
-        wordContributionEvent.setWord(word);
-        wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
-        wordContributionEvent.setTime(Calendar.getInstance());
-        wordContributionEvent.setTimeSpentMs(10_000L);
-        wordContributionEventDao.create(wordContributionEvent);
-        
-        wordContributionEvents = wordContributionEventDao.readMostRecent(10);
-        assertThat(wordContributionEvents.isEmpty(), is(false));
-        assertThat(wordContributionEvents.size(), is(1));
-        
-        // Clean up content stored in the database, so that it won't affect the other tests
-        wordContributionEventDao.delete(wordContributionEvent);
-    }
-    
-    @Test
-    public void testReadMostRecentPerWord() {
-        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
-        assertThat(wordContributionEvents.isEmpty(), is(true));
-        
-        Contributor contributor1 = new Contributor();
-        contributorDao.create(contributor1);
-        
         Word word1 = new Word();
+        word1.setText("word1");
         wordDao.create(word1);
         
         WordContributionEvent wordContributionEvent1 = new WordContributionEvent();
-        wordContributionEvent1.setContributor(contributor1);
+        wordContributionEvent1.setContributor(contributor);
         wordContributionEvent1.setWord(word1);
         wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
         wordContributionEvent1.setTime(Calendar.getInstance());
         wordContributionEvent1.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent1);
         
-        wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
-        assertThat(wordContributionEvents.isEmpty(), is(false));
-        assertThat(wordContributionEvents.size(), is(1));
-        assertThat(wordContributionEvents.get(0).getWord().getId(), is(wordContributionEvent1.getWord().getId()));
+        wordContributionEvents = wordContributionEventDao.readMostRecent(10);
+        int numberOfWordContributionEventsAfter = wordContributionEvents.size();
+        assertThat(numberOfWordContributionEventsAfter, is(numberOfWordContributionEventsBefore + 1));
+    }
+    
+    @Test
+    public void testReadMostRecentPerWord() {
+        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
+        int numberOfWordContributionEventsBefore = wordContributionEvents.size();
+        
+        Contributor contributor = new Contributor();
+        contributorDao.create(contributor);
         
         Word word2 = new Word();
+        word2.setText("word2");
         wordDao.create(word2);
         
         WordContributionEvent wordContributionEvent2 = new WordContributionEvent();
-        wordContributionEvent2.setContributor(contributor1);
+        wordContributionEvent2.setContributor(contributor);
         wordContributionEvent2.setWord(word2);
         wordContributionEvent2.setRevisionNumber(word2.getRevisionNumber());
         wordContributionEvent2.setTime(Calendar.getInstance());
@@ -94,30 +80,34 @@ public class WordContributionEventDaoTest {
         wordContributionEventDao.create(wordContributionEvent2);
         
         wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
-        assertThat(wordContributionEvents.isEmpty(), is(false));
-        assertThat(wordContributionEvents.size(), is(2));
-        assertThat(wordContributionEvents.get(0).getWord().getId(), is(wordContributionEvent1.getWord().getId()));
-        assertThat(wordContributionEvents.get(1).getWord().getId(), is(wordContributionEvent2.getWord().getId()));
+        assertThat(wordContributionEvents.size(), is(numberOfWordContributionEventsBefore + 1));
         
-        // Re-use a word (word2) that was used in a previous contribution event
+        Word word3 = new Word();
+        word3.setText("word3");
+        wordDao.create(word3);
+        
         WordContributionEvent wordContributionEvent3 = new WordContributionEvent();
-        wordContributionEvent3.setContributor(contributor1);
-        wordContributionEvent3.setWord(word2);
-        wordContributionEvent3.setRevisionNumber(word2.getRevisionNumber());
+        wordContributionEvent3.setContributor(contributor);
+        wordContributionEvent3.setWord(word3);
+        wordContributionEvent3.setRevisionNumber(word3.getRevisionNumber());
         wordContributionEvent3.setTime(Calendar.getInstance());
         wordContributionEvent3.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent3);
         
+        wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
+        assertThat(wordContributionEvents.size(), is(numberOfWordContributionEventsBefore + 2));
+        
+        // Re-use a word (word3) that was used in a previous contribution event
+        WordContributionEvent wordContributionEvent4 = new WordContributionEvent();
+        wordContributionEvent4.setContributor(contributor);
+        wordContributionEvent4.setWord(word3);
+        wordContributionEvent4.setRevisionNumber(word3.getRevisionNumber());
+        wordContributionEvent4.setTime(Calendar.getInstance());
+        wordContributionEvent4.setTimeSpentMs(10_000L);
+        wordContributionEventDao.create(wordContributionEvent4);
+        
         // The number of contribution events returned should not increase
         wordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
-        assertThat(wordContributionEvents.isEmpty(), is(false));
-        assertThat(wordContributionEvents.size(), is(2));
-        assertThat(wordContributionEvents.get(0).getWord().getId(), is(wordContributionEvent1.getWord().getId()));
-        assertThat(wordContributionEvents.get(1).getWord().getId(), is(wordContributionEvent3.getWord().getId()));
-        
-        // Clean up content stored in the database, so that it won't affect the other tests
-        wordContributionEventDao.delete(wordContributionEvent1);
-        wordContributionEventDao.delete(wordContributionEvent2);
-        wordContributionEventDao.delete(wordContributionEvent3);
+        assertThat(wordContributionEvents.size(), is(numberOfWordContributionEventsBefore + 2));
     }
 }
