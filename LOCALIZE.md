@@ -135,3 +135,25 @@ Another strategy for adding words is to go to the "Words Pending" page, where yo
    <img width="329" src="https://user-images.githubusercontent.com/15718174/101676791-527d0e00-3a64-11eb-9937-a8299f4cd7e8.png">
 
 1. Then, proceed as described above in ["Adding Words"](#adding-words).
+
+---
+
+<p align="center">
+  <img src="https://github.com/elimu-ai/webapp/blob/main/src/main/webapp/static/img/logo-text-256x78.png" />
+</p>
+<p align="center">
+  elimu.ai - Free open-source learning software for out-of-school children ✨🚀
+</p>
+<p align="center">
+  <a href="https://elimu.ai">Website 🌐</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki#readme">Wiki 📃</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/orgs/elimu-ai/projects?query=is%3Aopen">Projects 👩🏽‍💻</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki/milestones">Milestones 🎯</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki#open-source-community">Community 👋🏽</a>
+  &nbsp;•&nbsp;
+  <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698">Support 💜</a>
+</p>

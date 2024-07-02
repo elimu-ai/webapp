@@ -1,6 +1,10 @@
 # elimu.ai Webapp
 
 [![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
+[![commits](https://img.shields.io/github/commit-activity/m/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
+[![last commit](https://img.shields.io/github/last-commit/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
+[![contributors](https://img.shields.io/github/contributors/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/graphs/contributors)
+[![closed issues](https://img.shields.io/github/issues-closed/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/issues?q=is%3Aissue+is%3Aclosed)
 
 Web application:
 
@@ -15,20 +19,21 @@ This web application hosts Android apps and educational content (e.g. texts, aud
 
 See [src/main/java/ai/elimu/rest/](src/main/java/ai/elimu/rest/)
 
-The webapp's REST API is used by four Android applications:
+The webapp's REST API is used by three Android applications:
   1. [elimu.ai Appstore](https://github.com/elimu-ai/appstore)
   1. [elimu.ai Content Provider](https://github.com/elimu-ai/content-provider)
   1. [elimu.ai Analytics](https://github.com/elimu-ai/analytics)
-  1. [elimu.ai Crowdsource](https://github.com/elimu-ai/crowdsource)
 
 ## Software architecture
 
 See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md)
 
 ## Run webapp locally 👩🏽‍💻
+
 See [INSTALL.md](INSTALL.md)
 
 ## Localization
+
 See [LOCALIZE.md](LOCALIZE.md)
 
 ## Database migration
@@ -36,8 +41,8 @@ See [LOCALIZE.md](LOCALIZE.md)
 See [DB_MIGRATION.md](DB_MIGRATION.md)
 
 ## Contributing guidelines
-See [CONTRIBUTING.md](CONTRIBUTING.md)
 
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
@@ -45,7 +50,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
   <img src="https://github.com/elimu-ai/webapp/blob/main/src/main/webapp/static/img/logo-text-256x78.png" />
 </p>
 <p align="center">
-  elimu.ai - Free open source learning software for out-of-school children ✨🚀
+  elimu.ai - Free open-source learning software for out-of-school children ✨🚀
 </p>
 <p align="center">
   <a href="https://elimu.ai">Website 🌐</a>
@@ -57,4 +62,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
   <a href="https://github.com/elimu-ai/wiki/milestones">Milestones 🎯</a>
   &nbsp;•&nbsp;
   <a href="https://github.com/elimu-ai/wiki#open-source-community">Community 👋🏽</a>
+  &nbsp;•&nbsp;
+  <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698">Support 💜</a>
 </p>
