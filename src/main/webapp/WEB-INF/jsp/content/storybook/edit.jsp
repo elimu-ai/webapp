@@ -105,6 +105,9 @@
                 <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
                     <img src="<spring:url value='/image/${storyBookChapter.image.id}_r${storyBookChapter.image.revisionNumber}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
                 </a>
+                <sec:authorize access="hasRole('ROLE_EDITOR')">
+                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/${storyBookChapter.id}/deleteImage' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
+                </sec:authorize>
             </c:if>
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
