@@ -34,7 +34,23 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 > To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
 
 
-## Code Coverage
+## Testing
+
+### Unit testing
+
+Run all tests:
+
+```
+mvn test
+```
+
+Run individual tests:
+
+```
+mvn test -D test=WordDaoTest
+```
+
+### Code coverage
 
 [![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 
