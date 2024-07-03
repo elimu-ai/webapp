@@ -7,7 +7,6 @@ import ai.elimu.dao.NumberPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.contributor.NumberPeerReviewEvent;
-import ai.elimu.rest.v2.crowdsource.NumberPeerReviewsRestController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
