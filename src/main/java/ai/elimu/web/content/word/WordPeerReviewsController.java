@@ -9,7 +9,6 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.WordPeerReviewEvent;
-import ai.elimu.rest.v2.crowdsource.WordPeerReviewsRestController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
