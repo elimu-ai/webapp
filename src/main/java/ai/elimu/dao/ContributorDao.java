@@ -2,10 +2,9 @@ package ai.elimu.dao;
 
 import java.util.Calendar;
 import java.util.List;
+import ai.elimu.model.contributor.Contributor;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.contributor.Contributor;
 
 public interface ContributorDao extends GenericDao<Contributor> {
 	
@@ -16,6 +15,8 @@ public interface ContributorDao extends GenericDao<Contributor> {
     Contributor readByProviderIdDiscord(String id) throws DataAccessException;
 
     Contributor readByProviderIdWeb3(String id) throws DataAccessException;
+    
+    Contributor readByProviderIdGoogle(String id) throws DataAccessException;
     
     List<Contributor> readAllOrderedDesc() throws DataAccessException;
     
