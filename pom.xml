@@ -9,7 +9,7 @@
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <model.version>2.0.66</model.version> <!-- https://github.com/orgs/elimu-ai/packages?repo_name=model -->
+        <model.version>2.0.68</model.version> <!-- https://jitpack.io/#elimu-ai/model -->
         <hibernate.version>5.5.7.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>10.0.18</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
         <spring.version>5.3.18</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
