@@ -33,6 +33,14 @@ public class WordContributionEventDaoTest {
     
     @Autowired
     private WordContributionEventDao wordContributionEventDao;
+
+    @Test
+    public void testReadAllOrderedByTimeDesc() {
+        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
+        logger.info("wordContributionEvents.size():" + wordContributionEvents.size());
+
+        // TODO
+    }
     
     @Test
     public void testReadMostRecent() {
