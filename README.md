@@ -44,6 +44,10 @@ See [DB_MIGRATION.md](DB_MIGRATION.md)
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## Star History 🌠
+
+[![Star History Chart](https://api.star-history.com/svg?repos=elimu-ai/webapp&type=Date)](https://star-history.com/#elimu-ai/webapp&Date)
+
 ---
 
 <p align="center">
