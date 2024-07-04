@@ -56,7 +56,7 @@ open target/site/jacoco/index.html
     https://<language>.elimu.ai
 
 
-## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿
+## Supported languages 🌐
 
 A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/v2/enums/Language.java
 
