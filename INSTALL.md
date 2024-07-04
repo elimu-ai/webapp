@@ -1,10 +1,10 @@
 # How to Download and Run the Project 👩🏽‍💻
 
-## Download project
+## Download project ⬇️
 
 Clone `https://github.com/elimu-ai/webapp.git`
 
-## Run application locally
+## Run application locally 🛠️
 
 To be able to compile and execute the web application locally, you will first need to install the following:
 
@@ -22,9 +22,13 @@ Go to the project's folder:
 
     cd webapp/
 
+Compile the source code:
+
+    mvn compile
+
 Then, to run the application, type:
     
-    mvn clean test jetty:run
+    mvn jetty:run
 
 Next, to access the application in your browser, go to [http://localhost:8080/webapp](http://localhost:8080/webapp)
 
@@ -34,20 +38,20 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 > To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
 
 
-## Testing
+## Test 🚨
 
 ### Unit testing
 
 Run all tests:
 
 ```
-mvn test
+mvn clean test
 ```
 
 Run individual tests:
 
 ```
-mvn test -D test=WordDaoTest
+mvn clean test -D test=WordDaoTest
 ```
 
 ### Code coverage
@@ -72,7 +76,7 @@ open target/site/jacoco/index.html
     https://<language>.elimu.ai
 
 
-## Supported languages 🇺🇸🇵🇭🇮🇳🇹🇿
+## Supported languages 🌐
 
 A list of the currently supported languages is available at https://github.com/elimu-ai/model/blob/main/src/main/java/ai/elimu/model/v2/enums/Language.java
 
