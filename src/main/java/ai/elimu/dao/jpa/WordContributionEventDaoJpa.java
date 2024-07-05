@@ -49,16 +49,6 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
             .setMaxResults(maxResults)
             .getResultList();
     }
-    
-    @Override
-    public List<WordContributionEvent> readMostRecentPerWord() throws DataAccessException {
-        return em.createQuery(
-            "SELECT wce " + 
-            "FROM WordContributionEvent wce " +
-            "WHERE wce.time IN (SELECT MAX(time) FROM WordContributionEvent GROUP BY word_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY wce.time ASC")
-            .getResultList();
-    }
 
     @Override
     public Long readCount(Contributor contributor) throws DataAccessException {
