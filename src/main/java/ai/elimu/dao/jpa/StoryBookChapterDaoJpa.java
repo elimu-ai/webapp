@@ -3,6 +3,7 @@ package ai.elimu.dao.jpa;
 import ai.elimu.dao.StoryBookChapterDao;
 import java.util.List;
 
+import ai.elimu.model.content.multimedia.Image;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.model.content.StoryBook;
@@ -20,4 +21,16 @@ public class StoryBookChapterDaoJpa extends GenericDaoJpa<StoryBookChapter> impl
             .setParameter("storyBook", storyBook)
             .getResultList();
     }
+
+    @Override
+    public List<StoryBookChapter> readAllWithImage(Image image) throws DataAccessException {
+        return em.createQuery(
+                        "SELECT ch " +
+                                "FROM StoryBookChapter ch " +
+                                "WHERE ch.image = :image ")
+                .setParameter("image", image)
+                .getResultList();
+
+    }
+
 }

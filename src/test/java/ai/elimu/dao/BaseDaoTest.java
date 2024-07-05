@@ -1,9 +1,9 @@
 package ai.elimu.dao;
 
-import ai.elimu.dao.ImageDao;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import ai.elimu.utilTest.ImageUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import ai.elimu.model.content.multimedia.Image;
@@ -23,21 +23,18 @@ public class BaseDaoTest {
 
     @Test
     public void testCreate() {
-        Image image1 = new Image();
-        image1.setTitle("Title1");
+        Image image1 = ImageUtil.getImage("Title1");
         imageDao.create(image1);
         assertNotNull(image1.getId());
 
-        Image image2 = new Image();
-        image2.setTitle("Title1");
+        Image image2 = ImageUtil.getImage("Title1");
         imageDao.create(image2);
         assertNotNull(image2.getId());
     }
 
     @Test
     public void testRead() {
-        Image image1 = new Image();
-        image1.setTitle("Title1");
+        Image image1 = ImageUtil.getImage("Title1");
         imageDao.create(image1);
         assertNotNull(image1.getId());
         assertNotNull(imageDao.read(image1.getId()));
@@ -45,12 +42,12 @@ public class BaseDaoTest {
 
     @Test
     public void testReadAll() {
-        Image image1 = new Image();
+        Image image1 = ImageUtil.getImage("Title1");
         image1.setTitle("Title1");
         imageDao.create(image1);
         assertNotNull(image1.getId());
 
-        Image image2 = new Image();
+        Image image2 = ImageUtil.getImage("Title1");
         image2.setTitle("Title1");
         imageDao.create(image2);
         assertNotNull(image2.getId());
@@ -58,13 +55,4 @@ public class BaseDaoTest {
         assertTrue(imageDao.readAll().size() >= 2);
     }
 
-    @Test
-    public void testUpdate() {
-        // TODO
-    }
-
-    @Test
-    public void testDelete() {
-        // TODO
-    }
 }

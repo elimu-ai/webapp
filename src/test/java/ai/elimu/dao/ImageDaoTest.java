@@ -3,6 +3,8 @@ package ai.elimu.dao;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import ai.elimu.utilTest.ImageUtil;
 import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -47,9 +49,7 @@ public class ImageDaoTest {
         Set<Word> words = new HashSet<>();
         words.add(wordCat);
         
-        Image image = new Image();
-        image.setTitle("image");
-        image.setWords(words);
+        Image image = ImageUtil.getImage("image", words);
         imageDao.create(image);
         
         images = imageDao.readAllLabeled(wordDog);
@@ -66,5 +66,17 @@ public class ImageDaoTest {
         images = imageDao.readAllLabeled(wordCat);
         assertThat(images.size(), is(1));
         assertThat(images.get(0).getWords().size(), is(2));
+    }
+
+    @Test
+    public void testDeleteImage() {
+        imageDao.create(ImageUtil.getImage("Image to delete"));
+        Image image = imageDao.read("Image to delete");
+
+        assertNotNull(image);
+
+        imageDao.delete(image);
+
+        assertNull(imageDao.read("Image to delete"));
     }
 }
