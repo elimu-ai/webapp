@@ -131,9 +131,65 @@ public class WordContributionEventDaoTest {
         for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
             logger.info("wordContributionEvent.getWord().getId(): " + wordContributionEvent.getWord().getId());
         }
+
         assertTrue(wordContributionEvents.size() == 1);
         Word word1stInList = wordContributionEvents.get(0).getWord();
         assertTrue(word1stInList.getId().equals(word1.getId()));
+    }
+
+    @Test
+    public void testReadAll_Contributor() {
+        logger.info("testReadAll_Contributor");
+
+        Contributor contributor1 = new Contributor();
+        contributorDao.create(contributor1);
+        logger.info("contributor1.getId(): " + contributor1.getId());
+        
+        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(contributor1);
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            logger.info("wordContributionEvent.getContributor().getId(): " + wordContributionEvent.getContributor().getId());
+        }
+        
+        Word word1 = new Word();
+        word1.setText("word1");
+        wordDao.create(word1);
+
+        WordContributionEvent wordContributionEvent1 = new WordContributionEvent();
+        wordContributionEvent1.setContributor(contributor1);
+        wordContributionEvent1.setWord(word1);
+        wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
+        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimeSpentMs(10_000L);
+        wordContributionEventDao.create(wordContributionEvent1);
+
+        wordContributionEvents = wordContributionEventDao.readAll(contributor1);
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            logger.info("wordContributionEvent.getContributor().getId(): " + wordContributionEvent.getContributor().getId());
+        }
+
+        Contributor contributor2 = new Contributor();
+        contributorDao.create(contributor2);
+        logger.info("contributor2.getId(): " + contributor2.getId());
+        
+        WordContributionEvent wordContributionEvent2 = new WordContributionEvent();
+        wordContributionEvent2.setContributor(contributor2);
+        wordContributionEvent2.setWord(word1);
+        wordContributionEvent2.setRevisionNumber(word1.getRevisionNumber());
+        wordContributionEvent2.setTime(Calendar.getInstance());
+        wordContributionEvent2.setTimeSpentMs(10_000L);
+        wordContributionEventDao.create(wordContributionEvent2);
+
+        wordContributionEvents = wordContributionEventDao.readAll(contributor1);
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            logger.info("wordContributionEvent.getContributor().getId(): " + wordContributionEvent.getContributor().getId());
+        }
+
+        assertTrue(wordContributionEvents.size() == 1);
+        Contributor contributor1stInList = wordContributionEvents.get(0).getContributor();
+        assertTrue(contributor1stInList.getId().equals(contributor1.getId()));
     }
     
     @Test
