@@ -55,7 +55,8 @@ public class WordPeerReviewsController {
         logger.info("contributor: " + contributor);
         
         // Get the most recent WordContributionEvent for each Word, including those made by the current Contributor
-        List<WordContributionEvent> mostRecentWordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
+        // List<WordContributionEvent> mostRecentWordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
+        List<WordContributionEvent> mostRecentWordContributionEvents = new ArrayList<>(); // TODO: https://github.com/elimu-ai/webapp/issues/1647
         logger.info("mostRecentWordContributionEvents.size(): " + mostRecentWordContributionEvents.size());
         
         // For each WordContributionEvent, check if the Contributor has already performed a peer-review.

@@ -16,7 +16,5 @@ public interface WordContributionEventDao extends GenericDao<WordContributionEve
     
     List<WordContributionEvent> readMostRecent(int maxResults) throws DataAccessException;
     
-    List<WordContributionEvent> readMostRecentPerWord() throws DataAccessException;
-    
     Long readCount(Contributor contributor) throws DataAccessException;
 }
