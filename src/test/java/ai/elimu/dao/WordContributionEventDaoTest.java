@@ -5,6 +5,7 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
 import java.util.Calendar;
 import org.apache.logging.log4j.Logger;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -37,9 +38,41 @@ public class WordContributionEventDaoTest {
     @Test
     public void testReadAllOrderedByTimeDesc() {
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
-        logger.info("wordContributionEvents.size():" + wordContributionEvents.size());
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
 
-        // TODO
+        Contributor contributor = new Contributor();
+        contributorDao.create(contributor);
+
+        Word word1 = new Word();
+        word1.setText("word1");
+        wordDao.create(word1);
+
+        WordContributionEvent wordContributionEvent1 = new WordContributionEvent();
+        wordContributionEvent1.setContributor(contributor);
+        wordContributionEvent1.setWord(word1);
+        wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
+        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimeSpentMs(10_000L);
+        wordContributionEventDao.create(wordContributionEvent1);
+
+        Word word2 = new Word();
+        word2.setText("word2");
+        wordDao.create(word2);
+        
+        WordContributionEvent wordContributionEvent2 = new WordContributionEvent();
+        wordContributionEvent2.setContributor(contributor);
+        wordContributionEvent2.setWord(word2);
+        wordContributionEvent2.setRevisionNumber(word2.getRevisionNumber());
+        wordContributionEvent2.setTime(Calendar.getInstance());
+        wordContributionEvent2.setTimeSpentMs(10_000L);
+        wordContributionEventDao.create(wordContributionEvent2);
+
+        wordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+
+        WordContributionEvent eventFirsteInList = wordContributionEvents.get(0);
+        WordContributionEvent eventSecondInList = wordContributionEvents.get(1);
+        assertTrue(eventFirsteInList.getTime().after(eventSecondInList.getTime()));
     }
     
     @Test
