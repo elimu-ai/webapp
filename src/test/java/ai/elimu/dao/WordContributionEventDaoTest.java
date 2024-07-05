@@ -194,8 +194,11 @@ public class WordContributionEventDaoTest {
     
     @Test
     public void testReadMostRecent() {
+        logger.info("testReadMostRecent");
+
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecent(10);
         int numberOfWordContributionEventsBefore = wordContributionEvents.size();
+        logger.info("numberOfWordContributionEventsBefore: " + numberOfWordContributionEventsBefore);
         
         Contributor contributor = new Contributor();
         contributorDao.create(contributor);
@@ -214,7 +217,13 @@ public class WordContributionEventDaoTest {
         
         wordContributionEvents = wordContributionEventDao.readMostRecent(10);
         int numberOfWordContributionEventsAfter = wordContributionEvents.size();
-        assertThat(numberOfWordContributionEventsAfter, is(numberOfWordContributionEventsBefore + 1));
+        logger.info("numberOfWordContributionEventsAfter: " + numberOfWordContributionEventsAfter);
+
+        if (numberOfWordContributionEventsBefore < 10) {
+            assertThat(numberOfWordContributionEventsAfter, is(numberOfWordContributionEventsBefore + 1));
+        } else {
+            assertThat(numberOfWordContributionEventsAfter, is(10));
+        }
     }
 
     @Test
