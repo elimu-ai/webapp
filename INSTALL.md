@@ -37,22 +37,17 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 > [!TIP]
 > To run the application in debug mode, replace `mvn` with `mvnDebug` in the command above ☝️
 
-
 ## Test 🚨
 
 ### Unit testing
 
 Run all tests:
 
-```
-mvn clean test
-```
+    mvn clean test
 
 Run individual tests:
 
-```
-mvn clean test -D test=WordDaoTest
-```
+    mvn clean test -D test=WordDaoTest
 
 ### Code coverage
 
@@ -60,11 +55,8 @@ mvn clean test -D test=WordDaoTest
 
 [![](https://codecov.io/gh/elimu-ai/webapp/branch/main/graphs/tree.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 
-```
-mvn test
-open target/site/jacoco/index.html
-```
-
+    mvn test
+    open target/site/jacoco/index.html
 
 ## Test server
 
