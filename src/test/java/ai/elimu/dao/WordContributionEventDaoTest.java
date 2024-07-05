@@ -37,6 +37,8 @@ public class WordContributionEventDaoTest {
 
     @Test
     public void testReadAllOrderedByTimeDesc() {
+        logger.info("testReadAllOrderedByTimeDesc");
+
         List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
 
@@ -63,16 +65,75 @@ public class WordContributionEventDaoTest {
         wordContributionEvent2.setContributor(contributor);
         wordContributionEvent2.setWord(word2);
         wordContributionEvent2.setRevisionNumber(word2.getRevisionNumber());
-        wordContributionEvent2.setTime(Calendar.getInstance());
+        Calendar calendar1HourFromNow = Calendar.getInstance();
+        calendar1HourFromNow.add(Calendar.HOUR, 1);
+        wordContributionEvent2.setTime(calendar1HourFromNow);
         wordContributionEvent2.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent2);
 
         wordContributionEvents = wordContributionEventDao.readAllOrderedByTimeDesc();
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
 
-        WordContributionEvent eventFirsteInList = wordContributionEvents.get(0);
-        WordContributionEvent eventSecondInList = wordContributionEvents.get(1);
-        assertTrue(eventFirsteInList.getTime().after(eventSecondInList.getTime()));
+        WordContributionEvent event1stInList = wordContributionEvents.get(0);
+        logger.info("event1stInList time: " + event1stInList.getTime().getTime());
+        WordContributionEvent event2ndInList = wordContributionEvents.get(1);
+        logger.info("event2ndInList time: " + event2ndInList.getTime().getTime());
+        assertTrue(event1stInList.getTime().after(event2ndInList.getTime()));
+    }
+
+    @Test
+    public void testReadAll_Word() {
+        logger.info("testReadAll_Word");
+
+        Word word1 = new Word();
+        word1.setText("word1");
+        wordDao.create(word1);
+        logger.info("word1.getId(): " + word1.getId());
+
+        List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(word1);
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            logger.info("wordContributionEvent.getWord().getId(): " + wordContributionEvent.getWord().getId());
+        }
+
+        Contributor contributor = new Contributor();
+        contributorDao.create(contributor);
+
+        WordContributionEvent wordContributionEvent1 = new WordContributionEvent();
+        wordContributionEvent1.setContributor(contributor);
+        wordContributionEvent1.setWord(word1);
+        wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
+        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimeSpentMs(10_000L);
+        wordContributionEventDao.create(wordContributionEvent1);
+
+        wordContributionEvents = wordContributionEventDao.readAll(word1);
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            logger.info("wordContributionEvent.getWord().getId(): " + wordContributionEvent.getWord().getId());
+        }
+
+        Word word2 = new Word();
+        word2.setText("word2");
+        wordDao.create(word2);
+        logger.info("word2.getId(): " + word2.getId());
+        
+        WordContributionEvent wordContributionEvent2 = new WordContributionEvent();
+        wordContributionEvent2.setContributor(contributor);
+        wordContributionEvent2.setWord(word2);
+        wordContributionEvent2.setRevisionNumber(word2.getRevisionNumber());
+        wordContributionEvent2.setTime(Calendar.getInstance());
+        wordContributionEvent2.setTimeSpentMs(10_000L);
+        wordContributionEventDao.create(wordContributionEvent2);
+
+        wordContributionEvents = wordContributionEventDao.readAll(word1);
+        logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
+        for (WordContributionEvent wordContributionEvent : wordContributionEvents) {
+            logger.info("wordContributionEvent.getWord().getId(): " + wordContributionEvent.getWord().getId());
+        }
+        assertTrue(wordContributionEvents.size() == 1);
+        Word word1stInList = wordContributionEvents.get(0).getWord();
+        assertTrue(word1stInList.getId().equals(word1.getId()));
     }
     
     @Test
