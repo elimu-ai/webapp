@@ -1,6 +1,6 @@
 package ai.elimu.model.contributor;
 
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -10,13 +10,13 @@ public class LetterSoundCorrespondenceContributionEvent extends ContributionEven
 
     @NotNull
     @ManyToOne
-    private LetterSoundCorrespondence letterSoundCorrespondence;
+    private LetterSound letterSound;
 
-    public LetterSoundCorrespondence getLetterSoundCorrespondence() {
-        return letterSoundCorrespondence;
+    public LetterSound getLetterSoundCorrespondence() {
+        return letterSound;
     }
 
-    public void setLetterSoundCorrespondence(LetterSoundCorrespondence letterSoundCorrespondence) {
-        this.letterSoundCorrespondence = letterSoundCorrespondence;
+    public void setLetterSoundCorrespondence(LetterSound letterSound) {
+        this.letterSound = letterSound;
     }
 }

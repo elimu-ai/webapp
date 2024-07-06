@@ -1,8 +1,9 @@
 package ai.elimu.web.content.letter_sound;
 
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -37,7 +38,7 @@ public class LetterSoundCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<LetterSoundCorrespondence> letterSounds = letterSoundDao.readAllOrderedByUsage();
+        List<LetterSound> letterSounds = letterSoundDao.readAllOrderedByUsage();
         logger.info("letterSounds.size(): " + letterSounds.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -52,7 +53,7 @@ public class LetterSoundCsvExportController {
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
         
-        for (LetterSoundCorrespondence letterSound : letterSounds) {
+        for (LetterSound letterSound : letterSounds) {
             logger.info("letterSound.getId(): \"" + letterSound.getId() + "\"");
             
             JSONArray letterIdsJsonArray = new JSONArray();

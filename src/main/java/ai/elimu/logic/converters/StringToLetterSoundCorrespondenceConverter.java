@@ -1,26 +1,26 @@
 package ai.elimu.logic.converters;
 
+import ai.elimu.model.content.LetterSound;
 import org.apache.commons.lang.StringUtils;
-import ai.elimu.model.content.LetterSoundCorrespondence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import ai.elimu.dao.LetterSoundDao;
 
-public class StringToLetterSoundCorrespondenceConverter implements Converter<String, LetterSoundCorrespondence> {
+public class StringToLetterSoundCorrespondenceConverter implements Converter<String, LetterSound> {
 
     @Autowired
     private LetterSoundDao letterSoundDao;
     
     /**
-     * Convert LetterSoundCorrespondence id to LetterSoundCorrespondence entity
+     * Convert LetterSound id to LetterSound entity
      */
-    public LetterSoundCorrespondence convert(String id) {
+    public LetterSound convert(String id) {
         if (StringUtils.isBlank(id)) {
             return null;
         } else {
             Long letterSoundCorrespondenceId = Long.parseLong(id);
-            LetterSoundCorrespondence letterSoundCorrespondence = letterSoundDao.read(letterSoundCorrespondenceId);
-            return letterSoundCorrespondence;
+            LetterSound letterSound = letterSoundDao.read(letterSoundCorrespondenceId);
+            return letterSound;
         }
     }
 }
