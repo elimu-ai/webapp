@@ -123,7 +123,7 @@ public class JpaToGsonConverter {
             // Word
             wordGson.setText(word.getText());
             List<LetterSoundGson> letterSounds = new ArrayList<>();
-            for (LetterSound letterSound : word.getLetterSoundCorrespondences()) {
+            for (LetterSound letterSound : word.getLetterSounds()) {
                 LetterSoundGson letterSoundGson = getLetterSoundGson(letterSound);
                 letterSounds.add(letterSoundGson);
             }

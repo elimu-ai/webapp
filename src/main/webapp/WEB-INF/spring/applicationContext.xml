@@ -30,7 +30,7 @@
                 <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
                 <bean class="ai.elimu.logic.converters.StringToImageConverter" />
                 <bean class="ai.elimu.logic.converters.StringToLetterConverter" />
-                <bean class="ai.elimu.logic.converters.StringToLetterSoundCorrespondenceConverter" />
+                <bean class="ai.elimu.logic.converters.StringToLetterSoundConverter" />
                 <bean class="ai.elimu.logic.converters.StringToNullConverter" />
                 <bean class="ai.elimu.logic.converters.StringToSoundConverter" />
                 <bean class="ai.elimu.logic.converters.StringToStoryBookConverter" />

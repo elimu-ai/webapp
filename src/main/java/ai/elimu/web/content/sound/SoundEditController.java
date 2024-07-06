@@ -53,7 +53,7 @@ public class SoundEditController {
         
         model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
         
-        model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAll());
+        model.addAttribute("letterSounds", letterSoundDao.readAll());
 
         return "content/sound/edit";
     }
@@ -88,7 +88,7 @@ public class SoundEditController {
             model.addAttribute("timeStart", System.currentTimeMillis());
             model.addAttribute("soundTypes", SoundType.values());
             model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
-            model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAll());
+            model.addAttribute("letterSounds", letterSoundDao.readAll());
             return "content/sound/edit";
         } else {
             sound.setTimeLastUpdate(Calendar.getInstance());

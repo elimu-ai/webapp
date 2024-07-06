@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import ai.elimu.dao.LetterSoundDao;
 
-public class StringToLetterSoundCorrespondenceConverter implements Converter<String, LetterSound> {
+public class StringToLetterSoundConverter implements Converter<String, LetterSound> {
 
     @Autowired
     private LetterSoundDao letterSoundDao;
@@ -18,8 +18,8 @@ public class StringToLetterSoundCorrespondenceConverter implements Converter<Str
         if (StringUtils.isBlank(id)) {
             return null;
         } else {
-            Long letterSoundCorrespondenceId = Long.parseLong(id);
-            LetterSound letterSound = letterSoundDao.read(letterSoundCorrespondenceId);
+            Long letterSoundId = Long.parseLong(id);
+            LetterSound letterSound = letterSoundDao.read(letterSoundId);
             return letterSound;
         }
     }

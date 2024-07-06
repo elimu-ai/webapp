@@ -15,12 +15,12 @@ public class LetterSoundDaoJpa extends GenericDaoJpa<LetterSound> implements Let
     public LetterSound read(List<Letter> letters, List<Sound> sounds) throws DataAccessException {
         // TODO: implement usage of CriteriaQuery/CriteriaQuery
         
-        String letterSoundCorrespondenceLetters = letters.stream().map(Letter::getText).collect(Collectors.joining());
-        String letterSoundCorrespondenceSounds = sounds.stream().map(Sound::getValueIpa).collect(Collectors.joining());
+        String letterSoundLetters = letters.stream().map(Letter::getText).collect(Collectors.joining());
+        String letterSoundSounds = sounds.stream().map(Sound::getValueIpa).collect(Collectors.joining());
         for (LetterSound letterSound : readAllOrderedByUsage()) {
             String lettersAsString = letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
             String soundsAsString = letterSound.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining());
-            if (lettersAsString.equals(letterSoundCorrespondenceLetters) && soundsAsString.equals(letterSoundCorrespondenceSounds)) {
+            if (lettersAsString.equals(letterSoundLetters) && soundsAsString.equals(letterSoundSounds)) {
                 return letterSound;
             }
         }

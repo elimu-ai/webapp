@@ -53,8 +53,8 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCsvExportController#handleRequest}.
      */
-    public static List<LetterSound> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
-        logger.info("getLetterSoundCorrespondencesFromCsvBackup");
+    public static List<LetterSound> getLetterSoundsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
+        logger.info("getLetterSoundsFromCsvBackup");
 
         List<LetterSound> letterSounds = new ArrayList<>();
 
@@ -153,20 +153,20 @@ public class CsvContentExtractionHelper {
                 String text = csvRecord.get("text");
                 word.setText(text);
 
-                JSONArray letterSoundCorrespondencesJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
-                logger.info("letterSoundCorrespondencesJsonArray: " + letterSoundCorrespondencesJsonArray);
+                JSONArray letterSoundsJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
+                logger.info("letterSoundsJsonArray: " + letterSoundsJsonArray);
                 List<LetterSound> letterSounds = new ArrayList<>();
-                for (int i = 0; i < letterSoundCorrespondencesJsonArray.length(); i++) {
-                    JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJsonArray.getJSONObject(i);
-                    logger.info("letterSoundCorrespondenceJsonObject: " + letterSoundCorrespondenceJsonObject);
+                for (int i = 0; i < letterSoundsJsonArray.length(); i++) {
+                    JSONObject letterSoundJsonObject = letterSoundsJsonArray.getJSONObject(i);
+                    logger.info("letterSoundJsonObject: " + letterSoundJsonObject);
                     List<Letter> letters = new ArrayList<>();
-                    JSONArray lettersJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("letters");
+                    JSONArray lettersJsonArray = letterSoundJsonObject.getJSONArray("letters");
                     for (int j = 0; j < lettersJsonArray.length(); j++) {
                         Letter letter = letterDao.readByText(lettersJsonArray.getString(j));
                         letters.add(letter);
                     }
                     List<Sound> sounds = new ArrayList<>();
-                    JSONArray soundsJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("sounds");
+                    JSONArray soundsJsonArray = letterSoundJsonObject.getJSONArray("sounds");
                     for (int j = 0; j < soundsJsonArray.length(); j++) {
                         Sound sound = soundDao.readByValueIpa(soundsJsonArray.getString(j));
                         sounds.add(sound);
@@ -175,7 +175,7 @@ public class CsvContentExtractionHelper {
                     logger.info("letterSound.getId(): " + letterSound.getId());
                     letterSounds.add(letterSound);
                 }
-                word.setLetterSoundCorrespondences(letterSounds);
+                word.setLetterSounds(letterSounds);
 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 word.setUsageCount(usageCount);

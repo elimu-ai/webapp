@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Word extends Content {
 
-    @Deprecated // TODO: replace with list of LetterSoundCorrespondences
+    @Deprecated // TODO: replace with list of LetterSounds
     @NotNull
     private String text;
     
@@ -48,11 +48,11 @@ public class Word extends Content {
         this.text = text;
     }
     
-    public List<LetterSound> getLetterSoundCorrespondences() {
+    public List<LetterSound> getLetterSounds() {
         return letterSounds;
     }
 
-    public void setLetterSoundCorrespondences(List<LetterSound> letterSounds) {
+    public void setLetterSounds(List<LetterSound> letterSounds) {
         this.letterSounds = letterSounds;
     }
     
