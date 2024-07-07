@@ -37,9 +37,6 @@ For an example of a previous database migration script, see https://github.com/e
 > [!WARNING]
 > Whenever an `@Entity` is modified, the underlying database schema in [`jpa-schema-export.sql`](./src/main/resources/META-INF/jpa-schema-export.sql) will also be modified. Note that the database schema will _not_ be automatically re-generated when you compile the source with `mvn compile`; Instead, you will have to run the webapp locally with `mvn jetty:run` for this file to be re-generated.
 
-> [!WARNING]
-> Whenever an `@Entity` is modified, the underlying database schema in [`jpa-schema-export.sql`](./src/main/resources/META-INF/jpa-schema-export.sql) will also be modified. Note that the database schema will _not_ be automatically re-generated when you compile the source with `mvn compile`; Instead, you will have to run the webapp locally with `mvn jetty:run` for this file to be re-generated.
-
 ---
 
 <p align="center">
