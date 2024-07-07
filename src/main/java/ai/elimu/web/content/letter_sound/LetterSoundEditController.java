@@ -3,12 +3,12 @@ package ai.elimu.web.content.letter_sound;
 import java.util.List;
 import javax.validation.Valid;
 
+import ai.elimu.model.content.LetterSound;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +61,7 @@ public class LetterSoundEditController {
     public String handleRequest(Model model, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        LetterSoundCorrespondence letterSound = letterSoundDao.read(id);
+        LetterSound letterSound = letterSoundDao.read(id);
         model.addAttribute("letterSound", letterSound);
         
         model.addAttribute("timeStart", System.currentTimeMillis());
@@ -85,14 +85,14 @@ public class LetterSoundEditController {
     public String handleSubmit(
             HttpServletRequest request,
             HttpSession session,
-            @Valid LetterSoundCorrespondence letterSound,
+            @Valid LetterSound letterSound,
             BindingResult result,
             Model model
     ) {
     	logger.info("handleSubmit");
         
         // Check if the LetterSound already exists
-        LetterSoundCorrespondence existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());
+        LetterSound existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());
         if ((existingLetterSound != null) && !existingLetterSound.getId().equals(letterSound.getId())) {
             result.rejectValue("letters", "NonUnique");
         }

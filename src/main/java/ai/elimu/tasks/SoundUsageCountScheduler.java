@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.Word;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +42,12 @@ public class SoundUsageCountScheduler {
         // Integer = Usage count
         Map<Long, Integer> soundFrequencyMap = new HashMap<>();
 
-        // Summarize the usage count of each Word's Sounds based on the LetterSoundCorrespondence's 
+        // Summarize the usage count of each Word's Sounds based on the LetterSound's
         // usage count (see LetterSoundCorrespondenceUsageCountScheduler).
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+            for (LetterSound letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
                 for (Sound sound : letterSoundCorrespondence.getSounds()) {
                     soundFrequencyMap.put(sound.getId(), soundFrequencyMap.getOrDefault(sound.getId(), 0) + letterSoundCorrespondence.getUsageCount());
                 }

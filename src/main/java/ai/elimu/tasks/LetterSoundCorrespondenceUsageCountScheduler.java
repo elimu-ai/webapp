@@ -3,11 +3,12 @@ package ai.elimu.tasks;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ai.elimu.model.content.LetterSound;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
@@ -40,14 +41,14 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): " + word.getText());
-            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+            for (LetterSound letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
                 letterSoundCorrespondenceFrequencyMap.put(letterSoundCorrespondence.getId(),
                         letterSoundCorrespondenceFrequencyMap.getOrDefault(letterSoundCorrespondence.getId(), 0) + word.getUsageCount());
             }
         }
 
         // Update the values previously stored in the database
-        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAll()) {
+        for (LetterSound letterSoundCorrespondence : letterSoundDao.readAll()) {
             logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
             logger.info("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
             logger.info("letterSoundCorrespondence Sounds: /" + letterSoundCorrespondence.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");

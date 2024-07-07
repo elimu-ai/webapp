@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
 
+import ai.elimu.model.content.*;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
@@ -13,11 +14,7 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
-import ai.elimu.model.content.Syllable;
-import ai.elimu.model.content.Word;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.AudioContributionEvent;
@@ -246,14 +243,14 @@ public class WordCreateController {
         
         String wordText = word.getText();
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
+        List<LetterSound> letterSoundCorrespondences = new ArrayList<>();
         
-        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
+        List<LetterSound> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
             boolean isMatch = false;
-            for (LetterSoundCorrespondence letterSoundCorrespondence : allLetterSoundCorrespondencesOrderedByLettersLength) {
+            for (LetterSound letterSoundCorrespondence : allLetterSoundCorrespondencesOrderedByLettersLength) {
                 String letterSoundCorrespondenceLetters = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
                 logger.info("letterSoundCorrespondenceLetters: \"" + letterSoundCorrespondenceLetters + "\"");
 

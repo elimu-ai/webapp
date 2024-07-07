@@ -23,7 +23,7 @@ public class Word extends Content {
     @NotEmpty
     @OrderColumn
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<LetterSoundCorrespondence> letterSoundCorrespondences;
+    private List<LetterSound> letterSoundCorrespondences;
     
     /**
      * As an example, the verb "reading" will be linked to the root verb "read".
@@ -48,11 +48,11 @@ public class Word extends Content {
         this.text = text;
     }
     
-    public List<LetterSoundCorrespondence> getLetterSoundCorrespondences() {
+    public List<LetterSound> getLetterSoundCorrespondences() {
         return letterSoundCorrespondences;
     }
 
-    public void setLetterSoundCorrespondences(List<LetterSoundCorrespondence> letterSoundCorrespondences) {
+    public void setLetterSoundCorrespondences(List<LetterSound> letterSoundCorrespondences) {
         this.letterSoundCorrespondences = letterSoundCorrespondences;
     }
     

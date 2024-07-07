@@ -5,7 +5,7 @@ import ai.elimu.model.admin.ApplicationVersion;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
@@ -82,7 +82,7 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static LetterSoundGson getLetterSoundGson(LetterSoundCorrespondence letterSound) {
+    public static LetterSoundGson getLetterSoundGson(LetterSound letterSound) {
         if (letterSound == null) {
             return null;
         } else {
@@ -129,7 +129,7 @@ public class JpaToGsonConverter {
             // Word
             wordGson.setText(word.getText());
             List<LetterSoundGson> letterSounds = new ArrayList<>();
-            for (LetterSoundCorrespondence letterSound : word.getLetterSoundCorrespondences()) {
+            for (LetterSound letterSound : word.getLetterSoundCorrespondences()) {
                 LetterSoundGson letterSoundGson = getLetterSoundGson(letterSound);
                 letterSounds.add(letterSoundGson);
             }
