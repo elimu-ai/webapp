@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Word;
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
@@ -40,28 +40,28 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): " + word.getText());
-            for (LetterSound letterSound : word.getLetterSoundCorrespondences()) {
-                letterSoundCorrespondenceFrequencyMap.put(letterSound.getId(),
-                        letterSoundCorrespondenceFrequencyMap.getOrDefault(letterSound.getId(), 0) + word.getUsageCount());
+            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+                letterSoundCorrespondenceFrequencyMap.put(letterSoundCorrespondence.getId(),
+                        letterSoundCorrespondenceFrequencyMap.getOrDefault(letterSoundCorrespondence.getId(), 0) + word.getUsageCount());
             }
         }
 
         // Update the values previously stored in the database
-        for (LetterSound letterSound : letterSoundDao.readAll()) {
-            logger.info("letterSound.getId(): " + letterSound.getId());
-            logger.info("letterSound Letters: \"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
-            logger.info("letterSound Sounds: /" + letterSound.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
-            logger.info("letterSound.getUsageCount() (before update): " + letterSound.getUsageCount());
+        for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAll()) {
+            logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
+            logger.info("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
+            logger.info("letterSoundCorrespondence Sounds: /" + letterSoundCorrespondence.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
+            logger.info("letterSoundCorrespondence.getUsageCount() (before update): " + letterSoundCorrespondence.getUsageCount());
             
             int newUsageCount = 0;
-            if (letterSoundCorrespondenceFrequencyMap.containsKey(letterSound.getId())) {
-                newUsageCount = letterSoundCorrespondenceFrequencyMap.get(letterSound.getId());
+            if (letterSoundCorrespondenceFrequencyMap.containsKey(letterSoundCorrespondence.getId())) {
+                newUsageCount = letterSoundCorrespondenceFrequencyMap.get(letterSoundCorrespondence.getId());
             }
             logger.info("newUsageCount: " + newUsageCount);
             
-            letterSound.setUsageCount(newUsageCount);
-            letterSoundDao.update(letterSound);
-            logger.info("letterSound.getUsageCount() (after update): " + letterSound.getUsageCount());
+            letterSoundCorrespondence.setUsageCount(newUsageCount);
+            letterSoundDao.update(letterSoundCorrespondence);
+            logger.info("letterSoundCorrespondence.getUsageCount() (after update): " + letterSoundCorrespondence.getUsageCount());
         }
         
         logger.info("execute complete");

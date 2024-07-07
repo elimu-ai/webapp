@@ -59,7 +59,7 @@ public class LetterSoundPeerReviewsController {
                 continue;
             }
             
-            // Check if the current Contributor has already peer-reviewed this LetterSound contribution
+            // Check if the current Contributor has already peer-reviewed this LetterSoundCorrespondence contribution
             List<LetterSoundCorrespondencePeerReviewEvent> letterSoundPeerReviewEvents = letterSoundPeerReviewEventDao.readAll(mostRecentLetterSoundContributionEvent, contributor);
             if (letterSoundPeerReviewEvents.isEmpty()) {
                 letterSoundContributionEventsPendingPeerReview.add(mostRecentLetterSoundContributionEvent);

@@ -4,7 +4,7 @@ import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
@@ -87,7 +87,7 @@ public class LetterSoundPeerReviewEventCreateController {
         }
         logger.info("approvedCount: " + approvedCount);
         logger.info("notApprovedCount: " + notApprovedCount);
-        LetterSound letterSound = letterSoundContributionEvent.getLetterSoundCorrespondence();
+        LetterSoundCorrespondence letterSound = letterSoundContributionEvent.getLetterSoundCorrespondence();
         if (approvedCount >= notApprovedCount) {
             letterSound.setPeerReviewStatus(PeerReviewStatus.APPROVED);
         } else {

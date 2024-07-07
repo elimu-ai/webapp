@@ -15,7 +15,7 @@ import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
@@ -246,21 +246,21 @@ public class WordCreateController {
         
         String wordText = word.getText();
         
-        List<LetterSound> letterSounds = new ArrayList<>();
+        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
         
-        List<LetterSound> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
+        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
             boolean isMatch = false;
-            for (LetterSound letterSound : allLetterSoundCorrespondencesOrderedByLettersLength) {
-                String letterSoundCorrespondenceLetters = letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+            for (LetterSoundCorrespondence letterSoundCorrespondence : allLetterSoundCorrespondencesOrderedByLettersLength) {
+                String letterSoundCorrespondenceLetters = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
                 logger.info("letterSoundCorrespondenceLetters: \"" + letterSoundCorrespondenceLetters + "\"");
 
                 if (wordText.startsWith(letterSoundCorrespondenceLetters)) {
                     isMatch = true;
                     logger.info("Found match at the beginning of \"" + wordText + "\"");
-                    letterSounds.add(letterSound);
+                    letterSoundCorrespondences.add(letterSoundCorrespondence);
 
                     // Remove the match from the word
                     wordText = wordText.substring(letterSoundCorrespondenceLetters.length());
@@ -274,6 +274,6 @@ public class WordCreateController {
             }
         }
         
-        word.setLetterSoundCorrespondences(letterSounds);
+        word.setLetterSoundCorrespondences(letterSoundCorrespondences);
     }
 }

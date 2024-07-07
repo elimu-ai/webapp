@@ -21,7 +21,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
+import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.StoryBook;
@@ -166,11 +166,11 @@ public class DbContentImportHelper {
 
         // Extract and import letter-sound correspondences in src/main/resources/
         File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
-        List<LetterSound> letterSounds = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
+        List<LetterSoundCorrespondence> letterSounds = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
         logger.info("letterSounds.size(): " + letterSounds.size());
         letterSoundDao = (LetterSoundDao) webApplicationContext.getBean("letterSoundDao");
         letterSoundContributionEventDao = (LetterSoundContributionEventDao) webApplicationContext.getBean("letterSoundContributionEventDao");
-        for (LetterSound letterSound : letterSounds) {
+        for (LetterSoundCorrespondence letterSound : letterSounds) {
             letterSoundDao.create(letterSound);
 
             LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
