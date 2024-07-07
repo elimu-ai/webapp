@@ -2,7 +2,7 @@ package ai.elimu.web.content.letter_sound;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.entity.content.LetterSoundCorrespondence;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,7 @@
 package ai.elimu.logic.converters;
 
 import org.apache.commons.lang.StringUtils;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.entity.content.LetterSoundCorrespondence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import ai.elimu.dao.LetterSoundDao;

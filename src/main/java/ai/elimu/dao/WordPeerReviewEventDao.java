@@ -1,9 +1,9 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.WordContributionEvent;
-import ai.elimu.model.contributor.WordPeerReviewEvent;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.WordContributionEvent;
+import ai.elimu.entity.contributor.WordPeerReviewEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 

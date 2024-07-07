@@ -1,7 +1,7 @@
 package ai.elimu.web.content.multimedia.audio;
 
 import ai.elimu.dao.AudioDao;
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.entity.content.multimedia.Audio;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;

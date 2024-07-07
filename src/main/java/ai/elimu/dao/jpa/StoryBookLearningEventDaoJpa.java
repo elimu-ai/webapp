@@ -1,9 +1,9 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
-import ai.elimu.model.content.StoryBook;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.content.StoryBook;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.NoResultException;

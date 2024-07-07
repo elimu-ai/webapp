@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
 
 public class StoryBookParagraphDaoJpa extends GenericDaoJpa<StoryBookParagraph> implements StoryBookParagraphDao {
 

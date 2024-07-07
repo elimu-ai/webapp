@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.AudioDao;
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.entity.content.multimedia.Audio;
 import ai.elimu.model.v2.gson.content.AudioGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;

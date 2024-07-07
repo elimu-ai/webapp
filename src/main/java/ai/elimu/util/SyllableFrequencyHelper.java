@@ -1,14 +1,12 @@
 package ai.elimu.util;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.Language;
 import org.apache.logging.log4j.LogManager;
 

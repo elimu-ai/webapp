@@ -7,7 +7,7 @@ import ai.elimu.dao.VideoDao;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.multimedia.Video;
+import ai.elimu.entity.content.multimedia.Video;
 
 public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
 

@@ -1,7 +1,7 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Word;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 

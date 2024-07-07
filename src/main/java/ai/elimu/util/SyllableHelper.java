@@ -11,7 +11,7 @@ import java.util.List;
 import net.davidashen.text.Hyphenator;
 import net.davidashen.util.ErrorHandler;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.Language;
 import org.apache.logging.log4j.LogManager;
 

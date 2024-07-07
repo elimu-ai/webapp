@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.entity.content.multimedia.Audio;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;

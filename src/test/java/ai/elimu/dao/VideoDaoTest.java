@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.multimedia.Video;
+import ai.elimu.entity.content.multimedia.Video;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

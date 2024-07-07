@@ -6,7 +6,7 @@ import ai.elimu.dao.SyllableDao;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.Syllable;
+import ai.elimu.entity.content.Syllable;
 
 public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableDao {
 

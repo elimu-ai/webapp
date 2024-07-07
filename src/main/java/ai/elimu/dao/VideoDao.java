@@ -1,7 +1,7 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.multimedia.Video;
+import ai.elimu.entity.content.multimedia.Video;
 
 import org.springframework.dao.DataAccessException;
 

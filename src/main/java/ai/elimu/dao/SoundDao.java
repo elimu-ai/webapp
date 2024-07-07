@@ -1,7 +1,7 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 
 import org.springframework.dao.DataAccessException;
 

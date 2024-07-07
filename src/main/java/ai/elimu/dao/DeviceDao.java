@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.Device;
+import ai.elimu.entity.Device;
 
 import org.springframework.dao.DataAccessException;
 

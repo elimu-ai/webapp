@@ -1,7 +1,7 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

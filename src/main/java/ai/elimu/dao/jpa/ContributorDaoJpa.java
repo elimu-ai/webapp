@@ -7,7 +7,7 @@ import ai.elimu.dao.ContributorDao;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 
 public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements ContributorDao {
 

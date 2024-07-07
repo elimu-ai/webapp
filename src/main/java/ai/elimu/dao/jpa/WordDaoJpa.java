@@ -8,7 +8,7 @@ import ai.elimu.model.v2.enums.content.WordType;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 
 public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
 

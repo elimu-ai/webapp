@@ -1,8 +1,8 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.StoryBookParagraph;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
 
 import org.springframework.dao.DataAccessException;
 

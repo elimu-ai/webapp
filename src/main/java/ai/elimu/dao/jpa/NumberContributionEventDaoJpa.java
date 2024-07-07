@@ -1,10 +1,10 @@
 package ai.elimu.dao.jpa;
 
-import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.dao.NumberContributionEventDao;
-import ai.elimu.model.content.Number;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.entity.content.Number;
+import ai.elimu.entity.contributor.Contributor;
+
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 

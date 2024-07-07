@@ -1,9 +1,9 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.content.Word;
 import java.util.List;
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.entity.content.multimedia.Audio;
 
 import org.springframework.dao.DataAccessException;
 

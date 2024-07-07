@@ -6,7 +6,7 @@ import ai.elimu.dao.DbMigrationDao;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.DbMigration;
+import ai.elimu.entity.DbMigration;
 
 public class DbMigrationDaoJpa extends GenericDaoJpa<DbMigration> implements DbMigrationDao {
 

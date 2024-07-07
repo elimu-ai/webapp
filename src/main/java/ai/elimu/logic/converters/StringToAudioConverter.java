@@ -2,7 +2,7 @@ package ai.elimu.logic.converters;
 
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.entity.content.multimedia.Audio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 

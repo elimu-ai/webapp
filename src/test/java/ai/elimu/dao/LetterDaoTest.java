@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.content.Letter;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

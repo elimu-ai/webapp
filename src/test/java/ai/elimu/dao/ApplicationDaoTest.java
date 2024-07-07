@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.admin.Application;
+import ai.elimu.entity.admin.Application;
 import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;

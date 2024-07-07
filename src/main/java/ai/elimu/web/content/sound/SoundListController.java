@@ -2,7 +2,7 @@ package ai.elimu.web.content.sound;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

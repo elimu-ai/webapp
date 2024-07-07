@@ -1,8 +1,8 @@
 package ai.elimu.web.content.syllable;
 
 import ai.elimu.dao.SyllableDao;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Syllable;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.content.Syllable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;

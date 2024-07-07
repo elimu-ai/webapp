@@ -1,6 +1,6 @@
 package ai.elimu.web.content.sound;
 
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;

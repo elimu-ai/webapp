@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.content.WordType;
 import junit.framework.TestCase;
 import org.junit.Test;

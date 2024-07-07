@@ -1,7 +1,7 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.Syllable;
+import ai.elimu.entity.content.Syllable;
 
 import org.springframework.dao.DataAccessException;
 

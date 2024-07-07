@@ -22,7 +22,7 @@ import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 # DB Migration 🔀
 
-By using the Java Persistence API (JPA), classed annotated by `@Entity` (in the [`model`](src/main/java/ai/elimu/model) package) get mapped automatically to database tables/columns: [`src/main/resources/META-INF/jpa-persistence.xml`](https://github.com/elimu-ai/webapp/blob/main/src/main/resources/META-INF/jpa-persistence.xml)
+By using the Java Persistence API (JPA), classed annotated by `@Entity` (in the [`model`](src/main/java/ai/elimu/entity) package) get mapped automatically to database tables/columns: [`src/main/resources/META-INF/jpa-persistence.xml`](https://github.com/elimu-ai/webapp/blob/main/src/main/resources/META-INF/jpa-persistence.xml)
 
 > [!IMPORTANT]
 > However, when _deleting, modifying or renaming_ an entity class/attribute, we have to manually update the underlying database structure.

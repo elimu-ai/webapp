@@ -1,7 +1,7 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.DbMigration;
+import ai.elimu.entity.DbMigration;
 
 import org.springframework.dao.DataAccessException;
 

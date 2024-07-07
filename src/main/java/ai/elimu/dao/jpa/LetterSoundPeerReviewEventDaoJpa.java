@@ -1,10 +1,10 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.LetterSoundPeerReviewEventDao;
-import ai.elimu.model.content.LetterSoundCorrespondence;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
-import ai.elimu.model.contributor.LetterSoundCorrespondencePeerReviewEvent;
+import ai.elimu.entity.content.LetterSoundCorrespondence;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.entity.contributor.LetterSoundCorrespondencePeerReviewEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 
