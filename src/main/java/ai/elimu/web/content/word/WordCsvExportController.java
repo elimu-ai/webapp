@@ -57,23 +57,23 @@ public class WordCsvExportController {
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
             
-            JSONArray letterSoundsJsonArray = new JSONArray();
+            JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
             int index = 0;
-            for (LetterSound letterSound : word.getLetterSounds()) {
-                JSONObject letterSoundJsonObject = new JSONObject();
-                letterSoundJsonObject.put("id", letterSound.getId());
+            for (LetterSound letterSound : word.getLetterSoundCorrespondences()) {
+                JSONObject letterSoundCorrespondenceJsonObject = new JSONObject();
+                letterSoundCorrespondenceJsonObject.put("id", letterSound.getId());
                 String[] lettersArray = new String[letterSound.getLetters().size()];
                 for (int i = 0; i < lettersArray.length; i++) {
                     lettersArray[i] = letterSound.getLetters().get(i).getText();
                 }
-                letterSoundJsonObject.put("letters", lettersArray);
+                letterSoundCorrespondenceJsonObject.put("letters", lettersArray);
                 String[] soundsArray = new String[letterSound.getSounds().size()];
                 for (int i = 0; i < soundsArray.length; i++) {
                     soundsArray[i] = letterSound.getSounds().get(i).getValueIpa();
                 }
-                letterSoundJsonObject.put("sounds", soundsArray);
-                letterSoundJsonObject.put("usageCount", letterSound.getUsageCount());
-                letterSoundsJsonArray.put(index, letterSoundJsonObject);
+                letterSoundCorrespondenceJsonObject.put("sounds", soundsArray);
+                letterSoundCorrespondenceJsonObject.put("usageCount", letterSound.getUsageCount());
+                letterSoundCorrespondencesJsonArray.put(index, letterSoundCorrespondenceJsonObject);
                 index++;
             }
             
@@ -87,7 +87,7 @@ public class WordCsvExportController {
             csvPrinter.printRecord(
                     word.getId(),
                     word.getText(),
-                    letterSoundsJsonArray,
+                    letterSoundCorrespondencesJsonArray,
                     word.getUsageCount(),
                     word.getWordType(),
                     word.getSpellingConsistency(),

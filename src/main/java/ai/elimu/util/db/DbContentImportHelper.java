@@ -29,8 +29,12 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.*;
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterContributionEvent;
+import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
@@ -162,16 +166,16 @@ public class DbContentImportHelper {
 
         // Extract and import letter-sound correspondences in src/main/resources/
         File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
-        List<LetterSound> letterSounds = CsvContentExtractionHelper.getLetterSoundsFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
+        List<LetterSound> letterSounds = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
         logger.info("letterSounds.size(): " + letterSounds.size());
         letterSoundDao = (LetterSoundDao) webApplicationContext.getBean("letterSoundDao");
         letterSoundContributionEventDao = (LetterSoundContributionEventDao) webApplicationContext.getBean("letterSoundContributionEventDao");
         for (LetterSound letterSound : letterSounds) {
             letterSoundDao.create(letterSound);
 
-            LetterSoundContributionEvent letterSoundContributionEvent = new LetterSoundContributionEvent();
+            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
             letterSoundContributionEvent.setContributor(contributor);
-            letterSoundContributionEvent.setLetterSound(letterSound);
+            letterSoundContributionEvent.setLetterSoundCorrespondence(letterSound);
             letterSoundContributionEvent.setRevisionNumber(1);
             letterSoundContributionEvent.setTime(Calendar.getInstance());
             letterSoundContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);

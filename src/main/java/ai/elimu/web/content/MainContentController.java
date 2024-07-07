@@ -119,7 +119,7 @@ public class MainContentController {
         
         model.addAttribute("letterCount", letterDao.readCount());
         model.addAttribute("soundCount", soundDao.readCount());
-        model.addAttribute("letterSoundCount", letterSoundDao.readCount());
+        model.addAttribute("letterSoundCorrespondenceCount", letterSoundDao.readCount());
         model.addAttribute("numberCount", numberDao.readCount());
         model.addAttribute("syllableCount", syllableDao.readCount());
         model.addAttribute("wordCount", wordDao.readCount());

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import ai.elimu.dao.LetterSoundDao;
 
 @Service
-public class LetterSoundUsageCountScheduler {
+public class LetterSoundCorrespondenceUsageCountScheduler {
     
     private Logger logger = LogManager.getLogger();
     
@@ -31,18 +31,18 @@ public class LetterSoundUsageCountScheduler {
     public synchronized void execute() {
         logger.info("execute");
         
-        logger.info("Calculating usage count for LetterSounds");
+        logger.info("Calculating usage count for LetterSoundCorrespondences");
 
         // <id, usageCount>
-        Map<Long, Integer> LetterSoundFrequencyMap = new HashMap<>();
+        Map<Long, Integer> letterSoundCorrespondenceFrequencyMap = new HashMap<>();
 
         List<Word> words = wordDao.readAll();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
             logger.info("word.getText(): " + word.getText());
-            for (LetterSound letterSound : word.getLetterSounds()) {
-                LetterSoundFrequencyMap.put(letterSound.getId(),
-                        LetterSoundFrequencyMap.getOrDefault(letterSound.getId(), 0) + word.getUsageCount());
+            for (LetterSound letterSound : word.getLetterSoundCorrespondences()) {
+                letterSoundCorrespondenceFrequencyMap.put(letterSound.getId(),
+                        letterSoundCorrespondenceFrequencyMap.getOrDefault(letterSound.getId(), 0) + word.getUsageCount());
             }
         }
 
@@ -54,8 +54,8 @@ public class LetterSoundUsageCountScheduler {
             logger.info("letterSound.getUsageCount() (before update): " + letterSound.getUsageCount());
             
             int newUsageCount = 0;
-            if (LetterSoundFrequencyMap.containsKey(letterSound.getId())) {
-                newUsageCount = LetterSoundFrequencyMap.get(letterSound.getId());
+            if (letterSoundCorrespondenceFrequencyMap.containsKey(letterSound.getId())) {
+                newUsageCount = letterSoundCorrespondenceFrequencyMap.get(letterSound.getId());
             }
             logger.info("newUsageCount: " + newUsageCount);
             

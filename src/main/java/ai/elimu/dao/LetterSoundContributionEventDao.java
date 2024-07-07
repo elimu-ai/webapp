@@ -2,20 +2,19 @@ package ai.elimu.dao;
 
 import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
-
+import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 
-public interface LetterSoundContributionEventDao extends GenericDao<LetterSoundContributionEvent> {
+public interface LetterSoundContributionEventDao extends GenericDao<LetterSoundCorrespondenceContributionEvent> {
 
-    List<LetterSoundContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException;
+    List<LetterSoundCorrespondenceContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException;
 
-    List<LetterSoundContributionEvent> readAll(LetterSound letterSound) throws DataAccessException;
+    List<LetterSoundCorrespondenceContributionEvent> readAll(LetterSound letterSound) throws DataAccessException;
 
-    List<LetterSoundContributionEvent> readAll(Contributor contributor) throws DataAccessException;
+    List<LetterSoundCorrespondenceContributionEvent> readAll(Contributor contributor) throws DataAccessException;
 
-    List<LetterSoundContributionEvent> readMostRecentPerLetterSound() throws DataAccessException;
+    List<LetterSoundCorrespondenceContributionEvent> readMostRecentPerLetterSound() throws DataAccessException;
     
     Long readCount(Contributor contributor) throws DataAccessException;
 }

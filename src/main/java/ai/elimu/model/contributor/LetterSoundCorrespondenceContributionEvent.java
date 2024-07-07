@@ -6,17 +6,17 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class LetterSoundContributionEvent extends ContributionEvent {
+public class LetterSoundCorrespondenceContributionEvent extends ContributionEvent {
 
     @NotNull
     @ManyToOne
     private LetterSound letterSound;
 
-    public LetterSound getLetterSound() {
+    public LetterSound getLetterSoundCorrespondence() {
         return letterSound;
     }
 
-    public void setLetterSound(LetterSound letterSound) {
+    public void setLetterSoundCorrespondence(LetterSound letterSound) {
         this.letterSound = letterSound;
     }
 }

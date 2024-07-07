@@ -93,14 +93,14 @@ public class WordEditController {
         
         Word word = wordDao.read(id);
         
-        if (word.getLetterSounds().isEmpty()) {
-            autoSelectLetterSounds(word);
+        if (word.getLetterSoundCorrespondences().isEmpty()) {
+            autoSelectLetterSoundCorrespondences(word);
             // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
         }
                 
         model.addAttribute("word", word);
         model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+        model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
@@ -191,7 +191,7 @@ public class WordEditController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+            model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
@@ -273,29 +273,29 @@ public class WordEditController {
         return emojisByWordId;
     }
     
-    private void autoSelectLetterSounds(Word word) {
-        logger.info("autoSelectLetterSounds");
+    private void autoSelectLetterSoundCorrespondences(Word word) {
+        logger.info("autoSelectLetterSoundCorrespondences");
         
         String wordText = word.getText();
         
         List<LetterSound> letterSounds = new ArrayList<>();
         
-        List<LetterSound> allLetterSoundsOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
+        List<LetterSound> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
             boolean isMatch = false;
-            for (LetterSound letterSound : allLetterSoundsOrderedByLettersLength) {
-                String letterSoundLetters = letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-                logger.info("letterSoundLetters: \"" + letterSoundLetters + "\"");
+            for (LetterSound letterSound : allLetterSoundCorrespondencesOrderedByLettersLength) {
+                String letterSoundCorrespondenceLetters = letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+                logger.info("letterSoundCorrespondenceLetters: \"" + letterSoundCorrespondenceLetters + "\"");
 
-                if (wordText.startsWith(letterSoundLetters)) {
+                if (wordText.startsWith(letterSoundCorrespondenceLetters)) {
                     isMatch = true;
                     logger.info("Found match at the beginning of \"" + wordText + "\"");
                     letterSounds.add(letterSound);
 
                     // Remove the match from the word
-                    wordText = wordText.substring(letterSoundLetters.length());
+                    wordText = wordText.substring(letterSoundCorrespondenceLetters.length());
                     
                     break;
                 }
@@ -306,6 +306,6 @@ public class WordEditController {
             }
         }
         
-        word.setLetterSounds(letterSounds);
+        word.setLetterSoundCorrespondences(letterSounds);
     }
 }

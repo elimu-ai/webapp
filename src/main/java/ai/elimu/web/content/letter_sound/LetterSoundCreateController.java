@@ -4,7 +4,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundContributionEventDao;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -97,10 +97,10 @@ public class LetterSoundCreateController {
             letterSound.setTimeLastUpdate(Calendar.getInstance());
             letterSoundDao.create(letterSound);
             
-            LetterSoundContributionEvent letterSoundContributionEvent = new LetterSoundContributionEvent();
+            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
             letterSoundContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
             letterSoundContributionEvent.setTime(Calendar.getInstance());
-            letterSoundContributionEvent.setLetterSound(letterSound);
+            letterSoundContributionEvent.setLetterSoundCorrespondence(letterSound);
             letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
             letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
