@@ -32,6 +32,10 @@ See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/b
 
 See [INSTALL.md](INSTALL.md)
 
+## Deploy webapp on production server 🚀
+
+See [DEPLOY.md](./DEPLOY.md)
+
 ## Localization
 
 See [LOCALIZE.md](LOCALIZE.md)
