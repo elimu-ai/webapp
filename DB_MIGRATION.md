@@ -30,6 +30,7 @@ For an example of a previous database migration script, see https://github.com/e
 
 > [!WARNING]
 > Note that DB migration performed automatically by the ORM provider (Hibernate), e.g. when adding a new property to an `@Entity`, is executed _before_ our custom migration scripts.
+
 > [!WARNING]
 > When making a change to an `@Entity`, keep the number of changes as small as possible. Do not make changes to multiple entities at once. Instead, keep things simple to avoid failures during the execution of the DB migration script.
 
