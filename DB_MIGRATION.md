@@ -1,6 +1,6 @@
 # DB Migration 🔀
 
-By using the Java Persistence API (JPA), classed annotated by @Entity (in the [`model`](src/main/java/ai/elimu/model) package) get mapped automatically to database tables/columns: [`src/main/resources/META-INF/jpa-persistence.xml`](https://github.com/elimu-ai/webapp/blob/main/src/main/resources/META-INF/jpa-persistence.xml)
+By using the Java Persistence API (JPA), classed annotated by `@Entity` (in the [`model`](src/main/java/ai/elimu/model) package) get mapped automatically to database tables/columns: [`src/main/resources/META-INF/jpa-persistence.xml`](https://github.com/elimu-ai/webapp/blob/main/src/main/resources/META-INF/jpa-persistence.xml)
 
 > [!IMPORTANT]
 > However, when _deleting, modifying or renaming_ an entity class/attribute, we have to manually update the underlying database structure.
@@ -30,6 +30,12 @@ For an example of a previous database migration script, see https://github.com/e
 
 > [!WARNING]
 > Note that DB migration performed automatically by the ORM provider (Hibernate), e.g. when adding a new property to an `@Entity`, is executed _before_ our custom migration scripts.
+
+> [!WARNING]
+> When making a change to an `@Entity`, keep the number of changes as small as possible. Do not make changes to multiple entities at once. Instead, keep things simple to avoid failures during the execution of the DB migration script.
+
+> [!WARNING]
+> Whenever an `@Entity` is modified, the underlying database schema in [`jpa-schema-export.sql`](./src/main/resources/META-INF/jpa-schema-export.sql) will also be modified. Note that the database schema will _not_ be automatically re-generated when you compile the source with `mvn compile`; Instead, you will have to run the webapp locally with `mvn jetty:run` for this file to be re-generated.
 
 ---
 
