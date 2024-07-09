@@ -48,7 +48,7 @@
                                                             <img src="${numberPeerReviewEvent.contributor.imageUrl}" />
                                                         </c:when>
                                                         <c:when test="${not empty numberPeerReviewEvent.contributor.providerIdWeb3}">
-                                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                                            <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
                                                         </c:when>
                                                         <c:otherwise>
                                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -122,7 +122,7 @@
                                                     <img src="${numberPeerReviewEvent.contributor.imageUrl}" />
                                                 </c:when>
                                                 <c:when test="${not empty numberPeerReviewEvent.contributor.providerIdWeb3}">
-                                                    <img src="http://62.75.236.14:3000/identicon/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                                    <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
                                                 </c:when>
                                                 <c:otherwise>
                                                     <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -175,7 +175,7 @@
                                             <img src="${numberPeerReviewEvent.numberContributionEvent.contributor.imageUrl}" />
                                         </c:when>
                                         <c:when test="${not empty numberPeerReviewEvent.numberContributionEvent.contributor.providerIdWeb3}">
-                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${numberPeerReviewEvent.numberContributionEvent.contributor.providerIdWeb3}" />" />
+                                            <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.numberContributionEvent.contributor.providerIdWeb3}" />.png" />
                                         </c:when>
                                         <c:otherwise>
                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
