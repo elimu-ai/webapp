@@ -74,7 +74,7 @@ Create the folder that will contain Jetty configuration and `*.war` files:
 Add Jetty modules:
 
     cd /opt/jetty-base/
-    java -jar /opt/jetty-home-10.0.21/start.jar --add-module=server,http,deploy
+    java -jar /opt/jetty-home-10.0.21/start.jar --add-module=server,http,deploy,jsp
 
 #### Set Default Values
 
@@ -112,3 +112,68 @@ Start the `jetty service`:
 
 > [!TIP]
 > To verify that everything has been configured correctly, you can run `java -jar /opt/jetty-home-10.0.21/start.jar --list-config` and `service jetty status`
+
+## MariaDB Database 🛢️
+
+### Install MariaDB
+
+Configure a YUM repo entry for your OS at https://mariadb.org/download/?t=repo-config.
+
+Copy and paste the YUM repo entry into a file under `/etc/yum.repos.d/`:
+
+    vi /etc/yum.repos.d/MariaDB.repo
+
+Version: `11.4.2`
+
+Install MariaDB:
+
+    yum install MariaDB-server MariaDB-client
+
+### Start MariaDB
+
+Start the MariaDB service:
+
+    service mariadb start
+
+> [!TIP]
+> To verify that MariaDB is running, use this command: `systemctl status mariadb`
+
+### Enable System Boot
+
+Enable MariaDB to start at boot:
+
+    systemctl enable mariadb
+
+### Secure Installation
+
+Secure your MariaDB installation:
+
+    mariadb-secure-installation
+
+☑️ Set root password: ***
+🟪 Switch to unix_socket authentication [Y/n] n
+☑️ Change the root password? [Y/n] n
+☑️ Remove anonymous users? [Y/n] Y
+☑️ Disallow root login remotely? [Y/n] Y
+☑️ Remove test database and access to it? [Y/n] Y
+☑️ Reload privilege tables now? [Y/n] Y
+
+### Create Database
+
+Log into the MariaDB Server:
+
+    mariadb -u root -p
+
+Create a new database:
+
+```sql
+CREATE DATABASE `webapp-HIN` CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+```
+
+Create a database user:
+
+```sql
+USE `webapp-HIN`;
+CREATE USER '**********'@'localhost' IDENTIFIED BY '**********';
+GRANT ALL ON `webapp-HIN`.* TO '**********'@'localhost';
+```

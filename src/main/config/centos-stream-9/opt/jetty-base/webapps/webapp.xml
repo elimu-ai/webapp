@@ -14,34 +14,34 @@
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_url</Arg>
-    <Arg>************</Arg>
+    <Arg>jdbc:mysql://localhost/webapp-HIN?useUnicode=true&amp;characterEncoding=utf8</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_username</Arg>
-    <Arg>************</Arg>
+    <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_password</Arg>
-    <Arg>************</Arg>
+    <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>discord_api_secret</Arg>
-    <Arg>************</Arg>
+    <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>google_api_secret</Arg>
-    <Arg>************</Arg>
+    <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>github_api_secret</Arg>
-    <Arg>************</Arg>
+    <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>covalent_api_key</Arg>
-    <Arg>************</Arg>
+    <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>discord_webhook_url</Arg>
-    <Arg>************</Arg>
+    <Arg>**********</Arg>
   </Call>
 </Configure>
