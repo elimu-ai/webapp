@@ -4,7 +4,7 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.2.133-SNAPSHOT</version>
+    <version>2.4.2-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
@@ -132,7 +132,7 @@
     <!-- Environment Settings -->
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/elimu-ai/webapp/projects</url>
+        <url>https://github.com/orgs/elimu-ai/projects?query=is%3Aopen</url>
     </issueManagement>
     <ciManagement>
         <system>GitHub Actions</system>
@@ -140,7 +140,7 @@
     </ciManagement>
     <scm>
         <connection>scm:git:git@github.com:elimu-ai/webapp.git</connection>
-        <developerConnection>scm:git:git@github.com:elimu-ai/webapp.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/elimu-ai/webapp.git</developerConnection>
         <url>https://github.com/elimu-ai/webapp</url>
         <tag>HEAD</tag>
     </scm>
