@@ -46,7 +46,7 @@
                                                             <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
                                                         </c:when>
                                                         <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                                            <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
                                                         </c:when>
                                                         <c:otherwise>
                                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -120,7 +120,7 @@
                                                     <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
                                                 </c:when>
                                                 <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                                    <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />" />
+                                                    <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
                                                 </c:when>
                                                 <c:otherwise>
                                                     <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -171,7 +171,7 @@
                                             <img src="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.imageUrl}" />
                                         </c:when>
                                         <c:when test="${not empty storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3}">
-                                            <img src="http://62.75.236.14:3000/identicon/<c:out value="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3}" />" />
+                                            <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3}" />.png" />
                                         </c:when>
                                         <c:otherwise>
                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
