@@ -1,7 +1,7 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.admin.Application;
+import ai.elimu.entity.admin.Application;
 
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 

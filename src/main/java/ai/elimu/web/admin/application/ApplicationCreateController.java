@@ -5,7 +5,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
-import ai.elimu.model.admin.Application;
+import ai.elimu.entity.admin.Application;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;

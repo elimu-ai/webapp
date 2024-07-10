@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.content.Word;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.entity.content.multimedia.Audio;
 
 public class AudioDaoJpa extends GenericDaoJpa<Audio> implements AudioDao {
     

@@ -1,7 +1,7 @@
 package ai.elimu.web.content.multimedia.image;
 
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.entity.content.multimedia.Image;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;

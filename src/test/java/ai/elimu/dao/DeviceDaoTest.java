@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.Device;
+import ai.elimu.entity.Device;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;

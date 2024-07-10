@@ -2,7 +2,7 @@ package ai.elimu.dao;
 
 import java.util.List;
 
-import ai.elimu.model.content.Number;
+import ai.elimu.entity.content.Number;
 
 import org.springframework.dao.DataAccessException;
 

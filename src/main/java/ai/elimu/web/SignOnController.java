@@ -1,15 +1,11 @@
 package ai.elimu.web;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.model.v2.enums.Environment;
-import ai.elimu.model.enums.Role;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package ai.elimu.logic.converters;
 
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.entity.content.multimedia.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.admin.ApplicationVersion;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.admin.ApplicationVersion;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.RequestMethod;
 

@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.VideoDao;
-import ai.elimu.model.content.multimedia.Video;
+import ai.elimu.entity.content.multimedia.Video;
 import ai.elimu.model.v2.gson.content.VideoGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;

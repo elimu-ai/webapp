@@ -1,7 +1,7 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.WordLearningEventDao;
-import ai.elimu.model.analytics.WordLearningEvent;
+import ai.elimu.entity.analytics.WordLearningEvent;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

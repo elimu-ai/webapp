@@ -1,8 +1,8 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.LetterSoundCorrespondence;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.LetterSoundCorrespondence;
+import ai.elimu.entity.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;

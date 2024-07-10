@@ -5,7 +5,7 @@ import org.apache.commons.validator.EmailValidator;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

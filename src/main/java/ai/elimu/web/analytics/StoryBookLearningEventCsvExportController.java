@@ -3,7 +3,7 @@ package ai.elimu.web.analytics;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;

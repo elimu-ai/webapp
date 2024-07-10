@@ -1,8 +1,8 @@
 package ai.elimu.web.content.letter_sound;
 
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSoundCorrespondence;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;

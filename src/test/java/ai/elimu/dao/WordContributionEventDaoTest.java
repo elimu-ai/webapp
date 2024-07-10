@@ -1,8 +1,8 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.WordContributionEvent;
 import java.util.Calendar;
 import org.apache.logging.log4j.Logger;
 

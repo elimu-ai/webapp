@@ -1,8 +1,8 @@
 package ai.elimu.dao.jpa;
 
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSoundCorrespondence;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.dao.DataAccessException;

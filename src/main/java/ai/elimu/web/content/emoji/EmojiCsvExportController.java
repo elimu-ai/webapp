@@ -1,8 +1,8 @@
 package ai.elimu.web.content.emoji;
 
 import ai.elimu.dao.EmojiDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;

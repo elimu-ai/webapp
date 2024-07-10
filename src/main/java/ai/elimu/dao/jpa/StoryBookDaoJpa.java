@@ -6,7 +6,7 @@ import ai.elimu.dao.StoryBookDao;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.StoryBook;
+import ai.elimu.entity.content.StoryBook;
 import ai.elimu.model.v2.enums.ReadingLevel;
 
 public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBookDao {

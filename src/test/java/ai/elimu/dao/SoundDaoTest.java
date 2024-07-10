@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;

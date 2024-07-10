@@ -5,7 +5,7 @@ import ai.elimu.dao.DeviceDao;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.Device;
+import ai.elimu.entity.Device;
 
 public class DeviceDaoJpa extends GenericDaoJpa<Device> implements DeviceDao {
 

@@ -1,6 +1,6 @@
 package ai.elimu.util.csv;
 
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import ai.elimu.web.content.sound.SoundCsvExportController;
 import org.apache.commons.csv.CSVFormat;

@@ -1,6 +1,6 @@
 package ai.elimu.util.epub;
 
-import ai.elimu.model.enums.StoryBookProvider;
+import ai.elimu.entity.enums.StoryBookProvider;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

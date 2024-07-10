@@ -1,6 +1,6 @@
 package ai.elimu.util.csv;
 
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import org.junit.Before;
 import org.junit.Rule;
@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;

@@ -1,8 +1,7 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.v2.enums.content.sound.SoundType;
+import ai.elimu.entity.content.StoryBookParagraph;
+
 import java.util.List;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;

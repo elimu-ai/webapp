@@ -1,8 +1,8 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.analytics.WordLearningEvent;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.analytics.WordLearningEvent;
+import ai.elimu.entity.content.Word;
 import java.util.Calendar;
 import org.springframework.dao.DataAccessException;
 

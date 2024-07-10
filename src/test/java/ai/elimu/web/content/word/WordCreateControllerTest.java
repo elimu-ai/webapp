@@ -1,7 +1,7 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;

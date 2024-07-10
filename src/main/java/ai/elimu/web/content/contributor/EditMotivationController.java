@@ -1,12 +1,11 @@
 package ai.elimu.web.content.contributor;
 
-import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.logging.log4j.LogManager;

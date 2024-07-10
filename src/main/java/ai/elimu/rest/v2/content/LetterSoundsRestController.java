@@ -1,6 +1,6 @@
 package ai.elimu.rest.v2.content;
 
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.entity.content.LetterSoundCorrespondence;
 import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;

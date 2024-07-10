@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.entity.content.multimedia.Image;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;

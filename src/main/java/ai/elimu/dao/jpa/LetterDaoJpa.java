@@ -6,7 +6,7 @@ import ai.elimu.dao.LetterDao;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.content.Letter;
 
 public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
 

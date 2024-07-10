@@ -1,6 +1,6 @@
 package ai.elimu.util.csv;
 
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.content.Letter;
 import ai.elimu.web.content.letter.LetterCsvExportController;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;

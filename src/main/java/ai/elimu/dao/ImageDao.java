@@ -1,11 +1,11 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.entity.content.multimedia.Image;
 
 public interface ImageDao extends GenericDao<Image> {
 	

@@ -9,8 +9,8 @@ import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.content.multimedia.Image;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

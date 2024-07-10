@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.Language;
 
 public class SyllableHelperTest {

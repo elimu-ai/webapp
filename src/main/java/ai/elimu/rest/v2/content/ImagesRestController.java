@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;

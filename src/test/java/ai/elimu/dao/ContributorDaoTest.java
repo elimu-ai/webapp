@@ -8,7 +8,7 @@ import org.junit.Ignore;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

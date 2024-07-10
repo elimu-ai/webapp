@@ -1,6 +1,6 @@
 package selenium;
 
-import ai.elimu.model.enums.Role;
+import ai.elimu.entity.enums.Role;
 import org.openqa.selenium.WebDriver;
 
 public class SignOnHelper {

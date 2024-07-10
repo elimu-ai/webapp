@@ -5,7 +5,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.EmojiDao;
-import ai.elimu.model.content.Emoji;
+import ai.elimu.entity.content.Emoji;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

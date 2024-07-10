@@ -1,8 +1,7 @@
 package ai.elimu.web.content.letter;
 
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.content.Letter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
-import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
