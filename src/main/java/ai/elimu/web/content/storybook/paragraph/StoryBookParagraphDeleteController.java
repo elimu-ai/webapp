@@ -7,12 +7,12 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.multimedia.Audio;
+import ai.elimu.web.content.storybook.chapter.StoryBookChapterComponent;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -47,16 +47,14 @@ public class StoryBookParagraphDeleteController {
     @Autowired
     private StoryBooksJsonService storyBooksJsonService;
 
+    @Autowired
+    private StoryBookChapterComponent storyBookChapterComponent;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(HttpSession session, @PathVariable Long id) {
     	logger.info("handleRequest");
         
-        Contributor contributor = (Contributor) session.getAttribute("contributor");
-        logger.info("contributor.getRoles(): " + contributor.getRoles());
-        if (!contributor.getRoles().contains(Role.EDITOR)) {
-            // TODO: return HttpStatus.FORBIDDEN
-            throw new IllegalAccessError("Missing role for access");
-        }
+        storyBookChapterComponent.checkEditorRole(session);
         
         StoryBookParagraph storyBookParagraphToBeDeleted = storyBookParagraphDao.read(id);
         logger.info("storyBookParagraphToBeDeleted: " + storyBookParagraphToBeDeleted);
@@ -84,7 +82,7 @@ public class StoryBookParagraphDeleteController {
         
         // Store contribution event
         StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
-        storyBookContributionEvent.setContributor(contributor);
+        storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
         storyBookContributionEvent.setTime(Calendar.getInstance());
         storyBookContributionEvent.setStoryBook(storyBook);
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
