@@ -11,7 +11,7 @@ Web application:
  * https://hin.elimu.ai - Hindi
  * https://tgl.elimu.ai - Tagalog
 
-<img width="1438" src="https://user-images.githubusercontent.com/15718174/84895085-673fa100-b0d4-11ea-81b9-e53f4be7a31a.png">
+[<kbd>![](https://github.com/elimu-ai/webapp/assets/15718174/32f3c339-aacc-4dc1-9692-c9435bc63d57)</kbd>](https://hin.elimu.ai)
 
 This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
@@ -30,23 +30,27 @@ See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/b
 
 ## Run webapp locally 👩🏽‍💻
 
-See [INSTALL.md](INSTALL.md)
+See [`INSTALL.md`](./INSTALL.md)
+
+## Deploy webapp on production server 🚀
+
+See [`src/main/config/DEPLOY.md`](./src/main/config/DEPLOY.md)
 
 ## Localization
 
-See [LOCALIZE.md](LOCALIZE.md)
+See [`LOCALIZE.md`](./LOCALIZE.md)
 
 ## Database migration
 
-See [DB_MIGRATION.md](DB_MIGRATION.md)
+See [`DB_MIGRATION.md`](./DB_MIGRATION.md)
 
 ## Contributing guidelines
 
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md)
 
 ## Star History 🌠
 
-[![Star History Chart](https://api.star-history.com/svg?repos=elimu-ai/webapp&type=Date)](https://star-history.com/#elimu-ai/webapp&Date)
+[<kbd>![Star History Chart](https://api.star-history.com/svg?repos=elimu-ai/webapp&type=Date)</kbd>](https://star-history.com/#elimu-ai/webapp&Date)
 
 ---
 

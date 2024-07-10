@@ -4,14 +4,14 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.2.133-SNAPSHOT</version>
+    <version>2.4.2-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>2.0.68</model.version> <!-- https://jitpack.io/#elimu-ai/model -->
         <hibernate.version>5.5.7.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
-        <jetty.version>10.0.18</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
+        <jetty.version>10.0.21</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
         <spring.version>5.3.18</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>5.6.2</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>2.22.2</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
@@ -42,12 +42,6 @@
                     <webApp>
                         <contextPath>/webapp</contextPath>
                     </webApp>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>8080</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
                     <systemProperties>
                         <systemProperty>
                             <name>org.eclipse.jetty.server.Request.maxFormContentSize</name>
@@ -138,7 +132,7 @@
     <!-- Environment Settings -->
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/elimu-ai/webapp/projects</url>
+        <url>https://github.com/orgs/elimu-ai/projects?query=is%3Aopen</url>
     </issueManagement>
     <ciManagement>
         <system>GitHub Actions</system>
@@ -146,7 +140,7 @@
     </ciManagement>
     <scm>
         <connection>scm:git:git@github.com:elimu-ai/webapp.git</connection>
-        <developerConnection>scm:git:git@github.com:elimu-ai/webapp.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/elimu-ai/webapp.git</developerConnection>
         <url>https://github.com/elimu-ai/webapp</url>
         <tag>HEAD</tag>
     </scm>

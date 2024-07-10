@@ -62,11 +62,12 @@ Run individual tests:
 
     https://<language>.test.elimu.ai
 
-
 ## Prod server
 
     https://<language>.elimu.ai
 
+> [!NOTE]
+> See instructions for deploying the webapp on a production server in [`src/main/config/DEPLOY.md`](./src/main/config/DEPLOY.md).
 
 ## Supported languages 🌐
 
