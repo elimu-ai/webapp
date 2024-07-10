@@ -30,19 +30,23 @@ See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/b
 
 ## Run webapp locally 👩🏽‍💻
 
-See [INSTALL.md](INSTALL.md)
+See [`INSTALL.md`](./INSTALL.md)
+
+## Deploy webapp on production server 🚀
+
+See [`src/main/config/DEPLOY.md`](./src/main/config/DEPLOY.md)
 
 ## Localization
 
-See [LOCALIZE.md](LOCALIZE.md)
+See [`LOCALIZE.md`](./LOCALIZE.md)
 
 ## Database migration
 
-See [DB_MIGRATION.md](DB_MIGRATION.md)
+See [`DB_MIGRATION.md`](./DB_MIGRATION.md)
 
 ## Contributing guidelines
 
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md)
 
 ## Star History 🌠
 
