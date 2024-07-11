@@ -1,12 +1,8 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.enums.Platform;
 import java.util.Calendar;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -39,13 +35,6 @@ public class PeerReviewEvent extends BaseEntity {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar time;
-    
-    /**
-     * The platform that the {@link Contributor} used when performing the peer-review.
-     */
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Platform platform;
 
     public Contributor getContributor() {
         return contributor;
@@ -77,13 +66,5 @@ public class PeerReviewEvent extends BaseEntity {
 
     public void setTime(Calendar time) {
         this.time = time;
-    }
-    
-    public Platform getPlatform() {
-        return platform;
-    }
-    
-    public void setPlatform(Platform platform) {
-        this.platform = platform;
     }
 }
