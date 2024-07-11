@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.SoundContributionEvent;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import javax.servlet.http.HttpServletRequest;
@@ -89,7 +88,6 @@ public class SoundCreateController {
             soundContributionEvent.setRevisionNumber(sound.getRevisionNumber());
             soundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             soundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            soundContributionEvent.setPlatform(Platform.WEBAPP);
             soundContributionEventDao.create(soundContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

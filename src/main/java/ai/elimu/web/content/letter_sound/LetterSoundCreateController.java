@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -104,7 +103,6 @@ public class LetterSoundCreateController {
             letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
             letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            letterSoundContributionEvent.setPlatform(Platform.WEBAPP);
             letterSoundContributionEventDao.create(letterSoundContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

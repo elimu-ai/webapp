@@ -15,7 +15,6 @@ import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.NumberContributionEvent;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.HashMap;
@@ -111,7 +110,6 @@ public class NumberEditController {
             numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
             numberContributionEvent.setComment(request.getParameter("contributionComment"));
             numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

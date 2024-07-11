@@ -19,7 +19,6 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
@@ -335,7 +334,6 @@ public class StoryBookCreateFromEPubController {
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook
@@ -506,7 +504,6 @@ public class StoryBookCreateFromEPubController {
         imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
         imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
         imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-        imageContributionEvent.setPlatform(Platform.WEBAPP);
         imageContributionEventDao.create(imageContributionEvent);
 
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

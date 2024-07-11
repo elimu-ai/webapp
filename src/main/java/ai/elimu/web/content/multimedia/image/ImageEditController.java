@@ -25,7 +25,6 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
@@ -205,7 +204,6 @@ public class ImageEditController {
             imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
             imageContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            imageContributionEvent.setPlatform(Platform.WEBAPP);
             imageContributionEventDao.create(imageContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

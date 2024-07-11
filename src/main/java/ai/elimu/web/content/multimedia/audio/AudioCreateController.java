@@ -19,7 +19,6 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.enums.ContentLicense;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
@@ -194,7 +193,6 @@ public class AudioCreateController {
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
             audioContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            audioContributionEvent.setPlatform(Platform.WEBAPP);
             audioContributionEventDao.create(audioContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
