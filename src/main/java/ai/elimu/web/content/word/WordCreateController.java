@@ -18,18 +18,12 @@ import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
-import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.enums.Platform;
-import ai.elimu.model.v2.enums.content.AudioFormat;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
-import ai.elimu.util.ConfigHelper;
-import ai.elimu.util.audio.GoogleCloudTextToSpeechHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -174,46 +168,6 @@ public class WordCreateController {
             Syllable syllable = syllableDao.readByText(word.getText());
             if (syllable != null) {
                 syllableDao.delete(syllable);
-            }
-            
-            // Generate Audio for this Word (if it has not been done already)
-            List<Audio> audios = audioDao.readAll(word);
-            if (audios.isEmpty()) {
-                Calendar timeStart = Calendar.getInstance();
-                if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                    Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-                    try {
-                        byte[] audioBytes = GoogleCloudTextToSpeechHelper.synthesizeText(word.getText(), language);
-                        logger.info("audioBytes: " + audioBytes);
-                        if (audioBytes != null) {
-                            Audio audio = new Audio();
-                            audio.setTimeLastUpdate(Calendar.getInstance());
-                            audio.setContentType(AudioFormat.MP3.getContentType());
-                            audio.setWord(word);
-                            audio.setTitle("word-id-" + word.getId());
-                            audio.setTranscription(word.getText());
-                            audio.setBytes(audioBytes);
-                            audio.setDurationMs(null); // TODO: Convert from byte[] to File, and extract audio duration
-                            audio.setAudioFormat(AudioFormat.MP3);
-                            audioDao.create(audio);
-
-                            audios.add(audio);
-                            model.addAttribute("audios", audios);
-
-                            AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
-                            audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-                            audioContributionEvent.setTime(Calendar.getInstance());
-                            audioContributionEvent.setAudio(audio);
-                            audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
-                            audioContributionEvent.setComment("Google Cloud Text-to-Speech (🤖 auto-generated comment)️");
-                            audioContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeStart.getTimeInMillis());
-                            audioContributionEvent.setPlatform(Platform.WEBAPP);
-                            audioContributionEventDao.create(audioContributionEvent);
-                        }
-                    } catch (Exception ex) {
-                        logger.error(ex);
-                    }
-                }
             }
             
             return "redirect:/content/word/list#" + word.getId();
