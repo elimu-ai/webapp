@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.AudioContributionEvent;
 import ai.elimu.model.contributor.AudioPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -62,7 +61,6 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEvent.setApproved(approved);
         audioPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         audioPeerReviewEvent.setTime(Calendar.getInstance());
-        audioPeerReviewEvent.setPlatform(Platform.WEBAPP);
         audioPeerReviewEventDao.create(audioPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

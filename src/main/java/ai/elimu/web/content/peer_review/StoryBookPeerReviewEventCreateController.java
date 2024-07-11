@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -59,7 +58,6 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEvent.setApproved(approved);
         storyBookPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         storyBookPeerReviewEvent.setTime(Calendar.getInstance());
-        storyBookPeerReviewEvent.setPlatform(Platform.WEBAPP);
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

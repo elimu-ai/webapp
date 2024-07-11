@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.contributor.LetterSoundCorrespondencePeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Calendar;
@@ -61,7 +60,6 @@ public class LetterSoundPeerReviewEventCreateController {
         letterSoundPeerReviewEvent.setApproved(approved);
         letterSoundPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         letterSoundPeerReviewEvent.setTime(Calendar.getInstance());
-        letterSoundPeerReviewEvent.setPlatform(Platform.WEBAPP);
         letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
