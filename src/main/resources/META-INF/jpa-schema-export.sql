@@ -204,7 +204,6 @@
     create table AudioContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
@@ -334,7 +333,6 @@
     create table ImageContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
@@ -358,7 +356,6 @@
     create table LetterContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
@@ -406,7 +403,6 @@
     create table LetterSoundCorrespondenceContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
@@ -448,7 +444,6 @@
     create table NumberContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
@@ -493,7 +488,6 @@
     create table SoundContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
@@ -529,7 +523,6 @@
     create table StoryBookContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
@@ -666,7 +659,6 @@
     create table WordContributionEvent (
        id bigint not null auto_increment,
         comment varchar(1000),
-        platform varchar(255),
         revisionNumber integer,
         time datetime,
         timeSpentMs bigint,
