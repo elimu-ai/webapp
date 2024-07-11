@@ -33,10 +33,6 @@ This file is placed on the test server under $JETTY_HOME/webapps/
     <Arg>************</Arg>
   </Call>
   <Call name="setAttribute">
-    <Arg>google_api_secret</Arg>
-    <Arg>************</Arg>
-  </Call>
-  <Call name="setAttribute">
     <Arg>github_api_secret</Arg>
     <Arg>************</Arg>
   </Call>

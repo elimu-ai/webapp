@@ -29,10 +29,6 @@
     <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
-    <Arg>google_api_secret</Arg>
-    <Arg>**********</Arg>
-  </Call>
-  <Call name="setAttribute">
     <Arg>github_api_secret</Arg>
     <Arg>**********</Arg>
   </Call>
