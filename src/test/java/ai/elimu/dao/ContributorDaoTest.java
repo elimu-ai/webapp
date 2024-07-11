@@ -1,21 +1,18 @@
 package ai.elimu.dao;
 
-import org.apache.logging.log4j.Logger;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.hibernate.exception.ConstraintViolationException;
-import org.junit.Ignore;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.exception.ConstraintViolationException;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
@@ -26,12 +23,12 @@ public class ContributorDaoTest {
     @Autowired
     private ContributorDao contributorDao;
 
-    @Ignore
-    @Test(expected=ConstraintViolationException.class)
+    @Disabled
+    @Test
     public void testConstraintViolation() {
         Contributor contributor = new Contributor();
         contributorDao.create(contributor);
         logger.info("contributor: " + contributor);
-        assertThat(contributor, nullValue());
+        assertNull(contributor);
     }
 }

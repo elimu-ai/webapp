@@ -1,20 +1,18 @@
 package ai.elimu.dao;
 
 import ai.elimu.model.admin.Application;
-import org.apache.logging.log4j.Logger;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.apache.logging.log4j.Logger;
+
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
@@ -28,6 +26,6 @@ public class ApplicationDaoTest {
     @Test
     public void testReadAll() {
         List<Application> applications = applicationDao.readAll();
-        assertThat(applications.isEmpty(), is(true));
+        assertTrue(applications.isEmpty());
     }
 }

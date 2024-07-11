@@ -1,22 +1,22 @@
 package ai.elimu.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
@@ -49,10 +49,10 @@ public class NumberDaoTest {
         number24.setWords(numberWords);
         numberDao.create(number24);
         
-        assertThat(numberDao.read(number24.getId()).getWords().isEmpty(), is(false));
-        assertThat(numberDao.read(number24.getId()).getWords().size(), is(2));
-        assertThat(numberDao.read(number24.getId()).getWords().get(0).getText(), is("twenty"));
-        assertThat(numberDao.read(number24.getId()).getWords().get(1).getText(), is("four"));
+        assertFalse(numberDao.read(number24.getId()).getWords().isEmpty());
+        assertEquals(2, numberDao.read(number24.getId()).getWords().size());
+        assertEquals("twenty", numberDao.read(number24.getId()).getWords().get(0).getText());
+        assertEquals("four", numberDao.read(number24.getId()).getWords().get(1).getText());
     }
 
     @Test
@@ -64,8 +64,8 @@ public class NumberDaoTest {
         numberDao.create(getNumber(90));
 
         List<Number> allNumbers = numberDao.readAllOrdered();
-        assertThat(allNumbers.isEmpty(), is(false));
-        assertThat(allNumbers.size() >= 5, is(true));
+        assertFalse(allNumbers.isEmpty());
+        assertTrue(allNumbers.size() >= 5);
         Number previousNumber = null;
         for (Number number: allNumbers) {
             logger.info("number.getValue(): " + number.getValue());

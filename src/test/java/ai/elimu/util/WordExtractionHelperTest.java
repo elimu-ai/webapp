@@ -1,11 +1,11 @@
 package ai.elimu.util;
 
 import ai.elimu.model.v2.enums.Language;
-import java.util.List;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordExtractionHelperTest {
 
@@ -13,76 +13,76 @@ public class WordExtractionHelperTest {
     public void testGetWords() {
         String paragraph = "\"Mom,\" called Lebo. \"Come and look. These clothes are all too small for me!\"";
         List<String> words = WordExtractionHelper.getWords(paragraph, Language.ENG);
-        assertThat(words.get(0), is("Mom"));
-        assertThat(words.get(1), is("called"));
-        assertThat(words.get(2), is("Lebo"));
-        assertThat(words.get(3), is("Come"));
-        assertThat(words.get(4), is("and"));
-        assertThat(words.get(5), is("look"));
-        assertThat(words.get(6), is("These"));
-        assertThat(words.get(7), is("clothes"));
-        assertThat(words.get(8), is("are"));
-        assertThat(words.get(9), is("all"));
-        assertThat(words.get(10), is("too"));
-        assertThat(words.get(11), is("small"));
-        assertThat(words.get(12), is("for"));
-        assertThat(words.get(13), is("me"));
-        
+        assertEquals("Mom", words.get(0));
+        assertEquals("called", words.get(1));
+        assertEquals("Lebo", words.get(2));
+        assertEquals("Come", words.get(3));
+        assertEquals("and", words.get(4));
+        assertEquals("look", words.get(5));
+        assertEquals("These", words.get(6));
+        assertEquals("clothes", words.get(7));
+        assertEquals("are", words.get(8));
+        assertEquals("all", words.get(9));
+        assertEquals("too", words.get(10));
+        assertEquals("small", words.get(11));
+        assertEquals("for", words.get(12));
+        assertEquals("me", words.get(13));
+
         paragraph = "\"Look at my skirt. It's too small,\" said Lebo.";
         words = WordExtractionHelper.getWords(paragraph, Language.ENG);
-        assertThat(words.get(0), is("Look"));
-        assertThat(words.get(1), is("at"));
-        assertThat(words.get(2), is("my"));
-        assertThat(words.get(3), is("skirt"));
-        assertThat(words.get(4), is("It's"));
-        assertThat(words.get(5), is("too"));
-        assertThat(words.get(6), is("small"));
-        assertThat(words.get(7), is("said"));
-        assertThat(words.get(8), is("Lebo"));
-        
+        assertEquals("Look", words.get(0));
+        assertEquals("at", words.get(1));
+        assertEquals("my", words.get(2));
+        assertEquals("skirt", words.get(3));
+        assertEquals("It's", words.get(4));
+        assertEquals("too", words.get(5));
+        assertEquals("small", words.get(6));
+        assertEquals("said", words.get(7));
+        assertEquals("Lebo", words.get(8));
+
         // Test with extra spaces
         paragraph = "This is a girl called Norah.   Her doll’s name is Selah.";
         words = WordExtractionHelper.getWords(paragraph, Language.ENG);
         System.out.println(words);
-        assertThat(words.get(0), is("This"));
-        assertThat(words.get(1), is("is"));
-        assertThat(words.get(2), is("a"));
-        assertThat(words.get(3), is("girl"));
-        assertThat(words.get(4), is("called"));
-        assertThat(words.get(5), is("Norah"));
-        assertThat(words.get(6), is("Her"));
-        assertThat(words.get(7), is("doll’s"));
-        assertThat(words.get(8), is("name"));
-        assertThat(words.get(9), is("is"));
-        assertThat(words.get(10), is("Selah"));
+        assertEquals("This", words.get(0));
+        assertEquals("is", words.get(1));
+        assertEquals("a", words.get(2));
+        assertEquals("girl", words.get(3));
+        assertEquals("called", words.get(4));
+        assertEquals("Norah", words.get(5));
+        assertEquals("Her", words.get(6));
+        assertEquals("doll’s", words.get(7));
+        assertEquals("name", words.get(8));
+        assertEquals("is", words.get(9));
+        assertEquals("Selah", words.get(10));
     }
-    
+
     @Test
     public void testGetWordsWhenDanda() {
         String paragraph = "চোখের এক মৌমাছি। সে অনেক";
         List<String> words = WordExtractionHelper.getWords(paragraph, Language.BEN);
-        assertThat(words.get(0), is("চোখের"));
-        assertThat(words.get(1), is("এক"));
-        assertThat(words.get(2), is("মৌমাছি"));
-        assertThat(words.get(3), is("সে"));
-        assertThat(words.get(4), is("অনেক"));
+        assertEquals("চোখের", words.get(0));
+        assertEquals("এক", words.get(1));
+        assertEquals("মৌমাছি", words.get(2));
+        assertEquals("সে", words.get(3));
+        assertEquals("অনেক", words.get(4));
     }
-    
+
     @Test
     public void testGetWordsInsideQuotes() {
         String paragraph = "I wanted to play the ball very much. I said, “Ah! Football.”";
         List<String> words = WordExtractionHelper.getWords(paragraph, Language.ENG);
-        assertThat(words.get(0), is("I"));
-        assertThat(words.get(1), is("wanted"));
-        assertThat(words.get(2), is("to"));
-        assertThat(words.get(3), is("play"));
-        assertThat(words.get(4), is("the"));
-        assertThat(words.get(5), is("ball"));
-        assertThat(words.get(6), is("very"));
-        assertThat(words.get(7), is("much"));
-        assertThat(words.get(8), is("I"));
-        assertThat(words.get(9), is("said"));
-        assertThat(words.get(10), is("Ah"));
-        assertThat(words.get(11), is("Football"));
+        assertEquals("I", words.get(0));
+        assertEquals("wanted", words.get(1));
+        assertEquals("to", words.get(2));
+        assertEquals("play", words.get(3));
+        assertEquals("the", words.get(4));
+        assertEquals("ball", words.get(5));
+        assertEquals("very", words.get(6));
+        assertEquals("much", words.get(7));
+        assertEquals("I", words.get(8));
+        assertEquals("said", words.get(9));
+        assertEquals("Ah", words.get(10));
+        assertEquals("Football", words.get(11));
     }
 }

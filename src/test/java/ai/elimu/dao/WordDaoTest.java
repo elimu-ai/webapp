@@ -2,22 +2,18 @@ package ai.elimu.dao;
 
 import ai.elimu.model.content.Word;
 import ai.elimu.model.v2.enums.content.WordType;
-import junit.framework.TestCase;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
-        "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
-        "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
+@SpringJUnitConfig(locations = {
+    "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
+    "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
-public class WordDaoTest extends TestCase {
+public class WordDaoTest {
 
     @Autowired
     private WordDao wordDao;
@@ -35,13 +31,13 @@ public class WordDaoTest extends TestCase {
         wordDao.create(getWordWitTheSameText(WordType.VERB));
         wordDao.create(getWordWitTheSameText(null));
 
-        assertThat(wordDao.readByTextAndType(WORD_TEXT, WordType.ADJECTIVE).getWordType(), is(WordType.ADJECTIVE));
-        assertThat(wordDao.readByTextAndType(WORD_TEXT, WordType.ADVERB).getWordType(), is(WordType.ADVERB));
-        assertThat(wordDao.readByTextAndType(WORD_TEXT, WordType.NOUN).getWordType(), is(WordType.NOUN));
-        assertThat(wordDao.readByTextAndType(WORD_TEXT, WordType.NUMBER).getWordType(), is(WordType.NUMBER));
-        assertThat(wordDao.readByTextAndType(WORD_TEXT, WordType.PREPOSITION).getWordType(), is(WordType.PREPOSITION));
-        assertThat(wordDao.readByTextAndType(WORD_TEXT, WordType.PRONOUN).getWordType(), is(WordType.PRONOUN));
-        assertThat(wordDao.readByTextAndType(WORD_TEXT, WordType.VERB).getWordType(), is(WordType.VERB));
+        assertEquals(WordType.ADJECTIVE, wordDao.readByTextAndType(WORD_TEXT, WordType.ADJECTIVE).getWordType());
+        assertEquals(WordType.ADVERB, wordDao.readByTextAndType(WORD_TEXT, WordType.ADVERB).getWordType());
+        assertEquals(WordType.NOUN, wordDao.readByTextAndType(WORD_TEXT, WordType.NOUN).getWordType());
+        assertEquals(WordType.NUMBER, wordDao.readByTextAndType(WORD_TEXT, WordType.NUMBER).getWordType());
+        assertEquals(WordType.PREPOSITION, wordDao.readByTextAndType(WORD_TEXT, WordType.PREPOSITION).getWordType());
+        assertEquals(WordType.PRONOUN, wordDao.readByTextAndType(WORD_TEXT, WordType.PRONOUN).getWordType());
+        assertEquals(WordType.VERB, wordDao.readByTextAndType(WORD_TEXT, WordType.VERB).getWordType());
         assertNull(wordDao.readByTextAndType(WORD_TEXT, null).getWordType());
     }
 
