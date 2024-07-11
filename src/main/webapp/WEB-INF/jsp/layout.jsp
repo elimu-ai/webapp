@@ -97,9 +97,6 @@
                                                 ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
                                             </c:when>
                                         </c:choose>
-                                        <c:if test="${not empty contributor.email}">
-                                            &lt;${contributor.email}&gt;
-                                        </c:if>
                                     </div>
                                 </a>
                             </ul>
