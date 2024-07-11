@@ -16,7 +16,6 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
@@ -133,7 +132,6 @@ public class StoryBookChapterDeleteController {
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
         storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + " (🤖 auto-generated comment)");
         storyBookContributionEvent.setTimeSpentMs(0L);
-        storyBookContributionEvent.setPlatform(Platform.WEBAPP);
         storyBookContributionEventDao.create(storyBookContributionEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

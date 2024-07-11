@@ -1,7 +1,5 @@
 package ai.elimu.web.content.storybook.paragraph;
 
-import ai.elimu.dao.AudioContributionEventDao;
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +9,6 @@ import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -43,12 +40,6 @@ public class StoryBookParagraphEditController {
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
-    
-    @Autowired
-    private AudioDao audioDao;
-    
-    @Autowired
-    private AudioContributionEventDao audioContributionEventDao;
     
     @Autowired
     private StoryBooksJsonService storyBooksJsonService;
@@ -108,7 +99,6 @@ public class StoryBookParagraphEditController {
                 storyBookContributionEvent.setParagraphTextAfter(StringUtils.abbreviate(storyBookParagraph.getOriginalText(), 1000));
             }
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

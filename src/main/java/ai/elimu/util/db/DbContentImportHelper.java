@@ -35,7 +35,6 @@ import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
 import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.contributor.WordContributionEvent;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
@@ -151,7 +150,6 @@ public class DbContentImportHelper {
             letterContributionEvent.setRevisionNumber(1);
             letterContributionEvent.setTime(Calendar.getInstance());
             letterContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-            letterContributionEvent.setPlatform(Platform.WEBAPP);
             letterContributionEventDao.create(letterContributionEvent);
         }
 
@@ -179,7 +177,6 @@ public class DbContentImportHelper {
             letterSoundContributionEvent.setRevisionNumber(1);
             letterSoundContributionEvent.setTime(Calendar.getInstance());
             letterSoundContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-            letterSoundContributionEvent.setPlatform(Platform.WEBAPP);
             letterSoundContributionEventDao.create(letterSoundContributionEvent);
         }
 
@@ -198,7 +195,6 @@ public class DbContentImportHelper {
             wordContributionEvent.setRevisionNumber(1);
             wordContributionEvent.setTime(Calendar.getInstance());
             wordContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-            wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
         }
 
@@ -217,7 +213,6 @@ public class DbContentImportHelper {
             numberContributionEvent.setRevisionNumber(1);
             numberContributionEvent.setTime(Calendar.getInstance());
             numberContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-            numberContributionEvent.setPlatform(Platform.WEBAPP);
             numberContributionEventDao.create(numberContributionEvent);
         }
 
@@ -308,7 +303,6 @@ public class DbContentImportHelper {
             storyBookContributionEvent.setRevisionNumber(1);
             storyBookContributionEvent.setTime(Calendar.getInstance());
             storyBookContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
-            storyBookContributionEvent.setPlatform(Platform.WEBAPP);
             storyBookContributionEventDao.create(storyBookContributionEvent);
         }
 

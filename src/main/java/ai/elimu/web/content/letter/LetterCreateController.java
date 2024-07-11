@@ -9,7 +9,6 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterContributionEvent;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import javax.servlet.http.HttpServletRequest;
@@ -77,7 +76,6 @@ public class LetterCreateController {
             letterContributionEvent.setRevisionNumber(letter.getRevisionNumber());
             letterContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             letterContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            letterContributionEvent.setPlatform(Platform.WEBAPP);
             letterContributionEventDao.create(letterContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

@@ -37,13 +37,6 @@ public class ContributionEvent extends BaseEntity {
      */
     @NotNull
     private Long timeSpentMs;
-    
-    /**
-     * The platform that the {@link Contributor} used when making the contribution.
-     */
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Platform platform;
 
     public String getComment() {
         return comment;
@@ -83,13 +76,5 @@ public class ContributionEvent extends BaseEntity {
 
     public void setTimeSpentMs(Long timeSpentMs) {
         this.timeSpentMs = timeSpentMs;
-    }
-    
-    public Platform getPlatform() {
-        return platform;
-    }
-    
-    public void setPlatform(Platform platform) {
-        this.platform = platform;
     }
 }

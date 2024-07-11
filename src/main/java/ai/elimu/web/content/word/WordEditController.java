@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
@@ -24,7 +23,6 @@ import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
-import ai.elimu.model.enums.Platform;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
 import java.util.ArrayList;
@@ -75,9 +73,6 @@ public class WordEditController {
     
     @Autowired
     private WordPeerReviewEventDao wordPeerReviewEventDao;
-    
-    @Autowired
-    private AudioContributionEventDao audioContributionEventDao;
     
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
@@ -186,7 +181,6 @@ public class WordEditController {
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
             wordContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
             wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            wordContributionEvent.setPlatform(Platform.WEBAPP);
             wordContributionEventDao.create(wordContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
