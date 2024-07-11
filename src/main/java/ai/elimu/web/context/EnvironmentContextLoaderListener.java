@@ -118,9 +118,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String discordApiSecret = (String) servletContext.getAttribute("discord_api_secret");
                 PROPERTIES.put("discord.api.secret", discordApiSecret);
                 
-                String googleApiSecret = (String) servletContext.getAttribute("google_api_secret");
-                PROPERTIES.put("google.api.secret", googleApiSecret);
-                
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
                 
