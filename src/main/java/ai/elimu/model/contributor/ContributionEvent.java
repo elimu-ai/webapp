@@ -1,7 +1,6 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
-import ai.elimu.model.enums.Platform;
 import java.util.Calendar;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
