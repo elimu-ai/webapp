@@ -173,7 +173,7 @@
                     <plugin>
                     	<groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.1.2</version>
+                        <version>${surefire-plugin.version}</version>
                         <configuration>
                             <excludes>
                                 <exclude>**/rest/**/*Test.java</exclude>
@@ -192,7 +192,7 @@
                     <plugin>
                     	<groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.1.2</version>
+                        <version>${surefire-plugin.version}</version>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
@@ -225,7 +225,7 @@
                     <plugin>
                     	<groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.1.2</version>
+                        <version>${surefire-plugin.version}</version>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
@@ -276,7 +276,7 @@
                     <plugin>
                     	<groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-war-plugin/ -->
-                        <version>3.3.1</version>
+                        <version>3.4.0</version>
                         <configuration>
                             <webXml>${basedir}/target/web.xml</webXml>
                         </configuration>
@@ -284,7 +284,7 @@
                     <plugin>
                     	<groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.1.2</version>
+                        <version>${surefire-plugin.version}</version>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
