@@ -1,33 +1,32 @@
 package ai.elimu.util;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VersionHelperTest {
 
     @Test
     public void testCreate() {
         String pomVersion = "1.0.0";
-        assertThat(VersionHelper.getPomVersionAsInteger(pomVersion), is(1000000));
-        
+        assertEquals(1000000, VersionHelper.getPomVersionAsInteger(pomVersion));
+
         pomVersion = "1.0.0-SNAPSHOT";
-        assertThat(VersionHelper.getPomVersionAsInteger(pomVersion), is(1000000));
-        
+        assertEquals(1000000, VersionHelper.getPomVersionAsInteger(pomVersion));
+
         pomVersion = "1.0.1";
-        assertThat(VersionHelper.getPomVersionAsInteger(pomVersion), is(1000001));
-        
+        assertEquals(1000001, VersionHelper.getPomVersionAsInteger(pomVersion));
+
         pomVersion = "1.1.0";
-        assertThat(VersionHelper.getPomVersionAsInteger(pomVersion), is(1001000));
-        
+        assertEquals(1001000, VersionHelper.getPomVersionAsInteger(pomVersion));
+
         pomVersion = "1.1.1";
-        assertThat(VersionHelper.getPomVersionAsInteger(pomVersion), is(1001001));
-        
+        assertEquals(1001001, VersionHelper.getPomVersionAsInteger(pomVersion));
+
         pomVersion = "1.0.11";
-        assertThat(VersionHelper.getPomVersionAsInteger(pomVersion), is(1000011));
-        
+        assertEquals(1000011, VersionHelper.getPomVersionAsInteger(pomVersion));
+
         pomVersion = "11.0.11";
-        assertThat(VersionHelper.getPomVersionAsInteger(pomVersion), is(11000011));
+        assertEquals(11000011, VersionHelper.getPomVersionAsInteger(pomVersion));
     }
 }

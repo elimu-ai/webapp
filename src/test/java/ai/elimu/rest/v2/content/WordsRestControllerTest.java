@@ -3,12 +3,13 @@ package ai.elimu.rest.v2.content;
 import ai.elimu.util.JsonLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import selenium.DomainHelper;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class WordsRestControllerTest {
     
@@ -21,10 +22,10 @@ public class WordsRestControllerTest {
         
         JSONArray wordsJSONArray = new JSONArray(jsonResponse);
         logger.info("wordsJSONArray.length(): " + wordsJSONArray.length());
-        assertThat(wordsJSONArray.length() > 0, is(true));
+        assertFalse(wordsJSONArray.isEmpty());
         
         JSONObject wordJsonObject = wordsJSONArray.getJSONObject(0);
-        assertThat(wordJsonObject.getLong("id"), not(nullValue()));
-        assertThat(wordJsonObject.getString("text"), not(nullValue()));
+        assertNotNull(wordJsonObject.getLong("id"));
+        assertNotNull(wordJsonObject.getString("text"));
     }
 }

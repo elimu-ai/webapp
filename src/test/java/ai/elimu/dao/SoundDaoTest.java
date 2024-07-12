@@ -1,28 +1,25 @@
 package ai.elimu.dao;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer.MethodName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@TestMethodOrder(MethodName.class)
 public class SoundDaoTest {
 
     @Autowired
@@ -45,7 +42,7 @@ public class SoundDaoTest {
 
         List<Sound> actualSounds = soundDao.readAllOrdered();
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 expectedSounds.stream().map(Sound::getValueIpa).toArray(),
                 actualSounds.stream().filter(i -> i.getValueIpa().length() == 1).map(Sound::getValueIpa).toArray()
         );
@@ -62,7 +59,7 @@ public class SoundDaoTest {
 
         List<Sound> actualSounds = soundDao.readAllOrderedByIpaValueCharacterLength();
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 expectedSounds.stream().map(Sound::getValueIpa).toArray(),
                 actualSounds.stream().map(Sound::getValueIpa).toArray()
         );
@@ -85,7 +82,7 @@ public class SoundDaoTest {
 
         List<Sound> actualSounds = soundDao.readAllOrderedByUsage();
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 expectedSounds.stream().map(Sound::getUsageCount).toArray(),
                 actualSounds.stream().filter(i -> i.getUsageCount() != 0).map(Sound::getUsageCount).toArray()
         );
@@ -97,7 +94,7 @@ public class SoundDaoTest {
         sound.setSoundType(SoundType.VOWEL);
         soundDao.create(sound);
         
-        assertThat(soundDao.readByValueSampa("E").getSoundType(), is(SoundType.VOWEL));
+        assertEquals(SoundType.VOWEL, soundDao.readByValueSampa("E").getSoundType());
         assertTrue("ɛ".equals(soundDao.readByValueIpa("ɛ").getValueIpa()));
     }
     
@@ -105,9 +102,9 @@ public class SoundDaoTest {
     public void testLowerCaseVsUpperCase() {
         soundDao.create(getSound("t", "t"));
         soundDao.create(getSound("θ", "T"));
-        
-        assertThat(soundDao.readByValueSampa("t").getValueSampa(), is("t"));
-        assertThat(soundDao.readByValueSampa("T").getValueSampa(), is("T"));
+
+        assertEquals("t", soundDao.readByValueSampa("t").getValueSampa());
+        assertEquals("T", soundDao.readByValueSampa("T").getValueSampa());
     }
 
     private Sound getSound(String ipa, String sampa) {

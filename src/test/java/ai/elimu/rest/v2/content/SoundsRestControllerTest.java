@@ -3,12 +3,13 @@ package ai.elimu.rest.v2.content;
 import ai.elimu.util.JsonLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import selenium.DomainHelper;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class SoundsRestControllerTest {
     
@@ -21,10 +22,10 @@ public class SoundsRestControllerTest {
         
         JSONArray soundsJSONArray = new JSONArray(jsonResponse);
         logger.info("soundsJSONArray.length(): " + soundsJSONArray.length());
-        assertThat(soundsJSONArray.length() > 0, is(true));
+        assertFalse(soundsJSONArray.isEmpty());
         
         JSONObject soundJsonObject = soundsJSONArray.getJSONObject(0);
-        assertThat(soundJsonObject.getLong("id"), not(nullValue()));
-        assertThat(soundJsonObject.getString("valueIpa"), not(nullValue()));
+        assertNotNull(soundJsonObject.getLong("id"));
+        assertNotNull(soundJsonObject.getString("valueIpa"));
     }
 }

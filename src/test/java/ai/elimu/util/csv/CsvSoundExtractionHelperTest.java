@@ -2,10 +2,9 @@ package ai.elimu.util.csv;
 
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +18,7 @@ import java.util.function.Function;
 
 import static ai.elimu.util.csv.CsvSoundExtractionHelper.getSoundsFromCsvBackup;
 import static java.util.Collections.emptyList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CsvSoundExtractionHelperTest {
 
@@ -32,8 +29,8 @@ public class CsvSoundExtractionHelperTest {
         T expectedValue,
         Function<Sound, T> fieldValueSupplier
     ) {
-        assertFalse("Expecting extracted Sounds are not empty", sounds.isEmpty());
-        assertEquals("Assertion expect only one Sound object to check", 1, sounds.size());
+        assertFalse(sounds.isEmpty(), "Expecting extracted Sounds are not empty");
+        assertEquals(1, sounds.size(), "Assertion expect only one Sound object to check");
 
         Sound sound = sounds.get(0);
 
@@ -50,14 +47,14 @@ public class CsvSoundExtractionHelperTest {
         );
     }
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    @TempDir
+    public File folder;
 
     private File soundsCsv;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        soundsCsv = folder.newFile("sounds.csv");
+        soundsCsv = File.createTempFile("sounds.csv", null, folder);
     }
 
     @Test
@@ -222,8 +219,8 @@ public class CsvSoundExtractionHelperTest {
         URI soundsCsvUrl = ClassLoader.getSystemResource(soundsCsvResourcePath).toURI();
 
         assertNotNull(
-            "Test resource with CSV data not found for path: " + soundsCsvResourcePath,
-            soundsCsvUrl
+            soundsCsvUrl,
+            "Test resource with CSV data not found for path: " + soundsCsvResourcePath
         );
 
         List<Sound> soundsFromCsvBackup = getSoundsFromCsvBackup(
@@ -232,8 +229,8 @@ public class CsvSoundExtractionHelperTest {
         );
 
         assertFalse(
-            "Expecting that resource: '" + soundsCsvResourcePath + "' has lines to extract",
-            soundsFromCsvBackup.isEmpty()
+            soundsFromCsvBackup.isEmpty(),
+            "Expecting that resource: '" + soundsCsvResourcePath + "' has lines to extract"
         );
 
         Sound sound = soundsFromCsvBackup.get(0);

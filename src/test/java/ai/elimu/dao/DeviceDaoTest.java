@@ -1,19 +1,18 @@
 package ai.elimu.dao;
 
 import ai.elimu.model.Device;
-import junit.framework.TestCase;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
-        "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
-        "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+@SpringJUnitConfig(locations = {
+    "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
+    "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
-public class DeviceDaoTest extends TestCase {
+public class DeviceDaoTest {
 
     @Autowired
     private DeviceDao deviceDao;
@@ -23,8 +22,8 @@ public class DeviceDaoTest extends TestCase {
         deviceDao.create(getDevice("22"));
         deviceDao.create(getDevice("44"));
 
-        assertTrue("22".equals(deviceDao.read("22").getDeviceId()));
-        assertTrue("44".equals(deviceDao.read("44").getDeviceId()));
+        assertEquals("22", deviceDao.read("22").getDeviceId());
+        assertEquals("44", deviceDao.read("44").getDeviceId());
         assertNull(deviceDao.read("33"));
     }
 

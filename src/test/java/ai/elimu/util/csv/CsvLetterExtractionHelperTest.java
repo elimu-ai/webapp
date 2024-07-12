@@ -1,10 +1,9 @@
 package ai.elimu.util.csv;
 
 import ai.elimu.model.content.Letter;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,9 +17,7 @@ import java.util.function.Function;
 
 import static ai.elimu.util.csv.CsvLetterExtractionHelper.getLettersFromCsvBackup;
 import static java.util.Collections.emptyList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CsvLetterExtractionHelperTest {
 
@@ -31,8 +28,8 @@ public class CsvLetterExtractionHelperTest {
         T expectedValue,
         Function<Letter, T> fieldValueSupplier
     ) {
-        assertFalse("Expecting extracted Letters are not empty", letters.isEmpty());
-        assertEquals("Assertion expect only one Letter object to check", 1, letters.size());
+        assertFalse(letters.isEmpty(), "Expecting extracted Letters are not empty");
+        assertEquals(1, letters.size(), "Assertion expect only one Letter object to check");
 
         Letter letter = letters.get(0);
 
@@ -49,14 +46,14 @@ public class CsvLetterExtractionHelperTest {
         );
     }
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    @TempDir
+    public File folder;
 
     private File lettersCsv;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        lettersCsv = folder.newFile("letters.csv");
+        lettersCsv = File.createTempFile("letters.csv", null, folder);
     }
 
     @Test
@@ -175,8 +172,8 @@ public class CsvLetterExtractionHelperTest {
         URI lettersCsvUrl = ClassLoader.getSystemResource(lettersCsvResourcePath).toURI();
 
         assertNotNull(
-            "Test resource with CSV data not found for path: " + lettersCsvResourcePath,
-            lettersCsvUrl
+            lettersCsvUrl,
+            "Test resource with CSV data not found for path: " + lettersCsvResourcePath
         );
 
         List<Letter> lettersFromCsvBackup = getLettersFromCsvBackup(
@@ -185,8 +182,8 @@ public class CsvLetterExtractionHelperTest {
         );
 
         assertFalse(
-            "Expecting that resource: '" + lettersCsvResourcePath + "' has lines to extract",
-            lettersFromCsvBackup.isEmpty()
+            lettersFromCsvBackup.isEmpty(),
+            "Expecting that resource: '" + lettersCsvResourcePath + "' has lines to extract"
         );
 
         Letter letter = lettersFromCsvBackup.get(0);

@@ -1,13 +1,13 @@
 package ai.elimu.util;
 
 import ai.elimu.model.v2.enums.Language;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SyllableFrequencyHelperTest {
 
@@ -16,11 +16,11 @@ public class SyllableFrequencyHelperTest {
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look.\"");
         Map<String, Integer> syllableFrequencyMap = SyllableFrequencyHelper.getSyllableFrequency(paragraphs, Language.ENG);
-        assertThat(syllableFrequencyMap.get("mom"), is(1));
-        assertThat(syllableFrequencyMap.get("called"), is(1));
-        assertThat(syllableFrequencyMap.get("lebo"), is(1));
-        assertThat(syllableFrequencyMap.get("come"), is(1));
-        assertThat(syllableFrequencyMap.get("and"), is(1));
-        assertThat(syllableFrequencyMap.get("look"), is(1));
+        assertEquals(1, syllableFrequencyMap.get("mom"));
+        assertEquals(1, syllableFrequencyMap.get("called"));
+        assertEquals(1, syllableFrequencyMap.get("lebo"));
+        assertEquals(1, syllableFrequencyMap.get("come"));
+        assertEquals(1, syllableFrequencyMap.get("and"));
+        assertEquals(1, syllableFrequencyMap.get("look"));
     }
 }

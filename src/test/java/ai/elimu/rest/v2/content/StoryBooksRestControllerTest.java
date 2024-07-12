@@ -3,12 +3,13 @@ package ai.elimu.rest.v2.content;
 import ai.elimu.util.JsonLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import selenium.DomainHelper;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class StoryBooksRestControllerTest {
     
@@ -21,13 +22,13 @@ public class StoryBooksRestControllerTest {
         
         JSONArray storyBooksJSONArray = new JSONArray(jsonResponse);
         logger.info("storyBooksJSONArray.length(): " + storyBooksJSONArray.length());
-        assertThat(storyBooksJSONArray.length() > 0, is(true));
+        assertFalse(storyBooksJSONArray.isEmpty());
         
         JSONObject storyBookJsonObject = storyBooksJSONArray.getJSONObject(0);
-        assertThat(storyBookJsonObject.getString("title"), not(nullValue()));
+        assertNotNull(storyBookJsonObject.getString("title"));
         
         JSONArray chaptersJsonArray = storyBookJsonObject.getJSONArray("storyBookChapters");
         logger.info("chaptersJsonArray.length(): " + chaptersJsonArray.length());
-        assertThat(chaptersJsonArray.length() > 0, is(true));
+        assertFalse(chaptersJsonArray.isEmpty());
     }
 }
