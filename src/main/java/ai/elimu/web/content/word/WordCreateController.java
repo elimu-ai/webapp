@@ -106,7 +106,8 @@ public class WordCreateController {
         if (StringUtils.containsAny(word.getText(), " ")) {
             result.rejectValue("text", "WordSpace");
         }
-        
+        validateWord(word, result);
+
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
@@ -219,5 +220,21 @@ public class WordCreateController {
         }
         
         word.setLetterSoundCorrespondences(letterSoundCorrespondences);
+    }
+
+    private void validateWord(Word word, BindingResult result) {
+        Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
+
+        if (existingWord != null) {
+            result.rejectValue("text", "NonUnique");
+        }
+
+        if (StringUtils.containsAny(word.getText(), " ")) {
+            result.rejectValue("text", "WordSpace");
+        }
+
+        if (word.getText() != null && word.getText().matches("[0-9\\W_]*")) {
+            result.rejectValue("text", "WordNumbers");
+        }
     }
 }
