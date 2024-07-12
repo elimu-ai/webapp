@@ -3,11 +3,11 @@ package ai.elimu.rest.v2.crowdsource;
 import ai.elimu.util.JsonLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONObject;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import selenium.DomainHelper;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests the {@link AudioPeerReviewsRestController}.
@@ -22,8 +22,8 @@ public class AudioPeerReviewsRestControllerTest {
         logger.info("jsonResponse: " + jsonResponse);
         
         JSONObject errorResponseJSONObject = new JSONObject(jsonResponse);
-        assertThat(errorResponseJSONObject.get("result"), is("error"));
-        assertThat(errorResponseJSONObject.get("errorMessage"), is("Missing providerIdGoogle"));
+        assertEquals("error", errorResponseJSONObject.get("result"));
+        assertEquals("Missing providerIdGoogle", errorResponseJSONObject.get("errorMessage"));
     }
     
     // TODO: test uploadAudioPeerReview

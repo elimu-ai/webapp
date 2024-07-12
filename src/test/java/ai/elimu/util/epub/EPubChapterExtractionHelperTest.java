@@ -1,16 +1,17 @@
 package ai.elimu.util.epub;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EPubChapterExtractionHelperTest {
     
@@ -24,7 +25,7 @@ public class EPubChapterExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
-        assertThat(chapterReferences.size(), is(12));
+        assertEquals(12, chapterReferences.size());
     }
     
     @Test
@@ -35,7 +36,7 @@ public class EPubChapterExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
-        assertThat(chapterReferences.size(), is(32));
+        assertEquals(32, chapterReferences.size());
     }
     
     @Test
@@ -46,7 +47,7 @@ public class EPubChapterExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
-        assertThat(chapterReferences.size(), is(12));
+        assertEquals(12, chapterReferences.size());
     }
     
     @Test
@@ -57,6 +58,6 @@ public class EPubChapterExtractionHelperTest {
         logger.debug("ncxFile: " + ncxFile);
         
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(ncxFile);
-        assertThat(chapterReferences.size(), is(10));
+        assertEquals(10, chapterReferences.size());
     }
 }

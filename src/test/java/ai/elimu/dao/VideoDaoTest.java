@@ -1,26 +1,25 @@
 package ai.elimu.dao;
 
 import ai.elimu.model.content.multimedia.Video;
-import junit.framework.TestCase;
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.MethodOrderer.MethodName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
-        "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
-        "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringJUnitConfig(locations = {
+    "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
+    "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class VideoDaoTest extends TestCase {
+@TestMethodOrder(MethodName.class)
+public class VideoDaoTest {
 
     @Autowired
     private VideoDao videoDao;
@@ -38,7 +37,7 @@ public class VideoDaoTest extends TestCase {
 
         List<Video> videosActual = videoDao.readAllOrdered();
 
-        Assert.assertArrayEquals(
+        assertArrayEquals(
                 expectedVideos.stream().map(Video::getTitle).toArray(),
                 videosActual.stream().map(Video::getTitle).toArray()
         );

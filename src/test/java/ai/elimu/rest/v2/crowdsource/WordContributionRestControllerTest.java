@@ -3,14 +3,14 @@ package ai.elimu.rest.v2.crowdsource;
 import ai.elimu.util.JsonLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import selenium.DomainHelper;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WordContributionRestControllerTest {
 
@@ -25,12 +25,12 @@ public class WordContributionRestControllerTest {
 
         JSONArray letterSoundCorrespondencesJSONArray = new JSONArray(jsonResponse);
         logger.info("letterSoundCorrespondencesJSONArray.length(): " + letterSoundCorrespondencesJSONArray.length());
-        assertThat(letterSoundCorrespondencesJSONArray.length() > 0, is(true));
+        assertFalse(letterSoundCorrespondencesJSONArray.isEmpty());
 
         JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJSONArray.getJSONObject(0);
-        assertThat(letterSoundCorrespondenceJsonObject.getLong("id"), not(nullValue()));
-        assertThat(letterSoundCorrespondenceJsonObject.has("letters"), is(true));
-        assertThat(letterSoundCorrespondenceJsonObject.has("sounds"), is(true));
+        assertNotNull(letterSoundCorrespondenceJsonObject.getLong("id"));
+        assertTrue(letterSoundCorrespondenceJsonObject.has("letters"));
+        assertTrue(letterSoundCorrespondenceJsonObject.has("sounds"));
     }
 
     // TODO: test POST requests.

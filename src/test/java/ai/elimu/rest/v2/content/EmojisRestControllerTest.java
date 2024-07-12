@@ -3,12 +3,13 @@ package ai.elimu.rest.v2.content;
 import ai.elimu.util.JsonLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import selenium.DomainHelper;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class EmojisRestControllerTest {
     
@@ -21,9 +22,9 @@ public class EmojisRestControllerTest {
         
         JSONArray emojisJSONArray = new JSONArray(jsonResponse);
         logger.info("emojisJSONArray.length(): " + emojisJSONArray.length());
-        assertThat(emojisJSONArray.length() > 0, is(true));
+        assertFalse(emojisJSONArray.isEmpty());
         
         JSONObject emojiJsonObject = emojisJSONArray.getJSONObject(0);
-        assertThat(emojiJsonObject.getString("glyph"), not(nullValue()));
+        assertNotNull(emojiJsonObject.getString("glyph"));
     }
 }

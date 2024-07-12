@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @see ErrorHelper
@@ -39,6 +39,6 @@ public class MarkupValidationHelper {
             String result = restTemplate.postForObject(URL, markup, String.class);
             System.out.println("result: " + result);
 
-            assertTrue("The document is not valid HTML5: " + markup, result.contains("The document is valid HTML5"));
+            assertTrue(result.contains("The document is valid HTML5"), "The document is not valid HTML5: " + markup);
     }
 }

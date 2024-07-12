@@ -1,26 +1,25 @@
 package ai.elimu.dao;
 
 import ai.elimu.model.content.Letter;
-import junit.framework.TestCase;
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.MethodOrderer.MethodName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
-        "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
-        "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringJUnitConfig(locations = {
+    "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
+    "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LetterDaoTest extends TestCase {
+@TestMethodOrder(MethodName.class)
+public class LetterDaoTest {
 
     @Autowired
     private LetterDao letterDao;
@@ -40,7 +39,7 @@ public class LetterDaoTest extends TestCase {
 
         List<Letter> lettersActual = letterDao.readAllOrdered();
 
-        Assert.assertArrayEquals(
+        assertArrayEquals(
                 lettersExpected.stream().map(Letter::getText).toArray(),
                 lettersActual.stream().map(Letter::getText).toArray()
         );
@@ -61,7 +60,7 @@ public class LetterDaoTest extends TestCase {
 
         List<Letter> lettersActual = letterDao.readAllOrderedByUsage();
 
-        Assert.assertArrayEquals(
+        assertArrayEquals(
                 lettersExpected.stream().map(Letter::getText).toArray(),
                 lettersActual.stream().filter(i -> i.getUsageCount() != 0).map(Letter::getText).toArray()
         );

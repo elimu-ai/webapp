@@ -1,23 +1,21 @@
 package ai.elimu.dao;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import org.apache.logging.log4j.Logger;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
@@ -42,7 +40,7 @@ public class ImageDaoTest {
         wordDao.create(wordCat);
         
         List<Image> images = imageDao.readAllLabeled(wordCat);
-        assertThat(images.size(), is(0));
+        assertTrue(images.isEmpty());
         
         Set<Word> words = new HashSet<>();
         words.add(wordCat);
@@ -53,18 +51,18 @@ public class ImageDaoTest {
         imageDao.create(image);
         
         images = imageDao.readAllLabeled(wordDog);
-        assertThat(images.size(), is(0));
+        assertTrue(images.isEmpty());
         
         images = imageDao.readAllLabeled(wordCat);
-        assertThat(images.size(), is(1));
-        assertThat(images.get(0).getWords().size(), is(1));
+        assertEquals(1, images.size());
+        assertEquals(1, images.get(0).getWords().size());
         
         words.add(wordDog);
         image.setWords(words);
         imageDao.update(image);
         
         images = imageDao.readAllLabeled(wordCat);
-        assertThat(images.size(), is(1));
-        assertThat(images.get(0).getWords().size(), is(2));
+        assertEquals(1, images.size());
+        assertEquals(2, images.get(0).getWords().size());
     }
 }

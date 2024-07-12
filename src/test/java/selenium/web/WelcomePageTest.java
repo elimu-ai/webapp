@@ -2,25 +2,19 @@ package selenium.web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.MethodRule;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import selenium.DomainHelper;
-import selenium.ScreenshotOnFailureRule;
 
 public class WelcomePageTest {
     
     private final Logger logger = LogManager.getLogger();
     
-    @Rule
-    public MethodRule methodRule = new ScreenshotOnFailureRule();
-    
     private WebDriver driver;
 
-    @Before
+    @BeforeEach
     public void setUp() { 
         logger.info("setUp");
         

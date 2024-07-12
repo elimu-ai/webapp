@@ -4,11 +4,10 @@ import ai.elimu.util.JsonLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import selenium.DomainHelper;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NumberPeerReviewsRestControllerTest {
 
@@ -22,7 +21,7 @@ public class NumberPeerReviewsRestControllerTest {
         logger.info("jsonResponse: " + jsonResponse);
 
         JSONObject errorResponseJSONObject = new JSONObject(jsonResponse);
-        assertThat(errorResponseJSONObject.get("result"), is("error"));
-        assertThat(errorResponseJSONObject.get("errorMessage"), is("Missing providerIdGoogle"));
+        assertEquals("error", errorResponseJSONObject.get("result"));
+        assertEquals("Missing providerIdGoogle", errorResponseJSONObject.get("errorMessage"));
     }
 }

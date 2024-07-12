@@ -1,15 +1,16 @@
 package ai.elimu.util.epub;
 
-import java.io.File;
-import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EPubImageExtractionHelperTest {
     
@@ -23,7 +24,7 @@ public class EPubImageExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
-        assertThat(imageReference, is("1e8e58cc7d627a7896737cfb3eba8270.jpg"));
+        assertEquals("1e8e58cc7d627a7896737cfb3eba8270.jpg", imageReference);
     }
     
     @Test
@@ -34,7 +35,7 @@ public class EPubImageExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
-        assertThat(imageReference, is("image_2.jpg"));
+        assertEquals("image_2.jpg", imageReference);
     }
     
     @Test
@@ -45,7 +46,7 @@ public class EPubImageExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
-        assertThat(imageReference, is("p-1.jpg"));
+        assertEquals("p-1.jpg", imageReference);
     }
     
     @Test
@@ -56,6 +57,6 @@ public class EPubImageExtractionHelperTest {
         logger.debug("xhtmlFile: " + xhtmlFile);
         
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
-        assertThat(imageReference, is("image_3.jpg"));
+        assertEquals("image_3.jpg", imageReference);
     }
 }

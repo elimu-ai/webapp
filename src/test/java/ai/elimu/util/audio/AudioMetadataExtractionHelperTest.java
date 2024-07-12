@@ -1,16 +1,17 @@
 package ai.elimu.util.audio;
 
-import ai.elimu.util.audio.AudioMetadataExtractionHelper;
-import java.io.File;
-import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class AudioMetadataExtractionHelperTest {
 
@@ -24,8 +25,8 @@ public class AudioMetadataExtractionHelperTest {
         logger.debug("audioFile: " + audioFile);
 
         Long durationMs = AudioMetadataExtractionHelper.getDurationInMilliseconds(audioFile);
-        assertThat(durationMs, not(nullValue()));
-        assertThat(durationMs, is(1000L)); // 1s
+        assertNotNull(durationMs);
+        assertEquals(1000L, durationMs); // 1s
     }
 
     @Test
@@ -36,8 +37,8 @@ public class AudioMetadataExtractionHelperTest {
         logger.debug("audioFile: " + audioFile);
 
         Long durationMs = AudioMetadataExtractionHelper.getDurationInMilliseconds(audioFile);
-        assertThat(durationMs, not(nullValue()));
-        assertThat(durationMs, is(1000L)); // 1s
+        assertNotNull(durationMs);
+        assertEquals(1000L, durationMs); // 1s
     }
 
     @Test
@@ -48,7 +49,7 @@ public class AudioMetadataExtractionHelperTest {
         logger.debug("audioFile: " + audioFile);
 
         Long durationMs = AudioMetadataExtractionHelper.getDurationInMilliseconds(audioFile);
-        assertThat(durationMs, not(nullValue()));
-        assertThat(durationMs, is(6000L)); // 6s
+        assertNotNull(durationMs);
+        assertEquals(6000L, durationMs); // 6s
     }
 }

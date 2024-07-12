@@ -1,23 +1,20 @@
 package ai.elimu.web;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
+@SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
@@ -28,7 +25,7 @@ public class SignOnControllerWeb3Test {
     
     private MockMvc mockMvc;
     
-    @Before
+    @BeforeEach
     public void setup() {
         assertNotNull(signOnControllerWeb3);
         mockMvc = MockMvcBuilders.standaloneSetup(signOnControllerWeb3).build();

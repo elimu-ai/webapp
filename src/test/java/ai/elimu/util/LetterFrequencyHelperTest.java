@@ -1,13 +1,13 @@
 package ai.elimu.util;
 
 import ai.elimu.model.v2.enums.Language;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LetterFrequencyHelperTest {
 
@@ -16,17 +16,17 @@ public class LetterFrequencyHelperTest {
         List<String> paragraphs = new ArrayList<>();
         paragraphs.add("\"Mom,\" called Lebo. \"Come and look.\"");
         Map<String, Integer> letterFrequencyMap = LetterFrequencyHelper.getLetterFrequency(paragraphs, Language.ENG);
-        assertThat(letterFrequencyMap.get("o"), is(5));
-        assertThat(letterFrequencyMap.get("e"), is(3));
-        assertThat(letterFrequencyMap.get("l"), is(3));
-        assertThat(letterFrequencyMap.get("a"), is(2));
-        assertThat(letterFrequencyMap.get("d"), is(2));
-        assertThat(letterFrequencyMap.get("m"), is(2));
-        assertThat(letterFrequencyMap.get("b"), is(1));
-        assertThat(letterFrequencyMap.get("c"), is(1));
-        assertThat(letterFrequencyMap.get("n"), is(1));
-        assertThat(letterFrequencyMap.get("C"), is(1));
-        assertThat(letterFrequencyMap.get("L"), is(1));
-        assertThat(letterFrequencyMap.get("M"), is(1));
+        assertEquals(5, letterFrequencyMap.get("o"));
+        assertEquals(3, letterFrequencyMap.get("e"));
+        assertEquals(3, letterFrequencyMap.get("l"));
+        assertEquals(2, letterFrequencyMap.get("a"));
+        assertEquals(2, letterFrequencyMap.get("d"));
+        assertEquals(2, letterFrequencyMap.get("m"));
+        assertEquals(1, letterFrequencyMap.get("b"));
+        assertEquals(1, letterFrequencyMap.get("c"));
+        assertEquals(1, letterFrequencyMap.get("n"));
+        assertEquals(1, letterFrequencyMap.get("C"));
+        assertEquals(1, letterFrequencyMap.get("L"));
+        assertEquals(1, letterFrequencyMap.get("M"));
     }
 }
