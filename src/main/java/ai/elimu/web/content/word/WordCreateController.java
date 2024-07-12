@@ -218,6 +218,6 @@ public class WordCreateController {
             }
         }
         
-        word.setLetterSoundCorrespondences(letterSoundCorrespondences);
+        word.setLetterSounds(letterSoundCorrespondences);
     }
 }

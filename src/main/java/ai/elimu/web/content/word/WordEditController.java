@@ -87,7 +87,7 @@ public class WordEditController {
         
         Word word = wordDao.read(id);
         
-        if (word.getLetterSoundCorrespondences().isEmpty()) {
+        if (word.getLetterSounds().isEmpty()) {
             autoSelectLetterSoundCorrespondences(word);
             // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
         }
@@ -232,7 +232,7 @@ public class WordEditController {
         
         String wordText = word.getText();
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
+        List<LetterSoundCorrespondence> letterSounds = new ArrayList<>();
         
         List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
@@ -246,7 +246,7 @@ public class WordEditController {
                 if (wordText.startsWith(letterSoundCorrespondenceLetters)) {
                     isMatch = true;
                     logger.info("Found match at the beginning of \"" + wordText + "\"");
-                    letterSoundCorrespondences.add(letterSoundCorrespondence);
+                    letterSounds.add(letterSoundCorrespondence);
 
                     // Remove the match from the word
                     wordText = wordText.substring(letterSoundCorrespondenceLetters.length());
@@ -260,6 +260,6 @@ public class WordEditController {
             }
         }
         
-        word.setLetterSoundCorrespondences(letterSoundCorrespondences);
+        word.setLetterSounds(letterSounds);
     }
 }
