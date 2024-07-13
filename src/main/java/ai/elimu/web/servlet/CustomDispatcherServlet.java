@@ -81,7 +81,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         // Scan for classes annotated as JPA @Entity
         ClassPathScanningCandidateComponentProvider entityScanner = new ClassPathScanningCandidateComponentProvider(true);
         entityScanner.addIncludeFilter(new AnnotationTypeFilter(Entity.class));
-        for (BeanDefinition beanDefinition : entityScanner.findCandidateComponents("ai.elimu.model")) {
+        for (BeanDefinition beanDefinition : entityScanner.findCandidateComponents(ai.elimu.model.BaseEntity.class.getPackageName())) {
             logger.info("beanDefinition.getBeanClassName(): " + beanDefinition.getBeanClassName());
             try {
                 Class<?> annotatedClass = Class.forName(beanDefinition.getBeanClassName());
