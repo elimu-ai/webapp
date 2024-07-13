@@ -28,9 +28,9 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundC
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterSoundCorrespondencePeerReviewEvent event " +
-            "WHERE event.letterSoundCorrespondenceContributionEvent.letterSoundCorrespondence = :letterSoundCorrespondence " + 
+            "WHERE event.letterSoundCorrespondenceContributionEvent.letterSound = :letterSound " + 
             "ORDER BY event.time DESC")
-            .setParameter("letterSoundCorrespondence", letterSound)
+            .setParameter("letterSound", letterSound)
             .getResultList();
     }
     
