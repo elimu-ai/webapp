@@ -6,8 +6,9 @@ import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
@@ -50,7 +51,7 @@ public class LetterSoundPeerReviewEventCreateController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
         logger.info("letterSoundContributionEventId: " + letterSoundContributionEventId);
-        LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = letterSoundContributionEventDao.read(letterSoundContributionEventId);
+        LetterSoundContributionEvent letterSoundContributionEvent = letterSoundContributionEventDao.read(letterSoundContributionEventId);
         logger.info("letterSoundContributionEvent: " + letterSoundContributionEvent);
         
         // Store the peer review event

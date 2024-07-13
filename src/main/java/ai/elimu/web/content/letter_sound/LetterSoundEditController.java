@@ -3,6 +3,7 @@ package ai.elimu.web.content.letter_sound;
 import java.util.List;
 import javax.validation.Valid;
 
+import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundContributionEventDao;
@@ -22,7 +23,7 @@ import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
@@ -116,7 +117,7 @@ public class LetterSoundEditController {
             letterSound.setRevisionNumber(letterSound.getRevisionNumber() + 1);
             letterSoundDao.update(letterSound);
             
-            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            LetterSoundContributionEvent letterSoundContributionEvent = new LetterSoundContributionEvent();
             letterSoundContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
             letterSoundContributionEvent.setTime(Calendar.getInstance());
             letterSoundContributionEvent.setLetterSound(letterSound);

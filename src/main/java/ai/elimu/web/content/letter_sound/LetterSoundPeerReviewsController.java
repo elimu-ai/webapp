@@ -5,7 +5,7 @@ import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class LetterSoundPeerReviewsController {
     private EmojiDao emojiDao;
     
     /**
-     * Get {@link LetterSoundCorrespondenceContributionEvent}s pending a {@link LetterSoundPeerReviewEvent} for the current {@link Contributor}.
+     * Get {@link LetterSoundContributionEvent}s pending a {@link LetterSoundPeerReviewEvent} for the current {@link Contributor}.
      */
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest(HttpSession session, Model model) {
@@ -46,15 +46,15 @@ public class LetterSoundPeerReviewsController {
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         logger.info("contributor: " + contributor);
         
-        // Get the most recent LetterSoundCorrespondenceContributionEvent for each LetterSound, including those made by the current Contributor
-        List<LetterSoundCorrespondenceContributionEvent> mostRecentLetterSoundContributionEvents = letterSoundContributionEventDao.readMostRecentPerLetterSound();
+        // Get the most recent LetterSoundContributionEvent for each LetterSound, including those made by the current Contributor
+        List<LetterSoundContributionEvent> mostRecentLetterSoundContributionEvents = letterSoundContributionEventDao.readMostRecentPerLetterSound();
         logger.info("mostRecentLetterSoundContributionEvents.size(): " + mostRecentLetterSoundContributionEvents.size());
         
-        // For each LetterSoundCorrespondenceContributionEvent, check if the Contributor has already performed a peer-review.
+        // For each LetterSoundContributionEvent, check if the Contributor has already performed a peer-review.
         // If not, add it to the list of pending peer reviews.
-        List<LetterSoundCorrespondenceContributionEvent> letterSoundContributionEventsPendingPeerReview = new ArrayList<>();
-        for (LetterSoundCorrespondenceContributionEvent mostRecentLetterSoundContributionEvent : mostRecentLetterSoundContributionEvents) {
-            // Ignore LetterSoundCorrespondenceContributionEvents made by the current Contributor
+        List<LetterSoundContributionEvent> letterSoundContributionEventsPendingPeerReview = new ArrayList<>();
+        for (LetterSoundContributionEvent mostRecentLetterSoundContributionEvent : mostRecentLetterSoundContributionEvents) {
+            // Ignore LetterSoundContributionEvents made by the current Contributor
             if (mostRecentLetterSoundContributionEvent.getContributor().getId().equals(contributor.getId())) {
                 continue;
             }

@@ -15,13 +15,13 @@ public class LetterSoundPeerReviewEvent extends PeerReviewEvent {
      */
     @NotNull
     @ManyToOne
-    private LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent;
+    private LetterSoundContributionEvent letterSoundContributionEvent;
 
-    public LetterSoundCorrespondenceContributionEvent getLetterSoundContributionEvent() {
+    public LetterSoundContributionEvent getLetterSoundContributionEvent() {
         return letterSoundContributionEvent;
     }
 
-    public void setLetterSoundContributionEvent(LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent) {
+    public void setLetterSoundContributionEvent(LetterSoundContributionEvent letterSoundContributionEvent) {
         this.letterSoundContributionEvent = letterSoundContributionEvent;
     }
 }
