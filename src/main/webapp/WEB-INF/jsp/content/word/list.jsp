@@ -47,7 +47,7 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <div id="letterSoundCorrespondencesContainer">
-                                    <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
+                                    <c:forEach var="letterSoundCorrespondence" items="${word.letterSounds}">
                                         <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
                                         <div class="chip">
                                             <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">

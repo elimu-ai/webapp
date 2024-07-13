@@ -59,20 +59,20 @@ public class WordCsvExportController {
             
             JSONArray letterSoundCorrespondencesJsonArray = new JSONArray();
             int index = 0;
-            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
+            for (LetterSoundCorrespondence letterSound : word.getLetterSounds()) {
                 JSONObject letterSoundCorrespondenceJsonObject = new JSONObject();
-                letterSoundCorrespondenceJsonObject.put("id", letterSoundCorrespondence.getId());
-                String[] lettersArray = new String[letterSoundCorrespondence.getLetters().size()];
+                letterSoundCorrespondenceJsonObject.put("id", letterSound.getId());
+                String[] lettersArray = new String[letterSound.getLetters().size()];
                 for (int i = 0; i < lettersArray.length; i++) {
-                    lettersArray[i] = letterSoundCorrespondence.getLetters().get(i).getText();
+                    lettersArray[i] = letterSound.getLetters().get(i).getText();
                 }
                 letterSoundCorrespondenceJsonObject.put("letters", lettersArray);
-                String[] soundsArray = new String[letterSoundCorrespondence.getSounds().size()];
+                String[] soundsArray = new String[letterSound.getSounds().size()];
                 for (int i = 0; i < soundsArray.length; i++) {
-                    soundsArray[i] = letterSoundCorrespondence.getSounds().get(i).getValueIpa();
+                    soundsArray[i] = letterSound.getSounds().get(i).getValueIpa();
                 }
                 letterSoundCorrespondenceJsonObject.put("sounds", soundsArray);
-                letterSoundCorrespondenceJsonObject.put("usageCount", letterSoundCorrespondence.getUsageCount());
+                letterSoundCorrespondenceJsonObject.put("usageCount", letterSound.getUsageCount());
                 letterSoundCorrespondencesJsonArray.put(index, letterSoundCorrespondenceJsonObject);
                 index++;
             }

@@ -47,9 +47,9 @@ public class SoundUsageCountScheduler {
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            for (LetterSoundCorrespondence letterSoundCorrespondence : word.getLetterSoundCorrespondences()) {
-                for (Sound sound : letterSoundCorrespondence.getSounds()) {
-                    soundFrequencyMap.put(sound.getId(), soundFrequencyMap.getOrDefault(sound.getId(), 0) + letterSoundCorrespondence.getUsageCount());
+            for (LetterSoundCorrespondence letterSound : word.getLetterSounds()) {
+                for (Sound sound : letterSound.getSounds()) {
+                    soundFrequencyMap.put(sound.getId(), soundFrequencyMap.getOrDefault(sound.getId(), 0) + letterSound.getUsageCount());
                 }
             }
         }

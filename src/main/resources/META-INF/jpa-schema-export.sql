@@ -647,9 +647,9 @@
 
     create table Word_LetterSoundCorrespondence (
        Word_id bigint not null,
-        letterSoundCorrespondences_id bigint not null,
-        letterSoundCorrespondences_ORDER integer not null,
-        primary key (Word_id, letterSoundCorrespondences_ORDER)
+        letterSounds_id bigint not null,
+        letterSounds_ORDER integer not null,
+        primary key (Word_id, letterSounds_ORDER)
     ) engine=MyISAM;
 
     create table WordContributionEvent (
@@ -1078,8 +1078,8 @@
        references Word (id);
 
     alter table Word_LetterSoundCorrespondence 
-       add constraint FKf6r3yfdc6quwa0b13mln5uuc8 
-       foreign key (letterSoundCorrespondences_id) 
+       add constraint FK1ln49ylh4w15nddf9h41wjupt 
+       foreign key (letterSounds_id) 
        references LetterSoundCorrespondence (id);
 
     alter table Word_LetterSoundCorrespondence 

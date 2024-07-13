@@ -36,8 +36,8 @@
                     <label><fmt:message key="letter.sound.correspondences" /></label><br />
                     
                     <div id="letterSoundCorrespondencesContainer">
-                        <c:forEach var="letterSoundCorrespondence" items="${word.letterSoundCorrespondences}">
-                            <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
+                        <c:forEach var="letterSoundCorrespondence" items="${word.letterSounds}">
+                            <input name="letterSounds" type="hidden" value="${letterSoundCorrespondence.id}" />
                             <div class="chip">
                                 <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-sound-correspondence-id="${letterSoundCorrespondence.id}">
                                     <i class="close material-icons">clear</i>
@@ -63,7 +63,7 @@
                                     
                                     $(this).parent().remove();
                                     
-                                    var $hiddenInput = $('input[name="letterSoundCorrespondences"][value="' + letterSoundCorrespondenceId + '"]');
+                                    var $hiddenInput = $('input[name="letterSounds"][value="' + letterSoundCorrespondenceId + '"]');
                                     $hiddenInput.remove();
                                 });
                             });
@@ -89,7 +89,7 @@
                                 var letterSoundCorrespondenceSounds = selectedOption.attr('data-sounds');
                                 console.log('letterSoundCorrespondenceSounds: "' + letterSoundCorrespondenceSounds + '"');
                                 if (letterSoundCorrespondenceId != "") {
-                                    $('#letterSoundCorrespondencesContainer').append('<input name="letterSoundCorrespondences" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
+                                    $('#letterSoundCorrespondencesContainer').append('<input name="letterSounds" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
                                     $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceSounds + '/</div>');
                                     $(this).val("");
                                 }

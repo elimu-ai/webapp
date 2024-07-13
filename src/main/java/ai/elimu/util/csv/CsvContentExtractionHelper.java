@@ -158,7 +158,7 @@ public class CsvContentExtractionHelper {
 
                 JSONArray letterSoundCorrespondencesJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
                 logger.info("letterSoundCorrespondencesJsonArray: " + letterSoundCorrespondencesJsonArray);
-                List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
+                List<LetterSoundCorrespondence> letterSounds = new ArrayList<>();
                 for (int i = 0; i < letterSoundCorrespondencesJsonArray.length(); i++) {
                     JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJsonArray.getJSONObject(i);
                     logger.info("letterSoundCorrespondenceJsonObject: " + letterSoundCorrespondenceJsonObject);
@@ -176,9 +176,9 @@ public class CsvContentExtractionHelper {
                     }
                     LetterSoundCorrespondence letterSoundCorrespondence = letterSoundDao.read(letters, sounds);
                     logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
-                    letterSoundCorrespondences.add(letterSoundCorrespondence);
+                    letterSounds.add(letterSoundCorrespondence);
                 }
-                word.setLetterSoundCorrespondences(letterSoundCorrespondences);
+                word.setLetterSounds(letterSounds);
 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
                 word.setUsageCount(usageCount);

@@ -129,7 +129,7 @@ public class JpaToGsonConverter {
             // Word
             wordGson.setText(word.getText());
             List<LetterSoundGson> letterSounds = new ArrayList<>();
-            for (LetterSoundCorrespondence letterSound : word.getLetterSoundCorrespondences()) {
+            for (LetterSoundCorrespondence letterSound : word.getLetterSounds()) {
                 LetterSoundGson letterSoundGson = getLetterSoundGson(letterSound);
                 letterSounds.add(letterSoundGson);
             }
