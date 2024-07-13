@@ -56,7 +56,7 @@ public class LetterSoundPeerReviewEventCreateController {
         // Store the peer review event
         LetterSoundCorrespondencePeerReviewEvent letterSoundPeerReviewEvent = new LetterSoundCorrespondencePeerReviewEvent();
         letterSoundPeerReviewEvent.setContributor(contributor);
-        letterSoundPeerReviewEvent.setLetterSoundCorrespondenceContributionEvent(letterSoundContributionEvent);
+        letterSoundPeerReviewEvent.setLetterSoundContributionEvent(letterSoundContributionEvent);
         letterSoundPeerReviewEvent.setApproved(approved);
         letterSoundPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
         letterSoundPeerReviewEvent.setTime(Calendar.getInstance());

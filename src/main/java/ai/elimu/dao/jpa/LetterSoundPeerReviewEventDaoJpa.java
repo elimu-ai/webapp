@@ -15,10 +15,10 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundC
         return em.createQuery(
             "SELECT event " +
             "FROM LetterSoundCorrespondencePeerReviewEvent event " +
-            "WHERE event.letterSoundCorrespondenceContributionEvent = :letterSoundCorrespondenceContributionEvent " +
+            "WHERE event.letterSoundContributionEvent = :letterSoundContributionEvent " +
             "AND event.contributor = :contributor " +
             "ORDER BY event.time DESC")
-            .setParameter("letterSoundCorrespondenceContributionEvent", letterSoundContributionEvent)
+            .setParameter("letterSoundContributionEvent", letterSoundContributionEvent)
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -28,7 +28,7 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundC
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterSoundCorrespondencePeerReviewEvent event " +
-            "WHERE event.letterSoundCorrespondenceContributionEvent.letterSound = :letterSound " + 
+            "WHERE event.letterSoundContributionEvent.letterSound = :letterSound " + 
             "ORDER BY event.time DESC")
             .setParameter("letterSound", letterSound)
             .getResultList();
@@ -50,9 +50,9 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundC
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterSoundCorrespondencePeerReviewEvent event " +
-            "WHERE event.letterSoundCorrespondenceContributionEvent = :letterSoundCorrespondenceContributionEvent " + 
+            "WHERE event.letterSoundContributionEvent = :letterSoundContributionEvent " + 
             "ORDER BY event.time DESC")
-            .setParameter("letterSoundCorrespondenceContributionEvent", letterSoundContributionEvent)
+            .setParameter("letterSoundContributionEvent", letterSoundContributionEvent)
             .getResultList();
     }
     

@@ -416,7 +416,7 @@
         comment varchar(1000),
         time datetime,
         contributor_id bigint,
-        letterSoundCorrespondenceContributionEvent_id bigint,
+        letterSoundContributionEvent_id bigint,
         primary key (id)
     ) engine=MyISAM;
 
@@ -913,8 +913,8 @@
        references Contributor (id);
 
     alter table LetterSoundCorrespondencePeerReviewEvent 
-       add constraint FK1cxnf96s8gpl1nuartfcy5gbc 
-       foreign key (letterSoundCorrespondenceContributionEvent_id) 
+       add constraint FKff8dsceebikiyr8csxbxn6ml0 
+       foreign key (letterSoundContributionEvent_id) 
        references LetterSoundCorrespondenceContributionEvent (id);
 
     alter table Number_Word 

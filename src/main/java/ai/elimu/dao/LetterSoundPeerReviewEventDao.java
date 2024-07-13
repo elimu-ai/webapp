@@ -9,13 +9,13 @@ import org.springframework.dao.DataAccessException;
 
 public interface LetterSoundPeerReviewEventDao extends GenericDao<LetterSoundCorrespondencePeerReviewEvent> {
     
-    List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent, Contributor contributor) throws DataAccessException;
+    List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent, Contributor contributor) throws DataAccessException;
     
     List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondence letterSoundCorrespondence) throws DataAccessException;
     
     List<LetterSoundCorrespondencePeerReviewEvent> readAll(Contributor contributor) throws DataAccessException;
     
-    List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundCorrespondenceContributionEvent) throws DataAccessException;
+    List<LetterSoundCorrespondencePeerReviewEvent> readAll(LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent) throws DataAccessException;
     
     Long readCount(Contributor contributor) throws DataAccessException;
 }
