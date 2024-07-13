@@ -55,13 +55,13 @@
 
     drop table if exists LetterLearningEvent;
 
+    drop table if exists LetterSound;
+
+    drop table if exists LetterSound_Letter;
+
+    drop table if exists LetterSound_Sound;
+
     drop table if exists LetterSoundContributionEvent;
-
-    drop table if exists LetterSoundCorrespondence;
-
-    drop table if exists LetterSoundCorrespondence_Letter;
-
-    drop table if exists LetterSoundCorrespondence_Sound;
 
     drop table if exists LetterSoundPeerReviewEvent;
 
@@ -109,7 +109,7 @@
 
     drop table if exists Word;
 
-    drop table if exists Word_LetterSoundCorrespondence;
+    drop table if exists Word_LetterSound;
 
     drop table if exists WordContributionEvent;
 
@@ -375,18 +375,7 @@
         primary key (id)
     ) engine=MyISAM;
 
-    create table LetterSoundContributionEvent (
-       id bigint not null auto_increment,
-        comment varchar(1000),
-        revisionNumber integer,
-        time datetime,
-        timeSpentMs bigint,
-        contributor_id bigint,
-        letterSound_id bigint,
-        primary key (id)
-    ) engine=MyISAM;
-
-    create table LetterSoundCorrespondence (
+    create table LetterSound (
        id bigint not null auto_increment,
         contentStatus varchar(255),
         peerReviewStatus varchar(255),
@@ -396,18 +385,29 @@
         primary key (id)
     ) engine=MyISAM;
 
-    create table LetterSoundCorrespondence_Letter (
-       LetterSoundCorrespondence_id bigint not null,
+    create table LetterSound_Letter (
+       LetterSound_id bigint not null,
         letters_id bigint not null,
         letters_ORDER integer not null,
-        primary key (LetterSoundCorrespondence_id, letters_ORDER)
+        primary key (LetterSound_id, letters_ORDER)
     ) engine=MyISAM;
 
-    create table LetterSoundCorrespondence_Sound (
-       LetterSoundCorrespondence_id bigint not null,
+    create table LetterSound_Sound (
+       LetterSound_id bigint not null,
         sounds_id bigint not null,
         sounds_ORDER integer not null,
-        primary key (LetterSoundCorrespondence_id, sounds_ORDER)
+        primary key (LetterSound_id, sounds_ORDER)
+    ) engine=MyISAM;
+
+    create table LetterSoundContributionEvent (
+       id bigint not null auto_increment,
+        comment varchar(1000),
+        revisionNumber integer,
+        time datetime,
+        timeSpentMs bigint,
+        contributor_id bigint,
+        letterSound_id bigint,
+        primary key (id)
     ) engine=MyISAM;
 
     create table LetterSoundPeerReviewEvent (
@@ -645,7 +645,7 @@
         primary key (id)
     ) engine=MyISAM;
 
-    create table Word_LetterSoundCorrespondence (
+    create table Word_LetterSound (
        Word_id bigint not null,
         letterSounds_id bigint not null,
         letterSounds_ORDER integer not null,
@@ -877,35 +877,35 @@
        foreign key (letter_id) 
        references Letter (id);
 
+    alter table LetterSound_Letter 
+       add constraint FKgfio6vxgyrx52nc0so389ibi1 
+       foreign key (letters_id) 
+       references Letter (id);
+
+    alter table LetterSound_Letter 
+       add constraint FKgb32dkiivg3d8owk1e6hcyu78 
+       foreign key (LetterSound_id) 
+       references LetterSound (id);
+
+    alter table LetterSound_Sound 
+       add constraint FKjjypynbc4x7ij6vqsi9e0m3st 
+       foreign key (sounds_id) 
+       references Sound (id);
+
+    alter table LetterSound_Sound 
+       add constraint FKtlgjcxa3jtailq62jrgq1hgl6 
+       foreign key (LetterSound_id) 
+       references LetterSound (id);
+
     alter table LetterSoundContributionEvent 
        add constraint FK5uk320agfa13pvh52v6n6ncbs 
        foreign key (contributor_id) 
        references Contributor (id);
 
     alter table LetterSoundContributionEvent 
-       add constraint FKgm3ww1nv50wp8f87gmd3fafex 
+       add constraint FKqmngc8gfw52jjv9gf9dey1urk 
        foreign key (letterSound_id) 
-       references LetterSoundCorrespondence (id);
-
-    alter table LetterSoundCorrespondence_Letter 
-       add constraint FKhiri2loopmprnhud2jiu639ue 
-       foreign key (letters_id) 
-       references Letter (id);
-
-    alter table LetterSoundCorrespondence_Letter 
-       add constraint FKe8u07ekjdxhvqqfxclsloax4a 
-       foreign key (LetterSoundCorrespondence_id) 
-       references LetterSoundCorrespondence (id);
-
-    alter table LetterSoundCorrespondence_Sound 
-       add constraint FKogybx13b6mfullxvgs9ienb9v 
-       foreign key (sounds_id) 
-       references Sound (id);
-
-    alter table LetterSoundCorrespondence_Sound 
-       add constraint FKt96gcgkuh6ho034lfjbgu5j79 
-       foreign key (LetterSoundCorrespondence_id) 
-       references LetterSoundCorrespondence (id);
+       references LetterSound (id);
 
     alter table LetterSoundPeerReviewEvent 
        add constraint FK3wapf4y5anhgnjbqna2qjyie4 
@@ -1077,13 +1077,13 @@
        foreign key (rootWord_id) 
        references Word (id);
 
-    alter table Word_LetterSoundCorrespondence 
-       add constraint FK1ln49ylh4w15nddf9h41wjupt 
+    alter table Word_LetterSound 
+       add constraint FKnxxaf27n4dfiblvkg73ewiig5 
        foreign key (letterSounds_id) 
-       references LetterSoundCorrespondence (id);
+       references LetterSound (id);
 
-    alter table Word_LetterSoundCorrespondence 
-       add constraint FKemcgw1900hl4aumckhof0574i 
+    alter table Word_LetterSound 
+       add constraint FKsx4fbojtfe17xitgiofdef23k 
        foreign key (Word_id) 
        references Word (id);
 

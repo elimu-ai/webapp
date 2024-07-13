@@ -1,7 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.LetterSoundPeerReviewEventDao;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
@@ -24,7 +24,7 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundP
     }
 
     @Override
-    public List<LetterSoundPeerReviewEvent> readAll(LetterSoundCorrespondence letterSound) throws DataAccessException {
+    public List<LetterSoundPeerReviewEvent> readAll(LetterSound letterSound) throws DataAccessException {
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterSoundPeerReviewEvent event " +

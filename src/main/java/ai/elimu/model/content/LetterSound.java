@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * Contains information about the various sounds a letter (or letter combination) can represent.
  */
 @Entity
-public class LetterSoundCorrespondence extends Content {
+public class LetterSound extends Content {
     
 //    @NotEmpty
     @OrderColumn

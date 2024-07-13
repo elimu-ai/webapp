@@ -1,7 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.LetterSoundContributionEventDao;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoun
     }
 
     @Override
-    public List<LetterSoundContributionEvent> readAll(LetterSoundCorrespondence letterSound) throws DataAccessException {
+    public List<LetterSoundContributionEvent> readAll(LetterSound letterSound) throws DataAccessException {
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundContributionEvent e " +
