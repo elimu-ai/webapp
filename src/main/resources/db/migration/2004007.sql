@@ -1,4 +1,4 @@
-# 2.4.6
+# 2.4.7
 
 # Word "letterSoundCorrespondences" → Word "letterSounds"
 
