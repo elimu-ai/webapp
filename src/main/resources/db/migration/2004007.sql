@@ -10,6 +10,3 @@ ALTER TABLE `Word_LetterSoundCorrespondence` CHANGE `letterSoundCorrespondences_
 
 # Reset primary key
 ALTER TABLE `Word_LetterSoundCorrespondence` DROP PRIMARY KEY, ADD PRIMARY KEY(Word_id, letterSounds_ORDER);
-
-# Delete obsolete foreign key constraint for "letterSoundCorrespondences_id"
-ALTER TABLE `Word_LetterSoundCorrespondence` DROP FOREIGN KEY `FKf6r3yfdc6quwa0b13mln5uuc8`;
