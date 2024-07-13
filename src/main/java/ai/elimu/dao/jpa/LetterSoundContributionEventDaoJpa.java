@@ -23,9 +23,9 @@ public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoun
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundCorrespondenceContributionEvent e " +
-            "WHERE e.letterSoundCorrespondence = :letterSoundCorrespondence " + 
+            "WHERE e.letterSound = :letterSound " + 
             "ORDER BY e.time DESC")
-            .setParameter("letterSoundCorrespondence", letterSound)
+            .setParameter("letterSound", letterSound)
             .getResultList();
     }
 
@@ -45,7 +45,7 @@ public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoun
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundCorrespondenceContributionEvent e " +
-            "WHERE e.time IN (SELECT MAX(time) FROM LetterSoundCorrespondenceContributionEvent GROUP BY letterSoundCorrespondence_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "WHERE e.time IN (SELECT MAX(time) FROM LetterSoundCorrespondenceContributionEvent GROUP BY letterSound_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
             "ORDER BY e.time ASC")
             .getResultList();
     }

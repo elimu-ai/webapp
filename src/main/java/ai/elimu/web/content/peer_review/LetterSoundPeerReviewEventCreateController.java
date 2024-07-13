@@ -63,10 +63,10 @@ public class LetterSoundPeerReviewEventCreateController {
         letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letterSoundCorrespondence/edit/" + letterSoundContributionEvent.getLetterSoundCorrespondence().getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letterSoundCorrespondence/edit/" + letterSoundContributionEvent.getLetterSound().getId();
             DiscordHelper.sendChannelMessage(
                     "Letter-sound correspondence peer-reviewed: " + contentUrl, 
-                    "\"" + letterSoundContributionEvent.getLetterSoundCorrespondence().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
+                    "\"" + letterSoundContributionEvent.getLetterSound().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
                     "Comment: \"" + letterSoundPeerReviewEvent.getComment() + "\"",
                     letterSoundPeerReviewEvent.isApproved(),
                     null
@@ -85,7 +85,7 @@ public class LetterSoundPeerReviewEventCreateController {
         }
         logger.info("approvedCount: " + approvedCount);
         logger.info("notApprovedCount: " + notApprovedCount);
-        LetterSoundCorrespondence letterSound = letterSoundContributionEvent.getLetterSoundCorrespondence();
+        LetterSoundCorrespondence letterSound = letterSoundContributionEvent.getLetterSound();
         if (approvedCount >= notApprovedCount) {
             letterSound.setPeerReviewStatus(PeerReviewStatus.APPROVED);
         } else {
@@ -93,6 +93,6 @@ public class LetterSoundPeerReviewEventCreateController {
         }
         letterSoundDao.update(letterSound);
 
-        return "redirect:/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSoundCorrespondence().getId() + "#contribution-events";
+        return "redirect:/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSound().getId() + "#contribution-events";
     }
 }
