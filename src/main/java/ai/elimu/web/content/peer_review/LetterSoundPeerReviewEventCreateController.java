@@ -8,7 +8,6 @@ import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;

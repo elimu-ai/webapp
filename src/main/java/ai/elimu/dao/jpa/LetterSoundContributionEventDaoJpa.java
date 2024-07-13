@@ -1,6 +1,5 @@
 package ai.elimu.dao.jpa;
 
-import ai.elimu.model.contributor.ContributionEvent;
 import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;

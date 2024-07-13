@@ -23,7 +23,6 @@ import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
