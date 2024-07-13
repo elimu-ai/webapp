@@ -8,7 +8,7 @@ import ai.elimu.model.content.LetterSoundCorrespondence;
 import ai.elimu.model.contributor.Contributor;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
-import ai.elimu.model.contributor.LetterSoundCorrespondencePeerReviewEvent;
+import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -54,7 +54,7 @@ public class LetterSoundPeerReviewEventCreateController {
         logger.info("letterSoundContributionEvent: " + letterSoundContributionEvent);
         
         // Store the peer review event
-        LetterSoundCorrespondencePeerReviewEvent letterSoundPeerReviewEvent = new LetterSoundCorrespondencePeerReviewEvent();
+        LetterSoundPeerReviewEvent letterSoundPeerReviewEvent = new LetterSoundPeerReviewEvent();
         letterSoundPeerReviewEvent.setContributor(contributor);
         letterSoundPeerReviewEvent.setLetterSoundContributionEvent(letterSoundContributionEvent);
         letterSoundPeerReviewEvent.setApproved(approved);
@@ -76,7 +76,7 @@ public class LetterSoundPeerReviewEventCreateController {
         // Update the peer review status
         int approvedCount = 0;
         int notApprovedCount = 0;
-        for (LetterSoundCorrespondencePeerReviewEvent peerReviewEvent : letterSoundPeerReviewEventDao.readAll(letterSoundContributionEvent)) {
+        for (LetterSoundPeerReviewEvent peerReviewEvent : letterSoundPeerReviewEventDao.readAll(letterSoundContributionEvent)) {
             if (peerReviewEvent.isApproved()) {
                 approvedCount++;
             } else {

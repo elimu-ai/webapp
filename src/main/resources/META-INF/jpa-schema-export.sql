@@ -63,7 +63,7 @@
 
     drop table if exists LetterSoundCorrespondenceContributionEvent;
 
-    drop table if exists LetterSoundCorrespondencePeerReviewEvent;
+    drop table if exists LetterSoundPeerReviewEvent;
 
     drop table if exists Number;
 
@@ -410,7 +410,7 @@
         primary key (id)
     ) engine=MyISAM;
 
-    create table LetterSoundCorrespondencePeerReviewEvent (
+    create table LetterSoundPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
         comment varchar(1000),
@@ -907,13 +907,13 @@
        foreign key (letterSound_id) 
        references LetterSoundCorrespondence (id);
 
-    alter table LetterSoundCorrespondencePeerReviewEvent 
-       add constraint FKnx18la2q9jr95bmprkttiymxc 
+    alter table LetterSoundPeerReviewEvent 
+       add constraint FK3wapf4y5anhgnjbqna2qjyie4 
        foreign key (contributor_id) 
        references Contributor (id);
 
-    alter table LetterSoundCorrespondencePeerReviewEvent 
-       add constraint FKff8dsceebikiyr8csxbxn6ml0 
+    alter table LetterSoundPeerReviewEvent 
+       add constraint FK4ec0wl5mmi2uh5sg7ll20dyjk 
        foreign key (letterSoundContributionEvent_id) 
        references LetterSoundCorrespondenceContributionEvent (id);
 
