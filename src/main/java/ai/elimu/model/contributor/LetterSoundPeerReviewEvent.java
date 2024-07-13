@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
  * was added/edited by another {@link Contributor}.
  */
 @Entity
-public class LetterSoundCorrespondencePeerReviewEvent extends PeerReviewEvent {
+public class LetterSoundPeerReviewEvent extends PeerReviewEvent {
     
     /**
      * The contribution event which is being peer-reviewed.

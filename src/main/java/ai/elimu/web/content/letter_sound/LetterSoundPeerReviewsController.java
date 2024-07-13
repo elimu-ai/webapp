@@ -6,7 +6,7 @@ import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
-import ai.elimu.model.contributor.LetterSoundCorrespondencePeerReviewEvent;
+import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -37,7 +37,7 @@ public class LetterSoundPeerReviewsController {
     private EmojiDao emojiDao;
     
     /**
-     * Get {@link LetterSoundCorrespondenceContributionEvent}s pending a {@link LetterSoundCorrespondencePeerReviewEvent} for the current {@link Contributor}.
+     * Get {@link LetterSoundCorrespondenceContributionEvent}s pending a {@link LetterSoundPeerReviewEvent} for the current {@link Contributor}.
      */
     @RequestMapping(method = RequestMethod.GET)
     public String handleGetRequest(HttpSession session, Model model) {
@@ -60,7 +60,7 @@ public class LetterSoundPeerReviewsController {
             }
             
             // Check if the current Contributor has already peer-reviewed this LetterSoundCorrespondence contribution
-            List<LetterSoundCorrespondencePeerReviewEvent> letterSoundPeerReviewEvents = letterSoundPeerReviewEventDao.readAll(mostRecentLetterSoundContributionEvent, contributor);
+            List<LetterSoundPeerReviewEvent> letterSoundPeerReviewEvents = letterSoundPeerReviewEventDao.readAll(mostRecentLetterSoundContributionEvent, contributor);
             if (letterSoundPeerReviewEvents.isEmpty()) {
                 letterSoundContributionEventsPendingPeerReview.add(mostRecentLetterSoundContributionEvent);
             }
