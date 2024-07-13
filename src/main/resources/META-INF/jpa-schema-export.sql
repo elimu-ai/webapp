@@ -406,7 +406,7 @@
         time datetime,
         timeSpentMs bigint,
         contributor_id bigint,
-        letterSoundCorrespondence_id bigint,
+        letterSound_id bigint,
         primary key (id)
     ) engine=MyISAM;
 
@@ -903,8 +903,8 @@
        references Contributor (id);
 
     alter table LetterSoundCorrespondenceContributionEvent 
-       add constraint FKm1rttrlv6gxibd85a5sc3c4js 
-       foreign key (letterSoundCorrespondence_id) 
+       add constraint FKmgdglk92d302rk5e2fokfc77b 
+       foreign key (letterSound_id) 
        references LetterSoundCorrespondence (id);
 
     alter table LetterSoundCorrespondencePeerReviewEvent 

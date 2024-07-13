@@ -10,13 +10,13 @@ public class LetterSoundCorrespondenceContributionEvent extends ContributionEven
 
     @NotNull
     @ManyToOne
-    private LetterSoundCorrespondence letterSoundCorrespondence;
+    private LetterSoundCorrespondence letterSound;
 
-    public LetterSoundCorrespondence getLetterSoundCorrespondence() {
-        return letterSoundCorrespondence;
+    public LetterSoundCorrespondence getLetterSound() {
+        return letterSound;
     }
 
-    public void setLetterSoundCorrespondence(LetterSoundCorrespondence letterSoundCorrespondence) {
-        this.letterSoundCorrespondence = letterSoundCorrespondence;
+    public void setLetterSound(LetterSoundCorrespondence letterSound) {
+        this.letterSound = letterSound;
     }
 }
