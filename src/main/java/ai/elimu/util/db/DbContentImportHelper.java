@@ -31,10 +31,10 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterContributionEvent;
-import ai.elimu.model.contributor.LetterSoundCorrespondenceContributionEvent;
+import ai.elimu.model.contributor.LetterSoundContributionEvent;
+import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.contributor.NumberContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.contributor.WordContributionEvent;
 import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
@@ -171,7 +171,7 @@ public class DbContentImportHelper {
         for (LetterSoundCorrespondence letterSound : letterSounds) {
             letterSoundDao.create(letterSound);
 
-            LetterSoundCorrespondenceContributionEvent letterSoundContributionEvent = new LetterSoundCorrespondenceContributionEvent();
+            LetterSoundContributionEvent letterSoundContributionEvent = new LetterSoundContributionEvent();
             letterSoundContributionEvent.setContributor(contributor);
             letterSoundContributionEvent.setLetterSound(letterSound);
             letterSoundContributionEvent.setRevisionNumber(1);
