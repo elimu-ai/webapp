@@ -39,7 +39,7 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
         List<Word> words = wordDao.readAll();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            logger.info("word.getText(): " + word.getText());
+            logger.debug("word.getText(): " + word.getText());
             for (LetterSoundCorrespondence letterSound : word.getLetterSounds()) {
                 letterSoundCorrespondenceFrequencyMap.put(letterSound.getId(),
                         letterSoundCorrespondenceFrequencyMap.getOrDefault(letterSound.getId(), 0) + word.getUsageCount());
