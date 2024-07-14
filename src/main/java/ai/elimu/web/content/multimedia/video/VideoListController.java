@@ -23,7 +23,7 @@ public class VideoListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<Video> videos = videoDao.readAllOrdered();
         model.addAttribute("videos", videos);

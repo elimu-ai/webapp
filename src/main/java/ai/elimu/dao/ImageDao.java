@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
 import ai.elimu.model.content.multimedia.Image;
 
 public interface ImageDao extends GenericDao<Image> {
-	
+    
     Image read(String title) throws DataAccessException;
 
     List<Image> readAllOrdered() throws DataAccessException;

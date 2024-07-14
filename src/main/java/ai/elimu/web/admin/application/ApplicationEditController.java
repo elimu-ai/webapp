@@ -37,7 +37,7 @@ public class ApplicationEditController {
             @PathVariable Long id,
             Model model
     ) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Application application = applicationDao.read(id);
         model.addAttribute("application", application);
@@ -60,7 +60,7 @@ public class ApplicationEditController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (result.hasErrors()) {
             model.addAttribute("application", application);

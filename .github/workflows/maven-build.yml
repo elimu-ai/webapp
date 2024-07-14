@@ -1,4 +1,4 @@
-name: Maven Build & Code Format Check
+name: Maven Build
 
 on:
   push:

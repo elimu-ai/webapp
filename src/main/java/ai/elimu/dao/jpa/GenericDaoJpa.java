@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 @Repository
 @Transactional
 public class GenericDaoJpa<T> implements GenericDao<T> {
-	
+    
     @PersistenceContext
     protected EntityManager em;
 

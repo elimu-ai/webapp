@@ -20,7 +20,7 @@ public class ContributorListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         model.addAttribute("contributors", contributorDao.readAllOrderedDesc());
 

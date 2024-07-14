@@ -49,7 +49,7 @@ public class StoryBookChapterCreateController {
             @PathVariable Long storyBookId,
             Model model
     ) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         StoryBookChapter storyBookChapter = new StoryBookChapter();
         
@@ -75,7 +75,7 @@ public class StoryBookChapterCreateController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         

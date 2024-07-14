@@ -13,8 +13,8 @@ public class WelcomeController {
 
     @RequestMapping("/")
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
-    	
+        logger.info("handleRequest");
+        
         return "welcome";
     }
 }

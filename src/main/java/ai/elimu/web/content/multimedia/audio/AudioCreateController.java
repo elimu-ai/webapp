@@ -72,7 +72,7 @@ public class AudioCreateController {
             @RequestParam(required = false) String autoFillTitle,
             @RequestParam(required = false) String autoFillTranscription
     ) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Audio audio = new Audio();
         
@@ -123,7 +123,7 @@ public class AudioCreateController {
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         try {
             byte[] bytes = multipartFile.getBytes();
@@ -218,8 +218,8 @@ public class AudioCreateController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
     
     private Map<Long, String> getEmojisByWordId() {

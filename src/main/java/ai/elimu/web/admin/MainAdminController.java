@@ -20,10 +20,10 @@ public class MainAdminController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         model.addAttribute("applicationCount", applicationDao.readCount());
-    	
+        
         return "admin/main";
     }
 }

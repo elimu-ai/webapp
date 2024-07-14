@@ -82,7 +82,7 @@ public class ImageEditController {
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Image image = imageDao.read(id);
         model.addAttribute("image", image);
@@ -112,7 +112,7 @@ public class ImageEditController {
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -230,8 +230,8 @@ public class ImageEditController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
     
     @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
@@ -239,7 +239,7 @@ public class ImageEditController {
     public String handleAddContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleAddContentLabelRequest");
+        logger.info("handleAddContentLabelRequest");
         
         logger.info("id: " + id);
         Image image = imageDao.read(id);
@@ -291,7 +291,7 @@ public class ImageEditController {
     public String handleRemoveContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleRemoveContentLabelRequest");
+        logger.info("handleRemoveContentLabelRequest");
         
         logger.info("id: " + id);
         Image image = imageDao.read(id);
