@@ -63,7 +63,7 @@ public class LetterSoundPeerReviewEventCreateController {
         letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letterSoundCorrespondence/edit/" + letterSoundContributionEvent.getLetterSound().getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letterSound/edit/" + letterSoundContributionEvent.getLetterSound().getId();
             DiscordHelper.sendChannelMessage(
                     "Letter-sound peer-reviewed: " + contentUrl,
                     "\"" + letterSoundContributionEvent.getLetterSound().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
