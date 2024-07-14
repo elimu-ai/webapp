@@ -114,8 +114,8 @@
                     <formats>
                         <format>
                             <includes>
-                                <include>src/main/java/**.*.</include>
-                                <include>src/test/java/**.*.</include>
+                                <include>src/main/java/**/*.java</include>
+                                <include>src/test/java/**/*.java</include>
                             </includes>
                             <indent>
                                 <spaces>true</spaces>
