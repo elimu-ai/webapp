@@ -14,7 +14,7 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
         return em.createQuery(
             "SELECT wce " + 
             "FROM WordContributionEvent wce " +
-            "ORDER BY wce.time DESC")
+            "ORDER BY wce.timestamp DESC")
             .getResultList();
     }
 
@@ -24,7 +24,7 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
             "SELECT wce " + 
             "FROM WordContributionEvent wce " +
             "WHERE wce.word = :word " + 
-            "ORDER BY wce.time DESC")
+            "ORDER BY wce.timestamp DESC")
             .setParameter("word", word)
             .getResultList();
     }
@@ -35,7 +35,7 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
             "SELECT wce " + 
             "FROM WordContributionEvent wce " +
             "WHERE wce.contributor = :contributor " + 
-            "ORDER BY wce.time DESC")
+            "ORDER BY wce.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -45,7 +45,7 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
         return em.createQuery(
             "SELECT wce " + 
             "FROM WordContributionEvent wce " +
-            "ORDER BY wce.time DESC")
+            "ORDER BY wce.timestamp DESC")
             .setMaxResults(maxResults)
             .getResultList();
     }
