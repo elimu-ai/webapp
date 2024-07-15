@@ -127,9 +127,9 @@ public class EPubParagraphExtractionHelperTest {
     }
 
     @Test
-    public void testExtractParagraphsFromChapterFile_FIL_LRA_faa0d66e() throws IOException {
+    public void testExtractParagraphsFromChapterFile_TGL_LRA_faa0d66e() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("fil-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");
+        Resource resource = resourceLoader.getResource("tgl-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
         
@@ -142,9 +142,9 @@ public class EPubParagraphExtractionHelperTest {
     }
 
     @Test
-    public void testExtractParagraphsFromChapterFile_FIL_LRA_7f877260_ch4() throws IOException {
+    public void testExtractParagraphsFromChapterFile_TGL_LRA_7f877260_ch4() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("fil-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_4.xhtml");
+        Resource resource = resourceLoader.getResource("tgl-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_4.xhtml");
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
         
@@ -156,9 +156,9 @@ public class EPubParagraphExtractionHelperTest {
     }
 
     @Test
-    public void testExtractParagraphsFromChapterFile_FIL_LRA_7f877260_ch13() throws IOException {
+    public void testExtractParagraphsFromChapterFile_TGL_LRA_7f877260_ch13() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("fil-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_13.xhtml");
+        Resource resource = resourceLoader.getResource("tgl-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_13.xhtml");
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
         
