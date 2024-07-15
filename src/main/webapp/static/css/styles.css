@@ -22,7 +22,7 @@ html[data-content-language="hin"] #index-banner,
 html[data-content-language="urd"] #index-banner {
     background-image: url(../../static/img/banner-in.jpg);
 }
-html[data-content-language="fil"] #index-banner {
+html[data-content-language="tgl"] #index-banner {
     background-image: url(../../static/img/banner-ph.jpg);
 }
 
