@@ -61,7 +61,7 @@ public class SyllableUsageCountScheduler {
         List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
         logger.info("storyBooks.size(): " + storyBooks.size());
         for (StoryBook storyBook : storyBooks) {
-            logger.info("storyBook.getTitle(): " + storyBook.getTitle());
+            logger.debug("storyBook.getTitle(): " + storyBook.getTitle());
 
             List<String> paragraphs = new ArrayList<>();
             List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
