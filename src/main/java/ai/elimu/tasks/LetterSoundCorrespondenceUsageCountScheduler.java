@@ -48,10 +48,10 @@ public class LetterSoundCorrespondenceUsageCountScheduler {
 
         // Update the values previously stored in the database
         for (LetterSoundCorrespondence letterSoundCorrespondence : letterSoundDao.readAll()) {
-            logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
-            logger.info("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
-            logger.info("letterSoundCorrespondence Sounds: /" + letterSoundCorrespondence.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
-            logger.info("letterSoundCorrespondence.getUsageCount() (before update): " + letterSoundCorrespondence.getUsageCount());
+            logger.debug("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
+            logger.debug("letterSoundCorrespondence Letters: \"" + letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
+            logger.debug("letterSoundCorrespondence Sounds: /" + letterSoundCorrespondence.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
+            logger.debug("letterSoundCorrespondence.getUsageCount() (before update): " + letterSoundCorrespondence.getUsageCount());
             
             int newUsageCount = 0;
             if (letterSoundCorrespondenceFrequencyMap.containsKey(letterSoundCorrespondence.getId())) {

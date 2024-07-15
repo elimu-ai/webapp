@@ -50,11 +50,11 @@ public class ParagraphWordScheduler {
             // Look for matches of existing Words in the paragraph's original text
             List<Word> words = new ArrayList<>();
             for (String wordInOriginalText : wordsInOriginalText) {
-                logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                logger.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
                 wordInOriginalText = wordInOriginalText.toLowerCase();
-                logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                logger.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
                 Word word = wordDao.readByText(wordInOriginalText);
-                logger.info("word: " + word);
+                logger.debug("word: " + word);
                 words.add(word);
             }
             logger.info("words.size(): " + words.size());
