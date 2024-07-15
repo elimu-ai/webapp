@@ -104,7 +104,7 @@ public class StoryBookParagraphCreateController {
             // Store contribution event
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
             storyBookContributionEvent.setContributor(contributor);
-            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setTimestamp(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment("Created storybook paragraph in chapter " + (storyBookParagraph.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");

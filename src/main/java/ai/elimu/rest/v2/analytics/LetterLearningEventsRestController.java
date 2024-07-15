@@ -120,7 +120,7 @@ public class LetterLearningEventsRestController {
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
                 Calendar time = Calendar.getInstance();
                 time.setTimeInMillis(timeInMillis);
-                letterLearningEvent.setTime(time);
+                letterLearningEvent.setTimestamp(time);
                 
                 String androidId = csvRecord.get("android_id");
                 letterLearningEvent.setAndroidId(androidId);

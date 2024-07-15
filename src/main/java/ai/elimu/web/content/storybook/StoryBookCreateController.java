@@ -94,7 +94,7 @@ public class StoryBookCreateController {
             
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
             storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setTimestamp(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));

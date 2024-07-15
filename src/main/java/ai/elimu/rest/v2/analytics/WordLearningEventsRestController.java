@@ -120,7 +120,7 @@ public class WordLearningEventsRestController {
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
                 Calendar time = Calendar.getInstance();
                 time.setTimeInMillis(timeInMillis);
-                wordLearningEvent.setTime(time);
+                wordLearningEvent.setTimestamp(time);
                 
                 String androidId = csvRecord.get("android_id");
                 wordLearningEvent.setAndroidId(androidId);
