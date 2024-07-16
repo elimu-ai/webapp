@@ -17,20 +17,6 @@ public class EPubMetadataExtractionHelperTest {
     private final Logger logger = LogManager.getLogger();
 
     @Test
-    public void testExtractTitleFromOpfFile_BEN_GLOBAL_DIGITAL_LIBRARY() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-gdl-761.epub_book.opf");
-        File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
-        
-        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
-        assertEquals("উৎসব", title);
-
-        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
-        assertEquals("পোশাক উৎসবের বর্ণ, শব্দ, গন্ধ ও অনুভূতি উপভোগ করো।", description);
-    }
-
-    @Test
     public void testExtractTitleFromOpfFile_TGL_LETS_READ_ASIA_0acfe340() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
@@ -73,32 +59,6 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_BEN_STORYWEAVER_11791() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_package.opf");
-        File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
-        
-        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
-        assertEquals("ঘুমকাতুরে ভীম", title);
-
-        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
-        assertEquals(null, description); // or assertEquals("", description);
-    }
-
-    
-    @Test
-    public void testExtractCoverImageReferenceFromOpfFile_BEN_GLOBAL_DIGITAL_LIBRARY_761() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-gdl-761.epub_book.opf");
-        File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
-        
-        String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
-        assertEquals("99e3d3af620881991813482fb602a1f6.jpg", coverImageReference);
-    }
-
-    @Test
     public void testExtractCoverImageReferenceFromOpfFile_TGL_LETS_READ_ASIA_0acfe340() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
@@ -107,16 +67,5 @@ public class EPubMetadataExtractionHelperTest {
         
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
         assertEquals("coverImage.jpeg", coverImageReference);
-    }
-
-    @Test
-    public void testExtractCoverImageReferenceFromOpfFile_BEN_STORYWEAVER_11791() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_package.opf");
-        File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
-        
-        String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
-        assertEquals("image_1.jpg", coverImageReference);
     }
 }

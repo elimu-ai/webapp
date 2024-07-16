@@ -17,28 +17,6 @@ public class EPubImageExtractionHelperTest {
     private final Logger logger = LogManager.getLogger();
     
     @Test
-    public void testExtractImageReferenceFromChapterFile_BEN_GDL_761() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-gdl-761.epub_chapter-2.xhtml");
-        File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
-        
-        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
-        assertEquals("1e8e58cc7d627a7896737cfb3eba8270.jpg", imageReference);
-    }
-    
-    @Test
-    public void testExtractImageReferenceFromChapterFile_BEN_SW_11791() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_2.xhtml");
-        File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
-        
-        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
-        assertEquals("image_2.jpg", imageReference);
-    }
-    
-    @Test
     public void testExtractImageReferenceFromChapterFile_ENG_LRA_377b7e63() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-lra-377b7e63-6126-4cfe-bcee-1538d75c1b2f_Page_1.xhtml");

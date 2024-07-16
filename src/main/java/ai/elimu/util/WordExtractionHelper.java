@@ -31,7 +31,7 @@ public class WordExtractionHelper {
                     .replace(":", "")
                     .replace("(", "")
                     .replace(")", "");
-            if ((language == Language.BEN) || (language == Language.HIN)) {
+            if (language == Language.HIN) {
                 word = word
                         .replace("।", ""); // See https://en.wikipedia.org/wiki/Danda
             }
