@@ -85,7 +85,7 @@ public class StoryBookEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         StoryBook storyBook = storyBookDao.read(id);
         model.addAttribute("storyBook", storyBook);
@@ -148,7 +148,7 @@ public class StoryBookEditController {
             Model model,
             HttpServletRequest request,
             HttpSession session) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getTitle());
         if ((existingStoryBook != null) && !existingStoryBook.getId().equals(storyBook.getId())) {

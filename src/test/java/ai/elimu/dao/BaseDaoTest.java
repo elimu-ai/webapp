@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
 public class BaseDaoTest {
-	
+    
     @Autowired
     private ImageDao imageDao;
 

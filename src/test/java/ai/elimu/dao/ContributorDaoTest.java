@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ContributorDaoTest {
     
     private Logger logger = LogManager.getLogger();
-	
+    
     @Autowired
     private ContributorDao contributorDao;
 

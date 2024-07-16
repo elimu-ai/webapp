@@ -28,8 +28,8 @@ public class AddEmailController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
-    	logger.info("handleRequest");
-    	
+        logger.info("handleRequest");
+        
         return "content/contributor/add-email";
     }
     
@@ -38,7 +38,7 @@ public class AddEmailController {
             HttpSession session,
             @RequestParam String email,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (!EmailValidator.getInstance().isValid(email)) {
             // TODO: display error message
@@ -57,7 +57,7 @@ public class AddEmailController {
         contributorDao.create(contributor);
         
         session.setAttribute("contributor", contributor);
-    	
+        
         return "redirect:/content";
     }
 }

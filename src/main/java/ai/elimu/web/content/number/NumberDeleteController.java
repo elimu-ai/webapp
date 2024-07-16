@@ -21,7 +21,7 @@ public class NumberDeleteController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
 //        Number number = numberDao.read(id);
 //        numberDao.delete(number);

@@ -97,7 +97,7 @@ public class MainContentController {
             HttpSession session, 
             Principal principal, 
             Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         // Check if the Contributor has not yet provided all required details
         Contributor contributor = (Contributor) session.getAttribute("contributor");
@@ -164,7 +164,7 @@ public class MainContentController {
             numberContributionsCountMap.put(contributorWithContributions.getId(), numberContributionEventDao.readCount(contributorWithContributions));
         }
         model.addAttribute("numberContributionsCountMap", numberContributionsCountMap);
-    	
+        
         return "content/main";
     }
 }

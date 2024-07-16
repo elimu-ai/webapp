@@ -83,7 +83,7 @@ public class WordEditController {
             Model model,
             @PathVariable Long id
     ) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Word word = wordDao.read(id);
         
@@ -132,7 +132,7 @@ public class WordEditController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
         if ((existingWord != null) && !existingWord.getId().equals(word.getId())) {

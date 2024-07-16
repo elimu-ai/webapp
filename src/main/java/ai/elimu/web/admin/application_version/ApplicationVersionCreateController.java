@@ -48,7 +48,7 @@ public class ApplicationVersionCreateController {
             @RequestParam Long applicationId,
             Model model
     ) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         logger.info("applicationId: " + applicationId);
         Application application = applicationDao.read(applicationId);
@@ -68,7 +68,7 @@ public class ApplicationVersionCreateController {
             Model model,
             HttpSession session
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (multipartFile.isEmpty()) {
             result.rejectValue("bytes", "NotNull");
@@ -179,7 +179,7 @@ public class ApplicationVersionCreateController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
 }

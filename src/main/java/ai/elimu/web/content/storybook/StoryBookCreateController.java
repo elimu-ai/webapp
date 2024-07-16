@@ -44,7 +44,7 @@ public class StoryBookCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
@@ -68,7 +68,7 @@ public class StoryBookCreateController {
             Model model,
             HttpServletRequest request,
             HttpSession session) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getTitle());
         if (existingStoryBook != null) {

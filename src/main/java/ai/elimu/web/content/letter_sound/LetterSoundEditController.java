@@ -58,7 +58,7 @@ public class LetterSoundEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         LetterSoundCorrespondence letterSound = letterSoundDao.read(id);
         model.addAttribute("letterSound", letterSound);
@@ -88,7 +88,7 @@ public class LetterSoundEditController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         // Check if the LetterSound already exists
         LetterSoundCorrespondence existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());

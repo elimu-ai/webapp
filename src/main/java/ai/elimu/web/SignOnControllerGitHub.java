@@ -82,7 +82,7 @@ public class SignOnControllerGitHub {
                 .state(secretState)
                 .build();
         logger.info("Got the Authorization URL!");
-		
+        
         return "redirect:" + authorizationUrl;
     }
     

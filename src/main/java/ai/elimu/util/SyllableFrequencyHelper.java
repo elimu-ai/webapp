@@ -42,7 +42,7 @@ public class SyllableFrequencyHelper {
         List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(map.entrySet());
 
         list.sort((m1, m2) -> (m2.getValue()).compareTo(m1.getValue()));
-    	
+        
         Map<String, Integer> result = new LinkedHashMap<>();
         for (Map.Entry<String, Integer> entry : list) {
             result.put(entry.getKey(), entry.getValue());

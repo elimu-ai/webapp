@@ -48,7 +48,7 @@ public class StoryBookParagraphDeleteController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(HttpSession session, @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         logger.info("contributor.getRoles(): " + contributor.getRoles());

@@ -8,7 +8,7 @@ import ai.elimu.model.v2.enums.ReadingLevel;
 import org.springframework.dao.DataAccessException;
 
 public interface StoryBookDao extends GenericDao<StoryBook> {
-	
+    
     StoryBook readByTitle(String title) throws DataAccessException;
 
     List<StoryBook> readAllOrdered() throws DataAccessException;

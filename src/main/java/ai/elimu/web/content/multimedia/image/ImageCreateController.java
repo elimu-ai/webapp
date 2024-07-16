@@ -56,7 +56,7 @@ public class ImageCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Image image = new Image();
         model.addAttribute("image", image);
@@ -76,7 +76,7 @@ public class ImageCreateController {
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (StringUtils.isBlank(image.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -198,7 +198,7 @@ public class ImageCreateController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
 }

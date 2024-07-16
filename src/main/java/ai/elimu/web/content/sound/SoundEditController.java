@@ -42,7 +42,7 @@ public class SoundEditController {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Sound sound = soundDao.read(id);
         model.addAttribute("sound", sound);
@@ -66,7 +66,7 @@ public class SoundEditController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (StringUtils.isNotBlank(sound.getValueIpa())) {
             Sound existingSound = soundDao.readByValueIpa(sound.getValueIpa());

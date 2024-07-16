@@ -36,7 +36,7 @@ public class SignOnControllerWeb3 {
     @RequestMapping(value="/sign-on/web3", method=RequestMethod.GET)
     public String handleGetRequest(HttpServletRequest request) throws IOException {
         logger.info("handleGetRequest");
-		
+        
         return "sign-on-web3";
     }
     

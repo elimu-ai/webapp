@@ -22,7 +22,7 @@ public class SyllableListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<Syllable> syllables = syllableDao.readAllOrderedByUsage();
         logger.info("syllables.size(): " + syllables.size());

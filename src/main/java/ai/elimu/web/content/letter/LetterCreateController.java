@@ -37,7 +37,7 @@ public class LetterCreateController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
             Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Letter letter = new Letter();
         model.addAttribute("letter", letter);
@@ -53,7 +53,7 @@ public class LetterCreateController {
             @Valid Letter letter,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Letter existingLetter = letterDao.readByText(letter.getText());
         if (existingLetter != null) {

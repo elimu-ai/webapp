@@ -85,7 +85,7 @@ public class AudioEditController {
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Audio audio = audioDao.read(id);
         model.addAttribute("audio", audio);
@@ -115,7 +115,7 @@ public class AudioEditController {
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         try {
             byte[] bytes = multipartFile.getBytes();
@@ -215,8 +215,8 @@ public class AudioEditController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
     
     @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
@@ -224,7 +224,7 @@ public class AudioEditController {
     public String handleAddContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleAddContentLabelRequest");
+        logger.info("handleAddContentLabelRequest");
         
         logger.info("id: " + id);
         Audio audio = audioDao.read(id);
@@ -276,7 +276,7 @@ public class AudioEditController {
     public String handleRemoveContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleRemoveContentLabelRequest");
+        logger.info("handleRemoveContentLabelRequest");
         
         logger.info("id: " + id);
         Audio audio = audioDao.read(id);

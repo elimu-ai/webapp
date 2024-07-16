@@ -33,7 +33,7 @@ public class WordCreationsPendingController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<String> paragraphs = new ArrayList<>();
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {

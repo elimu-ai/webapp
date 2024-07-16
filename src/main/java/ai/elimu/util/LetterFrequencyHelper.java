@@ -35,7 +35,7 @@ public class LetterFrequencyHelper {
                 return (m2.getValue()).compareTo(m1.getValue());
             }
         });
-    	
+        
         Map<String, Integer> result = new LinkedHashMap<String, Integer>();
         for (Map.Entry<String, Integer> entry : list) {
             result.put(entry.getKey(), entry.getValue());

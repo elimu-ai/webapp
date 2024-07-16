@@ -24,7 +24,7 @@ public class EditNameController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
 
         return "content/contributor/edit-name";
     }
@@ -35,7 +35,7 @@ public class EditNameController {
             @RequestParam String firstName,
             @RequestParam String lastName,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         logger.info("firstName: " + firstName);
         logger.info("lastName: " + lastName);
@@ -46,7 +46,7 @@ public class EditNameController {
         contributor.setLastName(lastName);
         contributorDao.update(contributor);
         session.setAttribute("contributor", contributor);
-    	
+        
         return "redirect:/content";
     }
 }

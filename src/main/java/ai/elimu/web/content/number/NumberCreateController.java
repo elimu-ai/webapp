@@ -50,7 +50,7 @@ public class NumberCreateController {
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(
             Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Number number = new Number();
         model.addAttribute("number", number);
@@ -70,7 +70,7 @@ public class NumberCreateController {
             @Valid Number number,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Number existingNumber = numberDao.readByValue(number.getValue());
         if (existingNumber != null) {

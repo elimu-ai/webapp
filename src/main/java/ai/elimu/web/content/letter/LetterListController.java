@@ -22,7 +22,7 @@ public class LetterListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<Letter> letters = letterDao.readAllOrderedByUsage();
         model.addAttribute("letters", letters);

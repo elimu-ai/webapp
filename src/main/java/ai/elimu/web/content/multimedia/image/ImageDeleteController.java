@@ -21,7 +21,7 @@ public class ImageDeleteController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         // Before deleting, check if the image is used in any StoryBooks
         // TODO

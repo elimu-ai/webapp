@@ -28,7 +28,7 @@ public class EditMotivationController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest() {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
 
         return "content/contributor/edit-motivation";
     }
@@ -38,7 +38,7 @@ public class EditMotivationController {
             HttpSession session,
             @RequestParam String motivation,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         logger.info("motivation: " + motivation);
         

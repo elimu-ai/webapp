@@ -38,7 +38,7 @@ public class VideoCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Video video = new Video();
         model.addAttribute("video", video);
@@ -58,7 +58,7 @@ public class VideoCreateController {
             @RequestParam("thumbnail") MultipartFile multipartFileThumbnail,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -148,7 +148,7 @@ public class VideoCreateController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
 }

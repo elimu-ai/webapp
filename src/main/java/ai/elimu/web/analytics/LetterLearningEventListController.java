@@ -22,7 +22,7 @@ public class LetterLearningEventListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<LetterLearningEvent> letterLearningEvents = letterLearningEventDao.readAll();
         model.addAttribute("letterLearningEvents", letterLearningEvents);

@@ -28,12 +28,12 @@ public class MainAnalyticsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         model.addAttribute("letterLearningEventCount", letterLearningEventDao.readCount());
         model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
         model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
-    	
+        
         return "analytics/main";
     }
 }

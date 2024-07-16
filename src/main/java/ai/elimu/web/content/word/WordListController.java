@@ -30,7 +30,7 @@ public class WordListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<Word> words = wordDao.readAllOrderedByUsage();
         model.addAttribute("words", words);

@@ -66,7 +66,7 @@ public class WordCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, @RequestParam(required = false) String autoFillText) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Word word = new Word();
         
@@ -96,7 +96,7 @@ public class WordCreateController {
             @Valid Word word,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
         if (existingWord != null) {

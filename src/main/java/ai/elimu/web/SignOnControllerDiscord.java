@@ -81,7 +81,7 @@ public class SignOnControllerDiscord {
                 .build();
         logger.info("Redirecting to the Authorization URL: " + authorizationUrl);
         logger.info("Got the Authorization URL!");
-		
+        
         return "redirect:" + authorizationUrl;
     }
 

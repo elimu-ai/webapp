@@ -25,7 +25,7 @@ public class EmojiCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Emoji emoji = new Emoji();
         model.addAttribute("emoji", emoji);
@@ -38,7 +38,7 @@ public class EmojiCreateController {
             @Valid Emoji emoji,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
         if (existingEmoji != null) {

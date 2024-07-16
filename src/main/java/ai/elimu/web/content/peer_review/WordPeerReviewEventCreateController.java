@@ -43,7 +43,7 @@ public class WordPeerReviewEventCreateController {
             @RequestParam(required = false) String comment,
             HttpSession session
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         

@@ -56,7 +56,7 @@ public class NumberEditController {
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Number number = numberDao.read(id);
         model.addAttribute("number", number);
@@ -79,7 +79,7 @@ public class NumberEditController {
             @Valid Number number,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Number existingNumber = numberDao.readByValue(number.getValue());
         if ((existingNumber != null) && !existingNumber.getId().equals(number.getId())) {
