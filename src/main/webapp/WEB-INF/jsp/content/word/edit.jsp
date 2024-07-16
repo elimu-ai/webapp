@@ -363,7 +363,7 @@
             </ol>
         </div>
     </c:if>
-    <c:if test="${applicationScope.configProperties['content.language'] == 'FIL'}">
+    <c:if test="${applicationScope.configProperties['content.language'] == 'TGL'}">
         <c:if test="${not empty word.text}">
             <div class="divider" style="margin: 1.5em 0;"></div>
         </c:if>
