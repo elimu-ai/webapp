@@ -46,8 +46,8 @@ public abstract class LearningEvent extends BaseEntity {
         return timestamp;
     }
 
-    public void setTimestamp(Calendar time) {
-        this.timestamp = time;
+    public void setTimestamp(Calendar timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getAndroidId() {

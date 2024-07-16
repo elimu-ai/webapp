@@ -15,7 +15,7 @@ public class ImageContributionEventDaoJpa extends GenericDaoJpa<ImageContributio
             "SELECT ice " + 
             "FROM ImageContributionEvent ice " +
             "WHERE ice.image = :image " + 
-            "ORDER BY ice.time DESC")
+            "ORDER BY ice.timestamp DESC")
             .setParameter("image", image)
             .getResultList();
     }
@@ -26,7 +26,7 @@ public class ImageContributionEventDaoJpa extends GenericDaoJpa<ImageContributio
             "SELECT ice " + 
             "FROM ImageContributionEvent ice " +
             "WHERE ice.contributor = :contributor " + 
-            "ORDER BY ice.time DESC")
+            "ORDER BY ice.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -36,7 +36,7 @@ public class ImageContributionEventDaoJpa extends GenericDaoJpa<ImageContributio
         return em.createQuery(
             "SELECT ice " + 
             "FROM ImageContributionEvent ice " +
-            "ORDER BY ice.time DESC")
+            "ORDER BY ice.timestamp DESC")
             .setMaxResults(maxResults)
             .getResultList();
     }

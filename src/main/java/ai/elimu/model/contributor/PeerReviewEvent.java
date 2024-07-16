@@ -64,7 +64,7 @@ public class PeerReviewEvent extends BaseEntity {
         return timestamp;
     }
 
-    public void setTime(Calendar time) {
-        this.timestamp = time;
+    public void setTimestamp(Calendar timestamp){
+        this.timestamp = timestamp;
     }
 }

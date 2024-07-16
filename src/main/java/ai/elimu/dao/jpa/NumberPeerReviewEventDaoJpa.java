@@ -17,7 +17,7 @@ public class NumberPeerReviewEventDaoJpa extends GenericDaoJpa<NumberPeerReviewE
             "FROM NumberPeerReviewEvent event " +
             "WHERE event.numberContributionEvent = :numberContributionEvent " +
             "AND event.contributor = :contributor " +
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("numberContributionEvent", numberContributionEvent)
             .setParameter("contributor", contributor)
             .getResultList();
@@ -29,7 +29,7 @@ public class NumberPeerReviewEventDaoJpa extends GenericDaoJpa<NumberPeerReviewE
             "SELECT event " + 
             "FROM NumberPeerReviewEvent event " +
             "WHERE event.numberContributionEvent.number = :number " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("number", number)
             .getResultList();
     }
@@ -40,7 +40,7 @@ public class NumberPeerReviewEventDaoJpa extends GenericDaoJpa<NumberPeerReviewE
             "SELECT event " + 
             "FROM NumberPeerReviewEvent event " +
             "WHERE event.contributor = :contributor " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -51,7 +51,7 @@ public class NumberPeerReviewEventDaoJpa extends GenericDaoJpa<NumberPeerReviewE
             "SELECT event " + 
             "FROM NumberPeerReviewEvent event " +
             "WHERE event.numberContributionEvent = :numberContributionEvent " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("numberContributionEvent", numberContributionEvent)
             .getResultList();
     }

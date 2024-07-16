@@ -118,9 +118,9 @@ public class WordLearningEventsRestController {
                 WordLearningEvent wordLearningEvent = new WordLearningEvent();
                 
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
-                Calendar time = Calendar.getInstance();
-                time.setTimeInMillis(timeInMillis);
-                wordLearningEvent.setTimestamp(time);
+                Calendar timestamp = Calendar.getInstance();
+                timestamp.setTimeInMillis(timeInMillis);
+                wordLearningEvent.setTimestamp(timestamp);
                 
                 String androidId = csvRecord.get("android_id");
                 wordLearningEvent.setAndroidId(androidId);
@@ -164,7 +164,7 @@ public class WordLearningEventsRestController {
                 wordLearningEvent.setLearningEventType(learningEventType);
                 
                 // Check if the event has already been stored in the database
-                WordLearningEvent existingWordLearningEvent = wordLearningEventDao.read(time, androidId, application, word);
+                WordLearningEvent existingWordLearningEvent = wordLearningEventDao.read(timestamp, androidId, application, word);
                 logger.info("existingWordLearningEvent: " + existingWordLearningEvent);
                 if (existingWordLearningEvent == null) {
                     // Store the event in the database

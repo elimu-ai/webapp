@@ -11,22 +11,22 @@ import org.springframework.dao.DataAccessException;
 public class LetterLearningEventDaoJpa extends GenericDaoJpa<LetterLearningEvent> implements LetterLearningEventDao {
 
     @Override
-    public LetterLearningEvent read(Calendar time, String androidId, Application application, Letter letter) throws DataAccessException {
+    public LetterLearningEvent read(Calendar timestamp, String androidId, Application application, Letter letter) throws DataAccessException {
         try {
             return (LetterLearningEvent) em.createQuery(
                 "SELECT lle " +
                 "FROM LetterLearningEvent lle " +
-                "WHERE lle.time = :time " +
+                "WHERE lle.timestamp = :timestamp " +
                 "AND lle.androidId = :androidId " + 
                 "AND lle.application = :application " + 
                 "AND lle.letter = :letter")
-                .setParameter("time", time)
+                .setParameter("timestamp", timestamp)
                 .setParameter("androidId", androidId)
                 .setParameter("application", application)
                 .setParameter("letter", letter)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("LetterLearningEvent (" + time.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", \"" + letter.getText() + "\") was not found");
+            logger.info("LetterLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", \"" + letter.getText() + "\") was not found");
             return null;
         }
     }

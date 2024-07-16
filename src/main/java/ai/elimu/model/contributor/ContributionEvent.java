@@ -65,8 +65,8 @@ public class ContributionEvent extends BaseEntity {
         this.contributor = contributor;
     }
 
-    public void setTimestamp(Calendar time) {
-        this.timestamp = time;
+    public void setTimestamp(Calendar timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Long getTimeSpentMs() {
