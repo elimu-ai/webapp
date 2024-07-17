@@ -16,22 +16,22 @@ public class EPubMetadataExtractionHelperTest {
     
     private final Logger logger = LogManager.getLogger();
 
-    @Test	
-    public void testExtractTitleFromOpfFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {	
+    @Test
+    public void testExtractTitleFromOpfFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);	
-        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");	
-        File opfFile = resource.getFile();	
-        logger.debug("opfFile: " + opfFile);	
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");
+        File opfFile = resource.getFile();
+        logger.debug("opfFile: " + opfFile);
 
-        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);	
-        assertEquals("Grace in Space", title);	
+        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
+        assertEquals("Grace in Space", title);
 
-        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);	
-        assertEquals("Girl travels with her uncle to space and returns years later.", description);	
+        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
+        assertEquals("Girl travels with her uncle to space and returns years later.", description);
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_TGL_LETS_READ_ASIA_0acfe340() throws IOException {
+    public void testExtractTitleFromOpfFile_LETS_READ_ASIA_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
         File opfFile = resource.getFile();
@@ -45,7 +45,7 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_TGL_LETS_READ_ASIA_627f64f8() throws IOException {
+    public void testExtractTitleFromOpfFile_LETS_READ_ASIA_tgl_627f64f8() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-627f64f8-a002-4c0f-8bb6-3701ce5fcf19.epub_content.opf");
         File opfFile = resource.getFile();
@@ -59,7 +59,7 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_TGL_STORYWEAVER_105391() throws IOException {
+    public void testExtractTitleFromOpfFile_STORYWEAVER_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-sw-105391-tayo-ay-magbilang.epub_package.opf");
         File opfFile = resource.getFile();
@@ -73,7 +73,21 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractCoverImageReferenceFromOpfFile_TGL_LETS_READ_ASIA_0acfe340() throws IOException {
+    public void testExtractTitleFromOpfFile_STORYWEAVER_hin() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_package.opf");
+        File opfFile = resource.getFile();
+        logger.debug("opfFile: " + opfFile);
+
+        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
+        assertEquals("एक सौ सैंतीसवाँ पैर", title);
+
+        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
+        assertEquals(null, description); // or assertEquals("", description);
+    }
+
+    @Test
+    public void testExtractCoverImageReferenceFromOpfFile_LETS_READ_ASIA_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
         File opfFile = resource.getFile();
