@@ -49,4 +49,15 @@ public class EPubChapterExtractionHelperTest {
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertEquals(12, chapterReferences.size());
     }
+
+    @Test
+    public void testExtractChapterReferencesFromTableOfContentsFileNcx_STORYWEAVER_hin() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-sw-99651-hamare-mitra-kon-hai.epub_toc.ncx");
+        File ncxFile = resource.getFile();
+        logger.debug("ncxFile: " + ncxFile);
+
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(ncxFile);
+        assertEquals(18, chapterReferences.size());
+    }
 }
