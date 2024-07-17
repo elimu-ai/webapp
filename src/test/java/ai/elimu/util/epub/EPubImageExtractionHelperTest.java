@@ -26,9 +26,20 @@ public class EPubImageExtractionHelperTest {
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);	
         assertEquals("21f0ca572d1f21c4813bfb910ccb935d.jpg", imageReference);	
     }
+
+    @Test
+    public void testExtractImageReferenceFromChapterFile_STORYWEAVER_hin() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_4.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertEquals("image_4.jpg", imageReference);
+    }
     
     @Test
-    public void testExtractImageReferenceFromChapterFile_ENG_LRA_377b7e63() throws IOException {
+    public void testExtractImageReferenceFromChapterFile_LETS_READ_ASIA_eng() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-lra-377b7e63-6126-4cfe-bcee-1538d75c1b2f_Page_1.xhtml");
         File xhtmlFile = resource.getFile();
@@ -39,7 +50,7 @@ public class EPubImageExtractionHelperTest {
     }
     
     @Test
-    public void testExtractImageReferenceFromChapterFile_TGL_LRA_faa0d66e() throws IOException {
+    public void testExtractImageReferenceFromChapterFile_LETS_READ_ASIA_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");
         File xhtmlFile = resource.getFile();
