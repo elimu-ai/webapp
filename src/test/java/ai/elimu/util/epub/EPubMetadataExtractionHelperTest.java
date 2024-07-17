@@ -16,6 +16,20 @@ public class EPubMetadataExtractionHelperTest {
     
     private final Logger logger = LogManager.getLogger();
 
+    @Test	
+    public void testExtractTitleFromOpfFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {	
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);	
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");	
+        File opfFile = resource.getFile();	
+        logger.debug("opfFile: " + opfFile);	
+
+        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);	
+        assertEquals("Grace in Space", title);	
+
+        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);	
+        assertEquals("Girl travels with her uncle to space and returns years later.", description);	
+    }
+
     @Test
     public void testExtractTitleFromOpfFile_TGL_LETS_READ_ASIA_0acfe340() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
