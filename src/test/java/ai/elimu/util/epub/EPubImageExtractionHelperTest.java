@@ -37,6 +37,17 @@ public class EPubImageExtractionHelperTest {
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
         assertEquals("image_4.jpg", imageReference);
     }
+
+    @Test
+    public void testExtractImageReferenceFromChapterFile_STORYWEAVER_tgl() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tgl-sw-105391-tayo-ay-magbilang.epub_8.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertEquals("image_8.jpg", imageReference);
+    }
     
     @Test
     public void testExtractImageReferenceFromChapterFile_LETS_READ_ASIA_eng() throws IOException {
