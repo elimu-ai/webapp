@@ -87,6 +87,17 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
+    public void testExtractCoverImageReferenceFromOpfFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");
+        File opfFile = resource.getFile();
+        logger.debug("opfFile: " + opfFile);
+        
+        String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
+        assertEquals("39e5eb1614ea195e9e377f63f561aa8c.jpg", coverImageReference);
+    }
+
+    @Test
     public void testExtractCoverImageReferenceFromOpfFile_LETS_READ_ASIA_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
