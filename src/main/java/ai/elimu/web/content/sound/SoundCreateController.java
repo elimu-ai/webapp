@@ -83,7 +83,7 @@ public class SoundCreateController {
             
             SoundContributionEvent soundContributionEvent = new SoundContributionEvent();
             soundContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            soundContributionEvent.setTime(Calendar.getInstance());
+            soundContributionEvent.setTimestamp(Calendar.getInstance());
             soundContributionEvent.setSound(sound);
             soundContributionEvent.setRevisionNumber(sound.getRevisionNumber());
             soundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));

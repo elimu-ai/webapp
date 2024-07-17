@@ -57,7 +57,7 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEvent.setStoryBookContributionEvent(storyBookContributionEvent);
         storyBookPeerReviewEvent.setApproved(approved);
         storyBookPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
-        storyBookPeerReviewEvent.setTime(Calendar.getInstance());
+        storyBookPeerReviewEvent.setTimestamp(Calendar.getInstance());
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

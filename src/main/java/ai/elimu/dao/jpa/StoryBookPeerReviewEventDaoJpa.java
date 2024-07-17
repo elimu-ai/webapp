@@ -17,7 +17,7 @@ public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerR
             "FROM StoryBookPeerReviewEvent sbpre " +
             "WHERE sbpre.storyBookContributionEvent = :storyBookContributionEvent " +
             "AND sbpre.contributor = :contributor " + 
-            "ORDER BY sbpre.time DESC")
+            "ORDER BY sbpre.timestamp DESC")
             .setParameter("storyBookContributionEvent", storyBookContributionEvent)
             .setParameter("contributor", contributor)
             .getResultList();
@@ -29,7 +29,7 @@ public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerR
             "SELECT sbpre " + 
             "FROM StoryBookPeerReviewEvent sbpre " +
             "WHERE sbpre.storyBookContributionEvent.storyBook = :storyBook " + 
-            "ORDER BY sbpre.time DESC")
+            "ORDER BY sbpre.timestamp DESC")
             .setParameter("storyBook", storyBook)
             .getResultList();
     }
@@ -40,7 +40,7 @@ public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerR
             "SELECT sbpre " + 
             "FROM StoryBookPeerReviewEvent sbpre " +
             "WHERE sbpre.contributor = :contributor " + 
-            "ORDER BY sbpre.time DESC")
+            "ORDER BY sbpre.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -51,7 +51,7 @@ public class StoryBookPeerReviewEventDaoJpa extends GenericDaoJpa<StoryBookPeerR
             "SELECT sbpre " + 
             "FROM StoryBookPeerReviewEvent sbpre " +
             "WHERE sbpre.storyBookContributionEvent = :storyBookContributionEvent " + 
-            "ORDER BY sbpre.time DESC")
+            "ORDER BY sbpre.timestamp DESC")
             .setParameter("storyBookContributionEvent", storyBookContributionEvent)
             .getResultList();
     }

@@ -17,7 +17,7 @@ public abstract class LearningEvent extends BaseEntity {
     
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar time;
+    private Calendar timestamp;
     
     /**
      * See https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID
@@ -42,12 +42,12 @@ public abstract class LearningEvent extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private LearningEventType learningEventType;
 
-    public Calendar getTime() {
-        return time;
+    public Calendar getTimestamp() {
+        return timestamp;
     }
 
-    public void setTime(Calendar time) {
-        this.time = time;
+    public void setTimestamp(Calendar timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getAndroidId() {

@@ -61,9 +61,9 @@ public class CsvAnalyticsExtractionHelper {
                 StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                 
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
-                Calendar time = Calendar.getInstance();
-                time.setTimeInMillis(timeInMillis);
-                storyBookLearningEvent.setTime(time);
+                Calendar timestamp = Calendar.getInstance();
+                timestamp.setTimeInMillis(timeInMillis);
+                storyBookLearningEvent.setTimestamp(timestamp);
                 
                 String androidId = csvRecord.get("android_id");
                 storyBookLearningEvent.setAndroidId(androidId);

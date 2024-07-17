@@ -59,7 +59,7 @@ public class LetterSoundPeerReviewEventCreateController {
         letterSoundPeerReviewEvent.setLetterSoundContributionEvent(letterSoundContributionEvent);
         letterSoundPeerReviewEvent.setApproved(approved);
         letterSoundPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
-        letterSoundPeerReviewEvent.setTime(Calendar.getInstance());
+        letterSoundPeerReviewEvent.setTimestamp(Calendar.getInstance());
         letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
