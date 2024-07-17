@@ -158,6 +158,23 @@ Secure your MariaDB installation:
 ☑️ Remove test database and access to it? [Y/n] Y
 ☑️ Reload privilege tables now? [Y/n] Y
 
+### Make UTF-8 the Default Character Set
+
+Copy the content from [`my.cnf`](./centos-stream-9/etc/my.cnf) and prepend it to the MariaDB config file:
+
+    vi /etc/my.cnf
+
+For the character set changes to come into effect, restart the MariaDB server:
+
+    systemctl restart mariadb
+
+> [!TIP]
+> To verify that the variables were set correctly, log into the MariaDB Server, and use these commands:
+>
+>     > SHOW VARIABLES LIKE '%character_set%';
+>     > SHOW VARIABLES LIKE '%collation%';
+>     > SHOW VARIABLES LIKE '%init_connect%';
+
 ### Create Database
 
 Log into the MariaDB Server:
