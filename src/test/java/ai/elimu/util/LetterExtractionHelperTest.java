@@ -29,24 +29,25 @@ public class LetterExtractionHelperTest {
     }
     
     @Test
-    public void testGetLetters_Bengali() {
-        String paragraph = "সোফি সবচেয়ে";
-        List<String> letters = LetterExtractionHelper.getLetters(paragraph, Language.BEN);
-        assertEquals(11, letters.size());
-        // সো = স + ো
-        assertEquals("স", letters.get(0));
-        assertEquals("ো", letters.get(1));
-        // ফি = ফ + ি
-        assertEquals("ফ", letters.get(2));
-        assertEquals("ি", letters.get(3));
-        assertEquals("স", letters.get(4));
-        assertEquals("ব", letters.get(5));
-        // চে = চ + ে
-        assertEquals("চ", letters.get(6));
-        assertEquals("ে", letters.get(7));
-        // য়ে = য + ় + ে
-        assertEquals("য", letters.get(8));
-        assertEquals("়", letters.get(9));
-        assertEquals("ে", letters.get(10));
+    public void testGetLetters_Hindi() {
+        String paragraph = "मैं आनंद हूँ।";
+        List<String> letters = LetterExtractionHelper.getLetters(paragraph, Language.HIN);
+        assertEquals(3 + 4 + 3, letters.size());
+
+        // मैं = म +  ै +  ं
+        assertEquals("म", letters.get(0));
+        assertEquals("ै", letters.get(1));
+        assertEquals("ं", letters.get(2));
+        
+        // आनंद = आ + न +  ं + द
+        assertEquals("आ", letters.get(3));
+        assertEquals("न", letters.get(4));
+        assertEquals("ं", letters.get(5));
+        assertEquals("द", letters.get(6));
+        
+        // हूँ = ह +  ू +  ँ
+        assertEquals("ह", letters.get(7));
+        assertEquals("ू", letters.get(8));
+        assertEquals("ँ", letters.get(9));
     }
 }

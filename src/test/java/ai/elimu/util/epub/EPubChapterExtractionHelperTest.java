@@ -16,20 +16,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EPubChapterExtractionHelperTest {
     
     private final Logger logger = LogManager.getLogger();
-    
+
     @Test
-    public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY() throws IOException {
+    public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-gdl-761.epub_toc.xhtml");
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_toc.xhtml");
         File xhtmlFile = resource.getFile();
         logger.debug("xhtmlFile: " + xhtmlFile);
-        
+
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
-        assertEquals(12, chapterReferences.size());
+        assertEquals(18, chapterReferences.size());
     }
     
     @Test
-    public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY_hin_nav() throws IOException {
+    public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY_hin() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-gdl-bear-walk.epub_nav.xhtml");
         File xhtmlFile = resource.getFile();
@@ -40,7 +40,7 @@ public class EPubChapterExtractionHelperTest {
     }
     
     @Test
-    public void testExtractChapterReferencesFromTableOfContentsFile_LETS_READ_ASIA() throws IOException {
+    public void testExtractChapterReferencesFromTableOfContentsFile_LETS_READ_ASIA_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_toc.xhtml");
         File xhtmlFile = resource.getFile();
@@ -49,15 +49,15 @@ public class EPubChapterExtractionHelperTest {
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertEquals(12, chapterReferences.size());
     }
-    
+
     @Test
-    public void testExtractChapterReferencesFromTableOfContentsFile_STORYWEAVER() throws IOException {
+    public void testExtractChapterReferencesFromTableOfContentsFileNcx_STORYWEAVER_hin() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_toc.ncx");
+        Resource resource = resourceLoader.getResource("hin-sw-99651-hamare-mitra-kon-hai.epub_toc.ncx");
         File ncxFile = resource.getFile();
         logger.debug("ncxFile: " + ncxFile);
-        
+
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(ncxFile);
-        assertEquals(10, chapterReferences.size());
+        assertEquals(18, chapterReferences.size());
     }
 }

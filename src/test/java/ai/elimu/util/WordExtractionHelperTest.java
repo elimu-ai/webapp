@@ -59,13 +59,19 @@ public class WordExtractionHelperTest {
 
     @Test
     public void testGetWordsWhenDanda() {
-        String paragraph = "চোখের এক মৌমাছি। সে অনেক";
-        List<String> words = WordExtractionHelper.getWords(paragraph, Language.BEN);
-        assertEquals("চোখের", words.get(0));
-        assertEquals("এক", words.get(1));
-        assertEquals("মৌমাছি", words.get(2));
-        assertEquals("সে", words.get(3));
-        assertEquals("অনেক", words.get(4));
+        String paragraph = "अब गेंदबाज़ी की बारी मेरी। और यह हो गए आप... आउट!";
+        List<String> words = WordExtractionHelper.getWords(paragraph, Language.HIN);
+        assertEquals("अब", words.get(0));
+        assertEquals("गेंदबाज़ी", words.get(1));
+        assertEquals("की", words.get(2));
+        assertEquals("बारी", words.get(3));
+        assertEquals("मेरी", words.get(4));
+        assertEquals("और", words.get(5));
+        assertEquals("यह", words.get(6));
+        assertEquals("हो", words.get(7));
+        assertEquals("गए", words.get(8));
+        assertEquals("आप", words.get(9));
+        assertEquals("आउट", words.get(10));
     }
 
     @Test

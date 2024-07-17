@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
   <head>
-    <meta name="dtb:uid" content="/stories/11791-ghumkature-bhim"/>
+    <meta name="dtb:uid" content="/stories/99651-hamare-mitra-kon-hai"/>
     <meta name="dtb:depth" content="1"/>
     <meta name="dtb:totalPageCount" content="0"/>
     <meta name="dtb:maxPageNumber" content="0"/>
   </head>
   <docTitle>
-    <text>ঘুমকাতুরে ভীম</text>
+    <text>हमारे मित्र कौन है?</text>
   </docTitle>
   <navMap>
     <navPoint id="item_1" playOrder="1">
@@ -69,6 +69,54 @@
         <text>Page 10</text>
       </navLabel>
       <content src="10.xhtml"/>
+    </navPoint>
+    <navPoint id="item_11" playOrder="11">
+      <navLabel>
+        <text>Page 11</text>
+      </navLabel>
+      <content src="11.xhtml"/>
+    </navPoint>
+    <navPoint id="item_12" playOrder="12">
+      <navLabel>
+        <text>Page 12</text>
+      </navLabel>
+      <content src="12.xhtml"/>
+    </navPoint>
+    <navPoint id="item_13" playOrder="13">
+      <navLabel>
+        <text>Page 13</text>
+      </navLabel>
+      <content src="13.xhtml"/>
+    </navPoint>
+    <navPoint id="item_14" playOrder="14">
+      <navLabel>
+        <text>Page 14</text>
+      </navLabel>
+      <content src="14.xhtml"/>
+    </navPoint>
+    <navPoint id="item_15" playOrder="15">
+      <navLabel>
+        <text>Page 15</text>
+      </navLabel>
+      <content src="15.xhtml"/>
+    </navPoint>
+    <navPoint id="item_16" playOrder="16">
+      <navLabel>
+        <text>Page 16</text>
+      </navLabel>
+      <content src="16.xhtml"/>
+    </navPoint>
+    <navPoint id="item_17" playOrder="17">
+      <navLabel>
+        <text>Page 17</text>
+      </navLabel>
+      <content src="17.xhtml"/>
+    </navPoint>
+    <navPoint id="item_18" playOrder="18">
+      <navLabel>
+        <text>Page 18</text>
+      </navLabel>
+      <content src="18.xhtml"/>
     </navPoint>
   </navMap>
 </ncx>
