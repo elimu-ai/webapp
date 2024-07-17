@@ -16,6 +16,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EPubChapterExtractionHelperTest {
     
     private final Logger logger = LogManager.getLogger();
+
+    @Test
+    public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_toc.xhtml");
+        File xhtmlFile = resource.getFile();
+        logger.debug("xhtmlFile: " + xhtmlFile);
+
+        List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
+        assertEquals(18, chapterReferences.size());
+    }
     
     @Test
     public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY_hin() throws IOException {
