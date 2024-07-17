@@ -214,27 +214,27 @@
             <th><fmt:message key="sounds" /></th>
         </thead>
         <tbody>
-            <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
-                <%-- Check if the current sound is used by the letter-sound correspondence. --%>
-                <c:set var="isUsedByLetterSoundCorrespondence" value="false" />
-                <c:forEach var="s" items="${letterSoundCorrespondence.sounds}">
+            <c:forEach var="letterSound" items="${letterSounds}">
+                <%-- Check if the current sound is used by the letter-sound. --%>
+                <c:set var="isUsedByLetterSound" value="false" />
+                <c:forEach var="s" items="${letterSound.sounds}">
                     <c:if test="${sound.id == s.id}">
-                        <c:set var="isUsedByLetterSoundCorrespondence" value="true" />
+                        <c:set var="isUsedByLetterSound" value="true" />
                     </c:if>
                 </c:forEach>
-                <c:if test="${isUsedByLetterSoundCorrespondence}">
+                <c:if test="${isUsedByLetterSound}">
                     <tr>
                         <td>
-                            ${letterSoundCorrespondence.usageCount}
+                            ${letterSound.usageCount}
                         </td>
                         <td>
-                            " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
+                            " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
                         </td>
                         <td>
                             ➞
                         </td>
                         <td>
-                            / <c:forEach var="s" items="${letterSoundCorrespondence.sounds}"><a href="<spring:url value='/content/sound/edit/${s.id}' />"><c:if test="${s.id == sound.id}"><span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if></a> </c:forEach> /
+                            / <c:forEach var="s" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${s.id}' />"><c:if test="${s.id == sound.id}"><span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if></a> </c:forEach> /
                         </td>
                     </tr>
                 </c:if>

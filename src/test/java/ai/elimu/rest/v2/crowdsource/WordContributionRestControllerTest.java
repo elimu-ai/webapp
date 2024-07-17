@@ -17,20 +17,20 @@ public class WordContributionRestControllerTest {
     private Logger logger = LogManager.getLogger();
     
     @Test
-    public void testGetLetterSoundCorrespondences() {
+    public void testGetLetterSounds() {
         String jsonResponse = JsonLoader.loadJson(DomainHelper.getRestUrlV2() +
                 "/crowdsource/word-contributions/letter-sound-correspondences");
 
         logger.info("jsonResponse: " + jsonResponse);
 
-        JSONArray letterSoundCorrespondencesJSONArray = new JSONArray(jsonResponse);
-        logger.info("letterSoundCorrespondencesJSONArray.length(): " + letterSoundCorrespondencesJSONArray.length());
-        assertFalse(letterSoundCorrespondencesJSONArray.isEmpty());
+        JSONArray letterSoundsJSONArray = new JSONArray(jsonResponse);
+        logger.info("letterSoundsJSONArray.length(): " + letterSoundsJSONArray.length());
+        assertFalse(letterSoundsJSONArray.isEmpty());
 
-        JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJSONArray.getJSONObject(0);
-        assertNotNull(letterSoundCorrespondenceJsonObject.getLong("id"));
-        assertTrue(letterSoundCorrespondenceJsonObject.has("letters"));
-        assertTrue(letterSoundCorrespondenceJsonObject.has("sounds"));
+        JSONObject letterSoundJsonObject = letterSoundsJSONArray.getJSONObject(0);
+        assertNotNull(letterSoundJsonObject.getLong("id"));
+        assertTrue(letterSoundJsonObject.has("letters"));
+        assertTrue(letterSoundJsonObject.has("sounds"));
     }
 
     // TODO: test POST requests.

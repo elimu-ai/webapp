@@ -1,7 +1,6 @@
 package ai.elimu.dao;
 
 import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
