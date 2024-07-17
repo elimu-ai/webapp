@@ -107,4 +107,15 @@ public class EPubMetadataExtractionHelperTest {
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
         assertEquals("coverImage.jpeg", coverImageReference);
     }
+
+    @Test
+    public void testExtractCoverImageReferenceFromOpfFile_STORYWEAVER_hin() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_package.opf");
+        File opfFile = resource.getFile();
+        logger.debug("opfFile: " + opfFile);
+
+        String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
+        assertEquals("image_1.jpg", coverImageReference);
+    }
 }
