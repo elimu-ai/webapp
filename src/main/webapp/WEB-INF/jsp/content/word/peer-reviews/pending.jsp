@@ -65,7 +65,7 @@
                                 #${wordContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)
                             </td>
                             <td>
-                                <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                                <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
                         </tr>
                     </c:forEach>

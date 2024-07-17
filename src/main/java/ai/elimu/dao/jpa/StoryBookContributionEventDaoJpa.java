@@ -14,7 +14,7 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
         return em.createQuery(
             "SELECT sbce " + 
             "FROM StoryBookContributionEvent sbce " +
-            "ORDER BY sbce.time DESC")
+            "ORDER BY sbce.timestamp DESC")
             .getResultList();
     }
 
@@ -24,7 +24,7 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
             "SELECT sbce " + 
             "FROM StoryBookContributionEvent sbce " +
             "WHERE sbce.storyBook = :storyBook " + 
-            "ORDER BY sbce.time DESC")
+            "ORDER BY sbce.timestamp DESC")
             .setParameter("storyBook", storyBook)
             .getResultList();
     }
@@ -35,7 +35,7 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
             "SELECT sbce " + 
             "FROM StoryBookContributionEvent sbce " +
             "WHERE sbce.contributor = :contributor " + 
-            "ORDER BY sbce.time DESC")
+            "ORDER BY sbce.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -45,7 +45,7 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
         return em.createQuery(
             "SELECT sbce " + 
             "FROM StoryBookContributionEvent sbce " +
-            "ORDER BY sbce.time DESC")
+            "ORDER BY sbce.timestamp DESC")
             .setMaxResults(maxResults)
             .getResultList();
     }
@@ -55,8 +55,8 @@ public class StoryBookContributionEventDaoJpa extends GenericDaoJpa<StoryBookCon
         return em.createQuery(
             "SELECT sbce " + 
             "FROM StoryBookContributionEvent sbce " +
-            "WHERE sbce.time IN (SELECT MAX(time) FROM StoryBookContributionEvent GROUP BY storyBook_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY sbce.time ASC")
+            "WHERE sbce.timestamp IN (SELECT MAX(timestamp) FROM StoryBookContributionEvent GROUP BY storyBook_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "ORDER BY sbce.timestamp ASC")
             .getResultList();
     }
     

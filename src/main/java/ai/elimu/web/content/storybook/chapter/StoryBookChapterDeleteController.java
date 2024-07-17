@@ -127,7 +127,7 @@ public class StoryBookChapterDeleteController {
         // Store contribution event
         StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
         storyBookContributionEvent.setContributor(contributor);
-        storyBookContributionEvent.setTime(Calendar.getInstance());
+        storyBookContributionEvent.setTimestamp(Calendar.getInstance());
         storyBookContributionEvent.setStoryBook(storyBook);
         storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
         storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + " (🤖 auto-generated comment)");

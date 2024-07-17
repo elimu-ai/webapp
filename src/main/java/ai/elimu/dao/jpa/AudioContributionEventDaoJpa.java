@@ -15,7 +15,7 @@ public class AudioContributionEventDaoJpa extends GenericDaoJpa<AudioContributio
             "SELECT ace " + 
             "FROM AudioContributionEvent ace " +
             "WHERE ace.audio = :audio " + 
-            "ORDER BY ace.time DESC")
+            "ORDER BY ace.timestamp DESC")
             .setParameter("audio", audio)
             .getResultList();
     }
@@ -26,7 +26,7 @@ public class AudioContributionEventDaoJpa extends GenericDaoJpa<AudioContributio
             "SELECT ace " + 
             "FROM AudioContributionEvent ace " +
             "WHERE ace.contributor = :contributor " + 
-            "ORDER BY ace.time DESC")
+            "ORDER BY ace.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -36,7 +36,7 @@ public class AudioContributionEventDaoJpa extends GenericDaoJpa<AudioContributio
         return em.createQuery(
             "SELECT ace " + 
             "FROM AudioContributionEvent ace " +
-            "ORDER BY ace.time DESC")
+            "ORDER BY ace.timestamp DESC")
             .setMaxResults(maxResults)
             .getResultList();
     }

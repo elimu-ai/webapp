@@ -60,7 +60,7 @@ public class AudioPeerReviewEventCreateController {
         audioPeerReviewEvent.setAudioContributionEvent(audioContributionEvent);
         audioPeerReviewEvent.setApproved(approved);
         audioPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
-        audioPeerReviewEvent.setTime(Calendar.getInstance());
+        audioPeerReviewEvent.setTimestamp(Calendar.getInstance());
         audioPeerReviewEventDao.create(audioPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

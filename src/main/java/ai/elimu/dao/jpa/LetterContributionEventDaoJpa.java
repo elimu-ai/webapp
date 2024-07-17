@@ -14,7 +14,7 @@ public class LetterContributionEventDaoJpa extends GenericDaoJpa<LetterContribut
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterContributionEvent event " +
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .getResultList();
     }
 
@@ -24,7 +24,7 @@ public class LetterContributionEventDaoJpa extends GenericDaoJpa<LetterContribut
             "SELECT event " + 
             "FROM LetterContributionEvent event " +
             "WHERE event.letter = :letter " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("letter", letter)
             .getResultList();
     }
@@ -35,7 +35,7 @@ public class LetterContributionEventDaoJpa extends GenericDaoJpa<LetterContribut
             "SELECT event " + 
             "FROM LetterContributionEvent event " +
             "WHERE event.contributor = :contributor " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -45,7 +45,7 @@ public class LetterContributionEventDaoJpa extends GenericDaoJpa<LetterContribut
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterContributionEvent event " +
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setMaxResults(maxResults)
             .getResultList();
     }
@@ -55,8 +55,8 @@ public class LetterContributionEventDaoJpa extends GenericDaoJpa<LetterContribut
         return em.createQuery(
             "SELECT event " + 
             "FROM LetterContributionEvent event " +
-            "WHERE event.time IN (SELECT MAX(time) FROM LetterContributionEvent GROUP BY letter_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY event.time ASC")
+            "WHERE event.timestamp IN (SELECT MAX(timestamp) FROM LetterContributionEvent GROUP BY letter_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "ORDER BY event.timestamp ASC")
             .getResultList();
     }
 

@@ -237,7 +237,7 @@
                 <span class="badge">
                     <fmt:message key="revision" /> #${wordContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${wordContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/content/contributor/${wordContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -308,7 +308,7 @@
                                 </code>
                             </div>
                             <div class="col s4" style="text-align: right;">
-                                <fmt:formatDate value="${wordPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                <fmt:formatDate value="${wordPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty wordPeerReviewEvent.comment}">
                                 <div class="col s12 comment"><c:out value="${wordPeerReviewEvent.comment}" /></div>

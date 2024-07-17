@@ -57,7 +57,7 @@ public class NumberPeerReviewEventCreateController {
         numberPeerReviewEvent.setNumberContributionEvent(numberContributionEvent);
         numberPeerReviewEvent.setApproved(approved);
         numberPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
-        numberPeerReviewEvent.setTime(Calendar.getInstance());
+        numberPeerReviewEvent.setTimestamp(Calendar.getInstance());
         numberPeerReviewEventDao.create(numberPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
