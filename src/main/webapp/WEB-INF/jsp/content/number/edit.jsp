@@ -179,7 +179,7 @@
                 <span class="badge">
                     <fmt:message key="revision" /> #${numberContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${numberContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/content/contributor/${numberContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -250,7 +250,7 @@
                                 </code>
                             </div>
                             <div class="col s4" style="text-align: right;">
-                                <fmt:formatDate value="${numberPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                <fmt:formatDate value="${numberPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty numberPeerReviewEvent.comment}">
                                 <div class="col s12 comment"><c:out value="${numberPeerReviewEvent.comment}" /></div>
