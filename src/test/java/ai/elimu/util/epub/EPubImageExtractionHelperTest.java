@@ -15,6 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EPubImageExtractionHelperTest {
     
     private final Logger logger = LogManager.getLogger();
+
+    @Test	
+    public void testExtractImageReferenceFromChapterFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {	
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);	
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_chapter-3.xhtml");	
+        File xhtmlFile = resource.getFile();	
+        logger.debug("xhtmlFile: " + xhtmlFile);	
+
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);	
+        assertEquals("21f0ca572d1f21c4813bfb910ccb935d.jpg", imageReference);	
+    }
     
     @Test
     public void testExtractImageReferenceFromChapterFile_ENG_LRA_377b7e63() throws IOException {
