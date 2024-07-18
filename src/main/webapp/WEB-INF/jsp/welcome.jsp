@@ -56,10 +56,10 @@
 
           <div class="col s12 m4">
             <div class="icon-block">
-              <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
+              <h2 class="center amber-text darken-2"><i class="material-icons medium">auto_graph</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">Our solution is to build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 <b>within 6 months</b>.</p>
+              <p class="light center">Build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 <b>within 6 months</b>.</p>
             </div>
           </div>
         </div>

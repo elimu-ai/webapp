@@ -62,13 +62,13 @@
         </c:if>
         
         General resources:
-        <ul>
+        <ol style="list-style-type: inherit;">
             <li>
                 <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">elimu.ai Wiki: Localization</a>
             </li>
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
             </li>
-        </ul>
+        </ol>
     </div>
 </content:aside>

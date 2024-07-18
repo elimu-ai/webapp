@@ -20,7 +20,7 @@
             <a href="https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md" target="_blank">Software Architecture 🏛</a>
         </li>
         <li>
-            <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">Localization 🇺🇸🇵🇭🇮🇳</a>
+            <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">Localization 🌐</a>
         </li>
         <li>
             <a href="https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_INSTALLATION.md" target="_blank">Software Installation 📦</a>

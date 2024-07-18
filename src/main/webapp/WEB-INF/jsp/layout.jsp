@@ -203,7 +203,7 @@
                       <div class="container">
                         <div class="row">
                           <div class="col l6 s12">
-                            <h5 class="white-text">About the elimu.ai Community</h5>
+                            <h5 class="white-text">About elimu.ai</h5>
                             <p class="grey-text text-lighten-2">The purpose of elimu.ai is to help solve the global learning crisis—At primary level, 10% of children worldwide are not in school.</p>
                             <p class="grey-text text-lighten-2">Read more about the project in the <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">Wiki</a>.</p>
                           </div>
@@ -211,14 +211,14 @@
                             <h5 class="white-text"><fmt:message key="contact.us" /> 👋🏽</h5>
                             <p class="grey-text text-lighten-2">
                                 Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;"><fmt:message key="email" /></a> 
-                                or talk with us directly in Discord:
+                                or chat with us directly in Discord:
                             </p>
                             <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://discord.gg/9rz4XYJJDE">
-                                Discord<i class="material-icons right">forum</i>
+                                Chat<i class="material-icons right">forum</i>
                             </a>
                           </div>
                           <div class="col l2 s12">
-                            <h5 class="white-text"><fmt:message key="social.media" /></h5>
+                            <h5 class="white-text">Socials</h5>
                             <ul>
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
