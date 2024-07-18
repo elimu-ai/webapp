@@ -11,9 +11,9 @@
         <h1 class="header center white-text">elimu<span style="color: #A59ADD;">.ai</span></h1>
     </div>
     <div class="row center">
-        <div class="col s2 m3 l4">&nbsp;</div>
-        <h5 class="header col s8 m6 l4 light white-text" style="border-radius: 8px;"><fmt:message key="quality.basic.education.for.every.child" /></h5>
-        <div class="col s2 m3 l4">&nbsp;</div>
+        <div class="col s1 m2 4">&nbsp;</div>
+        <h5 class="header col s10 m8 4 light white-text" style="border-radius: 8px;">Free open-source learning software for out-of-school children ✨🚀</h5>
+        <div class="col s1 m2 4">&nbsp;</div>
     </div>
     <div class="row center">
         <a href="#contributeInfoContainer" id="join-button-top" class="btn-large waves-effect waves-light deep-purple lighten-2"><fmt:message key="contribute.now" /></a>
@@ -40,11 +40,8 @@
               <h2 class="center"><i class="material-icons medium blue-grey-text">public</i></h2>
               <h4 class="center"><fmt:message key="purpose" /></h4>
 
-              <p class="light center">
-                  Worldwide, more than <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
-                  of primary school age are not achieving minimum proficiency levels in reading &amp; math.
-              </p>
-              <p class="light center"><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
+              <p class="light center">The purpose of elimu.ai is to help solve the global learning crisis—At primary level, 10% of children worldwide are not in school.</p>
+              <p class="light center">That's <a href="https://data.unicef.org/topic/education/primary-education/" target="_blank">64 million</a> children.</p>
             </div>
           </div>
           
@@ -62,8 +59,7 @@
               <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">We develop Free and Open Source Software (FOSS) for teaching children the basics of reading, writing and arithmetic.</p>
-              <p class="light center">An AI tutor guides each child through the necessary steps.</p>
+              <p class="light center">Our solution is to build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 <b>within 6 months</b>.</p>
             </div>
           </div>
         </div>
