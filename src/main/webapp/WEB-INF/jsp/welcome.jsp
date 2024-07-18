@@ -128,13 +128,10 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Free and Open Source Software (FOSS) 👩🏽‍💻</h5>
                 <p>
-                    Our goal is to quickly distribute the solution to as many children as possible, and we believe that using <i>open source</i> software will enable this.
+                    All the code is publicly available on <a href="https://github.com/elimu-ai" target="_blank">GitHub</a> as Free and Open Source Software (FOSS), released under the <a href="https://opensource.org/license/MIT" target="_blank">MIT License</a>.
                 </p>
                 <p>
-                    The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
-                </p>
-                <p>
-                    Also, anyone is welcome to take the existing code and <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">adapt</a> it to their local needs.
+                    Any individual or organization is welcome to fork the existing code and adapt it to their local needs.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -155,15 +152,16 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    <img alt="ETH" src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/info/logo.png" 
-                         style="height: 3.56rem; margin: 1.78rem 0 1.424rem 0;" />
-                    <h5>Donate cryptocurrency</h5>
+                    <h2><i class="material-icons medium">favorite</i></h2>
+                    <h5>Support</h5>
                     
                     <p>
-                        Support our work by transferring cryptocurrency to our 
-                        <a href="<spring:url value='/contributions/aragon-dao' />" target="_blank">Decentralized Autonomous Organization</a> (DAO).
+                        All software developed by elimu.ai is made available for free.
                     </p>
-                    <a href="<spring:url value='/contributions/donate' />" class="btn waves-effect waves-light deep-purple lighten-2">Donate now</a>
+                    <p>
+                        To support our open source contributors, check out the elimu.ai <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank">Drip List 💧</a>.
+                    </p>
+                    <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank" class="btn waves-effect waves-light deep-purple lighten-2">Support 💜</a>
                 </div>
                 <p>&nbsp;</p>
             </div>
