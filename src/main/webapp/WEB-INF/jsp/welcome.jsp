@@ -148,7 +148,7 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    <h2><i class="material-icons medium">favorite</i></h2>
+                    <h2><i class="material-icons medium deep-purple-text text-lighten-2">favorite</i></h2>
                     <h5>Support</h5>
                     
                     <p>
