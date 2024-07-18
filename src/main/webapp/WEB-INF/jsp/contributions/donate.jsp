@@ -50,53 +50,6 @@
         </p>
     </div>
     
-    <h4>Most Recent Donations</h4>
-    <div class="card-panel">
-        <div id="eth-donations-container">
-            <div class="progress">
-                <div class="indeterminate"></div>
-            </div>
-            <p>
-                Loading...
-            </p>
-        </div>
-        <script>
-            var url = 'https://api.covalenthq.com/v1/1/address/${applicationScope.configProperties['donationAddress']}/transactions_v2/?key=${applicationScope.configProperties['covalent.api.key']}';
-            fetch(new Request(url)).then(function(response) {
-                if (!response.ok) {
-                    throw new Error('response.status: ${response.status}');
-                }
-                response.json().then(function(responseJson) {
-                    var $table = $('<table class="donation-list"><tr><th>Donation date</th><th>Donor address</th><th>Donated amount</th></tr></table>')
-                    responseJson.data.items.forEach((item) => {
-                        if ((item.from_address != ${applicationScope.configProperties['donationAddress']}) 
-                                && (item.value > 0)) {
-                            var dateTime = new Date(item.block_signed_at);
-                            var cell1 = '<td><code>' + dateTime.toISOString().split('T')[0] + '</code></td>';
-                            var cell2 = '<td><code>' + item.from_address.substring(0, 6) + '...' + item.from_address.substring(38, 42) + '</code></td>';
-                            var cell3 = '<td><code><a href="https://etherscan.io/tx/' + item.tx_hash + '" target="_blank">' + (item.value / 1000000000000000000).toFixed(4) + ' ETH</a></code></td>';
-                            $('<tr>' + cell1 + cell2 + cell3 + '</tr>').appendTo($table);
-                        }
-                    });
-                    $('#eth-donations-container').html($table);
-                });
-            });
-        </script>
-        
-        <c:choose>
-            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                <a href="https://rinkeby.etherscan.io/address/0x883753Beab357A2c29f3766C6ad158e72A78ce51" target="_blank">
-                    View all transactions <i class="material-icons">launch</i>
-                </a>
-            </c:when>
-            <c:otherwise>
-                <a href="https://etherscan.io/address/0x883753Beab357A2c29f3766C6ad158e72A78ce51" target="_blank">
-                    View all transactions <i class="material-icons">launch</i>
-                </a>
-            </c:otherwise>
-        </c:choose>
-    </div>
-    
     <div class="divider" style="margin: 1.5em 0;"></div>
     
     <h3>Allocation of Donated Funds</h3>
