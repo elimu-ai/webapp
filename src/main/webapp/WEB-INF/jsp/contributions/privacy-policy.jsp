@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="privacy.policy" />
+    Privacy Policy
 </content:title>
 
 <content:section cssId="privacyPolicyPage">
