@@ -59,9 +59,6 @@
                     <span class="card-title"><i class="material-icons">looks_one</i> <fmt:message key="numbers" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${numberCount/500 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
                     <a href="<spring:url value='/content/number/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
@@ -74,9 +71,6 @@
                     <span class="card-title"><i class="material-icons">sms</i> <fmt:message key="words" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${wordCount/1000 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/word/list' />"><fmt:message key="view.list" /> (${wordCount})</a>
                     <a href="<spring:url value='/content/word/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
@@ -115,9 +109,6 @@
                     <span class="card-title"><i class="material-icons">audiotrack</i> <fmt:message key="audios" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${audioCount/wordCount * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="view.list" /> (${audioCount})</a>
                 </div>
             </div>
@@ -129,9 +120,6 @@
                     <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${storyBookCount/50 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
                     <a href="<spring:url value='/content/storybook/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
@@ -144,9 +132,6 @@
                     <span class="card-title"><i class="material-icons">movie</i> <fmt:message key="videos" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${videoCount/18 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="view.list" /> (${videoCount})</a>
                 </div>
             </div>
