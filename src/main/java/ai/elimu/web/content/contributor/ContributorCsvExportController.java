@@ -59,10 +59,10 @@ public class ContributorCsvExportController {
         logger.info("contributors.size(): " + contributors.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
-        .withHeader(
-            "ethereum_address",
-            "contributor_id",
-            "impact_percentage"
+            .withHeader(
+                "ethereum_address",
+                "contributor_id",
+                "impact_percentage"
             );
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
