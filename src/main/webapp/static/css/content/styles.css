@@ -38,13 +38,16 @@ nav {
     height: 1.2em;
 }
 
+.card-panel img {
+    border-radius: 8px;
+}
 #labeledAudios img,
 #labeledImages img,
 #labeledVideos img {
     width: 47%;
     margin-right: 2%;
+    border-radius: 4px;
 }
-
 #imageEditPage #image img {
     display: block;
     margin: auto;
