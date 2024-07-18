@@ -206,7 +206,6 @@
                             <h5 class="white-text">About the elimu.ai Community</h5>
                             <p class="grey-text text-lighten-2">The purpose of elimu.ai is to help solve the global learning crisis—At primary level, 10% of children worldwide are not in school.</p>
                             <p class="grey-text text-lighten-2">Read more about the project in the <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">Wiki</a>.</p>
-                            <p class="grey-text text-lighten-2">Governance token: <a class="white-text" href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a></p>
                           </div>
                           <div class="col l3 offset-l1 s12 ">
                             <h5 class="white-text"><fmt:message key="contact.us" /> 👋🏽</h5>

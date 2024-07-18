@@ -291,39 +291,4 @@
         
         <a href="<spring:url value='/contributions/most-recent' />">Most recent contributions</a>
     </div>
-    
-    <div class="divider" style="margin: 1.5em 0;"></div>
-    
-    <h5 class="center">Token Holders 💎</h5>
-    <div class="card-panel deep-purple lighten-5">
-        <p>
-            Active contributors get rewarded with 
-            <c:choose>
-                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
-                </c:when>
-                <c:otherwise>
-                    <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
-                </c:otherwise>
-            </c:choose> 
-            tokens.
-        </p>
-        <p>
-            All token holders can participate in the community's <a href="<spring:url value='/contributions/aragon-dao' />">decision making</a>.
-        </p>
-        <div id="tokenHoldersContainer">
-            <c:choose>
-                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.etherscan.io/token/tokenholderchart/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                        View all token holders <i class="material-icons">launch</i>
-                    </a>
-                </c:when>
-                <c:otherwise>
-                    <a href="https://etherscan.io/token/tokenholderchart/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                        View all token holders <i class="material-icons">launch</i>
-                    </a>
-                </c:otherwise>
-            </c:choose>
-        </div>
-    </div>
 </content:aside>
