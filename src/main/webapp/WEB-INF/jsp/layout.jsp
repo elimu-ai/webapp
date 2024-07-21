@@ -203,28 +203,26 @@
                       <div class="container">
                         <div class="row">
                           <div class="col l6 s12">
-                            <h5 class="white-text">About the elimu.ai Community</h5>
-                            <p class="grey-text text-lighten-2">The purpose of the elimu.ai Community is to provide disadvantaged children with access to quality basic education.</p>
-                            <p class="grey-text text-lighten-2">Read more about the project at <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">github.com/elimu-ai/wiki</a></p>
-                            <p class="grey-text text-lighten-2">Governance token: <a class="white-text" href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a></p>
+                            <h5 class="white-text">About elimu.ai</h5>
+                            <p class="grey-text text-lighten-2">The purpose of elimu.ai is to help solve the global learning crisis—At primary level, 10% of children worldwide are not in school.</p>
+                            <p class="grey-text text-lighten-2">Read more about the project in the <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">Wiki</a>.</p>
                           </div>
                           <div class="col l3 offset-l1 s12 ">
                             <h5 class="white-text"><fmt:message key="contact.us" /> 👋🏽</h5>
                             <p class="grey-text text-lighten-2">
                                 Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;"><fmt:message key="email" /></a> 
-                                or talk with us directly in Discord:
+                                or chat with us directly in Discord:
                             </p>
                             <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://discord.gg/9rz4XYJJDE">
-                                Discord<i class="material-icons right">forum</i>
+                                Chat<i class="material-icons right">forum</i>
                             </a>
                           </div>
                           <div class="col l2 s12">
-                            <h5 class="white-text"><fmt:message key="social.media" /></h5>
+                            <h5 class="white-text">Socials</h5>
                             <ul>
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
                                 <li><a class="white-text" href="https://www.instagram.com/elimu.ai" target="_blank">Instagram</a></li>
-                                <li><a class="white-text" href="https://www.youtube.com/channel/UCRjBGmM0huH2DhVH3jJ8B6Q" target="_blank">YouTube</a></li>
                                 <li><a class="white-text" href="https://www.linkedin.com/company/elimuai" target="_blank">LinkedIn</a></li>
                                 <li><a class="white-text" href="https://medium.com/elimu-ai" target="_blank"><fmt:message key="blog" /></a></li>
                             </ul>
@@ -239,7 +237,7 @@
                                 <a class="white-text" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="<spring:url value='/content' />">content repository</a><br />
                             </div>
                             <div class="col s12 m6">
-                                <fmt:message key="languages.supported.by.the.platform" />: 
+                                Supported languages: 
                                 <c:choose>
                                     <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
                                         <c:forEach var="supportedLanguage" items="${applicationScope.configProperties['supported.languages']}" varStatus="status">

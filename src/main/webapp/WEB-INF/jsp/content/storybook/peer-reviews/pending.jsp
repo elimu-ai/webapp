@@ -80,7 +80,7 @@
                                 #${storyBookContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min)
                             </td>
                             <td>
-                                <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                                <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
                         </tr>
                     </c:forEach>

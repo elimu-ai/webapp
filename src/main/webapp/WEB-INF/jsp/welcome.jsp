@@ -11,9 +11,9 @@
         <h1 class="header center white-text">elimu<span style="color: #A59ADD;">.ai</span></h1>
     </div>
     <div class="row center">
-        <div class="col s2 m3 l4">&nbsp;</div>
-        <h5 class="header col s8 m6 l4 light white-text" style="border-radius: 8px;"><fmt:message key="quality.basic.education.for.every.child" /></h5>
-        <div class="col s2 m3 l4">&nbsp;</div>
+        <div class="col s1 m2 4">&nbsp;</div>
+        <h5 class="header col s10 m8 4 light white-text" style="border-radius: 8px;">Free open-source learning software for out-of-school children ✨🚀</h5>
+        <div class="col s1 m2 4">&nbsp;</div>
     </div>
     <div class="row center">
         <a href="#contributeInfoContainer" id="join-button-top" class="btn-large waves-effect waves-light deep-purple lighten-2"><fmt:message key="contribute.now" /></a>
@@ -40,11 +40,8 @@
               <h2 class="center"><i class="material-icons medium blue-grey-text">public</i></h2>
               <h4 class="center"><fmt:message key="purpose" /></h4>
 
-              <p class="light center">
-                  Worldwide, more than <a href="http://uis.unesco.org/sites/default/files/documents/fs46-more-than-half-children-not-learning-en-2017.pdf" target="_blank">387 million children</a> 
-                  of primary school age are not achieving minimum proficiency levels in reading &amp; math.
-              </p>
-              <p class="light center"><fmt:message key="the.purpose.of.elimu.ai.is.to" /></p>
+              <p class="light center">The purpose of elimu.ai is to help solve the global learning crisis—At primary level, 10% of children worldwide are not in school.</p>
+              <p class="light center">That's <a href="https://data.unicef.org/topic/education/primary-education/" target="_blank">64 million</a> children.</p>
             </div>
           </div>
           
@@ -59,11 +56,10 @@
 
           <div class="col s12 m4">
             <div class="icon-block">
-              <h2 class="center"><i class="material-icons medium">stay_current_landscape</i></h2>
+              <h2 class="center amber-text darken-2"><i class="material-icons medium">auto_graph</i></h2>
               <h4 class="center"><fmt:message key="solution" /></h4>
 
-              <p class="light center">We develop Free and Open Source Software (FOSS) for teaching children the basics of reading, writing and arithmetic.</p>
-              <p class="light center">An AI tutor guides each child through the necessary steps.</p>
+              <p class="light center">Build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 <b>within 6 months</b>.</p>
             </div>
           </div>
         </div>
@@ -128,13 +124,10 @@
             <div class="col s12 offset-m2 m4">
                 <h5 class="header">Free and Open Source Software (FOSS) 👩🏽‍💻</h5>
                 <p>
-                    Our goal is to quickly distribute the solution to as many children as possible, and we believe that using <i>open source</i> software will enable this.
+                    All the code is publicly available on <a href="https://github.com/elimu-ai" target="_blank">GitHub</a> as Free and Open Source Software (FOSS), released under the <a href="https://opensource.org/license/MIT" target="_blank">MIT License</a>.
                 </p>
                 <p>
-                    The <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a> makes it easy to download and use the software.
-                </p>
-                <p>
-                    Also, anyone is welcome to take the existing code and <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">adapt</a> it to their local needs.
+                    Any individual or organization is welcome to fork the existing code and adapt it to their local needs.
                 </p>
             </div>
             <div class="col s12 m4">
@@ -155,15 +148,16 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    <img alt="ETH" src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/info/logo.png" 
-                         style="height: 3.56rem; margin: 1.78rem 0 1.424rem 0;" />
-                    <h5>Donate cryptocurrency</h5>
+                    <h2><i class="material-icons medium deep-purple-text text-lighten-2">favorite</i></h2>
+                    <h5>Support</h5>
                     
                     <p>
-                        Support our work by transferring cryptocurrency to our 
-                        <a href="<spring:url value='/contributions/aragon-dao' />" target="_blank">Decentralized Autonomous Organization</a> (DAO).
+                        All software developed by elimu.ai is made available for free.
                     </p>
-                    <a href="<spring:url value='/contributions/donate' />" class="btn waves-effect waves-light deep-purple lighten-2">Donate now</a>
+                    <p>
+                        To support our open source contributors, check out the elimu.ai <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank">Drip List 💧</a>.
+                    </p>
+                    <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank" class="btn waves-effect waves-light deep-purple lighten-2">Support 💜</a>
                 </div>
                 <p>&nbsp;</p>
             </div>

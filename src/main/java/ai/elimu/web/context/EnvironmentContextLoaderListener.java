@@ -39,10 +39,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
     private Logger logger = LogManager.getLogger();
 
     /**
-     * Note that environment-specific config.properties and
-     * jdbc.properties files only require properties with _different_ values than
-     * the default one. The file log4j.properties, however, requires <b>all</b>
-     * properties to be present!
+     * Note that environment-specific config_<env>.properties and
+     * jdbc_<env>.properties files only require properties with _different_ 
+     * values than the default one.
      */
     @Override
     public void contextInitialized(ServletContextEvent event) {
@@ -120,9 +119,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
-                
-                String covalentApiKey = (String) servletContext.getAttribute("covalent_api_key");
-                PROPERTIES.put("covalent.api.key", covalentApiKey);
                 
                 if (env == Environment.PROD) {
                     String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");

@@ -34,7 +34,7 @@ public class PeerReviewEvent extends BaseEntity {
     
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar time;
+    private Calendar timestamp;
 
     public Contributor getContributor() {
         return contributor;
@@ -60,11 +60,11 @@ public class PeerReviewEvent extends BaseEntity {
         this.comment = comment;
     }
 
-    public Calendar getTime() {
-        return time;
+    public Calendar getTimestamp() {
+        return timestamp;
     }
 
-    public void setTime(Calendar time) {
-        this.time = time;
+    public void setTimestamp(Calendar timestamp){
+        this.timestamp = timestamp;
     }
 }

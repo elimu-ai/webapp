@@ -148,7 +148,7 @@ public class DbContentImportHelper {
             letterContributionEvent.setContributor(contributor);
             letterContributionEvent.setLetter(letter);
             letterContributionEvent.setRevisionNumber(1);
-            letterContributionEvent.setTime(Calendar.getInstance());
+            letterContributionEvent.setTimestamp(Calendar.getInstance());
             letterContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             letterContributionEventDao.create(letterContributionEvent);
         }
@@ -175,7 +175,7 @@ public class DbContentImportHelper {
             letterSoundContributionEvent.setContributor(contributor);
             letterSoundContributionEvent.setLetterSound(letterSound);
             letterSoundContributionEvent.setRevisionNumber(1);
-            letterSoundContributionEvent.setTime(Calendar.getInstance());
+            letterSoundContributionEvent.setTimestamp(Calendar.getInstance());
             letterSoundContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             letterSoundContributionEventDao.create(letterSoundContributionEvent);
         }
@@ -193,7 +193,7 @@ public class DbContentImportHelper {
             wordContributionEvent.setContributor(contributor);
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(1);
-            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setTimestamp(Calendar.getInstance());
             wordContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             wordContributionEventDao.create(wordContributionEvent);
         }
@@ -211,7 +211,7 @@ public class DbContentImportHelper {
             numberContributionEvent.setContributor(contributor);
             numberContributionEvent.setNumber(number);
             numberContributionEvent.setRevisionNumber(1);
-            numberContributionEvent.setTime(Calendar.getInstance());
+            numberContributionEvent.setTimestamp(Calendar.getInstance());
             numberContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             numberContributionEventDao.create(numberContributionEvent);
         }
@@ -301,7 +301,7 @@ public class DbContentImportHelper {
             storyBookContributionEvent.setContributor(contributor);
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(1);
-            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setTimestamp(Calendar.getInstance());
             storyBookContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             storyBookContributionEventDao.create(storyBookContributionEvent);
         }

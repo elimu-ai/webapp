@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="Story-10145">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:language>hi</dc:language>
+    <dc:identifier id="Story-10145">/stories/10145-ek-sau-saintisvan-paer</dc:identifier>
+    <meta property="identifier-type" refines="#Story-10145">URL</meta>
+    <dc:title id="story_10145">एक सौ सैंतीसवाँ पैर</dc:title>
+    <meta property="title-type" refines="#story_10145">main</meta>
+    <dc:creator id="creator1">Madhuri Purandare</dc:creator>
+    <meta property="role" refines="#creator1">aut</meta>
+    <dc:date>2014-12-31T18:30:00Z</dc:date>
+    <meta property="dcterms:modified">2018-12-13T07:25:39Z</meta>
+    <meta name="cover" content="item_image_1"/>
+  </metadata>
+  <manifest>
+    <item id="item_image_1" href="image_1.jpg" media-type="image/jpeg" properties="cover-image"/>
+    <item id="item_NotoSans-Regular_gdi" href="fonts/NotoSans/Regular/NotoSans-Regular_gdi.woff" media-type="application/font-woff"/>
+    <item id="item_NotoSans-Bold_gdi" href="fonts/NotoSans/Bold/NotoSans-Bold_gdi.woff" media-type="application/font-woff"/>
+    <item id="item_NotoSans-Italic_gdi" href="fonts/NotoSans/Italic/NotoSans-Italic_gdi.woff" media-type="application/font-woff"/>
+    <item id="item_NotoSans-BoldItalic_gdi" href="fonts/NotoSans/BoldItalic/NotoSans-BoldItalic_gdi.woff" media-type="application/font-woff"/>
+    <item id="item_NotoSansDevanagari-Regular" href="fonts/NotoSansDevanagari/Regular/NotoSansDevanagari-Regular.woff" media-type="application/font-woff"/>
+    <item id="item_NotoSansDevanagari-Bold" href="fonts/NotoSansDevanagari/Bold/NotoSansDevanagari-Bold.woff" media-type="application/font-woff"/>
+    <item id="item_image_2" href="image_2.jpg" media-type="image/jpeg"/>
+    <item id="item_image_3" href="image_3.jpg" media-type="image/jpeg"/>
+    <item id="item_image_4" href="image_4.jpg" media-type="image/jpeg"/>
+    <item id="item_image_5" href="image_5.jpg" media-type="image/jpeg"/>
+    <item id="item_image_6" href="image_6.jpg" media-type="image/jpeg"/>
+    <item id="item_image_7" href="image_7.jpg" media-type="image/jpeg"/>
+    <item id="item_image_8" href="image_8.jpg" media-type="image/jpeg"/>
+    <item id="item_image_9" href="image_9.jpg" media-type="image/jpeg"/>
+    <item id="item_image_10" href="image_10.jpg" media-type="image/jpeg"/>
+    <item id="item_image_11" href="image_11.jpg" media-type="image/jpeg"/>
+    <item id="item_image_12" href="image_12.jpg" media-type="image/jpeg"/>
+    <item id="item_image_13" href="image_13.jpg" media-type="image/jpeg"/>
+    <item id="item_image_14" href="image_14.jpg" media-type="image/jpeg"/>
+    <item id="item_image_15" href="image_15.jpg" media-type="image/jpeg"/>
+    <item id="item_image_16" href="image_16.jpg" media-type="image/jpeg"/>
+    <item id="item_publisher_logo" href="publisher_logo.png" media-type="image/png"/>
+    <item id="item_level_band" href="level_band.png" media-type="image/png"/>
+    <item id="item_pb-storyweaver-logo-01" href="pb-storyweaver-logo-01.png" media-type="image/png"/>
+    <item id="item_ccby" href="ccby.png" media-type="image/png"/>
+    <item id="item_cc0" href="cc0.png" media-type="image/png"/>
+    <item id="item_publicdomain" href="publicdomain.svg" media-type="image/svg+xml"/>
+    <item id="item_1" href="1.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_2" href="2.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_3" href="3.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_4" href="4.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_5" href="5.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_6" href="6.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_7" href="7.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_8" href="8.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_9" href="9.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_10" href="10.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_11" href="11.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_12" href="12.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_13" href="13.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_14" href="14.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_15" href="15.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_16" href="16.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_17" href="17.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_18" href="18.xhtml" media-type="application/xhtml+xml"/>
+    <item id="item_19" href="19.xhtml" media-type="application/xhtml+xml"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+    <item id="nav" href="nav.html" media-type="application/xhtml+xml" properties="nav"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="item_1"/>
+    <itemref idref="item_2"/>
+    <itemref idref="item_3"/>
+    <itemref idref="item_4"/>
+    <itemref idref="item_5"/>
+    <itemref idref="item_6"/>
+    <itemref idref="item_7"/>
+    <itemref idref="item_8"/>
+    <itemref idref="item_9"/>
+    <itemref idref="item_10"/>
+    <itemref idref="item_11"/>
+    <itemref idref="item_12"/>
+    <itemref idref="item_13"/>
+    <itemref idref="item_14"/>
+    <itemref idref="item_15"/>
+    <itemref idref="item_16"/>
+    <itemref idref="item_17"/>
+    <itemref idref="item_18"/>
+    <itemref idref="item_19"/>
+  </spine>
+</package>

@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="publish.your.educational.app" /> 🎲🕹
+    Publish Your App/Game 🎲🕹
 </content:title>
 
 <content:section cssId="publishPage">
@@ -45,21 +45,6 @@
         <li>Once quality-approved, we release the app and initiate user testing and usage data collection.</li>
     </ol>
     
-    <h4>Reward 💎</h4>
-    
-    <p>
-        Contributors get rewarded with 
-        <c:choose>
-            <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
-            </c:when>
-            <c:otherwise>
-                <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
-            </c:otherwise>
-        </c:choose> 
-        tokens. All token holders can participate in the community's <a href="<spring:url value='/contributions/aragon-dao' />">decision making</a>.
-    </p>
-    
     <div class="divider"></div>
     
     <p>
@@ -81,7 +66,7 @@
         <li>
             <b>What languages should the app/game support?</b><br />
             As a minimum, the app/game should support English, and at least one of the following languages: 
-            Bengali/Tagalog/Hindi/Swahili/Urdu. 
+            Hindi/Tagalog. 
             We target primary age children (about 6 to 11 years) who are out of school and who speak one of these 
             languages as their mother tongue. And we continuously <a href="https://elimu-ai.atlassian.net/wiki/spaces/DE/pages/191136000/How+to+Add+Support+for+a+New+Language" target="_blank">add support for more languages</a>.<br />
             <br />

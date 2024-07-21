@@ -98,7 +98,7 @@ public class LetterSoundCreateController {
             
             LetterSoundContributionEvent letterSoundContributionEvent = new LetterSoundContributionEvent();
             letterSoundContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            letterSoundContributionEvent.setTime(Calendar.getInstance());
+            letterSoundContributionEvent.setTimestamp(Calendar.getInstance());
             letterSoundContributionEvent.setLetterSound(letterSound);
             letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
             letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));

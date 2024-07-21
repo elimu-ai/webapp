@@ -75,7 +75,7 @@
                 <span class="badge">
                     <fmt:message key="revision" /> #${soundContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${soundContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${soundContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${soundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/content/contributor/${soundContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -146,7 +146,7 @@
                                 </code>
                             </div>
                             <div class="col s4" style="text-align: right;">
-                                <fmt:formatDate value="${soundPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                <fmt:formatDate value="${soundPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty soundPeerReviewEvent.comment}">
                                 <div class="col s12 comment"><c:out value="${soundPeerReviewEvent.comment}" /></div>

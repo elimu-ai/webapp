@@ -29,7 +29,7 @@ public class ContributionEvent extends BaseEntity {
     
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar time;
+    private Calendar timestamp;
     
     /**
      * The time passed during the creation/editing.
@@ -45,8 +45,8 @@ public class ContributionEvent extends BaseEntity {
         return contributor;
     }
 
-    public Calendar getTime() {
-        return time;
+    public Calendar getTimestamp() {
+        return timestamp;
     }
     
     public Integer getRevisionNumber() {
@@ -65,8 +65,8 @@ public class ContributionEvent extends BaseEntity {
         this.contributor = contributor;
     }
 
-    public void setTime(Calendar time) {
-        this.time = time;
+    public void setTimestamp(Calendar timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Long getTimeSpentMs() {

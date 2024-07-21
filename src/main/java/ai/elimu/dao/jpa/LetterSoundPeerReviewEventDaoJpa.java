@@ -17,7 +17,7 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundP
             "FROM LetterSoundPeerReviewEvent event " +
             "WHERE event.letterSoundContributionEvent = :letterSoundContributionEvent " +
             "AND event.contributor = :contributor " +
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("letterSoundContributionEvent", letterSoundContributionEvent)
             .setParameter("contributor", contributor)
             .getResultList();
@@ -29,7 +29,7 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundP
             "SELECT event " + 
             "FROM LetterSoundPeerReviewEvent event " +
             "WHERE event.letterSoundContributionEvent.letterSound = :letterSound " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("letterSound", letterSound)
             .getResultList();
     }
@@ -40,7 +40,7 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundP
             "SELECT event " + 
             "FROM LetterSoundPeerReviewEvent event " +
             "WHERE event.contributor = :contributor " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -51,7 +51,7 @@ public class LetterSoundPeerReviewEventDaoJpa extends GenericDaoJpa<LetterSoundP
             "SELECT event " + 
             "FROM LetterSoundPeerReviewEvent event " +
             "WHERE event.letterSoundContributionEvent = :letterSoundContributionEvent " + 
-            "ORDER BY event.time DESC")
+            "ORDER BY event.timestamp DESC")
             .setParameter("letterSoundContributionEvent", letterSoundContributionEvent)
             .getResultList();
     }

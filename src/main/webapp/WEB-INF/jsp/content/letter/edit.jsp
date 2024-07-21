@@ -71,7 +71,7 @@
                 <span class="badge">
                     <fmt:message key="revision" /> #${letterContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${letterContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${letterContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${letterContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/content/contributor/${letterContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -142,7 +142,7 @@
                                 </code>
                             </div>
                             <div class="col s4" style="text-align: right;">
-                                <fmt:formatDate value="${letterPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                <fmt:formatDate value="${letterPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty letterPeerReviewEvent.comment}">
                                 <div class="col s12 comment"><c:out value="${letterPeerReviewEvent.comment}" /></div>
@@ -176,13 +176,13 @@
         </c:if>
         
         General resources:
-        <ul>
+        <ol style="list-style-type: inherit;">
             <li>
                 <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">elimu.ai Wiki: Localization</a>
             </li>
             <li>
                 <a href="https://docs.google.com/document/d/e/2PACX-1vSZ7fc_Rcz24PGYaaRiy3_UUj_XZGl_jWs931RiGkcI2ft4DrN9PMb28jbndzisWccg3h5W_ynyxVU5/pub#h.835fthbx76vy" target="_blank">Creating Localizable Learning Apps</a>
             </li>
-        </ul>
+        </ol>
     </div>
 </content:aside>

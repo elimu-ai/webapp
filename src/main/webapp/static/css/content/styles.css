@@ -1,6 +1,4 @@
-html[data-content-language="ben"],
-html[data-content-language="hin"],
-html[data-content-language="urd"] {
+html[data-content-language="hin"] {
     font-family: "Andika", sans-serif;
 }
 
@@ -40,13 +38,16 @@ nav {
     height: 1.2em;
 }
 
+.card-panel img {
+    border-radius: 8px;
+}
 #labeledAudios img,
 #labeledImages img,
 #labeledVideos img {
     width: 47%;
     margin-right: 2%;
+    border-radius: 4px;
 }
-
 #imageEditPage #image img {
     display: block;
     margin: auto;
@@ -74,14 +75,8 @@ nav {
     line-height: 3em;
     margin: 2rem;
 }
-html[data-content-language="ben"] #storyBookEditPage .storyBookChapter .storyBookParagraph,
-html[data-content-language="hin"] #storyBookEditPage .storyBookChapter .storyBookParagraph,
-html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBookParagraph {
+html[data-content-language="hin"] #storyBookEditPage .storyBookChapter .storyBookParagraph {
     letter-spacing: 0.4em;
-}
-html[data-content-language="urd"] #storyBookEditPage .storyBookChapter .storyBookParagraph {
-    text-align: right;
-    font-size: 3em;
 }
 
 blockquote,

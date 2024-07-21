@@ -123,7 +123,7 @@ public class WordCreateController {
             
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
             wordContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setTimestamp(Calendar.getInstance());
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
             wordContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));

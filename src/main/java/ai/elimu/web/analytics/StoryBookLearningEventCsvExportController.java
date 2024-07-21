@@ -64,7 +64,7 @@ public class StoryBookLearningEventCsvExportController {
             
             csvPrinter.printRecord(
                     storyBookLearningEvent.getId(),
-                    storyBookLearningEvent.getTime().getTimeInMillis(),
+                    storyBookLearningEvent.getTimestamp().getTimeInMillis(),
                     storyBookLearningEvent.getAndroidId(),
                     storyBookLearningEvent.getApplication().getPackageName(),
                     storyBookLearningEvent.getStoryBook().getId(),

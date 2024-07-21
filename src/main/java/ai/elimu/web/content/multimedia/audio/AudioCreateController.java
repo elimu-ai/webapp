@@ -188,7 +188,7 @@ public class AudioCreateController {
             
             AudioContributionEvent audioContributionEvent = new AudioContributionEvent();
             audioContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            audioContributionEvent.setTime(Calendar.getInstance());
+            audioContributionEvent.setTimestamp(Calendar.getInstance());
             audioContributionEvent.setAudio(audio);
             audioContributionEvent.setRevisionNumber(audio.getRevisionNumber());
             audioContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
