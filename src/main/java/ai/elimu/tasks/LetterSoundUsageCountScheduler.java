@@ -39,7 +39,7 @@ public class LetterSoundUsageCountScheduler {
         List<Word> words = wordDao.readAll();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            logger.info("word.getText(): " + word.getText());
+            logger.debug("word.getText(): " + word.getText());
             for (LetterSound letterSound : word.getLetterSounds()) {
                 letterSoundFrequencyMap.put(letterSound.getId(),
                         letterSoundFrequencyMap.getOrDefault(letterSound.getId(), 0) + word.getUsageCount());
@@ -48,10 +48,10 @@ public class LetterSoundUsageCountScheduler {
 
         // Update the values previously stored in the database
         for (LetterSound letterSound : letterSoundDao.readAll()) {
-            logger.info("letterSound.getId(): " + letterSound.getId());
-            logger.info("letterSound Letters: \"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
-            logger.info("letterSound Sounds: /" + letterSound.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
-            logger.info("letterSound.getUsageCount() (before update): " + letterSound.getUsageCount());
+            logger.debug("letterSound.getId(): " + letterSound.getId());
+            logger.debug("letterSound Letters: \"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
+            logger.debug("letterSound Sounds: /" + letterSound.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
+            logger.debug("letterSound.getUsageCount() (before update): " + letterSound.getUsageCount());
             
             int newUsageCount = 0;
             if (letterSoundFrequencyMap.containsKey(letterSound.getId())) {
