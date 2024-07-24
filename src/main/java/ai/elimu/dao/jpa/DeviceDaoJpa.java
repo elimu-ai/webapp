@@ -10,13 +10,13 @@ import ai.elimu.model.Device;
 public class DeviceDaoJpa extends GenericDaoJpa<Device> implements DeviceDao {
 
     @Override
-    public Device read(String deviceId) throws DataAccessException {
+    public Device read(String androidId) throws DataAccessException {
         try {
             return (Device) em.createQuery(
                 "SELECT d " +
                 "FROM Device d " +
-                "WHERE d.deviceId = :deviceId")
-                .setParameter("deviceId", deviceId)
+                "WHERE d.androidId = :androidId")
+                .setParameter("androidId", androidId)
                 .getSingleResult();
         } catch (NoResultException e) {
             return null;

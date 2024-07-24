@@ -1,4 +1,4 @@
-# 2.4.19
+# 2.4.21
 
 # "LetterSoundCorrespondence" → "LetterSound"
 DROP TABLE IF EXISTS `LetterSound`;
