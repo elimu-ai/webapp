@@ -4,7 +4,7 @@ import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.apache.logging.log4j.Logger;
@@ -63,9 +63,9 @@ public class LetterSoundPeerReviewEventCreateController {
         letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letterSoundCorrespondence/edit/" + letterSoundContributionEvent.getLetterSound().getId();
+            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSound().getId();
             DiscordHelper.sendChannelMessage(
-                    "Letter-sound correspondence peer-reviewed: " + contentUrl, 
+                    "Letter-sound peer-reviewed: " + contentUrl,
                     "\"" + letterSoundContributionEvent.getLetterSound().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
                     "Comment: \"" + letterSoundPeerReviewEvent.getComment() + "\"",
                     letterSoundPeerReviewEvent.isApproved(),
@@ -85,7 +85,7 @@ public class LetterSoundPeerReviewEventCreateController {
         }
         logger.info("approvedCount: " + approvedCount);
         logger.info("notApprovedCount: " + notApprovedCount);
-        LetterSoundCorrespondence letterSound = letterSoundContributionEvent.getLetterSound();
+        LetterSound letterSound = letterSoundContributionEvent.getLetterSound();
         if (approvedCount >= notApprovedCount) {
             letterSound.setPeerReviewStatus(PeerReviewStatus.APPROVED);
         } else {

@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import java.util.List;
@@ -10,7 +10,7 @@ public interface LetterSoundContributionEventDao extends GenericDao<LetterSoundC
 
     List<LetterSoundContributionEvent> readAllOrderedByTimeDesc() throws DataAccessException;
 
-    List<LetterSoundContributionEvent> readAll(LetterSoundCorrespondence letterSound) throws DataAccessException;
+    List<LetterSoundContributionEvent> readAll(LetterSound letterSound) throws DataAccessException;
 
     List<LetterSoundContributionEvent> readAll(Contributor contributor) throws DataAccessException;
 

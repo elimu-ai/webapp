@@ -33,19 +33,19 @@
                 <div class="col s12">
                     <label><fmt:message key="letter.sound.correspondences" /></label><br />
                     
-                    <div id="letterSoundCorrespondencesContainer">
-                        <c:forEach var="letterSoundCorrespondence" items="${word.letterSounds}">
-                            <input name="letterSounds" type="hidden" value="${letterSoundCorrespondence.id}" />
+                    <div id="letterSoundsContainer">
+                        <c:forEach var="letterSound" items="${word.letterSounds}">
+                            <input name="letterSounds" type="hidden" value="${letterSound.id}" />
                             <div class="chip">
-                                <a href="#" class="letterSoundCorrespondenceDeleteLink" data-letter-sound-correspondence-id="${letterSoundCorrespondence.id}">
+                                <a href="#" class="letterSoundDeleteLink" data-letter-sound-correspondence-id="${letterSound.id}">
                                     <i class="close material-icons">clear</i>
                                 </a>
-                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
-                                    " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}' />">
+                                    " <c:forEach var="letter" items="${letterSound.letters}">
                                         ${letter.text}<c:out value=" " />
                                     </c:forEach> "<br />
                                     ↓<br />
-                                    / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                    / <c:forEach var="sound" items="${letterSound.sounds}">
                                         ${sound.valueIpa}<c:out value=" " />
                                     </c:forEach> /
                                 </a>
@@ -53,42 +53,42 @@
                         </c:forEach>
                         <script>
                             $(function() {
-                                $('.letterSoundCorrespondenceDeleteLink').on("click", function() {
-                                    console.log('.letterSoundCorrespondenceDeleteLink on click');
+                                $('.letterSoundDeleteLink').on("click", function() {
+                                    console.log('.letterSoundDeleteLink on click');
                                     
-                                    var letterSoundCorrespondenceId = $(this).attr("data-letter-sound-correspondence-id");
-                                    console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
+                                    var letterSoundId = $(this).attr("data-letter-sound-correspondence-id");
+                                    console.log('letterSoundId: ' + letterSoundId);
                                     
                                     $(this).parent().remove();
                                     
-                                    var $hiddenInput = $('input[name="letterSounds"][value="' + letterSoundCorrespondenceId + '"]');
+                                    var $hiddenInput = $('input[name="letterSounds"][value="' + letterSoundId + '"]');
                                     $hiddenInput.remove();
                                 });
                             });
                         </script>
                     </div>
 
-                    <select id="letterSoundCorrespondences" class="browser-default" style="margin: 0.5em 0;">
+                    <select id="letterSounds" class="browser-default" style="margin: 0.5em 0;">
                         <option value="">-- <fmt:message key='select' /> --</option>
-                        <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
-                            <option value="${letterSoundCorrespondence.id}" data-letters="<c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}</c:forEach>">" <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">${letter.text}<c:out value=" " /></c:forEach> " → / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">${sound.valueIpa}<c:out value=" " /></c:forEach> /</option>
+                        <c:forEach var="letterSound" items="${letterSounds}">
+                            <option value="${letterSound.id}" data-letters="<c:forEach var="letter" items="${letterSound.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}</c:forEach>">" <c:forEach var="letter" items="${letterSound.letters}">${letter.text}<c:out value=" " /></c:forEach> " → / <c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}<c:out value=" " /></c:forEach> /</option>
                         </c:forEach>
                     </select>
                     <script>
                         $(function() {
-                            $('#letterSoundCorrespondences').on("change", function() {
-                                console.log('#letterSoundCorrespondences on change');
+                            $('#letterSounds').on("change", function() {
+                                console.log('#letterSounds on change');
                                 
-                                var letterSoundCorrespondenceId = $(this).val();
-                                console.log('letterSoundCorrespondenceId: ' + letterSoundCorrespondenceId);
-                                var selectedOption = $(this).find('option[value="' + letterSoundCorrespondenceId + '"]');
-                                var letterSoundCorrespondenceLetters = selectedOption.attr('data-letters');
-                                console.log('letterSoundCorrespondenceLetters: "' + letterSoundCorrespondenceLetters + '"');
-                                var letterSoundCorrespondenceSounds = selectedOption.attr('data-sounds');
-                                console.log('letterSoundCorrespondenceSounds: "' + letterSoundCorrespondenceSounds + '"');
-                                if (letterSoundCorrespondenceId != "") {
-                                    $('#letterSoundCorrespondencesContainer').append('<input name="letterSounds" type="hidden" value="' + letterSoundCorrespondenceId + '" />');
-                                    $('#letterSoundCorrespondencesContainer').append('<div class="chip">"' + letterSoundCorrespondenceLetters + '"<br />↓<br />/' + letterSoundCorrespondenceSounds + '/</div>');
+                                var letterSoundId = $(this).val();
+                                console.log('letterSoundId: ' + letterSoundId);
+                                var selectedOption = $(this).find('option[value="' + letterSoundId + '"]');
+                                var letterSoundLetters = selectedOption.attr('data-letters');
+                                console.log('letterSoundLetters: "' + letterSoundLetters + '"');
+                                var letterSoundSounds = selectedOption.attr('data-sounds');
+                                console.log('letterSoundSounds: "' + letterSoundSounds + '"');
+                                if (letterSoundId != "") {
+                                    $('#letterSoundsContainer').append('<input name="letterSounds" type="hidden" value="' + letterSoundId + '" />');
+                                    $('#letterSoundsContainer').append('<div class="chip">"' + letterSoundLetters + '"<br />↓<br />/' + letterSoundSounds + '/</div>');
                                     $(this).val("");
                                 }
                             });
