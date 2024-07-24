@@ -12,7 +12,7 @@ public class Device extends BaseEntity {
 
     @NotNull
     @Column(unique=true)
-    private String deviceId;
+    private String androidId;
     
     @NotNull
     private String deviceManufacturer;
@@ -33,12 +33,12 @@ public class Device extends BaseEntity {
     @NotNull
     private Integer osVersion;
 
-    public String getDeviceId() {
-        return deviceId;
+    public String getAndroidId() {
+        return androidId;
     }
 
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
+    public void setAndroidId(String androidId) {
+        this.androidId = androidId;
     }
     
     public String getDeviceManufacturer() {

@@ -255,7 +255,7 @@
 
     create table Device (
        id bigint not null auto_increment,
-        deviceId varchar(255),
+        androidId varchar(255),
         deviceManufacturer varchar(255),
         deviceModel varchar(255),
         deviceSerial varchar(255),
@@ -695,7 +695,7 @@
        add constraint UK_gdl53lyf9qvi56fmbrk9nfrg9 unique (version);
 
     alter table Device 
-       add constraint UK_ktkbd0xm3q2nddw1xxtdaxjy7 unique (deviceId);
+       add constraint UK_c2646199whiqrkjbht7hwyr3v unique (androidId);
 
     alter table Application 
        add constraint FKn1pft600om9qs7dn754chjk67 

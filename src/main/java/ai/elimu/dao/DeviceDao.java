@@ -6,5 +6,5 @@ import org.springframework.dao.DataAccessException;
 
 public interface DeviceDao extends GenericDao<Device> {
 	
-    Device read(String deviceId) throws DataAccessException;
+    Device read(String androidId) throws DataAccessException;
 }
