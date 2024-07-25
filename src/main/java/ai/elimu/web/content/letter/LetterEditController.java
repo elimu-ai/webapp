@@ -1,20 +1,15 @@
 package ai.elimu.web.content.letter;
 
 import java.util.Calendar;
-import javax.validation.Valid;
+import java.util.List;
 
-import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.LetterContributionEventDao;
-import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterContributionEvent;
-import ai.elimu.util.DiscordHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +17,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import ai.elimu.dao.LetterContributionEventDao;
+import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterSoundDao;
+import ai.elimu.model.content.Letter;
+import ai.elimu.model.content.LetterSound;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.contributor.LetterContributionEvent;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 
 @Controller
 @RequestMapping("/content/letter/edit")
@@ -31,6 +36,9 @@ public class LetterEditController {
     
     @Autowired
     private LetterDao letterDao;
+
+     @Autowired
+    private LetterSoundDao letterSoundDao;
     
     @Autowired
     private LetterContributionEventDao letterContributionEventDao;
@@ -46,7 +54,18 @@ public class LetterEditController {
         model.addAttribute("timeStart", System.currentTimeMillis());
         
         model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
-
+        
+        List<LetterSound> letterSounds = letterSoundDao.readAllOrderedByUsage();
+        model.addAttribute("letterSounds", letterSounds);
+        
+        int maxUsageCount = 0;
+        for (LetterSound letterSound : letterSounds) {
+            if (letterSound.getUsageCount() > maxUsageCount) {
+                maxUsageCount = letterSound.getUsageCount();
+            }
+        }
+        model.addAttribute("maxUsageCount", maxUsageCount);
+        
         return "content/letter/edit";
     }
     

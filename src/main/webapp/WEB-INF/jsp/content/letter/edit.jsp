@@ -185,4 +185,39 @@
             </li>
         </ol>
     </div>
+    <h5 class="center">
+        <fmt:message key="letter.sound.correspondences" /> (${fn:length(letterSounds)})
+    </h5>
+    <div class="card-panel">
+        <c:if test="${not empty letterSounds}">
+            <div class="scrollable-table-container">
+                <table class="bordered highlight fixed-header">
+                    <thead>
+                        <tr>
+                            <th><fmt:message key="usage.count" /></th>
+                            <th class="letters-column"><fmt:message key="letters" /></th>
+                            <th></th>
+                            <th class="sounds-column"><fmt:message key="sounds" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="letterSound" items="${letterSounds}">
+                            <tr class="letterSound">
+                                <td>${letterSound.usageCount}</td>
+                                <td class="letters-column" style="font-size: 1em;">
+                                    " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a> </c:forEach> "
+                                </td>
+                                <td >
+                                    ➞
+                                </td>
+                                <td class="sounds-column"style="font-size: 1em;">
+                                    / <c:forEach var="sound" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </c:if>
+    </div>
 </content:aside>
