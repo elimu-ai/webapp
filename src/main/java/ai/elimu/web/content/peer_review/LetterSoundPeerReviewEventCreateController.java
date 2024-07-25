@@ -86,13 +86,17 @@ public class LetterSoundPeerReviewEventCreateController {
         logger.info("approvedCount: " + approvedCount);
         logger.info("notApprovedCount: " + notApprovedCount);
         LetterSound letterSound = letterSoundContributionEvent.getLetterSound();
+        updatePeerReviewStatus(letterSound, approvedCount, notApprovedCount);
+
+        return "redirect:/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSound().getId() + "#contribution-events";
+    }
+
+    private void updatePeerReviewStatus(LetterSound letterSound, int approvedCount, int notApprovedCount) {
         if (approvedCount >= notApprovedCount) {
             letterSound.setPeerReviewStatus(PeerReviewStatus.APPROVED);
         } else {
             letterSound.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
         }
         letterSoundDao.update(letterSound);
-
-        return "redirect:/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSound().getId() + "#contribution-events";
     }
 }
