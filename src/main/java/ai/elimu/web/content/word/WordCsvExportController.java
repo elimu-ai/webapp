@@ -1,7 +1,9 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.LetterSound;
+import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Word;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -56,27 +58,19 @@ public class WordCsvExportController {
         
         for (Word word : words) {
             logger.info("word.getText(): \"" + word.getText() + "\"");
-            
+
             JSONArray letterSoundsJsonArray = new JSONArray();
             int index = 0;
             for (LetterSound letterSound : word.getLetterSounds()) {
                 JSONObject letterSoundJsonObject = new JSONObject();
                 letterSoundJsonObject.put("id", letterSound.getId());
-                String[] lettersArray = new String[letterSound.getLetters().size()];
-                for (int i = 0; i < lettersArray.length; i++) {
-                    lettersArray[i] = letterSound.getLetters().get(i).getText();
-                }
-                letterSoundJsonObject.put("letters", lettersArray);
-                String[] soundsArray = new String[letterSound.getSounds().size()];
-                for (int i = 0; i < soundsArray.length; i++) {
-                    soundsArray[i] = letterSound.getSounds().get(i).getValueIpa();
-                }
-                letterSoundJsonObject.put("sounds", soundsArray);
+                letterSoundJsonObject.put("letters", letterSound.getLetters().stream().map(Letter::getText).toArray(String[]::new));
+                letterSoundJsonObject.put("sounds", letterSound.getSounds().stream().map(Sound::getValueIpa).toArray(String[]::new));
                 letterSoundJsonObject.put("usageCount", letterSound.getUsageCount());
                 letterSoundsJsonArray.put(index, letterSoundJsonObject);
                 index++;
             }
-            
+
             Long rootWordId = null;
             String rootWordText = null;
             if (word.getRootWord() != null) {
