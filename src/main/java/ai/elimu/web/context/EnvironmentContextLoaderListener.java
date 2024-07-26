@@ -10,10 +10,7 @@ import javax.servlet.ServletContextEvent;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.Resource;
 import org.springframework.web.context.ConfigurableWebApplicationContext;
 import org.springframework.web.context.ContextLoaderListener;
@@ -140,16 +137,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 }
             }
 
-            PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
-            propertyPlaceholderConfigurer.setProperties(PROPERTIES);
-            applicationContext.addBeanFactoryPostProcessor(new BeanFactoryPostProcessor() {
-                @Override
-                public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-                    PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
-                    propertyPlaceholderConfigurer.setProperties(PROPERTIES);
-                    propertyPlaceholderConfigurer.postProcessBeanFactory(configurableListableBeanFactory);
-                }
-            });
+            PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
+            propertySourcesPlaceholderConfigurer.setProperties(PROPERTIES);
+            applicationContext.addBeanFactoryPostProcessor(propertySourcesPlaceholderConfigurer);
         }
         
         // Add all supported languages

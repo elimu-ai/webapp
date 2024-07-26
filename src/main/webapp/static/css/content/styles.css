@@ -13,7 +13,7 @@ nav {
     transition: all .5s;
 }
 
-#letterSoundCorrespondencesContainer .chip {
+#letterSoundsContainer .chip {
     text-align: center;
     font-size: 2rem;
     padding: 1rem;

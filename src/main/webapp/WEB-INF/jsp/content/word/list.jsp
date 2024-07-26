@@ -46,15 +46,15 @@
                                 <a href="<spring:url value='/content/word/edit/${word.id}' />">"<c:out value="${word.text}" />"</a>
                             </td>
                             <td style="font-size: 2em;">
-                                <div id="letterSoundCorrespondencesContainer">
-                                    <c:forEach var="letterSoundCorrespondence" items="${word.letterSounds}">
-                                        <input name="letterSoundCorrespondences" type="hidden" value="${letterSoundCorrespondence.id}" />
+                                <div id="letterSoundsContainer">
+                                    <c:forEach var="letterSound" items="${word.letterSounds}">
+                                        <input name="letterSounds" type="hidden" value="${letterSound.id}" />
                                         <div class="chip">
-                                            <a href="<spring:url value='/content/letter-sound/edit/${letterSoundCorrespondence.id}' />">
-                                                " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}">
+                                            <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}' />">
+                                                " <c:forEach var="letter" items="${letterSound.letters}">
                                                     ${letter.text}<c:out value=" " />
                                                 </c:forEach> "<br />
-                                                / <c:forEach var="sound" items="${letterSoundCorrespondence.sounds}">
+                                                / <c:forEach var="sound" items="${letterSound.sounds}">
                                                     ${sound.valueIpa}<c:out value=" " />
                                                 </c:forEach> /
                                             </a>

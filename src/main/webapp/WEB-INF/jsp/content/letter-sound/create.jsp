@@ -6,7 +6,7 @@
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="letterSound">
-            <tag:formErrors modelAttribute="letterSoundCorrespondence" />
+            <tag:formErrors modelAttribute="letterSound" />
             
             <input type="hidden" name="timeStart" value="${timeStart}" />
             
