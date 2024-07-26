@@ -48,7 +48,13 @@ See [`DB_MIGRATION.md`](./DB_MIGRATION.md)
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md)
 
-## Star History 🌠
+## Project Stats
+
+### Repo Beats 💓
+
+![](https://repobeats.axiom.co/api/embed/e2744d1a6c3eee095f871d09f2b76c536cd384c3.svg "Repobeats analytics image")
+
+### Star History 🌠
 
 [<kbd>![Star History Chart](https://api.star-history.com/svg?repos=elimu-ai/webapp&type=Date)</kbd>](https://star-history.com/#elimu-ai/webapp&Date)
 
