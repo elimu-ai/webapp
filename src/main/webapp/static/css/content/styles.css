@@ -127,24 +127,3 @@ blockquote,
     border-radius: 4px;
     padding: 4px;
 }
-.scrollable-table-container {
-    max-height: 250px;
-    overflow-y: auto;
-}
-.fixed-header thead {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 1;
-}
-.fixed-header th,
-    .fixed-header td {
-        text-align: center;
-        vertical-align: middle;
-}
-.letters-column {
-    min-width: 90px;
-}
-.sounds-column {
-    min-width: 90px;
-}
