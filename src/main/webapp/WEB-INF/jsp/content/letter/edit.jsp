@@ -160,7 +160,7 @@
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
             Hindi resources:
-            <ul>
+            <ol style="list-style-type: inherit;">
                 <li>
                     <a href="https://en.wikipedia.org/wiki/Help:IPA/Hindi_and_Urdu" target="_blank">Wikipedia: Help:IPA/Hindi and Urdu</a>
                 </li>
@@ -170,7 +170,7 @@
                 <li>
                     <a href="https://www.omniglot.com/writing/hindi.htm" target="_blank">Omniglot: Hindi (हिन्दी)</a>
                 </li>
-            </ul>
+            </ol>
             
             <div class="divider" style="margin: 1em 0;"></div>
         </c:if>
@@ -185,39 +185,48 @@
             </li>
         </ol>
     </div>
-    <h5 class="center">
-        <fmt:message key="letter.sound.correspondences" /> (${fn:length(letterSounds)})
-    </h5>
-    <div class="card-panel">
-        <c:if test="${not empty letterSounds}">
-            <div class="scrollable-table-container">
-                <table class="bordered highlight fixed-header">
-                    <thead>
-                        <tr>
-                            <th><fmt:message key="usage.count" /></th>
-                            <th class="letters-column"><fmt:message key="letters" /></th>
-                            <th></th>
-                            <th class="sounds-column"><fmt:message key="sounds" /></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="letterSound" items="${letterSounds}">
-                            <tr class="letterSound">
-                                <td>${letterSound.usageCount}</td>
-                                <td class="letters-column" style="font-size: 1em;">
-                                    " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a> </c:forEach> "
-                                </td>
-                                <td >
-                                    ➞
-                                </td>
-                                <td class="sounds-column"style="font-size: 1em;">
-                                    / <c:forEach var="sound" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </c:if>
-    </div>
+    <h5 class="center"><fmt:message key="letter.sound.correspondences" /></h5>
+
+    <table class="bordered highlight">
+        <thead>
+            <th><fmt:message key="frequency" /></th>
+            <th><fmt:message key="letters" /></th>
+            <th></th>
+            <th><fmt:message key="sounds" /></th>
+        </thead>
+        <tbody>
+            <c:forEach var="letterSound" items="${letterSounds}">
+                <%-- Check if the current letter is used by the letter-sound. --%>
+                <c:set var="isUsedByLetterSound" value="false" />
+                <c:forEach var="l" items="${letterSound.letters}">
+                    <c:if test="${letter.id == l.id}">
+                        <c:set var="isUsedByLetterSound" value="true" />
+                    </c:if>
+                </c:forEach>
+                <c:if test="${isUsedByLetterSound}">
+                    <tr>
+                        <td>
+                            ${letterSound.usageCount}
+                        </td>
+                        <td>
+                            " <c:forEach var="letter" items="${letterSound.letters}">
+                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a>
+                            </c:forEach> "
+                        </td>
+                        <td>
+                            ➞
+                        </td>
+                        <td>
+                            / <c:forEach var="s" items="${letterSound.sounds}">
+                                <a href="<spring:url value='/content/sound/edit/${s.id}' />">
+                                    <c:if test="${s.id == sound.id}">
+                                        <span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if>
+                                    </a>
+                                </c:forEach> /
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </tbody>
+    </table>
 </content:aside>

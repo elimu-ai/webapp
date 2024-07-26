@@ -1,7 +1,6 @@
 package ai.elimu.web.content.letter;
 
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,7 +21,6 @@ import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterContributionEvent;
 import ai.elimu.util.DiscordHelper;
@@ -55,16 +53,7 @@ public class LetterEditController {
         
         model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
         
-        List<LetterSound> letterSounds = letterSoundDao.readAllOrderedByUsage();
-        model.addAttribute("letterSounds", letterSounds);
-        
-        int maxUsageCount = 0;
-        for (LetterSound letterSound : letterSounds) {
-            if (letterSound.getUsageCount() > maxUsageCount) {
-                maxUsageCount = letterSound.getUsageCount();
-            }
-        }
-        model.addAttribute("maxUsageCount", maxUsageCount);
+        model.addAttribute("letterSounds", letterSoundDao.readAll());
         
         return "content/letter/edit";
     }
