@@ -160,7 +160,7 @@
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
             Hindi resources:
-            <ul>
+            <ol style="list-style-type: inherit;">
                 <li>
                     <a href="https://en.wikipedia.org/wiki/Help:IPA/Hindi_and_Urdu" target="_blank">Wikipedia: Help:IPA/Hindi and Urdu</a>
                 </li>
@@ -170,7 +170,7 @@
                 <li>
                     <a href="https://www.omniglot.com/writing/hindi.htm" target="_blank">Omniglot: Hindi (हिन्दी)</a>
                 </li>
-            </ul>
+            </ol>
             
             <div class="divider" style="margin: 1em 0;"></div>
         </c:if>
