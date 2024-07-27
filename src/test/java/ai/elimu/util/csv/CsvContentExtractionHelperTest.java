@@ -5,7 +5,7 @@ import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Word;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,13 +78,8 @@ class CsvContentExtractionHelperTest {
         when(soundDao.readByValueIpa(any())).thenReturn(new Sound());
 
 
-        //create a  dummy LetterSoundCorrespondence
-        LetterSoundCorrespondence letterSoundCorrespondence = new LetterSoundCorrespondence();
-        letterSoundCorrespondence.setId(1l);
-
-
         LetterSoundDao letterSoundDao = mock(LetterSoundDao.class);
-        when(letterSoundDao.read(any(), any())).thenReturn(new LetterSoundCorrespondence());
+        when(letterSoundDao.read(any(), any())).thenReturn(new LetterSound());
 
         // Call the method to test
         List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(lettersCsv.toPath().toFile(), letterDao, soundDao, letterSoundDao, any(WordDao.class));
