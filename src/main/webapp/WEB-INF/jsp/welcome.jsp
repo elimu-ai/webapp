@@ -193,7 +193,7 @@
                 <h2>🧑🏽‍🚀🧑🏽‍⚕️🧑🏽‍🚒🧑🏽‍🏫</h2>
             </div>
             <div class="row">
-                <img style="border-radius: 8px; opacity: 80%;" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fe8%2F7c%2F56%2Fe87c5635fa622c2da8c6dddd893113b9--open-source-children.jpg&f=1&nofb=1&ipt=fc4b53459236110c03d8cd4283707785df6e2d72d62f1ce5816d4cb5cce88b2c&ipo=images" />
+                <img style="border-radius: 8px; opacity: 80%; outline: 8px solid #d1c4e9" src="https://i.pinimg.com/736x/e8/7c/56/e87c5635fa622c2da8c6dddd893113b9--open-source-children.jpg" />
             </div>
         </div>
     </div>
