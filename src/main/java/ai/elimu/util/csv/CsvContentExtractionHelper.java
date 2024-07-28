@@ -417,13 +417,14 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                logger.debug("csvRecord: " + csvRecord);
 
                 // Convert from CSV to GSON
 
                 StoryBookGson storyBookGson = new StoryBookGson();
 
                 String title = csvRecord.get("title");
+                logger.info("title: \"" + title + "\"");
                 storyBookGson.setTitle(title);
 
                 String description = csvRecord.get("description");
