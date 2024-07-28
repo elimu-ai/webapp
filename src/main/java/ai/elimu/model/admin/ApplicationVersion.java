@@ -7,7 +7,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.contributor.Contributor;
 

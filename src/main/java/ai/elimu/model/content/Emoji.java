@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 @Entity

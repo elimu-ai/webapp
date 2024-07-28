@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.Content;
 import ai.elimu.model.content.Letter;

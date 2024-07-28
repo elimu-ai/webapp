@@ -7,7 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
 import javax.persistence.ManyToOne;

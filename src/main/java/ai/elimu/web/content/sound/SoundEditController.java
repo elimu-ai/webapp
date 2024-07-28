@@ -4,7 +4,7 @@ import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.SoundContributionEventDao;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;

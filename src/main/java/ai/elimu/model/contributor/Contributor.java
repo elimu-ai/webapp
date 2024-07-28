@@ -11,7 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.enums.Role;
 

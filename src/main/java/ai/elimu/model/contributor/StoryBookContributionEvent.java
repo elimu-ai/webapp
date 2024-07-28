@@ -5,7 +5,7 @@ import ai.elimu.model.content.StoryBookParagraph;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class StoryBookContributionEvent extends ContributionEvent {

@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.v2.enums.content.sound.ConsonantPlace;

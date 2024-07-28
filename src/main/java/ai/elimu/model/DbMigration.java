@@ -5,7 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class DbMigration extends BaseEntity {

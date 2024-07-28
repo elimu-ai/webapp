@@ -2,7 +2,7 @@ package ai.elimu.model.contributor;
 
 import ai.elimu.model.content.Number;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class NumberContributionEvent extends ContributionEvent {

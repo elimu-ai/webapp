@@ -7,7 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.v2.enums.content.LiteracySkill;

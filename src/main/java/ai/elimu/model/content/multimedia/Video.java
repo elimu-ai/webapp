@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 
 @Entity

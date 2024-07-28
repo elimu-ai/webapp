@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @MappedSuperclass
 public abstract class LearningEvent extends BaseEntity {
