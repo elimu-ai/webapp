@@ -148,41 +148,52 @@
         <div class="row">
             <div class="col s12 m3">
                 <div class="icon-block center">
-                    <h2><i class="material-icons medium deep-purple-text text-lighten-2">favorite</i></h2>
+                    <h2><i class="material-icons medium deep-purple-text text-lighten-2">bloodtype</i></h2>
                     <h5>Support</h5>
                     
                     <p>
-                        All software developed by elimu.ai is made available for free.
+                        All elimu.ai technology is made available as free and open-source software.
                     </p>
                     <p>
-                        To support our open source contributors, check out the elimu.ai <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank">Drip List 💧</a>.
+                        To support our open source contributors, check out the elimu.ai <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank">Drip List💧</a>
                     </p>
-                    <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank" class="btn waves-effect waves-light deep-purple lighten-2">Support 💜</a>
+                    <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698" target="_blank" class="btn waves-effect waves-light deep-purple lighten-2">Support</a>
                 </div>
                 <p>&nbsp;</p>
             </div>
                   
             <div class="col s12 offset-m1 m4 z-depth-2 white center" style="border-radius: 8px;">
                 <div class="icon-block" style="padding: 1em;">
-                  <h2><i class="material-icons large deep-purple-text">group</i></h2>
-                  <h4><fmt:message key="help.improve.the.software" /></h4>
+                  <h2><i class="material-icons large deep-purple-text">engineering</i><i class="material-icons large deep-purple-text">edit_note</i></h2>
+                  <h4>Help build the software</h4>
                   
                   <p>
-                      You are welcome to join us in building the code, or adding more educational content to the 
+                      You are welcome to join us in building the <a href="https://github.com/elimu-ai" target="_blank">code</a>, or adding more educational content to the 
                       platform.
                   </p>
-                  <a href="<spring:url value='/sign-on' />" id="join-button-top" class="btn-large waves-effect waves-light deep-purple"><fmt:message key="join.now" /></a>
+                  <a href="<spring:url value='/content' />" id="join-button-top" class="btn-large waves-effect waves-light deep-purple">Add content</a>
                 </div>
                 <p>&nbsp;</p>
             </div>
                   
             <div class="col s12 offset-m1 m3 center">
                 <div class="icon-block">
-                  <h2><i class="material-icons medium">local_shipping</i></h2>
+                  <h2><i class="material-icons medium grey-text" style="rotate: 180deg;">air</i><i class="material-icons medium grey-text text-darken-1">local_shipping</i></h2>
                   <h5><fmt:message key="distribute.the.software" /></h5>
                   
                   <p>Do you live near a child who does not have access to quality basic education? Help us <a href="https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md#distribution">distribute</a> the learning software.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider" style="margin-bottom: 3em;"></div>    
+        <div class="section center">
+            <div class="row">
+                <h2>🧑🏽‍🚀🧑🏽‍⚕️🧑🏽‍🚒🧑🏽‍🏫</h2>
+            </div>
+            <div class="row">
+                <img style="border-radius: 8px; opacity: 80%;" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fe8%2F7c%2F56%2Fe87c5635fa622c2da8c6dddd893113b9--open-source-children.jpg&f=1&nofb=1&ipt=fc4b53459236110c03d8cd4283707785df6e2d72d62f1ce5816d4cb5cce88b2c&ipo=images" />
             </div>
         </div>
     </div>
