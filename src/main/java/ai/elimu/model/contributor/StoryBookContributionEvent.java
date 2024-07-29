@@ -2,9 +2,9 @@ package ai.elimu.model.contributor;
 
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookParagraph;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
 @Entity

@@ -4,12 +4,12 @@ import ai.elimu.model.BaseEntity;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import java.util.Calendar;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 
 @MappedSuperclass

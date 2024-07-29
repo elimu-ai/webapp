@@ -2,7 +2,7 @@ package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
 import java.util.Calendar;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 /**

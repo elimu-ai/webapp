@@ -1,9 +1,9 @@
 package ai.elimu.model.content;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.content.multimedia.Image;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
 @Entity

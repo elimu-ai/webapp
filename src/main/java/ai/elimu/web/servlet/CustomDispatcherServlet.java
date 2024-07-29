@@ -13,7 +13,7 @@ import ai.elimu.util.db.DbMigrationHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
 import java.util.EnumSet;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.boot.Metadata;

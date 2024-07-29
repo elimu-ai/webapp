@@ -1,6 +1,6 @@
 package ai.elimu.model.contributor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 /**
