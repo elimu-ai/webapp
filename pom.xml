@@ -301,13 +301,6 @@
    <version>model-${model.version}</version>
   </dependency>
 
-  <dependency>
-   <groupId>commons-fileupload</groupId>
-   <artifactId>commons-fileupload</artifactId>
-   <!-- https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/ -->
-   <version>1.4</version>
-  </dependency>
-
   <!-- Spring Framework -->
   <dependency>
    <groupId>org.springframework</groupId>
