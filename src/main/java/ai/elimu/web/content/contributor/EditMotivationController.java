@@ -1,7 +1,7 @@
 package ai.elimu.web.content.contributor;
 
 import java.util.Calendar;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;

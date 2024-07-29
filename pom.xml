@@ -12,7 +12,7 @@
         <model.version>2.0.73</model.version> <!-- https://jitpack.io/#elimu-ai/model -->
         <hibernate.version>5.6.15.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>10.0.21</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
-        <spring.version>5.3.18</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
+        <spring.version>6.0.0</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
         <spring.security.version>5.6.2</spring.security.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/security/ -->
         <surefire-plugin.version>3.1.2</surefire-plugin.version> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/ -->
     </properties>
@@ -499,12 +499,6 @@
    <version>2.2</version>
   </dependency>
 
-  <dependency>
-   <groupId>javax.servlet</groupId>
-   <artifactId>jstl</artifactId>
-   <version>1.2</version>
-  </dependency>
-
   <!-- Audio Metadata -->
   <dependency>
    <groupId>org.bitbucket.ijabz</groupId>
@@ -534,17 +528,23 @@
    <version>1.4</version>
   </dependency>
 
+    <dependency>
+        <groupId>jakarta.servlet.jsp.jstl</groupId>
+        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        <version>2.0.0</version>
+    </dependency>
+
   <!-- provided -->
   <dependency>
-   <groupId>javax.servlet</groupId>
-   <artifactId>javax.servlet-api</artifactId>
-   <version>4.0.1</version>
+   <groupId>jakarta.servlet</groupId>
+   <artifactId>jakarta.servlet-api</artifactId>
+   <version>5.0.0</version>
    <scope>provided</scope>
   </dependency>
   <dependency>
-   <groupId>javax.servlet.jsp</groupId>
-   <artifactId>javax.servlet.jsp-api</artifactId>
-   <version>2.3.3</version>
+   <groupId>jakarta.servlet.jsp</groupId>
+   <artifactId>jakarta.servlet.jsp-api</artifactId>
+   <version>3.0.0</version>
    <scope>provided</scope>
   </dependency>
   <dependency>

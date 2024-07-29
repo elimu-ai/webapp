@@ -2,7 +2,7 @@ package ai.elimu.web;
 
 import java.io.IOException;
 import java.util.Calendar;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import ai.elimu.dao.ContributorDao;

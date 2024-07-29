@@ -3,8 +3,8 @@ package ai.elimu.web.content;
 import ai.elimu.dao.AudioContributionEventDao;
 import java.security.Principal;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
