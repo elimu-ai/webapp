@@ -82,31 +82,31 @@ public class CsvContentExtractionHelper {
                 LetterSound letterSound = new LetterSound();
 
                 JSONArray letterIdsJsonArray = new JSONArray(csvRecord.get("letter_ids"));
-                logger.info("letterIdsJsonArray: " + letterIdsJsonArray);
+                logger.debug("letterIdsJsonArray: " + letterIdsJsonArray);
 
                 JSONArray letterTextsJsonArray = new JSONArray(csvRecord.get("letter_texts"));
-                logger.info("letterTextsJsonArray: " + letterTextsJsonArray);
+                logger.debug("letterTextsJsonArray: " + letterTextsJsonArray);
                 List<Letter> letters = new ArrayList<>();
                 for (int i = 0; i < letterTextsJsonArray.length(); i++) {
                     String letterText = letterTextsJsonArray.getString(i);
-                    logger.info("Looking up Letter with text '" + letterText + "'");
+                    logger.debug("Looking up Letter with text '" + letterText + "'");
                     Letter letter = letterDao.readByText(letterText);
-                    logger.info("letter.getId(): " + letter.getId());
+                    logger.debug("letter.getId(): " + letter.getId());
                     letters.add(letter);
                 }
                 letterSound.setLetters(letters);
 
                 JSONArray soundIdsJsonArray = new JSONArray(csvRecord.get("sound_ids"));
-                logger.info("soundIdsJsonArray: " + soundIdsJsonArray);
+                logger.debug("soundIdsJsonArray: " + soundIdsJsonArray);
 
                 JSONArray soundValuesIpaJsonArray = new JSONArray(csvRecord.get("sound_values_ipa"));
-                logger.info("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
+                logger.debug("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
                 List<Sound> sounds = new ArrayList<>();
                 for (int i = 0; i < soundValuesIpaJsonArray.length(); i++) {
                     String soundValueIpa = soundValuesIpaJsonArray.getString(i);
-                    logger.info("Looking up Sound with IPA value /" + soundValueIpa + "/");
+                    logger.debug("Looking up Sound with IPA value /" + soundValueIpa + "/");
                     Sound sound = soundDao.readByValueIpa(soundValueIpa);
-                    logger.info("sound.getId(): " + sound.getId());
+                    logger.debug("sound.getId(): " + sound.getId());
                     sounds.add(sound);
                 }
                 letterSound.setSounds(sounds);
@@ -157,11 +157,11 @@ public class CsvContentExtractionHelper {
                 word.setText(text);
 
                 JSONArray letterSoundsJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
-                logger.info("letterSoundsJsonArray: " + letterSoundsJsonArray);
+                logger.debug("letterSoundsJsonArray: " + letterSoundsJsonArray);
                 List<LetterSound> letterSounds = new ArrayList<>();
                 for (int i = 0; i < letterSoundsJsonArray.length(); i++) {
                     JSONObject letterSoundJsonObject = letterSoundsJsonArray.getJSONObject(i);
-                    logger.info("letterSoundJsonObject: " + letterSoundJsonObject);
+                    logger.debug("letterSoundJsonObject: " + letterSoundJsonObject);
                     List<Letter> letters = new ArrayList<>();
                     JSONArray lettersJsonArray = letterSoundJsonObject.getJSONArray("letters");
                     for (int j = 0; j < lettersJsonArray.length(); j++) {
@@ -175,7 +175,7 @@ public class CsvContentExtractionHelper {
                         sounds.add(sound);
                     }
                     LetterSound letterSound = letterSoundDao.read(letters, sounds);
-                    logger.info("letterSound.getId(): " + letterSound.getId());
+                    logger.debug("letterSound.getId(): " + letterSound.getId());
                     letterSounds.add(letterSound);
                 }
                 word.setLetterSounds(letterSounds);
@@ -417,13 +417,14 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                logger.debug("csvRecord: " + csvRecord);
 
                 // Convert from CSV to GSON
 
                 StoryBookGson storyBookGson = new StoryBookGson();
 
                 String title = csvRecord.get("title");
+                logger.info("title: \"" + title + "\"");
                 storyBookGson.setTitle(title);
 
                 String description = csvRecord.get("description");
@@ -451,17 +452,17 @@ public class CsvContentExtractionHelper {
 
                 List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
                 JSONArray chaptersJsonArray = new JSONArray(csvRecord.get("chapters"));
-                logger.info("chaptersJsonArray: " + chaptersJsonArray);
+                logger.debug("chaptersJsonArray: " + chaptersJsonArray);
                 for (int i = 0; i < chaptersJsonArray.length(); i++) {
                     JSONObject chapterJsonObject = chaptersJsonArray.getJSONObject(i);
-                    logger.info("chapterJsonObject: " + chapterJsonObject);
+                    logger.debug("chapterJsonObject: " + chapterJsonObject);
 
                     StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
                     storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
 
                     if (chapterJsonObject.has("image")) {
                         JSONObject chapterImageJsonObject = chapterJsonObject.getJSONObject("image");
-                        logger.info("chapterImageJsonObject: " + chapterImageJsonObject);
+                        logger.debug("chapterImageJsonObject: " + chapterImageJsonObject);
                         ImageGson chapterImageGson = new ImageGson();
                         chapterImageGson.setId(chapterImageJsonObject.getLong("id"));
                         storyBookChapterGson.setImage(chapterImageGson);
@@ -469,10 +470,10 @@ public class CsvContentExtractionHelper {
 
                     List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
                     JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");
-                    logger.info("paragraphsJsonArray: " + paragraphsJsonArray);
+                    logger.debug("paragraphsJsonArray: " + paragraphsJsonArray);
                     for (int j = 0; j < paragraphsJsonArray.length(); j++) {
                         JSONObject paragraphJsonObject = paragraphsJsonArray.getJSONObject(j);
-                        logger.info("paragraphJsonObject: " + paragraphJsonObject);
+                        logger.debug("paragraphJsonObject: " + paragraphJsonObject);
 
                         StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
                         storyBookParagraphGson.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
