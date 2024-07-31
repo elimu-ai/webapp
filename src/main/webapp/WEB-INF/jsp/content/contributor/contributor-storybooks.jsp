@@ -29,7 +29,7 @@
                             <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
                         </td>
                         <td>
-                            <fmt:formatDate value="${storyBookContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             <blockquote><c:out value="${fn:substring(storyBookContributionEvent.comment, 0, 25)}" />...</blockquote>
@@ -76,7 +76,7 @@
                                             </code>
                                         </div>
                                         <div class="col s4" style="text-align: right;">
-                                            <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                            <fmt:formatDate value="${storyBookPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                                         </div>
                                         <c:if test="${not empty storyBookPeerReviewEvent.comment}">
                                             <div class="col s12 comment"><c:out value="${fn:substring(storyBookPeerReviewEvent.comment, 0, 25)}" />...</div>
@@ -150,7 +150,7 @@
                                     </code>
                                 </div>
                                 <div class="col s4" style="text-align: right;">
-                                    <fmt:formatDate value="${storyBookPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                    <fmt:formatDate value="${storyBookPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                                 </div>
                                 <c:if test="${not empty storyBookPeerReviewEvent.comment}">
                                     <div class="col s12 comment"><c:out value="${fn:substring(storyBookPeerReviewEvent.comment, 0, 25)}" />...</div>

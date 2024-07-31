@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * An event where a {@link Contributor} peer-reviews a {@link LetterSoundCorrespondence} which 
+ * An event where a {@link Contributor} peer-reviews a {@link LetterSound} which
  * was added/edited by another {@link Contributor}.
  */
 @Entity

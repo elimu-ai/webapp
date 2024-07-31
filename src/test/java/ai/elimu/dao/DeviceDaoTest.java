@@ -22,14 +22,14 @@ public class DeviceDaoTest {
         deviceDao.create(getDevice("22"));
         deviceDao.create(getDevice("44"));
 
-        assertEquals("22", deviceDao.read("22").getDeviceId());
-        assertEquals("44", deviceDao.read("44").getDeviceId());
+        assertEquals("22", deviceDao.read("22").getAndroidId());
+        assertEquals("44", deviceDao.read("44").getAndroidId());
         assertNull(deviceDao.read("33"));
     }
 
-    private Device getDevice(String deviceId) {
+    private Device getDevice(String androidId) {
         Device device = new Device();
-        device.setDeviceId(deviceId);
+        device.setAndroidId(androidId);
         return device;
     }
 }

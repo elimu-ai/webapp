@@ -118,9 +118,9 @@ public class LetterLearningEventsRestController {
                 LetterLearningEvent letterLearningEvent = new LetterLearningEvent();
                 
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
-                Calendar time = Calendar.getInstance();
-                time.setTimeInMillis(timeInMillis);
-                letterLearningEvent.setTime(time);
+                Calendar timestamp = Calendar.getInstance();
+                timestamp.setTimeInMillis(timeInMillis);
+                letterLearningEvent.setTimestamp(timestamp);
                 
                 String androidId = csvRecord.get("android_id");
                 letterLearningEvent.setAndroidId(androidId);
@@ -164,7 +164,7 @@ public class LetterLearningEventsRestController {
                 letterLearningEvent.setLearningEventType(learningEventType);
                 
                 // Check if the event has already been stored in the database
-                LetterLearningEvent existingLetterLearningEvent = letterLearningEventDao.read(time, androidId, application, letter);
+                LetterLearningEvent existingLetterLearningEvent = letterLearningEventDao.read(timestamp, androidId, application, letter);
                 logger.info("existingLetterLearningEvent: " + existingLetterLearningEvent);
                 if (existingLetterLearningEvent == null) {
                     // Store the event in the database

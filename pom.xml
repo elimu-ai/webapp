@@ -4,12 +4,12 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.4.14-SNAPSHOT</version>
+    <version>2.4.24-SNAPSHOT</version>
 
     <properties>
     	<java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <model.version>2.0.71</model.version> <!-- https://jitpack.io/#elimu-ai/model -->
+        <model.version>2.0.73</model.version> <!-- https://jitpack.io/#elimu-ai/model -->
         <hibernate.version>5.6.15.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
         <jetty.version>10.0.21</jetty.version> <!-- https://repo.maven.apache.org/maven2/org/eclipse/jetty/ -->
         <spring.version>5.3.18</spring.version> <!-- https://repo.maven.apache.org/maven2/org/springframework/ -->
@@ -90,7 +90,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.8</version>
+                <version>0.8.12</version>
                 <executions>
                     <execution>
                         <goals>
@@ -408,21 +408,17 @@
   </dependency>
 
   <dependency>
-   <groupId>com.sun.xml.stream</groupId>
-   <artifactId>sjsxp</artifactId>
-   <version>1.0.2</version>
-  </dependency>
-
-  <dependency>
    <groupId>javax.validation</groupId>
    <artifactId>validation-api</artifactId>
    <version>2.0.1.Final</version>
   </dependency>
   <dependency>
-   <groupId>org.hibernate</groupId>
+   <groupId>org.hibernate.validator</groupId>
    <artifactId>hibernate-validator</artifactId>
    <version>6.1.7.Final</version>
   </dependency>
+
+
 
   <dependency>
    <groupId>commons-lang</groupId>
@@ -432,7 +428,7 @@
   <dependency>
    <groupId>commons-io</groupId>
    <artifactId>commons-io</artifactId>
-   <version>2.11.0</version>
+   <version>2.16.1</version>
   </dependency>
   <dependency>
    <groupId>commons-validator</groupId>

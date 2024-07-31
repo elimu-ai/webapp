@@ -61,9 +61,9 @@ public class CsvAnalyticsExtractionHelper {
                 StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                 
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
-                Calendar time = Calendar.getInstance();
-                time.setTimeInMillis(timeInMillis);
-                storyBookLearningEvent.setTime(time);
+                Calendar timestamp = Calendar.getInstance();
+                timestamp.setTimeInMillis(timeInMillis);
+                storyBookLearningEvent.setTimestamp(timestamp);
                 
                 String androidId = csvRecord.get("android_id");
                 storyBookLearningEvent.setAndroidId(androidId);
@@ -72,23 +72,23 @@ public class CsvAnalyticsExtractionHelper {
                 storyBookLearningEvent.setPackageName(packageName);
                 
                 Application application = applicationDao.readByPackageName(packageName);
-                logger.info("application: " + application);
+                logger.debug("application: " + application);
                 storyBookLearningEvent.setApplication(application);
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
-                logger.info("storyBookId: " + storyBookId);
+                logger.debug("storyBookId: " + storyBookId);
                 storyBookLearningEvent.setStoryBookId(storyBookId);
                 
                 String storyBookTitle = csvRecord.get("storybook_title");
-                logger.info("storyBookTitle: \"" + storyBookTitle + "\"");
+                logger.debug("storyBookTitle: \"" + storyBookTitle + "\"");
                 storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
                 
                 StoryBook storyBook = storyBookDao.readByTitle(storyBookTitle);
-                logger.info("storyBook: " + storyBook);
+                logger.debug("storyBook: " + storyBook);
                 storyBookLearningEvent.setStoryBook(storyBook);
                 
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                logger.info("learningEventType: " + learningEventType);
+                logger.debug("learningEventType: " + learningEventType);
                 storyBookLearningEvent.setLearningEventType(learningEventType);
                 
                 storyBookLearningEvents.add(storyBookLearningEvent);

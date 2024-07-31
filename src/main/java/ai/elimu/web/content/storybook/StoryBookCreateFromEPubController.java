@@ -329,7 +329,7 @@ public class StoryBookCreateFromEPubController {
             
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
             storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setTimestamp(Calendar.getInstance());
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
             storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
@@ -499,7 +499,7 @@ public class StoryBookCreateFromEPubController {
         
         ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
         imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-        imageContributionEvent.setTime(Calendar.getInstance());
+        imageContributionEvent.setTimestamp(Calendar.getInstance());
         imageContributionEvent.setImage(image);
         imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
         imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");

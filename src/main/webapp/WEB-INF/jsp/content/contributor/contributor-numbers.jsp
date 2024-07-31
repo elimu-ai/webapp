@@ -31,7 +31,7 @@
                             <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
                         </td>
                         <td>
-                            <fmt:formatDate value="${numberContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             <blockquote><c:out value="${fn:substring(numberContributionEvent.comment, 0, 25)}" />...</blockquote>
@@ -78,7 +78,7 @@
                                             </code>
                                         </div>
                                         <div class="col s4" style="text-align: right;">
-                                            <fmt:formatDate value="${numberPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                            <fmt:formatDate value="${numberPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                                         </div>
                                         <c:if test="${not empty numberPeerReviewEvent.comment}">
                                             <div class="col s12 comment"><c:out value="${fn:substring(numberPeerReviewEvent.comment, 0, 25)}" />...</div>
@@ -152,7 +152,7 @@
                                     </code>
                                 </div>
                                 <div class="col s4" style="text-align: right;">
-                                    <fmt:formatDate value="${numberPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                    <fmt:formatDate value="${numberPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                                 </div>
                                 <c:if test="${not empty numberPeerReviewEvent.comment}">
                                     <div class="col s12 comment"><c:out value="${fn:substring(numberPeerReviewEvent.comment, 0, 25)}" />...</div>

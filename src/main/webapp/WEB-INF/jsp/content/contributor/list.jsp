@@ -3,6 +3,21 @@
 </content:title>
 
 <content:section cssId="contributorListPage">
+    <div class="section row">
+        <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/content/contributor/list/contributors.csv' />">
+            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportToCsvButton').click(function() {
+                    console.info('#exportToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
+    </div>
+    
     <div class="row">
         <c:forEach var="contributor" items="${contributors}">
             <div class="col s6 m4 l3">

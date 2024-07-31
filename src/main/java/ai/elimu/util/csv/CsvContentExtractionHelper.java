@@ -6,7 +6,7 @@ import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.Word;
@@ -56,10 +56,10 @@ public class CsvContentExtractionHelper {
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCsvExportController#handleRequest}.
      */
-    public static List<LetterSoundCorrespondence> getLetterSoundCorrespondencesFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
-        logger.info("getLetterSoundCorrespondencesFromCsvBackup");
+    public static List<LetterSound> getLetterSoundsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
+        logger.info("getLetterSoundsFromCsvBackup");
 
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
+        List<LetterSound> letterSounds = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
         logger.info("csvFilePath: " + csvFilePath);
@@ -79,48 +79,48 @@ public class CsvContentExtractionHelper {
             for (CSVRecord csvRecord : csvParser) {
                 logger.info("csvRecord: " + csvRecord);
 
-                LetterSoundCorrespondence letterSoundCorrespondence = new LetterSoundCorrespondence();
+                LetterSound letterSound = new LetterSound();
 
                 JSONArray letterIdsJsonArray = new JSONArray(csvRecord.get("letter_ids"));
-                logger.info("letterIdsJsonArray: " + letterIdsJsonArray);
+                logger.debug("letterIdsJsonArray: " + letterIdsJsonArray);
 
                 JSONArray letterTextsJsonArray = new JSONArray(csvRecord.get("letter_texts"));
-                logger.info("letterTextsJsonArray: " + letterTextsJsonArray);
+                logger.debug("letterTextsJsonArray: " + letterTextsJsonArray);
                 List<Letter> letters = new ArrayList<>();
                 for (int i = 0; i < letterTextsJsonArray.length(); i++) {
                     String letterText = letterTextsJsonArray.getString(i);
-                    logger.info("Looking up Letter with text '" + letterText + "'");
+                    logger.debug("Looking up Letter with text '" + letterText + "'");
                     Letter letter = letterDao.readByText(letterText);
-                    logger.info("letter.getId(): " + letter.getId());
+                    logger.debug("letter.getId(): " + letter.getId());
                     letters.add(letter);
                 }
-                letterSoundCorrespondence.setLetters(letters);
+                letterSound.setLetters(letters);
 
                 JSONArray soundIdsJsonArray = new JSONArray(csvRecord.get("sound_ids"));
-                logger.info("soundIdsJsonArray: " + soundIdsJsonArray);
+                logger.debug("soundIdsJsonArray: " + soundIdsJsonArray);
 
                 JSONArray soundValuesIpaJsonArray = new JSONArray(csvRecord.get("sound_values_ipa"));
-                logger.info("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
+                logger.debug("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
                 List<Sound> sounds = new ArrayList<>();
                 for (int i = 0; i < soundValuesIpaJsonArray.length(); i++) {
                     String soundValueIpa = soundValuesIpaJsonArray.getString(i);
-                    logger.info("Looking up Sound with IPA value /" + soundValueIpa + "/");
+                    logger.debug("Looking up Sound with IPA value /" + soundValueIpa + "/");
                     Sound sound = soundDao.readByValueIpa(soundValueIpa);
-                    logger.info("sound.getId(): " + sound.getId());
+                    logger.debug("sound.getId(): " + sound.getId());
                     sounds.add(sound);
                 }
-                letterSoundCorrespondence.setSounds(sounds);
+                letterSound.setSounds(sounds);
 
                 Integer usageCount = Integer.valueOf(csvRecord.get("usage_count"));
-                letterSoundCorrespondence.setUsageCount(usageCount);
+                letterSound.setUsageCount(usageCount);
 
-                letterSoundCorrespondences.add(letterSoundCorrespondence);
+                letterSounds.add(letterSound);
             }
         } catch (IOException ex) {
             logger.error(ex);
         }
 
-        return letterSoundCorrespondences;
+        return letterSounds;
     }
 
     /**
@@ -156,27 +156,27 @@ public class CsvContentExtractionHelper {
                 String text = csvRecord.get("text");
                 word.setText(text);
 
-                JSONArray letterSoundCorrespondencesJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
-                logger.info("letterSoundCorrespondencesJsonArray: " + letterSoundCorrespondencesJsonArray);
-                List<LetterSoundCorrespondence> letterSounds = new ArrayList<>();
-                for (int i = 0; i < letterSoundCorrespondencesJsonArray.length(); i++) {
-                    JSONObject letterSoundCorrespondenceJsonObject = letterSoundCorrespondencesJsonArray.getJSONObject(i);
-                    logger.info("letterSoundCorrespondenceJsonObject: " + letterSoundCorrespondenceJsonObject);
+                JSONArray letterSoundsJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
+                logger.debug("letterSoundsJsonArray: " + letterSoundsJsonArray);
+                List<LetterSound> letterSounds = new ArrayList<>();
+                for (int i = 0; i < letterSoundsJsonArray.length(); i++) {
+                    JSONObject letterSoundJsonObject = letterSoundsJsonArray.getJSONObject(i);
+                    logger.debug("letterSoundJsonObject: " + letterSoundJsonObject);
                     List<Letter> letters = new ArrayList<>();
-                    JSONArray lettersJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("letters");
+                    JSONArray lettersJsonArray = letterSoundJsonObject.getJSONArray("letters");
                     for (int j = 0; j < lettersJsonArray.length(); j++) {
                         Letter letter = letterDao.readByText(lettersJsonArray.getString(j));
                         letters.add(letter);
                     }
                     List<Sound> sounds = new ArrayList<>();
-                    JSONArray soundsJsonArray = letterSoundCorrespondenceJsonObject.getJSONArray("sounds");
+                    JSONArray soundsJsonArray = letterSoundJsonObject.getJSONArray("sounds");
                     for (int j = 0; j < soundsJsonArray.length(); j++) {
                         Sound sound = soundDao.readByValueIpa(soundsJsonArray.getString(j));
                         sounds.add(sound);
                     }
-                    LetterSoundCorrespondence letterSoundCorrespondence = letterSoundDao.read(letters, sounds);
-                    logger.info("letterSoundCorrespondence.getId(): " + letterSoundCorrespondence.getId());
-                    letterSounds.add(letterSoundCorrespondence);
+                    LetterSound letterSound = letterSoundDao.read(letters, sounds);
+                    logger.debug("letterSound.getId(): " + letterSound.getId());
+                    letterSounds.add(letterSound);
                 }
                 word.setLetterSounds(letterSounds);
 
@@ -417,13 +417,14 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                logger.debug("csvRecord: " + csvRecord);
 
                 // Convert from CSV to GSON
 
                 StoryBookGson storyBookGson = new StoryBookGson();
 
                 String title = csvRecord.get("title");
+                logger.info("title: \"" + title + "\"");
                 storyBookGson.setTitle(title);
 
                 String description = csvRecord.get("description");
@@ -451,17 +452,17 @@ public class CsvContentExtractionHelper {
 
                 List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
                 JSONArray chaptersJsonArray = new JSONArray(csvRecord.get("chapters"));
-                logger.info("chaptersJsonArray: " + chaptersJsonArray);
+                logger.debug("chaptersJsonArray: " + chaptersJsonArray);
                 for (int i = 0; i < chaptersJsonArray.length(); i++) {
                     JSONObject chapterJsonObject = chaptersJsonArray.getJSONObject(i);
-                    logger.info("chapterJsonObject: " + chapterJsonObject);
+                    logger.debug("chapterJsonObject: " + chapterJsonObject);
 
                     StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
                     storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
 
                     if (chapterJsonObject.has("image")) {
                         JSONObject chapterImageJsonObject = chapterJsonObject.getJSONObject("image");
-                        logger.info("chapterImageJsonObject: " + chapterImageJsonObject);
+                        logger.debug("chapterImageJsonObject: " + chapterImageJsonObject);
                         ImageGson chapterImageGson = new ImageGson();
                         chapterImageGson.setId(chapterImageJsonObject.getLong("id"));
                         storyBookChapterGson.setImage(chapterImageGson);
@@ -469,10 +470,10 @@ public class CsvContentExtractionHelper {
 
                     List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
                     JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");
-                    logger.info("paragraphsJsonArray: " + paragraphsJsonArray);
+                    logger.debug("paragraphsJsonArray: " + paragraphsJsonArray);
                     for (int j = 0; j < paragraphsJsonArray.length(); j++) {
                         JSONObject paragraphJsonObject = paragraphsJsonArray.getJSONObject(j);
-                        logger.info("paragraphJsonObject: " + paragraphJsonObject);
+                        logger.debug("paragraphJsonObject: " + paragraphJsonObject);
 
                         StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
                         storyBookParagraphGson.setSortOrder(paragraphJsonObject.getInt("sortOrder"));

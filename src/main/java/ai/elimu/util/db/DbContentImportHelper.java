@@ -21,7 +21,7 @@ import ai.elimu.dao.WordDao;
 import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.content.StoryBook;
@@ -148,7 +148,7 @@ public class DbContentImportHelper {
             letterContributionEvent.setContributor(contributor);
             letterContributionEvent.setLetter(letter);
             letterContributionEvent.setRevisionNumber(1);
-            letterContributionEvent.setTime(Calendar.getInstance());
+            letterContributionEvent.setTimestamp(Calendar.getInstance());
             letterContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             letterContributionEventDao.create(letterContributionEvent);
         }
@@ -164,18 +164,18 @@ public class DbContentImportHelper {
 
         // Extract and import letter-sound correspondences in src/main/resources/
         File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
-        List<LetterSoundCorrespondence> letterSounds = CsvContentExtractionHelper.getLetterSoundCorrespondencesFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
+        List<LetterSound> letterSounds = CsvContentExtractionHelper.getLetterSoundsFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
         logger.info("letterSounds.size(): " + letterSounds.size());
         letterSoundDao = (LetterSoundDao) webApplicationContext.getBean("letterSoundDao");
         letterSoundContributionEventDao = (LetterSoundContributionEventDao) webApplicationContext.getBean("letterSoundContributionEventDao");
-        for (LetterSoundCorrespondence letterSound : letterSounds) {
+        for (LetterSound letterSound : letterSounds) {
             letterSoundDao.create(letterSound);
 
             LetterSoundContributionEvent letterSoundContributionEvent = new LetterSoundContributionEvent();
             letterSoundContributionEvent.setContributor(contributor);
             letterSoundContributionEvent.setLetterSound(letterSound);
             letterSoundContributionEvent.setRevisionNumber(1);
-            letterSoundContributionEvent.setTime(Calendar.getInstance());
+            letterSoundContributionEvent.setTimestamp(Calendar.getInstance());
             letterSoundContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             letterSoundContributionEventDao.create(letterSoundContributionEvent);
         }
@@ -193,7 +193,7 @@ public class DbContentImportHelper {
             wordContributionEvent.setContributor(contributor);
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(1);
-            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setTimestamp(Calendar.getInstance());
             wordContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             wordContributionEventDao.create(wordContributionEvent);
         }
@@ -211,7 +211,7 @@ public class DbContentImportHelper {
             numberContributionEvent.setContributor(contributor);
             numberContributionEvent.setNumber(number);
             numberContributionEvent.setRevisionNumber(1);
-            numberContributionEvent.setTime(Calendar.getInstance());
+            numberContributionEvent.setTimestamp(Calendar.getInstance());
             numberContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             numberContributionEventDao.create(numberContributionEvent);
         }
@@ -280,15 +280,15 @@ public class DbContentImportHelper {
                     storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
 
                     List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-                    logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                    logger.debug("wordsInOriginalText.size(): " + wordsInOriginalText.size());
                     List<Word> paragraphWords = new ArrayList<>();
-                    logger.info("paragraphWords.size(): " + paragraphWords.size());
+                    logger.debug("paragraphWords.size(): " + paragraphWords.size());
                     for (String wordInOriginalText : wordsInOriginalText) {
-                        logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                        logger.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
                         wordInOriginalText = wordInOriginalText.toLowerCase();
-                        logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                        logger.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
                         Word word = wordDao.readByText(wordInOriginalText);
-                        logger.info("word: " + word);
+                        logger.debug("word: " + word);
                         paragraphWords.add(word);
                     }
                     storyBookParagraph.setWords(paragraphWords);
@@ -301,7 +301,7 @@ public class DbContentImportHelper {
             storyBookContributionEvent.setContributor(contributor);
             storyBookContributionEvent.setStoryBook(storyBook);
             storyBookContributionEvent.setRevisionNumber(1);
-            storyBookContributionEvent.setTime(Calendar.getInstance());
+            storyBookContributionEvent.setTimestamp(Calendar.getInstance());
             storyBookContributionEvent.setTimeSpentMs((long)(Math.random() * 10) * 60000L);
             storyBookContributionEventDao.create(storyBookContributionEvent);
         }

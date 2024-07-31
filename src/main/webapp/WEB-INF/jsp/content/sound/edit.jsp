@@ -75,7 +75,7 @@
                 <span class="badge">
                     <fmt:message key="revision" /> #${soundContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${soundContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${soundContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${soundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/content/contributor/${soundContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -146,7 +146,7 @@
                                 </code>
                             </div>
                             <div class="col s4" style="text-align: right;">
-                                <fmt:formatDate value="${soundPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                <fmt:formatDate value="${soundPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty soundPeerReviewEvent.comment}">
                                 <div class="col s12 comment"><c:out value="${soundPeerReviewEvent.comment}" /></div>
@@ -214,27 +214,27 @@
             <th><fmt:message key="sounds" /></th>
         </thead>
         <tbody>
-            <c:forEach var="letterSoundCorrespondence" items="${letterSoundCorrespondences}">
-                <%-- Check if the current sound is used by the letter-sound correspondence. --%>
-                <c:set var="isUsedByLetterSoundCorrespondence" value="false" />
-                <c:forEach var="s" items="${letterSoundCorrespondence.sounds}">
+            <c:forEach var="letterSound" items="${letterSounds}">
+                <%-- Check if the current sound is used by the letter-sound. --%>
+                <c:set var="isUsedByLetterSound" value="false" />
+                <c:forEach var="s" items="${letterSound.sounds}">
                     <c:if test="${sound.id == s.id}">
-                        <c:set var="isUsedByLetterSoundCorrespondence" value="true" />
+                        <c:set var="isUsedByLetterSound" value="true" />
                     </c:if>
                 </c:forEach>
-                <c:if test="${isUsedByLetterSoundCorrespondence}">
+                <c:if test="${isUsedByLetterSound}">
                     <tr>
                         <td>
-                            ${letterSoundCorrespondence.usageCount}
+                            ${letterSound.usageCount}
                         </td>
                         <td>
-                            " <c:forEach var="letter" items="${letterSoundCorrespondence.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
+                            " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
                         </td>
                         <td>
                             ➞
                         </td>
                         <td>
-                            / <c:forEach var="s" items="${letterSoundCorrespondence.sounds}"><a href="<spring:url value='/content/sound/edit/${s.id}' />"><c:if test="${s.id == sound.id}"><span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if></a> </c:forEach> /
+                            / <c:forEach var="s" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${s.id}' />"><c:if test="${s.id == sound.id}"><span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if></a> </c:forEach> /
                         </td>
                     </tr>
                 </c:if>

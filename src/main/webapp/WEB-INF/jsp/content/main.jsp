@@ -36,7 +36,7 @@
                     <span class="card-title"><i class="material-icons">emoji_symbols</i> <fmt:message key="letter.sounds" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/letter-sound/list' />"><fmt:message key="view.list" /> (${letterSoundCorrespondenceCount})</a>
+                    <a href="<spring:url value='/content/letter-sound/list' />"><fmt:message key="view.list" /> (${letterSoundCount})</a>
                     <a href="<spring:url value='/content/letter-sound/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
             </div>
@@ -59,9 +59,6 @@
                     <span class="card-title"><i class="material-icons">looks_one</i> <fmt:message key="numbers" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${numberCount/500 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
                     <a href="<spring:url value='/content/number/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
@@ -74,9 +71,6 @@
                     <span class="card-title"><i class="material-icons">sms</i> <fmt:message key="words" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${wordCount/1000 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/word/list' />"><fmt:message key="view.list" /> (${wordCount})</a>
                     <a href="<spring:url value='/content/word/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
@@ -115,9 +109,6 @@
                     <span class="card-title"><i class="material-icons">audiotrack</i> <fmt:message key="audios" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${audioCount/wordCount * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="view.list" /> (${audioCount})</a>
                 </div>
             </div>
@@ -129,9 +120,6 @@
                     <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${storyBookCount/50 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
                     <a href="<spring:url value='/content/storybook/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
@@ -144,9 +132,6 @@
                     <span class="card-title"><i class="material-icons">movie</i> <fmt:message key="videos" /></span>
                 </div>
                 <div class="card-action">
-                    <div class="progress">
-                        <div class="determinate" style="width: ${videoCount/18 * 100}%"></div>
-                    </div>
                     <a href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="view.list" /> (${videoCount})</a>
                 </div>
             </div>
@@ -290,40 +275,5 @@
         <div class="divider" style="margin: 1em 0;"></div>
         
         <a href="<spring:url value='/contributions/most-recent' />">Most recent contributions</a>
-    </div>
-    
-    <div class="divider" style="margin: 1.5em 0;"></div>
-    
-    <h5 class="center">Token Holders 💎</h5>
-    <div class="card-panel deep-purple lighten-5">
-        <p>
-            Active contributors get rewarded with 
-            <c:choose>
-                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
-                </c:when>
-                <c:otherwise>
-                    <a href="https://etherscan.io/token/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank"><code>$ELIMU</code></a>
-                </c:otherwise>
-            </c:choose> 
-            tokens.
-        </p>
-        <p>
-            All token holders can participate in the community's <a href="<spring:url value='/contributions/aragon-dao' />">decision making</a>.
-        </p>
-        <div id="tokenHoldersContainer">
-            <c:choose>
-                <c:when test="${applicationScope.configProperties['env'] != 'PROD'}">
-                    <a href="https://rinkeby.etherscan.io/token/tokenholderchart/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                        View all token holders <i class="material-icons">launch</i>
-                    </a>
-                </c:when>
-                <c:otherwise>
-                    <a href="https://etherscan.io/token/tokenholderchart/0xe29797910d413281d2821d5d9a989262c8121cc2" target="_blank">
-                        View all token holders <i class="material-icons">launch</i>
-                    </a>
-                </c:otherwise>
-            </c:choose>
-        </div>
     </div>
 </content:aside>

@@ -1,7 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.LetterSoundContributionEventDao;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import java.util.List;
 
@@ -15,17 +15,17 @@ public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoun
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundContributionEvent e " +
-            "ORDER BY e.time DESC")
+            "ORDER BY e.timestamp DESC")
             .getResultList();
     }
 
     @Override
-    public List<LetterSoundContributionEvent> readAll(LetterSoundCorrespondence letterSound) throws DataAccessException {
+    public List<LetterSoundContributionEvent> readAll(LetterSound letterSound) throws DataAccessException {
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundContributionEvent e " +
             "WHERE e.letterSound = :letterSound " + 
-            "ORDER BY e.time DESC")
+            "ORDER BY e.timestamp DESC")
             .setParameter("letterSound", letterSound)
             .getResultList();
     }
@@ -36,7 +36,7 @@ public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoun
             "SELECT e " + 
             "FROM LetterSoundContributionEvent e " +
             "WHERE e.contributor = :contributor " + 
-            "ORDER BY e.time DESC")
+            "ORDER BY e.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -46,8 +46,8 @@ public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoun
         return em.createQuery(
             "SELECT e " + 
             "FROM LetterSoundContributionEvent e " +
-            "WHERE e.time IN (SELECT MAX(time) FROM LetterSoundContributionEvent GROUP BY letterSound_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY e.time ASC")
+            "WHERE e.timestamp IN (SELECT MAX(timestamp) FROM LetterSoundContributionEvent GROUP BY letterSound_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "ORDER BY e.timestamp ASC")
             .getResultList();
     }
 

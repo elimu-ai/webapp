@@ -13,7 +13,7 @@ import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
@@ -74,13 +74,13 @@ public class WordCreateController {
         if (StringUtils.isNotBlank(autoFillText)) {
             word.setText(autoFillText);
             
-            autoSelectLetterSoundCorrespondences(word);
+            autoSelectLetterSounds(word);
             // TODO: display information message to the Contributor that the letter-sound correspondences were auto-selected, and that they should be verified
         }
         
         model.addAttribute("word", word);
         model.addAttribute("timeStart", System.currentTimeMillis());
-        model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+        model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
         model.addAttribute("rootWords", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
         model.addAttribute("wordTypes", WordType.values());
@@ -110,7 +110,7 @@ public class WordCreateController {
         if (result.hasErrors()) {
             model.addAttribute("word", word);
             model.addAttribute("timeStart", request.getParameter("timeStart"));
-            model.addAttribute("letterSoundCorrespondences", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
+            model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
             model.addAttribute("rootWords", wordDao.readAllOrdered());
             model.addAttribute("emojisByWordId", getEmojisByWordId());
             model.addAttribute("wordTypes", WordType.values());
@@ -123,7 +123,7 @@ public class WordCreateController {
             
             WordContributionEvent wordContributionEvent = new WordContributionEvent();
             wordContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            wordContributionEvent.setTime(Calendar.getInstance());
+            wordContributionEvent.setTimestamp(Calendar.getInstance());
             wordContributionEvent.setWord(word);
             wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
             wordContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
@@ -185,29 +185,29 @@ public class WordCreateController {
         return emojisByWordId;
     }
     
-    private void autoSelectLetterSoundCorrespondences(Word word) {
-        logger.info("autoSelectLetterSoundCorrespondences");
+    private void autoSelectLetterSounds(Word word) {
+        logger.info("autoSelectLetterSounds");
         
         String wordText = word.getText();
         
-        List<LetterSoundCorrespondence> letterSoundCorrespondences = new ArrayList<>();
+        List<LetterSound> letterSounds = new ArrayList<>();
         
-        List<LetterSoundCorrespondence> allLetterSoundCorrespondencesOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
+        List<LetterSound> allLetterSoundsOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
         while (StringUtils.isNotBlank(wordText)) {
             logger.info("wordText: \"" + wordText + "\"");
             
             boolean isMatch = false;
-            for (LetterSoundCorrespondence letterSoundCorrespondence : allLetterSoundCorrespondencesOrderedByLettersLength) {
-                String letterSoundCorrespondenceLetters = letterSoundCorrespondence.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-                logger.info("letterSoundCorrespondenceLetters: \"" + letterSoundCorrespondenceLetters + "\"");
+            for (LetterSound letterSound : allLetterSoundsOrderedByLettersLength) {
+                String letterSoundLetters = letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+                logger.info("letterSoundLetters: \"" + letterSoundLetters + "\"");
 
-                if (wordText.startsWith(letterSoundCorrespondenceLetters)) {
+                if (wordText.startsWith(letterSoundLetters)) {
                     isMatch = true;
                     logger.info("Found match at the beginning of \"" + wordText + "\"");
-                    letterSoundCorrespondences.add(letterSoundCorrespondence);
+                    letterSounds.add(letterSound);
 
                     // Remove the match from the word
-                    wordText = wordText.substring(letterSoundCorrespondenceLetters.length());
+                    wordText = wordText.substring(letterSoundLetters.length());
                     
                     break;
                 }
@@ -218,6 +218,6 @@ public class WordCreateController {
             }
         }
         
-        word.setLetterSounds(letterSoundCorrespondences);
+        word.setLetterSounds(letterSounds);
     }
 }
