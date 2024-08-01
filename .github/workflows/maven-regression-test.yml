@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 11
+          java-version: 17
           cache: maven
       - run: mvn clean
       - run: mvn verify -P regression-testing-rest -D base.url=http://hin.elimu.ai
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 11
+          java-version: 17
           cache: maven
       - run: mvn clean
       - run: mvn verify -P regression-testing-rest -D base.url=http://tgl.elimu.ai
