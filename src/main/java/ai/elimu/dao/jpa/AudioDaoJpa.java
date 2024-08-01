@@ -2,7 +2,7 @@ package ai.elimu.dao.jpa;
 
 import java.util.List;
 
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;

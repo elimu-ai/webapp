@@ -1,7 +1,7 @@
 package ai.elimu.web.content.letter_sound;
 
 import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.apache.logging.log4j.Logger;
@@ -25,8 +25,8 @@ import ai.elimu.model.content.Word;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.util.DiscordHelper;
 import java.util.Calendar;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.stream.Collectors;

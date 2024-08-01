@@ -2,8 +2,8 @@ package ai.elimu.web.content.multimedia.video;
 
 import java.io.IOException;
 import java.util.Calendar;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;

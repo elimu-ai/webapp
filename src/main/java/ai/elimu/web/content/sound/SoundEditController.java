@@ -3,8 +3,8 @@ package ai.elimu.web.content.sound;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.SoundContributionEventDao;
 import java.util.Calendar;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,7 @@ import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.SoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/content/sound/edit")

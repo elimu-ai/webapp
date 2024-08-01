@@ -1,8 +1,8 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.content.multimedia.Image;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class ImageContributionEvent extends ContributionEvent {

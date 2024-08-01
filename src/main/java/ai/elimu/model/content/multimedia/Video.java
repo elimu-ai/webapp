@@ -1,11 +1,11 @@
 package ai.elimu.model.content.multimedia;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Lob;
+import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 
 @Entity

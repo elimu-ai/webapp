@@ -1,6 +1,6 @@
 package ai.elimu.dao.jpa;
 
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import ai.elimu.dao.DeviceDao;
 
 import org.springframework.dao.DataAccessException;

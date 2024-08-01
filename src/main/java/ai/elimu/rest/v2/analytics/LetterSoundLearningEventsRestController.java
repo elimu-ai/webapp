@@ -3,7 +3,7 @@ package ai.elimu.rest.v2.analytics;
 import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

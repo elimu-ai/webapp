@@ -1,8 +1,8 @@
 package ai.elimu.dao.jpa;
 
 import java.util.List;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 
 import ai.elimu.model.v2.enums.content.WordType;
 import org.springframework.dao.DataAccessException;

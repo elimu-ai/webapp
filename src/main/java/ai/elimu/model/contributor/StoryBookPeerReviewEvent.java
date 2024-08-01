@@ -1,8 +1,8 @@
 package ai.elimu.model.contributor;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * An event where a {@link Contributor} peer-reviews a {@link StoryBook} which 

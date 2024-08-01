@@ -3,9 +3,9 @@ package ai.elimu.web.admin.application_version;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ApplicationDao;
