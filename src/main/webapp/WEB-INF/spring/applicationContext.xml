@@ -62,10 +62,7 @@
         <property name="warnLogCategory" value="CustomSimpleMappingExceptionResolver" />
     </bean>
     
-    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
-        <property name="maxUploadSize" value="1073741824" /><!-- 1024MB -->
-        <property name="defaultEncoding" value="UTF-8" />
-    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1" />
     
