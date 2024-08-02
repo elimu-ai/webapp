@@ -20,6 +20,19 @@
     <!-- Build settings -->
     <build>
         <finalName>webapp-SNAPSHOT</finalName>
+        <pluginManagement>
+            <!-- Lock down plugin versions to avoid using Maven defaults -->
+            <plugins>                
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.4.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
             	<groupId>org.apache.maven.plugins</groupId>
@@ -32,11 +45,6 @@
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.4.0</version>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
