@@ -28,7 +28,6 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <optimize>true</optimize>
                     <verbose>true</verbose>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
