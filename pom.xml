@@ -59,7 +59,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-release-plugin/ -->
-                <version>2.5.3</version>
+                <version>3.1.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.scm</groupId>
