@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  regression_test_hindi:
+  regression_test_HIN:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,8 +19,8 @@ jobs:
       - run: mvn clean
       - run: mvn verify -P regression-testing-rest -D base.url=http://hin.elimu.ai
   
-  regression_test_tagalog:
-    needs: regression_test_hindi
+  regression_test_TGL:
+    needs: regression_test_HIN
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
