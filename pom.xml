@@ -54,12 +54,6 @@
                     <webApp>
                         <contextPath>/webapp</contextPath>
                     </webApp>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>org.eclipse.jetty.server.Request.maxFormContentSize</name>
-                            <value>1073741824</value><!-- 1024MB -->
-                        </systemProperty>
-                    </systemProperties>
                 </configuration>
             </plugin>
             <plugin>
