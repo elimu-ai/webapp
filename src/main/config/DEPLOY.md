@@ -13,7 +13,7 @@ Version: `CentOS 9 Stream`
 
 ## Java Virtual Machine (JVM) ☕
 
-Install Java 11 or newer. We will be using [OpenJDK](https://openjdk.org/), but you can also use the JDK from [Oracle](https://www.oracle.com/java/).
+Install Java 17 or newer. We will be using [OpenJDK](https://openjdk.org/), but you can also use the JDK from [Oracle](https://www.oracle.com/java/).
 
 Version: `17`
 
