@@ -73,9 +73,9 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
+             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-javadoc-plugin/ -->
+                <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
                     <skip>true</skip>
@@ -83,13 +83,7 @@
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <skip>true</skip>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                        </configuration>
+                        <phase>none</phase>
                     </execution>
                 </executions>
             </plugin>
