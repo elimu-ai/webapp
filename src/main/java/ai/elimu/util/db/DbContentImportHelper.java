@@ -280,15 +280,15 @@ public class DbContentImportHelper {
                     storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
 
                     List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-                    logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                    logger.debug("wordsInOriginalText.size(): " + wordsInOriginalText.size());
                     List<Word> paragraphWords = new ArrayList<>();
-                    logger.info("paragraphWords.size(): " + paragraphWords.size());
+                    logger.debug("paragraphWords.size(): " + paragraphWords.size());
                     for (String wordInOriginalText : wordsInOriginalText) {
-                        logger.info("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                        logger.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
                         wordInOriginalText = wordInOriginalText.toLowerCase();
-                        logger.info("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                        logger.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
                         Word word = wordDao.readByText(wordInOriginalText);
-                        logger.info("word: " + word);
+                        logger.debug("word: " + word);
                         paragraphWords.add(word);
                     }
                     storyBookParagraph.setWords(paragraphWords);

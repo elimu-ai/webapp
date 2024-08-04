@@ -30,11 +30,6 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/spring/applicationContext.xml</param-value>
         </init-param>
-        <multipart-config>
-            <max-file-size>1073741824</max-file-size><!-- 1024MB -->
-            <max-request-size>1073741824</max-request-size><!-- 1024MB -->
-            <file-size-threshold>0</file-size-threshold>
-        </multipart-config>
     </servlet>
     <servlet-mapping>
         <!-- Map static resources to the default servlet -->

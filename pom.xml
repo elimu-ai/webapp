@@ -4,10 +4,10 @@
     <groupId>ai.elimu</groupId>
     <artifactId>webapp</artifactId>
     <packaging>war</packaging>
-    <version>2.4.24-SNAPSHOT</version>
+    <version>2.4.26-SNAPSHOT</version>
 
     <properties>
-    	<java.version>11</java.version>
+    	<java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>2.0.73</model.version> <!-- https://jitpack.io/#elimu-ai/model -->
         <hibernate.version>5.6.15.Final</hibernate.version> <!-- https://repo.maven.apache.org/maven2/org/hibernate/ -->
@@ -20,6 +20,19 @@
     <!-- Build settings -->
     <build>
         <finalName>webapp-SNAPSHOT</finalName>
+        <pluginManagement>
+            <!-- Lock down plugin versions to avoid using Maven defaults -->
+            <plugins>                
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.4.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
             	<groupId>org.apache.maven.plugins</groupId>
@@ -28,7 +41,6 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <optimize>true</optimize>
                     <verbose>true</verbose>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
@@ -42,28 +54,22 @@
                     <webApp>
                         <contextPath>/webapp</contextPath>
                     </webApp>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>org.eclipse.jetty.server.Request.maxFormContentSize</name>
-                            <value>1073741824</value><!-- 1024MB -->
-                        </systemProperty>
-                    </systemProperties>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId> <!-- https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-release-plugin/ -->
-                <version>2.5.3</version>
+                <version>3.1.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.scm</groupId>
                         <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.13.0</version>
+                        <version>2.1.0</version>
                     </dependency>
                     <dependency>
                         <groupId>org.apache.maven.scm</groupId>
                         <artifactId>maven-scm-api</artifactId>
-                        <version>1.13.0</version>
+                        <version>2.1.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -392,7 +398,13 @@
   <dependency>
    <groupId>org.owasp.antisamy</groupId>
    <artifactId>antisamy</artifactId>
-   <version>1.6.5</version>
+   <version>1.7.6</version>
+  </dependency>
+
+  <dependency>
+   <groupId>org.apache.httpcomponents.client5</groupId>
+   <artifactId>httpclient5</artifactId>
+   <version>5.3.1</version>
   </dependency>
 
   <dependency>
@@ -405,12 +417,6 @@
    <groupId>org.aspectj</groupId>
    <artifactId>aspectjweaver</artifactId>
    <version>1.9.22.1</version>
-  </dependency>
-
-  <dependency>
-   <groupId>com.sun.xml.stream</groupId>
-   <artifactId>sjsxp</artifactId>
-   <version>1.0.2</version>
   </dependency>
 
   <dependency>
@@ -439,7 +445,7 @@
   <dependency>
    <groupId>commons-validator</groupId>
    <artifactId>commons-validator</artifactId>
-   <version>1.7</version>
+   <version>1.9.0</version>
   </dependency>
   <dependency>
    <groupId>org.apache.commons</groupId>
@@ -569,7 +575,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.11.0</version>
+            <version>5.12.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
