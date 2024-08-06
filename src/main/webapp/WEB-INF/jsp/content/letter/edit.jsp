@@ -185,4 +185,48 @@
             </li>
         </ol>
     </div>
+    <h5 class="center"><fmt:message key="letter.sound.correspondences" /></h5>
+
+    <table class="bordered highlight">
+        <thead>
+            <th><fmt:message key="frequency" /></th>
+            <th><fmt:message key="letters" /></th>
+            <th></th>
+            <th><fmt:message key="sounds" /></th>
+        </thead>
+        <tbody>
+            <c:forEach var="letterSound" items="${letterSounds}">
+                <%-- Check if the current letter is used by the letter-sound. --%>
+                <c:set var="isUsedByLetterSound" value="false" />
+                <c:forEach var="l" items="${letterSound.letters}">
+                    <c:if test="${letter.id == l.id}">
+                        <c:set var="isUsedByLetterSound" value="true" />
+                    </c:if>
+                </c:forEach>
+                <c:if test="${isUsedByLetterSound}">
+                    <tr>
+                        <td>
+                            ${letterSound.usageCount}
+                        </td>
+                        <td>
+                            " <c:forEach var="letter" items="${letterSound.letters}">
+                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a>
+                            </c:forEach> "
+                        </td>
+                        <td>
+                            ➞
+                        </td>
+                        <td>
+                            / <c:forEach var="s" items="${letterSound.sounds}">
+                                <a href="<spring:url value='/content/sound/edit/${s.id}' />">
+                                    <c:if test="${s.id == sound.id}">
+                                        <span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if>
+                                    </a>
+                                </c:forEach> /
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </tbody>
+    </table>
 </content:aside>
