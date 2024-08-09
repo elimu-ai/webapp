@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
-    <ThresholdFilter level="INFO" />
+<Configuration status="WARN">
+    <ThresholdFilter level="WARN" />
  
     <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
         <Routing name="routing">
             <Routes>
                 <Route>
@@ -20,7 +23,15 @@
     </Appenders>
   
     <Loggers>
-        <Root level="INFO">
+        <!-- Keep more detailed logs for your application -->
+        <Logger name="ai.elimu" level="INFO"/>
+        
+        <!-- Reduce log level for other libraries -->
+        <Logger name="org.springframework" level="WARN"/>
+        <Logger name="org.hibernate" level="WARN"/>
+        
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="routing"/>
         </Root>
     </Loggers> 
