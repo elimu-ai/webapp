@@ -21,6 +21,7 @@
             </Routes>
         </Routing>
     </Appenders>
+    hello
   
     <Loggers>
         <!-- Keep more detailed logs for your application -->
