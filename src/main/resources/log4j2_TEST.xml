@@ -21,9 +21,10 @@
             </Routes>
         </Routing>
     </Appenders>
+    
   
     <Loggers>
-        <!-- Keep more detailed logs for your application -->
+        <!-- Keep  more detailed logs for your application -->
         <Logger name="ai.elimu" level="INFO"/>
         
         <!-- Reduce log level for other libraries -->
