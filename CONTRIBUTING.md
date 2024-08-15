@@ -9,4 +9,4 @@ See https://github.com/elimu-ai/wiki/blob/main/CONTRIBUTING.md
 > [!NOTE]
 > The maintainer splits at https://www.drips.network/app/projects/github/elimu-ai/webapp should reflect the data in [`FUNDING_SPLITS.csv`](FUNDING_SPLITS.csv). If your GitHub username is in `FUNDING_SPLITS.csv`, open a pull request to add your Ethereum address next to it.
 
-To learn more about the funding splits, see the [Web3 Wiki](https://github.com/elimu-ai/web3-wiki).
+To learn more about the funding splits, see [`DRIP_LIST_FUNDING_SPLITS.md`](https://github.com/elimu-ai/web3-wiki/blob/main/DRIP_LIST_FUNDING_SPLITS.md) in the Web3 Wiki.
