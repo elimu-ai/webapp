@@ -2,40 +2,69 @@
 <PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
 	<Header>
 		<Application name="SkLearn2PMML package" version="0.110.0"/>
-		<Timestamp>2024-08-17T07:35:44Z</Timestamp>
+		<Timestamp>2024-08-17T11:40:01Z</Timestamp>
 	</Header>
 	<DataDictionary>
 		<DataField name="reading_level" optype="continuous" dataType="double"/>
-		<DataField name="id" optype="continuous" dataType="float"/>
 		<DataField name="chapter_count" optype="continuous" dataType="float"/>
+		<DataField name="paragraph_count" optype="continuous" dataType="float"/>
+		<DataField name="word_count" optype="continuous" dataType="float"/>
 	</DataDictionary>
 	<TreeModel functionName="regression" algorithmName="sklearn.tree._classes.DecisionTreeRegressor" missingValueStrategy="nullPrediction" noTrueChildStrategy="returnLastPrediction">
 		<MiningSchema>
 			<MiningField name="reading_level" usageType="target"/>
-			<MiningField name="id"/>
+			<MiningField name="word_count"/>
 			<MiningField name="chapter_count"/>
+			<MiningField name="paragraph_count"/>
 		</MiningSchema>
 		<LocalTransformations>
-			<DerivedField name="double(id)" optype="continuous" dataType="double">
-				<FieldRef field="id"/>
+			<DerivedField name="double(word_count)" optype="continuous" dataType="double">
+				<FieldRef field="word_count"/>
 			</DerivedField>
 			<DerivedField name="double(chapter_count)" optype="continuous" dataType="double">
 				<FieldRef field="chapter_count"/>
+			</DerivedField>
+			<DerivedField name="double(paragraph_count)" optype="continuous" dataType="double">
+				<FieldRef field="paragraph_count"/>
 			</DerivedField>
 		</LocalTransformations>
 		<Node score="4.0">
 			<True/>
 			<Node score="2.0">
-				<SimplePredicate field="double(id)" operator="lessOrEqual" value="67.5"/>
-				<Node score="2.0">
-					<SimplePredicate field="double(chapter_count)" operator="lessOrEqual" value="7.0"/>
+				<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="319.0"/>
+				<Node score="1.0">
+					<SimplePredicate field="double(chapter_count)" operator="lessOrEqual" value="15.5"/>
+					<Node score="1.0">
+						<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="210.0"/>
+						<Node score="1.0">
+							<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="127.0"/>
+						</Node>
+						<Node score="2.0">
+							<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="135.5"/>
+						</Node>
+					</Node>
+					<Node score="2.0">
+						<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="234.5"/>
+					</Node>
 				</Node>
 				<Node score="1.0">
-					<SimplePredicate field="double(id)" operator="lessOrEqual" value="66.5"/>
+					<SimplePredicate field="double(paragraph_count)" operator="lessOrEqual" value="20.0"/>
 				</Node>
 			</Node>
-			<Node score="3.0">
-				<SimplePredicate field="double(chapter_count)" operator="lessOrEqual" value="14.5"/>
+			<Node score="2.0">
+				<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="521.5"/>
+				<Node score="3.0">
+					<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="383.5"/>
+				</Node>
+			</Node>
+			<Node score="2.0">
+				<SimplePredicate field="double(paragraph_count)" operator="lessOrEqual" value="51.5"/>
+				<Node score="3.0">
+					<SimplePredicate field="double(paragraph_count)" operator="lessOrEqual" value="47.5"/>
+					<Node score="4.0">
+						<SimplePredicate field="double(word_count)" operator="lessOrEqual" value="559.5"/>
+					</Node>
+				</Node>
 			</Node>
 		</Node>
 	</TreeModel>

@@ -407,7 +407,18 @@ public class StoryBookCreateFromEPubController {
                 }
             }
 
-            ReadingLevel predictedReadingLevel = predictReadingLevel(storyBook, storyBookChapters);
+            List<StoryBookChapter> chapters = storyBookChapterDao.readAll(storyBook);
+            int chapterCount = chapters.size();
+            int paragraphCount = 0;
+            int wordCount = 0;
+            for (StoryBookChapter chapter : chapters) {
+                List<StoryBookParagraph> paragraphs = storyBookParagraphDao.readAll(chapter);
+                paragraphCount += paragraphs.size();
+                for (StoryBookParagraph paragraph : paragraphs) {
+                    wordCount += paragraph.getOriginalText().split(" ").length;
+                }
+            }
+            ReadingLevel predictedReadingLevel = predictReadingLevel(chapterCount, paragraphCount, wordCount);
             logger.info("predictedReadingLevel: " + predictedReadingLevel);
             storyBook.setReadingLevel(predictedReadingLevel);
             storyBookDao.update(storyBook);
@@ -526,7 +537,7 @@ public class StoryBookCreateFromEPubController {
         }
     }
 
-    private ReadingLevel predictReadingLevel(StoryBook storyBook, List<StoryBookChapter> storyBookChapters) {
+    private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {
         logger.info("predictReadingLevel");
 
         // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
@@ -537,8 +548,9 @@ public class StoryBookCreateFromEPubController {
 
         // Prepare values (features) to pass to the model
         Map<String, Double> values = Map.of(
-            "id", Double.valueOf(storyBook.getId()),
-            "chapter_count", Double.valueOf(storyBookChapters.size())
+            "chapter_count", Double.valueOf(chapterCount),
+            "paragraph_count", Double.valueOf(paragraphCount),
+            "word_count", Double.valueOf(wordCount)
         );
         logger.info("values: " + values);
 
