@@ -407,7 +407,7 @@ public class StoryBookCreateFromEPubController {
                 }
             }
 
-            ReadingLevel predictedReadingLevel = predictReadingLevel(storyBook);
+            ReadingLevel predictedReadingLevel = predictReadingLevel(storyBook, storyBookChapters);
             logger.info("predictedReadingLevel: " + predictedReadingLevel);
             storyBook.setReadingLevel(predictedReadingLevel);
             storyBookDao.update(storyBook);
@@ -526,7 +526,7 @@ public class StoryBookCreateFromEPubController {
         }
     }
 
-    private ReadingLevel predictReadingLevel(StoryBook storyBook) {
+    private ReadingLevel predictReadingLevel(StoryBook storyBook, List<StoryBookChapter> storyBookChapters) {
         logger.info("predictReadingLevel");
 
         // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
@@ -537,7 +537,8 @@ public class StoryBookCreateFromEPubController {
 
         // Prepare values (features) to pass to the model
         Map<String, Double> values = Map.of(
-            "id", Double.valueOf(storyBook.getId())
+            "id", Double.valueOf(storyBook.getId()),
+            "chapter_count", Double.valueOf(storyBookChapters.size())
         );
         logger.info("values: " + values);
 

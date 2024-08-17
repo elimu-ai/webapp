@@ -2,41 +2,40 @@
 <PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
 	<Header>
 		<Application name="SkLearn2PMML package" version="0.110.0"/>
-		<Timestamp>2024-08-16T03:26:47Z</Timestamp>
+		<Timestamp>2024-08-17T07:35:44Z</Timestamp>
 	</Header>
-	<MiningBuildTask>
-		<Extension name="repr">PMMLPipeline(steps=[('regressor', DecisionTreeRegressor(random_state=1))])</Extension>
-	</MiningBuildTask>
 	<DataDictionary>
 		<DataField name="reading_level" optype="continuous" dataType="double"/>
 		<DataField name="id" optype="continuous" dataType="float"/>
+		<DataField name="chapter_count" optype="continuous" dataType="float"/>
 	</DataDictionary>
 	<TreeModel functionName="regression" algorithmName="sklearn.tree._classes.DecisionTreeRegressor" missingValueStrategy="nullPrediction" noTrueChildStrategy="returnLastPrediction">
 		<MiningSchema>
 			<MiningField name="reading_level" usageType="target"/>
 			<MiningField name="id"/>
+			<MiningField name="chapter_count"/>
 		</MiningSchema>
 		<LocalTransformations>
 			<DerivedField name="double(id)" optype="continuous" dataType="double">
 				<FieldRef field="id"/>
+			</DerivedField>
+			<DerivedField name="double(chapter_count)" optype="continuous" dataType="double">
+				<FieldRef field="chapter_count"/>
 			</DerivedField>
 		</LocalTransformations>
 		<Node score="4.0">
 			<True/>
 			<Node score="2.0">
 				<SimplePredicate field="double(id)" operator="lessOrEqual" value="67.5"/>
+				<Node score="2.0">
+					<SimplePredicate field="double(chapter_count)" operator="lessOrEqual" value="7.0"/>
+				</Node>
 				<Node score="1.0">
 					<SimplePredicate field="double(id)" operator="lessOrEqual" value="66.5"/>
-					<Node score="1.0">
-						<SimplePredicate field="double(id)" operator="lessOrEqual" value="62.5"/>
-					</Node>
-					<Node score="2.0">
-						<SimplePredicate field="double(id)" operator="lessOrEqual" value="64.0"/>
-					</Node>
 				</Node>
 			</Node>
 			<Node score="3.0">
-				<SimplePredicate field="double(id)" operator="lessOrEqual" value="68.5"/>
+				<SimplePredicate field="double(chapter_count)" operator="lessOrEqual" value="14.5"/>
 			</Node>
 		</Node>
 	</TreeModel>
