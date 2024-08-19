@@ -27,7 +27,7 @@ Version: `Jetty 10.0.21` (requires Java 11 or newer)
 
 ### Jetty Maven Plugin 🪶
 
-If you need to use a different Jetty version than us, the `jetty-maven-plugin` version in [`pom.xml`](./pom.xml) should match the Jetty version that you will be using on your production server. See [Using the Jetty Maven Plugin](https://jetty.org/docs/jetty/10/programming-guide/maven-jetty/jetty-maven-plugin.html) for more details.
+If you need to use a different Jetty version than us, the `jetty-maven-plugin` version in [`pom.xml`](../../../pom.xml) should match the Jetty version that you will be using on your production server. See [Using the Jetty Maven Plugin](https://jetty.org/docs/jetty/10/programming-guide/maven-jetty/jetty-maven-plugin.html) for more details.
 
 > [!TIP]
 > If you will be modifying any of the webapp code before deploying it on a production server, it's recommended that you create a fork of the GitHub repository first.
