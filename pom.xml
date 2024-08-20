@@ -41,7 +41,6 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <verbose>true</verbose>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
                 </configuration>
@@ -254,7 +253,6 @@
                                 <configuration>
                                     <sourceVersion>${java.version}</sourceVersion>
                                     <targetVersion>${java.version}</targetVersion>
-                                    <verbose>true</verbose>
                                 </configuration>
                             </execution>
                         </executions>
