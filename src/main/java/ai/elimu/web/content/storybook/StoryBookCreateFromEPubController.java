@@ -19,6 +19,7 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
@@ -404,6 +406,22 @@ public class StoryBookCreateFromEPubController {
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
+
+            List<StoryBookChapter> chapters = storyBookChapterDao.readAll(storyBook);
+            int chapterCount = chapters.size();
+            int paragraphCount = 0;
+            int wordCount = 0;
+            for (StoryBookChapter chapter : chapters) {
+                List<StoryBookParagraph> paragraphs = storyBookParagraphDao.readAll(chapter);
+                paragraphCount += paragraphs.size();
+                for (StoryBookParagraph paragraph : paragraphs) {
+                    wordCount += paragraph.getOriginalText().split(" ").length;
+                }
+            }
+            ReadingLevel predictedReadingLevel = predictReadingLevel(chapterCount, paragraphCount, wordCount);
+            logger.info("predictedReadingLevel: " + predictedReadingLevel);
+            storyBook.setReadingLevel(predictedReadingLevel);
+            storyBookDao.update(storyBook);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
                 String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
@@ -517,5 +535,47 @@ public class StoryBookCreateFromEPubController {
                     embedThumbnailUrl
             );
         }
+    }
+
+    private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {
+        logger.info("predictReadingLevel");
+
+        // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
+        String modelFilePath = getClass().getResource("step2_2_model.pmml").getFile();
+        logger.info("modelFilePath: " + modelFilePath);
+        org.pmml4s.model.Model model = org.pmml4s.model.Model.fromFile(modelFilePath);
+        logger.info("model: " + model);
+
+        // Prepare values (features) to pass to the model
+        Map<String, Double> values = Map.of(
+            "chapter_count", Double.valueOf(chapterCount),
+            "paragraph_count", Double.valueOf(paragraphCount),
+            "word_count", Double.valueOf(wordCount)
+        );
+        logger.info("values: " + values);
+
+        // Make prediction
+        logger.info("Arrays.toString(model.inputNames()): " + Arrays.toString(model.inputNames()));
+        Object[] valuesMap = Arrays.stream(model.inputNames())
+                                   .map(values::get)
+                                   .toArray();
+        logger.info("valuesMap: " + valuesMap);
+        Object[] results = model.predict(valuesMap);
+        logger.info("results: " + results);
+        logger.info("Arrays.toString(results): " + Arrays.toString(results));
+        Object result = results[0];
+        logger.info("result: " + result);
+        logger.info("result.getClass().getSimpleName(): " + result.getClass().getSimpleName());
+        Double resultAsDouble = (Double) result;
+        logger.info("resultAsDouble: " + resultAsDouble);
+        Integer resultAsInteger = resultAsDouble.intValue();
+        logger.info("resultAsInteger: " + resultAsInteger);
+
+        // Convert from number to ReadingLevel enum (e.g. "LEVEL2")
+        String readingLevelAsString = "LEVEL" + resultAsInteger;
+        logger.info("readingLevelAsString: " + readingLevelAsString);
+        ReadingLevel readingLevel = ReadingLevel.valueOf(readingLevelAsString);
+        logger.info("readingLevel: " + readingLevel);
+        return readingLevel;
     }
 }
