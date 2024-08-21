@@ -2,10 +2,10 @@
 
 # Word "letterSoundCorrespondences" → Word "letterSounds"
 
-ALTER TABLE `Word_LetterSoundCorrespondence` DROP COLUMN `letterSounds_id`;
+ALTER TABLE `Word_LetterSoundCorrespondence` DROP COLUMN IF EXISTS `letterSounds_id`;
 ALTER TABLE `Word_LetterSoundCorrespondence` CHANGE `letterSoundCorrespondences_id` `letterSounds_id` bigint(20) NOT NULL;
 
-ALTER TABLE `Word_LetterSoundCorrespondence` DROP COLUMN `letterSounds_ORDER`;
+ALTER TABLE `Word_LetterSoundCorrespondence` DROP COLUMN IF EXISTS `letterSounds_ORDER`;
 ALTER TABLE `Word_LetterSoundCorrespondence` CHANGE `letterSoundCorrespondences_ORDER` `letterSounds_ORDER` int(11) NOT NULL;
 
 # Reset primary key
