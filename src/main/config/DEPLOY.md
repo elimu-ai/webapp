@@ -114,7 +114,7 @@ Copy the content from [`webapp.xml`](./centos-stream-9/opt/jetty-base/webapps/we
 
 Start the `jetty` service:
 
-    systemctl jetty
+    systemctl start jetty
 
 > [!TIP]
 > To verify that everything has been configured correctly, you can run `cd /opt/jetty-base/; java -jar /opt/jetty-home-10.0.22/start.jar --list-config` and `systemctl status jetty`
@@ -139,7 +139,7 @@ Install MariaDB:
 
 Start the MariaDB service:
 
-    service mariadb start
+    systemctl start mariadb
 
 > [!TIP]
 > To verify that MariaDB is running, use this command: `systemctl status mariadb`
