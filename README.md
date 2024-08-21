@@ -6,10 +6,11 @@
 [![contributors](https://img.shields.io/github/contributors/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/graphs/contributors)
 [![closed issues](https://img.shields.io/github/issues-closed/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/issues?q=is%3Aissue+is%3Aclosed)
 
-Web application:
+Deployments in production:
 
- * https://hin.elimu.ai - Hindi
- * https://tgl.elimu.ai - Tagalog
+ * https://hin.elimu.ai - Hindi database content
+ * https://tgl.elimu.ai - Tagalog database content
+ * https://eng.elimu.ai - English database content
 
 [<kbd>![](https://github.com/elimu-ai/webapp/assets/15718174/32f3c339-aacc-4dc1-9692-c9435bc63d57)</kbd>](https://hin.elimu.ai)
 
