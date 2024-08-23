@@ -21,6 +21,6 @@ Resolves #
 <!-- If this PR contains files with format violations, run 'mvn spotless:apply' to fix them. -->
 
 > [!NOTE]
-> Files in PRs are automatically checked for format violations with [`mvn spotless:check`](./workflows/maven-build.yml).
+> Files in PRs are automatically checked for format violations with `mvn spotless:check`.
 
 If this PR contains files with format violations, run `mvn spotless:apply` to fix them.
