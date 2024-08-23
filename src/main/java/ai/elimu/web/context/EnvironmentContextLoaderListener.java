@@ -18,6 +18,8 @@ import org.springframework.web.context.support.ServletContextResourceLoader;
 
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
+import ai.elimu.util.ConfigHelper;
+
 import java.net.URL;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.config.Configurator;
@@ -28,9 +30,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * to access this listener anywhere in the web application, outside of the framework.
  */
 public class EnvironmentContextLoaderListener extends ContextLoaderListener {
-	
+    
     public static Environment env = Environment.DEV;
-	
+    
     public final static Properties PROPERTIES = new Properties();
 
     private Logger logger = LogManager.getLogger();
@@ -42,8 +44,8 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent event) {
-    	logger.info("contextInitialized");
-    	
+        logger.info("contextInitialized");
+        
         ServletContext servletContext = event.getServletContext();
         
         // Fetch attribute set in the corresponding context file at $JETTY_HOME/webapps/
@@ -72,8 +74,8 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
 
     @Override
     protected void customizeContext(ServletContext servletContext, ConfigurableWebApplicationContext applicationContext) {
-    	logger.info("customizeContext");
-    	
+        logger.info("customizeContext");
+        
         // Load default settings
         try {
             Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:config.properties");
@@ -91,7 +93,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
             InputStream inputStream = null;
             try {
                 // Override config.properties
-            	Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:config_" + env + ".properties");
+                Resource resourceConfig = new ServletContextResourceLoader(servletContext).getResource("classpath:config_" + env + ".properties");
                 PROPERTIES.load(resourceConfig.getInputStream());
 
                 // Override jdbc.properties
@@ -144,6 +146,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         
         // Add all supported languages
         PROPERTIES.put("supported.languages", Language.values());
+
+        // Add the POM version
+        String pomVersion = ConfigHelper.getProperty("pom.version");
+        logger.info("pomVersion: " + pomVersion);
+        PROPERTIES.put("pom.version", pomVersion);
 
         // Add config properties to application scope
         servletContext.setAttribute("configProperties", PROPERTIES);

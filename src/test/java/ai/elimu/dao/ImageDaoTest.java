@@ -25,7 +25,7 @@ public class ImageDaoTest {
     
     @Autowired
     private WordDao wordDao;
-	
+    
     @Autowired
     private ImageDao imageDao;
 

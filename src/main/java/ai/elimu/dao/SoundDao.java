@@ -6,7 +6,7 @@ import ai.elimu.model.content.Sound;
 import org.springframework.dao.DataAccessException;
 
 public interface SoundDao extends GenericDao<Sound> {
-	
+    
     Sound readByValueIpa(String value) throws DataAccessException;
     
     Sound readByValueSampa(String value) throws DataAccessException;

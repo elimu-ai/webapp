@@ -69,7 +69,7 @@
             
     <div class="section">
         <div class="row">
-            <div class="col s12 offset-m2 m4">
+            <div class="col s12 offset-m1 m5">
                 <h5 class="header">Educational Apps & Games 🎲🕹</h5>
                 <p>
                     A collection of educational Android <a href="<spring:url value='/apps' />">apps</a> teaches children 
@@ -79,13 +79,13 @@
                     Each child can learn <i>fully autonomously</i>, without depending on the availability of qualified teachers.  
                 </p>
             </div>
-            <div class="col s12 m4">
-                <img src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" style="border-radius: 8px;" />
+            <div class="col s12 m5">
+                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" style="border-radius: 8px;" />
             </div>
         </div>
         
         <div class="row">
-            <div class="col s12 offset-m2 m4">
+            <div class="col s12 offset-m1 m5">
                 <h5 class="header">Personalized Learning 🚀</h5>
                 <p>
                     Each child is guided through the curriculum by our AI tutor <i>Nya</i> and her robot companion.
@@ -96,13 +96,13 @@
                     level.
                 </p>
             </div>
-            <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" style="border-radius: 8px;" />
+            <div class="col s12 m5">
+                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" style="border-radius: 8px;" />
             </div>
         </div>
         
         <div class="row">
-            <div class="col s12 offset-m2 m4">
+            <div class="col s12 offset-m1 m5">
                 <h5 class="header">Learning Platform 🧩</h5>
                 <p>
                     The elimu.ai software is a <i>platform</i> of educational content and Android 
@@ -115,13 +115,13 @@
                     As the child demonstrates mastery of prerequisite skills, the AI tutor gradually unlocks more advanced content.
                 </p>
             </div>
-            <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" style="border-radius: 8px;" />
+            <div class="col s12 m5">
+                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" style="border-radius: 8px;" />
             </div>
         </div>
         
         <div class="row">
-            <div class="col s12 offset-m2 m4">
+            <div class="col s12 offset-m1 m5">
                 <h5 class="header">Free and Open Source Software (FOSS) 👩🏽‍💻</h5>
                 <p>
                     All the code is publicly available on <a href="https://github.com/elimu-ai" target="_blank">GitHub</a> as Free and Open Source Software (FOSS), released under the <a href="https://opensource.org/license/MIT" target="_blank">MIT License</a>.
@@ -130,8 +130,8 @@
                     Any individual or organization is welcome to fork the existing code and adapt it to their local needs.
                 </p>
             </div>
-            <div class="col s12 m4">
-                <img src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" style="border-radius: 8px;" />
+            <div class="col s12 m5">
+                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" style="border-radius: 8px;" />
             </div>
         </div>
     </div>

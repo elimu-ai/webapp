@@ -23,7 +23,7 @@ public class AudioListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<Audio> audios = audioDao.readAllOrderedByTimeLastUpdate();
         model.addAttribute("audios", audios);

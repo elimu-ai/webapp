@@ -22,7 +22,7 @@ public class StoryBookLearningEventListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAllOrderedByTime();
         model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
