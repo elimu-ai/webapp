@@ -6,12 +6,6 @@ import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.logging.log4j.Logger;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
@@ -19,7 +13,9 @@ import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.ImageHelper;
@@ -28,23 +24,11 @@ import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,42 +41,64 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+
 @Controller
 @RequestMapping("/content/storybook/create-from-epub")
 public class StoryBookCreateFromEPubController {
-    
+
     private final Logger logger = LogManager.getLogger();
-    
+
     @Autowired
     private StoryBookDao storyBookDao;
-    
+
     @Autowired
     private StoryBookContributionEventDao storyBookContributionEventDao;
-    
+
     @Autowired
     private ImageDao imageDao;
-    
+
     @Autowired
     private ImageContributionEventDao imageContributionEventDao;
-    
+
     @Autowired
     private StoryBookChapterDao storyBookChapterDao;
-    
+
     @Autowired
     private StoryBookParagraphDao storyBookParagraphDao;
+
+    @Autowired
+    private StoryBookEPubService storyBookEPubService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
     	logger.info("handleRequest");
-        
+
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
-        
+
         model.addAttribute("timeStart", System.currentTimeMillis());
 
         return "content/storybook/create-from-epub";
     }
-    
+
     @RequestMapping(method = RequestMethod.POST)
     public String handleSubmit(
             StoryBook storyBook,
@@ -103,28 +109,28 @@ public class StoryBookCreateFromEPubController {
             HttpSession session
     ) throws IOException {
     	logger.info("handleSubmit");
-        
+
         Image storyBookCoverImage = null;
-        
+
         List<StoryBookChapter> storyBookChapters = new ArrayList<>();
-        
+
         List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
-        
+
         if (multipartFile.isEmpty()) {
             result.rejectValue("bytes", "NotNull");
         } else {
             String contentType = multipartFile.getContentType();
             logger.info("contentType: " + contentType);
-            
+
             String name = multipartFile.getName();
             logger.info("name: " + name);
-            
+
             String originalFilename = multipartFile.getOriginalFilename();
             logger.info("originalFilename: " + originalFilename);
-            
+
             long size = multipartFile.getSize();
             logger.info("size: " + size + " (" + (size / 1024) + "kB)");
-            
+
             byte[] ePubBytes = multipartFile.getBytes();
             logger.info("ePubBytes.length: " + (ePubBytes.length / 1024 / 1024) + "MB");
 
@@ -213,7 +219,7 @@ public class StoryBookCreateFromEPubController {
                 throw new IllegalArgumentException("The TOC file was not found");
             } else {
                 List<String> chapterReferences = null;
-                if (tableOfContentsFile.getName().endsWith(".xhtml")) {
+                if (storyBookEPubService.isTableOfContentsFileHtmlLike(tableOfContentsFile.getName())) {
                     // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
                     chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
                 } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
@@ -237,16 +243,16 @@ public class StoryBookCreateFromEPubController {
                         File chapterImageFile = null;
                         if (chapterImageReference.startsWith("http://") || chapterImageReference.startsWith("https://")) {
                             // Download the file
-                            
+
                             URL sourceUrl = new URL(chapterImageReference);
-                            
+
                             String tmpDir = System.getProperty("java.io.tmpdir");
                             logger.info("tmpDir: " + tmpDir);
                             File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
                             logger.info("tmpDirElimuAi: " + tmpDirElimuAi);
                             logger.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
                             chapterImageFile = new File(tmpDirElimuAi, "chapter-image");
-                            
+
                             logger.warn("Downloading image from " + sourceUrl + " and storing at " + chapterImageFile);
                             int connectionTimeout = 1000 * 10; // 1000 milliseconds x 10
                             int readTimeout = 1000 * 10; // 1000 milliseconds x 10
@@ -319,14 +325,14 @@ public class StoryBookCreateFromEPubController {
                 }
             }
         }
-        
+
         if (result.hasErrors()) {
             return "content/storybook/create-from-epub";
         } else {
             // Store the StoryBook in the database
             storyBook.setTimeLastUpdate(Calendar.getInstance());
             storyBookDao.create(storyBook);
-            
+
             StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
             storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
             storyBookContributionEvent.setTimestamp(Calendar.getInstance());
@@ -335,19 +341,19 @@ public class StoryBookCreateFromEPubController {
             storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
             storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
             storyBookContributionEventDao.create(storyBookContributionEvent);
-            
+
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook
             storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
             imageDao.create(storyBookCoverImage);
             storeImageContributionEvent(storyBookCoverImage, session, request);
             storyBook.setCoverImage(storyBookCoverImage);
             storyBookDao.update(storyBook);
-            
+
             // Store the StoryBookChapters in the database
             int chapterSortOrder = 0;
             for (StoryBookChapter storyBookChapter : storyBookChapters) {
                 storyBookChapter.setStoryBook(storyBook);
-                
+
                 // Get the paragraphs associated with this chapter
                 List<StoryBookParagraph> storyBookParagraphsAssociatedWithChapter = new ArrayList<>();
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
@@ -356,7 +362,7 @@ public class StoryBookCreateFromEPubController {
                     }
                 }
                 logger.info("storyBookParagraphsAssociatedWithChapter.size(): " + storyBookParagraphsAssociatedWithChapter.size());
-                
+
                 // Exclude chapters containing book metadata
                 boolean isMetadata = false;
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
@@ -380,10 +386,10 @@ public class StoryBookCreateFromEPubController {
                 if (isMetadata) {
                     continue;
                 }
-                
+
                 // Update the chapter's sort order (in case any of the previous chapters were excluded)
                 storyBookChapter.setSortOrder(chapterSortOrder);
-                
+
                 // Store the chapter's image (if any)
                 Image chapterImage = storyBookChapter.getImage();
                 if (chapterImage != null) {
@@ -391,20 +397,36 @@ public class StoryBookCreateFromEPubController {
                     imageDao.create(chapterImage);
                     storeImageContributionEvent(chapterImage, session, request);
                 }
-                
+
                 // Only store the chapter if it has an image or at least one paragraph
                 if ((chapterImage != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
                     storyBookChapterDao.create(storyBookChapter);
                     chapterSortOrder++;
                 }
-                
+
                 // Store the chapter's paragraphs in the database
                 for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
                     storyBookParagraph.setStoryBookChapter(storyBookChapter);
                     storyBookParagraphDao.create(storyBookParagraph);
                 }
             }
-            
+
+            List<StoryBookChapter> chapters = storyBookChapterDao.readAll(storyBook);
+            int chapterCount = chapters.size();
+            int paragraphCount = 0;
+            int wordCount = 0;
+            for (StoryBookChapter chapter : chapters) {
+                List<StoryBookParagraph> paragraphs = storyBookParagraphDao.readAll(chapter);
+                paragraphCount += paragraphs.size();
+                for (StoryBookParagraph paragraph : paragraphs) {
+                    wordCount += paragraph.getOriginalText().split(" ").length;
+                }
+            }
+            ReadingLevel predictedReadingLevel = predictReadingLevel(chapterCount, paragraphCount, wordCount);
+            logger.info("predictedReadingLevel: " + predictedReadingLevel);
+            storyBook.setReadingLevel(predictedReadingLevel);
+            storyBookDao.update(storyBook);
+
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
                 String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
                 String embedThumbnailUrl = null;
@@ -419,11 +441,11 @@ public class StoryBookCreateFromEPubController {
                         embedThumbnailUrl
                 );
             }
-            
+
             return "redirect:/content/storybook/edit/" + storyBook.getId();
         }
     }
-    
+
     /**
      * See http://www.mkyong.com/spring-mvc/spring-mvc-failed-to-convert-property-value-in-file-upload-form/
      * <p></p>
@@ -435,15 +457,15 @@ public class StoryBookCreateFromEPubController {
     	logger.info("initBinder");
     	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
-    
+
     /**
      * Unzip the contents of the ePUB file to a temporary folder.
      */
     private List<File> unzipFiles(byte[] ePubBytes, String originalFilename) {
         logger.info("unzipFiles");
-        
+
         List<File> unzippedFiles = new ArrayList<>();
-        
+
         String tmpDir = System.getProperty("java.io.tmpdir");
         logger.info("tmpDir: " + tmpDir);
         File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
@@ -459,11 +481,11 @@ public class StoryBookCreateFromEPubController {
             ZipEntry zipEntry = null;
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                 logger.info("zipEntry: " + zipEntry);
-                
+
                 // E.g. unzipDestinationDirectory + "/" + "META-INF/container.xml"
                 File unzipDestinationFile = new File(unzipDestinationDirectory + File.separator + zipEntry.toString());
                 logger.info("unzipDestinationFile: " + unzipDestinationFile);
-                
+
                 // Create intermediate folders if they do not already exist, e.g. "META-INF/", "content/" or "OEBPS/"
                 File parentDirectory = unzipDestinationFile.getParentFile();
                 logger.info("parentDirectory: " + parentDirectory);
@@ -471,7 +493,7 @@ public class StoryBookCreateFromEPubController {
                     boolean parentDirectoriesWereCreated = parentDirectory.mkdirs();
                     logger.info("parentDirectory.mkdirs(): " + parentDirectoriesWereCreated);
                 }
-                
+
                 // Write file to disk
                 FileOutputStream fileOutputStream = new FileOutputStream(unzipDestinationFile);
                 int length;
@@ -479,7 +501,7 @@ public class StoryBookCreateFromEPubController {
                     fileOutputStream.write(buffer, 0, length);
                 }
                 fileOutputStream.close();
-                
+
                 logger.info("unzipDestinationFile.exists(): " + unzipDestinationFile.exists());
                 unzippedFiles.add(unzipDestinationFile);
             }
@@ -490,13 +512,13 @@ public class StoryBookCreateFromEPubController {
         } catch (IOException ex) {
             logger.error(ex);
         }
-        
+
         return unzippedFiles;
     }
-    
+
     private void storeImageContributionEvent(Image image, HttpSession session, HttpServletRequest request) {
         logger.info("storeImageContributionEvent");
-        
+
         ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
         imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
         imageContributionEvent.setTimestamp(Calendar.getInstance());
@@ -510,12 +532,54 @@ public class StoryBookCreateFromEPubController {
             String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
             String embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
             DiscordHelper.sendChannelMessage(
-                    "Image created: " + contentUrl, 
+                    "Image created: " + contentUrl,
                     "\"" + image.getTitle() + "\"",
                     "Comment: \"" + imageContributionEvent.getComment() + "\"",
                     null,
                     embedThumbnailUrl
             );
         }
+    }
+
+    private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {
+        logger.info("predictReadingLevel");
+
+        // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
+        String modelFilePath = getClass().getResource("step2_2_model.pmml").getFile();
+        logger.info("modelFilePath: " + modelFilePath);
+        org.pmml4s.model.Model model = org.pmml4s.model.Model.fromFile(modelFilePath);
+        logger.info("model: " + model);
+
+        // Prepare values (features) to pass to the model
+        Map<String, Double> values = Map.of(
+            "chapter_count", Double.valueOf(chapterCount),
+            "paragraph_count", Double.valueOf(paragraphCount),
+            "word_count", Double.valueOf(wordCount)
+        );
+        logger.info("values: " + values);
+
+        // Make prediction
+        logger.info("Arrays.toString(model.inputNames()): " + Arrays.toString(model.inputNames()));
+        Object[] valuesMap = Arrays.stream(model.inputNames())
+                                   .map(values::get)
+                                   .toArray();
+        logger.info("valuesMap: " + valuesMap);
+        Object[] results = model.predict(valuesMap);
+        logger.info("results: " + results);
+        logger.info("Arrays.toString(results): " + Arrays.toString(results));
+        Object result = results[0];
+        logger.info("result: " + result);
+        logger.info("result.getClass().getSimpleName(): " + result.getClass().getSimpleName());
+        Double resultAsDouble = (Double) result;
+        logger.info("resultAsDouble: " + resultAsDouble);
+        Integer resultAsInteger = resultAsDouble.intValue();
+        logger.info("resultAsInteger: " + resultAsInteger);
+
+        // Convert from number to ReadingLevel enum (e.g. "LEVEL2")
+        String readingLevelAsString = "LEVEL" + resultAsInteger;
+        logger.info("readingLevelAsString: " + readingLevelAsString);
+        ReadingLevel readingLevel = ReadingLevel.valueOf(readingLevelAsString);
+        logger.info("readingLevel: " + readingLevel);
+        return readingLevel;
     }
 }
