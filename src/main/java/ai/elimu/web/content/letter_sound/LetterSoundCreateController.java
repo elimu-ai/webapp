@@ -48,7 +48,7 @@ public class LetterSoundCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
 
         LetterSound letterSound = new LetterSound();
         model.addAttribute("letterSound", letterSound);
@@ -72,7 +72,7 @@ public class LetterSoundCreateController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         // Check if the LetterSound already exists
         LetterSound existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());

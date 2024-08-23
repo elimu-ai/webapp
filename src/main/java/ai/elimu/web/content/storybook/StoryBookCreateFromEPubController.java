@@ -89,7 +89,7 @@ public class StoryBookCreateFromEPubController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
 
         StoryBook storyBook = new StoryBook();
         model.addAttribute("storyBook", storyBook);
@@ -108,7 +108,7 @@ public class StoryBookCreateFromEPubController {
             HttpServletRequest request,
             HttpSession session
     ) throws IOException {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
 
         Image storyBookCoverImage = null;
 
@@ -454,8 +454,8 @@ public class StoryBookCreateFromEPubController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
 
     /**
