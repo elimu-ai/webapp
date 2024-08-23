@@ -41,7 +41,7 @@ public class EmojiEditController {
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Emoji emoji = emojiDao.read(id);
         model.addAttribute("emoji", emoji);
@@ -58,7 +58,7 @@ public class EmojiEditController {
             @Valid Emoji emoji,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
         if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
@@ -91,7 +91,7 @@ public class EmojiEditController {
     public String handleAddContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleAddContentLabelRequest");
+        logger.info("handleAddContentLabelRequest");
         
         logger.info("id: " + id);
         Emoji emoji = emojiDao.read(id);
@@ -117,7 +117,7 @@ public class EmojiEditController {
     public String handleRemoveContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleRemoveContentLabelRequest");
+        logger.info("handleRemoveContentLabelRequest");
         
         logger.info("id: " + id);
         Emoji emoji = emojiDao.read(id);

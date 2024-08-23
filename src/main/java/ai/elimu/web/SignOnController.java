@@ -29,8 +29,8 @@ public class SignOnController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.debug("handleRequest");
-    	
+        logger.debug("handleRequest");
+        
         return "sign-on";
     }
 
@@ -40,7 +40,7 @@ public class SignOnController {
      */
     @RequestMapping("/offline")
     public String handleOfflineSignOnRequest(HttpServletRequest request) {
-    	logger.info("handleOfflineSignOnRequest");
+        logger.info("handleOfflineSignOnRequest");
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             // Fetch the test user that was created in DbContentImportHelper during application launch

@@ -16,7 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class CustomAuthenticationManager implements AuthenticationManager {
-	
+    
     private Logger logger = LogManager.getLogger();
 
     private final List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
