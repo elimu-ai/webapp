@@ -111,19 +111,19 @@ blockquote,
     background-color: #e0f2f1; /* teal lighten-5 */
     border-bottom: 2px solid #388e3c; /* green darken-2 */
     color: #388e3c; /* green darken-2 */
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 4px;
 }
 .diff-deletion {
     background-color: #ffccbc; /* deep-orange lighten-4 */
     border-bottom: 2px solid #b71c1c; /* red darken-4 */
     color: #b71c1c; /* red darken-4 */
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 4px;
 }
 .diff-highlight {
     background-color: #ffecb3; /* amber lighten-4 */
     border-bottom: 2px solid #ffc107; /* amber */
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 4px;
 }
