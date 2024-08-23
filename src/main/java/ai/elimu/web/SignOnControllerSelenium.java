@@ -49,7 +49,7 @@ public class SignOnControllerSelenium {
         contributor.setFirstName("TestRole");
         contributor.setLastName(role.toString());
         contributor.setMotivation("Regression testing as " + role);
-				
+                
         Contributor existingContributor = contributorDao.read(contributor.getEmail());
         logger.info("existingContributor: " + existingContributor);
         if (existingContributor != null) {
@@ -64,7 +64,7 @@ public class SignOnControllerSelenium {
 
         // Add Contributor object to session
         request.getSession().setAttribute("contributor", contributor);
-	        	
+                
         return "redirect:/content";
     }
 }

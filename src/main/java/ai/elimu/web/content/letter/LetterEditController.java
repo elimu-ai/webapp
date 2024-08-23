@@ -39,7 +39,7 @@ public class LetterEditController {
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Letter letter = letterDao.read(id);
         model.addAttribute("letter", letter);
@@ -57,7 +57,7 @@ public class LetterEditController {
             @Valid Letter letter,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Letter existingLetter = letterDao.readByText(letter.getText());
         if ((existingLetter != null) && !existingLetter.getId().equals(letter.getId())) {

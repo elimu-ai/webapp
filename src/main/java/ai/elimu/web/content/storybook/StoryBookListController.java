@@ -21,7 +21,7 @@ public class StoryBookListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         model.addAttribute("storyBooksLevel1", storyBookDao.readAllOrdered(ReadingLevel.LEVEL1));
         model.addAttribute("storyBooksLevel2", storyBookDao.readAllOrdered(ReadingLevel.LEVEL2));

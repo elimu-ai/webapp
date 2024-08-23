@@ -66,7 +66,7 @@ public class VideoEditController {
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Video video = videoDao.read(id);
         model.addAttribute("video", video);
@@ -90,7 +90,7 @@ public class VideoEditController {
             @RequestParam("bytes") MultipartFile multipartFile,
             BindingResult result,
             Model model) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         if (StringUtils.isBlank(video.getTitle())) {
             result.rejectValue("title", "NotNull");
@@ -158,8 +158,8 @@ public class VideoEditController {
      */
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    	logger.info("initBinder");
-    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        logger.info("initBinder");
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
     
     @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
@@ -167,7 +167,7 @@ public class VideoEditController {
     public String handleAddContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleAddContentLabelRequest");
+        logger.info("handleAddContentLabelRequest");
         
         logger.info("id: " + id);
         Video video = videoDao.read(id);
@@ -219,7 +219,7 @@ public class VideoEditController {
     public String handleRemoveContentLabelRequest(
             HttpServletRequest request,
             @PathVariable Long id) {
-    	logger.info("handleRemoveContentLabelRequest");
+        logger.info("handleRemoveContentLabelRequest");
         
         logger.info("id: " + id);
         Video video = videoDao.read(id);

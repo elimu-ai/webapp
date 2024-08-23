@@ -55,7 +55,7 @@ public class StoryBookParagraphCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long storyBookChapterId) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
          
         StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
         
@@ -82,7 +82,7 @@ public class StoryBookParagraphCreateController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         
