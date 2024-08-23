@@ -23,11 +23,11 @@ Version: `17`
 
 We use [Eclipse Jetty](https://jetty.org/) as our web server.
 
-Version: `Jetty 10.0.21` (requires Java 11 or newer)
+Version: `Jetty 10.0.22` (requires Java 11 or newer)
 
 ### Jetty Maven Plugin 🪶
 
-If you need to use a different Jetty version than us, the `jetty-maven-plugin` version in [`pom.xml`](./pom.xml) should match the Jetty version that you will be using on your production server. See [Using the Jetty Maven Plugin](https://jetty.org/docs/jetty/10/programming-guide/maven-jetty/jetty-maven-plugin.html) for more details.
+If you need to use a different Jetty version than us, the `jetty-maven-plugin` version in [`pom.xml`](../../../pom.xml) should match the Jetty version that you will be using on your production server. See [Using the Jetty Maven Plugin](https://jetty.org/docs/jetty/10/programming-guide/maven-jetty/jetty-maven-plugin.html) for more details.
 
 > [!TIP]
 > If you will be modifying any of the webapp code before deploying it on a production server, it's recommended that you create a fork of the GitHub repository first.
@@ -39,15 +39,15 @@ You can find the download links for each release at https://jetty.org/download.h
 On your production server, go to the temporary folder, and download the release:
 
     cd /tmp
-    wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/10.0.21/jetty-home-10.0.21.tar.gz
+    wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/10.0.22/jetty-home-10.0.22.tar.gz
 
 Extract the archive:
 
-    tar -zxvf jetty-home-10.0.21.tar.gz
+    tar -zxvf jetty-home-10.0.22.tar.gz
 
 Move the folder to `/opt`:
 
-    mv jetty-home-10.0.21 /opt/
+    mv jetty-home-10.0.22 /opt/
 
 ### Configure Jetty ⚙️
 
@@ -55,7 +55,7 @@ Move the folder to `/opt`:
 
 Add the `jetty` service:
 
-    ln -s /opt/jetty-home-10.0.21/bin/jetty.sh /etc/rc.d/init.d/jetty
+    ln -s /opt/jetty-home-10.0.22/bin/jetty.sh /etc/rc.d/init.d/jetty
 
 Enable the `jetty` server on system init:
     
@@ -74,7 +74,7 @@ Create the folder that will contain Jetty configuration and `*.war` files:
 Add Jetty modules:
 
     cd /opt/jetty-base/
-    java -jar /opt/jetty-home-10.0.21/start.jar --add-module=server,http,deploy,jsp
+    java -jar /opt/jetty-home-10.0.22/start.jar --add-module=server,http,deploy,jsp
 
 #### Set Default Values
 
@@ -82,15 +82,21 @@ Copy the content from [`centos-stream-9/etc/default/jetty`](./centos-stream-9/et
 
     vi /etc/default/jetty
 
-Copy the port number from [`centos-stream-9/opt/jetty-base/start.d/http.ini`](./centos-stream-9/opt/jetty-base/start.d/http.ini) into the configuration file of Jetty's `http` module:
+Copy the port number configuration from [`centos-stream-9/opt/jetty-base/start.d/http.ini`](./centos-stream-9/opt/jetty-base/start.d/http.ini) into the configuration file of Jetty's `http` module:
 
     vi /opt/jetty-base/start.d/http.ini
+
+```diff
+## The port the connector listens on.
+-# jetty.http.port=8080
++jetty.http.port=80
+```
 
 #### Add Web Application Archive (WAR)
 
 Add the latest release of your `*.war` file to `/opt/jetty-base/webapps/`. In our case, we download WAR releases from an external URL:
 
-    wget -O /opt/jetty-base/webapps/webapp.war https://jitpack.io/com/github/elimu-ai/webapp/webapp-2.3.112/webapp-webapp-2.3.112.war
+    wget -O /opt/jetty-base/webapps/webapp.war https://jitpack.io/com/github/elimu-ai/webapp/webapp-2.4.25/webapp-webapp-2.4.25.war
 
 > [!IMPORTANT]
 > The WAR file's name must match the context file's name, e.g. `webapp.war` and `webapp.xml`.
@@ -102,16 +108,16 @@ Copy the content from [`webapp.xml`](./centos-stream-9/opt/jetty-base/webapps/we
     vi /opt/jetty-base/webapps/webapp.xml
 
 > [!NOTE]
-> If your deployment is for another language than Hindi (language code `HIN`), set the `content_language` attribute to your language code.
+> If your deployment is for another language than English (language code `ENG`), set the `content_language` attribute to your language code.
 
 ### Start Jetty
 
-Start the `jetty service`:
+Start the `jetty` service:
 
-    service jetty start
+    systemctl start jetty
 
 > [!TIP]
-> To verify that everything has been configured correctly, you can run `java -jar /opt/jetty-home-10.0.21/start.jar --list-config` and `service jetty status`
+> To verify that everything has been configured correctly, you can run `cd /opt/jetty-base/; java -jar /opt/jetty-home-10.0.22/start.jar --list-config` and `systemctl status jetty`
 
 ## MariaDB Database 🛢️
 
@@ -123,7 +129,7 @@ Copy and paste the YUM repo entry into a file under `/etc/yum.repos.d/`:
 
     vi /etc/yum.repos.d/MariaDB.repo
 
-Version: `11.4.2`
+Version: `11.4.3`
 
 Install MariaDB:
 
@@ -133,7 +139,7 @@ Install MariaDB:
 
 Start the MariaDB service:
 
-    service mariadb start
+    systemctl start mariadb
 
 > [!TIP]
 > To verify that MariaDB is running, use this command: `systemctl status mariadb`
@@ -150,17 +156,17 @@ Secure your MariaDB installation:
 
     mariadb-secure-installation
 
-☑️ Set root password: ***
-🟪 Switch to unix_socket authentication [Y/n] n
-☑️ Change the root password? [Y/n] n
-☑️ Remove anonymous users? [Y/n] Y
-☑️ Disallow root login remotely? [Y/n] Y
-☑️ Remove test database and access to it? [Y/n] Y
-☑️ Reload privilege tables now? [Y/n] Y
+- ☑️ Set root password: ***
+- 🟪 Switch to unix_socket authentication [Y/n] n
+- 🟪 Change the root password? [Y/n] n
+- ☑️ Remove anonymous users? [Y/n] Y
+- ☑️ Disallow root login remotely? [Y/n] Y
+- ☑️ Remove test database and access to it? [Y/n] Y
+- ☑️ Reload privilege tables now? [Y/n] Y
 
 ### Make UTF-8 the Default Character Set
 
-Copy the content from [`my.cnf`](./centos-stream-9/etc/my.cnf) and prepend it to the MariaDB config file:
+Copy the content from [`my.cnf`](./centos-stream-9/etc/my.cnf) and append it to the MariaDB config file:
 
     vi /etc/my.cnf
 
@@ -184,13 +190,27 @@ Log into the MariaDB Server:
 Create a new database:
 
 ```sql
-CREATE DATABASE `webapp-HIN` CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+CREATE DATABASE `webapp-ENG` CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 ```
 
 Create a database user:
 
 ```sql
-USE `webapp-HIN`;
+USE `webapp-ENG`;
 CREATE USER '**********'@'localhost' IDENTIFIED BY '**********';
-GRANT ALL ON `webapp-HIN`.* TO '**********'@'localhost';
+GRANT ALL ON `webapp-ENG`.* TO '**********'@'localhost';
+```
+
+### Backup Database
+
+Create a backup:
+
+```bash
+mariadb-dump webapp-ENG > webapp-ENG_`date +%Y"-"%m"-"%d`.sql
+```
+
+Restore database from a backup:
+
+```bash
+mariadb webapp-ENG < webapp-ENG_2024-08-20.sql
 ```
