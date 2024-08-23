@@ -217,7 +217,7 @@
                                 Chat<i class="material-icons right">forum</i>
                             </a>
                           </div>
-                          <div class="col l2 s12">
+                          <div class="col l2 s12 right-align">
                             <h5 class="white-text">Socials</h5>
                             <ul>
                                 <li><a class="white-text" href="https://twitter.com/elimu_ai" target="_blank">Twitter</a></li>
@@ -236,7 +236,7 @@
                                 <a class="white-text" href="https://opensource.org/licenses/MIT">MIT License</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai">code repository</a><br />
                                 <a class="white-text" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="<spring:url value='/content' />">content repository</a><br />
                             </div>
-                            <div class="col s12 m6">
+                            <div class="col s12 m6 right-align">
                                 Supported languages: 
                                 <c:choose>
                                     <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
@@ -263,7 +263,8 @@
                                             <a class="white-text" href="https://${supportedLanguage.isoCode}.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
                                         </c:forEach>
                                     </c:otherwise>
-                                </c:choose>
+                                </c:choose><br />
+                                Webapp version: <a class="white-text" href="https://github.com/elimu-ai/webapp/releases"><code>${applicationScope.configProperties['pom.version']}</code></a>
                             </div>
                           </div>
                       </div>

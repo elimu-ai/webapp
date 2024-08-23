@@ -18,6 +18,8 @@ import org.springframework.web.context.support.ServletContextResourceLoader;
 
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.Language;
+import ai.elimu.util.ConfigHelper;
+
 import java.net.URL;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.config.Configurator;
@@ -144,6 +146,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         
         // Add all supported languages
         PROPERTIES.put("supported.languages", Language.values());
+
+        // Add the POM version
+        String pomVersion = ConfigHelper.getProperty("pom.version");
+        logger.info("pomVersion: " + pomVersion);
+        PROPERTIES.put("pom.version", pomVersion);
 
         // Add config properties to application scope
         servletContext.setAttribute("configProperties", PROPERTIES);
