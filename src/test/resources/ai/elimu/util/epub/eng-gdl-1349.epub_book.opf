@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid">
+	<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<dc:identifier id="uid">9a56ad64-1dce-44b2-b87a-1c305aa5f1ad</dc:identifier>
+		<dc:title>Grace in Space</dc:title>
+		<dc:language>en</dc:language>
+		<meta property="dcterms:modified">2019-06-09T11:09:56Z</meta>
+		<dc:description>Girl travels with her uncle to space and returns years later.</dc:description>
+		<dc:creator id="contributor_1">Obai Al-Alloush</dc:creator>
+		<meta refines="#contributor_1" property="role" scheme="marc:relators">aut</meta>
+		<dc:contributor id="contributor_2">Sara Wafeeq</dc:contributor>
+		<meta refines="#contributor_2" property="role" scheme="marc:relators">ill</meta>
+	</metadata>
+	<manifest>
+		<item href="toc.xhtml" id="toc" media-type="application/xhtml+xml" properties="nav" />
+		<item href="epub.css" id="css" media-type="text/css" />
+		<item href="39e5eb1614ea195e9e377f63f561aa8c.jpg" id="cover" media-type="image/jpeg" properties="cover-image" />
+		<item href="b76d51103968478a8432af621688bef0.jpg" id="image-20942-0" media-type="image/jpeg" />
+		<item href="875144e42ad79c7fbcfa025d9f664943.png" id="image-20545-1" media-type="image/png" />
+		<item href="e5a4391fb765b113a36c7212d62f171e.jpg" id="image-20546-2" media-type="image/jpeg" />
+		<item href="fab5309f47c06b8a76c1b9f0cf38e959.png" id="image-20547-3" media-type="image/png" />
+		<item href="fec090169da14c8b198eaff508d9fbb0.png" id="image-20548-4" media-type="image/png" />
+		<item href="671491aaacc6cfe7012f9e62b5b1ccdb.png" id="image-20549-5" media-type="image/png" />
+		<item href="21f0ca572d1f21c4813bfb910ccb935d.jpg" id="image-20943-6" media-type="image/jpeg" />
+		<item href="28984d403caa9726bb8a099a4c837db6.jpg" id="image-20944-7" media-type="image/jpeg" />
+		<item href="417ade37b3ae1cdf5106a13b39e1d238.jpg" id="image-20946-8" media-type="image/jpeg" />
+		<item href="997526f32de36d9bbe725f92af3986f9.jpg" id="image-20947-9" media-type="image/jpeg" />
+		<item href="7c11f4c99fb7ae4c1092f91f1a01997a.jpg" id="image-20948-10" media-type="image/jpeg" />
+		<item href="dbd72d644245a87510f132ffda068aac.jpg" id="image-20949-11" media-type="image/jpeg" />
+		<item href="7794cb69e00c34bf1d1e78c341f6fac7.jpg" id="image-20950-12" media-type="image/jpeg" />
+		<item href="5455356dfe37bfdf8e180ce096234d30.jpg" id="image-20951-13" media-type="image/jpeg" />
+		<item href="8039d16511ec8611c822976cceafec93.jpg" id="image-20952-14" media-type="image/jpeg" />
+		<item href="b2ec46c4132ef5a6c7783235f732df5b.jpg" id="image-20953-15" media-type="image/jpeg" />
+		<item href="64999737e79cc744729b2921be6a8027.jpg" id="image-20954-16" media-type="image/jpeg" />
+		<item href="8812530f9a11ae49b60c0fb23d2e55c0.jpg" id="image-20955-17" media-type="image/jpeg" />
+		<item href="596b94b698a31cdf296cf8586849e4ab.jpg" id="image-20956-18" media-type="image/jpeg" />
+		<item href="b6645463109c8aa141a2d4cd137d843b.jpg" id="image-20957-19" media-type="image/jpeg" />
+		<item href="bb9f98d6a496a53dcc171668d31fced5.jpg" id="image-20958-20" media-type="image/jpeg" />
+		<item href="164c9e702741793f1b541ba848d205ee.jpg" id="image-20945-21" media-type="image/jpeg" />
+		<item href="chapter-1.xhtml" id="chapter-1" media-type="application/xhtml+xml" />
+		<item href="chapter-2.xhtml" id="chapter-2" media-type="application/xhtml+xml" />
+		<item href="chapter-3.xhtml" id="chapter-3" media-type="application/xhtml+xml" />
+		<item href="chapter-4.xhtml" id="chapter-4" media-type="application/xhtml+xml" />
+		<item href="chapter-5.xhtml" id="chapter-5" media-type="application/xhtml+xml" />
+		<item href="chapter-6.xhtml" id="chapter-6" media-type="application/xhtml+xml" />
+		<item href="chapter-7.xhtml" id="chapter-7" media-type="application/xhtml+xml" />
+		<item href="chapter-8.xhtml" id="chapter-8" media-type="application/xhtml+xml" />
+		<item href="chapter-9.xhtml" id="chapter-9" media-type="application/xhtml+xml" />
+		<item href="chapter-10.xhtml" id="chapter-10" media-type="application/xhtml+xml" />
+		<item href="chapter-11.xhtml" id="chapter-11" media-type="application/xhtml+xml" />
+		<item href="chapter-12.xhtml" id="chapter-12" media-type="application/xhtml+xml" />
+		<item href="chapter-13.xhtml" id="chapter-13" media-type="application/xhtml+xml" />
+		<item href="chapter-14.xhtml" id="chapter-14" media-type="application/xhtml+xml" />
+		<item href="chapter-15.xhtml" id="chapter-15" media-type="application/xhtml+xml" />
+		<item href="chapter-16.xhtml" id="chapter-16" media-type="application/xhtml+xml" />
+		<item href="chapter-17.xhtml" id="chapter-17" media-type="application/xhtml+xml" />
+		<item href="chapter-18.xhtml" id="chapter-18" media-type="application/xhtml+xml" />
+	</manifest>
+	<spine>
+		<itemref idref="toc" linear="no" />
+		<itemref idref="chapter-1" />
+		<itemref idref="chapter-2" />
+		<itemref idref="chapter-3" />
+		<itemref idref="chapter-4" />
+		<itemref idref="chapter-5" />
+		<itemref idref="chapter-6" />
+		<itemref idref="chapter-7" />
+		<itemref idref="chapter-8" />
+		<itemref idref="chapter-9" />
+		<itemref idref="chapter-10" />
+		<itemref idref="chapter-11" />
+		<itemref idref="chapter-12" />
+		<itemref idref="chapter-13" />
+		<itemref idref="chapter-14" />
+		<itemref idref="chapter-15" />
+		<itemref idref="chapter-16" />
+		<itemref idref="chapter-17" />
+		<itemref idref="chapter-18" />
+	</spine>
+</package>

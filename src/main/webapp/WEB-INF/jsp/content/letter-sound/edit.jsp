@@ -6,7 +6,7 @@
     <h4><content:gettitle /></h4>
     <div class="card-panel">
         <form:form modelAttribute="letterSound">
-            <tag:formErrors modelAttribute="letterSoundCorrespondence" />
+            <tag:formErrors modelAttribute="letterSound" />
             
             <form:hidden path="revisionNumber" value="${letterSound.revisionNumber}" />
             <form:hidden path="usageCount" value="${letterSound.usageCount}" />
@@ -210,7 +210,7 @@
                 <span class="badge">
                     <fmt:message key="revision" /> #${letterSoundContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${letterSoundContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${letterSoundContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                    <fmt:formatDate value="${letterSoundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/content/contributor/${letterSoundContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -281,7 +281,7 @@
                                 </code>
                             </div>
                             <div class="col s4" style="text-align: right;">
-                                <fmt:formatDate value="${letterSoundPeerReviewEvent.time.time}" pattern="yyyy-MM-dd HH:mm" /> 
+                                <fmt:formatDate value="${letterSoundPeerReviewEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" /> 
                             </div>
                             <c:if test="${not empty letterSoundPeerReviewEvent.comment}">
                                 <div class="col s12 comment"><c:out value="${letterSoundPeerReviewEvent.comment}" /></div>

@@ -71,7 +71,7 @@ public class LetterCreateController {
             
             LetterContributionEvent letterContributionEvent = new LetterContributionEvent();
             letterContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            letterContributionEvent.setTime(Calendar.getInstance());
+            letterContributionEvent.setTimestamp(Calendar.getInstance());
             letterContributionEvent.setLetter(letter);
             letterContributionEvent.setRevisionNumber(letter.getRevisionNumber());
             letterContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));

@@ -33,7 +33,7 @@ public class AudioPeerReviewEventDaoJpa extends GenericDaoJpa<AudioPeerReviewEve
             "SELECT apre " + 
             "FROM AudioPeerReviewEvent apre " +
             "WHERE apre.audioContributionEvent.audio = :audio " + 
-            "ORDER BY apre.time DESC")
+            "ORDER BY apre.timestamp DESC")
             .setParameter("audio", audio)
             .getResultList();
     }
@@ -44,7 +44,7 @@ public class AudioPeerReviewEventDaoJpa extends GenericDaoJpa<AudioPeerReviewEve
             "SELECT apre " + 
             "FROM AudioPeerReviewEvent apre " +
             "WHERE apre.audioContributionEvent = :audioContributionEvent " + 
-            "ORDER BY apre.time DESC")
+            "ORDER BY apre.timestamp DESC")
             .setParameter("audioContributionEvent", audioContributionEvent)
             .getResultList();
     }

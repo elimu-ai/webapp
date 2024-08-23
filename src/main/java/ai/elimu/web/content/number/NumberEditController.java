@@ -105,7 +105,7 @@ public class NumberEditController {
             
             NumberContributionEvent numberContributionEvent = new NumberContributionEvent();
             numberContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            numberContributionEvent.setTime(Calendar.getInstance());
+            numberContributionEvent.setTimestamp(Calendar.getInstance());
             numberContributionEvent.setNumber(number);
             numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
             numberContributionEvent.setComment(request.getParameter("contributionComment"));

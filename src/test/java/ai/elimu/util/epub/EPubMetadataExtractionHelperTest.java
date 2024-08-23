@@ -17,21 +17,21 @@ public class EPubMetadataExtractionHelperTest {
     private final Logger logger = LogManager.getLogger();
 
     @Test
-    public void testExtractTitleFromOpfFile_BEN_GLOBAL_DIGITAL_LIBRARY() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-gdl-761.epub_book.opf");
+    public void testExtractTitleFromOpfFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);	
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");
         File opfFile = resource.getFile();
         logger.debug("opfFile: " + opfFile);
-        
+
         String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
-        assertEquals("উৎসব", title);
+        assertEquals("Grace in Space", title);
 
         String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
-        assertEquals("পোশাক উৎসবের বর্ণ, শব্দ, গন্ধ ও অনুভূতি উপভোগ করো।", description);
+        assertEquals("Girl travels with her uncle to space and returns years later.", description);
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_TGL_LETS_READ_ASIA_0acfe340() throws IOException {
+    public void testExtractTitleFromOpfFile_LETS_READ_ASIA_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
         File opfFile = resource.getFile();
@@ -45,7 +45,7 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_TGL_LETS_READ_ASIA_627f64f8() throws IOException {
+    public void testExtractTitleFromOpfFile_LETS_READ_ASIA_tgl_627f64f8() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-627f64f8-a002-4c0f-8bb6-3701ce5fcf19.epub_content.opf");
         File opfFile = resource.getFile();
@@ -59,7 +59,7 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_TGL_STORYWEAVER_105391() throws IOException {
+    public void testExtractTitleFromOpfFile_STORYWEAVER_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-sw-105391-tayo-ay-magbilang.epub_package.opf");
         File opfFile = resource.getFile();
@@ -73,33 +73,32 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractTitleFromOpfFile_BEN_STORYWEAVER_11791() throws IOException {
+    public void testExtractTitleFromOpfFile_STORYWEAVER_hin() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_package.opf");
+        Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_package.opf");
         File opfFile = resource.getFile();
         logger.debug("opfFile: " + opfFile);
-        
+
         String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
-        assertEquals("ঘুমকাতুরে ভীম", title);
+        assertEquals("एक सौ सैंतीसवाँ पैर", title);
 
         String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
         assertEquals(null, description); // or assertEquals("", description);
     }
 
-    
     @Test
-    public void testExtractCoverImageReferenceFromOpfFile_BEN_GLOBAL_DIGITAL_LIBRARY_761() throws IOException {
+    public void testExtractCoverImageReferenceFromOpfFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-gdl-761.epub_book.opf");
+        Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");
         File opfFile = resource.getFile();
         logger.debug("opfFile: " + opfFile);
         
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
-        assertEquals("99e3d3af620881991813482fb602a1f6.jpg", coverImageReference);
+        assertEquals("39e5eb1614ea195e9e377f63f561aa8c.jpg", coverImageReference);
     }
 
     @Test
-    public void testExtractCoverImageReferenceFromOpfFile_TGL_LETS_READ_ASIA_0acfe340() throws IOException {
+    public void testExtractCoverImageReferenceFromOpfFile_LETS_READ_ASIA_tgl() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
         File opfFile = resource.getFile();
@@ -110,12 +109,12 @@ public class EPubMetadataExtractionHelperTest {
     }
 
     @Test
-    public void testExtractCoverImageReferenceFromOpfFile_BEN_STORYWEAVER_11791() throws IOException {
+    public void testExtractCoverImageReferenceFromOpfFile_STORYWEAVER_hin() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_package.opf");
+        Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_package.opf");
         File opfFile = resource.getFile();
         logger.debug("opfFile: " + opfFile);
-        
+
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
         assertEquals("image_1.jpg", coverImageReference);
     }

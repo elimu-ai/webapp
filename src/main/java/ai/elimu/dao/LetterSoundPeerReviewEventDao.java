@@ -1,6 +1,6 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import ai.elimu.model.contributor.LetterSoundPeerReviewEvent;
@@ -11,7 +11,7 @@ public interface LetterSoundPeerReviewEventDao extends GenericDao<LetterSoundPee
     
     List<LetterSoundPeerReviewEvent> readAll(LetterSoundContributionEvent letterSoundContributionEvent, Contributor contributor) throws DataAccessException;
     
-    List<LetterSoundPeerReviewEvent> readAll(LetterSoundCorrespondence letterSoundCorrespondence) throws DataAccessException;
+    List<LetterSoundPeerReviewEvent> readAll(LetterSound letterSound) throws DataAccessException;
     
     List<LetterSoundPeerReviewEvent> readAll(Contributor contributor) throws DataAccessException;
     

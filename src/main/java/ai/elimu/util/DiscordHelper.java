@@ -4,15 +4,16 @@ import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.HttpResponse;
+import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
 
 /**
  * Helper class for posting notifications in Discord.
@@ -22,7 +23,7 @@ import org.apache.logging.log4j.Logger;
 public class DiscordHelper {
 
     private static Logger logger = LogManager.getLogger();
-    
+
     public static void sendChannelMessage(
             String content,
             String embedTitle,
@@ -31,7 +32,7 @@ public class DiscordHelper {
             String embedThumbnailUrl
     ) {
         logger.info("sendChannelMessage");
-        
+
         // Prepare the JSON body
         JsonObject jsonBody = new JsonObject();
         jsonBody.addProperty("content", content);
@@ -59,7 +60,7 @@ public class DiscordHelper {
             jsonBody.add("embeds", embedsJsonArray);
         }
         logger.info("jsonBody: " + jsonBody);
-        
+
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             // Send the message to Discord
             CloseableHttpClient client = HttpClients.createDefault();
@@ -71,7 +72,7 @@ public class DiscordHelper {
                 httpPost.setEntity(entity);
                 httpPost.setHeader("Content-type", "application/json");
                 HttpResponse httpResponse = client.execute(httpPost);
-                logger.info("httpResponse.getStatusLine(): " + httpResponse.getStatusLine());
+                logger.info("httpResponse.getStatusLine(): " + httpResponse);
                 client.close();
             } catch (IOException e) {
                logger.error(e);

@@ -4,17 +4,22 @@
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
   <Set name="contextPath">/</Set>
   <Set name="war"><SystemProperty name="jetty.base"/>/webapps/webapp.war</Set>
+  <Set name="virtualHosts">
+    <Array type="java.lang.String">
+      <Item>eng.elimu.ai</Item>
+    </Array>
+  </Set>
   <Call name="setAttribute">
     <Arg>env</Arg>
     <Arg>PROD</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>content_language</Arg>
-    <Arg>HIN</Arg>
+    <Arg>ENG</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_url</Arg>
-    <Arg>jdbc:mysql://localhost/webapp-HIN?useUnicode=true&amp;characterEncoding=utf8</Arg>
+    <Arg>jdbc:mysql://localhost/webapp-ENG?useUnicode=true&amp;characterEncoding=utf8</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_username</Arg>
@@ -30,10 +35,6 @@
   </Call>
   <Call name="setAttribute">
     <Arg>github_api_secret</Arg>
-    <Arg>**********</Arg>
-  </Call>
-  <Call name="setAttribute">
-    <Arg>covalent_api_key</Arg>
     <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">

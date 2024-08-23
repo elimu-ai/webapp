@@ -82,10 +82,10 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         ClassPathScanningCandidateComponentProvider entityScanner = new ClassPathScanningCandidateComponentProvider(true);
         entityScanner.addIncludeFilter(new AnnotationTypeFilter(Entity.class));
         for (BeanDefinition beanDefinition : entityScanner.findCandidateComponents(ai.elimu.model.BaseEntity.class.getPackageName())) {
-            logger.info("beanDefinition.getBeanClassName(): " + beanDefinition.getBeanClassName());
+            logger.debug("beanDefinition.getBeanClassName(): " + beanDefinition.getBeanClassName());
             try {
                 Class<?> annotatedClass = Class.forName(beanDefinition.getBeanClassName());
-                logger.info("annotatedClass.getName(): " + annotatedClass.getName());
+                logger.debug("annotatedClass.getName(): " + annotatedClass.getName());
                 metadataSources.addAnnotatedClass(annotatedClass);
             } catch (ClassNotFoundException ex) {
                 logger.error(ex);

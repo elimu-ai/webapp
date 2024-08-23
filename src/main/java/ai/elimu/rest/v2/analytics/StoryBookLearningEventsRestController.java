@@ -118,9 +118,9 @@ public class StoryBookLearningEventsRestController {
                 StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                 
                 long timeInMillis = Long.valueOf(csvRecord.get("time"));
-                Calendar time = Calendar.getInstance();
-                time.setTimeInMillis(timeInMillis);
-                storyBookLearningEvent.setTime(time);
+                Calendar timestamp = Calendar.getInstance();
+                timestamp.setTimeInMillis(timeInMillis);
+                storyBookLearningEvent.setTimestamp(timestamp);
                 
                 String androidId = csvRecord.get("android_id");
                 storyBookLearningEvent.setAndroidId(androidId);
@@ -147,7 +147,7 @@ public class StoryBookLearningEventsRestController {
                 storyBookLearningEvent.setLearningEventType(learningEventType);
                 
                 // Check if the event has already been stored in the database
-                StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(time, androidId, application, storyBook);
+                StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(timestamp, androidId, application, storyBook);
                 logger.info("existingStoryBookLearningEvent: " + existingStoryBookLearningEvent);
                 if (existingStoryBookLearningEvent == null) {
                     // Store the event in the database

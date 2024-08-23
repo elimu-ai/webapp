@@ -6,10 +6,11 @@
 [![contributors](https://img.shields.io/github/contributors/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/graphs/contributors)
 [![closed issues](https://img.shields.io/github/issues-closed/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/issues?q=is%3Aissue+is%3Aclosed)
 
-Web application:
+Deployments in production:
 
- * https://hin.elimu.ai - Hindi
- * https://tgl.elimu.ai - Tagalog
+ * https://hin.elimu.ai - Hindi database content
+ * https://tgl.elimu.ai - Tagalog database content
+ * https://eng.elimu.ai - English database content
 
 [<kbd>![](https://github.com/elimu-ai/webapp/assets/15718174/32f3c339-aacc-4dc1-9692-c9435bc63d57)</kbd>](https://hin.elimu.ai)
 
@@ -17,7 +18,7 @@ This web application hosts Android apps and educational content (e.g. texts, aud
 
 ## REST API
 
-See [src/main/java/ai/elimu/rest/](src/main/java/ai/elimu/rest/)
+See [`src/main/java/ai/elimu/rest/`](src/main/java/ai/elimu/rest/)
 
 The webapp's REST API is used by three Android applications:
   1. [elimu.ai Appstore](https://github.com/elimu-ai/appstore)
@@ -26,7 +27,7 @@ The webapp's REST API is used by three Android applications:
 
 ## Software architecture
 
-See [elimu.ai Wiki: SOFTWARE_ARCHITECTURE.md](https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md)
+See [elimu.ai Wiki: `SOFTWARE_ARCHITECTURE.md`](https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md)
 
 ## Run webapp locally 👩🏽‍💻
 
@@ -48,7 +49,13 @@ See [`DB_MIGRATION.md`](./DB_MIGRATION.md)
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md)
 
-## Star History 🌠
+## Project Stats
+
+### Repo Beats 💓
+
+![](https://repobeats.axiom.co/api/embed/e2744d1a6c3eee095f871d09f2b76c536cd384c3.svg "Repobeats analytics image")
+
+### Star History 🌠
 
 [<kbd>![Star History Chart](https://api.star-history.com/svg?repos=elimu-ai/webapp&type=Date)</kbd>](https://star-history.com/#elimu-ai/webapp&Date)
 

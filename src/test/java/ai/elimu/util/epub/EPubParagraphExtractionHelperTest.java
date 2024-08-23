@@ -19,33 +19,6 @@ public class EPubParagraphExtractionHelperTest {
     private final Logger logger = LogManager.getLogger();
 
     @Test
-    public void testExtractParagraphsFromChapterFile_BEN_GDL_761() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-gdl-761.epub_chapter-2.xhtml");
-        File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
-        
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
-
-        assertEquals(1, storyBookParagraphs.size());
-        assertEquals("আজকে ছুটির দিন আনন্দে হারাই! চলো সবে পোশাকের উৎসবে যাই!", storyBookParagraphs.get(0));
-    }
-
-    @Test
-    public void testExtractParagraphsFromChapterFile_BEN_SW_11791() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("ben-sw-11791-ghumkature-bhim.epub_2.xhtml");
-        File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
-        
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
-
-        assertEquals(2, storyBookParagraphs.size());
-        assertEquals("ভীমের শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।", storyBookParagraphs.get(0));
-        assertEquals("ধোপা রামু সুযোগ পেলেই ভীমকে বকা দেয়।", storyBookParagraphs.get(1));
-    }
-
-    @Test
     public void testExtractParagraphsFromChapterFile_ENG_GDL_1349() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_chapter-3.xhtml");
@@ -249,18 +222,5 @@ public class EPubParagraphExtractionHelperTest {
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("\"देखो माँ, मैं बंदर की तरह झूल रही हूँ।\"", storyBookParagraphs.get(0));
-    }
-
-    @Test
-    public void testExtractParagraphsFromChapterFile_SWA_GDL_30() throws IOException {
-        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
-        Resource resource = resourceLoader.getResource("swa-gdl-30.epub_chapter-2.xhtml");
-        File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
-
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
-
-        assertEquals(1, storyBookParagraphs.size());
-        assertEquals("Kuku na Jongoo walikuwa marafiki.", storyBookParagraphs.get(0));
     }
 }

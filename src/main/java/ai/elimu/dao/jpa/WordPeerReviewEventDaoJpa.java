@@ -17,7 +17,7 @@ public class WordPeerReviewEventDaoJpa extends GenericDaoJpa<WordPeerReviewEvent
             "FROM WordPeerReviewEvent wpre " +
             "WHERE wpre.wordContributionEvent = :wordContributionEvent " +
             "AND wpre.contributor = :contributor " +
-            "ORDER BY wpre.time DESC")
+            "ORDER BY wpre.timestamp DESC")
             .setParameter("wordContributionEvent", wordContributionEvent)
             .setParameter("contributor", contributor)
             .getResultList();
@@ -29,7 +29,7 @@ public class WordPeerReviewEventDaoJpa extends GenericDaoJpa<WordPeerReviewEvent
             "SELECT wpre " + 
             "FROM WordPeerReviewEvent wpre " +
             "WHERE wpre.wordContributionEvent.word = :word " + 
-            "ORDER BY wpre.time DESC")
+            "ORDER BY wpre.timestamp DESC")
             .setParameter("word", word)
             .getResultList();
     }
@@ -40,7 +40,7 @@ public class WordPeerReviewEventDaoJpa extends GenericDaoJpa<WordPeerReviewEvent
             "SELECT wpre " + 
             "FROM WordPeerReviewEvent wpre " +
             "WHERE wpre.contributor = :contributor " + 
-            "ORDER BY wpre.time DESC")
+            "ORDER BY wpre.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -51,7 +51,7 @@ public class WordPeerReviewEventDaoJpa extends GenericDaoJpa<WordPeerReviewEvent
             "SELECT wpre " + 
             "FROM WordPeerReviewEvent wpre " +
             "WHERE wpre.wordContributionEvent = :wordContributionEvent " + 
-            "ORDER BY wpre.time DESC")
+            "ORDER BY wpre.timestamp DESC")
             .setParameter("wordContributionEvent", wordContributionEvent)
             .getResultList();
     }

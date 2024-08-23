@@ -16,27 +16,27 @@ public class StoryBookLearningEventDaoJpa extends GenericDaoJpa<StoryBookLearnin
         return em.createQuery(
             "SELECT sble " +
             "FROM StoryBookLearningEvent sble " +
-            "ORDER BY sble.time DESC")
+            "ORDER BY sble.timestamp DESC")
             .getResultList();
     }
     
     @Override
-    public StoryBookLearningEvent read(Calendar time, String androidId, Application application, StoryBook storyBook) throws DataAccessException {
+    public StoryBookLearningEvent read(Calendar timestamp, String androidId, Application application, StoryBook storyBook) throws DataAccessException {
         try {
             return (StoryBookLearningEvent) em.createQuery(
                 "SELECT sble " +
                 "FROM StoryBookLearningEvent sble " +
-                "WHERE sble.time = :time " +
+                "WHERE sble.timestamp = :timestamp " +
                 "AND sble.androidId = :androidId " + 
                 "AND sble.application = :application " + 
                 "AND sble.storyBook = :storyBook")
-                .setParameter("time", time)
+                .setParameter("timestamp", timestamp)
                 .setParameter("androidId", androidId)
                 .setParameter("application", application)
                 .setParameter("storyBook", storyBook)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("StoryBookLearningEvent (" + time.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", " + storyBook.getId() + ") was not found");
+            logger.info("StoryBookLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", " + application.getPackageName() + ", " + storyBook.getId() + ") was not found");
             return null;
         }
     }

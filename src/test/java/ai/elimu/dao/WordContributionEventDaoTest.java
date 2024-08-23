@@ -50,7 +50,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent1.setContributor(contributor);
         wordContributionEvent1.setWord(word1);
         wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
-        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimestamp(Calendar.getInstance());
         wordContributionEvent1.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent1);
 
@@ -64,7 +64,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent2.setRevisionNumber(word2.getRevisionNumber());
         Calendar calendar1HourFromNow = Calendar.getInstance();
         calendar1HourFromNow.add(Calendar.HOUR, 1);
-        wordContributionEvent2.setTime(calendar1HourFromNow);
+        wordContributionEvent2.setTimestamp(calendar1HourFromNow);
         wordContributionEvent2.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent2);
 
@@ -72,10 +72,10 @@ public class WordContributionEventDaoTest {
         logger.info("wordContributionEvents.size(): " + wordContributionEvents.size());
 
         WordContributionEvent event1stInList = wordContributionEvents.get(0);
-        logger.info("event1stInList time: " + event1stInList.getTime().getTime());
+        logger.info("event1stInList time: " + event1stInList.getTimestamp().getTime());
         WordContributionEvent event2ndInList = wordContributionEvents.get(1);
-        logger.info("event2ndInList time: " + event2ndInList.getTime().getTime());
-        assertTrue(event1stInList.getTime().after(event2ndInList.getTime()));
+        logger.info("event2ndInList time: " + event2ndInList.getTimestamp().getTime());
+        assertTrue(event1stInList.getTimestamp().after(event2ndInList.getTimestamp()));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent1.setContributor(contributor);
         wordContributionEvent1.setWord(word1);
         wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
-        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimestamp(Calendar.getInstance());
         wordContributionEvent1.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent1);
 
@@ -119,7 +119,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent2.setContributor(contributor);
         wordContributionEvent2.setWord(word2);
         wordContributionEvent2.setRevisionNumber(word2.getRevisionNumber());
-        wordContributionEvent2.setTime(Calendar.getInstance());
+        wordContributionEvent2.setTimestamp(Calendar.getInstance());
         wordContributionEvent2.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent2);
 
@@ -156,7 +156,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent1.setContributor(contributor1);
         wordContributionEvent1.setWord(word);
         wordContributionEvent1.setRevisionNumber(word.getRevisionNumber());
-        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimestamp(Calendar.getInstance());
         wordContributionEvent1.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent1);
 
@@ -174,7 +174,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent2.setContributor(contributor2);
         wordContributionEvent2.setWord(word);
         wordContributionEvent2.setRevisionNumber(word.getRevisionNumber());
-        wordContributionEvent2.setTime(Calendar.getInstance());
+        wordContributionEvent2.setTimestamp(Calendar.getInstance());
         wordContributionEvent2.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent2);
 
@@ -208,7 +208,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent1.setContributor(contributor);
         wordContributionEvent1.setWord(word1);
         wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
-        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimestamp(Calendar.getInstance());
         wordContributionEvent1.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent1);
         
@@ -243,7 +243,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent1.setContributor(contributor1);
         wordContributionEvent1.setWord(word);
         wordContributionEvent1.setRevisionNumber(word.getRevisionNumber());
-        wordContributionEvent1.setTime(Calendar.getInstance());
+        wordContributionEvent1.setTimestamp(Calendar.getInstance());
         wordContributionEvent1.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent1);
 
@@ -258,7 +258,7 @@ public class WordContributionEventDaoTest {
         wordContributionEvent2.setContributor(contributor2);
         wordContributionEvent2.setWord(word);
         wordContributionEvent2.setRevisionNumber(word.getRevisionNumber());
-        wordContributionEvent2.setTime(Calendar.getInstance());
+        wordContributionEvent2.setTimestamp(Calendar.getInstance());
         wordContributionEvent2.setTimeSpentMs(10_000L);
         wordContributionEventDao.create(wordContributionEvent2);
 

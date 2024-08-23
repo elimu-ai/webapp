@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.WordDao;
 import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.Word;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import ai.elimu.dao.SoundDao;
  * StoryBooks.
  * <p />
  * For this to work, the frequency of each {@link Word} must have been calculated and stored previously 
- * (see {@link WordUsageCountScheduler} and {@link LetterSoundCorrespondenceUsageCountScheduler}).
+ * (see {@link WordUsageCountScheduler} and {@link LetterSoundUsageCountScheduler}).
  */
 @Service
 public class SoundUsageCountScheduler {
@@ -42,12 +42,12 @@ public class SoundUsageCountScheduler {
         // Integer = Usage count
         Map<Long, Integer> soundFrequencyMap = new HashMap<>();
 
-        // Summarize the usage count of each Word's Sounds based on the LetterSoundCorrespondence's 
-        // usage count (see LetterSoundCorrespondenceUsageCountScheduler).
+        // Summarize the usage count of each Word's Sounds based on the LetterSound's
+        // usage count (see LetterSoundUsageCountScheduler).
         List<Word> words = wordDao.readAllOrdered();
         logger.info("words.size(): " + words.size());
         for (Word word : words) {
-            for (LetterSoundCorrespondence letterSound : word.getLetterSounds()) {
+            for (LetterSound letterSound : word.getLetterSounds()) {
                 for (Sound sound : letterSound.getSounds()) {
                     soundFrequencyMap.put(sound.getId(), soundFrequencyMap.getOrDefault(sound.getId(), 0) + letterSound.getUsageCount());
                 }

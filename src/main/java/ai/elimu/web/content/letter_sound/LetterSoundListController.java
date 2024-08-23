@@ -2,7 +2,7 @@ package ai.elimu.web.content.letter_sound;
 
 import java.util.List;
 import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.LetterSoundCorrespondence;
+import ai.elimu.model.content.LetterSound;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +24,11 @@ public class LetterSoundListController {
     public String handleRequest(Model model) {
         logger.info("handleRequest");
         
-        List<LetterSoundCorrespondence> letterSounds = letterSoundDao.readAllOrderedByUsage();
+        List<LetterSound> letterSounds = letterSoundDao.readAllOrderedByUsage();
         model.addAttribute("letterSounds", letterSounds);
         
         int maxUsageCount = 0;
-        for (LetterSoundCorrespondence letterSound : letterSounds) {
+        for (LetterSound letterSound : letterSounds) {
             if (letterSound.getUsageCount() > maxUsageCount) {
                 maxUsageCount = letterSound.getUsageCount();
             }

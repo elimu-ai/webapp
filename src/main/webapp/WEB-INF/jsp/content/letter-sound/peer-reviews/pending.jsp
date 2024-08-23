@@ -65,7 +65,7 @@
                                 #${letterSoundContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${letterSoundContributionEvent.timeSpentMs / 1000 / 60}" /> min)
                             </td>
                             <td>
-                                <fmt:formatDate value="${letterSoundContributionEvent.time.time}" pattern="yyyy-MM-dd HH:mm" />
+                                <fmt:formatDate value="${letterSoundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
                             <td>
                                 <a href="<spring:url value='/content/letter-sound/edit/${letterSoundContributionEvent.letterSound.id}#peer-review' />" target="_blank"><fmt:message key="peer.review" /></a>

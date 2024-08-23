@@ -57,7 +57,7 @@ public class WordPeerReviewEventCreateController {
         wordPeerReviewEvent.setWordContributionEvent(wordContributionEvent);
         wordPeerReviewEvent.setApproved(approved);
         wordPeerReviewEvent.setComment(StringUtils.abbreviate(comment, 1000));
-        wordPeerReviewEvent.setTime(Calendar.getInstance());
+        wordPeerReviewEvent.setTimestamp(Calendar.getInstance());
         wordPeerReviewEventDao.create(wordPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

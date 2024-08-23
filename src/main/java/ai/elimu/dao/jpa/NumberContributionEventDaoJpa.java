@@ -16,7 +16,7 @@ public class NumberContributionEventDaoJpa extends GenericDaoJpa<NumberContribut
             "SELECT nce " + 
             "FROM NumberContributionEvent nce " +
             "WHERE nce.number = :number " + 
-            "ORDER BY nce.time DESC")
+            "ORDER BY nce.timestamp DESC")
             .setParameter("number", number)
             .getResultList();
     }
@@ -27,7 +27,7 @@ public class NumberContributionEventDaoJpa extends GenericDaoJpa<NumberContribut
             "SELECT nce " + 
             "FROM NumberContributionEvent nce " +
             "WHERE nce.contributor = :contributor " + 
-            "ORDER BY nce.time DESC")
+            "ORDER BY nce.timestamp DESC")
             .setParameter("contributor", contributor)
             .getResultList();
     }
@@ -37,7 +37,7 @@ public class NumberContributionEventDaoJpa extends GenericDaoJpa<NumberContribut
         return em.createQuery(
             "SELECT nce " + 
             "FROM NumberContributionEvent nce " +
-            "ORDER BY nce.time DESC")
+            "ORDER BY nce.timestamp DESC")
             .setMaxResults(maxResults)
             .getResultList();
     }
@@ -47,8 +47,8 @@ public class NumberContributionEventDaoJpa extends GenericDaoJpa<NumberContribut
         return em.createQuery(
             "SELECT nce " + 
             "FROM NumberContributionEvent nce " +
-            "WHERE nce.time IN (SELECT MAX(time) FROM NumberContributionEvent GROUP BY number_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY nce.time ASC")
+            "WHERE nce.timestamp IN (SELECT MAX(timestamp) FROM NumberContributionEvent GROUP BY number_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
+            "ORDER BY nce.timestamp ASC")
             .getResultList();
     }
 

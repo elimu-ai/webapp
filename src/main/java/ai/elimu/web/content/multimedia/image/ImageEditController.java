@@ -199,7 +199,7 @@ public class ImageEditController {
             
             ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
             imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            imageContributionEvent.setTime(Calendar.getInstance());
+            imageContributionEvent.setTimestamp(Calendar.getInstance());
             imageContributionEvent.setImage(image);
             imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
             imageContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
