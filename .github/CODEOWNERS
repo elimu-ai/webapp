@@ -1,5 +1,4 @@
 # See https://help.github.com/en/articles/about-code-owners
 
-# These owners will be the default owners for everything in the repo. Unless a later match takes precedence, 
-# @elimu-ai/codeowners-web (https://github.com/orgs/elimu-ai/teams/codeowners-web/members) will be requested for review when someone opens a pull request.
-*       @elimu-ai/codeowners-web
+* @elimu-ai/codeowners-content
+* @elimu-ai/codeowners-web
