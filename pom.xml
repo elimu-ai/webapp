@@ -99,9 +99,9 @@
                     <formats>
                         <format>
                             <includes>
-                                <include>pom.xml</include>
                                 <include>**/*.java</include>
                                 <include>**/*.jsp</include>
+                                <include>**/*.xml</include>
                             </includes>
                             <indent>
                                 <spaces>true</spaces>
