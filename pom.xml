@@ -100,8 +100,8 @@
                         <format>
                             <includes>
                                 <include>pom.xml</include>
-                                <include>src/main/java/**/*.java</include>
-                                <include>src/test/java/**/*.java</include>
+                                <include>**/*.java</include>
+                                <include>**/*.jsp</include>
                             </includes>
                             <indent>
                                 <spaces>true</spaces>
