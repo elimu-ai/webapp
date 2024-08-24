@@ -53,7 +53,7 @@
     
         <table class="bordered highlight">
             <thead>
-                <th>time</th>
+                <th>timestamp</th>
                 <th>android_id</th>
                 <th>package_name</th>
                 <th>storybook_id</th>
@@ -64,7 +64,7 @@
                 <c:forEach var="storyBookLearningEvent" items="${storyBookLearningEvents}">
                     <tr class="storyBookLearningEvent">
                         <td>
-                            <fmt:formatDate value="${storyBookLearningEvent.time.time}" pattern="yyyy-MM-dd" />
+                            <fmt:formatDate value="${storyBookLearningEvent.timestamp.time}" pattern="yyyy-MM-dd" />
                         </td>   
                         <td>
                             ${storyBookLearningEvent.androidId}
