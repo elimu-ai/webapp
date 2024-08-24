@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
             <a href="<spring:url value='/content/multimedia/video/delete/${video.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>

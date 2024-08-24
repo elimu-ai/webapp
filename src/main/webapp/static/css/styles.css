@@ -106,7 +106,9 @@ footer.page-footer .footer-copyright {
 .card .card-action:last-child {
     border-radius: 0 0 8px 8px;
 }
-.btn,
+.btn {
+    border-radius: 4px;
+}
 .btn-large {
     border-radius: 8px;
 }

@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
         </form:form>
@@ -192,7 +192,7 @@
                 <label for="comment"><fmt:message key="comment" /></label>
                 <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
 
-                <button class="btn waves-effect waves-light" type="submit">
+                <button class="btn-large waves-effect waves-light" type="submit">
                     <fmt:message key="submit" /> <i class="material-icons right">send</i>
                 </button>
             </div>
