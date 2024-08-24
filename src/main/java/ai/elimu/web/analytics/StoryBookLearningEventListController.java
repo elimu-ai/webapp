@@ -2,6 +2,10 @@ package ai.elimu.web.analytics;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.model.analytics.StoryBookLearningEvent;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +30,36 @@ public class StoryBookLearningEventListController {
         
         List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAllOrderedByTime();
         model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
+        
+        // Prepare data for chart in UI
+        List<String> monthList = new ArrayList<>();
+        List<Integer> eventCountList = new ArrayList<>();
+        if (!storyBookLearningEvents.isEmpty()) {
+            Calendar calendar4YearsAgo = Calendar.getInstance();
+            calendar4YearsAgo.add(Calendar.YEAR, -4);
+
+            Calendar calendarNow = Calendar.getInstance();
+            
+            Calendar month = calendar4YearsAgo;
+            while (!month.after(calendarNow)) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM-yyyy");
+                String monthAsString = simpleDateFormat.format(month.getTime());
+                monthList.add(monthAsString);
+
+                int eventCount = 0;
+                for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
+                    String eventMonthAsString = simpleDateFormat.format(storyBookLearningEvent.getTimestamp().getTime());
+                    if (eventMonthAsString.equals(monthAsString)) {
+                        eventCount++;
+                    }
+                }
+                eventCountList.add(eventCount);
+
+                month.add(Calendar.MONTH, 1);
+            }
+        }
+        model.addAttribute("monthList", monthList);
+        model.addAttribute("eventCountList", eventCountList);
 
         return "analytics/storybook-learning-event/list";
     }
