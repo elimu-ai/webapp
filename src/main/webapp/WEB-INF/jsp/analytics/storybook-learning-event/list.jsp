@@ -10,20 +10,15 @@
             <canvas id="myChart" width="400" height="100"></canvas>
             <script>
                 const labels = [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
+                    <c:forEach var="month" items="${monthList}">'${month}',</c:forEach>
                 ];
                 const data = {
                     labels: labels,
                     datasets: [{
-                        label: 'My First dataset',
+                        label: 'Learning events',
                         backgroundColor: 'rgba(149,117,205, 0.5)',
                         borderColor: 'rgba(149,117,205, 0.5)',
-                        data: [0, 10, 5, 2, 20, 30, 45],
+                        data: <c:out value="${eventCountList}" />
                     }]
                 };
                 const config = {
