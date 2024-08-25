@@ -1,8 +1,6 @@
 package ai.elimu.web.analytics;
 
-import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.analytics.StoryBookLearningEvent;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -29,12 +27,6 @@ public class StoryBookLearningEventCsvExportController {
     @Autowired
     private StoryBookLearningEventDao storyBookLearningEventDao;
     
-    @Autowired
-    private StoryBookChapterDao storyBookChapterDao;
-    
-    @Autowired
-    private StoryBookParagraphDao storyBookParagraphDao;
-    
     @RequestMapping(value="/storybook-learning-events.csv", method = RequestMethod.GET)
     public void handleRequest(
             HttpServletResponse response,
@@ -48,7 +40,7 @@ public class StoryBookLearningEventCsvExportController {
         CSVFormat csvFormat = CSVFormat.DEFAULT
                 .withHeader(
                         "id", // The Room database ID
-                        "time",
+                        "timestamp",
                         "android_id",
                         "package_name",
                         "storybook_id",
@@ -67,7 +59,7 @@ public class StoryBookLearningEventCsvExportController {
                     storyBookLearningEvent.getTimestamp().getTimeInMillis(),
                     storyBookLearningEvent.getAndroidId(),
                     storyBookLearningEvent.getPackageName(),
-                    storyBookLearningEvent.getStoryBook().getId(),
+                    (storyBookLearningEvent.getStoryBook() == null) ? null : storyBookLearningEvent.getStoryBook().getId(),
                     storyBookLearningEvent.getStoryBookTitle(),
                     storyBookLearningEvent.getLearningEventType()
             );
