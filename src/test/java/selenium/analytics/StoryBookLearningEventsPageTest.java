@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import selenium.util.DomainHelper;
 
-public class WordLearningEventsPageTest {
+public class StoryBookLearningEventsPageTest {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -44,12 +44,12 @@ public class WordLearningEventsPageTest {
     }
 
     @Test
-    public void testWordLearningEventsPage() {
-        logger.info("testWordLearningEventsPage");
+    public void testStoryBookLearningEventsPage() {
+        logger.info("testStoryBookLearningEventsPage");
 
         MainAnalyticsPage mainAnalyticsPage = new MainAnalyticsPage(driver);
-        mainAnalyticsPage.pressWordLearningEventsLink();
+        mainAnalyticsPage.pressStoryBookLearningEventsLink();
         
-        WordLearningEventsPage wordLearningEventsPage = new WordLearningEventsPage(driver);
+        StoryBookLearningEventsPage storyBookLearningEventsPage = new StoryBookLearningEventsPage(driver);
     }
 }
