@@ -5,9 +5,8 @@
 <content:section cssId="storyBookLearningEventsPage">
     <div class="section row">
         <div class="card-panel">
-            <script src="<spring:url value='/static/js/chart.bundle.min-2.8.0.js' />"></script>
-            <link rel="stylesheet" href="<spring:url value='/static/css/chart.min-2.8.0.css' />" />
-            <canvas id="myChart" width="400" height="100"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+            <canvas id="chart" width="400" height="100"></canvas>
             <script>
                 const labels = [
                     <c:forEach var="month" items="${monthList}">'${month}',</c:forEach>
@@ -15,10 +14,12 @@
                 const data = {
                     labels: labels,
                     datasets: [{
+                        data: <c:out value="${eventCountList}" />,
                         label: 'Learning events',
-                        backgroundColor: 'rgba(149,117,205, 0.5)',
-                        borderColor: 'rgba(149,117,205, 0.5)',
-                        data: <c:out value="${eventCountList}" />
+                        backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                        borderColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                        tension: 0.5,
+                        fill: true
                     }]
                 };
                 const config = {
@@ -26,8 +27,8 @@
                     data: data,
                     options: {}
                 };
-                var ctx = document.getElementById('myChart');
-                var myRadarChart = new Chart(ctx, config);
+                var ctx = document.getElementById('chart');
+                new Chart(ctx, config);
             </script>
         </div>
     </div>
