@@ -39,24 +39,7 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 
 ## Test 🚨
 
-### Unit testing
-
-Run all tests:
-
-    mvn clean test
-
-Run individual tests:
-
-    mvn clean test -D test=WordDaoTest
-
-### Code coverage
-
-[![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
-
-[![](https://codecov.io/gh/elimu-ai/webapp/branch/main/graphs/tree.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
-
-    mvn test
-    open target/site/jacoco/index.html
+See [`TEST.md`](./TEST.md)
 
 ## Test server
 
