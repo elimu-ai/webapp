@@ -32,7 +32,7 @@ Then, in another terminal window run all the regression tests against the REST A
     mvn verify -P regression-testing-rest
 
 > [!TIP]
-> If you want to run the regression tests against another URL, set the `base.url` system property:
+> If you want to run the tests against another URL, set the `base.url` system property:
 > 
 >     mvn verify -P regression-testing-rest -D base.url=https://eng.elimu.ai
 
@@ -47,13 +47,17 @@ Then, in another terminal window run all the regression tests against the UI:
     mvn verify -P regression-testing-ui
 
 > [!TIP]
-> If you want to run the regression tests against another URL, set the `base.url` system property:
+> If you want to run the tests against another URL, set the `base.url` system property:
 > 
 >     mvn verify -P regression-testing-ui -D base.url=https://eng.elimu.ai
 
 ##### Headless 😶‍🌫️
 
-If you don't want 
+If you don't want the automated test software to open browser windows, you can disable that by setting the `headless` system property:
+
+    mvn verify -P regression-testing-ui -D headless=true
+
+![](https://private-user-images.githubusercontent.com/1451036/361187317-35e99a19-f42d-4934-a0ba-f3d1e06ed6f6.png)
 
 ---
 
