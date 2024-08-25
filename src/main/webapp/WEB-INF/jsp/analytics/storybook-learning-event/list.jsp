@@ -6,7 +6,7 @@
     <div class="section row">
         <div class="card-panel">
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-            <canvas id="chart" width="400" height="100"></canvas>
+            <canvas id="chart"></canvas>
             <script>
                 const labels = [
                     <c:forEach var="month" items="${monthList}">'${month}',</c:forEach>

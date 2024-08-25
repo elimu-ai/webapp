@@ -81,7 +81,7 @@
     <div class="col s6 m8 l9">
         <div class="card-panel">
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-            <canvas id="chart" width="400" height="200"></canvas>
+            <canvas id="chart"></canvas>
             <script>
                 var ctx = document.getElementById('chart');
                 var data = {
