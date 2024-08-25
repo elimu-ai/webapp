@@ -64,7 +64,7 @@
                 <c:forEach var="letterLearningEvent" items="${letterLearningEvents}">
                     <tr class="letterLearningEvent">
                         <td>
-                            <fmt:formatDate value="${letterLearningEvent.time.time}" pattern="yyyy-MM-dd HH:mm:ss" />
+                            <fmt:formatDate value="${letterLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             ${letterLearningEvent.androidId}
