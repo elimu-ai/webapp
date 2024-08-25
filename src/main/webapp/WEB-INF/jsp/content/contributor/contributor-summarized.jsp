@@ -80,28 +80,29 @@
 
     <div class="col s6 m8 l9">
         <div class="card-panel">
-            <script src="<spring:url value='/static/js/chart.bundle.min-2.8.0.js' />"></script>
-            <link rel="stylesheet" href="<spring:url value='/static/css/chart.min-2.8.0.css' />" />
-            <canvas id="myChart" width="400" height="200"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+            <canvas id="chart"></canvas>
             <script>
-                var ctx = document.getElementById('myChart');
+                var ctx = document.getElementById('chart');
                 var data = {
                     labels: ['Storybooks', 'Words', 'Numbers', 'Audios'],
                     datasets: [
                         {
+                            data: [${storyBookContributionsCount}, ${wordContributionsCount}, ${numberContributionsCount}, ${audioContributionsCount}],
                             label: 'Contributions',
                             backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
-                            data: [${storyBookContributionsCount}, ${wordContributionsCount}, ${numberContributionsCount}, ${audioContributionsCount}]
+                            tension: 0.5
                         },
                         {
+                            data: [${storyBookPeerReviewsCount}, ${wordPeerReviewsCount}, ${numberPeerReviewsCount}, ${audioPeerReviewsCount}],
                             label: 'Peer-reviews',
                             backgroundColor: 'rgba(77,182,172, 0.5)', // #4db6ac teal lighten-2
-                            data: [${storyBookPeerReviewsCount}, ${wordPeerReviewsCount}, ${numberPeerReviewsCount}, ${audioPeerReviewsCount}]
+                            tension: 0.5
                         }
                     ]
                 };
                 var options = {};
-                var myRadarChart = new Chart(ctx, {
+                new Chart(ctx, {
                     type: 'radar',
                     data: data,
                     options: options

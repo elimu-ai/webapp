@@ -25,7 +25,7 @@
                     <span class="card-title"><i class="material-icons">sms</i> <fmt:message key="words" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/analytics/word-learning-event/list' />"><fmt:message key="view.list" /> (${wordLearningEventCount})</a>
+                    <a id="wordLearningEventsLink" href="<spring:url value='/analytics/word-learning-event/list' />"><fmt:message key="view.list" /> (${wordLearningEventCount})</a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                     <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/analytics/storybook-learning-event/list' />"><fmt:message key="view.list" /> (${storyBookLearningEventCount})</a>
+                    <a id="storyBookLearningEventsLink" href="<spring:url value='/analytics/storybook-learning-event/list' />"><fmt:message key="view.list" /> (${storyBookLearningEventCount})</a>
                 </div>
             </div>
         </div>
