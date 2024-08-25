@@ -1,4 +1,4 @@
-package selenium.error_pages;
+package selenium.util;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;

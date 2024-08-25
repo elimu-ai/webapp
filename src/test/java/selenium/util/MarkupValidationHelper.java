@@ -1,4 +1,4 @@
-package selenium;
+package selenium.util;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

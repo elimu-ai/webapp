@@ -1,9 +1,9 @@
-package selenium.web;
+package selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import selenium.ErrorHelper;
+import selenium.util.ErrorHelper;
 
 public class WelcomePage {
 
