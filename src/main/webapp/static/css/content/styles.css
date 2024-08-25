@@ -46,7 +46,7 @@ nav {
 #labeledVideos img {
     width: 47%;
     margin-right: 2%;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 #imageEditPage #image img {
     display: block;
@@ -88,7 +88,7 @@ blockquote,
 .row.peerReviewEvent {
     padding: 0.5rem;
     margin: 0 0 1px 0;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 .row.peerReviewEvent.indent {
     margin-left: 1.5rem;

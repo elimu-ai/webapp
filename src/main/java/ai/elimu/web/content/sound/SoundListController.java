@@ -22,7 +22,7 @@ public class SoundListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<Sound> sounds = soundDao.readAllOrderedByUsage();
         model.addAttribute("sounds", sounds);

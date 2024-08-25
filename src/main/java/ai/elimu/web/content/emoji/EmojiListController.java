@@ -22,7 +22,7 @@ public class EmojiListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         List<Emoji> emojis = emojiDao.readAllOrdered();
         model.addAttribute("emojis", emojis);

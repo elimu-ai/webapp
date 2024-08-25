@@ -14,3 +14,13 @@ Resolves #
 <!-- If this PR affects the UI, please include screenshots demonstrating the changes. -->
 
 <!-- Attribution: External code is properly credited. -->
+
+---
+
+### Format Checks
+<!-- If this PR contains files with format violations, run 'mvn spotless:apply' to fix them. -->
+
+> [!NOTE]
+> Files in PRs are automatically checked for format violations with `mvn spotless:check`.
+
+If this PR contains files with format violations, run `mvn spotless:apply` to fix them.

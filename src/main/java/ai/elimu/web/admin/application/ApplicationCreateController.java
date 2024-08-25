@@ -28,7 +28,7 @@ public class ApplicationCreateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Application application = new Application();
         application.setApplicationStatus(ApplicationStatus.MISSING_APK);
@@ -47,7 +47,7 @@ public class ApplicationCreateController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Application existingApplication = applicationDao.readByPackageName(application.getPackageName());
         if (existingApplication != null) {

@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
 import ai.elimu.model.contributor.Contributor;
 
 public interface ContributorDao extends GenericDao<Contributor> {
-	
+    
     Contributor read(String email) throws DataAccessException;
     
     Contributor readByProviderIdGitHub(String id) throws DataAccessException;

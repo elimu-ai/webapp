@@ -66,7 +66,7 @@ public class ContributorController {
             @PathVariable Long contributorId,
             Model model
     ) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         Contributor contributor = contributorDao.read(contributorId);
         model.addAttribute("contributor2", contributor);

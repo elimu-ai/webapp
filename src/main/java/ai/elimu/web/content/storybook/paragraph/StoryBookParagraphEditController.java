@@ -46,7 +46,7 @@ public class StoryBookParagraphEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(Model model, @PathVariable Long id, HttpSession session) {
-    	logger.info("handleRequest");
+        logger.info("handleRequest");
         
         StoryBookParagraph storyBookParagraph = storyBookParagraphDao.read(id);
         logger.info("storyBookParagraph: " + storyBookParagraph);
@@ -65,7 +65,7 @@ public class StoryBookParagraphEditController {
             BindingResult result,
             Model model
     ) {
-    	logger.info("handleSubmit");
+        logger.info("handleSubmit");
         
         Contributor contributor = (Contributor) session.getAttribute("contributor");
         

@@ -32,8 +32,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
 
     @Override
     protected WebApplicationContext initWebApplicationContext() {
-    	logger.info("initWebApplicationContext");
-    	
+        logger.info("initWebApplicationContext");
+        
         WebApplicationContext webApplicationContext = super.initWebApplicationContext();
 
         // Database migration
