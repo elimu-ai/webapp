@@ -52,7 +52,6 @@
                 <th><code>timestamp</code></th>
                 <th><code>android_id</code></th>
                 <th><code>package_name</code></th>
-                <th><code>storybook_id</code></th>
                 <th><code>storybook_title</code></th>
                 <th><code>learning_event_type</code></th>
             </thead>
@@ -76,9 +75,6 @@
                                     <code>${storyBookLearningEvent.packageName}</code>
                                 </c:otherwise>
                             </c:choose>
-                        </td>
-                        <td>
-                            ${storyBookLearningEvent.storyBookId}
                         </td>
                         <td>
                             <c:choose>
