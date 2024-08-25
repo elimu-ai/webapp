@@ -13,7 +13,7 @@ public class DomainHelper {
     private static final Logger logger = LogManager.getLogger();
     
     public static String getBaseUrl() {
-        // Read property set on the command line: 
+        // Read "base.url" property set on the command line: 
         //    mvn clean verify -P regression-testing-rest -D base.url=https://eng.test.elimu.ai
         String baseUrlSystemProperty = System.getProperty("base.url");
         logger.info("baseUrlSystemProperty: \"" + baseUrlSystemProperty + "\"");
