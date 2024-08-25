@@ -1,51 +1,79 @@
-# Regression Testing Guide
+## Test Instructions
 
-This document outlines the regression testing process for our project using Maven profiles.
+### Unit testing ☑️
 
-## Available Profiles
+Run all tests:
 
-There are two Maven profiles set up for regression testing:
+    mvn clean test
 
-1. `regression-testing-rest`: For REST API tests
-2. `regression-testing-ui`: For UI tests using Selenium
+Run individual tests:
 
-## Running Tests
+    mvn clean test -D test=WordDaoTest
 
-### REST API Tests
+#### Code coverage 📊
 
-To run the REST API regression tests, use the following command:
-```bash
-mvn clean verify -P regression-testing-rest
-```
-This profile will:
-- Skip the default test phase
-- Run tests during the integration-test phase
-- Include only test files matching the pattern `**/rest/**/*Test.java`
+[![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 
-### UI Tests
+[![](https://codecov.io/gh/elimu-ai/webapp/branch/main/graphs/tree.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 
-To run the UI regression tests, use the following command:
-```bash
-mvn clean verify -P regression-testing-ui
-```
-This profile will:
-- Skip the default test phase
-- Run tests during the integration-test phase
-- Include only test files matching the pattern `**/selenium/**/*Test.java`
+    mvn test
+    open target/site/jacoco/index.html
 
-## Configuration Details
+### Regression testing
 
-Both profiles use the Maven Surefire Plugin with the following key configurations:
+#### REST API 
 
-- Tests are skipped during the default test phase
-- Tests are executed during the integration-test phase
-- All tests are initially excluded, then specific patterns are included
+First, launch the webapp on localhost:
 
-## Notes
+    mvn jetty:run
 
-- Ensure that your test files are named appropriately and located in the correct directories to be picked up by the include patterns.
-- The REST tests should be in directories containing "rest" in the path and end with "Test.java"
-- The UI tests should be in directories containing "selenium" in the path and end with "Test.java"
-- You may need to adjust your project structure or test naming conventions if tests are not being picked up as expected.
+Then, in another terminal window run all the regression tests against the REST API:
+    
+    mvn verify -P regression-testing-rest
 
-For more detailed information about the Maven profiles and plugin configurations, refer to the `pom.xml` file in the project root.
+> [!TIP]
+> If you want to run the regression tests against another URL, set the `base.url` system property:
+> 
+>     mvn verify -P regression-testing-rest -D base.url=https://eng.elimu.ai
+
+#### UI
+
+First, launch the webapp on localhost:
+
+    mvn jetty:run
+
+Then, in another terminal window run all the regression tests against the UI:
+    
+    mvn verify -P regression-testing-ui
+
+> [!TIP]
+> If you want to run the regression tests against another URL, set the `base.url` system property:
+> 
+>     mvn verify -P regression-testing-ui -D base.url=https://eng.elimu.ai
+
+##### Headless 😶‍🌫️
+
+If you don't want 
+
+---
+
+<p align="center">
+  <img src="https://github.com/elimu-ai/webapp/blob/main/src/main/webapp/static/img/logo-text-256x78.png" />
+</p>
+<p align="center">
+  elimu.ai - Free open-source learning software for out-of-school children 🚀✨
+</p>
+<p align="center">
+  <a href="https://elimu.ai">Website 🌐</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki#readme">Wiki 📃</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/orgs/elimu-ai/projects?query=is%3Aopen">Projects 👩🏽‍💻</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki/milestones">Milestones 🎯</a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/elimu-ai/wiki#open-source-community">Community 👋🏽</a>
+  &nbsp;•&nbsp;
+  <a href="https://www.drips.network/app/drip-lists/41305178594442616889778610143373288091511468151140966646158126636698">Support 💜</a>
+</p>
+
