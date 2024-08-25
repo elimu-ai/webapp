@@ -60,7 +60,7 @@
                 <c:forEach var="wordLearningEvent" items="${wordLearningEvents}">
                     <tr class="wordLearningEvent">
                         <td>
-                            <fmt:formatDate value="${wordLearningEvent.time.time}" pattern="yyyy-MM-dd HH:mm:ss" />
+                            <fmt:formatDate value="${wordLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             ${wordLearningEvent.androidId}
