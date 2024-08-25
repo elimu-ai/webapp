@@ -5,25 +5,21 @@
 <content:section cssId="wordLearningEventsPage">
     <div class="section row">
         <div class="card-panel">
-            <script src="<spring:url value='/static/js/chart.bundle.min-2.8.0.js' />"></script>
-            <link rel="stylesheet" href="<spring:url value='/static/css/chart.min-2.8.0.css' />" />
-            <canvas id="myChart" width="400" height="100"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+            <canvas id="chart"></canvas>
             <script>
                 const labels = [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
+                    <c:forEach var="month" items="${monthList}">'${month}',</c:forEach>
                 ];
                 const data = {
                     labels: labels,
                     datasets: [{
-                        label: 'My First dataset',
-                        backgroundColor: 'rgba(149,117,205, 0.5)',
-                        borderColor: 'rgba(149,117,205, 0.5)',
-                        data: [0, 10, 5, 2, 20, 30, 45],
+                        data: <c:out value="${eventCountList}" />,
+                        label: 'Learning events',
+                        backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                        borderColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                        tension: 0.5,
+                        fill: true
                     }]
                 };
                 const config = {
@@ -31,8 +27,8 @@
                     data: data,
                     options: {}
                 };
-                var ctx = document.getElementById('myChart');
-                var myRadarChart = new Chart(ctx, config);
+                var ctx = document.getElementById('chart');
+                new Chart(ctx, config);
             </script>
         </div>
     </div>
@@ -53,12 +49,12 @@
     
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="time" /></th>
-                <th>Android ID</th>
-                <th><fmt:message key="application" /></th>
-                <th><fmt:message key="word" /></th>
-                <th><fmt:message key="word.text" /></th>
-                <th><fmt:message key="learning.event.type" /></th>
+                <th><code>timestamp</code></th>
+                <th><code>android_id</code></th>
+                <th><code>package_name</code></th>
+                <th><code>word_id</code></th>
+                <th><code>word_text</code></th>
+                <th><code>learning_event_type</code></th>
             </thead>
             <tbody>
                 <c:forEach var="wordLearningEvent" items="${wordLearningEvents}">

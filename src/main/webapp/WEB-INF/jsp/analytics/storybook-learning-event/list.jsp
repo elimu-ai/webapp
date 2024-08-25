@@ -49,12 +49,12 @@
     
         <table class="bordered highlight">
             <thead>
-                <th>timestamp</th>
-                <th>android_id</th>
-                <th>package_name</th>
-                <th>storybook_id</th>
-                <th>storybook_title</th>
-                <th>learning_event_type</th>
+                <th><code>timestamp</code></th>
+                <th><code>android_id</code></th>
+                <th><code>package_name</code></th>
+                <th><code>storybook_id</code></th>
+                <th><code>storybook_title</code></th>
+                <th><code>learning_event_type</code></th>
             </thead>
             <tbody>
                 <c:forEach var="storyBookLearningEvent" items="${storyBookLearningEvents}">

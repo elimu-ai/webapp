@@ -34,7 +34,7 @@ public class StoryBookLearningEventListController {
         List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAllOrderedByTime();
         model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
         
-        // Prepare data for chart in UI
+        // Prepare chart data
         List<String> monthList = new ArrayList<>();
         List<Integer> eventCountList = new ArrayList<>();
         if (!storyBookLearningEvents.isEmpty()) {
