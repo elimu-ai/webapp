@@ -63,17 +63,17 @@
                             <fmt:formatDate value="${storyBookLearningEvent.timestamp.time}" pattern="yyyy-MM-dd" />
                         </td>   
                         <td>
-                            ${storyBookLearningEvent.androidId}
+                            <code>${storyBookLearningEvent.androidId}</code>
                         </td>
                         <td>
                             <c:choose>
                                 <c:when test="${not empty storyBookLearningEvent.application}">
                                     <a href="<spring:url value='/admin/application/edit/${storyBookLearningEvent.application.id}' />">
-                                        ${storyBookLearningEvent.packageName}
+                                        <code>${storyBookLearningEvent.packageName}</code>
                                     </a>
                                 </c:when>
                                 <c:otherwise>
-                                    ${storyBookLearningEvent.packageName}
+                                    <code>${storyBookLearningEvent.packageName}</code>
                                 </c:otherwise>
                             </c:choose>
                         </td>
