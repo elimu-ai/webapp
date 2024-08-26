@@ -65,6 +65,7 @@ public class StoryBookLearningEventCsvExportController {
             );
             
             csvPrinter.flush();
+            csvPrinter.close();
         }
         
         String csvFileContent = stringWriter.toString();
