@@ -51,7 +51,12 @@ public abstract class LearningEvent extends BaseEntity {
     }
 
     public String getAndroidId() {
-        return androidId;
+        if (!androidId.contains("***")) {
+            // Hide parts of the Android ID, e.g. "7161a85a0e4751cd" --> "7161***51cd"
+            return androidId.substring(0, 4) + "***" + androidId.substring(12);
+        } else {
+            return androidId;
+        }
     }
 
     public void setAndroidId(String androidId) {

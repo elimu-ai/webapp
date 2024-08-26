@@ -37,16 +37,17 @@ public class StoryBookLearningEventCsvExportController {
         List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll();
         logger.info("storyBookLearningEvents.size(): " + storyBookLearningEvents.size());
         
-        CSVFormat csvFormat = CSVFormat.DEFAULT
-                .withHeader(
-                        "id", // The Room database ID
-                        "timestamp",
-                        "android_id",
-                        "package_name",
-                        "storybook_id",
-                        "storybook_title",
-                        "learning_event_type"
-                );
+        CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+                .setHeader(
+                    "id", // The Room database ID
+                    "timestamp",
+                    "android_id",
+                    "package_name",
+                    "storybook_id",
+                    "storybook_title",
+                    "learning_event_type"
+                )
+                .build();
         
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
@@ -63,9 +64,9 @@ public class StoryBookLearningEventCsvExportController {
                     storyBookLearningEvent.getStoryBookTitle(),
                     storyBookLearningEvent.getLearningEventType()
             );
-            
             csvPrinter.flush();
         }
+        csvPrinter.close();
         
         String csvFileContent = stringWriter.toString();
         
