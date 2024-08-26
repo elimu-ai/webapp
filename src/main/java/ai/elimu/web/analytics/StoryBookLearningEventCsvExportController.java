@@ -65,7 +65,22 @@ public class StoryBookLearningEventCsvExportController {
             );
             
             csvPrinter.flush();
-            csvPrinter.close();
+ for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
+     logger.info("storyBookLearningEvent.getId(): " + storyBookLearningEvent.getId());
+     
+     csvPrinter.printRecord(
+             storyBookLearningEvent.getId(),
+             storyBookLearningEvent.getTimestamp().getTimeInMillis(),
+             storyBookLearningEvent.getAndroidId(),
+             storyBookLearningEvent.getPackageName(),
+             (storyBookLearningEvent.getStoryBook() == null) ? null : storyBookLearningEvent.getStoryBook().getId(),
+             storyBookLearningEvent.getStoryBookTitle(),
+             storyBookLearningEvent.getLearningEventType()
+     );
+     
+     csvPrinter.flush();
+ }
+ csvPrinter.close();
         }
         
         String csvFileContent = stringWriter.toString();
