@@ -1,199 +1,69 @@
-id,time,android_id,package_name,storybook_id,storybook_title,learning_event_type
-1,1586937409000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-2,1586937411000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-3,1586937412000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-4,1586937414000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-5,1586943661000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-6,1586943663000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-7,1586943665000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-8,1586943667000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-9,1587101250000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-10,1587101334000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-11,1587101761000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-12,1587101764000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-13,1587101797000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-14,1587102693000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-15,1587102926000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-16,1587103159000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-17,1587103241000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-18,1587103665000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-19,1587103687000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-20,1587103692000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-21,1587103695000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-22,1587103699000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-23,1587104178000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-24,1587104255000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-25,1587104330000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-26,1587104511000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-27,1587104631000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-28,1587104819000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-29,1587108342000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-30,1587108436000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-31,1587108490000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-32,1587108572000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-33,1587108589000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-34,1587108598000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-35,1587109523000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-36,1587109540000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-37,1587114996000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-38,1587174554000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-39,1587174613000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-40,1587357673000,745f90e7aae26423,ai.elimu.vitabu.debug,6,एक था मोटा राजा,STORYBOOK_OPENED
-41,1587361241000,745f90e7aae26423,ai.elimu.vitabu.debug,6,एक था मोटा राजा,STORYBOOK_OPENED
-42,1587437659000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-43,1587438001000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-44,1587438082000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-45,1587439361000,745f90e7aae26423,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-46,1587439365000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-47,1587442289000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-48,1587442360000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-49,1587442436000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-50,1587442533000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-51,1587442549000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-52,1587524690000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-53,1587524754000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-54,1587524812000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-55,1587524917000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-56,1587524959000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-57,1587524966000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-58,1587525016000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-59,1587525050000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-60,1587525078000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-61,1587525205000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-62,1587525247000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-63,1587525332000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-64,1587525405000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-65,1587525464000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-66,1587525588000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-67,1587525606000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-68,1587525639000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-69,1587525700000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-70,1587525763000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-71,1587525782000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-72,1587525849000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-73,1587525854000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-74,1587525938000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-75,1587525987000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-76,1587526064000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-77,1587526374000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-78,1587526429000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-79,1587526438000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-80,1587526464000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-81,1587537082000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-82,1587537192000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-83,1587537234000,745f90e7aae26423,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-84,1587547235000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-85,1587707226000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-86,1587713589000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-87,1587714093000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-88,1587714243000,745f90e7aae26423,ai.elimu.vitabu.debug,4,कहानी- बादल की सैर,STORYBOOK_OPENED
-89,1587714305000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-90,1587714408000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-91,1587959975000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-92,1587959995000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-93,1587959998000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-94,1587960011000,745f90e7aae26423,ai.elimu.vitabu.debug,6,एक था मोटा राजा,STORYBOOK_OPENED
-95,1587971332000,745f90e7aae26423,ai.elimu.vitabu.debug,10,रिमझिम बरसे बादल,STORYBOOK_OPENED
-96,1587971351000,745f90e7aae26423,ai.elimu.vitabu.debug,10,रिमझिम बरसे बादल,STORYBOOK_OPENED
-97,1587971360000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-98,1587971362000,745f90e7aae26423,ai.elimu.vitabu.debug,9,मैं नहीं डरती !,STORYBOOK_OPENED
-99,1587971366000,745f90e7aae26423,ai.elimu.vitabu.debug,10,रिमझिम बरसे बादल,STORYBOOK_OPENED
-100,1587971387000,745f90e7aae26423,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-101,1587971414000,745f90e7aae26423,ai.elimu.vitabu.debug,11,गप्पू नाच नहीं सकती,STORYBOOK_OPENED
-102,1587971419000,745f90e7aae26423,ai.elimu.vitabu.debug,11,गप्पू नाच नहीं सकती,STORYBOOK_OPENED
-103,1587971430000,745f90e7aae26423,ai.elimu.vitabu.debug,11,गप्पू नाच नहीं सकती,STORYBOOK_OPENED
-104,1587971465000,745f90e7aae26423,ai.elimu.vitabu.debug,10,रिमझिम बरसे बादल,STORYBOOK_OPENED
-105,1587971471000,745f90e7aae26423,ai.elimu.vitabu.debug,11,गप्पू नाच नहीं सकती,STORYBOOK_OPENED
-106,1588250231000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-107,1588250249000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-108,1588250256000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-109,1588250259000,745f90e7aae26423,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-110,1588250263000,745f90e7aae26423,ai.elimu.vitabu.debug,7,चाँद का तोहफ़ा,STORYBOOK_OPENED
-111,1588250651000,745f90e7aae26423,ai.elimu.vitabu.debug,6,एक था मोटा राजा,STORYBOOK_OPENED
-150,1591331174000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,24,टूथपेस्ट ट्यूब के अंदर कैसे आया?,STORYBOOK_OPENED
-149,1591331186000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,24,टूथपेस्ट ट्यूब के अंदर कैसे आया?,STORYBOOK_OPENED
-148,1591331300000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,24,टूथपेस्ट ट्यूब के अंदर कैसे आया?,STORYBOOK_OPENED
-115,1589258585000,8a6468befd50af51,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-116,1589954978000,8a6468befd50af51,ai.elimu.vitabu.debug,18,सबसे अच्छा घर,STORYBOOK_OPENED
-117,1589954595000,8a6468befd50af51,ai.elimu.vitabu.debug,17,पिशि फँसी तूफ़ान में,STORYBOOK_OPENED
-118,1588752257000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-119,1588752208000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-120,1588752163000,745f90e7aae26423,ai.elimu.vitabu.debug,14,सो जाओ टिंकु!,STORYBOOK_OPENED
-121,1588752158000,745f90e7aae26423,ai.elimu.vitabu.debug,15,उड़ने वाला ऑटो,STORYBOOK_OPENED
-122,1588752123000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-123,1588745885000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-124,1588736432000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-125,1588736425000,745f90e7aae26423,ai.elimu.vitabu.debug,15,उड़ने वाला ऑटो,STORYBOOK_OPENED
-126,1588736422000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-127,1588736365000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-128,1588736347000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-129,1588736315000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-130,1588735468000,745f90e7aae26423,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-155,1591426351000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,26,गरजे बादल नाचे मोर,STORYBOOK_OPENED
-154,1591426431000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,26,गरजे बादल नाचे मोर,STORYBOOK_OPENED
-153,1591327259000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,24,टूथपेस्ट ट्यूब के अंदर कैसे आया?,STORYBOOK_OPENED
-152,1591327295000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,24,टूथपेस्ट ट्यूब के अंदर कैसे आया?,STORYBOOK_OPENED
-151,1591327377000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,24,टूथपेस्ट ट्यूब के अंदर कैसे आया?,STORYBOOK_OPENED
-136,1591167893000,8a6468befd50af51,ai.elimu.vitabu.debug,18,सबसे अच्छा घर,STORYBOOK_OPENED
-137,1591167873000,8a6468befd50af51,ai.elimu.vitabu.debug,15,उड़ने वाला ऑटो,STORYBOOK_OPENED
-138,1591167842000,8a6468befd50af51,ai.elimu.vitabu.debug,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
-139,1591011084000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,21,हवाई जहाज़ कैसे उड़ते हैं?,STORYBOOK_OPENED
-140,1591011071000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,21,हवाई जहाज़ कैसे उड़ते हैं?,STORYBOOK_OPENED
-141,1591011068000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,6,एक था मोटा राजा,STORYBOOK_OPENED
-142,1591010932000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,18,सबसे अच्छा घर,STORYBOOK_OPENED
-143,1591010843000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,19,पूरी क्यों फूलती है?,STORYBOOK_OPENED
-144,1591010762000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,20,मधुमक्खियाँ क्यों भन-भन करती हैं?,STORYBOOK_OPENED
-145,1591010688000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,23,स्वतंत्रता की ओर,STORYBOOK_OPENED
-146,1591278122000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,16,मैं बहुत कुछ बना सकता हूँ !,STORYBOOK_OPENED
-147,1591278116000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,20,मधुमक्खियाँ क्यों भन-भन करती हैं?,STORYBOOK_OPENED
-156,1591426349000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,24,टूथपेस्ट ट्यूब के अंदर कैसे आया?,STORYBOOK_OPENED
-157,1591426346000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,25,"आओ, बीज बटोरें!",STORYBOOK_OPENED
-158,1591426341000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,26,गरजे बादल नाचे मोर,STORYBOOK_OPENED
-159,1591427956000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,26,गरजे बादल नाचे मोर,STORYBOOK_OPENED
-160,1591427911000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,26,गरजे बादल नाचे मोर,STORYBOOK_OPENED
-161,1591427540000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,26,गरजे बादल नाचे मोर,STORYBOOK_OPENED
-162,1591447281000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,26,गरजे बादल नाचे मोर,STORYBOOK_OPENED
-163,1591497753000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
-164,1591799189000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-165,1591799178000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,28,बोलो एक साँस में,STORYBOOK_OPENED
-166,1591799159000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
-167,1591876395000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-168,1591876098000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-169,1591876090000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-170,1591876083000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,28,बोलो एक साँस में,STORYBOOK_OPENED
-171,1591875784000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
-172,1591875743000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
-173,1591877263000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-174,1591877116000,4ac7a7ba2e1200c5,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-175,1591953569000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-176,1591275171000,8a6468befd50af51,ai.elimu.vitabu.debug,17,पिशि फँसी तूफ़ान में,STORYBOOK_OPENED
-177,1592402239000,03a771813ca0081c,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-178,1592402074000,03a771813ca0081c,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-179,1592569442000,03a771813ca0081c,ai.elimu.vitabu.debug,31,हाथी भाई,STORYBOOK_OPENED
-180,1592569400000,03a771813ca0081c,ai.elimu.vitabu.debug,31,हाथी भाई,STORYBOOK_OPENED
-181,1592100228000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-182,1592743899000,03a771813ca0081c,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-183,1592743859000,03a771813ca0081c,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-184,1592743605000,03a771813ca0081c,ai.elimu.vitabu.debug,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
-185,1592741284000,03a771813ca0081c,ai.elimu.vitabu.debug,23,स्वतंत्रता की ओर,STORYBOOK_OPENED
-186,1592914951000,03a771813ca0081c,ai.elimu.vitabu.debug,32,क्या होता अगर?,STORYBOOK_OPENED
-187,1593341564000,8a6468befd50af51,ai.elimu.vitabu.debug,8,मैं और मेरी दोस्त टीना|,STORYBOOK_OPENED
-188,1605297199000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,10,रिमझिम बरसे बादल,STORYBOOK_OPENED
-189,1605297173000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-190,1605297157000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-191,1605297144000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-192,1605297127000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-193,1605294293000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,41,राजू की पहली हवाई-यात्रा,STORYBOOK_OPENED
-194,1605293728000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,29,"आज, मैं हूँ...",STORYBOOK_OPENED
-195,1605293725000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,36,"अरे, यह सब कौन खा गया?",STORYBOOK_OPENED
-196,1605293723000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
-197,1605293713000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,37,अद्भुत कीड़े,STORYBOOK_OPENED
-198,1605304945000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,32,क्या होता अगर?,STORYBOOK_OPENED
-199,1605304918000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,36,"अरे, यह सब कौन खा गया?",STORYBOOK_OPENED
-200,1605304906000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,22,मुत्तज्जी की उम्र क्या है?,STORYBOOK_OPENED
-201,1605304892000,f94ac8506e31b8d2,ai.elimu.vitabu.debug,2,आलू-मालू-कालू,STORYBOOK_OPENED
-202,1607967067000,7161a85a0e4751cd,ai.elimu.vitabu.test,17,पिशि फँसी तूफ़ान में,STORYBOOK_OPENED
-203,1607967058000,7161a85a0e4751cd,ai.elimu.vitabu.test,14,सो जाओ टिंकु!,STORYBOOK_OPENED
-204,1607967054000,7161a85a0e4751cd,ai.elimu.vitabu.test,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
-205,1607967050000,7161a85a0e4751cd,ai.elimu.vitabu.test,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
-206,1607967223000,7161a85a0e4751cd,ai.elimu.vitabu.test,29,"आज, मैं हूँ...",STORYBOOK_OPENED
+id,timestamp,android_id,package_name,storybook_id,storybook_title,learning_event_type
+187,1593352596000,f94a***b8d2,ai.elimu.vitabu,38,हमारे मित्र कौन है?,STORYBOOK_OPENED
+188,1593352564000,f94a***b8d2,ai.elimu.vitabu,41,राजू की पहली हवाई-यात्रा,STORYBOOK_OPENED
+189,1593352305000,f94a***b8d2,ai.elimu.vitabu,10,रिमझिम बरसे बादल,STORYBOOK_OPENED
+190,1593352300000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+191,1593352295000,f94a***b8d2,ai.elimu.vitabu,15,उड़ने वाला ऑटो,STORYBOOK_OPENED
+192,1593352250000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+193,1593540678000,f94a***b8d2,ai.elimu.vitabu,39,बंटी और उसके गाते हुए पक्षी,STORYBOOK_OPENED
+194,1593540657000,f94a***b8d2,ai.elimu.vitabu,40,सूरज का दोस्त कौन ?,STORYBOOK_OPENED
+195,1593540640000,f94a***b8d2,ai.elimu.vitabu,41,राजू की पहली हवाई-यात्रा,STORYBOOK_OPENED
+196,1593933793000,f94a***b8d2,ai.elimu.vitabu,15,उड़ने वाला ऑटो,STORYBOOK_OPENED
+197,1593954982000,e142***6032,ai.elimu.vitabu,48,ग़ोलू एक ग़ोल कि कहानी,STORYBOOK_OPENED
+198,1593954975000,e142***6032,ai.elimu.vitabu,49,लाल बरसाती,STORYBOOK_OPENED
+199,1599597305000,f94a***b8d2,ai.elimu.vitabu,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
+200,1599596866000,f94a***b8d2,ai.elimu.vitabu,2,आलू-मालू-कालू,STORYBOOK_OPENED
+201,1599595999000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+202,1602364626000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+203,1603764078000,f94a***b8d2,ai.elimu.vitabu,61,कुत्ते के अंडे,STORYBOOK_OPENED
+204,1603914446000,f94a***b8d2,ai.elimu.vitabu,11,गप्पू नाच नहीं सकती,STORYBOOK_OPENED
+205,1603913955000,f94a***b8d2,ai.elimu.vitabu,,रमाइलो दिन,STORYBOOK_OPENED
+206,1603913937000,f94a***b8d2,ai.elimu.vitabu,,रमाइलो दिन,STORYBOOK_OPENED
+207,1603911978000,f94a***b8d2,ai.elimu.vitabu,,रमाइलो दिन,STORYBOOK_OPENED
+208,1603911289000,f94a***b8d2,ai.elimu.vitabu,,रमाइलो दिन,STORYBOOK_OPENED
+209,1606079122000,f94a***b8d2,ai.elimu.vitabu,29,"आज, मैं हूँ...",STORYBOOK_OPENED
+210,1606701808000,f94a***b8d2,ai.elimu.vitabu,2,आलू-मालू-कालू,STORYBOOK_OPENED
+211,1606701798000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+212,1606701792000,f94a***b8d2,ai.elimu.vitabu,37,अद्भुत कीड़े,STORYBOOK_OPENED
+213,1607958723000,f94a***b8d2,ai.elimu.vitabu,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
+214,1607958651000,f94a***b8d2,ai.elimu.vitabu,27,तारा की गगनचुंबी यात्रा,STORYBOOK_OPENED
+215,1607958607000,f94a***b8d2,ai.elimu.vitabu,51,घूम-घूम घड़ियाल का अनोखा सफ़र,STORYBOOK_OPENED
+216,1607958577000,f94a***b8d2,ai.elimu.vitabu,55,जादुर्इ गुटका,STORYBOOK_OPENED
+217,1607958532000,f94a***b8d2,ai.elimu.vitabu,40,सूरज का दोस्त कौन ?,STORYBOOK_OPENED
+218,1607958497000,f94a***b8d2,ai.elimu.vitabu,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
+219,1607958459000,f94a***b8d2,ai.elimu.vitabu,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
+220,1607958430000,f94a***b8d2,ai.elimu.vitabu,23,स्वतंत्रता की ओर,STORYBOOK_OPENED
+221,1607958404000,f94a***b8d2,ai.elimu.vitabu,41,राजू की पहली हवाई-यात्रा,STORYBOOK_OPENED
+222,1607958383000,f94a***b8d2,ai.elimu.vitabu,15,उड़ने वाला ऑटो,STORYBOOK_OPENED
+223,1607958370000,f94a***b8d2,ai.elimu.vitabu,53,एक सौ सैंतीसवाँ पैर,STORYBOOK_OPENED
+224,1607958339000,f94a***b8d2,ai.elimu.vitabu,11,गप्पू नाच नहीं सकती,STORYBOOK_OPENED
+225,1607958270000,f94a***b8d2,ai.elimu.vitabu,29,"आज, मैं हूँ...",STORYBOOK_OPENED
+226,1607980630000,f94a***b8d2,ai.elimu.vitabu,22,मुत्तज्जी की उम्र क्या है?,STORYBOOK_OPENED
+227,1607980611000,f94a***b8d2,ai.elimu.vitabu,41,राजू की पहली हवाई-यात्रा,STORYBOOK_OPENED
+228,1607980595000,f94a***b8d2,ai.elimu.vitabu,11,गप्पू नाच नहीं सकती,STORYBOOK_OPENED
+229,1608784889000,f94a***b8d2,ai.elimu.vitabu,63,आनंद,STORYBOOK_OPENED
+230,1617214789000,f94a***b8d2,ai.elimu.vitabu,29,"आज, मैं हूँ...",STORYBOOK_OPENED
+231,1624145031000,f94a***b8d2,ai.elimu.vitabu,23,स्वतंत्रता की ओर,STORYBOOK_OPENED
+232,1624144966000,f94a***b8d2,ai.elimu.vitabu,23,स्वतंत्रता की ओर,STORYBOOK_OPENED
+233,1624144940000,f94a***b8d2,ai.elimu.vitabu,29,"आज, मैं हूँ...",STORYBOOK_OPENED
+234,1624144786000,f94a***b8d2,ai.elimu.vitabu,29,"आज, मैं हूँ...",STORYBOOK_OPENED
+235,1624144756000,f94a***b8d2,ai.elimu.vitabu,29,"आज, मैं हूँ...",STORYBOOK_OPENED
+236,1624144658000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+237,1624144613000,f94a***b8d2,ai.elimu.vitabu,37,अद्भुत कीड़े,STORYBOOK_OPENED
+238,1624790899000,f94a***b8d2,ai.elimu.vitabu,37,अद्भुत कीड़े,STORYBOOK_OPENED
+239,1624790846000,f94a***b8d2,ai.elimu.vitabu,37,अद्भुत कीड़े,STORYBOOK_OPENED
+240,1624790842000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+241,1624790461000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+242,1624790219000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+243,1629304544000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+244,1629304527000,f94a***b8d2,ai.elimu.vitabu,37,अद्भुत कीड़े,STORYBOOK_OPENED
+245,1629735927000,f94a***b8d2,ai.elimu.vitabu,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
+246,1629735878000,f94a***b8d2,ai.elimu.vitabu,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
+247,1630090138000,f94a***b8d2,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+248,1630090116000,f94a***b8d2,ai.elimu.vitabu,37,अद्भुत कीड़े,STORYBOOK_OPENED
+249,1630088682000,f94a***b8d2,ai.elimu.vitabu,66,"एक सफ़र, एक खेल",STORYBOOK_OPENED
+250,1630088619000,f94a***b8d2,ai.elimu.vitabu,66,"एक सफ़र, एक खेल",STORYBOOK_OPENED
+251,1629736557000,467a***4f82,ai.elimu.vitabu,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
+252,1632405959000,467a***4f82,ai.elimu.vitabu,1,"अभी नहीं, अभी नहीं!",STORYBOOK_OPENED
+253,1642791664000,f94a***b8d2,ai.elimu.vitabu,5,बनबिलाव! बनबिलाव!,STORYBOOK_OPENED
+254,1642791408000,f94a***b8d2,ai.elimu.vitabu,30,मलार का बड़ा सा घर,STORYBOOK_OPENED
