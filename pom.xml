@@ -161,7 +161,7 @@
 
     <profiles>
         <profile>
-            <id>no-regression-testing</id>
+            <id>no-regression-test</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -182,8 +182,8 @@
             </build>
         </profile>
         <profile>
-            <!-- Usage: "mvn clean verify -P regression-testing-rest" -->
-            <id>regression-testing-rest</id>
+            <!-- Usage: "mvn clean verify -P regression-test-rest" -->
+            <id>regression-test-rest</id>
             <build>
                 <plugins>
                     <plugin>
@@ -215,8 +215,8 @@
             </build>
         </profile>
         <profile>
-            <!-- Usage: "mvn clean verify -P regression-testing-ui" -->
-            <id>regression-testing-ui</id>
+            <!-- Usage: "mvn clean verify -P regression-test-ui" -->
+            <id>regression-test-ui</id>
             <build>
                 <plugins>
                     <plugin>

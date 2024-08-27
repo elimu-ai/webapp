@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test_ENG:
+  test_rest_ENG:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,10 +17,10 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-testing-rest -D base.url=http://eng.elimu.ai
+      - run: mvn verify -P regression-test-rest -D base.url=http://eng.elimu.ai
   
-  test_TGL:
-    needs: test_ENG
+  test_rest_TGL:
+    needs: test_rest_ENG
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,10 +30,10 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-testing-rest -D base.url=http://tgl.elimu.ai
+      - run: mvn verify -P regression-test-rest -D base.url=http://tgl.elimu.ai
 
-  test_HIN:
-    needs: test_TGL
+  test_rest_HIN:
+    needs: test_rest_TGL
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,4 +43,4 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-testing-rest -D base.url=http://hin.elimu.ai
+      - run: mvn verify -P regression-test-rest -D base.url=http://hin.elimu.ai
