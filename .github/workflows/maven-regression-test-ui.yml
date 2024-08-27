@@ -17,7 +17,7 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-testing-ui -D headless=true -D base.url=http://eng.elimu.ai
+      - run: mvn verify -P regression-test-ui -D headless=true -D base.url=http://eng.elimu.ai
   
   test_ui_TGL:
     needs: test_ui_ENG
@@ -30,7 +30,7 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-testing-ui -D headless=true -D base.url=http://tgl.elimu.ai
+      - run: mvn verify -P regression-test-ui -D headless=true -D base.url=http://tgl.elimu.ai
 
   test_ui_HIN:
     needs: test_ui_TGL
@@ -43,4 +43,4 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-testing-ui -D headless=true -D base.url=http://hin.elimu.ai
+      - run: mvn verify -P regression-test-ui -D headless=true -D base.url=http://hin.elimu.ai
