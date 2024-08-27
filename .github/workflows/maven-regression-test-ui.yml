@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test_ENG:
+  test_ui_ENG:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,8 +19,8 @@ jobs:
       - run: mvn clean
       - run: mvn verify -P regression-testing-ui -D headless=true -D base.url=http://eng.elimu.ai
   
-  test_TGL:
-    needs: test_ENG
+  test_ui_TGL:
+    needs: test_ui_ENG
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,8 +32,8 @@ jobs:
       - run: mvn clean
       - run: mvn verify -P regression-testing-ui -D headless=true -D base.url=http://tgl.elimu.ai
 
-  test_HIN:
-    needs: test_TGL
+  test_ui_HIN:
+    needs: test_ui_TGL
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
