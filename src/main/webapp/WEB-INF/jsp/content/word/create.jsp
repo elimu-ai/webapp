@@ -168,7 +168,7 @@
                     <a href="https://translate.google.com/?sl=tl&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
                 </li>
                 <li>
-                    <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
+                    <a href="https://www.tagalog.com/dictionary/<c:out value='${word.text}' />" target="_blank">TagalogLessons</a>
                 </li>
             </ol>
         </div>
