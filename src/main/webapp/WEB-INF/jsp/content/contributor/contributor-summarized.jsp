@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col s6 m4 l3">
+    <div class="col s7 m5 l4">
         <div class="card contributor">
             <div class="card-image">
                 <c:choose>
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <div class="col s6 m8 l9">
+    <div class="col s5 m7 l8">
         <div class="card-panel">
             <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
             <canvas id="chart"></canvas>
