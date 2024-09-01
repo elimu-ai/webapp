@@ -1,5 +1,6 @@
 # elimu.ai Webapp
 
+[![maven build](https://github.com/elimu-ai/webapp/actions/workflows/maven-build.yml/badge.svg)](https://github.com/elimu-ai/webapp/actions/workflows/maven-build.yml)
 [![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 [![commits](https://img.shields.io/github/commit-activity/m/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
 [![last commit](https://img.shields.io/github/last-commit/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
