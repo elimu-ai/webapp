@@ -1,5 +1,5 @@
 html {
-    font-family: "Poppins", sans-serif;
+    font-family: monospace, sans-serif;
 }
 
 body {
@@ -29,7 +29,6 @@ html[data-content-language="tgl"] #index-banner {
 }
 
 .container h1 {
-    font-family: "Amaranth";
     text-shadow: 1px 1px rgba(0,0,0, .8), 
         0 -1rem 3rem rgba(0,0,0, .8), 
         2rem 0 3rem rgba(0,0,0, .8), 

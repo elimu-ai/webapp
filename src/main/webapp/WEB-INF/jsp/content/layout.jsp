@@ -12,8 +12,6 @@
         <%-- CSS --%>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Andika" />
         <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
         <link rel="stylesheet" href="<spring:url value='/static/css/content/styles.css' />" />
         
