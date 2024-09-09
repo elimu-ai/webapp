@@ -217,7 +217,8 @@ form {
 .contributor-name-wrapper {
     display: inline-block;
     white-space: nowrap;
-    width: 100px;
+    width: auto;
+    max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: middle;
