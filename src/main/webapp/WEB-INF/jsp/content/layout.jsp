@@ -162,7 +162,10 @@
                                 </c:choose>
                                 <c:choose>
                                     <c:when test="${not empty contributor.firstName}">
-                                        <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
+                                        <span class="contributor-name-wrapper">
+                                            <span><c:out value="${contributor.firstName}" /></span>
+                                            <span><c:out value="${contributor.lastName}" /></span>
+                                        </span>
                                     </c:when>
                                     <c:when test="${not empty contributor.providerIdWeb3}">
                                         ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}

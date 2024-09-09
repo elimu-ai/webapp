@@ -214,9 +214,22 @@ form {
     top: 50%;
 }
 
+.contributor-name-wrapper {
+    display: inline-block;
+    white-space: nowrap;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
 @media screen and (max-width:1000px) {
     .btn.tokenButton {
         display: none;
+    }
+
+    .contributor-name-wrapper {
+        width: 30px;
     }
 }
 
