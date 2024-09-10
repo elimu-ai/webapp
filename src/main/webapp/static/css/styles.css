@@ -134,6 +134,11 @@ footer.page-footer .footer-copyright {
     background: linear-gradient(135deg, rgba(255,255,255, .4) 0%, rgba(255,255,255, .2) 100%);
 }
 
+.btn.tokenButtonSideNav, .btn.signOnBtn {
+    border-radius: 32px;
+    background: linear-gradient(135deg, #b39ddb 0%, #9575cd 100%); /* deep-purple lighten-3 --> #9575cd deep-purple lighten-2 */
+}
+
 .collection {
     border-radius: 8px;
 }
@@ -207,4 +212,30 @@ form {
 }
 #formLoadingOverlay > .preloader-wrapper {
     top: 50%;
+}
+
+.contributor-name-wrapper {
+    display: inline-block;
+    white-space: nowrap;
+    width: auto;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+@media screen and (max-width:1000px) {
+    .btn.tokenButton {
+        display: none;
+    }
+
+    .contributor-name-wrapper {
+        width: 30px;
+    }
+}
+
+@media screen and (min-width:1000px) {
+    .btn.tokenButtonSideNav {
+        display: none;
+    }
 }
