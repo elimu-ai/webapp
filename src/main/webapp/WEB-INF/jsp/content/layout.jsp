@@ -162,7 +162,7 @@
                                 </c:choose>
                                 <c:choose>
                                     <c:when test="${not empty contributor.firstName}">
-                                        <span class="contributor-name-wrapper" aria-label="${contributor.firstName}>
+                                        <span class="contributor-name-wrapper" aria-label="${contributor.firstName}">
                                             <span><c:out value="${contributor.firstName}" /></span>
                                             <span><c:out value="${contributor.lastName}" /></span>
                                         </span>
