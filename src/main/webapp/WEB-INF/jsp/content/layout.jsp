@@ -56,20 +56,51 @@
                         
                         <li class="divider"></li>
 
-                        <li>
-                            <a class="btn tokenButtonSideNav" href="<spring:url value='/sign-on/web3' />">
-                                <svg style="width: 24px; height: 24px; top: 6px; position: relative; right: 5px;" viewBox="0 0 784.37 1277.39" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
-                                    <g>
-                                        <polygon fill="#343434" fill-rule="nonzero" points="392.07,0 383.5,29.11 383.5,873.74 392.07,882.29 784.13,650.54 "/>
-                                        <polygon fill="#8C8C8C" fill-rule="nonzero" points="392.07,0 -0,650.54 392.07,882.29 392.07,472.33 "/>
-                                        <polygon fill="#3C3C3B" fill-rule="nonzero" points="392.07,956.52 387.24,962.41 387.24,1263.28 392.07,1277.38 784.37,724.89 "/>
-                                        <polygon fill="#8C8C8C" fill-rule="nonzero" points="392.07,1277.38 392.07,956.52 -0,724.89 "/>
-                                        <polygon fill="#141414" fill-rule="nonzero" points="392.07,882.29 784.13,650.54 392.07,472.33 "/>
-                                        <polygon fill="#393939" fill-rule="nonzero" points="0,650.54 392.07,882.29 392.07,472.33 "/>
-                                    </g>
-                                </svg>&nbsp;Connect wallet
-                            </a>
-                        </li>
+                        <c:choose>
+                                    <c:when test="${empty contributor.providerIdWeb3}">
+                                        <li>
+                                            <a class="btn tokenButtonSideNav" href="<spring:url value='/sign-on/web3' />">
+                                                <svg style="width: 24px; height: 24px; top: 6px; position: relative; right: 5px;" viewBox="0 0 784.37 1277.39" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                                                    <g>
+                                                        <polygon fill="#343434" fill-rule="nonzero" points="392.07,0 383.5,29.11 383.5,873.74 392.07,882.29 784.13,650.54 "/>
+                                                        <polygon fill="#8C8C8C" fill-rule="nonzero" points="392.07,0 -0,650.54 392.07,882.29 392.07,472.33 "/>
+                                                        <polygon fill="#3C3C3B" fill-rule="nonzero" points="392.07,956.52 387.24,962.41 387.24,1263.28 392.07,1277.38 784.37,724.89 "/>
+                                                        <polygon fill="#8C8C8C" fill-rule="nonzero" points="392.07,1277.38 392.07,956.52 -0,724.89 "/>
+                                                        <polygon fill="#141414" fill-rule="nonzero" points="392.07,882.29 784.13,650.54 392.07,472.33 "/>
+                                                        <polygon fill="#393939" fill-rule="nonzero" points="0,650.54 392.07,882.29 392.07,472.33 "/>
+                                                    </g>
+                                                </svg>&nbsp;Connect wallet
+                                            </a>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li>
+                                            <c:set var="etherscanUrl" value="https://etherscan.io" />
+                                            <c:if test="${applicationScope.configProperties['env'] != 'PROD'}">
+                                                <c:set var="etherscanUrl" value="https://rinkeby.etherscan.io" />
+                                            </c:if>
+                                            <a class="btn tokenButtonSideNav" href="${etherscanUrl}/token/0xe29797910d413281d2821d5d9a989262c8121cc2?a=${contributor.providerIdWeb3}" target="_blank">
+                                                <code><span id="tokenBalance">0</span> $ELIMU</code>
+                                            </a>
+                                            <script>
+                                                $(function() {
+                                                    var contributorAddress = '${contributor.providerIdWeb3}';
+                                                    getBalance(contributorAddress).then(function(result) {
+                                                        console.info('result: ' + result);
+
+                                                        var tokenBalance = result / 1000000000000000000;
+                                                        console.info('tokenBalance: ' + tokenBalance);
+
+                                                        var tokenBalanceFormatted = Intl.NumberFormat().format(Math.round(tokenBalance));
+                                                        console.info('tokenBalanceFormatted ' + tokenBalanceFormatted);
+
+                                                        $('#tokenBalance').html(tokenBalanceFormatted);
+                                                    });
+                                                });
+                                            </script>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
                         
                         <li class="grey-text"><b><fmt:message key="community" /></b></li>
                         <li><a href="<spring:url value='/content/contributor/list' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
