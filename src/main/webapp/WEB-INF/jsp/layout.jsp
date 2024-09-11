@@ -93,7 +93,7 @@
                                                 <c:set var="etherscanUrl" value="https://rinkeby.etherscan.io" />
                                             </c:if>
                                             <a class="btn tokenButtonSideNav" href="${etherscanUrl}/token/0xe29797910d413281d2821d5d9a989262c8121cc2?a=${contributor.providerIdWeb3}" target="_blank">
-                                                <code><span id="tokenBalance">0</span> $ELIMU</code>
+                                                <code><span id="tokenBalanceSideNav">0</span> $ELIMU</code>
                                             </a>
                                             <script>
                                                 $(function() {
@@ -107,7 +107,7 @@
                                                         var tokenBalanceFormatted = Intl.NumberFormat().format(Math.round(tokenBalance));
                                                         console.info('tokenBalanceFormatted ' + tokenBalanceFormatted);
 
-                                                        $('#tokenBalance').html(tokenBalanceFormatted);
+                                                        $('#tokenBalanceSideNav').html(tokenBalanceFormatted);
                                                     });
                                                 });
                                             </script>
