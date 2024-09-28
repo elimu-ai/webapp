@@ -61,8 +61,8 @@ public class ContributorCsvExportController {
         CSVFormat csvFormat = CSVFormat.DEFAULT
             .withHeader(
                 "ethereum_address",
-                "contributor_id",
-                "impact_percentage"
+                "impact_percentage",
+                "contributor_id"
             );
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
@@ -109,8 +109,8 @@ public class ContributorCsvExportController {
             
             csvPrinter.printRecord(
                     ethereumAddress,
-                    contributor.getId(),
-                    impactPercentage
+                    impactPercentage,
+                    contributor.getId()
             );
             
             csvPrinter.flush();
