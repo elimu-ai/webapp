@@ -103,7 +103,7 @@
                                 </c:choose>
                         
                         <li class="grey-text"><b><fmt:message key="community" /></b></li>
-                        <li><a href="<spring:url value='/content/contributor/list' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
+                        <li><a href="<spring:url value='/contributor/list' />"><i class="material-icons left">group</i><fmt:message key="contributors" /></a></li>
                         <li><a href="https://discord.gg/9rz4XYJJDE" target="_blank"><i class="material-icons left">forum</i>Discord</a></li>
                         
                         <li class="divider"></li>
@@ -130,7 +130,7 @@
                         <c:choose>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/contributor/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/content/contributor/list' />"><fmt:message key="contributors" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/contributor/list' />"><fmt:message key="contributors" /></a>
                             </c:when>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/content/sound/')
                                     && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
