@@ -181,7 +181,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${numberContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${numberContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty numberContributionEvent.contributor.imageUrl}">
@@ -213,7 +213,7 @@
                     <c:if test="${numberPeerReviewEvent.numberContributionEvent.id == numberContributionEvent.id}">
                         <div class="row peerReviewEvent indent" data-approved="${numberPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <a href="<spring:url value='/content/contributor/${numberPeerReviewEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${numberPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty numberPeerReviewEvent.contributor.imageUrl}">

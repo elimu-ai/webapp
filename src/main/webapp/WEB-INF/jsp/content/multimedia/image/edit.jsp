@@ -115,7 +115,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${imageContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${imageContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${imageContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty imageContributionEvent.contributor.imageUrl}">

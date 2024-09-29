@@ -201,7 +201,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${storyBookContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${storyBookContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty storyBookContributionEvent.contributor.imageUrl}">
@@ -259,7 +259,7 @@
                     <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
                         <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">

@@ -37,7 +37,7 @@
                                 <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
                                     <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
                                         <div class="col s4">
-                                            <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.contributor.id}' />">
+                                            <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                                 <div class="chip">
                                                     <c:choose>
                                                         <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">
@@ -111,7 +111,7 @@
                         <td>
                             <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.isApproved()}">
                                 <div class="col s4">
-                                    <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.contributor.id}' />">
+                                    <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                         <div class="chip">
                                             <c:choose>
                                                 <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">
@@ -160,7 +160,7 @@
                             /<c:forEach var="lsc" items="${word.letterSounds}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.wordContributionEvent.contributor.id}' />">
+                            <a href="<spring:url value='/contributor/${wordPeerReviewEvent.wordContributionEvent.contributor.id}' />">
                                 <div class="chip">
                                     <c:choose>
                                         <c:when test="${not empty wordPeerReviewEvent.wordContributionEvent.contributor.imageUrl}">

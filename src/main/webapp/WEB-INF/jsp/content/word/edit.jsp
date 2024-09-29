@@ -237,7 +237,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${wordContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${wordContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty wordContributionEvent.contributor.imageUrl}">
@@ -269,7 +269,7 @@
                     <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
                         <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">

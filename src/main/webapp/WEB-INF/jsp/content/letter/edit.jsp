@@ -73,7 +73,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${letterContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${letterContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${letterContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${letterContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty letterContributionEvent.contributor.imageUrl}">
@@ -105,7 +105,7 @@
                     <c:if test="${letterPeerReviewEvent.letterContributionEvent.id == letterContributionEvent.id}">
                         <div class="row peerReviewEvent indent" data-approved="${letterPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <a href="<spring:url value='/content/contributor/${letterPeerReviewEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${letterPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty letterPeerReviewEvent.contributor.imageUrl}">

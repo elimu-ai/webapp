@@ -12,7 +12,7 @@ public class DomainHelper {
         String baseUrl = "http://localhost:8080/webapp";
 
         // Read "base.url" property set on the command line: 
-        //    mvn clean verify -P regression-testing-rest -D base.url=https://eng.test.elimu.ai
+        //    mvn clean verify -P regression-test-rest -D base.url=https://eng.test.elimu.ai
         String baseUrlSystemProperty = System.getProperty("base.url");
         logger.info("baseUrlSystemProperty: \"" + baseUrlSystemProperty + "\"");
         if (StringUtils.isNotBlank(baseUrlSystemProperty)) {

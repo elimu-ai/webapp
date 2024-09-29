@@ -37,7 +37,7 @@
                                 / <c:forEach var="sound" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
                             </td>
                             <td>
-                                <a href="<spring:url value='/content/contributor/${letterSoundContributionEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${letterSoundContributionEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty letterSoundContributionEvent.contributor.imageUrl}">

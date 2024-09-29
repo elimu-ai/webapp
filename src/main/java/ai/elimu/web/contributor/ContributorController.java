@@ -1,4 +1,4 @@
-package ai.elimu.web.content.contributor;
+package ai.elimu.web.contributor;
 
 import ai.elimu.dao.AudioContributionEventDao;
 import ai.elimu.dao.AudioPeerReviewEventDao;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/contributor/{contributorId}")
+@RequestMapping("/contributor/{contributorId}")
 public class ContributorController {
     
     private final Logger logger = LogManager.getLogger();
@@ -111,6 +111,6 @@ public class ContributorController {
         }
         model.addAttribute("numberPeerReviewEventsByContributionMap", numberPeerReviewEventsByContributionMap);
         
-        return "content/contributor/contributor";
+        return "contributor/contributor";
     }
 }

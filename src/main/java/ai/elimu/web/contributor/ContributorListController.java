@@ -1,4 +1,4 @@
-package ai.elimu.web.content.contributor;
+package ai.elimu.web.contributor;
 
 import ai.elimu.dao.ContributorDao;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/contributor/list")
+@RequestMapping("/contributor/list")
 public class ContributorListController {
     
     private final Logger logger = LogManager.getLogger();
@@ -24,6 +24,6 @@ public class ContributorListController {
         
         model.addAttribute("contributors", contributorDao.readAllOrderedDesc());
 
-        return "content/contributor/list";
+        return "contributor/list";
     }
 }

@@ -146,7 +146,7 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithStoryBookContributions}">
                 <li>
-                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                    <a href="<spring:url value='/contributor/${contributor.id}' />">
                         <div class="chip">
                             <c:choose>
                                 <c:when test="${not empty contributor.imageUrl}">
@@ -179,7 +179,7 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithAudioContributions}">
                 <li>
-                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                    <a href="<spring:url value='/contributor/${contributor.id}' />">
                         <div class="chip">
                             <c:choose>
                                 <c:when test="${not empty contributor.imageUrl}">
@@ -212,7 +212,7 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithWordContributions}">
                 <li>
-                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                    <a href="<spring:url value='/contributor/${contributor.id}' />">
                         <div class="chip">
                             <c:choose>
                                 <c:when test="${not empty contributor.imageUrl}">
@@ -245,7 +245,7 @@
         <ol style="list-style-type: inherit;">
             <c:forEach var="contributor" items="${contributorsWithNumberContributions}">
                 <li>
-                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                    <a href="<spring:url value='/contributor/${contributor.id}' />">
                         <div class="chip">
                             <c:choose>
                                 <c:when test="${not empty contributor.imageUrl}">
