@@ -1,4 +1,4 @@
-package selenium.analytics;
+package selenium.contributor;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import selenium.util.DomainHelper;
 
-public class MainAnalyticsPageTest {
+public class ContributorListPageTest {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -33,7 +33,7 @@ public class MainAnalyticsPageTest {
         
         driver = new ChromeDriver(chromeOptions);
 
-        driver.get(DomainHelper.getBaseUrl() + "/analytics");
+        driver.get(DomainHelper.getBaseUrl() + "/contributor/list");
     }
 
     @AfterEach
@@ -44,9 +44,9 @@ public class MainAnalyticsPageTest {
     }
 
     @Test
-    public void testMainAnalyticsPage() {
-        logger.info("testMainAnalyticsPage");
+    public void testContributorListPage() {
+        logger.info("testContributorListPage");
         
-        MainAnalyticsPage mainAnalyticsPage = new MainAnalyticsPage(driver);
+        ContributorListPage contributorListPage = new ContributorListPage(driver);
     }
 }
