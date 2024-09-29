@@ -24,16 +24,20 @@
                 </svg>
                 Connect wallet
             </a>
+            <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.8/dist/index.min.js"></script>
+            <script src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+            <script src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+            <script src="<spring:url value='/static/js/web3provider.js' />"></script>
             <script>
                 $(function() {
                     // When the connect button is pressed, request to view providers
                     $('#connectWeb3Wallet').click(async function() {
                         console.info('#connectWeb3Wallet click');
 
-   
                         try {
                             // Request permission to connect to Web3 provider
-                            const provider = await connect()
+                            const provider = await connect();
                             window.web3 = new Web3(provider);
 
                             // Request the currently selected address
@@ -47,7 +51,7 @@
                             // Request signature to verify ownership of the address
                             window.web3.eth.personal.sign('I verify ownership of this account 👍', address)
                                 .then(signature => {
-                                    console.info('Signature provided. Logging in...');
+                                    console.info('Signature provided. Signing on...');
                                     
                                     // Add ETH address and signature to the form to be submitted
                                     $('#web3SignOnForm [name="address"]').val(address);
