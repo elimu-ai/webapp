@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import selenium.util.DomainHelper;
 
-public class ContributorListPageTest {
+public class ContributorPageTest {
     
     private final Logger logger = LogManager.getLogger();
     
@@ -44,8 +44,8 @@ public class ContributorListPageTest {
     }
 
     @Test
-    public void testContributorListPage() {
-        logger.info("testContributorListPage");
+    public void testContributorPage() {
+        logger.info("testContributorPage");
         
         ContributorListPage contributorListPage = new ContributorListPage(driver);
         contributorListPage.pressRandomContributor();
