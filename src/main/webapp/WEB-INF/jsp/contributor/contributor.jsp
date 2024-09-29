@@ -9,7 +9,7 @@
     </c:choose>
 </content:title>
 
-<content:section cssId="contributorStoryBooksPage">
+<content:section cssId="contributorPage">
     <%@ include file="/WEB-INF/jsp/contributor/contributor-summarized.jsp" %>
     
     <ul class="tabs tabs-transparent deep-purple lighten-1 z-depth-1" style="border-radius: 8px;">

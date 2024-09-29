@@ -22,7 +22,7 @@
         <c:forEach var="contributor" items="${contributors}">
             <div class="col s6 m4 l3">
                 <div class="card contributor">
-                    <a href="<spring:url value='/contributor/${contributor.id}' />">
+                    <a class="contributorCardImageLink" href="<spring:url value='/contributor/${contributor.id}' />">
                         <div class="card-image">
                             <c:choose>
                                 <c:when test="${not empty contributor.imageUrl}">
