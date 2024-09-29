@@ -46,7 +46,7 @@
                             </c:forEach>
                         </td>
                             <td>
-                                <a href="<spring:url value='/content/contributor/${numberContributionEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${numberContributionEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty numberContributionEvent.contributor.imageUrl}">

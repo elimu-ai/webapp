@@ -41,7 +41,7 @@
                                 <c:if test="${numberPeerReviewEvent.numberContributionEvent.id == numberContributionEvent.id}">
                                     <div class="row peerReviewEvent indent" data-approved="${numberPeerReviewEvent.isApproved()}">
                                         <div class="col s4">
-                                            <a href="<spring:url value='/content/contributor/${numberPeerReviewEvent.contributor.id}' />">
+                                            <a href="<spring:url value='/contributor/${numberPeerReviewEvent.contributor.id}' />">
                                                 <div class="chip">
                                                     <c:choose>
                                                         <c:when test="${not empty numberPeerReviewEvent.contributor.imageUrl}">
@@ -115,7 +115,7 @@
                         <td>
                             <div class="row peerReviewEvent" data-approved="${numberPeerReviewEvent.isApproved()}">
                                 <div class="col s4">
-                                    <a href="<spring:url value='/content/contributor/${numberPeerReviewEvent.contributor.id}' />">
+                                    <a href="<spring:url value='/contributor/${numberPeerReviewEvent.contributor.id}' />">
                                         <div class="chip">
                                             <c:choose>
                                                 <c:when test="${not empty numberPeerReviewEvent.contributor.imageUrl}">
@@ -168,7 +168,7 @@
                             </c:forEach>
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/contributor/${numberPeerReviewEvent.numberContributionEvent.contributor.id}' />">
+                            <a href="<spring:url value='/contributor/${numberPeerReviewEvent.numberContributionEvent.contributor.id}' />">
                                 <div class="chip">
                                     <c:choose>
                                         <c:when test="${not empty numberPeerReviewEvent.numberContributionEvent.contributor.imageUrl}">

@@ -98,9 +98,9 @@
                             </div>
                         </a>
                         <ul id='contributorDropdown' class='dropdown-content'>
-                            <li><a href="<spring:url value='/content/contributor/${contributor.id}' />"><i class="material-icons left">art_track</i><fmt:message key="my.contributions" /></a></li>
+                            <li><a href="<spring:url value='/contributor/${contributor.id}' />"><i class="material-icons left">art_track</i><fmt:message key="my.contributions" /></a></li>
                             <li class="divider"></li>
-                            <li><a href="<spring:url value='/content/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
+                            <li><a href="<spring:url value='/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
                             <%--<li class="divider"></li>
                             <li><a href="<spring:url value='/content/contributor/edit-email' />"><i class="material-icons left">mail</i><fmt:message key="edit.email" /></a></li>--%>
                             <sec:authorize access="hasRole('ROLE_ADMIN')">

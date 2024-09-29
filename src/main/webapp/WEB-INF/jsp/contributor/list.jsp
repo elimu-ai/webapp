@@ -5,7 +5,7 @@
 <content:section cssId="contributorListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
-           href="<spring:url value='/content/contributor/list/contributors.csv' />">
+           href="<spring:url value='/contributor/list/contributors.csv' />">
             <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
@@ -22,7 +22,7 @@
         <c:forEach var="contributor" items="${contributors}">
             <div class="col s6 m4 l3">
                 <div class="card contributor">
-                    <a href="<spring:url value='/content/contributor/${contributor.id}' />">
+                    <a href="<spring:url value='/contributor/${contributor.id}' />">
                         <div class="card-image">
                             <c:choose>
                                 <c:when test="${not empty contributor.imageUrl}">
@@ -99,7 +99,7 @@
                         </p>
                     </div>
                     <div class="card-action">
-                        <a href="<spring:url value='/content/contributor/${contributor.id}' />">View contributions</a>
+                        <a href="<spring:url value='/contributor/${contributor.id}' />">View contributions</a>
                     </div>
                 </div>
             </div>

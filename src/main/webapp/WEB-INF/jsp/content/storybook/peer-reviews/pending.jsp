@@ -52,7 +52,7 @@
                                 <fmt:message key="reading.level.${storyBook.readingLevel}" />
                             </td>
                             <td>
-                                <a href="<spring:url value='/content/contributor/${storyBookContributionEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${storyBookContributionEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty storyBookContributionEvent.contributor.imageUrl}">

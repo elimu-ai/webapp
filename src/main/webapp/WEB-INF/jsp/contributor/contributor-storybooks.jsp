@@ -39,7 +39,7 @@
                                 <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
                                     <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                                         <div class="col s4">
-                                            <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
+                                            <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
                                                 <div class="chip">
                                                     <c:choose>
                                                         <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
@@ -113,7 +113,7 @@
                         <td>
                             <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                                 <div class="col s4">
-                                    <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
+                                    <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
                                         <div class="chip">
                                             <c:choose>
                                                 <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
@@ -164,7 +164,7 @@
                             <fmt:message key="reading.level.${storyBook.readingLevel}" />
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.id}' />">
+                            <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.id}' />">
                                 <div class="chip">
                                     <c:choose>
                                         <c:when test="${not empty storyBookPeerReviewEvent.storyBookContributionEvent.contributor.imageUrl}">

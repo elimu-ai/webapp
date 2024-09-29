@@ -1,4 +1,4 @@
-package ai.elimu.web.content.contributor;
+package ai.elimu.web.contributor;
 
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.LetterContributionEventDao;
@@ -28,7 +28,7 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/contributor/list")
+@RequestMapping("/contributor/list")
 public class ContributorCsvExportController {
     
     private final Logger logger = LogManager.getLogger();
@@ -60,9 +60,9 @@ public class ContributorCsvExportController {
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
             .withHeader(
+                "contributor_id",
                 "ethereum_address",
-                "impact_percentage",
-                "contributor_id"
+                "impact_percentage"
             );
         StringWriter stringWriter = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
@@ -108,9 +108,9 @@ public class ContributorCsvExportController {
             logger.debug("impactPercentage: " + impactPercentage);
             
             csvPrinter.printRecord(
+                    contributor.getId(),
                     ethereumAddress,
-                    impactPercentage,
-                    contributor.getId()
+                    impactPercentage
             );
             
             csvPrinter.flush();
