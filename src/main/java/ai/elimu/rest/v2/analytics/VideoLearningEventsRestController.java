@@ -55,6 +55,10 @@ public class VideoLearningEventsRestController {
             File csvFile = new File(videoLearningEventsDir, originalFilename);
             logger.info("Storing CSV file at " + csvFile);
             multipartFile.transferTo(csvFile);
+            
+            jsonResponseObject.put("result", "success");
+            jsonResponseObject.put("successMessage", "The CSV file was uploaded");
+            response.setStatus(HttpStatus.OK.value());
         } catch (Exception ex) {
             logger.error(ex);
             
@@ -62,9 +66,6 @@ public class VideoLearningEventsRestController {
             jsonResponseObject.put("errorMessage", ex.getMessage());
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
-        jsonResponseObject.put("result", "success");
-        jsonResponseObject.put("successMessage", "The CSV file was uploaded");
-        response.setStatus(HttpStatus.OK.value());
         
         String jsonResponse = jsonResponseObject.toString();
         logger.info("jsonResponse: " + jsonResponse);
