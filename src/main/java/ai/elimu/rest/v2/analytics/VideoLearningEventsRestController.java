@@ -31,9 +31,21 @@ public class VideoLearningEventsRestController {
         
         JSONObject jsonResponseObject = new JSONObject();
         try {
+            String contentType = multipartFile.getContentType();
+            logger.info("contentType: " + contentType);
+
+            long size = multipartFile.getSize();
+            logger.info("size: " + size);
+            if (size == 0) {
+                throw new IllegalArgumentException("Empty file");
+            }
+
             // Expected format: "7161a85a0e4751cd_3001012_video-learning-events_2020-04-23.csv"
             String originalFilename = multipartFile.getOriginalFilename();
             logger.info("originalFilename: " + originalFilename);
+            if (originalFilename.length() != 61) {
+                throw new IllegalArgumentException("Unexpected filename");
+            }
 
             String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
             logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
