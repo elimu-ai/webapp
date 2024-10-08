@@ -2,7 +2,7 @@
 Resolves #
 
 ### Purpose
-<!-- What is the purpose of this PR? -->
+<!-- What is the purpose of this PR? Why is it needed? -->
 
 ### Technical Details
 <!-- Are there any key aspects of the implementation to highlight? -->
