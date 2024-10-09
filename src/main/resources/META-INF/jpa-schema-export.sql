@@ -367,6 +367,7 @@
 
     create table LetterLearningEvent (
        id bigint not null auto_increment,
+        additionalData varchar(1024),
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -534,6 +535,7 @@
 
     create table StoryBookLearningEvent (
        id bigint not null auto_increment,
+        additionalData varchar(1024),
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -635,6 +637,7 @@
 
     create table VideoLearningEvent (
        id bigint not null auto_increment,
+        additionalData varchar(1024),
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -680,6 +683,7 @@
 
     create table WordLearningEvent (
        id bigint not null auto_increment,
+        additionalData varchar(1024),
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
