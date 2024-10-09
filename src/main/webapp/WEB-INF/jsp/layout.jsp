@@ -235,7 +235,7 @@
                     </div>
                 </c:if>
 
-                <div id="${cssId}" class="container <c:if test="${cssClass != null}">${cssClass}</c:if>">
+                <main id="${cssId}" class="container <c:if test="${cssClass != null}">${cssClass}</c:if>">
                     <div class="section row">
                         <c:choose>
                             <c:when test="${!hasAside}">
@@ -253,7 +253,7 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                </div>
+                </main>
 
                 <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
                     <footer class="page-footer deep-purple lighten-1">

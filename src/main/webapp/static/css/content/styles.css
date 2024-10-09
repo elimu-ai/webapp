@@ -9,12 +9,11 @@ nav {
     transition: all .5s;
 }
 
-#letterSoundsContainer .chip {
+main #letterSoundsContainer .chip {
     text-align: center;
     font-size: 2rem;
     padding: 1rem;
     height: auto;
-    background-color: #EEE;
 }
 
 #letterCreatePage input#text,
@@ -34,19 +33,10 @@ nav {
     height: 1.2em;
 }
 
-.card-panel img {
-    border-radius: 8px;
-    background-color: rgba(255,255,255, 0.5);
-    box-shadow: 4px 4px rgba(103,58,183, 0.2); /* deep-purple */
-}
 #labeledAudios img,
 #labeledImages img,
 #labeledVideos img {
-    width: 47%;
-    margin-right: 2%;
-    border-radius: 8px;
-    background-color: rgba(255,255,255, 0.5);
-    box-shadow: 4px 4px rgba(103,58,183, 0.2); /* deep-purple */
+    margin-top: 0.5em;
 }
 #imageEditPage #image img {
     display: block;
@@ -82,7 +72,7 @@ html[data-content-language="hin"] #storyBookEditPage .storyBookChapter .storyBoo
 blockquote,
 .comment {
     white-space: pre-line;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .row.peerReviewEvent {
