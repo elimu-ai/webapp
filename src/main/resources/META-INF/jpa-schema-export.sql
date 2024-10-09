@@ -107,6 +107,8 @@
 
     drop table if exists Video_Word;
 
+    drop table if exists VideoLearningEvent;
+
     drop table if exists Word;
 
     drop table if exists Word_LetterSound;
@@ -631,6 +633,19 @@
         primary key (Video_id, words_id)
     ) engine=MyISAM;
 
+    create table VideoLearningEvent (
+       id bigint not null auto_increment,
+        androidId varchar(255),
+        learningEventType varchar(255),
+        packageName varchar(255),
+        timestamp datetime,
+        videoId bigint,
+        videoTitle varchar(255),
+        application_id bigint,
+        video_id bigint,
+        primary key (id)
+    ) engine=MyISAM;
+
     create table Word (
        id bigint not null auto_increment,
         contentStatus varchar(255),
@@ -1070,6 +1085,16 @@
     alter table Video_Word 
        add constraint FKplswdv1whriquc00dsaxrqe0s 
        foreign key (Video_id) 
+       references Video (id);
+
+    alter table VideoLearningEvent 
+       add constraint FKoqqhe1r2epyv55g6jo79t251h 
+       foreign key (application_id) 
+       references Application (id);
+
+    alter table VideoLearningEvent 
+       add constraint FK38rllate5mtlhi6fdiudffm4c 
+       foreign key (video_id) 
        references Video (id);
 
     alter table Word 

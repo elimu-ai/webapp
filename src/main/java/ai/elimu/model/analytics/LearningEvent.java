@@ -26,7 +26,7 @@ public abstract class LearningEvent extends BaseEntity {
     private String androidId;
     
     /**
-     * The package name of the {@link #application}.
+     * The package name of the {@link #application} where the learning event occurred.
      */
     @NotNull
     private String packageName;

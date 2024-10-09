@@ -51,6 +51,38 @@ video {
     max-width: 100%;
 }
 
+main img {
+    background-color: rgba(255,255,255, 0.5);
+    border-radius: 8px;
+    border: 2px solid rgba(103,58,183, 0.3); /* deep-purple */
+    box-shadow: 4px 4px rgba(103,58,183, 0.15); /* deep-purple */
+}
+main .card-panel img {
+    border-width: 1px;
+    box-shadow: 2px 2px rgba(103,58,183, 0.15); /* deep-purple */
+}
+main .card .card-image img {
+    border-radius: 8px 8px 0 0;
+    border-width: 0;
+}
+main .card .card-image {
+    border-radius: 8px 8px 0 0;
+}
+
+main .chip {
+    background-color: rgba(103,58,183, 0.05); /* deep-purple */
+    border: 1px solid rgba(103,58,183, 0.15); /* deep-purple */
+    box-shadow: none;
+    
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+main .chip img {
+    border: 0;
+    box-shadow: none;
+}
+
 #welcomePage .card-title {
     text-shadow: 1px 1px rgba(0,0,0, .8), 
         0 -1rem 3rem rgba(0,0,0, .8), 
@@ -97,10 +129,6 @@ footer.page-footer .footer-copyright {
 .card,
 .card-panel {
     border-radius: 8px;
-}
-.card .card-image,
-.card .card-image img {
-    border-radius: 8px 8px 0 0;
 }
 .card .card-action:last-child {
     border-radius: 0 0 8px 8px;
