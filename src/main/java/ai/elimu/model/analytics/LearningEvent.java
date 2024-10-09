@@ -4,6 +4,8 @@ import ai.elimu.model.BaseEntity;
 import ai.elimu.model.admin.Application;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import java.util.Calendar;
+
+import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
@@ -41,6 +43,18 @@ public abstract class LearningEvent extends BaseEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private LearningEventType learningEventType;
+
+    /**
+     * Any additional data should be stored in the format of a JSON object.
+     * </p>
+     * 
+     * Example:
+     * <pre>
+     * {'video_playback_position_ms': 27946}
+     * </pre>
+     */
+    @Column(length = 1024)
+    private String additionalData;
 
     public Calendar getTimestamp() {
         return timestamp;
@@ -85,5 +99,13 @@ public abstract class LearningEvent extends BaseEntity {
 
     public void setLearningEventType(LearningEventType learningEventType) {
         this.learningEventType = learningEventType;
+    }
+
+    public String getAdditionalData() {
+        return additionalData;
+    }
+
+    public void setAdditionalData(String additionalData) {
+        this.additionalData = additionalData;
     }
 }
