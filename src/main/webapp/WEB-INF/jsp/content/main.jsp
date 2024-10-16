@@ -273,7 +273,5 @@
         </ol>
         
         <div class="divider" style="margin: 1em 0;"></div>
-        
-        <a href="<spring:url value='/contributions/most-recent' />">Most recent contributions</a>
     </div>
 </content:aside>
