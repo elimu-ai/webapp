@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.4" xmlns="http://www.dmg.org/PMML-4_4">
+    <Header>
+        <Application name="Decision Tree Regressor" version="1.0"/>
+    </Header>
+    <DataDictionary numberOfFields="4">
+        <DataField name="chapter_count" optype="continuous" dataType="integer"/>
+        <DataField name="paragraph_count" optype="continuous" dataType="integer"/>
+        <DataField name="word_count" optype="continuous" dataType="integer"/>
+        <DataField name="reading_level" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <TreeModel functionName="regression" algorithmName="DecisionTree" missingValueStrategy="none">
+        <MiningSchema>
+            <MiningField name="chapter_count"/>
+            <MiningField name="paragraph_count"/>
+            <MiningField name="word_count"/>
+            <MiningField name="reading_level" usageType="target"/>
+        </MiningSchema>
+        <Node score="1.0">
+            <True/>
+            <Node score="1.0">
+                <SimplePredicate field="chapter_count" operator="lessThan" value="10"/>
+                <Node score="1.0">
+                    <SimplePredicate field="paragraph_count" operator="lessOrEqual" value="20"/>
+                </Node>
+                <Node score="2.0">
+                    <SimplePredicate field="paragraph_count" operator="greaterThan" value="20"/>
+                </Node>
+            </Node>
+            <Node score="2.0">
+                <SimplePredicate field="chapter_count" operator="greaterOrEqual" value="10"/>
+                <Node score="2.0">
+                    <SimplePredicate field="word_count" operator="lessThan" value="300"/>
+                </Node>
+                <Node score="3.0">
+                    <SimplePredicate field="word_count" operator="greaterOrEqual" value="300"/>
+                </Node>
+            </Node>
+        </Node>
+    </TreeModel>
+</PMML>
