@@ -59,7 +59,7 @@ public class VideoLearningEventImportScheduler {
         File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
         File analyticsDir = new File(languageDir, "analytics");
         logger.info("analyticsDir: " + analyticsDir);
-        logger.info("analyticsDir.exists(): " + analyticsDir.exists());
+        analyticsDir.mkdirs();
         for (File analyticsDirFile : analyticsDir.listFiles()) {
             if (analyticsDirFile.getName().startsWith("android-id-")) {
                 File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
