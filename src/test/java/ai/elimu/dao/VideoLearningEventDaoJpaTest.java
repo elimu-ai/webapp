@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Calendar;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -18,8 +16,6 @@ import ai.elimu.model.analytics.VideoLearningEvent;
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
 public class VideoLearningEventDaoJpaTest {
-
-    private Logger logger = LogManager.getLogger();
 
     @Autowired
     private VideoLearningEventDao videoLearningEventDao;
