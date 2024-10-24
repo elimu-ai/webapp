@@ -542,14 +542,12 @@ public class StoryBookCreateFromEPubController {
 
         // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
 
-        String modelFilePath = Objects.requireNonNull(getClass().getResource("step2_2_model.pmml")).getFile();
-
         logger.info(
-                "Predicting reading level for chapter: {}, paragraph: {}, word: {}, modelPath: {} ",
-                chapterCount, paragraphCount, wordCount, modelFilePath
+                "Predicting reading level for chapter: {}, paragraph: {}, word: {} ",
+                chapterCount, paragraphCount, wordCount
         );
 
-        ReadingLevel readingLevel = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount, modelFilePath);
+        ReadingLevel readingLevel = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
         logger.info("Predicted reading level: {}", readingLevel);
 
         return readingLevel;
