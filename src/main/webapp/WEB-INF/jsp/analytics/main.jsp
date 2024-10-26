@@ -40,6 +40,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title"><i class="material-icons">movie</i> Videos</span>
+                </div>
+                <div class="card-action">
+                    <a id="videoLearningEventsLink" href="<spring:url value='/analytics/video-learning-event/list' />">View list (${storyBookLearningEventCount})</a>
+                </div>
+            </div>
+        </div>
         
         <div class="col s12">
             <h5><fmt:message key="assessment.events" /></h5>
