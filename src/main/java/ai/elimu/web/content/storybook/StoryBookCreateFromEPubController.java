@@ -23,6 +23,7 @@ import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
+import ai.elimu.util.ml.ReadingLevelUtil;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -52,11 +53,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -542,44 +539,17 @@ public class StoryBookCreateFromEPubController {
     }
 
     private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {
-        logger.info("predictReadingLevel");
 
         // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
-        String modelFilePath = getClass().getResource("step2_2_model.pmml").getFile();
-        logger.info("modelFilePath: " + modelFilePath);
-        org.pmml4s.model.Model model = org.pmml4s.model.Model.fromFile(modelFilePath);
-        logger.info("model: " + model);
 
-        // Prepare values (features) to pass to the model
-        Map<String, Double> values = Map.of(
-            "chapter_count", Double.valueOf(chapterCount),
-            "paragraph_count", Double.valueOf(paragraphCount),
-            "word_count", Double.valueOf(wordCount)
+        logger.info(
+                "Predicting reading level for chapter: {}, paragraph: {}, word: {} ",
+                chapterCount, paragraphCount, wordCount
         );
-        logger.info("values: " + values);
 
-        // Make prediction
-        logger.info("Arrays.toString(model.inputNames()): " + Arrays.toString(model.inputNames()));
-        Object[] valuesMap = Arrays.stream(model.inputNames())
-                                   .map(values::get)
-                                   .toArray();
-        logger.info("valuesMap: " + valuesMap);
-        Object[] results = model.predict(valuesMap);
-        logger.info("results: " + results);
-        logger.info("Arrays.toString(results): " + Arrays.toString(results));
-        Object result = results[0];
-        logger.info("result: " + result);
-        logger.info("result.getClass().getSimpleName(): " + result.getClass().getSimpleName());
-        Double resultAsDouble = (Double) result;
-        logger.info("resultAsDouble: " + resultAsDouble);
-        Integer resultAsInteger = resultAsDouble.intValue();
-        logger.info("resultAsInteger: " + resultAsInteger);
+        ReadingLevel readingLevel = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
+        logger.info("Predicted reading level: {}", readingLevel);
 
-        // Convert from number to ReadingLevel enum (e.g. "LEVEL2")
-        String readingLevelAsString = "LEVEL" + resultAsInteger;
-        logger.info("readingLevelAsString: " + readingLevelAsString);
-        ReadingLevel readingLevel = ReadingLevel.valueOf(readingLevelAsString);
-        logger.info("readingLevel: " + readingLevel);
         return readingLevel;
     }
 }
