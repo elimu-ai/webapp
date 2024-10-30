@@ -30,4 +30,14 @@ public class AnalyticsHelper {
        Integer versionCode = Integer.valueOf(versionCodeAsString);
        return versionCode;
     }
+
+    /**
+     * E.g. "7161a85a0e4751cd" --> "7161***51cd"
+     * 
+     * @param androidId The Android ID
+     * @return The redacted version of the Android ID
+     */
+    public static String redactAndroidId(String androidId) {
+      return androidId.substring(0, 4) + "***" + androidId.substring(12);
+    }
 }
