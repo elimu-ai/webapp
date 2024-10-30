@@ -1,6 +1,11 @@
 html {
     font-family: monospace, sans-serif;
 }
+code {
+    background-color: rgba(103,58,183, 0.05); /* deep-purple */
+    border-radius: 4px;
+    padding: 4px;
+}
 
 body {
     background: #EEE;

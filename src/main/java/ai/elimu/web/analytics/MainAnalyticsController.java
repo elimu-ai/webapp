@@ -2,6 +2,7 @@ package ai.elimu.web.analytics;
 
 import ai.elimu.dao.LetterLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
+import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordLearningEventDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +27,9 @@ public class MainAnalyticsController {
     @Autowired
     private StoryBookLearningEventDao storyBookLearningEventDao;
 
+    @Autowired
+    private VideoLearningEventDao videoLearningEventDao;
+
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
         logger.info("handleRequest");
@@ -33,6 +37,7 @@ public class MainAnalyticsController {
         model.addAttribute("letterLearningEventCount", letterLearningEventDao.readCount());
         model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
         model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
+        model.addAttribute("videoLearningEventCount", videoLearningEventDao.readCount());
         
         return "analytics/main";
     }

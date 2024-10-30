@@ -47,7 +47,7 @@
                     <span class="card-title"><i class="material-icons">movie</i> Videos</span>
                 </div>
                 <div class="card-action">
-                    <a id="videoLearningEventsLink" href="<spring:url value='/analytics/video-learning-event/list' />">View list (${storyBookLearningEventCount})</a>
+                    <a id="videoLearningEventsLink" href="<spring:url value='/analytics/video-learning-event/list' />">View list (${videoLearningEventCount})</a>
                 </div>
             </div>
         </div>
