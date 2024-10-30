@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -137,7 +139,7 @@ public class CsvAnalyticsExtractionHelper {
                 VideoLearningEvent videoLearningEvent = new VideoLearningEvent();
                 
                 long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
-                Calendar timestamp = Calendar.getInstance();
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 videoLearningEvent.setTimestamp(timestamp);
                 
