@@ -1,6 +1,7 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.VideoLearningEventDao;
+import ai.elimu.dao.enums.OrderDirection;
 import ai.elimu.model.analytics.VideoLearningEvent;
 import ai.elimu.util.AnalyticsHelper;
 
@@ -36,7 +37,7 @@ public class VideoLearningEventCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAll();
+        List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAllOrderedByTimestamp(OrderDirection.ASC);
         logger.info("videoLearningEvents.size(): " + videoLearningEvents.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
