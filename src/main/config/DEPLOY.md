@@ -11,6 +11,12 @@ Version: `CentOS 9 Stream`
 > [!NOTE]
 > You can find the configuration files for this operating system in the [`centos-stream-9`](./centos-stream-9/) folder.
 
+## Timezone ⌚
+
+Set system timezone to UTC:
+
+    timedatectl set-timezone "UTC"
+
 ## Java Virtual Machine (JVM) ☕
 
 Install Java 17 or newer. We will be using [OpenJDK](https://openjdk.org/), but you can also use the JDK from [Oracle](https://www.oracle.com/java/).
