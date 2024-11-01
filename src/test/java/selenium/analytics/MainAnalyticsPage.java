@@ -27,4 +27,9 @@ public class MainAnalyticsPage {
         WebElement link = driver.findElement(By.id("storyBookLearningEventsLink"));
         link.click();
     }
+
+    public void pressVideoLearningEventsLink() {
+        WebElement link = driver.findElement(By.id("videoLearningEventsLink"));
+        link.click();
+    }
 }
