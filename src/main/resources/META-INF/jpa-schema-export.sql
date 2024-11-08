@@ -297,6 +297,7 @@
         contentLicense varchar(255),
         contentType varchar(255),
         bytes longblob,
+        cid varchar(255),
         dominantColor varchar(255),
         imageFormat varchar(255),
         title varchar(255),

@@ -18,7 +18,7 @@ import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
-import ai.elimu.util.ImageHelper;
+import ai.elimu.util.IpfsHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
@@ -191,15 +191,6 @@ public class StoryBookCreateFromEPubController {
                 } catch (NullPointerException ex) {
                     // javax.imageio.IIOException: Unsupported Image Type
                 }
-                if (storyBookCoverImage.getImageFormat() != ImageFormat.GIF) {
-                    // Reduce size if large image
-                    int imageWidth = ImageHelper.getWidth(coverImageBytes);
-                    logger.info("imageWidth: " + imageWidth + "px");
-                    if (imageWidth > ImageHelper.MINIMUM_WIDTH) {
-                        coverImageBytes = ImageHelper.scaleImage(coverImageBytes, ImageHelper.MINIMUM_WIDTH);
-                        storyBookCoverImage.setBytes(coverImageBytes);
-                    }
-                }
             }
 
             // Extract the ePUB's chapters
@@ -286,15 +277,6 @@ public class StoryBookCreateFromEPubController {
                         } catch (NullPointerException ex) {
                             // javax.imageio.IIOException: Unsupported Image Type
                         }
-                        if (chapterImage.getImageFormat() != ImageFormat.GIF) {
-                            // Reduce size if large image
-                            int imageWidth = ImageHelper.getWidth(chapterImageBytes);
-                            logger.info("imageWidth: " + imageWidth + "px");
-                            if (imageWidth > ImageHelper.MINIMUM_WIDTH) {
-                                chapterImageBytes = ImageHelper.scaleImage(chapterImageBytes, ImageHelper.MINIMUM_WIDTH);
-                                chapterImage.setBytes(chapterImageBytes);
-                            }
-                        }
                         storyBookChapter.setImage(chapterImage);
                     }
 
@@ -342,9 +324,16 @@ public class StoryBookCreateFromEPubController {
             // Store the StoryBook's cover image in the database, and assign it to the StoryBook
             storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
             imageDao.create(storyBookCoverImage);
-            storeImageContributionEvent(storyBookCoverImage, session, request);
             storyBook.setCoverImage(storyBookCoverImage);
             storyBookDao.update(storyBook);
+
+            // Pin file to IPFS
+            String filename = request.getServerName() + "_image" + storyBookCoverImage.getId() + "-r" + storyBookCoverImage.getRevisionNumber() + "_" + storyBookCoverImage.getTitle();
+            String ipfsHash = IpfsHelper.pinFileToIpfs(storyBookCoverImage.getBytes(), filename);
+            storyBookCoverImage.setCid(ipfsHash);
+            imageDao.update(storyBookCoverImage);
+
+            storeImageContributionEvent(storyBookCoverImage, session, request);
 
             // Store the StoryBookChapters in the database
             int chapterSortOrder = 0;
@@ -392,6 +381,13 @@ public class StoryBookCreateFromEPubController {
                 if (chapterImage != null) {
                     chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
                     imageDao.create(chapterImage);
+
+                    // Pin file to IPFS
+                    filename = request.getServerName() + "_image" + chapterImage.getId() + "-r" + chapterImage.getRevisionNumber() + "_" + chapterImage.getTitle();
+                    ipfsHash = IpfsHelper.pinFileToIpfs(chapterImage.getBytes(), filename);
+                    chapterImage.setCid(ipfsHash);
+                    imageDao.update(chapterImage);
+                    
                     storeImageContributionEvent(chapterImage, session, request);
                 }
 

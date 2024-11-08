@@ -16,7 +16,7 @@
             <input type="hidden" name="timeStart" value="${timeStart}" />
             
             <img 
-                src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />"
+                src="<spring:url value='${image.url}' />"
                 alt="${image.title}" />
             <script>
                 $(function() {

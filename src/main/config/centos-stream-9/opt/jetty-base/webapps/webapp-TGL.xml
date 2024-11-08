@@ -41,4 +41,12 @@
     <Arg>discord_webhook_url</Arg>
     <Arg>**********</Arg>
   </Call>
+  <Call name="setAttribute">
+    <Arg>pinata_api_key</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>pinata_api_secret</Arg>
+    <Arg>**********</Arg>
+  </Call>
 </Configure>
