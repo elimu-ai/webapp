@@ -44,6 +44,7 @@ public class ImageCsvExportController {
                         "content_license", 
                         "attribution_url", 
                         "title",
+                        "cid",
                         "download_url",
                         "image_format"
                 );
@@ -51,15 +52,14 @@ public class ImageCsvExportController {
         CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
         for (Image image : images) {
-            String downloadUrl = "/image/" + image.getId() + "." + image.getImageFormat().toString().toLowerCase();
-            
             csvPrinter.printRecord(
                 image.getId(),
                 image.getContentType(),
                 image.getContentLicense(),
                 image.getAttributionUrl(),
                 image.getTitle(),
-                downloadUrl,
+                image.getCid(),
+                image.getUrl(),
                 image.getImageFormat()
             );
             
