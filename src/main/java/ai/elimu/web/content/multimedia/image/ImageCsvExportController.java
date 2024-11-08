@@ -44,6 +44,7 @@ public class ImageCsvExportController {
                         "content_license", 
                         "attribution_url", 
                         "title",
+                        "cid",
                         "download_url",
                         "image_format"
                 );
@@ -59,6 +60,7 @@ public class ImageCsvExportController {
                 image.getContentLicense(),
                 image.getAttributionUrl(),
                 image.getTitle(),
+                image.getCid(),
                 downloadUrl,
                 image.getImageFormat()
             );
