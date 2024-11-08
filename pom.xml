@@ -410,6 +410,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.github.zinebfadili</groupId>
+            <artifactId>pinata-java-sdk</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20231013</version>
@@ -437,12 +443,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.22.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.imgscalr</groupId>
-            <artifactId>imgscalr-lib</artifactId>
-            <version>4.2</version>
         </dependency>
 
         <!-- Audio -->

@@ -115,6 +115,9 @@ footer.page-footer .footer-copyright {
     background-position: 50% 50%;
     background-color: #ede7f6; /* deep-purple lighten-5 */
 }
+.card.image .card-image.cid-false {
+    border-top: 8px solid orangered;
+}
 .card.image .card-content > p,
 .card.storyBook .card-content > p {
     white-space: nowrap;

@@ -103,7 +103,7 @@
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
                 <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
-                    <img src="<spring:url value='/image/${storyBookChapter.image.id}_r${storyBookChapter.image.revisionNumber}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
+                    <img src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
                 </a>
             </c:if>
             

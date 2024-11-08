@@ -14,17 +14,32 @@ public class Image extends Multimedia {
     @NotNull
     private String title;
     
+    @Deprecated
     @NotNull
     @Lob
     @Column(length=10485760) // 10MB
     private byte[] bytes;
-    
+
+    /**
+     * IPFS Content Identifier (CID). Based on the file content's cryptographic hash.
+     */
+    // @NotNull
+    private String cid;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private ImageFormat imageFormat;
     
 //    @NotNull
     private String dominantColor; // Web color
+
+    public String getUrl() {
+        if (cid != null) {
+            return "https://ipfs.io/ipfs/" + cid;
+        } else {
+            return "/image/" + getId() + "_r" + getRevisionNumber() + "." + imageFormat.toString().toLowerCase();
+        }
+    }
 
     public String getTitle() {
         return title;
@@ -40,6 +55,14 @@ public class Image extends Multimedia {
 
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
     public ImageFormat getImageFormat() {

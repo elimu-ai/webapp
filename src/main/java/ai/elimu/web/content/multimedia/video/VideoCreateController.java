@@ -13,7 +13,6 @@ import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
-import ai.elimu.util.ImageHelper;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -105,19 +104,6 @@ public class VideoCreateController {
                     result.rejectValue("thumbnail", "typeMismatch");
                 } else {
                     video.setThumbnail(bytesThumbnail);
-
-                    int width = ImageHelper.getWidth(bytesThumbnail);
-                    logger.info("width: " + width + "px");
-
-                    if (width < ImageHelper.MINIMUM_WIDTH) {
-                        result.rejectValue("thumbnail", "image.too.small");
-                        video.setBytes(null);
-                    } else {
-                        if (width > ImageHelper.MINIMUM_WIDTH) {
-                            bytesThumbnail = ImageHelper.scaleImage(bytesThumbnail, ImageHelper.MINIMUM_WIDTH);
-                            video.setBytes(bytesThumbnail);
-                        }
-                    }
                 }
             }
         } catch (IOException e) {

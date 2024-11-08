@@ -444,7 +444,7 @@
         </c:if>
         <c:forEach var="image" items="${labeledImages}">
             <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
-                <img src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
+                <img src="<spring:url value='${image.url}' />" alt="${image.title}" />
             </a>
         </c:forEach>
     </div>

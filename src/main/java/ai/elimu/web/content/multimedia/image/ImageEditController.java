@@ -29,7 +29,7 @@ import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.util.ImageHelper;
+import ai.elimu.util.IpfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -80,11 +80,21 @@ public class ImageEditController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
+            HttpServletRequest request,
             Model model, 
             @PathVariable Long id) {
         logger.info("handleRequest");
         
         Image image = imageDao.read(id);
+
+        if (image.getCid() == null) {
+            // Pin file to IPFS
+            String filename = request.getServerName() + "_image" + image.getId() + "-r" + image.getRevisionNumber() + "_" + image.getTitle();
+            String ipfsHash = IpfsHelper.pinFileToIpfs(image.getBytes(), filename);
+            image.setCid(ipfsHash);
+            imageDao.update(image);
+        }
+
         model.addAttribute("image", image);
         model.addAttribute("contentLicenses", ContentLicense.values());
         model.addAttribute("literacySkills", LiteracySkill.values());
@@ -152,21 +162,6 @@ public class ImageEditController {
                     image.setContentType(contentType);
 
                     image.setBytes(bytes);
-
-                    if (image.getImageFormat() != ImageFormat.GIF) {
-                        int width = ImageHelper.getWidth(bytes);
-                        logger.info("width: " + width + "px");
-
-                        if (width < ImageHelper.MINIMUM_WIDTH) {
-                            result.rejectValue("bytes", "image.too.small");
-                            image.setBytes(null);
-                        } else {
-                            if (width > ImageHelper.MINIMUM_WIDTH) {
-                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
-                                image.setBytes(bytes);
-                            }
-                        }
-                    }
                 }
             }
         } catch (IOException e) {
@@ -195,6 +190,12 @@ public class ImageEditController {
             image.setTitle(image.getTitle().toLowerCase());
             image.setTimeLastUpdate(Calendar.getInstance());
             image.setRevisionNumber(image.getRevisionNumber() + 1);
+            imageDao.update(image);
+
+            // Pin file to IPFS
+            String filename = request.getServerName() + "_image" + image.getId() + "-r" + image.getRevisionNumber() + "_" + image.getTitle();
+            String ipfsHash = IpfsHelper.pinFileToIpfs(image.getBytes(), filename);
+            image.setCid(ipfsHash);
             imageDao.update(image);
             
             ImageContributionEvent imageContributionEvent = new ImageContributionEvent();

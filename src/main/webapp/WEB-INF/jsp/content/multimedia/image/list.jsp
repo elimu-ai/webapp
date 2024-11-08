@@ -26,7 +26,7 @@
                 <a name="${image.id}"></a>
                 <div class="image card">
                     <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />);">
+                        <div class="card-image cid-${image.cid != null}" style="background-image: url(<spring:url value='${image.url}' />);">
                             <span class="card-title"><c:out value="${image.title}" /></span>
                         </div>
                     </a>

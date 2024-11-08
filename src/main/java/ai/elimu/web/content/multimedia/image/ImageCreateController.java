@@ -1,18 +1,15 @@
 package ai.elimu.web.content.multimedia.image;
 
 import ai.elimu.dao.ImageContributionEventDao;
+
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
@@ -22,7 +19,7 @@ import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
-import ai.elimu.util.ImageHelper;
+import ai.elimu.util.IpfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Arrays;
 import javax.servlet.http.HttpSession;
@@ -50,9 +47,6 @@ public class ImageCreateController {
     
     @Autowired
     private ImageContributionEventDao imageContributionEventDao;
-    
-    @Autowired
-    private WordDao wordDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String handleRequest(Model model) {
@@ -116,21 +110,6 @@ public class ImageCreateController {
                     image.setContentType(contentType);
 
                     image.setBytes(bytes);
-
-                    if (image.getImageFormat() != ImageFormat.GIF) {
-                        int width = ImageHelper.getWidth(bytes);
-                        logger.info("width: " + width + "px");
-
-                        if (width < ImageHelper.MINIMUM_WIDTH) {
-                            result.rejectValue("bytes", "image.too.small");
-                            image.setBytes(null);
-                        } else {
-                            if (width > ImageHelper.MINIMUM_WIDTH) {
-                                bytes = ImageHelper.scaleImage(bytes, ImageHelper.MINIMUM_WIDTH);
-                                image.setBytes(bytes);
-                            }
-                        }
-                    }
                 }
             }
         } catch (IOException e) {
@@ -154,16 +133,11 @@ public class ImageCreateController {
             image.setTimeLastUpdate(Calendar.getInstance());
             imageDao.create(image);
             
-            // Label Image with Word of matching title
-            Word matchingWord = wordDao.readByText(image.getTitle());
-            if (matchingWord != null) {
-                Set<Word> labeledWords = new HashSet<>();
-                if (!labeledWords.contains(matchingWord)) {
-                    labeledWords.add(matchingWord);
-                    image.setWords(labeledWords);
-                    imageDao.update(image);
-                }
-            }
+            // Pin file to IPFS
+            String filename = request.getServerName() + "_image" + image.getId() + "-r" + image.getRevisionNumber() + "_" + image.getTitle();
+            String ipfsHash = IpfsHelper.pinFileToIpfs(image.getBytes(), filename);
+            image.setCid(ipfsHash);
+            imageDao.update(image);
             
             ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
             imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));

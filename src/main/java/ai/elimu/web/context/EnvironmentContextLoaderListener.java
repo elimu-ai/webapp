@@ -123,6 +123,12 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                     String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");
                     PROPERTIES.put("discord.webhook.url", discordWebhookUrl);
                 }
+
+                String pinataApiKey = (String) servletContext.getAttribute("pinata_api_key");
+                PROPERTIES.put("pinata.api.key", pinataApiKey);
+
+                String pinataApiSecret = (String) servletContext.getAttribute("pinata_api_secret");
+                PROPERTIES.put("pinata.api.secret", pinataApiSecret);
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {
