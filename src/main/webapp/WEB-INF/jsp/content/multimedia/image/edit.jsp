@@ -15,7 +15,7 @@
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
             <input type="hidden" name="timeStart" value="${timeStart}" />
             
-            <img 
+            <img class="cid-${image.cid != null}"
                 src="<spring:url value='${image.url}' />"
                 alt="${image.title}" />
             <script>

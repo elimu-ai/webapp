@@ -35,7 +35,7 @@
                             <td>
                                 <c:set var="coverImageUrl" value="/static/img/placeholder.png" />
                                 <c:if test="${not empty storyBook.coverImage}">
-                                    <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
+                                    <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                                 </c:if>
                                 <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#peer-review' />" target="_blank">
                                     <img 

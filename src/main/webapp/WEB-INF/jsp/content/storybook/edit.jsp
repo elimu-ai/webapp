@@ -75,7 +75,7 @@
                     <label for="coverImage"><fmt:message key="cover.image" /></label>
                     <c:if test="${not empty storyBook.coverImage}">
                         <a href="<spring:url value='/content/multimedia/image/edit/${storyBook.coverImage.id}' />">
-                            <img src="<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
+                            <img class="cid-${storyBook.coverImage.cid != null}" src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
                         </a>
                     </c:if>
                 </div>
@@ -103,7 +103,7 @@
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
                 <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
-                    <img src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
+                    <img class="cid-${storyBookChapter.image.cid != null}" src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
                 </a>
             </c:if>
             

@@ -66,6 +66,10 @@ main .card-panel img {
     border-width: 1px;
     box-shadow: 2px 2px rgba(103,58,183, 0.15); /* deep-purple */
 }
+.cid-false,
+main .card-panel img.cid-false {
+    border-top: 8px solid orangered;
+}
 main .card .card-image img {
     border-radius: 8px 8px 0 0;
     border-width: 0;
@@ -114,9 +118,6 @@ footer.page-footer .footer-copyright {
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: #ede7f6; /* deep-purple lighten-5 */
-}
-.card.image .card-image.cid-false {
-    border-top: 8px solid orangered;
 }
 .card.image .card-content > p,
 .card.storyBook .card-content > p {
