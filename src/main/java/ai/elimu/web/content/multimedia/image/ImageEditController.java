@@ -104,6 +104,18 @@ public class ImageEditController {
             imageContributionEvent.setComment("Pinned file to IPFS (🤖 auto-generated comment)");
             imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeMillisBeforePinning);
             imageContributionEventDao.create(imageContributionEvent);
+
+            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+                String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+                String embedThumbnailUrl = image.getUrl();
+                DiscordHelper.sendChannelMessage(
+                        "Image edited: " + contentUrl, 
+                        "\"" + image.getTitle() + "\"",
+                        "Comment: \"" + imageContributionEvent.getComment() + "\"",
+                        null,
+                        embedThumbnailUrl
+                );
+            }
         }
 
         model.addAttribute("image", image);
@@ -219,8 +231,8 @@ public class ImageEditController {
             imageContributionEventDao.create(imageContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
-                String embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
+                String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+                String embedThumbnailUrl = image.getUrl();
                 DiscordHelper.sendChannelMessage(
                         "Image edited: " + contentUrl, 
                         "\"" + image.getTitle() + "\"",
