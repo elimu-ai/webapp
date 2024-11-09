@@ -81,6 +81,7 @@ public class ImageEditController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
             HttpServletRequest request,
+            HttpSession session,
             Model model, 
             @PathVariable Long id) {
         logger.info("handleRequest");
@@ -89,10 +90,20 @@ public class ImageEditController {
 
         if (image.getCid() == null) {
             // Pin file to IPFS
+            long timeMillisBeforePinning = System.currentTimeMillis();
             String filename = request.getServerName() + "_image" + image.getId() + "-r" + image.getRevisionNumber() + "_" + image.getTitle();
             String ipfsHash = IpfsHelper.pinFileToIpfs(image.getBytes(), filename);
             image.setCid(ipfsHash);
             imageDao.update(image);
+
+            ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+            imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+            imageContributionEvent.setTimestamp(Calendar.getInstance());
+            imageContributionEvent.setImage(image);
+            imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+            imageContributionEvent.setComment("Pinned file to IPFS (🤖 auto-generated comment)");
+            imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - timeMillisBeforePinning);
+            imageContributionEventDao.create(imageContributionEvent);
         }
 
         model.addAttribute("image", image);
