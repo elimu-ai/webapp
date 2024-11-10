@@ -1,9 +1,11 @@
 package ai.elimu.model.content.multimedia;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import ai.elimu.model.v2.enums.content.ImageFormat;
@@ -15,6 +17,7 @@ public class Image extends Multimedia {
     private String title;
     
     @Deprecated
+    @Basic(fetch = FetchType.LAZY)
     @NotNull
     @Lob
     @Column(length=10485760) // 10MB
@@ -49,10 +52,12 @@ public class Image extends Multimedia {
         this.title = title;
     }
 
+    @Deprecated
     public byte[] getBytes() {
         return bytes;
     }
 
+    @Deprecated
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
     }
