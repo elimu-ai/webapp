@@ -38,7 +38,7 @@ public class Image extends Multimedia {
 
     public String getUrl() {
         if (cid != null) {
-            return "https://black-historic-wren-832.mypinata.cloud/ipfs/" + cid;
+            return "https://black-historic-wren-832.mypinata.cloud/ipfs/" + cid + "?img-width=640";
         } else {
             return "/image/" + getId() + "_r" + getRevisionNumber() + "." + imageFormat.toString().toLowerCase();
         }
