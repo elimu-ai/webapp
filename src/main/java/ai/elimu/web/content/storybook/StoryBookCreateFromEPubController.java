@@ -421,10 +421,10 @@ public class StoryBookCreateFromEPubController {
             storyBookDao.update(storyBook);
 
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+                String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
                 String embedThumbnailUrl = null;
                 if (storyBook.getCoverImage() != null) {
-                    embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+                    embedThumbnailUrl = storyBook.getCoverImage().getUrl();
                 }
                 DiscordHelper.sendChannelMessage(
                         "Storybook created (imported from ePUB): " + contentUrl,
@@ -522,8 +522,8 @@ public class StoryBookCreateFromEPubController {
         imageContributionEventDao.create(imageContributionEvent);
 
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
-            String embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+            String embedThumbnailUrl = image.getUrl();
             DiscordHelper.sendChannelMessage(
                     "Image created: " + contentUrl,
                     "\"" + image.getTitle() + "\"",
