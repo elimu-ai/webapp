@@ -61,10 +61,10 @@ public class StoryBookPeerReviewEventCreateController {
         storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
         
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-            String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId();
+            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId();
             String embedThumbnailUrl = null;
             if (storyBookContributionEvent.getStoryBook().getCoverImage() != null) {
-                embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBookContributionEvent.getStoryBook().getCoverImage().getId() + "_r" + storyBookContributionEvent.getStoryBook().getCoverImage().getRevisionNumber() + "." + storyBookContributionEvent.getStoryBook().getCoverImage().getImageFormat().toString().toLowerCase();
+                embedThumbnailUrl = storyBookContributionEvent.getStoryBook().getCoverImage().getUrl();
             }
             DiscordHelper.sendChannelMessage(
                     "Storybook peer-reviewed: " + contentUrl, 

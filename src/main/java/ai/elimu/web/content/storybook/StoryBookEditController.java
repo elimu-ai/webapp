@@ -222,10 +222,10 @@ public class StoryBookEditController {
             storyBookContributionEventDao.create(storyBookContributionEvent);
             
             if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+                String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
                 String embedThumbnailUrl = null;
                 if (storyBook.getCoverImage() != null) {
-                    embedThumbnailUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/image/" + storyBook.getCoverImage().getId() + "_r" + storyBook.getCoverImage().getRevisionNumber() + "." + storyBook.getCoverImage().getImageFormat().toString().toLowerCase();
+                    embedThumbnailUrl = storyBook.getCoverImage().getUrl();
                 }
                 DiscordHelper.sendChannelMessage("Storybook edited: " + contentUrl,
                         "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
