@@ -1,5 +1,5 @@
 <content:title>
-    VideoLearningEvents (${fn:length(videoLearningEvents)})
+    VideoLearningEvents (${videoLearningEventCount})
 </content:title>
 
 <content:section cssId="videoLearningEventsPage">
@@ -9,7 +9,7 @@
             <canvas id="chart"></canvas>
             <script>
                 const labels = [
-                    <c:forEach var="month" items="${monthList}">'${month}',</c:forEach>
+                    <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
                 ];
                 const data = {
                     labels: labels,
