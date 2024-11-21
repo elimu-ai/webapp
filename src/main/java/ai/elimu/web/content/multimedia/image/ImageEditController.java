@@ -6,20 +6,13 @@ import java.util.Iterator;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
+import ai.elimu.dao.*;
+import ai.elimu.model.content.*;
+import ai.elimu.model.content.Number;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.AudioDao;
-import ai.elimu.dao.EmojiDao;
-import ai.elimu.dao.ImageContributionEventDao;
-import ai.elimu.dao.ImageDao;
-import ai.elimu.dao.LetterDao;
-import ai.elimu.dao.NumberDao;
-import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.Number;
-import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
@@ -35,6 +28,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +71,12 @@ public class ImageEditController {
     
     @Autowired
     private AudioDao audioDao;
+
+    @Autowired
+    private StoryBookDao storyBookDao;
+
+    @Autowired
+    private StoryBookChapterDao storyBookChapterDao;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String handleRequest(
@@ -130,7 +130,8 @@ public class ImageEditController {
         model.addAttribute("numbers", numberDao.readAllOrdered());
         model.addAttribute("words", wordDao.readAllOrdered());
         model.addAttribute("emojisByWordId", getEmojisByWordId());
-        
+        model.addAttribute("imageUsed", getStoryBooksUsedImage(image));
+
         Audio audio = audioDao.readByTranscription(image.getTitle());
         model.addAttribute("audio", audio);
 
@@ -394,4 +395,17 @@ public class ImageEditController {
         
         return emojisByWordId;
     }
+
+    private Map<Long, String> getStoryBooksUsedImage(Image image) {
+        List<StoryBook> storyBooks = storyBookDao.readAllWithCoverImage(image);
+        List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAllWithImage(image);
+
+        Map<Long, String> storyBooksTitle = storyBooks.stream().collect(Collectors.toMap(StoryBook::getId, StoryBook::getTitle));
+        Map<Long, String> storyBookChaptersTitle = storyBookChapters.stream().collect(Collectors.toMap(i -> i.getStoryBook().getId(), i -> i.getStoryBook().getTitle()));
+
+        storyBooksTitle.putAll(storyBookChaptersTitle);
+
+        return storyBooksTitle;
+    }
+
 }

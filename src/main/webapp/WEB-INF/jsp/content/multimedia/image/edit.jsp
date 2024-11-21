@@ -406,4 +406,13 @@
             });
         });
     </script>
+    <h5 class="center"><fmt:message key="image.used" /></h5>
+    <b><fmt:message key="story.books" /></b>
+    <br/>
+    <div id="storyBooksContainer">
+         <c:forEach var="mapEntry" items="${imageUsed}">
+             <a href="<spring:url value='/content/storybook/edit/${mapEntry.key}' />"> ${mapEntry.value} </a>
+             <br/>
+         </c:forEach>
+    </div>
 </content:aside>
