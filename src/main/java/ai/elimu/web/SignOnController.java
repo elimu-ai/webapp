@@ -46,9 +46,6 @@ public class SignOnController {
             // Fetch the test user that was created in DbContentImportHelper during application launch
             Contributor contributor = contributorDao.read("dev@elimu.ai");
             
-            // Authenticate
-            new CustomAuthenticationManager().authenticateUser(contributor);
-            
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
             

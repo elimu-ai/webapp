@@ -13,7 +13,6 @@
         <hibernate.version>5.6.15.Final</hibernate.version>
         <jetty.version>10.0.22</jetty.version>
         <spring.version>5.3.18</spring.version>
-        <spring.security.version>5.6.2</spring.security.version>
         <surefire-plugin.version>3.1.2</surefire-plugin.version>
     </properties>
 
@@ -333,23 +332,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-
-        <!-- Spring Security -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring.security.version}</version>
         </dependency>
 
         <!-- Log4j 2 -->

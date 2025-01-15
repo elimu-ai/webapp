@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -107,14 +106,6 @@ public class MainContentController {
             return "redirect:/content/contributor/edit-name";
         } else if (StringUtils.isBlank(contributor.getMotivation()) && (EnvironmentContextLoaderListener.env != Environment.DEV)) {
             return "redirect:/content/contributor/edit-motivation";
-        } else {
-            // Redirect to originally requested URL
-            DefaultSavedRequest defaultSavedRequest = (DefaultSavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
-            logger.info("defaultSavedRequest: " + defaultSavedRequest);
-            if (defaultSavedRequest != null) {
-                logger.info("Redirecting to " + defaultSavedRequest.getServletPath());
-                return "redirect:" + defaultSavedRequest.getServletPath();
-            }
         }
         
         model.addAttribute("letterCount", letterDao.readCount());

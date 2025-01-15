@@ -165,7 +165,6 @@ public class SignOnControllerGitHub {
                 if (contributor.getEmail() == null) {
                     // Ask the Contributor to add her e-mail manually
                     request.getSession().setAttribute("contributor", contributor);
-                    new CustomAuthenticationManager().authenticateUser(contributor);
                     return "redirect:/content/contributor/add-email";
                 }
                 contributorDao.create(contributor);
@@ -192,9 +191,6 @@ public class SignOnControllerGitHub {
                 
                 contributor = existingContributor;
             }
-
-            // Authenticate
-            new CustomAuthenticationManager().authenticateUser(contributor);
 
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);
