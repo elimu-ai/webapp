@@ -31,9 +31,9 @@
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
-            <sec:authorize access="hasRole('ROLE_EDITOR')">
+            <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
                 <a href="<spring:url value='/content/storybook/paragraph/delete/${storyBookParagraph.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
-            </sec:authorize>
+            </c:if>
         </form:form>
     </div>
 </content:section>

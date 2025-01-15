@@ -159,7 +159,6 @@ public class SignOnControllerDiscord {
                 if (contributor.getEmail() == null) {
                     // Ask the Contributor to add their e-mail manually
                     request.getSession().setAttribute("contributor", contributor);
-                    new CustomAuthenticationManager().authenticateUser(contributor);
                     return "redirect:/content/contributor/add-email";
                 }
                 contributorDao.create(contributor);
@@ -180,7 +179,6 @@ public class SignOnControllerDiscord {
                 
                 contributor = existingContributor;
             }
-            new CustomAuthenticationManager().authenticateUser(contributor);
 
             // Add Contributor object to session
             request.getSession().setAttribute("contributor", contributor);

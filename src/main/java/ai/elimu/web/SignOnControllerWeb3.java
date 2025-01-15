@@ -101,9 +101,6 @@ public class SignOnControllerWeb3 {
         } else {
             contributor = existingContributor;
         }
-        
-         // Authenticate
-        new CustomAuthenticationManager().authenticateUser(contributor);
 
         // Add Contributor object to session
         request.getSession().setAttribute("contributor", contributor);

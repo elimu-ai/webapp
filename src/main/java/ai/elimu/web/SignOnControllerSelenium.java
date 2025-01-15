@@ -59,9 +59,6 @@ public class SignOnControllerSelenium {
             logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
         }
 
-        // Authenticate
-        new CustomAuthenticationManager().authenticateUser(contributor);
-
         // Add Contributor object to session
         request.getSession().setAttribute("contributor", contributor);
                 
