@@ -1,10 +1,10 @@
 package ai.elimu.model.content;
 
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity

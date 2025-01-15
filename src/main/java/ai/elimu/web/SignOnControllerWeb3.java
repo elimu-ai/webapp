@@ -1,7 +1,7 @@
 package ai.elimu.web;
 
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
@@ -10,7 +10,7 @@ import ai.elimu.util.Web3Helper;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;

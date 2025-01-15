@@ -9,6 +9,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.ejb.use_class_enhancer" value="true" />
         </properties>
     </persistence-unit>
 </persistence>

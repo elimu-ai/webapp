@@ -1,7 +1,7 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.content.multimedia.Audio;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity

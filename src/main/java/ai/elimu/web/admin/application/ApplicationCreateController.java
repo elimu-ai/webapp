@@ -1,6 +1,6 @@
 package ai.elimu.web.admin.application;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;

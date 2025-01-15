@@ -4,7 +4,7 @@ import ai.elimu.dao.EmojiDao;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
@@ -36,7 +36,7 @@ import ai.elimu.util.WordFrequencyHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
