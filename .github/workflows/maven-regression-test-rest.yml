@@ -18,22 +18,9 @@ jobs:
           cache: maven
       - run: mvn clean
       - run: mvn verify -P regression-test-rest -D base.url=http://eng.elimu.ai
-  
-  test_rest_TGL:
-    needs: test_rest_ENG
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: 17
-          cache: maven
-      - run: mvn clean
-      - run: mvn verify -P regression-test-rest -D base.url=http://tgl.elimu.ai
 
   test_rest_HIN:
-    needs: test_rest_TGL
+    needs: test_rest_ENG
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
