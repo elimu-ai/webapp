@@ -71,7 +71,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 //                .configure("META-INF/jpa-persistence.xml")
-                .applySetting("hibernate.dialect", org.hibernate.dialect.MySQL5Dialect.class.getName())
+                .applySetting("hibernate.dialect", org.hibernate.dialect.MySQLDialect.class.getName())
                 .applySetting("hibernate.hbm2ddl.auto", "update")
                 .applySetting(AvailableSettings.CONNECTION_PROVIDER, connectionProviderWeb)
                 .build();
