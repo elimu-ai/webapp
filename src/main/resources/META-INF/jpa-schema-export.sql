@@ -144,7 +144,7 @@
         checksumMd5 varchar(255),
         contentType varchar(255),
         fileSizeInKb integer,
-        icon longblob,
+        icon mediumblob,
         label varchar(255),
         minSdkVersion integer,
         timeUploaded datetime,
@@ -162,7 +162,7 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl longtext,
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
         audioFormat varchar(255),
@@ -205,7 +205,7 @@
 
     create table AudioContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
@@ -217,7 +217,7 @@
     create table AudioPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment longtext,
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         audioContributionEvent_id bigint,
@@ -230,7 +230,7 @@
         firstName varchar(255),
         imageUrl varchar(255),
         lastName varchar(255),
-        motivation longtext,
+        motivation text,
         occupation varchar(255),
         providerIdDiscord varchar(255),
         providerIdGitHub varchar(255),
@@ -250,7 +250,7 @@
     create table DbMigration (
        id bigint not null auto_increment,
         calendar datetime,
-        script longtext,
+        script text,
         version integer,
         primary key (id)
     ) type=MyISAM;
@@ -275,8 +275,8 @@
         timeLastUpdate datetime,
         usageCount integer,
         glyph varchar(4),
-        unicodeEmojiVersion double precision,
-        unicodeVersion double precision,
+        unicodeEmojiVersion float(53),
+        unicodeVersion float(53),
         primary key (id)
     ) type=MyISAM;
 
@@ -293,10 +293,10 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl longtext,
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
-        bytes longblob,
+        bytes mediumblob,
         cid varchar(255),
         dominantColor varchar(255),
         imageFormat varchar(255),
@@ -334,7 +334,7 @@
 
     create table ImageContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
@@ -357,7 +357,7 @@
 
     create table LetterContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
@@ -368,7 +368,7 @@
 
     create table LetterLearningEvent (
        id bigint not null auto_increment,
-        additionalData longtext,
+        additionalData text,
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -405,7 +405,7 @@
 
     create table LetterSoundContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
@@ -417,7 +417,7 @@
     create table LetterSoundPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment longtext,
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         letterSoundContributionEvent_id bigint,
@@ -445,7 +445,7 @@
 
     create table NumberContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
@@ -457,7 +457,7 @@
     create table NumberPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment longtext,
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         numberContributionEvent_id bigint,
@@ -488,7 +488,7 @@
 
     create table SoundContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
@@ -504,9 +504,9 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl longtext,
+        attributionUrl text,
         contentLicense varchar(255),
-        description longtext,
+        description text,
         readingLevel varchar(255),
         title varchar(255),
         coverImage_id bigint,
@@ -523,12 +523,12 @@
 
     create table StoryBookContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
-        paragraphTextAfter longtext,
-        paragraphTextBefore longtext,
+        paragraphTextAfter text,
+        paragraphTextBefore text,
         contributor_id bigint,
         storyBook_id bigint,
         primary key (id)
@@ -536,7 +536,7 @@
 
     create table StoryBookLearningEvent (
        id bigint not null auto_increment,
-        additionalData longtext,
+        additionalData text,
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -550,7 +550,7 @@
 
     create table StoryBookParagraph (
        id bigint not null auto_increment,
-        originalText longtext,
+        originalText text,
         sortOrder integer,
         storyBookChapter_id bigint,
         primary key (id)
@@ -566,7 +566,7 @@
     create table StoryBookPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment longtext,
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         storyBookContributionEvent_id bigint,
@@ -598,11 +598,11 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl longtext,
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
         bytes longblob,
-        thumbnail longblob,
+        thumbnail mediumblob,
         title varchar(255),
         videoFormat varchar(255),
         primary key (id)
@@ -638,7 +638,7 @@
 
     create table VideoLearningEvent (
        id bigint not null auto_increment,
-        additionalData longtext,
+        additionalData text,
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -673,7 +673,7 @@
 
     create table WordContributionEvent (
        id bigint not null auto_increment,
-        comment longtext,
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
@@ -684,7 +684,7 @@
 
     create table WordLearningEvent (
        id bigint not null auto_increment,
-        additionalData longtext,
+        additionalData text,
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -698,7 +698,7 @@
     create table WordPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment longtext,
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         wordContributionEvent_id bigint,
