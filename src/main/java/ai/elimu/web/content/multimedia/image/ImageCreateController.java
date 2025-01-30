@@ -4,8 +4,8 @@ import ai.elimu.dao.ImageContributionEventDao;
 
 import java.io.IOException;
 import java.util.Calendar;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.logging.log4j.Logger;
@@ -22,7 +22,7 @@ import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.IpfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.util.Arrays;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

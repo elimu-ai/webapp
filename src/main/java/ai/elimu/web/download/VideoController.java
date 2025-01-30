@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.model.content.multimedia.Video;
 import org.apache.logging.log4j.LogManager;
