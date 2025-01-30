@@ -1,13 +1,13 @@
 package ai.elimu.model.content;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import ai.elimu.model.BaseEntity;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OrderColumn;
+import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity

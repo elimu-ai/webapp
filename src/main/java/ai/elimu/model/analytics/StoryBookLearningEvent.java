@@ -1,8 +1,8 @@
 package ai.elimu.model.analytics;
 
 import ai.elimu.model.content.StoryBook;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
