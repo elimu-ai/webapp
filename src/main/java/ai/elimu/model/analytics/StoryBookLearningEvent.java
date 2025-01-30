@@ -3,7 +3,7 @@ package ai.elimu.model.analytics;
 import ai.elimu.model.content.StoryBook;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class StoryBookLearningEvent extends LearningEvent {

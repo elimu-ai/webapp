@@ -1,7 +1,7 @@
 package ai.elimu.web.content.letter_sound;
 
 import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.apache.logging.log4j.Logger;

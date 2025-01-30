@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.content.multimedia.Image;
 import jakarta.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class StoryBookChapter extends BaseEntity {

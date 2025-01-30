@@ -2,7 +2,7 @@ package ai.elimu.model.content;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 @Entity

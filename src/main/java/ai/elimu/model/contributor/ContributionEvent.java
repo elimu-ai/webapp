@@ -3,7 +3,7 @@ package ai.elimu.model.contributor;
 import ai.elimu.model.BaseEntity;
 import java.util.Calendar;
 import jakarta.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Parent class for various types of content contribution events.

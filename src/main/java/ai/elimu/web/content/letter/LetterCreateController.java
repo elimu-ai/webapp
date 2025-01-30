@@ -1,7 +1,7 @@
 package ai.elimu.web.content.letter;
 
 import java.util.Calendar;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.LetterContributionEventDao;

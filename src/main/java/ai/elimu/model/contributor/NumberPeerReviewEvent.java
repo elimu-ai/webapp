@@ -1,7 +1,7 @@
 package ai.elimu.model.contributor;
 
 import jakarta.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * An event where a {@link Contributor} peer-reviews a {@link Number} which 

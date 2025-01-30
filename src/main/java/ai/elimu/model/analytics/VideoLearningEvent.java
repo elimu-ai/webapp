@@ -2,7 +2,7 @@ package ai.elimu.model.analytics;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import ai.elimu.model.content.multimedia.Video;
 

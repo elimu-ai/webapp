@@ -6,7 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.v2.enums.content.ContentStatus;
 import ai.elimu.model.enums.PeerReviewStatus;
