@@ -76,7 +76,7 @@ public class WordUsageCountScheduler {
             if (existingWord != null) {
                 existingWord.setUsageCount(wordFrequencyMap.get(word));
                 
-                // Temporary fix for "javax.validation.ConstraintViolationException"
+                // Temporary fix for "jakarta.validation.ConstraintViolationException"
                 if (existingWord.getLetterSounds().isEmpty()) {
                     logger.warn("Letter-sound correspondences not yet added. Skipping usage count update for word...");
                     continue;

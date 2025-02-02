@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +26,7 @@ import org.apache.logging.log4j.core.config.Configurator;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Use {@link WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)}
+ * Use {@link WebApplicationContextUtils#getWebApplicationContext(jakarta.servlet.ServletContext)}
  * to access this listener anywhere in the web application, outside of the framework.
  */
 public class EnvironmentContextLoaderListener extends ContextLoaderListener {

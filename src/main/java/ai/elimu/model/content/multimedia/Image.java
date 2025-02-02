@@ -1,13 +1,13 @@
 package ai.elimu.model.content.multimedia;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Lob;
+import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 
 @Entity

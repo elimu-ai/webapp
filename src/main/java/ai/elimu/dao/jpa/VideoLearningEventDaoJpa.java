@@ -6,7 +6,7 @@ import ai.elimu.model.analytics.VideoLearningEvent;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 public class VideoLearningEventDaoJpa extends GenericDaoJpa<VideoLearningEvent> implements VideoLearningEventDao {

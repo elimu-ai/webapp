@@ -6,7 +6,7 @@ import ai.elimu.model.analytics.StoryBookLearningEvent;
 import ai.elimu.model.content.StoryBook;
 import java.util.Calendar;
 import java.util.List;
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 public class StoryBookLearningEventDaoJpa extends GenericDaoJpa<StoryBookLearningEvent> implements StoryBookLearningEventDao {
