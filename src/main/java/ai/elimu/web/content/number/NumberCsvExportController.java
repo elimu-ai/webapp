@@ -77,6 +77,7 @@ public class NumberCsvExportController {
             
             csvPrinter.flush();
         }
+        csvPrinter.close();
         
         String csvFileContent = stringWriter.toString();
         

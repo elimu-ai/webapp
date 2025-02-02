@@ -79,6 +79,7 @@ public class EmojiCsvExportController {
             
             csvPrinter.flush();
         }
+        csvPrinter.close();
         
         String csvFileContent = stringWriter.toString();
         

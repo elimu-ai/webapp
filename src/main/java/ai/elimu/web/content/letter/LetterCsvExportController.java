@@ -61,6 +61,7 @@ public class LetterCsvExportController {
             
             csvPrinter.flush();
         }
+        csvPrinter.close();
         
         String csvFileContent = stringWriter.toString();
         
