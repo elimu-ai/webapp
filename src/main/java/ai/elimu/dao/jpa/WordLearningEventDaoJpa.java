@@ -5,7 +5,7 @@ import ai.elimu.model.admin.Application;
 import ai.elimu.model.analytics.WordLearningEvent;
 import ai.elimu.model.content.Word;
 import java.util.Calendar;
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;
 
 public class WordLearningEventDaoJpa extends GenericDaoJpa<WordLearningEvent> implements WordLearningEventDao {
