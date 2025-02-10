@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://jetty.org/configure_10_0.dtd">
+
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+  <Set name="contextPath">/</Set>
+  <Set name="war"><SystemProperty name="jetty.base"/>/webapps/webapp.war</Set>
+  <Set name="virtualHosts">
+    <Array type="java.lang.String">
+      <Item>tha.elimu.ai</Item>
+    </Array>
+  </Set>
+  <Call name="setAttribute">
+    <Arg>env</Arg>
+    <Arg>PROD</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>content_language</Arg>
+    <Arg>THA</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>jdbc_url</Arg>
+    <Arg>jdbc:mysql://localhost/webapp-THA?useUnicode=true&amp;characterEncoding=utf8</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>jdbc_username</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>jdbc_password</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>discord_api_secret</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>github_api_secret</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>discord_webhook_url</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>pinata_api_key</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
+    <Arg>pinata_api_secret</Arg>
+    <Arg>**********</Arg>
+  </Call>
+</Configure>
