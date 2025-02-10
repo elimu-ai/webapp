@@ -28,6 +28,9 @@ html[data-content-language="hin"] #index-banner {
 html[data-content-language="tgl"] #index-banner {
     background-image: url(../../static/img/banner-ph.jpg);
 }
+html[data-content-language="tha"] #index-banner {
+    background-image: url(../../static/img/banner-th.jpg);
+}
 
 .container > .section {
     min-height: 400px;
