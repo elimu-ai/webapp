@@ -43,6 +43,7 @@
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>ai.elimu.web.servlet.CustomDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
+        <multipart-config />
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
