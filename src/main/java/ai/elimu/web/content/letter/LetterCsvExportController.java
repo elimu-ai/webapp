@@ -36,7 +36,7 @@ public class LetterCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Letter> letters = letterDao.readAllOrderedByUsage();
+        List<Letter> letters = letterDao.readAllOrderedById();
         logger.info("letters.size(): " + letters.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
