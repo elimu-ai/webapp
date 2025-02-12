@@ -69,7 +69,7 @@ public class SoundDaoJpa extends GenericDaoJpa<Sound> implements SoundDao {
         return em.createQuery(
                 "SELECT s " +
                     "FROM Sound s " +
-                    "ORDER BY s.id DESC, s.valueIpa")
+                    "ORDER BY s.id, s.valueIpa")
             .getResultList();
     }
 }

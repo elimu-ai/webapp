@@ -47,7 +47,7 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
         return em.createQuery(
                 "SELECT l " +
                     "FROM Letter l " +
-                    "ORDER BY l.id DESC, l.text")
+                    "ORDER BY l.id, l.text")
             .getResultList();
     }
 }
