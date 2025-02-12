@@ -1,6 +1,6 @@
 ---
-name: Custom issue template
-about: 'Template for elimu.ai issues'
+name: Custom elimu.ai issue
+about: 'Create a new issue (from elimu.ai template)'
 title: ''
 labels: ''
 assignees: ''
