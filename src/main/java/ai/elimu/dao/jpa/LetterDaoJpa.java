@@ -41,4 +41,13 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
             "ORDER BY l.usageCount DESC, l.text")
             .getResultList();
     }
+
+    @Override
+    public List<Letter> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT l " +
+                    "FROM Letter l " +
+                    "ORDER BY l.id DESC, l.text")
+            .getResultList();
+    }
 }
