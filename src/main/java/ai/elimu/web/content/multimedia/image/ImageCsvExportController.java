@@ -34,7 +34,7 @@ public class ImageCsvExportController {
             OutputStream outputStream) throws IOException {
         logger.info("handleRequest");
 
-        List<Image> images = imageDao.readAll();
+        List<Image> images = imageDao.readAllOrderedById();
         logger.info("images.size(): " + images.size());
 
         CSVFormat csvFormat = CSVFormat.DEFAULT

@@ -63,4 +63,13 @@ public class SoundDaoJpa extends GenericDaoJpa<Sound> implements SoundDao {
             "ORDER BY s.usageCount DESC, s.valueIpa")
             .getResultList();
     }
+
+    @Override
+    public List<Sound> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT s " +
+                    "FROM Sound s " +
+                    "ORDER BY s.id, s.valueIpa")
+            .getResultList();
+    }
 }

@@ -34,7 +34,7 @@ public class SoundCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Sound> sounds = soundDao.readAllOrderedByUsage();
+        List<Sound> sounds = soundDao.readAllOrderedById();
         logger.info("sounds.size(): " + sounds.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
