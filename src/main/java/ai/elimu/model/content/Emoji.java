@@ -1,5 +1,6 @@
 package ai.elimu.model.content;
 
+import jakarta.validation.constraints.Size;
 import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,13 +9,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Emoji extends Content {
 
     @NotNull
-    @Length(max = 4)
+    @Size(max = 4)
     @Column(length = 4)
     private String glyph; // E.g. '🦋' or
     

@@ -1,5 +1,6 @@
 package ai.elimu.model.content.multimedia;
 
+import jakarta.validation.constraints.Size;
 import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -11,7 +12,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.Content;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
@@ -37,7 +37,7 @@ public abstract class Multimedia extends Content {
     @Enumerated(EnumType.STRING)
     private ContentLicense contentLicense;
     
-    @Length(max = 1000)
+    @Size(max = 1000)
     @Column(length = 1000)
     private String attributionUrl;
     

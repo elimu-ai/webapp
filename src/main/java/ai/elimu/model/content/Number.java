@@ -1,12 +1,12 @@
 package ai.elimu.model.content;
 
+import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OrderColumn;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Number extends Content {

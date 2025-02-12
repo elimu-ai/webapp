@@ -6,10 +6,10 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.enums.ContentLicense;
 import ai.elimu.model.v2.enums.ReadingLevel;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class StoryBook extends Content {
@@ -23,7 +23,7 @@ public class StoryBook extends Content {
     @Enumerated(EnumType.STRING)
     private ContentLicense contentLicense;
     
-    @Length(max = 1000)
+    @Size(max = 1000)
     @Column(length = 1000)
     private String attributionUrl;
     

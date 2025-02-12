@@ -1,6 +1,7 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.Calendar;
 import java.util.Set;
 import jakarta.persistence.Column;
@@ -12,7 +13,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotEmpty;
 import ai.elimu.model.enums.Role;
 
 @Entity
