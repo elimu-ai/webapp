@@ -52,7 +52,7 @@ public class StoryBookCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
+        List<StoryBook> storyBooks = storyBookDao.readAllOrderedById();
         logger.info("storyBooks.size(): " + storyBooks.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

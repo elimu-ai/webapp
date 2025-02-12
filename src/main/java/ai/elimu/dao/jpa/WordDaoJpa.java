@@ -88,4 +88,13 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
             .setParameter("word", word)
             .getResultList();
     }
+
+    @Override
+    public List<Word> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+            "SELECT w " +
+            "FROM Word w " +
+            "ORDER BY w.id")
+            .getResultList();
+    }
 }

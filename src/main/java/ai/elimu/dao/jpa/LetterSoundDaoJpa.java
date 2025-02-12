@@ -44,4 +44,13 @@ public class LetterSoundDaoJpa extends GenericDaoJpa<LetterSound> implements Let
             "ORDER BY lsc.letters.size DESC, lsc.usageCount DESC")
             .getResultList();
     }
+
+    @Override
+    public List<LetterSound> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+            "SELECT lsc " +
+            "FROM LetterSound lsc " +
+            "ORDER BY lsc.id")
+            .getResultList();
+    }
 }

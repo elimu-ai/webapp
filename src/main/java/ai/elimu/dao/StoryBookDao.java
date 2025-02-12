@@ -16,4 +16,6 @@ public interface StoryBookDao extends GenericDao<StoryBook> {
     List<StoryBook> readAllOrdered(ReadingLevel readingLevel) throws DataAccessException;
     
     List<StoryBook> readAllUnleveled() throws DataAccessException;
+
+    List<StoryBook> readAllOrderedById() throws DataAccessException; // Pd3b6
 }

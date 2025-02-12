@@ -44,4 +44,13 @@ public class EmojiDaoJpa extends GenericDaoJpa<Emoji> implements EmojiDao {
             .setParameter("word", word)
             .getResultList();
     }
+
+    @Override
+    public List<Emoji> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+            "SELECT e " +
+            "FROM Emoji e " +
+            "ORDER BY e.id")
+            .getResultList();
+    }
 }

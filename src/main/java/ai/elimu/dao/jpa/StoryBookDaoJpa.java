@@ -54,4 +54,13 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
             "ORDER BY book.title")
             .getResultList();
     }
+
+    @Override
+    public List<StoryBook> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+            "SELECT book " +
+            "FROM StoryBook book " +
+            "ORDER BY book.id")
+            .getResultList();
+    }
 }
