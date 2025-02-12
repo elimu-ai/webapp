@@ -36,7 +36,7 @@ public class NumberCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Number> numbers = numberDao.readAllOrdered();
+        List<Number> numbers = numberDao.readAllOrderedById();
         logger.info("numbers.size(): " + numbers.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

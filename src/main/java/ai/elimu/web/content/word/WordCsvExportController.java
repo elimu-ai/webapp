@@ -39,7 +39,7 @@ public class WordCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Word> words = wordDao.readAllOrderedByUsage();
+        List<Word> words = wordDao.readAllOrderedById();
         logger.info("words.size(): " + words.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT
