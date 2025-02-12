@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OrderColumn;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Contains information about the various sounds a letter (or letter combination) can represent.

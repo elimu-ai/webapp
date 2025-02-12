@@ -3,13 +3,13 @@ package ai.elimu.model.content;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Letter extends Content {
 
     @NotNull
-    @Length(max = 2)
+    @Size(max = 2)
     @Column(length = 2)
     private String text;
 
