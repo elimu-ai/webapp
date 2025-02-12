@@ -1,6 +1,6 @@
 ---
-name: elimu.ai issue template
-about: ''
+name: Custom issue template
+about: 'elimu.ai template'
 title: ''
 labels: ''
 assignees: ''
