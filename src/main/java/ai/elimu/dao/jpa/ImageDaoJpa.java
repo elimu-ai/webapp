@@ -36,6 +36,15 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
     }
 
     @Override
+    public List<Image> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT i " +
+                    "FROM Image i " +
+                    "ORDER BY i.id")
+            .getResultList();
+    }
+
+    @Override
     public List<Image> readAllLabeled(Word word) throws DataAccessException {
         return em.createQuery(
             "SELECT i " +
