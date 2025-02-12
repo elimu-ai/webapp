@@ -32,4 +32,13 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
             "ORDER BY n.value")
             .getResultList();
     }
+
+    @Override
+    public List<Number> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT n " +
+                    "FROM Number n " +
+                    "ORDER BY n.id")
+            .getResultList();
+    }
 }

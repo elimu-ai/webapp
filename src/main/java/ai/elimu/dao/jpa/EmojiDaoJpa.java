@@ -33,7 +33,16 @@ public class EmojiDaoJpa extends GenericDaoJpa<Emoji> implements EmojiDao {
             "ORDER BY e.glyph")
             .getResultList();
     }
-    
+
+    @Override
+    public List<Emoji> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT e " +
+                    "FROM Emoji e " +
+                    "ORDER BY e.id")
+            .getResultList();
+    }
+
     @Override
     public List<Emoji> readAllLabeled(Word word) throws DataAccessException {
         return em.createQuery(

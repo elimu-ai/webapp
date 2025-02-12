@@ -33,4 +33,13 @@ public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
             "ORDER BY v.title")
             .getResultList();
     }
+
+    @Override
+    public List<Video> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT v " +
+                    "FROM Video v " +
+                    "ORDER BY v.id")
+            .getResultList();
+    }
 }
