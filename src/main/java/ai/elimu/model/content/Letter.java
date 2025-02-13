@@ -9,8 +9,8 @@ import jakarta.validation.constraints.Size;
 public class Letter extends Content {
 
     @NotNull
-    @Size(max = 2)
-    @Column(length = 2)
+    @Size(max = 3)
+    @Column(length = 3)
     private String text;
 
     private boolean diacritic;
