@@ -1,530 +1,231 @@
 id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format
-1,audio/mpeg,null,"null",19,"और","और","/audio/1.mp3",MP3
-2,audio/mpeg,null,"null",26,"word-26","है","/audio/2.mp3",MP3
-3,audio/mpeg,null,"null",22,"word-22","के","/audio/3.mp3",MP3
-4,audio/mpeg,null,"null",102,"word-102","थे","/audio/4.mp3",MP3
-5,audio/mpeg,null,"null",115,"word-115","यह","/audio/5.mp3",MP3
-6,audio/mpeg,null,"null",72,"word-72","थी","/audio/6.mp3",MP3
-7,audio/mpeg,null,"null",96,"word-96","लिए","/audio/7.mp3",MP3
-8,audio/mpeg,null,"null",124,"word-124","रही","/audio/8.mp3",MP3
-20,audio/mpeg,null,"null",319,"word-319","मिर्ची","/audio/20.mp3",MP3
-21,audio/mpeg,null,"null",296,"word-296","बासठ","/audio/21.mp3",MP3
-22,audio/mpeg,null,"null",43,"word-43","बारह","/audio/22.mp3",MP3
-23,audio/mpeg,null,"null",320,"word-320","दांत","/audio/23.mp3",MP3
-24,audio/mpeg,null,"null",316,"word-316","घोडा","/audio/24.mp3",MP3
-25,audio/mpeg,null,"null",8,"word-8","भी","/audio/25.mp3",MP3
-26,audio/mpeg,null,"null",309,"word-309","चींटी","/audio/26.mp3",MP3
-27,audio/mpeg,null,"null",315,"word-315","भैंस","/audio/27.mp3",MP3
-28,audio/mpeg,null,"null",317,"word-317","उंट","/audio/28.mp3",MP3
-29,audio/mpeg,null,"null",318,"word-318","गाय","/audio/29.mp3",MP3
-30,audio/mpeg,null,"null",166,"word-166","अम्मा","/audio/30.mp3",MP3
-19,audio/mpeg,null,"null",95,"word-95","सत्रह","/audio/19.mp3",MP3
-18,audio/mpeg,null,"null",291,"word-291","साठ","/audio/18.mp3",MP3
-15,audio/mpeg,null,"null",44,"word-44","हुन्छ","/audio/15.mp3",MP3
-16,audio/mpeg,null,"null",199,"word-199","सैंतीस","/audio/16.mp3",MP3
-17,audio/mpeg,null,"null",246,"word-246","सैंतालीस","/audio/17.mp3",MP3
-31,audio/mpeg,null,"null",274,"word-274","भारत","/audio/31.mp3",MP3
-32,audio/mpeg,null,"null",342,"word-342","भि","/audio/32.mp3",MP3
-33,audio/mpeg,null,"null",343,"word-343","जैसा","/audio/33.mp3",MP3
-34,audio/mpeg,null,"null",344,"word-344","हु","/audio/34.mp3",MP3
-35,audio/mpeg,null,"null",345,"word-345","खेल","/audio/35.mp3",MP3
-36,audio/mpeg,null,"null",346,"word-346","दहिक्त","/audio/36.mp3",MP3
-37,audio/mpeg,null,"null",347,"word-347","हूं","/audio/37.mp3",MP3
-38,audio/mpeg,null,"null",348,"word-348","देखता","/audio/38.mp3",MP3
-39,audio/mpeg,null,"null",349,"word-349","हस्कर","/audio/39.mp3",MP3
-40,audio/mpeg,null,"null",350,"word-350","गुलाबजामुन","/audio/40.mp3",MP3
-41,audio/mpeg,null,"null",351,"word-351","नारंगी","/audio/41.mp3",MP3
-530,audio/mpeg,null,"null",443,"word-id-443","सड़सठ","/audio/530.mp3",MP3
-43,audio/mpeg,null,"null",353,"word-353","चाहते","/audio/43.mp3",MP3
-44,audio/mpeg,null,"null",354,"word-354","सूरज","/audio/44.mp3",MP3
-45,audio/mpeg,null,"null",355,"word-355","तितलियों","/audio/45.mp3",MP3
-46,audio/mpeg,null,"null",356,"word-356","लग","/audio/46.mp3",MP3
-47,audio/mpeg,null,"null",216,"word-216","देखा","/audio/47.mp3",MP3
-48,audio/mpeg,null,"null",233,"word-233","देख","/audio/48.mp3",MP3
-49,audio/mpeg,null,"null",32,"word-32","वह","/audio/49.mp3",MP3
-50,audio/mpeg,null,"null",52,"word-52","की","/audio/50.mp3",MP3
-51,audio/mpeg,null,"null",1,"word-1","से","/audio/51.mp3",MP3
-52,audio/mpeg,null,"null",78,"word-78","में","/audio/52.mp3",MP3
-53,audio/mpeg,null,"null",68,"word-68","हैं","/audio/53.mp3",MP3
-54,audio/mpeg,null,"null",67,"word-67","को","/audio/54.mp3",MP3
-55,audio/mpeg,null,"null",2,"word-2","ने","/audio/55.mp3",MP3
-56,audio/mpeg,null,"null",73,"word-73","का","/audio/56.mp3",MP3
-57,audio/mpeg,null,"null",33,"word-33","मैं","/audio/57.mp3",MP3
-58,audio/mpeg,null,"null",10,"word-10","कर","/audio/58.mp3",MP3
-59,audio/mpeg,null,"null",111,"word-111","तो","/audio/59.mp3",MP3
-60,audio/mpeg,null,"null",99,"word-99","कि","/audio/60.mp3",MP3
-61,audio/mpeg,null,"null",40,"word-40","हो","/audio/61.mp3",MP3
-62,audio/mpeg,null,"null",60,"word-60","बहुत","/audio/62.mp3",MP3
-63,audio/mpeg,null,"null",114,"word-114","ही","/audio/63.mp3",MP3
-64,audio/mpeg,null,"null",53,"word-53","हूँ","/audio/64.mp3",MP3
-65,audio/mpeg,null,"null",322,"word-322","दुख","/audio/65.mp3",MP3
-66,audio/mpeg,null,"null",323,"word-323","माता","/audio/66.mp3",MP3
-67,audio/mpeg,null,"null",324,"word-324"," पिताजी","/audio/67.mp3",MP3
-70,audio/mpeg,null,"null",,"storybook-37-ch-1-par-1","टिड्डा","/audio/70.mp3",MP3
-71,audio/mpeg,null,"null",,"storybook-37-ch-1-par-2","1","/audio/71.mp3",MP3
-72,audio/mpeg,null,"null",,"storybook-37-ch-2-par-1","तितलियाँ","/audio/72.mp3",MP3
-73,audio/mpeg,null,"null",,"storybook-37-ch-2-par-2","2","/audio/73.mp3",MP3
-74,audio/mpeg,null,"null",,"storybook-37-ch-3-par-1","पत्तियों वाले कीड़े","/audio/74.mp3",MP3
-75,audio/mpeg,null,"null",,"storybook-37-ch-3-par-2","3","/audio/75.mp3",MP3
-76,audio/mpeg,null,"null",,"storybook-37-ch-4-par-1","व्याध पतंगे","/audio/76.mp3",MP3
-77,audio/mpeg,null,"null",,"storybook-37-ch-4-par-2","4","/audio/77.mp3",MP3
-78,audio/mpeg,null,"null",,"storybook-37-ch-5-par-1","पतंगे","/audio/78.mp3",MP3
-79,audio/mpeg,null,"null",,"storybook-37-ch-5-par-2","5","/audio/79.mp3",MP3
-80,audio/mpeg,null,"null",,"storybook-37-ch-6-par-1","लाल सेमल कीड़े","/audio/80.mp3",MP3
-81,audio/mpeg,null,"null",,"storybook-37-ch-6-par-2","6","/audio/81.mp3",MP3
-82,audio/mpeg,null,"null",,"storybook-37-ch-7-par-1","भँवरे","/audio/82.mp3",MP3
-83,audio/mpeg,null,"null",,"storybook-37-ch-7-par-2","7","/audio/83.mp3",MP3
-84,audio/mpeg,null,"null",,"storybook-37-ch-8-par-1","मणि कीड़े","/audio/84.mp3",MP3
-85,audio/mpeg,null,"null",,"storybook-37-ch-8-par-2","8","/audio/85.mp3",MP3
-86,audio/mpeg,null,"null",,"storybook-37-ch-9-par-1","जुगनू","/audio/86.mp3",MP3
-87,audio/mpeg,null,"null",,"storybook-37-ch-9-par-2","9","/audio/87.mp3",MP3
-88,audio/mpeg,null,"null",,"storybook-37-ch-10-par-1","गुबरैले","/audio/88.mp3",MP3
-89,audio/mpeg,null,"null",,"storybook-37-ch-10-par-2","10","/audio/89.mp3",MP3
-90,audio/mpeg,null,"null",,"storybook-1-ch-1-par-1","मैंने अज्जी से पूछा, “क्या मैं कुछ लड्डू खा लूँ?”","/audio/90.mp3",MP3
-91,audio/mpeg,null,"null",,"storybook-1-ch-1-par-2","“अभी नहीं बेटा, कल खा लेना।”","/audio/91.mp3",MP3
-92,audio/mpeg,null,"null",,"storybook-1-ch-1-par-3","लेकिन मैं कल तक रुकना नहीं चाहता।","/audio/92.mp3",MP3
-93,audio/mpeg,null,"null",,"storybook-1-ch-2-par-1","मैंने अज्जा से पूछा, “क्या मैं अपने दोस्तों के साथ खेलने जाऊँ?”","/audio/93.mp3",MP3
-94,audio/mpeg,null,"null",,"storybook-1-ch-2-par-2","“अभी नहीं बेटा, पहले सो लो।”","/audio/94.mp3",MP3
-95,audio/mpeg,null,"null",,"storybook-1-ch-2-par-3","लेकिन मैं अभी सोना नहीं चाहता।","/audio/95.mp3",MP3
-96,audio/mpeg,null,"null",,"storybook-1-ch-3-par-1","मैंने मम्मी से पूछा, “क्या मैं ये कपड़े पहन लूँ?”","/audio/96.mp3",MP3
-97,audio/mpeg,null,"null",,"storybook-1-ch-3-par-2","“अभी नहीं बेटा, कल पहन लेना।”","/audio/97.mp3",MP3
-98,audio/mpeg,null,"null",,"storybook-1-ch-3-par-3","लेकिन मैं कल तक रुकना नहीं चाहता।","/audio/98.mp3",MP3
-99,audio/mpeg,null,"null",,"storybook-1-ch-4-par-1","मैंने पापा से पूछा, “क्या मैं उस सुंदर से डिब्बे को खोल लूँ?”","/audio/99.mp3",MP3
-100,audio/mpeg,null,"null",,"storybook-1-ch-4-par-2","“अभी नहीं, अभी नहीं। तुम्हें थोड़ा रुकना पड़ेगा!”  लेकिन मैं रुकना नहीं चाहता।","/audio/100.mp3",MP3
-101,audio/mpeg,null,"null",,"storybook-1-ch-5-par-1","“बड़े हमेशा क्यों कहते रहते हैं, अभी नहीं, अभी नहीं?”","/audio/101.mp3",MP3
-102,audio/mpeg,null,"null",,"storybook-1-ch-5-par-2","उस रात मैं ग़ुस्से में सो गया।","/audio/102.mp3",MP3
-103,audio/mpeg,null,"null",,"storybook-1-ch-6-par-1","अगले दिन, मैं जल्दी उठा और रसोई में गया।  अज्जी ने कहा, “तुम ये लड्डू खा सकते हो।”","/audio/103.mp3",MP3
-104,audio/mpeg,null,"null",,"storybook-1-ch-7-par-1","अज्जा ने कहा, “अब हम क्रिकेट खेल सकते हैं।”","/audio/104.mp3",MP3
-105,audio/mpeg,null,"null",,"storybook-1-ch-7-par-2","मम्मी ने कहा, “अब तुम ये कपड़े पहन सकते हो।”","/audio/105.mp3",MP3
-106,audio/mpeg,null,"null",,"storybook-1-ch-7-par-3","पापा ने कहा, “तुम ये डिब्बा खोल सकते हो!”  और उन सभी ने कहा, “जन्मदिन मुबारक हो!”","/audio/106.mp3",MP3
-107,audio/mpeg,null,"null",,"storybook-30-ch-1-par-1","मलार आज एक बहुत-बड़ा सा घर बनाने वाली है!","/audio/107.mp3",MP3
-108,audio/mpeg,null,"null",,"storybook-30-ch-2-par-1","“मैं इनका प्रयोग कर सकती हूँ!”","/audio/108.mp3",MP3
-109,audio/mpeg,null,"null",,"storybook-30-ch-3-par-1","मलार ने कहा, “मेरा घर इतना ऊँचा और इतना बड़ा होगा!”","/audio/109.mp3",MP3
-110,audio/mpeg,null,"null",,"storybook-30-ch-4-par-1","मलार ने गिलासों को एक के ऊपर एक रखना शुरू किया।","/audio/110.mp3",MP3
-111,audio/mpeg,null,"null",,"storybook-30-ch-5-par-1","सभी गिलास गिर गए।","/audio/111.mp3",MP3
-112,audio/mpeg,null,"null",,"storybook-30-ch-5-par-2","टनाटन! धड़ाम...!","/audio/112.mp3",MP3
-113,audio/mpeg,null,"null",,"storybook-30-ch-6-par-1","मलार ने गिलासों को उठाया और फिर से एक के ऊपर एक रखना शुरू किया।","/audio/113.mp3",MP3
-114,audio/mpeg,null,"null",,"storybook-30-ch-7-par-1","टन्न! टनाटन! धड़ाम!","/audio/114.mp3",MP3
-115,audio/mpeg,null,"null",,"storybook-30-ch-7-par-2","वो दोबारा गिर गए!","/audio/115.mp3",MP3
-116,audio/mpeg,null,"null",,"storybook-30-ch-8-par-1","इस बार गिलास नहीं गिरे।ऊँचे...और ऊँचे वे बढ़ते गए!","/audio/116.mp3",MP3
-117,audio/mpeg,null,"null",,"storybook-30-ch-8-par-2","मलार ने अच्छे से सोचा।","/audio/117.mp3",MP3
-118,audio/mpeg,null,"null",,"storybook-30-ch-8-par-3","उसने दोबारा कोशिश की।","/audio/118.mp3",MP3
-119,audio/mpeg,null,"null",,"storybook-30-ch-9-par-1","मलार का बड़ा, चमकदार घर बनकर लगभग तैयार है।","/audio/119.mp3",MP3
-120,audio/mpeg,null,"null",,"storybook-30-ch-10-par-1","मलार रसोई घर की तरफ दौड़ी। सभी व्यस्त हैं।","/audio/120.mp3",MP3
-121,audio/mpeg,null,"null",,"storybook-30-ch-10-par-2","पापा ने पूछा, “तुम्हें कुछ चाहिए मलार बेटा?”","/audio/121.mp3",MP3
-122,audio/mpeg,null,"null",,"storybook-30-ch-10-par-3","“पापा क्या आप मुझे आधा नारियल देंगे? मुझे मेरे घर के लिए छत बनानी है।”","/audio/122.mp3",MP3
-123,audio/mpeg,null,"null",,"storybook-30-ch-10-par-4","“हाँ,  ज़रूर ले लो,” पापा ने कहा","/audio/123.mp3",MP3
-124,audio/mpeg,null,"null",,"storybook-30-ch-11-par-1","“पापा मेरा बड़ा सा घर आपको अच्छा लगा?”","/audio/124.mp3",MP3
-125,audio/mpeg,null,"null",,"storybook-30-ch-11-par-2","“हाँ बहुत अच्छा। ये तो बहुत सुंदर महल बन गया है!”","/audio/125.mp3",MP3
-126,audio/mpeg,null,"null",,"storybook-30-ch-12-par-1","धड़धड़धड़...धम्म! धड़ाम!","/audio/126.mp3",MP3
-127,audio/mpeg,null,"null",,"storybook-30-ch-12-par-2","मलार अब आगे क्या बनाएगी?","/audio/127.mp3",MP3
-128,audio/mpeg,null,"null",,"storybook-30-ch-13-par-1","अपना खुद का महल बनाइए","/audio/128.mp3",MP3
-129,audio/mpeg,null,"null",,"storybook-30-ch-13-par-2","आपको ज़रूरत है:","/audio/129.mp3",MP3
-130,audio/mpeg,null,"null",,"storybook-30-ch-13-par-3","- जितने पेपर कप आप को मिल सकें उतने पेपर कप","/audio/130.mp3",MP3
-131,audio/mpeg,null,"null",,"storybook-30-ch-13-par-4","- अपनी रसोई से एक गोल बर्तन","/audio/131.mp3",MP3
-132,audio/mpeg,null,"null",,"storybook-30-ch-13-par-5","- रंगीन पेंसिलें या क्रेयोन","/audio/132.mp3",MP3
-133,audio/mpeg,null,"null",,"storybook-30-ch-13-par-6","- नारियल का खोल, आधा-आधा कटा हुआ","/audio/133.mp3",MP3
-134,audio/mpeg,null,"null",,"storybook-30-ch-13-par-7","हेहे...! आपका महल तैयार है!","/audio/134.mp3",MP3
-135,audio/mpeg,null,"null",357,"word-357","एकता","/audio/135.mp3",MP3
-136,audio/mpeg,null,"null",358,"word-358","धरती","/audio/136.mp3",MP3
-137,audio/mpeg,null,"null",359,"word-359"," भूमि","/audio/137.mp3",MP3
-138,audio/mpeg,null,"null",360,"word-360","भाग","/audio/138.mp3",MP3
-140,audio/mpeg,null,"null",362,"word-362","समीप","/audio/140.mp3",MP3
-141,audio/mpeg,null,"null",363,"word-363","रचना","/audio/141.mp3",MP3
-142,audio/mpeg,null,"null",364,"word-364","कर्म","/audio/142.mp3",MP3
-143,audio/mpeg,null,"null",365,"word-365","बदलना","/audio/143.mp3",MP3
-144,audio/mpeg,null,"null",366,"word-366","रोशनी","/audio/144.mp3",MP3
-145,audio/mpeg,null,"null",367,"word-367","जरुरत","/audio/145.mp3",MP3
-146,audio/mpeg,null,"null",368,"word-368","चित्र","/audio/146.mp3",MP3
-147,audio/mpeg,null,"null",369,"word-369","कोशिश","/audio/147.mp3",MP3
-148,audio/mpeg,null,"null",370,"word-370","जानवर","/audio/148.mp3",MP3
-149,audio/mpeg,null,"null",371,"word-371","बिंदु","/audio/149.mp3",MP3
-150,audio/mpeg,null,"null",372,"word-372","यादगार","/audio/150.mp3",MP3
-151,audio/mpeg,null,"null",133,"word-133","होता","/audio/151.mp3",MP3
-152,audio/mpeg,null,"null",189,"word-189","पक्षी","/audio/152.mp3",MP3
-153,audio/mpeg,null,"null",326,"word-326","भालू","/audio/153.mp3",MP3
-154,audio/mpeg,null,"null",34,"word-34","नहीं","/audio/154.mp3",MP3
-155,audio/mpeg,null,"null",327,"word-327","चूहा","/audio/155.mp3",MP3
-156,audio/mpeg,null,"null",336,"word-336","सड़क","/audio/156.mp3",MP3
-157,audio/mpeg,null,"null",337,"word-337","चतुर","/audio/157.mp3",MP3
-158,audio/mpeg,null,"null",338,"word-338"," रोना","/audio/158.mp3",MP3
-159,audio/mpeg,null,"null",339,"word-339","कछुआ","/audio/159.mp3",MP3
-160,audio/mpeg,null,"null",340,"word-340"," मूर्ख","/audio/160.mp3",MP3
-161,audio/mpeg,null,"null",341,"word-341","शरारती","/audio/161.mp3",MP3
-162,audio/mpeg,null,"null",171,"word-171","समय","/audio/162.mp3",MP3
-163,audio/mpeg,null,"null",,"storybook-15-ch-3-par-1","अलग-अलग परिवारों को लाजपत नगर के बाज़ार ले जाना, अर्जुन को बहुत पसंद था। सैलानी जब चार पहियों की जगह   तीन पहियों की सवारी चुनते तो उसका मन खुशी से झूम उठता। शिरीष जी के साथ कुतुब मीनार के पास पेड़ की छाँव में आराम करना उसे बहुत अच्छा लगता।","/audio/163.mp3",MP3
-164,audio/mpeg,null,"null",,"storybook-15-ch-16-par-1","उस औरत ने अपनी सुन्दर साड़ी को ठीक किया। शीशे  में देखते हुए वह बोली, “भाई, आपका चेहरा!”","/audio/164.mp3",MP3
-165,audio/mpeg,null,"null",,"storybook-15-ch-13-par-2","“फट, फट, टूका, टूका, टुक” ...ऊपर, ऊपर और ऊपर!","/audio/165.mp3",MP3
-166,audio/mpeg,null,"null",,"storybook-24-ch-5-par-1","एक दिन एक दाँत के डॉक्टर के घर भयंकर हंगामा हुआ। छी.......!","/audio/166.mp3",MP3
-167,audio/mpeg,null,"null",,"storybook-24-ch-9-par-1","यह उतना गंदा नहीं था, जितना तुम सोच रहे हो! डॉ. शेफील्ड और उनकी टीम ने बिना ढक्कन खोले इसे ...भरा!","/audio/167.mp3",MP3
-168,audio/mpeg,null,"null",,"storybook-20-ch-1-par-1","भन-भन-भन-भन-भन…","/audio/168.mp3",MP3
-169,audio/mpeg,null,"null",,"storybook-20-ch-12-par-3","2. मधुमक्खी की तरह भिनभिनाने कि कोशिश कीजिये अपनी बाहों को उपर और नीचे (फ्लेप) कीजिये और देखिये कि क्या भिनभिनाट होती है !","/audio/169.mp3",MP3
-170,audio/mpeg,null,"null",,"storybook-18-ch-1-par-4","इसलिए माँ मुझे नन्हा वास्तुकार बुलाती हैं ।","/audio/170.mp3",MP3
-171,audio/mpeg,null,"null",,"storybook-18-ch-8-par-1","मकान बनाने से पहले आपको पता होना चाहिए कि आप को उस में क्या खूबी चाहिए ।","/audio/171.mp3",MP3
-172,audio/mpeg,null,"null",,"storybook-18-ch-12-par-2","छोटा सा, गोल, मिट्‌टी से बना, छप्पर की टोपी वाला। आसमान को छूता गगनचुंबी। उल्टी रखी कुल्फ़ी या आइसक्रीम के कोन जैसी टीपी ।","/audio/172.mp3",MP3
-173,audio/mpeg,null,"null",,"storybook-18-ch-12-par-3","केक जैसे गोल मंगोलिया के खेमे यर्ट ।","/audio/173.mp3",MP3
-174,audio/mpeg,null,"null",,"storybook-18-ch-12-par-4","आधी गेंद जैसे इग्लू ।","/audio/174.mp3",MP3
-175,audio/mpeg,null,"null",,"storybook-18-ch-12-par-5","और किले जैसे बड़े-बड़े.......","/audio/175.mp3",MP3
-176,audio/mpeg,null,"null",,"storybook-18-ch-16-par-1","तरह-तरह के मकान","/audio/176.mp3",MP3
-177,audio/mpeg,null,"null",,"storybook-18-ch-16-par-2","खेमा : मंगोलिया के लोग लकड़ी के ढाँचे और मोटे ऊनी नमदे के कालीनों से ख़ूब गर्म और हल्के घर बनाते हैं। जब कहीं और जाना हो तो लोग लकड़ी की पट्टियों और नमदों को घोड़ों और याकों पर लाद कर मकान को भी साथ ले जाते हैं।","/audio/177.mp3",MP3
-178,audio/mpeg,null,"null",,"storybook-21-ch-1-par-2","एक दिन, विज्ञान की कक्षा में खिड़की के बाहर वह  आकाश में पंख फैलाए उड़ती चील देख रही थी। वह चिड़िया कितनी खुश होगी! उसे हवाई जहाज़ को उड़ते देखना भी बहुत पसंद था।","/audio/178.mp3",MP3
-179,audio/mpeg,null,"null",,"storybook-21-ch-1-par-4","सरला हड़बड़ा कर खड़ी हुई और बोली,"सॉरी मैडम! मैं चील को देख रही थी। काश! हम भी चिड़िया की तरह उड़ पाते या फिर एक हवाई जहाज़ की तरह....","/audio/179.mp3",MP3
-180,audio/mpeg,null,"null",,"storybook-64-ch-2-par-1","छुट्टियों में रस है","/audio/180.mp3",MP3
-181,audio/mpeg,null,"null",,"storybook-27-ch-8-par-1","“संयोग से वहाँ आकाश में एक बैंगनी विमान उड़ता दिखाई दिया। ","/audio/181.mp3",MP3
-182,audio/mpeg,null,"null",,"storybook-27-ch-8-par-2","क्या तुम विश्वास करोगी कि उस विमान के चालक ने गिलहरियों की पुकार सुनी?”","/audio/182.mp3",MP3
-183,audio/mpeg,null,"null",,"storybook-51-ch-6-par-1","अचानक एक डाॅल्फ़िन* ने उसके आगे पानी से बाहर छलाँग लगाई।","/audio/183.mp3",MP3
-184,audio/mpeg,null,"null",,"storybook-64-ch-3-par-3","और खेल कूद पे लूट!","/audio/184.mp3",MP3
-185,audio/mpeg,null,"null",173,"word-173","सब","/audio/185.mp3",MP3
-186,audio/mpeg,null,"null",,"storybook-52-ch-17-par-1","... और उड़ चला। ऊपर! और ऊपर!","/audio/186.mp3",MP3
-187,audio/mpeg,null,"null",122,"word-122","वे","/audio/187.mp3",MP3
-188,audio/mpeg,null,"null",,"storybook-14-ch-10-par-4","“जब अँधेरा हो जाता है, मैं झीं...झीं... झनकार सी आवाज़ निकालता हूँ।”","/audio/188.mp3",MP3
-189,audio/mpeg,null,"null",,"storybook-51-ch-2-par-2","वूश!!","/audio/189.mp3",MP3
-190,audio/mpeg,null,"null",,"storybook-51-ch-2-par-1","घूम-घूम ने छलाँग लगाई तो पहले उसकी नाक पानी से टकराई! और...","/audio/190.mp3",MP3
-191,audio/mpeg,null,"null",,"storybook-51-ch-2-par-5",""देखो पापा! मैं तैर रही हूँ! देखो!!"","/audio/191.mp3",MP3
-192,audio/mpeg,null,"null",,"storybook-51-ch-7-par-1","तभी फिर से कुछ आवाज आई - "धरररररप! घरररररररपप!!"","/audio/192.mp3",MP3
-193,audio/mpeg,null,"null",,"storybook-51-ch-10-par-3",""दादू, दादू!! क्या आपने मेरे परिवार को देखा है?" घूम-घूम ने पूछा।","/audio/193.mp3",MP3
-194,audio/mpeg,null,"null",,"storybook-51-ch-14-par-2","घ्ररररअअअप... घूम! बररररअअअअअप... घूम! घूsम-घूssम!!","/audio/194.mp3",MP3
-195,audio/mpeg,null,"null",,"storybook-51-ch-14-par-3","उसे अपना परिवार मिल गया था। वह लोग ज़्यादा दूर नहीं थे! घूम-घूम खिलखिला उठी, आवाज़ों की ओर तैरने लगी।","/audio/195.mp3",MP3
-196,audio/mpeg,null,"null",373,"word-373","गाती","/audio/196.mp3",MP3
-197,audio/mpeg,null,"null",,"storybook-67-ch-15-par-2","और इसी के साथ उसके मन में भर जाता है दुनिया का सबसे ख़ूबसूरत अहसास।","/audio/197.mp3",MP3
-198,audio/mpeg,null,"null",305,"word-305","लगता","/audio/198.mp3",MP3
-199,audio/mpeg,null,"null",,"storybook-67-ch-15-par-1","चंपा सुर छेड़ देती है, खुले गले से बेधड़क।","/audio/199.mp3",MP3
-200,audio/mpeg,null,"null",299,"word-299","कीड़े","/audio/200.mp3",MP3
-201,audio/mpeg,null,"null",374,"word-374","जुगनू","/audio/201.mp3",MP3
-202,audio/mpeg,null,"null",375,"word-375","तितलियाँ","/audio/202.mp3",MP3
-203,audio/mpeg,null,"null",376,"word-376","पतंगे","/audio/203.mp3",MP3
-533,audio/mpeg,null,"null",308,"word_कुत्ते","कुत्ते","/audio/533.mp3",MP3
-213,audio/mpeg,null,"null",386,"word-386","मणि","/audio/213.mp3",MP3
-532,audio/mpeg,null,"null",65,"word_कुत्ता","कुत्ता","/audio/532.mp3",MP3
-215,audio/mpeg,null,"null",388,"word-388","गुबरैले","/audio/215.mp3",MP3
-216,audio/mpeg,null,"null",389,"word-389","व्याध","/audio/216.mp3",MP3
-217,audio/mpeg,null,"null",390,"word-390","सेमल","/audio/217.mp3",MP3
-218,audio/mpeg,null,"null",391,"word-391","टिड्डा","/audio/218.mp3",MP3
-219,audio/mpeg,null,"null",392,"word-392","भँवरे","/audio/219.mp3",MP3
-220,audio/mpeg,null,"null",393,"word-393","पत्तियों","/audio/220.mp3",MP3
-221,audio/mpeg,null,"null",394,"word-394","लड्डू","/audio/221.mp3",MP3
-222,audio/mpeg,null,"null",395,"word-395","लेना","/audio/222.mp3",MP3
-223,audio/mpeg,null,"null",396,"word-396","खोल","/audio/223.mp3",MP3
-224,audio/mpeg,null,"null",397,"word-397","हो ","/audio/224.mp3",MP3
-225,audio/mpeg,null,"null",398,"word-398","जाऊँ","/audio/225.mp3",MP3
-226,audio/mpeg,null,"null",399,"word-399","जल्दी","/audio/226.mp3",MP3
-227,audio/mpeg,null,"null",400,"word-400","कहते","/audio/227.mp3",MP3
-228,audio/mpeg,null,"null",401,"word-401","खेलने","/audio/228.mp3",MP3
-229,audio/mpeg,null,"null",402,"word-402","अज्जी","/audio/229.mp3",MP3
-230,audio/mpeg,null,"null",403,"word-403","अज्जा","/audio/230.mp3",MP3
-231,audio/mpeg,null,"null",404,"word-404","क्रिकेट","/audio/231.mp3",MP3
-232,audio/mpeg,null,"null",405,"word-405","मुबारक","/audio/232.mp3",MP3
-233,audio/mpeg,null,"null",406,"word-406","डिब्बे","/audio/233.mp3",MP3
-234,audio/mpeg,null,"null",407,"word-407","अगले","/audio/234.mp3",MP3
-235,audio/mpeg,null,"null",408,"word-408","सोना","/audio/235.mp3",MP3
-236,audio/mpeg,null,"null",409,"word-409","उन","/audio/236.mp3",MP3
-237,audio/mpeg,null,"null",410,"word-410","उठा","/audio/237.mp3",MP3
-238,audio/mpeg,null,"null",411,"word-411","पड़ेगा","/audio/238.mp3",MP3
-239,audio/mpeg,null,"null",412,"word-412","लो","/audio/239.mp3",MP3
-240,audio/mpeg,null,"null",413,"word-413","डिब्बा","/audio/240.mp3",MP3
-241,audio/mpeg,null,"null",414,"word-414","जन्मदिन","/audio/241.mp3",MP3
-531,audio/mpeg,null,"null",444,"word-id-444","अड़सठ","/audio/531.mp3",MP3
-243,audio/mpeg,null,"null",416,"word-416","हमेशा","/audio/243.mp3",MP3
-244,audio/mpeg,null,"null",417,"word-417","दोस्तों","/audio/244.mp3",MP3
-245,audio/mpeg,null,"null",418,"word-418","सुंदर","/audio/245.mp3",MP3
-246,audio/mpeg,null,"null",419,"word-419","थोड़ा","/audio/246.mp3",MP3
-247,audio/mpeg,null,"null",420,"word-420","गया ","/audio/247.mp3",MP3
-248,audio/mpeg,null,"null",421,"word-421","क्यों","/audio/248.mp3",MP3
-249,audio/mpeg,null,"null",422,"word-422","रसोई","/audio/249.mp3",MP3
-250,audio/mpeg,null,"null",423,"word-423","जंगल","/audio/250.mp3",MP3
-251,audio/mpeg,null,"null",424,"word-424","गिद्ध","/audio/251.mp3",MP3
-252,audio/mpeg,null,"null",425,"word-425","धुएँ","/audio/252.mp3",MP3
-253,audio/mpeg,null,"null",426,"word-426","आता","/audio/253.mp3",MP3
-254,audio/mpeg,null,"null",427,"word-427","लकड़बग्घे","/audio/254.mp3",MP3
-255,audio/mpeg,null,"null",428,"word-428","बाकी","/audio/255.mp3",MP3
-256,audio/mpeg,null,"null",429,"word-429","बेकार","/audio/256.mp3",MP3
-257,audio/mpeg,null,"null",430,"word-430","गंदी","/audio/257.mp3",MP3
-258,audio/mpeg,null,"null",431,"word-431","गिरती","/audio/258.mp3",MP3
-259,audio/mpeg,null,"null",432,"word-432","दावत","/audio/259.mp3",MP3
-260,audio/mpeg,null,"null",433,"word-433","ज़मीन","/audio/260.mp3",MP3
-261,audio/mpeg,null,"null",27,"word-27","रहते","/audio/261.mp3",MP3
-262,audio/mpeg,null,"null",,"storybook-4-ch-3-par-1",""चलो! तेज़ी से उडो."","/audio/262.mp3",MP3
-263,audio/mpeg,null,"null",,"storybook-4-ch-7-par-1","वह नदी के ऊपर से गुजरा.","/audio/263.mp3",MP3
-264,audio/mpeg,null,"null",,"storybook-4-ch-9-par-1",""मैं तो घुमने जा रहा हूँ. यहाँ","/audio/264.mp3",MP3
-265,audio/mpeg,null,"null",,"storybook-7-ch-11-par-1","ज़रा ढूँढिये आज मैंने कौन सी टोपी पहनी है।","/audio/265.mp3",MP3
-266,audio/mpeg,null,"null",,"storybook-46-ch-1-par-1","तितलियां! मुझे दिख रही हैं तितलियाँ! मुझे दिख रहीं हैं चार तितलियाँ! क्या आप को भी दिख रही हैं?","/audio/266.mp3",MP3
-267,audio/mpeg,null,"null",,"storybook-46-ch-2-par-1","तितलियां! मुझे दिख रही हैँ लाल,हरी और पीली तितलियां! अरे एक छोटी तितली मेरी अंगुली पर बैठी है! क्‍या आप को वह दिख रही है?","/audio/267.mp3",MP3
-268,audio/mpeg,null,"null",,"storybook-46-ch-3-par-1","तितलियां! देखो कैसे वे अपने कोय से बाहर आ रही हैँ!","/audio/268.mp3",MP3
-269,audio/mpeg,null,"null",,"storybook-46-ch-4-par-1","तितलियां! ये मुझे सब से ज्यादा पसंद हैँ! ये कितनी सुन्दर हैँ?","/audio/269.mp3",MP3
-270,audio/mpeg,null,"null",,"storybook-46-ch-5-par-1","तितलियां! मुझे भी तितली बन ना है! क्‍या आप को भी आकाश मे उड़ना है?","/audio/270.mp3",MP3
-271,audio/mpeg,null,"null",,"storybook-39-ch-4-par-1","वे पक्षियों को पकड लेते है और एक-एक करके अपने घर ले आते हैं।","/audio/271.mp3",MP3
-272,audio/mpeg,null,"null",,"storybook-39-ch-7-par-1","वह उन्हें खुश करने और वोह फिर से गाने लगे उसका तरीका ढूँढने की कोशिश करता है।","/audio/272.mp3",MP3
-273,audio/mpeg,null,"null",,"storybook-39-ch-9-par-1","बंटी अपने पिता से बात करने का फैसला करता है।","/audio/273.mp3",MP3
-274,audio/mpeg,null,"null",,"storybook-39-ch-11-par-1","जैसे पक्षी उड़ते हैं, वे मुस्कुराते हुए बंटी की ओर देखते हैं।","/audio/274.mp3",MP3
-275,audio/mpeg,null,"null",,"storybook-5-ch-7-par-1","कुछ बनबिलावों के कान पर ढ़ेर सारे बाल होते हैं।","/audio/275.mp3",MP3
-276,audio/mpeg,null,"null",,"storybook-5-ch-8-par-1","कुछ बनबिलावों को मछ्ली पसंद है।","/audio/276.mp3",MP3
-277,audio/mpeg,null,"null",,"storybook-8-ch-1-par-1","मैं और मेरी दोस्त टीना दोनों साथ-साथ रहती| मैं खिड़की से देखती ओ भी मेरे साथ-साथ देखती| जहाँ जाती हरदम साथ रहती|","/audio/277.mp3",MP3
-278,audio/mpeg,null,"null",,"storybook-8-ch-2-par-1","मैं नाचती ओ भी मेरे साथ नाचती| मैं खेलती ओ भी खेलती| मैं हँसती तो ओ भी मेरे साथ हँसती| पर मुझ से बात नहीं करती| कभी मेरे पास नहीँ आती|","/audio/278.mp3",MP3
-279,audio/mpeg,null,"null",,"storybook-8-ch-3-par-1","जब मैं रोती तो ओ भी मेरे साथ रोने लग जाती| मैं क्या करूँ?","/audio/279.mp3",MP3
-280,audio/mpeg,null,"null",,"storybook-8-ch-8-par-1","हम बगीचे में भी गए |पेड़ के पास छिप कर हमने लुका –छिपी खेला |हमने मेमना को भी खेलाया |","/audio/280.mp3",MP3
-281,audio/mpeg,null,"null",,"storybook-8-ch-9-par-1","ढेर सारी बाते भी की | मुझे अच्छा लगा और मजा भी आया |","/audio/281.mp3",MP3
-282,audio/mpeg,null,"null",,"storybook-9-ch-4-par-1","मुझे  बाहर कुछ काली बड़ी चीज  दिख रही है ! वह  कया है ?","/audio/282.mp3",MP3
-283,audio/mpeg,null,"null",,"storybook-9-ch-6-par-1","वह आवाज कैसी है! किड़ किड़ ! वह कया है?","/audio/283.mp3",MP3
-284,audio/mpeg,null,"null",,"storybook-9-ch-5-par-1","यह  तो   कुआ है। मैं नहीं डरती।","/audio/284.mp3",MP3
-285,audio/mpeg,null,"null",,"storybook-9-ch-8-par-1","मुझे पैरों की आवाज आ रही है!   कौन है ? कौन है?","/audio/285.mp3",MP3
-286,audio/mpeg,null,"null",,"storybook-9-ch-9-par-1","अरे यह तो मेरी मां है। वह खेत से काम कर के घर आई है।","/audio/286.mp3",MP3
-287,audio/mpeg,null,"null",,"storybook-10-ch-4-par-1","घर से निकली बकरी छमिया और गुड़िया लेकर रेनकोट ","/audio/287.mp3",MP3
-288,audio/mpeg,null,"null",,"storybook-10-ch-5-par-1","मुनीया चली स्कूल और मिल गया मोर ","/audio/288.mp3",MP3
-289,audio/mpeg,null,"null",,"storybook-10-ch-5-par-3","रंगों से भरे  नाच रहा हैं  दो दो  मोर ","/audio/289.mp3",MP3
-290,audio/mpeg,null,"null",,"storybook-10-ch-6-par-1","ख़ूब मजा आया , ","/audio/290.mp3",MP3
-291,audio/mpeg,null,"null",123,"word-123","गया","/audio/291.mp3",MP3
-292,audio/mpeg,null,"null",,"storybook-49-ch-2-par-1","सोमवार धूप से भरा चमकीला दिन था।","/audio/292.mp3",MP3
-293,audio/mpeg,null,"null",,"storybook-49-ch-5-par-3","“नहीं, प्यारे बेटे! आज बारिश नहीं होगी। नन्हे स़फेद बादल आसमान में बहुत ऊँचाई पर हैं,” माँ बोलीं।","/audio/293.mp3",MP3
-294,audio/mpeg,null,"null",,"storybook-49-ch-3-par-3","“आज नहीं बेटा! आज तो आसमान मे स़िर्फ एक नन्हा स़फेद बादल है,” माँ बोलीं।","/audio/294.mp3",MP3
-295,audio/mpeg,null,"null",,"storybook-49-ch-6-par-3","“हाँ हो सकती है, मेरे प्यारे बेटे! आज आसमान में कुछ काले बादल नीचे उतर आए हैं।”","/audio/295.mp3",MP3
-296,audio/mpeg,null,"null",,"storybook-49-ch-8-par-2","“अरे बारिश हो रही है, बारिश हो रही है,” मनु ने गाना गाया और बाहर भागा।","/audio/296.mp3",MP3
-297,audio/mpeg,null,"null",,"storybook-40-ch-2-par-1","तालाब की मच्चलियों में थी दोस्ती प्यारी","/audio/297.mp3",MP3
-298,audio/mpeg,null,"null",,"storybook-40-ch-2-par-2","दुखी सूरज देखता ये नज़ारा","/audio/298.mp3",MP3
-299,audio/mpeg,null,"null",,"storybook-40-ch-3-par-3","तारे गये है मुझसे रूठ","/audio/299.mp3",MP3
-300,audio/mpeg,null,"null",,"storybook-38-ch-4-par-1","चिड़िया उन सभी पिस्सू को खा जाती है।","/audio/300.mp3",MP3
-301,audio/mpeg,null,"null",,"storybook-38-ch-6-par-1","चिड़िया चोंच से दांतों को साफ कर देती है।","/audio/301.mp3",MP3
-302,audio/mpeg,null,"null",,"storybook-38-ch-7-par-1","मैं एक जिराफ हूँ।","/audio/302.mp3",MP3
-303,audio/mpeg,null,"null",,"storybook-38-ch-8-par-1","चिड़िया सिर पर पहुंच कर खुजला सकती है।","/audio/303.mp3",MP3
-304,audio/mpeg,null,"null",,"storybook-38-ch-9-par-1","मैं जेब्रा हूँ।","/audio/304.mp3",MP3
-305,audio/mpeg,null,"null",,"storybook-31-ch-3-par-1","सामने लटकी लम्बी सूँड।","/audio/305.mp3",MP3
-306,audio/mpeg,null,"null",,"storybook-48-ch-1-par-1","मैं ग़ोलू गोल‍ हु। सारे लोग मुझे पसंद करते है। मुझे तुम कही भि ढूंढ सकते हो।","/audio/306.mp3",MP3
-307,audio/mpeg,null,"null",,"storybook-48-ch-2-par-1","सूरज मेरे जैसा दहिक्त है। अग‍र ढूप होती है तोह आधा ऊंब्रेल्ल भि मेरे जैसा दहिक्त है।","/audio/307.mp3",MP3
-308,audio/mpeg,null,"null",,"storybook-48-ch-3-par-1","र।तको, चन्द्र मुझे हस्कर देखता है। और मैं उससे उल्लू कि गोल आँखो से देखता हु।","/audio/308.mp3",MP3
-309,audio/mpeg,null,"null",,"storybook-48-ch-4-par-2","यहां तक ​​कि छोटे नींबू - मेरे जैसे सभी लग रहे हैं - और मिठाई भि!","/audio/309.mp3",MP3
-310,audio/mpeg,null,"null",,"storybook-48-ch-4-par-3","रसदार रसगुल्ला, सिराज गुलबजमुन, प्यारे लाडस,","/audio/310.mp3",MP3
-311,audio/mpeg,null,"null",,"storybook-48-ch-4-par-4","मेरे जैसा दिखने वाले कई मिठाइयाँ।","/audio/311.mp3",MP3
-312,audio/mpeg,null,"null",,"storybook-48-ch-6-par-1","खेल के मैदान में, मैं एक गेंद के रूप में हूं, और कई और खेल मैं भि!","/audio/312.mp3",MP3
-313,audio/mpeg,null,"null",,"storybook-48-ch-7-par-1","अपने ट्रक, हवाई जहाज, कार, चक्र, चल नहीं पाएंगे... अगर मैं नाही होता।","/audio/313.mp3",MP3
-314,audio/mpeg,null,"null",,"storybook-53-ch-3-par-3","चिड़ियों की चहचहाट ने उसे जगा दिया।","/audio/314.mp3",MP3
-315,audio/mpeg,null,"null",,"storybook-53-ch-7-par-2","“अरे तुमने एक पैर तोड़ लिया? अगर मेरे पास इतने पैर होते तो मैं भी एक तोड़ लेती! देखो! देखो मुझे!! मेरे दो पैर हैं। एक दूसरे के साथ चलता है। कोई परेशानी नहीं! आसान!”","/audio/315.mp3",MP3
-316,audio/mpeg,null,"null",,"storybook-53-ch-8-par-2","“इतनी सुबह! नहीं मैडम, मुझे मा़फ़ करें!","/audio/316.mp3",MP3
-317,audio/mpeg,null,"null",,"storybook-53-ch-12-par-5","“मेरा एक पैर टूट गया और मुझे तकली़फ़ हो रही है।","/audio/317.mp3",MP3
-318,audio/mpeg,null,"null",,"storybook-53-ch-14-par-5","गोजर ख़ुश होकर मुस्कराने लगी।","/audio/318.mp3",MP3
-319,audio/mpeg,null,"null",,"storybook-53-ch-15-par-3","“अपना ख़याल रखो, नन्ही गोजर! अब किसी","/audio/319.mp3",MP3
-320,audio/mpeg,null,"null",,"storybook-53-ch-15-par-5","“टाटा!” गोजर ख़ुश होकर बोली।","/audio/320.mp3",MP3
-321,audio/mpeg,null,"null",,"storybook-66-ch-2-par-1","लेकिन वह ज़रा भी ख़ुश नहीं है। उसका परिवार कोलकता से दिल्ली जा रहा है, क्योंकि उन्हें अब वहीं रहना है।","/audio/321.mp3",MP3
-322,audio/mpeg,null,"null",,"storybook-56-ch-2-par-1","“अरे ओ गुबरैला बहन!” उसने ज़ोर से पुकारा।","/audio/322.mp3",MP3
-323,audio/mpeg,null,"null",,"storybook-56-ch-7-par-1","“अरे कोई उन जालीदार पंखों वाले पतंगों को बुलाओ,” गुबरैले ने ज़ोर से कहा। नौ जालीदार पंखों वाले पतंगे मदद के लिए आगे आए।","/audio/323.mp3",MP3
-324,audio/mpeg,null,"null",,"storybook-56-ch-2-par-3","गुबरैले ने ज़ोर से धक्का दिया, और ज़ोर से, बहुत ज़ोर से! लेकिन वह उस नारियल के पेड़ वाले हट्टे-कट्टे भँवरे को पलट नहीं सकी।","/audio/324.mp3",MP3
-325,audio/mpeg,null,"null",,"storybook-56-ch-4-par-1","फिर गुबरैले ने ज़ोर से चिल्लाकर कहा, “ओ रंग-बिरंगे पतंगे, इधर आओ!”","/audio/325.mp3",MP3
-326,audio/mpeg,null,"null",,"storybook-56-ch-3-par-1","गुबरैले ने चिल्ला कर कहा, “झींगुरो आओ!”","/audio/326.mp3",MP3
-327,audio/mpeg,null,"null",,"storybook-61-ch-2-par-1","वह रोज उन पर बैठती।","/audio/327.mp3",MP3
-328,audio/mpeg,null,"null",,"storybook-61-ch-2-par-2","कई-कई घंटे उन्हें सेकती रहती।","/audio/328.mp3",MP3
-329,audio/mpeg,null,"null",,"storybook-61-ch-4-par-1","इस तरह काफी दिन बीत गए।","/audio/329.mp3",MP3
-330,audio/mpeg,null,"null",,"storybook-50-ch-6-par-5","“अरे नहीं, अब हम यह कैसे पता लगाएंगे कि ख़राब गले वाली कोयल कौन सी है?” ज़ेबा ने मुँह लटकाकर पूछा।","/audio/330.mp3",MP3
-331,audio/mpeg,null,"null",,"storybook-55-ch-2-par-1","भैया घर में नहीं है, रिंकी उसका पैन खोज रही है।","/audio/331.mp3",MP3
-332,audio/mpeg,null,"null",,"storybook-55-ch-9-par-3","पैन उसके हाथ से उछला और पलंग के नीचे गायब हो गया।","/audio/332.mp3",MP3
-333,audio/mpeg,null,"null",,"storybook-55-ch-9-par-4","रिंकी डर गर्इ। भैया जल्दी ही आने वाला है।","/audio/333.mp3",MP3
-334,audio/mpeg,null,"null",,"storybook-55-ch-15-par-1","जल्दी! जल्दी! भैया घर","/audio/334.mp3",MP3
-335,audio/mpeg,null,"null",,"storybook-55-ch-15-par-2","आने ही वाला है।","/audio/335.mp3",MP3
-336,audio/mpeg,null,"null",,"storybook-55-ch-16-par-1","बस तभी! तभी दरवाज़ा खुलने की आवाज़ सुनार्इ दी और भैया कमरे में आया।","/audio/336.mp3",MP3
-337,audio/mpeg,null,"null",,"storybook-55-ch-17-par-4","चुंबक सभी चीज़ों से नहीं चिपकता। यह सिर्फ उन कुछ चीज़ों से चिपकता है जिनमें कुछ ख़ास तत्व होते हैं। किसी वस्तु को चुंबक से चिपकाने वाले यह ख़ास तत्व हैं लोहा, निकल, स्टील और कोबाल्ट।","/audio/337.mp3",MP3
-338,audio/mpeg,null,"null",,"storybook-60-ch-1-par-3","वे मेंढकों को तंग करती हैं और मच्छरों को अपना आहार बनाती हैं।","/audio/338.mp3",MP3
-339,audio/mpeg,null,"null",,"storybook-60-ch-2-par-2","वह चिड़ियों के घोसलों और मकड़ों के जालों को देखती है।","/audio/339.mp3",MP3
-340,audio/mpeg,null,"null",,"storybook-60-ch-5-par-2","‘ये पत्ते बहुत अधिक छोटे हैं, चींटी को भी ढक नहीं पाएंगे,’ द्रुवी सोचती है।","/audio/340.mp3",MP3
-341,audio/mpeg,null,"null",,"storybook-60-ch-11-par-4","भारत से अफ़्रीका जाते हैं। हिन्द महासागर पार करने के लिए","/audio/341.mp3",MP3
-342,audio/mpeg,null,"null",,"storybook-60-ch-11-par-5","वे १६,००० किलोमीटर से अधिक यात्रा करते हैं। वे भारत से अपनी यात्रा","/audio/342.mp3",MP3
-343,audio/mpeg,null,"null",,"storybook-58-ch-3-par-2","“वो तो मैं भी जानूं,” रॉकी मिमियाया।","/audio/343.mp3",MP3
-344,audio/mpeg,null,"null",,"storybook-52-ch-1-par-2","वह दौड़ता है, छलाँगे मारता है, चक्कर काटता है और कलामुंडियाँ खाता है...","/audio/344.mp3",MP3
-345,audio/mpeg,null,"null",,"storybook-52-ch-7-par-1","सत्यम ख़रगोश क तरह फुदका, उसने हरण क तरह कुलाँचे भरीं... 					 				 			 		 	 "अरे! संभल कर! कीचड़ में फिसल मत जाना," माँ ने कहा।","/audio/345.mp3",MP3
-346,audio/mpeg,null,"null",,"storybook-52-ch-12-par-1","सत्यम ने अपनी बाँहें पँखों की तरह फैलाईं और उड़ने की कोशिश की।","/audio/346.mp3",MP3
-347,audio/mpeg,null,"null",,"storybook-52-ch-13-par-1","सूरज डूबने के बाद देर शाम को जब झींगुरों ने अपना राग आलापना शुरू किया, तब घर जाने का समय हो गया।","/audio/347.mp3",MP3
-348,audio/mpeg,null,"null",,"storybook-52-ch-18-par-1","वे कितनी तरह की चाले चलते हैं?","/audio/348.mp3",MP3
-349,audio/mpeg,null,"null",,"storybook-52-ch-20-par-1","केंकड़े सामने सीधे चलने के बजाय बाएँ या दाएँ चल सकते हैं। क्या आप बिना बाएँ या दाएँ मुड़े ऐसी आड़ी चाल चल सकते हैं?","/audio/349.mp3",MP3
-350,audio/mpeg,null,"null",,"storybook-52-ch-20-par-3","घोंघे बहुत धीरे-धीरे घिसटते हैं। बहुत ही धीरे-धीरे। क्या आप इतनी धीमी चाल चाल सकते हैं?","/audio/350.mp3",MP3
-351,audio/mpeg,null,"null",,"storybook-54-ch-2-par-2","मधुमक्खियों को बांटें मकरंद का उपहार।","/audio/351.mp3",MP3
-352,audio/mpeg,null,"null",,"storybook-54-ch-3-par-1","खड़े तीन पीपल गांव की डगर पर,","/audio/352.mp3",MP3
-353,audio/mpeg,null,"null",,"storybook-54-ch-3-par-2","तोते खाएं कुतर उसके नर्म गूलर।","/audio/353.mp3",MP3
-354,audio/mpeg,null,"null",,"storybook-54-ch-10-par-2","ऊँट धन्य हो जाएं इनकी कोंपल खाकर।","/audio/354.mp3",MP3
-355,audio/mpeg,null,"null",,"storybook-25-ch-1-par-2","ठीक 5 बजते ही, इंजी, स्कूल की किसी पुरानी बस की तरह दौड़ता-हांफता चला आता है। इंजी, चॉकलेटी रंग की आंखों वाला उनका प्यारा पिल्ला है, जिसकी पूँछ हमेशा हिलने के बावजूद कभी नहीं थकती।","/audio/355.mp3",MP3
-356,audio/mpeg,null,"null",,"storybook-25-ch-4-par-1",""इंजी हमारा दुलारा है, मेंढक इसे लगता प्यारा है, बीज, चींटी, पक्षी, घोंघे - इसे भाएं खूब, पर सबसे प्यारी लगे इसे अपनी पूँछ!"","/audio/356.mp3",MP3
-357,audio/mpeg,null,"null",,"storybook-25-ch-4-par-2","वह इस गीत को बार-बार दोहराती रहती है, जिसे सुनकर टूका को बहुत हंसी आती है और इंजी भी खुश होकर भौंकता है।","/audio/357.mp3",MP3
-358,audio/mpeg,null,"null",,"storybook-25-ch-6-par-1","तभी अचानक उन्हें एक धीमी सी, किकियाति आवाज़ सुनाई द‍ी – “हैलो....!”","/audio/358.mp3",MP3
-359,audio/mpeg,null,"null",,"storybook-25-ch-7-par-4","टूका और पोई बिना हिले खड़े थे । उनकी आंखें, फटी की फटी रह गईं और उनका मुंह, खुला का खुला।","/audio/359.mp3",MP3
-360,audio/mpeg,null,"null",,"storybook-25-ch-7-par-5","आखिर, पोई झेंपती हुई मुस्कराई और बोली - “हैलो, पच्चा। आपसे मिलकर मुझे बहुत खुशी हुई। मेरा नाम पोई है।“","/audio/360.mp3",MP3
-361,audio/mpeg,null,"null",,"storybook-25-ch-8-par-2","”और हम भी इससे पहले कभी किसी बोलने वाले पेड़ से नहीं मिले!” टूका ने चहकते हुए कहा। ”इसलिए, हम सभी के लिए कुछ न कुछ नया है।” इतना सुनकर, पच्चा जोर से हंसा, और उसके हँसते ही, उसके डालों की सारी पत्तियां सुर्ख हरी हो गई।","/audio/361.mp3",MP3
-362,audio/mpeg,null,"null",,"storybook-25-ch-12-par-1","पच्चा ने समझाया, “तुम इस सेब को खाना शुरू करो जब तक कि इसके बीच वाले हिस्से तक न पहुंच जाओ। सेब के बीच में तुम्हे छोटे-छोटे भूरे रंग के बीज दिखेंगे।“","/audio/362.mp3",MP3
-363,audio/mpeg,null,"null",,"storybook-25-ch-15-par-1","अब भी टूका, पोई और इंजी हर शाम स्कूल के बाद मिलते हैं। लेकिन अब, टूका और पोई, उन चीजों को इक्ट्ठा करते हैं जिनमें वे पौधे उगा सकें। पुराने जूते, नारियल का कवच, यहां तक कि पानी की पुरानी बोतलें – सब कुछ, जिन्हें गमले के रूप में इस्तमाल किया जा सके।","/audio/363.mp3",MP3
-364,audio/mpeg,null,"null",,"storybook-17-ch-1-par-1","पिशि दुखी थी। कल तक वह अंडमान निकोबार के तट से दूर, मानता रे मछलियों के समूह का हिस्सा थी। वह हिन्द महासागर की सुन्दर लहरों के बीच भर पेट खाना खाती और मज़े से रहती थी।","/audio/364.mp3",MP3
-365,audio/mpeg,null,"null",,"storybook-17-ch-6-par-1","जब उसे तट पर प्रकाश स्तम्भ दिखाई दिया वह ख़ुशी से उछल पड़ी। पिशि क़ुदरत के अस्पताल पहुँच गयी थी।","/audio/365.mp3",MP3
-366,audio/mpeg,null,"null",105,"word-105","मुझे","/audio/366.mp3",MP3
-367,audio/mpeg,null,"null",,"storybook-2-ch-5-par-1","मालू फिर गया बगीचे में।  पीछे-पीछे कालू भी चल पड़ा।","/audio/367.mp3",MP3
-368,audio/mpeg,null,"null",69,"word-69","उसे","/audio/368.mp3",MP3
-369,audio/mpeg,null,"null",434,"word-434","रंग","/audio/369.mp3",MP3
-370,audio/mpeg,null,"null",,"storybook-51-ch-6-par-5","*डाॅल्फ़िन को हिन्दी में 'सूंस' कहते हैं।","/audio/370.mp3",MP3
-371,audio/mpeg,null,"null",150,"word_अपने","अपने","/audio/371.mp3",MP3
-372,audio/mpeg,null,"null",117,"word_रहे","रहे","/audio/372.mp3",MP3
-373,audio/mpeg,null,"null",83,"word_मैंने","मैंने","/audio/373.mp3",MP3
-374,audio/mpeg,null,"null",435,"word-id-435","सी","/audio/374.mp3",MP3
-375,audio/mpeg,null,"null",436,"word-id-436","जाने","/audio/375.mp3",MP3
-376,audio/mpeg,null,"null",121,"word_जब","जब","/audio/376.mp3",MP3
-377,audio/mpeg,null,"null",88,"word_तुम","तुम","/audio/377.mp3",MP3
-378,audio/mpeg,null,"null",142,"word_फिर","फिर","/audio/378.mp3",MP3
-379,audio/mpeg,null,"null",126,"word_आप","आप","/audio/379.mp3",MP3
-380,audio/mpeg,null,"null",135,"word_रहा","रहा","/audio/380.mp3",MP3
-381,audio/mpeg,null,"null",130,"word_अब","अब","/audio/381.mp3",MP3
-382,audio/mpeg,null,"null",106,"word_उस","उस","/audio/382.mp3",MP3
-383,audio/mpeg,null,"null",79,"word_घर","घर","/audio/383.mp3",MP3
-384,audio/mpeg,null,"null",145,"word_मेरे","मेरे","/audio/384.mp3",MP3
-385,audio/mpeg,null,"null",152,"word_पास","पास","/audio/385.mp3",MP3
-386,audio/mpeg,null,"null",91,"word_लेकिन","लेकिन","/audio/386.mp3",MP3
-387,audio/mpeg,null,"null",136,"word_उसके","उसके","/audio/387.mp3",MP3
-388,audio/mpeg,null,"null",129,"word_हुई","हुई","/audio/388.mp3",MP3
-389,audio/mpeg,null,"null",116,"word_जी","जी","/audio/389.mp3",MP3
-390,audio/mpeg,null,"null",125,"word_पानी","पानी","/audio/390.mp3",MP3
-391,audio/mpeg,null,"null",,"storybook-22-ch-11-par-1","...","/audio/391.mp3",MP3
-392,audio/mpeg,null,"null",,"storybook-22-ch-12-par-1",""अज्जी मुत्तज्जी की पाँचवी संतान हैं, और उनके सभी बच्चों के बीच 2 - 2 साल का अंतर है..." पुट्टा ने कहा "अगर अज्जी 1942 में पैदा हुईं..."","/audio/392.mp3",MP3
-393,audio/mpeg,null,"null",,"storybook-23-ch-2-par-1","...","/audio/393.mp3",MP3
-394,audio/mpeg,null,"null",,"storybook-23-ch-4-par-1","...","/audio/394.mp3",MP3
-395,audio/mpeg,null,"null",,"storybook-23-ch-9-par-1","...","/audio/395.mp3",MP3
-396,audio/mpeg,null,"null",,"storybook-23-ch-12-par-1","...","/audio/396.mp3",MP3
-397,audio/mpeg,null,"null",,"storybook-23-ch-14-par-1","...","/audio/397.mp3",MP3
-398,audio/mpeg,null,"null",,"storybook-23-ch-16-par-1","...","/audio/398.mp3",MP3
-399,audio/mpeg,null,"null",141,"word_करते","करते","/audio/399.mp3",MP3
-400,audio/mpeg,null,"null",128,"word_साथ","साथ","/audio/400.mp3",MP3
-401,audio/mpeg,null,"null",153,"word_कोई","कोई","/audio/401.mp3",MP3
-402,audio/mpeg,null,"null",82,"word_पूछा","पूछा","/audio/402.mp3",MP3
-403,audio/mpeg,null,"null",81,"word_पूरी","पूरी","/audio/403.mp3",MP3
-404,audio/mpeg,null,"null",143,"word_तक","तक","/audio/404.mp3",MP3
-405,audio/mpeg,null,"null",118,"word_धनी","धनी","/audio/405.mp3",MP3
-406,audio/mpeg,null,"null",134,"word_जाता","जाता","/audio/406.mp3",MP3
-407,audio/mpeg,null,"null",162,"word_दिन","दिन","/audio/407.mp3",MP3
-408,audio/mpeg,null,"null",200,"word_वो","वो","/audio/408.mp3",MP3
-409,audio/mpeg,null,"null",160,"word_जो","जो","/audio/409.mp3",MP3
-410,audio/mpeg,null,"null",149,"word_या","या","/audio/410.mp3",MP3
-411,audio/mpeg,null,"null",180,"word_वाले","वाले","/audio/411.mp3",MP3
-412,audio/mpeg,null,"null",140,"word_हम","हम","/audio/412.mp3",MP3
-413,audio/mpeg,null,"null",131,"word_ऊपर","ऊपर","/audio/413.mp3",MP3
-414,audio/mpeg,null,"null",127,"word_साल","साल","/audio/414.mp3",MP3
-415,audio/mpeg,null,"null",144,"word_होती","होती","/audio/415.mp3",MP3
-416,audio/mpeg,null,"null",195,"word_आज","आज","/audio/416.mp3",MP3
-417,audio/mpeg,null,"null",151,"word_इस","इस","/audio/417.mp3",MP3
-418,audio/mpeg,null,"null",146,"word_जा","जा","/audio/418.mp3",MP3
-419,audio/mpeg,null,"null",172,"word_गए","गए","/audio/419.mp3",MP3
-420,audio/mpeg,null,"null",174,"word_न","न","/audio/420.mp3",MP3
-421,audio/mpeg,null,"null",64,"word_मेरी","मेरी","/audio/421.mp3",MP3
-422,audio/mpeg,null,"null",,"storybook-59-ch-3-par-1","आह...अरे!","/audio/422.mp3",MP3
-423,audio/mpeg,null,"null",,"storybook-59-ch-15-par-1","ओ...अरे!","/audio/423.mp3",MP3
-424,audio/mpeg,null,"null",437,"word-id-437","ज़रा","/audio/424.mp3",MP3
-425,audio/mpeg,null,"null",438,"word-id-438","गाना","/audio/425.mp3",MP3
-426,audio/mpeg,null,"null",12,"word_दो","दो","/audio/426.mp3",MP3
-427,audio/mpeg,null,"null",13,"word_तीन","तीन","/audio/427.mp3",MP3
-428,audio/mpeg,null,"null",16,"word_चार","चार","/audio/428.mp3",MP3
-429,audio/mpeg,null,"null",23,"word_पाँच","पाँच","/audio/429.mp3",MP3
-430,audio/mpeg,null,"null",24,"word_छह","छह","/audio/430.mp3",MP3
-431,audio/mpeg,null,"null",25,"word_सात","सात","/audio/431.mp3",MP3
-432,audio/mpeg,null,"null",30,"word_आठ","आठ","/audio/432.mp3",MP3
-433,audio/mpeg,null,"null",31,"word_नौ","नौ","/audio/433.mp3",MP3
-434,audio/mpeg,null,"null",35,"word_दस","दस","/audio/434.mp3",MP3
-435,audio/mpeg,null,"null",37,"word_ग्यारह","ग्यारह","/audio/435.mp3",MP3
-436,audio/mpeg,null,"null",59,"word_तेरह","तेरह","/audio/436.mp3",MP3
-437,audio/mpeg,null,"null",66,"word_चौदह","चौदह","/audio/437.mp3",MP3
-438,audio/mpeg,null,"null",74,"word_पंद्रह","पंद्रह","/audio/438.mp3",MP3
-439,audio/mpeg,null,"null",74,"word_पंद्रह","पंद्रह","/audio/439.mp3",MP3
-440,audio/mpeg,null,"null",75,"word_सोलह","सोलह","/audio/440.mp3",MP3
-441,audio/mpeg,null,"null",101,"word_अट्ठारह","अट्ठारह","/audio/441.mp3",MP3
-442,audio/mpeg,null,"null",112,"word_उन्नीस","उन्नीस","/audio/442.mp3",MP3
-443,audio/mpeg,null,"null",113,"word_बीस","बीस","/audio/443.mp3",MP3
-444,audio/mpeg,null,"null",120,"word_इक्कीस","इक्कीस","/audio/444.mp3",MP3
-445,audio/mpeg,null,"null",137,"word_बाईस","बाईस","/audio/445.mp3",MP3
-446,audio/mpeg,null,"null",138,"word_तेईस","तेईस","/audio/446.mp3",MP3
-447,audio/mpeg,null,"null",138,"word_तेईस","तेईस","/audio/447.mp3",MP3
-448,audio/mpeg,null,"null",138,"word_तेईस","तेईस","/audio/448.mp3",MP3
-449,audio/mpeg,null,"null",138,"word_तेईस","तेईस","/audio/449.mp3",MP3
-450,audio/mpeg,null,"null",138,"word_तेईस","तेईस","/audio/450.mp3",MP3
-451,audio/mpeg,null,"null",138,"word_तेईस","तेईस","/audio/451.mp3",MP3
-452,audio/mpeg,null,"null",138,"word_तेईस","तेईस","/audio/452.mp3",MP3
-453,audio/mpeg,null,"null",139,"word_चौबिस","चौबिस","/audio/453.mp3",MP3
-454,audio/mpeg,null,"null",148,"word_पच्चीस","पच्चीस","/audio/454.mp3",MP3
-455,audio/mpeg,null,"null",155,"word_छब्बीस","छब्बीस","/audio/455.mp3",MP3
-456,audio/mpeg,null,"null",156,"word_सत्ताईस","सत्ताईस","/audio/456.mp3",MP3
-457,audio/mpeg,null,"null",157,"word_अट्ठाईस","अट्ठाईस","/audio/457.mp3",MP3
-458,audio/mpeg,null,"null",163,"word_उनतीस","उनतीस","/audio/458.mp3",MP3
-459,audio/mpeg,null,"null",167,"word_तीस","तीस","/audio/459.mp3",MP3
-460,audio/mpeg,null,"null",179,"word_इकतीस","इकतीस","/audio/460.mp3",MP3
-461,audio/mpeg,null,"null",186,"word_बत्तीस","बत्तीस","/audio/461.mp3",MP3
-462,audio/mpeg,null,"null",187,"word_तैंतीस","तैंतीस","/audio/462.mp3",MP3
-463,audio/mpeg,null,"null",188,"word_चौंतीस","चौंतीस","/audio/463.mp3",MP3
-464,audio/mpeg,null,"null",197,"word_पैंतीस","पैंतीस","/audio/464.mp3",MP3
-465,audio/mpeg,null,"null",198,"word_छत्तीस","छत्तीस","/audio/465.mp3",MP3
-466,audio/mpeg,null,"null",273,"word_छप्पन","छप्पन","/audio/466.mp3",MP3
-467,audio/mpeg,null,"null",214,"word_अड़तीस","अड़तीस","/audio/467.mp3",MP3
-468,audio/mpeg,null,"null",215,"word_उनतालीस","उनतालीस","/audio/468.mp3",MP3
-469,audio/mpeg,null,"null",221,"word_चालीस","चालीस","/audio/469.mp3",MP3
-470,audio/mpeg,null,"null",222,"word_इकतालीस","इकतालीस","/audio/470.mp3",MP3
-471,audio/mpeg,null,"null",223,"word_बयालीस","बयालीस","/audio/471.mp3",MP3
-472,audio/mpeg,null,"null",234,"word_तैंतालीस","तैंतालीस","/audio/472.mp3",MP3
-473,audio/mpeg,null,"null",235,"word_चौंतालीस","चौंतालीस","/audio/473.mp3",MP3
-474,audio/mpeg,null,"null",236,"word_पैंतालीस","पैंतालीस","/audio/474.mp3",MP3
-475,audio/mpeg,null,"null",245,"word_छियालीस","छियालीस","/audio/475.mp3",MP3
-476,audio/mpeg,null,"null",253,"word_अड़तालीस","अड़तालीस","/audio/476.mp3",MP3
-477,audio/mpeg,null,"null",254,"word_उनचास","उनचास","/audio/477.mp3",MP3
-478,audio/mpeg,null,"null",255,"word_पचास","पचास","/audio/478.mp3",MP3
-479,audio/mpeg,null,"null",262,"word_इक्यावन","इक्यावन","/audio/479.mp3",MP3
-480,audio/mpeg,null,"null",263,"word_बावन","बावन","/audio/480.mp3",MP3
-481,audio/mpeg,null,"null",107,"word_माँ","माँ","/audio/481.mp3",MP3
-482,audio/mpeg,null,"null",264,"word_तिरेपन","तिरेपन","/audio/482.mp3",MP3
-483,audio/mpeg,null,"null",271,"word_चौवन","चौवन","/audio/483.mp3",MP3
-484,audio/mpeg,null,"null",272,"word_पचपन","पचपन","/audio/484.mp3",MP3
-485,audio/mpeg,null,"null",277,"word_सत्तावन","सत्तावन","/audio/485.mp3",MP3
-486,audio/mpeg,null,"null",284,"word_अट्ठावन","अट्ठावन","/audio/486.mp3",MP3
-487,audio/mpeg,null,"null",287,"word_उनसठ","उनसठ","/audio/487.mp3",MP3
-488,audio/mpeg,null,"null",294,"word_इकसठ","इकसठ","/audio/488.mp3",MP3
-489,audio/mpeg,null,"null",183,"word_दिया","दिया","/audio/489.mp3",MP3
-490,audio/mpeg,null,"null",165,"word_उन्हें","उन्हें","/audio/490.mp3",MP3
-491,audio/mpeg,null,"null",132,"word_टूका","टूका","/audio/491.mp3",MP3
-492,audio/mpeg,null,"null",220,"word_उसने","उसने","/audio/492.mp3",MP3
-493,audio/mpeg,null,"null",202,"word_वाली","वाली","/audio/493.mp3",MP3
-494,audio/mpeg,null,"null",205,"word_अपनी","अपनी","/audio/494.mp3",MP3
-495,audio/mpeg,null,"null",196,"word_करने","करने","/audio/495.mp3",MP3
-496,audio/mpeg,null,"null",170,"word_बड़े","बड़े","/audio/496.mp3",MP3
-497,audio/mpeg,null,"null",158,"word_सबसे","सबसे","/audio/497.mp3",MP3
-498,audio/mpeg,null,"null",175,"word_हाँ","हाँ","/audio/498.mp3",MP3
-499,audio/mpeg,null,"null",177,"word_जाती","जाती","/audio/499.mp3",MP3
-500,audio/mpeg,null,"null",161,"word_पहले","पहले","/audio/500.mp3",MP3
-501,audio/mpeg,null,"null",159,"word_बात","बात","/audio/501.mp3",MP3
-502,audio/mpeg,null,"null",168,"word_अंदर","अंदर","/audio/502.mp3",MP3
-503,audio/mpeg,null,"null",169,"word_बाद","बाद","/audio/503.mp3",MP3
-504,audio/mpeg,null,"null",203,"word_लगा","लगा","/audio/504.mp3",MP3
-505,audio/mpeg,null,"null",238,"word_पेड़","पेड़","/audio/505.mp3",MP3
-506,audio/mpeg,null,"null",228,"word_संख्या","संख्या","/audio/506.mp3",MP3
-507,audio/mpeg,null,"null",57,"word_सकता","सकता","/audio/507.mp3",MP3
-508,audio/mpeg,null,"null",193,"word_किया","किया","/audio/508.mp3",MP3
-509,audio/mpeg,null,"null",279,"word_बच्चे","बच्चे","/audio/509.mp3",MP3
-510,audio/mpeg,null,"null",224,"word_मदद","मदद","/audio/510.mp3",MP3
-511,audio/mpeg,null,"null",176,"word_सभी","सभी","/audio/511.mp3",MP3
-512,audio/mpeg,null,"null",182,"word_जहाज़","जहाज़","/audio/512.mp3",MP3
-513,audio/mpeg,null,"null",110,"word_थीं","थीं","/audio/513.mp3",MP3
-514,audio/mpeg,null,"null",178,"word_पच्चा","पच्चा","/audio/514.mp3",MP3
-515,audio/mpeg,null,"null",181,"word_बीज","बीज","/audio/515.mp3",MP3
-516,audio/mpeg,null,"null",184,"word_कौन","कौन","/audio/516.mp3",MP3
-517,audio/mpeg,null,"null",185,"word_हवा","हवा","/audio/517.mp3",MP3
-518,audio/mpeg,null,"null",,"storybook-19-ch-2-par-1","...","/audio/518.mp3",MP3
-519,audio/mpeg,null,"null",164,"word_दोनों","दोनों","/audio/519.mp3",MP3
-520,audio/mpeg,null,"null",244,"word_लगी","लगी","/audio/520.mp3",MP3
-521,audio/mpeg,null,"null",207,"word_आ","आ","/audio/521.mp3",MP3
-522,audio/mpeg,null,"null",209,"word_उसकी","उसकी","/audio/522.mp3",MP3
-523,audio/mpeg,null,"null",217,"word_ठीक","ठीक","/audio/523.mp3",MP3
-524,audio/mpeg,null,"null",439,"word-id-439","तिरेसठ","/audio/524.mp3",MP3
-525,audio/mpeg,null,"null",440,"word-id-440","चौंसठ","/audio/525.mp3",MP3
-526,audio/mpeg,null,"null",441,"word-id-441","पैंसठ","/audio/526.mp3",MP3
-527,audio/mpeg,null,"null",442,"word-id-442","छयासठ","/audio/527.mp3",MP3
-528,audio/mpeg,null,"null",329,"word_ हिचकी"," हिचकी","/audio/528.mp3",MP3
-534,audio/mpeg,null,"null",445,"word-id-445","उनहत्तर","/audio/534.mp3",MP3
-535,audio/mpeg,null,"null",446,"word-id-446","सत्तर","/audio/535.mp3",MP3
-536,audio/mpeg,null,"null",328,"word_मच्छर","मच्छर","/audio/536.mp3",MP3
-537,audio/mpeg,null,"null",39,"word_ची","ची","/audio/537.mp3",MP3
-538,audio/mpeg,null,"null",190,"word_जाते","जाते","/audio/538.mp3",MP3
-539,audio/mpeg,null,"null",194,"word_अगर","अगर","/audio/539.mp3",MP3
-540,audio/mpeg,null,"null",212,"word_फट","फट","/audio/540.mp3",MP3
-541,audio/mpeg,null,"null",218,"word_ओर","ओर","/audio/541.mp3",MP3
-542,audio/mpeg,null,"null",232,"word_मेरा","मेरा","/audio/542.mp3",MP3
-543,audio/mpeg,null,"null",447,"word_चलना","चलना","/audio/543.mp3",MP3
-544,audio/mpeg,null,"null",448,"word-id-448","बेतरतीब","/audio/544.mp3",MP3
-545,audio/mpeg,null,"null",449,"word-id-449","विषमता","/audio/545.mp3",MP3
-546,audio/mpeg,null,"null",450,"word-id-450","नया","/audio/546.mp3",MP3
-547,audio/mpeg,null,"null",451,"word-id-451","नयासाल","/audio/547.mp3",MP3
-548,audio/mpeg,null,"null",452,"word-id-452","शेर","/audio/548.mp3",MP3
-549,audio/mpeg,null,"null",453,"word-id-453","काला","/audio/549.mp3",MP3
-550,audio/mpeg,null,"null",227,"word_गई","गई","/audio/550.mp3",MP3
-551,audio/mpeg,null,"null",147,"word_शून्य","शून्य","/audio/551.mp3",MP3
+1,audio/wav,null,"null",,"a","","/audio/1.wav",WAV
+244,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_0","","/audio/244.wav",WAV
+245,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_1","","/audio/245.wav",WAV
+246,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_2","","/audio/246.wav",WAV
+247,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_3","","/audio/247.wav",WAV
+248,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_4","","/audio/248.wav",WAV
+249,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_5","","/audio/249.wav",WAV
+250,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_6","","/audio/250.wav",WAV
+251,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_7","","/audio/251.wav",WAV
+252,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_8","","/audio/252.wav",WAV
+253,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"digit_9","","/audio/253.wav",WAV
+254,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"divided_by","","/audio/254.wav",WAV
+255,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"equals","","/audio/255.wav",WAV
+256,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"minus","","/audio/256.wav",WAV
+257,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"multiplied_by","","/audio/257.wav",WAV
+258,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"plus","","/audio/258.wav",WAV
+295,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_g","","/audio/295.wav",WAV
+294,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_f","","/audio/294.wav",WAV
+292,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_d","","/audio/292.wav",WAV
+293,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_e","","/audio/293.wav",WAV
+291,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_c","","/audio/291.wav",WAV
+290,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_b","","/audio/290.wav",WAV
+289,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_a","","/audio/289.wav",WAV
+296,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_h","","/audio/296.wav",WAV
+297,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_i","","/audio/297.wav",WAV
+298,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_j","","/audio/298.wav",WAV
+299,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_k","","/audio/299.wav",WAV
+300,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_l","","/audio/300.wav",WAV
+301,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_m","","/audio/301.wav",WAV
+302,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_n","","/audio/302.wav",WAV
+303,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_o","","/audio/303.wav",WAV
+304,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_p","","/audio/304.wav",WAV
+305,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_q","","/audio/305.wav",WAV
+306,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_r","","/audio/306.wav",WAV
+307,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_s","","/audio/307.wav",WAV
+308,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_t","","/audio/308.wav",WAV
+309,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_u","","/audio/309.wav",WAV
+310,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_v","","/audio/310.wav",WAV
+311,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_w","","/audio/311.wav",WAV
+361,audio/mp3,BSD_2_CLAUSE,"null",,"ice cream","","/audio/361.mp3",MP3
+362,audio/mp3,BSD_2_CLAUSE,"null",,"incredible","","/audio/362.mp3",MP3
+312,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_x","","/audio/312.wav",WAV
+313,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_y","","/audio/313.wav",WAV
+314,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_name_z","","/audio/314.wav",WAV
+315,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_a","","/audio/315.wav",WAV
+316,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ai","","/audio/316.wav",WAV
+317,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ar","","/audio/317.wav",WAV
+318,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_b","","/audio/318.wav",WAV
+319,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_c","","/audio/319.wav",WAV
+320,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ch","","/audio/320.wav",WAV
+321,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_d","","/audio/321.wav",WAV
+322,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_e","","/audio/322.wav",WAV
+323,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ee","","/audio/323.wav",WAV
+324,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_er","","/audio/324.wav",WAV
+325,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_f","","/audio/325.wav",WAV
+326,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_g","","/audio/326.wav",WAV
+327,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_h","","/audio/327.wav",WAV
+328,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_i","","/audio/328.wav",WAV
+329,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ie","","/audio/329.wav",WAV
+330,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_j","","/audio/330.wav",WAV
+331,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_k","","/audio/331.wav",WAV
+332,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_l","","/audio/332.wav",WAV
+333,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_m","","/audio/333.wav",WAV
+334,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_n","","/audio/334.wav",WAV
+335,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ng","","/audio/335.wav",WAV
+336,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_o","","/audio/336.wav",WAV
+337,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_oa","","/audio/337.wav",WAV
+338,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_oi","","/audio/338.wav",WAV
+339,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_oo","","/audio/339.wav",WAV
+340,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_oo_u","","/audio/340.wav",WAV
+341,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_or","","/audio/341.wav",WAV
+342,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ou","","/audio/342.wav",WAV
+343,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_p","","/audio/343.wav",WAV
+344,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_qu","","/audio/344.wav",WAV
+345,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_r","","/audio/345.wav",WAV
+346,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_s","","/audio/346.wav",WAV
+347,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_sh","","/audio/347.wav",WAV
+348,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_t","","/audio/348.wav",WAV
+349,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_th","","/audio/349.wav",WAV
+350,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_th_t","","/audio/350.wav",WAV
+351,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_u","","/audio/351.wav",WAV
+352,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_ue","","/audio/352.wav",WAV
+353,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_v","","/audio/353.wav",WAV
+354,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_w","","/audio/354.wav",WAV
+355,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_x","","/audio/355.wav",WAV
+356,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_y","","/audio/356.wav",WAV
+357,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"letter_sound_z","","/audio/357.wav",WAV
+550,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_ten","","/audio/550.wav",WAV
+551,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_eleven","","/audio/551.wav",WAV
+552,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_twelve","","/audio/552.wav",WAV
+553,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_thirteen","","/audio/553.wav",WAV
+554,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_fourteen","","/audio/554.wav",WAV
+555,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_fifteen","","/audio/555.wav",WAV
+556,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_sixteen","","/audio/556.wav",WAV
+557,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_seventeen","","/audio/557.wav",WAV
+558,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_eighteen","","/audio/558.wav",WAV
+559,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_nineteen","","/audio/559.wav",WAV
+560,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"number_twenty","","/audio/560.wav",WAV
+583,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"goat","","/audio/583.wav",WAV
+627,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"him","","/audio/627.wav",WAV
+628,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"in","","/audio/628.wav",WAV
+629,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"it","","/audio/629.wav",WAV
+584,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",98,"dog","dog","/audio/584.wav",WAV
+630,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"not","","/audio/630.wav",WAV
+585,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"play","","/audio/585.wav",WAV
+621,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"oil","","/audio/621.wav",WAV
+586,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",391,"day","day","/audio/586.wav",WAV
+631,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"on","","/audio/631.wav",WAV
+587,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"house","","/audio/587.wav",WAV
+625,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",26,"can","can","/audio/625.wav",WAV
+626,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"for","","/audio/626.wav",WAV
+588,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"pig","","/audio/588.wav",WAV
+622,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"owl","","/audio/622.wav",WAV
+589,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"look","","/audio/589.wav",WAV
+623,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",22,"and","and","/audio/623.wav",WAV
+624,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",111,"at","at","/audio/624.wav",WAV
+590,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"see","","/audio/590.wav",WAV
+618,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",58,"ant","ant","/audio/618.wav",WAV
+619,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",57,"apple","apple","/audio/619.wav",WAV
+620,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"ear","","/audio/620.wav",WAV
+591,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",390,"dad","dad","/audio/591.wav",WAV
+632,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"us","","/audio/632.wav",WAV
+633,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"went","","/audio/633.wav",WAV
+592,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"zero","","/audio/592.wav",WAV
+593,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"one","","/audio/593.wav",WAV
+594,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"two","","/audio/594.wav",WAV
+595,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"three","","/audio/595.wav",WAV
+596,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"four","","/audio/596.wav",WAV
+597,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"five","","/audio/597.wav",WAV
+598,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"six","","/audio/598.wav",WAV
+599,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"seven","","/audio/599.wav",WAV
+600,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"eight","","/audio/600.wav",WAV
+601,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"nine","","/audio/601.wav",WAV
+602,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"ten","","/audio/602.wav",WAV
+603,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"eleven","","/audio/603.wav",WAV
+604,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"twelve","","/audio/604.wav",WAV
+605,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"thirteen","","/audio/605.wav",WAV
+606,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"fourteen","","/audio/606.wav",WAV
+607,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"fifteen","","/audio/607.wav",WAV
+608,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"sixteen","","/audio/608.wav",WAV
+609,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"seventeen","","/audio/609.wav",WAV
+610,audio/wav,CREATIVE_COMMONS_CC_BY,"null",,"eighteen","","/audio/610.wav",WAV
+611,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"nineteen","","/audio/611.wav",WAV
+612,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"twenty","","/audio/612.wav",WAV
+613,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",24,"big","big","/audio/613.wav",WAV
+634,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_i","","/audio/634.wav",WAV
+635,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_t","","/audio/635.wav",WAV
+636,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_ð","","/audio/636.wav",WAV
+637,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_n","","/audio/637.wav",WAV
+638,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_ɛ","","/audio/638.wav",WAV
+639,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_æ","","/audio/639.wav",WAV
+640,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_ɔ","","/audio/640.wav",WAV
+641,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_h","","/audio/641.wav",WAV
+642,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_s","","/audio/642.wav",WAV
+643,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_ɪ","","/audio/643.wav",WAV
+644,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_r","","/audio/644.wav",WAV
+645,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_l","","/audio/645.wav",WAV
+646,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_j","","/audio/646.wav",WAV
+647,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_ʌ","","/audio/647.wav",WAV
+648,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_m","","/audio/648.wav",WAV
+649,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_g","","/audio/649.wav",WAV
+650,audio/wav,CREATIVE_COMMONS_CC_BY,"http://eng.elimu.ai",,"allophone_k","","/audio/650.wav",WAV
+651,audio/mpeg,null,"null",21,"word-21","a","/audio/651.mp3",MP3
+652,audio/mpeg,null,"null",60,"word-60","africa","/audio/652.mp3",MP3
+653,audio/mpeg,null,"null",108,"word-108","all","/audio/653.mp3",MP3
+654,audio/mpeg,null,"null",109,"word-109","am","/audio/654.mp3",MP3
+655,audio/mpeg,null,"null",59,"word-59","animals","/audio/655.mp3",MP3
+656,audio/mpeg,null,"null",50,"word-50","the","/audio/656.mp3",MP3
+657,audio/mpeg,null,"null",51,"word-51","to","/audio/657.mp3",MP3
+713,audio/mpeg,null,"null",53,"word_we","we","/audio/713.mp3",MP3
+714,audio/mpeg,null,"null",145,"word_this","this","/audio/714.mp3",MP3
+659,audio/mpeg,null,"null",36,"word-36","is","/audio/659.mp3",MP3
+660,audio/mpeg,null,"null",622,"word-622","small","/audio/660.mp3",MP3
+661,audio/mpeg,null,"null",48,"word-48","said","/audio/661.mp3",MP3
+662,audio/mpeg,null,"null",,"storybook-62-ch-2-par-1","Look how high I can","/audio/662.mp3",MP3
+663,audio/mpeg,null,"null",,"storybook-67-ch-6-par-1","Little Canary eats until he feels full. Then, he looks up …. Oh, where is his flock? How will he catch up? The song mother taught him! He must try to recall it.","/audio/663.mp3",MP3
+664,audio/mpeg,null,"null",112,"word_ate","ate","/audio/664.mp3",MP3
+665,audio/mpeg,null,"null",61,"word_avocado","avocado","/audio/665.mp3",MP3
+666,audio/mpeg,null,"null",23,"word_away","away","/audio/666.mp3",MP3
+667,audio/mpeg,null,"null",65,"word_baby","baby","/audio/667.mp3",MP3
+668,audio/mpeg,null,"null",63,"word_ball","ball","/audio/668.mp3",MP3
+669,audio/mpeg,null,"null",706,"word-id-706","birds","/audio/669.mp3",MP3
+670,audio/mpeg,null,"null",64,"word_banana","banana","/audio/670.mp3",MP3
+671,audio/mpeg,null,"null",617,"word_bat","bat","/audio/671.mp3",MP3
+672,audio/mpeg,null,"null",113,"word_be","be","/audio/672.mp3",MP3
+673,audio/mpeg,null,"null",21,"a","a","/audio/673.mp3",MP3
+674,audio/mpeg,null,"null",60,"africa","africa","/audio/674.mp3",MP3
+675,audio/mpeg,null,"null",56,"word_you","you","/audio/675.mp3",MP3
+676,audio/mpeg,null,"null",66,"word_bed","bed","/audio/676.mp3",MP3
+677,audio/mpeg,null,"null",375,"word_bee","bee","/audio/677.mp3",MP3
+678,audio/mpeg,null,"null",670,"word_fly","fly","/audio/678.mp3",MP3
+679,audio/mpeg,null,"null",67,"word_bird","bird","/audio/679.mp3",MP3
+680,audio/mpeg,null,"null",114,"word_black","black","/audio/680.mp3",MP3
+681,audio/mpeg,null,"null",25,"word_blue","blue","/audio/681.mp3",MP3
+682,audio/mpeg,null,"null",376,"word_boat","boat","/audio/682.mp3",MP3
+683,audio/mpeg,null,"null",377,"word_boil","boil","/audio/683.mp3",MP3
+684,audio/mpeg,null,"null",378,"word_book","book","/audio/684.mp3",MP3
+685,audio/mpeg,null,"null",379,"word_box","box","/audio/685.mp3",MP3
+686,audio/mpeg,null,"null",62,"word_boy","boy","/audio/686.mp3",MP3
+687,audio/mpeg,null,"null",68,"word_brilliant","brilliant","/audio/687.mp3",MP3
+688,audio/mpeg,null,"null",106,"word_brother","brother","/audio/688.mp3",MP3
+689,audio/mpeg,null,"null",107,"word_sister","sister","/audio/689.mp3",MP3
+690,audio/mpeg,null,"null",699,"word_fifty","fifty","/audio/690.mp3",MP3
+691,audio/mpeg,null,"null",115,"word_brown","brown","/audio/691.mp3",MP3
+692,audio/mpeg,null,"null",117,"word_came","came","/audio/692.mp3",MP3
+693,audio/mpeg,null,"null",73,"word_candle","candle","/audio/693.mp3",MP3
+694,audio/mpeg,null,"null",380,"word_cap","cap","/audio/694.mp3",MP3
+695,audio/mpeg,null,"null",70,"word_car","car","/audio/695.mp3",MP3
+696,audio/mpeg,null,"null",69,"word_cat","cat","/audio/696.mp3",MP3
+697,audio/mpeg,null,"null",381,"word_chick","chick","/audio/697.mp3",MP3
+698,audio/mpeg,null,"null",382,"word_chin","chin","/audio/698.mp3",MP3
+699,audio/mpeg,null,"null",620,"word_circle","circle","/audio/699.mp3",MP3
+700,audio/mpeg,null,"null",383,"word_cliff","cliff","/audio/700.mp3",MP3
+701,audio/mpeg,null,"null",384,"word_cloth","cloth","/audio/701.mp3",MP3
+702,audio/mpeg,null,"null",673,"word_cloud","cloud","/audio/702.mp3",MP3
+703,audio/mpeg,null,"null",385,"word_clue","clue","/audio/703.mp3",MP3
+704,audio/mpeg,null,"null",71,"word_coconut","coconut","/audio/704.mp3",MP3
+705,audio/mpeg,null,"null",386,"word_coin","coin","/audio/705.mp3",MP3
+706,audio/mpeg,null,"null",27,"word_come","come","/audio/706.mp3",MP3
+707,audio/mpeg,null,"null",74,"word_computer","computer","/audio/707.mp3",MP3
+708,audio/mpeg,null,"null",,"storybook-73-ch-6-par-1","Will they play with me? I am so different from them.I should try.","/audio/708.mp3",MP3
+709,audio/mpeg,null,"null",144,"word_they","they","/audio/709.mp3",MP3
+710,audio/mpeg,null,"null",,"storybook-74-ch-13-par-1","“Don’t worry," Reta says. "Our teacher will have something that can help.”","/audio/710.mp3",MP3
+711,audio/mpeg,null,"null",142,"word_that","that","/audio/711.mp3",MP3
+712,audio/mpeg,null,"null",1,"word_zero","zero","/audio/712.mp3",MP3
+715,audio/mpeg,null,"null",,"storybook-76-ch-6-par-1","Matsa is surprised. She tells Ali, "You are so good now. You can make all the stars you want." Ali smiles and is happy to have his new stars","/audio/715.mp3",MP3
+716,audio/mpeg,null,"null",,"storybook-76-ch-7-par-1",""Thank you so much for teaching me how to make my own stars!" Ali tells Matsa","/audio/716.mp3",MP3
+717,audio/mpeg,null,"null",707,"word-id-707","stars","/audio/717.mp3",MP3
+718,audio/mpeg,null,"null",708,"word-id-708","his","/audio/718.mp3",MP3
+719,audio/mpeg,null,"null",50,"the","the","/audio/719.mp3",MP3
