@@ -1,96 +1,76 @@
 package ai.elimu.web.content;
 
-import ai.elimu.dao.AudioContributionEventDao;
-import java.security.Principal;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import org.apache.logging.log4j.Logger;
 import ai.elimu.dao.AudioDao;
-import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
-import ai.elimu.dao.StoryBookContributionEventDao;
+import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.VideoDao;
-import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.contributor.Contributor;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import java.security.Principal;
+import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content")
+@RequiredArgsConstructor
 public class MainContentController {
 
-    private final Logger logger = LogManager.getLogger();
+  private final Logger logger = LogManager.getLogger();
 
-    @Autowired
-    private LetterDao letterDao;
+  private final LetterDao letterDao;
 
-    @Autowired
-    private SoundDao soundDao;
+  private final SoundDao soundDao;
 
-    @Autowired
-    private LetterSoundDao letterSoundDao;
+  private final LetterSoundDao letterSoundDao;
 
-    @Autowired
-    private NumberDao numberDao;
+  private final NumberDao numberDao;
 
-    @Autowired
-    private SyllableDao syllableDao;
+  private final SyllableDao syllableDao;
 
-    @Autowired
-    private WordDao wordDao;
+  private final WordDao wordDao;
 
-    @Autowired
-    private EmojiDao emojiDao;
+  private final EmojiDao emojiDao;
 
-    @Autowired
-    private StoryBookDao storyBookDao;
+  private final StoryBookDao storyBookDao;
 
-    @Autowired
-    private AudioDao audioDao;
+  private final AudioDao audioDao;
 
-    @Autowired
-    private ImageDao imageDao;
+  private final ImageDao imageDao;
 
-    @Autowired
-    private VideoDao videoDao;
+  private final VideoDao videoDao;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(
-            HttpServletRequest request,
-            HttpSession session,
-            Principal principal,
-            Model model) {
-        logger.info("handleRequest");
+  @RequestMapping(method = RequestMethod.GET)
+  public String handleRequest(
+      HttpServletRequest request,
+      HttpSession session,
+      Principal principal,
+      Model model) {
+    logger.info("handleRequest");
 
-        model.addAttribute("letterCount", letterDao.readCount());
-        model.addAttribute("soundCount", soundDao.readCount());
-        model.addAttribute("letterSoundCount", letterSoundDao.readCount());
-        model.addAttribute("numberCount", numberDao.readCount());
-        model.addAttribute("syllableCount", syllableDao.readCount());
-        model.addAttribute("wordCount", wordDao.readCount());
-        model.addAttribute("emojiCount", emojiDao.readCount());
-        model.addAttribute("storyBookCount", storyBookDao.readCount());
-        model.addAttribute("audioCount", audioDao.readCount());
-        model.addAttribute("imageCount", imageDao.readCount());
-        model.addAttribute("videoCount", videoDao.readCount());
+    model.addAttribute("letterCount", letterDao.readCount());
+    model.addAttribute("soundCount", soundDao.readCount());
+    model.addAttribute("letterSoundCount", letterSoundDao.readCount());
+    model.addAttribute("numberCount", numberDao.readCount());
+    model.addAttribute("syllableCount", syllableDao.readCount());
+    model.addAttribute("wordCount", wordDao.readCount());
+    model.addAttribute("emojiCount", emojiDao.readCount());
+    model.addAttribute("storyBookCount", storyBookDao.readCount());
+    model.addAttribute("audioCount", audioDao.readCount());
+    model.addAttribute("imageCount", imageDao.readCount());
+    model.addAttribute("videoCount", videoDao.readCount());
 
-        return "content/main";
-    }
+    return "content/main";
+  }
 }
