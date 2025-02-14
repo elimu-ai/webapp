@@ -1,6 +1,8 @@
 package ai.elimu.web;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,68 +21,72 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
 public class SignOnControllerWeb3Test {
-    
-    @Autowired
-    private SignOnControllerWeb3 signOnControllerWeb3;
-    
-    private MockMvc mockMvc;
-    
-    @BeforeEach
-    public void setup() {
-        assertNotNull(signOnControllerWeb3);
-        mockMvc = MockMvcBuilders.standaloneSetup(signOnControllerWeb3).build();
-        assertNotNull(mockMvc);
-    }
-    
-    @Test
-    public void testHandleGetRequest() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/sign-on/web3");
-        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-        assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
-        assertEquals("sign-on-web3", mvcResult.getModelAndView().getViewName());
-    }
-    
-    @Test
-    public void testHandleAuthorization_missingParameters() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/sign-on/web3")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-        assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
-        assertNull(mvcResult.getModelAndView());
-    }
-    
-    @Test
-    public void testHandleAuthorization_emptyParameters() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/sign-on/web3")
-                .param("address", "")
-                .param("signature", "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-        assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
-        assertEquals("redirect:/sign-on/web3?error=Missing address", mvcResult.getModelAndView().getViewName());
-        
-        requestBuilder = MockMvcRequestBuilders
-                .post("/sign-on/web3")
-                .param("address", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
-                .param("signature", "")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-        mvcResult = mockMvc.perform(requestBuilder).andReturn();
-        assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
-        assertEquals("redirect:/sign-on/web3?error=Missing signature", mvcResult.getModelAndView().getViewName());
-    }
-    
-    @Test
-    public void testHandleAuthorization_invalidSignature() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/sign-on/web3")
-                .param("address", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
-                .param("signature", "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-        assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
-        assertEquals("redirect:/sign-on/web3?error=Invalid signature", mvcResult.getModelAndView().getViewName());
-    }
+
+  private final SignOnControllerWeb3 signOnControllerWeb3;
+
+  @Autowired
+  public SignOnControllerWeb3Test(SignOnControllerWeb3 signOnControllerWeb3) {
+    this.signOnControllerWeb3 = signOnControllerWeb3;
+  }
+
+  private MockMvc mockMvc;
+
+  @BeforeEach
+  public void setup() {
+    assertNotNull(signOnControllerWeb3);
+    mockMvc = MockMvcBuilders.standaloneSetup(signOnControllerWeb3).build();
+    assertNotNull(mockMvc);
+  }
+
+  @Test
+  public void testHandleGetRequest() throws Exception {
+    RequestBuilder requestBuilder = MockMvcRequestBuilders
+        .get("/sign-on/web3");
+    MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+    assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
+    assertEquals("sign-on-web3", mvcResult.getModelAndView().getViewName());
+  }
+
+  @Test
+  public void testHandleAuthorization_missingParameters() throws Exception {
+    RequestBuilder requestBuilder = MockMvcRequestBuilders
+        .post("/sign-on/web3")
+        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+    MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+    assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
+    assertNull(mvcResult.getModelAndView());
+  }
+
+  @Test
+  public void testHandleAuthorization_emptyParameters() throws Exception {
+    RequestBuilder requestBuilder = MockMvcRequestBuilders
+        .post("/sign-on/web3")
+        .param("address", "")
+        .param("signature", "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400")
+        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+    MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+    assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
+    assertEquals("redirect:/sign-on/web3?error=Missing address", mvcResult.getModelAndView().getViewName());
+
+    requestBuilder = MockMvcRequestBuilders
+        .post("/sign-on/web3")
+        .param("address", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
+        .param("signature", "")
+        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+    mvcResult = mockMvc.perform(requestBuilder).andReturn();
+    assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
+    assertEquals("redirect:/sign-on/web3?error=Missing signature", mvcResult.getModelAndView().getViewName());
+  }
+
+  @Test
+  public void testHandleAuthorization_invalidSignature() throws Exception {
+    RequestBuilder requestBuilder = MockMvcRequestBuilders
+        .post("/sign-on/web3")
+        .param("address", "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
+        .param("signature", "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400")
+        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+    MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+    assertEquals(HttpStatus.MOVED_TEMPORARILY.value(), mvcResult.getResponse().getStatus());
+    assertEquals("redirect:/sign-on/web3?error=Invalid signature", mvcResult.getModelAndView().getViewName());
+  }
 }
