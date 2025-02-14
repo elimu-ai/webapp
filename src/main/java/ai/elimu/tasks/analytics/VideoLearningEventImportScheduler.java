@@ -1,26 +1,23 @@
 package ai.elimu.tasks.analytics;
 
-import java.io.File;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
-
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.model.analytics.VideoLearningEvent;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.analytics.VideoLearningEventsRestController;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
+import java.io.File;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 /**
- * Extracts learning events from CSV files previously received by the 
- * {@link VideoLearningEventsRestController}, and imports them into the database.
- * <p />
- * 
+ * Extracts learning events from CSV files previously received by the {@link VideoLearningEventsRestController}, and imports them into the database.
+ * <p/>
+ * <p>
  * Expected folder structure:
  * <pre>
  * ├── lang-ENG
@@ -43,60 +40,60 @@ import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
  * </pre>
  */
 @Service
+@RequiredArgsConstructor
 public class VideoLearningEventImportScheduler {
 
-    private Logger logger = LogManager.getLogger();
-    
-    @Autowired
-    private VideoLearningEventDao videoLearningEventDao;
+  private Logger logger = LogManager.getLogger();
 
-    @Scheduled(cron="00 30 * * * *") // Half past every hour
-    public synchronized void execute() {
-        logger.info("execute");
+  private final VideoLearningEventDao videoLearningEventDao;
 
-        // Lookup CSV files stored on the filesystem
-        File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
-        File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
-        File analyticsDir = new File(languageDir, "analytics");
-        logger.info("analyticsDir: " + analyticsDir);
-        analyticsDir.mkdirs();
-        for (File analyticsDirFile : analyticsDir.listFiles()) {
-            if (analyticsDirFile.getName().startsWith("android-id-")) {
-                File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
-                for (File androidIdDirFile : androidIdDir.listFiles()) {
-                    if (androidIdDirFile.getName().startsWith("version-code-")) {
-                        File versionCodeDir = new File(androidIdDir, androidIdDirFile.getName());
-                        for (File versionCodeDirFile : versionCodeDir.listFiles()) {
-                            if (versionCodeDirFile.getName().equals("video-learning-events")) {
-                                File videoLearningEventsDir = new File(versionCodeDir, versionCodeDirFile.getName());
-                                for (File csvFile : videoLearningEventsDir.listFiles()) {
-                                    logger.info("csvFile: " + csvFile);
+  @Scheduled(cron = "00 30 * * * *") // Half past every hour
+  public synchronized void execute() {
+    logger.info("execute");
 
-                                    // Convert from CSV to Java
-                                    List<VideoLearningEvent> events = CsvAnalyticsExtractionHelper.extractVideoLearningEvents(csvFile);
-                                    logger.info("events.size(): " + events.size());
+    // Lookup CSV files stored on the filesystem
+    File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
+    File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
+    File analyticsDir = new File(languageDir, "analytics");
+    logger.info("analyticsDir: " + analyticsDir);
+    analyticsDir.mkdirs();
+    for (File analyticsDirFile : analyticsDir.listFiles()) {
+      if (analyticsDirFile.getName().startsWith("android-id-")) {
+        File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
+        for (File androidIdDirFile : androidIdDir.listFiles()) {
+          if (androidIdDirFile.getName().startsWith("version-code-")) {
+            File versionCodeDir = new File(androidIdDir, androidIdDirFile.getName());
+            for (File versionCodeDirFile : versionCodeDir.listFiles()) {
+              if (versionCodeDirFile.getName().equals("video-learning-events")) {
+                File videoLearningEventsDir = new File(versionCodeDir, versionCodeDirFile.getName());
+                for (File csvFile : videoLearningEventsDir.listFiles()) {
+                  logger.info("csvFile: " + csvFile);
 
-                                    // Store in database
-                                    for (VideoLearningEvent event : events) {
-                                        // Check if the event has already been stored in the database
-                                        VideoLearningEvent existingVideoLearningEvent = videoLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName(), event.getVideoTitle());
-                                        if (existingVideoLearningEvent != null) {
-                                            logger.warn("The event has already been stored in the database. Skipping data import.");
-                                            continue;
-                                        }
+                  // Convert from CSV to Java
+                  List<VideoLearningEvent> events = CsvAnalyticsExtractionHelper.extractVideoLearningEvents(csvFile);
+                  logger.info("events.size(): " + events.size());
 
-                                        // Store the event in the database
-                                        videoLearningEventDao.create(event);
-                                        logger.info("Stored event in database with ID " + event.getId());
-                                    }
-                                }
-                            }
-                        }
+                  // Store in database
+                  for (VideoLearningEvent event : events) {
+                    // Check if the event has already been stored in the database
+                    VideoLearningEvent existingVideoLearningEvent = videoLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName(), event.getVideoTitle());
+                    if (existingVideoLearningEvent != null) {
+                      logger.warn("The event has already been stored in the database. Skipping data import.");
+                      continue;
                     }
-                }
-            }
-        }
 
-        logger.info("execute complete");
+                    // Store the event in the database
+                    videoLearningEventDao.create(event);
+                    logger.info("Stored event in database with ID " + event.getId());
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+
+    logger.info("execute complete");
+  }
 }
