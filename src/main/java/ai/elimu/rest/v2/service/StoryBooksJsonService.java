@@ -14,74 +14,71 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
  * Used as layer between Controllers and DAOs in order to enable usage of caching.
- * <p />
- * Spring caching feature works over AOP proxies, thus internal calls to cached methods don't work. That's why this 
- * intermediate service is used. See https://stackoverflow.com/a/48168762
+ * <p/>
+ * Spring caching feature works over AOP proxies, thus internal calls to cached methods don't work. That's why this intermediate service is used. See https://stackoverflow.com/a/48168762
  */
 @Service
+@RequiredArgsConstructor
 public class StoryBooksJsonService {
+
+  private Logger logger = LogManager.getLogger();
     
-    private Logger logger = LogManager.getLogger();
-    
-    @Autowired
-    private StoryBookDao storyBookDao;
-    
-    @Autowired
-    private StoryBookChapterDao storyBookChapterDao;
-    
-    @Autowired
-    private StoryBookParagraphDao storyBookParagraphDao;
-    
-    @Cacheable("storyBooks")
-    public JSONArray getStoryBooksJSONArray() {
-        logger.info("getStoryBooksJSONArray");
-        
-        Date dateStart = new Date();
-        
-        JSONArray storyBooksJsonArray = new JSONArray();
-        for (StoryBook storyBook : storyBookDao.readAllOrdered()) {
-            StoryBookGson storyBookGson = JpaToGsonConverter.getStoryBookGson(storyBook);
-            
-            // Add chapters
-            List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
-            for (StoryBookChapter storyBookChapter : storyBookChapterDao.readAll(storyBook)) {
-                StoryBookChapterGson storyBookChapterGson = JpaToGsonConverter.getStoryBookChapterGson(storyBookChapter);
-                
-                // Add paragraphs
-                List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
-                for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
-                    StoryBookParagraphGson storyBookParagraphGson = JpaToGsonConverter.getStoryBookParagraphGson(storyBookParagraph);
-                    storyBookParagraphGsons.add(storyBookParagraphGson);
-                }
-                storyBookChapterGson.setStoryBookParagraphs(storyBookParagraphGsons);
-                
-                storyBookChapterGsons.add(storyBookChapterGson);
-            }
-            storyBookGson.setStoryBookChapters(storyBookChapterGsons);
-            
-            String json = new Gson().toJson(storyBookGson);
-            storyBooksJsonArray.put(new JSONObject(json));
+  private final StoryBookDao storyBookDao;
+
+  private final StoryBookChapterDao storyBookChapterDao;
+
+  private final StoryBookParagraphDao storyBookParagraphDao;
+
+  @Cacheable("storyBooks")
+  public JSONArray getStoryBooksJSONArray() {
+    logger.info("getStoryBooksJSONArray");
+
+    Date dateStart = new Date();
+
+    JSONArray storyBooksJsonArray = new JSONArray();
+    for (StoryBook storyBook : storyBookDao.readAllOrdered()) {
+      StoryBookGson storyBookGson = JpaToGsonConverter.getStoryBookGson(storyBook);
+
+      // Add chapters
+      List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
+      for (StoryBookChapter storyBookChapter : storyBookChapterDao.readAll(storyBook)) {
+        StoryBookChapterGson storyBookChapterGson = JpaToGsonConverter.getStoryBookChapterGson(storyBookChapter);
+
+        // Add paragraphs
+        List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
+        for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
+          StoryBookParagraphGson storyBookParagraphGson = JpaToGsonConverter.getStoryBookParagraphGson(storyBookParagraph);
+          storyBookParagraphGsons.add(storyBookParagraphGson);
         }
-        
-        Date dateEnd = new Date();
-        logger.info("getStoryBooksJSONArray duration: " + (dateEnd.getTime() - dateStart.getTime()) + " ms");
-        
-        return storyBooksJsonArray;
+        storyBookChapterGson.setStoryBookParagraphs(storyBookParagraphGsons);
+
+        storyBookChapterGsons.add(storyBookChapterGson);
+      }
+      storyBookGson.setStoryBookChapters(storyBookChapterGsons);
+
+      String json = new Gson().toJson(storyBookGson);
+      storyBooksJsonArray.put(new JSONObject(json));
     }
-    
-    @CacheEvict("storyBooks")
-    public void refreshStoryBooksJSONArray() {
-        logger.info("refreshStoryBooksJSONArray");
-    }
+
+    Date dateEnd = new Date();
+    logger.info("getStoryBooksJSONArray duration: " + (dateEnd.getTime() - dateStart.getTime()) + " ms");
+
+    return storyBooksJsonArray;
+  }
+
+  @CacheEvict("storyBooks")
+  public void refreshStoryBooksJSONArray() {
+    logger.info("refreshStoryBooksJSONArray");
+  }
 }
