@@ -14,10 +14,10 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,18 +25,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/content/letter-sound-peer-review-event/create")
+@RequiredArgsConstructor
 public class LetterSoundPeerReviewEventCreateController {
 
   private final Logger logger = LogManager.getLogger();
 
-  @Autowired
-  private LetterSoundContributionEventDao letterSoundContributionEventDao;
+  private final LetterSoundContributionEventDao letterSoundContributionEventDao;
 
-  @Autowired
-  private LetterSoundPeerReviewEventDao letterSoundPeerReviewEventDao;
+  private final LetterSoundPeerReviewEventDao letterSoundPeerReviewEventDao;
 
-  @Autowired
-  private LetterSoundDao letterSoundDao;
+  private final LetterSoundDao letterSoundDao;
 
   @RequestMapping(method = RequestMethod.POST)
   public String handleSubmit(

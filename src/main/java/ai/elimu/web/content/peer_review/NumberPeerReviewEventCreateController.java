@@ -12,10 +12,10 @@ import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,18 +23,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/content/number-peer-review-event/create")
+@RequiredArgsConstructor
 public class NumberPeerReviewEventCreateController {
 
   private final Logger logger = LogManager.getLogger();
 
-  @Autowired
-  private NumberContributionEventDao numberContributionEventDao;
+  private final NumberContributionEventDao numberContributionEventDao;
 
-  @Autowired
-  private NumberPeerReviewEventDao numberPeerReviewEventDao;
+  private final NumberPeerReviewEventDao numberPeerReviewEventDao;
 
-  @Autowired
-  private NumberDao numberDao;
+  private final NumberDao numberDao;
 
   @RequestMapping(method = RequestMethod.POST)
   public String handleSubmit(
