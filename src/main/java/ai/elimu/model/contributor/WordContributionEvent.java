@@ -4,19 +4,15 @@ import ai.elimu.model.content.Word;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class WordContributionEvent extends ContributionEvent {
-    
-    @NotNull
-    @ManyToOne
-    private Word word;
 
-    public Word getWord() {
-        return word;
-    }
-
-    public void setWord(Word word) {
-        this.word = word;
-    }
+  @NotNull
+  @ManyToOne
+  private Word word;
 }

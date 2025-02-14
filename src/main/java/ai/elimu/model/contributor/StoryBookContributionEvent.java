@@ -6,47 +6,27 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class StoryBookContributionEvent extends ContributionEvent {
-    
-    @NotNull
-    @ManyToOne
-    private StoryBook storyBook;
-    
-    /**
-     * This text will only be set if a {@link StoryBookParagraph}'s text is edited.
-     */
-    @Column(length = 1000)
-    private String paragraphTextBefore;
-    
-    /**
-     * This text will only be set if a {@link StoryBookParagraph}'s text is edited.
-     */
-    @Column(length = 1000)
-    private String paragraphTextAfter;
 
-    public StoryBook getStoryBook() {
-        return storyBook;
-    }
+  @NotNull
+  @ManyToOne
+  private StoryBook storyBook;
 
-    public void setStoryBook(StoryBook storyBook) {
-        this.storyBook = storyBook;
-    }
+  /**
+   * This text will only be set if a {@link StoryBookParagraph}'s text is edited.
+   */
+  @Column(length = 1000)
+  private String paragraphTextBefore;
 
-    public String getParagraphTextBefore() {
-        return paragraphTextBefore;
-    }
-
-    public void setParagraphTextBefore(String paragraphTextBefore) {
-        this.paragraphTextBefore = paragraphTextBefore;
-    }
-
-    public String getParagraphTextAfter() {
-        return paragraphTextAfter;
-    }
-
-    public void setParagraphTextAfter(String paragraphTextAfter) {
-        this.paragraphTextAfter = paragraphTextAfter;
-    }
+  /**
+   * This text will only be set if a {@link StoryBookParagraph}'s text is edited.
+   */
+  @Column(length = 1000)
+  private String paragraphTextAfter;
 }
