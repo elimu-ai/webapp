@@ -1,65 +1,36 @@
 package ai.elimu.model.content;
 
-import jakarta.persistence.Entity;
 import ai.elimu.model.BaseEntity;
-import java.util.List;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OrderColumn;
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class StoryBookParagraph extends BaseEntity {
-    
-    @ManyToOne
-    private StoryBookChapter storyBookChapter;
-    
-    /**
-     * [0, 1, 2, ...]
-     */
-    @NotNull
-    private Integer sortOrder;
-    
-    @NotNull
-    @Column(length = 1024)
-    private String originalText;
-    
-    @OrderColumn
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Word> words;
 
-    public StoryBookChapter getStoryBookChapter() {
-        return storyBookChapter;
-    }
+  @ManyToOne
+  private StoryBookChapter storyBookChapter;
 
-    public void setStoryBookChapter(StoryBookChapter storyBookChapter) {
-        this.storyBookChapter = storyBookChapter;
-    }
+  /**
+   * [0, 1, 2, ...]
+   */
+  @NotNull
+  private Integer sortOrder;
 
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
+  @NotNull
+  @Column(length = 1024)
+  private String originalText;
 
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
-    public String getOriginalText() {
-        return originalText;
-    }
-
-    public void setOriginalText(String originalText) {
-        this.originalText = originalText;
-    }
-
-    public List<Word> getWords() {
-        return words;
-    }
-
-    public void setWords(List<Word> words) {
-        this.words = words;
-    }
-
+  @OrderColumn
+  @ManyToMany(fetch = FetchType.EAGER)
+  private List<Word> words;
 }
