@@ -36,7 +36,7 @@ public class EmojiCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<Emoji> emojis = emojiDao.readAllOrdered();
+        List<Emoji> emojis = emojiDao.readAllOrderedById();
         logger.info("emojis.size(): " + emojis.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

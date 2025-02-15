@@ -6,7 +6,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.v2.enums.content.sound.ConsonantPlace;
 import ai.elimu.model.v2.enums.content.sound.ConsonantType;
@@ -16,6 +15,7 @@ import ai.elimu.model.v2.enums.content.sound.SoundType;
 import ai.elimu.model.v2.enums.content.sound.VowelFrontness;
 import ai.elimu.model.v2.enums.content.sound.VowelHeight;
 import ai.elimu.model.v2.enums.content.sound.VowelLength;
+import jakarta.validation.constraints.Size;
 
 /**
  * Speech sound
@@ -29,7 +29,7 @@ public class Sound extends Content {
      * See https://en.wikipedia.org/wiki/International_Phonetic_Alphabet#Letters
      */
     @NotNull
-    @Length(max = 3)
+    @Size(max = 3)
     @Column(length = 3)
     private String valueIpa;
     
@@ -41,7 +41,7 @@ public class Sound extends Content {
      * X-SAMPA is used to enable integration with Text-to-Speech (TTS) technology.
      */
     @NotNull
-    @Length(max = 5)
+    @Size(max = 5)
     @Column(length = 5)
     private String valueSampa;
     

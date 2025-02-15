@@ -16,4 +16,6 @@ public interface SoundDao extends GenericDao<Sound> {
     List<Sound> readAllOrderedByIpaValueCharacterLength() throws DataAccessException;
     
     List<Sound> readAllOrderedByUsage() throws DataAccessException;
+
+    List<Sound> readAllOrderedById() throws DataAccessException;
 }

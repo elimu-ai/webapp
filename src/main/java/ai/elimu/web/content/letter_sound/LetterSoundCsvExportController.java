@@ -37,7 +37,7 @@ public class LetterSoundCsvExportController {
     ) throws IOException {
         logger.info("handleRequest");
         
-        List<LetterSound> letterSounds = letterSoundDao.readAllOrderedByUsage();
+        List<LetterSound> letterSounds = letterSoundDao.readAllOrderedById();
         logger.info("letterSounds.size(): " + letterSounds.size());
         
         CSVFormat csvFormat = CSVFormat.DEFAULT

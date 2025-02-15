@@ -12,6 +12,8 @@ public interface StoryBookDao extends GenericDao<StoryBook> {
     StoryBook readByTitle(String title) throws DataAccessException;
 
     List<StoryBook> readAllOrdered() throws DataAccessException;
+
+    List<StoryBook> readAllOrderedById() throws DataAccessException;
     
     List<StoryBook> readAllOrdered(ReadingLevel readingLevel) throws DataAccessException;
     

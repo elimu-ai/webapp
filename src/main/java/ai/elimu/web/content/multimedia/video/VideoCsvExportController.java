@@ -32,7 +32,7 @@ public class VideoCsvExportController {
         
         // Generate CSV file
         String csvFileContent = "id,content_type,content_license,attribution_url,title,download_url,video_format" + "\n";
-        List<Video> videos = videoDao.readAll();
+        List<Video> videos = videoDao.readAllOrderedById();
         logger.info("videos.size(): " + videos.size());
         for (Video video : videos) {
             String downloadUrl = "/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase();

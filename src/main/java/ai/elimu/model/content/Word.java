@@ -1,5 +1,6 @@
 package ai.elimu.model.content;
 
+import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,7 +12,6 @@ import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
 import jakarta.persistence.ManyToOne;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Word extends Content {
