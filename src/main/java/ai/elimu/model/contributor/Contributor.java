@@ -1,9 +1,7 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.BaseEntity;
-import jakarta.validation.constraints.NotEmpty;
-import java.util.Calendar;
-import java.util.Set;
+import ai.elimu.model.enums.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -12,166 +10,62 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import ai.elimu.model.enums.Role;
+import java.util.Calendar;
+import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class Contributor extends BaseEntity {
 
-    @NotNull // TODO: remove requirement of providing an e-mail address
-    @Column(unique=true)
-    private String email;
-    
-    @NotEmpty
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
-    
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar registrationTime;
-    
-    // TODO: add registrationPlatform
-    
-    // TODO: add registrationProvider
-    
-//    @Column(unique=true)
-    private String providerIdGoogle;
-    
-    /**
-     * An Ethereum address. Expected format: "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B"
-     */
-    @Column(unique=true, length=42)
-    private String providerIdWeb3;
-    
-//    @Column(unique=true)
-    private String providerIdGitHub;
+  @NotNull // TODO: remove requirement of providing an e-mail address
+  @Column(unique = true)
+  private String email;
 
-//    @Column(unique=true)
-    private String providerIdDiscord;
-    
-    private String usernameGitHub;
+  @NotEmpty
+  @ElementCollection(fetch = FetchType.EAGER)
+  @Enumerated(EnumType.STRING)
+  private Set<Role> roles;
 
-    private String usernameDiscord;
-    
-    private String imageUrl;
-    
-    private String firstName;
-    
-    private String lastName;
-    
-    private String occupation;
-    
-    @Column(length = 1000)
-    private String motivation;
+  @NotNull
+  @Temporal(TemporalType.TIMESTAMP)
+  private Calendar registrationTime;
 
-    public String getEmail() {
-        return email;
-    }
+  // TODO: add registrationPlatform
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    public Set<Role> getRoles() {
-        return roles;
-    }
+  // TODO: add registrationProvider
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+  //    @Column(unique=true)
+  private String providerIdGoogle;
 
-    public Calendar getRegistrationTime() {
-        return registrationTime;
-    }
+  /**
+   * An Ethereum address. Expected format: "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B"
+   */
+  @Column(unique = true, length = 42)
+  private String providerIdWeb3;
 
-    public void setRegistrationTime(Calendar registrationTime) {
-        this.registrationTime = registrationTime;
-    }
+  //    @Column(unique=true)
+  private String providerIdGitHub;
 
-    public String getProviderIdGoogle() {
-        return providerIdGoogle;
-    }
+  //    @Column(unique=true)
+  private String providerIdDiscord;
 
-    public void setProviderIdGoogle(String providerIdGoogle) {
-        this.providerIdGoogle = providerIdGoogle;
-    }
-    
-    public String getProviderIdWeb3() {
-        return providerIdWeb3;
-    }
+  private String usernameGitHub;
 
-    public void setProviderIdWeb3(String providerIdWeb3) {
-        this.providerIdWeb3 = providerIdWeb3;
-    }
+  private String usernameDiscord;
 
-    public String getProviderIdGitHub() {
-        return providerIdGitHub;
-    }
+  private String imageUrl;
 
-    public void setProviderIdGitHub(String providerIdGitHub) {
-        this.providerIdGitHub = providerIdGitHub;
-    }
-    
-    public String getUsernameGitHub() {
-        return usernameGitHub;
-    }
+  private String firstName;
 
-    public void setUsernameGitHub(String usernameGitHub) {
-        this.usernameGitHub = usernameGitHub;
-    }
-    public String getProviderIdDiscord() {
-        return providerIdDiscord;
-    }
+  private String lastName;
 
-    public void setProviderIdDiscord(String providerIdDiscord) {
-        this.providerIdDiscord = providerIdDiscord;
-    }
-    public String getUsernameDiscord() {
-        return usernameDiscord;
-    }
+  private String occupation;
 
-    public void setUsernameDiscord(String usernameDiscord) {
-        this.usernameDiscord = usernameDiscord;
-    }
-    
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-    
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-    
-    public String getMotivation() {
-        return motivation;
-    }
-
-    public void setMotivation(String motivation) {
-        this.motivation = motivation;
-    }
+  @Column(length = 1000)
+  private String motivation;
 }

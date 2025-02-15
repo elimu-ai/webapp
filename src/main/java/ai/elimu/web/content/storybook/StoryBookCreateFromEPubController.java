@@ -25,23 +25,6 @@ import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
 import ai.elimu.util.ml.ReadingLevelUtil;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -53,499 +36,512 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
 @RequestMapping("/content/storybook/create-from-epub")
+@RequiredArgsConstructor
 public class StoryBookCreateFromEPubController {
 
-    private final Logger logger = LogManager.getLogger();
+  private final Logger logger = LogManager.getLogger();
 
-    @Autowired
-    private StoryBookDao storyBookDao;
+  private final StoryBookDao storyBookDao;
 
-    @Autowired
-    private StoryBookContributionEventDao storyBookContributionEventDao;
+  private final StoryBookContributionEventDao storyBookContributionEventDao;
 
-    @Autowired
-    private ImageDao imageDao;
+  private final ImageDao imageDao;
 
-    @Autowired
-    private ImageContributionEventDao imageContributionEventDao;
+  private final ImageContributionEventDao imageContributionEventDao;
 
-    @Autowired
-    private StoryBookChapterDao storyBookChapterDao;
+  private final StoryBookChapterDao storyBookChapterDao;
 
-    @Autowired
-    private StoryBookParagraphDao storyBookParagraphDao;
+  private final StoryBookParagraphDao storyBookParagraphDao;
 
-    @Autowired
-    private StoryBookEPubService storyBookEPubService;
+  private final StoryBookEPubService storyBookEPubService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
-        logger.info("handleRequest");
+  @RequestMapping(method = RequestMethod.GET)
+  public String handleRequest(Model model) {
+    logger.info("handleRequest");
 
-        StoryBook storyBook = new StoryBook();
-        model.addAttribute("storyBook", storyBook);
+    StoryBook storyBook = new StoryBook();
+    model.addAttribute("storyBook", storyBook);
 
-        model.addAttribute("timeStart", System.currentTimeMillis());
+    model.addAttribute("timeStart", System.currentTimeMillis());
 
-        return "content/storybook/create-from-epub";
-    }
+    return "content/storybook/create-from-epub";
+  }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String handleSubmit(
-            StoryBook storyBook,
-            @RequestParam("bytes") MultipartFile multipartFile,
-            BindingResult result,
-            Model model,
-            HttpServletRequest request,
-            HttpSession session
-    ) throws IOException {
-        logger.info("handleSubmit");
+  @RequestMapping(method = RequestMethod.POST)
+  public String handleSubmit(
+      StoryBook storyBook,
+      @RequestParam("bytes") MultipartFile multipartFile,
+      BindingResult result,
+      Model model,
+      HttpServletRequest request,
+      HttpSession session
+  ) throws IOException {
+    logger.info("handleSubmit");
 
-        Image storyBookCoverImage = null;
+    Image storyBookCoverImage = null;
 
-        List<StoryBookChapter> storyBookChapters = new ArrayList<>();
+    List<StoryBookChapter> storyBookChapters = new ArrayList<>();
 
-        List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
+    List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
 
-        if (multipartFile.isEmpty()) {
-            result.rejectValue("bytes", "NotNull");
-        } else {
-            String contentType = multipartFile.getContentType();
-            logger.info("contentType: " + contentType);
+    if (multipartFile.isEmpty()) {
+      result.rejectValue("bytes", "NotNull");
+    } else {
+      String contentType = multipartFile.getContentType();
+      logger.info("contentType: " + contentType);
 
-            String name = multipartFile.getName();
-            logger.info("name: " + name);
+      String name = multipartFile.getName();
+      logger.info("name: " + name);
 
-            String originalFilename = multipartFile.getOriginalFilename();
-            logger.info("originalFilename: " + originalFilename);
+      String originalFilename = multipartFile.getOriginalFilename();
+      logger.info("originalFilename: " + originalFilename);
 
-            long size = multipartFile.getSize();
-            logger.info("size: " + size + " (" + (size / 1024) + "kB)");
+      long size = multipartFile.getSize();
+      logger.info("size: " + size + " (" + (size / 1024) + "kB)");
 
-            byte[] ePubBytes = multipartFile.getBytes();
-            logger.info("ePubBytes.length: " + (ePubBytes.length / 1024 / 1024) + "MB");
+      byte[] ePubBytes = multipartFile.getBytes();
+      logger.info("ePubBytes.length: " + (ePubBytes.length / 1024 / 1024) + "MB");
 
-            List<File> filesInEPub = unzipFiles(ePubBytes, originalFilename);
-            logger.info("filesInEPub.size(): " + filesInEPub.size());
+      List<File> filesInEPub = unzipFiles(ePubBytes, originalFilename);
+      logger.info("filesInEPub.size(): " + filesInEPub.size());
 
-            // Extract the ePUB's metadata from its OPF file
-            File opfFile = null;
-            for (File file : filesInEPub) {
-                if (file.getName().endsWith(".opf")) {
-                    opfFile = file;
-                }
-            }
-            logger.info("opfFile: \"" + opfFile + "\"");
-            if (opfFile == null) {
-                throw new IllegalArgumentException("The OPF file was not found");
-            } else {
-                String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
-                logger.info("title: \"" + title + "\"");
-                storyBook.setTitle(title);
+      // Extract the ePUB's metadata from its OPF file
+      File opfFile = null;
+      for (File file : filesInEPub) {
+        if (file.getName().endsWith(".opf")) {
+          opfFile = file;
+        }
+      }
+      logger.info("opfFile: \"" + opfFile + "\"");
+      if (opfFile == null) {
+        throw new IllegalArgumentException("The OPF file was not found");
+      } else {
+        String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
+        logger.info("title: \"" + title + "\"");
+        storyBook.setTitle(title);
 
-                String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
-                logger.info("description: \"" + description + "\"");
-                if (StringUtils.isNotBlank(description)) {
-                    logger.info("description.length(): " + description.length());
-                    if (description.length() > 1024) {
-                        description = description.substring(0, 1023);
-                    }
-                    storyBook.setDescription(description);
-                }
-
-                storyBookCoverImage = new Image();
-                String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
-                logger.info("coverImageReference: " + coverImageReference);
-                File coverImageFile = new File(opfFile.getParent(), coverImageReference);
-                logger.info("coverImageFile: " + coverImageFile);
-                logger.info("coverImageFile.exists(): " + coverImageFile.exists());
-                URI coverImageUri = coverImageFile.toURI();
-                logger.info("coverImageUri: " + coverImageUri);
-                byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
-                storyBookCoverImage.setBytes(coverImageBytes);
-                byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
-                byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
-                byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
-                if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
-                    storyBookCoverImage.setContentType("image/gif");
-                    storyBookCoverImage.setImageFormat(ImageFormat.GIF);
-                } else if (coverImageFile.getName().toLowerCase().endsWith(".png")) {
-                    storyBookCoverImage.setContentType("image/png");
-                    storyBookCoverImage.setImageFormat(ImageFormat.PNG);
-                } else if (coverImageFile.getName().toLowerCase().endsWith(".jpg") || coverImageFile.getName().toLowerCase().endsWith(".jpeg")) {
-                    storyBookCoverImage.setContentType("image/jpg");
-                    storyBookCoverImage.setImageFormat(ImageFormat.JPG);
-                } else if (coverImageFile.getName().toLowerCase().endsWith(".gif")) {
-                    storyBookCoverImage.setContentType("image/gif");
-                    storyBookCoverImage.setImageFormat(ImageFormat.GIF);
-                }
-                try {
-                    int[] dominantColor = ImageColorHelper.getDominantColor(storyBookCoverImage.getBytes());
-                    storyBookCoverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
-                } catch (NullPointerException ex) {
-                    // javax.imageio.IIOException: Unsupported Image Type
-                }
-            }
-
-            // Extract the ePUB's chapters
-            File tableOfContentsFile = null;
-            for (File file : filesInEPub) {
-                logger.info("file: " + file);
-                if (file.getName().startsWith("toc.")
-                        || file.getName().startsWith("nav.")) {
-                    tableOfContentsFile = file;
-                }
-            }
-            logger.info("tableOfContentsFile: \"" + tableOfContentsFile + "\"");
-            if (tableOfContentsFile == null) {
-                throw new IllegalArgumentException("The TOC file was not found");
-            } else {
-                List<String> chapterReferences = null;
-                if (storyBookEPubService.isTableOfContentsFileHtmlLike(tableOfContentsFile.getName())) {
-                    // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
-                    chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
-                } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
-                    // StoryBookProvider#STORYWEAVER
-                    chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(tableOfContentsFile);
-                }
-                logger.info("chapterReferences.size(): " + chapterReferences.size());
-
-                // Extract each chapter's image (if any) and paragraphs
-                for (String chapterReference : chapterReferences) {
-                    logger.info("chapterReference: \"" + chapterReference + "\"");
-                    File chapterFile = new File(opfFile.getParent(), chapterReference);
-                    logger.info("chapterFile: \"" + chapterFile + "\"");
-                    StoryBookChapter storyBookChapter = new StoryBookChapter();
-                    storyBookChapter.setSortOrder(storyBookChapters.size());
-                    storyBookChapters.add(storyBookChapter);
-
-                    String chapterImageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(chapterFile);
-                    logger.info("chapterImageReference: " + chapterImageReference);
-                    if (StringUtils.isNotBlank(chapterImageReference)) {
-                        File chapterImageFile = null;
-                        if (chapterImageReference.startsWith("http://") || chapterImageReference.startsWith("https://")) {
-                            // Download the file
-
-                            URL sourceUrl = new URL(chapterImageReference);
-
-                            String tmpDir = System.getProperty("java.io.tmpdir");
-                            logger.info("tmpDir: " + tmpDir);
-                            File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
-                            logger.info("tmpDirElimuAi: " + tmpDirElimuAi);
-                            logger.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
-                            chapterImageFile = new File(tmpDirElimuAi, "chapter-image");
-
-                            logger.warn("Downloading image from " + sourceUrl + " and storing at " + chapterImageFile);
-                            int connectionTimeout = 1000 * 10; // 1000 milliseconds x 10
-                            int readTimeout = 1000 * 10; // 1000 milliseconds x 10
-                            FileUtils.copyURLToFile(sourceUrl, chapterImageFile, connectionTimeout, readTimeout);
-                        } else {
-                            chapterImageFile = new File(chapterFile.getParent(), chapterImageReference);
-                        }
-                        logger.info("chapterImageFile: " + chapterImageFile);
-                        logger.info("chapterImageFile.exists(): " + chapterImageFile.exists());
-                        URI chapterImageUri = chapterImageFile.toURI();
-                        logger.info("chapterImageUri: " + chapterImageUri);
-                        byte[] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
-                        Image chapterImage = new Image();
-                        chapterImage.setBytes(chapterImageBytes);
-                        byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
-                        byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
-                        byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
-                        if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
-                            chapterImage.setContentType("image/gif");
-                            chapterImage.setImageFormat(ImageFormat.GIF);
-                        } else if (chapterImageFile.getName().toLowerCase().endsWith(".png")) {
-                            chapterImage.setContentType("image/png");
-                            chapterImage.setImageFormat(ImageFormat.PNG);
-                        } else if (chapterImageFile.getName().toLowerCase().endsWith(".jpg") || chapterImageFile.getName().toLowerCase().endsWith(".jpeg")) {
-                            chapterImage.setContentType("image/jpg");
-                            chapterImage.setImageFormat(ImageFormat.JPG);
-                        } else if (chapterImageFile.getName().toLowerCase().endsWith(".gif")) {
-                            chapterImage.setContentType("image/gif");
-                            chapterImage.setImageFormat(ImageFormat.GIF);
-                        }
-                        try {
-                            int[] dominantColor = ImageColorHelper.getDominantColor(chapterImage.getBytes());
-                            chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
-                        } catch (NullPointerException ex) {
-                            // javax.imageio.IIOException: Unsupported Image Type
-                        }
-                        storyBookChapter.setImage(chapterImage);
-                    }
-
-                    List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile);
-                    logger.info("paragraphs.size(): " + paragraphs.size());
-                    for (int i = 0; i < paragraphs.size(); i++) {
-                        String paragraph = paragraphs.get(i);
-                        logger.info("paragraph: \"" + paragraph + "\"");
-                        logger.info("paragraph.length(): " + paragraph.length());
-
-                        StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
-                        storyBookParagraph.setStoryBookChapter(storyBookChapter);
-                        storyBookParagraph.setSortOrder(i);
-
-                        if (paragraph.length() > 1024) {
-                            logger.warn("Reducing the length of the paragraph to its initial 1,024 characters.");
-                            paragraph = paragraph.substring(0, 1023);
-                        }
-                        storyBookParagraph.setOriginalText(paragraph);
-
-                        // Note: updating the paragraph's list of Words is handled by the ParagraphWordScheduler
-
-                        storyBookParagraphs.add(storyBookParagraph);
-                    }
-                }
-            }
+        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
+        logger.info("description: \"" + description + "\"");
+        if (StringUtils.isNotBlank(description)) {
+          logger.info("description.length(): " + description.length());
+          if (description.length() > 1024) {
+            description = description.substring(0, 1023);
+          }
+          storyBook.setDescription(description);
         }
 
-        if (result.hasErrors()) {
-            return "content/storybook/create-from-epub";
-        } else {
-            // Store the StoryBook in the database
-            storyBook.setTimeLastUpdate(Calendar.getInstance());
-            storyBookDao.create(storyBook);
-
-            StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
-            storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-            storyBookContributionEvent.setTimestamp(Calendar.getInstance());
-            storyBookContributionEvent.setStoryBook(storyBook);
-            storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
-            storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
-            storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-            storyBookContributionEventDao.create(storyBookContributionEvent);
-
-            // Store the StoryBook's cover image in the database, and assign it to the StoryBook
-            storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
-            imageDao.create(storyBookCoverImage);
-            storyBook.setCoverImage(storyBookCoverImage);
-            storyBookDao.update(storyBook);
-
-            // Pin file to IPFS
-            String filename = request.getServerName() + "_image" + storyBookCoverImage.getId() + "-r" + storyBookCoverImage.getRevisionNumber() + "_" + storyBookCoverImage.getTitle();
-            String ipfsHash = IpfsHelper.pinFileToIpfs(storyBookCoverImage.getBytes(), filename);
-            storyBookCoverImage.setCid(ipfsHash);
-            imageDao.update(storyBookCoverImage);
-
-            storeImageContributionEvent(storyBookCoverImage, session, request);
-
-            // Store the StoryBookChapters in the database
-            int chapterSortOrder = 0;
-            for (StoryBookChapter storyBookChapter : storyBookChapters) {
-                storyBookChapter.setStoryBook(storyBook);
-
-                // Get the paragraphs associated with this chapter
-                List<StoryBookParagraph> storyBookParagraphsAssociatedWithChapter = new ArrayList<>();
-                for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-                    if (storyBookParagraph.getStoryBookChapter().getSortOrder().equals(storyBookChapter.getSortOrder())) {
-                        storyBookParagraphsAssociatedWithChapter.add(storyBookParagraph);
-                    }
-                }
-                logger.info("storyBookParagraphsAssociatedWithChapter.size(): " + storyBookParagraphsAssociatedWithChapter.size());
-
-                // Exclude chapters containing book metadata
-                boolean isMetadata = false;
-                for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
-                    String originalTextLowerCase = storyBookParagraph.getOriginalText().toLowerCase();
-                    if (
-                           originalTextLowerCase.contains("author: ")
-                        || originalTextLowerCase.contains("illustrator: ")
-                        || originalTextLowerCase.contains("translator: ")
-                        || originalTextLowerCase.contains("creative commons")
-                        || originalTextLowerCase.contains("pratham books")
-                        || originalTextLowerCase.contains("storyweaver")
-                        || originalTextLowerCase.contains("copyright page")
-                        || originalTextLowerCase.contains("by smart axiata") // StoryBookProvider#LETS_READ_ASIA
-                        || originalTextLowerCase.contains("the asia foundation") // StoryBookProvider#LETS_READ_ASIA
-                        || originalTextLowerCase.contains("এশিয়া ফাউন্ডেশনের") // StoryBookProvider#LETS_READ_ASIA
-                    ) {
-                        isMetadata = true;
-                        break;
-                    }
-                }
-                if (isMetadata) {
-                    continue;
-                }
-
-                // Update the chapter's sort order (in case any of the previous chapters were excluded)
-                storyBookChapter.setSortOrder(chapterSortOrder);
-
-                // Store the chapter's image (if any)
-                Image chapterImage = storyBookChapter.getImage();
-                if (chapterImage != null) {
-                    chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
-                    imageDao.create(chapterImage);
-
-                    // Pin file to IPFS
-                    filename = request.getServerName() + "_image" + chapterImage.getId() + "-r" + chapterImage.getRevisionNumber() + "_" + chapterImage.getTitle();
-                    ipfsHash = IpfsHelper.pinFileToIpfs(chapterImage.getBytes(), filename);
-                    chapterImage.setCid(ipfsHash);
-                    imageDao.update(chapterImage);
-                    
-                    storeImageContributionEvent(chapterImage, session, request);
-                }
-
-                // Only store the chapter if it has an image or at least one paragraph
-                if ((chapterImage != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
-                    storyBookChapterDao.create(storyBookChapter);
-                    chapterSortOrder++;
-                }
-
-                // Store the chapter's paragraphs in the database
-                for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
-                    storyBookParagraph.setStoryBookChapter(storyBookChapter);
-                    storyBookParagraphDao.create(storyBookParagraph);
-                }
-            }
-
-            List<StoryBookChapter> chapters = storyBookChapterDao.readAll(storyBook);
-            int chapterCount = chapters.size();
-            int paragraphCount = 0;
-            int wordCount = 0;
-            for (StoryBookChapter chapter : chapters) {
-                List<StoryBookParagraph> paragraphs = storyBookParagraphDao.readAll(chapter);
-                paragraphCount += paragraphs.size();
-                for (StoryBookParagraph paragraph : paragraphs) {
-                    wordCount += paragraph.getOriginalText().split(" ").length;
-                }
-            }
-            ReadingLevel predictedReadingLevel = predictReadingLevel(chapterCount, paragraphCount, wordCount);
-            logger.info("predictedReadingLevel: " + predictedReadingLevel);
-            storyBook.setReadingLevel(predictedReadingLevel);
-            storyBookDao.update(storyBook);
-
-            if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-                String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
-                String embedThumbnailUrl = null;
-                if (storyBook.getCoverImage() != null) {
-                    embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-                }
-                DiscordHelper.sendChannelMessage(
-                        "Storybook created (imported from ePUB): " + contentUrl,
-                        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-                        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-                        null,
-                        embedThumbnailUrl
-                );
-            }
-
-            return "redirect:/content/storybook/edit/" + storyBook.getId();
+        storyBookCoverImage = new Image();
+        String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
+        logger.info("coverImageReference: " + coverImageReference);
+        File coverImageFile = new File(opfFile.getParent(), coverImageReference);
+        logger.info("coverImageFile: " + coverImageFile);
+        logger.info("coverImageFile.exists(): " + coverImageFile.exists());
+        URI coverImageUri = coverImageFile.toURI();
+        logger.info("coverImageUri: " + coverImageUri);
+        byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
+        storyBookCoverImage.setBytes(coverImageBytes);
+        byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
+        byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+        byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+        if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+          storyBookCoverImage.setContentType("image/gif");
+          storyBookCoverImage.setImageFormat(ImageFormat.GIF);
+        } else if (coverImageFile.getName().toLowerCase().endsWith(".png")) {
+          storyBookCoverImage.setContentType("image/png");
+          storyBookCoverImage.setImageFormat(ImageFormat.PNG);
+        } else if (coverImageFile.getName().toLowerCase().endsWith(".jpg") || coverImageFile.getName().toLowerCase().endsWith(".jpeg")) {
+          storyBookCoverImage.setContentType("image/jpg");
+          storyBookCoverImage.setImageFormat(ImageFormat.JPG);
+        } else if (coverImageFile.getName().toLowerCase().endsWith(".gif")) {
+          storyBookCoverImage.setContentType("image/gif");
+          storyBookCoverImage.setImageFormat(ImageFormat.GIF);
         }
-    }
-
-    /**
-     * See http://www.mkyong.com/spring-mvc/spring-mvc-failed-to-convert-property-value-in-file-upload-form/
-     * <p></p>
-     * Fixes this error message:
-     * "Cannot convert value of type [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile] to required type [byte] for property 'ePubBytes[0]'"
-     */
-    @InitBinder
-    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-        logger.info("initBinder");
-        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
-    }
-
-    /**
-     * Unzip the contents of the ePUB file to a temporary folder.
-     */
-    private List<File> unzipFiles(byte[] ePubBytes, String originalFilename) {
-        logger.info("unzipFiles");
-
-        List<File> unzippedFiles = new ArrayList<>();
-
-        String tmpDir = System.getProperty("java.io.tmpdir");
-        logger.info("tmpDir: " + tmpDir);
-        File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
-        logger.info("tmpDirElimuAi: " + tmpDirElimuAi);
-        logger.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
-        File unzipDestinationDirectory = new File(tmpDirElimuAi, originalFilename.replace(" ", "_") + "_unzipped");
-        logger.info("unzipDestinationDirectory: " + unzipDestinationDirectory);
-        logger.info("unzipDestinationDirectory.mkdir(): " + unzipDestinationDirectory.mkdir());
-        byte[] buffer = new byte[1024];
         try {
-            InputStream inputStream = new ByteArrayInputStream(ePubBytes);
-            ZipInputStream zipInputStream = new ZipInputStream(inputStream);
-            ZipEntry zipEntry = null;
-            while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-                logger.info("zipEntry: " + zipEntry);
+          int[] dominantColor = ImageColorHelper.getDominantColor(storyBookCoverImage.getBytes());
+          storyBookCoverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+        } catch (NullPointerException ex) {
+          // javax.imageio.IIOException: Unsupported Image Type
+        }
+      }
 
-                // E.g. unzipDestinationDirectory + "/" + "META-INF/container.xml"
-                File unzipDestinationFile = new File(unzipDestinationDirectory + File.separator + zipEntry.toString());
-                logger.info("unzipDestinationFile: " + unzipDestinationFile);
+      // Extract the ePUB's chapters
+      File tableOfContentsFile = null;
+      for (File file : filesInEPub) {
+        logger.info("file: " + file);
+        if (file.getName().startsWith("toc.")
+            || file.getName().startsWith("nav.")) {
+          tableOfContentsFile = file;
+        }
+      }
+      logger.info("tableOfContentsFile: \"" + tableOfContentsFile + "\"");
+      if (tableOfContentsFile == null) {
+        throw new IllegalArgumentException("The TOC file was not found");
+      } else {
+        List<String> chapterReferences = null;
+        if (storyBookEPubService.isTableOfContentsFileHtmlLike(tableOfContentsFile.getName())) {
+          // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
+          chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
+        } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
+          // StoryBookProvider#STORYWEAVER
+          chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(tableOfContentsFile);
+        }
+        logger.info("chapterReferences.size(): " + chapterReferences.size());
 
-                // Create intermediate folders if they do not already exist, e.g. "META-INF/", "content/" or "OEBPS/"
-                File parentDirectory = unzipDestinationFile.getParentFile();
-                logger.info("parentDirectory: " + parentDirectory);
-                if (!parentDirectory.exists()) {
-                    boolean parentDirectoriesWereCreated = parentDirectory.mkdirs();
-                    logger.info("parentDirectory.mkdirs(): " + parentDirectoriesWereCreated);
-                }
+        // Extract each chapter's image (if any) and paragraphs
+        for (String chapterReference : chapterReferences) {
+          logger.info("chapterReference: \"" + chapterReference + "\"");
+          File chapterFile = new File(opfFile.getParent(), chapterReference);
+          logger.info("chapterFile: \"" + chapterFile + "\"");
+          StoryBookChapter storyBookChapter = new StoryBookChapter();
+          storyBookChapter.setSortOrder(storyBookChapters.size());
+          storyBookChapters.add(storyBookChapter);
 
-                // Write file to disk
-                FileOutputStream fileOutputStream = new FileOutputStream(unzipDestinationFile);
-                int length;
-                while ((length = zipInputStream.read(buffer)) > 0) {
-                    fileOutputStream.write(buffer, 0, length);
-                }
-                fileOutputStream.close();
+          String chapterImageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(chapterFile);
+          logger.info("chapterImageReference: " + chapterImageReference);
+          if (StringUtils.isNotBlank(chapterImageReference)) {
+            File chapterImageFile = null;
+            if (chapterImageReference.startsWith("http://") || chapterImageReference.startsWith("https://")) {
+              // Download the file
 
-                logger.info("unzipDestinationFile.exists(): " + unzipDestinationFile.exists());
-                unzippedFiles.add(unzipDestinationFile);
+              URL sourceUrl = new URL(chapterImageReference);
+
+              String tmpDir = System.getProperty("java.io.tmpdir");
+              logger.info("tmpDir: " + tmpDir);
+              File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
+              logger.info("tmpDirElimuAi: " + tmpDirElimuAi);
+              logger.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
+              chapterImageFile = new File(tmpDirElimuAi, "chapter-image");
+
+              logger.warn("Downloading image from " + sourceUrl + " and storing at " + chapterImageFile);
+              int connectionTimeout = 1000 * 10; // 1000 milliseconds x 10
+              int readTimeout = 1000 * 10; // 1000 milliseconds x 10
+              FileUtils.copyURLToFile(sourceUrl, chapterImageFile, connectionTimeout, readTimeout);
+            } else {
+              chapterImageFile = new File(chapterFile.getParent(), chapterImageReference);
             }
-            zipInputStream.close();
-            inputStream.close();
-        } catch (FileNotFoundException ex) {
-            logger.error(ex);
-        } catch (IOException ex) {
-            logger.error(ex);
-        }
+            logger.info("chapterImageFile: " + chapterImageFile);
+            logger.info("chapterImageFile.exists(): " + chapterImageFile.exists());
+            URI chapterImageUri = chapterImageFile.toURI();
+            logger.info("chapterImageUri: " + chapterImageUri);
+            byte[] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
+            Image chapterImage = new Image();
+            chapterImage.setBytes(chapterImageBytes);
+            byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
+            byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+            byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+            if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+              chapterImage.setContentType("image/gif");
+              chapterImage.setImageFormat(ImageFormat.GIF);
+            } else if (chapterImageFile.getName().toLowerCase().endsWith(".png")) {
+              chapterImage.setContentType("image/png");
+              chapterImage.setImageFormat(ImageFormat.PNG);
+            } else if (chapterImageFile.getName().toLowerCase().endsWith(".jpg") || chapterImageFile.getName().toLowerCase().endsWith(".jpeg")) {
+              chapterImage.setContentType("image/jpg");
+              chapterImage.setImageFormat(ImageFormat.JPG);
+            } else if (chapterImageFile.getName().toLowerCase().endsWith(".gif")) {
+              chapterImage.setContentType("image/gif");
+              chapterImage.setImageFormat(ImageFormat.GIF);
+            }
+            try {
+              int[] dominantColor = ImageColorHelper.getDominantColor(chapterImage.getBytes());
+              chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+            } catch (NullPointerException ex) {
+              // javax.imageio.IIOException: Unsupported Image Type
+            }
+            storyBookChapter.setImage(chapterImage);
+          }
 
-        return unzippedFiles;
+          List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile);
+          logger.info("paragraphs.size(): " + paragraphs.size());
+          for (int i = 0; i < paragraphs.size(); i++) {
+            String paragraph = paragraphs.get(i);
+            logger.info("paragraph: \"" + paragraph + "\"");
+            logger.info("paragraph.length(): " + paragraph.length());
+
+            StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+            storyBookParagraph.setStoryBookChapter(storyBookChapter);
+            storyBookParagraph.setSortOrder(i);
+
+            if (paragraph.length() > 1024) {
+              logger.warn("Reducing the length of the paragraph to its initial 1,024 characters.");
+              paragraph = paragraph.substring(0, 1023);
+            }
+            storyBookParagraph.setOriginalText(paragraph);
+
+            // Note: updating the paragraph's list of Words is handled by the ParagraphWordScheduler
+
+            storyBookParagraphs.add(storyBookParagraph);
+          }
+        }
+      }
     }
 
-    private void storeImageContributionEvent(Image image, HttpSession session, HttpServletRequest request) {
-        logger.info("storeImageContributionEvent");
+    if (result.hasErrors()) {
+      return "content/storybook/create-from-epub";
+    } else {
+      // Store the StoryBook in the database
+      storyBook.setTimeLastUpdate(Calendar.getInstance());
+      storyBookDao.create(storyBook);
 
-        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
-        imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-        imageContributionEvent.setTimestamp(Calendar.getInstance());
-        imageContributionEvent.setImage(image);
-        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
-        imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
-        imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
-        imageContributionEventDao.create(imageContributionEvent);
+      StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();
+      storyBookContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      storyBookContributionEvent.setTimestamp(Calendar.getInstance());
+      storyBookContributionEvent.setStoryBook(storyBook);
+      storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
+      storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
+      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+      storyBookContributionEventDao.create(storyBookContributionEvent);
 
-        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-            String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
-            String embedThumbnailUrl = image.getUrl();
-            DiscordHelper.sendChannelMessage(
-                    "Image created: " + contentUrl,
-                    "\"" + image.getTitle() + "\"",
-                    "Comment: \"" + imageContributionEvent.getComment() + "\"",
-                    null,
-                    embedThumbnailUrl
-            );
+      // Store the StoryBook's cover image in the database, and assign it to the StoryBook
+      storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
+      imageDao.create(storyBookCoverImage);
+      storyBook.setCoverImage(storyBookCoverImage);
+      storyBookDao.update(storyBook);
+
+      // Pin file to IPFS
+      String filename = request.getServerName() + "_image" + storyBookCoverImage.getId() + "-r" + storyBookCoverImage.getRevisionNumber() + "_" + storyBookCoverImage.getTitle();
+      String ipfsHash = IpfsHelper.pinFileToIpfs(storyBookCoverImage.getBytes(), filename);
+      storyBookCoverImage.setCid(ipfsHash);
+      imageDao.update(storyBookCoverImage);
+
+      storeImageContributionEvent(storyBookCoverImage, session, request);
+
+      // Store the StoryBookChapters in the database
+      int chapterSortOrder = 0;
+      for (StoryBookChapter storyBookChapter : storyBookChapters) {
+        storyBookChapter.setStoryBook(storyBook);
+
+        // Get the paragraphs associated with this chapter
+        List<StoryBookParagraph> storyBookParagraphsAssociatedWithChapter = new ArrayList<>();
+        for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
+          if (storyBookParagraph.getStoryBookChapter().getSortOrder().equals(storyBookChapter.getSortOrder())) {
+            storyBookParagraphsAssociatedWithChapter.add(storyBookParagraph);
+          }
         }
-    }
+        logger.info("storyBookParagraphsAssociatedWithChapter.size(): " + storyBookParagraphsAssociatedWithChapter.size());
 
-    private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {
+        // Exclude chapters containing book metadata
+        boolean isMetadata = false;
+        for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
+          String originalTextLowerCase = storyBookParagraph.getOriginalText().toLowerCase();
+          if (
+              originalTextLowerCase.contains("author: ")
+                  || originalTextLowerCase.contains("illustrator: ")
+                  || originalTextLowerCase.contains("translator: ")
+                  || originalTextLowerCase.contains("creative commons")
+                  || originalTextLowerCase.contains("pratham books")
+                  || originalTextLowerCase.contains("storyweaver")
+                  || originalTextLowerCase.contains("copyright page")
+                  || originalTextLowerCase.contains("by smart axiata") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("the asia foundation") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("এশিয়া ফাউন্ডেশনের") // StoryBookProvider#LETS_READ_ASIA
+          ) {
+            isMetadata = true;
+            break;
+          }
+        }
+        if (isMetadata) {
+          continue;
+        }
 
-        // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
+        // Update the chapter's sort order (in case any of the previous chapters were excluded)
+        storyBookChapter.setSortOrder(chapterSortOrder);
 
-        logger.info(
-                "Predicting reading level for chapter: {}, paragraph: {}, word: {} ",
-                chapterCount, paragraphCount, wordCount
+        // Store the chapter's image (if any)
+        Image chapterImage = storyBookChapter.getImage();
+        if (chapterImage != null) {
+          chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
+          imageDao.create(chapterImage);
+
+          // Pin file to IPFS
+          filename = request.getServerName() + "_image" + chapterImage.getId() + "-r" + chapterImage.getRevisionNumber() + "_" + chapterImage.getTitle();
+          ipfsHash = IpfsHelper.pinFileToIpfs(chapterImage.getBytes(), filename);
+          chapterImage.setCid(ipfsHash);
+          imageDao.update(chapterImage);
+
+          storeImageContributionEvent(chapterImage, session, request);
+        }
+
+        // Only store the chapter if it has an image or at least one paragraph
+        if ((chapterImage != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
+          storyBookChapterDao.create(storyBookChapter);
+          chapterSortOrder++;
+        }
+
+        // Store the chapter's paragraphs in the database
+        for (StoryBookParagraph storyBookParagraph : storyBookParagraphsAssociatedWithChapter) {
+          storyBookParagraph.setStoryBookChapter(storyBookChapter);
+          storyBookParagraphDao.create(storyBookParagraph);
+        }
+      }
+
+      List<StoryBookChapter> chapters = storyBookChapterDao.readAll(storyBook);
+      int chapterCount = chapters.size();
+      int paragraphCount = 0;
+      int wordCount = 0;
+      for (StoryBookChapter chapter : chapters) {
+        List<StoryBookParagraph> paragraphs = storyBookParagraphDao.readAll(chapter);
+        paragraphCount += paragraphs.size();
+        for (StoryBookParagraph paragraph : paragraphs) {
+          wordCount += paragraph.getOriginalText().split(" ").length;
+        }
+      }
+      ReadingLevel predictedReadingLevel = predictReadingLevel(chapterCount, paragraphCount, wordCount);
+      logger.info("predictedReadingLevel: " + predictedReadingLevel);
+      storyBook.setReadingLevel(predictedReadingLevel);
+      storyBookDao.update(storyBook);
+
+      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+        String embedThumbnailUrl = null;
+        if (storyBook.getCoverImage() != null) {
+          embedThumbnailUrl = storyBook.getCoverImage().getUrl();
+        }
+        DiscordHelper.sendChannelMessage(
+            "Storybook created (imported from ePUB): " + contentUrl,
+            "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+            "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+            null,
+            embedThumbnailUrl
         );
+      }
 
-        ReadingLevel readingLevel = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
-        logger.info("Predicted reading level: {}", readingLevel);
-
-        return readingLevel;
+      return "redirect:/content/storybook/edit/" + storyBook.getId();
     }
+  }
+
+  /**
+   * See http://www.mkyong.com/spring-mvc/spring-mvc-failed-to-convert-property-value-in-file-upload-form/
+   * <p></p>
+   * Fixes this error message: "Cannot convert value of type [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile] to required type [byte] for property
+   * 'ePubBytes[0]'"
+   */
+  @InitBinder
+  protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
+    logger.info("initBinder");
+    binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+  }
+
+  /**
+   * Unzip the contents of the ePUB file to a temporary folder.
+   */
+  private List<File> unzipFiles(byte[] ePubBytes, String originalFilename) {
+    logger.info("unzipFiles");
+
+    List<File> unzippedFiles = new ArrayList<>();
+
+    String tmpDir = System.getProperty("java.io.tmpdir");
+    logger.info("tmpDir: " + tmpDir);
+    File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
+    logger.info("tmpDirElimuAi: " + tmpDirElimuAi);
+    logger.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
+    File unzipDestinationDirectory = new File(tmpDirElimuAi, originalFilename.replace(" ", "_") + "_unzipped");
+    logger.info("unzipDestinationDirectory: " + unzipDestinationDirectory);
+    logger.info("unzipDestinationDirectory.mkdir(): " + unzipDestinationDirectory.mkdir());
+    byte[] buffer = new byte[1024];
+    try {
+      InputStream inputStream = new ByteArrayInputStream(ePubBytes);
+      ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+      ZipEntry zipEntry = null;
+      while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+        logger.info("zipEntry: " + zipEntry);
+
+        // E.g. unzipDestinationDirectory + "/" + "META-INF/container.xml"
+        File unzipDestinationFile = new File(unzipDestinationDirectory + File.separator + zipEntry.toString());
+        logger.info("unzipDestinationFile: " + unzipDestinationFile);
+
+        // Create intermediate folders if they do not already exist, e.g. "META-INF/", "content/" or "OEBPS/"
+        File parentDirectory = unzipDestinationFile.getParentFile();
+        logger.info("parentDirectory: " + parentDirectory);
+        if (!parentDirectory.exists()) {
+          boolean parentDirectoriesWereCreated = parentDirectory.mkdirs();
+          logger.info("parentDirectory.mkdirs(): " + parentDirectoriesWereCreated);
+        }
+
+        // Write file to disk
+        FileOutputStream fileOutputStream = new FileOutputStream(unzipDestinationFile);
+        int length;
+        while ((length = zipInputStream.read(buffer)) > 0) {
+          fileOutputStream.write(buffer, 0, length);
+        }
+        fileOutputStream.close();
+
+        logger.info("unzipDestinationFile.exists(): " + unzipDestinationFile.exists());
+        unzippedFiles.add(unzipDestinationFile);
+      }
+      zipInputStream.close();
+      inputStream.close();
+    } catch (FileNotFoundException ex) {
+      logger.error(ex);
+    } catch (IOException ex) {
+      logger.error(ex);
+    }
+
+    return unzippedFiles;
+  }
+
+  private void storeImageContributionEvent(Image image, HttpSession session, HttpServletRequest request) {
+    logger.info("storeImageContributionEvent");
+
+    ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+    imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+    imageContributionEvent.setTimestamp(Calendar.getInstance());
+    imageContributionEvent.setImage(image);
+    imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+    imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
+    imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
+    imageContributionEventDao.create(imageContributionEvent);
+
+    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+      String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+      String embedThumbnailUrl = image.getUrl();
+      DiscordHelper.sendChannelMessage(
+          "Image created: " + contentUrl,
+          "\"" + image.getTitle() + "\"",
+          "Comment: \"" + imageContributionEvent.getComment() + "\"",
+          null,
+          embedThumbnailUrl
+      );
+    }
+  }
+
+  private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {
+
+    // Load the machine learning model (https://github.com/elimu-ai/ml-storybook-reading-level)
+
+    logger.info(
+        "Predicting reading level for chapter: {}, paragraph: {}, word: {} ",
+        chapterCount, paragraphCount, wordCount
+    );
+
+    ReadingLevel readingLevel = ReadingLevelUtil.predictReadingLevel(chapterCount, paragraphCount, wordCount);
+    logger.info("Predicted reading level: {}", readingLevel);
+
+    return readingLevel;
+  }
 }

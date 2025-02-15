@@ -1,11 +1,5 @@
 package ai.elimu.model.content;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotNull;
 import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.v2.enums.content.sound.ConsonantPlace;
 import ai.elimu.model.v2.enums.content.sound.ConsonantType;
@@ -15,177 +9,91 @@ import ai.elimu.model.v2.enums.content.sound.SoundType;
 import ai.elimu.model.v2.enums.content.sound.VowelFrontness;
 import ai.elimu.model.v2.enums.content.sound.VowelHeight;
 import ai.elimu.model.v2.enums.content.sound.VowelLength;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Speech sound
  */
+@Getter
+@Setter
 @Entity
 public class Sound extends Content {
-    
-    /**
-     * IPA - International Phonetic Alphabet
-     * <p />
-     * See https://en.wikipedia.org/wiki/International_Phonetic_Alphabet#Letters
-     */
-    @NotNull
-    @Size(max = 3)
-    @Column(length = 3)
-    private String valueIpa;
-    
-    /**
-     * X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet.
-     * <p />
-     * See https://en.wikipedia.org/wiki/X-SAMPA#Lower_case_symbols
-     * <p />
-     * X-SAMPA is used to enable integration with Text-to-Speech (TTS) technology.
-     */
-    @NotNull
-    @Size(max = 5)
-    @Column(length = 5)
-    private String valueSampa;
-    
-//    @NotNull
-    @OneToOne
-    private Audio audio;
-    
-    private boolean diacritic;
-    
-    @Enumerated(EnumType.STRING)
-    private SoundType soundType;
-    
-    /**
-     * Only used if {@code soundType == SoundType.VOWEL}
-     */
-    @Enumerated(EnumType.STRING)
-    private VowelLength vowelLength;
-  
-    /**
-     * Only used if {@code soundType == SoundType.VOWEL}
-     */
-    @Enumerated(EnumType.STRING)
-    private VowelHeight vowelHeight;
 
-    /**
-     * Only used if {@code soundType == SoundType.VOWEL}
-     */
-    @Enumerated(EnumType.STRING)
-    private VowelFrontness vowelFrontness;
-    
-    @Enumerated(EnumType.STRING)
-    private LipRounding lipRounding;
-    
-    /**
-     * Only used if {@code soundType == SoundType.CONSONANT}
-     */
-    @Enumerated(EnumType.STRING)
-    private ConsonantType consonantType;
-    
-    /**
-     * Only used if {@code soundType == SoundType.CONSONANT}
-     */
-    @Enumerated(EnumType.STRING)
-    private ConsonantPlace consonantPlace;
-    
-    /**
-     * Only used if {@code soundType == SoundType.CONSONANT}
-     */
-    @Enumerated(EnumType.STRING)
-    private ConsonantVoicing consonantVoicing;
+  /**
+   * IPA - International Phonetic Alphabet
+   * <p/>
+   * See https://en.wikipedia.org/wiki/International_Phonetic_Alphabet#Letters
+   */
+  @NotNull
+  @Size(max = 3)
+  @Column(length = 3)
+  private String valueIpa;
 
-    public String getValueIpa() {
-        return valueIpa;
-    }
+  /**
+   * X-SAMPA - Extended Speech Assessment Methods Phonetic Alphabet.
+   * <p/>
+   * See https://en.wikipedia.org/wiki/X-SAMPA#Lower_case_symbols
+   * <p/>
+   * X-SAMPA is used to enable integration with Text-to-Speech (TTS) technology.
+   */
+  @NotNull
+  @Size(max = 5)
+  @Column(length = 5)
+  private String valueSampa;
 
-    public void setValueIpa(String valueIpa) {
-        this.valueIpa = valueIpa;
-    }
+  //    @NotNull
+  @OneToOne
+  private Audio audio;
 
-    public String getValueSampa() {
-        return valueSampa;
-    }
+  private boolean diacritic;
 
-    public void setValueSampa(String valueSampa) {
-        this.valueSampa = valueSampa;
-    }
-    
-    public Audio getAudio() {
-        return audio;
-    }
+  @Enumerated(EnumType.STRING)
+  private SoundType soundType;
 
-    public void setAudio(Audio audio) {
-        this.audio = audio;
-    }
+  /**
+   * Only used if {@code soundType == SoundType.VOWEL}
+   */
+  @Enumerated(EnumType.STRING)
+  private VowelLength vowelLength;
 
-    public boolean isDiacritic() {
-        return diacritic;
-    }
+  /**
+   * Only used if {@code soundType == SoundType.VOWEL}
+   */
+  @Enumerated(EnumType.STRING)
+  private VowelHeight vowelHeight;
 
-    public void setDiacritic(boolean diacritic) {
-        this.diacritic = diacritic;
-    }
-    
-    public SoundType getSoundType() {
-        return soundType;
-    }
+  /**
+   * Only used if {@code soundType == SoundType.VOWEL}
+   */
+  @Enumerated(EnumType.STRING)
+  private VowelFrontness vowelFrontness;
 
-    public void setSoundType(SoundType soundType) {
-        this.soundType = soundType;
-    }
+  @Enumerated(EnumType.STRING)
+  private LipRounding lipRounding;
 
-    public VowelLength getVowelLength() {
-        return vowelLength;
-    }
+  /**
+   * Only used if {@code soundType == SoundType.CONSONANT}
+   */
+  @Enumerated(EnumType.STRING)
+  private ConsonantType consonantType;
 
-    public void setVowelLength(VowelLength vowelLength) {
-        this.vowelLength = vowelLength;
-    }
+  /**
+   * Only used if {@code soundType == SoundType.CONSONANT}
+   */
+  @Enumerated(EnumType.STRING)
+  private ConsonantPlace consonantPlace;
 
-    public VowelHeight getVowelHeight() {
-        return vowelHeight;
-    }
-
-    public void setVowelHeight(VowelHeight vowelHeight) {
-        this.vowelHeight = vowelHeight;
-    }
-
-    public VowelFrontness getVowelFrontness() {
-        return vowelFrontness;
-    }
-
-    public void setVowelFrontness(VowelFrontness vowelFrontness) {
-        this.vowelFrontness = vowelFrontness;
-    }
-
-    public LipRounding getLipRounding() {
-        return lipRounding;
-    }
-
-    public void setLipRounding(LipRounding lipRounding) {
-        this.lipRounding = lipRounding;
-    }
-
-    public ConsonantType getConsonantType() {
-        return consonantType;
-    }
-
-    public void setConsonantType(ConsonantType consonantType) {
-        this.consonantType = consonantType;
-    }
-
-    public ConsonantPlace getConsonantPlace() {
-        return consonantPlace;
-    }
-
-    public void setConsonantPlace(ConsonantPlace consonantPlace) {
-        this.consonantPlace = consonantPlace;
-    }
-
-    public ConsonantVoicing getConsonantVoicing() {
-        return consonantVoicing;
-    }
-
-    public void setConsonantVoicing(ConsonantVoicing consonantVoicing) {
-        this.consonantVoicing = consonantVoicing;
-    }
+  /**
+   * Only used if {@code soundType == SoundType.CONSONANT}
+   */
+  @Enumerated(EnumType.STRING)
+  private ConsonantVoicing consonantVoicing;
 }
