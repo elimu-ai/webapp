@@ -19,7 +19,7 @@ jobs:
       - run: mvn clean
       - run: mvn verify -P regression-test-ui -D headless=true -D base.url=http://eng.elimu.ai
 
-  test_ui_HIN:
+  test_ui_THA:
     needs: test_ui_ENG
     runs-on: ubuntu-latest
     steps:
@@ -30,4 +30,4 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-test-ui -D headless=true -D base.url=http://hin.elimu.ai
+      - run: mvn verify -P regression-test-ui -D headless=true -D base.url=http://tha.elimu.ai
