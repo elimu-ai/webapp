@@ -19,7 +19,7 @@ jobs:
       - run: mvn clean
       - run: mvn verify -P regression-test-rest -D base.url=http://eng.elimu.ai
 
-  test_rest_HIN:
+  test_rest_THA:
     needs: test_rest_ENG
     runs-on: ubuntu-latest
     steps:
@@ -30,4 +30,4 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-test-rest -D base.url=http://hin.elimu.ai
+      - run: mvn verify -P regression-test-rest -D base.url=http://tha.elimu.ai
