@@ -2,8 +2,7 @@ name: Maven Release
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
