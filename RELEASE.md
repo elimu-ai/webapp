@@ -5,7 +5,15 @@ See [.github/workflows/maven-release.yml](.github/workflows/maven-release.yml)
 > [!NOTE]
 > To perform a release, go to https://github.com/elimu-ai/webapp/actions/workflows/maven-release.yml, and press "Run workflow."
 
-<kbd>![Run workflow](https://github.com/elimu-ai/wiki/assets/1451036/5bbfe03f-724c-4582-bc3c-411b763316db)</kbd>
+![Run workflow](https://github.com/elimu-ai/wiki/assets/1451036/5bbfe03f-724c-4582-bc3c-411b763316db)
+
+### Create Release Notes 🗒️
+
+After the release job has completed, go to https://github.com/elimu-ai/webapp/tags and press "Create release."
+
+![](https://github.com/user-attachments/assets/c1900762-6189-489a-a3b4-0678be468b92)
+
+Then press "Generate release notes" to automatically include the merged pull requests. And press "Publish release."
 
 ## Usage
 
