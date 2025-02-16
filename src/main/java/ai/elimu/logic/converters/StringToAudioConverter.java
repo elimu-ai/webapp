@@ -1,15 +1,16 @@
 package ai.elimu.logic.converters;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.AudioDao;
 import ai.elimu.model.content.multimedia.Audio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
+@AllArgsConstructor
 public class StringToAudioConverter implements Converter<String, Audio> {
 
-    @Autowired
-    private AudioDao audioDao;
+    private final AudioDao audioDao;
     
     /**
      * Convert Audio id to Audio entity
@@ -19,8 +20,7 @@ public class StringToAudioConverter implements Converter<String, Audio> {
             return null;
         } else {
             Long audioId = Long.parseLong(id);
-            Audio word = audioDao.read(audioId);
-            return word;
+            return audioDao.read(audioId);
         }
     }
 }

@@ -1,16 +1,16 @@
 package ai.elimu.logic.converters;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.model.admin.Application;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
+@AllArgsConstructor
 public class StringToApplicationConverter implements Converter<String, Application> {
 
-    @Autowired
-    private ApplicationDao applicationDao;
-    
+    private final ApplicationDao applicationDao;
+
     /**
      * Convert Application id to Application entity
      */
@@ -19,8 +19,7 @@ public class StringToApplicationConverter implements Converter<String, Applicati
             return null;
         } else {
             Long applicationId = Long.parseLong(id);
-            Application application = applicationDao.read(applicationId);
-            return application;
+            return applicationDao.read(applicationId);
         }
     }
 }
