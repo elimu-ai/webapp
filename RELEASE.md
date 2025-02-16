@@ -7,7 +7,7 @@ See [.github/workflows/maven-release.yml](.github/workflows/maven-release.yml)
 
 ![Run workflow](https://github.com/elimu-ai/wiki/assets/1451036/5bbfe03f-724c-4582-bc3c-411b763316db)
 
-### Create Release Notes 🗒️
+### Create release notes 🗒️
 
 After the release job has completed, go to https://github.com/elimu-ai/webapp/tags and press "Create release."
 
@@ -20,6 +20,16 @@ Then press "Generate release notes" to automatically include the merged pull req
 [![](https://jitpack.io/v/elimu-ai/webapp.svg)](https://jitpack.io/#elimu-ai/webapp)
 
 After each release, the resulting `.war` file gets uploaded to https://jitpack.io/#elimu-ai/webapp
+
+### Execute deployment script 🚀
+
+1. Connect to the server via SSH
+2. Execute the [`deploy-webapp.sh`](https://github.com/elimu-ai/webapp/blob/main/src/main/config/centos-stream-9/~/.elimu-ai/deploy-webapp.sh) script:
+   ```
+   # ~/.elimu-ai/deploy-webapp.sh 2.5.11
+   ```
+
+This will restart the web server with the new release version. To confirm that the deployment succeeded, you can check the release version in the webapp's footer.
 
 ---
 
