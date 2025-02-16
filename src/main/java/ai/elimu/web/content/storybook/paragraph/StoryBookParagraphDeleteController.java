@@ -21,9 +21,9 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/storybook/paragraph/delete")
@@ -46,7 +46,7 @@ public class StoryBookParagraphDeleteController {
     @Autowired
     private StoryBooksJsonService storyBooksJsonService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public String handleRequest(HttpSession session, @PathVariable Long id) {
         logger.info("handleRequest");
         

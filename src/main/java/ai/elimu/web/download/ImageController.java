@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,7 +16,6 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.model.content.multimedia.Image;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/image")
@@ -26,7 +26,7 @@ public class ImageController {
     @Autowired
     private ImageDao imageDao;
     
-    @RequestMapping(value="/{imageId}_r{revisionNumber}.{imageFormat}", method = RequestMethod.GET)
+    @GetMapping(value="/{imageId}_r{revisionNumber}.{imageFormat}")
     public void handleRequest(
             Model model,
             @PathVariable Long imageId,

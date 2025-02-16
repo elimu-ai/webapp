@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +19,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/emoji/list")
@@ -29,7 +29,7 @@ public class EmojiCsvExportController {
     @Autowired
     private EmojiDao emojiDao;
     
-    @RequestMapping(value="/emojis.csv", method = RequestMethod.GET)
+    @GetMapping(value="/emojis.csv")
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream

@@ -17,6 +17,7 @@ import com.github.scribejava.core.builder.ServiceBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -31,7 +32,6 @@ import java.util.concurrent.ExecutionException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * See https://github.com/organizations/elimu-ai/settings/applications and 
@@ -86,7 +86,7 @@ public class SignOnControllerGitHub {
         return "redirect:" + authorizationUrl;
     }
     
-    @RequestMapping(value="/sign-on/github/callback", method=RequestMethod.GET)
+    @GetMapping(value="/sign-on/github/callback")
     public String handleCallback(HttpServletRequest request, Model model) {
         logger.info("handleCallback");
         

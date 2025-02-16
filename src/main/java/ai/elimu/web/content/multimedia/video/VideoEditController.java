@@ -32,10 +32,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -62,7 +63,7 @@ public class VideoEditController {
     @Autowired
     private EmojiDao emojiDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public String handleRequest(
             Model model, 
             @PathVariable Long id) {
@@ -84,7 +85,7 @@ public class VideoEditController {
         return "content/multimedia/video/edit";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/{id}")
     public String handleSubmit(
             Video video,
             @RequestParam("bytes") MultipartFile multipartFile,
@@ -162,7 +163,7 @@ public class VideoEditController {
         binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
     }
     
-    @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
+    @PostMapping(value = "/{id}/add-content-label")
     @ResponseBody
     public String handleAddContentLabelRequest(
             HttpServletRequest request,
@@ -214,7 +215,7 @@ public class VideoEditController {
         return "success";
     }
     
-    @RequestMapping(value = "/{id}/remove-content-label", method = RequestMethod.POST)
+    @PostMapping(value = "/{id}/remove-content-label")
     @ResponseBody
     public String handleRemoveContentLabelRequest(
             HttpServletRequest request,

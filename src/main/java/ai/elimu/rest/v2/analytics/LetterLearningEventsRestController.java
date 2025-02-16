@@ -27,8 +27,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,7 +48,7 @@ public class LetterLearningEventsRestController {
     @Autowired
     private LetterDao letterDao;
     
-    @RequestMapping(value = "/csv", method = RequestMethod.POST)
+    @PostMapping(value = "/csv")
     public String handleUploadCsvRequest(
             @RequestParam("file") MultipartFile multipartFile,
             HttpServletResponse response

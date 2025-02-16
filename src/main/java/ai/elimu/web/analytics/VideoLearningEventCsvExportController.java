@@ -13,13 +13,13 @@ import java.util.List;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/analytics/video-learning-event/list")
@@ -30,7 +30,7 @@ public class VideoLearningEventCsvExportController {
     @Autowired
     private VideoLearningEventDao videoLearningEventDao;
     
-    @RequestMapping(value="/video-learning-events.csv", method = RequestMethod.GET)
+    @GetMapping(value="/video-learning-events.csv")
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream

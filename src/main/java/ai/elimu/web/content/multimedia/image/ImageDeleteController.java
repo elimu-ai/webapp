@@ -6,9 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/multimedia/image/delete")
@@ -19,7 +19,7 @@ public class ImageDeleteController {
     @Autowired
     private ImageDao imageDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public String handleRequest(Model model, @PathVariable Long id) {
         logger.info("handleRequest");
         

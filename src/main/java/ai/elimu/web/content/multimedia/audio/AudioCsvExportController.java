@@ -9,11 +9,11 @@ import java.util.List;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/audio/list")
@@ -24,7 +24,7 @@ public class AudioCsvExportController {
     @Autowired
     private AudioDao audioDao;
     
-    @RequestMapping(value="/audios.csv", method = RequestMethod.GET)
+    @GetMapping(value="/audios.csv")
     public void handleRequest(
             HttpServletResponse response,
             OutputStream outputStream) {

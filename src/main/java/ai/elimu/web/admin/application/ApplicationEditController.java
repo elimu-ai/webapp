@@ -16,9 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/application/edit")
@@ -32,7 +33,7 @@ public class ApplicationEditController {
     @Autowired
     private ApplicationVersionDao applicationVersionDao;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public String handleRequest(
             @PathVariable Long id,
             Model model
@@ -53,7 +54,7 @@ public class ApplicationEditController {
         return "admin/application/edit";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/{id}")
     public String handleSubmit(
             HttpSession session,
             @Valid Application application,

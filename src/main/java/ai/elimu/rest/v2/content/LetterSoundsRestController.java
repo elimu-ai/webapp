@@ -10,8 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ai.elimu.dao.LetterSoundDao;
 
@@ -24,7 +24,7 @@ public class LetterSoundsRestController {
     @Autowired
     private LetterSoundDao letterSoundDao;
     
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String handleGetRequest() {
         logger.info("handleGetRequest");
         
