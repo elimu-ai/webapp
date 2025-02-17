@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/sign-on/discord")
 @RequiredArgsConstructor
 public class SignOnControllerDiscord {
 
@@ -46,7 +47,7 @@ public class SignOnControllerDiscord {
 
   private final ContributorDao contributorDao;
 
-  @RequestMapping("/sign-on/discord")
+  @GetMapping(value="/")
   public String handleAuthorization(HttpServletRequest request) throws IOException {
     logger.info("handleAuthorization");
 
@@ -82,7 +83,7 @@ public class SignOnControllerDiscord {
   }
 
 
-  @GetMapping(value="/sign-on/discord/callback")
+  @GetMapping(value="/callback")
   public String handleCallback(HttpServletRequest request) throws IOException, InterruptedException, ExecutionException {
         logger.info("handleCallback");
 

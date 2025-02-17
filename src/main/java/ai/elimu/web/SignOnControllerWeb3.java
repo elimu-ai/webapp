@@ -18,9 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping(value="/sign-on/web3")
 @RequiredArgsConstructor
 public class SignOnControllerWeb3 {
 
@@ -33,7 +35,7 @@ public class SignOnControllerWeb3 {
 
   private final ContributorDao contributorDao;
 
-  @GetMapping(value="/sign-on/web3")
+  @GetMapping
   public String handleGetRequest(HttpServletRequest request) throws IOException {
     logger.info("handleGetRequest");
 
@@ -43,7 +45,7 @@ public class SignOnControllerWeb3 {
   /**
    * Verify that an Ethereum signature was signed by a given Ethereum account. If true, we proceed with the sign-on process. Otherwise, we return an error message.
    */
-  @PostMapping(value = "/sign-on/web3", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+  @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public String handleAuthorization(
       HttpServletRequest request,
       HttpSession session,
