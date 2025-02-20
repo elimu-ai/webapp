@@ -18,15 +18,15 @@ body {
 
 #index-banner {
     background-color: #673AB7;
-    background-image: url(../../static/img/banner-tz.jpg);
     background-size: cover;
     background-position: 0 50%;
+    background-image: url(../../static/img/banner-tz.png);
 }
 html[data-content-language="hin"] #index-banner {
-    background-image: url(../../static/img/banner-in.jpg);
+    background-image: url(../../static/img/banner-in.png);
 }
 html[data-content-language="tgl"] #index-banner {
-    background-image: url(../../static/img/banner-ph.jpg);
+    background-image: url(../../static/img/banner-ph.png);
 }
 html[data-content-language="tha"] #index-banner {
     background-image: url(../../static/img/banner-th.jpg);
