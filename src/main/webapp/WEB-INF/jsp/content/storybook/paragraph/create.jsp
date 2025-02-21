@@ -7,7 +7,7 @@
     <div class="card-panel">
         <c:if test="${not empty storyBookParagraph.storyBookChapter.image}">
             <a href="<spring:url value='/content/multimedia/image/edit/${storyBookParagraph.storyBookChapter.image.id}' />">
-                <img src="<spring:url value='/image/${storyBookParagraph.storyBookChapter.image.id}_r${storyBookParagraph.storyBookChapter.image.revisionNumber}.${fn:toLowerCase(storyBookParagraph.storyBookChapter.image.imageFormat)}' />" alt="${storyBookParagraph.storyBookChapter.storyBook.title}" />
+                <img src="<spring:url value='${storyBookParagraph.storyBookChapter.image.url}' />" alt="${storyBookParagraph.storyBookChapter.storyBook.title}" />
             </a>
         </c:if>
         

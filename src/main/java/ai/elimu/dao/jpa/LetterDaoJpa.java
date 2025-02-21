@@ -1,7 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import java.util.List;
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import ai.elimu.dao.LetterDao;
 
 import org.springframework.dao.DataAccessException;
@@ -39,6 +39,15 @@ public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
             "SELECT l " +
             "FROM Letter l " +
             "ORDER BY l.usageCount DESC, l.text")
+            .getResultList();
+    }
+
+    @Override
+    public List<Letter> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT l " +
+                    "FROM Letter l " +
+                    "ORDER BY l.id, l.text")
             .getResultList();
     }
 }

@@ -1,21 +1,18 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.content.multimedia.Audio;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class AudioContributionEvent extends ContributionEvent {
-    
-    @NotNull
-    @ManyToOne
-    private Audio audio;
 
-    public Audio getAudio() {
-        return audio;
-    }
-
-    public void setAudio(Audio audio) {
-        this.audio = audio;
-    }
+  @NotNull
+  @ManyToOne
+  private Audio audio;
 }

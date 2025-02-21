@@ -8,7 +8,7 @@
     <c:if test="${not empty storyBookParagraph.storyBookChapter.image}">
         <div class="card-panel">
             <a href="<spring:url value='/content/multimedia/image/edit/${storyBookParagraph.storyBookChapter.image.id}' />">
-                <img src="<spring:url value='/image/${storyBookParagraph.storyBookChapter.image.id}_r${storyBookParagraph.storyBookChapter.image.revisionNumber}.${fn:toLowerCase(storyBookParagraph.storyBookChapter.image.imageFormat)}' />" alt="${storyBookParagraph.storyBookChapter.storyBook.title}" />
+                <img src="<spring:url value='${storyBookParagraph.storyBookChapter.image.url}' />" alt="${storyBookParagraph.storyBookChapter.storyBook.title}" />
             </a>
         </div>
     </c:if>
@@ -31,9 +31,9 @@
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
-            <sec:authorize access="hasRole('ROLE_EDITOR')">
+            <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
                 <a href="<spring:url value='/content/storybook/paragraph/delete/${storyBookParagraph.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
-            </sec:authorize>
+            </c:if>
         </form:form>
     </div>
 </content:section>

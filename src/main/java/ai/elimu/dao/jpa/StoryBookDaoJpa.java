@@ -1,7 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import java.util.List;
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import ai.elimu.dao.StoryBookDao;
 
 import org.springframework.dao.DataAccessException;
@@ -31,6 +31,15 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
             "SELECT book " +
             "FROM StoryBook book " +
             "ORDER BY book.title")
+            .getResultList();
+    }
+
+    @Override
+    public List<StoryBook> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT book " +
+                    "FROM StoryBook book " +
+                    "ORDER BY book.id")
             .getResultList();
     }
     

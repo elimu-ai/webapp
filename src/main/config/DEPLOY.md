@@ -11,6 +11,12 @@ Version: `CentOS 9 Stream`
 > [!NOTE]
 > You can find the configuration files for this operating system in the [`centos-stream-9`](./centos-stream-9/) folder.
 
+## Timezone ⌚
+
+Set system timezone to UTC:
+
+    timedatectl set-timezone "UTC"
+
 ## Java Virtual Machine (JVM) ☕
 
 Install Java 17 or newer. We will be using [OpenJDK](https://openjdk.org/), but you can also use the JDK from [Oracle](https://www.oracle.com/java/).
@@ -23,7 +29,7 @@ Version: `17`
 
 We use [Eclipse Jetty](https://jetty.org/) as our web server.
 
-Version: `Jetty 10.0.22` (requires Java 11 or newer)
+Version: `Jetty 11.0.24` (requires Java 11 or newer)
 
 ### Jetty Maven Plugin 🪶
 
@@ -39,15 +45,15 @@ You can find the download links for each release at https://jetty.org/download.h
 On your production server, go to the temporary folder, and download the release:
 
     cd /tmp
-    wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/10.0.22/jetty-home-10.0.22.tar.gz
+    wget https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/11.0.24/jetty-home-11.0.24.tar.gz
 
 Extract the archive:
 
-    tar -zxvf jetty-home-10.0.22.tar.gz
+    tar -zxvf jetty-home-11.0.24.tar.gz
 
 Move the folder to `/opt`:
 
-    mv jetty-home-10.0.22 /opt/
+    mv jetty-home-11.0.24 /opt/
 
 ### Configure Jetty ⚙️
 
@@ -55,7 +61,7 @@ Move the folder to `/opt`:
 
 Add the `jetty` service:
 
-    ln -s /opt/jetty-home-10.0.22/bin/jetty.sh /etc/rc.d/init.d/jetty
+    ln -s /opt/jetty-home-11.0.24/bin/jetty.sh /etc/rc.d/init.d/jetty
 
 Enable the `jetty` server on system init:
     
@@ -74,7 +80,7 @@ Create the folder that will contain Jetty configuration and `*.war` files:
 Add Jetty modules:
 
     cd /opt/jetty-base/
-    java -jar /opt/jetty-home-10.0.22/start.jar --add-module=server,http,deploy,jsp
+    java -jar /opt/jetty-home-11.0.24/start.jar --add-module=server,http,deploy,jsp
 
 #### Set Default Values
 
@@ -96,10 +102,12 @@ Copy the port number configuration from [`centos-stream-9/opt/jetty-base/start.d
 
 Add the latest release of your `*.war` file to `/opt/jetty-base/webapps/`. In our case, we download WAR releases from an external URL:
 
-    wget -O /opt/jetty-base/webapps/webapp.war https://jitpack.io/com/github/elimu-ai/webapp/webapp-2.4.25/webapp-webapp-2.4.25.war
+    wget -O /opt/jetty-base/webapps/webapp.war https://jitpack.io/com/github/elimu-ai/webapp/webapp-2.4.66/webapp-webapp-2.4.66.war
 
 > [!IMPORTANT]
 > The WAR file's name must match the context file's name, e.g. `webapp.war` and `webapp.xml`.
+
+Also see [`RELEASE.md`](https://github.com/elimu-ai/webapp/blob/main/RELEASE.md) for instructions on how to perform releases from a GitHub repo.
 
 #### Add Jetty Context XML File
 
@@ -117,7 +125,7 @@ Start the `jetty` service:
     systemctl start jetty
 
 > [!TIP]
-> To verify that everything has been configured correctly, you can run `cd /opt/jetty-base/; java -jar /opt/jetty-home-10.0.22/start.jar --list-config` and `systemctl status jetty`
+> To verify that everything has been configured correctly, you can run `cd /opt/jetty-base/; java -jar /opt/jetty-home-11.0.24/start.jar --list-config` and `systemctl status jetty`
 
 ## MariaDB Database 🛢️
 

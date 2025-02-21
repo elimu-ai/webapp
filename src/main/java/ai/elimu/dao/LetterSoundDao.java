@@ -12,6 +12,8 @@ public interface LetterSoundDao extends GenericDao<LetterSound> {
     LetterSound read(List<Letter> letters, List<Sound> sounds) throws DataAccessException;
     
     List<LetterSound> readAllOrderedByUsage() throws DataAccessException;
+
+    List<LetterSound> readAllOrderedById() throws DataAccessException;
     
     List<LetterSound> readAllOrderedByLettersLength() throws DataAccessException;
 }

@@ -1,21 +1,18 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.content.Number;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class NumberContributionEvent extends ContributionEvent {
-    
-    @NotNull
-    @ManyToOne
-    private Number number;
 
-    public Number getNumber() {
-        return number;
-    }
-
-    public void setNumber(Number number) {
-        this.number = number;
-    }
+  @NotNull
+  @ManyToOne
+  private Number number;
 }

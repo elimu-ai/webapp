@@ -2,7 +2,7 @@ package ai.elimu.dao.jpa;
 
 import java.util.List;
 
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
@@ -32,6 +32,15 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
             "SELECT i " +
             "FROM Image i " +
             "ORDER BY i.title")
+            .getResultList();
+    }
+
+    @Override
+    public List<Image> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT i " +
+                    "FROM Image i " +
+                    "ORDER BY i.id")
             .getResultList();
     }
 

@@ -34,10 +34,10 @@
                     <div class="headband"></div>
                     <c:set var="coverImageUrl" value="" />
                     <c:if test="${not empty storyBook.coverImage}">
-                        <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
+                        <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -82,10 +82,10 @@
                     <div class="headband"></div>
                     <c:set var="coverImageUrl" value="" />
                     <c:if test="${not empty storyBook.coverImage}">
-                        <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
+                        <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -130,10 +130,10 @@
                     <div class="headband"></div>
                     <c:set var="coverImageUrl" value="" />
                     <c:if test="${not empty storyBook.coverImage}">
-                        <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
+                        <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -178,10 +178,10 @@
                     <div class="headband"></div>
                     <c:set var="coverImageUrl" value="" />
                     <c:if test="${not empty storyBook.coverImage}">
-                        <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
+                        <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -224,10 +224,10 @@
                         <div class="headband"></div>
                         <c:set var="coverImageUrl" value="" />
                         <c:if test="${not empty storyBook.coverImage}">
-                            <c:set var="coverImageUrl" value="/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}" />
+                            <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                         </c:if>
                         <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                            <div class="card-image" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                            <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                                 <span class="card-title"><c:out value="${storyBook.title}" /></span>
                             </div>
                         </a>

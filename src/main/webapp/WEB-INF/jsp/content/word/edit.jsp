@@ -166,9 +166,9 @@
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
-            <sec:authorize access="hasRole('ROLE_EDITOR')">
+            <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
                 <a href="<spring:url value='/content/word/delete/${word.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
-            </sec:authorize>
+            </c:if>
         </form:form>
     </div>
     
@@ -237,7 +237,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${wordContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${wordContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty wordContributionEvent.contributor.imageUrl}">
@@ -269,7 +269,7 @@
                     <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
                         <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <a href="<spring:url value='/content/contributor/${wordPeerReviewEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty wordPeerReviewEvent.contributor.imageUrl}">
@@ -359,7 +359,7 @@
                     <a href="https://translate.google.com/?sl=tl&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
                 </li>
                 <li>
-                    <a href="https://www.tagaloglessons.com/words/<c:out value='${word.text}' />.php" target="_blank">TagalogLessons</a>
+                    <a href="https://www.tagalog.com/dictionary/<c:out value='${word.text}' />" target="_blank">Tagalog.com</a>
                 </li>
             </ol>
         </div>
@@ -444,7 +444,7 @@
         </c:if>
         <c:forEach var="image" items="${labeledImages}">
             <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
-                <img src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />" alt="${image.title}" />
+                <img src="<spring:url value='${image.url}' />" alt="${image.title}" />
             </a>
         </c:forEach>
     </div>

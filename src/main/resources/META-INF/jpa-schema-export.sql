@@ -107,6 +107,8 @@
 
     drop table if exists Video_Word;
 
+    drop table if exists VideoLearningEvent;
+
     drop table if exists Word;
 
     drop table if exists Word_LetterSound;
@@ -124,17 +126,17 @@
         packageName varchar(255),
         contributor_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Application_literacySkills (
        Application_id bigint not null,
         literacySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Application_numeracySkills (
        Application_id bigint not null,
         numeracySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table ApplicationVersion (
        id bigint not null auto_increment,
@@ -142,7 +144,7 @@
         checksumMd5 varchar(255),
         contentType varchar(255),
         fileSizeInKb integer,
-        icon longblob,
+        icon mediumblob,
         label varchar(255),
         minSdkVersion integer,
         timeUploaded datetime,
@@ -151,7 +153,7 @@
         application_id bigint,
         contributor_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Audio (
        id bigint not null auto_increment,
@@ -160,7 +162,7 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl varchar(1000),
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
         audioFormat varchar(255),
@@ -171,56 +173,56 @@
         storyBookParagraph_id bigint,
         word_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Audio_Letter (
        Audio_id bigint not null,
         letters_id bigint not null,
         primary key (Audio_id, letters_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Audio_literacySkills (
        Audio_id bigint not null,
         literacySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Audio_Number (
        Audio_id bigint not null,
         numbers_id bigint not null,
         primary key (Audio_id, numbers_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Audio_numeracySkills (
        Audio_id bigint not null,
         numeracySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Audio_Word (
        Audio_id bigint not null,
         words_id bigint not null,
         primary key (Audio_id, words_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table AudioContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
         contributor_id bigint,
         audio_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table AudioPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         audioContributionEvent_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Contributor (
        id bigint not null auto_increment,
@@ -228,7 +230,7 @@
         firstName varchar(255),
         imageUrl varchar(255),
         lastName varchar(255),
-        motivation varchar(1000),
+        motivation text,
         occupation varchar(255),
         providerIdDiscord varchar(255),
         providerIdGitHub varchar(255),
@@ -238,20 +240,20 @@
         usernameDiscord varchar(255),
         usernameGitHub varchar(255),
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Contributor_roles (
        Contributor_id bigint not null,
         roles varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table DbMigration (
        id bigint not null auto_increment,
         calendar datetime,
-        script varchar(10000),
+        script text,
         version integer,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Device (
        id bigint not null auto_increment,
@@ -263,7 +265,7 @@
         remoteAddress varchar(255),
         timeRegistered datetime,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Emoji (
        id bigint not null auto_increment,
@@ -273,16 +275,16 @@
         timeLastUpdate datetime,
         usageCount integer,
         glyph varchar(4),
-        unicodeEmojiVersion double precision,
-        unicodeVersion double precision,
+        unicodeEmojiVersion float(53),
+        unicodeVersion float(53),
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Emoji_Word (
        Emoji_id bigint not null,
         words_id bigint not null,
         primary key (Emoji_id, words_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Image (
        id bigint not null auto_increment,
@@ -291,54 +293,55 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl varchar(1000),
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
-        bytes longblob,
+        bytes mediumblob,
+        cid varchar(255),
         dominantColor varchar(255),
         imageFormat varchar(255),
         title varchar(255),
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Image_Letter (
        Image_id bigint not null,
         letters_id bigint not null,
         primary key (Image_id, letters_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Image_literacySkills (
        Image_id bigint not null,
         literacySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Image_Number (
        Image_id bigint not null,
         numbers_id bigint not null,
         primary key (Image_id, numbers_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Image_numeracySkills (
        Image_id bigint not null,
         numeracySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Image_Word (
        Image_id bigint not null,
         words_id bigint not null,
         primary key (Image_id, words_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table ImageContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
         contributor_id bigint,
         image_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Letter (
        id bigint not null auto_increment,
@@ -350,21 +353,22 @@
         diacritic bit not null,
         text varchar(2),
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table LetterContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
         contributor_id bigint,
         letter_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table LetterLearningEvent (
        id bigint not null auto_increment,
+        additionalData text,
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -373,7 +377,7 @@
         application_id bigint,
         letter_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table LetterSound (
        id bigint not null auto_increment,
@@ -383,42 +387,42 @@
         timeLastUpdate datetime,
         usageCount integer,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table LetterSound_Letter (
        LetterSound_id bigint not null,
         letters_id bigint not null,
         letters_ORDER integer not null,
         primary key (LetterSound_id, letters_ORDER)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table LetterSound_Sound (
        LetterSound_id bigint not null,
         sounds_id bigint not null,
         sounds_ORDER integer not null,
         primary key (LetterSound_id, sounds_ORDER)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table LetterSoundContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
         contributor_id bigint,
         letterSound_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table LetterSoundPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         letterSoundContributionEvent_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Number (
        id bigint not null auto_increment,
@@ -430,35 +434,35 @@
         symbol varchar(255),
         value integer,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Number_Word (
        Number_id bigint not null,
         words_id bigint not null,
         words_ORDER integer not null,
         primary key (Number_id, words_ORDER)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table NumberContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
         contributor_id bigint,
         number_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table NumberPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         numberContributionEvent_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Sound (
        id bigint not null auto_increment,
@@ -480,18 +484,18 @@
         vowelLength varchar(255),
         audio_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table SoundContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
         contributor_id bigint,
         sound_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table StoryBook (
        id bigint not null auto_increment,
@@ -500,14 +504,14 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl varchar(1000),
+        attributionUrl text,
         contentLicense varchar(255),
-        description varchar(1024),
+        description text,
         readingLevel varchar(255),
         title varchar(255),
         coverImage_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table StoryBookChapter (
        id bigint not null auto_increment,
@@ -515,23 +519,24 @@
         image_id bigint,
         storyBook_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table StoryBookContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
-        paragraphTextAfter varchar(1000),
-        paragraphTextBefore varchar(1000),
+        paragraphTextAfter text,
+        paragraphTextBefore text,
         contributor_id bigint,
         storyBook_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table StoryBookLearningEvent (
        id bigint not null auto_increment,
+        additionalData text,
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -541,32 +546,32 @@
         application_id bigint,
         storyBook_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table StoryBookParagraph (
        id bigint not null auto_increment,
-        originalText varchar(1024),
+        originalText text,
         sortOrder integer,
         storyBookChapter_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table StoryBookParagraph_Word (
        StoryBookParagraph_id bigint not null,
         words_id bigint not null,
         words_ORDER integer not null,
         primary key (StoryBookParagraph_id, words_ORDER)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table StoryBookPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         storyBookContributionEvent_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Syllable (
        id bigint not null auto_increment,
@@ -577,14 +582,14 @@
         usageCount integer,
         text varchar(255),
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Syllable_Sound (
        Syllable_id bigint not null,
         sounds_id bigint not null,
         sounds_ORDER integer not null,
         primary key (Syllable_id, sounds_ORDER)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Video (
        id bigint not null auto_increment,
@@ -593,43 +598,57 @@
         revisionNumber integer,
         timeLastUpdate datetime,
         usageCount integer,
-        attributionUrl varchar(1000),
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
         bytes longblob,
-        thumbnail longblob,
+        thumbnail mediumblob,
         title varchar(255),
         videoFormat varchar(255),
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Video_Letter (
        Video_id bigint not null,
         letters_id bigint not null,
         primary key (Video_id, letters_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Video_literacySkills (
        Video_id bigint not null,
         literacySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Video_Number (
        Video_id bigint not null,
         numbers_id bigint not null,
         primary key (Video_id, numbers_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Video_numeracySkills (
        Video_id bigint not null,
         numeracySkills varchar(255)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Video_Word (
        Video_id bigint not null,
         words_id bigint not null,
         primary key (Video_id, words_id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
+
+    create table VideoLearningEvent (
+       id bigint not null auto_increment,
+        additionalData text,
+        androidId varchar(255),
+        learningEventType varchar(255),
+        packageName varchar(255),
+        timestamp datetime,
+        videoId bigint,
+        videoTitle varchar(255),
+        application_id bigint,
+        video_id bigint,
+        primary key (id)
+    ) type=MyISAM;
 
     create table Word (
        id bigint not null auto_increment,
@@ -643,28 +662,29 @@
         wordType varchar(255),
         rootWord_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table Word_LetterSound (
        Word_id bigint not null,
         letterSounds_id bigint not null,
         letterSounds_ORDER integer not null,
         primary key (Word_id, letterSounds_ORDER)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table WordContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timeSpentMs bigint,
         timestamp datetime,
         contributor_id bigint,
         word_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table WordLearningEvent (
        id bigint not null auto_increment,
+        additionalData text,
         androidId varchar(255),
         learningEventType varchar(255),
         packageName varchar(255),
@@ -673,17 +693,17 @@
         application_id bigint,
         word_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     create table WordPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         wordContributionEvent_id bigint,
         primary key (id)
-    ) engine=MyISAM;
+    ) type=MyISAM;
 
     alter table Contributor 
        add constraint UK_se15thb3bqtr3sw28rgf1v8ia unique (email);
@@ -1070,6 +1090,16 @@
     alter table Video_Word 
        add constraint FKplswdv1whriquc00dsaxrqe0s 
        foreign key (Video_id) 
+       references Video (id);
+
+    alter table VideoLearningEvent 
+       add constraint FKoqqhe1r2epyv55g6jo79t251h 
+       foreign key (application_id) 
+       references Application (id);
+
+    alter table VideoLearningEvent 
+       add constraint FK38rllate5mtlhi6fdiudffm4c 
+       foreign key (video_id) 
        references Video (id);
 
     alter table Word 

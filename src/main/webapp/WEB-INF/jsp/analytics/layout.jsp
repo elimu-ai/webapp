@@ -12,7 +12,6 @@
         <%-- CSS --%>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
         <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
         <link rel="stylesheet" href="<spring:url value='/static/css/analytics/styles.css' />" />
         
@@ -21,11 +20,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="<spring:url value='/static/js/init.js' />"></script>
         <script src="<spring:url value='/static/js/difflib-0.2.4.min.js' />"></script>
-        <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
-        <script src="<spring:url value='/static/js/web3provider.js' />"></script>
         <%@ include file="/WEB-INF/jsp/error/javascript-error.jsp" %>
     </head>
 
@@ -59,6 +53,7 @@
                         <li><a href="<spring:url value='/analytics/letter-learning-event/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
                         <li><a href="<spring:url value='/analytics/word-learning-event/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
                         <li><a href="<spring:url value='/analytics/storybook-learning-event/list' />"><i class="material-icons left">book</i><fmt:message key="storybooks" /></a></li>
+                        <li><a href="<spring:url value='/analytics/video-learning-event/list' />"><i class="material-icons left">movie</i>Videos</a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/analytics' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
@@ -79,7 +74,7 @@
             </div>
         </c:if>
 
-        <div id="${cssId}" class="container <c:if test="${cssClass != null}">${cssClass}</c:if>">
+        <main id="${cssId}" class="container <c:if test="${cssClass != null}">${cssClass}</c:if>">
             <div class="section row">
                 <c:choose>
                     <c:when test="${!hasAside}">
@@ -97,6 +92,6 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-        </div>
+        </main>
     </body>
 </html>

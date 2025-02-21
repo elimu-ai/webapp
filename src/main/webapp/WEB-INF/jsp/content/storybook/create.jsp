@@ -56,7 +56,7 @@
                     </select>
                     <label for="coverImage"><fmt:message key="cover.image" /></label>
                     <c:if test="${not empty storyBook.coverImage}">
-                        <img src="<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
+                        <img src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
                     </c:if>
                 </div>
             </div>

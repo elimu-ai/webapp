@@ -37,7 +37,7 @@
                                 <c:out value=" ${emojisByWordId[word.id]}" />
                             </td>
                             <td>
-                                <a href="<spring:url value='/content/contributor/${wordContributionEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${wordContributionEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty wordContributionEvent.contributor.imageUrl}">

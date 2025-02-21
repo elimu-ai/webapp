@@ -1,7 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import java.util.List;
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import ai.elimu.model.content.Sound;
 
 import org.springframework.dao.DataAccessException;
@@ -61,6 +61,15 @@ public class SoundDaoJpa extends GenericDaoJpa<Sound> implements SoundDao {
             "SELECT s " +
             "FROM Sound s " +
             "ORDER BY s.usageCount DESC, s.valueIpa")
+            .getResultList();
+    }
+
+    @Override
+    public List<Sound> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT s " +
+                    "FROM Sound s " +
+                    "ORDER BY s.id, s.valueIpa")
             .getResultList();
     }
 }

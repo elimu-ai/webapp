@@ -24,7 +24,7 @@ public class MainAnalyticsPageTest {
         ChromeOptions chromeOptions = new ChromeOptions();
 
         // Read "headless" property set on the command line: 
-        //    mvn clean verify -P regression-testing-ui -D headless=true
+        //    mvn clean verify -P regression-test-ui -D headless=true
         String headlessSystemProperty = System.getProperty("headless");
         logger.info("headlessSystemProperty: \"" + headlessSystemProperty + "\"");
         if ("true".equals(headlessSystemProperty)) {

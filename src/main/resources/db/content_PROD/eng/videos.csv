@@ -12,10 +12,9 @@ id,content_type,content_license,attribution_url,title,download_url,video_format
 11,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - art - drawing rectangles","/video/11.m4v",M4V
 12,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - numbers - one two three song","/video/12.m4v",M4V
 13,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - the rectangle song","/video/13.m4v",M4V
-14,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - counting compilation","/video/14.m4v",M4V
 32,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - letter h","/video/32.m4v",M4V
 33,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - letter i","/video/33.m4v",M4V
 34,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - letter j","/video/34.m4v",M4V
 35,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - letter k","/video/35.m4v",M4V
 36,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"http://ubongo.co","akili and me - letter l","/video/36.m4v",M4V
-42,video/mp4,null,"https://www.youtube.com/watch?v=yYcpRSQ-irs","one small step","/video/42.mp4",MP4
+43,video/mp4,CREATIVE_COMMONS_CC_BY_NC_ND,"https://toolkits.ubongo.org/2019/07/29/counting-to-10/"," count to ten with me","/video/43.mp4",MP4

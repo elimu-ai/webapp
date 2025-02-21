@@ -15,8 +15,8 @@
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
             <input type="hidden" name="timeStart" value="${timeStart}" />
             
-            <img 
-                src="<spring:url value='/image/${image.id}_r${image.revisionNumber}.${fn:toLowerCase(image.imageFormat)}' />"
+            <img class="cid-${image.cid != null}"
+                src="<spring:url value='${image.url}' />"
                 alt="${image.title}" />
             <script>
                 $(function() {
@@ -95,9 +95,9 @@
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
                 <fmt:message key="edit" /> <i class="material-icons right">send</i>
             </button>
-            <sec:authorize access="hasRole('ROLE_EDITOR')">
+            <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
                 <a href="<spring:url value='/content/multimedia/image/delete/${image.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
-            </sec:authorize>
+            </c:if>
         </form:form>
     </div>
     
@@ -115,7 +115,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${imageContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${imageContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${imageContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty imageContributionEvent.contributor.imageUrl}">

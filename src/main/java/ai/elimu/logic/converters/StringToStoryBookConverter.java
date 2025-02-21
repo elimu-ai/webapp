@@ -1,26 +1,25 @@
 package ai.elimu.logic.converters;
 
-import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.model.content.StoryBook;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 
+@AllArgsConstructor
 public class StringToStoryBookConverter implements Converter<String, StoryBook> {
 
-    @Autowired
-    private StoryBookDao storyBookDao;
-    
-    /**
-     * Convert StoryBook id to StoryBook entity
-     */
-    public StoryBook convert(String id) {
-        if (StringUtils.isBlank(id)) {
-            return null;
-        } else {
-            Long storyBookId = Long.parseLong(id);
-            StoryBook storyBook = storyBookDao.read(storyBookId);
-            return storyBook;
-        }
+  private final StoryBookDao storyBookDao;
+
+  /**
+   * Convert StoryBook id to StoryBook entity
+   */
+  public StoryBook convert(String id) {
+    if (StringUtils.isBlank(id)) {
+      return null;
+    } else {
+      Long storyBookId = Long.parseLong(id);
+      return storyBookDao.read(storyBookId);
     }
+  }
 }

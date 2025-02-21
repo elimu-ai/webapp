@@ -1,21 +1,18 @@
 package ai.elimu.model.contributor;
 
 import ai.elimu.model.content.multimedia.Image;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class ImageContributionEvent extends ContributionEvent {
-    
-    @NotNull
-    @ManyToOne
-    private Image image;
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
+  @NotNull
+  @ManyToOne
+  private Image image;
 }

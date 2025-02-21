@@ -1,7 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import java.util.List;
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
@@ -30,6 +30,15 @@ public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
             "SELECT n " +
             "FROM Number n " +
             "ORDER BY n.value")
+            .getResultList();
+    }
+
+    @Override
+    public List<Number> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT n " +
+                    "FROM Number n " +
+                    "ORDER BY n.id")
             .getResultList();
     }
 }

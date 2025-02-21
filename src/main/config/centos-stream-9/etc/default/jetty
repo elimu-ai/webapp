@@ -1,2 +1,2 @@
-JETTY_HOME=/opt/jetty-home-10.0.22
+JETTY_HOME=/opt/jetty-home-11.0.24
 JETTY_BASE=/opt/jetty-base

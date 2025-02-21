@@ -2,7 +2,7 @@ package ai.elimu.dao.jpa;
 
 import java.util.List;
 
-import javax.persistence.NoResultException;
+import jakarta.persistence.NoResultException;
 import ai.elimu.dao.VideoDao;
 
 import org.springframework.dao.DataAccessException;
@@ -31,6 +31,15 @@ public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
             "SELECT v " +
             "FROM Video v " +
             "ORDER BY v.title")
+            .getResultList();
+    }
+
+    @Override
+    public List<Video> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT v " +
+                    "FROM Video v " +
+                    "ORDER BY v.id")
             .getResultList();
     }
 }

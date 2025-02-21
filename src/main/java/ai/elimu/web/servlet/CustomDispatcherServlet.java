@@ -13,7 +13,7 @@ import ai.elimu.util.db.DbMigrationHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
 import java.util.EnumSet;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.boot.Metadata;
@@ -71,7 +71,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 //                .configure("META-INF/jpa-persistence.xml")
-                .applySetting("hibernate.dialect", org.hibernate.dialect.MySQL5Dialect.class.getName())
+                .applySetting("hibernate.dialect", org.hibernate.dialect.MySQLDialect.class.getName())
                 .applySetting("hibernate.hbm2ddl.auto", "update")
                 .applySetting(AvailableSettings.CONNECTION_PROVIDER, connectionProviderWeb)
                 .build();

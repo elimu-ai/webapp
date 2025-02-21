@@ -75,7 +75,7 @@
                     <label for="coverImage"><fmt:message key="cover.image" /></label>
                     <c:if test="${not empty storyBook.coverImage}">
                         <a href="<spring:url value='/content/multimedia/image/edit/${storyBook.coverImage.id}' />">
-                            <img src="<spring:url value='/image/${storyBook.coverImage.id}_r${storyBook.coverImage.revisionNumber}.${fn:toLowerCase(storyBook.coverImage.imageFormat)}' />" alt="${storyBook.title}" />
+                            <img class="cid-${storyBook.coverImage.cid != null}" src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
                         </a>
                     </c:if>
                 </div>
@@ -96,14 +96,14 @@
     
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
         <a name="ch-id-${storyBookChapter.id}"></a>
-        <sec:authorize access="hasRole('ROLE_EDITOR')">
+        <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
             <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="<fmt:message key='delete' />">delete</i></a>
-        </sec:authorize>
+        </c:if>
         <h5 style="margin-top: 1em;" class="grey-text"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
                 <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
-                    <img src="<spring:url value='/image/${storyBookChapter.image.id}_r${storyBookChapter.image.revisionNumber}.${fn:toLowerCase(storyBookChapter.image.imageFormat)}' />" alt="${storyBook.title}" />
+                    <img class="cid-${storyBookChapter.image.cid != null}" src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
                 </a>
             </c:if>
             
@@ -201,7 +201,7 @@
                     (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
-                <a href="<spring:url value='/content/contributor/${storyBookContributionEvent.contributor.id}' />">
+                <a href="<spring:url value='/contributor/${storyBookContributionEvent.contributor.id}' />">
                     <div class="chip">
                         <c:choose>
                             <c:when test="${not empty storyBookContributionEvent.contributor.imageUrl}">
@@ -259,7 +259,7 @@
                     <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
                         <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
                             <div class="col s4">
-                                <a href="<spring:url value='/content/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
+                                <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
                                         <c:choose>
                                             <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">

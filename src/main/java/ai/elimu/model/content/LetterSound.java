@@ -1,41 +1,28 @@
 package ai.elimu.model.content;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OrderColumn;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderColumn;
-import org.hibernate.validator.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Contains information about the various sounds a letter (or letter combination) can represent.
  */
+@Getter
+@Setter
 @Entity
 public class LetterSound extends Content {
-    
-//    @NotEmpty
-    @OrderColumn
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Letter> letters;
-    
-//    @NotEmpty
-    @OrderColumn
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Sound> sounds;
-    
-    public List<Letter> getLetters() {
-        return letters;
-    }
 
-    public void setLetters(List<Letter> letters) {
-        this.letters = letters;
-    }
+  //    @NotEmpty
+  @OrderColumn
+  @ManyToMany(fetch = FetchType.EAGER)
+  private List<Letter> letters;
 
-    public List<Sound> getSounds() {
-        return sounds;
-    }
-
-    public void setSounds(List<Sound> sounds) {
-        this.sounds = sounds;
-    }
+  //    @NotEmpty
+  @OrderColumn
+  @ManyToMany(fetch = FetchType.EAGER)
+  private List<Sound> sounds;
 }

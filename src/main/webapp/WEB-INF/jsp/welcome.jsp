@@ -80,7 +80,8 @@
                 </p>
             </div>
             <div class="col s12 m5">
-                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" style="border-radius: 8px;" />
+                <img src="https://github.blog/wp-content/uploads/2019/05/xprize-no-text.png?w=1200" 
+                        style="border: 2px solid darkgoldenrod; border-right-width: 4px; border-bottom-width: 4px;" />
             </div>
         </div>
         
@@ -97,7 +98,8 @@
                 </p>
             </div>
             <div class="col s12 m5">
-                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" style="border-radius: 8px;" />
+                <img src="https://user-images.githubusercontent.com/15718174/26873794-641bfbfc-4b7b-11e7-95ee-82b19b661ad5.png" 
+                        style="border: 2px solid green; border-right-width: 4px; border-bottom-width: 4px;" />
             </div>
         </div>
         
@@ -116,7 +118,8 @@
                 </p>
             </div>
             <div class="col s12 m5">
-                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" style="border-radius: 8px;" />
+                <img src="https://user-images.githubusercontent.com/15718174/27299402-95bea44c-552c-11e7-84ab-217cdca758e4.gif" 
+                        style="border: 2px solid rgba(103,58,183, 0.8); border-right-width: 4px; border-bottom-width: 4px;" />
             </div>
         </div>
         
@@ -131,7 +134,8 @@
                 </p>
             </div>
             <div class="col s12 m5">
-                <img style="border-radius: 8px; outline: 8px solid #d1c4e9;" src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" style="border-radius: 8px;" />
+                <img src="https://user-images.githubusercontent.com/15718174/27515871-41872c60-59ae-11e7-9b2d-3ca886d0d7f2.png" 
+                        style="border: 2px solid rgba(103,58,183, 0.9); border-right-width: 4px; border-bottom-width: 4px;" />
             </div>
         </div>
     </div>
@@ -193,7 +197,8 @@
                 <h2>🧑🏽‍🚀🧑🏽‍⚕️🧑🏽‍🚒🧑🏽‍🏫</h2>
             </div>
             <div class="row">
-                <img style="border-radius: 8px; opacity: 80%; outline: 8px solid #d1c4e9" src="https://i.pinimg.com/736x/e8/7c/56/e87c5635fa622c2da8c6dddd893113b9--open-source-children.jpg" />
+                <img src="https://i.pinimg.com/736x/e8/7c/56/e87c5635fa622c2da8c6dddd893113b9--open-source-children.jpg" 
+                        style="border: 2px solid darkgoldenrod; border-right-width: 4px; border-bottom-width: 4px;" />
             </div>
         </div>
     </div>

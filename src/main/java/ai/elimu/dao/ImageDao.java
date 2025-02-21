@@ -12,6 +12,8 @@ public interface ImageDao extends GenericDao<Image> {
     Image read(String title) throws DataAccessException;
 
     List<Image> readAllOrdered() throws DataAccessException;
+
+    List<Image> readAllOrderedById() throws DataAccessException;
     
     /**
      * Fetch all Images that have been labeled by a Word.

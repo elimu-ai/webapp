@@ -1,27 +1,23 @@
 package ai.elimu.model.contributor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * An event where a {@link Contributor} peer-reviews a {@link LetterSound} which
- * was added/edited by another {@link Contributor}.
+ * An event where a {@link Contributor} peer-reviews a {@link LetterSound} which was added/edited by another {@link Contributor}.
  */
+@Getter
+@Setter
 @Entity
 public class LetterSoundPeerReviewEvent extends PeerReviewEvent {
-    
-    /**
-     * The contribution event which is being peer-reviewed.
-     */
-    @NotNull
-    @ManyToOne
-    private LetterSoundContributionEvent letterSoundContributionEvent;
 
-    public LetterSoundContributionEvent getLetterSoundContributionEvent() {
-        return letterSoundContributionEvent;
-    }
-
-    public void setLetterSoundContributionEvent(LetterSoundContributionEvent letterSoundContributionEvent) {
-        this.letterSoundContributionEvent = letterSoundContributionEvent;
-    }
+  /**
+   * The contribution event which is being peer-reviewed.
+   */
+  @NotNull
+  @ManyToOne
+  private LetterSoundContributionEvent letterSoundContributionEvent;
 }

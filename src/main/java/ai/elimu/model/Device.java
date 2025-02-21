@@ -1,91 +1,39 @@
 package ai.elimu.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import java.util.Calendar;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Device extends BaseEntity {
 
-    @NotNull
-    @Column(unique=true)
-    private String androidId;
-    
-    @NotNull
-    private String deviceManufacturer;
-    
-    @NotNull
-    private String deviceModel;
-    
-    @NotNull
-    private String deviceSerial;
-    
-    // TODO: @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar timeRegistered; // Time of first synchronization with server
-    
-    @NotNull
-    private String remoteAddress; // IP address during registration
-    
-    @NotNull
-    private Integer osVersion;
+  @NotNull
+  @Column(unique = true)
+  private String androidId;
 
-    public String getAndroidId() {
-        return androidId;
-    }
+  @NotNull
+  private String deviceManufacturer;
 
-    public void setAndroidId(String androidId) {
-        this.androidId = androidId;
-    }
-    
-    public String getDeviceManufacturer() {
-        return deviceManufacturer;
-    }
+  @NotNull
+  private String deviceModel;
 
-    public void setDeviceManufacturer(String deviceManufacturer) {
-        this.deviceManufacturer = deviceManufacturer;
-    }
+  @NotNull
+  private String deviceSerial;
 
-    public String getDeviceModel() {
-        return deviceModel;
-    }
+  // TODO: @NotNull
+  @Temporal(TemporalType.TIMESTAMP)
+  private Calendar timeRegistered; // Time of first synchronization with server
 
-    public void setDeviceModel(String deviceModel) {
-        this.deviceModel = deviceModel;
-    }
-    
-    public String getDeviceSerial() {
-        return deviceSerial;
-    }
+  @NotNull
+  private String remoteAddress; // IP address during registration
 
-    public void setDeviceSerial(String deviceSerial) {
-        this.deviceSerial = deviceSerial;
-    }
-
-    public Calendar getTimeRegistered() {
-        return timeRegistered;
-    }
-
-    public void setTimeRegistered(Calendar timeRegistered) {
-        this.timeRegistered = timeRegistered;
-    }
-    
-    public String getRemoteAddress() {
-        return remoteAddress;
-    }
-
-    public void setRemoteAddress(String remoteAddress) {
-        this.remoteAddress = remoteAddress;
-    }
-
-    public Integer getOsVersion() {
-        return osVersion;
-    }
-
-    public void setOsVersion(Integer osVersion) {
-        this.osVersion = osVersion;
-    }
+  @NotNull
+  private Integer osVersion;
 }

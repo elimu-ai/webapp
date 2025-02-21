@@ -1,5 +1,6 @@
 # elimu.ai Webapp
 
+[![maven build](https://github.com/elimu-ai/webapp/actions/workflows/maven-build.yml/badge.svg)](https://github.com/elimu-ai/webapp/actions/workflows/maven-build.yml)
 [![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 [![commits](https://img.shields.io/github/commit-activity/m/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
 [![last commit](https://img.shields.io/github/last-commit/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
@@ -10,6 +11,7 @@ Deployments in production:
 
  * https://hin.elimu.ai - Hindi database content
  * https://tgl.elimu.ai - Tagalog database content
+ * https://tha.elimu.ai - Thai database content
  * https://eng.elimu.ai - English database content
 
 [<kbd>![](https://github.com/elimu-ai/webapp/assets/15718174/32f3c339-aacc-4dc1-9692-c9435bc63d57)</kbd>](https://hin.elimu.ai)
@@ -37,6 +39,10 @@ See [`INSTALL.md`](./INSTALL.md)
 
 See [`src/main/config/DEPLOY.md`](./src/main/config/DEPLOY.md)
 
+## Release 📦
+
+See [`src/main/config/RELEASE.md`](./src/main/config/RELEASE.md)
+
 ## Localization
 
 See [`LOCALIZE.md`](./LOCALIZE.md)
@@ -48,16 +54,6 @@ See [`DB_MIGRATION.md`](./DB_MIGRATION.md)
 ## Contributing guidelines
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md)
-
-## Project Stats
-
-### Repo Beats 💓
-
-![](https://repobeats.axiom.co/api/embed/e2744d1a6c3eee095f871d09f2b76c536cd384c3.svg "Repobeats analytics image")
-
-### Star History 🌠
-
-[<kbd>![Star History Chart](https://api.star-history.com/svg?repos=elimu-ai/webapp&type=Date)</kbd>](https://star-history.com/#elimu-ai/webapp&Date)
 
 ---
 

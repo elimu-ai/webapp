@@ -66,9 +66,9 @@
         <li>
             <b>What languages should the app/game support?</b><br />
             As a minimum, the app/game should support English, and at least one of the following languages: 
-            Hindi/Tagalog. 
+            Hindi/Tagalog/Thai. 
             We target primary age children (about 6 to 11 years) who are out of school and who speak one of these 
-            languages as their mother tongue. And we continuously <a href="https://elimu-ai.atlassian.net/wiki/spaces/DE/pages/191136000/How+to+Add+Support+for+a+New+Language" target="_blank">add support for more languages</a>.<br />
+            languages as their mother tongue. And we continuously <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md#how-to-add-support-for-a-new-language" target="_blank">add support for more languages</a>.<br />
             <br />
         </li>
         <li>

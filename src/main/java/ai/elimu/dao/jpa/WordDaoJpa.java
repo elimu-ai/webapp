@@ -1,8 +1,8 @@
 package ai.elimu.dao.jpa;
 
 import java.util.List;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 
 import ai.elimu.model.v2.enums.content.WordType;
 import org.springframework.dao.DataAccessException;
@@ -56,6 +56,15 @@ public class WordDaoJpa extends GenericDaoJpa<Word> implements WordDao {
             "SELECT w " +
             "FROM Word w " +
             "ORDER BY w.text")
+            .getResultList();
+    }
+
+    @Override
+    public List<Word> readAllOrderedById() throws DataAccessException {
+        return em.createQuery(
+                "SELECT w " +
+                    "FROM Word w " +
+                    "ORDER BY w.id")
             .getResultList();
     }
     

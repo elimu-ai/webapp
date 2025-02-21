@@ -23,4 +23,10 @@ public class AnalyticsHelperTest {
         filename = "7161a85a0e4751cd_3001012_word-learning-events_2020-04-23.csv";
         assertEquals(3001012, AnalyticsHelper.extractVersionCodeFromCsvFilename(filename));
     }
+
+    @Test
+    public void testRedactAndroidId() {
+        String androidId = "745f90e7aae26423";
+        assertEquals("745f***6423", AnalyticsHelper.redactAndroidId(androidId));
+    }
 }

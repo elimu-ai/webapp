@@ -14,6 +14,8 @@ public interface WordDao extends GenericDao<Word> {
     Word readByTextAndType(String text, WordType wordType) throws DataAccessException;
 
     List<Word> readAllOrdered() throws DataAccessException;
+
+    List<Word> readAllOrderedById() throws DataAccessException;
     
     List<Word> readAllOrderedByUsage() throws DataAccessException;
     

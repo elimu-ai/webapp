@@ -1,48 +1,28 @@
 package ai.elimu.model.content;
 
-import javax.persistence.Entity;
 import ai.elimu.model.BaseEntity;
 import ai.elimu.model.content.multimedia.Image;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class StoryBookChapter extends BaseEntity {
-    
-//    @NotNull
-    @ManyToOne
-    private StoryBook storyBook;
-    
-    /**
-     * [0, 1, 2, ...]
-     */
-    @NotNull
-    private Integer sortOrder;
-    
-    @ManyToOne
-    private Image image;
 
-    public StoryBook getStoryBook() {
-        return storyBook;
-    }
+  //    @NotNull
+  @ManyToOne
+  private StoryBook storyBook;
 
-    public void setStoryBook(StoryBook storyBook) {
-        this.storyBook = storyBook;
-    }
+  /**
+   * [0, 1, 2, ...]
+   */
+  @NotNull
+  private Integer sortOrder;
 
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
-
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
+  @ManyToOne
+  private Image image;
 }

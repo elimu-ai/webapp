@@ -62,7 +62,7 @@
         <property name="warnLogCategory" value="CustomSimpleMappingExceptionResolver" />
     </bean>
     
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1" />
     
