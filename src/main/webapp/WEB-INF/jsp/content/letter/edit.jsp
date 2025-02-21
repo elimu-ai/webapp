@@ -185,6 +185,9 @@
             </li>
         </ol>
     </div>
+
+    <div class="divider" style="margin: 1.5em 0;"></div>
+    
     <h5 class="center"><fmt:message key="letter.sound.correspondences" /></h5>
 
     <table class="bordered highlight">
