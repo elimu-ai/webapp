@@ -18,7 +18,6 @@ import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
-import ai.elimu.util.IpfsHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
@@ -323,12 +322,6 @@ public class StoryBookCreateFromEPubController {
       storyBook.setCoverImage(storyBookCoverImage);
       storyBookDao.update(storyBook);
 
-      // Pin file to IPFS
-      String filename = request.getServerName() + "_image" + storyBookCoverImage.getId() + "-r" + storyBookCoverImage.getRevisionNumber() + "_" + storyBookCoverImage.getTitle();
-      String ipfsHash = IpfsHelper.pinFileToIpfs(storyBookCoverImage.getBytes(), filename);
-      storyBookCoverImage.setCid(ipfsHash);
-      imageDao.update(storyBookCoverImage);
-
       storeImageContributionEvent(storyBookCoverImage, session, request);
 
       // Store the StoryBookChapters in the database
@@ -377,12 +370,6 @@ public class StoryBookCreateFromEPubController {
         if (chapterImage != null) {
           chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
           imageDao.create(chapterImage);
-
-          // Pin file to IPFS
-          filename = request.getServerName() + "_image" + chapterImage.getId() + "-r" + chapterImage.getRevisionNumber() + "_" + chapterImage.getTitle();
-          ipfsHash = IpfsHelper.pinFileToIpfs(chapterImage.getBytes(), filename);
-          chapterImage.setCid(ipfsHash);
-          imageDao.update(chapterImage);
 
           storeImageContributionEvent(chapterImage, session, request);
         }

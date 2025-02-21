@@ -11,7 +11,6 @@ import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.ImageColorHelper;
-import ai.elimu.util.IpfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -129,12 +128,6 @@ public class ImageCreateController {
       }
       image.setTimeLastUpdate(Calendar.getInstance());
       imageDao.create(image);
-
-      // Pin file to IPFS
-      String filename = request.getServerName() + "_image" + image.getId() + "-r" + image.getRevisionNumber() + "_" + image.getTitle();
-      String ipfsHash = IpfsHelper.pinFileToIpfs(image.getBytes(), filename);
-      image.setCid(ipfsHash);
-      imageDao.update(image);
 
       ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
       imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
