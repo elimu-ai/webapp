@@ -26,9 +26,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping("/content/number/edit")
@@ -47,7 +49,7 @@ public class NumberEditController {
 
   private final EmojiDao emojiDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping(value = "/{id}")
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
@@ -67,7 +69,7 @@ public class NumberEditController {
     return "content/number/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping(value = "/{id}")
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

@@ -17,8 +17,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -37,7 +37,7 @@ public class AudioPeerReviewEventCreateController {
   /**
    * Note: The logic in this method is similar to the one used at {@link AudioPeerReviewsRestController#uploadAudioPeerReview}
    */
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       @RequestParam Long audioContributionEventId,
       @RequestParam Boolean approved,

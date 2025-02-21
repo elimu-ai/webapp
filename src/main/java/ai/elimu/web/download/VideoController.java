@@ -11,9 +11,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+
+import jakarta.servlet.http.HttpServletResponse;
+import ai.elimu.dao.VideoDao;
+import ai.elimu.model.content.multimedia.Video;
+import org.apache.logging.log4j.LogManager;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/video")
@@ -24,7 +31,7 @@ public class VideoController {
 
   private final VideoDao videoDao;
 
-  @RequestMapping(value = "/{videoId}_r{revisionNumber}.{videoFormat}", method = RequestMethod.GET)
+  @GetMapping(value="/{videoId}_r{revisionNumber}.{videoFormat}")
   public void handleRequest(
       Model model,
       @PathVariable Long videoId,
@@ -66,7 +73,7 @@ public class VideoController {
     }
   }
 
-  @RequestMapping(value = "/{videoId}_r{revisionNumber}_thumbnail.png", method = RequestMethod.GET)
+  @GetMapping(value = "/{videoId}_r{revisionNumber}_thumbnail.png")
   public void handleThumbnailRequest(
       Model model,
       @PathVariable Long videoId,
