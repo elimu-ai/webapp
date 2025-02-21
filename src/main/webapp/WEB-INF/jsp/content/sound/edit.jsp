@@ -228,7 +228,7 @@
                             ${letterSound.usageCount}
                         </td>
                         <td>
-                            " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a> </c:forEach> "
+                            " <c:forEach var="letter" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text}</a> </c:forEach> "
                         </td>
                         <td>
                             ➞

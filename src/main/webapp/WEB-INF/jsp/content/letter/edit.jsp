@@ -187,7 +187,7 @@
     </div>
 
     <div class="divider" style="margin: 1.5em 0;"></div>
-    
+
     <h5 class="center"><fmt:message key="letter.sound.correspondences" /></h5>
 
     <table class="bordered highlight">
@@ -212,20 +212,13 @@
                             ${letterSound.usageCount}
                         </td>
                         <td>
-                            " <c:forEach var="letter" items="${letterSound.letters}">
-                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">${letter.text} </a>
-                            </c:forEach> "
+                            " <c:forEach var="l" items="${letterSound.letters}"><a href="<spring:url value='/content/letter/edit/${letter.id}' />"><c:if test="${l.id == letter.id}"><span class='diff-highlight'></c:if>${l.text}<c:if test="${l.id == letter.id}"></span></c:if></a> </c:forEach> "
                         </td>
                         <td>
                             ➞
                         </td>
                         <td>
-                            / <c:forEach var="s" items="${letterSound.sounds}">
-                                <a href="<spring:url value='/content/sound/edit/${s.id}' />">
-                                    <c:if test="${s.id == sound.id}">
-                                        <span class='diff-highlight'></c:if>${s.valueIpa}<c:if test="${s.id == sound.id}"></span></c:if>
-                                    </a>
-                                </c:forEach> /
+                            / <c:forEach var="sound" items="${letterSound.sounds}"><a href="<spring:url value='/content/sound/edit/${sound.id}' />">${sound.valueIpa}</a> </c:forEach> /
                         </td>
                     </tr>
                 </c:if>
