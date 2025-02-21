@@ -2,6 +2,7 @@ package ai.elimu.web.content.letter;
 
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.LetterContributionEvent;
@@ -33,6 +34,8 @@ public class LetterEditController {
 
   private final LetterContributionEventDao letterContributionEventDao;
 
+  private final LetterSoundDao letterSoundDao;
+
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   public String handleRequest(
       Model model,
@@ -44,6 +47,8 @@ public class LetterEditController {
     model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
+    
+    model.addAttribute("letterSounds", letterSoundDao.readAll());
 
     return "content/letter/edit";
   }
@@ -67,6 +72,8 @@ public class LetterEditController {
       model.addAttribute("timeStart", System.currentTimeMillis());
 
       model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
+
+      model.addAttribute("letterSounds", letterSoundDao.readAll());
 
       return "content/letter/edit";
     } else {
