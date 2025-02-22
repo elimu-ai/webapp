@@ -51,7 +51,7 @@ public class SignOnControllerGitHub {
 
   private final ContributorDao contributorDao;
 
-  @GetMapping("/")
+  @GetMapping
   public String handleAuthorization(HttpServletRequest request) throws IOException {
     logger.info("handleAuthorization");
 
