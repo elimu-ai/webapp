@@ -1,4 +1,4 @@
-ai.elimu:webapp:war:2.5.10-SNAPSHOT
+ai.elimu:webapp:war:2.5.20-SNAPSHOT
 +- com.github.elimu-ai:model:jar:model-2.0.78:compile
 |  \- com.google.code.gson:gson:jar:2.12.1:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.36.0:compile
@@ -29,11 +29,12 @@ ai.elimu:webapp:war:2.5.10-SNAPSHOT
 |  +- commons-logging:commons-logging:jar:1.3.2:compile
 |  \- commons-collections:commons-collections:jar:3.2.2:compile
 +- org.apache.commons:commons-csv:jar:1.9.0:compile
-+- org.pmml4s:pmml4s_3:jar:1.0.1:compile
++- org.pmml4s:pmml4s_3:jar:1.5.6:compile
 |  +- org.scala-lang:scala3-library_3:jar:3.1.3:compile
 |  |  \- org.scala-lang:scala-library:jar:2.13.8:compile
+|  +- org.apache.commons:commons-lang3:jar:3.15.0:compile
 |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
-|  +- org.apache.commons:commons-text:jar:1.10.0:compile
+|  +- org.apache.commons:commons-text:jar:1.12.0:compile
 |  \- io.spray:spray-json_3:jar:1.3.6:compile
 +- com.github.scribejava:scribejava-apis:jar:8.3.3:compile
 |  +- com.github.scribejava:scribejava-core:jar:8.3.3:compile
@@ -41,17 +42,6 @@ ai.elimu:webapp:war:2.5.10-SNAPSHOT
 |  \- com.fasterxml.jackson.core:jackson-databind:jar:2.14.0:compile
 |     +- com.fasterxml.jackson.core:jackson-annotations:jar:2.14.0:compile
 |     \- com.fasterxml.jackson.core:jackson-core:jar:2.14.0:compile
-+- io.github.zinebfadili:pinata-java-sdk:jar:2.1.0:compile
-|  +- com.github.ipld:java-cid:jar:v1.3.1:compile
-|  |  \- com.github.multiformats:java-multihash:jar:v1.3.0:compile
-|  |     \- com.github.multiformats:java-multibase:jar:v1.1.0:compile
-|  +- com.squareup.okhttp3:okhttp:jar:4.9.1:compile
-|  |  +- com.squareup.okio:okio:jar:2.8.0:compile
-|  |  |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.4.0:compile
-|  |  \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.4.10:compile
-|  |     \- org.jetbrains:annotations:jar:13.0:compile
-|  +- org.apache.commons:commons-lang3:jar:3.11:compile
-|  \- com.github.multiformats:java-multiaddr:jar:1.4.1:compile
 +- org.json:json:jar:20231013:compile
 +- org.owasp.antisamy:antisamy:jar:1.7.6:compile
 |  +- org.apache.httpcomponents.core5:httpcore5:jar:5.2.5:compile
@@ -89,6 +79,11 @@ ai.elimu:webapp:war:2.5.10-SNAPSHOT
 |  |  +- com.github.jnr:jnr-constants:jar:0.9.11:compile
 |  |  +- com.github.jnr:jnr-enxio:jar:0.19:compile
 |  |  \- com.github.jnr:jnr-posix:jar:3.0.47:compile
+|  +- com.squareup.okhttp3:okhttp:jar:4.3.1:compile
+|  |  +- com.squareup.okio:okio:jar:2.4.1:compile
+|  |  |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.3.50:compile
+|  |  \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.3.61:compile
+|  |     \- org.jetbrains:annotations:jar:13.0:compile
 |  +- com.squareup.okhttp3:logging-interceptor:jar:4.3.1:compile
 |  +- io.reactivex.rxjava2:rxjava:jar:2.2.2:compile
 |  |  \- org.reactivestreams:reactive-streams:jar:1.0.2:compile

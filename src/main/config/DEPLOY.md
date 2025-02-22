@@ -107,6 +107,8 @@ Add the latest release of your `*.war` file to `/opt/jetty-base/webapps/`. In ou
 > [!IMPORTANT]
 > The WAR file's name must match the context file's name, e.g. `webapp.war` and `webapp.xml`.
 
+Also see [`RELEASE.md`](https://github.com/elimu-ai/webapp/blob/main/RELEASE.md) for instructions on how to perform releases from a GitHub repo.
+
 #### Add Jetty Context XML File
 
 Copy the content from [`webapp.xml`](./centos-stream-9/opt/jetty-base/webapps/webapp.xml) into the Jetty context file:
