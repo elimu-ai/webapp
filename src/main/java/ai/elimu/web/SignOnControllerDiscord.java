@@ -47,7 +47,7 @@ public class SignOnControllerDiscord {
 
   private final ContributorDao contributorDao;
 
-  @GetMapping(value="/")
+  @GetMapping
   public String handleAuthorization(HttpServletRequest request) throws IOException {
     logger.info("handleAuthorization");
 
