@@ -22,7 +22,7 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/image")
+@RequestMapping("/image/{imageId}_r{revisionNumber}.{imageFormat}")
 @RequiredArgsConstructor
 public class ImageController {
 
@@ -30,7 +30,7 @@ public class ImageController {
 
   private final ImageDao imageDao;
 
-  @GetMapping(value="/{imageId}_r{revisionNumber}.{imageFormat}")
+  @GetMapping
   public void handleRequest(
       Model model,
       @PathVariable Long imageId,

@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/sound/edit")
+@RequestMapping("/content/sound/edit/{id}")
 @RequiredArgsConstructor
 public class SoundEditController {
 
@@ -38,7 +38,7 @@ public class SoundEditController {
 
   private final LetterSoundDao letterSoundDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
     logger.info("handleRequest");
 
@@ -55,7 +55,7 @@ public class SoundEditController {
     return "content/sound/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

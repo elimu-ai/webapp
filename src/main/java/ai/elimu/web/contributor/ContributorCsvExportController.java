@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/contributor/list")
+@RequestMapping("/contributor/list/contributors.csv")
 @RequiredArgsConstructor
 public class ContributorCsvExportController {
 
@@ -41,7 +41,7 @@ public class ContributorCsvExportController {
 
   private final StoryBookContributionEventDao storyBookContributionEventDao;
 
-  @GetMapping(value = "/contributors.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

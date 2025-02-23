@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/analytics/video-learning-event/list")
+@RequestMapping("/analytics/video-learning-event/list/video-learning-events.csv")
 @RequiredArgsConstructor
 public class VideoLearningEventCsvExportController {
 
@@ -28,7 +28,7 @@ public class VideoLearningEventCsvExportController {
 
   private final VideoLearningEventDao videoLearningEventDao;
 
-  @GetMapping(value="/video-learning-events.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

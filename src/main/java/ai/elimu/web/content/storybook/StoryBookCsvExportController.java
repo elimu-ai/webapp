@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/storybook/list")
+@RequestMapping("/content/storybook/list/storybooks.csv")
 @RequiredArgsConstructor
 public class StoryBookCsvExportController {
 
@@ -41,7 +41,7 @@ public class StoryBookCsvExportController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  @GetMapping(value = "/storybooks.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

@@ -16,8 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value="/sign-on/test/role-{role}")
 @RequiredArgsConstructor
 public class SignOnControllerSelenium {
 
@@ -25,7 +27,7 @@ public class SignOnControllerSelenium {
 
   private final ContributorDao contributorDao;
 
-  @GetMapping(value="/sign-on/test/role-{role}")
+  @GetMapping
   public String handleRequest(
       @PathVariable Role role,
       HttpServletRequest request,

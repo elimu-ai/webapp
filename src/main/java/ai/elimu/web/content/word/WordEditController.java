@@ -46,7 +46,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/content/word/edit")
+@RequestMapping("/content/word/edit/{id}")
 @RequiredArgsConstructor
 public class WordEditController {
 
@@ -70,7 +70,7 @@ public class WordEditController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(
       HttpSession session,
       Model model,
@@ -117,7 +117,7 @@ public class WordEditController {
     return "content/word/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

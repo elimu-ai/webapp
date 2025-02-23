@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/multimedia/image/delete")
+@RequestMapping("/content/multimedia/image/delete/{id}")
 @RequiredArgsConstructor
 public class ImageDeleteController {
 
@@ -19,7 +19,7 @@ public class ImageDeleteController {
 
   private final ImageDao imageDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
     logger.info("handleRequest");
 

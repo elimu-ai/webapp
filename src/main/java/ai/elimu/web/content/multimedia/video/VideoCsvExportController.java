@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/content/video/list")
+@RequestMapping("/content/video/list/videos.csv")
 @RequiredArgsConstructor
 public class VideoCsvExportController {
 
@@ -23,7 +23,7 @@ public class VideoCsvExportController {
 
   private final VideoDao videoDao;
 
-  @GetMapping(value = "/videos.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream) {

@@ -46,7 +46,7 @@ import java.util.stream.Collectors;
 import ai.elimu.dao.SoundDao;
 
 @Controller
-@RequestMapping("/content/letter-sound/edit")
+@RequestMapping("/content/letter-sound/edit/{id}")
 @RequiredArgsConstructor
 public class LetterSoundEditController {
 
@@ -64,7 +64,7 @@ public class LetterSoundEditController {
 
   private final WordDao wordDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
     logger.info("handleRequest");
 
@@ -88,7 +88,7 @@ public class LetterSoundEditController {
     return "content/letter-sound/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

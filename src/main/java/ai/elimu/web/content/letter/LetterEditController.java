@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/content/letter/edit")
+@RequestMapping("/content/letter/edit/{id}")
 @RequiredArgsConstructor
 public class LetterEditController {
 
@@ -38,7 +38,7 @@ public class LetterEditController {
 
   private final LetterSoundDao letterSoundDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
@@ -55,7 +55,7 @@ public class LetterEditController {
     return "content/letter/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

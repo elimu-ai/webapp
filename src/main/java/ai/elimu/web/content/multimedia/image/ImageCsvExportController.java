@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/content/image/list")
+@RequestMapping("/content/image/list/images.csv")
 @RequiredArgsConstructor
 public class ImageCsvExportController {
 
@@ -26,7 +26,7 @@ public class ImageCsvExportController {
 
   private final ImageDao imageDao;
 
-  @GetMapping(value = "/images.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream) throws IOException {

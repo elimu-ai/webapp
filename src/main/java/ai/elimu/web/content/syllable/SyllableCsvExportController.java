@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/content/syllable/list")
+@RequestMapping("/content/syllable/list/syllables.csv")
 @RequiredArgsConstructor
 public class SyllableCsvExportController {
 
@@ -25,7 +25,7 @@ public class SyllableCsvExportController {
 
   private final SyllableDao syllableDao;
 
-  @GetMapping(value = "/syllables.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream) {

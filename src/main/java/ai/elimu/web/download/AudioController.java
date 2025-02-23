@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/audio")
+@RequestMapping("/audio/{audioId}_r{revisionNumber}.{audioFormat}")
 @RequiredArgsConstructor
 public class AudioController {
 
@@ -24,7 +24,7 @@ public class AudioController {
 
   private final AudioDao audioDao;
 
-  @GetMapping(value = "/{audioId}_r{revisionNumber}.{audioFormat}")
+  @GetMapping
   public void handleRequest(
       Model model,
       @PathVariable Long audioId,

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/application/edit")
+@RequestMapping("/admin/application/edit/{id}")
 @RequiredArgsConstructor
 public class ApplicationEditController {
 
@@ -32,7 +32,7 @@ public class ApplicationEditController {
 
   private final ApplicationVersionDao applicationVersionDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(
       @PathVariable Long id,
       Model model
@@ -53,7 +53,7 @@ public class ApplicationEditController {
     return "admin/application/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       HttpSession session,
       @Valid Application application,

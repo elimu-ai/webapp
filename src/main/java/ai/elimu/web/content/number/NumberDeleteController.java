@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/number/delete")
+@RequestMapping("/content/number/delete/{id}")
 @RequiredArgsConstructor
 public class NumberDeleteController {
 
@@ -19,7 +19,7 @@ public class NumberDeleteController {
 
   private final NumberDao numberDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
     logger.info("handleRequest");
 

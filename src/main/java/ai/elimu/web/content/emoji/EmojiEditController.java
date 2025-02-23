@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/content/emoji/edit")
+@RequestMapping("/content/emoji/edit/{id}")
 @RequiredArgsConstructor
 public class EmojiEditController {
 
@@ -37,7 +37,7 @@ public class EmojiEditController {
 
   private final WordDao wordDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
@@ -53,7 +53,7 @@ public class EmojiEditController {
     return "content/emoji/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       @Valid Emoji emoji,
       BindingResult result,
@@ -86,7 +86,7 @@ public class EmojiEditController {
     }
   }
 
-  @PostMapping(value = "/{id}/add-content-label")
+  @PostMapping(value = "/add-content-label")
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
@@ -112,7 +112,7 @@ public class EmojiEditController {
     return "success";
   }
 
-  @PostMapping(value = "/{id}/remove-content-label")
+  @PostMapping(value = "/remove-content-label")
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,

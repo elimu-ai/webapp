@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/letter-sound/list")
+@RequestMapping("/content/letter-sound/list/letter-sounds.csv")
 @RequiredArgsConstructor
 public class LetterSoundCsvExportController {
 
@@ -28,7 +28,7 @@ public class LetterSoundCsvExportController {
 
   private final LetterSoundDao letterSoundDao;
 
-  @GetMapping(value = "/letter-sounds.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

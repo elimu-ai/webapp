@@ -26,7 +26,7 @@ import ai.elimu.model.admin.ApplicationVersion;
 import org.apache.logging.log4j.LogManager;
 
 @Controller
-@RequestMapping("/apk")
+@RequestMapping("/apk/{packageName}-{versionCode}.apk")
 @RequiredArgsConstructor
 public class ApkController {
 
@@ -36,7 +36,7 @@ public class ApkController {
 
   private final ApplicationVersionDao applicationVersionDao;
 
-  @GetMapping(value="/{packageName}-{versionCode}.apk")
+  @GetMapping
   public void handleRequest(
       @PathVariable String packageName,
       @PathVariable Integer versionCode,

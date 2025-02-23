@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/emoji/list")
+@RequestMapping("/content/emoji/list/emojis.csv")
 @RequiredArgsConstructor
 public class EmojiCsvExportController {
 
@@ -27,7 +27,7 @@ public class EmojiCsvExportController {
 
   private final EmojiDao emojiDao;
 
-  @GetMapping(value = "/emojis.csv")
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

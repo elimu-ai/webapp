@@ -42,7 +42,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
-@RequestMapping("/content/multimedia/video/edit")
+@RequestMapping("/content/multimedia/video/edit/{id}")
 @RequiredArgsConstructor
 public class VideoEditController {
 
@@ -58,7 +58,7 @@ public class VideoEditController {
 
   private final EmojiDao emojiDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
@@ -80,7 +80,7 @@ public class VideoEditController {
     return "content/multimedia/video/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       Video video,
       @RequestParam("bytes") MultipartFile multipartFile,
@@ -158,7 +158,7 @@ public class VideoEditController {
     binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
   }
 
-  @PostMapping(value = "/{id}/add-content-label")
+  @PostMapping(value = "/add-content-label")
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
@@ -210,7 +210,7 @@ public class VideoEditController {
     return "success";
   }
 
-  @PostMapping(value = "/{id}/remove-content-label")
+  @PostMapping(value = "/remove-content-label")
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,

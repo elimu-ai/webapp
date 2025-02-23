@@ -48,7 +48,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/storybook/edit")
+@RequestMapping("/content/storybook/edit/{id}")
 @RequiredArgsConstructor
 public class StoryBookEditController {
 
@@ -74,7 +74,7 @@ public class StoryBookEditController {
 
   private final StoryBooksJsonService storyBooksJsonService;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
     logger.info("handleRequest");
 
@@ -132,7 +132,7 @@ public class StoryBookEditController {
     return "content/storybook/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       @Valid StoryBook storyBook,
       BindingResult result,

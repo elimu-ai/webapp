@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/content/number/edit")
+@RequestMapping("/content/number/edit/{id}")
 @RequiredArgsConstructor
 public class NumberEditController {
 
@@ -49,7 +49,7 @@ public class NumberEditController {
 
   private final EmojiDao emojiDao;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
@@ -69,7 +69,7 @@ public class NumberEditController {
     return "content/number/edit";
   }
 
-  @PostMapping(value = "/{id}")
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

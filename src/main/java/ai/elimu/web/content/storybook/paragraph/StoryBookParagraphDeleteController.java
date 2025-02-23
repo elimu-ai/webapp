@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/content/storybook/paragraph/delete")
+@RequestMapping("/content/storybook/paragraph/delete/{id}")
 @RequiredArgsConstructor
 public class StoryBookParagraphDeleteController {
 
@@ -42,7 +42,7 @@ public class StoryBookParagraphDeleteController {
 
   private final StoryBooksJsonService storyBooksJsonService;
 
-  @GetMapping(value = "/{id}")
+  @GetMapping
   public String handleRequest(HttpSession session, @PathVariable Long id) {
     logger.info("handleRequest");
 

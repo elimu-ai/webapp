@@ -25,12 +25,12 @@ import ai.elimu.util.ConfigHelper;
  * <a href="https://github.com/elimu-ai/analytics">Analytics</a> application.
  */
 @RestController
-@RequestMapping(value = "/rest/v2/analytics/letter-sound-learning-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/analytics/letter-sound-learning-events/csv", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class LetterSoundLearningEventsRestController {
     
     private Logger logger = LogManager.getLogger();
 
-    @PostMapping(value = "/csv")
+    @PostMapping
     public String handleUploadCsvRequest(
             @RequestParam("file") MultipartFile multipartFile,
             HttpServletResponse response
