@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -19,15 +21,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/analytics/storybook-learning-event/list")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookLearningEventListController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAllOrderedByTime();
     model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);

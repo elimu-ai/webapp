@@ -13,9 +13,8 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,10 +25,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/content/letter/edit")
 @RequiredArgsConstructor
+@Slf4j
 public class LetterEditController {
 
-  private final Logger logger = LogManager.getLogger();
-    
   private final LetterDao letterDao;
 
   private final LetterContributionEventDao letterContributionEventDao;
@@ -40,7 +38,7 @@ public class LetterEditController {
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Letter letter = letterDao.read(id);
     model.addAttribute("letter", letter);
@@ -60,7 +58,7 @@ public class LetterEditController {
       @Valid Letter letter,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Letter existingLetter = letterDao.readByText(letter.getText());
     if ((existingLetter != null) && !existingLetter.getId().equals(letter.getId())) {

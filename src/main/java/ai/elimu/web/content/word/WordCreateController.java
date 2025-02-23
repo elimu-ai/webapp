@@ -29,9 +29,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,9 +41,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/content/word/create")
 @RequiredArgsConstructor
+@Slf4j
 public class WordCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final WordDao wordDao;
 
@@ -60,7 +58,7 @@ public class WordCreateController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleRequest(Model model, @RequestParam(required = false) String autoFillText) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Word word = new Word();
 
@@ -90,7 +88,7 @@ public class WordCreateController {
       @Valid Word word,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Word existingWord = wordDao.readByTextAndType(word.getText(), word.getWordType());
     if (existingWord != null) {
@@ -159,7 +157,7 @@ public class WordCreateController {
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 
@@ -180,7 +178,7 @@ public class WordCreateController {
   }
 
   private void autoSelectLetterSounds(Word word) {
-    logger.info("autoSelectLetterSounds");
+    log.info("autoSelectLetterSounds");
 
     String wordText = word.getText();
 
@@ -188,16 +186,16 @@ public class WordCreateController {
 
     List<LetterSound> allLetterSoundsOrderedByLettersLength = letterSoundDao.readAllOrderedByLettersLength();
     while (StringUtils.isNotBlank(wordText)) {
-      logger.info("wordText: \"" + wordText + "\"");
+      log.info("wordText: \"" + wordText + "\"");
 
       boolean isMatch = false;
       for (LetterSound letterSound : allLetterSoundsOrderedByLettersLength) {
         String letterSoundLetters = letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
-        logger.info("letterSoundLetters: \"" + letterSoundLetters + "\"");
+        log.info("letterSoundLetters: \"" + letterSoundLetters + "\"");
 
         if (wordText.startsWith(letterSoundLetters)) {
           isMatch = true;
-          logger.info("Found match at the beginning of \"" + wordText + "\"");
+          log.info("Found match at the beginning of \"" + wordText + "\"");
           letterSounds.add(letterSound);
 
           // Remove the match from the word

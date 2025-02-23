@@ -5,8 +5,7 @@ import ai.elimu.model.content.Emoji;
 import jakarta.validation.Valid;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,15 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/content/emoji/create")
 @RequiredArgsConstructor
+@Slf4j
 public class EmojiCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final EmojiDao emojiDao;
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Emoji emoji = new Emoji();
     model.addAttribute("emoji", emoji);
@@ -37,7 +35,7 @@ public class EmojiCreateController {
       @Valid Emoji emoji,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
     if (existingEmoji != null) {

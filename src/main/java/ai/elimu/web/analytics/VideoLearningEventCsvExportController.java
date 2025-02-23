@@ -10,10 +10,9 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/analytics/video-learning-event/list")
 @RequiredArgsConstructor
+@Slf4j
 public class VideoLearningEventCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final VideoLearningEventDao videoLearningEventDao;
 
@@ -32,10 +30,10 @@ public class VideoLearningEventCsvExportController {
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAllOrderedByTimestamp(OrderDirection.ASC);
-    logger.info("videoLearningEvents.size(): " + videoLearningEvents.size());
+    log.info("videoLearningEvents.size(): " + videoLearningEvents.size());
 
     CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(
@@ -54,7 +52,7 @@ public class VideoLearningEventCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (VideoLearningEvent videoLearningEvent : videoLearningEvents) {
-      logger.info("videoLearningEvent.getId(): " + videoLearningEvent.getId());
+      log.info("videoLearningEvent.getId(): " + videoLearningEvent.getId());
 
       videoLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(videoLearningEvent.getAndroidId()));
 
@@ -82,7 +80,7 @@ public class VideoLearningEventCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }

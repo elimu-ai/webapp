@@ -4,8 +4,7 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/content/contributor/edit-name")
 @RequiredArgsConstructor
+@Slf4j
 public class EditNameController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ContributorDao contributorDao;
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleRequest() {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     return "content/contributor/edit-name";
   }
@@ -34,10 +32,10 @@ public class EditNameController {
       @RequestParam String firstName,
       @RequestParam String lastName,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
-    logger.info("firstName: " + firstName);
-    logger.info("lastName: " + lastName);
+    log.info("firstName: " + firstName);
+    log.info("lastName: " + lastName);
     // TODO: validate firstName/lastName
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");

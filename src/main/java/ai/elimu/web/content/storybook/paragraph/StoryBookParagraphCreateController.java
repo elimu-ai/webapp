@@ -20,8 +20,7 @@ import jakarta.validation.Valid;
 import java.util.Calendar;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,9 +31,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/content/storybook/edit/{storyBookId}/chapter/{storyBookChapterId}/paragraph/create")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookParagraphCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookDao storyBookDao;
 
@@ -50,7 +48,7 @@ public class StoryBookParagraphCreateController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleRequest(Model model, @PathVariable Long storyBookChapterId) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
 
@@ -77,7 +75,7 @@ public class StoryBookParagraphCreateController {
       BindingResult result,
       Model model
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
 
