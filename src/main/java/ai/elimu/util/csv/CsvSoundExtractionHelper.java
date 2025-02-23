@@ -3,15 +3,13 @@ package ai.elimu.util.csv;
 import ai.elimu.model.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import ai.elimu.web.content.sound.SoundCsvExportController;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,21 +20,20 @@ import java.util.List;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
+@Slf4j
 public class CsvSoundExtractionHelper {
 
     private CsvSoundExtractionHelper() {
     }
 
-    private static final Logger logger = LogManager.getLogger();
-
     /**
      * For information on how the CSV files were generated, see {@link SoundCsvExportController#handleRequest}.
      */
     public static List<Sound> getSoundsFromCsvBackup(File csvFile) {
-        logger.info("getSoundsFromCsvBackup");
+        log.info("getSoundsFromCsvBackup");
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: {}", csvFilePath);
+        log.info("csvFilePath: {}", csvFilePath);
 
         CSVFormat csvFormat = CSVFormat.Builder.create()
             .setHeader(
@@ -56,7 +53,7 @@ public class CsvSoundExtractionHelper {
                 .map(CsvSoundExtractionHelper::toSound)
                 .collect(toUnmodifiableList());
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return emptyList();
@@ -64,7 +61,7 @@ public class CsvSoundExtractionHelper {
 
     @NotNull
     private static Sound toSound(CSVRecord csvRecord) {
-        logger.info("csvRecord: {}", csvRecord);
+        log.info("csvRecord: {}", csvRecord);
 
         Sound sound = new Sound();
 
@@ -95,7 +92,7 @@ public class CsvSoundExtractionHelper {
         try {
             return SoundType.valueOf(soundTypeCsvValue);
         } catch (IllegalArgumentException e) {
-            logger.error(
+            log.error(
                 "Tried to extract incorrect value: {} of {} enum",
                 soundTypeCsvValue,
                 SoundType.class.getSimpleName()

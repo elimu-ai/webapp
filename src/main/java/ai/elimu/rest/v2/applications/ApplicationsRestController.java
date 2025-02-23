@@ -12,8 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
@@ -24,9 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/rest/v2/applications", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationsRestController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final ApplicationDao applicationDao;
 
@@ -34,7 +32,7 @@ public class ApplicationsRestController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleGetRequest(HttpServletRequest request) {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     JSONArray applicationsJsonArray = new JSONArray();
     for (Application application : applicationDao.readAll()) {
@@ -52,7 +50,7 @@ public class ApplicationsRestController {
     }
 
     String jsonResponse = applicationsJsonArray.toString();
-    logger.info("jsonResponse: " + jsonResponse);
+    log.info("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

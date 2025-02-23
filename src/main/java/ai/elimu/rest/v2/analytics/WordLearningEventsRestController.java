@@ -19,11 +19,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,9 +35,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping(value = "/rest/v2/analytics/word-learning-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
+@Slf4j
 public class WordLearningEventsRestController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final WordLearningEventDao wordLearningEventDao;
 
@@ -51,14 +49,14 @@ public class WordLearningEventsRestController {
       @RequestParam("file") MultipartFile multipartFile,
       HttpServletResponse response
   ) {
-    logger.info("handleUploadCsvRequest");
+    log.info("handleUploadCsvRequest");
 
     String name = multipartFile.getName();
-    logger.info("name: " + name);
+    log.info("name: " + name);
 
     // Expected format: "7161a85a0e4751cd_3001012_word-learning-events_2020-04-23.csv"
     String originalFilename = multipartFile.getOriginalFilename();
-    logger.info("originalFilename: " + originalFilename);
+    log.info("originalFilename: " + originalFilename);
 
     // TODO: Send notification to the #📊-data-collection channel in Discord
     // Hide parts of the Android ID, e.g. "7161***51cd_3001012_word-learning-events_2020-04-23.csv"
@@ -66,19 +64,19 @@ public class WordLearningEventsRestController {
     DiscordHelper.sendChannelMessage("Received dataset: `" + anonymizedOriginalFilename + "`", null, null, null, null);
 
     String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
-    logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
+    log.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
 
     Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
-    logger.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
+    log.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
 
     String contentType = multipartFile.getContentType();
-    logger.info("contentType: " + contentType);
+    log.info("contentType: " + contentType);
 
     JSONObject jsonObject = new JSONObject();
 
     try {
       byte[] bytes = multipartFile.getBytes();
-      logger.info("bytes.length: " + bytes.length);
+      log.info("bytes.length: " + bytes.length);
 
       // Store a backup of the original CSV file on the filesystem (in case it will be needed for debugging)
       File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
@@ -89,12 +87,12 @@ public class WordLearningEventsRestController {
       File wordLearningEventsDir = new File(versionCodeDir, "word-learning-events");
       wordLearningEventsDir.mkdirs();
       File csvFile = new File(wordLearningEventsDir, originalFilename);
-      logger.info("Storing CSV file at " + csvFile);
+      log.info("Storing CSV file at " + csvFile);
       multipartFile.transferTo(csvFile);
 
       // Iterate each row in the CSV file
       Path csvFilePath = Paths.get(csvFile.toURI());
-      logger.info("csvFilePath: " + csvFilePath);
+      log.info("csvFilePath: " + csvFilePath);
       Reader reader = Files.newBufferedReader(csvFilePath);
       CSVFormat csvFormat = CSVFormat.DEFAULT
           .withHeader(
@@ -109,7 +107,7 @@ public class WordLearningEventsRestController {
           .withSkipHeaderRecord();
       CSVParser csvParser = new CSVParser(reader, csvFormat);
       for (CSVRecord csvRecord : csvParser) {
-        logger.info("csvRecord: " + csvRecord);
+        log.info("csvRecord: " + csvRecord);
 
         // Convert from CSV to Java
 
@@ -127,10 +125,10 @@ public class WordLearningEventsRestController {
         wordLearningEvent.setPackageName(packageName);
 
         Application application = applicationDao.readByPackageName(packageName);
-        logger.info("application: " + application);
+        log.info("application: " + application);
         if (application == null) {
           // Return error message saying that the reporting Application has not yet been added
-          logger.warn("An Application with package name " + packageName + " was not found");
+          log.warn("An Application with package name " + packageName + " was not found");
 
           jsonObject.put("result", "error");
           jsonObject.put("errorMessage", "An Application with package name " + packageName + " was not found");
@@ -142,11 +140,11 @@ public class WordLearningEventsRestController {
 
         Long wordId = Long.valueOf(csvRecord.get("word_id"));
         Word word = wordDao.read(wordId);
-        logger.info("word: " + word);
+        log.info("word: " + word);
         wordLearningEvent.setWord(word);
         if (word == null) {
           // Return error message saying that the Word ID was not found
-          logger.warn("A Word with ID " + wordId + " was not found");
+          log.warn("A Word with ID " + wordId + " was not found");
 
           jsonObject.put("result", "error");
           jsonObject.put("errorMessage", "A Word with ID " + wordId + " was not found");
@@ -163,17 +161,17 @@ public class WordLearningEventsRestController {
 
         // Check if the event has already been stored in the database
         WordLearningEvent existingWordLearningEvent = wordLearningEventDao.read(timestamp, androidId, application, word);
-        logger.info("existingWordLearningEvent: " + existingWordLearningEvent);
+        log.info("existingWordLearningEvent: " + existingWordLearningEvent);
         if (existingWordLearningEvent == null) {
           // Store the event in the database
           wordLearningEventDao.create(wordLearningEvent);
-          logger.info("Stored WordLearningEvent in database with ID " + wordLearningEvent.getId());
+          log.info("Stored WordLearningEvent in database with ID " + wordLearningEvent.getId());
 
           jsonObject.put("result", "success");
           jsonObject.put("successMessage", "The WordLearningEvent was stored in the database");
         } else {
           // Return error message saying that the event has already been uploaded
-          logger.warn("The event has already been stored in the database");
+          log.warn("The event has already been stored in the database");
 
           jsonObject.put("result", "error");
           jsonObject.put("errorMessage", "The event has already been stored in the database");
@@ -181,7 +179,7 @@ public class WordLearningEventsRestController {
         }
       }
     } catch (Exception ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
 
       jsonObject.put("result", "error");
       jsonObject.put("errorMessage", ex.getMessage());
@@ -189,7 +187,7 @@ public class WordLearningEventsRestController {
     }
 
     String jsonResponse = jsonObject.toString();
-    logger.info("jsonResponse: " + jsonResponse);
+    log.info("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

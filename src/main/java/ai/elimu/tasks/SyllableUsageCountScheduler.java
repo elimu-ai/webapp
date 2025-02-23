@@ -19,8 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +28,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class SyllableUsageCountScheduler {
-
-  private Logger logger = LogManager.getLogger();
 
   private final SyllableDao syllableDao;
 
@@ -45,18 +43,18 @@ public class SyllableUsageCountScheduler {
 
   @Scheduled(cron = "00 30 07 * * *") // At 07:30 every morning
   public synchronized void execute() {
-    logger.info("execute");
+    log.info("execute");
 
-    logger.info("Calculating usage count for Syllables");
+    log.info("Calculating usage count for Syllables");
 
     Map<String, Integer> syllableFrequencyMap = new HashMap<>();
 
     Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
 
     List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
-    logger.info("storyBooks.size(): " + storyBooks.size());
+    log.info("storyBooks.size(): " + storyBooks.size());
     for (StoryBook storyBook : storyBooks) {
-      logger.debug("storyBook.getTitle(): " + storyBook.getTitle());
+      log.debug("storyBook.getTitle(): " + storyBook.getTitle());
 
       List<String> paragraphs = new ArrayList<>();
       List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
@@ -72,7 +70,7 @@ public class SyllableUsageCountScheduler {
           .forEach(syllableText -> syllableFrequencyMap.put(syllableText, syllableFrequencyMap.getOrDefault(syllableText, 0) + syllableFrequencyMapForBook.get(syllableText)));
     }
 
-    logger.info("syllableFrequencyMap: " + syllableFrequencyMap);
+    log.info("syllableFrequencyMap: " + syllableFrequencyMap);
 
     for (String syllableText : syllableFrequencyMap.keySet()) {
       // Skip syllables that are actual words
@@ -101,6 +99,6 @@ public class SyllableUsageCountScheduler {
       }
     }
 
-    logger.info("execute complete");
+    log.info("execute complete");
   }
 }

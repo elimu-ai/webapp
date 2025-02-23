@@ -6,8 +6,7 @@ import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
@@ -18,15 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/rest/v2/content/letter-sounds", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
+@Slf4j
 public class LetterSoundsRestController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final LetterSoundDao letterSoundDao;
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleGetRequest() {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     JSONArray letterSoundsJsonArray = new JSONArray();
     for (LetterSound letterSound : letterSoundDao.readAllOrderedByUsage()) {
@@ -36,7 +34,7 @@ public class LetterSoundsRestController {
     }
 
     String jsonResponse = letterSoundsJsonArray.toString();
-    logger.info("jsonResponse: " + jsonResponse);
+    log.info("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }
