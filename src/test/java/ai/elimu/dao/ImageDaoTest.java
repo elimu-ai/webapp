@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -18,9 +18,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
+@Slf4j
 public class ImageDaoTest {
-
-  private Logger logger = LogManager.getLogger();
 
   private final WordDao wordDao;
 

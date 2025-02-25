@@ -11,9 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,15 +27,14 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @Controller
 @RequestMapping("/content/multimedia/video/create")
 @RequiredArgsConstructor
+@Slf4j
 public class VideoCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final VideoDao videoDao;
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Video video = new Video();
     model.addAttribute("video", video);
@@ -56,7 +54,7 @@ public class VideoCreateController {
       @RequestParam("thumbnail") MultipartFile multipartFileThumbnail,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (StringUtils.isBlank(video.getTitle())) {
       result.rejectValue("title", "NotNull");
@@ -73,7 +71,7 @@ public class VideoCreateController {
         result.rejectValue("bytes", "NotNull");
       } else {
         String originalFileName = multipartFile.getOriginalFilename();
-        logger.info("originalFileName: " + originalFileName);
+        log.info("originalFileName: " + originalFileName);
         if (originalFileName.toLowerCase().endsWith(".m4v")) {
           video.setVideoFormat(VideoFormat.M4V);
         } else if (originalFileName.toLowerCase().endsWith(".mp4")) {
@@ -84,7 +82,7 @@ public class VideoCreateController {
 
         if (video.getVideoFormat() != null) {
           String contentType = multipartFile.getContentType();
-          logger.info("contentType: " + contentType);
+          log.info("contentType: " + contentType);
           video.setContentType(contentType);
 
           video.setBytes(bytes);
@@ -98,7 +96,7 @@ public class VideoCreateController {
         result.rejectValue("thumbnail", "NotNull");
       } else {
         String originalFileName = multipartFileThumbnail.getOriginalFilename();
-        logger.info("originalFileName: " + originalFileName);
+        log.info("originalFileName: " + originalFileName);
         if (!originalFileName.toLowerCase().endsWith(".png")) {
           result.rejectValue("thumbnail", "typeMismatch");
         } else {
@@ -106,7 +104,7 @@ public class VideoCreateController {
         }
       }
     } catch (IOException e) {
-      logger.error(e);
+      log.error(e.getMessage());
     }
 
     if (result.hasErrors()) {
@@ -133,7 +131,7 @@ public class VideoCreateController {
    */
   @InitBinder
   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    logger.info("initBinder");
+    log.info("initBinder");
     binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
   }
 }

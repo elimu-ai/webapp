@@ -10,14 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import net.davidashen.text.Hyphenator;
 import net.davidashen.util.ErrorHandler;
-import org.apache.logging.log4j.Logger;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.v2.enums.Language;
-import org.apache.logging.log4j.LogManager;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class SyllableHelper {
-    
-    private static final Logger logger = LogManager.getLogger();
     
     /**
      * Example (English): "chicken" --> ["chick","en"]
@@ -27,7 +25,7 @@ public class SyllableHelper {
         
         if (language == Language.ENG) {
             String hyphenatedWord = getHyphenatedWord(word.getText());
-            logger.info("hyphenatedWord: " + hyphenatedWord);
+            log.info("hyphenatedWord: " + hyphenatedWord);
             String[] syllableArray = hyphenatedWord.split("­");
             for (String syllable : syllableArray) {
                 syllables.add(syllable.toLowerCase());
@@ -78,9 +76,9 @@ public class SyllableHelper {
         try {
             hyphenator.loadTable(new BufferedInputStream(new FileInputStream(file)));
         } catch (FileNotFoundException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
         
         return hyphenator.hyphenate(text);

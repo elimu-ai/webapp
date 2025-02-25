@@ -1,27 +1,23 @@
 package ai.elimu.util.epub;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-
+import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Slf4j
 public class EPubMetadataExtractionHelperTest {
-    
-    private final Logger logger = LogManager.getLogger();
 
     @Test
     public void testExtractTitleFromOpfFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);	
         Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
 
         String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
         assertEquals("Grace in Space", title);
@@ -35,7 +31,7 @@ public class EPubMetadataExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
         
         String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
         assertEquals("Hindi na Ako natatakot!", title);
@@ -49,7 +45,7 @@ public class EPubMetadataExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-627f64f8-a002-4c0f-8bb6-3701ce5fcf19.epub_content.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
         
         String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
         assertEquals("Si Pusa at si Aso at ang Sumbrero", title);
@@ -63,7 +59,7 @@ public class EPubMetadataExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-sw-105391-tayo-ay-magbilang.epub_package.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
         
         String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
         assertEquals("Tayo ay Magbilang!", title);
@@ -77,7 +73,7 @@ public class EPubMetadataExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_package.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
 
         String title = EPubMetadataExtractionHelper.extractTitleFromOpfFile(opfFile);
         assertEquals("एक सौ सैंतीसवाँ पैर", title);
@@ -91,7 +87,7 @@ public class EPubMetadataExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_book.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
         
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
         assertEquals("39e5eb1614ea195e9e377f63f561aa8c.jpg", coverImageReference);
@@ -102,7 +98,7 @@ public class EPubMetadataExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_content.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
         
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
         assertEquals("coverImage.jpeg", coverImageReference);
@@ -113,7 +109,7 @@ public class EPubMetadataExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubMetadataExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_package.opf");
         File opfFile = resource.getFile();
-        logger.debug("opfFile: " + opfFile);
+        log.debug("opfFile: " + opfFile);
 
         String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
         assertEquals("image_1.jpg", coverImageReference);

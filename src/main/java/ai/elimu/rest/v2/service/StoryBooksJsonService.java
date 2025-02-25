@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.cache.annotation.CacheEvict;
@@ -30,10 +29,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBooksJsonService {
 
-  private Logger logger = LogManager.getLogger();
-    
   private final StoryBookDao storyBookDao;
 
   private final StoryBookChapterDao storyBookChapterDao;
@@ -42,7 +40,7 @@ public class StoryBooksJsonService {
 
   @Cacheable("storyBooks")
   public JSONArray getStoryBooksJSONArray() {
-    logger.info("getStoryBooksJSONArray");
+    log.info("getStoryBooksJSONArray");
 
     Date dateStart = new Date();
 
@@ -72,13 +70,13 @@ public class StoryBooksJsonService {
     }
 
     Date dateEnd = new Date();
-    logger.info("getStoryBooksJSONArray duration: " + (dateEnd.getTime() - dateStart.getTime()) + " ms");
+    log.info("getStoryBooksJSONArray duration: " + (dateEnd.getTime() - dateStart.getTime()) + " ms");
 
     return storyBooksJsonArray;
   }
 
   @CacheEvict("storyBooks")
   public void refreshStoryBooksJSONArray() {
-    logger.info("refreshStoryBooksJSONArray");
+    log.info("refreshStoryBooksJSONArray");
   }
 }

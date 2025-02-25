@@ -15,9 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +28,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/content/word/peer-reviews")
 @RequiredArgsConstructor
+@Slf4j
 public class WordPeerReviewsController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final WordContributionEventDao wordContributionEventDao;
 
@@ -46,15 +44,15 @@ public class WordPeerReviewsController {
    */
   @RequestMapping(method = RequestMethod.GET)
   public String handleGetRequest(HttpSession session, Model model) {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
-    logger.info("contributor: " + contributor);
+    log.info("contributor: " + contributor);
 
     // Get the most recent WordContributionEvent for each Word, including those made by the current Contributor
     // List<WordContributionEvent> mostRecentWordContributionEvents = wordContributionEventDao.readMostRecentPerWord();
     List<WordContributionEvent> mostRecentWordContributionEvents = new ArrayList<>(); // TODO: https://github.com/elimu-ai/webapp/issues/1647
-    logger.info("mostRecentWordContributionEvents.size(): " + mostRecentWordContributionEvents.size());
+    log.info("mostRecentWordContributionEvents.size(): " + mostRecentWordContributionEvents.size());
 
     // For each WordContributionEvent, check if the Contributor has already performed a peer-review.
     // If not, add it to the list of pending peer reviews.
@@ -71,7 +69,7 @@ public class WordPeerReviewsController {
         wordContributionEventsPendingPeerReview.add(mostRecentWordContributionEvent);
       }
     }
-    logger.info("wordContributionEventsPendingPeerReview.size(): " + wordContributionEventsPendingPeerReview.size());
+    log.info("wordContributionEventsPendingPeerReview.size(): " + wordContributionEventsPendingPeerReview.size());
     model.addAttribute("wordContributionEventsPendingPeerReview", wordContributionEventsPendingPeerReview);
 
     model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -80,7 +78,7 @@ public class WordPeerReviewsController {
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 

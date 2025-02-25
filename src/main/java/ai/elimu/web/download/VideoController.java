@@ -7,8 +7,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/video")
 @RequiredArgsConstructor
+@Slf4j
 public class VideoController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final VideoDao videoDao;
 
@@ -32,11 +30,11 @@ public class VideoController {
       @PathVariable String videoFormat,
       HttpServletResponse response,
       OutputStream outputStream) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
-    logger.info("videoId: " + videoId);
-    logger.info("revisionNumber: " + revisionNumber);
-    logger.info("videoFormat: " + videoFormat);
+    log.info("videoId: " + videoId);
+    log.info("revisionNumber: " + revisionNumber);
+    log.info("videoFormat: " + videoFormat);
 
     Video video = videoDao.read(videoId);
 
@@ -48,9 +46,9 @@ public class VideoController {
       outputStream.write(bytes);
     } catch (EOFException ex) {
       // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-      logger.warn(ex);
+      log.warn(ex.getMessage());
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     } finally {
       try {
         try {
@@ -58,10 +56,10 @@ public class VideoController {
           outputStream.close();
         } catch (EOFException ex) {
           // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-          logger.warn(ex);
+          log.warn(ex.getMessage());
         }
       } catch (IOException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
       }
     }
   }
@@ -73,10 +71,10 @@ public class VideoController {
       @PathVariable Integer revisionNumber,
       HttpServletResponse response,
       OutputStream outputStream) {
-    logger.info("handleThumbnailRequest");
+    log.info("handleThumbnailRequest");
 
-    logger.info("videoId: " + videoId);
-    logger.info("revisionNumber: " + revisionNumber);
+    log.info("videoId: " + videoId);
+    log.info("revisionNumber: " + revisionNumber);
 
     Video video = videoDao.read(videoId);
 
@@ -88,9 +86,9 @@ public class VideoController {
       outputStream.write(bytes);
     } catch (EOFException ex) {
       // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-      logger.warn(ex);
+      log.warn(ex.getMessage());
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     } finally {
       try {
         try {
@@ -98,10 +96,10 @@ public class VideoController {
           outputStream.close();
         } catch (EOFException ex) {
           // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-          logger.warn(ex);
+          log.warn(ex.getMessage());
         }
       } catch (IOException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
       }
     }
   }

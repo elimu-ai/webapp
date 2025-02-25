@@ -4,8 +4,7 @@ import ai.elimu.dao.LetterLearningEventDao;
 import ai.elimu.model.analytics.LetterLearningEvent;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/analytics/letter-learning-event/list")
 @RequiredArgsConstructor
+@Slf4j
 public class LetterLearningEventListController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterLearningEventDao letterLearningEventDao;
 
   @RequestMapping(method = RequestMethod.GET)
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<LetterLearningEvent> letterLearningEvents = letterLearningEventDao.readAll();
     model.addAttribute("letterLearningEvents", letterLearningEvents);

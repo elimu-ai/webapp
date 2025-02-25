@@ -1,28 +1,25 @@
 package ai.elimu.util.epub;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-
+import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Slf4j
 public class EPubChapterExtractionHelperTest {
     
-    private final Logger logger = LogManager.getLogger();
-
     @Test
     public void testExtractChapterReferencesFromTableOfContentsFile_GLOBAL_DIGITAL_LIBRARY_eng() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_toc.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
 
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertEquals(18, chapterReferences.size());
@@ -33,7 +30,7 @@ public class EPubChapterExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-gdl-bear-walk.epub_nav.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertEquals(32, chapterReferences.size());
@@ -44,7 +41,7 @@ public class EPubChapterExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-0acfe340-6116-4f8a-a45d-c925c8a1fd0e.epub_toc.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(xhtmlFile);
         assertEquals(12, chapterReferences.size());
@@ -55,7 +52,7 @@ public class EPubChapterExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubChapterExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-sw-99651-hamare-mitra-kon-hai.epub_toc.ncx");
         File ncxFile = resource.getFile();
-        logger.debug("ncxFile: " + ncxFile);
+        log.debug("ncxFile: " + ncxFile);
 
         List<String> chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(ncxFile);
         assertEquals(18, chapterReferences.size());

@@ -7,8 +7,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/image")
 @RequiredArgsConstructor
+@Slf4j
 public class ImageController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ImageDao imageDao;
 
@@ -32,11 +30,11 @@ public class ImageController {
       @PathVariable String imageFormat,
       HttpServletResponse response,
       OutputStream outputStream) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
-    logger.info("imageId: " + imageId);
-    logger.info("revisionNumber: " + revisionNumber);
-    logger.info("imageFormat: " + imageFormat);
+    log.info("imageId: " + imageId);
+    log.info("revisionNumber: " + revisionNumber);
+    log.info("imageFormat: " + imageFormat);
 
     Image image = imageDao.read(imageId);
 
@@ -48,9 +46,9 @@ public class ImageController {
       outputStream.write(bytes);
     } catch (EOFException ex) {
       // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-      logger.warn(ex);
+      log.warn(ex.getMessage());
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     } finally {
       try {
         try {
@@ -58,10 +56,10 @@ public class ImageController {
           outputStream.close();
         } catch (EOFException ex) {
           // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-          logger.warn(ex);
+          log.warn(ex.getMessage());
         }
       } catch (IOException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
       }
     }
   }

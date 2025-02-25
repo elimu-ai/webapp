@@ -1,29 +1,25 @@
 package ai.elimu.util.epub;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-
+import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Slf4j
 public class EPubParagraphExtractionHelperTest {
     
-    private final Logger logger = LogManager.getLogger();
-
     @Test
     public void testExtractParagraphsFromChapterFile_ENG_GDL_1349() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-gdl-1349.epub_chapter-3.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -37,7 +33,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-gdl-1855.epub_chapter-2.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -51,7 +47,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-gdl-1855.epub_chapter-4.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -65,7 +61,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-lra-377b7e63-6126-4cfe-bcee-1538d75c1b2f_Page_1.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -78,7 +74,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-lra-377b7e63-6126-4cfe-bcee-1538d75c1b2f_Page_5.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -91,7 +87,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("eng-lra-377b7e63-6126-4cfe-bcee-1538d75c1b2f_Page_6.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -104,7 +100,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-faa0d66e-564f-4d72-a1d3-ec46fb754205.epub_Page_3.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -119,7 +115,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_4.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -133,7 +129,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("tgl-lra-7f877260-ec7c-4970-b6e2-2ee41231d96d.epub_Page_13.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -147,7 +143,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-gdl-1287.epub_chapter-3.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -160,7 +156,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-gdl-1296.epub_chapter-2.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -173,7 +169,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-gdl-1296.epub_chapter-3.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -187,7 +183,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-sw-99651-hamare-mitra-kon-hai.epub_3.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
 
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -201,7 +197,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-sw-10145-ek-sau-saintisvan-paer.epub_4.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 
@@ -216,7 +212,7 @@ public class EPubParagraphExtractionHelperTest {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
         Resource resource = resourceLoader.getResource("hin-sw-141016-tumi-ke-park-ka-din.epub_8.xhtml");
         File xhtmlFile = resource.getFile();
-        logger.debug("xhtmlFile: " + xhtmlFile);
+        log.debug("xhtmlFile: " + xhtmlFile);
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
 

@@ -1,32 +1,29 @@
 package selenium.analytics;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import lombok.extern.slf4j.Slf4j;
 import selenium.util.DomainHelper;
 
+@Slf4j
 public class MainAnalyticsPageTest {
-    
-    private final Logger logger = LogManager.getLogger();
     
     private WebDriver driver;
 
     @BeforeEach
     public void setUp() { 
-        logger.info("setUp");
+        log.info("setUp");
 
         ChromeOptions chromeOptions = new ChromeOptions();
 
         // Read "headless" property set on the command line: 
         //    mvn clean verify -P regression-test-ui -D headless=true
         String headlessSystemProperty = System.getProperty("headless");
-        logger.info("headlessSystemProperty: \"" + headlessSystemProperty + "\"");
+        log.info("headlessSystemProperty: \"" + headlessSystemProperty + "\"");
         if ("true".equals(headlessSystemProperty)) {
             chromeOptions.addArguments("headless");
         }
@@ -38,14 +35,14 @@ public class MainAnalyticsPageTest {
 
     @AfterEach
     public void tearDown() {
-        logger.info("tearDown");
+        log.info("tearDown");
 
         driver.quit();
     }
 
     @Test
     public void testMainAnalyticsPage() {
-        logger.info("testMainAnalyticsPage");
+        log.info("testMainAnalyticsPage");
         
         MainAnalyticsPage mainAnalyticsPage = new MainAnalyticsPage(driver);
     }

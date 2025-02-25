@@ -2,6 +2,8 @@ package ai.elimu.util;
 
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import lombok.extern.slf4j.Slf4j;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang.StringUtils;
@@ -10,9 +12,6 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.io.entity.StringEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.IOException;
 
 /**
@@ -20,9 +19,8 @@ import java.io.IOException;
  * <p />
  * Documentation: https://discord.com/developers/docs/resources/webhook
  */
+@Slf4j
 public class DiscordHelper {
-
-    private static Logger logger = LogManager.getLogger();
 
     public static void sendChannelMessage(
             String content,
@@ -31,7 +29,7 @@ public class DiscordHelper {
             Boolean embedPeerReviewApproved,
             String embedThumbnailUrl
     ) {
-        logger.info("sendChannelMessage");
+        log.info("sendChannelMessage");
 
         // Prepare the JSON body
         JsonObject jsonBody = new JsonObject();
@@ -59,23 +57,23 @@ public class DiscordHelper {
             embedsJsonArray.add(embedsJsonObject);
             jsonBody.add("embeds", embedsJsonArray);
         }
-        logger.info("jsonBody: " + jsonBody);
+        log.info("jsonBody: " + jsonBody);
 
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
             // Send the message to Discord
             CloseableHttpClient client = HttpClients.createDefault();
             String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");
-            logger.info("discordWebhookUrl: " + discordWebhookUrl);
+            log.info("discordWebhookUrl: " + discordWebhookUrl);
             HttpPost httpPost = new HttpPost(discordWebhookUrl);
             try {
                 StringEntity entity = new StringEntity(jsonBody.toString());
                 httpPost.setEntity(entity);
                 httpPost.setHeader("Content-type", "application/json");
                 HttpResponse httpResponse = client.execute(httpPost);
-                logger.info("httpResponse.getStatusLine(): " + httpResponse);
+                log.info("httpResponse.getStatusLine(): " + httpResponse);
                 client.close();
             } catch (IOException e) {
-               logger.error(e);
+               log.error(e.getMessage());
             }
         }
     }

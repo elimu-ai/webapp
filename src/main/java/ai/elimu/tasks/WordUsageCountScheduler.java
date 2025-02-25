@@ -16,8 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +25,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class WordUsageCountScheduler {
-
-  private Logger logger = LogManager.getLogger();
 
   private final WordDao wordDao;
 
@@ -40,18 +38,18 @@ public class WordUsageCountScheduler {
 
   @Scheduled(cron = "00 00 06 * * *") // At 06:00 every day
   public synchronized void execute() {
-    logger.info("execute");
+    log.info("execute");
 
-    logger.info("Calculating usage count for Words");
+    log.info("Calculating usage count for Words");
 
     Map<String, Integer> wordFrequencyMap = new HashMap<>();
 
     Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
 
     List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
-    logger.info("storyBooks.size(): " + storyBooks.size());
+    log.info("storyBooks.size(): " + storyBooks.size());
     for (StoryBook storyBook : storyBooks) {
-      logger.debug("storyBook.getTitle(): " + storyBook.getTitle());
+      log.debug("storyBook.getTitle(): " + storyBook.getTitle());
 
       List<String> paragraphs = new ArrayList<>();
       List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
@@ -67,14 +65,14 @@ public class WordUsageCountScheduler {
     }
 
     for (String word : wordFrequencyMap.keySet()) {
-      logger.info("word: \"" + word + "\"");
+      log.info("word: \"" + word + "\"");
       Word existingWord = wordDao.readByText(word);
       if (existingWord != null) {
         existingWord.setUsageCount(wordFrequencyMap.get(word));
 
         // Temporary fix for "jakarta.validation.ConstraintViolationException"
         if (existingWord.getLetterSounds().isEmpty()) {
-          logger.warn("Letter-sound correspondences not yet added. Skipping usage count update for word...");
+          log.warn("Letter-sound correspondences not yet added. Skipping usage count update for word...");
           continue;
         }
 
@@ -82,6 +80,6 @@ public class WordUsageCountScheduler {
       }
     }
 
-    logger.info("execute complete");
+    log.info("execute complete");
   }
 }

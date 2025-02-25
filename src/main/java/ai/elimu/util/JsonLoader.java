@@ -8,17 +8,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class JsonLoader {
-    
-    private static Logger logger = LogManager.getLogger();
 
     public static String loadJson(String urlValue) {
-        logger.info("loadJson");
+        log.info("loadJson");
 
-        logger.info("Downloading from " + urlValue);
+        log.info("Downloading from " + urlValue);
 
         String jsonResponse = null;
 
@@ -31,7 +29,7 @@ public class JsonLoader {
             httpURLConnection.connect();
 
             int responseCode = httpURLConnection.getResponseCode();
-            logger.info("responseCode: " + responseCode);
+            log.info("responseCode: " + responseCode);
             InputStream inputStream = null;
             if (responseCode == 200) {
                 inputStream = httpURLConnection.getInputStream();
@@ -47,11 +45,11 @@ public class JsonLoader {
                 jsonResponse += line;
             }
         } catch (MalformedURLException e) {
-            logger.error("MalformedURLException", e);
+            log.error("MalformedURLException", e);
         } catch (ProtocolException e) {
-            logger.error("ProtocolException", e);
+            log.error("ProtocolException", e);
         } catch (IOException e) {
-            logger.error("IOException", e);
+            log.error("IOException", e);
         }
 
         return jsonResponse;

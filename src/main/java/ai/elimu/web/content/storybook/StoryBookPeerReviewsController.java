@@ -11,8 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/content/storybook/peer-reviews")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookPeerReviewsController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final StoryBookContributionEventDao storyBookContributionEventDao;
 
@@ -38,17 +36,17 @@ public class StoryBookPeerReviewsController {
    */
   @RequestMapping(method = RequestMethod.GET)
   public String handleGetRequest(HttpSession session, Model model) {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
-    logger.info("contributor: " + contributor);
+    log.info("contributor: " + contributor);
 
     List<StoryBookContributionEvent> allStoryBookContributionEvents = storyBookContributionEventDao.readAllOrderedByTimeDesc();
-    logger.info("allStoryBookContributionEvents.size(): " + allStoryBookContributionEvents.size());
+    log.info("allStoryBookContributionEvents.size(): " + allStoryBookContributionEvents.size());
 
     // Get the most recent StoryBookContributionEvent for each StoryBook, including those made by the current Contributor
     List<StoryBookContributionEvent> mostRecentStoryBookContributionEvents = storyBookContributionEventDao.readMostRecentPerStoryBook();
-    logger.info("mostRecentStoryBookContributionEvents.size(): " + mostRecentStoryBookContributionEvents.size());
+    log.info("mostRecentStoryBookContributionEvents.size(): " + mostRecentStoryBookContributionEvents.size());
 
     // For each StoryBookContributionEvent, check if the Contributor has already performed a peer-review.
     // If not, add it to the list of pending peer reviews.
@@ -65,7 +63,7 @@ public class StoryBookPeerReviewsController {
         storyBookContributionEventsPendingPeerReview.add(mostRecentStoryBookContributionEvent);
       }
     }
-    logger.info("storyBookContributionEventsPendingPeerReview.size(): " + storyBookContributionEventsPendingPeerReview.size());
+    log.info("storyBookContributionEventsPendingPeerReview.size(): " + storyBookContributionEventsPendingPeerReview.size());
     model.addAttribute("storyBookContributionEventsPendingPeerReview", storyBookContributionEventsPendingPeerReview);
 
     return "content/storybook/peer-reviews/pending";

@@ -2,12 +2,11 @@ package ai.elimu.util.csv;
 
 import ai.elimu.model.content.Letter;
 import ai.elimu.web.content.letter.LetterCsvExportController;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang.math.NumberUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -16,25 +15,23 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
+@Slf4j
 public class CsvLetterExtractionHelper {
 
     private CsvLetterExtractionHelper() {
     }
 
-    private static final Logger logger = LogManager.getLogger();
-
     /**
      * For information on how the CSV files were generated, see {@link LetterCsvExportController#handleRequest}.
      */
     public static List<Letter> getLettersFromCsvBackup(File csvFile) {
-        logger.info("getLettersFromCsvBackup");
+        log.info("getLettersFromCsvBackup");
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: {}", csvFilePath);
+        log.info("csvFilePath: {}", csvFilePath);
 
         CSVFormat csvFormat = CSVFormat.Builder.create()
             .setHeader(
@@ -51,7 +48,7 @@ public class CsvLetterExtractionHelper {
                 .map(CsvLetterExtractionHelper::toLetter)
                 .collect(toUnmodifiableList());
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return emptyList();
@@ -59,7 +56,7 @@ public class CsvLetterExtractionHelper {
 
     @NotNull
     private static Letter toLetter(CSVRecord csvRecord) {
-        logger.info("csvRecord: {}", csvRecord);
+        log.info("csvRecord: {}", csvRecord);
 
         Letter letter = new Letter();
 

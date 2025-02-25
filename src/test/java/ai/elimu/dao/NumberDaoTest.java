@@ -7,10 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
+import lombok.extern.slf4j.Slf4j;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -19,9 +18,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
+@Slf4j
 public class NumberDaoTest {
-
-  private Logger logger = LogManager.getLogger();
 
   private final NumberDao numberDao;
 
@@ -71,7 +69,7 @@ public class NumberDaoTest {
     assertTrue(allNumbers.size() >= 5);
     Number previousNumber = null;
     for (Number number : allNumbers) {
-      logger.info("number.getValue(): " + number.getValue());
+      log.info("number.getValue(): " + number.getValue());
       if (previousNumber != null) {
         assertTrue(number.getValue() > previousNumber.getValue());
       }

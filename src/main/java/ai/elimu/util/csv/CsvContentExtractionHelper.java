@@ -26,12 +26,11 @@ import ai.elimu.web.content.multimedia.image.ImageCsvExportController;
 import ai.elimu.web.content.number.NumberCsvExportController;
 import ai.elimu.web.content.storybook.StoryBookCsvExportController;
 import ai.elimu.web.content.word.WordCsvExportController;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.core.io.ClassRelativeResourceLoader;
@@ -49,20 +48,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 public class CsvContentExtractionHelper {
-
-    private static final Logger logger = LogManager.getLogger();
 
     /**
      * For information on how the CSV files were generated, see {@link LetterSoundCsvExportController#handleRequest}.
      */
     public static List<LetterSound> getLetterSoundsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao) {
-        logger.info("getLetterSoundsFromCsvBackup");
+        log.info("getLetterSoundsFromCsvBackup");
 
         List<LetterSound> letterSounds = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -77,36 +75,36 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                log.info("csvRecord: " + csvRecord);
 
                 LetterSound letterSound = new LetterSound();
 
                 JSONArray letterIdsJsonArray = new JSONArray(csvRecord.get("letter_ids"));
-                logger.debug("letterIdsJsonArray: " + letterIdsJsonArray);
+                log.debug("letterIdsJsonArray: " + letterIdsJsonArray);
 
                 JSONArray letterTextsJsonArray = new JSONArray(csvRecord.get("letter_texts"));
-                logger.debug("letterTextsJsonArray: " + letterTextsJsonArray);
+                log.debug("letterTextsJsonArray: " + letterTextsJsonArray);
                 List<Letter> letters = new ArrayList<>();
                 for (int i = 0; i < letterTextsJsonArray.length(); i++) {
                     String letterText = letterTextsJsonArray.getString(i);
-                    logger.debug("Looking up Letter with text '" + letterText + "'");
+                    log.debug("Looking up Letter with text '" + letterText + "'");
                     Letter letter = letterDao.readByText(letterText);
-                    logger.debug("letter.getId(): " + letter.getId());
+                    log.debug("letter.getId(): " + letter.getId());
                     letters.add(letter);
                 }
                 letterSound.setLetters(letters);
 
                 JSONArray soundIdsJsonArray = new JSONArray(csvRecord.get("sound_ids"));
-                logger.debug("soundIdsJsonArray: " + soundIdsJsonArray);
+                log.debug("soundIdsJsonArray: " + soundIdsJsonArray);
 
                 JSONArray soundValuesIpaJsonArray = new JSONArray(csvRecord.get("sound_values_ipa"));
-                logger.debug("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
+                log.debug("soundValuesIpaJsonArray: " + soundValuesIpaJsonArray);
                 List<Sound> sounds = new ArrayList<>();
                 for (int i = 0; i < soundValuesIpaJsonArray.length(); i++) {
                     String soundValueIpa = soundValuesIpaJsonArray.getString(i);
-                    logger.debug("Looking up Sound with IPA value /" + soundValueIpa + "/");
+                    log.debug("Looking up Sound with IPA value /" + soundValueIpa + "/");
                     Sound sound = soundDao.readByValueIpa(soundValueIpa);
-                    logger.debug("sound.getId(): " + sound.getId());
+                    log.debug("sound.getId(): " + sound.getId());
                     sounds.add(sound);
                 }
                 letterSound.setSounds(sounds);
@@ -117,7 +115,7 @@ public class CsvContentExtractionHelper {
                 letterSounds.add(letterSound);
             }
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return letterSounds;
@@ -127,12 +125,12 @@ public class CsvContentExtractionHelper {
      * For information on how the CSV files were generated, see {@link WordCsvExportController#handleRequest}.
      */
     public static List<Word> getWordsFromCsvBackup(File csvFile, LetterDao letterDao, SoundDao soundDao, LetterSoundDao letterSoundDao, WordDao wordDao) {
-        logger.info("getWordsFromCsvBackup");
+        log.info("getWordsFromCsvBackup");
 
         List<Word> words = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -149,7 +147,7 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                log.info("csvRecord: " + csvRecord);
 
                 Word word = new Word();
 
@@ -157,11 +155,11 @@ public class CsvContentExtractionHelper {
                 word.setText(text);
 
                 JSONArray letterSoundsJsonArray = new JSONArray(csvRecord.get("letter_sound_correspondences"));
-                logger.debug("letterSoundsJsonArray: " + letterSoundsJsonArray);
+                log.debug("letterSoundsJsonArray: " + letterSoundsJsonArray);
                 List<LetterSound> letterSounds = new ArrayList<>();
                 for (int i = 0; i < letterSoundsJsonArray.length(); i++) {
                     JSONObject letterSoundJsonObject = letterSoundsJsonArray.getJSONObject(i);
-                    logger.debug("letterSoundJsonObject: " + letterSoundJsonObject);
+                    log.debug("letterSoundJsonObject: " + letterSoundJsonObject);
                     List<Letter> letters = new ArrayList<>();
                     JSONArray lettersJsonArray = letterSoundJsonObject.getJSONArray("letters");
                     for (int j = 0; j < lettersJsonArray.length(); j++) {
@@ -175,7 +173,7 @@ public class CsvContentExtractionHelper {
                         sounds.add(sound);
                     }
                     LetterSound letterSound = letterSoundDao.read(letters, sounds);
-                    logger.debug("letterSound.getId(): " + letterSound.getId());
+                    log.debug("letterSound.getId(): " + letterSound.getId());
                     letterSounds.add(letterSound);
                 }
                 word.setLetterSounds(letterSounds);
@@ -203,7 +201,7 @@ public class CsvContentExtractionHelper {
                 words.add(word);
             }
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return words;
@@ -213,12 +211,12 @@ public class CsvContentExtractionHelper {
      * For information on how the CSV files were generated, see {@link NumberCsvExportController#handleRequest}.
      */
     public static List<Number> getNumbersFromCsvBackup(File csvFile, WordDao wordDao) {
-        logger.info("getNumbersFromCsvBackup");
+        log.info("getNumbersFromCsvBackup");
 
         List<Number> numbers = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -232,7 +230,7 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                log.info("csvRecord: " + csvRecord);
 
                 Number number = new Number();
 
@@ -243,16 +241,16 @@ public class CsvContentExtractionHelper {
                 number.setSymbol(symbol);
 
                 JSONArray wordIdsJsonArray = new JSONArray(csvRecord.get("word_ids"));
-                logger.info("wordIdsJsonArray: " + wordIdsJsonArray);
+                log.info("wordIdsJsonArray: " + wordIdsJsonArray);
 
                 JSONArray wordTextsJsonArray = new JSONArray(csvRecord.get("word_texts"));
-                logger.info("wordTextsJsonArray: " + wordTextsJsonArray);
+                log.info("wordTextsJsonArray: " + wordTextsJsonArray);
                 List<Word> words = new ArrayList<>();
                 for (int i = 0; i < wordTextsJsonArray.length(); i++) {
                     String wordText = wordTextsJsonArray.getString(i);
-                    logger.info("Looking up Word with text /" + wordText + "/");
+                    log.info("Looking up Word with text /" + wordText + "/");
                     Word word = wordDao.readByText(wordText);
-                    logger.info("word.getId(): \"" + word.getId() + "\"");
+                    log.info("word.getId(): \"" + word.getId() + "\"");
                     words.add(word);
                 }
                 number.setWords(words);
@@ -260,7 +258,7 @@ public class CsvContentExtractionHelper {
                 numbers.add(number);
             }
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return numbers;
@@ -270,12 +268,12 @@ public class CsvContentExtractionHelper {
      * For information on how the CSV files were generated, see {@link EmojiCsvExportController#handleRequest}.
      */
     public static List<Emoji> getEmojisFromCsvBackup(File csvFile, WordDao wordDao) {
-        logger.info("getEmojisFromCsvBackup");
+        log.info("getEmojisFromCsvBackup");
 
         List<Emoji> emojis = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -290,7 +288,7 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                log.info("csvRecord: " + csvRecord);
 
                 Emoji emoji = new Emoji();
 
@@ -304,16 +302,16 @@ public class CsvContentExtractionHelper {
                 emoji.setUnicodeEmojiVersion(unicodeEmojiVersion);
 
                 JSONArray wordIdsJsonArray = new JSONArray(csvRecord.get("word_ids"));
-                logger.info("wordIdsJsonArray: " + wordIdsJsonArray);
+                log.info("wordIdsJsonArray: " + wordIdsJsonArray);
 
                 JSONArray wordTextsJsonArray = new JSONArray(csvRecord.get("word_texts"));
-                logger.info("wordTextsJsonArray: " + wordTextsJsonArray);
+                log.info("wordTextsJsonArray: " + wordTextsJsonArray);
                 Set<Word> words = new HashSet<>();
                 for (int i = 0; i < wordTextsJsonArray.length(); i++) {
                     String wordText = wordTextsJsonArray.getString(i);
-                    logger.info("Looking up Word with text /" + wordText + "/");
+                    log.info("Looking up Word with text /" + wordText + "/");
                     Word word = wordDao.readByText(wordText);
-                    logger.info("word.getId(): \"" + word.getId() + "\"");
+                    log.info("word.getId(): \"" + word.getId() + "\"");
                     words.add(word);
                 }
                 emoji.setWords(words);
@@ -321,7 +319,7 @@ public class CsvContentExtractionHelper {
                 emojis.add(emoji);
             }
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return emojis;
@@ -331,12 +329,12 @@ public class CsvContentExtractionHelper {
      * For information on how the CSV files were generated, see {@link ImageCsvExportController#handleRequest}.
      */
     public static List<Image> getImagesFromCsvBackup(File csvFile) {
-        logger.info("getImagesFromCsvBackup");
+        log.info("getImagesFromCsvBackup");
 
         List<Image> images = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath); 
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -352,7 +350,7 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                log.info("csvRecord: " + csvRecord);
 
                 Image image = new Image();
 
@@ -383,7 +381,7 @@ public class CsvContentExtractionHelper {
                 images.add(image);
             }
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return images;
@@ -395,12 +393,12 @@ public class CsvContentExtractionHelper {
      * Also see {@link #getStoryBookChaptersFromCsvBackup}
      */
     public static List<StoryBookGson> getStoryBooksFromCsvBackup(File csvFile) {
-        logger.info("getStoryBooksFromCsvBackup");
+        log.info("getStoryBooksFromCsvBackup");
 
         List<StoryBookGson> storyBookGsons = new ArrayList<>();
 
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -417,14 +415,14 @@ public class CsvContentExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.debug("csvRecord: " + csvRecord);
+                log.debug("csvRecord: " + csvRecord);
 
                 // Convert from CSV to GSON
 
                 StoryBookGson storyBookGson = new StoryBookGson();
 
                 String title = csvRecord.get("title");
-                logger.info("title: \"" + title + "\"");
+                log.info("title: \"" + title + "\"");
                 storyBookGson.setTitle(title);
 
                 String description = csvRecord.get("description");
@@ -452,17 +450,17 @@ public class CsvContentExtractionHelper {
 
                 List<StoryBookChapterGson> storyBookChapterGsons = new ArrayList<>();
                 JSONArray chaptersJsonArray = new JSONArray(csvRecord.get("chapters"));
-                logger.debug("chaptersJsonArray: " + chaptersJsonArray);
+                log.debug("chaptersJsonArray: " + chaptersJsonArray);
                 for (int i = 0; i < chaptersJsonArray.length(); i++) {
                     JSONObject chapterJsonObject = chaptersJsonArray.getJSONObject(i);
-                    logger.debug("chapterJsonObject: " + chapterJsonObject);
+                    log.debug("chapterJsonObject: " + chapterJsonObject);
 
                     StoryBookChapterGson storyBookChapterGson = new StoryBookChapterGson();
                     storyBookChapterGson.setSortOrder(chapterJsonObject.getInt("sortOrder"));
 
                     if (chapterJsonObject.has("image")) {
                         JSONObject chapterImageJsonObject = chapterJsonObject.getJSONObject("image");
-                        logger.debug("chapterImageJsonObject: " + chapterImageJsonObject);
+                        log.debug("chapterImageJsonObject: " + chapterImageJsonObject);
                         ImageGson chapterImageGson = new ImageGson();
                         chapterImageGson.setId(chapterImageJsonObject.getLong("id"));
                         storyBookChapterGson.setImage(chapterImageGson);
@@ -470,10 +468,10 @@ public class CsvContentExtractionHelper {
 
                     List<StoryBookParagraphGson> storyBookParagraphGsons = new ArrayList<>();
                     JSONArray paragraphsJsonArray = chapterJsonObject.getJSONArray("storyBookParagraphs");
-                    logger.debug("paragraphsJsonArray: " + paragraphsJsonArray);
+                    log.debug("paragraphsJsonArray: " + paragraphsJsonArray);
                     for (int j = 0; j < paragraphsJsonArray.length(); j++) {
                         JSONObject paragraphJsonObject = paragraphsJsonArray.getJSONObject(j);
-                        logger.debug("paragraphJsonObject: " + paragraphJsonObject);
+                        log.debug("paragraphJsonObject: " + paragraphJsonObject);
 
                         StoryBookParagraphGson storyBookParagraphGson = new StoryBookParagraphGson();
                         storyBookParagraphGson.setSortOrder(paragraphJsonObject.getInt("sortOrder"));
@@ -491,7 +489,7 @@ public class CsvContentExtractionHelper {
                 storyBookGsons.add(storyBookGson);
             }
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return storyBookGsons;

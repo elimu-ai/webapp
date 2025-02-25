@@ -10,8 +10,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/apk")
 @RequiredArgsConstructor
+@Slf4j
 public class ApkController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ApplicationDao applicationDao;
 
@@ -36,18 +34,18 @@ public class ApkController {
       HttpServletRequest request,
       HttpServletResponse response,
       OutputStream outputStream) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
-    logger.info("packageName: " + packageName);
-    logger.info("versionCode: " + versionCode);
-    logger.info("request.getQueryString(): " + request.getQueryString());
-    logger.info("request.getRemoteAddr(): " + request.getRemoteAddr());
+    log.info("packageName: " + packageName);
+    log.info("versionCode: " + versionCode);
+    log.info("request.getQueryString(): " + request.getQueryString());
+    log.info("request.getRemoteAddr(): " + request.getRemoteAddr());
 
     Application application = applicationDao.readByPackageName(packageName);
-    logger.info("application: " + application);
+    log.info("application: " + application);
 
     ApplicationVersion applicationVersion = applicationVersionDao.read(application, versionCode);
-    logger.info("applicationVersion: " + applicationVersion);
+    log.info("applicationVersion: " + applicationVersion);
 
     response.setContentType(applicationVersion.getContentType());
 
@@ -57,9 +55,9 @@ public class ApkController {
       outputStream.write(bytes);
     } catch (EOFException ex) {
       // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-      logger.warn(ex);
+      log.warn(ex.getMessage());
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     } finally {
       try {
         try {
@@ -67,10 +65,10 @@ public class ApkController {
           outputStream.close();
         } catch (EOFException ex) {
           // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-          logger.warn(ex);
+          log.warn(ex.getMessage());
         }
       } catch (IOException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
       }
     }
   }

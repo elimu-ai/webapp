@@ -1,12 +1,10 @@
 package selenium.util;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class DomainHelper {
-    
-    private static final Logger logger = LogManager.getLogger();
     
     public static String getBaseUrl() {
         String baseUrl = "http://localhost:8080/webapp";
@@ -14,12 +12,12 @@ public class DomainHelper {
         // Read "base.url" property set on the command line: 
         //    mvn clean verify -P regression-test-rest -D base.url=https://eng.test.elimu.ai
         String baseUrlSystemProperty = System.getProperty("base.url");
-        logger.info("baseUrlSystemProperty: \"" + baseUrlSystemProperty + "\"");
+        log.info("baseUrlSystemProperty: \"" + baseUrlSystemProperty + "\"");
         if (StringUtils.isNotBlank(baseUrlSystemProperty)) {
             baseUrl = baseUrlSystemProperty;
         }
         
-        logger.info("baseUrl: \"" + baseUrl + "\"");
+        log.info("baseUrl: \"" + baseUrl + "\"");
         return baseUrl;
     }
     
