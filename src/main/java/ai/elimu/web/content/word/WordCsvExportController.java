@@ -18,11 +18,11 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/word/list")
+@RequestMapping("/content/word/list/words.csv")
 @RequiredArgsConstructor
 public class WordCsvExportController {
 
@@ -30,7 +30,7 @@ public class WordCsvExportController {
 
   private final WordDao wordDao;
 
-  @RequestMapping(value = "/words.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

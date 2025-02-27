@@ -11,8 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -24,14 +25,14 @@ public class EditMotivationController {
 
   private final ContributorDao contributorDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest() {
     logger.info("handleRequest");
 
     return "content/contributor/edit-motivation";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpSession session,
       @RequestParam String motivation,

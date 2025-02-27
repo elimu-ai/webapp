@@ -21,14 +21,14 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping(value = "/rest/v2/analytics/word-assessment-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/analytics/word-assessment-events/csv", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
 public class WordAssessmentEventsRestController {
 
@@ -41,7 +41,7 @@ public class WordAssessmentEventsRestController {
 
   private final WordDao wordDao;
 
-  @RequestMapping(value = "/csv", method = RequestMethod.POST)
+  @PostMapping
   public String handleUploadCsvRequest(
       @RequestParam("file") MultipartFile multipartFile,
       HttpServletResponse response

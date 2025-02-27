@@ -13,12 +13,20 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+
+import jakarta.servlet.http.HttpServletResponse;
+import ai.elimu.dao.ApplicationDao;
+import ai.elimu.dao.ApplicationVersionDao;
+import ai.elimu.model.admin.Application;
+import ai.elimu.model.admin.ApplicationVersion;
+import org.apache.logging.log4j.LogManager;
 
 @Controller
-@RequestMapping("/apk")
+@RequestMapping("/apk/{packageName}-{versionCode}.apk")
 @RequiredArgsConstructor
 public class ApkController {
 
@@ -28,7 +36,7 @@ public class ApkController {
 
   private final ApplicationVersionDao applicationVersionDao;
 
-  @RequestMapping(value = "/{packageName}-{versionCode}.apk", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       @PathVariable String packageName,
       @PathVariable Integer versionCode,

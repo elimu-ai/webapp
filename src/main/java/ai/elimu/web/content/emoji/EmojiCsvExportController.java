@@ -15,11 +15,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/emoji/list")
+@RequestMapping("/content/emoji/list/emojis.csv")
 @RequiredArgsConstructor
 public class EmojiCsvExportController {
 
@@ -27,7 +27,7 @@ public class EmojiCsvExportController {
 
   private final EmojiDao emojiDao;
 
-  @RequestMapping(value = "/emojis.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

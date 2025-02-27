@@ -26,11 +26,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@RequestMapping("/sign-on/discord")
 @RequiredArgsConstructor
 public class SignOnControllerDiscord {
 
@@ -46,7 +47,7 @@ public class SignOnControllerDiscord {
 
   private final ContributorDao contributorDao;
 
-  @RequestMapping("/sign-on/discord")
+  @GetMapping
   public String handleAuthorization(HttpServletRequest request) throws IOException {
     logger.info("handleAuthorization");
 
@@ -81,9 +82,10 @@ public class SignOnControllerDiscord {
     return "redirect:" + authorizationUrl;
   }
 
-  @RequestMapping(value = "/sign-on/discord/callback", method = RequestMethod.GET)
+
+  @GetMapping(value="/callback")
   public String handleCallback(HttpServletRequest request) throws IOException, InterruptedException, ExecutionException {
-    logger.info("handleCallback");
+        logger.info("handleCallback");
 
     String state = request.getParameter("state");
     logger.debug("state: " + state);

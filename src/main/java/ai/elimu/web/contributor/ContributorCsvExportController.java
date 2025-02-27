@@ -21,11 +21,11 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/contributor/list")
+@RequestMapping("/contributor/list/contributors.csv")
 @RequiredArgsConstructor
 public class ContributorCsvExportController {
 
@@ -41,7 +41,7 @@ public class ContributorCsvExportController {
 
   private final StoryBookContributionEventDao storyBookContributionEventDao;
 
-  @RequestMapping(value = "/contributors.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

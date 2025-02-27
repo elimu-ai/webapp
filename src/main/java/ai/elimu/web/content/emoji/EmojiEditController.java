@@ -19,13 +19,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/content/emoji/edit")
+@RequestMapping("/content/emoji/edit/{id}")
 @RequiredArgsConstructor
 public class EmojiEditController {
 
@@ -35,7 +37,7 @@ public class EmojiEditController {
 
   private final WordDao wordDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
@@ -51,7 +53,7 @@ public class EmojiEditController {
     return "content/emoji/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       @Valid Emoji emoji,
       BindingResult result,
@@ -84,7 +86,7 @@ public class EmojiEditController {
     }
   }
 
-  @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
+  @PostMapping(value = "/add-content-label")
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
@@ -110,7 +112,7 @@ public class EmojiEditController {
     return "success";
   }
 
-  @RequestMapping(value = "/{id}/remove-content-label", method = RequestMethod.POST)
+  @PostMapping(value = "/remove-content-label")
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,

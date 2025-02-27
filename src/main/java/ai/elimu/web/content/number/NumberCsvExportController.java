@@ -15,11 +15,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/number/list")
+@RequestMapping("/content/number/list/numbers.csv")
 @RequiredArgsConstructor
 public class NumberCsvExportController {
 
@@ -27,7 +27,7 @@ public class NumberCsvExportController {
 
   private final NumberDao numberDao;
 
-  @RequestMapping(value = "/numbers.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

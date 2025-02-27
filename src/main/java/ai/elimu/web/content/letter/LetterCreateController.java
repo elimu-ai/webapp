@@ -18,8 +18,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping("/content/letter/create")
@@ -32,7 +34,7 @@ public class LetterCreateController {
 
   private final LetterContributionEventDao letterContributionEventDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       Model model) {
     logger.info("handleRequest");
@@ -44,7 +46,7 @@ public class LetterCreateController {
     return "content/letter/create";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,
