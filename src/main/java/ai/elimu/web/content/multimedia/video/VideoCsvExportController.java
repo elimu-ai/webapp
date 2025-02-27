@@ -10,11 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/content/video/list")
+@RequestMapping("/content/video/list/videos.csv")
 @RequiredArgsConstructor
 public class VideoCsvExportController {
 
@@ -22,7 +23,7 @@ public class VideoCsvExportController {
 
   private final VideoDao videoDao;
 
-  @RequestMapping(value = "/videos.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream) {

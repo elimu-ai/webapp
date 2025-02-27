@@ -28,13 +28,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * See https://github.com/organizations/elimu-ai/settings/applications and https://developer.github.com/v3/oauth/#web-application-flow
  */
 @Controller
+@RequestMapping("/sign-on/github")
 @RequiredArgsConstructor
 public class SignOnControllerGitHub {
 
@@ -50,7 +51,7 @@ public class SignOnControllerGitHub {
 
   private final ContributorDao contributorDao;
 
-  @RequestMapping("/sign-on/github")
+  @GetMapping
   public String handleAuthorization(HttpServletRequest request) throws IOException {
     logger.info("handleAuthorization");
 
@@ -83,7 +84,7 @@ public class SignOnControllerGitHub {
     return "redirect:" + authorizationUrl;
   }
 
-  @RequestMapping(value = "/sign-on/github/callback", method = RequestMethod.GET)
+  @GetMapping(value="/callback")
   public String handleCallback(HttpServletRequest request, Model model) {
     logger.info("handleCallback");
 

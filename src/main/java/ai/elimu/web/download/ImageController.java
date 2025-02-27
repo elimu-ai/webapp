@@ -11,12 +11,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import jakarta.servlet.http.HttpServletResponse;
+import ai.elimu.dao.ImageDao;
+import ai.elimu.model.content.multimedia.Image;
+import org.apache.logging.log4j.LogManager;
+import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/image")
+@RequestMapping("/image/{imageId}_r{revisionNumber}.{imageFormat}")
 @RequiredArgsConstructor
 public class ImageController {
 
@@ -24,7 +30,7 @@ public class ImageController {
 
   private final ImageDao imageDao;
 
-  @RequestMapping(value = "/{imageId}_r{revisionNumber}.{imageFormat}", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       Model model,
       @PathVariable Long imageId,

@@ -39,12 +39,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/content/word/edit")
+@RequestMapping("/content/word/edit/{id}")
 @RequiredArgsConstructor
 public class WordEditController {
 
@@ -68,7 +70,7 @@ public class WordEditController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       HttpSession session,
       Model model,
@@ -115,7 +117,7 @@ public class WordEditController {
     return "content/word/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

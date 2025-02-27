@@ -13,11 +13,12 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/content/letter/list")
+@RequestMapping("/content/letter/list/letters.csv")
 @RequiredArgsConstructor
 public class LetterCsvExportController {
 
@@ -25,7 +26,7 @@ public class LetterCsvExportController {
 
   private final LetterDao letterDao;
 
-  @RequestMapping(value = "/letters.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

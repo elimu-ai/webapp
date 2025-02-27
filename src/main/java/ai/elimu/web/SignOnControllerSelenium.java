@@ -14,11 +14,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping(value="/sign-on/test/role-{role}")
 @RequiredArgsConstructor
 public class SignOnControllerSelenium {
 
@@ -26,7 +27,7 @@ public class SignOnControllerSelenium {
 
   private final ContributorDao contributorDao;
 
-  @RequestMapping(value = "/sign-on/test/role-{role}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       @PathVariable Role role,
       HttpServletRequest request,
