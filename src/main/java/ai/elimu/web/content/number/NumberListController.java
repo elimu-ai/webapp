@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class NumberListController {
     
-    private final Logger logger = LogManager.getLogger();
-    
     private NumberDao numberDao;
 
   @GetMapping

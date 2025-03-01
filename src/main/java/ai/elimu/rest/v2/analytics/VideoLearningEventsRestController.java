@@ -20,8 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class VideoLearningEventsRestController {
     
-    private Logger logger = LogManager.getLogger();
-    
     @PostMapping
     public String handleUploadCsvRequest(
             @RequestParam("file") MultipartFile multipartFile,
