@@ -8,8 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.validator.EmailValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -23,14 +25,14 @@ public class AddEmailController {
 
   private final ContributorDao contributorDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest() {
     log.info("handleRequest");
 
     return "content/contributor/add-email";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpSession session,
       @RequestParam String email,

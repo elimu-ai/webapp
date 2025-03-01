@@ -20,11 +20,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/contributor/list")
+@RequestMapping("/contributor/list/contributors.csv")
 @RequiredArgsConstructor
 @Slf4j
 public class ContributorCsvExportController {
@@ -39,7 +39,7 @@ public class ContributorCsvExportController {
 
   private final StoryBookContributionEventDao storyBookContributionEventDao;
 
-  @RequestMapping(value = "/contributors.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

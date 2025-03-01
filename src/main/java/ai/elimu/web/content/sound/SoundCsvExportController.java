@@ -12,18 +12,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/sound/list")
+@RequestMapping("/content/sound/list/sounds.csv")
 @RequiredArgsConstructor
 @Slf4j
 public class SoundCsvExportController {
 
   private final SoundDao soundDao;
 
-  @RequestMapping(value = "/sounds.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

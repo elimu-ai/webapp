@@ -18,8 +18,10 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping("/content/sound/create")
@@ -31,7 +33,7 @@ public class SoundCreateController {
 
   private final SoundContributionEventDao soundContributionEventDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(Model model) {
     log.info("handleRequest");
 
@@ -44,7 +46,7 @@ public class SoundCreateController {
     return "content/sound/create";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

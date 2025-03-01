@@ -26,14 +26,14 @@ import org.apache.commons.csv.CSVRecord;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping(value = "/rest/v2/analytics/storybook-learning-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/analytics/storybook-learning-events/csv", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
 @Slf4j
 public class StoryBookLearningEventsRestController {
@@ -44,7 +44,7 @@ public class StoryBookLearningEventsRestController {
 
   private final StoryBookDao storyBookDao;
 
-  @RequestMapping(value = "/csv", method = RequestMethod.POST)
+  @PostMapping
   public String handleUploadCsvRequest(
       @RequestParam("file") MultipartFile multipartFile,
       HttpServletResponse response

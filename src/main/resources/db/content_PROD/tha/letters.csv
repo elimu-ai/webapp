@@ -24,8 +24,10 @@ id,text,diacritic,usage_count
 23,ร,false,8
 24,ท,false,3
 25,ธ,false,1
-26,ผ,false,0
+26,ผ,false,2
 27,◌อ,true,0
-28,ส,false,0
+28,ส,false,5
 29,◌่,true,0
 30,◌ั,true,0
+31,ศ,false,0
+32,ไ◌,true,0

@@ -9,18 +9,19 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/content/audio/list")
+@RequestMapping("/content/audio/list/audios.csv")
 @RequiredArgsConstructor
 @Slf4j
 public class AudioCsvExportController {
 
   private final AudioDao audioDao;
 
-  @RequestMapping(value = "/audios.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream) {

@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,7 +23,7 @@ public class AudiosRestController {
 
   private final AudioDao audioDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleGetRequest(HttpServletRequest request) {
     log.info("handleGetRequest");
 

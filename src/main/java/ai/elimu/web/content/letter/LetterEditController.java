@@ -18,12 +18,14 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/content/letter/edit")
+@RequestMapping("/content/letter/edit/{id}")
 @RequiredArgsConstructor
 @Slf4j
 public class LetterEditController {
@@ -34,7 +36,7 @@ public class LetterEditController {
 
   private final LetterSoundDao letterSoundDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
@@ -51,7 +53,7 @@ public class LetterEditController {
     return "content/letter/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,

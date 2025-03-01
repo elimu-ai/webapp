@@ -14,18 +14,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/analytics/video-learning-event/list")
+@RequestMapping("/analytics/video-learning-event/list/video-learning-events.csv")
 @RequiredArgsConstructor
 @Slf4j
 public class VideoLearningEventCsvExportController {
 
   private final VideoLearningEventDao videoLearningEventDao;
 
-  @RequestMapping(value = "/video-learning-events.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

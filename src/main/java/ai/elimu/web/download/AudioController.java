@@ -10,19 +10,19 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/audio")
+@RequestMapping("/audio/{audioId}_r{revisionNumber}.{audioFormat}")
 @RequiredArgsConstructor
 @Slf4j
 public class AudioController {
 
   private final AudioDao audioDao;
 
-  @RequestMapping(value = "/{audioId}_r{revisionNumber}.{audioFormat}", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       Model model,
       @PathVariable Long audioId,

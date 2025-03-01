@@ -14,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/content/letter-sound/peer-reviews")
@@ -34,7 +34,7 @@ public class LetterSoundPeerReviewsController {
   /**
    * Get {@link LetterSoundContributionEvent}s pending a {@link LetterSoundPeerReviewEvent} for the current {@link Contributor}.
    */
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleGetRequest(HttpSession session, Model model) {
     log.info("handleGetRequest");
 

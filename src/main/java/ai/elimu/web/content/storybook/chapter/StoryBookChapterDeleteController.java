@@ -26,12 +26,12 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/storybook/edit/{storyBookId}/chapter/delete")
+@RequestMapping("/content/storybook/edit/{storyBookId}/chapter/delete/{id}")
 @RequiredArgsConstructor
 @Slf4j
 public class StoryBookChapterDeleteController {
@@ -52,7 +52,7 @@ public class StoryBookChapterDeleteController {
 
   private final StoryBooksJsonService storyBooksJsonService;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(HttpSession session, @PathVariable Long storyBookId, @PathVariable Long id) {
     log.info("handleRequest");
 

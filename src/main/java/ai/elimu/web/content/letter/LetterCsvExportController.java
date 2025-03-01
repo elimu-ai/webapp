@@ -12,18 +12,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/content/letter/list")
+@RequestMapping("/content/letter/list/letters.csv")
 @RequiredArgsConstructor
 @Slf4j
 public class LetterCsvExportController {
 
   private final LetterDao letterDao;
 
-  @RequestMapping(value = "/letters.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

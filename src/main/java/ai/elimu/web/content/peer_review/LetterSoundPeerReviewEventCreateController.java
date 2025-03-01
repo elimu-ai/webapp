@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -34,7 +34,7 @@ public class LetterSoundPeerReviewEventCreateController {
 
   private final LetterSoundDao letterSoundDao;
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       @RequestParam Long letterSoundContributionEventId,
       @RequestParam Boolean approved,

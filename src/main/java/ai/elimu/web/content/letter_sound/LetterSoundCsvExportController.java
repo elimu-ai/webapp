@@ -15,18 +15,18 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/letter-sound/list")
+@RequestMapping("/content/letter-sound/list/letter-sounds.csv")
 @RequiredArgsConstructor
 @Slf4j
 public class LetterSoundCsvExportController {
 
   private final LetterSoundDao letterSoundDao;
 
-  @RequestMapping(value = "/letter-sounds.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream

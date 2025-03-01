@@ -20,12 +20,12 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/storybook/paragraph/delete")
+@RequestMapping("/content/storybook/paragraph/delete/{id}")
 @RequiredArgsConstructor
 @Slf4j
 public class StoryBookParagraphDeleteController {
@@ -40,7 +40,7 @@ public class StoryBookParagraphDeleteController {
 
   private final StoryBooksJsonService storyBooksJsonService;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(HttpSession session, @PathVariable Long id) {
     log.info("handleRequest");
 

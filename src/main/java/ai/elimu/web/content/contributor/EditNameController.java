@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -19,14 +21,14 @@ public class EditNameController {
 
   private final ContributorDao contributorDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest() {
     log.info("handleRequest");
 
     return "content/contributor/edit-name";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpSession session,
       @RequestParam String firstName,

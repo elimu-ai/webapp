@@ -24,11 +24,11 @@ import org.apache.commons.csv.CSVPrinter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/storybook/list")
+@RequestMapping("/content/storybook/list/storybooks.csv")
 @RequiredArgsConstructor
 @Slf4j
 public class StoryBookCsvExportController {
@@ -39,7 +39,7 @@ public class StoryBookCsvExportController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  @RequestMapping(value = "/storybooks.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream
