@@ -39,7 +39,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            // To ease development, pre-populate database with educational content extracted from the test server
+            // To ease development, pre-populate database with educational content extracted from the prod server
             
             // Lookup the language of the educational content from the config file
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
@@ -47,7 +47,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             
             // Import the educational content
             log.info("Performing database content import...");
-            new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, webApplicationContext);
+            new DbContentImportHelper().performDatabaseContentImport(Environment.PROD, language, webApplicationContext);
             
             createJpaSchemaExport();
         }

@@ -41,10 +41,6 @@ Next, to access the application in your browser, go to [http://localhost:8080/we
 
 See [`TEST.md`](./TEST.md)
 
-## Test server
-
-    https://<language>.test.elimu.ai
-
 ## Prod server
 
     https://<language>.elimu.ai

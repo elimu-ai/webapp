@@ -304,14 +304,6 @@
                                             <a class="white-text" href="<spring:url value='/?lang=${supportedLanguage.isoCode}' />" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
                                         </c:forEach>
                                     </c:when>
-                                    <c:when test="${applicationScope.configProperties['env'] == 'TEST'}">
-                                        <c:forEach var="supportedLanguage" items="${applicationScope.configProperties['supported.languages']}" varStatus="status">
-                                            <c:if test="${status.index > 0}">
-                                                • 
-                                            </c:if>
-                                            <a class="white-text" href="https://${supportedLanguage.isoCode}.test.elimu.ai" title="${supportedLanguage.nativeName} (${supportedLanguage.englishName})">${supportedLanguage.isoCode}</a>
-                                        </c:forEach>
-                                    </c:when>
                                     <c:otherwise>
                                         <c:forEach var="supportedLanguage" items="${applicationScope.configProperties['supported.languages']}" varStatus="status">
                                             <c:if test="${status.index > 0}">

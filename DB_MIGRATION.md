@@ -15,7 +15,7 @@ Follow these steps:
 
   1. Lookup the current webapp version in [`pom.xml`](pom.xml#L7)
   2. Add a new file to [`src/main/resources/db/migration`](https://github.com/elimu-ai/webapp/tree/main/src/main/resources/db/migration). E.g. `2003004.sql` for version `2.3.4`.
-  3. Add the SQL script that will be executed on the `TEST`/`PROD` server.
+  3. Add the SQL script that will be executed on the `PROD` server.
 
 ## Sample
 
