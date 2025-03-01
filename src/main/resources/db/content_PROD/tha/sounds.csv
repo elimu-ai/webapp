@@ -2,7 +2,7 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 1,b,b,,false,CONSONANT,0
 2,p,p,,false,CONSONANT,5
 3,k,k,,false,CONSONANT,0
-4,ŋ,N,,false,CONSONANT,5
+4,ŋ,N,,false,CONSONANT,6
 5,d,d,,false,CONSONANT,0
 6,t,t,,false,CONSONANT,0
 7,n,n,,false,CONSONANT,0
