@@ -10,8 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,20 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/application/list")
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationListController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ApplicationDao applicationDao;
 
   @GetMapping
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     // List count of active Android applications for each EGRA/EGMA skill
 
     List<Application> activeApplications = applicationDao.readAllByStatus(ApplicationStatus.ACTIVE);
-    logger.info("activeApplications.size(): " + activeApplications.size());
+    log.info("activeApplications.size(): " + activeApplications.size());
 
     Map<LiteracySkill, Integer> literacySkillCountMap = new LinkedHashMap<>();
     for (LiteracySkill literacySkill : LiteracySkill.values()) {

@@ -11,8 +11,7 @@ import ai.elimu.util.WordExtractionHelper;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +20,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ParagraphWordScheduler {
-
-  private Logger logger = LogManager.getLogger();
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
@@ -33,29 +31,29 @@ public class ParagraphWordScheduler {
 
   @Scheduled(cron = "00 00 * * * *") // Every hour
   public synchronized void execute() {
-    logger.info("execute");
+    log.info("execute");
 
     Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
 
     List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
-    logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+    log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
     for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-      logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+      log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
 
       List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-      logger.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+      log.info("wordsInOriginalText.size(): " + wordsInOriginalText.size());
 
       // Look for matches of existing Words in the paragraph's original text
       List<Word> words = new ArrayList<>();
       for (String wordInOriginalText : wordsInOriginalText) {
-        logger.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
+        log.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
         wordInOriginalText = wordInOriginalText.toLowerCase();
-        logger.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+        log.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
         Word word = wordDao.readByText(wordInOriginalText);
-        logger.debug("word: " + word);
+        log.debug("word: " + word);
         words.add(word);
       }
-      logger.info("words.size(): " + words.size());
+      log.info("words.size(): " + words.size());
       storyBookParagraph.setWords(words);
 
       // Update the paragraph's list of Words in the database
@@ -65,6 +63,6 @@ public class ParagraphWordScheduler {
     // Refresh REST API cache
     storyBooksJsonService.refreshStoryBooksJSONArray();
 
-    logger.info("execute complete");
+    log.info("execute complete");
   }
 }

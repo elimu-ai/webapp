@@ -3,20 +3,17 @@
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import org.apache.logging.log4j.Logger;
-
+import lombok.extern.slf4j.Slf4j;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.InputStream;
 import java.util.Arrays;
-import org.apache.logging.log4j.LogManager;
 
 /**
  * See https://github.com/SvenWoltmann/color-thief-java/blob/master/src/main/java/de/androidpit/colorthief/ColorThief.java
  */
+@Slf4j
 public class ImageColorHelper {
-    
-    private static final Logger logger = LogManager.getLogger();
     
     private static final int DEFAULT_QUALITY = 10;
     private static final boolean DEFAULT_IGNORE_WHITE = true;
@@ -25,14 +22,14 @@ public class ImageColorHelper {
      * Returns RGB array.
      */
     public static int[] getDominantColor(byte[] bytes) {
-        logger.info("getDominantColor");
+        log.info("getDominantColor");
         
         InputStream inputStream = new ByteArrayInputStream(bytes);
         BufferedImage bufferedImage = null;
         try {
             bufferedImage = ImageIO.read(inputStream);
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
         
         int[][] palette = getPalette(bufferedImage, 5);

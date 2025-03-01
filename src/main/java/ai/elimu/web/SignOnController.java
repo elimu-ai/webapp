@@ -6,8 +6,7 @@ import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/sign-on")
 @RequiredArgsConstructor
+@Slf4j
 public class SignOnController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final ContributorDao contributorDao;
 
   @GetMapping
   public String handleRequest(Model model) {
-    logger.debug("handleRequest");
+    log.debug("handleRequest");
 
     return "sign-on";
   }
@@ -34,7 +32,7 @@ public class SignOnController {
    */
   @RequestMapping("/offline")
   public String handleOfflineSignOnRequest(HttpServletRequest request) {
-    logger.info("handleOfflineSignOnRequest");
+    log.info("handleOfflineSignOnRequest");
 
     if (EnvironmentContextLoaderListener.env == Environment.DEV) {
       // Fetch the test user that was created in DbContentImportHelper during application launch

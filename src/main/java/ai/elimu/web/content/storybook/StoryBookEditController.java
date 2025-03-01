@@ -36,9 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,9 +49,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/content/storybook/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookDao storyBookDao;
 
@@ -76,7 +74,7 @@ public class StoryBookEditController {
 
   @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     StoryBook storyBook = storyBookDao.read(id);
     model.addAttribute("storyBook", storyBook);
@@ -139,7 +137,7 @@ public class StoryBookEditController {
       Model model,
       HttpServletRequest request,
       HttpSession session) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getTitle());
     if ((existingStoryBook != null) && !existingStoryBook.getId().equals(storyBook.getId())) {
@@ -234,7 +232,7 @@ public class StoryBookEditController {
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 

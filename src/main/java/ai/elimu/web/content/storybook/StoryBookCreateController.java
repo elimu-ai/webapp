@@ -17,9 +17,8 @@ import jakarta.validation.Valid;
 import java.util.Calendar;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,9 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/content/storybook/create")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookDao storybookDao;
 
@@ -43,7 +41,7 @@ public class StoryBookCreateController {
 
   @GetMapping
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     StoryBook storyBook = new StoryBook();
     model.addAttribute("storyBook", storyBook);
@@ -67,7 +65,7 @@ public class StoryBookCreateController {
       Model model,
       HttpServletRequest request,
       HttpSession session) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getTitle());
     if (existingStoryBook != null) {

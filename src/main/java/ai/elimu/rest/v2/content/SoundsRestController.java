@@ -6,8 +6,7 @@ import ai.elimu.model.v2.gson.content.SoundGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
@@ -18,15 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/rest/v2/content/sounds", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
+@Slf4j
 public class SoundsRestController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final SoundDao soundDao;
 
   @GetMapping
   public String handleGetRequest() {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     JSONArray soundsJsonArray = new JSONArray();
     for (Sound sound : soundDao.readAllOrdered()) {
@@ -36,7 +34,7 @@ public class SoundsRestController {
     }
 
     String jsonResponse = soundsJsonArray.toString();
-    logger.info("jsonResponse: " + jsonResponse);
+    log.info("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

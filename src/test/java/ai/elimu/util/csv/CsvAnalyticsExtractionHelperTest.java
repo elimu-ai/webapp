@@ -4,26 +4,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ai.elimu.model.analytics.VideoLearningEvent;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
+import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
+@Slf4j
 public class CsvAnalyticsExtractionHelperTest {
-
-  private Logger logger = LogManager.getLogger();
 
   @Test
   public void testExtractVideoLearningEvents() throws IOException {
     ResourceLoader resourceLoader = new ClassRelativeResourceLoader(CsvAnalyticsExtractionHelper.class);
     Resource resource = resourceLoader.getResource("e387e38700000001_3001018_video-learning-events_2024-10-09.csv");
     File csvFile = resource.getFile();
-    logger.debug("csvFile: " + csvFile);
+    log.debug("csvFile: " + csvFile);
 
     List<VideoLearningEvent> videoLearningEvents = CsvAnalyticsExtractionHelper.extractVideoLearningEvents(csvFile);
     assertEquals(6, videoLearningEvents.size());

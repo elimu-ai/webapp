@@ -13,9 +13,8 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/content/word-peer-review-event/create")
 @RequiredArgsConstructor
+@Slf4j
 public class WordPeerReviewEventCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final WordContributionEventDao wordContributionEventDao;
 
@@ -41,13 +39,13 @@ public class WordPeerReviewEventCreateController {
       @RequestParam(required = false) String comment,
       HttpSession session
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
 
-    logger.info("wordContributionEventId: " + wordContributionEventId);
+    log.info("wordContributionEventId: " + wordContributionEventId);
     WordContributionEvent wordContributionEvent = wordContributionEventDao.read(wordContributionEventId);
-    logger.info("wordContributionEvent: " + wordContributionEvent);
+    log.info("wordContributionEvent: " + wordContributionEvent);
 
     // Store the peer review event
     WordPeerReviewEvent wordPeerReviewEvent = new WordPeerReviewEvent();
@@ -80,8 +78,8 @@ public class WordPeerReviewEventCreateController {
         notApprovedCount++;
       }
     }
-    logger.info("approvedCount: " + approvedCount);
-    logger.info("notApprovedCount: " + notApprovedCount);
+    log.info("approvedCount: " + approvedCount);
+    log.info("notApprovedCount: " + notApprovedCount);
     Word word = wordContributionEvent.getWord();
     if (approvedCount >= notApprovedCount) {
       word.setPeerReviewStatus(PeerReviewStatus.APPROVED);

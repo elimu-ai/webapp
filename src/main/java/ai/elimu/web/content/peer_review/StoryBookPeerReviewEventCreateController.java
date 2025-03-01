@@ -13,9 +13,8 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/content/storybook-peer-review-event/create")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookPeerReviewEventCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookContributionEventDao storyBookContributionEventDao;
 
@@ -41,13 +39,13 @@ public class StoryBookPeerReviewEventCreateController {
       @RequestParam(required = false) String comment,
       HttpSession session
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
 
-    logger.info("storyBookContributionEventId: " + storyBookContributionEventId);
+    log.info("storyBookContributionEventId: " + storyBookContributionEventId);
     StoryBookContributionEvent storyBookContributionEvent = storyBookContributionEventDao.read(storyBookContributionEventId);
-    logger.info("storyBookContributionEvent: " + storyBookContributionEvent);
+    log.info("storyBookContributionEvent: " + storyBookContributionEvent);
 
     // Store the peer review event
     StoryBookPeerReviewEvent storyBookPeerReviewEvent = new StoryBookPeerReviewEvent();
@@ -85,8 +83,8 @@ public class StoryBookPeerReviewEventCreateController {
         notApprovedCount++;
       }
     }
-    logger.info("approvedCount: " + approvedCount);
-    logger.info("notApprovedCount: " + notApprovedCount);
+    log.info("approvedCount: " + approvedCount);
+    log.info("notApprovedCount: " + notApprovedCount);
     StoryBook storyBook = storyBookContributionEvent.getStoryBook();
     if (approvedCount >= notApprovedCount) {
       storyBook.setPeerReviewStatus(PeerReviewStatus.APPROVED);

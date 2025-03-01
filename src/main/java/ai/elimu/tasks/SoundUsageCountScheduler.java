@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +18,10 @@ import org.springframework.stereotype.Service;
  * <p/>
  * For this to work, the frequency of each {@link Word} must have been calculated and stored previously (see {@link WordUsageCountScheduler} and {@link LetterSoundUsageCountScheduler}).
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SoundUsageCountScheduler {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final SoundDao soundDao;
 
@@ -31,9 +29,9 @@ public class SoundUsageCountScheduler {
 
   @Scheduled(cron = "00 30 06 * * *") // At 06:30 every day
   public synchronized void execute() {
-    logger.info("execute");
+    log.info("execute");
 
-    logger.info("Calculating usage count of Sounds");
+    log.info("Calculating usage count of Sounds");
 
     // Long = Sound ID
     // Integer = Usage count
@@ -42,7 +40,7 @@ public class SoundUsageCountScheduler {
     // Summarize the usage count of each Word's Sounds based on the LetterSound's
     // usage count (see LetterSoundUsageCountScheduler).
     List<Word> words = wordDao.readAllOrdered();
-    logger.info("words.size(): " + words.size());
+    log.info("words.size(): " + words.size());
     for (Word word : words) {
       for (LetterSound letterSound : word.getLetterSounds()) {
         for (Sound sound : letterSound.getSounds()) {
@@ -57,6 +55,6 @@ public class SoundUsageCountScheduler {
       soundDao.update(sound);
     }
 
-    logger.info("execute complete");
+    log.info("execute complete");
   }
 }

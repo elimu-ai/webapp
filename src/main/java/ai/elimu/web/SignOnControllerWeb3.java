@@ -11,9 +11,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value="/sign-on/web3")
 @RequiredArgsConstructor
+@Slf4j
 public class SignOnControllerWeb3 {
 
   /**
@@ -31,13 +31,11 @@ public class SignOnControllerWeb3 {
    */
   private static final String SIGNATURE_MESSAGE = "I verify ownership of this account 👍";
 
-  private Logger logger = LogManager.getLogger();
-
   private final ContributorDao contributorDao;
 
   @GetMapping
   public String handleGetRequest(HttpServletRequest request) throws IOException {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     return "sign-on-web3";
   }
@@ -52,28 +50,28 @@ public class SignOnControllerWeb3 {
       @RequestParam String address,
       @RequestParam String signature
   ) throws IOException {
-    logger.info("handleAuthorization");
-    logger.info("address: " + address);
+    log.info("handleAuthorization");
+    log.info("address: " + address);
     if (StringUtils.isBlank(address)) {
       return "redirect:/sign-on/web3?error=Missing address";
     }
     address = address.toLowerCase();
 
-    logger.info("signature: " + signature);
+    log.info("signature: " + signature);
     if (StringUtils.isBlank(signature)) {
       return "redirect:/sign-on/web3?error=Missing signature";
     }
 
     // Check if the signature is valid
     if (!Web3Helper.isSignatureValid(address, signature, SIGNATURE_MESSAGE)) {
-      logger.warn("Invalid signature");
+      log.warn("Invalid signature");
       return "redirect:/sign-on/web3?error=Invalid signature";
     }
-    logger.info("Valid signature ✍️");
+    log.info("Valid signature ✍️");
 
     // Check if the Contributor is currently signed on (via Google/GitHub)
     Contributor authenticatedContributor = (Contributor) session.getAttribute("contributor");
-    logger.info("authenticatedContributor: " + authenticatedContributor);
+    log.info("authenticatedContributor: " + authenticatedContributor);
     if ((authenticatedContributor != null) && (authenticatedContributor.getId() != null)) {
       // Check if a Contributor with this ETH address already exists in the database.
       // If so, merge the two Contributors into one.
@@ -91,14 +89,14 @@ public class SignOnControllerWeb3 {
 
     // Check if a Contributor with this ETH address already exists in the database
     Contributor existingContributor = contributorDao.readByProviderIdWeb3(address);
-    logger.info("existingContributor: " + existingContributor);
+    log.info("existingContributor: " + existingContributor);
     if (existingContributor == null) {
       // Store new Contributor in database
       contributor.setEmail(address + "@ethmail.cc");
       contributor.setRegistrationTime(Calendar.getInstance());
       contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
       contributorDao.create(contributor);
-      logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
+      log.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
     } else {
       contributor = existingContributor;
     }

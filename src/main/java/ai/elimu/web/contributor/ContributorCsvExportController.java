@@ -16,10 +16,9 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/contributor/list/contributors.csv")
 @RequiredArgsConstructor
+@Slf4j
 public class ContributorCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ContributorDao contributorDao;
 
@@ -46,10 +44,10 @@ public class ContributorCsvExportController {
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<Contributor> contributors = contributorDao.readAll();
-    logger.info("contributors.size(): " + contributors.size());
+    log.info("contributors.size(): " + contributors.size());
 
     CSVFormat csvFormat = CSVFormat.DEFAULT
         .withHeader(
@@ -61,19 +59,19 @@ public class ContributorCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     List<LetterContributionEvent> letterContributionEventsTotal = letterContributionEventDao.readAll();
-    logger.info("letterContributionEventsTotal.size(): " + letterContributionEventsTotal.size());
+    log.info("letterContributionEventsTotal.size(): " + letterContributionEventsTotal.size());
 
     List<NumberContributionEvent> numberContributionEventsTotal = numberContributionEventDao.readAll();
-    logger.info("numberContributionEventsTotal.size(): " + numberContributionEventsTotal.size());
+    log.info("numberContributionEventsTotal.size(): " + numberContributionEventsTotal.size());
 
     List<WordContributionEvent> wordContributionEventsTotal = wordContributionEventDao.readAll();
-    logger.info("wordContributionEventsTotal.size(): " + wordContributionEventsTotal.size());
+    log.info("wordContributionEventsTotal.size(): " + wordContributionEventsTotal.size());
 
     List<StoryBookContributionEvent> storyBookContributionEventsTotal = storyBookContributionEventDao.readAll();
-    logger.info("storyBookContributionEventsTotal.size(): " + storyBookContributionEventsTotal.size());
+    log.info("storyBookContributionEventsTotal.size(): " + storyBookContributionEventsTotal.size());
 
     for (Contributor contributor : contributors) {
-      logger.info("contributor.getId(): " + contributor.getId());
+      log.info("contributor.getId(): " + contributor.getId());
 
       String ethereumAddress = "0x0000000000000000000000000000000000000000";
       if (contributor.getProviderIdWeb3() != null) {
@@ -82,23 +80,23 @@ public class ContributorCsvExportController {
 
       List<LetterContributionEvent> letterContributionEvents = letterContributionEventDao.readAll(contributor);
       Double impactPercentageLetters = letterContributionEvents.size() * 100D / letterContributionEventsTotal.size();
-      logger.debug("impactPercentageLetters: " + impactPercentageLetters);
+      log.debug("impactPercentageLetters: " + impactPercentageLetters);
 
       List<NumberContributionEvent> numberContributionEvents = numberContributionEventDao.readAll(contributor);
       Double impactPercentageNumbers = numberContributionEvents.size() * 100D / numberContributionEventsTotal.size();
-      logger.debug("impactPercentageNumbers: " + impactPercentageNumbers);
+      log.debug("impactPercentageNumbers: " + impactPercentageNumbers);
 
       List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(contributor);
       Double impactPercentageWords = wordContributionEvents.size() * 100D / wordContributionEventsTotal.size();
-      logger.debug("impactPercentageWords: " + impactPercentageWords);
+      log.debug("impactPercentageWords: " + impactPercentageWords);
 
       List<StoryBookContributionEvent> storyBookContributionEvents = storyBookContributionEventDao.readAll(contributor);
       Double impactPercentageStoryBooks = storyBookContributionEvents.size() * 100D / storyBookContributionEventsTotal.size();
-      logger.debug("impactPercentageStoryBooks: " + impactPercentageStoryBooks);
+      log.debug("impactPercentageStoryBooks: " + impactPercentageStoryBooks);
 
       Double impactPercentage = (letterContributionEvents.size() + numberContributionEvents.size() + wordContributionEvents.size() + storyBookContributionEvents.size()) * 100D
           / (letterContributionEventsTotal.size() + numberContributionEventsTotal.size() + wordContributionEventsTotal.size() + storyBookContributionEventsTotal.size());
-      logger.debug("impactPercentage: " + impactPercentage);
+      log.debug("impactPercentage: " + impactPercentage);
 
       csvPrinter.printRecord(
           contributor.getId(),
@@ -120,7 +118,7 @@ public class ContributorCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }

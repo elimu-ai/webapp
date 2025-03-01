@@ -4,9 +4,8 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.model.contributor.Contributor;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.validator.EmailValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/content/contributor/add-email")
 @RequiredArgsConstructor
+@Slf4j
 public class AddEmailController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ContributorDao contributorDao;
 
   @GetMapping
   public String handleRequest() {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     return "content/contributor/add-email";
   }
@@ -39,7 +37,7 @@ public class AddEmailController {
       HttpSession session,
       @RequestParam String email,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (!EmailValidator.getInstance().isValid(email)) {
       // TODO: display error message

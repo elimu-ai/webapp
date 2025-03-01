@@ -13,9 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,9 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/content/emoji/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class EmojiEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final EmojiDao emojiDao;
 
@@ -41,7 +39,7 @@ public class EmojiEditController {
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Emoji emoji = emojiDao.read(id);
     model.addAttribute("emoji", emoji);
@@ -58,7 +56,7 @@ public class EmojiEditController {
       @Valid Emoji emoji,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
     if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
@@ -91,13 +89,13 @@ public class EmojiEditController {
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
       @PathVariable Long id) {
-    logger.info("handleAddContentLabelRequest");
+    log.info("handleAddContentLabelRequest");
 
-    logger.info("id: " + id);
+    log.info("id: " + id);
     Emoji emoji = emojiDao.read(id);
 
     String wordIdParameter = request.getParameter("wordId");
-    logger.info("wordIdParameter: " + wordIdParameter);
+    log.info("wordIdParameter: " + wordIdParameter);
     if (StringUtils.isNotBlank(wordIdParameter)) {
       Long wordId = Long.valueOf(wordIdParameter);
       Word word = wordDao.read(wordId);
@@ -117,13 +115,13 @@ public class EmojiEditController {
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
       @PathVariable Long id) {
-    logger.info("handleRemoveContentLabelRequest");
+    log.info("handleRemoveContentLabelRequest");
 
-    logger.info("id: " + id);
+    log.info("id: " + id);
     Emoji emoji = emojiDao.read(id);
 
     String wordIdParameter = request.getParameter("wordId");
-    logger.info("wordIdParameter: " + wordIdParameter);
+    log.info("wordIdParameter: " + wordIdParameter);
     if (StringUtils.isNotBlank(wordIdParameter)) {
       Long wordId = Long.valueOf(wordIdParameter);
       Word word = wordDao.read(wordId);
@@ -143,7 +141,7 @@ public class EmojiEditController {
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 

@@ -8,8 +8,7 @@ import ai.elimu.model.v2.enums.content.NumeracySkill;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,15 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/application/create")
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ApplicationDao applicationDao;
 
   @GetMapping
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Application application = new Application();
     application.setApplicationStatus(ApplicationStatus.MISSING_APK);
@@ -47,7 +45,7 @@ public class ApplicationCreateController {
       BindingResult result,
       Model model
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Application existingApplication = applicationDao.readByPackageName(application.getPackageName());
     if (existingApplication != null) {

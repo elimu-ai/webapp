@@ -21,9 +21,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,9 +47,8 @@ import ai.elimu.dao.SoundDao;
 @Controller
 @RequestMapping("/content/letter-sound/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class LetterSoundEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterSoundDao letterSoundDao;
 
@@ -66,7 +64,7 @@ public class LetterSoundEditController {
 
   @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     LetterSound letterSound = letterSoundDao.read(id);
     model.addAttribute("letterSound", letterSound);
@@ -96,7 +94,7 @@ public class LetterSoundEditController {
       BindingResult result,
       Model model
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     // Check if the LetterSound already exists
     LetterSound existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());

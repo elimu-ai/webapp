@@ -24,8 +24,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +33,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/content/storybook/edit/{storyBookId}/chapter/delete/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookChapterDeleteController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookDao storyBookDao;
 
@@ -56,22 +54,22 @@ public class StoryBookChapterDeleteController {
 
   @GetMapping
   public String handleRequest(HttpSession session, @PathVariable Long storyBookId, @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
-    logger.info("contributor.getRoles(): " + contributor.getRoles());
+    log.info("contributor.getRoles(): " + contributor.getRoles());
     if (!contributor.getRoles().contains(Role.EDITOR)) {
       // TODO: return HttpStatus.FORBIDDEN
       throw new IllegalAccessError("Missing role for access");
     }
 
     StoryBookChapter storyBookChapterToBeDeleted = storyBookChapterDao.read(id);
-    logger.info("storyBookChapterToBeDeleted: " + storyBookChapterToBeDeleted);
-    logger.info("storyBookChapterToBeDeleted.getSortOrder(): " + storyBookChapterToBeDeleted.getSortOrder());
+    log.info("storyBookChapterToBeDeleted: " + storyBookChapterToBeDeleted);
+    log.info("storyBookChapterToBeDeleted.getSortOrder(): " + storyBookChapterToBeDeleted.getSortOrder());
 
     // Delete the chapter's paragraphs
     List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapterToBeDeleted);
-    logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+    log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
     for (StoryBookParagraph storyBookParagraphToBeDeleted : storyBookParagraphs) {
       // Delete the paragraph's reference from corresponding audios (if any)
       List<Audio> paragraphAudios = audioDao.readAll(storyBookParagraphToBeDeleted);
@@ -80,17 +78,17 @@ public class StoryBookChapterDeleteController {
         audioDao.update(paragraphAudio);
       }
 
-      logger.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());
+      log.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());
       storyBookParagraphDao.delete(storyBookParagraphToBeDeleted);
     }
 
     // Delete the chapter
-    logger.info("Deleting StoryBookChapter with ID " + storyBookChapterToBeDeleted.getId());
+    log.info("Deleting StoryBookChapter with ID " + storyBookChapterToBeDeleted.getId());
     storyBookChapterDao.delete(storyBookChapterToBeDeleted);
 
     // Delete the chapter's image (if any)
     Image chapterImage = storyBookChapterToBeDeleted.getImage();
-    logger.info("chapterImage: " + chapterImage);
+    log.info("chapterImage: " + chapterImage);
     if (chapterImage != null) {
       // Remove content labels
       chapterImage.setLiteracySkills(null);
@@ -102,11 +100,11 @@ public class StoryBookChapterDeleteController {
 
       // Remove contribution events
       for (ImageContributionEvent imageContributionEvent : imageContributionEventDao.readAll(chapterImage)) {
-        logger.warn("Deleting ImageContributionEvent from the database");
+        log.warn("Deleting ImageContributionEvent from the database");
         imageContributionEventDao.delete(imageContributionEvent);
       }
 
-      logger.warn("Deleting the chapter image from the database");
+      log.warn("Deleting the chapter image from the database");
       imageDao.delete(chapterImage);
     }
 
@@ -144,14 +142,14 @@ public class StoryBookChapterDeleteController {
 
     // Update the sorting order of the remaining chapters
     List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
-    logger.info("storyBookChapters.size(): " + storyBookChapters.size());
+    log.info("storyBookChapters.size(): " + storyBookChapters.size());
     for (StoryBookChapter storyBookChapter : storyBookChapters) {
-      logger.info("storyBookChapter.getId(): " + storyBookChapter.getId() + ", storyBookChapter.getSortOrder(): " + storyBookChapter.getSortOrder());
+      log.info("storyBookChapter.getId(): " + storyBookChapter.getId() + ", storyBookChapter.getSortOrder(): " + storyBookChapter.getSortOrder());
       if (storyBookChapter.getSortOrder() > storyBookChapterToBeDeleted.getSortOrder()) {
         // Reduce sort order by 1
         storyBookChapter.setSortOrder(storyBookChapter.getSortOrder() - 1);
         storyBookChapterDao.update(storyBookChapter);
-        logger.info("storyBookChapter.getSortOrder() (after update): " + storyBookChapter.getSortOrder());
+        log.info("storyBookChapter.getSortOrder() (after update): " + storyBookChapter.getSortOrder());
       }
     }
 

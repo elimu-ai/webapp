@@ -21,9 +21,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -37,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/sign-on/github")
 @RequiredArgsConstructor
+@Slf4j
 public class SignOnControllerGitHub {
 
   private static final String PROTECTED_RESOURCE_URL = "https://api.github.com/user";
@@ -47,13 +47,11 @@ public class SignOnControllerGitHub {
 
   private final String secretState = "secret_" + new Random().nextInt(999_999);
 
-  private Logger logger = LogManager.getLogger();
-
   private final ContributorDao contributorDao;
 
   @GetMapping
   public String handleAuthorization(HttpServletRequest request) throws IOException {
-    logger.info("handleAuthorization");
+    log.info("handleAuthorization");
 
     String clientId = "75ab65504795daf525f5";
     String clientSecret = "4f6eba014e102f0ed48334de77dffc12c4d1f1d6";
@@ -67,7 +65,7 @@ public class SignOnControllerGitHub {
       clientSecret = ConfigHelper.getProperty("github.api.secret");
       baseUrl = "https://" + request.getServerName();
     }
-    logger.info("baseUrl: " + baseUrl);
+    log.info("baseUrl: " + baseUrl);
 
     oAuth20Service = new ServiceBuilder(clientId)
         .apiSecret(clientSecret)
@@ -75,49 +73,49 @@ public class SignOnControllerGitHub {
         .callback(baseUrl + "/sign-on/github/callback")
         .build(GitHubApi.instance());
 
-    logger.info("Fetching the Authorization URL...");
+    log.info("Fetching the Authorization URL...");
     String authorizationUrl = oAuth20Service.createAuthorizationUrlBuilder()
         .state(secretState)
         .build();
-    logger.info("Got the Authorization URL!");
+    log.info("Got the Authorization URL!");
 
     return "redirect:" + authorizationUrl;
   }
 
   @GetMapping(value="/callback")
   public String handleCallback(HttpServletRequest request, Model model) {
-    logger.info("handleCallback");
+    log.info("handleCallback");
 
     String state = request.getParameter("state");
-    logger.debug("state: " + state);
+    log.debug("state: " + state);
     if (!secretState.equals(state)) {
       return "redirect:/sign-on?error=state_mismatch";
     } else {
       String code = request.getParameter("code");
-      logger.debug("verifierParam: " + code);
+      log.debug("verifierParam: " + code);
 
       String responseBodyUser;
       String responseBodyUserEmails;
-      logger.info("Trading the Authorization Code for an Access Token...");
+      log.info("Trading the Authorization Code for an Access Token...");
       try {
         OAuth2AccessToken accessToken = oAuth20Service.getAccessToken(code);
-        logger.debug("accessToken: " + accessToken);
-        logger.info("Got the Access Token!");
+        log.debug("accessToken: " + accessToken);
+        log.info("Got the Access Token!");
 
         // Access the protected resource
         responseBodyUser = executeGithubRequest(accessToken, PROTECTED_RESOURCE_URL);
         responseBodyUserEmails = executeGithubRequest(accessToken, PROTECTED_RESOURCE_URL_EMAILS);
       } catch (IOException | InterruptedException | ExecutionException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
         return "redirect:/sign-on?error=" + ex.getMessage();
       }
 
       JSONObject jsonObjectUser = new JSONObject(responseBodyUser);
-      logger.info("jsonObjectUser: " + jsonObjectUser);
+      log.info("jsonObjectUser: " + jsonObjectUser);
       JSONArray jsonArrayUserEmails = new JSONArray(responseBodyUserEmails);
-      logger.info("jsonArrayUserEmails: " + jsonArrayUserEmails);
+      log.info("jsonArrayUserEmails: " + jsonArrayUserEmails);
       JSONObject jsonObjectUserEmail = jsonArrayUserEmails.getJSONObject(0);
-      logger.info("jsonObjectUserEmail: " + jsonObjectUserEmail);
+      log.info("jsonObjectUserEmail: " + jsonObjectUserEmail);
 
       Contributor contributor = new Contributor();
       if (jsonObjectUser.has("email") && !jsonObjectUser.isNull("email")) {
@@ -140,11 +138,11 @@ public class SignOnControllerGitHub {
         String name = jsonObjectUser.getString("name");
         String[] nameParts = name.split(" ");
         String firstName = nameParts[0];
-        logger.info("firstName: " + firstName);
+        log.info("firstName: " + firstName);
         contributor.setFirstName(firstName);
         if (nameParts.length > 1) {
           String lastName = nameParts[nameParts.length - 1];
-          logger.info("lastName: " + lastName);
+          log.info("lastName: " + lastName);
           contributor.setLastName(lastName);
         }
       }
@@ -155,7 +153,7 @@ public class SignOnControllerGitHub {
         // Look for existing Contributor with matching GitHub id
         existingContributor = contributorDao.readByProviderIdGitHub(contributor.getProviderIdGitHub());
       }
-      logger.info("existingContributor: " + existingContributor);
+      log.info("existingContributor: " + existingContributor);
       if (existingContributor == null) {
         // Store new Contributor in database
         contributor.setRegistrationTime(Calendar.getInstance());
@@ -166,7 +164,7 @@ public class SignOnControllerGitHub {
           return "redirect:/content/contributor/add-email";
         }
         contributorDao.create(contributor);
-        logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
+        log.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
       } else {
         // Contributor already exists in database
         // Update existing contributor with latest values fetched from provider
@@ -198,13 +196,13 @@ public class SignOnControllerGitHub {
   }
 
   private String executeGithubRequest(OAuth2AccessToken accessToken, String url) throws IOException, ExecutionException, InterruptedException {
-    logger.info("executeGithubRequest");
-    logger.info("url: " + url);
+    log.info("executeGithubRequest");
+    log.info("url: " + url);
     OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, url);
     oAuth20Service.signRequest(accessToken, oAuthRequest);
     Response response = oAuth20Service.execute(oAuthRequest);
-    logger.info("response.getCode(): " + response.getCode());
-    logger.info("response.getBody(): " + response.getBody());
+    log.info("response.getCode(): " + response.getCode());
+    log.info("response.getBody(): " + response.getBody());
     return response.getBody();
   }
 }

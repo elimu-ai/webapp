@@ -8,10 +8,9 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/content/letter/list/letters.csv")
 @RequiredArgsConstructor
+@Slf4j
 public class LetterCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterDao letterDao;
 
@@ -31,10 +29,10 @@ public class LetterCsvExportController {
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<Letter> letters = letterDao.readAllOrderedById();
-    logger.info("letters.size(): " + letters.size());
+    log.info("letters.size(): " + letters.size());
 
     CSVFormat csvFormat = CSVFormat.DEFAULT
         .withHeader(
@@ -47,7 +45,7 @@ public class LetterCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Letter letter : letters) {
-      logger.info("letter.getText(): \"" + letter.getText() + "\"");
+      log.info("letter.getText(): \"" + letter.getText() + "\"");
 
       csvPrinter.printRecord(
           letter.getId(),
@@ -70,7 +68,7 @@ public class LetterCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }

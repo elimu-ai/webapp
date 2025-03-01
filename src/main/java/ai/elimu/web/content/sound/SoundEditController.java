@@ -14,9 +14,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,9 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/content/sound/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class SoundEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final SoundDao soundDao;
 
@@ -40,7 +39,7 @@ public class SoundEditController {
 
   @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Sound sound = soundDao.read(id);
     model.addAttribute("sound", sound);
@@ -64,7 +63,7 @@ public class SoundEditController {
       BindingResult result,
       Model model
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (StringUtils.isNotBlank(sound.getValueIpa())) {
       Sound existingSound = soundDao.readByValueIpa(sound.getValueIpa());

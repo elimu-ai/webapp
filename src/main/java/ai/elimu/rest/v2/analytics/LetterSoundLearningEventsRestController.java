@@ -2,11 +2,8 @@ package ai.elimu.rest.v2.analytics;
 
 import java.io.File;
 import java.io.IOException;
-
 import jakarta.servlet.http.HttpServletResponse;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,26 +23,25 @@ import ai.elimu.util.ConfigHelper;
  */
 @RestController
 @RequestMapping(value = "/rest/v2/analytics/letter-sound-learning-events/csv", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Slf4j
 public class LetterSoundLearningEventsRestController {
-    
-    private Logger logger = LogManager.getLogger();
 
     @PostMapping
     public String handleUploadCsvRequest(
             @RequestParam("file") MultipartFile multipartFile,
             HttpServletResponse response
     ) {
-        logger.info("handleUploadCsvRequest");
+        log.info("handleUploadCsvRequest");
 
         // Expected format: "7161a85a0e4751cd_3001017_letter-sound-learning-events_2023-10-27.csv"
         String originalFilename = multipartFile.getOriginalFilename();
-        logger.info("originalFilename: " + originalFilename);
+        log.info("originalFilename: " + originalFilename);
 
         String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
-        logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
+        log.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
 
         Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
-        logger.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
+        log.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
 
         // Store the original CSV file on the filesystem, e.g.
         // ~/.elimuai/lang-HIN/analytics/android-id-7161a85a0e4751cd/version-code-3001017/letter-sound-learning-events/7161a85a0e4751cd_3001017_letter-sound-learning-events_2023-10-27.csv"
@@ -57,7 +53,7 @@ public class LetterSoundLearningEventsRestController {
         File letterSoundLearningEventsDir = new File(versionCodeDir, "letter-sound-learning-events");
         letterSoundLearningEventsDir.mkdirs();
         File csvFile = new File(letterSoundLearningEventsDir, originalFilename);
-        logger.info("Storing CSV file at " + csvFile);
+        log.info("Storing CSV file at " + csvFile);
         
         JSONObject jsonObject = new JSONObject();
         try {
@@ -65,13 +61,13 @@ public class LetterSoundLearningEventsRestController {
             jsonObject.put("result", "success");
             jsonObject.put("successMessage", "The CSV file was successfully uploaded");
         } catch (IllegalStateException | IOException e) {
-            logger.error(e);
+            log.error(e.getMessage());
             jsonObject.put("result", "error");
             jsonObject.put("errorMessage", e.getMessage());
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
         String jsonResponse = jsonObject.toString();
-        logger.info("jsonResponse: " + jsonResponse);
+        log.info("jsonResponse: " + jsonResponse);
         return jsonResponse;
     }
 }

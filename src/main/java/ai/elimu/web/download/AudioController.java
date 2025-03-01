@@ -7,8 +7,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/audio/{audioId}_r{revisionNumber}.{audioFormat}")
 @RequiredArgsConstructor
+@Slf4j
 public class AudioController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final AudioDao audioDao;
 
@@ -32,11 +30,11 @@ public class AudioController {
       @PathVariable String audioFormat,
       HttpServletResponse response,
       OutputStream outputStream) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
-    logger.info("audioId: " + audioId);
-    logger.info("revisionNumber: " + revisionNumber);
-    logger.info("audioFormat: " + audioFormat);
+    log.info("audioId: " + audioId);
+    log.info("revisionNumber: " + revisionNumber);
+    log.info("audioFormat: " + audioFormat);
 
     Audio audio = audioDao.read(audioId);
 
@@ -48,9 +46,9 @@ public class AudioController {
       outputStream.write(bytes);
     } catch (EOFException ex) {
       // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-      logger.warn(ex);
+      log.warn(ex.getMessage());
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     } finally {
       try {
         try {
@@ -58,10 +56,10 @@ public class AudioController {
           outputStream.close();
         } catch (EOFException ex) {
           // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-          logger.warn(ex);
+          log.warn(ex.getMessage());
         }
       } catch (IOException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
       }
     }
   }

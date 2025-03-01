@@ -15,8 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.security.Principal;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +26,8 @@ import ai.elimu.dao.SoundDao;
 @Controller
 @RequestMapping("/content")
 @RequiredArgsConstructor
+@Slf4j
 public class MainContentController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterDao letterDao;
 
@@ -59,7 +57,7 @@ public class MainContentController {
       HttpSession session,
       Principal principal,
       Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     model.addAttribute("letterCount", letterDao.readCount());
     model.addAttribute("soundCount", soundDao.readCount());

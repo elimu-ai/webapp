@@ -15,9 +15,8 @@ import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/content/letter-sound-peer-review-event/create")
 @RequiredArgsConstructor
+@Slf4j
 public class LetterSoundPeerReviewEventCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterSoundContributionEventDao letterSoundContributionEventDao;
 
@@ -43,13 +41,13 @@ public class LetterSoundPeerReviewEventCreateController {
       @RequestParam(required = false) String comment,
       HttpSession session
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
 
-    logger.info("letterSoundContributionEventId: " + letterSoundContributionEventId);
+    log.info("letterSoundContributionEventId: " + letterSoundContributionEventId);
     LetterSoundContributionEvent letterSoundContributionEvent = letterSoundContributionEventDao.read(letterSoundContributionEventId);
-    logger.info("letterSoundContributionEvent: " + letterSoundContributionEvent);
+    log.info("letterSoundContributionEvent: " + letterSoundContributionEvent);
 
     // Store the peer review event
     LetterSoundPeerReviewEvent letterSoundPeerReviewEvent = new LetterSoundPeerReviewEvent();
@@ -82,8 +80,8 @@ public class LetterSoundPeerReviewEventCreateController {
         notApprovedCount++;
       }
     }
-    logger.info("approvedCount: " + approvedCount);
-    logger.info("notApprovedCount: " + notApprovedCount);
+    log.info("approvedCount: " + approvedCount);
+    log.info("notApprovedCount: " + notApprovedCount);
     LetterSound letterSound = letterSoundContributionEvent.getLetterSound();
     updatePeerReviewStatus(letterSound, approvedCount, notApprovedCount);
 

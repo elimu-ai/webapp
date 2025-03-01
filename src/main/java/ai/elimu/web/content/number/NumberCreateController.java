@@ -19,9 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,9 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/content/number/create")
 @RequiredArgsConstructor
+@Slf4j
 public class NumberCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final NumberDao numberDao;
 
@@ -47,7 +45,7 @@ public class NumberCreateController {
   @GetMapping
   public String handleRequest(
       Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Number number = new Number();
     model.addAttribute("number", number);
@@ -67,7 +65,7 @@ public class NumberCreateController {
       @Valid Number number,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Number existingNumber = numberDao.readByValue(number.getValue());
     if (existingNumber != null) {
@@ -112,7 +110,7 @@ public class NumberCreateController {
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 
