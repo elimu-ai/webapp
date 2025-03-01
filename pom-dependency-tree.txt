@@ -1,4 +1,4 @@
-ai.elimu:webapp:war:2.5.30-SNAPSHOT
+ai.elimu:webapp:war:2.5.32-SNAPSHOT
 +- com.github.elimu-ai:model:jar:model-2.0.83:compile
 |  \- com.google.code.gson:gson:jar:2.11.0:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.27.0:compile

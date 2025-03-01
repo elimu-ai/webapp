@@ -96,7 +96,7 @@ public class DbContentImportHelper {
     private ApplicationDao applicationDao;
 
     /**
-     * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and
+     * Extracts educational content from the CSV files in {@code src/main/resources/db/content_PROD/<Language>/} and
      * stores it in the database.
      *
      * @param environment The environment from which to import the database content.
@@ -108,8 +108,8 @@ public class DbContentImportHelper {
 
         log.info("environment: " + environment + ", language: " + language);
 
-        if (!((environment == Environment.TEST) || (environment == Environment.PROD))) {
-            throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
+        if (environment != Environment.PROD) {
+            throw new IllegalArgumentException("Database content can only be imported from the PROD environment");
         }
 
         String contentDirectoryPath = "db/content_" + environment + "/" + language.toString().toLowerCase();
