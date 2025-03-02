@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class NumberListController {
     
-    private NumberDao numberDao;
+  private final NumberDao numberDao;
 
   @GetMapping
   public String handleRequest(Model model) {
