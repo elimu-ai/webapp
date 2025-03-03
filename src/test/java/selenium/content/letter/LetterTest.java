@@ -43,8 +43,8 @@ public class LetterTest {
     }
 
     @Test
-    public void testRandomLetterPage() {
-        log.info("testRandomLetterPage");
+    public void testRandomLetterEditPage() {
+        log.info("testRandomLetterEditPage");
         
         MainContentPage mainContentPage = new MainContentPage(driver);
         mainContentPage.pressLetterListLink();
@@ -53,5 +53,18 @@ public class LetterTest {
         letterListPage.pressRandomLetter();
 
         LetterEditPage letterEditPage = new LetterEditPage(driver);
+    }
+
+    @Test
+    public void testLetterCreatPage() {
+        log.info("testLetterCreatePage");
+
+        MainContentPage mainContentPage = new MainContentPage(driver);
+        mainContentPage.pressLetterListLink();
+
+        LetterListPage letterListPage = new LetterListPage(driver);
+        letterListPage.pressCreateButton();
+
+        LetterCreatePage letterCreatePage = new LetterCreatePage(driver);
     }
 }

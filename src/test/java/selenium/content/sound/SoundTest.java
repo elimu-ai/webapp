@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import lombok.extern.slf4j.Slf4j;
 import selenium.content.MainContentPage;
+import selenium.content.Sound.SoundCreatePage;
+import selenium.content.Sound.SoundListPage;
 import selenium.util.DomainHelper;
 
 @Slf4j
@@ -43,8 +45,8 @@ public class SoundTest {
     }
 
     @Test
-    public void testRandomSoundPage() {
-        log.info("testRandomSoundPage");
+    public void testRandomSoundEditPage() {
+        log.info("testRandomSoundEditPage");
         
         MainContentPage mainContentPage = new MainContentPage(driver);
         mainContentPage.pressSoundListLink();
@@ -53,5 +55,18 @@ public class SoundTest {
         soundListPage.pressRandomSound();
 
         SoundEditPage soundEditPage = new SoundEditPage(driver);
+    }
+
+    @Test
+    public void testSoundCreatPage() {
+        log.info("testSoundCreatePage");
+
+        MainContentPage mainContentPage = new MainContentPage(driver);
+        mainContentPage.pressSoundListLink();
+
+        SoundListPage soundListPage = new SoundListPage(driver);
+        soundListPage.pressCreateButton();
+
+        SoundCreatePage SoundCreatePage = new SoundCreatePage(driver);
     }
 }
