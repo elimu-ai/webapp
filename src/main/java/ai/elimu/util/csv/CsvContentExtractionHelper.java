@@ -344,6 +344,7 @@ public class CsvContentExtractionHelper {
                             "content_license",
                             "attribution_url",
                             "title",
+                            "cid",
                             "download_url",
                             "image_format"
                     )

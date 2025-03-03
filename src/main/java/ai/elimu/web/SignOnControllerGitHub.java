@@ -56,11 +56,7 @@ public class SignOnControllerGitHub {
     String clientId = "75ab65504795daf525f5";
     String clientSecret = "4f6eba014e102f0ed48334de77dffc12c4d1f1d6";
     String baseUrl = "http://localhost:8080/webapp";
-    if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-      clientId = "57aad0f85f09ef18d8e6";
-      clientSecret = ConfigHelper.getProperty("github.api.secret");
-      baseUrl = "https://" + request.getServerName();
-    } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+    if (EnvironmentContextLoaderListener.env == Environment.PROD) {
       clientId = "7018e4e57438eb0191a7";
       clientSecret = ConfigHelper.getProperty("github.api.secret");
       baseUrl = "https://" + request.getServerName();
