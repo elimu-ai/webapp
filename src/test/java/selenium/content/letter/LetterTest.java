@@ -1,4 +1,4 @@
-package selenium.content;
+package selenium.content.letter;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import lombok.extern.slf4j.Slf4j;
+import selenium.content.MainContentPage;
 import selenium.util.DomainHelper;
 
 @Slf4j

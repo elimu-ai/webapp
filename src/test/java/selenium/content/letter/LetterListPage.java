@@ -1,4 +1,4 @@
-package selenium.content;
+package selenium.content.letter;
 
 import java.util.List;
 

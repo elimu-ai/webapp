@@ -1,4 +1,4 @@
-package selenium.content;
+package selenium.content.letter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
