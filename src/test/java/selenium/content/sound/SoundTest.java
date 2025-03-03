@@ -1,4 +1,4 @@
-package selenium.content;
+package selenium.content.sound;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,10 +8,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import lombok.extern.slf4j.Slf4j;
+import selenium.content.MainContentPage;
 import selenium.util.DomainHelper;
 
 @Slf4j
-public class LetterTest {
+public class SoundTest {
     
     private WebDriver driver;
 
@@ -42,15 +43,15 @@ public class LetterTest {
     }
 
     @Test
-    public void testRandomLetterPage() {
-        log.info("testRandomLetterPage");
+    public void testRandomSoundPage() {
+        log.info("testRandomSoundPage");
         
         MainContentPage mainContentPage = new MainContentPage(driver);
-        mainContentPage.pressLetterListLink();
+        mainContentPage.pressSoundListLink();
 
-        LetterListPage letterListPage = new LetterListPage(driver);
-        letterListPage.pressRandomLetter();
+        SoundListPage soundListPage = new SoundListPage(driver);
+        soundListPage.pressRandomSound();
 
-        LetterEditPage letterEditPage = new LetterEditPage(driver);
+        SoundEditPage soundEditPage = new SoundEditPage(driver);
     }
 }

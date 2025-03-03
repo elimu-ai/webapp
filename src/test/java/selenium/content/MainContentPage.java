@@ -14,8 +14,13 @@ public class MainContentPage {
         driver.findElement(By.id("mainContentPage"));
     }
 
-    public void pressLettersLink() {
+    public void pressLetterListLink() {
         WebElement link = driver.findElement(By.id("letterListLink"));
+        link.click();
+    }
+
+    public void pressSoundListLink() {
+        WebElement link = driver.findElement(By.id("soundListLink"));
         link.click();
     }
 }

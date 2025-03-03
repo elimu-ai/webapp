@@ -42,7 +42,7 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <a name="${sound.id}"></a>
-                                <a href="<spring:url value='/content/sound/edit/${sound.id}' />">/${sound.valueIpa}/</a>
+                                <a class="editLink" href="<spring:url value='/content/sound/edit/${sound.id}' />">/${sound.valueIpa}/</a>
                             </td>
                             <td>
                                 ${sound.valueSampa}
