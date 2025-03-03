@@ -36,7 +36,7 @@
                     <span class="card-title"><i class="material-icons">emoji_symbols</i> <fmt:message key="letter.sounds" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/letter-sound/list' />"><fmt:message key="view.list" /> (${letterSoundCount})</a>
+                    <a id="letterSoundListLink" href="<spring:url value='/content/letter-sound/list' />"><fmt:message key="view.list" /> (${letterSoundCount})</a>
                     <a href="<spring:url value='/content/letter-sound/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
             </div>

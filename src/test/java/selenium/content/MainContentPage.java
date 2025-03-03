@@ -23,4 +23,9 @@ public class MainContentPage {
         WebElement link = driver.findElement(By.id("soundListLink"));
         link.click();
     }
+
+    public void pressLetterSoundListLink() {
+        WebElement link = driver.findElement(By.id("letterSoundListLink"));
+        link.click();
+    }
 }
