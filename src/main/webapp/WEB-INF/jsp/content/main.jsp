@@ -14,7 +14,7 @@
                     <span class="card-title"><i class="material-icons">text_fields</i> <fmt:message key="letters" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/letter/list' />"><fmt:message key="view.list" /> (${letterCount})</a>
+                    <a id="letterListLink" href="<spring:url value='/content/letter/list' />"><fmt:message key="view.list" /> (${letterCount})</a>
                 </div>
             </div>
         </div>

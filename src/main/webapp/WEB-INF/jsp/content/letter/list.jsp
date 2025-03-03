@@ -40,7 +40,7 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <a name="${letter.id}"></a>
-                                <a href="<spring:url value='/content/letter/edit/${letter.id}' />">"<c:out value='${letter.text}' />"</a>
+                                <a class="editLink" href="<spring:url value='/content/letter/edit/${letter.id}' />">"<c:out value='${letter.text}' />"</a>
                             </td>
                             <td>
                                 <c:choose>
@@ -81,6 +81,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>
