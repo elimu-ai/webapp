@@ -10,33 +10,31 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/letter-sound/list")
+@RequestMapping("/content/letter-sound/list/letter-sounds.csv")
 @RequiredArgsConstructor
+@Slf4j
 public class LetterSoundCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterSoundDao letterSoundDao;
 
-  @RequestMapping(value = "/letter-sounds.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<LetterSound> letterSounds = letterSoundDao.readAllOrderedById();
-    logger.info("letterSounds.size(): " + letterSounds.size());
+    log.info("letterSounds.size(): " + letterSounds.size());
 
     CSVFormat csvFormat = CSVFormat.DEFAULT
         .withHeader(
@@ -51,7 +49,7 @@ public class LetterSoundCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (LetterSound letterSound : letterSounds) {
-      logger.info("letterSound.getId(): \"" + letterSound.getId() + "\"");
+      log.info("letterSound.getId(): \"" + letterSound.getId() + "\"");
 
       JSONArray letterIdsJsonArray = new JSONArray();
       int index = 0;
@@ -103,7 +101,7 @@ public class LetterSoundCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }

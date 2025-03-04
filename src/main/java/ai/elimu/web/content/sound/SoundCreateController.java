@@ -13,29 +13,29 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping("/content/sound/create")
 @RequiredArgsConstructor
+@Slf4j
 public class SoundCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final SoundDao soundDao;
 
   private final SoundContributionEventDao soundContributionEventDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Sound sound = new Sound();
     model.addAttribute("sound", sound);
@@ -46,7 +46,7 @@ public class SoundCreateController {
     return "content/sound/create";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,
@@ -54,7 +54,7 @@ public class SoundCreateController {
       BindingResult result,
       Model model
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (StringUtils.isNotBlank(sound.getValueIpa())) {
       Sound existingSound = soundDao.readByValueIpa(sound.getValueIpa());

@@ -7,31 +7,30 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
-@RequestMapping("/content/audio/list")
+@RequestMapping("/content/audio/list/audios.csv")
 @RequiredArgsConstructor
+@Slf4j
 public class AudioCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final AudioDao audioDao;
 
-  @RequestMapping(value = "/audios.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     // Generate CSV file
     String csvFileContent = "id,content_type,content_license,attribution_url,word_id,title,transcription,download_url,audio_format" + "\n";
     List<Audio> audios = audioDao.readAll();
-    logger.info("audios.size(): " + audios.size());
+    log.info("audios.size(): " + audios.size());
     for (Audio audio : audios) {
       String downloadUrl = "/audio/" + audio.getId() + "." + audio.getAudioFormat().toString().toLowerCase();
       csvFileContent += audio.getId() + ","
@@ -53,7 +52,7 @@ public class AudioCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }

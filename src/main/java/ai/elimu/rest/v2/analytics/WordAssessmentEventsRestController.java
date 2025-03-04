@@ -13,26 +13,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping(value = "/rest/v2/analytics/word-assessment-events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/rest/v2/analytics/word-assessment-events/csv", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
+@Slf4j
 public class WordAssessmentEventsRestController {
-
-  private Logger logger = LogManager.getLogger();
 
 //    @Autowired
 //    private WordAssessmentEventDao wordAssessmentEventDao;
@@ -41,19 +39,19 @@ public class WordAssessmentEventsRestController {
 
   private final WordDao wordDao;
 
-  @RequestMapping(value = "/csv", method = RequestMethod.POST)
+  @PostMapping
   public String handleUploadCsvRequest(
       @RequestParam("file") MultipartFile multipartFile,
       HttpServletResponse response
   ) {
-    logger.info("handleUploadCsvRequest");
+    log.info("handleUploadCsvRequest");
 
     String name = multipartFile.getName();
-    logger.info("name: " + name);
+    log.info("name: " + name);
 
     // Expected format: "7161a85a0e4751cd_3001012_word-assessment-events_2020-04-23.csv"
     String originalFilename = multipartFile.getOriginalFilename();
-    logger.info("originalFilename: " + originalFilename);
+    log.info("originalFilename: " + originalFilename);
 
     // TODO: Send notification to the #📊-data-collection channel in Discord
     // Hide parts of the Android ID, e.g. "7161***51cd_3001012_word-learning-events_2020-04-23.csv"
@@ -61,19 +59,19 @@ public class WordAssessmentEventsRestController {
     DiscordHelper.sendChannelMessage("Received dataset: `" + anonymizedOriginalFilename + "`", null, null, null, null);
 
     String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
-    logger.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
+    log.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
 
     Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
-    logger.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
+    log.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
 
     String contentType = multipartFile.getContentType();
-    logger.info("contentType: " + contentType);
+    log.info("contentType: " + contentType);
 
     JSONObject jsonObject = new JSONObject();
 
     try {
       byte[] bytes = multipartFile.getBytes();
-      logger.info("bytes.length: " + bytes.length);
+      log.info("bytes.length: " + bytes.length);
 
       // Store a backup of the original CSV file on the filesystem (in case it will be needed for debugging)
       File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
@@ -84,12 +82,12 @@ public class WordAssessmentEventsRestController {
       File wordAssessmentEventsDir = new File(versionCodeDir, "word-assessment-events");
       wordAssessmentEventsDir.mkdirs();
       File csvFile = new File(wordAssessmentEventsDir, originalFilename);
-      logger.info("Storing CSV file at " + csvFile);
+      log.info("Storing CSV file at " + csvFile);
       multipartFile.transferTo(csvFile);
 
       // Iterate each row in the CSV file
       Path csvFilePath = Paths.get(csvFile.toURI());
-      logger.info("csvFilePath: " + csvFilePath);
+      log.info("csvFilePath: " + csvFilePath);
       Reader reader = Files.newBufferedReader(csvFilePath);
       CSVFormat csvFormat = CSVFormat.DEFAULT
           .withHeader(
@@ -105,14 +103,14 @@ public class WordAssessmentEventsRestController {
           .withSkipHeaderRecord();
       CSVParser csvParser = new CSVParser(reader, csvFormat);
       for (CSVRecord csvRecord : csvParser) {
-        logger.info("csvRecord: " + csvRecord);
+        log.info("csvRecord: " + csvRecord);
 
         // Convert from CSV to Java
 
         // TODO
       }
     } catch (Exception ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
 
       jsonObject.put("result", "error");
       jsonObject.put("errorMessage", ex.getMessage());
@@ -120,7 +118,7 @@ public class WordAssessmentEventsRestController {
     }
 
     String jsonResponse = jsonObject.toString();
-    logger.info("jsonResponse: " + jsonResponse);
+    log.info("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

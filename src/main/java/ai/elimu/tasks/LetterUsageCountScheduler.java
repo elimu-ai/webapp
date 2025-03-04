@@ -16,8 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +25,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class LetterUsageCountScheduler {
-
-  private Logger logger = LogManager.getLogger();
 
   private final LetterDao letterDao;
 
@@ -40,18 +38,18 @@ public class LetterUsageCountScheduler {
 
   @Scheduled(cron = "00 15 06 * * *") // At 06:15 every day
   public synchronized void execute() {
-    logger.info("execute");
+    log.info("execute");
 
-    logger.info("Calculating usage count for Letters");
+    log.info("Calculating usage count for Letters");
 
     Map<String, Integer> letterFrequencyMap = new HashMap<>();
 
     Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
 
     List<StoryBook> storyBooks = storyBookDao.readAllOrdered();
-    logger.info("storyBooks.size(): " + storyBooks.size());
+    log.info("storyBooks.size(): " + storyBooks.size());
     for (StoryBook storyBook : storyBooks) {
-      logger.debug("storyBook.getTitle(): " + storyBook.getTitle());
+      log.debug("storyBook.getTitle(): " + storyBook.getTitle());
 
       List<String> paragraphs = new ArrayList<>();
       List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
@@ -66,7 +64,7 @@ public class LetterUsageCountScheduler {
       letterFrequencyMapForBook.keySet().forEach(letterText -> letterFrequencyMap.put(letterText, letterFrequencyMap.getOrDefault(letterText, 0) + letterFrequencyMapForBook.get(letterText)));
     }
 
-    logger.info("letterFrequencyMap: " + letterFrequencyMap);
+    log.info("letterFrequencyMap: " + letterFrequencyMap);
 
     for (String letterText : letterFrequencyMap.keySet()) {
       Letter existingLetter = letterDao.readByText(letterText);
@@ -76,6 +74,6 @@ public class LetterUsageCountScheduler {
       }
     }
 
-    logger.info("execute complete");
+    log.info("execute complete");
   }
 }

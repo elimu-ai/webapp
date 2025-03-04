@@ -11,32 +11,31 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/admin/application/edit")
+@RequestMapping("/admin/application/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ApplicationDao applicationDao;
 
   private final ApplicationVersionDao applicationVersionDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       @PathVariable Long id,
       Model model
   ) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Application application = applicationDao.read(id);
     model.addAttribute("application", application);
@@ -52,14 +51,14 @@ public class ApplicationEditController {
     return "admin/application/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpSession session,
       @Valid Application application,
       BindingResult result,
       Model model
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (result.hasErrors()) {
       model.addAttribute("application", application);
@@ -80,7 +79,7 @@ public class ApplicationEditController {
         // Delete corresponding ApplicationVersions
         List<ApplicationVersion> applicationVersions = applicationVersionDao.readAll(application);
         for (ApplicationVersion applicationVersion : applicationVersions) {
-          logger.info("Deleting ApplicationVersion: " + applicationVersion.getVersionCode());
+          log.info("Deleting ApplicationVersion: " + applicationVersion.getVersionCode());
           applicationVersionDao.delete(applicationVersion);
         }
       }

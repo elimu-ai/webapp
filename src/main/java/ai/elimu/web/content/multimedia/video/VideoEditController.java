@@ -24,28 +24,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
-@RequestMapping("/content/multimedia/video/edit")
+@RequestMapping("/content/multimedia/video/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class VideoEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final VideoDao videoDao;
 
@@ -57,11 +56,11 @@ public class VideoEditController {
 
   private final EmojiDao emojiDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Video video = videoDao.read(id);
     model.addAttribute("video", video);
@@ -79,13 +78,13 @@ public class VideoEditController {
     return "content/multimedia/video/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       Video video,
       @RequestParam("bytes") MultipartFile multipartFile,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (StringUtils.isBlank(video.getTitle())) {
       result.rejectValue("title", "NotNull");
@@ -102,7 +101,7 @@ public class VideoEditController {
         result.rejectValue("bytes", "NotNull");
       } else {
         String originalFileName = multipartFile.getOriginalFilename();
-        logger.info("originalFileName: " + originalFileName);
+        log.info("originalFileName: " + originalFileName);
         if (originalFileName.toLowerCase().endsWith(".m4v")) {
           video.setVideoFormat(VideoFormat.M4V);
         } else if (originalFileName.toLowerCase().endsWith(".mp4")) {
@@ -113,7 +112,7 @@ public class VideoEditController {
 
         if (video.getVideoFormat() != null) {
           String contentType = multipartFile.getContentType();
-          logger.info("contentType: " + contentType);
+          log.info("contentType: " + contentType);
           video.setContentType(contentType);
 
           video.setBytes(bytes);
@@ -122,7 +121,7 @@ public class VideoEditController {
         }
       }
     } catch (IOException e) {
-      logger.error(e);
+      log.error(e.getMessage());
     }
 
     if (result.hasErrors()) {
@@ -153,22 +152,22 @@ public class VideoEditController {
    */
   @InitBinder
   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    logger.info("initBinder");
+    log.info("initBinder");
     binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
   }
 
-  @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
+  @PostMapping(value = "/add-content-label")
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
       @PathVariable Long id) {
-    logger.info("handleAddContentLabelRequest");
+    log.info("handleAddContentLabelRequest");
 
-    logger.info("id: " + id);
+    log.info("id: " + id);
     Video video = videoDao.read(id);
 
     String letterIdParameter = request.getParameter("letterId");
-    logger.info("letterIdParameter: " + letterIdParameter);
+    log.info("letterIdParameter: " + letterIdParameter);
     if (StringUtils.isNotBlank(letterIdParameter)) {
       Long letterId = Long.valueOf(letterIdParameter);
       Letter letter = letterDao.read(letterId);
@@ -181,7 +180,7 @@ public class VideoEditController {
     }
 
     String numberIdParameter = request.getParameter("numberId");
-    logger.info("numberIdParameter: " + numberIdParameter);
+    log.info("numberIdParameter: " + numberIdParameter);
     if (StringUtils.isNotBlank(numberIdParameter)) {
       Long numberId = Long.valueOf(numberIdParameter);
       Number number = numberDao.read(numberId);
@@ -194,7 +193,7 @@ public class VideoEditController {
     }
 
     String wordIdParameter = request.getParameter("wordId");
-    logger.info("wordIdParameter: " + wordIdParameter);
+    log.info("wordIdParameter: " + wordIdParameter);
     if (StringUtils.isNotBlank(wordIdParameter)) {
       Long wordId = Long.valueOf(wordIdParameter);
       Word word = wordDao.read(wordId);
@@ -209,18 +208,18 @@ public class VideoEditController {
     return "success";
   }
 
-  @RequestMapping(value = "/{id}/remove-content-label", method = RequestMethod.POST)
+  @PostMapping(value = "/remove-content-label")
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
       @PathVariable Long id) {
-    logger.info("handleRemoveContentLabelRequest");
+    log.info("handleRemoveContentLabelRequest");
 
-    logger.info("id: " + id);
+    log.info("id: " + id);
     Video video = videoDao.read(id);
 
     String letterIdParameter = request.getParameter("letterId");
-    logger.info("letterIdParameter: " + letterIdParameter);
+    log.info("letterIdParameter: " + letterIdParameter);
     if (StringUtils.isNotBlank(letterIdParameter)) {
       Long letterId = Long.valueOf(letterIdParameter);
       Letter letter = letterDao.read(letterId);
@@ -237,7 +236,7 @@ public class VideoEditController {
     }
 
     String numberIdParameter = request.getParameter("numberId");
-    logger.info("numberIdParameter: " + numberIdParameter);
+    log.info("numberIdParameter: " + numberIdParameter);
     if (StringUtils.isNotBlank(numberIdParameter)) {
       Long numberId = Long.valueOf(numberIdParameter);
       Number number = numberDao.read(numberId);
@@ -254,7 +253,7 @@ public class VideoEditController {
     }
 
     String wordIdParameter = request.getParameter("wordId");
-    logger.info("wordIdParameter: " + wordIdParameter);
+    log.info("wordIdParameter: " + wordIdParameter);
     if (StringUtils.isNotBlank(wordIdParameter)) {
       Long wordId = Long.valueOf(wordIdParameter);
       Word word = wordDao.read(wordId);
@@ -274,7 +273,7 @@ public class VideoEditController {
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 

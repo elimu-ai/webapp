@@ -20,20 +20,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/contributor/{contributorId}")
 @RequiredArgsConstructor
+@Slf4j
 public class ContributorController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ContributorDao contributorDao;
 
@@ -53,12 +51,12 @@ public class ContributorController {
 
   private final NumberPeerReviewEventDao numberPeerReviewEventDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       @PathVariable Long contributorId,
       Model model
   ) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Contributor contributor = contributorDao.read(contributorId);
     model.addAttribute("contributor2", contributor);

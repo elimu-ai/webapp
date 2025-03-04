@@ -21,17 +21,18 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@RequestMapping("/sign-on/discord")
 @RequiredArgsConstructor
+@Slf4j
 public class SignOnControllerDiscord {
 
   private static final String NETWORK_NAME = "discord";
@@ -42,24 +43,17 @@ public class SignOnControllerDiscord {
 
   private final String secretState = "secret_" + new Random().nextInt(999_999);
 
-  private Logger logger = LogManager.getLogger();
-
   private final ContributorDao contributorDao;
 
-  @RequestMapping("/sign-on/discord")
+  @GetMapping
   public String handleAuthorization(HttpServletRequest request) throws IOException {
-    logger.info("handleAuthorization");
+    log.info("handleAuthorization");
 
     // EnvironmentContextLoaderListener.env == Environment.DEV
     String clientId = "978873481649348668";
     String clientSecret = "Lf0O65Zk0Qv9cXyC7igPgljIjSJJBZbv";
     String baseUrl = "http://localhost:8080/webapp";
-
-    if (EnvironmentContextLoaderListener.env == Environment.TEST) {
-      clientId = "979655702081597460";
-      clientSecret = ConfigHelper.getProperty("discord.api.secret");
-      baseUrl = "https://" + request.getServerName();
-    } else if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+    if (EnvironmentContextLoaderListener.env == Environment.PROD) {
       clientId = "979686718909341716";
       clientSecret = ConfigHelper.getProperty("discord.api.secret");
       baseUrl = "https://" + request.getServerName();
@@ -71,50 +65,52 @@ public class SignOnControllerDiscord {
         .callback(baseUrl + "/sign-on/discord/callback")
         .build(DiscordApi.instance());
 
-    logger.info("Fetching the Authorization URL...");
+    log.info("Fetching the Authorization URL...");
     String authorizationUrl = oAuth20Service.createAuthorizationUrlBuilder()
         .state(secretState)
         .build();
-    logger.info("Redirecting to the Authorization URL: " + authorizationUrl);
-    logger.info("Got the Authorization URL!");
+    log.info("Redirecting to the Authorization URL: " + authorizationUrl);
+    log.info("Got the Authorization URL!");
 
     return "redirect:" + authorizationUrl;
   }
 
-  @RequestMapping(value = "/sign-on/discord/callback", method = RequestMethod.GET)
+
+  @GetMapping(value="/callback")
   public String handleCallback(HttpServletRequest request) throws IOException, InterruptedException, ExecutionException {
-    logger.info("handleCallback");
+    log.info("handleCallback");
+
 
     String state = request.getParameter("state");
-    logger.debug("state: " + state);
+    log.debug("state: " + state);
     if (!secretState.equals(state)) {
       return "redirect:/sign-on?error=state_mismatch";
     } else {
       String code = request.getParameter("code");
-      logger.debug("verifierParam: " + code);
-      logger.info(code);
+      log.debug("verifierParam: " + code);
+      log.info(code);
       String responseBody = null;
 
-      logger.info("Trading the Authorization Code for an Access Token...");
+      log.info("Trading the Authorization Code for an Access Token...");
       try {
         OAuth2AccessToken accessToken = oAuth20Service.getAccessToken(code);
-        logger.debug("accessToken: " + accessToken);
-        logger.info("Got the Access Token!");
-        logger.info("Now let's go and ask for the protected resource...");
+        log.debug("accessToken: " + accessToken);
+        log.info("Got the Access Token!");
+        log.info("Now let's go and ask for the protected resource...");
         // Access the protected resource
         OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
         oAuth20Service.signRequest(accessToken, oAuthRequest);
         Response response = oAuth20Service.execute(oAuthRequest);
         responseBody = response.getBody();
-        logger.info("response.getCode(): " + response.getCode());
-        logger.info("response.getBody(): " + responseBody);
+        log.info("response.getCode(): " + response.getCode());
+        log.info("response.getBody(): " + responseBody);
       } catch (IOException | InterruptedException | ExecutionException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
         return "redirect:/sign-on?error=" + ex.getMessage();
       }
 
       JSONObject jsonObject = new JSONObject(responseBody);
-      logger.info("jsonObject: " + jsonObject);
+      log.info("jsonObject: " + jsonObject);
 
       Contributor contributor = new Contributor();
       if (jsonObject.has("email") && !jsonObject.isNull("email")) {
@@ -130,7 +126,7 @@ public class SignOnControllerDiscord {
       }
       if (!jsonObject.isNull("avatar")) {
         String uriAvatar = "https://cdn.discordapp.com/avatars/" + jsonObject.getLong("id") + "/" + jsonObject.getString("avatar") + ".png";
-        logger.info("Avatar URL: " + uriAvatar);
+        log.info("Avatar URL: " + uriAvatar);
         contributor.setImageUrl(uriAvatar);
       }
       if (jsonObject.has("username")) {
@@ -146,7 +142,7 @@ public class SignOnControllerDiscord {
         // Look for existing Contributor with matching Discord id
         existingContributor = contributorDao.readByProviderIdDiscord(contributor.getProviderIdDiscord());
       }
-      logger.info("existingContributor: " + existingContributor);
+      log.info("existingContributor: " + existingContributor);
       if (existingContributor == null) {
         // Store new Contributor in database
         contributor.setRegistrationTime(Calendar.getInstance());
@@ -157,7 +153,7 @@ public class SignOnControllerDiscord {
           return "redirect:/content/contributor/add-email";
         }
         contributorDao.create(contributor);
-        logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
+        log.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
       } else {
         // Contributor already exists in database
         // Update existing contributor with latest values fetched from provider

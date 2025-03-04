@@ -11,34 +11,32 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/word/list")
+@RequestMapping("/content/word/list/words.csv")
 @RequiredArgsConstructor
+@Slf4j
 public class WordCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final WordDao wordDao;
 
-  @RequestMapping(value = "/words.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<Word> words = wordDao.readAllOrderedById();
-    logger.info("words.size(): " + words.size());
+    log.info("words.size(): " + words.size());
 
     CSVFormat csvFormat = CSVFormat.DEFAULT
         .withHeader(
@@ -55,7 +53,7 @@ public class WordCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Word word : words) {
-      logger.info("word.getText(): \"" + word.getText() + "\"");
+      log.info("word.getText(): \"" + word.getText() + "\"");
 
       JSONArray letterSoundsJsonArray = new JSONArray();
       int index = 0;
@@ -101,7 +99,7 @@ public class WordCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }

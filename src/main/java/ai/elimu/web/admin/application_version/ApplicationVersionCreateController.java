@@ -15,17 +15,17 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
@@ -33,22 +33,21 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @Controller
 @RequestMapping("/admin/application-version/create")
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationVersionCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ApplicationDao applicationDao;
 
   private final ApplicationVersionDao applicationVersionDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       @RequestParam Long applicationId,
       Model model
   ) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
-    logger.info("applicationId: " + applicationId);
+    log.info("applicationId: " + applicationId);
     Application application = applicationDao.read(applicationId);
 
     ApplicationVersion applicationVersion = new ApplicationVersion();
@@ -58,7 +57,7 @@ public class ApplicationVersionCreateController {
     return "admin/application-version/create";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       ApplicationVersion applicationVersion,
       @RequestParam("bytes") MultipartFile multipartFile,
@@ -66,7 +65,7 @@ public class ApplicationVersionCreateController {
       Model model,
       HttpSession session
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (multipartFile.isEmpty()) {
       result.rejectValue("bytes", "NotNull");
@@ -75,36 +74,36 @@ public class ApplicationVersionCreateController {
         byte[] bytes = multipartFile.getBytes();
         if (applicationVersion.getBytes() != null) {
           String originalFileName = multipartFile.getOriginalFilename();
-          logger.info("originalFileName: " + originalFileName);
+          log.info("originalFileName: " + originalFileName);
           if (!originalFileName.endsWith(".apk")) {
             result.rejectValue("bytes", "typeMismatch");
           }
 
           String contentType = multipartFile.getContentType();
-          logger.info("contentType: " + contentType);
+          log.info("contentType: " + contentType);
           applicationVersion.setContentType(contentType);
 
           applicationVersion.setBytes(bytes);
 
           Integer fileSizeInKb = bytes.length / 1024;
-          logger.info("fileSizeInKb: " + fileSizeInKb + " (" + (fileSizeInKb / 1024) + "MB)");
+          log.info("fileSizeInKb: " + fileSizeInKb + " (" + (fileSizeInKb / 1024) + "MB)");
           applicationVersion.setFileSizeInKb(fileSizeInKb);
 
           String checksumMd5 = ChecksumHelper.calculateMD5(bytes);
-          logger.info("checksumMd5: " + checksumMd5);
+          log.info("checksumMd5: " + checksumMd5);
           applicationVersion.setChecksumMd5(checksumMd5);
 
           ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
           ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
 
           String packageName = apkMeta.getPackageName();
-          logger.info("packageName: " + packageName);
+          log.info("packageName: " + packageName);
           if (!packageName.equals(applicationVersion.getApplication().getPackageName())) {
             result.reject("packageName.mismatch");
           }
 
           Integer versionCode = apkMeta.getVersionCode().intValue();
-          logger.info("versionCode: " + versionCode);
+          log.info("versionCode: " + versionCode);
 
           // Verify that the versionCode is higher than previous ones
           List<ApplicationVersion> existingApplicationVersions = applicationVersionDao
@@ -118,25 +117,25 @@ public class ApplicationVersionCreateController {
           applicationVersion.setVersionCode(versionCode);
 
           String versionName = apkMeta.getVersionName();
-          logger.info("versionName: " + versionName);
+          log.info("versionName: " + versionName);
           applicationVersion.setVersionName(versionName);
 
           String label = apkMeta.getLabel();
-          logger.info("label: " + label);
+          log.info("label: " + label);
           applicationVersion.setLabel(label);
 
           Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
-          logger.info("minSdkVersion: " + minSdkVersion);
+          log.info("minSdkVersion: " + minSdkVersion);
           applicationVersion.setMinSdkVersion(minSdkVersion);
 
           byte[] icon = byteArrayApkFile.getIconFile().getData();
-          logger.info("icon.length: " + (icon.length / 1024) + "kB");
+          log.info("icon.length: " + (icon.length / 1024) + "kB");
           applicationVersion.setIcon(icon);
         } else {
           result.rejectValue("bytes", "NotNull");
         }
       } catch (IOException ex) {
-        logger.error(ex);
+        log.error(ex.getMessage());
       }
     }
 
@@ -177,7 +176,7 @@ public class ApplicationVersionCreateController {
    */
   @InitBinder
   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    logger.info("initBinder");
+    log.info("initBinder");
     binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
   }
 }

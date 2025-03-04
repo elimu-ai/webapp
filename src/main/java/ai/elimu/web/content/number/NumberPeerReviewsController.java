@@ -11,12 +11,11 @@ import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * This controller has similar functionality as the {@link NumberPeerReviewsRestController}.
@@ -24,9 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/content/number/peer-reviews")
 @RequiredArgsConstructor
+@Slf4j
 public class NumberPeerReviewsController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final NumberContributionEventDao numberContributionEventDao;
 
@@ -39,16 +37,16 @@ public class NumberPeerReviewsController {
   /**
    * Get {@link NumberContributionEvent}s pending a {@link NumberPeerReviewEvent} for the current {@link Contributor}.
    */
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleGetRequest(HttpSession session, Model model) {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
-    logger.info("contributor: " + contributor);
+    log.info("contributor: " + contributor);
 
     // Get the most recent NumberContributionEvent for each Number, including those made by the current Contributor
     List<NumberContributionEvent> mostRecentNumberContributionEvents = numberContributionEventDao.readMostRecentPerNumber();
-    logger.info("mostRecentNumberContributionEvents.size(): " + mostRecentNumberContributionEvents.size());
+    log.info("mostRecentNumberContributionEvents.size(): " + mostRecentNumberContributionEvents.size());
 
     // For each NumberContributionEvent, check if the Contributor has already performed a peer-review.
     // If not, add it to the list of pending peer reviews.
@@ -65,7 +63,7 @@ public class NumberPeerReviewsController {
         numberContributionEventsPendingPeerReview.add(mostRecentNumberContributionEvent);
       }
     }
-    logger.info("numberContributionEventsPendingPeerReview.size(): " + numberContributionEventsPendingPeerReview.size());
+    log.info("numberContributionEventsPendingPeerReview.size(): " + numberContributionEventsPendingPeerReview.size());
     model.addAttribute("numberContributionEventsPendingPeerReview", numberContributionEventsPendingPeerReview);
 
     return "content/number/peer-reviews/pending";

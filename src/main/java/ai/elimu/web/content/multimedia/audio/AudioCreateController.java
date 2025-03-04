@@ -28,16 +28,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
@@ -45,9 +46,8 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @Controller
 @RequestMapping("/content/multimedia/audio/create")
 @RequiredArgsConstructor
+@Slf4j
 public class AudioCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final AudioDao audioDao;
 
@@ -59,7 +59,7 @@ public class AudioCreateController {
 
   private final AudioContributionEventDao audioContributionEventDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       Model model,
       @RequestParam(required = false) Long wordId,
@@ -67,7 +67,7 @@ public class AudioCreateController {
       @RequestParam(required = false) String autoFillTitle,
       @RequestParam(required = false) String autoFillTranscription
   ) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Audio audio = new Audio();
 
@@ -110,7 +110,7 @@ public class AudioCreateController {
     return "content/multimedia/audio/create";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,
@@ -118,7 +118,7 @@ public class AudioCreateController {
       @RequestParam("bytes") MultipartFile multipartFile,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     try {
       byte[] bytes = multipartFile.getBytes();
@@ -126,7 +126,7 @@ public class AudioCreateController {
         result.rejectValue("bytes", "NotNull");
       } else {
         String originalFileName = multipartFile.getOriginalFilename();
-        logger.info("originalFileName: " + originalFileName);
+        log.info("originalFileName: " + originalFileName);
         if (originalFileName.toLowerCase().endsWith(".mp3")) {
           audio.setAudioFormat(AudioFormat.MP3);
         } else if (originalFileName.toLowerCase().endsWith(".ogg")) {
@@ -139,7 +139,7 @@ public class AudioCreateController {
 
         if (audio.getAudioFormat() != null) {
           String contentType = multipartFile.getContentType();
-          logger.info("contentType: " + contentType);
+          log.info("contentType: " + contentType);
           audio.setContentType(contentType);
 
           audio.setBytes(bytes);
@@ -151,15 +151,15 @@ public class AudioCreateController {
           File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
           tmpDirElimuAi.mkdir();
           File file = new File(tmpDirElimuAi, multipartFile.getOriginalFilename());
-          logger.info("file: " + file);
+          log.info("file: " + file);
           multipartFile.transferTo(file);
           Long durationMs = AudioMetadataExtractionHelper.getDurationInMilliseconds(file);
-          logger.info("durationMs: " + durationMs);
+          log.info("durationMs: " + durationMs);
           audio.setDurationMs(durationMs);
         }
       }
     } catch (IOException e) {
-      logger.error(e);
+      log.error(e.getMessage());
     }
 
     if (result.hasErrors()) {
@@ -213,12 +213,12 @@ public class AudioCreateController {
    */
   @InitBinder
   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    logger.info("initBinder");
+    log.info("initBinder");
     binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 

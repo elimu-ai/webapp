@@ -9,33 +9,32 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/number/list")
+@RequestMapping("/content/number/list/numbers.csv")
 @RequiredArgsConstructor
+@Slf4j
 public class NumberCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final NumberDao numberDao;
 
-  @RequestMapping(value = "/numbers.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<Number> numbers = numberDao.readAllOrderedById();
-    logger.info("numbers.size(): " + numbers.size());
+    log.info("numbers.size(): " + numbers.size());
 
     CSVFormat csvFormat = CSVFormat.DEFAULT
         .withHeader(
@@ -49,7 +48,7 @@ public class NumberCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Number number : numbers) {
-      logger.info("number.getValue(): \"" + number.getValue() + "\"");
+      log.info("number.getValue(): \"" + number.getValue() + "\"");
 
       JSONArray wordIdsJsonArray = new JSONArray();
       int index = 0;
@@ -87,7 +86,7 @@ public class NumberCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }

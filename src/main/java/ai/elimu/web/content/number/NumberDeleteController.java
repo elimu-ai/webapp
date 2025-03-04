@@ -2,26 +2,24 @@ package ai.elimu.web.content.number;
 
 import ai.elimu.dao.NumberDao;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/number/delete")
+@RequestMapping("/content/number/delete/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class NumberDeleteController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final NumberDao numberDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
 //        Number number = numberDao.read(id);
 //        numberDao.delete(number);

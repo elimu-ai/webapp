@@ -42,7 +42,7 @@
                             </td>
                             <td style="font-size: 2em;">
                                 <a name="${sound.id}"></a>
-                                <a href="<spring:url value='/content/sound/edit/${sound.id}' />">/${sound.valueIpa}/</a>
+                                <a class="editLink" href="<spring:url value='/content/sound/edit/${sound.id}' />">/${sound.valueIpa}/</a>
                             </td>
                             <td>
                                 ${sound.valueSampa}
@@ -84,6 +84,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.sound" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.sound" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

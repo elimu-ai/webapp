@@ -13,33 +13,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/content/emoji/edit")
+@RequestMapping("/content/emoji/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class EmojiEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final EmojiDao emojiDao;
 
   private final WordDao wordDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(
       Model model,
       @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Emoji emoji = emojiDao.read(id);
     model.addAttribute("emoji", emoji);
@@ -51,12 +51,12 @@ public class EmojiEditController {
     return "content/emoji/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       @Valid Emoji emoji,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     Emoji existingEmoji = emojiDao.readByGlyph(emoji.getGlyph());
     if ((existingEmoji != null) && !existingEmoji.getId().equals(emoji.getId())) {
@@ -84,18 +84,18 @@ public class EmojiEditController {
     }
   }
 
-  @RequestMapping(value = "/{id}/add-content-label", method = RequestMethod.POST)
+  @PostMapping(value = "/add-content-label")
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
       @PathVariable Long id) {
-    logger.info("handleAddContentLabelRequest");
+    log.info("handleAddContentLabelRequest");
 
-    logger.info("id: " + id);
+    log.info("id: " + id);
     Emoji emoji = emojiDao.read(id);
 
     String wordIdParameter = request.getParameter("wordId");
-    logger.info("wordIdParameter: " + wordIdParameter);
+    log.info("wordIdParameter: " + wordIdParameter);
     if (StringUtils.isNotBlank(wordIdParameter)) {
       Long wordId = Long.valueOf(wordIdParameter);
       Word word = wordDao.read(wordId);
@@ -110,18 +110,18 @@ public class EmojiEditController {
     return "success";
   }
 
-  @RequestMapping(value = "/{id}/remove-content-label", method = RequestMethod.POST)
+  @PostMapping(value = "/remove-content-label")
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
       @PathVariable Long id) {
-    logger.info("handleRemoveContentLabelRequest");
+    log.info("handleRemoveContentLabelRequest");
 
-    logger.info("id: " + id);
+    log.info("id: " + id);
     Emoji emoji = emojiDao.read(id);
 
     String wordIdParameter = request.getParameter("wordId");
-    logger.info("wordIdParameter: " + wordIdParameter);
+    log.info("wordIdParameter: " + wordIdParameter);
     if (StringUtils.isNotBlank(wordIdParameter)) {
       Long wordId = Long.valueOf(wordIdParameter);
       Word word = wordDao.read(wordId);
@@ -141,7 +141,7 @@ public class EmojiEditController {
   }
 
   private Map<Long, String> getEmojisByWordId() {
-    logger.info("getEmojisByWordId");
+    log.info("getEmojisByWordId");
 
     Map<Long, String> emojisByWordId = new HashMap<>();
 

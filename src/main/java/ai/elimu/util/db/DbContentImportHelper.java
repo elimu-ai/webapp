@@ -46,10 +46,8 @@ import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 import ai.elimu.util.csv.CsvContentExtractionHelper;
 import ai.elimu.util.csv.CsvLetterExtractionHelper;
 import ai.elimu.util.csv.CsvSoundExtractionHelper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.WebApplicationContext;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -58,9 +56,8 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 
+@Slf4j
 public class DbContentImportHelper {
-
-    private Logger logger = LogManager.getLogger();
 
     private LetterDao letterDao;
 
@@ -99,7 +96,7 @@ public class DbContentImportHelper {
     private ApplicationDao applicationDao;
 
     /**
-     * Extracts educational content from the CSV files in {@code src/main/resources/db/content_TEST/<Language>/} and
+     * Extracts educational content from the CSV files in {@code src/main/resources/db/content_PROD/<Language>/} and
      * stores it in the database.
      *
      * @param environment The environment from which to import the database content.
@@ -107,24 +104,24 @@ public class DbContentImportHelper {
      * @param webApplicationContext Context needed to access DAOs.
      */
     public synchronized void performDatabaseContentImport(Environment environment, Language language, WebApplicationContext webApplicationContext) {
-        logger.info("performDatabaseContentImport");
+        log.info("performDatabaseContentImport");
 
-        logger.info("environment: " + environment + ", language: " + language);
+        log.info("environment: " + environment + ", language: " + language);
 
-        if (!((environment == Environment.TEST) || (environment == Environment.PROD))) {
-            throw new IllegalArgumentException("Database content can only be imported from the TEST environment or from the PROD environment");
+        if (environment != Environment.PROD) {
+            throw new IllegalArgumentException("Database content can only be imported from the PROD environment");
         }
 
         String contentDirectoryPath = "db/content_" + environment + "/" + language.toString().toLowerCase();
-        logger.info("contentDirectoryPath: \"" + contentDirectoryPath + "\"");
+        log.info("contentDirectoryPath: \"" + contentDirectoryPath + "\"");
         URL contentDirectoryURL = getClass().getClassLoader().getResource(contentDirectoryPath);
-        logger.info("contentDirectoryURL: " + contentDirectoryURL);
+        log.info("contentDirectoryURL: " + contentDirectoryURL);
         if (contentDirectoryURL == null) {
-            logger.warn("The content directory was not found. Aborting content import.");
+            log.warn("The content directory was not found. Aborting content import.");
             return;
         }
         File contentDirectory = new File(contentDirectoryURL.getPath());
-        logger.info("contentDirectory: " + contentDirectory);
+        log.info("contentDirectory: " + contentDirectory);
 
         contributorDao = (ContributorDao) webApplicationContext.getBean("contributorDao");
         Contributor contributor = new Contributor();
@@ -138,7 +135,7 @@ public class DbContentImportHelper {
         // Extract and import Letters from CSV file in src/main/resources/
         File lettersCsvFile = new File(contentDirectory, "letters.csv");
         List<Letter> letters = CsvLetterExtractionHelper.getLettersFromCsvBackup(lettersCsvFile);
-        logger.info("letters.size(): " + letters.size());
+        log.info("letters.size(): " + letters.size());
         letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
         letterContributionEventDao = (LetterContributionEventDao) webApplicationContext.getBean("letterContributionEventDao");
         for (Letter letter : letters) {
@@ -156,7 +153,7 @@ public class DbContentImportHelper {
         // Extract and import Sounds from CSV file in src/main/resources/
         File soundsCsvFile = new File(contentDirectory, "sounds.csv");
         List<Sound> sounds = CsvSoundExtractionHelper.getSoundsFromCsvBackup(soundsCsvFile);
-        logger.info("sounds.size(): " + sounds.size());
+        log.info("sounds.size(): " + sounds.size());
         soundDao = (SoundDao) webApplicationContext.getBean("soundDao");
         for (Sound sound : sounds) {
             soundDao.create(sound);
@@ -165,7 +162,7 @@ public class DbContentImportHelper {
         // Extract and import letter-sound correspondences in src/main/resources/
         File letterSoundsCsvFile = new File(contentDirectory, "letter-sounds.csv");
         List<LetterSound> letterSounds = CsvContentExtractionHelper.getLetterSoundsFromCsvBackup(letterSoundsCsvFile, letterDao, soundDao, letterSoundDao);
-        logger.info("letterSounds.size(): " + letterSounds.size());
+        log.info("letterSounds.size(): " + letterSounds.size());
         letterSoundDao = (LetterSoundDao) webApplicationContext.getBean("letterSoundDao");
         letterSoundContributionEventDao = (LetterSoundContributionEventDao) webApplicationContext.getBean("letterSoundContributionEventDao");
         for (LetterSound letterSound : letterSounds) {
@@ -183,7 +180,7 @@ public class DbContentImportHelper {
         // Extract and import Words from CSV file in src/main/resources/
         File wordsCsvFile = new File(contentDirectory, "words.csv");
         List<Word> words = CsvContentExtractionHelper.getWordsFromCsvBackup(wordsCsvFile, letterDao, soundDao, letterSoundDao, wordDao);
-        logger.info("words.size(): " + words.size());
+        log.info("words.size(): " + words.size());
         wordDao = (WordDao) webApplicationContext.getBean("wordDao");
         wordContributionEventDao = (WordContributionEventDao) webApplicationContext.getBean("wordContributionEventDao");
         for (Word word : words) {
@@ -201,7 +198,7 @@ public class DbContentImportHelper {
         // Extract and import Numbers from CSV file in src/main/resources/
         File numbersCsvFile = new File(contentDirectory, "numbers.csv");
         List<Number> numbers = CsvContentExtractionHelper.getNumbersFromCsvBackup(numbersCsvFile, wordDao);
-        logger.info("numbers.size(): " + numbers.size());
+        log.info("numbers.size(): " + numbers.size());
         numberDao = (NumberDao) webApplicationContext.getBean("numberDao");
         numberContributionEventDao = (NumberContributionEventDao) webApplicationContext.getBean("numberContributionEventDao");
         for (Number number : numbers) {
@@ -222,7 +219,7 @@ public class DbContentImportHelper {
         // Extract and import Emojis from CSV file in src/main/resources/
         File emojisCsvFile = new File(contentDirectory, "emojis.csv");
         List<Emoji> emojis = CsvContentExtractionHelper.getEmojisFromCsvBackup(emojisCsvFile, wordDao);
-        logger.info("emojis.size(): " + emojis.size());
+        log.info("emojis.size(): " + emojis.size());
         emojiDao = (EmojiDao) webApplicationContext.getBean("emojiDao");
         for (Emoji emoji : emojis) {
             emojiDao.create(emoji);
@@ -231,7 +228,7 @@ public class DbContentImportHelper {
         // Extract and import Images from CSV file in src/main/resources/
         File imagesCsvFile = new File(contentDirectory, "images.csv");
         List<Image> images = CsvContentExtractionHelper.getImagesFromCsvBackup(imagesCsvFile);
-        logger.info("images.size(): " + emojis.size());
+        log.info("images.size(): " + emojis.size());
         imageDao = (ImageDao) webApplicationContext.getBean("imageDao");
         for (Image image : images) {
             imageDao.create(image);
@@ -243,7 +240,7 @@ public class DbContentImportHelper {
         // Extract and import StoryBooks from CSV file in src/main/resources/
         File storyBooksCsvFile = new File(contentDirectory, "storybooks.csv");
         List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);
-        logger.info("storyBookGsons.size(): " + storyBookGsons.size());
+        log.info("storyBookGsons.size(): " + storyBookGsons.size());
         storyBookDao = (StoryBookDao) webApplicationContext.getBean("storyBookDao");
         storyBookChapterDao = (StoryBookChapterDao) webApplicationContext.getBean("storyBookChapterDao");
         storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
@@ -280,15 +277,15 @@ public class DbContentImportHelper {
                     storyBookParagraph.setOriginalText(storyBookParagraphGson.getOriginalText());
 
                     List<String> wordsInOriginalText = WordExtractionHelper.getWords(storyBookParagraph.getOriginalText(), language);
-                    logger.debug("wordsInOriginalText.size(): " + wordsInOriginalText.size());
+                    log.debug("wordsInOriginalText.size(): " + wordsInOriginalText.size());
                     List<Word> paragraphWords = new ArrayList<>();
-                    logger.debug("paragraphWords.size(): " + paragraphWords.size());
+                    log.debug("paragraphWords.size(): " + paragraphWords.size());
                     for (String wordInOriginalText : wordsInOriginalText) {
-                        logger.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
+                        log.debug("wordInOriginalText: \"" + wordInOriginalText + "\"");
                         wordInOriginalText = wordInOriginalText.toLowerCase();
-                        logger.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
+                        log.debug("wordInOriginalText (lower-case): \"" + wordInOriginalText + "\"");
                         Word word = wordDao.readByText(wordInOriginalText);
-                        logger.debug("word: " + word);
+                        log.debug("word: " + word);
                         paragraphWords.add(word);
                     }
                     storyBookParagraph.setWords(paragraphWords);
@@ -311,15 +308,15 @@ public class DbContentImportHelper {
         
         
         String analyticsDirectoryPath = "db/analytics_" + environment + "/" + language.toString().toLowerCase();
-        logger.info("analyticsDirectoryPath: \"" + analyticsDirectoryPath + "\"");
+        log.info("analyticsDirectoryPath: \"" + analyticsDirectoryPath + "\"");
         URL analyticsDirectoryURL = getClass().getClassLoader().getResource(analyticsDirectoryPath);
-        logger.info("analyticsDirectoryURL: " + analyticsDirectoryURL);
+        log.info("analyticsDirectoryURL: " + analyticsDirectoryURL);
         if (analyticsDirectoryURL == null) {
-            logger.warn("The analytics directory was not found. Aborting analytics import.");
+            log.warn("The analytics directory was not found. Aborting analytics import.");
             return;
         }
         File analyticsDirectory = new File(analyticsDirectoryURL.getPath());
-        logger.info("analyticsDirectory: " + analyticsDirectory);
+        log.info("analyticsDirectory: " + analyticsDirectory);
 
         // Extract and import LetterLearningEvents from CSV file in src/main/resources/
         // TODO
@@ -331,12 +328,12 @@ public class DbContentImportHelper {
         File storyBookLearningEventsCsvFile = new File(analyticsDirectory, "storybook-learning-events.csv");
         applicationDao = (ApplicationDao) webApplicationContext.getBean("applicationDao");
         List<StoryBookLearningEvent> storyBookLearningEvents = CsvAnalyticsExtractionHelper.getStoryBookLearningEventsFromCsvBackup(storyBookLearningEventsCsvFile, applicationDao, storyBookDao);
-        logger.info("storyBookLearningEvents.size(): " + storyBookLearningEvents.size());
+        log.info("storyBookLearningEvents.size(): " + storyBookLearningEvents.size());
         storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
         for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
             storyBookLearningEventDao.create(storyBookLearningEvent);
         }
 
-        logger.info("Content import complete");
+        log.info("Content import complete");
     }
 }

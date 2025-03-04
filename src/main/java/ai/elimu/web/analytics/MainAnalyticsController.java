@@ -5,19 +5,17 @@ import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordLearningEventDao;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/analytics")
 @RequiredArgsConstructor
+@Slf4j
 public class MainAnalyticsController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterLearningEventDao letterLearningEventDao;
 
@@ -27,9 +25,9 @@ public class MainAnalyticsController {
 
   private final VideoLearningEventDao videoLearningEventDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     model.addAttribute("letterLearningEventCount", letterLearningEventDao.readCount());
     model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());

@@ -7,27 +7,25 @@ import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/rest/v2/content/images", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
+@Slf4j
 public class ImagesRestController {
-
-  private Logger logger = LogManager.getLogger();
 
   private final ImageDao imageDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleGetRequest(HttpServletRequest request) {
-    logger.info("handleGetRequest");
+    log.info("handleGetRequest");
 
     JSONArray imagesJsonArray = new JSONArray();
     for (Image image : imageDao.readAllOrdered()) {
@@ -38,7 +36,7 @@ public class ImagesRestController {
     }
 
     String jsonResponse = imagesJsonArray.toString();
-    logger.info("jsonResponse: " + jsonResponse);
+    log.info("jsonResponse: " + jsonResponse);
     return jsonResponse;
   }
 }

@@ -96,7 +96,7 @@
         <li>
             <b>What devices are being used?</b><br />
             We are building our software for Android devices with 6"-10" displays installed with  
-            Android API version 24 (7.0) or higher.<br />
+            Android 8.0 (API 26) or higher.<br />
             <br />
         </li>
     </ul>

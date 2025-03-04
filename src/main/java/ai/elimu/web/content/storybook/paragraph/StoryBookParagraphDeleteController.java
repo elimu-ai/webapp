@@ -18,19 +18,17 @@ import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/storybook/paragraph/delete")
+@RequestMapping("/content/storybook/paragraph/delete/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookParagraphDeleteController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookDao storyBookDao;
 
@@ -42,20 +40,20 @@ public class StoryBookParagraphDeleteController {
 
   private final StoryBooksJsonService storyBooksJsonService;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(HttpSession session, @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Contributor contributor = (Contributor) session.getAttribute("contributor");
-    logger.info("contributor.getRoles(): " + contributor.getRoles());
+    log.info("contributor.getRoles(): " + contributor.getRoles());
     if (!contributor.getRoles().contains(Role.EDITOR)) {
       // TODO: return HttpStatus.FORBIDDEN
       throw new IllegalAccessError("Missing role for access");
     }
 
     StoryBookParagraph storyBookParagraphToBeDeleted = storyBookParagraphDao.read(id);
-    logger.info("storyBookParagraphToBeDeleted: " + storyBookParagraphToBeDeleted);
-    logger.info("storyBookParagraphToBeDeleted.getSortOrder(): " + storyBookParagraphToBeDeleted.getSortOrder());
+    log.info("storyBookParagraphToBeDeleted: " + storyBookParagraphToBeDeleted);
+    log.info("storyBookParagraphToBeDeleted.getSortOrder(): " + storyBookParagraphToBeDeleted.getSortOrder());
 
     String paragraphTextBeforeDeletion = storyBookParagraphToBeDeleted.getOriginalText();
 
@@ -67,7 +65,7 @@ public class StoryBookParagraphDeleteController {
     }
 
     // Delete the paragraph
-    logger.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());
+    log.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());
     storyBookParagraphDao.delete(storyBookParagraphToBeDeleted);
 
     // Update the storybook's metadata
@@ -105,14 +103,14 @@ public class StoryBookParagraphDeleteController {
 
     // Update the sorting order of the remaining paragraphs
     List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookParagraphToBeDeleted.getStoryBookChapter());
-    logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+    log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
     for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-      logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId() + ", storyBookParagraph.getSortOrder(): " + storyBookParagraph.getSortOrder());
+      log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId() + ", storyBookParagraph.getSortOrder(): " + storyBookParagraph.getSortOrder());
       if (storyBookParagraph.getSortOrder() > storyBookParagraphToBeDeleted.getSortOrder()) {
         // Reduce sort order by 1
         storyBookParagraph.setSortOrder(storyBookParagraph.getSortOrder() - 1);
         storyBookParagraphDao.update(storyBookParagraph);
-        logger.info("storyBookParagraph.getSortOrder() (after update): " + storyBookParagraph.getSortOrder());
+        log.info("storyBookParagraph.getSortOrder() (after update): " + storyBookParagraph.getSortOrder());
       }
     }
 

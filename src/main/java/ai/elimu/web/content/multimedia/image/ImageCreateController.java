@@ -19,16 +19,17 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
@@ -36,17 +37,16 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @Controller
 @RequestMapping("/content/multimedia/image/create")
 @RequiredArgsConstructor
+@Slf4j
 public class ImageCreateController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final ImageDao imageDao;
 
   private final ImageContributionEventDao imageContributionEventDao;
 
-  @RequestMapping(method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(Model model) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     Image image = new Image();
     model.addAttribute("image", image);
@@ -58,7 +58,7 @@ public class ImageCreateController {
     return "content/multimedia/image/create";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,
@@ -66,7 +66,7 @@ public class ImageCreateController {
       @RequestParam("bytes") MultipartFile multipartFile,
       BindingResult result,
       Model model) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     if (StringUtils.isBlank(image.getTitle())) {
       result.rejectValue("title", "NotNull");
@@ -83,7 +83,7 @@ public class ImageCreateController {
         result.rejectValue("bytes", "NotNull");
       } else {
         String originalFileName = multipartFile.getOriginalFilename();
-        logger.info("originalFileName: " + originalFileName);
+        log.info("originalFileName: " + originalFileName);
 
         byte[] headerBytes = Arrays.copyOfRange(bytes, 0, 6);
         byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
@@ -102,14 +102,14 @@ public class ImageCreateController {
 
         if (image.getImageFormat() != null) {
           String contentType = multipartFile.getContentType();
-          logger.info("contentType: " + contentType);
+          log.info("contentType: " + contentType);
           image.setContentType(contentType);
 
           image.setBytes(bytes);
         }
       }
     } catch (IOException e) {
-      logger.error(e);
+      log.error(e.getMessage());
     }
 
     if (result.hasErrors()) {
@@ -162,7 +162,7 @@ public class ImageCreateController {
    */
   @InitBinder
   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    logger.info("initBinder");
+    log.info("initBinder");
     binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
   }
 }

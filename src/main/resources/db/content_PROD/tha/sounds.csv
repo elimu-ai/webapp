@@ -1,8 +1,8 @@
 id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 1,b,b,,false,CONSONANT,0
-2,p,p,,false,CONSONANT,0
+2,p,p,,false,CONSONANT,5
 3,k,k,,false,CONSONANT,0
-4,ŋ,N,,false,CONSONANT,4
+4,ŋ,N,,false,CONSONANT,6
 5,d,d,,false,CONSONANT,0
 6,t,t,,false,CONSONANT,0
 7,n,n,,false,CONSONANT,0
@@ -18,12 +18,13 @@ id,value_ipa,value_sampa,audio_id,diacritic,sound_type,usage_count
 17,ɛː,E:,,false,VOWEL,0
 18,pʰ,p_h,,false,CONSONANT,0
 19,l,l,,false,CONSONANT,2
-20,i,i,,false,VOWEL,1
+20,i,i,,false,VOWEL,2
 21,tɕ,ts\,,false,CONSONANT,0
 22,kʰ,k_h,,false,CONSONANT,0
 23,r,r,,false,CONSONANT,0
 24,tʰ,t_h,,false,CONSONANT,0
-25,a,a,,false,VOWEL,0
+25,a,a,,false,VOWEL,2
 26,o,o,,false,VOWEL,0
 27,ɔː,O:,,false,VOWEL,0
 28,s,s,,false,CONSONANT,0
+29,j,j,,false,CONSONANT,2

@@ -14,8 +14,7 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
 import java.util.EnumSet;
 import jakarta.persistence.Entity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -26,30 +25,29 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
+@Slf4j
 public class CustomDispatcherServlet extends DispatcherServlet {
     
-    private final Logger logger = LogManager.getLogger();
-
     @Override
     protected WebApplicationContext initWebApplicationContext() {
-        logger.info("initWebApplicationContext");
+        log.info("initWebApplicationContext");
         
         WebApplicationContext webApplicationContext = super.initWebApplicationContext();
 
         // Database migration
-        logger.info("Performing database migration...");
+        log.info("Performing database migration...");
         new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            // To ease development, pre-populate database with educational content extracted from the test server
+            // To ease development, pre-populate database with educational content extracted from the prod server
             
             // Lookup the language of the educational content from the config file
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-            logger.info("language: " + language);
+            log.info("language: " + language);
             
             // Import the educational content
-            logger.info("Performing database content import...");
-            new DbContentImportHelper().performDatabaseContentImport(Environment.TEST, language, webApplicationContext);
+            log.info("Performing database content import...");
+            new DbContentImportHelper().performDatabaseContentImport(Environment.PROD, language, webApplicationContext);
             
             createJpaSchemaExport();
         }
@@ -61,7 +59,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
      * Export the JPA database schema to a file.
      */
     private void createJpaSchemaExport() {
-        logger.info("createJpaSchemaExport");
+        log.info("createJpaSchemaExport");
 
         ConnectionProviderWeb connectionProviderWeb = new ConnectionProviderWeb(
                 ConfigHelper.getProperty("jdbc.url"),
@@ -82,13 +80,13 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         ClassPathScanningCandidateComponentProvider entityScanner = new ClassPathScanningCandidateComponentProvider(true);
         entityScanner.addIncludeFilter(new AnnotationTypeFilter(Entity.class));
         for (BeanDefinition beanDefinition : entityScanner.findCandidateComponents(ai.elimu.model.BaseEntity.class.getPackageName())) {
-            logger.debug("beanDefinition.getBeanClassName(): " + beanDefinition.getBeanClassName());
+            log.debug("beanDefinition.getBeanClassName(): " + beanDefinition.getBeanClassName());
             try {
                 Class<?> annotatedClass = Class.forName(beanDefinition.getBeanClassName());
-                logger.debug("annotatedClass.getName(): " + annotatedClass.getName());
+                log.debug("annotatedClass.getName(): " + annotatedClass.getName());
                 metadataSources.addAnnotatedClass(annotatedClass);
             } catch (ClassNotFoundException ex) {
-                logger.error(ex);
+                log.error(ex.getMessage());
             }
         }
 
@@ -97,7 +95,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         File outputFile = new File("src/main/resources/META-INF/jpa-schema-export.sql");
         if (outputFile.exists()) {
             // Delete existing file content since the SchemaExport appends to existing content.
-            logger.info("Deleting " + outputFile.getPath());
+            log.info("Deleting " + outputFile.getPath());
             outputFile.delete();
         }
 

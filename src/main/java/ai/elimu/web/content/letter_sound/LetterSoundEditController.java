@@ -21,22 +21,34 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import ai.elimu.dao.LetterSoundDao;
+import ai.elimu.dao.LetterSoundPeerReviewEventDao;
+import ai.elimu.dao.WordDao;
+import ai.elimu.model.content.Word;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.util.DiscordHelper;
+import java.util.Calendar;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.apache.commons.lang.StringUtils;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import java.util.stream.Collectors;
+import ai.elimu.dao.SoundDao;
 
 @Controller
-@RequestMapping("/content/letter-sound/edit")
+@RequestMapping("/content/letter-sound/edit/{id}")
 @RequiredArgsConstructor
+@Slf4j
 public class LetterSoundEditController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final LetterSoundDao letterSoundDao;
 
@@ -50,9 +62,9 @@ public class LetterSoundEditController {
 
   private final WordDao wordDao;
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @GetMapping
   public String handleRequest(Model model, @PathVariable Long id) {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     LetterSound letterSound = letterSoundDao.read(id);
     model.addAttribute("letterSound", letterSound);
@@ -74,7 +86,7 @@ public class LetterSoundEditController {
     return "content/letter-sound/edit";
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+  @PostMapping
   public String handleSubmit(
       HttpServletRequest request,
       HttpSession session,
@@ -82,7 +94,7 @@ public class LetterSoundEditController {
       BindingResult result,
       Model model
   ) {
-    logger.info("handleSubmit");
+    log.info("handleSubmit");
 
     // Check if the LetterSound already exists
     LetterSound existingLetterSound = letterSoundDao.read(letterSound.getLetters(), letterSound.getSounds());

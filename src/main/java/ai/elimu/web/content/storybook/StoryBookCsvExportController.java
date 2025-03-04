@@ -18,22 +18,20 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/content/storybook/list")
+@RequestMapping("/content/storybook/list/storybooks.csv")
 @RequiredArgsConstructor
+@Slf4j
 public class StoryBookCsvExportController {
-
-  private final Logger logger = LogManager.getLogger();
 
   private final StoryBookDao storyBookDao;
 
@@ -41,15 +39,15 @@ public class StoryBookCsvExportController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  @RequestMapping(value = "/storybooks.csv", method = RequestMethod.GET)
+  @GetMapping
   public void handleRequest(
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
-    logger.info("handleRequest");
+    log.info("handleRequest");
 
     List<StoryBook> storyBooks = storyBookDao.readAllOrderedById();
-    logger.info("storyBooks.size(): " + storyBooks.size());
+    log.info("storyBooks.size(): " + storyBooks.size());
 
     CSVFormat csvFormat = CSVFormat.DEFAULT
         .withHeader(
@@ -66,7 +64,7 @@ public class StoryBookCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (StoryBook storyBook : storyBooks) {
-      logger.info("storyBook.getTitle(): \"" + storyBook.getTitle() + "\"");
+      log.info("storyBook.getTitle(): \"" + storyBook.getTitle() + "\"");
 
       Long coverImageId = null;
       if (storyBook.getCoverImage() != null) {
@@ -76,9 +74,9 @@ public class StoryBookCsvExportController {
       // Store chapters as JSON objects
       JSONArray chaptersJsonArray = new JSONArray();
       List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);
-      logger.info("storyBookChapters.size(): " + storyBookChapters.size());
+      log.info("storyBookChapters.size(): " + storyBookChapters.size());
       for (StoryBookChapter storyBookChapter : storyBookChapters) {
-        logger.info("storyBookChapter.getId(): " + storyBookChapter.getId());
+        log.info("storyBookChapter.getId(): " + storyBookChapter.getId());
 
         StoryBookChapterGson storyBookChapterGson = JpaToGsonConverter.getStoryBookChapterGson(storyBookChapter);
 
@@ -92,9 +90,9 @@ public class StoryBookCsvExportController {
 
         // Store paragraphs as JSON objects
         List<StoryBookParagraphGson> storyBookParagraphs = new ArrayList<>();
-        logger.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
+        log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
         for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll(storyBookChapter)) {
-          logger.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
+          log.info("storyBookParagraph.getId(): " + storyBookParagraph.getId());
 
           StoryBookParagraphGson storyBookParagraphGson = JpaToGsonConverter.getStoryBookParagraphGson(storyBookParagraph);
           storyBookParagraphGson.setWords(null);
@@ -104,10 +102,10 @@ public class StoryBookCsvExportController {
 
         String json = new Gson().toJson(storyBookChapterGson);
         JSONObject jsonObject = new JSONObject(json);
-        logger.info("jsonObject: " + jsonObject);
+        log.info("jsonObject: " + jsonObject);
         chaptersJsonArray.put(jsonObject);
       }
-      logger.info("chaptersJsonArray: " + chaptersJsonArray);
+      log.info("chaptersJsonArray: " + chaptersJsonArray);
 
       csvPrinter.printRecord(
           storyBook.getId(),
@@ -134,7 +132,7 @@ public class StoryBookCsvExportController {
       outputStream.flush();
       outputStream.close();
     } catch (IOException ex) {
-      logger.error(ex);
+      log.error(ex.getMessage());
     }
   }
 }
