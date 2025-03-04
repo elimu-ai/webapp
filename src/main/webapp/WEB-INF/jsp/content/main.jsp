@@ -83,7 +83,7 @@
                     <span class="card-title"><i class="material-icons">emoji_emotions</i> <fmt:message key="emojis" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/emoji/list' />"><fmt:message key="view.list" /> (${emojiCount})</a>
+                    <a id="emojiListLink" href="<spring:url value='/content/emoji/list' />"><fmt:message key="view.list" /> (${emojiCount})</a>
                 </div>
             </div>
         </div>

@@ -38,4 +38,9 @@ public class MainContentPage {
         WebElement link = driver.findElement(By.id("wordListLink"));
         link.click();
     }
+
+    public void pressEmojiListLink() {
+        WebElement link = driver.findElement(By.id("emojiListLink"));
+        link.click();
+    }
 }
