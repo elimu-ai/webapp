@@ -46,9 +46,6 @@
     <!-- DAOs that will be autowired -->
     <bean id="applicationDao" class="ai.elimu.dao.jpa.ApplicationDaoJpa" />
     <bean id="applicationVersionDao" class="ai.elimu.dao.jpa.ApplicationVersionDaoJpa" />
-    <bean id="audioDao" class="ai.elimu.dao.jpa.AudioDaoJpa" />
-    <bean id="audioContributionEventDao" class="ai.elimu.dao.jpa.AudioContributionEventDaoJpa" />
-    <bean id="audioPeerReviewLearningEventDao" class="ai.elimu.dao.jpa.AudioPeerReviewEventDaoJpa" />
     <bean id="contributorDao" class="ai.elimu.dao.jpa.ContributorDaoJpa" />
     <bean id="dbMigrationDao" class="ai.elimu.dao.jpa.DbMigrationDaoJpa" />
     <bean id="deviceDao" class="ai.elimu.dao.jpa.DeviceDaoJpa" />

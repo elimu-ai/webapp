@@ -1,6 +1,5 @@
 package ai.elimu.web.content.word;
 
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterSoundDao;

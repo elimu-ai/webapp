@@ -111,15 +111,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             "WHERE c IN (SELECT contributor FROM StoryBookContributionEvent)")
             .getResultList();
     }
-    
-    @Override
-    public List<Contributor> readAllWithAudioContributions() throws DataAccessException {
-        return em.createQuery(
-            "SELECT c " +
-            "FROM Contributor c " +
-            "WHERE c IN (SELECT contributor FROM AudioContributionEvent)")
-            .getResultList();
-    }
 
     @Override
     public List<Contributor> readAllWithWordContributions() throws DataAccessException {

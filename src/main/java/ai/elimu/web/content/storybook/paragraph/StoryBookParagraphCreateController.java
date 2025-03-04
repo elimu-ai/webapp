@@ -1,6 +1,5 @@
 package ai.elimu.web.content.storybook.paragraph;
 
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
