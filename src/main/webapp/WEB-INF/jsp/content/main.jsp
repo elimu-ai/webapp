@@ -59,7 +59,7 @@
                     <span class="card-title"><i class="material-icons">looks_one</i> <fmt:message key="numbers" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
+                    <a id="numberListLink" href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
                     <a href="<spring:url value='/content/number/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
             </div>

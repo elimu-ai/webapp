@@ -1,4 +1,4 @@
-package selenium.content.letter;
+package selenium.content.number;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import selenium.content.MainContentPage;
 import selenium.util.DomainHelper;
 
 @Slf4j
-public class LetterTest {
+public class NumberTest {
     
     private WebDriver driver;
 
@@ -43,28 +43,28 @@ public class LetterTest {
     }
 
     @Test
-    public void testRandomLetterEditPage() {
-        log.info("testRandomLetterEditPage");
+    public void testRandomNumberEditPage() {
+        log.info("testRandomNumberEditPage");
         
         MainContentPage mainContentPage = new MainContentPage(driver);
-        mainContentPage.pressLetterListLink();
+        mainContentPage.pressNumberListLink();
 
-        LetterListPage letterListPage = new LetterListPage(driver);
-        letterListPage.pressRandomLetter();
+        NumberListPage numberListPage = new NumberListPage(driver);
+        numberListPage.pressRandomNumber();
 
-        LetterEditPage letterEditPage = new LetterEditPage(driver);
+        NumberEditPage numberEditPage = new NumberEditPage(driver);
     }
 
     @Test
-    public void testLetterCreatePage() {
-        log.info("testLetterCreatePage");
+    public void testNumberCreatePage() {
+        log.info("testNumberCreatePage");
 
         MainContentPage mainContentPage = new MainContentPage(driver);
-        mainContentPage.pressLetterListLink();
+        mainContentPage.pressNumberListLink();
 
-        LetterListPage letterListPage = new LetterListPage(driver);
-        letterListPage.pressCreateButton();
+        NumberListPage numberListPage = new NumberListPage(driver);
+        numberListPage.pressCreateButton();
 
-        LetterCreatePage letterCreatePage = new LetterCreatePage(driver);
+        NumberCreatePage numberCreatePage = new NumberCreatePage(driver);
     }
 }

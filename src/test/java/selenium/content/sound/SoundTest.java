@@ -56,7 +56,7 @@ public class SoundTest {
     }
 
     @Test
-    public void testSoundCreatPage() {
+    public void testSoundCreatePage() {
         log.info("testSoundCreatePage");
 
         MainContentPage mainContentPage = new MainContentPage(driver);

@@ -1,4 +1,4 @@
-package selenium.content.letter;
+package selenium.content.number;
 
 import java.util.List;
 
@@ -6,17 +6,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LetterListPage {
+public class NumberListPage {
     
     private WebDriver driver;
 
-    public LetterListPage(WebDriver driver) {
+    public NumberListPage(WebDriver driver) {
         this.driver = driver;
 
-        driver.findElement(By.id("letterListPage"));
+        driver.findElement(By.id("numberListPage"));
     }
 
-    public void pressRandomLetter() {
+    public void pressRandomNumber() {
         List<WebElement> links = driver.findElements(By.className("editLink"));
         int randomIndex = (int) (Math.random() * links.size());
         WebElement randomLink = links.get(randomIndex);

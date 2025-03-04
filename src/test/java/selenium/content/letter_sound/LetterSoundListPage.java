@@ -18,7 +18,7 @@ public class LetterSoundListPage {
 
     public void pressRandomLetterSound() {
         List<WebElement> links = driver.findElements(By.className("editLink"));
-        int randomIndex = (int)(Math.random() * links.size());
+        int randomIndex = (int) (Math.random() * links.size());
         WebElement randomLink = links.get(randomIndex);
         randomLink.click();
     }

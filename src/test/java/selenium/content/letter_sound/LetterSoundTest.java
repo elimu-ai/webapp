@@ -56,7 +56,7 @@ public class LetterSoundTest {
     }
 
     @Test
-    public void testLetterSoundCreatPage() {
+    public void testLetterSoundCreatePage() {
         log.info("testLetterSoundCreatePage");
 
         MainContentPage mainContentPage = new MainContentPage(driver);
