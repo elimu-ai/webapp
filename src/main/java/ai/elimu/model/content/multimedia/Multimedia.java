@@ -23,7 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Parent class for different types of multimedia (images, audios, etc).
+ * Parent class for different types of multimedia (images, videos, etc).
  */
 @Getter
 @Setter
@@ -33,7 +33,7 @@ public abstract class Multimedia extends Content {
   /**
    * The MIME type - https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
    * <p>
-   * Example: "audio/mpeg"
+   * Example: "video/mp4"
    */
   @NotNull
   private String contentType;

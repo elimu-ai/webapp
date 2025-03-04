@@ -33,7 +33,6 @@ main #letterSoundsContainer .chip {
     height: 1.2em;
 }
 
-#labeledAudios img,
 #labeledImages img,
 #labeledVideos img {
     margin-top: 0.5em;

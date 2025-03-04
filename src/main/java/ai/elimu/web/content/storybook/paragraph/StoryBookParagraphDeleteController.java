@@ -1,12 +1,10 @@
 package ai.elimu.web.content.storybook.paragraph;
 
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.StoryBookContributionEvent;
 import ai.elimu.model.enums.PeerReviewStatus;
@@ -36,8 +34,6 @@ public class StoryBookParagraphDeleteController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  private final AudioDao audioDao;
-
   private final StoryBooksJsonService storyBooksJsonService;
 
   @GetMapping
@@ -56,13 +52,6 @@ public class StoryBookParagraphDeleteController {
     log.info("storyBookParagraphToBeDeleted.getSortOrder(): " + storyBookParagraphToBeDeleted.getSortOrder());
 
     String paragraphTextBeforeDeletion = storyBookParagraphToBeDeleted.getOriginalText();
-
-    // Delete the paragraph's reference from corresponding audios (if any)
-    List<Audio> paragraphAudios = audioDao.readAll(storyBookParagraphToBeDeleted);
-    for (Audio paragraphAudio : paragraphAudios) {
-      paragraphAudio.setStoryBookParagraph(null);
-      audioDao.update(paragraphAudio);
-    }
 
     // Delete the paragraph
     log.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());

@@ -160,7 +160,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="audio" /></h5>
+    <h5 class="center">Audio</h5>
     <audio controls="true" autoplay="true">
         <source src="<spring:url value='/static/sound/sampa_${sound.valueSampa}.wav' />" />
     </audio>

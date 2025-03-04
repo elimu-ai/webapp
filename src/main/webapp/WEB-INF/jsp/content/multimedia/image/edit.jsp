@@ -149,24 +149,6 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="audio" /></h5>
-    
-    <c:choose>
-        <c:when test="${empty audio}">
-            <div class="card-panel amber lighten-3">
-                <b>Warning:</b> This image has no corresponding audio.
-                <a href="<spring:url value='/content/multimedia/audio/create?transcription=${image.title}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <audio controls="true" autoplay="true">
-                <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
-            </audio>
-        </c:otherwise>
-    </c:choose>
-    
-    <div class="divider" style="margin-top: 1em;"></div>
-    
     <h5 class="center"><fmt:message key="content.labels" /></h5>
     
     <b><fmt:message key="letters" /></b><br />

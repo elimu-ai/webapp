@@ -234,9 +234,6 @@ public class DbContentImportHelper {
             imageDao.create(image);
         }
 
-        // Extract and import Audios from CSV file in src/main/resources/
-        // TODO
-
         // Extract and import StoryBooks from CSV file in src/main/resources/
         File storyBooksCsvFile = new File(contentDirectory, "storybooks.csv");
         List<StoryBookGson> storyBookGsons = CsvContentExtractionHelper.getStoryBooksFromCsvBackup(storyBooksCsvFile);

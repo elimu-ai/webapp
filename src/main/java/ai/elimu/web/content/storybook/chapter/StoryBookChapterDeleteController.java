@@ -1,6 +1,5 @@
 package ai.elimu.web.content.storybook.chapter;
 
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
@@ -10,7 +9,6 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
@@ -44,8 +42,6 @@ public class StoryBookChapterDeleteController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  private final AudioDao audioDao;
-
   private final ImageDao imageDao;
 
   private final ImageContributionEventDao imageContributionEventDao;
@@ -71,13 +67,6 @@ public class StoryBookChapterDeleteController {
     List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookChapterToBeDeleted);
     log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
     for (StoryBookParagraph storyBookParagraphToBeDeleted : storyBookParagraphs) {
-      // Delete the paragraph's reference from corresponding audios (if any)
-      List<Audio> paragraphAudios = audioDao.readAll(storyBookParagraphToBeDeleted);
-      for (Audio paragraphAudio : paragraphAudios) {
-        paragraphAudio.setStoryBookParagraph(null);
-        audioDao.update(paragraphAudio);
-      }
-
       log.info("Deleting StoryBookParagraph with ID " + storyBookParagraphToBeDeleted.getId());
       storyBookParagraphDao.delete(storyBookParagraphToBeDeleted);
     }
