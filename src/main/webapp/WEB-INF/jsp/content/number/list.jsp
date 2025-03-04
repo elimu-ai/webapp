@@ -34,7 +34,7 @@
                     <tr class="letter">
                         <td style="font-size: 2em;">
                             <a name="${number.id}"></a>
-                            <a href="<spring:url value='/content/number/edit/${number.id}' />">${number.value}</a>
+                            <a class="editLink" href="<spring:url value='/content/number/edit/${number.id}' />">${number.value}</a>
                         </td>
                         <td style="font-size: 2em;">
                             ${number.symbol}
@@ -78,6 +78,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/number/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.number" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/number/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.number" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>

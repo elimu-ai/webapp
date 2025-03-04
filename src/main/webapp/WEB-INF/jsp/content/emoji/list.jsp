@@ -35,7 +35,7 @@
                         <tr class="emoji">
                             <td style="font-size: 6em;">
                                 <a name="${emoji.id}"></a>
-                                <a href="<spring:url value='/content/emoji/edit/${emoji.id}' />">${emoji.glyph}</a>
+                                <a class="editLink" href="<spring:url value='/content/emoji/edit/${emoji.id}' />">${emoji.glyph}</a>
                             </td>
                             <td>
                                 ${emoji.unicodeVersion}
@@ -63,6 +63,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/emoji/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.emoji" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/emoji/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.emoji" />"><i class="material-icons">add</i></a>
     </div>
 </content:section>
