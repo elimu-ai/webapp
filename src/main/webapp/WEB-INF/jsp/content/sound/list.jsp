@@ -28,7 +28,7 @@
                     <th><fmt:message key="ipa.value" /></th>
                     <th><fmt:message key="sampa.value" /></th>
                     <th><fmt:message key="sound.type" /></th>
-                    <th><fmt:message key="audio" /></th>
+                    <th>Audio</th>
                     <th><fmt:message key="revision" /></th>
                 </thead>
                 <tbody>

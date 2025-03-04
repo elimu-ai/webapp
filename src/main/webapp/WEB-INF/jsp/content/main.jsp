@@ -106,17 +106,6 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">audiotrack</i> <fmt:message key="audios" /></span>
-                </div>
-                <div class="card-action">
-                    <a href="<spring:url value='/content/multimedia/audio/list' />"><fmt:message key="view.list" /> (${audioCount})</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-content">
                     <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
                 </div>
                 <div class="card-action">

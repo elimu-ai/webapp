@@ -319,35 +319,8 @@
     </div>
 </content:section>
 
-<content:aside>
-    <h5 class="center"><fmt:message key="audio" /></h5>
-    <c:choose>
-        <c:when test="${empty audios}">
-            <div class="card-panel amber lighten-3">
-                <b>Warning:</b> This word has no corresponding audio.<br />
-                <a href="<spring:url value='/content/multimedia/audio/create?wordId=${word.id}&autoFillTitle=word_${word.text}&autoFillTranscription=${word.text}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <c:forEach var="audio" items="${audios}" varStatus="status">
-                <audio controls="true"<c:if test="${status.index == 0}"> autoplay="true"</c:if>>
-                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
-                </audio>
-                <div style="margin-bottom: 1rem; font-size: 0.8rem;">
-                    <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />" target="_blank">
-                        <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
-                    </a>
-                </div>
-                <div style="clear: both;"></div>
-            </c:forEach>
-        </c:otherwise>
-    </c:choose>
-    
+<content:aside> 
     <c:if test="${applicationScope.configProperties['content.language'] == 'TGL'}">
-        <c:if test="${not empty word.text}">
-            <div class="divider" style="margin: 1.5em 0;"></div>
-        </c:if>
-
         <h5 class="center"><fmt:message key="resources" /></h5>
         <div class="card-panel deep-purple lighten-5">
             For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
@@ -417,12 +390,6 @@
     <div class="divider" style="margin: 1.5em 0;"></div>
     
     <h5 class="center"><fmt:message key="labeled.content" /></h5>
-    
-    <b><fmt:message key="audios" /></b><br />
-    <div id="labeledAudios">
-        // TODO
-    </div>
-    <br />
     
     <b><fmt:message key="emojis" /></b><br />
     <div id="labeledEmojis">

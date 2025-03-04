@@ -23,7 +23,7 @@
         </li>
         <li>
             We keep track of each contributor's contributions. As an example, each 
-            time a contributor uploads a word's audio recording to the website, 
+            time a contributor uploads a video to the website, 
             we store information about this event. The reason for doing this is 
             so that other community members can peer review the content and 
             quality approve the contribution.
