@@ -43,8 +43,6 @@ public class StoryBookParagraphCreateController {
 
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  private final AudioDao audioDao;
-
   private final StoryBooksJsonService storyBooksJsonService;
 
   @GetMapping
@@ -60,8 +58,6 @@ public class StoryBookParagraphCreateController {
     storyBookParagraph.setSortOrder(storyBookParagraphs.size());
 
     model.addAttribute("storyBookParagraph", storyBookParagraph);
-
-    model.addAttribute("audios", audioDao.readAllOrderedByTitle());
 
     model.addAttribute("timeStart", System.currentTimeMillis());
 
@@ -82,7 +78,6 @@ public class StoryBookParagraphCreateController {
 
     if (result.hasErrors()) {
       model.addAttribute("storyBookParagraph", storyBookParagraph);
-      model.addAttribute("audios", audioDao.readAllOrderedByTitle());
       model.addAttribute("timeStart", request.getParameter("timeStart"));
       return "content/storybook/paragraph/create";
     } else {

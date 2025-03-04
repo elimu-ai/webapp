@@ -1,6 +1,5 @@
 package ai.elimu.web.content;
 
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
@@ -45,8 +44,6 @@ public class MainContentController {
 
   private final StoryBookDao storyBookDao;
 
-  private final AudioDao audioDao;
-
   private final ImageDao imageDao;
 
   private final VideoDao videoDao;
@@ -67,7 +64,6 @@ public class MainContentController {
     model.addAttribute("wordCount", wordDao.readCount());
     model.addAttribute("emojiCount", emojiDao.readCount());
     model.addAttribute("storyBookCount", storyBookDao.readCount());
-    model.addAttribute("audioCount", audioDao.readCount());
     model.addAttribute("imageCount", imageDao.readCount());
     model.addAttribute("videoCount", videoDao.readCount());
 

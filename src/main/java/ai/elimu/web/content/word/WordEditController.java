@@ -54,8 +54,6 @@ public class WordEditController {
 
   private final LetterSoundDao letterSoundDao;
 
-  private final AudioDao audioDao;
-
   private final EmojiDao emojiDao;
 
   private final ImageDao imageDao;
@@ -93,9 +91,6 @@ public class WordEditController {
 
     model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
     model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
-
-    List<Audio> audios = audioDao.readAll(word);
-    model.addAttribute("audios", audios);
 
     // Look up variants of the same wordByTextMatch
     model.addAttribute("wordInflections", wordDao.readInflections(word));
@@ -145,8 +140,6 @@ public class WordEditController {
 
       model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
       model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
-
-      model.addAttribute("audios", audioDao.readAll(word));
 
       // Look up variants of the same wordByTextMatch
       model.addAttribute("wordInflections", wordDao.readInflections(word));
