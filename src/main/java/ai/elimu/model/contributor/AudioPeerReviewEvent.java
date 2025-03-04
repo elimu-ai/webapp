@@ -9,6 +9,7 @@ import lombok.Setter;
 /**
  * An event where a {@link Contributor} peer-reviews a {@link Audio} which was added/edited by another {@link Contributor}.
  */
+@Deprecated
 @Getter
 @Setter
 @Entity

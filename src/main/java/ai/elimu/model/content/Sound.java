@@ -49,7 +49,7 @@ public class Sound extends Content {
   @Column(length = 5)
   private String valueSampa;
 
-  //    @NotNull
+  @Deprecated
   @OneToOne
   private Audio audio;
 
