@@ -90,10 +90,6 @@ ai.elimu:webapp:war:2.5.35-SNAPSHOT
 |  |  \- org.reactivestreams:reactive-streams:jar:1.0.2:compile
 |  \- org.java-websocket:Java-WebSocket:jar:1.3.8:compile
 +- org.aspectj:aspectjweaver:jar:1.9.22.1:compile
-+- com.googlecode.soundlibs:jlayer:jar:1.0.1.4:compile
-+- com.googlecode.soundlibs:tritonus-share:jar:0.3.7.4:compile
-+- com.googlecode.soundlibs:mp3spi:jar:1.9.5.4:compile
-+- org.bitbucket.ijabz:jaudiotagger:jar:3.0.1:compile
 +- com.googlecode.texhyphj:texhyphj:jar:1.2:compile
 +- net.dongliu:apk-parser:jar:2.6.10:compile
 +- jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:jar:3.0.0:compile

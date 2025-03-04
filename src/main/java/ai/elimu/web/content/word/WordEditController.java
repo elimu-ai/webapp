@@ -14,7 +14,6 @@ import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
@@ -95,7 +94,6 @@ public class WordEditController {
     model.addAttribute("wordInflections", wordDao.readInflections(word));
 
     // Look up Multimedia content that has been labeled with this Word
-    // TODO: labeled Audios
     List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word);
     model.addAttribute("labeledEmojis", labeledEmojis);
     List<Image> labeledImages = imageDao.readAllLabeled(word);
@@ -144,7 +142,6 @@ public class WordEditController {
       model.addAttribute("wordInflections", wordDao.readInflections(word));
 
       // Look up Multimedia content that has been labeled with this Word
-      // TODO: labeled Audios
       List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word);
       model.addAttribute("labeledEmojis", labeledEmojis);
       List<Image> labeledImages = imageDao.readAllLabeled(word);

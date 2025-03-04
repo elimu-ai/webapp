@@ -40,7 +40,6 @@ public class CsvSoundExtractionHelper {
                 "id",
                 "value_ipa",
                 "value_sampa",
-                "audio_id",
                 "diacritic",
                 "sound_type",
                 "usage_count"

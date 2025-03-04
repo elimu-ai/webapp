@@ -38,7 +38,6 @@ public class SoundCsvExportController {
             "id",
             "value_ipa",
             "value_sampa",
-            "audio_id",
             "diacritic",
             "sound_type",
             "usage_count"
@@ -47,15 +46,9 @@ public class SoundCsvExportController {
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
 
     for (Sound sound : sounds) {
-      Long audioId = null;
-      if (sound.getAudio() != null) {
-        audioId = sound.getAudio().getId();
-      }
-
       csvPrinter.printRecord(sound.getId(),
           sound.getValueIpa(),
           sound.getValueSampa(),
-          audioId,
           sound.isDiacritic(),
           sound.getSoundType(),
           sound.getUsageCount()

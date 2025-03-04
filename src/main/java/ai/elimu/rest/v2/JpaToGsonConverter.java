@@ -11,7 +11,6 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.v2.gson.application.ApplicationGson;
