@@ -71,7 +71,7 @@
                     <span class="card-title"><i class="material-icons">sms</i> <fmt:message key="words" /></span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/word/list' />"><fmt:message key="view.list" /> (${wordCount})</a>
+                    <a id="wordListLink" href="<spring:url value='/content/word/list' />"><fmt:message key="view.list" /> (${wordCount})</a>
                     <a href="<spring:url value='/content/word/peer-reviews' />"><fmt:message key="peer.review" /></a>
                 </div>
             </div>

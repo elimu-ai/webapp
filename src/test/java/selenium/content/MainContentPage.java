@@ -33,4 +33,9 @@ public class MainContentPage {
         WebElement link = driver.findElement(By.id("numberListLink"));
         link.click();
     }
+
+    public void pressWordListLink() {
+        WebElement link = driver.findElement(By.id("wordListLink"));
+        link.click();
+    }
 }
