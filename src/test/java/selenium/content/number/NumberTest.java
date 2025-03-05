@@ -51,6 +51,7 @@ public class NumberTest {
 
         NumberListPage numberListPage = new NumberListPage(driver);
         numberListPage.pressRandomNumber();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
 
         NumberEditPage numberEditPage = new NumberEditPage(driver);
     }

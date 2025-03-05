@@ -51,6 +51,7 @@ public class WordTest {
 
         WordListPage wordListPage = new WordListPage(driver);
         wordListPage.pressRandomWord();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
 
         WordEditPage wordEditPage = new WordEditPage(driver);
     }

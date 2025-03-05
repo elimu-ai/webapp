@@ -51,6 +51,7 @@ public class LetterSoundTest {
 
         LetterSoundListPage letterSoundListPage = new LetterSoundListPage(driver);
         letterSoundListPage.pressRandomLetterSound();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
 
         LetterSoundEditPage letterSoundEditPage = new LetterSoundEditPage(driver);
     }
