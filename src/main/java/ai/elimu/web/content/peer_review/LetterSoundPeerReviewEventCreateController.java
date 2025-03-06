@@ -65,7 +65,7 @@ public class LetterSoundPeerReviewEventCreateController {
           "Letter-sound peer-reviewed: " + contentUrl,
           "\"" + letterSoundContributionEvent.getLetterSound().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
           "Comment: \"" + letterSoundPeerReviewEvent.getComment() + "\"",
-          letterSoundPeerReviewEvent.getApproved(),
+          letterSoundPeerReviewEvent.isApproved(),
           null
       );
     }
@@ -74,7 +74,7 @@ public class LetterSoundPeerReviewEventCreateController {
     int approvedCount = 0;
     int notApprovedCount = 0;
     for (LetterSoundPeerReviewEvent peerReviewEvent : letterSoundPeerReviewEventDao.readAll(letterSoundContributionEvent)) {
-      if (peerReviewEvent.getApproved()) {
+      if (peerReviewEvent.isApproved()) {
         approvedCount++;
       } else {
         notApprovedCount++;

@@ -67,7 +67,7 @@ public class AudioPeerReviewEventCreateController {
           "Audio peer-reviewed: " + contentUrl,
           "\"" + audioContributionEvent.getAudio().getTitle() + "\"",
           "Comment: \"" + audioPeerReviewEvent.getComment() + "\"",
-          audioPeerReviewEvent.getApproved(),
+          audioPeerReviewEvent.isApproved(),
           null
       );
     }
@@ -76,7 +76,7 @@ public class AudioPeerReviewEventCreateController {
     int approvedCount = 0;
     int notApprovedCount = 0;
     for (AudioPeerReviewEvent peerReviewEvent : audioPeerReviewEventDao.readAll(audioContributionEvent)) {
-      if (peerReviewEvent.getApproved()) {
+      if (peerReviewEvent.isApproved()) {
         approvedCount++;
       } else {
         notApprovedCount++;

@@ -216,7 +216,7 @@
 
     create table AudioPeerReviewEvent (
        id bigint not null auto_increment,
-        approved bit,
+        approved bit not null,
         comment text,
         timestamp datetime,
         contributor_id bigint,
@@ -416,7 +416,7 @@
 
     create table LetterSoundPeerReviewEvent (
        id bigint not null auto_increment,
-        approved bit,
+        approved bit not null,
         comment text,
         timestamp datetime,
         contributor_id bigint,
@@ -456,7 +456,7 @@
 
     create table NumberPeerReviewEvent (
        id bigint not null auto_increment,
-        approved bit,
+        approved bit not null,
         comment text,
         timestamp datetime,
         contributor_id bigint,
@@ -565,7 +565,7 @@
 
     create table StoryBookPeerReviewEvent (
        id bigint not null auto_increment,
-        approved bit,
+        approved bit not null,
         comment text,
         timestamp datetime,
         contributor_id bigint,
@@ -697,7 +697,7 @@
 
     create table WordPeerReviewEvent (
        id bigint not null auto_increment,
-        approved bit,
+        approved bit not null,
         comment text,
         timestamp datetime,
         contributor_id bigint,

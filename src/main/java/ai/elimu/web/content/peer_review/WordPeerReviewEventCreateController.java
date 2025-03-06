@@ -63,7 +63,7 @@ public class WordPeerReviewEventCreateController {
           "Word peer-reviewed: " + contentUrl,
           "\"" + wordContributionEvent.getWord().getText() + "\"",
           "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",
-          wordPeerReviewEvent.getApproved(),
+          wordPeerReviewEvent.isApproved(),
           null
       );
     }
@@ -72,7 +72,7 @@ public class WordPeerReviewEventCreateController {
     int approvedCount = 0;
     int notApprovedCount = 0;
     for (WordPeerReviewEvent peerReviewEvent : wordPeerReviewEventDao.readAll(wordContributionEvent)) {
-      if (peerReviewEvent.getApproved()) {
+      if (peerReviewEvent.isApproved()) {
         approvedCount++;
       } else {
         notApprovedCount++;

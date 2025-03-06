@@ -63,7 +63,7 @@ public class NumberPeerReviewEventCreateController {
           "Number peer-reviewed: " + contentUrl,
           "\"" + numberContributionEvent.getNumber().getValue() + "\"",
           "Comment: \"" + numberPeerReviewEvent.getComment() + "\"",
-          numberPeerReviewEvent.getApproved(),
+          numberPeerReviewEvent.isApproved(),
           null
       );
     }
@@ -72,7 +72,7 @@ public class NumberPeerReviewEventCreateController {
     int approvedCount = 0;
     int notApprovedCount = 0;
     for (NumberPeerReviewEvent peerReviewEvent : numberPeerReviewEventDao.readAll(numberContributionEvent)) {
-      if (peerReviewEvent.getApproved()) {
+      if (peerReviewEvent.isApproved()) {
         approvedCount++;
       } else {
         notApprovedCount++;
