@@ -37,28 +37,3 @@
         </form:form>
     </div>
 </content:section>
-
-<content:aside>
-    <h5 class="center"><fmt:message key="audios" /></h5>
-    <c:choose>
-        <c:when test="${empty audios}">
-            <div class="card-panel amber lighten-3">
-                <b>Warning:</b> This paragraph has no corresponding audio.<br />
-                <a href="<spring:url value='/content/multimedia/audio/create?paragraphId=${storyBookParagraph.id}&autoFillTitle=storybook-${storyBookParagraph.storyBookChapter.storyBook.id}-ch-${storyBookParagraph.storyBookChapter.sortOrder + 1}-par-${storyBookParagraph.sortOrder + 1}&autoFillTranscription=${storyBookParagraph.originalText}' />" target="_blank"><fmt:message key="add.audio" /> <i class="material-icons">launch</i></a>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <c:forEach var="audio" items="${audios}" varStatus="status">
-                <audio controls="true"<c:if test="${status.index == 0}"> autoplay="true"</c:if>>
-                    <source src="<spring:url value='/audio/${audio.id}_r${audio.revisionNumber}.${fn:toLowerCase(audio.audioFormat)}' />" />
-                </audio>
-                <div style="margin-bottom: 1rem; font-size: 0.8rem;">
-                    <a href="<spring:url value='/content/multimedia/audio/edit/${audio.id}' />" target="_blank">
-                        <fmt:formatDate value="${audio.timeLastUpdate.time}" pattern="yyyy-MM-dd HH:mm" />
-                    </a>
-                </div>
-                <div style="clear: both;"></div>
-            </c:forEach>
-        </c:otherwise>
-    </c:choose>
-</content:aside>

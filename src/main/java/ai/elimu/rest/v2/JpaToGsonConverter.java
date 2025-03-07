@@ -11,13 +11,11 @@ import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.content.multimedia.Video;
 import ai.elimu.model.v2.gson.application.ApplicationGson;
 import ai.elimu.model.v2.gson.application.ApplicationVersionGson;
 import ai.elimu.model.v2.gson.content.SoundGson;
-import ai.elimu.model.v2.gson.content.AudioGson;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.model.v2.gson.content.ImageGson;
 import ai.elimu.model.v2.gson.content.LetterGson;
@@ -220,31 +218,6 @@ public class JpaToGsonConverter {
         }
     }
     
-    public static AudioGson getAudioGson(Audio audio) {
-        if (audio == null) {
-            return null;
-        } else {
-            AudioGson audioGson = new AudioGson();
-            
-            // BaseEntity
-            audioGson.setId(audio.getId());
-            
-            // Content
-            audioGson.setRevisionNumber(audio.getRevisionNumber());
-            audioGson.setUsageCount(audio.getUsageCount());
-            
-            // Audio
-            audioGson.setTitle(audio.getTitle());
-            audioGson.setTranscription(audio.getTranscription());
-            audioGson.setAudioFormat(audio.getAudioFormat());
-            audioGson.setBytesUrl("/audio/" + audio.getId() + "_r" + audio.getRevisionNumber() + "." + audio.getAudioFormat().toString().toLowerCase());
-            audioGson.setBytesSize(audio.getBytes().length / 1024);
-            audioGson.setDurationMs(audio.getDurationMs());
-            
-            return audioGson;
-        }
-    }
-    
     public static StoryBookGson getStoryBookGson(StoryBook storyBook) {
         if (storyBook == null) {
             return null;
@@ -384,6 +357,7 @@ public class JpaToGsonConverter {
                 wordGson.setId(word.getId());
                 wordGsons.add(wordGson);
             }
+            videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             videoGson.setWords(wordGsons);
             
             return videoGson;

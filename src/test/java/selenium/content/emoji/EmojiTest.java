@@ -51,6 +51,7 @@ public class EmojiTest {
 
         EmojiListPage emojiListPage = new EmojiListPage(driver);
         emojiListPage.pressRandomEmoji();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
 
         EmojiEditPage emojiEditPage = new EmojiEditPage(driver);
     }

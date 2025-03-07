@@ -1,6 +1,5 @@
 package ai.elimu.web.content.multimedia.image;
 
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
@@ -11,7 +10,6 @@ import ai.elimu.model.content.Emoji;
 import ai.elimu.model.content.Letter;
 import ai.elimu.model.content.Number;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.ImageContributionEvent;
@@ -68,8 +66,6 @@ public class ImageEditController {
 
   private final EmojiDao emojiDao;
 
-  private final AudioDao audioDao;
-
   @GetMapping
   public String handleRequest(
       HttpServletRequest request,
@@ -92,9 +88,6 @@ public class ImageEditController {
     model.addAttribute("numbers", numberDao.readAllOrdered());
     model.addAttribute("words", wordDao.readAllOrdered());
     model.addAttribute("emojisByWordId", getEmojisByWordId());
-
-    Audio audio = audioDao.readByTranscription(image.getTitle());
-    model.addAttribute("audio", audio);
 
     return "content/multimedia/image/edit";
   }
@@ -166,9 +159,6 @@ public class ImageEditController {
       model.addAttribute("numbers", numberDao.readAllOrdered());
       model.addAttribute("words", wordDao.readAllOrdered());
       model.addAttribute("emojisByWordId", getEmojisByWordId());
-
-      Audio audio = audioDao.readByTranscription(image.getTitle());
-      model.addAttribute("audio", audio);
 
       return "content/multimedia/image/edit";
     } else {

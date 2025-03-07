@@ -1,6 +1,5 @@
 package ai.elimu.web.content.word;
 
-import ai.elimu.dao.AudioDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterSoundDao;
@@ -15,7 +14,6 @@ import ai.elimu.model.content.LetterSound;
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Syllable;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.model.contributor.Contributor;
 import ai.elimu.model.contributor.WordContributionEvent;
@@ -53,8 +51,6 @@ public class WordEditController {
   private final WordDao wordDao;
 
   private final LetterSoundDao letterSoundDao;
-
-  private final AudioDao audioDao;
 
   private final EmojiDao emojiDao;
 
@@ -94,14 +90,10 @@ public class WordEditController {
     model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
     model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
 
-    List<Audio> audios = audioDao.readAll(word);
-    model.addAttribute("audios", audios);
-
     // Look up variants of the same wordByTextMatch
     model.addAttribute("wordInflections", wordDao.readInflections(word));
 
     // Look up Multimedia content that has been labeled with this Word
-    // TODO: labeled Audios
     List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word);
     model.addAttribute("labeledEmojis", labeledEmojis);
     List<Image> labeledImages = imageDao.readAllLabeled(word);
@@ -146,13 +138,10 @@ public class WordEditController {
       model.addAttribute("wordContributionEvents", wordContributionEventDao.readAll(word));
       model.addAttribute("wordPeerReviewEvents", wordPeerReviewEventDao.readAll(word));
 
-      model.addAttribute("audios", audioDao.readAll(word));
-
       // Look up variants of the same wordByTextMatch
       model.addAttribute("wordInflections", wordDao.readInflections(word));
 
       // Look up Multimedia content that has been labeled with this Word
-      // TODO: labeled Audios
       List<Emoji> labeledEmojis = emojiDao.readAllLabeled(word);
       model.addAttribute("labeledEmojis", labeledEmojis);
       List<Image> labeledImages = imageDao.readAllLabeled(word);

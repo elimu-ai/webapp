@@ -2,17 +2,15 @@ package ai.elimu.model.content.multimedia;
 
 import ai.elimu.model.content.StoryBookParagraph;
 import ai.elimu.model.content.Word;
-import ai.elimu.model.v2.enums.content.AudioFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+@Deprecated
 @Getter
 @Setter
 @Entity
@@ -53,6 +51,5 @@ public class Audio extends Multimedia {
   private Long durationMs;
 
   @NotNull
-  @Enumerated(EnumType.STRING)
-  private AudioFormat audioFormat;
+  private String audioFormat;
 }

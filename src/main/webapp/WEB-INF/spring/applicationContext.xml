@@ -26,7 +26,6 @@
         <property name="converters">
             <list>
                 <bean class="ai.elimu.logic.converters.StringToApplicationConverter" />
-                <bean class="ai.elimu.logic.converters.StringToAudioConverter" />
                 <bean class="ai.elimu.logic.converters.StringToContributorConverter" />
                 <bean class="ai.elimu.logic.converters.StringToImageConverter" />
                 <bean class="ai.elimu.logic.converters.StringToLetterConverter" />

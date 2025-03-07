@@ -51,6 +51,7 @@ public class LetterTest {
 
         LetterListPage letterListPage = new LetterListPage(driver);
         letterListPage.pressRandomLetter();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
 
         LetterEditPage letterEditPage = new LetterEditPage(driver);
     }
