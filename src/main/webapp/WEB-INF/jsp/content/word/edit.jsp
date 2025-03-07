@@ -267,7 +267,7 @@
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">
                     <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
-                        <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.getApproved()}">
                             <div class="col s4">
                                 <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
@@ -296,7 +296,7 @@
                             <div class="col s4">
                                 <code class="peerReviewStatus">
                                     <c:choose>
-                                        <c:when test="${wordPeerReviewEvent.isApproved()}">
+                                        <c:when test="${wordPeerReviewEvent.getApproved()}">
                                             APPROVED
                                         </c:when>
                                         <c:otherwise>

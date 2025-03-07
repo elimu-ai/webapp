@@ -68,7 +68,7 @@ public class StoryBookPeerReviewEventCreateController {
           "Storybook peer-reviewed: " + contentUrl,
           "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
           "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",
-          storyBookPeerReviewEvent.isApproved(),
+          storyBookPeerReviewEvent.getApproved(),
           embedThumbnailUrl
       );
     }
@@ -77,7 +77,7 @@ public class StoryBookPeerReviewEventCreateController {
     int approvedCount = 0;
     int notApprovedCount = 0;
     for (StoryBookPeerReviewEvent peerReviewEvent : storyBookPeerReviewEventDao.readAll(storyBookContributionEvent)) {
-      if (peerReviewEvent.isApproved()) {
+      if (peerReviewEvent.getApproved()) {
         approvedCount++;
       } else {
         notApprovedCount++;

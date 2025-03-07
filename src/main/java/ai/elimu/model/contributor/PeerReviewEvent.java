@@ -27,7 +27,7 @@ public class PeerReviewEvent extends BaseEntity {
    * Whether or not the {@link ContributionEvent} was approved.
    */
   @NotNull
-  private boolean approved;
+  private Boolean approved;
 
   /**
    * Any additional explanations. This field is mandatory only if the {@link ContributionEvent} was <i>not</i> approved.
