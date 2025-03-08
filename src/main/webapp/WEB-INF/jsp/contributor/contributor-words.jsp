@@ -35,7 +35,7 @@
                         <td>
                             <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEventsByContributionMap[wordContributionEvent.id]}">
                                 <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
-                                    <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                                    <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.getApproved()}">
                                         <div class="col s4">
                                             <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                                 <div class="chip">
@@ -64,7 +64,7 @@
                                         <div class="col s4">
                                             <code class="peerReviewStatus">
                                                 <c:choose>
-                                                    <c:when test="${wordPeerReviewEvent.isApproved()}">
+                                                    <c:when test="${wordPeerReviewEvent.getApproved()}">
                                                         APPROVED
                                                     </c:when>
                                                     <c:otherwise>
@@ -109,7 +109,7 @@
                     <c:set var="word" value="${wordPeerReviewEvent.wordContributionEvent.word}" />
                     <tr>
                         <td>
-                            <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                            <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.getApproved()}">
                                 <div class="col s4">
                                     <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                         <div class="chip">
@@ -138,7 +138,7 @@
                                 <div class="col s4">
                                     <code class="peerReviewStatus">
                                         <c:choose>
-                                            <c:when test="${wordPeerReviewEvent.isApproved()}">
+                                            <c:when test="${wordPeerReviewEvent.getApproved()}">
                                                 APPROVED
                                             </c:when>
                                             <c:otherwise>

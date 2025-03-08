@@ -37,7 +37,7 @@
                         <td>
                             <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEventsByContributionMap[storyBookContributionEvent.id]}">
                                 <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
-                                    <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
+                                    <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.getApproved()}">
                                         <div class="col s4">
                                             <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
                                                 <div class="chip">
@@ -66,7 +66,7 @@
                                         <div class="col s4">
                                             <code class="peerReviewStatus">
                                                 <c:choose>
-                                                    <c:when test="${storyBookPeerReviewEvent.isApproved()}">
+                                                    <c:when test="${storyBookPeerReviewEvent.getApproved()}">
                                                         APPROVED
                                                     </c:when>
                                                     <c:otherwise>
@@ -111,7 +111,7 @@
                     <c:set var="storyBook" value="${storyBookPeerReviewEvent.storyBookContributionEvent.storyBook}" />
                     <tr>
                         <td>
-                            <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.isApproved()}">
+                            <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.getApproved()}">
                                 <div class="col s4">
                                     <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
                                         <div class="chip">
@@ -140,7 +140,7 @@
                                 <div class="col s4">
                                     <code class="peerReviewStatus">
                                         <c:choose>
-                                            <c:when test="${storyBookPeerReviewEvent.isApproved()}">
+                                            <c:when test="${storyBookPeerReviewEvent.getApproved()}">
                                                 APPROVED
                                             </c:when>
                                             <c:otherwise>

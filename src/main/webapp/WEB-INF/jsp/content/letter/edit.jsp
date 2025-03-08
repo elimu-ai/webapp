@@ -103,7 +103,7 @@
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="letterPeerReviewEvent" items="${letterPeerReviewEvents}">
                     <c:if test="${letterPeerReviewEvent.letterContributionEvent.id == letterContributionEvent.id}">
-                        <div class="row peerReviewEvent indent" data-approved="${letterPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${letterPeerReviewEvent.getApproved()}">
                             <div class="col s4">
                                 <a href="<spring:url value='/contributor/${letterPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
@@ -132,7 +132,7 @@
                             <div class="col s4">
                                 <code class="peerReviewStatus">
                                     <c:choose>
-                                        <c:when test="${letterPeerReviewEvent.isApproved()}">
+                                        <c:when test="${letterPeerReviewEvent.getApproved()}">
                                             APPROVED
                                         </c:when>
                                         <c:otherwise>
