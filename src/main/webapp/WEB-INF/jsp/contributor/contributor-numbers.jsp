@@ -39,7 +39,7 @@
                         <td>
                             <c:forEach var="numberPeerReviewEvent" items="${numberPeerReviewEventsByContributionMap[numberContributionEvent.id]}">
                                 <c:if test="${numberPeerReviewEvent.numberContributionEvent.id == numberContributionEvent.id}">
-                                    <div class="row peerReviewEvent indent" data-approved="${numberPeerReviewEvent.isApproved()}">
+                                    <div class="row peerReviewEvent indent" data-approved="${numberPeerReviewEvent.getApproved()}">
                                         <div class="col s4">
                                             <a href="<spring:url value='/contributor/${numberPeerReviewEvent.contributor.id}' />">
                                                 <div class="chip">
@@ -68,7 +68,7 @@
                                         <div class="col s4">
                                             <code class="peerReviewStatus">
                                                 <c:choose>
-                                                    <c:when test="${numberPeerReviewEvent.isApproved()}">
+                                                    <c:when test="${numberPeerReviewEvent.getApproved()}">
                                                         APPROVED
                                                     </c:when>
                                                     <c:otherwise>
@@ -113,7 +113,7 @@
                     <c:set var="number" value="${numberPeerReviewEvent.numberContributionEvent.number}" />
                     <tr>
                         <td>
-                            <div class="row peerReviewEvent" data-approved="${numberPeerReviewEvent.isApproved()}">
+                            <div class="row peerReviewEvent" data-approved="${numberPeerReviewEvent.getApproved()}">
                                 <div class="col s4">
                                     <a href="<spring:url value='/contributor/${numberPeerReviewEvent.contributor.id}' />">
                                         <div class="chip">
@@ -142,7 +142,7 @@
                                 <div class="col s4">
                                     <code class="peerReviewStatus">
                                         <c:choose>
-                                            <c:when test="${numberPeerReviewEvent.isApproved()}">
+                                            <c:when test="${numberPeerReviewEvent.getApproved()}">
                                                 APPROVED
                                             </c:when>
                                             <c:otherwise>

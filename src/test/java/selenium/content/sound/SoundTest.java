@@ -51,6 +51,7 @@ public class SoundTest {
 
         SoundListPage soundListPage = new SoundListPage(driver);
         soundListPage.pressRandomSound();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
 
         SoundEditPage soundEditPage = new SoundEditPage(driver);
     }
