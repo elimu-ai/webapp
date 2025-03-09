@@ -357,6 +357,7 @@ public class JpaToGsonConverter {
                 wordGson.setId(word.getId());
                 wordGsons.add(wordGson);
             }
+            videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             videoGson.setWords(wordGsons);
             
             return videoGson;
