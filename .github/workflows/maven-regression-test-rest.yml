@@ -30,4 +30,6 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-test-rest -D base.url=http://tha.elimu.ai
+      - run: mvn compile
+      - run: mvn jetty:run &
+      - run: mvn verify -P regression-test-rest -D base.url=http://localhost:8080/webapp
