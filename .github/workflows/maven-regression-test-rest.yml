@@ -17,7 +17,10 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn clean
-      - run: mvn verify -P regression-test-rest -D base.url=http://eng.elimu.ai
+      - run: mvn compile
+      - run: mvn jetty:run &
+      - run: sleep 120
+      - run: mvn verify -P regression-test-rest
 
   test_rest_THA:
     needs: test_rest_ENG
