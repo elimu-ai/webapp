@@ -1,4 +1,4 @@
-name: Maven Regression Test (UI) - localhost
+name: Maven Regression Test (UI)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test_ui:
+  test_ui_localhost:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
