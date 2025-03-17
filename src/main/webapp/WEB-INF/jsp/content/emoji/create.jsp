@@ -16,12 +16,12 @@
                 
                 <div class="input-field col s12">
                     <form:label path="unicodeVersion" cssErrorClass="error"><fmt:message key='unicode.version' /></form:label>
-                    <form:input path="unicodeVersion" cssErrorClass="error" placeholder="9.0" />
+                    <form:input path="unicodeVersion" cssErrorClass="error" placeholder="10.0" />
                 </div>
                 
                 <div class="input-field col s12">
                     <form:label path="unicodeEmojiVersion" cssErrorClass="error"><fmt:message key='unicode.emoji.version' /></form:label>
-                    <form:input path="unicodeEmojiVersion" cssErrorClass="error" placeholder="3.0" />
+                    <form:input path="unicodeEmojiVersion" cssErrorClass="error" placeholder="5.0" />
                 </div>
             </div>
 

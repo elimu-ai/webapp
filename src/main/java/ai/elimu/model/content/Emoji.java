@@ -25,7 +25,7 @@ public class Emoji extends Content {
   /**
    * The Unicode version when the glyph was first introduced.
    * <p/>
-   * Should be 9.0 or lower, in order to be compatible with Android SDK 7.0 (API level 24).
+   * Should be 10.0 or lower, in order to be compatible with Android SDK 8.0 (API level 26).
    */
   @NotNull
   private Double unicodeVersion;
@@ -33,9 +33,9 @@ public class Emoji extends Content {
   /**
    * The Unicode Emoji version when the glyph was first introduced.
    * <p/>
-   * Should be 3.0 or lower, in order to be compatible with Android SDK 7.0 (API level 24).
+   * Should be 5.0 or lower, in order to be compatible with Android SDK 8.0 (API level 26).
    * <p/>
-   * See https://unicode.org/Public/emoji/3.0/emoji-data.txt
+   * See https://unicode.org/Public/emoji/5.0/emoji-data.txt
    */
   @NotNull
   private Double unicodeEmojiVersion;
