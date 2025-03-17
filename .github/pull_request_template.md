@@ -14,11 +14,6 @@
 <!-- How can the reviewer verify the functionality or fix introduced by this PR? Please provide steps. -->
 * 
 
-### Regression Tests
-<!-- If this PR affects the frontend code or backend code, please run the regression tests on localhost. -->
-- [ ] I ran `mvn verify -P regression-test-rest`
-- [ ] I ran `mvn verify -P regression-test-ui`
-
 ### Screenshots
 <!-- If this PR affects the UI, please include before/after screenshots demonstrating the change(s). -->
 * 
