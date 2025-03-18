@@ -128,7 +128,7 @@ public class ApplicationVersionCreateController {
 
           Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
           if (minSdkVersion < MIN_SDK_VERSION) {
-            result.reject("TooLow.sdkVersionCode");
+            result.reject("TooLow.sdkVersion");
           }
           log.info("minSdkVersion: " + minSdkVersion);
           applicationVersion.setMinSdkVersion(minSdkVersion);
