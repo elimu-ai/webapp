@@ -40,6 +40,8 @@ public class ApplicationVersionCreateController {
 
   private final ApplicationVersionDao applicationVersionDao;
 
+  private final int MIN_SDK_VERSION = 26;
+
   @GetMapping
   public String handleRequest(
       @RequestParam Long applicationId,
@@ -125,6 +127,9 @@ public class ApplicationVersionCreateController {
           applicationVersion.setLabel(label);
 
           Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
+          if (minSdkVersion < MIN_SDK_VERSION) {
+            result.reject("TooLow.sdkVersionCode");
+          }
           log.info("minSdkVersion: " + minSdkVersion);
           applicationVersion.setMinSdkVersion(minSdkVersion);
 
