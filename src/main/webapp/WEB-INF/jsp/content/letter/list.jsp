@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="letters" /> (${fn:length(letters)})
+    Letters (${fn:length(letters)})
 </content:title>
 
 <content:section cssId="letterListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/letter/list/letters.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -18,16 +18,16 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            To add new content, click the button below.
         </p>
     
         <c:if test="${not empty letters}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="frequency" /></th>
-                    <th><fmt:message key="letter" /></th>
-                    <th><fmt:message key="diacritic" /></th>
-                    <th><fmt:message key="revision" /></th>
+                    <th>Frequency</th>
+                    <th>Letter</th>
+                    <th>Diacritic</th>
+                    <th>Revision</th>
                 </thead>
                 <tbody>
                     <c:forEach var="letter" items="${letters}">
@@ -45,10 +45,10 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${letter.diacritic}">
-                                        <fmt:message key="yes" />
+                                        Yes
                                     </c:when>
                                     <c:otherwise>
-                                        <fmt:message key="no" />
+                                        No
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -81,6 +81,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/letter/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add letter"><i class="material-icons">add</i></a>
     </div>
 </content:section>

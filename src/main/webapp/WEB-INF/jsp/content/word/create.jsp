@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.word" />
+    Add word
 </content:title>
 
 <content:section cssId="wordCreatePage">
@@ -12,7 +12,7 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
+                    <form:label path="text" cssErrorClass="error">Text</form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
                 
@@ -31,7 +31,7 @@
                 
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="letter.sound.correspondences" /></label><br />
+                    <label>Letter-sound correspondences</label><br />
                     
                     <div id="letterSoundsContainer">
                         <c:forEach var="letterSound" items="${word.letterSounds}">
@@ -69,7 +69,7 @@
                     </div>
 
                     <select id="letterSounds" class="browser-default" style="margin: 0.5em 0;">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="letterSound" items="${letterSounds}">
                             <option value="${letterSound.id}" data-letters="<c:forEach var="letter" items="${letterSound.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}</c:forEach>">" <c:forEach var="letter" items="${letterSound.letters}">${letter.text}<c:out value=" " /></c:forEach> " → / <c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}<c:out value=" " /></c:forEach> /</option>
                         </c:forEach>
@@ -95,7 +95,7 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter-sound/create' />" target="_blank"><fmt:message key="add.letter.sound.correspondence" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter-sound/create' />" target="_blank">Add letter-sound correspondence <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
@@ -103,12 +103,12 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="spellingConsistency" name="spellingConsistency">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="spellingConsistency" items="${spellingConsistencies}">
                             <option class="green" value="${spellingConsistency}" <c:if test="${spellingConsistency == word.spellingConsistency}">selected="selected"</c:if>><fmt:message key="spelling.consistency.${spellingConsistency}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="spellingConsistency"><fmt:message key="spelling.consistency" /></label>
+                    <label for="spellingConsistency">Grapheme-phoneme correspondence</label>
                 </div>
             </div>
             --%>
@@ -116,36 +116,36 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="rootWord" name="rootWord">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="rootWord" items="${rootWords}">
                             <option value="${rootWord.id}" <c:if test="${rootWord.id == word.rootWord.id}">selected="selected"</c:if>>${rootWord.text}<c:if test="${not empty rootWord.wordType}"> (${rootWord.wordType})</c:if><c:out value=" ${emojisByWordId[rootWord.id]}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="rootWord"><fmt:message key="root.word" /></label>
+                    <label for="rootWord">Root word</label>
                 </div>
             </div>
                 
             <div class="row">
                 <div class="input-field col s12">
                     <select id="wordType" name="wordType">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="wordType" items="${wordTypes}">
                             <option value="${wordType}" <c:if test="${wordType == word.wordType}">selected="selected"</c:if>>${wordType}</option>
                         </c:forEach>
                     </select>
-                    <label for="wordType"><fmt:message key="word.type" /></label>
+                    <label for="wordType">Word type</label>
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
@@ -157,7 +157,7 @@
             <div class="divider" style="margin: 1.5em 0;"></div>
         </c:if>
 
-        <h5 class="center"><fmt:message key="resources" /></h5>
+        <h5 class="center">Resources</h5>
         <div class="card-panel deep-purple lighten-5">
             For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
             <ol style="list-style-type: inherit;">
@@ -178,7 +178,7 @@
             <div class="divider" style="margin: 1.5em 0;"></div>
         </c:if>
 
-        <h5 class="center"><fmt:message key="resources" /></h5>
+        <h5 class="center">Resources</h5>
         <div class="card-panel deep-purple lighten-5">
             For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
             <ol style="list-style-type: inherit;">
@@ -196,7 +196,7 @@
         General resources:
         <ol style="list-style-type: inherit;">
             <li>
-                <a href="<spring:url value='/content/word/pending' />"><fmt:message key="words.pending" /></a>
+                <a href="<spring:url value='/content/word/pending' />">Words pending</a>
             </li>
             <li>
                 <a href="https://github.com/elimu-ai/wiki/blob/main/LOCALIZATION.md" target="_blank">elimu.ai Wiki</a>

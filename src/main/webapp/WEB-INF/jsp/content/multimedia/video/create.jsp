@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.video" />
+    Add video
 </content:title>
 
 <content:section cssId="videoCreatePage">
@@ -10,29 +10,29 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
+                    <form:label path="title" cssErrorClass="error">Title</form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
                             <option value="${contentLicense}" <c:if test="${contentLicense == video.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="contentLicense"><fmt:message key="content.license" /></label>
+                    <label for="contentLicense">Content license</label>
                 </div>
                 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">link</i>
-                    <form:label path="attributionUrl" cssErrorClass="error"><fmt:message key='attribution.url' /></form:label>
+                    <form:label path="attributionUrl" cssErrorClass="error">Attribution URL</form:label>
                     <form:input path="attributionUrl" cssErrorClass="error" type="url" />
                 </div>
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.literacy.skills" />
+                        What <i>literacy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="literacySkill" items="${literacySkills}">
                         <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(video.literacySkills, literacySkill)}">checked="checked"</c:if> />
@@ -44,7 +44,7 @@
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.numeracy.skills" />
+                        What <i>numeracy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
                         <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(video.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
@@ -56,7 +56,7 @@
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span><fmt:message key='file' /> (M4V/MP4)</span>
+                        <span>File (M4V/MP4)</span>
                         <form:input path="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
@@ -66,7 +66,7 @@
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span><fmt:message key='thumbnail' /> (PNG)</span>
+                        <span>Thumbnail (PNG)</span>
                         <form:input path="thumbnail" type="file" />
                     </div>
                     <div class="file-path-wrapper">
@@ -76,7 +76,7 @@
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>

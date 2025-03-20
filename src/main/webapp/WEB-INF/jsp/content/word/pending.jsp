@@ -1,14 +1,14 @@
 <content:title>
-    <fmt:message key="words.pending" /> (${fn:length(wordFrequencyMap)})
+    Words pending (${fn:length(wordFrequencyMap)})
 </content:title>
 
 <content:section cssId="wordsPendingPage">
     <div class="section row">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="usage.count" /></th>
-                <th><fmt:message key="text" /></th>
-                <th><fmt:message key="add.word" /></th>
+                <th>Usage count</th>
+                <th>Text</th>
+                <th>Add word</th>
             </thead>
             <tbody>
                 <c:forEach var="wordFrequencyMapItem" items="${wordFrequencyMap}">
@@ -25,7 +25,7 @@
                             "<c:out value="${wordText}" />"
                         </td>
                         <td>
-                            <a href="<spring:url value='/content/word/create?autoFillText=${wordText}' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
+                            <a href="<spring:url value='/content/word/create?autoFillText=${wordText}' />" target="_blank">Add word <i class="material-icons">launch</i></a>
                         </td>
                     </tr>
                 </c:forEach>

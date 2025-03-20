@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.application" />
+    Edit application
 </content:title>
 
 <content:section cssId="applicationEditPage">
@@ -16,26 +16,26 @@
             <div class="row">
                 <form:hidden path="contributor" value="${application.contributor.id}" />
                 <div class="input-field col s6">
-                    <fmt:message key='package.name' />: <code>${application.packageName}</code>
+                    Package name: <code>${application.packageName}</code>
                     <form:hidden path="packageName" value="${application.packageName}" />
                 </div>
                 <div class="input-field col s6">
                     <select id="applicationStatus" name="applicationStatus">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="applicationStatus" items="${applicationStatuses}">
                             <option value="${applicationStatus}" <c:if test="${applicationStatus == application.applicationStatus}">selected="selected"</c:if>><c:out value="${applicationStatus}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="applicationStatus"><fmt:message key="status" /></label>
+                    <label for="applicationStatus">Status</label>
                 </div>
             </div>
                 
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="app.type" /></label><br />
+                    <label>App type</label><br />
                     <input type="checkbox" name="infrastructural" id="infrastructural" value="on" <c:if test="${application.infrastructural}">checked="checked"</c:if> />
                     <label for="infrastructural">
-                        <fmt:message key="infrastructural" />
+                        Infrastructural
                     </label>
                     <script>
                         $(function() {
@@ -56,7 +56,7 @@
             <div id="skillsContainer" <c:if test="${application.infrastructural}">style="display: none;"</c:if>>
                 <div class="row">
                     <div class="col s12 m6">
-                        <h5><fmt:message key="literacy.skills" /></h5>
+                        <h5>Literacy skills</h5>
                         <blockquote>
                             What <i>literacy</i> skill(s) does the application teach?
                         </blockquote>
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="col s12 m6">
-                        <h5><fmt:message key="numeracy.skills" /></h5>
+                        <h5>Numeracy skills</h5>
                         <blockquote>
                             What <i>numeracy</i> skill(s) does the application teach?
                         </blockquote>
@@ -84,7 +84,7 @@
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                Edit <i class="material-icons right">send</i>
             </button>
         </form:form>    
     </div>
@@ -93,20 +93,20 @@
         <div class="row">
             <div class="col s12">
                 <a name="versions"></a>
-                <h5><fmt:message key="application.versions" /></h5>
+                <h5>Application versions</h5>
                 <p>
-                    <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">file_upload</i><fmt:message key='upload.new.apk.file' /></a>
+                    <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">file_upload</i>Upload new APK file</a>
                 </p>
                 <c:if test="${not empty applicationVersions}">
                     <table class="bordered highlight">
                         <thead>
-                            <th><fmt:message key="label" /></th>
-                            <th><fmt:message key="version.code" /></th>
-                            <th><fmt:message key="version.name" /></th>
-                            <th><fmt:message key="file.size" /></th>
+                            <th>Label</th>
+                            <th>Version code</th>
+                            <th>Version name</th>
+                            <th>File size</th>
                             <th>minSdkVersion</th>
-                            <th><fmt:message key="time.uploaded" /></th>
-                            <th><fmt:message key="contributor" /></th>
+                            <th>Time uploaded</th>
+                            <th>Contributor</th>
                             <th><i class="material-icons">vertical_align_bottom</i></th>
                         </thead>
                         <tbody>
@@ -125,7 +125,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk' />" class="waves-effect waves-light btn-small" title="<fmt:message key="download" />">
+                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk' />" class="waves-effect waves-light btn-small" title="Download">
                                             <i class="material-icons">vertical_align_bottom</i>
                                         </a>
                                     </td>

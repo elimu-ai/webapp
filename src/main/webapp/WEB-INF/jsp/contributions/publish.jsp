@@ -34,7 +34,7 @@
         effective at teaching the children. The best-performing apps are then automatically promoted.
     </p>
     
-    <h4><fmt:message key="instructions" /></h4>
+    <h4>Instructions</h4>
     
     <ol class="browser-default">
         <li>Select <b>one</b> literacy/numeracy skill that your app/game will be teaching.</li>

@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="error.http.403" />
+    HTTP 403 Forbidden
 </content:title>
 
 <content:section cssId="errorPage" cssClass="code403">

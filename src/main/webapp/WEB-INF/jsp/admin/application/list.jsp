@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="applications" /> (${fn:length(applications)})
+    Applications (${fn:length(applications)})
 </content:title>
 
 <content:section cssId="applicationListPage">
@@ -32,17 +32,17 @@
         <hr />
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            To add new content, click the button below.
         </p>
         
         <c:if test="${not empty applications}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="package.name" /></th>
-                    <th><fmt:message key="literacy.skills" /></th>
-                    <th><fmt:message key="numeracy.skills" /></th>
-                    <th><fmt:message key="status" /></th>
-                    <th><fmt:message key="creator" /></th>
+                    <th>Package name</th>
+                    <th>Literacy skills</th>
+                    <th>Numeracy skills</th>
+                    <th>Status</th>
+                    <th>Creator</th>
                 </thead>
                 <tbody>
                     <c:forEach var="application" items="${applications}">
@@ -74,6 +74,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/admin/application/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.application" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/admin/application/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add application"><i class="material-icons">add</i></a>
     </div>
 </content:section>

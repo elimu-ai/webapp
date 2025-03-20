@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.image" />
+    Add image
 </content:title>
 
 <content:section cssId="imageCreatePage">
@@ -12,29 +12,29 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
+                    <form:label path="title" cssErrorClass="error">Title</form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
                             <option value="${contentLicense}" <c:if test="${contentLicense == image.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="contentLicense"><fmt:message key="content.license" /></label>
+                    <label for="contentLicense">Content license</label>
                 </div>
                 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">link</i>
-                    <form:label path="attributionUrl" cssErrorClass="error"><fmt:message key='attribution.url' /></form:label>
+                    <form:label path="attributionUrl" cssErrorClass="error">Attribution URL</form:label>
                     <form:input path="attributionUrl" cssErrorClass="error" type="url" />
                 </div>
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.literacy.skills" />
+                        What <i>literacy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="literacySkill" items="${literacySkills}">
                         <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(image.literacySkills, literacySkill)}">checked="checked"</c:if> />
@@ -46,7 +46,7 @@
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.numeracy.skills" />
+                        What <i>numeracy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
                         <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(image.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
@@ -58,7 +58,7 @@
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span><fmt:message key='file' /></span>
+                        <span>File</span>
                         <form:input path="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
@@ -69,13 +69,13 @@
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>

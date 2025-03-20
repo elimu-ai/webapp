@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.video" />
+    Edit video
 </content:title>
 
 <content:section cssId="videoEditPage">
@@ -14,29 +14,29 @@
                 <form:hidden path="contentType" value="${video.contentType}" />
                 
                 <div class="input-field col s12">
-                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
+                    <form:label path="title" cssErrorClass="error">Title</form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
                             <option value="${contentLicense}" <c:if test="${contentLicense == video.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="contentLicense"><fmt:message key="content.license" /></label>
+                    <label for="contentLicense">Content license</label>
                 </div>
                 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">link</i>
-                    <form:label path="attributionUrl" cssErrorClass="error"><fmt:message key='attribution.url' /></form:label>
+                    <form:label path="attributionUrl" cssErrorClass="error">Attribution URL</form:label>
                     <form:input path="attributionUrl" cssErrorClass="error" type="url" />
                 </div>
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.literacy.skills" />
+                        What <i>literacy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="literacySkill" items="${literacySkills}">
                         <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(video.literacySkills, literacySkill)}">checked="checked"</c:if> />
@@ -48,7 +48,7 @@
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.numeracy.skills" />
+                        What <i>numeracy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
                         <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(video.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
@@ -60,7 +60,7 @@
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span><fmt:message key='file' /> (M4V/MP4)</span>
+                        <span>File (M4V/MP4)</span>
                         <form:input path="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
@@ -70,7 +70,7 @@
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span><fmt:message key='thumbnail' /> (PNG)</span>
+                        <span>Thumbnail (PNG)</span>
                         <form:input path="thumbnail" type="file" />
                     </div>
                     <div class="file-path-wrapper">
@@ -80,15 +80,15 @@
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                Edit <i class="material-icons right">send</i>
             </button>
-            <a href="<spring:url value='/content/multimedia/video/delete/${video.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
+            <a href="<spring:url value='/content/multimedia/video/delete/${video.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
         </form:form>
     </div>
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="preview" /></h5>
+    <h5 class="center">Preview</h5>
     
     <div class="video card">
         <a class="valign-wrapper" href="<spring:url value='/video/${video.id}_r${video.revisionNumber}.${fn:toLowerCase(video.videoFormat)}' />" target="_blank">
@@ -101,9 +101,9 @@
     
     <div class="divider" style="margin-top: 1em;"></div>
     
-    <h5 class="center"><fmt:message key="content.labels" /></h5>
+    <h5 class="center">Content labels</h5>
     
-    <b><fmt:message key="letters" /></b><br />
+    <b>Letters</b><br />
     <div id="progressLetters" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
@@ -118,7 +118,7 @@
         </c:forEach>
     </div>
     <select id="letterId" class="browser-default">
-        <option value="">-- <fmt:message key='add.letter' /> --</option>
+        <option value="">-- Add letter --</option>
         <c:forEach var="letter" items="${letters}">
             <option value="${letter.id}"><c:out value="${letter.text}" /></option>
         </c:forEach>
@@ -181,7 +181,7 @@
         });
     </script>
     
-    <b><fmt:message key="numbers" /></b><br />
+    <b>Numbers</b><br />
     <div id="progressNumbers" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
@@ -198,7 +198,7 @@
         </c:forEach>
     </div>
     <select id="numberId" class="browser-default">
-        <option value="">-- <fmt:message key='add.number' /> --</option>
+        <option value="">-- Add number --</option>
         <c:forEach var="number" items="${numbers}">
             <option value="${number.id}"><c:out value="${number.value}" /><c:if test="${not empty number.symbol}"> (${number.symbol})</c:if></option>
         </c:forEach>
@@ -261,7 +261,7 @@
         });
     </script>
     
-    <b><fmt:message key="words" /></b><br />
+    <b>Words</b><br />
     <div id="progressWords" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
@@ -278,7 +278,7 @@
         </c:forEach>
     </div>
     <select id="wordId" class="browser-default">
-        <option value="">-- <fmt:message key='add.word' /> --</option>
+        <option value="">-- Add word --</option>
         <c:forEach var="word" items="${words}">
             <option value="${word.id}"><c:out value="${word.text}" /><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /></option>
         </c:forEach>
