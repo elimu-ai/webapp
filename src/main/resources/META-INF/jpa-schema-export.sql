@@ -21,8 +21,6 @@
 
     drop table if exists AudioContributionEvent;
 
-    drop table if exists AudioPeerReviewEvent;
-
     drop table if exists Contributor;
 
     drop table if exists Contributor_roles;
@@ -211,16 +209,6 @@
         timestamp datetime,
         contributor_id bigint,
         audio_id bigint,
-        primary key (id)
-    ) type=MyISAM;
-
-    create table AudioPeerReviewEvent (
-       id bigint not null auto_increment,
-        approved bit,
-        comment text,
-        timestamp datetime,
-        contributor_id bigint,
-        audioContributionEvent_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -801,16 +789,6 @@
        add constraint FKspea1r50sj31ovaw0cmsrdd1t 
        foreign key (audio_id) 
        references Audio (id);
-
-    alter table AudioPeerReviewEvent 
-       add constraint FKqacw1s4ljilnjcjp5ldqtbjti 
-       foreign key (contributor_id) 
-       references Contributor (id);
-
-    alter table AudioPeerReviewEvent 
-       add constraint FK9750pa9ak23p1y0lwft00vkch 
-       foreign key (audioContributionEvent_id) 
-       references AudioContributionEvent (id);
 
     alter table Contributor_roles 
        add constraint FKriv03x8alxet23b7b4ivk2vot 
