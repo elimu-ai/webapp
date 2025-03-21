@@ -457,7 +457,6 @@
         vowelFrontness varchar(255),
         vowelHeight varchar(255),
         vowelLength varchar(255),
-        audio_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -921,11 +920,6 @@
        add constraint FKtq7b81iqfw1dxuk79c2se2onu 
        foreign key (numberContributionEvent_id) 
        references NumberContributionEvent (id);
-
-    alter table Sound 
-       add constraint FKg3qs5563grk5e6f1idffmklh4 
-       foreign key (audio_id) 
-       references Audio (id);
 
     alter table SoundContributionEvent 
        add constraint FKbuah2o1ndo9kpbj39gr8tic3t 
