@@ -19,8 +19,6 @@
 
     drop table if exists Audio_Word;
 
-    drop table if exists AudioContributionEvent;
-
     drop table if exists Contributor;
 
     drop table if exists Contributor_roles;
@@ -199,17 +197,6 @@
        Audio_id bigint not null,
         words_id bigint not null,
         primary key (Audio_id, words_id)
-    ) type=MyISAM;
-
-    create table AudioContributionEvent (
-       id bigint not null auto_increment,
-        comment text,
-        revisionNumber integer,
-        timeSpentMs bigint,
-        timestamp datetime,
-        contributor_id bigint,
-        audio_id bigint,
-        primary key (id)
     ) type=MyISAM;
 
     create table Contributor (
@@ -778,16 +765,6 @@
     alter table Audio_Word 
        add constraint FKdt7dvkfoa2ne8ssgtq44s3yte 
        foreign key (Audio_id) 
-       references Audio (id);
-
-    alter table AudioContributionEvent 
-       add constraint FKk5x3wa0d4qp54r94o7tky3mrt 
-       foreign key (contributor_id) 
-       references Contributor (id);
-
-    alter table AudioContributionEvent 
-       add constraint FKspea1r50sj31ovaw0cmsrdd1t 
-       foreign key (audio_id) 
        references Audio (id);
 
     alter table Contributor_roles 
