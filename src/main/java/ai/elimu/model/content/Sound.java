@@ -1,6 +1,5 @@
 package ai.elimu.model.content;
 
-import ai.elimu.model.content.multimedia.Audio;
 import ai.elimu.model.v2.enums.content.sound.ConsonantPlace;
 import ai.elimu.model.v2.enums.content.sound.ConsonantType;
 import ai.elimu.model.v2.enums.content.sound.ConsonantVoicing;
@@ -13,7 +12,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -48,10 +46,6 @@ public class Sound extends Content {
   @Size(max = 5)
   @Column(length = 5)
   private String valueSampa;
-
-  @Deprecated
-  @OneToOne
-  private Audio audio;
 
   private boolean diacritic;
 
