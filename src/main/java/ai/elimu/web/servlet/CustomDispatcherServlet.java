@@ -39,7 +39,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            // To ease development, pre-populate database with educational content extracted from the prod server
+            // To ease development, pre-populate database with educational content exported from the prod server
             
             // Lookup the language of the educational content from the config file
             Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
