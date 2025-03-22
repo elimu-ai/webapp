@@ -4,7 +4,7 @@
   <groupId>ai.elimu</groupId>
   <artifactId>webapp</artifactId>
   <packaging>war</packaging>
-  <version>2.5.53</version>
+  <version>2.5.54-SNAPSHOT</version>
 
   <properties>
     <java.version>17</java.version>
@@ -151,7 +151,7 @@
     <connection>scm:git:git@github.com:elimu-ai/webapp.git</connection>
     <developerConnection>scm:git:https://github.com/elimu-ai/webapp.git</developerConnection>
     <url>https://github.com/elimu-ai/webapp</url>
-    <tag>webapp-2.5.53</tag>
+    <tag>webapp-2.5.10</tag>
   </scm>
   <distributionManagement>
     <repository>
