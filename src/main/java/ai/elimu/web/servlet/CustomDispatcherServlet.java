@@ -1,9 +1,7 @@
 package ai.elimu.web.servlet;
 
 import ai.elimu.model.v2.enums.Environment;
-import ai.elimu.model.v2.enums.Language;
 import ai.elimu.util.ConfigHelper;
-import ai.elimu.util.db.DbContentImportHelper;
 import ai.elimu.web.ConnectionProviderWeb;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.web.context.WebApplicationContext;
@@ -39,16 +37,6 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         new DbMigrationHelper().performDatabaseMigration(webApplicationContext);
         
         if (EnvironmentContextLoaderListener.env == Environment.DEV) {
-            // To ease development, pre-populate database with educational content exported from the prod server
-            
-            // Lookup the language of the educational content from the config file
-            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-            log.info("language: " + language);
-            
-            // Import the educational content
-            log.info("Performing database content import...");
-            new DbContentImportHelper().performDatabaseContentImport(Environment.PROD, language, webApplicationContext);
-            
             createJpaSchemaExport();
         }
 
