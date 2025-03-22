@@ -19,7 +19,7 @@ jobs:
       - run: mvn clean
       - run: mvn compile
       - run: mvn jetty:run &
-      - run: sleep 120
+      - run: sleep 30
       - run: mvn verify -P regression-test-rest
 
   test_ui_localhost:
@@ -35,5 +35,5 @@ jobs:
       - run: mvn clean
       - run: mvn compile
       - run: mvn jetty:run &
-      - run: sleep 120
+      - run: sleep 30
       - run: mvn verify -P regression-test-ui -D headless=true
