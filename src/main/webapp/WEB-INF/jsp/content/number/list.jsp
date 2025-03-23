@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="numbers" /> (${fn:length(numbers)})
+    Numbers (${fn:length(numbers)})
 </content:title>
 
 <content:section cssId="numberListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/number/list/numbers.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -18,16 +18,16 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />  You can also <a href="<spring:url value='/content/number/peer-reviews' />">peer-review</a> numbers.
+            To add new content, click the button below.  You can also <a href="<spring:url value='/content/number/peer-reviews' />">peer-review</a> numbers.
         </p>
         
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="value" /></th>
-                <th><fmt:message key="symbol" /></th>
-                <th><fmt:message key="number.words" /></th>
-                <th><fmt:message key="sounds" /></th>
-                <th><fmt:message key="revision" /></th>
+                <th>Value</th>
+                <th>Symbol</th>
+                <th>Number word(s)</th>
+                <th>Sounds</th>
+                <th>Revision</th>
             </thead>
             <tbody>
                 <c:forEach var="number" items="${numbers}">
@@ -78,6 +78,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="<spring:url value='/content/number/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.number" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/number/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add number"><i class="material-icons">add</i></a>
     </div>
 </content:section>

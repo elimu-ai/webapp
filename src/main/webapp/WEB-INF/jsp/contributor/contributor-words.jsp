@@ -1,5 +1,5 @@
 <div class="card-panel">
-    <h5><fmt:message key="contributions" /> (${fn:length(wordContributionEvents)})</h5>
+    <h5>Contributions (${fn:length(wordContributionEvents)})</h5>
     <c:if test="${empty wordContributionEvents}">
         <p>
             No word contributions.
@@ -8,11 +8,11 @@
     <c:if test="${not empty wordContributionEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="word" /></th>
-                <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="time" /></th>
-                <th><fmt:message key="comment" /></th>
-                <th><fmt:message key="peer.reviews" /></th>
+                <th>Word</th>
+                <th>Revision</th>
+                <th>Time</th>
+                <th>Comment</th>
+                <th>Peer-reviews</th>
             </thead>
             <tbody>
                 <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
@@ -91,7 +91,7 @@
 </div>
 
 <div class="card-panel">
-    <h5><fmt:message key="peer.reviews" /> (${fn:length(wordPeerReviewEvents)})</h5>
+    <h5>Peer-reviews (${fn:length(wordPeerReviewEvents)})</h5>
     <c:if test="${empty wordPeerReviewEvents}">
         <p>
             No word peer-reviews.
@@ -100,9 +100,9 @@
     <c:if test="${not empty wordPeerReviewEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="peer.review" /></th>
-                <th><fmt:message key="word" /></th>
-                <th><fmt:message key="contributor" /></th>
+                <th>Peer-review</th>
+                <th>Word</th>
+                <th>Contributor</th>
             </thead>
             <tbody>
                 <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">

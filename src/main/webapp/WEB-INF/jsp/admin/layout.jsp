@@ -49,19 +49,19 @@
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="applications" /></b></li>
-                        <li><a href="<spring:url value='/admin/application/list' />"><i class="material-icons left">android</i><fmt:message key="applications" /></a></li>
+                        <li class="grey-text"><b>Applications</b></li>
+                        <li><a href="<spring:url value='/admin/application/list' />"><i class="material-icons left">android</i>Applications</a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
-                    <a href="<spring:url value='/admin' />" class="breadcrumb"><fmt:message key="administration" /></a>
+                    <a href="<spring:url value='/admin' />" class="breadcrumb">Administration</a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
                         <c:choose>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')
                                             || fn:contains(pageContext.request.requestURI, '/admin/application-version/')
                                             && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/admin/application/list' />"><fmt:message key="applications" /></a>
+                                <a class="breadcrumb" href="<spring:url value='/admin/application/list' />">Applications</a>
                             </c:when>
                         </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
@@ -93,21 +93,21 @@
                             </div>
                         </a>
                         <ul id='contributorDropdown' class='dropdown-content'>
-                            <li><a href="<spring:url value='/contributor/${contributor.id}' />"><i class="material-icons left">art_track</i><fmt:message key="my.contributions" /></a></li>
+                            <li><a href="<spring:url value='/contributor/${contributor.id}' />"><i class="material-icons left">art_track</i>My contributions</a></li>
                             <li class="divider"></li>
-                            <li><a href="<spring:url value='/contributor/edit-name' />"><i class="material-icons left">mode_edit</i><fmt:message key="edit.name" /></a></li>
+                            <li><a href="<spring:url value='/contributor/edit-name' />"><i class="material-icons left">mode_edit</i>Edit name</a></li>
                             <%--<li class="divider"></li>
-                            <li><a href="<spring:url value='/content/contributor/edit-email' />"><i class="material-icons left">mail</i><fmt:message key="edit.email" /></a></li>--%>
+                            <li><a href="<spring:url value='/content/contributor/edit-email' />"><i class="material-icons left">mail</i>Edit e-mail</a></li>--%>
                             <c:if test="${fn:contains(contributor.roles, 'ADMIN')}">
                                 <li class="divider"></li>
-                                <li><a href="<spring:url value='/admin' />"><i class="material-icons left">build</i><fmt:message key="administration" /></a></li>
+                                <li><a href="<spring:url value='/admin' />"><i class="material-icons left">build</i>Administration</a></li>
                             </c:if>
                             <c:if test="${fn:contains(contributor.roles, 'ANALYST')}">
                                 <li class="divider"></li>
-                                <li><a href="<spring:url value='/analytics' />"><i class="material-icons left">timeline</i><fmt:message key="analytics" /></a></li>
+                                <li><a href="<spring:url value='/analytics' />"><i class="material-icons left">timeline</i>Analytics</a></li>
                             </c:if>
                             <li class="divider"></li>
-                            <li><a id="logout" href="<spring:url value='/sign-out' />"><i class="material-icons left">power_settings_new</i><fmt:message key="sign.out" /></a></li>
+                            <li><a id="logout" href="<spring:url value='/sign-out' />"><i class="material-icons left">power_settings_new</i>Sign out</a></li>
                         </ul>
                     </ul>
                     

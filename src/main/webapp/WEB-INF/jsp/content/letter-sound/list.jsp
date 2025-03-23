@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="letter.sound.correspondences" /> (${fn:length(letterSounds)})
+    Letter-sound correspondences (${fn:length(letterSounds)})
 </content:title>
 
 <content:section cssId="letterSoundListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/letter-sound/list/letter-sounds.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -18,19 +18,19 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" /> You can also 
+            To add new content, click the button below. You can also 
             <a href="<spring:url value='/content/letter-sound/peer-reviews' />">peer-review</a> letter-sound correspondences.
         </p>
     
         <c:if test="${not empty letterSounds}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="usage.count" /></th>
-                    <th><fmt:message key="letters" /></th>
+                    <th>Usage count</th>
+                    <th>Letters</th>
                     <th></th>
-                    <th><fmt:message key="sounds" /></th>
-                    <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="edit" /></th>
+                    <th>Sounds</th>
+                    <th>Revision</th>
+                    <th>Edit</th>
                 </thead>
                 <tbody>
                     <c:forEach var="letterSound" items="${letterSounds}">
@@ -81,6 +81,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="<spring:url value='/content/letter-sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.letter.sound.correspondence" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/letter-sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add letter-sound correspondence"><i class="material-icons">add</i></a>
     </div>
 </content:section>
