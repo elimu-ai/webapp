@@ -85,7 +85,13 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <div class="chip ${spellingConsistencyColor}">
-                                    <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
+                                    <c:choose>
+                                        <c:when test="${word.spellingConsistency == 'PERFECT'}">Perfect (100% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'HIGHLY_PHONEMIC'}">Highly phonemic (80%-99% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'PHONEMIC'}">Phonemic (60%-79% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'NON_PHONEMIC'}">Non-phonemic (40%-59% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'HIGHLY_NON_PHONEMIC'}">Highly non-phonemic (0%-39% correspondence)</c:when>
+                                    </c:choose>
                                 </div>
                             </td>
                             --%>

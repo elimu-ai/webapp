@@ -63,7 +63,19 @@
                         <c:forEach var="literacySkill" items="${literacySkills}">
                             <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(application.literacySkills, literacySkill)}">checked="checked"</c:if> />
                             <label for="${literacySkill}">
-                                <fmt:message key="literacy.skill.${literacySkill}" />
+                                <c:choose>
+                                    <c:when test="${literacySkill == 'CONCEPTS_ABOUT_PRINT'}">Concepts about print</c:when>
+                                    <c:when test="${literacySkill == 'PHONEMIC_AWARENESS'}">Phonemic awareness</c:when>
+                                    <c:when test="${literacySkill == 'ORAL_VOCABULARY'}">Oral vocabulary</c:when>
+                                    <c:when test="${literacySkill == 'LISTENING_COMPREHENSION'}">Listening comprehension</c:when>
+                                    <c:when test="${literacySkill == 'LETTER_IDENTIFICATION'}">Letter identification</c:when>
+                                    <c:when test="${literacySkill == 'SYLLABLE_NAMING'}">Syllable naming</c:when>
+                                    <c:when test="${literacySkill == 'NONWORD_READING'}">Nonword Reading</c:when>
+                                    <c:when test="${literacySkill == 'FAMILIAR_WORD_READING'}">Familiar word reading</c:when>
+                                    <c:when test="${literacySkill == 'ORAL_READING_FLUENCY'}">Oral reading fluency</c:when>
+                                    <c:when test="${literacySkill == 'DICTATION'}">Dictation (Sentence writing)</c:when>
+                                    <c:when test="${literacySkill == 'MAZE_CLOZE'}">Maze/Cloze (Reading comprehension)</c:when>                                    
+                                </c:choose>
                             </label><br />
                         </c:forEach>
                     </div>
@@ -76,7 +88,19 @@
                         <c:forEach var="numeracySkill" items="${numeracySkills}">
                             <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(application.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
                             <label for="${numeracySkill}">
-                                <fmt:message key="numeracy.skill.${numeracySkill}" />
+                                <c:choose>
+                                    <c:when test="${numeracySkill == 'ORAL_COUNTING'}">Oral counting</c:when>
+                                    <c:when test="${numeracySkill == 'ONE_TO_ONE_CORRESPONDENCE'}">One-to-one correspondence</c:when>
+                                    <c:when test="${numeracySkill == 'NUMBER_IDENTIFICATION'}">Number identification</c:when>
+                                    <c:when test="${numeracySkill == 'QUANTITY_DISCRIMINATION'}">Quantity discrimination</c:when>                                    
+                                    <c:when test="${numeracySkill == 'MISSING_NUMBER'}">Missing number</c:when>                                    
+                                    <c:when test="${numeracySkill == 'ADDITION'}">Addition</c:when>                                    
+                                    <c:when test="${numeracySkill == 'SUBTRACTION'}">Subtraction</c:when>                                    
+                                    <c:when test="${numeracySkill == 'MULTIPLICATION'}">Multiplication</c:when>                                    
+                                    <c:when test="${numeracySkill == 'WORD_PROBLEMS'}">Word problems</c:when>                                    
+                                    <c:when test="${numeracySkill == 'SHAPE_IDENTIFICATION'}">Shape identification</c:when>                                    
+                                    <c:when test="${numeracySkill == 'SHAPE_NAMING'}">Shape naming</c:when>                                    
+                                </c:choose>
                             </label><br />
                         </c:forEach>
                     </div>

@@ -124,7 +124,15 @@
                     <select id="spellingConsistency" name="spellingConsistency">
                         <option value="">-- Select --</option>
                         <c:forEach var="spellingConsistency" items="${spellingConsistencies}">
-                            <option value="${spellingConsistency}" <c:if test="${spellingConsistency == word.spellingConsistency}">selected="selected"</c:if>><fmt:message key="spelling.consistency.${spellingConsistency}" /></option>
+                            <option value="${spellingConsistency}" <c:if test="${spellingConsistency == word.spellingConsistency}">selected="selected"</c:if>>
+                                <c:choose>
+                                    <c:when test="${spellingConsistency == 'PERFECT'}">Perfect (100% correspondence)</c:when>
+                                    <c:when test="${spellingConsistency == 'HIGHLY_PHONEMIC'}">Highly phonemic (80%-99% correspondence)</c:when>
+                                    <c:when test="${spellingConsistency == 'PHONEMIC'}">Phonemic (60%-79% correspondence)</c:when>
+                                    <c:when test="${spellingConsistency == 'NON_PHONEMIC'}">Non-phonemic (40%-59% correspondence)</c:when>
+                                    <c:when test="${spellingConsistency == 'HIGHLY_NON_PHONEMIC'}">Highly non-phonemic (0%-39% correspondence)</c:when>
+                                </c:choose>
+                            </option>
                         </c:forEach>
                     </select>
                     <label for="spellingConsistency">Grapheme-phoneme correspondence</label>

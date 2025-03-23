@@ -22,7 +22,12 @@
                             <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookContributionEvent.id}' />" target="_blank">
                                 <c:out value="${storyBook.title}" />
                             </a><br/>
-                            <fmt:message key="reading.level.${storyBook.readingLevel}" />
+                            <c:choose>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL1'}">Level 1. Beginning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL2'}">Level 2. Learning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL3'}">Level 3. Reading Independently</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL4'}">Level 4. Reading Proficiently</c:when>
+                            </c:choose>
                         </td>
                         <td>
                             #${storyBookContributionEvent.revisionNumber}<br />
@@ -161,7 +166,12 @@
                             <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookPeerReviewEvent.storyBookContributionEvent.id}' />" target="_blank">
                                 <c:out value="${storyBook.title}" />
                             </a><br />
-                            <fmt:message key="reading.level.${storyBook.readingLevel}" />
+                            <c:choose>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL1'}">Level 1. Beginning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL2'}">Level 2. Learning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL3'}">Level 3. Reading Independently</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL4'}">Level 4. Reading Proficiently</c:when>
+                            </c:choose>
                         </td>
                         <td>
                             <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.id}' />">

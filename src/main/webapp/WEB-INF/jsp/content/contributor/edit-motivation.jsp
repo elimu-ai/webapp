@@ -15,7 +15,7 @@
             <form method="POST">
                 <c:if test="${not empty errorCode}">
                     <div id="errorPanel" class="card-panel red lighten-3">
-                        <fmt:message key="${errorCode}" />
+                        Personal motivation must be provided
                     </div>
                 </c:if>
                 

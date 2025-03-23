@@ -43,7 +43,7 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p>Level 1. Beginning to Read</p>
                         <p>Revision: #${storyBook.revisionNumber}</p>
                         <p>
                             Peer-review: 
@@ -91,7 +91,7 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p>Level 2. Learning to Read</p>
                         <p>Revision: ${storyBook.revisionNumber}</p>
                         <p>
                             Peer-review: 
@@ -139,7 +139,7 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p>Level 3. Reading Independently</p>
                         <p>Revision: ${storyBook.revisionNumber}</p>
                         <p>
                             Peer-review: 
@@ -187,7 +187,7 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
+                        <p>Level 4. Reading Proficiently</p>
                         <p>Revision: ${storyBook.revisionNumber}</p>
                         <p>
                             Peer-review: 
@@ -233,7 +233,6 @@
                         </a>
                         <div class="card-content">
                             <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                            <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
                             <p>Revision: ${storyBook.revisionNumber}</p>
                             <p>
                                 Peer-review: 
