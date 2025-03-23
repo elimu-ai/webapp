@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="error.http.404" />
+    HTTP 404 Not Found
 </content:title>
 
 <content:section cssId="errorPage" cssClass="code404">

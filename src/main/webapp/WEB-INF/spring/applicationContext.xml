@@ -87,12 +87,6 @@
             </props>
         </property>
     </bean>
-
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-          p:basenames="WEB-INF/i18n/messages, WEB-INF/i18n/errors"
-          p:defaultEncoding="UTF-8"
-          p:fileEncodings="UTF-8"
-          p:cacheSeconds="-1" />
     
     <!-- Configure caching -->
     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">

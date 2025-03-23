@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="sounds" /> (${fn:length(sounds)})
+    Sounds (${fn:length(sounds)})
 </content:title>
 
 <content:section cssId="soundListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/sound/list/sounds.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -18,18 +18,18 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            To add new content, click the button below.
         </p>
     
         <c:if test="${not empty sounds}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="frequency" /></th>
-                    <th><fmt:message key="ipa.value" /></th>
-                    <th><fmt:message key="sampa.value" /></th>
-                    <th><fmt:message key="sound.type" /></th>
+                    <th>Frequency</th>
+                    <th>IPA value</th>
+                    <th>X-SAMPA value</th>
+                    <th>Sound type</th>
                     <th>Audio</th>
-                    <th><fmt:message key="revision" /></th>
+                    <th>Revision</th>
                 </thead>
                 <tbody>
                     <c:forEach var="sound" items="${sounds}">
@@ -84,6 +84,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="<spring:url value='/content/sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.sound" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/sound/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add sound"><i class="material-icons">add</i></a>
     </div>
 </content:section>

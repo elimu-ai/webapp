@@ -1,5 +1,5 @@
 <div class="card-panel">
-    <h5><fmt:message key="contributions" /> (${fn:length(numberContributionEvents)})</h5>
+    <h5>Contributions (${fn:length(numberContributionEvents)})</h5>
     <c:if test="${empty numberContributionEvents}">
         <p>
             No number contributions.
@@ -8,11 +8,11 @@
     <c:if test="${not empty numberContributionEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="number" /></th>
-                <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="time" /></th>
-                <th><fmt:message key="comment" /></th>
-                <th><fmt:message key="peer.reviews" /></th>
+                <th>Number</th>
+                <th>Revision</th>
+                <th>Time</th>
+                <th>Comment</th>
+                <th>Peer-reviews</th>
             </thead>
             <tbody>
                 <c:forEach var="numberContributionEvent" items="${numberContributionEvents}">
@@ -95,7 +95,7 @@
 </div>
 
 <div class="card-panel">
-    <h5><fmt:message key="peer.reviews" /> (${fn:length(numberPeerReviewEvents)})</h5>
+    <h5>Peer-reviews (${fn:length(numberPeerReviewEvents)})</h5>
     <c:if test="${empty numberPeerReviewEvents}">
         <p>
             No number peer-reviews.
@@ -104,9 +104,9 @@
     <c:if test="${not empty numberPeerReviewEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="peer.review" /></th>
-                <th><fmt:message key="number" /></th>
-                <th><fmt:message key="contributor" /></th>
+                <th>Peer-review</th>
+                <th>Number</th>
+                <th>Contributor</th>
             </thead>
             <tbody>
                 <c:forEach var="numberPeerReviewEvent" items="${numberPeerReviewEvents}">

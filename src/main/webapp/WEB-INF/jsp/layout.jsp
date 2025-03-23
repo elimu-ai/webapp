@@ -18,7 +18,7 @@
 
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 
-                <meta name="description" content="<fmt:message key="we.are.an.open.community.with" />" />
+                <meta name="description" content="We are a community with the purpose of providing every child with access to quality basic education." />
                 <link rel="shortcut icon" href="<spring:url value='/static/img/favicon.ico' />" />
 
                 <meta property="og:image" content="https://${pageContext.request.serverName}/static/img/logo-256x256.png" />
@@ -61,7 +61,7 @@
                         </a>
                         <c:if test="${empty contributor}">
                             <ul class="right hide-on-med-and-down">
-                                <li><a href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
+                                <li><a href="<spring:url value='/sign-on' />">Sign on</a></li>
                             </ul>
                             <ul id="nav-mobile" class="side-nav">
                                 <c:choose>
@@ -109,7 +109,7 @@
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
-                                <li><a class="btn signOnBtn" href="<spring:url value='/sign-on' />"><fmt:message key="sign.on" /></a></li>
+                                <li><a class="btn signOnBtn" href="<spring:url value='/sign-on' />">Sign on</a></li>
                             </ul>
                         </c:if>
                         <c:if test="${not empty contributor}">
@@ -265,9 +265,9 @@
                             <p class="grey-text text-lighten-2">Read more about the project in the <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">Wiki</a>.</p>
                           </div>
                           <div class="col l3 offset-l1 s12 ">
-                            <h5 class="white-text"><fmt:message key="contact.us" /> 👋🏽</h5>
+                            <h5 class="white-text">Contact us 👋🏽</h5>
                             <p class="grey-text text-lighten-2">
-                                Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;"><fmt:message key="email" /></a> 
+                                Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;">E-mail</a> 
                                 or chat with us directly in Discord:
                             </p>
                             <a class="btn waves-effect waves-light deep-purple lighten-2" target="_blank" href="https://discord.gg/9rz4XYJJDE">
@@ -281,7 +281,7 @@
                                 <li><a class="white-text" href="https://www.facebook.com/elimuai" target="_blank">Facebook</a></li>
                                 <li><a class="white-text" href="https://www.instagram.com/elimu.ai" target="_blank">Instagram</a></li>
                                 <li><a class="white-text" href="https://www.linkedin.com/company/elimuai" target="_blank">LinkedIn</a></li>
-                                <li><a class="white-text" href="https://medium.com/elimu-ai" target="_blank"><fmt:message key="blog" /></a></li>
+                                <li><a class="white-text" href="https://medium.com/elimu-ai" target="_blank">Blog</a></li>
                             </ul>
                           </div>
                         </div>
@@ -290,8 +290,8 @@
                       <div class="container">
                           <div class="row">
                             <div class="col s12 m6">
-                                <a class="white-text" href="https://opensource.org/licenses/MIT">MIT License</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="https://github.com/elimu-ai">code repository</a><br />
-                                <a class="white-text" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &nbsp; | &nbsp; <fmt:message key="see.our" />&nbsp;<a class="white-text" href="<spring:url value='/content' />">content repository</a><br />
+                                <a class="white-text" href="https://opensource.org/licenses/MIT">MIT License</a> &nbsp; | &nbsp; See our&nbsp;<a class="white-text" href="https://github.com/elimu-ai">code repository</a><br />
+                                <a class="white-text" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &nbsp; | &nbsp; See our&nbsp;<a class="white-text" href="<spring:url value='/content' />">content repository</a><br />
                             </div>
                             <div class="col s12 m6 right-align">
                                 Supported languages: 

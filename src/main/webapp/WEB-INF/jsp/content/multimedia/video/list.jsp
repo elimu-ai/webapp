@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="videos" /> (${fn:length(videos)})
+    Videos (${fn:length(videos)})
 </content:title>
 
 <content:section cssId="videoListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/video/list/videos.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -18,7 +18,7 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" />
+            To add new content, click the button below.
         </p>
         
         <c:forEach var="video" items="${videos}">
@@ -35,10 +35,10 @@
                     <div class="card-content">
                         <h4>"${video.title}"</h4>
                         
-                        <p><fmt:message key="literacy.skills" />: ${video.literacySkills}</p>
-                        <p><fmt:message key="numeracy.skills" />: ${video.numeracySkills}</p>
+                        <p>Literacy skills: ${video.literacySkills}</p>
+                        <p>Numeracy skills: ${video.numeracySkills}</p>
                         <p>
-                            <fmt:message key="letters" />: 
+                            Letters: 
                             <c:forEach var="letter" items="${video.letters}">
                                 <div class="chip">
                                     ${letter.text}
@@ -46,7 +46,7 @@
                             </c:forEach>
                         </p>
                         <p>
-                            <fmt:message key="numbers" />: 
+                            Numbers: 
                             <c:forEach var="number" items="${video.numbers}">
                                 <div class="chip">
                                     ${number.value}
@@ -54,16 +54,16 @@
                             </c:forEach>
                         </p>
                         <p>
-                            <fmt:message key="words" />: 
+                            Words: 
                             <c:forEach var="word" items="${video.words}">
                                 <div class="chip">
                                     ${word.text}
                                 </div>
                             </c:forEach>
                         </p>
-                        <p><fmt:message key="revision" />: #${video.revisionNumber}</p>
+                        <p>Revision: #${video.revisionNumber}</p>
                         <div class="divider" style="margin: 1em 0;"></div>
-                        <a class="editLink" href="<spring:url value='/content/multimedia/video/edit/${video.id}' />"><i class="material-icons">edit</i><fmt:message key="edit" /></a>
+                        <a class="editLink" href="<spring:url value='/content/multimedia/video/edit/${video.id}' />"><i class="material-icons">edit</i>Edit</a>
                     </div>
                 </div>
             </div>
@@ -71,6 +71,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/multimedia/video/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.video" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/content/multimedia/video/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add video"><i class="material-icons">add</i></a>
     </div>
 </content:section>

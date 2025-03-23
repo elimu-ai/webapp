@@ -49,16 +49,16 @@
                         </li>
                         
                         <li class="divider"></li>
-                        <li class="grey-text"><b><fmt:message key="learning.events" /></b></li>
-                        <li><a href="<spring:url value='/analytics/letter-learning-event/list' />"><i class="material-icons left">text_format</i><fmt:message key="letters" /></a></li>
-                        <li><a href="<spring:url value='/analytics/word-learning-event/list' />"><i class="material-icons left">sms</i><fmt:message key="words" /></a></li>
-                        <li><a href="<spring:url value='/analytics/storybook-learning-event/list' />"><i class="material-icons left">book</i><fmt:message key="storybooks" /></a></li>
+                        <li class="grey-text"><b>Learning events</b></li>
+                        <li><a href="<spring:url value='/analytics/letter-learning-event/list' />"><i class="material-icons left">text_format</i>Letters</a></li>
+                        <li><a href="<spring:url value='/analytics/word-learning-event/list' />"><i class="material-icons left">sms</i>Words</a></li>
+                        <li><a href="<spring:url value='/analytics/storybook-learning-event/list' />"><i class="material-icons left">book</i>Storybooks</a></li>
                         <li><a href="<spring:url value='/analytics/video-learning-event/list' />"><i class="material-icons left">movie</i>Videos</a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/analytics' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s11">
-                    <a href="<spring:url value='/analytics' />" class="breadcrumb"><fmt:message key="analytics" /></a>
+                    <a href="<spring:url value='/analytics' />" class="breadcrumb">Analytics</a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/analytics/main.jsp')}">
                         <a class="breadcrumb"><content:gettitle /></a>
                     </c:if>

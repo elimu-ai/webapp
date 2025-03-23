@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.image" />
+    Edit image
 </content:title>
 
 <content:section cssId="imageEditPage">
@@ -30,53 +30,77 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
+                    <form:label path="title" cssErrorClass="error">Title</form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
                             <option value="${contentLicense}" <c:if test="${contentLicense == image.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="contentLicense"><fmt:message key="content.license" /></label>
+                    <label for="contentLicense">Content license</label>
                 </div>
                 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">link</i>
-                    <form:label path="attributionUrl" cssErrorClass="error"><fmt:message key='attribution.url' /></form:label>
+                    <form:label path="attributionUrl" cssErrorClass="error">Attribution URL</form:label>
                     <form:input path="attributionUrl" cssErrorClass="error" type="url" />
                 </div>
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.literacy.skills" />
+                        What <i>literacy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="literacySkill" items="${literacySkills}">
                         <input type="checkbox" name="literacySkills" id="${literacySkill}" value="${literacySkill}" <c:if test="${fn:contains(image.literacySkills, literacySkill)}">checked="checked"</c:if> />
                         <label for="${literacySkill}">
-                            <fmt:message key="literacy.skill.${literacySkill}" />
+                            <c:choose>
+                                <c:when test="${literacySkill == 'CONCEPTS_ABOUT_PRINT'}">Concepts about print</c:when>
+                                <c:when test="${literacySkill == 'PHONEMIC_AWARENESS'}">Phonemic awareness</c:when>
+                                <c:when test="${literacySkill == 'ORAL_VOCABULARY'}">Oral vocabulary</c:when>
+                                <c:when test="${literacySkill == 'LISTENING_COMPREHENSION'}">Listening comprehension</c:when>
+                                <c:when test="${literacySkill == 'LETTER_IDENTIFICATION'}">Letter identification</c:when>
+                                <c:when test="${literacySkill == 'SYLLABLE_NAMING'}">Syllable naming</c:when>
+                                <c:when test="${literacySkill == 'NONWORD_READING'}">Nonword Reading</c:when>
+                                <c:when test="${literacySkill == 'FAMILIAR_WORD_READING'}">Familiar word reading</c:when>
+                                <c:when test="${literacySkill == 'ORAL_READING_FLUENCY'}">Oral reading fluency</c:when>
+                                <c:when test="${literacySkill == 'DICTATION'}">Dictation (Sentence writing)</c:when>
+                                <c:when test="${literacySkill == 'MAZE_CLOZE'}">Maze/Cloze (Reading comprehension)</c:when>                                    
+                            </c:choose>
                         </label><br />
                     </c:forEach>
                 </div>
                 
                 <div class="col s12 m6">
                     <blockquote>
-                        <fmt:message key="what.numeracy.skills" />
+                        What <i>numeracy</i> skill(s) does the content teach?
                     </blockquote>
                     <c:forEach var="numeracySkill" items="${numeracySkills}">
                         <input type="checkbox" name="numeracySkills" id="${numeracySkill}" value="${numeracySkill}" <c:if test="${fn:contains(image.numeracySkills, numeracySkill)}">checked="checked"</c:if> />
                         <label for="${numeracySkill}">
-                            <fmt:message key="numeracy.skill.${numeracySkill}" />
+                            <c:choose>
+                                <c:when test="${numeracySkill == 'ORAL_COUNTING'}">Oral counting</c:when>
+                                <c:when test="${numeracySkill == 'ONE_TO_ONE_CORRESPONDENCE'}">One-to-one correspondence</c:when>
+                                <c:when test="${numeracySkill == 'NUMBER_IDENTIFICATION'}">Number identification</c:when>
+                                <c:when test="${numeracySkill == 'QUANTITY_DISCRIMINATION'}">Quantity discrimination</c:when>                                    
+                                <c:when test="${numeracySkill == 'MISSING_NUMBER'}">Missing number</c:when>                                    
+                                <c:when test="${numeracySkill == 'ADDITION'}">Addition</c:when>                                    
+                                <c:when test="${numeracySkill == 'SUBTRACTION'}">Subtraction</c:when>                                    
+                                <c:when test="${numeracySkill == 'MULTIPLICATION'}">Multiplication</c:when>                                    
+                                <c:when test="${numeracySkill == 'WORD_PROBLEMS'}">Word problems</c:when>                                    
+                                <c:when test="${numeracySkill == 'SHAPE_IDENTIFICATION'}">Shape identification</c:when>                                    
+                                <c:when test="${numeracySkill == 'SHAPE_NAMING'}">Shape naming</c:when>                                    
+                            </c:choose>
                         </label><br />
                     </c:forEach>
                 </div>
                 
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span><fmt:message key='file' /></span>
+                        <span>File</span>
                         <form:input path="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
@@ -87,16 +111,16 @@
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                Edit <i class="material-icons right">send</i>
             </button>
             <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
-                <a href="<spring:url value='/content/multimedia/image/delete/${image.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
+                <a href="<spring:url value='/content/multimedia/image/delete/${image.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
             </c:if>
         </form:form>
     </div>
@@ -106,12 +130,12 @@
     <%-- TODO: peer-review event form --%>
     
     <a name="contribution-events"></a>
-    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
+    <h5>Contributions 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="imageContributionEvent" items="${imageContributionEvents}">
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:message key="revision" /> #${imageContributionEvent.revisionNumber} 
+                    Revision #${imageContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${imageContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
@@ -149,9 +173,9 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="content.labels" /></h5>
+    <h5 class="center">Content labels</h5>
     
-    <b><fmt:message key="letters" /></b><br />
+    <b>Letters</b><br />
     <div id="progressLetters" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
@@ -166,7 +190,7 @@
         </c:forEach>
     </div>
     <select id="letterId" class="browser-default">
-        <option value="">-- <fmt:message key='add.letter' /> --</option>
+        <option value="">-- Add letter --</option>
         <c:forEach var="letter" items="${letters}">
             <option value="${letter.id}"><c:out value="${letter.text}" /></option>
         </c:forEach>
@@ -229,7 +253,7 @@
         });
     </script>
     
-    <b><fmt:message key="numbers" /></b><br />
+    <b>Numbers</b><br />
     <div id="progressNumbers" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
@@ -246,7 +270,7 @@
         </c:forEach>
     </div>
     <select id="numberId" class="browser-default">
-        <option value="">-- <fmt:message key='add.number' /> --</option>
+        <option value="">-- Add number --</option>
         <c:forEach var="number" items="${numbers}">
             <option value="${number.id}"><c:out value="${number.value}" /><c:if test="${not empty number.symbol}"> (${number.symbol})</c:if></option>
         </c:forEach>
@@ -309,7 +333,7 @@
         });
     </script>
     
-    <b><fmt:message key="words" /></b><br />
+    <b>Words</b><br />
     <div id="progressWords" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
@@ -326,7 +350,7 @@
         </c:forEach>
     </div>
     <select id="wordId" class="browser-default">
-        <option value="">-- <fmt:message key='add.word' /> --</option>
+        <option value="">-- Add word --</option>
         <c:forEach var="word" items="${words}">
             <option value="${word.id}"><c:out value="${word.text}" /><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /></option>
         </c:forEach>

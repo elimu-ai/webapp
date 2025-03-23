@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="upload.new.apk.file" />
+    Upload new APK file
 </content:title>
 
 <content:section cssId="applicationVersionCreatePage">
@@ -9,7 +9,7 @@
             <tag:formErrors modelAttribute="applicationVersion" />
             
             <p>
-                <fmt:message key='package.name' />: <code>${applicationVersion.application.packageName}</code>
+                Package name: <code>${applicationVersion.application.packageName}</code>
             </p>
 
             <div class="row">
@@ -23,7 +23,7 @@
                 </p>
                 <div class="file-field input-field col s8 offset-s2 center">
                     <div class="btn">
-                        <span><fmt:message key='file' /></span>
+                        <span>File</span>
                         <form:input path="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
@@ -47,7 +47,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         Once uploaded, the APK will become available for download to an Android device through the Appstore application:
         <ol style="list-style-type: inherit;">

@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="pending.review" /> (${fn:length(letterSoundContributionEventsPendingPeerReview)})
+    Pending review (${fn:length(letterSoundContributionEventsPendingPeerReview)})
 </content:title>
 
 <content:section cssId="letterSoundPeerReviewsPendingPage">
@@ -15,13 +15,13 @@
             </p>
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="letters" /></th>
+                    <th>Letters</th>
                     <th></th>
-                    <th><fmt:message key="sounds" /></th>
-                    <th><fmt:message key="contributor" /></th>
-                    <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="time" /></th>
-                    <th><fmt:message key="peer.review" /></th>
+                    <th>Sounds</th>
+                    <th>Contributor</th>
+                    <th>Revision</th>
+                    <th>Time</th>
+                    <th>Peer-review</th>
                 </thead>
                 <tbody>
                     <c:forEach var="letterSoundContributionEvent" items="${letterSoundContributionEventsPendingPeerReview}">
@@ -68,7 +68,7 @@
                                 <fmt:formatDate value="${letterSoundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                             </td>
                             <td>
-                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundContributionEvent.letterSound.id}#peer-review' />" target="_blank"><fmt:message key="peer.review" /></a>
+                                <a href="<spring:url value='/content/letter-sound/edit/${letterSoundContributionEvent.letterSound.id}#peer-review' />" target="_blank">Peer-review</a>
                             </td>
                         </tr>
                     </c:forEach>

@@ -1,5 +1,5 @@
 <div class="card-panel">
-    <h5><fmt:message key="contributions" /> (${fn:length(storyBookContributionEvents)})</h5>
+    <h5>Contributions (${fn:length(storyBookContributionEvents)})</h5>
     <c:if test="${empty storyBookContributionEvents}">
         <p>
             No storybook contributions.
@@ -8,11 +8,11 @@
     <c:if test="${not empty storyBookContributionEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="storybook" /></th>
-                <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="time" /></th>
-                <th><fmt:message key="comment" /></th>
-                <th><fmt:message key="peer.reviews" /></th>
+                <th>Storybook</th>
+                <th>Revision</th>
+                <th>Time</th>
+                <th>Comment</th>
+                <th>Peer-reviews</th>
             </thead>
             <tbody>
                 <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
@@ -22,7 +22,12 @@
                             <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookContributionEvent.id}' />" target="_blank">
                                 <c:out value="${storyBook.title}" />
                             </a><br/>
-                            <fmt:message key="reading.level.${storyBook.readingLevel}" />
+                            <c:choose>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL1'}">Level 1. Beginning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL2'}">Level 2. Learning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL3'}">Level 3. Reading Independently</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL4'}">Level 4. Reading Proficiently</c:when>
+                            </c:choose>
                         </td>
                         <td>
                             #${storyBookContributionEvent.revisionNumber}<br />
@@ -93,7 +98,7 @@
 </div>
 
 <div class="card-panel">
-    <h5><fmt:message key="peer.reviews" /> (${fn:length(storyBookPeerReviewEvents)})</h5>
+    <h5>Peer-reviews (${fn:length(storyBookPeerReviewEvents)})</h5>
     <c:if test="${empty storyBookPeerReviewEvents}">
         <p>
             No storybook peer-reviews.
@@ -102,9 +107,9 @@
     <c:if test="${not empty storyBookPeerReviewEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="peer.review" /></th>
-                <th><fmt:message key="storybook" /></th>
-                <th><fmt:message key="contributor" /></th>
+                <th>Peer-review</th>
+                <th>Storybook</th>
+                <th>Contributor</th>
             </thead>
             <tbody>
                 <c:forEach var="storyBookPeerReviewEvent" items="${storyBookPeerReviewEvents}">
@@ -161,7 +166,12 @@
                             <a href="<spring:url value='/content/storybook/edit/${storyBook.id}#contribution-event_${storyBookPeerReviewEvent.storyBookContributionEvent.id}' />" target="_blank">
                                 <c:out value="${storyBook.title}" />
                             </a><br />
-                            <fmt:message key="reading.level.${storyBook.readingLevel}" />
+                            <c:choose>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL1'}">Level 1. Beginning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL2'}">Level 2. Learning to Read</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL3'}">Level 3. Reading Independently</c:when>
+                                <c:when test="${storyBook.readingLevel == 'LEVEL4'}">Level 4. Reading Proficiently</c:when>
+                            </c:choose>
                         </td>
                         <td>
                             <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.id}' />">

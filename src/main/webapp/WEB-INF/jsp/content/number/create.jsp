@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.number" />
+    Add number
 </content:title>
 
 <content:section cssId="numberCreatePage">
@@ -12,21 +12,21 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="value" cssErrorClass="error"><fmt:message key='value' /> (<fmt:message key='number' />)</form:label>
+                    <form:label path="value" cssErrorClass="error">Value (Number)</form:label>
                     <form:input path="value" cssErrorClass="error" type="number" />
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="symbol" cssErrorClass="error"><fmt:message key='symbol' /></form:label>
+                    <form:label path="symbol" cssErrorClass="error">Symbol</form:label>
                     <form:input path="symbol" cssErrorClass="error" />
                 </div>
             </div>
             
             <div class="row">    
                 <div class="col s12">
-                    <label><fmt:message key="number.words" /></label>
+                    <label>Number word(s)</label>
                     <div id="numberWordsContainer">
                         <c:forEach var="word" items="${number.words}">
                             <input name="words" type="hidden" value="${word.id}" />
@@ -57,7 +57,7 @@
                     </div>
 
                     <select id="numberWords" class="browser-default" style="margin: 0.5em 0;">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="word" items="${words}">
                             <option value="${word.id}"><c:out value="${word.text}" /><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /></option>
                         </c:forEach>
@@ -80,19 +80,19 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/word/create' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/word/create' />" target="_blank">Add word <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
@@ -100,7 +100,7 @@
 
 <content:aside>
     <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
-        <h5 class="center"><fmt:message key="resources" /></h5>
+        <h5 class="center">Resources</h5>
         <div class="card-panel deep-purple lighten-5">
             Hindi resources:
             <ol style="list-style-type: inherit;">

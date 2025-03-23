@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.storybook" />
+    Edit storybook
 </content:title>
 
 <content:section cssId="storyBookEditPage">
@@ -16,7 +16,7 @@
     </c:choose>
     <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
         <a href="#contribution-events">
-            <fmt:message key="peer.review" />: ${storyBook.peerReviewStatus}
+            Peer-review: ${storyBook.peerReviewStatus}
         </a>
     </div>
     
@@ -30,49 +30,56 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="title" cssErrorClass="error"><fmt:message key='title' /></form:label>
+                    <form:label path="title" cssErrorClass="error">Title</form:label>
                     <form:input path="title" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="description" cssErrorClass="error"><fmt:message key='description' /></form:label>
+                    <form:label path="description" cssErrorClass="error">Description</form:label>
                     <form:input path="description" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
                     <select id="contentLicense" name="contentLicense">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="contentLicense" items="${contentLicenses}">
                             <option value="${contentLicense}" <c:if test="${contentLicense == storyBook.contentLicense}">selected="selected"</c:if>><c:out value="${contentLicense}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="contentLicense"><fmt:message key="content.license" /></label>
+                    <label for="contentLicense">Content license</label>
                 </div>
                 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">link</i>
-                    <form:label path="attributionUrl" cssErrorClass="error"><fmt:message key='attribution.url' /></form:label>
+                    <form:label path="attributionUrl" cssErrorClass="error">Attribution URL</form:label>
                     <form:input path="attributionUrl" cssErrorClass="error" type="url" />
                 </div>
                 
                 <div class="input-field col s12">
                     <select id="readingLevel" name="readingLevel">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="readingLevel" items="${readingLevels}">
-                            <option value="${readingLevel}" <c:if test="${readingLevel == storyBook.readingLevel}">selected="selected"</c:if>><fmt:message key="reading.level.${readingLevel}" /></option>
+                            <option value="${readingLevel}" <c:if test="${readingLevel == storyBook.readingLevel}">selected="selected"</c:if>>
+                                <c:choose>
+                                    <c:when test="${readingLevel == 'LEVEL1'}">Level 1. Beginning to Read</c:when>
+                                    <c:when test="${readingLevel == 'LEVEL2'}">Level 2. Learning to Read</c:when>
+                                    <c:when test="${readingLevel == 'LEVEL3'}">Level 3. Reading Independently</c:when>
+                                    <c:when test="${readingLevel == 'LEVEL4'}">Level 4. Reading Proficiently</c:when>
+                                </c:choose>
+                            </option>
                         </c:forEach>
                     </select>
-                    <label for="readingLevel"><fmt:message key="reading.level" /></label>
+                    <label for="readingLevel">Reading level</label>
                 </div>
                 
                 <div class="input-field col s12" id="coverImageContainer">
                     <select id="coverImage" name="coverImage">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="coverImage" items="${coverImages}">
                             <option value="${coverImage.id}" <c:if test="${coverImage.id == storyBook.coverImage.id}">selected="selected"</c:if>>${coverImage.title}</option>
                         </c:forEach>
                     </select>
-                    <label for="coverImage"><fmt:message key="cover.image" /></label>
+                    <label for="coverImage">Cover image</label>
                     <c:if test="${not empty storyBook.coverImage}">
                         <a href="<spring:url value='/content/multimedia/image/edit/${storyBook.coverImage.id}' />">
                             <img class="cid-${storyBook.coverImage.cid != null}" src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
@@ -83,13 +90,13 @@
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution."><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                Edit <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
@@ -97,9 +104,9 @@
     <c:forEach var="storyBookChapter" items="${storyBookChapters}" varStatus="status">
         <a name="ch-id-${storyBookChapter.id}"></a>
         <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
-            <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="<fmt:message key='delete' />">delete</i></a>
+            <a class="storyBookChapterDeleteLink right red-text" style="margin-top: 1em;" href="<spring:url value='/content/storybook/edit/${storyBook.id}/chapter/delete/${storyBookChapter.id}' />"><i class="material-icons" title="Delete">delete</i></a>
         </c:if>
-        <h5 style="margin-top: 1em;" class="grey-text"><fmt:message key="chapter" />&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
+        <h5 style="margin-top: 1em;" class="grey-text">Chapter&nbsp;${storyBookChapter.sortOrder + 1}/${fn:length(storyBookChapters)}</h5>
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
                 <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
@@ -108,7 +115,7 @@
             </c:if>
             
             <c:forEach var="storyBookParagraph" items="${paragraphsPerStoryBookChapterMap[storyBookChapter.id]}">
-                <p class="storyBookParagraph"><a class="storyBookParagraphEditLink right" href="<spring:url value='/content/storybook/paragraph/edit/${storyBookParagraph.id}' />"><i class="material-icons" title="<fmt:message key='edit' />">edit</i></a><c:out value="" />
+                <p class="storyBookParagraph"><a class="storyBookParagraphEditLink right" href="<spring:url value='/content/storybook/paragraph/edit/${storyBookParagraph.id}' />"><i class="material-icons" title="Edit">edit</i></a><c:out value="" />
                     <c:forEach var="wordInOriginalText" items="${fn:split(fn:trim(storyBookParagraph.originalText), ' ')}" varStatus="status">
                         <c:set var="word" value="${storyBookParagraph.words[status.index]}" />
                         <c:choose>
@@ -123,7 +130,7 @@
                 <a href="<spring:url value="/content/storybook/edit/${storyBook.id}/chapter/${storyBookChapter.id}/paragraph/create" />" 
                    class="btn-floating waves-effect waves-light grey"
                    style="margin-top: 1rem;"
-                   title="<fmt:message key="add.paragraph" />">
+                   title="Add paragraph">
                     <i class="material-icons">add</i>
                 </a>
             </div>
@@ -132,7 +139,7 @@
     
     <div class="center">
         <a href="<spring:url value="/content/storybook/edit/${storyBook.id}/chapter/create" />" class="btn waves-effect waves-light grey">
-            <fmt:message key="add.storybook.chapter" /> <i class="material-icons right">add</i>
+            Add storybook chapter <i class="material-icons right">add</i>
         </a>
     </div>
     
@@ -142,20 +149,20 @@
     <c:if test="${(not empty storyBookContributionEvents) 
                   && (storyBookContributionEvents[0].contributor.id != contributor.id)}">
         <a name="peer-review"></a>
-        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
+        <h5>Peer-review 🕵🏽‍♀📖️️️️</h5>
         
         <form action="<spring:url value='/content/storybook-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
-                <fmt:message key="do.you.approve.quality.of.this.storybook?" />
+                Do you approve the quality of this storybook?
             </p>
             
             <input type="hidden" name="storyBookContributionEventId" value="${storyBookContributionEvents[0].id}" />
             
             <input type="radio" id="approved_true" name="approved" value="true" />
-            <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
+            <label for="approved_true">Yes (approve)</label><br />
 
             <input type="radio" id="approved_false" name="approved" value="false" />
-            <label for="approved_false"><fmt:message key="no" /> (request changes)</label><br />
+            <label for="approved_false">No (request changes)</label><br />
             
             <script>
                 $(function() {
@@ -178,11 +185,11 @@
             </script>
             
             <div id="peerReviewSubmitContainer" style="display: none;">
-                <label for="comment"><fmt:message key="comment" /></label>
+                <label for="comment">Comment</label>
                 <textarea id="comment" name="comment" class="materialize-textarea" maxlength="1000"></textarea>
 
                 <button class="btn waves-effect waves-light" type="submit">
-                    <fmt:message key="submit" /> <i class="material-icons right">send</i>
+                    Submit <i class="material-icons right">send</i>
                 </button>
             </div>
         </form>
@@ -191,13 +198,13 @@
     </c:if>
     
     <a name="contribution-events"></a>
-    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
+    <h5>Contributions 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEvents}">
             <a name="contribution-event_${storyBookContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:message key="revision" /> #${storyBookContributionEvent.revisionNumber} 
+                    Revision #${storyBookContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
@@ -310,12 +317,12 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="word.frequency" /></h5>
+    <h5 class="center">Word frequency</h5>
     
     <table class="bordered highlight">
         <thead>
-            <th><fmt:message key="word" /></th>
-            <th><fmt:message key="frequency" /></th>
+            <th>Word</th>
+            <th>Frequency</th>
         </thead>
         <tbody>
             <c:forEach var="wordFrequencyMapItem" items="${wordFrequencyMap}">
@@ -326,7 +333,7 @@
                         <c:choose>
                             <c:when test="${empty wordMap[wordTextLowerCase]}">
                                 <c:out value="${wordText}" /><br />
-                                <a href="<spring:url value='/content/word/create?autoFillText=${wordTextLowerCase}' />" target="_blank"><fmt:message key="add.word" /> <i class="material-icons">launch</i></a>
+                                <a href="<spring:url value='/content/word/create?autoFillText=${wordTextLowerCase}' />" target="_blank">Add word <i class="material-icons">launch</i></a>
                             </c:when>
                             <c:otherwise>
                                 <c:set var="word" value="${wordMap[wordTextLowerCase]}" />
@@ -347,12 +354,12 @@
     
     <p>&nbsp;</p>
     
-    <h5 class="center"><fmt:message key="letter.frequency" /></h5>
+    <h5 class="center">Letter frequency</h5>
     
     <table class="bordered highlight">
         <thead>
-            <th><fmt:message key="letter" /></th>
-            <th><fmt:message key="frequency" /></th>
+            <th>Letter</th>
+            <th>Frequency</th>
         </thead>
         <tbody>
             <c:forEach var="letterFrequencyMapItem" items="${letterFrequencyMap}">

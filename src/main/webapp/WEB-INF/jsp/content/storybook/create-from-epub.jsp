@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="upload.epub.file" />
+    Upload ePUB file
 </content:title>
 
 <content:section cssId="storyBookCreateFromEPubPage">
@@ -16,7 +16,7 @@
                 </p>
                 <div class="file-field input-field col s8 offset-s2 center">
                     <div class="btn">
-                        <span><fmt:message key='file' /></span>
+                        <span>File</span>
                         <%--<form:input path="bytes" type="file" />--%>
                         <input name="bytes" id="bytes" type="file" />
                     </div>
@@ -41,7 +41,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <ol style="list-style-type: inherit;">
             <li>
