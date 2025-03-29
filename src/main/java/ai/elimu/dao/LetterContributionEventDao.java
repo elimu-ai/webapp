@@ -1,10 +1,11 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterContributionEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterContributionEvent;
 
 public interface LetterContributionEventDao extends GenericDao<LetterContributionEvent> {
     

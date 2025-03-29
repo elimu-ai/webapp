@@ -3,7 +3,7 @@ package ai.elimu.dao.jpa;
 import java.util.List;
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.ApplicationDao;
-import ai.elimu.model.admin.Application;
+import ai.elimu.entity.admin.Application;
 
 import org.springframework.dao.DataAccessException;
 

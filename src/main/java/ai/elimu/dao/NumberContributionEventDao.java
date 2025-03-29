@@ -1,10 +1,11 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Number;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.NumberContributionEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.Number;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.NumberContributionEvent;
 
 public interface NumberContributionEventDao extends GenericDao<NumberContributionEvent> {
     

@@ -1,6 +1,5 @@
 package ai.elimu.util.epub;
 
-import ai.elimu.model.enums.StoryBookProvider;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +13,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import ai.elimu.entity.enums.StoryBookProvider;
 
 @Slf4j
 public class EPubParagraphExtractionHelper {

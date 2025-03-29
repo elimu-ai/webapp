@@ -1,8 +1,8 @@
 package ai.elimu.web;
 
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Role;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.enums.Role;
 import ai.elimu.util.Web3Helper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

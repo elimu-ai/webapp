@@ -1,8 +1,8 @@
 package ai.elimu.web.content.syllable;
 
 import ai.elimu.dao.SyllableDao;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Syllable;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.content.Syllable;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/syllable/list/syllables.csv")

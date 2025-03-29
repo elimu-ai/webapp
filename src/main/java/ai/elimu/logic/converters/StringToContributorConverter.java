@@ -1,7 +1,7 @@
 package ai.elimu.logic.converters;
 
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;

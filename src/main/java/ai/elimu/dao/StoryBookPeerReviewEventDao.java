@@ -1,11 +1,12 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.contributor.StoryBookPeerReviewEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
+import ai.elimu.entity.contributor.StoryBookPeerReviewEvent;
 
 public interface StoryBookPeerReviewEventDao extends GenericDao<StoryBookPeerReviewEvent> {
     

@@ -2,9 +2,9 @@ package ai.elimu.web.admin.application_version;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;

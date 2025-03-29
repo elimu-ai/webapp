@@ -1,7 +1,8 @@
 package ai.elimu.web.content.sound;
 
 import ai.elimu.dao.SoundDao;
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/sound/list")

@@ -5,7 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import ai.elimu.model.content.Word;
+
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.Language;
 import lombok.extern.slf4j.Slf4j;
 

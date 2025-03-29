@@ -1,12 +1,12 @@
 package ai.elimu.dao.jpa;
 
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.dao.DataAccessException;
 import ai.elimu.dao.LetterSoundDao;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.content.Sound;
 
 public class LetterSoundDaoJpa extends GenericDaoJpa<LetterSound> implements LetterSoundDao {
 
