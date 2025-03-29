@@ -1,10 +1,11 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
 
 public interface StoryBookContributionEventDao extends GenericDao<StoryBookContributionEvent> {
     

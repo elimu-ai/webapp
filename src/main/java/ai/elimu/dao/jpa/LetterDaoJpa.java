@@ -3,10 +3,9 @@ package ai.elimu.dao.jpa;
 import java.util.List;
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.LetterDao;
+import ai.elimu.entity.content.Letter;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.content.Letter;
 
 public class LetterDaoJpa extends GenericDaoJpa<Letter> implements LetterDao {
 

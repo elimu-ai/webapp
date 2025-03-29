@@ -1,7 +1,7 @@
 package ai.elimu.logic.converters;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;

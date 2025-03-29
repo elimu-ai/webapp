@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.model.content.LetterSound;
+import ai.elimu.entity.content.LetterSound;
 import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;

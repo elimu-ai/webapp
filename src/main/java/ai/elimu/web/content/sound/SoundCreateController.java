@@ -2,9 +2,9 @@ package ai.elimu.web.content.sound;
 
 import ai.elimu.dao.SoundContributionEventDao;
 import ai.elimu.dao.SoundDao;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.SoundContributionEvent;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.SoundContributionEvent;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -21,7 +21,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/sound/create")

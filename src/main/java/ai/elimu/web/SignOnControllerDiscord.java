@@ -1,8 +1,8 @@
 package ai.elimu.web;
 
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Role;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -27,7 +27,6 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/sign-on/discord")

@@ -3,10 +3,9 @@ package ai.elimu.dao.jpa;
 import java.util.List;
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.SyllableDao;
+import ai.elimu.entity.content.Syllable;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.content.Syllable;
 
 public class SyllableDaoJpa extends GenericDaoJpa<Syllable> implements SyllableDao {
 

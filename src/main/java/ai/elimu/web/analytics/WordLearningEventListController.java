@@ -1,7 +1,8 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.WordLearningEventDao;
-import ai.elimu.model.analytics.WordLearningEvent;
+import ai.elimu.entity.analytics.WordLearningEvent;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

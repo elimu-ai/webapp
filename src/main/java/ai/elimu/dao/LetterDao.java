@@ -1,9 +1,10 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.Letter;
 
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.Letter;
 
 public interface LetterDao extends GenericDao<Letter> {
     

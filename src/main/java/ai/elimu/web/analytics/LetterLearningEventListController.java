@@ -1,7 +1,8 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.LetterLearningEventDao;
-import ai.elimu.model.analytics.LetterLearningEvent;
+import ai.elimu.entity.analytics.LetterLearningEvent;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

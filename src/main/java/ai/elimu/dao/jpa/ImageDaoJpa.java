@@ -6,9 +6,9 @@ import jakarta.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.multimedia.Image;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.content.multimedia.Image;
 
 public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
 

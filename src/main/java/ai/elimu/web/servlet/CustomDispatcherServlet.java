@@ -10,17 +10,17 @@ import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.content.Number;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Role;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.content.Number;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.util.ConfigHelper;
@@ -99,7 +99,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         // Scan for classes annotated as JPA @Entity
         ClassPathScanningCandidateComponentProvider entityScanner = new ClassPathScanningCandidateComponentProvider(true);
         entityScanner.addIncludeFilter(new AnnotationTypeFilter(Entity.class));
-        for (BeanDefinition beanDefinition : entityScanner.findCandidateComponents(ai.elimu.model.BaseEntity.class.getPackageName())) {
+        for (BeanDefinition beanDefinition : entityScanner.findCandidateComponents(ai.elimu.entity.BaseEntity.class.getPackageName())) {
             log.debug("beanDefinition.getBeanClassName(): " + beanDefinition.getBeanClassName());
             try {
                 Class<?> annotatedClass = Class.forName(beanDefinition.getBeanClassName());

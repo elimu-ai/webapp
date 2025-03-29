@@ -1,7 +1,8 @@
 package ai.elimu.web.content.emoji;
 
 import ai.elimu.dao.EmojiDao;
-import ai.elimu.model.content.Emoji;
+import ai.elimu.entity.content.Emoji;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

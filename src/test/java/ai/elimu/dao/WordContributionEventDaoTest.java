@@ -3,15 +3,16 @@ package ai.elimu.dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.WordContributionEvent;
 import lombok.extern.slf4j.Slf4j;
 import java.util.Calendar;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.WordContributionEvent;
 
 @SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",

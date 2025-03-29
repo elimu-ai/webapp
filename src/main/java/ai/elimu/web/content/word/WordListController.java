@@ -2,8 +2,9 @@ package ai.elimu.web.content.word;
 
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Word;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

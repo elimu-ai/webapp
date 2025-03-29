@@ -1,7 +1,7 @@
 package ai.elimu.web.content.contributor;
 
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;

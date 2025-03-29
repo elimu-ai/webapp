@@ -2,13 +2,14 @@ package ai.elimu.dao;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.admin.ApplicationVersion;
 import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.admin.ApplicationVersion;
 
 @SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",

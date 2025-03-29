@@ -1,7 +1,8 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

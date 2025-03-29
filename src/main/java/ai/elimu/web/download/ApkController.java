@@ -2,8 +2,8 @@ package ai.elimu.web.download;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.admin.ApplicationVersion;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.admin.ApplicationVersion;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.EOFException;
@@ -15,14 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
-import jakarta.servlet.http.HttpServletResponse;
-import ai.elimu.dao.ApplicationDao;
-import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.admin.ApplicationVersion;
-import org.apache.logging.log4j.LogManager;
 
 @Controller
 @RequestMapping("/apk/{packageName}-{versionCode}.apk")

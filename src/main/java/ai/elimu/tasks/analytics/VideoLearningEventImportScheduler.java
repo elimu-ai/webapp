@@ -1,7 +1,7 @@
 package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.VideoLearningEventDao;
-import ai.elimu.model.analytics.VideoLearningEvent;
+import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.analytics.VideoLearningEventsRestController;
 import ai.elimu.util.ConfigHelper;

@@ -1,9 +1,10 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.DbMigration;
 
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.DbMigration;
 
 public interface DbMigrationDao extends GenericDao<DbMigration> {
     
