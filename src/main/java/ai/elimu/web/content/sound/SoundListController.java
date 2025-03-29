@@ -1,40 +1,39 @@
 package ai.elimu.web.content.sound;
 
+import ai.elimu.dao.SoundDao;
+import ai.elimu.entity.content.Sound;
+
 import java.util.List;
-import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.Sound;
-import org.apache.logging.log4j.LogManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content/sound/list")
+@RequiredArgsConstructor
+@Slf4j
 public class SoundListController {
-    
-    private final Logger logger = LogManager.getLogger();
-    
-    @Autowired
-    private SoundDao soundDao;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String handleRequest(Model model) {
-        logger.info("handleRequest");
-        
-        List<Sound> sounds = soundDao.readAllOrderedByUsage();
-        model.addAttribute("sounds", sounds);
-        
-        int maxUsageCount = 0;
-        for (Sound sound : sounds) {
-            if (sound.getUsageCount() > maxUsageCount) {
-                maxUsageCount = sound.getUsageCount();
-            }
-        }
-        model.addAttribute("maxUsageCount", maxUsageCount);
+  private final SoundDao soundDao;
 
-        return "content/sound/list";
+  @GetMapping
+  public String handleRequest(Model model) {
+    log.info("handleRequest");
+
+    List<Sound> sounds = soundDao.readAllOrderedByUsage();
+    model.addAttribute("sounds", sounds);
+
+    int maxUsageCount = 0;
+    for (Sound sound : sounds) {
+      if (sound.getUsageCount() > maxUsageCount) {
+        maxUsageCount = sound.getUsageCount();
+      }
     }
+    model.addAttribute("maxUsageCount", maxUsageCount);
+
+    return "content/sound/list";
+  }
 }

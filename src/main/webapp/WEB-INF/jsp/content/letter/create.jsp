@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.letter" />
+    Add letter
 </content:title>
 
 <content:section cssId="letterCreatePage">
@@ -12,7 +12,7 @@
             
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
+                    <form:label path="text" cssErrorClass="error">Text</form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
             </div>
@@ -20,29 +20,29 @@
             <div class="row">
                 <div class="input-field col">
                     <select id="diacritic" name="diacritic">
-                        <option value="false" <c:if test="${not letter.diacritic}">selected="selected"</c:if>><fmt:message key="no" /></option>
-                        <option value="true" <c:if test="${letter.diacritic}">selected="selected"</c:if>><fmt:message key="yes" /></option>
+                        <option value="false" <c:if test="${not letter.diacritic}">selected="selected"</c:if>>No</option>
+                        <option value="true" <c:if test="${letter.diacritic}">selected="selected"</c:if>>Yes</option>
                     </select>
-                    <label for="diacritic"><fmt:message key="diacritic" /></label>
+                    <label for="diacritic">Diacritic</label>
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
             Hindi resources:
@@ -55,6 +55,22 @@
                 </li>
                 <li>
                     <a href="https://www.omniglot.com/writing/hindi.htm" target="_blank">Omniglot: Hindi (हिन्दी)</a>
+                </li>
+            </ol>
+            
+            <div class="divider" style="margin: 1em 0;"></div>
+        </c:if>
+        <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Thai" target="_blank">Wikipedia: Help:IPA/Thai</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Thai_script" target="_blank">Wikipedia: Thai script</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/writing/thai.htm" target="_blank">Omniglot: Thai (ภาษาไทย)</a>
                 </li>
             </ol>
             

@@ -1,26 +1,25 @@
 package ai.elimu.logic.converters;
 
-import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
-import org.springframework.beans.factory.annotation.Autowired;
+import ai.elimu.entity.contributor.Contributor;
+import lombok.AllArgsConstructor;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 
+@AllArgsConstructor
 public class StringToContributorConverter implements Converter<String, Contributor> {
 
-    @Autowired
-    private ContributorDao contributorDao;
-    
-    /**
-     * Convert Contributor id to Contributor entity
-     */
-    public Contributor convert(String id) {
-        if (StringUtils.isBlank(id)) {
-            return null;
-        } else {
-            Long contributorId = Long.parseLong(id);
-            Contributor contributor = contributorDao.read(contributorId);
-            return contributor;
-        }
+  private final ContributorDao contributorDao;
+
+  /**
+   * Convert Contributor id to Contributor entity
+   */
+  public Contributor convert(String id) {
+    if (StringUtils.isBlank(id)) {
+      return null;
+    } else {
+      Long contributorId = Long.parseLong(id);
+      return contributorDao.read(contributorId);
     }
+  }
 }

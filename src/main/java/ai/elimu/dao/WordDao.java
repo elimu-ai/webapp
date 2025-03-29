@@ -2,8 +2,7 @@ package ai.elimu.dao;
 
 import java.util.List;
 
-import ai.elimu.model.content.Word;
-
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.content.WordType;
 import org.springframework.dao.DataAccessException;
 

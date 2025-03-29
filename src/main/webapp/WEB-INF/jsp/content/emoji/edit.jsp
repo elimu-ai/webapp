@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.emoji" />
+    Edit emoji
 </content:title>
 
 <content:section cssId="emojiEditPage">
@@ -12,31 +12,31 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="glyph" cssErrorClass="error"><fmt:message key='glyph' /></form:label>
+                    <form:label path="glyph" cssErrorClass="error">Glyph</form:label>
                     <form:input path="glyph" cssErrorClass="error" placeholder="🦋" />
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="unicodeVersion" cssErrorClass="error"><fmt:message key='unicode.version' /></form:label>
-                    <form:input path="unicodeVersion" cssErrorClass="error" placeholder="9.0" />
+                    <form:label path="unicodeVersion" cssErrorClass="error">Unicode version</form:label>
+                    <form:input path="unicodeVersion" cssErrorClass="error" placeholder="10.0" />
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="unicodeEmojiVersion" cssErrorClass="error"><fmt:message key='unicode.emoji.version' /></form:label>
-                    <form:input path="unicodeEmojiVersion" cssErrorClass="error" placeholder="3.0" />
+                    <form:label path="unicodeEmojiVersion" cssErrorClass="error">Unicode Emoji version</form:label>
+                    <form:input path="unicodeEmojiVersion" cssErrorClass="error" placeholder="5.0" />
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                Edit <i class="material-icons right">send</i>
             </button>
-            <a href="<spring:url value='/content/emoji/delete/${emoji.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
+            <a href="<spring:url value='/content/emoji/delete/${emoji.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
         </form:form>
     </div>
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <ul>
             <li>
@@ -50,9 +50,9 @@
     
     <div class="divider" style="margin-top: 1em;"></div>
     
-    <h5 class="center"><fmt:message key="content.labels" /></h5>
+    <h5 class="center">Content labels</h5>
     
-    <b><fmt:message key="words" /></b><br />
+    <b>Words</b><br />
     <div id="progressWords" class="progress" style="display: none;">
         <div class="indeterminate"></div>
     </div>
@@ -69,7 +69,7 @@
         </c:forEach>
     </div>
     <select id="wordId" class="browser-default">
-        <option value="">-- <fmt:message key='add.word' /> --</option>
+        <option value="">-- Add word --</option>
         <c:forEach var="word" items="${words}">
             <option value="${word.id}"><c:out value="${word.text}" /><c:if test="${not empty word.wordType}"> (${word.wordType})</c:if><c:out value=" ${emojisByWordId[word.id]}" /></option>
         </c:forEach>

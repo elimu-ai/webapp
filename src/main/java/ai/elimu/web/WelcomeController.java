@@ -1,20 +1,20 @@
 package ai.elimu.web;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Slf4j
 @Controller
+@RequiredArgsConstructor
 public class WelcomeController {
-    
-    private final Logger logger = LogManager.getLogger();
 
-    @RequestMapping("/")
-    public String handleRequest(Model model) {
-        logger.info("handleRequest");
-        
-        return "welcome";
-    }
+  @RequestMapping("/")
+  public String handleRequest(Model model) {
+    log.info("handleRequest");
+
+    return "welcome";
+  }
 }

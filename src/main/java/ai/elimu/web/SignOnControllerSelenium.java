@@ -1,67 +1,64 @@
 package ai.elimu.web;
 
+import ai.elimu.dao.ContributorDao;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.enums.Role;
+import ai.elimu.model.v2.enums.Environment;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
-
-import jakarta.servlet.http.HttpServletRequest;
-
-import org.apache.logging.log4j.Logger;
-import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.v2.enums.Environment;
-import ai.elimu.model.enums.Role;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import org.apache.logging.log4j.LogManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping(value="/sign-on/test/role-{role}")
+@RequiredArgsConstructor
+@Slf4j
 public class SignOnControllerSelenium {
 
-    private Logger logger = LogManager.getLogger();
+  private final ContributorDao contributorDao;
 
-    @Autowired
-    private ContributorDao contributorDao;
+  @GetMapping
+  public String handleRequest(
+      @PathVariable Role role,
+      HttpServletRequest request,
+      Model model
+  ) {
+    log.info("handleRequest");
 
-    @RequestMapping(value="/sign-on/test/role-{role}", method=RequestMethod.GET)
-    public String handleRequest(
-            @PathVariable Role role,
-            HttpServletRequest request,
-            Model model
-    ) {
-        logger.info("handleRequest");
-        
-        if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-            return "redirect:/sign-on";
-        }
-        
-        logger.info("role: " + role);
-        
-        Contributor contributor = new Contributor();
-        contributor.setEmail("info+role-" + role + "@elimu.ai");
-        contributor.setRoles(new HashSet<>(Arrays.asList(role)));
-        contributor.setRegistrationTime(Calendar.getInstance());
-        contributor.setFirstName("TestRole");
-        contributor.setLastName(role.toString());
-        contributor.setMotivation("Regression testing as " + role);
-                
-        Contributor existingContributor = contributorDao.read(contributor.getEmail());
-        logger.info("existingContributor: " + existingContributor);
-        if (existingContributor != null) {
-            contributor = existingContributor;
-        } else {
-            contributorDao.create(contributor);
-            logger.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
-        }
-
-        // Add Contributor object to session
-        request.getSession().setAttribute("contributor", contributor);
-                
-        return "redirect:/content";
+    if (EnvironmentContextLoaderListener.env == Environment.PROD) {
+      return "redirect:/sign-on";
     }
+
+    log.info("role: " + role);
+
+    Contributor contributor = new Contributor();
+    contributor.setEmail("info+role-" + role + "@elimu.ai");
+    contributor.setRoles(new HashSet<>(Arrays.asList(role)));
+    contributor.setRegistrationTime(Calendar.getInstance());
+    contributor.setFirstName("TestRole");
+    contributor.setLastName(role.toString());
+    contributor.setMotivation("Regression testing as " + role);
+
+    Contributor existingContributor = contributorDao.read(contributor.getEmail());
+    log.info("existingContributor: " + existingContributor);
+    if (existingContributor != null) {
+      contributor = existingContributor;
+    } else {
+      contributorDao.create(contributor);
+      log.info("Contributor " + contributor.getEmail() + " was created at " + request.getServerName());
+    }
+
+    // Add Contributor object to session
+    request.getSession().setAttribute("contributor", contributor);
+
+    return "redirect:/content";
+  }
 }

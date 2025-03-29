@@ -2,20 +2,19 @@ package ai.elimu.util;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.web3j.crypto.ECDSASignature;
 import org.web3j.crypto.Hash;
 import org.web3j.crypto.Keys;
 import org.web3j.crypto.Sign;
 import org.web3j.utils.Numeric;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Web3Helper {
     
-    private static Logger logger = LogManager.getLogger();
-    
     public static boolean isSignatureValid(final String address, final String signature, final String message) {
-        logger.info("isSignatureValid");
+        log.info("isSignatureValid");
         
         boolean match = false;
         
@@ -51,7 +50,7 @@ public class Web3Helper {
 
             if (publicKey != null) {
                 String recoveredAddress = "0x" + Keys.getAddress(publicKey);
-                logger.info("recoveredAddress: " + recoveredAddress);
+                log.info("recoveredAddress: " + recoveredAddress);
                 if (recoveredAddress.equalsIgnoreCase(address)) {
                     match = true;
                     break;

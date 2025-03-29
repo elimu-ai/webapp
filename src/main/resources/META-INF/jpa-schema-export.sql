@@ -7,22 +7,6 @@
 
     drop table if exists ApplicationVersion;
 
-    drop table if exists Audio;
-
-    drop table if exists Audio_Letter;
-
-    drop table if exists Audio_literacySkills;
-
-    drop table if exists Audio_Number;
-
-    drop table if exists Audio_numeracySkills;
-
-    drop table if exists Audio_Word;
-
-    drop table if exists AudioContributionEvent;
-
-    drop table if exists AudioPeerReviewEvent;
-
     drop table if exists Contributor;
 
     drop table if exists Contributor_roles;
@@ -152,75 +136,6 @@
         versionName varchar(255),
         application_id bigint,
         contributor_id bigint,
-        primary key (id)
-    ) type=MyISAM;
-
-    create table Audio (
-       id bigint not null auto_increment,
-        contentStatus varchar(255),
-        peerReviewStatus varchar(255),
-        revisionNumber integer,
-        timeLastUpdate datetime,
-        usageCount integer,
-        attributionUrl text,
-        contentLicense varchar(255),
-        contentType varchar(255),
-        audioFormat varchar(255),
-        bytes longblob,
-        durationMs bigint,
-        title varchar(255),
-        transcription varchar(255),
-        storyBookParagraph_id bigint,
-        word_id bigint,
-        primary key (id)
-    ) type=MyISAM;
-
-    create table Audio_Letter (
-       Audio_id bigint not null,
-        letters_id bigint not null,
-        primary key (Audio_id, letters_id)
-    ) type=MyISAM;
-
-    create table Audio_literacySkills (
-       Audio_id bigint not null,
-        literacySkills varchar(255)
-    ) type=MyISAM;
-
-    create table Audio_Number (
-       Audio_id bigint not null,
-        numbers_id bigint not null,
-        primary key (Audio_id, numbers_id)
-    ) type=MyISAM;
-
-    create table Audio_numeracySkills (
-       Audio_id bigint not null,
-        numeracySkills varchar(255)
-    ) type=MyISAM;
-
-    create table Audio_Word (
-       Audio_id bigint not null,
-        words_id bigint not null,
-        primary key (Audio_id, words_id)
-    ) type=MyISAM;
-
-    create table AudioContributionEvent (
-       id bigint not null auto_increment,
-        comment text,
-        revisionNumber integer,
-        timeSpentMs bigint,
-        timestamp datetime,
-        contributor_id bigint,
-        audio_id bigint,
-        primary key (id)
-    ) type=MyISAM;
-
-    create table AudioPeerReviewEvent (
-       id bigint not null auto_increment,
-        approved bit,
-        comment text,
-        timestamp datetime,
-        contributor_id bigint,
-        audioContributionEvent_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -482,7 +397,6 @@
         vowelFrontness varchar(255),
         vowelHeight varchar(255),
         vowelLength varchar(255),
-        audio_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -742,76 +656,6 @@
        foreign key (contributor_id) 
        references Contributor (id);
 
-    alter table Audio 
-       add constraint FKohdvhlrrancsjct22f3y0os89 
-       foreign key (storyBookParagraph_id) 
-       references StoryBookParagraph (id);
-
-    alter table Audio 
-       add constraint FK1bkjicci0k63irniwg0fm9ans 
-       foreign key (word_id) 
-       references Word (id);
-
-    alter table Audio_Letter 
-       add constraint FKqjf1gijq56ob68ug5048bfaci 
-       foreign key (letters_id) 
-       references Letter (id);
-
-    alter table Audio_Letter 
-       add constraint FKsqpvtu98kcwp9mr75fh8eulf9 
-       foreign key (Audio_id) 
-       references Audio (id);
-
-    alter table Audio_literacySkills 
-       add constraint FKrch8svr2vr7vf2v9ojyh6326r 
-       foreign key (Audio_id) 
-       references Audio (id);
-
-    alter table Audio_Number 
-       add constraint FKyr69l8fg58o8ia369q106l5q 
-       foreign key (numbers_id) 
-       references Number (id);
-
-    alter table Audio_Number 
-       add constraint FK9wkeuh81ec6supbcr70yvo73k 
-       foreign key (Audio_id) 
-       references Audio (id);
-
-    alter table Audio_numeracySkills 
-       add constraint FKi8d6h9e6l39hll19wng6p32lp 
-       foreign key (Audio_id) 
-       references Audio (id);
-
-    alter table Audio_Word 
-       add constraint FKq2afgtopap8nf5xmahk0rvo6 
-       foreign key (words_id) 
-       references Word (id);
-
-    alter table Audio_Word 
-       add constraint FKdt7dvkfoa2ne8ssgtq44s3yte 
-       foreign key (Audio_id) 
-       references Audio (id);
-
-    alter table AudioContributionEvent 
-       add constraint FKk5x3wa0d4qp54r94o7tky3mrt 
-       foreign key (contributor_id) 
-       references Contributor (id);
-
-    alter table AudioContributionEvent 
-       add constraint FKspea1r50sj31ovaw0cmsrdd1t 
-       foreign key (audio_id) 
-       references Audio (id);
-
-    alter table AudioPeerReviewEvent 
-       add constraint FKqacw1s4ljilnjcjp5ldqtbjti 
-       foreign key (contributor_id) 
-       references Contributor (id);
-
-    alter table AudioPeerReviewEvent 
-       add constraint FK9750pa9ak23p1y0lwft00vkch 
-       foreign key (audioContributionEvent_id) 
-       references AudioContributionEvent (id);
-
     alter table Contributor_roles 
        add constraint FKriv03x8alxet23b7b4ivk2vot 
        foreign key (Contributor_id) 
@@ -966,11 +810,6 @@
        add constraint FKtq7b81iqfw1dxuk79c2se2onu 
        foreign key (numberContributionEvent_id) 
        references NumberContributionEvent (id);
-
-    alter table Sound 
-       add constraint FKg3qs5563grk5e6f1idffmklh4 
-       foreign key (audio_id) 
-       references Audio (id);
 
     alter table SoundContributionEvent 
        add constraint FKbuah2o1ndo9kpbj39gr8tic3t 

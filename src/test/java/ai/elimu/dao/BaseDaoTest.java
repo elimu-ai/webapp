@@ -1,66 +1,71 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.multimedia.Image;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import ai.elimu.entity.content.multimedia.Image;
 
 @SpringJUnitConfig(locations = {
     "file:src/main/webapp/WEB-INF/spring/applicationContext.xml",
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
 public class BaseDaoTest {
-    
-    @Autowired
-    private ImageDao imageDao;
 
-    @Test
-    public void testCreate() {
-        Image image1 = new Image();
-        image1.setTitle("Title1");
-        imageDao.create(image1);
-        assertNotNull(image1.getId());
+  private final ImageDao imageDao;
 
-        Image image2 = new Image();
-        image2.setTitle("Title1");
-        imageDao.create(image2);
-        assertNotNull(image2.getId());
-    }
+  @Autowired
+  public BaseDaoTest(ImageDao imageDao) {
+    this.imageDao = imageDao;
+  }
 
-    @Test
-    public void testRead() {
-        Image image1 = new Image();
-        image1.setTitle("Title1");
-        imageDao.create(image1);
-        assertNotNull(image1.getId());
-        assertNotNull(imageDao.read(image1.getId()));
-    }
+  @Test
+  public void testCreate() {
+    Image image1 = new Image();
+    image1.setTitle("Title1");
+    imageDao.create(image1);
+    assertNotNull(image1.getId());
 
-    @Test
-    public void testReadAll() {
-        Image image1 = new Image();
-        image1.setTitle("Title1");
-        imageDao.create(image1);
-        assertNotNull(image1.getId());
+    Image image2 = new Image();
+    image2.setTitle("Title1");
+    imageDao.create(image2);
+    assertNotNull(image2.getId());
+  }
 
-        Image image2 = new Image();
-        image2.setTitle("Title1");
-        imageDao.create(image2);
-        assertNotNull(image2.getId());
+  @Test
+  public void testRead() {
+    Image image1 = new Image();
+    image1.setTitle("Title1");
+    imageDao.create(image1);
+    assertNotNull(image1.getId());
+    assertNotNull(imageDao.read(image1.getId()));
+  }
 
-        assertTrue(imageDao.readAll().size() >= 2);
-    }
+  @Test
+  public void testReadAll() {
+    Image image1 = new Image();
+    image1.setTitle("Title1");
+    imageDao.create(image1);
+    assertNotNull(image1.getId());
 
-    @Test
-    public void testUpdate() {
-        // TODO
-    }
+    Image image2 = new Image();
+    image2.setTitle("Title1");
+    imageDao.create(image2);
+    assertNotNull(image2.getId());
 
-    @Test
-    public void testDelete() {
-        // TODO
-    }
+    assertTrue(imageDao.readAll().size() >= 2);
+  }
+
+  @Test
+  public void testUpdate() {
+    // TODO
+  }
+
+  @Test
+  public void testDelete() {
+    // TODO
+  }
 }

@@ -1,26 +1,25 @@
 package ai.elimu.logic.converters;
 
-import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
-import org.springframework.beans.factory.annotation.Autowired;
+import ai.elimu.entity.content.Word;
+import lombok.AllArgsConstructor;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 
+@AllArgsConstructor
 public class StringToWordConverter implements Converter<String, Word> {
 
-    @Autowired
-    private WordDao wordDao;
-    
-    /**
-     * Convert Word id to Word entity
-     */
-    public Word convert(String id) {
-        if (StringUtils.isBlank(id)) {
-            return null;
-        } else {
-            Long wordId = Long.parseLong(id);
-            Word word = wordDao.read(wordId);
-            return word;
-        }
+  private final WordDao wordDao;
+
+  /**
+   * Convert Word id to Word entity
+   */
+  public Word convert(String id) {
+    if (StringUtils.isBlank(id)) {
+      return null;
+    } else {
+      Long wordId = Long.parseLong(id);
+      return wordDao.read(wordId);
     }
+  }
 }

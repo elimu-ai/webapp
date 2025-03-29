@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.paragraph" />
+    Add paragraph
 </content:title>
 
 <content:section cssId="storyBookParagraphCreatePage">
@@ -20,13 +20,13 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="originalText" cssErrorClass="error"><fmt:message key='original.text' /></form:label>
+                    <form:label path="originalText" cssErrorClass="error">Original text</form:label>
                     <form:textarea path="originalText" cssClass="materialize-textarea" cssErrorClass="error" />
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>

@@ -1,9 +1,10 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.LetterLearningEventDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.analytics.LetterLearningEvent;
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.analytics.LetterLearningEvent;
+import ai.elimu.entity.content.Letter;
+
 import java.util.Calendar;
 import jakarta.persistence.NoResultException;
 import org.springframework.dao.DataAccessException;

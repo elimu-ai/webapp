@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="pending.review" /> (${fn:length(wordContributionEventsPendingPeerReview)})
+    Pending review (${fn:length(wordContributionEventsPendingPeerReview)})
 </content:title>
 
 <content:section cssId="wordPeerReviewsPendingPage">
@@ -15,12 +15,12 @@
             </p>
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="sounds" /></th>
-                    <th><fmt:message key="word.type" /></th>
-                    <th><fmt:message key="contributor" /></th>
-                    <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="time" /></th>
+                    <th>Text</th>
+                    <th>Sounds</th>
+                    <th>Word type</th>
+                    <th>Contributor</th>
+                    <th>Revision</th>
+                    <th>Time</th>
                 </thead>
                 <tbody>
                     <c:forEach var="wordContributionEvent" items="${wordContributionEventsPendingPeerReview}">

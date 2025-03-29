@@ -1,23 +1,22 @@
 package ai.elimu.util.epub;
 
-import ai.elimu.model.enums.StoryBookProvider;
+import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import ai.elimu.entity.enums.StoryBookProvider;
+
+@Slf4j
 public class EPubImageExtractionHelper {
     
-    private static final Logger logger = LogManager.getLogger();
-
     /**
      * Examples of the expected file format can be found at <code>src/test/resources/ai/elimu/util/epub/</code>
      * 
@@ -25,27 +24,27 @@ public class EPubImageExtractionHelper {
      * @return An image file reference.
      */
     public static String extractImageReferenceFromChapterFile(File xhtmlFile) {
-        logger.info("extractImageReferenceFromChapterFile");
+        log.info("extractImageReferenceFromChapterFile");
         
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(xhtmlFile);
             NodeList nodeList = document.getDocumentElement().getChildNodes();
-            logger.info("nodeList.getLength(): " + nodeList.getLength());
+            log.info("nodeList.getLength(): " + nodeList.getLength());
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                logger.info("node: " + node);
+                log.info("node: " + node);
                 
                 // Look for "<body>"
                 if ("body".equals(node.getNodeName())) {
                     NodeList bodyChildNodeList = node.getChildNodes();
-                    logger.info("bodyChildNodeList.getLength(): " + bodyChildNodeList.getLength());
+                    log.info("bodyChildNodeList.getLength(): " + bodyChildNodeList.getLength());
                     for (int j = 0; j < bodyChildNodeList.getLength(); j++) {
                         Node bodyChildNode = bodyChildNodeList.item(j);
-                        logger.info("bodyChildNode: " + bodyChildNode);
-                        logger.info("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
-                        logger.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
+                        log.info("bodyChildNode: " + bodyChildNode);
+                        log.info("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
+                        log.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
                         
                         // StoryBookProvider: GLOBAL_DIGITAL_LIBRARY
                         // Look for an image within `<body>`
@@ -75,7 +74,7 @@ public class EPubImageExtractionHelper {
                         */
                         if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("class") != null)) {
                             NodeList containerDivChildNodeList = bodyChildNode.getChildNodes();
-                            logger.info("containerDivChildNodeList: " + containerDivChildNodeList);
+                            log.info("containerDivChildNodeList: " + containerDivChildNodeList);
                             for (int l = 0; l < containerDivChildNodeList.getLength(); l++) {
                                 Node containerDivChildNode = containerDivChildNodeList.item(l);
                                 if ("img".equals(containerDivChildNode.getNodeName())) {
@@ -99,15 +98,15 @@ public class EPubImageExtractionHelper {
                         */
                         if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("lang") != null)) {
                             NodeList langDivChildNodeList = bodyChildNode.getChildNodes();
-                            logger.info("langDivChildNodeList: " + langDivChildNodeList);
+                            log.info("langDivChildNodeList: " + langDivChildNodeList);
                             for (int k = 0; k < langDivChildNodeList.getLength(); k++) {
                                 Node langDivChildNode = langDivChildNodeList.item(k);
-                                logger.info("langDivChildNode: " + langDivChildNode);
+                                log.info("langDivChildNode: " + langDivChildNode);
                                 
                                 // Look for `<div class="container">`
                                 if ("div".equals(langDivChildNode.getNodeName()) && (langDivChildNode.getAttributes().getNamedItem("class") != null)) {
                                     NodeList containerDivChildNodeList = langDivChildNode.getChildNodes();
-                                    logger.info("containerDivChildNodeList: " + containerDivChildNodeList);
+                                    log.info("containerDivChildNodeList: " + containerDivChildNodeList);
                                     for (int l = 0; l < containerDivChildNodeList.getLength(); l++) {
                                         Node containerDivChildNode = containerDivChildNodeList.item(l);
                                         if ("img".equals(containerDivChildNode.getNodeName())) {
@@ -151,40 +150,40 @@ public class EPubImageExtractionHelper {
                             if ((bodyChildNode.getAttributes().getNamedItem("id") != null) 
                                     && "story_epub".equals(bodyChildNode.getAttributes().getNamedItem("id").getNodeValue())) {
                                 NodeList storyEpubDivChildNodeList = bodyChildNode.getChildNodes();
-                                logger.info("storyEpubDivChildNodeList.getLength() (STORYWEAVER): " + storyEpubDivChildNodeList.getLength());
+                                log.info("storyEpubDivChildNodeList.getLength() (STORYWEAVER): " + storyEpubDivChildNodeList.getLength());
                                 for (int k = 0; k < storyEpubDivChildNodeList.getLength(); k++) {
                                     Node storyEpubDivChildNode = storyEpubDivChildNodeList.item(k);
-                                    logger.info("storyEpubDivChildNode (STORYWEAVER): " + storyEpubDivChildNode);
+                                    log.info("storyEpubDivChildNode (STORYWEAVER): " + storyEpubDivChildNode);
                                     
                                     // Look for "<div id="storyReader" class="bengali">"
                                     if ("div".equals(storyEpubDivChildNode.getNodeName())) {
                                         if ((storyEpubDivChildNode.getAttributes().getNamedItem("id") != null) 
                                                 && "storyReader".equals(storyEpubDivChildNode.getAttributes().getNamedItem("id").getNodeValue())) {
                                             NodeList storyReaderDivChildNodeList = storyEpubDivChildNode.getChildNodes();
-                                            logger.info("storyReaderDivChildNodeList.getLength() (STORYWEAVER): " + storyReaderDivChildNodeList.getLength());
+                                            log.info("storyReaderDivChildNodeList.getLength() (STORYWEAVER): " + storyReaderDivChildNodeList.getLength());
                                             for (int l = 0; l < storyReaderDivChildNodeList.getLength(); l++) {
                                                 Node storyReaderDivChildNode = storyReaderDivChildNodeList.item(l);
-                                                logger.info("storyReaderDivChildNode (STORYWEAVER): " + storyReaderDivChildNode);
+                                                log.info("storyReaderDivChildNode (STORYWEAVER): " + storyReaderDivChildNode);
                                                 
                                                 // Look for "<div id="selected_page" class=" page-container-landscape story-page">"
                                                 if ("div".equals(storyReaderDivChildNode.getNodeName())) {
                                                     if ((storyReaderDivChildNode.getAttributes().getNamedItem("id") != null) 
                                                             && "selected_page".equals(storyReaderDivChildNode.getAttributes().getNamedItem("id").getNodeValue())) {
                                                         NodeList selectedPageChildNodeList = storyReaderDivChildNode.getChildNodes();
-                                                        logger.info("selectedPageChildNodeList.getLength() (STORYWEAVER): " + selectedPageChildNodeList.getLength());
+                                                        log.info("selectedPageChildNodeList.getLength() (STORYWEAVER): " + selectedPageChildNodeList.getLength());
                                                         for (int m = 0; m < selectedPageChildNodeList.getLength(); m++) {
                                                             Node selectedPageChildNode = selectedPageChildNodeList.item(m);
-                                                            logger.info("selectedPageChildNode (STORYWEAVER): " + selectedPageChildNode);
+                                                            log.info("selectedPageChildNode (STORYWEAVER): " + selectedPageChildNode);
                                                             
                                                             // Look for "<div class='sp_h_iT66_cB33 has_illustration illustration'>"
                                                             if ("div".equals(selectedPageChildNode.getNodeName())) {
                                                                 if ((selectedPageChildNode.getAttributes().getNamedItem("class") != null) 
                                                                         && selectedPageChildNode.getAttributes().getNamedItem("class").getNodeValue().contains("illustration")) {
                                                                     NodeList illustrationChildNodeList = selectedPageChildNode.getChildNodes();
-                                                                    logger.info("illustrationChildNodeList.getLength() (STORYWEAVER): " + illustrationChildNodeList.getLength());
+                                                                    log.info("illustrationChildNodeList.getLength() (STORYWEAVER): " + illustrationChildNodeList.getLength());
                                                                     for (int n = 0; n < illustrationChildNodeList.getLength(); n++) {
                                                                         Node illustrationChildNode = illustrationChildNodeList.item(n);
-                                                                        logger.info("illustrationChildNode (STORYWEAVER): " + illustrationChildNode);
+                                                                        log.info("illustrationChildNode (STORYWEAVER): " + illustrationChildNode);
                                                                         
                                                                         // Look for "<img class='responsive_illustration' />
                                                                         if ("img".equals(illustrationChildNode.getNodeName())) {
@@ -206,25 +205,25 @@ public class EPubImageExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
         
         return null;
     }
     
     private static String getFileReferenceFromImageNode(StoryBookProvider storyBookProvider, Node imageNode) {
-        logger.info("getFileReferenceFromImageNode");
+        log.info("getFileReferenceFromImageNode");
         
-        logger.info("storyBookProvider: " + storyBookProvider);
+        log.info("storyBookProvider: " + storyBookProvider);
         
         NamedNodeMap itemAttributes = imageNode.getAttributes();
-        logger.info("itemAttributes: " + itemAttributes);
+        log.info("itemAttributes: " + itemAttributes);
 
         Node srcAttributeNode = itemAttributes.getNamedItem("src");
-        logger.info("srcAttributeNode: " + srcAttributeNode);
+        log.info("srcAttributeNode: " + srcAttributeNode);
         
         String imageSource = srcAttributeNode.getNodeValue();
-        logger.info("imageSource: \"" + imageSource + "\"");
+        log.info("imageSource: \"" + imageSource + "\"");
         return imageSource;
     }
 }

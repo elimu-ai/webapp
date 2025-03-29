@@ -1,5 +1,5 @@
 <div class="card-panel">
-    <h5><fmt:message key="contributions" /> (${fn:length(wordContributionEvents)})</h5>
+    <h5>Contributions (${fn:length(wordContributionEvents)})</h5>
     <c:if test="${empty wordContributionEvents}">
         <p>
             No word contributions.
@@ -8,11 +8,11 @@
     <c:if test="${not empty wordContributionEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="word" /></th>
-                <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="time" /></th>
-                <th><fmt:message key="comment" /></th>
-                <th><fmt:message key="peer.reviews" /></th>
+                <th>Word</th>
+                <th>Revision</th>
+                <th>Time</th>
+                <th>Comment</th>
+                <th>Peer-reviews</th>
             </thead>
             <tbody>
                 <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
@@ -35,7 +35,7 @@
                         <td>
                             <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEventsByContributionMap[wordContributionEvent.id]}">
                                 <c:if test="${wordPeerReviewEvent.wordContributionEvent.id == wordContributionEvent.id}">
-                                    <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                                    <div class="row peerReviewEvent indent" data-approved="${wordPeerReviewEvent.getApproved()}">
                                         <div class="col s4">
                                             <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                                 <div class="chip">
@@ -64,7 +64,7 @@
                                         <div class="col s4">
                                             <code class="peerReviewStatus">
                                                 <c:choose>
-                                                    <c:when test="${wordPeerReviewEvent.isApproved()}">
+                                                    <c:when test="${wordPeerReviewEvent.getApproved()}">
                                                         APPROVED
                                                     </c:when>
                                                     <c:otherwise>
@@ -91,7 +91,7 @@
 </div>
 
 <div class="card-panel">
-    <h5><fmt:message key="peer.reviews" /> (${fn:length(wordPeerReviewEvents)})</h5>
+    <h5>Peer-reviews (${fn:length(wordPeerReviewEvents)})</h5>
     <c:if test="${empty wordPeerReviewEvents}">
         <p>
             No word peer-reviews.
@@ -100,16 +100,16 @@
     <c:if test="${not empty wordPeerReviewEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="peer.review" /></th>
-                <th><fmt:message key="word" /></th>
-                <th><fmt:message key="contributor" /></th>
+                <th>Peer-review</th>
+                <th>Word</th>
+                <th>Contributor</th>
             </thead>
             <tbody>
                 <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">
                     <c:set var="word" value="${wordPeerReviewEvent.wordContributionEvent.word}" />
                     <tr>
                         <td>
-                            <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.isApproved()}">
+                            <div class="row peerReviewEvent" data-approved="${wordPeerReviewEvent.getApproved()}">
                                 <div class="col s4">
                                     <a href="<spring:url value='/contributor/${wordPeerReviewEvent.contributor.id}' />">
                                         <div class="chip">
@@ -138,7 +138,7 @@
                                 <div class="col s4">
                                     <code class="peerReviewStatus">
                                         <c:choose>
-                                            <c:when test="${wordPeerReviewEvent.isApproved()}">
+                                            <c:when test="${wordPeerReviewEvent.getApproved()}">
                                                 APPROVED
                                             </c:when>
                                             <c:otherwise>

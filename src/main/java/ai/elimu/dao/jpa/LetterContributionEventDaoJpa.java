@@ -1,9 +1,10 @@
 package ai.elimu.dao.jpa;
 
-import ai.elimu.model.contributor.LetterContributionEvent;
 import ai.elimu.dao.LetterContributionEventDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterContributionEvent;
+
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 

@@ -1,11 +1,12 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.LetterSoundContributionEventDao;
-import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterSoundContributionEvent;
+
 import java.util.List;
 
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
 import org.springframework.dao.DataAccessException;
 
 public class LetterSoundContributionEventDaoJpa extends GenericDaoJpa<LetterSoundContributionEvent> implements LetterSoundContributionEventDao {

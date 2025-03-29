@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.sound" />
+    Add sound
 </content:title>
 
 <content:section cssId="soundCreatePage">
@@ -12,43 +12,44 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="valueIpa" cssErrorClass="error"><fmt:message key='value' /> (IPA)</form:label>
+                    <form:label path="valueIpa" cssErrorClass="error">Value (IPA)</form:label>
                     <form:input path="valueIpa" cssErrorClass="error" />
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="valueSampa" cssErrorClass="error"><fmt:message key='value' /> (X-SAMPA)</form:label>
+                    <form:label path="valueSampa" cssErrorClass="error">Value (X-SAMPA)</form:label>
                     <form:input path="valueSampa" cssErrorClass="error" />
                 </div>
             
                 <div class="input-field col s12">
                     <select id="soundType" name="soundType">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="soundType" items="${soundTypes}">
                             <option value="${soundType}" <c:if test="${soundType == sound.soundType}">selected="selected"</c:if>><c:out value="${soundType}" /></option>
                         </c:forEach>
                     </select>
-                    <label for="soundType"><fmt:message key="sound.type" /></label>
+                    <label for="soundType">Sound type</label>
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
 </content:section>
 
 <content:aside>
+    <h5 class="center">Resources</h5>
+
     <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
-        <h5 class="center"><fmt:message key="resources" /></h5>
         <div class="card-panel deep-purple lighten-5">
             Hindi resources:
             <ol style="list-style-type: inherit;">
@@ -63,8 +64,19 @@
                 </li>
             </ol>
         </div>
-        
-        <div class="divider" style="margin: 1.5em 0;"></div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+        <div class="card-panel deep-purple lighten-5">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Thai_script" target="_blank">Thai script - Wikipedia</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Thai" target="_blank">IPA/Thai - Wikipedia</a>
+                </li>
+            </ol>
+        </div>
     </c:if>
         
     <div class="card-panel deep-purple lighten-5">

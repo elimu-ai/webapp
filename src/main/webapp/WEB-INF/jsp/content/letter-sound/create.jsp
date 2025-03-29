@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.letter.sound.correspondence" />
+    Add letter-sound correspondence
 </content:title>
 
 <content:section cssId="letterSoundCreatePage">
@@ -12,7 +12,7 @@
             
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="letters" /></label><br />
+                    <label>Letters</label><br />
                     "<span id="lettersContainer">
                         <c:forEach var="letter" items="${letterSound.letters}">
                             <input name="letters" type="hidden" value="${letter.id}" />
@@ -44,7 +44,7 @@
                     </span>"
 
                     <select id="letters" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="letter" items="${letters}">
                             <option value="${letter.id}"><c:out value="${letter.text}" /></option>
                         </c:forEach>
@@ -67,13 +67,13 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter/create' />" target="_blank"><fmt:message key="add.letter" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter/create' />" target="_blank">Add letter <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="sounds" /></label><br />
+                    <label>Sounds</label><br />
                     /<span id="soundsContainer">
                         <c:forEach var="sound" items="${letterSound.sounds}">
                             <input name="sounds" type="hidden" value="${sound.id}" />
@@ -105,7 +105,7 @@
                     </span>/
 
                     <select id="sounds" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="sound" items="${sounds}">
                             <option value="${sound.id}"><c:out value="${sound.valueIpa}" /></option>
                         </c:forEach>
@@ -128,26 +128,26 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/sound/create' />" target="_blank"><fmt:message key="add.sound" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/sound/create' />" target="_blank">Add sound <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
             Hindi resources:
@@ -162,6 +162,22 @@
                     <a href="https://omniglot.com/writing/hindi.htm#alphabet" target="_blank">Devanāgarī alphabet for Hindi</a>
                 </li>
             </ol>
+        </c:if>
+        <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Thai" target="_blank">Wikipedia: Help:IPA/Thai</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Thai_script" target="_blank">Wikipedia: Thai script</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/writing/thai.htm" target="_blank">Omniglot: Thai (ภาษาไทย)</a>
+                </li>
+            </ol>
+            
+            <div class="divider" style="margin: 1em 0;"></div>
         </c:if>
         
         General resources:

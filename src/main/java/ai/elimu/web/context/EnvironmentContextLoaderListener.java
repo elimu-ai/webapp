@@ -56,11 +56,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         logger.info("env: " + env);
         PROPERTIES.put("env", env);
         
-        if ((env == Environment.TEST) || (env == Environment.PROD)) {
+        if (env == Environment.PROD) {
             // Configure Log4j 2 so that it logs to a file instead of to the console
             // See https://logging.apache.org/log4j/2.x/manual/customconfig.html#Configurator)
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            URL log4j2FileUrl = classLoader.getResource("log4j2_" + env + ".xml"); // E.g. "log4j2_TEST.xml"
+            URL log4j2FileUrl = classLoader.getResource("log4j2_" + env + ".xml");
             logger.info("log4j2FileUrl: " + log4j2FileUrl);
             String log4j2FilePath = log4j2FileUrl.getFile();
             logger.info("log4j2FilePath: " + log4j2FilePath);
@@ -89,7 +89,7 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
             logger.error(ex);
         }
         
-        if ((env == Environment.TEST) || (env == Environment.PROD)) {
+        if (env == Environment.PROD) {
             InputStream inputStream = null;
             try {
                 // Override config.properties
@@ -123,12 +123,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                     String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");
                     PROPERTIES.put("discord.webhook.url", discordWebhookUrl);
                 }
-
-                String pinataApiKey = (String) servletContext.getAttribute("pinata_api_key");
-                PROPERTIES.put("pinata.api.key", pinataApiKey);
-
-                String pinataApiSecret = (String) servletContext.getAttribute("pinata_api_secret");
-                PROPERTIES.put("pinata.api.secret", pinataApiSecret);
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {

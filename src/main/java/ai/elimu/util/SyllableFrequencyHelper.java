@@ -1,35 +1,32 @@
 package ai.elimu.util;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import org.apache.logging.log4j.Logger;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.v2.enums.Language;
-import org.apache.logging.log4j.LogManager;
 
+import ai.elimu.entity.content.Word;
+import ai.elimu.model.v2.enums.Language;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SyllableFrequencyHelper {
-    
-    private static final Logger logger = LogManager.getLogger();
 
     public static Map<String, Integer> getSyllableFrequency(List<String> paragraphs, Language language) {
         Map<String, Integer> syllableFrequencyMap = new HashMap<>();
         
         for (String paragraph : paragraphs) {
-            logger.info("paragraph: " + paragraph);
+            log.info("paragraph: " + paragraph);
             List<String> words = WordExtractionHelper.getWords(paragraph, language);
             for (String wordInParagraph : words) {
-                logger.info("wordInParagraph: " + wordInParagraph);
+                log.info("wordInParagraph: " + wordInParagraph);
                 Word word = new Word();
                 word.setText(wordInParagraph);
                 List<String> syllables = SyllableHelper.getSyllables(word, language);
-                logger.info("syllables.size(): " + syllables.size());
+                log.info("syllables.size(): " + syllables.size());
                 for (String syllable : syllables) {
-                    logger.info("syllable: " + syllable);
+                    log.info("syllable: " + syllable);
                     syllableFrequencyMap.put(syllable, syllableFrequencyMap.getOrDefault(syllable, 0) + 1);
                 }
             }

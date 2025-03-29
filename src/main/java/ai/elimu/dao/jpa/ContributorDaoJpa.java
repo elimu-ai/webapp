@@ -4,10 +4,9 @@ import java.util.Calendar;
 import java.util.List;
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.ContributorDao;
+import ai.elimu.entity.contributor.Contributor;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.contributor.Contributor;
 
 public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements ContributorDao {
 
@@ -109,15 +108,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
             "SELECT c " +
             "FROM Contributor c " +
             "WHERE c IN (SELECT contributor FROM StoryBookContributionEvent)")
-            .getResultList();
-    }
-    
-    @Override
-    public List<Contributor> readAllWithAudioContributions() throws DataAccessException {
-        return em.createQuery(
-            "SELECT c " +
-            "FROM Contributor c " +
-            "WHERE c IN (SELECT contributor FROM AudioContributionEvent)")
             .getResultList();
     }
 

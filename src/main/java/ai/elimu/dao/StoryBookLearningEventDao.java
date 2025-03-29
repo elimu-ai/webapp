@@ -1,11 +1,12 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
-import ai.elimu.model.content.StoryBook;
 import java.util.Calendar;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.content.StoryBook;
 
 public interface StoryBookLearningEventDao extends GenericDao<StoryBookLearningEvent> {
     

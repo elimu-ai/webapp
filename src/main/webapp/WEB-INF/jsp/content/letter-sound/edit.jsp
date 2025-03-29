@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.letter.sound.correspondence" />
+    Edit letter-sound correspondence
 </content:title>
 
 <content:section cssId="letterSoundEditPage">
@@ -14,7 +14,7 @@
             
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="letters" /></label><br />
+                    <label>Letters</label><br />
                     "<span id="lettersContainer">
                         <c:forEach var="letter" items="${letterSound.letters}">
                             <input name="letters" type="hidden" value="${letter.id}" />
@@ -46,7 +46,7 @@
                     </span>"
 
                     <select id="letters" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="letter" items="${letters}">
                             <option value="${letter.id}"><c:out value="${letter.text}" /></option>
                         </c:forEach>
@@ -69,13 +69,13 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/letter/create' />" target="_blank"><fmt:message key="add.letter" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/letter/create' />" target="_blank">Add letter <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col s12">
-                    <label><fmt:message key="sounds" /></label><br />
+                    <label>Sounds</label><br />
                     /<span id="soundsContainer">
                         <c:forEach var="sound" items="${letterSound.sounds}">
                             <input name="sounds" type="hidden" value="${sound.id}" />
@@ -107,7 +107,7 @@
                     </span>/
 
                     <select id="sounds" class="browser-default" style="font-size: 2rem; margin: 0.5rem 0; height: auto;">
-                        <option value="">-- <fmt:message key='select' /> --</option>
+                        <option value="">-- Select --</option>
                         <c:forEach var="sound" items="${sounds}">
                             <option value="${sound.id}"><c:out value="${sound.valueIpa}" /></option>
                         </c:forEach>
@@ -130,19 +130,19 @@
                         });
                     </script>
                     
-                    <a href="<spring:url value='/content/sound/create' />" target="_blank"><fmt:message key="add.sound" /> <i class="material-icons">launch</i></a>
+                    <a href="<spring:url value='/content/sound/create' />" target="_blank">Add sound <i class="material-icons">launch</i></a>
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                Edit <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
@@ -153,20 +153,20 @@
     <c:if test="${(not empty letterSoundContributionEvents) 
                   && (letterSoundContributionEvents[0].contributor.id != contributor.id)}">
         <a name="peer-review"></a>
-        <h5><fmt:message key="peer.review" /> 🕵🏽‍♀📖️️️️</h5>
+        <h5>Peer-review 🕵🏽‍♀📖️️️️</h5>
         
         <form action="<spring:url value='/content/letter-sound-peer-review-event/create' />" method="POST" class="card-panel">
             <p>
-                <fmt:message key="do.you.approve.quality.of.this.letter.sound.correspondence?" />
+                Do you approve the quality of this letter-sound correspondence?
             </p>
             
             <input type="hidden" name="letterSoundContributionEventId" value="${letterSoundContributionEvents[0].id}" />
             
             <input type="radio" id="approved_true" name="approved" value="true" />
-            <label for="approved_true"><fmt:message key="yes" /> (approve)</label><br />
+            <label for="approved_true">Yes (approve)</label><br />
 
             <input type="radio" id="approved_false" name="approved" value="false" />
-            <label for="approved_false"><fmt:message key="no" /> (request changes)</label><br />
+            <label for="approved_false">No (request changes)</label><br />
             
             <script>
                 $(function() {
@@ -189,11 +189,11 @@
             </script>
             
             <div id="peerReviewSubmitContainer" style="display: none;">
-                <label for="comment"><fmt:message key="comment" /></label>
+                <label for="comment">Comment</label>
                 <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
 
                 <button class="btn-large waves-effect waves-light" type="submit">
-                    <fmt:message key="submit" /> <i class="material-icons right">send</i>
+                    Submit <i class="material-icons right">send</i>
                 </button>
             </div>
         </form>
@@ -202,13 +202,13 @@
     </c:if>
 
     <a name="contribution-events"></a>
-    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
+    <h5>Contributions 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="letterSoundContributionEvent" items="${letterSoundContributionEvents}">
             <a name="contribution-event_${letterSoundContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:message key="revision" /> #${letterSoundContributionEvent.revisionNumber} 
+                    Revision #${letterSoundContributionEvent.revisionNumber} 
                     (<fmt:formatNumber maxFractionDigits="0" value="${letterSoundContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${letterSoundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
@@ -242,7 +242,7 @@
                 <%-- List peer reviews below each contribution event --%>
                 <c:forEach var="letterSoundPeerReviewEvent" items="${letterSoundPeerReviewEvents}">
                     <c:if test="${letterSoundPeerReviewEvent.letterSoundContributionEvent.id == letterSoundContributionEvent.id}">
-                        <div class="row peerReviewEvent indent" data-approved="${letterSoundPeerReviewEvent.isApproved()}">
+                        <div class="row peerReviewEvent indent" data-approved="${letterSoundPeerReviewEvent.getApproved()}">
                             <div class="col s4">
                                 <a href="<spring:url value='/contributor/${letterSoundPeerReviewEvent.contributor.id}' />">
                                     <div class="chip">
@@ -271,7 +271,7 @@
                             <div class="col s4">
                                 <code class="peerReviewStatus">
                                     <c:choose>
-                                        <c:when test="${letterSoundPeerReviewEvent.isApproved()}">
+                                        <c:when test="${letterSoundPeerReviewEvent.getApproved()}">
                                             APPROVED
                                         </c:when>
                                         <c:otherwise>
@@ -295,7 +295,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
             Hindi resources:
@@ -310,6 +310,22 @@
                     <a href="https://omniglot.com/writing/hindi.htm#alphabet" target="_blank">Devanāgarī alphabet for Hindi</a>
                 </li>
             </ol>
+        </c:if>
+        <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Thai" target="_blank">Wikipedia: Help:IPA/Thai</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Thai_script" target="_blank">Wikipedia: Thai script</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/writing/thai.htm" target="_blank">Omniglot: Thai (ภาษาไทย)</a>
+                </li>
+            </ol>
+            
+            <div class="divider" style="margin: 1em 0;"></div>
         </c:if>
         
         General resources:
@@ -328,12 +344,12 @@
     
     <div class="divider" style="margin: 1.5em 0;"></div>
     
-    <h5 class="center"><fmt:message key="usages" /></h5>
+    <h5 class="center">Usages</h5>
     
     <table class="bordered highlight">
         <thead>
-            <th><fmt:message key="word" /></th>
-            <th><fmt:message key="frequency" /></th>
+            <th>Word</th>
+            <th>Frequency</th>
         </thead>
         <tbody>
             <c:forEach var="word" items="${words}">

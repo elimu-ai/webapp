@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 
 public interface ContributorDao extends GenericDao<Contributor> {
     
@@ -24,8 +24,6 @@ public interface ContributorDao extends GenericDao<Contributor> {
     List<Contributor> readAll(Calendar calendarFrom, Calendar calendarTo) throws DataAccessException;
     
     List<Contributor> readAllWithStoryBookContributions() throws DataAccessException;
-    
-    List<Contributor> readAllWithAudioContributions() throws DataAccessException;
     
     List<Contributor> readAllWithWordContributions() throws DataAccessException;
     

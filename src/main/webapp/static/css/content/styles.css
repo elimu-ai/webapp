@@ -33,7 +33,6 @@ main #letterSoundsContainer .chip {
     height: 1.2em;
 }
 
-#labeledAudios img,
 #labeledImages img,
 #labeledVideos img {
     margin-top: 0.5em;
@@ -59,14 +58,19 @@ main #letterSoundsContainer .chip {
 }
 #storyBookEditPage .storyBookChapter .storyBookParagraph {
     white-space: pre-line;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.4em;
     word-spacing: 1em;
     font-size: 2em;
     line-height: 3em;
     margin: 2rem;
 }
-html[data-content-language="hin"] #storyBookEditPage .storyBookChapter .storyBookParagraph {
+#storyBookParagraphCreatePage #originalText,
+#storyBookParagraphEditPage #originalText {
+    white-space: pre-line;
     letter-spacing: 0.4em;
+    word-spacing: 1em;
+    font-size: 2em;
+    min-height: 10rem;
 }
 
 blockquote,

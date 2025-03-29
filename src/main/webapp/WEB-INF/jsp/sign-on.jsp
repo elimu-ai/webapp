@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="sign.on" />
+    Sign on
 </content:title>
 
 <content:section cssId="signOnPage">
@@ -7,7 +7,7 @@
     
     <div class="section">
         <div class="row section">
-            <p class="center"><fmt:message key="sign.on.via.an.existing.account" />:</p>
+            <p class="center">Sign on via an existing account:</p>
 
             <div class="col s12 m10 l8 offset-m1 offset-l2">
                 <a href="<spring:url value='/sign-on/discord' />" class="col s12 btn-large waves-effect waves-light white grey-text">

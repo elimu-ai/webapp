@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.emoji" />
+    Add emoji
 </content:title>
 
 <content:section cssId="emojiCreatePage">
@@ -10,30 +10,30 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="glyph" cssErrorClass="error"><fmt:message key='glyph' /></form:label>
+                    <form:label path="glyph" cssErrorClass="error">Glyph</form:label>
                     <form:input path="glyph" cssErrorClass="error" placeholder="🦋" />
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="unicodeVersion" cssErrorClass="error"><fmt:message key='unicode.version' /></form:label>
-                    <form:input path="unicodeVersion" cssErrorClass="error" placeholder="9.0" />
+                    <form:label path="unicodeVersion" cssErrorClass="error">Unicode version</form:label>
+                    <form:input path="unicodeVersion" cssErrorClass="error" placeholder="10.0" />
                 </div>
                 
                 <div class="input-field col s12">
-                    <form:label path="unicodeEmojiVersion" cssErrorClass="error"><fmt:message key='unicode.emoji.version' /></form:label>
-                    <form:input path="unicodeEmojiVersion" cssErrorClass="error" placeholder="3.0" />
+                    <form:label path="unicodeEmojiVersion" cssErrorClass="error">Unicode Emoji version</form:label>
+                    <form:input path="unicodeEmojiVersion" cssErrorClass="error" placeholder="5.0" />
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="add" /> <i class="material-icons right">send</i>
+                Add <i class="material-icons right">send</i>
             </button>
         </form:form>
     </div>
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <ul>
             <li>

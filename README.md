@@ -16,7 +16,7 @@ Deployments in production:
 
 [<kbd>![](https://github.com/elimu-ai/webapp/assets/15718174/32f3c339-aacc-4dc1-9692-c9435bc63d57)</kbd>](https://hin.elimu.ai)
 
-This web application hosts Android apps and educational content (e.g. texts, audio, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
+This web application hosts Android apps and educational content (e.g. texts, words, videos, storybooks) for each supported language. Via the [elimu.ai Appstore](https://github.com/elimu-ai/appstore) application, the educational apps and content are downloaded from the website and installed on Android devices.
 
 ## REST API
 
@@ -38,6 +38,10 @@ See [`INSTALL.md`](./INSTALL.md)
 ## Deploy webapp on production server 🚀
 
 See [`src/main/config/DEPLOY.md`](./src/main/config/DEPLOY.md)
+
+## Release 📦
+
+See [`src/main/config/RELEASE.md`](./src/main/config/RELEASE.md)
 
 ## Localization
 

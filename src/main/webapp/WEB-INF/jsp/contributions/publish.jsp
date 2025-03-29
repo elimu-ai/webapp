@@ -34,7 +34,7 @@
         effective at teaching the children. The best-performing apps are then automatically promoted.
     </p>
     
-    <h4><fmt:message key="instructions" /></h4>
+    <h4>Instructions</h4>
     
     <ol class="browser-default">
         <li>Select <b>one</b> literacy/numeracy skill that your app/game will be teaching.</li>
@@ -96,7 +96,7 @@
         <li>
             <b>What devices are being used?</b><br />
             We are building our software for Android devices with 6"-10" displays installed with  
-            Android API version 24 (7.0) or higher.<br />
+            Android 8.0 (API 26) or higher.<br />
             <br />
         </li>
     </ul>

@@ -12,3 +12,7 @@ assignees: ''
 
 ## Why?
 <!-- Explain _why_ this issue is needed -->
+
+---
+
+> elimu.ai's mission is to build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 **within 6 months**.

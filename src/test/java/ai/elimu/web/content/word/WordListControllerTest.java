@@ -19,24 +19,28 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
     "file:src/main/webapp/WEB-INF/spring/applicationContext-jpa.xml"
 })
 public class WordListControllerTest {
-    
-    @Autowired
-    private WordListController wordListController;
-    
-    private MockMvc mockMvc;
-    
-    @BeforeEach
-    public void setup() {
-        assertNotNull(wordListController);
-        mockMvc = MockMvcBuilders.standaloneSetup(wordListController).build();
-        assertNotNull(mockMvc);
-    }
-    
-    @Test
-    public void testHandleGetRequest() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/content/word/list");
-        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-        assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
-        assertEquals("content/word/list", mvcResult.getModelAndView().getViewName());
-    }
+
+  private final WordListController wordListController;
+
+  @Autowired
+  public WordListControllerTest(WordListController wordListController) {
+    this.wordListController = wordListController;
+  }
+
+  private MockMvc mockMvc;
+
+  @BeforeEach
+  public void setup() {
+    assertNotNull(wordListController);
+    mockMvc = MockMvcBuilders.standaloneSetup(wordListController).build();
+    assertNotNull(mockMvc);
+  }
+
+  @Test
+  public void testHandleGetRequest() throws Exception {
+    RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/content/word/list");
+    MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+    assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
+    assertEquals("content/word/list", mvcResult.getModelAndView().getViewName());
+  }
 }

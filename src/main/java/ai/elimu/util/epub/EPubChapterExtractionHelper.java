@@ -1,6 +1,6 @@
 package ai.elimu.util.epub;
 
-import ai.elimu.model.enums.StoryBookProvider;
+import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,18 +8,17 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import ai.elimu.entity.enums.StoryBookProvider;
+
+@Slf4j
 public class EPubChapterExtractionHelper {
     
-    private static final Logger logger = LogManager.getLogger();
-
     /**
      * Extracts a list of filename references from the Table of Contents (TOC) file – {@code toc.xhtml}. 
      * E.g. "chapter-1.xhtml", "chapter-2.xhtml", or "Page_2.xhtml", "Page_3.xhtml", etc.
@@ -143,7 +142,7 @@ public class EPubChapterExtractionHelper {
      * </pre>
      */
     public static List<String> extractChapterReferencesFromTableOfContentsFile(File xhtmlFile) {
-        logger.info("extractChapterReferencesFromTableOfContentsFile");
+        log.info("extractChapterReferencesFromTableOfContentsFile");
         
         List<String> chapterReferences = new ArrayList<>();
         
@@ -152,57 +151,57 @@ public class EPubChapterExtractionHelper {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(xhtmlFile);
             NodeList nodeList = document.getDocumentElement().getChildNodes();
-            logger.info("nodeList.getLength(): " + nodeList.getLength());
+            log.info("nodeList.getLength(): " + nodeList.getLength());
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                logger.info("node: " + node);
+                log.info("node: " + node);
                 
                 // Look for "<body>"
                 if ("body".equals(node.getNodeName())) {
                     NodeList bodyChildNodeList = node.getChildNodes();
-                    logger.info("bodyChildNodeList.getLength(): " + bodyChildNodeList.getLength());
+                    log.info("bodyChildNodeList.getLength(): " + bodyChildNodeList.getLength());
                     for (int j = 0; j < bodyChildNodeList.getLength(); j++) {
                         Node bodyChildNode = bodyChildNodeList.item(j);
-                        logger.info("bodyChildNode: " + bodyChildNode);
-                        logger.info("bodyChildNode.getNodeName(): \"" + bodyChildNode.getNodeName() + "\"");
+                        log.info("bodyChildNode: " + bodyChildNode);
+                        log.info("bodyChildNode.getNodeName(): \"" + bodyChildNode.getNodeName() + "\"");
                         
                         // Look for "<nav>"
                         if ("nav".equals(bodyChildNode.getNodeName())) {
                             // Look for "<nav epub:type="toc">"
                             NamedNodeMap attributes = bodyChildNode.getAttributes();
-                            logger.info("attributes: " + attributes);
+                            log.info("attributes: " + attributes);
                             Node namedItem = attributes.getNamedItem("epub:type");
-                            logger.info("namedItem: " + namedItem);
-                            logger.info("namedItem.getNodeValue(): " + namedItem.getNodeValue());
+                            log.info("namedItem: " + namedItem);
+                            log.info("namedItem.getNodeValue(): " + namedItem.getNodeValue());
                             if ("toc".equals(namedItem.getNodeValue())) {
                                 NodeList navChildNodeList = bodyChildNode.getChildNodes();
-                                logger.info("navChildNodeList.getLength(): " + navChildNodeList.getLength());
+                                log.info("navChildNodeList.getLength(): " + navChildNodeList.getLength());
                                 for (int k = 0; k < navChildNodeList.getLength(); k++) {
                                     Node navChildNode = navChildNodeList.item(k);
-                                    logger.info("navChildNode: " + navChildNode);
+                                    log.info("navChildNode: " + navChildNode);
 
                                     // Look for "<ol>"
                                     if ("ol".equals(navChildNode.getNodeName())) {
                                         NodeList olChildNodeList = navChildNode.getChildNodes();
-                                        logger.info("olChildNodeList.getLength(): " + olChildNodeList.getLength());
+                                        log.info("olChildNodeList.getLength(): " + olChildNodeList.getLength());
                                         for (int l = 0; l < olChildNodeList.getLength(); l++) {
                                             Node olChildNode = olChildNodeList.item(l);
-                                            logger.info("olChildNode: " + olChildNode);
+                                            log.info("olChildNode: " + olChildNode);
                                                 
                                             // Look for "<li>"
                                             if ("li".equals(olChildNode.getNodeName())) {
                                                 NodeList liChildNodeList = olChildNode.getChildNodes();
-                                                logger.info("liChildNodeList.getLength(): " + liChildNodeList.getLength());
+                                                log.info("liChildNodeList.getLength(): " + liChildNodeList.getLength());
                                                 
                                                 for (int m = 0; m < liChildNodeList.getLength(); m++) {
                                                     Node liChildNode = liChildNodeList.item(m);
-                                                    logger.info("liChildNode: " + liChildNode);
+                                                    log.info("liChildNode: " + liChildNode);
                                                     
                                                     // Look for "<a>", e.g. <a href="Page_2.xhtml">Page 2</a>
                                                     if ("a".equals(liChildNode.getNodeName())) {
                                                         // Get the value of the "href" attribute
                                                         String chapterReference = liChildNode.getAttributes().getNamedItem("href").getNodeValue();
-                                                        logger.info("chapterReference: \"" + chapterReference + "\"");
+                                                        log.info("chapterReference: \"" + chapterReference + "\"");
                                                         chapterReferences.add(chapterReference);
                                                     }
                                                 }
@@ -216,7 +215,7 @@ public class EPubChapterExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
         
         return chapterReferences;
@@ -272,7 +271,7 @@ public class EPubChapterExtractionHelper {
      * </pre>
      */
     public static List<String> extractChapterReferencesFromTableOfContentsFileNcx(File ncxFile) {
-        logger.info("extractChapterReferencesFromTableOfContentsFileNcx");
+        log.info("extractChapterReferencesFromTableOfContentsFileNcx");
         
         List<String> chapterReferences = new ArrayList<>();
         
@@ -281,35 +280,35 @@ public class EPubChapterExtractionHelper {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(ncxFile);
             NodeList nodeList = document.getDocumentElement().getChildNodes();
-            logger.info("nodeList.getLength(): " + nodeList.getLength());
+            log.info("nodeList.getLength(): " + nodeList.getLength());
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                logger.info("node: " + node);
-                logger.info("node.getNodeName(): " + node.getNodeName());
+                log.info("node: " + node);
+                log.info("node.getNodeName(): " + node.getNodeName());
                         
                 // Look for "<navMap>"
                 if ("navMap".equals(node.getNodeName())) {
                     NodeList navMapChildNodeList = node.getChildNodes();
-                    logger.info("navMapChildNodeList.getLength(): " + navMapChildNodeList.getLength());
+                    log.info("navMapChildNodeList.getLength(): " + navMapChildNodeList.getLength());
                     for (int j = 0; j < navMapChildNodeList.getLength(); j++) {
                         Node navMapChildNode = navMapChildNodeList.item(j);
-                        logger.info("navMapChildNode: " + navMapChildNode);
-                        logger.info("navMapChildNode.getNodeName(): \"" + navMapChildNode.getNodeName() + "\"");
+                        log.info("navMapChildNode: " + navMapChildNode);
+                        log.info("navMapChildNode.getNodeName(): \"" + navMapChildNode.getNodeName() + "\"");
                         
                         // Look for "<navPoint>"
                         if ("navPoint".equals(navMapChildNode.getNodeName())) {
                             NodeList navPointChildNodeList = navMapChildNode.getChildNodes();
-                            logger.info("navPointChildNodeList.getLength(): " + navPointChildNodeList.getLength());
+                            log.info("navPointChildNodeList.getLength(): " + navPointChildNodeList.getLength());
                             for (int k = 0; k < navPointChildNodeList.getLength(); k++) {
                                 Node navPointChildNode = navPointChildNodeList.item(k);
-                                logger.info("navPointChildNode: " + navPointChildNode);
-                                logger.info("navPointChildNode.getNodeName(): \"" + navPointChildNode.getNodeName() + "\"");
+                                log.info("navPointChildNode: " + navPointChildNode);
+                                log.info("navPointChildNode.getNodeName(): \"" + navPointChildNode.getNodeName() + "\"");
                                 
                                 // Look for "<content>", e.g. <content src="1.xhtml"/>
                                 if ("content".equals(navPointChildNode.getNodeName())) {
                                     // Get the value of the "src" attribute
                                     String chapterReference = navPointChildNode.getAttributes().getNamedItem("src").getNodeValue();
-                                    logger.info("chapterReference: \"" + chapterReference + "\"");
+                                    log.info("chapterReference: \"" + chapterReference + "\"");
                                     chapterReferences.add(chapterReference);
                                 }
                             }
@@ -318,7 +317,7 @@ public class EPubChapterExtractionHelper {
                 }
             }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
         
         return chapterReferences;

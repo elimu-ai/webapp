@@ -1,9 +1,10 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.Syllable;
 
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.Syllable;
 
 public interface SyllableDao extends GenericDao<Syllable> {
     

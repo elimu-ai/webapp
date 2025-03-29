@@ -1,10 +1,11 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.ImageContributionEvent;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.ImageContributionEvent;
 
 public interface ImageContributionEventDao extends GenericDao<ImageContributionEvent> {
     

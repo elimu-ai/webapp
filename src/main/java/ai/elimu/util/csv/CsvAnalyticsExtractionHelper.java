@@ -2,15 +2,14 @@ package ai.elimu.util.csv;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
-import ai.elimu.model.analytics.VideoLearningEvent;
-import ai.elimu.model.analytics.WordLearningEvent;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.VideoLearningEvent;
+import ai.elimu.entity.content.StoryBook;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import ai.elimu.rest.v2.analytics.StoryBookLearningEventsRestController;
 import ai.elimu.web.analytics.StoryBookLearningEventCsvExportController;
+import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
@@ -22,17 +21,12 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.http.HttpStatus;
 
+@Slf4j
 public class CsvAnalyticsExtractionHelper {
-    
-    private static final Logger logger = LogManager.getLogger();
     
     /**
      * For information on how the CSV files were generated, see {@link StoryBookLearningEventCsvExportController#handleRequest}.
@@ -40,12 +34,12 @@ public class CsvAnalyticsExtractionHelper {
      * Also see {@link StoryBookLearningEventsRestController#handleUploadCsvRequest}
      */
     public static List<StoryBookLearningEvent> getStoryBookLearningEventsFromCsvBackup(File csvFile, ApplicationDao applicationDao, StoryBookDao storyBookDao) {
-        logger.info("getStoryBookLearningEventsFromCsvBackup");
+        log.info("getStoryBookLearningEventsFromCsvBackup");
         
         List<StoryBookLearningEvent> storyBookLearningEvents = new ArrayList<>();
         
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -61,7 +55,7 @@ public class CsvAnalyticsExtractionHelper {
                     .withSkipHeaderRecord();
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                log.info("csvRecord: " + csvRecord);
                 
                 // Convert from CSV to Java (see similar code in StoryBookLearningEventsRestController)
                 
@@ -79,42 +73,42 @@ public class CsvAnalyticsExtractionHelper {
                 storyBookLearningEvent.setPackageName(packageName);
                 
                 Application application = applicationDao.readByPackageName(packageName);
-                logger.debug("application: " + application);
+                log.debug("application: " + application);
                 storyBookLearningEvent.setApplication(application);
                 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
-                logger.debug("storyBookId: " + storyBookId);
+                log.debug("storyBookId: " + storyBookId);
                 storyBookLearningEvent.setStoryBookId(storyBookId);
                 
                 String storyBookTitle = csvRecord.get("storybook_title");
-                logger.debug("storyBookTitle: \"" + storyBookTitle + "\"");
+                log.debug("storyBookTitle: \"" + storyBookTitle + "\"");
                 storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
                 
                 StoryBook storyBook = storyBookDao.readByTitle(storyBookTitle);
-                logger.debug("storyBook: " + storyBook);
+                log.debug("storyBook: " + storyBook);
                 storyBookLearningEvent.setStoryBook(storyBook);
                 
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                logger.debug("learningEventType: " + learningEventType);
+                log.debug("learningEventType: " + learningEventType);
                 storyBookLearningEvent.setLearningEventType(learningEventType);
                 
                 storyBookLearningEvents.add(storyBookLearningEvent);
             }
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
         
         return storyBookLearningEvents;
     }
 
     public static List<VideoLearningEvent> extractVideoLearningEvents(File csvFile) {
-        logger.info("extractVideoLearningEvents");
+        log.info("extractVideoLearningEvents");
 
         List<VideoLearningEvent> videoLearningEvents = new ArrayList<>();
 
         // Iterate each row in the CSV file
         Path csvFilePath = Paths.get(csvFile.toURI());
-        logger.info("csvFilePath: " + csvFilePath);
+        log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
             CSVFormat csvFormat = CSVFormat.DEFAULT
@@ -129,10 +123,10 @@ public class CsvAnalyticsExtractionHelper {
                             "additional_data"
                     )
                     .withSkipHeaderRecord();
-            logger.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
-                logger.info("csvRecord: " + csvRecord);
+                log.info("csvRecord: " + csvRecord);
                 
                 // Convert from CSV to Java
 
@@ -165,7 +159,7 @@ public class CsvAnalyticsExtractionHelper {
             }
             csvParser.close();
         } catch (IOException ex) {
-            logger.error(ex);
+            log.error(ex.getMessage());
         }
 
         return videoLearningEvents;
