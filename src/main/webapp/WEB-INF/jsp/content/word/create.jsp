@@ -68,7 +68,7 @@
                         </script>
                     </div>
 
-                    <select id="letterSounds" class="browser-default" style="margin: 0.5em 0;">
+                    <select id="letterSounds" class="browser-default" style="font-size: 2rem; margin: 0.5em 0;">
                         <option value="">-- Select --</option>
                         <c:forEach var="letterSound" items="${letterSounds}">
                             <option value="${letterSound.id}" data-letters="<c:forEach var="letter" items="${letterSound.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}</c:forEach>">" <c:forEach var="letter" items="${letterSound.letters}">${letter.text}<c:out value=" " /></c:forEach> " → / <c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}<c:out value=" " /></c:forEach> /</option>
