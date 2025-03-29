@@ -1,7 +1,7 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;

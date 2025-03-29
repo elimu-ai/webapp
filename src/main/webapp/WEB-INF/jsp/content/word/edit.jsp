@@ -87,7 +87,7 @@
                         </script>
                     </div>
 
-                    <select id="letterSounds" class="browser-default" style="margin: 0.5em 0;">
+                    <select id="letterSounds" class="browser-default" style="font-size: 2rem; margin: 0.5em 0;">
                         <option value="">-- Select --</option>
                         <c:forEach var="letterSound" items="${letterSounds}">
                             <option value="${letterSound.id}" data-letters="<c:forEach var="letter" items="${letterSound.letters}">${letter.text}</c:forEach>" data-sounds="<c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}</c:forEach>">" <c:forEach var="letter" items="${letterSound.letters}">${letter.text}<c:out value=" " /></c:forEach> " → / <c:forEach var="sound" items="${letterSound.sounds}">${sound.valueIpa}<c:out value=" " /></c:forEach> /</option>
@@ -328,8 +328,9 @@
 </content:section>
 
 <content:aside> 
+    <h5 class="center">Resources</h5>
+
     <c:if test="${applicationScope.configProperties['content.language'] == 'TGL'}">
-        <h5 class="center">Resources</h5>
         <div class="card-panel deep-purple lighten-5">
             For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
             <ol style="list-style-type: inherit;">
@@ -346,19 +347,30 @@
         </div>
     </c:if>
     <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
-        <c:if test="${not empty word.text}">
-            <div class="divider" style="margin: 1.5em 0;"></div>
-        </c:if>
-
-        <h5 class="center">Resources</h5>
         <div class="card-panel deep-purple lighten-5">
-            For assistance with pronunciation and IPA transcription of "<c:out value='${word.text}' />", see:
+            Hindi resources:
             <ol style="list-style-type: inherit;">
                 <li>
                     <a href="https://forvo.com/word/<c:out value='${word.text}' />/#hi" target="_blank">Forvo</a>
                 </li>
                 <li>
                     <a href="https://translate.google.com/?sl=hi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+        <div class="card-panel deep-purple lighten-5">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#th" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=th&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+                <li>
+                    <a href="https://thai-notes.com/tools/thai2ipa.html" target="_blank">Convert Thai to IPA</a>
                 </li>
             </ol>
         </div>

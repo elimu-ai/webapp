@@ -1,9 +1,9 @@
 package ai.elimu.web.content.letter_sound;
 
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.content.Sound;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.DbMigrationDao;
-import ai.elimu.model.DbMigration;
+import ai.elimu.entity.DbMigration;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.VersionHelper;
 import lombok.extern.slf4j.Slf4j;

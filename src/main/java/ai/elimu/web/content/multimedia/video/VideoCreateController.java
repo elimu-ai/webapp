@@ -1,8 +1,8 @@
 package ai.elimu.web.content.multimedia.video;
 
 import ai.elimu.dao.VideoDao;
-import ai.elimu.model.content.multimedia.Video;
-import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.entity.content.multimedia.Video;
+import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.model.v2.enums.content.VideoFormat;

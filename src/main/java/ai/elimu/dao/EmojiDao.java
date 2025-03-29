@@ -1,9 +1,10 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Word;
 
 public interface EmojiDao extends GenericDao<Emoji> {
     

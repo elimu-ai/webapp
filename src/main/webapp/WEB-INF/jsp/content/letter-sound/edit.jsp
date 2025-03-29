@@ -311,6 +311,22 @@
                 </li>
             </ol>
         </c:if>
+        <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Thai" target="_blank">Wikipedia: Help:IPA/Thai</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Thai_script" target="_blank">Wikipedia: Thai script</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/writing/thai.htm" target="_blank">Omniglot: Thai (ภาษาไทย)</a>
+                </li>
+            </ol>
+            
+            <div class="divider" style="margin: 1em 0;"></div>
+        </c:if>
         
         General resources:
         <ol style="list-style-type: inherit;">

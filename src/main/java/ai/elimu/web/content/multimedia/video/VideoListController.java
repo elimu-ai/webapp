@@ -1,7 +1,8 @@
 package ai.elimu.web.content.multimedia.video;
 
 import ai.elimu.dao.VideoDao;
-import ai.elimu.model.content.multimedia.Video;
+import ai.elimu.entity.content.multimedia.Video;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

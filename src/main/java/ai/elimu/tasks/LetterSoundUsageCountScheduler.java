@@ -2,10 +2,11 @@ package ai.elimu.tasks;
 
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.content.Word;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -2,10 +2,10 @@ package ai.elimu.web.content.multimedia.image;
 
 import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.ImageContributionEvent;
-import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.ImageContributionEvent;
+import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;

@@ -1,9 +1,10 @@
 package ai.elimu.dao.jpa;
 
-import ai.elimu.model.contributor.ImageContributionEvent;
 import ai.elimu.dao.ImageContributionEventDao;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.ImageContributionEvent;
+
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 

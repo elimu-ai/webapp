@@ -1,7 +1,7 @@
 package ai.elimu.logic.converters;
 
 import ai.elimu.dao.SoundDao;
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;

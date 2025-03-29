@@ -5,8 +5,8 @@ import jakarta.persistence.NoResultException;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.Number;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.entity.content.Number;
 
 public class NumberDaoJpa extends GenericDaoJpa<Number> implements NumberDao {
 

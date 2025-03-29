@@ -1,7 +1,7 @@
 package ai.elimu.logic.converters;
 
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.content.StoryBook;
+import ai.elimu.entity.content.StoryBook;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.convert.converter.Converter;

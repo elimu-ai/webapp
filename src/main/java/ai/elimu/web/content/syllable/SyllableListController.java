@@ -1,7 +1,8 @@
 package ai.elimu.web.content.syllable;
 
 import ai.elimu.dao.SyllableDao;
-import ai.elimu.model.content.Syllable;
+import ai.elimu.entity.content.Syllable;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

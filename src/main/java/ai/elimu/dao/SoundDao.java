@@ -1,9 +1,10 @@
 package ai.elimu.dao;
 
 import java.util.List;
-import ai.elimu.model.content.Sound;
 
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.Sound;
 
 public interface SoundDao extends GenericDao<Sound> {
     

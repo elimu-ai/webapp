@@ -5,11 +5,11 @@ import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.NumberPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Number;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Number;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/number/edit/{id}")

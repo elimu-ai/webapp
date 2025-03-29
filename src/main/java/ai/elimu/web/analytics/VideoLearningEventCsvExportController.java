@@ -2,7 +2,7 @@ package ai.elimu.web.analytics;
 
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.enums.OrderDirection;
-import ai.elimu.model.analytics.VideoLearningEvent;
+import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.util.AnalyticsHelper;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;

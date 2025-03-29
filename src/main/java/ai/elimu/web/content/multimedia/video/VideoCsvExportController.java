@@ -1,7 +1,7 @@
 package ai.elimu.web.content.multimedia.video;
 
 import ai.elimu.dao.VideoDao;
-import ai.elimu.model.content.multimedia.Video;
+import ai.elimu.entity.content.multimedia.Video;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,7 +1,7 @@
 package ai.elimu.web.content.sound;
 
 import ai.elimu.dao.SoundDao;
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;

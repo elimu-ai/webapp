@@ -1,7 +1,7 @@
 package ai.elimu.web.content.letter;
 
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.content.Letter;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,7 +14,6 @@ import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/letter/list/letters.csv")

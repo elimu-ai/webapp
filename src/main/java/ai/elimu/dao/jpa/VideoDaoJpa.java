@@ -4,10 +4,9 @@ import java.util.List;
 
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.VideoDao;
+import ai.elimu.entity.content.multimedia.Video;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.content.multimedia.Video;
 
 public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
 

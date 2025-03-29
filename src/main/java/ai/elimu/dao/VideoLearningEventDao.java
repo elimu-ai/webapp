@@ -1,7 +1,8 @@
 package ai.elimu.dao;
 
 import ai.elimu.dao.enums.OrderDirection;
-import ai.elimu.model.analytics.VideoLearningEvent;
+import ai.elimu.entity.analytics.VideoLearningEvent;
+
 import java.util.Calendar;
 import java.util.List;
 

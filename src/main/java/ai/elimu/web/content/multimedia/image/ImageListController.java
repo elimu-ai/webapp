@@ -3,9 +3,10 @@ package ai.elimu.web.content.multimedia.image;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.content.multimedia.Image;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
