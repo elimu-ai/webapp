@@ -1,3 +1,4 @@
+
 <content:title>
     Edit number
 </content:title>
@@ -264,8 +265,9 @@
 </content:section>
 
 <content:aside>
+    <h5 class="center">Resources</h5>
+
     <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
-        <h5 class="center">Resources</h5>
         <div class="card-panel deep-purple lighten-5">
             Hindi resources:
             <ol style="list-style-type: inherit;">
@@ -277,8 +279,19 @@
                 </li>
             </ol>
         </div>
-        
-        <div class="divider" style="margin: 1.5em 0;"></div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+        <div class="card-panel deep-purple lighten-5">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Thai_numerals" target="_blank">Thai numerals - Wikipedia</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/language/numbers/thai.htm" target="_blank">Numbers in Thai - Omniglot</a>
+                </li>
+            </ol>
+        </div>
     </c:if>
         
     <div class="card-panel deep-purple lighten-5">
