@@ -1,5 +1,6 @@
 package ai.elimu.web.servlet;
 
+import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
@@ -18,6 +19,8 @@ import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.content.StoryBookChapter;
 import ai.elimu.model.content.Word;
 import ai.elimu.model.content.multimedia.Image;
+import ai.elimu.model.contributor.Contributor;
+import ai.elimu.model.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.util.ConfigHelper;
@@ -32,7 +35,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.EnumSet;
+import java.util.HashSet;
 
 import jakarta.persistence.Entity;
 import lombok.extern.slf4j.Slf4j;
@@ -126,6 +131,15 @@ public class CustomDispatcherServlet extends DispatcherServlet {
      */
     private void populateDatabase(WebApplicationContext webApplicationContext) {
         log.info("populateDatabase");
+
+
+        ContributorDao contributorDao = (ContributorDao) webApplicationContext.getBean("contributorDao");
+
+        Contributor contributor = new Contributor();
+        contributor.setEmail("dev@elimu.ai");
+        contributor.setRegistrationTime(Calendar.getInstance());
+        contributor.setRoles(new HashSet<>(Arrays.asList(Role.CONTRIBUTOR)));
+        contributorDao.create(contributor);
 
         
         LetterDao letterDao = (LetterDao) webApplicationContext.getBean("letterDao");
