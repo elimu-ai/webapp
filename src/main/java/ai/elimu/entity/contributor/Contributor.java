@@ -65,8 +65,6 @@ public class Contributor extends BaseEntity {
 
   private String lastName;
 
-  private String occupation;
-
   @Column(length = 1000)
   private String motivation;
 }

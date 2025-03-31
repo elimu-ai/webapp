@@ -146,7 +146,6 @@
         imageUrl varchar(255),
         lastName varchar(255),
         motivation text,
-        occupation varchar(255),
         providerIdDiscord varchar(255),
         providerIdGitHub varchar(255),
         providerIdGoogle varchar(255),
