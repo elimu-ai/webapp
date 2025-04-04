@@ -13,7 +13,6 @@
             <form:hidden path="imageFormat" value="${image.imageFormat}" />
             <form:hidden path="contentType" value="${image.contentType}" />
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
             
             <img class="cid-${image.cid != null}"
                 src="<spring:url value='${image.url}' />"
@@ -136,7 +135,6 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${imageContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${imageContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/contributor/${imageContributionEvent.contributor.id}' />">

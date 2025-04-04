@@ -39,10 +39,4 @@ public class ContributionEvent extends BaseEntity {
   @NotNull
   @Temporal(TemporalType.TIMESTAMP)
   private Calendar timestamp;
-
-  /**
-   * The time passed during the creation/editing.
-   */
-  @NotNull
-  private Long timeSpentMs;
 }

@@ -8,8 +8,6 @@
         <form:form modelAttribute="letterSound">
             <tag:formErrors modelAttribute="letterSound" />
             
-            <input type="hidden" name="timeStart" value="${timeStart}" />
-            
             <div class="row">
                 <div class="col s12">
                     <label>Letters</label><br />

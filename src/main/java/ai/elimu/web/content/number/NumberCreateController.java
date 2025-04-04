@@ -50,8 +50,6 @@ public class NumberCreateController {
     Number number = new Number();
     model.addAttribute("number", number);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     model.addAttribute("words", wordDao.readAllOrdered());
     model.addAttribute("emojisByWordId", getEmojisByWordId());
 
@@ -75,8 +73,6 @@ public class NumberCreateController {
     if (result.hasErrors()) {
       model.addAttribute("number", number);
 
-      model.addAttribute("timeStart", request.getParameter("timeStart"));
-
       model.addAttribute("words", wordDao.readAllOrdered());
       model.addAttribute("emojisByWordId", getEmojisByWordId());
 
@@ -91,7 +87,6 @@ public class NumberCreateController {
       numberContributionEvent.setNumber(number);
       numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
       numberContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       numberContributionEventDao.create(numberContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

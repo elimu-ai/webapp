@@ -43,7 +43,6 @@ public class SoundEditController {
 
     Sound sound = soundDao.read(id);
     model.addAttribute("sound", sound);
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("soundTypes", SoundType.values());
 
@@ -81,7 +80,6 @@ public class SoundEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("sound", sound);
-      model.addAttribute("timeStart", System.currentTimeMillis());
       model.addAttribute("soundTypes", SoundType.values());
       model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
       model.addAttribute("letterSounds", letterSoundDao.readAll());
@@ -97,7 +95,6 @@ public class SoundEditController {
       soundContributionEvent.setSound(sound);
       soundContributionEvent.setRevisionNumber(sound.getRevisionNumber());
       soundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      soundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       soundContributionEventDao.create(soundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

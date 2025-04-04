@@ -19,7 +19,6 @@
             
             <form:hidden path="storyBookChapter" value="${storyBookParagraph.storyBookChapter.id}" />
             <form:hidden path="sortOrder" value="${storyBookParagraph.sortOrder}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">

@@ -72,7 +72,6 @@ public class StoryBookParagraphDeleteController {
     storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
     storyBookContributionEvent.setComment("Deleted storybook paragraph in chapter " + (storyBookParagraphToBeDeleted.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
     storyBookContributionEvent.setParagraphTextBefore(paragraphTextBeforeDeletion);
-    storyBookContributionEvent.setTimeSpentMs(0L);
     storyBookContributionEventDao.create(storyBookContributionEvent);
 
     if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

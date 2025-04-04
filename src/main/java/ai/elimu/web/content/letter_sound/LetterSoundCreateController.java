@@ -54,8 +54,6 @@ public class LetterSoundCreateController {
     List<Sound> sounds = soundDao.readAllOrdered();
     model.addAttribute("sounds", sounds);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     return "content/letter-sound/create";
   }
 
@@ -84,8 +82,6 @@ public class LetterSoundCreateController {
       List<Sound> sounds = soundDao.readAllOrdered();
       model.addAttribute("sounds", sounds);
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
-
       return "content/letter-sound/create";
     } else {
       letterSound.setTimeLastUpdate(Calendar.getInstance());
@@ -97,7 +93,6 @@ public class LetterSoundCreateController {
       letterSoundContributionEvent.setLetterSound(letterSound);
       letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
       letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       letterSoundContributionEventDao.create(letterSoundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

@@ -27,7 +27,6 @@
             <tag:formErrors modelAttribute="number" />
             
             <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -179,7 +178,6 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${numberContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
                     <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                 </span>
                 <a href="<spring:url value='/contributor/${numberContributionEvent.contributor.id}' />">

@@ -48,8 +48,6 @@ public class StoryBookParagraphEditController {
     log.info("storyBookParagraph: " + storyBookParagraph);
     model.addAttribute("storyBookParagraph", storyBookParagraph);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     return "content/storybook/paragraph/edit";
   }
 
@@ -67,7 +65,6 @@ public class StoryBookParagraphEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("storyBookParagraph", storyBookParagraph);
-      model.addAttribute("timeStart", System.currentTimeMillis());
       return "content/storybook/paragraph/edit";
     } else {
       // Fetch previously stored paragraph to make it possible to check if the text was modified or not when
@@ -94,7 +91,6 @@ public class StoryBookParagraphEditController {
         storyBookContributionEvent.setParagraphTextBefore(StringUtils.abbreviate(storyBookParagraphBeforeEdit.getOriginalText(), 1000));
         storyBookContributionEvent.setParagraphTextAfter(StringUtils.abbreviate(storyBookParagraph.getOriginalText(), 1000));
       }
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

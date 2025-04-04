@@ -71,7 +71,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${numberContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${numberContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

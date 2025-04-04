@@ -79,8 +79,6 @@ public class StoryBookEditController {
     StoryBook storyBook = storyBookDao.read(id);
     model.addAttribute("storyBook", storyBook);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     model.addAttribute("contentLicenses", ContentLicense.values());
 
     List<Image> coverImages = imageDao.readAllOrdered();
@@ -147,8 +145,6 @@ public class StoryBookEditController {
     if (result.hasErrors()) {
       model.addAttribute("storyBook", storyBook);
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
-
       model.addAttribute("contentLicenses", ContentLicense.values());
 
       List<Image> coverImages = imageDao.readAllOrdered();
@@ -207,7 +203,6 @@ public class StoryBookEditController {
       storyBookContributionEvent.setStoryBook(storyBook);
       storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
       storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
