@@ -40,9 +40,6 @@ public class Contributor extends BaseEntity {
 
   // TODO: add registrationProvider
 
-  //    @Column(unique=true)
-  private String providerIdGoogle;
-
   /**
    * An Ethereum address. Expected format: "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B"
    */

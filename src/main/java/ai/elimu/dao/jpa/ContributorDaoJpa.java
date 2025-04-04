@@ -53,20 +53,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
     }
     
     @Override
-    public Contributor readByProviderIdGoogle(String id) throws DataAccessException {
-        try {
-            return (Contributor) em.createQuery(
-                "SELECT c " +
-                "FROM Contributor c " +
-                "WHERE c.providerIdGoogle = :id")
-                .setParameter("id", id)
-                .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-    
-    @Override
     public Contributor readByProviderIdWeb3(String id) throws DataAccessException {
         try {
             return (Contributor) em.createQuery(

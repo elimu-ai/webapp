@@ -17,8 +17,6 @@ public interface ContributorDao extends GenericDao<Contributor> {
 
     Contributor readByProviderIdWeb3(String id) throws DataAccessException;
     
-    Contributor readByProviderIdGoogle(String id) throws DataAccessException;
-    
     List<Contributor> readAllOrderedDesc() throws DataAccessException;
     
     List<Contributor> readAll(Calendar calendarFrom, Calendar calendarTo) throws DataAccessException;
