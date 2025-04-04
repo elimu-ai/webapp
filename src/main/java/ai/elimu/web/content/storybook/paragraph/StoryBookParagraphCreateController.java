@@ -58,8 +58,6 @@ public class StoryBookParagraphCreateController {
 
     model.addAttribute("storyBookParagraph", storyBookParagraph);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     return "content/storybook/paragraph/create";
   }
 
@@ -77,7 +75,6 @@ public class StoryBookParagraphCreateController {
 
     if (result.hasErrors()) {
       model.addAttribute("storyBookParagraph", storyBookParagraph);
-      model.addAttribute("timeStart", request.getParameter("timeStart"));
       return "content/storybook/paragraph/create";
     } else {
       storyBookParagraphDao.create(storyBookParagraph);
@@ -96,7 +93,6 @@ public class StoryBookParagraphCreateController {
       storyBookContributionEvent.setStoryBook(storyBook);
       storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
       storyBookContributionEvent.setComment("Created storybook paragraph in chapter " + (storyBookParagraph.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

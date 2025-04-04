@@ -26,7 +26,6 @@
             <tag:formErrors modelAttribute="storyBook" />
             
             <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -205,8 +204,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${storyBookContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${storyBookContributionEvent.contributor.id}' />">
                     <div class="chip">

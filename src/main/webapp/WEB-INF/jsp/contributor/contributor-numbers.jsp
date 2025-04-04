@@ -27,8 +27,7 @@
                             </c:forEach>
                         </td>
                         <td>
-                            #${numberContributionEvent.revisionNumber}<br />
-                            <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
+                            #${numberContributionEvent.revisionNumber}
                         </td>
                         <td>
                             <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

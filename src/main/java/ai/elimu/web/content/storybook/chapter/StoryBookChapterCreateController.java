@@ -99,7 +99,6 @@ public class StoryBookChapterCreateController {
       storyBookContributionEvent.setStoryBook(storyBook);
       storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
       storyBookContributionEvent.setComment("Created storybook chapter " + (storyBookChapter.getSortOrder() + 1) + " (🤖 auto-generated comment)");
-      storyBookContributionEvent.setTimeSpentMs(0L);
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

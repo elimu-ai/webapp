@@ -80,7 +80,6 @@ public class WordEditController {
     }
 
     model.addAttribute("word", word);
-    model.addAttribute("timeStart", System.currentTimeMillis());
     model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
     model.addAttribute("rootWords", wordDao.readAllOrdered());
     model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -128,7 +127,6 @@ public class WordEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("word", word);
-      model.addAttribute("timeStart", request.getParameter("timeStart"));
       model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
       model.addAttribute("rootWords", wordDao.readAllOrdered());
       model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -160,7 +158,6 @@ public class WordEditController {
       wordContributionEvent.setWord(word);
       wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
       wordContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       wordContributionEventDao.create(wordContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

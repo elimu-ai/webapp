@@ -111,7 +111,6 @@ public class StoryBookChapterDeleteController {
     storyBookContributionEvent.setStoryBook(storyBook);
     storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
     storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + " (🤖 auto-generated comment)");
-    storyBookContributionEvent.setTimeSpentMs(0L);
     storyBookContributionEventDao.create(storyBookContributionEvent);
 
     if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

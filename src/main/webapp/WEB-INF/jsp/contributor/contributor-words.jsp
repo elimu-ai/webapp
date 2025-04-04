@@ -23,8 +23,7 @@
                             /<c:forEach var="lsc" items="${word.letterSounds}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
-                            #${wordContributionEvent.revisionNumber}<br />
-                            <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
+                            #${wordContributionEvent.revisionNumber}
                         </td>
                         <td>
                             <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
