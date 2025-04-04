@@ -135,7 +135,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${imageContributionEvent.revisionNumber} 
-                    <fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${imageContributionEvent.contributor.id}' />">
                     <div class="chip">

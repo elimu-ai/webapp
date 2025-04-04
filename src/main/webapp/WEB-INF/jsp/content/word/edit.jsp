@@ -241,7 +241,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${wordContributionEvent.revisionNumber} 
-                    <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${wordContributionEvent.contributor.id}' />">
                     <div class="chip">

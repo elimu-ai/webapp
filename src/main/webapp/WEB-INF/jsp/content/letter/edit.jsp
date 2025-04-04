@@ -69,7 +69,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${letterContributionEvent.revisionNumber} 
-                    <fmt:formatDate value="${letterContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${letterContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${letterContributionEvent.contributor.id}' />">
                     <div class="chip">

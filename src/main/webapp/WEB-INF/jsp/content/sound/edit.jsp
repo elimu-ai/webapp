@@ -73,7 +73,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${soundContributionEvent.revisionNumber} 
-                    <fmt:formatDate value="${soundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${soundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${soundContributionEvent.contributor.id}' />">
                     <div class="chip">

@@ -204,7 +204,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${storyBookContributionEvent.revisionNumber} 
-                    <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${storyBookContributionEvent.contributor.id}' />">
                     <div class="chip">
