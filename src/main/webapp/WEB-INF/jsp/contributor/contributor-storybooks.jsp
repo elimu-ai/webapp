@@ -30,8 +30,7 @@
                             </c:choose>
                         </td>
                         <td>
-                            #${storyBookContributionEvent.revisionNumber}<br />
-                            <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
+                            #${storyBookContributionEvent.revisionNumber}
                         </td>
                         <td>
                             <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

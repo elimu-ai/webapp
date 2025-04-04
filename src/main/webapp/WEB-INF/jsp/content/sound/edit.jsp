@@ -27,7 +27,6 @@
             
             <form:hidden path="revisionNumber" value="${sound.revisionNumber}" />
             <form:hidden path="usageCount" value="${sound.usageCount}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -74,8 +73,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${soundContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${soundContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${soundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${soundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${soundContributionEvent.contributor.id}' />">
                     <div class="chip">

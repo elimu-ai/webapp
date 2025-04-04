@@ -62,7 +62,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${letterSoundContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${letterSoundContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${letterSoundContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${letterSoundContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

@@ -81,7 +81,6 @@ public class ImageEditController {
     model.addAttribute("literacySkills", LiteracySkill.values());
     model.addAttribute("numeracySkills", NumeracySkill.values());
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
     model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
 
     model.addAttribute("letters", letterDao.readAllOrdered());
@@ -152,7 +151,6 @@ public class ImageEditController {
       model.addAttribute("literacySkills", LiteracySkill.values());
       model.addAttribute("numeracySkills", NumeracySkill.values());
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
       model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
 
       model.addAttribute("letters", letterDao.readAllOrdered());
@@ -173,7 +171,6 @@ public class ImageEditController {
       imageContributionEvent.setImage(image);
       imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
       imageContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       imageContributionEventDao.create(imageContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

@@ -62,7 +62,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${wordContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${wordContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

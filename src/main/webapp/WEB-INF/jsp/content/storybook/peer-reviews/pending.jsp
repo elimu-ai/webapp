@@ -82,7 +82,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${storyBookContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${storyBookContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

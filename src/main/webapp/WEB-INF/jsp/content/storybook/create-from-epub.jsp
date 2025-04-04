@@ -8,8 +8,6 @@
         <form:form modelAttribute="storyBook" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="storyBook" />
             
-            <input type="hidden" name="timeStart" value="${timeStart}" />
-            
             <div class="col s12" style="padding: 3em; background: #F4F4F4; border: 2px dashed #CCC; border-radius: 8px;">
                 <p class="center grey-text">
                     Drag & drop your ePUB file here, or select a file.

@@ -38,7 +38,6 @@ public class SoundCreateController {
 
     Sound sound = new Sound();
     model.addAttribute("sound", sound);
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("soundTypes", SoundType.values());
 
@@ -71,7 +70,6 @@ public class SoundCreateController {
 
     if (result.hasErrors()) {
       model.addAttribute("sound", sound);
-      model.addAttribute("timeStart", System.currentTimeMillis());
       model.addAttribute("soundTypes", SoundType.values());
       return "content/sound/create";
     } else {
@@ -84,7 +82,6 @@ public class SoundCreateController {
       soundContributionEvent.setSound(sound);
       soundContributionEvent.setRevisionNumber(sound.getRevisionNumber());
       soundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      soundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       soundContributionEventDao.create(soundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

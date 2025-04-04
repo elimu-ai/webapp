@@ -56,8 +56,6 @@ public class LetterSoundEditController {
     LetterSound letterSound = letterSoundDao.read(id);
     model.addAttribute("letterSound", letterSound);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     List<Letter> letters = letterDao.readAllOrdered();
     model.addAttribute("letters", letters);
 
@@ -92,8 +90,6 @@ public class LetterSoundEditController {
     if (result.hasErrors()) {
       model.addAttribute("letterSound", letterSound);
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
-
       List<Letter> letters = letterDao.readAllOrdered();
       model.addAttribute("letters", letters);
 
@@ -115,7 +111,6 @@ public class LetterSoundEditController {
       letterSoundContributionEvent.setLetterSound(letterSound);
       letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
       letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       letterSoundContributionEventDao.create(letterSoundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
