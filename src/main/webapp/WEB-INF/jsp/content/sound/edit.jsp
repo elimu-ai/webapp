@@ -82,7 +82,7 @@
                                 <img src="${soundContributionEvent.contributor.imageUrl}" />
                             </c:when>
                             <c:when test="${not empty soundContributionEvent.contributor.providerIdWeb3}">
-                                <img src="https://effigy.im/a/<c:out value="${soundContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                <img src="https://effigy.im/a/<c:out value="${soundContributionEvent.contributor.providerIdWeb3}" />.svg" />
                             </c:when>
                             <c:otherwise>
                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -114,7 +114,7 @@
                                                 <img src="${soundPeerReviewEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty soundPeerReviewEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${soundPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${soundPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
