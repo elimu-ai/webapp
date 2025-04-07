@@ -58,8 +58,6 @@ public class VideoLearningEventCsvExportController {
     for (VideoLearningEvent videoLearningEvent : videoLearningEvents) {
       log.info("videoLearningEvent.getId(): " + videoLearningEvent.getId());
 
-      videoLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(videoLearningEvent.getAndroidId()));
-
       csvPrinter.printRecord(
           videoLearningEvent.getId(),
           videoLearningEvent.getTimestamp().getTimeInMillis(),
