@@ -2,6 +2,7 @@ package ai.elimu.web.analytics;
 
 import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.WordLearningEvent;
+import ai.elimu.util.AnalyticsHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +31,9 @@ public class WordLearningEventListController {
 
     List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll();
     model.addAttribute("wordLearningEvents", wordLearningEvents);
+    for (WordLearningEvent wordLearningEvent : wordLearningEvents) {
+      wordLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(wordLearningEvent.getAndroidId()));
+    }
 
     // Prepare chart data
     List<String> monthList = new ArrayList<>();
