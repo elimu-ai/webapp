@@ -14,7 +14,7 @@
     <jetty.version>11.0.24</jetty.version>
     <spring.version>6.0.9</spring.version>
     <surefire-plugin.version>3.1.2</surefire-plugin.version>
-    <lombok.version>1.18.36</lombok.version>
+    <lombok.version>1.18.38</lombok.version>
   </properties>
 
   <!-- Project Information -->
