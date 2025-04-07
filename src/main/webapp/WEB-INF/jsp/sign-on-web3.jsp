@@ -49,7 +49,7 @@
                             console.log('address ' + address);
                             
                             // Request signature to verify ownership of the address
-                            window.web3.eth.personal.sign('I verify ownership of this account 👍', address)
+                            window.web3.eth.personal.sign('elimu.ai\'s mission is to build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 **within 6 months**.', address)
                                 .then(signature => {
                                     console.info('Signature provided. Signing on...');
                                     
