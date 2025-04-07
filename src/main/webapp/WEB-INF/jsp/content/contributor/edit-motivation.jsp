@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="personal.motivation" />
+    Personal motivation
 </content:title>
 
 <content:section cssId="editMotivationPage">
@@ -7,7 +7,7 @@
         <h4><content:gettitle /></h4>
         <div class="card-panel">
             <blockquote>
-                <fmt:message key="what.is.your.personal.motivation" />
+                What is your personal motivation for contributing to the elimu.ai Community?
             </blockquote>
 
             <div class="divider"></div>
@@ -15,19 +15,19 @@
             <form method="POST">
                 <c:if test="${not empty errorCode}">
                     <div id="errorPanel" class="card-panel red lighten-3">
-                        <fmt:message key="${errorCode}" />
+                        Personal motivation must be provided
                     </div>
                 </c:if>
                 
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="motivation" name="motivation" class="materialize-textarea validate" required="required" maxlength="1000"><c:if test="${not empty contributor.motivation}">${contributor.motivation}</c:if></textarea>
-                        <label for="motivation"><fmt:message key="personal.motivation" /></label>
+                        <label for="motivation">Personal motivation</label>
                     </div>
                 </div>
 
                 <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                    <fmt:message key="save" /> <i class="material-icons right">send</i>
+                    Save <i class="material-icons right">send</i>
                 </button>
             </form>
         </div>

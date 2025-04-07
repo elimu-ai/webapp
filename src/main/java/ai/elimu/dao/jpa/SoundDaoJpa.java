@@ -2,10 +2,10 @@ package ai.elimu.dao.jpa;
 
 import java.util.List;
 import jakarta.persistence.NoResultException;
-import ai.elimu.model.content.Sound;
 
 import org.springframework.dao.DataAccessException;
 import ai.elimu.dao.SoundDao;
+import ai.elimu.entity.content.Sound;
 
 public class SoundDaoJpa extends GenericDaoJpa<Sound> implements SoundDao {
 

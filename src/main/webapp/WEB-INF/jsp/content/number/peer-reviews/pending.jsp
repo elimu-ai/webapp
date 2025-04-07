@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="pending.review" /> (${fn:length(numberContributionEventsPendingPeerReview)})
+    Pending review (${fn:length(numberContributionEventsPendingPeerReview)})
 </content:title>
 
 <content:section cssId="numberPeerReviewsPendingPage">
@@ -15,13 +15,13 @@
             </p>
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="value" /></th>
-                    <th><fmt:message key="symbol" /></th>
-                    <th><fmt:message key="number.words" /></th>
-                    <th><fmt:message key="sounds" /></th>
-                    <th><fmt:message key="contributor" /></th>
-                    <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="time" /></th>
+                    <th>Value</th>
+                    <th>Symbol</th>
+                    <th>Number word(s)</th>
+                    <th>Sounds</th>
+                    <th>Contributor</th>
+                    <th>Revision</th>
+                    <th>Time</th>
                 </thead>
                 <tbody>
                     <c:forEach var="numberContributionEvent" items="${numberContributionEventsPendingPeerReview}">
@@ -53,7 +53,7 @@
                                                 <img src="${numberContributionEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty numberContributionEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${numberContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${numberContributionEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -71,7 +71,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${numberContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${numberContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

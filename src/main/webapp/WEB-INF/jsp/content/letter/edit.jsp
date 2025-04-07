@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="edit.letter" />
+    Edit letter
 </content:title>
 
 <content:section cssId="letterEditPage">
@@ -16,7 +16,7 @@
     </c:choose>
     <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
         <a href="#contribution-events">
-            <fmt:message key="peer.review" />: ${letter.peerReviewStatus}
+            Peer-review: ${letter.peerReviewStatus}
         </a>
     </div>
     
@@ -27,11 +27,10 @@
             
             <form:hidden path="revisionNumber" value="${letter.revisionNumber}" />
             <form:hidden path="usageCount" value="${letter.usageCount}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
-                    <form:label path="text" cssErrorClass="error"><fmt:message key='text' /></form:label>
+                    <form:label path="text" cssErrorClass="error">Text</form:label>
                     <form:input path="text" cssErrorClass="error" />
                 </div>
             </div>
@@ -39,39 +38,38 @@
             <div class="row">
                 <div class="input-field col">
                     <select id="diacritic" name="diacritic">
-                        <option value="false" <c:if test="${not letter.diacritic}">selected="selected"</c:if>><fmt:message key="no" /></option>
-                        <option value="true" <c:if test="${letter.diacritic}">selected="selected"</c:if>><fmt:message key="yes" /></option>
+                        <option value="false" <c:if test="${not letter.diacritic}">selected="selected"</c:if>>No</option>
+                        <option value="true" <c:if test="${letter.diacritic}">selected="selected"</c:if>>Yes</option>
                     </select>
-                    <label for="diacritic"><fmt:message key="diacritic" /></label>
+                    <label for="diacritic">Diacritic</label>
                 </div>
             </div>
             
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="contributionComment"><fmt:message key='comment' /></label>
+                    <label for="contributionComment">Comment</label>
                     <textarea id="contributionComment" name="contributionComment" class="materialize-textarea" placeholder="A comment describing your contribution." maxlength="1000"><c:if test="${not empty param.contributionComment}"><c:out value="${param.contributionComment}" /></c:if></textarea>
                 </div>
             </div>
 
             <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                <fmt:message key="edit" /> <i class="material-icons right">send</i>
+                Edit <i class="material-icons right">send</i>
             </button>
-            <a href="<spring:url value='/content/letter/delete/${letter.id}' />" class="waves-effect waves-red red-text btn-flat right"><fmt:message key="delete" /></a>
+            <a href="<spring:url value='/content/letter/delete/${letter.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
         </form:form>
     </div>
     
     <div class="divider" style="margin: 2em 0;"></div>
     
     <a name="contribution-events"></a>
-    <h5><fmt:message key="contributions" /> 👩🏽‍💻</h5>
+    <h5>Contributions 👩🏽‍💻</h5>
     <div id="contributionEvents" class="collection">
         <c:forEach var="letterContributionEvent" items="${letterContributionEvents}">
             <a name="contribution-event_${letterContributionEvent.id}"></a>
             <div class="collection-item">
                 <span class="badge">
-                    <fmt:message key="revision" /> #${letterContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${letterContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${letterContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    Revision #${letterContributionEvent.revisionNumber} 
+                    (<fmt:formatDate value="${letterContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${letterContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -80,7 +78,7 @@
                                 <img src="${letterContributionEvent.contributor.imageUrl}" />
                             </c:when>
                             <c:when test="${not empty letterContributionEvent.contributor.providerIdWeb3}">
-                                <img src="https://effigy.im/a/<c:out value="${letterContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                <img src="https://effigy.im/a/<c:out value="${letterContributionEvent.contributor.providerIdWeb3}" />.svg" />
                             </c:when>
                             <c:otherwise>
                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -112,7 +110,7 @@
                                                 <img src="${letterPeerReviewEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty letterPeerReviewEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${letterPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${letterPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -156,7 +154,7 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center"><fmt:message key="resources" /></h5>
+    <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <c:if test="${applicationScope.configProperties['content.language'] == 'HIN'}">
             Hindi resources:
@@ -169,6 +167,22 @@
                 </li>
                 <li>
                     <a href="https://www.omniglot.com/writing/hindi.htm" target="_blank">Omniglot: Hindi (हिन्दी)</a>
+                </li>
+            </ol>
+            
+            <div class="divider" style="margin: 1em 0;"></div>
+        </c:if>
+        <c:if test="${applicationScope.configProperties['content.language'] == 'THA'}">
+            Thai resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Thai" target="_blank">Wikipedia: Help:IPA/Thai</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Thai_script" target="_blank">Wikipedia: Thai script</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/writing/thai.htm" target="_blank">Omniglot: Thai (ภาษาไทย)</a>
                 </li>
             </ol>
             
@@ -188,14 +202,14 @@
 
     <div class="divider" style="margin: 1.5em 0;"></div>
 
-    <h5 class="center"><fmt:message key="letter.sound.correspondences" /></h5>
+    <h5 class="center">Letter-sound correspondences</h5>
 
     <table class="bordered highlight">
         <thead>
-            <th><fmt:message key="frequency" /></th>
-            <th><fmt:message key="letters" /></th>
+            <th>Frequency</th>
+            <th>Letters</th>
             <th></th>
-            <th><fmt:message key="sounds" /></th>
+            <th>Sounds</th>
         </thead>
         <tbody>
             <c:forEach var="letterSound" items="${letterSounds}">

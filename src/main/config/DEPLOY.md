@@ -217,6 +217,12 @@ Create a backup:
 mariadb-dump webapp-ENG > webapp-ENG_`date +%Y"-"%m"-"%d`.sql
 ```
 
+> [!TIP]
+> If you want to backup the database structure only, use the `--no-data` option:
+> ```bash
+> mariadb-dump --no-data webapp-ENG > webapp-ENG_`date +%Y"-"%m"-"%d`_structure.sql
+> ```
+
 Restore database from a backup:
 
 ```bash

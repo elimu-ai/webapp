@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="storybooks" /> (${fn:length(storyBooksLevel1) + fn:length(storyBooksLevel2) + fn:length(storyBooksLevel3) + fn:length(storyBooksLevel4) + fn:length(storyBooksUnleveled)})
+    Storybooks (${fn:length(storyBooksLevel1) + fn:length(storyBooksLevel2) + fn:length(storyBooksLevel3) + fn:length(storyBooksLevel4) + fn:length(storyBooksUnleveled)})
 </content:title>
 
 <content:section cssId="storyBookListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/storybook/list/storybooks.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -18,14 +18,14 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" /> You can also <a href="<spring:url value='/content/storybook/peer-reviews' />">peer-review</a> storybooks.
+            To add new content, click the button below. You can also <a href="<spring:url value='/content/storybook/peer-reviews' />">peer-review</a> storybooks.
         </p>
     </div>
     
     <div class="row">
-        <h4><fmt:message key="reading.level.LEVEL1" /></h4>
+        <h4>Level 1. Beginning to Read</h4>
         <c:if test="${empty storyBooksLevel1}">
-            <fmt:message key="none" />
+            None
         </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel1}">
             <div class="col s12 m6 l4">
@@ -43,10 +43,10 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
-                        <p><fmt:message key="revision" />: #${storyBook.revisionNumber}</p>
+                        <p>Level 1. Beginning to Read</p>
+                        <p>Revision: #${storyBook.revisionNumber}</p>
                         <p>
-                            <fmt:message key="peer.review" />: 
+                            Peer-review: 
                             <c:choose>
                                 <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
                                     <c:set var="peerReviewStatusColor" value="teal lighten-5" />
@@ -71,9 +71,9 @@
     </div>
     
     <div class="row">
-        <h4><fmt:message key="reading.level.LEVEL2" /></h4>
+        <h4>Level 2. Learning to Read</h4>
         <c:if test="${empty storyBooksLevel2}">
-            <fmt:message key="none" />
+            None
         </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel2}">
             <div class="col s12 m6 l4">
@@ -91,10 +91,10 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
-                        <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                        <p>Level 2. Learning to Read</p>
+                        <p>Revision: ${storyBook.revisionNumber}</p>
                         <p>
-                            <fmt:message key="peer.review" />: 
+                            Peer-review: 
                             <c:choose>
                                 <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
                                     <c:set var="peerReviewStatusColor" value="teal lighten-5" />
@@ -119,9 +119,9 @@
     </div>
     
     <div class="row">
-        <h4><fmt:message key="reading.level.LEVEL3" /></h4>
+        <h4>Level 3. Reading Independently</h4>
         <c:if test="${empty storyBooksLevel3}">
-            <fmt:message key="none" />
+            None
         </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel3}">
             <div class="col s12 m6 l4">
@@ -139,10 +139,10 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
-                        <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                        <p>Level 3. Reading Independently</p>
+                        <p>Revision: ${storyBook.revisionNumber}</p>
                         <p>
-                            <fmt:message key="peer.review" />: 
+                            Peer-review: 
                             <c:choose>
                                 <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
                                     <c:set var="peerReviewStatusColor" value="teal lighten-5" />
@@ -167,9 +167,9 @@
     </div>
     
     <div class="row">
-        <h4><fmt:message key="reading.level.LEVEL4" /></h4>
+        <h4>Level 4. Reading Proficiently</h4>
         <c:if test="${empty storyBooksLevel4}">
-            <fmt:message key="none" />
+            None
         </c:if>
         <c:forEach var="storyBook" items="${storyBooksLevel4}">
             <div class="col s12 m6 l4">
@@ -187,10 +187,10 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
-                        <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                        <p>Level 4. Reading Proficiently</p>
+                        <p>Revision: ${storyBook.revisionNumber}</p>
                         <p>
-                            <fmt:message key="peer.review" />: 
+                            Peer-review: 
                             <c:choose>
                                 <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
                                     <c:set var="peerReviewStatusColor" value="teal lighten-5" />
@@ -216,7 +216,7 @@
     
     <c:if test="${not empty storyBooksUnleveled}">
         <div class="row">
-            <h4><fmt:message key="reading.level" />: Unleveled</h4>
+            <h4>Reading level: Unleveled</h4>
             <c:forEach var="storyBook" items="${storyBooksUnleveled}">
                 <div class="col s12 m6 l4">
                     <a name="${storyBook.id}"></a>
@@ -233,10 +233,9 @@
                         </a>
                         <div class="card-content">
                             <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                            <p><fmt:message key="reading.level.${storyBook.readingLevel}" /></p>
-                            <p><fmt:message key="revision" />: ${storyBook.revisionNumber}</p>
+                            <p>Revision: ${storyBook.revisionNumber}</p>
                             <p>
-                                <fmt:message key="peer.review" />: 
+                                Peer-review: 
                                 <c:choose>
                                     <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
                                         <c:set var="peerReviewStatusColor" value="teal lighten-5" />
@@ -262,9 +261,9 @@
     </c:if>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.storybook" />"><i class="material-icons">add</i></a>
+        <a href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add storybook"><i class="material-icons">add</i></a>
         <ul>
-            <li><a href="<spring:url value='/content/storybook/create-from-epub' />" class="btn-floating btn-large tooltipped" data-position="left" data-tooltip="<fmt:message key="upload.epub.file" />"><i class="material-icons">cloud_upload</i></a></li>
+            <li><a href="<spring:url value='/content/storybook/create-from-epub' />" class="btn-floating btn-large tooltipped" data-position="left" data-tooltip="Upload ePUB file"><i class="material-icons">cloud_upload</i></a></li>
         </ul>
     </div>
 </content:section>

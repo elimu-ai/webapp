@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,6 @@ public class WordCreateControllerTest {
   public void testHandleSubmit_emptyText() throws Exception {
     RequestBuilder requestBuilder = MockMvcRequestBuilders
         .post("/content/word/create")
-        .param("timeStart", String.valueOf(System.currentTimeMillis()))
         .param("text", "")
         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
     MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
@@ -72,7 +72,6 @@ public class WordCreateControllerTest {
 
     RequestBuilder requestBuilder = MockMvcRequestBuilders
         .post("/content/word/create")
-        .param("timeStart", String.valueOf(System.currentTimeMillis()))
         .param("text", "hello")
         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
     MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();

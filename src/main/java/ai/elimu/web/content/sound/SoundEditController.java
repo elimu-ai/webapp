@@ -3,9 +3,9 @@ package ai.elimu.web.content.sound;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.SoundContributionEventDao;
 import ai.elimu.dao.SoundDao;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.SoundContributionEvent;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.SoundContributionEvent;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -43,7 +43,6 @@ public class SoundEditController {
 
     Sound sound = soundDao.read(id);
     model.addAttribute("sound", sound);
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("soundTypes", SoundType.values());
 
@@ -81,7 +80,6 @@ public class SoundEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("sound", sound);
-      model.addAttribute("timeStart", System.currentTimeMillis());
       model.addAttribute("soundTypes", SoundType.values());
       model.addAttribute("soundContributionEvents", soundContributionEventDao.readAll(sound));
       model.addAttribute("letterSounds", letterSoundDao.readAll());
@@ -97,7 +95,6 @@ public class SoundEditController {
       soundContributionEvent.setSound(sound);
       soundContributionEvent.setRevisionNumber(sound.getRevisionNumber());
       soundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      soundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       soundContributionEventDao.create(soundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

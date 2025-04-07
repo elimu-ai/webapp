@@ -1,8 +1,8 @@
 package ai.elimu.web.content.number;
 
 import ai.elimu.dao.NumberDao;
-import ai.elimu.model.content.Number;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Number;
+import ai.elimu.entity.content.Word;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;

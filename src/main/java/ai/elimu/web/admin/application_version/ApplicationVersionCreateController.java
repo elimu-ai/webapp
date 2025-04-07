@@ -2,9 +2,9 @@ package ai.elimu.web.admin.application_version;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.admin.ApplicationVersion;
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;
@@ -39,6 +39,8 @@ public class ApplicationVersionCreateController {
   private final ApplicationDao applicationDao;
 
   private final ApplicationVersionDao applicationVersionDao;
+
+  private final int MIN_SDK_VERSION = 26;
 
   @GetMapping
   public String handleRequest(
@@ -125,6 +127,9 @@ public class ApplicationVersionCreateController {
           applicationVersion.setLabel(label);
 
           Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
+          if (minSdkVersion < MIN_SDK_VERSION) {
+            result.reject("TooLow.sdkVersion");
+          }
           log.info("minSdkVersion: " + minSdkVersion);
           applicationVersion.setMinSdkVersion(minSdkVersion);
 

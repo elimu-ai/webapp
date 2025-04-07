@@ -4,10 +4,9 @@ import java.util.Calendar;
 import java.util.List;
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.ContributorDao;
+import ai.elimu.entity.contributor.Contributor;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.contributor.Contributor;
 
 public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements ContributorDao {
 
@@ -46,20 +45,6 @@ public class ContributorDaoJpa extends GenericDaoJpa<Contributor> implements Con
                 "SELECT c " +
                 "FROM Contributor c " +
                 "WHERE c.providerIdDiscord = :id")
-                .setParameter("id", id)
-                .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-    
-    @Override
-    public Contributor readByProviderIdGoogle(String id) throws DataAccessException {
-        try {
-            return (Contributor) em.createQuery(
-                "SELECT c " +
-                "FROM Contributor c " +
-                "WHERE c.providerIdGoogle = :id")
                 .setParameter("id", id)
                 .getSingleResult();
         } catch (NoResultException e) {

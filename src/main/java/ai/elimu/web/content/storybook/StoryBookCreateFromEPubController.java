@@ -6,13 +6,13 @@ import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.ImageContributionEvent;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.ImageContributionEvent;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.service.storybook.StoryBookEPubService;
@@ -86,8 +86,6 @@ public class StoryBookCreateFromEPubController {
 
     StoryBook storyBook = new StoryBook();
     model.addAttribute("storyBook", storyBook);
-
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     return "content/storybook/create-from-epub";
   }
@@ -314,7 +312,6 @@ public class StoryBookCreateFromEPubController {
       storyBookContributionEvent.setStoryBook(storyBook);
       storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
       storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       // Store the StoryBook's cover image in the database, and assign it to the StoryBook
@@ -502,7 +499,6 @@ public class StoryBookCreateFromEPubController {
     imageContributionEvent.setImage(image);
     imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
     imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
-    imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
     imageContributionEventDao.create(imageContributionEvent);
 
     if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

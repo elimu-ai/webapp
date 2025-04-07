@@ -40,7 +40,7 @@
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/analytics/letter-learning-event/list/letter-learning-events.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -53,12 +53,12 @@
     
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="time" /></th>
+                <th>Time</th>
                 <th>Android ID</th>
-                <th><fmt:message key="application" /></th>
-                <th><fmt:message key="letter" /></th>
-                <th><fmt:message key="letter.text" /></th>
-                <th><fmt:message key="learning.event.type" /></th>
+                <th>Application</th>
+                <th>Letter</th>
+                <th>Letter text</th>
+                <th>Learning event type</th>
             </thead>
             <tbody>
                 <c:forEach var="letterLearningEvent" items="${letterLearningEvents}">

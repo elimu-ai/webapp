@@ -1,10 +1,11 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.admin.Application;
-import ai.elimu.model.analytics.LetterLearningEvent;
-import ai.elimu.model.content.Letter;
 import java.util.Calendar;
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.analytics.LetterLearningEvent;
+import ai.elimu.entity.content.Letter;
 
 public interface LetterLearningEventDao extends GenericDao<LetterLearningEvent> {
     

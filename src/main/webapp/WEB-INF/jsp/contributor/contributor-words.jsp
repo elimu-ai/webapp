@@ -1,5 +1,5 @@
 <div class="card-panel">
-    <h5><fmt:message key="contributions" /> (${fn:length(wordContributionEvents)})</h5>
+    <h5>Contributions (${fn:length(wordContributionEvents)})</h5>
     <c:if test="${empty wordContributionEvents}">
         <p>
             No word contributions.
@@ -8,11 +8,11 @@
     <c:if test="${not empty wordContributionEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="word" /></th>
-                <th><fmt:message key="revision" /></th>
-                <th><fmt:message key="time" /></th>
-                <th><fmt:message key="comment" /></th>
-                <th><fmt:message key="peer.reviews" /></th>
+                <th>Word</th>
+                <th>Revision</th>
+                <th>Time</th>
+                <th>Comment</th>
+                <th>Peer-reviews</th>
             </thead>
             <tbody>
                 <c:forEach var="wordContributionEvent" items="${wordContributionEvents}">
@@ -23,8 +23,7 @@
                             /<c:forEach var="lsc" items="${word.letterSounds}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
-                            #${wordContributionEvent.revisionNumber}<br />
-                            <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
+                            #${wordContributionEvent.revisionNumber}
                         </td>
                         <td>
                             <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
@@ -44,7 +43,7 @@
                                                             <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
                                                         </c:when>
                                                         <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
-                                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                                         </c:when>
                                                         <c:otherwise>
                                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -91,7 +90,7 @@
 </div>
 
 <div class="card-panel">
-    <h5><fmt:message key="peer.reviews" /> (${fn:length(wordPeerReviewEvents)})</h5>
+    <h5>Peer-reviews (${fn:length(wordPeerReviewEvents)})</h5>
     <c:if test="${empty wordPeerReviewEvents}">
         <p>
             No word peer-reviews.
@@ -100,9 +99,9 @@
     <c:if test="${not empty wordPeerReviewEvents}">
         <table class="bordered highlight">
             <thead>
-                <th><fmt:message key="peer.review" /></th>
-                <th><fmt:message key="word" /></th>
-                <th><fmt:message key="contributor" /></th>
+                <th>Peer-review</th>
+                <th>Word</th>
+                <th>Contributor</th>
             </thead>
             <tbody>
                 <c:forEach var="wordPeerReviewEvent" items="${wordPeerReviewEvents}">
@@ -118,7 +117,7 @@
                                                     <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
                                                 </c:when>
                                                 <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
-                                                    <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                    <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                                 </c:when>
                                                 <c:otherwise>
                                                     <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -167,7 +166,7 @@
                                             <img src="${wordPeerReviewEvent.wordContributionEvent.contributor.imageUrl}" />
                                         </c:when>
                                         <c:when test="${not empty wordPeerReviewEvent.wordContributionEvent.contributor.providerIdWeb3}">
-                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.wordContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.wordContributionEvent.contributor.providerIdWeb3}" />.svg" />
                                         </c:when>
                                         <c:otherwise>
                                             <img src="<spring:url value='/static/img/placeholder.png' />" />

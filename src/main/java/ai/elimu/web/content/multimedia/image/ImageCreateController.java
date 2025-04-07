@@ -2,10 +2,10 @@ package ai.elimu.web.content.multimedia.image;
 
 import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.ImageContributionEvent;
-import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.ImageContributionEvent;
+import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
@@ -53,7 +53,6 @@ public class ImageCreateController {
     model.addAttribute("contentLicenses", ContentLicense.values());
     model.addAttribute("literacySkills", LiteracySkill.values());
     model.addAttribute("numeracySkills", NumeracySkill.values());
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     return "content/multimedia/image/create";
   }
@@ -116,7 +115,6 @@ public class ImageCreateController {
       model.addAttribute("contentLicenses", ContentLicense.values());
       model.addAttribute("literacySkills", LiteracySkill.values());
       model.addAttribute("numeracySkills", NumeracySkill.values());
-      model.addAttribute("timeStart", System.currentTimeMillis());
       return "content/multimedia/image/create";
     } else {
       image.setTitle(image.getTitle().toLowerCase());
@@ -135,7 +133,6 @@ public class ImageCreateController {
       imageContributionEvent.setImage(image);
       imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
       imageContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       imageContributionEventDao.create(imageContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

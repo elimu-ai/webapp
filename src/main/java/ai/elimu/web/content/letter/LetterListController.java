@@ -1,7 +1,8 @@
 package ai.elimu.web.content.letter;
 
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.content.Letter;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

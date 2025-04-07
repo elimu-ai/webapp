@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="pending.review" /> (${fn:length(storyBookContributionEventsPendingPeerReview)})
+    Pending review (${fn:length(storyBookContributionEventsPendingPeerReview)})
 </content:title>
 
 <content:section cssId="storyBookPeerReviewsPendingPage">
@@ -15,13 +15,13 @@
             </p>
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="title" /></th>
-                    <th><fmt:message key="cover.image" /></th>
-                    <th><fmt:message key="description" /></th>
-                    <th><fmt:message key="reading.level" /></th>
-                    <th><fmt:message key="contributor" /></th>
-                    <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="time" /></th>
+                    <th>Title</th>
+                    <th>Cover image</th>
+                    <th>Description</th>
+                    <th>Reading level</th>
+                    <th>Contributor</th>
+                    <th>Revision</th>
+                    <th>Time</th>
                 </thead>
                 <tbody>
                     <c:forEach var="storyBookContributionEvent" items="${storyBookContributionEventsPendingPeerReview}">
@@ -49,7 +49,12 @@
                                 </c:if>
                             </td>
                             <td>
-                                <fmt:message key="reading.level.${storyBook.readingLevel}" />
+                                <c:choose>
+                                    <c:when test="${storyBook.readingLevel == 'LEVEL1'}">Level 1. Beginning to Read</c:when>
+                                    <c:when test="${storyBook.readingLevel == 'LEVEL2'}">Level 2. Learning to Read</c:when>
+                                    <c:when test="${storyBook.readingLevel == 'LEVEL3'}">Level 3. Reading Independently</c:when>
+                                    <c:when test="${storyBook.readingLevel == 'LEVEL4'}">Level 4. Reading Proficiently</c:when>
+                                </c:choose>
                             </td>
                             <td>
                                 <a href="<spring:url value='/contributor/${storyBookContributionEvent.contributor.id}' />">
@@ -59,7 +64,7 @@
                                                 <img src="${storyBookContributionEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -77,7 +82,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${storyBookContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${storyBookContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

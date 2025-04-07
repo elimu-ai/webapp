@@ -1,8 +1,8 @@
 package ai.elimu.web;
 
 import ai.elimu.dao.ContributorDao;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.enums.Role;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.enums.Role;
 import ai.elimu.util.Web3Helper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -29,7 +29,7 @@ public class SignOnControllerWeb3 {
   /**
    * Must match the signature message used in /WEB-INF/jsp/sign-on-web3.jsp
    */
-  private static final String SIGNATURE_MESSAGE = "I verify ownership of this account 👍";
+  private static final String SIGNATURE_MESSAGE = "elimu.ai's mission is to build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 **within 6 months**.";
 
   private final ContributorDao contributorDao;
 

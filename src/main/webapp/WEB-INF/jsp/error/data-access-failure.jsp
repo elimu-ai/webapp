@@ -1,7 +1,7 @@
 <%@page isErrorPage="true" %>
 
 <content:title>
-    <fmt:message key="error.http.500" />
+    HTTP 500 Internal Server Error
 </content:title>
 
 <content:section cssId="errorPage" cssClass="code500">

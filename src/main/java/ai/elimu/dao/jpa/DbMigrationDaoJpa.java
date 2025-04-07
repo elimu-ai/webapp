@@ -3,10 +3,9 @@ package ai.elimu.dao.jpa;
 import java.util.List;
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.DbMigrationDao;
+import ai.elimu.entity.DbMigration;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.DbMigration;
 
 public class DbMigrationDaoJpa extends GenericDaoJpa<DbMigration> implements DbMigrationDao {
 

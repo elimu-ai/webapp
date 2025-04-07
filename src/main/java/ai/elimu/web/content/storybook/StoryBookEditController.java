@@ -9,16 +9,16 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.StoryBookPeerReviewEventDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
+import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
@@ -78,8 +78,6 @@ public class StoryBookEditController {
 
     StoryBook storyBook = storyBookDao.read(id);
     model.addAttribute("storyBook", storyBook);
-
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("contentLicenses", ContentLicense.values());
 
@@ -147,8 +145,6 @@ public class StoryBookEditController {
     if (result.hasErrors()) {
       model.addAttribute("storyBook", storyBook);
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
-
       model.addAttribute("contentLicenses", ContentLicense.values());
 
       List<Image> coverImages = imageDao.readAllOrdered();
@@ -207,7 +203,6 @@ public class StoryBookEditController {
       storyBookContributionEvent.setStoryBook(storyBook);
       storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
       storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

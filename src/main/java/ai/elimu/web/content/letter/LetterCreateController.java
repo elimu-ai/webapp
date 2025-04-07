@@ -2,9 +2,9 @@ package ai.elimu.web.content.letter;
 
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterContributionEvent;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +20,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/letter/create")
@@ -39,7 +38,6 @@ public class LetterCreateController {
 
     Letter letter = new Letter();
     model.addAttribute("letter", letter);
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     return "content/letter/create";
   }
@@ -60,7 +58,6 @@ public class LetterCreateController {
 
     if (result.hasErrors()) {
       model.addAttribute("letter", letter);
-      model.addAttribute("timeStart", System.currentTimeMillis());
 
       return "content/letter/create";
     } else {
@@ -73,7 +70,6 @@ public class LetterCreateController {
       letterContributionEvent.setLetter(letter);
       letterContributionEvent.setRevisionNumber(letter.getRevisionNumber());
       letterContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      letterContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       letterContributionEventDao.create(letterContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

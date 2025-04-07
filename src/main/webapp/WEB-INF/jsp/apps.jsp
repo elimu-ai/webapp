@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="applications" />
+    Applications
 </content:title>
 
 <content:section cssId="applicationsPage">

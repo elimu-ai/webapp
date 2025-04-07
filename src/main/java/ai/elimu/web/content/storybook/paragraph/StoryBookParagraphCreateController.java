@@ -4,12 +4,12 @@ import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -58,8 +58,6 @@ public class StoryBookParagraphCreateController {
 
     model.addAttribute("storyBookParagraph", storyBookParagraph);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     return "content/storybook/paragraph/create";
   }
 
@@ -77,7 +75,6 @@ public class StoryBookParagraphCreateController {
 
     if (result.hasErrors()) {
       model.addAttribute("storyBookParagraph", storyBookParagraph);
-      model.addAttribute("timeStart", request.getParameter("timeStart"));
       return "content/storybook/paragraph/create";
     } else {
       storyBookParagraphDao.create(storyBookParagraph);
@@ -96,7 +93,6 @@ public class StoryBookParagraphCreateController {
       storyBookContributionEvent.setStoryBook(storyBook);
       storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
       storyBookContributionEvent.setComment("Created storybook paragraph in chapter " + (storyBookParagraph.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

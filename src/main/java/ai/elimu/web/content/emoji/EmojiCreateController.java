@@ -1,7 +1,7 @@
 package ai.elimu.web.content.emoji;
 
 import ai.elimu.dao.EmojiDao;
-import ai.elimu.model.content.Emoji;
+import ai.elimu.entity.content.Emoji;
 import jakarta.validation.Valid;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/emoji/create")
@@ -44,7 +43,7 @@ public class EmojiCreateController {
       result.rejectValue("glyph", "NonUnique");
     }
 
-    if (emoji.getUnicodeVersion() > 9) {
+    if (emoji.getUnicodeVersion() > 10) {
       result.rejectValue("glyph", "emoji.unicode.version");
     }
 

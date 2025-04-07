@@ -1,8 +1,8 @@
 package ai.elimu.dao;
 
-import ai.elimu.model.Device;
-
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.Device;
 
 public interface DeviceDao extends GenericDao<Device> {
     

@@ -8,15 +8,15 @@ import ai.elimu.dao.SyllableDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.content.Syllable;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.WordContributionEvent;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.content.Syllable;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.WordContributionEvent;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
 import ai.elimu.util.DiscordHelper;
@@ -80,7 +80,6 @@ public class WordEditController {
     }
 
     model.addAttribute("word", word);
-    model.addAttribute("timeStart", System.currentTimeMillis());
     model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
     model.addAttribute("rootWords", wordDao.readAllOrdered());
     model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -128,7 +127,6 @@ public class WordEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("word", word);
-      model.addAttribute("timeStart", request.getParameter("timeStart"));
       model.addAttribute("letterSounds", letterSoundDao.readAllOrderedByUsage()); // TODO: sort by letter(s) text
       model.addAttribute("rootWords", wordDao.readAllOrdered());
       model.addAttribute("emojisByWordId", getEmojisByWordId());
@@ -160,7 +158,6 @@ public class WordEditController {
       wordContributionEvent.setWord(word);
       wordContributionEvent.setRevisionNumber(word.getRevisionNumber());
       wordContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      wordContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       wordContributionEventDao.create(wordContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

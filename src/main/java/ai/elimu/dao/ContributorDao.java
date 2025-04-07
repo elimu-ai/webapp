@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.contributor.Contributor;
+import ai.elimu.entity.contributor.Contributor;
 
 public interface ContributorDao extends GenericDao<Contributor> {
     
@@ -16,8 +16,6 @@ public interface ContributorDao extends GenericDao<Contributor> {
     Contributor readByProviderIdDiscord(String id) throws DataAccessException;
 
     Contributor readByProviderIdWeb3(String id) throws DataAccessException;
-    
-    Contributor readByProviderIdGoogle(String id) throws DataAccessException;
     
     List<Contributor> readAllOrderedDesc() throws DataAccessException;
     

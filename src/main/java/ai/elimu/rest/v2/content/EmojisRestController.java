@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.EmojiDao;
-import ai.elimu.model.content.Emoji;
+import ai.elimu.entity.content.Emoji;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;

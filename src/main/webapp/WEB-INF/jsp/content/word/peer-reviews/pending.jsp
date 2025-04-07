@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="pending.review" /> (${fn:length(wordContributionEventsPendingPeerReview)})
+    Pending review (${fn:length(wordContributionEventsPendingPeerReview)})
 </content:title>
 
 <content:section cssId="wordPeerReviewsPendingPage">
@@ -15,12 +15,12 @@
             </p>
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="sounds" /></th>
-                    <th><fmt:message key="word.type" /></th>
-                    <th><fmt:message key="contributor" /></th>
-                    <th><fmt:message key="revision" /></th>
-                    <th><fmt:message key="time" /></th>
+                    <th>Text</th>
+                    <th>Sounds</th>
+                    <th>Word type</th>
+                    <th>Contributor</th>
+                    <th>Revision</th>
+                    <th>Time</th>
                 </thead>
                 <tbody>
                     <c:forEach var="wordContributionEvent" items="${wordContributionEventsPendingPeerReview}">
@@ -44,7 +44,7 @@
                                                 <img src="${wordContributionEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty wordContributionEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${wordContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${wordContributionEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -62,7 +62,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${wordContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${wordContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

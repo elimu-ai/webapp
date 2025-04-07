@@ -4,11 +4,11 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Number;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.NumberContributionEvent;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Number;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
@@ -50,8 +50,6 @@ public class NumberCreateController {
     Number number = new Number();
     model.addAttribute("number", number);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     model.addAttribute("words", wordDao.readAllOrdered());
     model.addAttribute("emojisByWordId", getEmojisByWordId());
 
@@ -75,8 +73,6 @@ public class NumberCreateController {
     if (result.hasErrors()) {
       model.addAttribute("number", number);
 
-      model.addAttribute("timeStart", request.getParameter("timeStart"));
-
       model.addAttribute("words", wordDao.readAllOrdered());
       model.addAttribute("emojisByWordId", getEmojisByWordId());
 
@@ -91,7 +87,6 @@ public class NumberCreateController {
       numberContributionEvent.setNumber(number);
       numberContributionEvent.setRevisionNumber(number.getRevisionNumber());
       numberContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      numberContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       numberContributionEventDao.create(numberContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

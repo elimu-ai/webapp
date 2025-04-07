@@ -2,8 +2,8 @@ package ai.elimu.web.content.emoji;
 
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Word;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.Calendar;
@@ -63,7 +63,7 @@ public class EmojiEditController {
       result.rejectValue("glyph", "NonUnique");
     }
 
-    if (emoji.getUnicodeVersion() > 9) {
+    if (emoji.getUnicodeVersion() > 10) {
       result.rejectValue("glyph", "emoji.unicode.version");
     }
 

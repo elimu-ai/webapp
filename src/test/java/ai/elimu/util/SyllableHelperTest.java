@@ -1,6 +1,6 @@
 package ai.elimu.util;
 
-import ai.elimu.model.content.Word;
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.Language;
 import org.junit.jupiter.api.Test;
 

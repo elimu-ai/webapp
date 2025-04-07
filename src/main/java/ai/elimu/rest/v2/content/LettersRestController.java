@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.LetterDao;
-import ai.elimu.model.content.Letter;
+import ai.elimu.entity.content.Letter;
 import ai.elimu.model.v2.gson.content.LetterGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;

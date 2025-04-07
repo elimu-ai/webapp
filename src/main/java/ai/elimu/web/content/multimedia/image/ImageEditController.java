@@ -6,14 +6,14 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Emoji;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.Number;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.ImageContributionEvent;
-import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.Number;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.ImageContributionEvent;
+import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
@@ -81,7 +81,6 @@ public class ImageEditController {
     model.addAttribute("literacySkills", LiteracySkill.values());
     model.addAttribute("numeracySkills", NumeracySkill.values());
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
     model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
 
     model.addAttribute("letters", letterDao.readAllOrdered());
@@ -152,7 +151,6 @@ public class ImageEditController {
       model.addAttribute("literacySkills", LiteracySkill.values());
       model.addAttribute("numeracySkills", NumeracySkill.values());
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
       model.addAttribute("imageContributionEvents", imageContributionEventDao.readAll(image));
 
       model.addAttribute("letters", letterDao.readAllOrdered());
@@ -173,7 +171,6 @@ public class ImageEditController {
       imageContributionEvent.setImage(image);
       imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
       imageContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      imageContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       imageContributionEventDao.create(imageContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

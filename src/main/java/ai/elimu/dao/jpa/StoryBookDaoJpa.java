@@ -3,10 +3,10 @@ package ai.elimu.dao.jpa;
 import java.util.List;
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.entity.content.StoryBook;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.model.content.StoryBook;
 import ai.elimu.model.v2.enums.ReadingLevel;
 
 public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBookDao {

@@ -1,20 +1,20 @@
 <content:title>
-    <fmt:message key="educational.content" />
+    Educational content
 </content:title>
 
 <content:section cssId="mainContentPage">
     <div class="section row">
         <div class="col s12">
-            <h5><fmt:message key="text" /></h5>
+            <h5>Text</h5>
         </div>
         
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">text_fields</i> <fmt:message key="letters" /></span>
+                    <span class="card-title"><i class="material-icons">text_fields</i> Letters</span>
                 </div>
                 <div class="card-action">
-                    <a id="letterListLink" href="<spring:url value='/content/letter/list' />"><fmt:message key="view.list" /> (${letterCount})</a>
+                    <a id="letterListLink" href="<spring:url value='/content/letter/list' />">View list (${letterCount})</a>
                 </div>
             </div>
         </div>
@@ -22,10 +22,10 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">music_note</i> <fmt:message key="sounds" /></span>
+                    <span class="card-title"><i class="material-icons">music_note</i> Sounds</span>
                 </div>
                 <div class="card-action">
-                    <a id="soundListLink" href="<spring:url value='/content/sound/list' />"><fmt:message key="view.list" /> (${soundCount})</a>
+                    <a id="soundListLink" href="<spring:url value='/content/sound/list' />">View list (${soundCount})</a>
                 </div>
             </div>
         </div>
@@ -33,11 +33,11 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">emoji_symbols</i> <fmt:message key="letter.sounds" /></span>
+                    <span class="card-title"><i class="material-icons">emoji_symbols</i> Letter-sounds</span>
                 </div>
                 <div class="card-action">
-                    <a id="letterSoundListLink" href="<spring:url value='/content/letter-sound/list' />"><fmt:message key="view.list" /> (${letterSoundCount})</a>
-                    <a href="<spring:url value='/content/letter-sound/peer-reviews' />"><fmt:message key="peer.review" /></a>
+                    <a id="letterSoundListLink" href="<spring:url value='/content/letter-sound/list' />">View list (${letterSoundCount})</a>
+                    <a href="<spring:url value='/content/letter-sound/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
@@ -45,10 +45,10 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">queue_music</i> <fmt:message key="syllables" /></span>
+                    <span class="card-title"><i class="material-icons">queue_music</i> Syllables</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/syllable/list' />"><fmt:message key="view.list" /> (${syllableCount})</a>
+                    <a href="<spring:url value='/content/syllable/list' />">View list (${syllableCount})</a>
                 </div>
             </div>
         </div>
@@ -56,11 +56,11 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">looks_one</i> <fmt:message key="numbers" /></span>
+                    <span class="card-title"><i class="material-icons">looks_one</i> Numbers</span>
                 </div>
                 <div class="card-action">
-                    <a id="numberListLink" href="<spring:url value='/content/number/list' />"><fmt:message key="view.list" /> (${numberCount})</a>
-                    <a href="<spring:url value='/content/number/peer-reviews' />"><fmt:message key="peer.review" /></a>
+                    <a id="numberListLink" href="<spring:url value='/content/number/list' />">View list (${numberCount})</a>
+                    <a href="<spring:url value='/content/number/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
@@ -68,11 +68,11 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">sms</i> <fmt:message key="words" /></span>
+                    <span class="card-title"><i class="material-icons">sms</i> Words</span>
                 </div>
                 <div class="card-action">
-                    <a id="wordListLink" href="<spring:url value='/content/word/list' />"><fmt:message key="view.list" /> (${wordCount})</a>
-                    <a href="<spring:url value='/content/word/peer-reviews' />"><fmt:message key="peer.review" /></a>
+                    <a id="wordListLink" href="<spring:url value='/content/word/list' />">View list (${wordCount})</a>
+                    <a href="<spring:url value='/content/word/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
@@ -80,25 +80,25 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">emoji_emotions</i> <fmt:message key="emojis" /></span>
+                    <span class="card-title"><i class="material-icons">emoji_emotions</i> Emojis</span>
                 </div>
                 <div class="card-action">
-                    <a id="emojiListLink" href="<spring:url value='/content/emoji/list' />"><fmt:message key="view.list" /> (${emojiCount})</a>
+                    <a id="emojiListLink" href="<spring:url value='/content/emoji/list' />">View list (${emojiCount})</a>
                 </div>
             </div>
         </div>
         
         <div class="col s12">
-            <h5><fmt:message key="multimedia" /></h5>
+            <h5>Multimedia</h5>
         </div>
         
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">image</i> <fmt:message key="images" /></span>
+                    <span class="card-title"><i class="material-icons">image</i> Images</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/multimedia/image/list' />"><fmt:message key="view.list" /> (${imageCount})</a>
+                    <a href="<spring:url value='/content/multimedia/image/list' />">View list (${imageCount})</a>
                 </div>
             </div>
         </div>
@@ -106,11 +106,11 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">book</i> <fmt:message key="storybooks" /></span>
+                    <span class="card-title"><i class="material-icons">book</i> Storybooks</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/storybook/list' />"><fmt:message key="view.list" /> (${storyBookCount})</a>
-                    <a href="<spring:url value='/content/storybook/peer-reviews' />"><fmt:message key="peer.review" /></a>
+                    <a href="<spring:url value='/content/storybook/list' />">View list (${storyBookCount})</a>
+                    <a href="<spring:url value='/content/storybook/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
@@ -118,10 +118,10 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><i class="material-icons">movie</i> <fmt:message key="videos" /></span>
+                    <span class="card-title"><i class="material-icons">movie</i> Videos</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/multimedia/video/list' />"><fmt:message key="view.list" /> (${videoCount})</a>
+                    <a href="<spring:url value='/content/multimedia/video/list' />">View list (${videoCount})</a>
                 </div>
             </div>
         </div>

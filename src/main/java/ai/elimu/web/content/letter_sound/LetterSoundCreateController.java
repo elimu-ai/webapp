@@ -4,11 +4,11 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundContributionEventDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.SoundDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterSoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +26,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/letter-sound/create")
@@ -54,8 +53,6 @@ public class LetterSoundCreateController {
 
     List<Sound> sounds = soundDao.readAllOrdered();
     model.addAttribute("sounds", sounds);
-
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     return "content/letter-sound/create";
   }
@@ -85,8 +82,6 @@ public class LetterSoundCreateController {
       List<Sound> sounds = soundDao.readAllOrdered();
       model.addAttribute("sounds", sounds);
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
-
       return "content/letter-sound/create";
     } else {
       letterSound.setTimeLastUpdate(Calendar.getInstance());
@@ -98,7 +93,6 @@ public class LetterSoundCreateController {
       letterSoundContributionEvent.setLetterSound(letterSound);
       letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
       letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       letterSoundContributionEventDao.create(letterSoundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

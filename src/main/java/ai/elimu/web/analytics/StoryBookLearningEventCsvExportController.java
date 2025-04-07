@@ -1,7 +1,8 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.util.AnalyticsHelper;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -32,6 +33,9 @@ public class StoryBookLearningEventCsvExportController {
 
     List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll();
     log.info("storyBookLearningEvents.size(): " + storyBookLearningEvents.size());
+    for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
+      storyBookLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(storyBookLearningEvent.getAndroidId()));
+    }
 
     CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(

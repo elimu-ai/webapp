@@ -1,13 +1,13 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
+
 import java.util.List;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.content.StoryBookChapter;
-import ai.elimu.model.content.StoryBookParagraph;
 
 public class StoryBookParagraphDaoJpa extends GenericDaoJpa<StoryBookParagraph> implements StoryBookParagraphDao {
 

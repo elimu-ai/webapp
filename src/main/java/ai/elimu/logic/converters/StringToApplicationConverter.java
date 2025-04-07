@@ -3,7 +3,8 @@ package ai.elimu.logic.converters;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import ai.elimu.dao.ApplicationDao;
-import ai.elimu.model.admin.Application;
+import ai.elimu.entity.admin.Application;
+
 import org.springframework.core.convert.converter.Converter;
 
 @AllArgsConstructor

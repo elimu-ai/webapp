@@ -6,12 +6,12 @@ import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundPeerReviewEventDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.content.LetterSound;
-import ai.elimu.model.content.Sound;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterSoundContributionEvent;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.content.Word;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterSoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,19 +30,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.dao.LetterSoundPeerReviewEventDao;
-import ai.elimu.dao.WordDao;
-import ai.elimu.model.content.Word;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.util.DiscordHelper;
-import java.util.Calendar;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import org.apache.commons.lang.StringUtils;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import java.util.stream.Collectors;
-import ai.elimu.dao.SoundDao;
 
 @Controller
 @RequestMapping("/content/letter-sound/edit/{id}")
@@ -68,8 +55,6 @@ public class LetterSoundEditController {
 
     LetterSound letterSound = letterSoundDao.read(id);
     model.addAttribute("letterSound", letterSound);
-
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     List<Letter> letters = letterDao.readAllOrdered();
     model.addAttribute("letters", letters);
@@ -105,8 +90,6 @@ public class LetterSoundEditController {
     if (result.hasErrors()) {
       model.addAttribute("letterSound", letterSound);
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
-
       List<Letter> letters = letterDao.readAllOrdered();
       model.addAttribute("letters", letters);
 
@@ -128,7 +111,6 @@ public class LetterSoundEditController {
       letterSoundContributionEvent.setLetterSound(letterSound);
       letterSoundContributionEvent.setRevisionNumber(letterSound.getRevisionNumber());
       letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      letterSoundContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       letterSoundContributionEventDao.create(letterSoundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

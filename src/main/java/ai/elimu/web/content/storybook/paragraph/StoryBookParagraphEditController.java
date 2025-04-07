@@ -3,11 +3,11 @@ package ai.elimu.web.content.storybook.paragraph;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.PeerReviewStatus;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -48,8 +48,6 @@ public class StoryBookParagraphEditController {
     log.info("storyBookParagraph: " + storyBookParagraph);
     model.addAttribute("storyBookParagraph", storyBookParagraph);
 
-    model.addAttribute("timeStart", System.currentTimeMillis());
-
     return "content/storybook/paragraph/edit";
   }
 
@@ -67,7 +65,6 @@ public class StoryBookParagraphEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("storyBookParagraph", storyBookParagraph);
-      model.addAttribute("timeStart", System.currentTimeMillis());
       return "content/storybook/paragraph/edit";
     } else {
       // Fetch previously stored paragraph to make it possible to check if the text was modified or not when
@@ -94,7 +91,6 @@ public class StoryBookParagraphEditController {
         storyBookContributionEvent.setParagraphTextBefore(StringUtils.abbreviate(storyBookParagraphBeforeEdit.getOriginalText(), 1000));
         storyBookContributionEvent.setParagraphTextAfter(StringUtils.abbreviate(storyBookParagraph.getOriginalText(), 1000));
       }
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

@@ -1,7 +1,9 @@
 package ai.elimu.web.analytics;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.model.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.util.AnalyticsHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,6 +31,9 @@ public class StoryBookLearningEventListController {
 
     List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAllOrderedByTime();
     model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
+    for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
+      storyBookLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(storyBookLearningEvent.getAndroidId()));
+    }
 
     // Prepare chart data
     List<String> monthList = new ArrayList<>();

@@ -2,10 +2,9 @@ package ai.elimu.dao.jpa;
 
 import jakarta.persistence.NoResultException;
 import ai.elimu.dao.DeviceDao;
+import ai.elimu.entity.Device;
 
 import org.springframework.dao.DataAccessException;
-
-import ai.elimu.model.Device;
 
 public class DeviceDaoJpa extends GenericDaoJpa<Device> implements DeviceDao {
 

@@ -1,5 +1,5 @@
 <content:title>
-    <fmt:message key="add.email" />
+    Add e-mail
 </content:title>
 
 <content:section cssId="addEmailPage">
@@ -9,13 +9,13 @@
             <form method="POST">
                 <div class="row">
                     <div class="input-field col s12">
-                        <label for="email"><fmt:message key="email" /></label>
+                        <label for="email">E-mail</label>
                         <input id="email" name="email" <c:if test="${not empty contributor.email}">value="${contributor.email}"</c:if> type="email" class="validate" required="required">
                     </div>
                 </div>
 
                 <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
-                    <fmt:message key="save" /> <i class="material-icons right">send</i>
+                    Save <i class="material-icons right">send</i>
                 </button>
             </form>
         </div>

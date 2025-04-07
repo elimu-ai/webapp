@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="words" /> (${fn:length(words)})
+    Words (${fn:length(words)})
 </content:title>
 
 <content:section cssId="wordListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/word/list/words.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -18,19 +18,19 @@
         </script>
         
         <p>
-            <fmt:message key="to.add.new.content.click.the.button.below" /> You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer-review</a> words.
+            To add new content, click the button below. You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer-review</a> words.
         </p>
         
         <c:if test="${not empty words}">
             <table class="bordered highlight">
                 <thead>
-                    <th><fmt:message key="frequency" /></th>
-                    <th><fmt:message key="text" /></th>
-                    <th><fmt:message key="letter.sound.correspondences" /></th>
-                    <%--<th><fmt:message key="spelling.consistency" /></th>--%>
-                    <th><fmt:message key="word.type" /></th>
-                    <th><fmt:message key="root.word" /></th>
-                    <th><fmt:message key="revision" /></th>
+                    <th>Frequency</th>
+                    <th>Text</th>
+                    <th>Letter-sound correspondences</th>
+                    <%--<th>Grapheme-phoneme correspondence</th>--%>
+                    <th>Word type</th>
+                    <th>Root word</th>
+                    <th>Revision</th>
                 </thead>
                 <tbody>
                     <c:forEach var="word" items="${words}">
@@ -85,7 +85,13 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <div class="chip ${spellingConsistencyColor}">
-                                    <fmt:message key="spelling.consistency.${word.spellingConsistency}" />
+                                    <c:choose>
+                                        <c:when test="${word.spellingConsistency == 'PERFECT'}">Perfect (100% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'HIGHLY_PHONEMIC'}">Highly phonemic (80%-99% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'PHONEMIC'}">Phonemic (60%-79% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'NON_PHONEMIC'}">Non-phonemic (40%-59% correspondence)</c:when>
+                                        <c:when test="${word.spellingConsistency == 'HIGHLY_NON_PHONEMIC'}">Highly non-phonemic (0%-39% correspondence)</c:when>
+                                    </c:choose>
                                 </div>
                             </td>
                             --%>
@@ -129,6 +135,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="<spring:url value='/content/word/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="<fmt:message key="add.word" />"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/word/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add word"><i class="material-icons">add</i></a>
     </div>
 </content:section>

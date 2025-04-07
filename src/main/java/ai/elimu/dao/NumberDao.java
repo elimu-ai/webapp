@@ -2,9 +2,9 @@ package ai.elimu.dao;
 
 import java.util.List;
 
-import ai.elimu.model.content.Number;
-
 import org.springframework.dao.DataAccessException;
+
+import ai.elimu.entity.content.Number;
 
 public interface NumberDao extends GenericDao<Number> {
     

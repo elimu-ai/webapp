@@ -3,12 +3,12 @@ package ai.elimu.web.content.storybook.paragraph;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookParagraphDao;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.StoryBookParagraph;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.PeerReviewStatus;
-import ai.elimu.model.enums.Role;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
+import ai.elimu.entity.enums.PeerReviewStatus;
+import ai.elimu.entity.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -72,7 +72,6 @@ public class StoryBookParagraphDeleteController {
     storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
     storyBookContributionEvent.setComment("Deleted storybook paragraph in chapter " + (storyBookParagraphToBeDeleted.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
     storyBookContributionEvent.setParagraphTextBefore(paragraphTextBeforeDeletion);
-    storyBookContributionEvent.setTimeSpentMs(0L);
     storyBookContributionEventDao.create(storyBookContributionEvent);
 
     if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

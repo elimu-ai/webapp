@@ -1,12 +1,12 @@
 <content:title>
-    <fmt:message key="contributors" /> (${fn:length(contributors)})
+    Contributors (${fn:length(contributors)})
 </content:title>
 
 <content:section cssId="contributorListPage">
     <div class="section row">
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/contributor/list/contributors.csv' />">
-            <fmt:message key="export.to.csv" /><i class="material-icons right">vertical_align_bottom</i>
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
         </a>
         <script>
             $(function() {
@@ -29,7 +29,7 @@
                                     <img src="${contributor.imageUrl}" />
                                 </c:when>
                                 <c:when test="${not empty contributor.providerIdWeb3}">
-                                    <img src="https://effigy.im/a/<c:out value="${contributor.providerIdWeb3}" />.png" />
+                                    <img src="https://effigy.im/a/<c:out value="${contributor.providerIdWeb3}" />.svg" />
                                 </c:when>
                                 <c:otherwise>
                                     <img src="<spring:url value='/static/img/placeholder.png' />" />

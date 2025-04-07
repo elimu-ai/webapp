@@ -3,11 +3,11 @@ package ai.elimu.web.content.storybook;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.model.content.StoryBook;
-import ai.elimu.model.content.multimedia.Image;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.StoryBookContributionEvent;
-import ai.elimu.model.enums.ContentLicense;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.StoryBookContributionEvent;
+import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -25,7 +25,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/storybook/create")
@@ -45,8 +44,6 @@ public class StoryBookCreateController {
 
     StoryBook storyBook = new StoryBook();
     model.addAttribute("storyBook", storyBook);
-
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("contentLicenses", ContentLicense.values());
 
@@ -75,8 +72,6 @@ public class StoryBookCreateController {
     if (result.hasErrors()) {
       model.addAttribute("storybook", storyBook);
 
-      model.addAttribute("timeStart", System.currentTimeMillis());
-
       model.addAttribute("contentLicenses", ContentLicense.values());
 
       List<Image> coverImages = imageDao.readAllOrdered();
@@ -95,7 +90,6 @@ public class StoryBookCreateController {
       storyBookContributionEvent.setStoryBook(storyBook);
       storyBookContributionEvent.setRevisionNumber(storyBook.getRevisionNumber());
       storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      storyBookContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

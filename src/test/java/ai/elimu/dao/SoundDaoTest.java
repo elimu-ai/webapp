@@ -3,7 +3,7 @@ package ai.elimu.dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ai.elimu.model.content.Sound;
+import ai.elimu.entity.content.Sound;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import java.util.ArrayList;
 import java.util.List;

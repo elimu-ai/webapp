@@ -3,9 +3,9 @@ package ai.elimu.web.content.letter;
 import ai.elimu.dao.LetterContributionEventDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundDao;
-import ai.elimu.model.content.Letter;
-import ai.elimu.model.contributor.Contributor;
-import ai.elimu.model.contributor.LetterContributionEvent;
+import ai.elimu.entity.content.Letter;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.LetterContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @RequestMapping("/content/letter/edit/{id}")
@@ -44,7 +43,6 @@ public class LetterEditController {
 
     Letter letter = letterDao.read(id);
     model.addAttribute("letter", letter);
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
     
@@ -69,7 +67,6 @@ public class LetterEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("letter", letter);
-      model.addAttribute("timeStart", System.currentTimeMillis());
 
       model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
 
@@ -87,7 +84,6 @@ public class LetterEditController {
       letterContributionEvent.setLetter(letter);
       letterContributionEvent.setRevisionNumber(letter.getRevisionNumber());
       letterContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      letterContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       letterContributionEventDao.create(letterContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
