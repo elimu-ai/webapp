@@ -27,7 +27,6 @@
             <tag:formErrors modelAttribute="number" />
             
             <form:hidden path="revisionNumber" value="${number.revisionNumber}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -179,8 +178,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${numberContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${numberContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -189,7 +187,7 @@
                                 <img src="${numberContributionEvent.contributor.imageUrl}" />
                             </c:when>
                             <c:when test="${not empty numberContributionEvent.contributor.providerIdWeb3}">
-                                <img src="https://effigy.im/a/<c:out value="${numberContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                <img src="https://effigy.im/a/<c:out value="${numberContributionEvent.contributor.providerIdWeb3}" />.svg" />
                             </c:when>
                             <c:otherwise>
                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -221,7 +219,7 @@
                                                 <img src="${numberPeerReviewEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty numberPeerReviewEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />

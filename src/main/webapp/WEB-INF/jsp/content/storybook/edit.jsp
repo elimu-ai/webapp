@@ -26,7 +26,6 @@
             <tag:formErrors modelAttribute="storyBook" />
             
             <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">
@@ -205,8 +204,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${storyBookContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${storyBookContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -215,7 +213,7 @@
                                 <img src="${storyBookContributionEvent.contributor.imageUrl}" />
                             </c:when>
                             <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
-                                <img src="https://effigy.im/a/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                <img src="https://effigy.im/a/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />.svg" />
                             </c:when>
                             <c:otherwise>
                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -273,7 +271,7 @@
                                                 <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />

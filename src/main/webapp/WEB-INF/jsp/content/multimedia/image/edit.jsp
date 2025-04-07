@@ -13,7 +13,6 @@
             <form:hidden path="imageFormat" value="${image.imageFormat}" />
             <form:hidden path="contentType" value="${image.contentType}" />
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
-            <input type="hidden" name="timeStart" value="${timeStart}" />
             
             <img class="cid-${image.cid != null}"
                 src="<spring:url value='${image.url}' />"
@@ -136,8 +135,7 @@
             <div class="collection-item">
                 <span class="badge">
                     Revision #${imageContributionEvent.revisionNumber} 
-                    (<fmt:formatNumber maxFractionDigits="0" value="${imageContributionEvent.timeSpentMs / 1000 / 60}" /> min). 
-                    <fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                    (<fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
                 <a href="<spring:url value='/contributor/${imageContributionEvent.contributor.id}' />">
                     <div class="chip">
@@ -146,7 +144,7 @@
                                 <img src="${imageContributionEvent.contributor.imageUrl}" />
                             </c:when>
                             <c:when test="${not empty imageContributionEvent.contributor.providerIdWeb3}">
-                                <img src="https://effigy.im/a/<c:out value="${imageContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                <img src="https://effigy.im/a/<c:out value="${imageContributionEvent.contributor.providerIdWeb3}" />.svg" />
                             </c:when>
                             <c:otherwise>
                                 <img src="<spring:url value='/static/img/placeholder.png' />" />

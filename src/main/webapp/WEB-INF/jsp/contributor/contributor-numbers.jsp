@@ -27,8 +27,7 @@
                             </c:forEach>
                         </td>
                         <td>
-                            #${numberContributionEvent.revisionNumber}<br />
-                            <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${numberContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
+                            #${numberContributionEvent.revisionNumber}
                         </td>
                         <td>
                             <fmt:formatDate value="${numberContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
@@ -48,7 +47,7 @@
                                                             <img src="${numberPeerReviewEvent.contributor.imageUrl}" />
                                                         </c:when>
                                                         <c:when test="${not empty numberPeerReviewEvent.contributor.providerIdWeb3}">
-                                                            <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                            <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                                         </c:when>
                                                         <c:otherwise>
                                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -122,7 +121,7 @@
                                                     <img src="${numberPeerReviewEvent.contributor.imageUrl}" />
                                                 </c:when>
                                                 <c:when test="${not empty numberPeerReviewEvent.contributor.providerIdWeb3}">
-                                                    <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                    <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                                 </c:when>
                                                 <c:otherwise>
                                                     <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -175,7 +174,7 @@
                                             <img src="${numberPeerReviewEvent.numberContributionEvent.contributor.imageUrl}" />
                                         </c:when>
                                         <c:when test="${not empty numberPeerReviewEvent.numberContributionEvent.contributor.providerIdWeb3}">
-                                            <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.numberContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                            <img src="https://effigy.im/a/<c:out value="${numberPeerReviewEvent.numberContributionEvent.contributor.providerIdWeb3}" />.svg" />
                                         </c:when>
                                         <c:otherwise>
                                             <img src="<spring:url value='/static/img/placeholder.png' />" />

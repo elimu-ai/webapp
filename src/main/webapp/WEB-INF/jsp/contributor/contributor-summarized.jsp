@@ -7,7 +7,7 @@
                         <img src="${contributor2.imageUrl}" />
                     </c:when>
                     <c:when test="${not empty contributor2.providerIdWeb3}">
-                        <img src="https://effigy.im/a/<c:out value="${contributor2.providerIdWeb3}" />.png" />
+                        <img src="https://effigy.im/a/<c:out value="${contributor2.providerIdWeb3}" />.svg" />
                     </c:when>
                     <c:otherwise>
                         <img src="<spring:url value='/static/img/placeholder.png' />" />

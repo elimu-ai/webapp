@@ -64,7 +64,7 @@
                                                 <img src="${storyBookContributionEvent.contributor.imageUrl}" />
                                             </c:when>
                                             <c:when test="${not empty storyBookContributionEvent.contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                                <img src="https://effigy.im/a/<c:out value="${storyBookContributionEvent.contributor.providerIdWeb3}" />.svg" />
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -82,7 +82,7 @@
                                 </a>
                             </td>
                             <td>
-                                #${storyBookContributionEvent.revisionNumber} (<fmt:formatNumber maxFractionDigits="0" value="${storyBookContributionEvent.timeSpentMs / 1000 / 60}" /> min)
+                                #${storyBookContributionEvent.revisionNumber}
                             </td>
                             <td>
                                 <fmt:formatDate value="${storyBookContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />

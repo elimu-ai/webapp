@@ -35,6 +35,9 @@ public class VideoLearningEventCsvExportController {
 
     List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAllOrderedByTimestamp(OrderDirection.ASC);
     log.info("videoLearningEvents.size(): " + videoLearningEvents.size());
+    for (VideoLearningEvent videoLearningEvent : videoLearningEvents) {
+      videoLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(videoLearningEvent.getAndroidId()));
+    }
 
     CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(
@@ -54,8 +57,6 @@ public class VideoLearningEventCsvExportController {
 
     for (VideoLearningEvent videoLearningEvent : videoLearningEvents) {
       log.info("videoLearningEvent.getId(): " + videoLearningEvent.getId());
-
-      videoLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(videoLearningEvent.getAndroidId()));
 
       csvPrinter.printRecord(
           videoLearningEvent.getId(),

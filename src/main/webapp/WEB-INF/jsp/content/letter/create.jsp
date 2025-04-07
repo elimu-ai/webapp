@@ -8,8 +8,6 @@
         <form:form modelAttribute="letter">
             <tag:formErrors modelAttribute="letter" />
             
-            <input type="hidden" name="timeStart" value="${timeStart}" />
-            
             <div class="row">
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error">Text</form:label>

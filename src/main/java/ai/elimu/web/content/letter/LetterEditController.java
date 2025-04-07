@@ -43,7 +43,6 @@ public class LetterEditController {
 
     Letter letter = letterDao.read(id);
     model.addAttribute("letter", letter);
-    model.addAttribute("timeStart", System.currentTimeMillis());
 
     model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
     
@@ -68,7 +67,6 @@ public class LetterEditController {
 
     if (result.hasErrors()) {
       model.addAttribute("letter", letter);
-      model.addAttribute("timeStart", System.currentTimeMillis());
 
       model.addAttribute("letterContributionEvents", letterContributionEventDao.readAll(letter));
 
@@ -86,7 +84,6 @@ public class LetterEditController {
       letterContributionEvent.setLetter(letter);
       letterContributionEvent.setRevisionNumber(letter.getRevisionNumber());
       letterContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
-      letterContributionEvent.setTimeSpentMs(System.currentTimeMillis() - Long.valueOf(request.getParameter("timeStart")));
       letterContributionEventDao.create(letterContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {

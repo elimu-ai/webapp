@@ -7,8 +7,6 @@
     <div class="card-panel">
         <form:form modelAttribute="sound">
             <tag:formErrors modelAttribute="sound" />
-            
-            <input type="hidden" name="timeStart" value="${timeStart}" />
 
             <div class="row">
                 <div class="input-field col s12">

@@ -23,8 +23,7 @@
                             /<c:forEach var="lsc" items="${word.letterSounds}">&nbsp;<a href="<spring:url value='/content/letter-sound/edit/${lsc.id}' />"><c:forEach var="sound" items="${lsc.sounds}">${sound.valueIpa}</c:forEach></a>&nbsp;</c:forEach>/
                         </td>
                         <td>
-                            #${wordContributionEvent.revisionNumber}<br />
-                            <span class="grey-text">(<fmt:formatNumber maxFractionDigits="0" value="${wordContributionEvent.timeSpentMs / 1000 / 60}" /> min)</span>
+                            #${wordContributionEvent.revisionNumber}
                         </td>
                         <td>
                             <fmt:formatDate value="${wordContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
@@ -44,7 +43,7 @@
                                                             <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
                                                         </c:when>
                                                         <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
-                                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                                         </c:when>
                                                         <c:otherwise>
                                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -118,7 +117,7 @@
                                                     <img src="${wordPeerReviewEvent.contributor.imageUrl}" />
                                                 </c:when>
                                                 <c:when test="${not empty wordPeerReviewEvent.contributor.providerIdWeb3}">
-                                                    <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.png" />
+                                                    <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
                                                 </c:when>
                                                 <c:otherwise>
                                                     <img src="<spring:url value='/static/img/placeholder.png' />" />
@@ -167,7 +166,7 @@
                                             <img src="${wordPeerReviewEvent.wordContributionEvent.contributor.imageUrl}" />
                                         </c:when>
                                         <c:when test="${not empty wordPeerReviewEvent.wordContributionEvent.contributor.providerIdWeb3}">
-                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.wordContributionEvent.contributor.providerIdWeb3}" />.png" />
+                                            <img src="https://effigy.im/a/<c:out value="${wordPeerReviewEvent.wordContributionEvent.contributor.providerIdWeb3}" />.svg" />
                                         </c:when>
                                         <c:otherwise>
                                             <img src="<spring:url value='/static/img/placeholder.png' />" />
