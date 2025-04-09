@@ -57,6 +57,7 @@
     <bean id="letterLearningEventDao" class="ai.elimu.dao.jpa.LetterLearningEventDaoJpa" />
     <bean id="letterSoundContributionEventDao" class="ai.elimu.dao.jpa.LetterSoundContributionEventDaoJpa" />
     <bean id="letterSoundDao" class="ai.elimu.dao.jpa.LetterSoundDaoJpa" />
+    <bean id="letterSoundLearningEventDao" class="ai.elimu.dao.jpa.LetterSoundLearningEventDaoJpa" />
     <bean id="letterSoundPeerReviewEventDao" class="ai.elimu.dao.jpa.LetterSoundPeerReviewEventDaoJpa" />
     <bean id="numberDao" class="ai.elimu.dao.jpa.NumberDaoJpa" />
     <bean id="numberContributionEventDao" class="ai.elimu.dao.jpa.NumberContributionEventDaoJpa" />
