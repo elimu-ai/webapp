@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * REST API endpoint for receiving video learning events from the 
+ * <a href="https://github.com/elimu-ai/analytics">Analytics</a> application.
+ */
 @RestController
 @RequestMapping(value = "/rest/v2/analytics/video-learning-events/csv", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
@@ -41,7 +45,7 @@ public class VideoLearningEventsRestController {
             // Expected format: "7161a85a0e4751cd_3001012_video-learning-events_2020-04-23.csv"
             String originalFilename = multipartFile.getOriginalFilename();
             log.info("originalFilename: " + originalFilename);
-            if (originalFilename.length() != 61) {
+            if (originalFilename.length() != "7161a85a0e4751cd_3001012_video-learning-events_2020-04-23.csv".length()) {
                 throw new IllegalArgumentException("Unexpected filename");
             }
 
