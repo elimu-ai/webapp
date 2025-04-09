@@ -44,7 +44,7 @@ public class LetterSoundLearningEventsRestController {
         log.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
 
         // Store the original CSV file on the filesystem, e.g.
-        // ~/.elimuai/lang-HIN/analytics/android-id-7161a85a0e4751cd/version-code-3001017/letter-sound-learning-events/7161a85a0e4751cd_3001017_letter-sound-learning-events_2023-10-27.csv"
+        // ~/.elimu-ai/lang-HIN/analytics/android-id-7161a85a0e4751cd/version-code-3001017/letter-sound-learning-events/7161a85a0e4751cd_3001017_letter-sound-learning-events_2023-10-27.csv"
         File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
         File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
         File analyticsDir = new File(languageDir, "analytics");
