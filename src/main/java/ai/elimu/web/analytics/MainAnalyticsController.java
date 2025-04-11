@@ -1,5 +1,6 @@
 package ai.elimu.web.analytics;
 
+import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordLearningEventDao;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class MainAnalyticsController {
 
+  private LetterSoundLearningEventDao letterSoundLearningEventDao;
+
   private final WordLearningEventDao wordLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
@@ -26,6 +29,7 @@ public class MainAnalyticsController {
   public String handleRequest(Model model) {
     log.info("handleRequest");
     
+    model.addAttribute("letterSoundLearningEventCount", letterSoundLearningEventDao.readCount());
     model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
     model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
     model.addAttribute("videoLearningEventCount", videoLearningEventDao.readCount());
