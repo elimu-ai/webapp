@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class MainAnalyticsController {
 
-  private LetterSoundLearningEventDao letterSoundLearningEventDao;
+  private final LetterSoundLearningEventDao letterSoundLearningEventDao;
 
   private final WordLearningEventDao wordLearningEventDao;
 
