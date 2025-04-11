@@ -9,7 +9,7 @@
   <properties>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <model.version>2.0.88</model.version>
+    <model.version>2.0.90</model.version>
     <hibernate.version>6.1.7.Final</hibernate.version>
     <jetty.version>11.0.24</jetty.version>
     <spring.version>6.0.9</spring.version>
