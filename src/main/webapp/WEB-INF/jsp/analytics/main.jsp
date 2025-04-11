@@ -14,7 +14,7 @@
                     <span class="card-title"><i class="material-icons">text_format</i> Letter-sound correspondences</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/analytics/letter-sound-learning-event/list' />">View list (${letterLearningEventCount})</a>
+                    <a href="<spring:url value='/analytics/letter-sound-learning-event/list' />">View list (${letterSoundLearningEventCount})</a>
                 </div>
             </div>
         </div>
