@@ -37,8 +37,6 @@
 
     drop table if exists LetterContributionEvent;
 
-    drop table if exists LetterLearningEvent;
-
     drop table if exists LetterSound;
 
     drop table if exists LetterSound_Letter;
@@ -275,19 +273,6 @@
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
-        letter_id bigint,
-        primary key (id)
-    ) type=MyISAM;
-
-    create table LetterLearningEvent (
-       id bigint not null auto_increment,
-        additionalData text,
-        androidId varchar(255),
-        learningEventType varchar(255),
-        packageName varchar(255),
-        timestamp datetime,
-        letterText varchar(255),
-        application_id bigint,
         letter_id bigint,
         primary key (id)
     ) type=MyISAM;
@@ -733,16 +718,6 @@
 
     alter table LetterContributionEvent 
        add constraint FK5do5q62aj1bilg8pwmphr4ugl 
-       foreign key (letter_id) 
-       references Letter (id);
-
-    alter table LetterLearningEvent 
-       add constraint FKbgt0ocoif6wvshp6lyasfdmq7 
-       foreign key (application_id) 
-       references Application (id);
-
-    alter table LetterLearningEvent 
-       add constraint FKfheqcx945pkedcq0vnlcuayct 
        foreign key (letter_id) 
        references Letter (id);
 
