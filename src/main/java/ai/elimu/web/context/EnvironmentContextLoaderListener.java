@@ -123,6 +123,9 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                     String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");
                     PROPERTIES.put("discord.webhook.url", discordWebhookUrl);
                 }
+
+                String gitHubLfsToken = (String) servletContext.getAttribute("github_lfs_token");
+                PROPERTIES.put("github.lfs.token", gitHubLfsToken);
                 
                 logger.debug("properties (after overriding): " + PROPERTIES);
             } catch (FileNotFoundException ex) {

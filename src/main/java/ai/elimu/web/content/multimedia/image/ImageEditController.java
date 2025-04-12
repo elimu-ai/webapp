@@ -18,6 +18,7 @@ import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -75,6 +76,31 @@ public class ImageEditController {
     log.info("handleRequest");
 
     Image image = imageDao.read(id);
+
+    if (image.getCid() == null) {
+      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image);
+      image.setCid(gitHubHash);
+      imageDao.update(image);
+
+      ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+      imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      imageContributionEvent.setTimestamp(Calendar.getInstance());
+      imageContributionEvent.setImage(image);
+      imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+      imageContributionEvent.setComment("Added file to LFS (🤖 auto-generated comment)");
+      imageContributionEventDao.create(imageContributionEvent);
+      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
+        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+        String embedThumbnailUrl = image.getUrl();
+        DiscordHelper.sendChannelMessage(
+            "Image edited: " + contentUrl,
+            "\"" + image.getTitle() + "\"",
+            "Comment: \"" + imageContributionEvent.getComment() + "\"",
+            null,
+            embedThumbnailUrl
+        );
+      }
+    }
 
     model.addAttribute("image", image);
     model.addAttribute("contentLicenses", ContentLicense.values());
@@ -163,6 +189,10 @@ public class ImageEditController {
       image.setTitle(image.getTitle().toLowerCase());
       image.setTimeLastUpdate(Calendar.getInstance());
       image.setRevisionNumber(image.getRevisionNumber() + 1);
+      imageDao.update(image);
+
+      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image);
+      image.setCid(gitHubHash);
       imageDao.update(image);
 
       ImageContributionEvent imageContributionEvent = new ImageContributionEvent();

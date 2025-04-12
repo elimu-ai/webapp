@@ -17,6 +17,7 @@ import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
 import ai.elimu.util.epub.EPubImageExtractionHelper;
@@ -320,6 +321,10 @@ public class StoryBookCreateFromEPubController {
       storyBook.setCoverImage(storyBookCoverImage);
       storyBookDao.update(storyBook);
 
+      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(storyBookCoverImage);
+      storyBookCoverImage.setCid(gitHubHash);
+      imageDao.update(storyBookCoverImage);
+
       storeImageContributionEvent(storyBookCoverImage, session, request);
 
       // Store the StoryBookChapters in the database
@@ -368,6 +373,10 @@ public class StoryBookCreateFromEPubController {
         if (chapterImage != null) {
           chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
           imageDao.create(chapterImage);
+
+          gitHubHash = GitHubLfsHelper.uploadImageToLfs(chapterImage);
+          chapterImage.setCid(gitHubHash);
+          imageDao.update(chapterImage);
 
           storeImageContributionEvent(chapterImage, session, request);
         }
