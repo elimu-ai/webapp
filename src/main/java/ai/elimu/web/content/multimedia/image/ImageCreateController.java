@@ -10,6 +10,7 @@ import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
@@ -126,6 +127,10 @@ public class ImageCreateController {
       }
       image.setTimeLastUpdate(Calendar.getInstance());
       imageDao.create(image);
+
+      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image);
+      image.setCid(gitHubHash);
+      imageDao.update(image);
 
       ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
       imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));

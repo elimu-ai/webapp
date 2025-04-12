@@ -1,6 +1,7 @@
 package ai.elimu.entity.content.multimedia;
 
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +29,7 @@ public class Image extends Multimedia {
   private byte[] bytes;
 
   /**
-   * IPFS Content Identifier (CID). Based on the file content's cryptographic hash.
+   * Content Identifier (CID). Based on the file content's GitHub hash.
    */
   // @NotNull
   private String cid;
@@ -41,10 +42,14 @@ public class Image extends Multimedia {
   private String dominantColor; // Web color
 
   public String getUrl() {
+    String filename = getId() + "_r" + getRevisionNumber() + "." + getImageFormat().toString().toLowerCase();
     if (cid != null) {
-      return "https://black-historic-wren-832.mypinata.cloud/ipfs/" + cid + "?img-width=640";
+      return "https://raw.githubusercontent.com/elimu-ai/webapp-lfs/main/" +
+          "lang-" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "/" +
+          "images/" +
+          filename;
     } else {
-      return "/image/" + getId() + "_r" + getRevisionNumber() + "." + imageFormat.toString().toLowerCase();
+      return "/image/" + filename;
     }
   }
 }
