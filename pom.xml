@@ -408,6 +408,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.konghq</groupId>
+      <artifactId>unirest-java-core</artifactId>
+      <version>4.4.5</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.httpcomponents.client5</groupId>
       <artifactId>httpclient5</artifactId>
       <version>5.3.1</version>
