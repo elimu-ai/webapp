@@ -16,6 +16,7 @@ import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.service.storybook.StoryBookEPubService;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
@@ -164,6 +165,7 @@ public class StoryBookCreateFromEPubController {
         log.info("coverImageUri: " + coverImageUri);
         byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
         storyBookCoverImage.setBytes(coverImageBytes);
+        storyBookCoverImage.setChecksumMd5(ChecksumHelper.calculateMD5(coverImageBytes));
         byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
         byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
         byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
@@ -250,6 +252,7 @@ public class StoryBookCreateFromEPubController {
             byte[] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
             Image chapterImage = new Image();
             chapterImage.setBytes(chapterImageBytes);
+            chapterImage.setChecksumMd5(ChecksumHelper.calculateMD5(chapterImageBytes));
             byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
             byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
             byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
