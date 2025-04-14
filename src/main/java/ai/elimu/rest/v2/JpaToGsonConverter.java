@@ -206,7 +206,7 @@ public class JpaToGsonConverter {
             imageGson.setImageFormat(image.getImageFormat());
             imageGson.setChecksumMd5(image.getChecksumMd5());
             imageGson.setBytesUrl(image.getUrl());
-            // imageGson.setBytesSize(image.getBytes().length / 1024);
+            imageGson.setFileSize(image.getFileSize());
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : image.getWords()) {
                 WordGson wordGson = new WordGson();

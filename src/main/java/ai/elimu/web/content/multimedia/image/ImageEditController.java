@@ -166,6 +166,7 @@ public class ImageEditController {
           image.setContentType(contentType);
 
           image.setBytes(bytes);
+          image.setFileSize(bytes.length);
           image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         }
       }

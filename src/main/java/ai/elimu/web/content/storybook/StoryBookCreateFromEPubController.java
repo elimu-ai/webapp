@@ -165,6 +165,7 @@ public class StoryBookCreateFromEPubController {
         log.info("coverImageUri: " + coverImageUri);
         byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
         storyBookCoverImage.setBytes(coverImageBytes);
+        storyBookCoverImage.setFileSize(coverImageBytes.length);
         storyBookCoverImage.setChecksumMd5(ChecksumHelper.calculateMD5(coverImageBytes));
         byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
         byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
@@ -252,6 +253,7 @@ public class StoryBookCreateFromEPubController {
             byte[] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
             Image chapterImage = new Image();
             chapterImage.setBytes(chapterImageBytes);
+            chapterImage.setFileSize(chapterImageBytes.length);
             chapterImage.setChecksumMd5(ChecksumHelper.calculateMD5(chapterImageBytes));
             byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
             byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"

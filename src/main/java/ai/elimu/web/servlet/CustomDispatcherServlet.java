@@ -233,6 +233,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             Resource resource = resourceLoader.getResource("placeholder.png");
             byte[] bytes = Files.readAllBytes(resource.getFile().toPath());
             image.setBytes(bytes);
+            image.setFileSize(bytes.length);
             image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         } catch (IOException e) {
             logger.error(null, e);
