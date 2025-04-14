@@ -23,6 +23,7 @@ import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.web.ConnectionProviderWeb;
 import org.hibernate.cfg.AvailableSettings;
@@ -232,6 +233,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             Resource resource = resourceLoader.getResource("placeholder.png");
             byte[] bytes = Files.readAllBytes(resource.getFile().toPath());
             image.setBytes(bytes);
+            image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         } catch (IOException e) {
             logger.error(null, e);
         }

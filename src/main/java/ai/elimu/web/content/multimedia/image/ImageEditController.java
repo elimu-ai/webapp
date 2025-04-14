@@ -17,6 +17,7 @@ import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -165,6 +166,7 @@ public class ImageEditController {
           image.setContentType(contentType);
 
           image.setBytes(bytes);
+          image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         }
       }
     } catch (IOException e) {

@@ -29,6 +29,12 @@ public class Image extends Multimedia {
   private byte[] bytes;
 
   /**
+   * MD5 checksum of the file content.
+   */
+  @NotNull
+  private String checksumMd5;
+
+  /**
    * Content Identifier (CID). Based on the file content's GitHub hash.
    */
   // @NotNull
