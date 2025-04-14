@@ -109,6 +109,7 @@ public class StoryBookCreateFromEPubController {
 
     List<StoryBookParagraph> storyBookParagraphs = new ArrayList<>();
 
+    byte[] coverImageBytes = null;
     if (multipartFile.isEmpty()) {
       result.rejectValue("bytes", "NotNull");
     } else {
@@ -163,8 +164,7 @@ public class StoryBookCreateFromEPubController {
         log.info("coverImageFile.exists(): " + coverImageFile.exists());
         URI coverImageUri = coverImageFile.toURI();
         log.info("coverImageUri: " + coverImageUri);
-        byte[] coverImageBytes = IOUtils.toByteArray(coverImageUri);
-        storyBookCoverImage.setBytes(coverImageBytes);
+        coverImageBytes = IOUtils.toByteArray(coverImageUri);
         storyBookCoverImage.setFileSize(coverImageBytes.length);
         storyBookCoverImage.setChecksumMd5(ChecksumHelper.calculateMD5(coverImageBytes));
         byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
@@ -184,7 +184,7 @@ public class StoryBookCreateFromEPubController {
           storyBookCoverImage.setImageFormat(ImageFormat.GIF);
         }
         try {
-          int[] dominantColor = ImageColorHelper.getDominantColor(storyBookCoverImage.getBytes());
+          int[] dominantColor = ImageColorHelper.getDominantColor(coverImageBytes);
           storyBookCoverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
         } catch (NullPointerException ex) {
           // javax.imageio.IIOException: Unsupported Image Type
@@ -250,9 +250,8 @@ public class StoryBookCreateFromEPubController {
             log.info("chapterImageFile.exists(): " + chapterImageFile.exists());
             URI chapterImageUri = chapterImageFile.toURI();
             log.info("chapterImageUri: " + chapterImageUri);
-            byte[] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
+            byte [] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
             Image chapterImage = new Image();
-            chapterImage.setBytes(chapterImageBytes);
             chapterImage.setFileSize(chapterImageBytes.length);
             chapterImage.setChecksumMd5(ChecksumHelper.calculateMD5(chapterImageBytes));
             byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
@@ -272,7 +271,7 @@ public class StoryBookCreateFromEPubController {
               chapterImage.setImageFormat(ImageFormat.GIF);
             }
             try {
-              int[] dominantColor = ImageColorHelper.getDominantColor(chapterImage.getBytes());
+              int[] dominantColor = ImageColorHelper.getDominantColor(chapterImageBytes);
               chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
             } catch (NullPointerException ex) {
               // javax.imageio.IIOException: Unsupported Image Type
@@ -326,7 +325,7 @@ public class StoryBookCreateFromEPubController {
       storyBook.setCoverImage(storyBookCoverImage);
       storyBookDao.update(storyBook);
 
-      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(storyBookCoverImage);
+      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(storyBookCoverImage, coverImageBytes);
       storyBookCoverImage.setCid(gitHubHash);
       imageDao.update(storyBookCoverImage);
 
@@ -379,9 +378,9 @@ public class StoryBookCreateFromEPubController {
           chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
           imageDao.create(chapterImage);
 
-          gitHubHash = GitHubLfsHelper.uploadImageToLfs(chapterImage);
-          chapterImage.setCid(gitHubHash);
-          imageDao.update(chapterImage);
+          // gitHubHash = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
+          // chapterImage.setCid(gitHubHash);
+          // imageDao.update(chapterImage);
 
           storeImageContributionEvent(chapterImage, session, request);
         }

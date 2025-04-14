@@ -78,31 +78,6 @@ public class ImageEditController {
 
     Image image = imageDao.read(id);
 
-    if (image.getCid() == null) {
-      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image);
-      image.setCid(gitHubHash);
-      imageDao.update(image);
-
-      ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
-      imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-      imageContributionEvent.setTimestamp(Calendar.getInstance());
-      imageContributionEvent.setImage(image);
-      imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
-      imageContributionEvent.setComment("Added file to LFS (🤖 auto-generated comment)");
-      imageContributionEventDao.create(imageContributionEvent);
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
-        String embedThumbnailUrl = image.getUrl();
-        DiscordHelper.sendChannelMessage(
-            "Image edited: " + contentUrl,
-            "\"" + image.getTitle() + "\"",
-            "Comment: \"" + imageContributionEvent.getComment() + "\"",
-            null,
-            embedThumbnailUrl
-        );
-      }
-    }
-
     model.addAttribute("image", image);
     model.addAttribute("contentLicenses", ContentLicense.values());
     model.addAttribute("literacySkills", LiteracySkill.values());
@@ -137,8 +112,9 @@ public class ImageEditController {
       }
     }
 
+    byte[] bytes = null;
     try {
-      byte[] bytes = multipartFile.getBytes();
+      bytes = multipartFile.getBytes();
       if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
         result.rejectValue("bytes", "NotNull");
       } else {
@@ -165,7 +141,6 @@ public class ImageEditController {
           log.info("contentType: " + contentType);
           image.setContentType(contentType);
 
-          image.setBytes(bytes);
           image.setFileSize(bytes.length);
           image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         }
@@ -194,7 +169,7 @@ public class ImageEditController {
       image.setRevisionNumber(image.getRevisionNumber() + 1);
       imageDao.update(image);
 
-      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image);
+      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image, bytes);
       image.setCid(gitHubHash);
       imageDao.update(image);
 

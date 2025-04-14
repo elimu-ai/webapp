@@ -78,8 +78,9 @@ public class ImageCreateController {
       }
     }
 
+    byte[] bytes = null;
     try {
-      byte[] bytes = multipartFile.getBytes();
+      bytes = multipartFile.getBytes();
       if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
         result.rejectValue("bytes", "NotNull");
       } else {
@@ -106,7 +107,6 @@ public class ImageCreateController {
           log.info("contentType: " + contentType);
           image.setContentType(contentType);
 
-          image.setBytes(bytes);
           image.setFileSize(bytes.length);
           image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         }
@@ -123,7 +123,7 @@ public class ImageCreateController {
     } else {
       image.setTitle(image.getTitle().toLowerCase());
       try {
-        int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
+        int[] dominantColor = ImageColorHelper.getDominantColor(bytes);
         image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
       } catch (NullPointerException ex) {
         // javax.imageio.IIOException: Unsupported Image Type
@@ -131,7 +131,7 @@ public class ImageCreateController {
       image.setTimeLastUpdate(Calendar.getInstance());
       imageDao.create(image);
 
-      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image);
+      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image, bytes);
       image.setCid(gitHubHash);
       imageDao.update(image);
 
