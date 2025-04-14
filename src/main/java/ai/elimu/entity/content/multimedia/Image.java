@@ -29,6 +29,12 @@ public class Image extends Multimedia {
   private byte[] bytes;
 
   /**
+   * The file size (byte length).
+   */
+  @NotNull
+  private Integer fileSize;
+
+  /**
    * MD5 checksum of the file content.
    */
   @NotNull

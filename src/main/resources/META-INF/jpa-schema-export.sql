@@ -213,6 +213,7 @@
         checksumMd5 varchar(255),
         cid varchar(255),
         dominantColor varchar(255),
+        fileSize integer,
         imageFormat varchar(255),
         title varchar(255),
         primary key (id)
