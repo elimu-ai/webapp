@@ -209,7 +209,6 @@
         attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
-        bytes mediumblob,
         checksumMd5 varchar(255),
         cid varchar(255),
         dominantColor varchar(255),

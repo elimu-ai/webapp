@@ -2,13 +2,9 @@ package ai.elimu.entity.content.multimedia;
 
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,13 +16,6 @@ public class Image extends Multimedia {
 
   @NotNull
   private String title;
-
-  @Deprecated
-  @Basic(fetch = FetchType.LAZY)
-  @NotNull
-  @Lob
-  @Column(length = 10485760) // 10MB
-  private byte[] bytes;
 
   /**
    * The file size (byte length).
