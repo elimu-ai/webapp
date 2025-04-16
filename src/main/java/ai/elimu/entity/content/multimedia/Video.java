@@ -2,6 +2,7 @@ package ai.elimu.entity.content.multimedia;
 
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.util.GitHubLfsHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -45,4 +46,11 @@ public class Video extends Multimedia {
   @NotNull
   @Enumerated(EnumType.STRING)
   private VideoFormat videoFormat;
+
+  public String getUrl() {
+    return "https://raw.githubusercontent.com/elimu-ai/webapp-lfs/main" +
+        "/lang-" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") +
+        "/videos" +
+        "/" + getChecksumMd5() + "." + getVideoFormat().toString().toLowerCase();
+  }
 }
