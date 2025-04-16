@@ -17,10 +17,6 @@
             });
         </script>
         
-        <p>
-            To add new content, click the button below. You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer-review</a> words.
-        </p>
-        
         <c:if test="${not empty words}">
             <table class="bordered highlight">
                 <thead>

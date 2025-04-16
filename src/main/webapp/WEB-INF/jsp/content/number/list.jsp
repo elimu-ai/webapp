@@ -17,10 +17,6 @@
             });
         </script>
         
-        <p>
-            To add new content, click the button below.  You can also <a href="<spring:url value='/content/number/peer-reviews' />">peer-review</a> numbers.
-        </p>
-        
         <table class="bordered highlight">
             <thead>
                 <th>Value</th>
