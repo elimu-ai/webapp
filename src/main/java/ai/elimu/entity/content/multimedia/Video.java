@@ -23,6 +23,12 @@ public class Video extends Multimedia {
   @Column(length = 209715200) // 200MB
   private byte[] bytes;
 
+  /**
+   * MD5 checksum of the file content.
+   */
+  @NotNull
+  private String checksumMd5;
+
   @NotNull
   @Lob
   @Column(length = 1048576) // 1MB
