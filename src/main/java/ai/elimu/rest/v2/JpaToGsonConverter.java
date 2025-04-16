@@ -26,6 +26,8 @@ import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.v2.gson.content.VideoGson;
 import ai.elimu.model.v2.gson.content.WordGson;
+import ai.elimu.util.ChecksumHelper;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -350,6 +352,7 @@ public class JpaToGsonConverter {
             // Video
             videoGson.setTitle(video.getTitle());
             videoGson.setVideoFormat(video.getVideoFormat());
+            videoGson.setChecksumMd5(video.getChecksumMd5());
             videoGson.setBytesUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "." + video.getVideoFormat().toString().toLowerCase());
             videoGson.setBytesSize(video.getBytes().length / 1024);
             Set<WordGson> wordGsons = new HashSet<>();
