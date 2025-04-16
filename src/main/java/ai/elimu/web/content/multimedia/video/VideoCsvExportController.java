@@ -32,14 +32,13 @@ public class VideoCsvExportController {
     List<Video> videos = videoDao.readAllOrderedById();
     log.info("videos.size(): " + videos.size());
     for (Video video : videos) {
-      String fileUrl = "/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase();
       csvFileContent += video.getId() + ","
           + video.getContentType() + ","
           + video.getContentLicense() + ","
           + "\"" + video.getAttributionUrl() + "\","
           + "\"" + video.getTitle() + "\","
           + "\"" + video.getChecksumMd5() + "\","
-          + "\"" + fileUrl + "\","
+          + "\"" + video.getUrl() + "\","
           + video.getVideoFormat() + "\n";
     }
 
