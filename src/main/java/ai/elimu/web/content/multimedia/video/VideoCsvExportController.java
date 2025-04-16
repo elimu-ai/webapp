@@ -28,18 +28,18 @@ public class VideoCsvExportController {
     log.info("handleRequest");
 
     // Generate CSV file
-    String csvFileContent = "id,content_type,content_license,attribution_url,title,checksum_md5,download_url,video_format" + "\n";
+    String csvFileContent = "id,content_type,content_license,attribution_url,title,checksum_md5,file_url,video_format" + "\n";
     List<Video> videos = videoDao.readAllOrderedById();
     log.info("videos.size(): " + videos.size());
     for (Video video : videos) {
-      String downloadUrl = "/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase();
+      String fileUrl = "/video/" + video.getId() + "." + video.getVideoFormat().toString().toLowerCase();
       csvFileContent += video.getId() + ","
           + video.getContentType() + ","
           + video.getContentLicense() + ","
           + "\"" + video.getAttributionUrl() + "\","
           + "\"" + video.getTitle() + "\","
           + "\"" + video.getChecksumMd5() + "\","
-          + "\"" + downloadUrl + "\","
+          + "\"" + fileUrl + "\","
           + video.getVideoFormat() + "\n";
     }
 

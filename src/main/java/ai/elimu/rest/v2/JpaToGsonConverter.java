@@ -207,7 +207,7 @@ public class JpaToGsonConverter {
             imageGson.setTitle(image.getTitle());
             imageGson.setImageFormat(image.getImageFormat());
             imageGson.setChecksumMd5(image.getChecksumMd5());
-            imageGson.setBytesUrl(image.getUrl());
+            imageGson.setFileUrl(image.getUrl());
             imageGson.setFileSize(image.getFileSize());
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : image.getWords()) {
@@ -353,8 +353,8 @@ public class JpaToGsonConverter {
             videoGson.setTitle(video.getTitle());
             videoGson.setVideoFormat(video.getVideoFormat());
             videoGson.setChecksumMd5(video.getChecksumMd5());
-            videoGson.setBytesUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "." + video.getVideoFormat().toString().toLowerCase());
-            videoGson.setBytesSize(video.getBytes().length / 1024);
+            videoGson.setFileUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "." + video.getVideoFormat().toString().toLowerCase());
+            videoGson.setFileSize(video.getBytes().length / 1024);
             videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : video.getWords()) {
