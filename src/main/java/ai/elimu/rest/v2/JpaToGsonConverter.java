@@ -26,6 +26,8 @@ import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.v2.gson.content.VideoGson;
 import ai.elimu.model.v2.gson.content.WordGson;
+import ai.elimu.util.ChecksumHelper;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -205,7 +207,7 @@ public class JpaToGsonConverter {
             imageGson.setTitle(image.getTitle());
             imageGson.setImageFormat(image.getImageFormat());
             imageGson.setChecksumMd5(image.getChecksumMd5());
-            imageGson.setBytesUrl(image.getUrl());
+            imageGson.setFileUrl(image.getUrl());
             imageGson.setFileSize(image.getFileSize());
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : image.getWords()) {
@@ -350,15 +352,16 @@ public class JpaToGsonConverter {
             // Video
             videoGson.setTitle(video.getTitle());
             videoGson.setVideoFormat(video.getVideoFormat());
-            videoGson.setBytesUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "." + video.getVideoFormat().toString().toLowerCase());
-            videoGson.setBytesSize(video.getBytes().length / 1024);
+            videoGson.setChecksumMd5(video.getChecksumMd5());
+            videoGson.setFileUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "." + video.getVideoFormat().toString().toLowerCase());
+            videoGson.setFileSize(video.getBytes().length / 1024);
+            videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : video.getWords()) {
                 WordGson wordGson = new WordGson();
                 wordGson.setId(word.getId());
                 wordGsons.add(wordGson);
             }
-            videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             videoGson.setWords(wordGsons);
             
             return videoGson;

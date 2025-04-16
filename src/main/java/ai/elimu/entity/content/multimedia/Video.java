@@ -1,6 +1,7 @@
 package ai.elimu.entity.content.multimedia;
 
 import ai.elimu.model.v2.enums.content.VideoFormat;
+import ai.elimu.util.GitHubLfsHelper;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,6 +29,13 @@ public class Video extends Multimedia {
    */
   @NotNull
   private String checksumMd5;
+
+  /**
+   * The blob SHA of the file. This value is returned from GitHub when creating new repository file
+   * content via their REST API (see {@link GitHubLfsHelper}).
+   */
+  @NotNull
+  private String checksumGitHub;
 
   @NotNull
   @Lob
