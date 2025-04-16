@@ -16,10 +16,6 @@
                 });
             });
         </script>
-        
-        <p>
-            To add new content, click the button below. You can also <a href="<spring:url value='/content/storybook/peer-reviews' />">peer-review</a> storybooks.
-        </p>
     </div>
     
     <div class="row">

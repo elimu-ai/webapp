@@ -37,7 +37,6 @@
                 </div>
                 <div class="card-action">
                     <a id="letterSoundListLink" href="<spring:url value='/content/letter-sound/list' />">View list (${letterSoundCount})</a>
-                    <a href="<spring:url value='/content/letter-sound/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
@@ -60,7 +59,6 @@
                 </div>
                 <div class="card-action">
                     <a id="numberListLink" href="<spring:url value='/content/number/list' />">View list (${numberCount})</a>
-                    <a href="<spring:url value='/content/number/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
@@ -72,7 +70,6 @@
                 </div>
                 <div class="card-action">
                     <a id="wordListLink" href="<spring:url value='/content/word/list' />">View list (${wordCount})</a>
-                    <a href="<spring:url value='/content/word/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
@@ -110,7 +107,6 @@
                 </div>
                 <div class="card-action">
                     <a href="<spring:url value='/content/storybook/list' />">View list (${storyBookCount})</a>
-                    <a href="<spring:url value='/content/storybook/peer-reviews' />">Peer-review</a>
                 </div>
             </div>
         </div>
