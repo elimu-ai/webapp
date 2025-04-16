@@ -355,13 +355,13 @@ public class JpaToGsonConverter {
             videoGson.setChecksumMd5(video.getChecksumMd5());
             videoGson.setBytesUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "." + video.getVideoFormat().toString().toLowerCase());
             videoGson.setBytesSize(video.getBytes().length / 1024);
+            videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : video.getWords()) {
                 WordGson wordGson = new WordGson();
                 wordGson.setId(word.getId());
                 wordGsons.add(wordGson);
             }
-            videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             videoGson.setWords(wordGsons);
             
             return videoGson;
