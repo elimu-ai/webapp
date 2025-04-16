@@ -508,6 +508,7 @@
         contentLicense varchar(255),
         contentType varchar(255),
         bytes longblob,
+        checksumMd5 varchar(255),
         thumbnail mediumblob,
         title varchar(255),
         videoFormat varchar(255),
