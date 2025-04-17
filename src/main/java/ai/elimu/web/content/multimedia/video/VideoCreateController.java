@@ -6,6 +6,8 @@ import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.model.v2.enums.content.VideoFormat;
+import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.GitHubLfsHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -88,6 +90,8 @@ public class VideoCreateController {
           video.setContentType(contentType);
 
           video.setBytes(bytes);
+          video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
+          // TODO: https://github.com/elimu-ai/webapp/issues/2137
 
           // TODO: convert to a default video format?
         }
@@ -118,8 +122,12 @@ public class VideoCreateController {
       return "content/multimedia/video/create";
     } else {
       video.setTitle(video.getTitle().toLowerCase());
+      String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, video.getBytes());
+      video.setChecksumGitHub(checksumGitHub);
       video.setTimeLastUpdate(Calendar.getInstance());
       videoDao.create(video);
+
+      // TODO: https://github.com/elimu-ai/webapp/issues/1545
 
       return "redirect:/content/multimedia/video/list#" + video.getId();
     }
