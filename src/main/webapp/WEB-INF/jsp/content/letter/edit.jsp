@@ -188,6 +188,22 @@
             
             <div class="divider" style="margin: 1em 0;"></div>
         </c:if>
+        <c:if test="${applicationScope.configProperties['content.language'] == 'VIE'}">
+            Vietnamese resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Help:IPA/Vietnamese" target="_blank">Wikipedia: Help:IPA/Vietnamese</a>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Vietnamese_alphabet" target="_blank">Wikipedia: Vietnamese alphabet</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/writing/vietnamese.htm" target="_blank">Omniglot: Vietnamese (tiếng việt / 㗂越)</a>
+                </li>
+            </ol>
+            
+            <div class="divider" style="margin: 1em 0;"></div>
+        </c:if>
         
         General resources:
         <ol style="list-style-type: inherit;">
