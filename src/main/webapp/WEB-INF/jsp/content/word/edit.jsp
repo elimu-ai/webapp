@@ -373,6 +373,19 @@
             </ol>
         </div>
     </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'VIE'}">
+        <div class="card-panel deep-purple lighten-5">
+            Vietnamese resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://forvo.com/word/<c:out value='${word.text}' />/#vi" target="_blank">Forvo</a>
+                </li>
+                <li>
+                    <a href="https://translate.google.com/?sl=vi&tl=en&op=translate&text=<c:out value='${word.text}' />" target="_blank">Google Translate</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
     
     <div class="card-panel deep-purple lighten-5">
         General resources:

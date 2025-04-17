@@ -87,6 +87,9 @@
             <li>
                 <a href="https://bookdash.org/books/" target="_blank">Book Dash</a>
             </li>
+            <li>
+                <a href="https://www.earlylearningresourcenetwork.org/books" target="_blank">Early Learning Resource Network</a>
+            </li>
         </ol>
     </div>
 </content:aside>
