@@ -358,14 +358,14 @@
 
     <div class="divider" style="margin-bottom: 1em;"></div>
 
-    <label>checksum_md5</label>
+    <label>checksum_md5</label><br />
     <code>${video.checksumMd5}</code><br />
     <br />
 
-    <label>file_url</label>
+    <label>file_url</label><br />
     <code>${video.url}</code><br />
     <br />
 
-    <label>checksum_github</label>
+    <label>checksum_github</label><br />
     <code>${video.checksumGitHub}</code><br />
 </content:aside>

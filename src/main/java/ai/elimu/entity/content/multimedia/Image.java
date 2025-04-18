@@ -43,14 +43,9 @@ public class Image extends Multimedia {
   private String dominantColor; // Web color
 
   public String getUrl() {
-    String filename = getId() + "_r" + getRevisionNumber() + "." + getImageFormat().toString().toLowerCase();
-    if (cid != null) {
-      return "https://raw.githubusercontent.com/elimu-ai/webapp-lfs/main/" +
-          "lang-" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") + "/" +
-          "images/" +
-          filename;
-    } else {
-      return "/image/" + filename;
-    }
+    return "https://raw.githubusercontent.com/elimu-ai/webapp-lfs/main" +
+        "/lang-" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") +
+        "/images" +
+        "/" + getChecksumMd5() + "." + getImageFormat().toString().toLowerCase();
   }
 }

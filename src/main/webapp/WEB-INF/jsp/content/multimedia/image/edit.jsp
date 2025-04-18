@@ -410,4 +410,17 @@
             });
         });
     </script>
+
+    <div class="divider" style="margin-bottom: 1em;"></div>
+
+    <label>checksum_md5</label><br />
+    <code>${image.checksumMd5}</code><br />
+    <br />
+
+    <label>file_url</label><br />
+    <code>${image.url}</code><br />
+    <br />
+
+    <label>checksum_github</label><br />
+    <code>${image.cid}</code><br />
 </content:aside>
