@@ -18,7 +18,7 @@
         </script>
         
         <p>
-            To add new content, click the button below.
+            To add new content, click the button below. <span style="position: absolute; transform: rotate(-33deg);">👇🏽</span>
         </p>
     
         <c:if test="${not empty letters}">
