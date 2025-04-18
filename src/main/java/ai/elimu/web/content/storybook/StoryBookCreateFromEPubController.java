@@ -319,17 +319,16 @@ public class StoryBookCreateFromEPubController {
       storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
-      // Store the StoryBook's cover image in the database, and assign it to the StoryBook
-      storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "-cover");
+      // Store the StoryBook's cover image
+      storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "_cover");
+      String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(storyBookCoverImage, coverImageBytes);
+      storyBookCoverImage.setCid(checksumGitHub);
       imageDao.create(storyBookCoverImage);
+      storeImageContributionEvent(storyBookCoverImage, session, request);
+
+      // Set it as the StoryBook's cover image
       storyBook.setCoverImage(storyBookCoverImage);
       storyBookDao.update(storyBook);
-
-      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(storyBookCoverImage, coverImageBytes);
-      storyBookCoverImage.setCid(gitHubHash);
-      imageDao.update(storyBookCoverImage);
-
-      storeImageContributionEvent(storyBookCoverImage, session, request);
 
       // Store the StoryBookChapters in the database
       int chapterSortOrder = 0;
@@ -375,7 +374,7 @@ public class StoryBookCreateFromEPubController {
         // Store the chapter's image (if any)
         Image chapterImage = storyBookChapter.getImage();
         if (chapterImage != null) {
-          chapterImage.setTitle("storybook-" + storyBook.getId() + "-ch-" + (storyBookChapter.getSortOrder() + 1));
+          chapterImage.setTitle("storybook-" + storyBook.getId() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
           imageDao.create(chapterImage);
 
           // gitHubHash = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
