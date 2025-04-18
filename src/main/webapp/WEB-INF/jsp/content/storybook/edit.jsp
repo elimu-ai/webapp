@@ -55,6 +55,9 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <div class="card-panel amber lighten-5">
+                        🤖 AI predicted reading level: <b>${predictedReadingLevel}</b>
+                    </div>
                     <select id="readingLevel" name="readingLevel">
                         <option value="">-- Select --</option>
                         <c:forEach var="readingLevel" items="${readingLevels}">
