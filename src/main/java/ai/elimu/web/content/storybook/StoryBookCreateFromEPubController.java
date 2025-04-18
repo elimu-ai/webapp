@@ -189,6 +189,16 @@ public class StoryBookCreateFromEPubController {
         } catch (NullPointerException ex) {
           // javax.imageio.IIOException: Unsupported Image Type
         }
+        
+        // Store the cover image
+        storyBookCoverImage.setTitle(storyBook.getTitle() + "_cover");
+        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(storyBookCoverImage, coverImageBytes);
+        storyBookCoverImage.setCid(checksumGitHub);
+        imageDao.create(storyBookCoverImage);
+        storeImageContributionEvent(storyBookCoverImage, session, request);
+
+        // Set it as the StoryBook's cover image
+        storyBook.setCoverImage(storyBookCoverImage);
       }
 
       // Extract the ePUB's chapters
@@ -251,6 +261,7 @@ public class StoryBookCreateFromEPubController {
             URI chapterImageUri = chapterImageFile.toURI();
             log.info("chapterImageUri: " + chapterImageUri);
             byte [] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
+            
             Image chapterImage = new Image();
             chapterImage.setFileSize(chapterImageBytes.length);
             chapterImage.setChecksumMd5(ChecksumHelper.calculateMD5(chapterImageBytes));
@@ -276,6 +287,14 @@ public class StoryBookCreateFromEPubController {
             } catch (NullPointerException ex) {
               // javax.imageio.IIOException: Unsupported Image Type
             }
+
+            // Store the chapter image
+            chapterImage.setTitle(storyBook.getTitle() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
+            String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
+            chapterImage.setCid(checksumGitHub);
+            imageDao.create(chapterImage);
+            storeImageContributionEvent(chapterImage, session, request);
+
             storyBookChapter.setImage(chapterImage);
           }
 
@@ -319,17 +338,6 @@ public class StoryBookCreateFromEPubController {
       storyBookContributionEvent.setComment("Uploaded ePUB file (🤖 auto-generated comment)");
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
-      // Store the StoryBook's cover image
-      storyBookCoverImage.setTitle("storybook-" + storyBook.getId() + "_cover");
-      String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(storyBookCoverImage, coverImageBytes);
-      storyBookCoverImage.setCid(checksumGitHub);
-      imageDao.create(storyBookCoverImage);
-      storeImageContributionEvent(storyBookCoverImage, session, request);
-
-      // Set it as the StoryBook's cover image
-      storyBook.setCoverImage(storyBookCoverImage);
-      storyBookDao.update(storyBook);
-
       // Store the StoryBookChapters in the database
       int chapterSortOrder = 0;
       for (StoryBookChapter storyBookChapter : storyBookChapters) {
@@ -371,21 +379,8 @@ public class StoryBookCreateFromEPubController {
         // Update the chapter's sort order (in case any of the previous chapters were excluded)
         storyBookChapter.setSortOrder(chapterSortOrder);
 
-        // Store the chapter's image (if any)
-        Image chapterImage = storyBookChapter.getImage();
-        if (chapterImage != null) {
-          chapterImage.setTitle("storybook-" + storyBook.getId() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
-          imageDao.create(chapterImage);
-
-          // gitHubHash = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
-          // chapterImage.setCid(gitHubHash);
-          // imageDao.update(chapterImage);
-
-          storeImageContributionEvent(chapterImage, session, request);
-        }
-
         // Only store the chapter if it has an image or at least one paragraph
-        if ((chapterImage != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
+        if ((storyBookChapter.getImage() != null) || (!storyBookParagraphsAssociatedWithChapter.isEmpty())) {
           storyBookChapterDao.create(storyBookChapter);
           chapterSortOrder++;
         }
