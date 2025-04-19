@@ -84,7 +84,7 @@
                     <label for="coverImage">Cover image</label>
                     <c:if test="${not empty storyBook.coverImage}">
                         <a href="<spring:url value='/content/multimedia/image/edit/${storyBook.coverImage.id}' />">
-                            <img class="cid-${storyBook.coverImage.cid != null}" src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
+                            <img class="checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
                         </a>
                     </c:if>
                 </div>
@@ -112,7 +112,7 @@
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
                 <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
-                    <img class="cid-${storyBookChapter.image.cid != null}" src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
+                    <img class="checksumGitHub-${storyBookChapter.image.checksumGitHub != null}" src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
                 </a>
             </c:if>
             

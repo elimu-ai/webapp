@@ -37,7 +37,7 @@
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -85,7 +85,7 @@
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -133,7 +133,7 @@
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -181,7 +181,7 @@
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
                     <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                        <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                        <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
                     </a>
@@ -227,7 +227,7 @@
                             <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                         </c:if>
                         <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
-                            <div class="card-image cid-${storyBook.coverImage.cid != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                            <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                                 <span class="card-title"><c:out value="${storyBook.title}" /></span>
                             </div>
                         </a>

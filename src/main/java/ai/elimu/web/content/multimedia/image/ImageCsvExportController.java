@@ -41,7 +41,7 @@ public class ImageCsvExportController {
             "title",
             "file_size",
             "checksum_md5",
-            "cid",
+            "checksum_github",
             "download_url",
             "image_format"
         );
@@ -57,7 +57,7 @@ public class ImageCsvExportController {
           image.getTitle(),
           image.getFileSize(),
           image.getChecksumMd5(),
-          image.getCid(),
+          image.getChecksumGitHub(),
           image.getUrl(),
           image.getImageFormat()
       );

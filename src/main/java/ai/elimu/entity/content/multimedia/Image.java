@@ -1,6 +1,7 @@
 package ai.elimu.entity.content.multimedia;
 
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.Entity;
@@ -30,11 +31,12 @@ public class Image extends Multimedia {
   @NotNull
   private String checksumMd5;
 
-  /**
-   * Content Identifier (CID). Based on the file content's GitHub hash.
+/**
+   * The blob SHA of the file. This value is returned from GitHub when creating new repository file
+   * content via their REST API (see {@link GitHubLfsHelper}).
    */
   // @NotNull
-  private String cid;
+  private String checksumGitHub;
 
   @NotNull
   @Enumerated(EnumType.STRING)
@@ -45,7 +47,7 @@ public class Image extends Multimedia {
 
   public String getUrl() {
     String filename = getChecksumMd5() + "." + getImageFormat().toString().toLowerCase();
-    if (StringUtils.isBlank(getCid())) {
+    if (StringUtils.isBlank(getChecksumGitHub())) {
       filename = getId() + "_r" + getRevisionNumber() + "." + getImageFormat().toString().toLowerCase();
     }
     return "https://raw.githubusercontent.com/elimu-ai/webapp-lfs/main" +
