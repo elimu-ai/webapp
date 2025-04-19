@@ -132,10 +132,10 @@ public class ImageCreateController {
       Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(image.getChecksumMd5());
       if (existingImageWithSameFileContent != null) {
         // Re-use existing file
-        image.setCid(existingImageWithSameFileContent.getCid());
+        image.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
       } else {
         String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
-        image.setCid(checksumGitHub);
+        image.setChecksumGitHub(checksumGitHub);
       }
       imageDao.create(image);
 

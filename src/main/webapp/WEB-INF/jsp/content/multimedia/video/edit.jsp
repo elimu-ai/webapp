@@ -4,7 +4,7 @@
 
 <content:section cssId="videoEditPage">
     <h4><content:gettitle /></h4>
-    <div class="card-panel cid-${video.checksumGitHub != null}">
+    <div class="card-panel checksumGitHub-${video.checksumGitHub != null}">
         <video poster="<spring:url value='/video/${video.id}_r${video.revisionNumber}_thumbnail.png' />" controls>
             <source src="<spring:url value='${video.url}' />" />
         </video>

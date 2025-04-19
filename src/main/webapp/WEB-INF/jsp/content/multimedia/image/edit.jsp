@@ -14,7 +14,7 @@
             <form:hidden path="contentType" value="${image.contentType}" />
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
             
-            <img class="cid-${image.cid != null}"
+            <img class="checksumGitHub-${image.checksumGitHub != null}"
                 src="<spring:url value='${image.url}' />"
                 alt="${image.title}" />
             <script>
@@ -423,5 +423,5 @@
     <br />
 
     <label>checksum_github</label><br />
-    <code>${image.cid}</code><br />
+    <code>${image.checksumGitHub}</code><br />
 </content:aside>

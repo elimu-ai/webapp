@@ -195,10 +195,10 @@ public class StoryBookCreateFromEPubController {
         Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(coverImage.getChecksumMd5());
         if (existingImageWithSameFileContent != null) {
           // Re-use existing file
-          coverImage.setCid(existingImageWithSameFileContent.getCid());
+          coverImage.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
         } else {
           String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
-          coverImage.setCid(checksumGitHub);
+          coverImage.setChecksumGitHub(checksumGitHub);
         }
         imageDao.create(coverImage);
         storeImageContributionEvent(coverImage, session, request);
@@ -299,10 +299,10 @@ public class StoryBookCreateFromEPubController {
             Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(chapterImage.getChecksumMd5());
             if (existingImageWithSameFileContent != null) {
               // Re-use existing file
-              chapterImage.setCid(existingImageWithSameFileContent.getCid());
+              chapterImage.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
             } else {
               String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
-              chapterImage.setCid(checksumGitHub);
+              chapterImage.setChecksumGitHub(checksumGitHub);
             }
             imageDao.create(chapterImage);
             storeImageContributionEvent(chapterImage, session, request);
