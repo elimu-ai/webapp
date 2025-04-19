@@ -11,6 +11,8 @@ public interface ImageDao extends GenericDao<Image> {
     
     Image read(String title) throws DataAccessException;
 
+    Image readByChecksumMd5(String checksumMd5) throws DataAccessException;
+
     List<Image> readAllOrdered() throws DataAccessException;
 
     List<Image> readAllOrderedById() throws DataAccessException;

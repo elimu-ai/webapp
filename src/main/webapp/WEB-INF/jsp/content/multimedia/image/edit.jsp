@@ -23,6 +23,7 @@
                     <c:if test="${not empty image.dominantColor}">
                         $('nav').removeClass("deep-purple");
                         $('nav').css("background-color", "${image.dominantColor}");
+                        $('form img').css("box-shadow", "2px 2px ${image.dominantColor}");
                     </c:if>
                 });
             </script>
