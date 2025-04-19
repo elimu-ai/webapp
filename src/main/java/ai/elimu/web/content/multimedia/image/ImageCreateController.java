@@ -129,11 +129,15 @@ public class ImageCreateController {
         // javax.imageio.IIOException: Unsupported Image Type
       }
       image.setTimeLastUpdate(Calendar.getInstance());
+      Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(image.getChecksumMd5());
+      if (existingImageWithSameFileContent != null) {
+        // Re-use existing file
+        image.setCid(existingImageWithSameFileContent.getCid());
+      } else {
+        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
+        image.setCid(checksumGitHub);
+      }
       imageDao.create(image);
-
-      String gitHubHash = GitHubLfsHelper.uploadImageToLfs(image, bytes);
-      image.setCid(gitHubHash);
-      imageDao.update(image);
 
       ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
       imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
