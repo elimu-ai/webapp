@@ -32,7 +32,7 @@ html[data-content-language="tha"] #index-banner {
     background-image: url(../../static/img/banner-th.jpg);
 }
 html[data-content-language="vie"] #index-banner {
-    background-image: url(../../static/img/banner-vn.jpg);
+    background-image: url(../../static/img/banner-vn.png);
 }
 
 .container > .section {
