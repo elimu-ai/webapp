@@ -13,10 +13,12 @@ import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.ImageContributionEvent;
 import ai.elimu.entity.contributor.StoryBookContributionEvent;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
@@ -310,7 +312,8 @@ public class StoryBookCreateFromEPubController {
             storyBookChapter.setImage(chapterImage);
           }
 
-          List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile);
+          Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+          List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile, language);
           log.info("paragraphs.size(): " + paragraphs.size());
           for (int i = 0; i < paragraphs.size(); i++) {
             String paragraph = paragraphs.get(i);
@@ -421,7 +424,8 @@ public class StoryBookCreateFromEPubController {
       storyBookDao.update(storyBook);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+        String contentUrl = "http://" + language.toString().toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
         String embedThumbnailUrl = null;
         if (storyBook.getCoverImage() != null) {
           embedThumbnailUrl = storyBook.getCoverImage().getUrl();
