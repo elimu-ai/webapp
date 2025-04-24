@@ -321,7 +321,7 @@
   <dependencies>
     <!-- Internal -->
     <dependency>
-      <groupId>com.github.elimu-ai</groupId>
+      <groupId>ai.elimu</groupId>
       <artifactId>model</artifactId>
       <version>model-${model.version}</version>
     </dependency>

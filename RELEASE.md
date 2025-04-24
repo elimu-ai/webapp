@@ -17,16 +17,16 @@ Then press "Generate release notes" to automatically include the merged pull req
 
 ## Usage
 
-[![](https://jitpack.io/v/elimu-ai/webapp.svg)](https://jitpack.io/#elimu-ai/webapp)
+[![](https://jitpack.io/v/ai.elimu/webapp.svg)](https://jitpack.io/#ai.elimu/webapp)
 
-After each release, the resulting `.war` file gets uploaded to https://jitpack.io/#elimu-ai/webapp
+After each release, the resulting `.war` file gets uploaded to https://jitpack.io/#ai.elimu/webapp
 
 ### Execute deployment script 🚀
 
 1. Connect to the server via SSH
 2. Execute the [`deploy-webapp.sh`](https://github.com/elimu-ai/webapp/blob/main/src/main/config/centos-stream-9/~/.elimu-ai/deploy-webapp.sh) script:
    ```
-   # ~/.elimu-ai/deploy-webapp.sh 2.5.11
+   # ~/.elimu-ai/deploy-webapp.sh <version>
    ```
 
 This will restart the web server with the new release version. To confirm that the deployment succeeded, you can check the release version in the webapp's footer.

@@ -11,7 +11,7 @@ fi
 
 echo "VERSION: $VERSION"
 
-WAR_FILE_URL="https://jitpack.io/com/github/elimu-ai/webapp/webapp-$VERSION/webapp-webapp-$VERSION.war"
+WAR_FILE_URL="https://jitpack.io/ai/elimu/webapp/webapp-$VERSION/webapp-webapp-$VERSION.war"
 TMP_WAR_FILE="/tmp/webapp-$VERSION.war"
 TARGET_WAR_FILE="/opt/jetty-base/webapps/webapp.war"
 
