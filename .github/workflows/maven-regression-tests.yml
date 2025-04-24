@@ -1,4 +1,4 @@
-name: Maven Regression Test (REST)
+name: Maven Regression Tests
 
 on:
   push:
