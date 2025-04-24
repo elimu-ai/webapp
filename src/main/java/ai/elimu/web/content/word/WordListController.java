@@ -39,15 +39,18 @@ public class WordListController {
     model.addAttribute("words", words);
     model.addAttribute("emojisByWordId", getEmojisByWordId());
 
-    LetterSound mostUsedLetterSound = letterSoundDao.readAllOrderedByUsage().get(0);
-    for (Word word : words) {
-      log.info("word.getText(): " + word.getText());
-      log.info("word.getLetterSounds(): " + word.getLetterSounds());
-      if (word.getLetterSounds().isEmpty()) {
-        // Store temporary letters
-        word.setLetterSounds(Arrays.asList(mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound));
-        wordDao.update(word);
-        log.info("word updated: " + word.getId());
+    List<LetterSound> letterSounds = letterSoundDao.readAllOrderedByUsage();
+    if (!letterSounds.isEmpty()) {
+      LetterSound mostUsedLetterSound = letterSounds.get(0);
+      for (Word word : words) {
+        log.info("word.getText(): " + word.getText());
+        log.info("word.getLetterSounds(): " + word.getLetterSounds());
+        if (word.getLetterSounds().isEmpty()) {
+          // Store temporary letters
+          word.setLetterSounds(Arrays.asList(mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound));
+          wordDao.update(word);
+          log.info("word updated: " + word.getId());
+        }
       }
     }
 
