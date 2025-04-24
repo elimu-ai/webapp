@@ -1,13 +1,10 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.EmojiDao;
-import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.Emoji;
-import ai.elimu.entity.content.LetterSound;
 import ai.elimu.entity.content.Word;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +24,6 @@ public class WordListController {
 
   private final WordDao wordDao;
 
-  private final LetterSoundDao letterSoundDao;
-
   private final EmojiDao emojiDao;
 
   @GetMapping
@@ -38,21 +33,6 @@ public class WordListController {
     List<Word> words = wordDao.readAllOrderedByUsage();
     model.addAttribute("words", words);
     model.addAttribute("emojisByWordId", getEmojisByWordId());
-
-    List<LetterSound> letterSounds = letterSoundDao.readAllOrderedByUsage();
-    if (!letterSounds.isEmpty()) {
-      LetterSound mostUsedLetterSound = letterSounds.get(0);
-      for (Word word : words) {
-        log.info("word.getText(): " + word.getText());
-        log.info("word.getLetterSounds(): " + word.getLetterSounds());
-        if (word.getLetterSounds().isEmpty()) {
-          // Store temporary letters
-          word.setLetterSounds(Arrays.asList(mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound, mostUsedLetterSound));
-          wordDao.update(word);
-          log.info("word updated: " + word.getId());
-        }
-      }
-    }
 
     int maxUsageCount = 0;
     for (Word word : words) {
