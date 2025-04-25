@@ -36,7 +36,7 @@
                     <c:if test="${not empty storyBook.coverImage}">
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                    <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
                         <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
@@ -84,7 +84,7 @@
                     <c:if test="${not empty storyBook.coverImage}">
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                    <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
                         <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
@@ -132,7 +132,7 @@
                     <c:if test="${not empty storyBook.coverImage}">
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                    <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
                         <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
@@ -180,7 +180,7 @@
                     <c:if test="${not empty storyBook.coverImage}">
                         <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                     </c:if>
-                    <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                    <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
                         <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                             <span class="card-title"><c:out value="${storyBook.title}" /></span>
                         </div>
@@ -226,7 +226,7 @@
                         <c:if test="${not empty storyBook.coverImage}">
                             <c:set var="coverImageUrl" value="${storyBook.coverImage.url}" />
                         </c:if>
-                        <a href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
+                        <a class="editLink" href="<spring:url value='/content/storybook/edit/${storyBook.id}' />">
                             <div class="card-image checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                                 <span class="card-title"><c:out value="${storyBook.title}" /></span>
                             </div>
@@ -261,7 +261,7 @@
     </c:if>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add storybook"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/storybook/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add storybook"><i class="material-icons">add</i></a>
         <ul>
             <li><a href="<spring:url value='/content/storybook/create-from-epub' />" class="btn-floating btn-large tooltipped" data-position="left" data-tooltip="Upload ePUB file"><i class="material-icons">cloud_upload</i></a></li>
         </ul>
