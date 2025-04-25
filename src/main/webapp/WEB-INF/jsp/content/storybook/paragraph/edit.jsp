@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
             <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">

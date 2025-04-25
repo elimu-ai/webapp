@@ -1,13 +1,21 @@
 package ai.elimu.util.ml;
 
 import ai.elimu.model.v2.enums.ReadingLevel;
-import org.pmml4s.model.Model;
+import lombok.extern.slf4j.Slf4j;
 
+import org.pmml4s.model.Model;
+import org.springframework.core.io.ClassRelativeResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
 
 import static ai.elimu.util.ReadingLevelConstants.READING_LEVEL_CONSTANTS.*;
 
+@Slf4j
 public class ReadingLevelUtil {
 
     /**
@@ -35,30 +43,55 @@ public class ReadingLevelUtil {
      * </pre>
      */
     public static ReadingLevel predictReadingLevel(
-            int chapterCount,
-            int paragraphCount,
-            int wordCount
+        int chapterCount,
+        int paragraphCount,
+        int wordCount
     ) {
+        log.info("predictReadingLevel");
+        log.info("chapterCount: " + chapterCount + ", paragraphCount: " + paragraphCount + ", wordCount: " + wordCount);
 
-        Model model = Model.fromFile(READING_LEVEL_MODEL_FILE_PATH_KEY);
-        Map<String, Double> features = Map.of(
-                CHAPTER_COUNT_KEY, (double) chapterCount,
-                PARAGRAPH_COUNT_KEY, (double) paragraphCount,
-                WORD_COUNT_KEY, (double) wordCount
-        );
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(ReadingLevelUtil.class);
+        Resource resource = resourceLoader.getResource("step2_2_model.pmml");
+        
+        ReadingLevel readingLevel = null;
+        try {
+            File modelFile = resource.getFile();
+            log.info("modelFile.getPath(): " + modelFile.getPath());
+            log.info("modelFile.exists(): " + modelFile.exists());
 
-        Object[] valuesMap = Arrays.stream(model.inputNames())
-                .map(features::get)
-                .toArray();
+            Model model = Model.fromFile(modelFile);
+            Map<String, Double> features = Map.of(
+                    CHAPTER_COUNT_KEY, (double) chapterCount,
+                    PARAGRAPH_COUNT_KEY, (double) paragraphCount,
+                    WORD_COUNT_KEY, (double) wordCount
+            );
+            log.info("features: " + features);
+    
+            Object[] valuesMap = Arrays.stream(model.inputNames())
+                    .map(features::get)
+                    .toArray();
+            log.info("valuesMap: " + valuesMap);
+    
+            Object[] results = model.predict(valuesMap);
+            log.info("results: " + results);
+    
+            Object result = results[0];
+            log.info("result: " + result);
 
-        Object[] results = model.predict(valuesMap);
+            Double resultAsDouble = (Double) result;
+            log.info("resultAsDouble: " + resultAsDouble);
 
-        Object result = results[0];
-        Double resultAsDouble = (Double) result;
-        int resultAsInteger = resultAsDouble.intValue();
+            int resultAsInteger = resultAsDouble.intValue();
+            log.info("resultAsInteger: " + resultAsInteger);
+    
+            String readingLevelAsString = "LEVEL" + resultAsInteger;
+            log.info("readingLevelAsString: " + readingLevelAsString);
 
-        String readingLevelAsString = READING_LEVEL_KEY + resultAsInteger;
-        return ReadingLevel.valueOf(readingLevelAsString);
-
+            readingLevel = ReadingLevel.valueOf(readingLevelAsString);
+        } catch (IOException exception) {
+            log.error(null, exception);
+        }
+        log.info("readingLevel: " + readingLevel);
+        return readingLevel;
     }
 }

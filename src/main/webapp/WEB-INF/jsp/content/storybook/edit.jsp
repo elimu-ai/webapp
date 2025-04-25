@@ -55,6 +55,9 @@
                 </div>
                 
                 <div class="input-field col s12">
+                    <div class="card-panel amber lighten-5">
+                        🤖 AI predicted reading level: <b>${predictedReadingLevel}</b>
+                    </div>
                     <select id="readingLevel" name="readingLevel">
                         <option value="">-- Select --</option>
                         <c:forEach var="readingLevel" items="${readingLevels}">
@@ -81,7 +84,7 @@
                     <label for="coverImage">Cover image</label>
                     <c:if test="${not empty storyBook.coverImage}">
                         <a href="<spring:url value='/content/multimedia/image/edit/${storyBook.coverImage.id}' />">
-                            <img class="cid-${storyBook.coverImage.cid != null}" src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
+                            <img class="checksumGitHub-${storyBook.coverImage.checksumGitHub != null}" src="<spring:url value='${storyBook.coverImage.url}' />" alt="${storyBook.title}" />
                         </a>
                     </c:if>
                 </div>
@@ -94,7 +97,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
         </form:form>
@@ -109,7 +112,7 @@
         <div class="card-panel storyBookChapter">
             <c:if test="${not empty storyBookChapter.image}">
                 <a href="<spring:url value='/content/multimedia/image/edit/${storyBookChapter.image.id}' />">
-                    <img class="cid-${storyBookChapter.image.cid != null}" src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
+                    <img class="checksumGitHub-${storyBookChapter.image.checksumGitHub != null}" src="<spring:url value='${storyBookChapter.image.url}' />" alt="${storyBook.title}" />
                 </a>
             </c:if>
             

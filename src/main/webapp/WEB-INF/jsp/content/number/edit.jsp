@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
             <a href="<spring:url value='/content/number/delete/${number.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
@@ -287,6 +287,19 @@
                 </li>
                 <li>
                     <a href="https://www.omniglot.com/language/numbers/thai.htm" target="_blank">Numbers in Thai - Omniglot</a>
+                </li>
+            </ol>
+        </div>
+    </c:if>
+    <c:if test="${applicationScope.configProperties['content.language'] == 'VIE'}">
+        <div class="card-panel deep-purple lighten-5">
+            Vietnamese resources:
+            <ol style="list-style-type: inherit;">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Vietnamese_numerals" target="_blank">Vietnamese numerals - Wikipedia</a>
+                </li>
+                <li>
+                    <a href="https://www.omniglot.com/language/numbers/vietnamese.htm" target="_blank">Numbers in Vietnamese - Omniglot</a>
                 </li>
             </ol>
         </div>

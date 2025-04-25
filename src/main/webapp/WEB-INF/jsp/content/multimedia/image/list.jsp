@@ -18,7 +18,7 @@
         </script>
         
         <p>
-            To add new content, click the button below.
+            To add new content, click the button below. <span style="position: absolute; transform: rotate(-33deg);">👇🏽</span>
         </p>
         
         <c:forEach var="image" items="${images}">
@@ -26,7 +26,7 @@
                 <a name="${image.id}"></a>
                 <div class="image card">
                     <a href="<spring:url value='/content/multimedia/image/edit/${image.id}' />">
-                        <div class="card-image cid-${image.cid != null}" style="background-image: url(<spring:url value='${image.url}' />);">
+                        <div class="card-image checksumGitHub-${image.checksumGitHub != null}" style="background-image: url(<spring:url value='${image.url}' />);">
                             <span class="card-title"><c:out value="${image.title}" /></span>
                         </div>
                     </a>
@@ -69,6 +69,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a href="<spring:url value='/content/multimedia/image/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add image"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/content/multimedia/image/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add image"><i class="material-icons">add</i></a>
     </div>
 </content:section>

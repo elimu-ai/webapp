@@ -15,6 +15,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import ai.elimu.entity.enums.StoryBookProvider;
+import ai.elimu.model.v2.enums.Language;
+import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.linguistics.ThaiHelper;
 
 @Slf4j
 public class EPubParagraphExtractionHelper {
@@ -25,7 +28,7 @@ public class EPubParagraphExtractionHelper {
      * @param xhtmlFile The XHTML file containing the paragraphs, e.g. {@code chapter-2.xhtml}.
      * @return A list of paragraphs.
      */
-    public static List<String> extractParagraphsFromChapterFile(File xhtmlFile) {
+    public static List<String> extractParagraphsFromChapterFile(File xhtmlFile, Language language) {
         log.info("extractParagraphsFromChapter");
         
         List<String> paragraphs = new ArrayList<>();
@@ -62,7 +65,7 @@ public class EPubParagraphExtractionHelper {
                             </body>
                         */
                         if ("p".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("dir") == null)) {
-                            processParagraphNode(StoryBookProvider.GLOBAL_DIGITAL_LIBRARY, bodyChildNode, paragraphs);
+                            processParagraphNode(StoryBookProvider.GLOBAL_DIGITAL_LIBRARY, bodyChildNode, paragraphs, language);
                         }
                         
                         // StoryBookProvider: LETS_READ_ASIA
@@ -77,7 +80,7 @@ public class EPubParagraphExtractionHelper {
                             </body>
                         */
                         if ("p".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("dir") != null)) {
-                            processParagraphNode(StoryBookProvider.LETS_READ_ASIA, bodyChildNode, paragraphs);
+                            processParagraphNode(StoryBookProvider.LETS_READ_ASIA, bodyChildNode, paragraphs, language);
                         }
                         
                         // StoryBookProvider: LETS_READ_ASIA
@@ -102,7 +105,7 @@ public class EPubParagraphExtractionHelper {
                                 
                                 // Look for "<p>"
                                 if ("p".equals(langDivChildNode.getNodeName())) {
-                                    processParagraphNode(StoryBookProvider.LETS_READ_ASIA, langDivChildNode, paragraphs);
+                                    processParagraphNode(StoryBookProvider.LETS_READ_ASIA, langDivChildNode, paragraphs, language);
                                 }
                             }
                         }
@@ -184,7 +187,7 @@ public class EPubParagraphExtractionHelper {
                                                                         
                                                                         // Expected format: <p>ভীমের শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।</p>
                                                                         if ("p".equals(contentDivChildNode.getNodeName())) {
-                                                                            processParagraphNode(StoryBookProvider.STORYWEAVER, contentDivChildNode, paragraphs);
+                                                                            processParagraphNode(StoryBookProvider.STORYWEAVER, contentDivChildNode, paragraphs, language);
                                                                         }
                                                                     }
                                                                 }
@@ -204,7 +207,7 @@ public class EPubParagraphExtractionHelper {
                         if ("#text".equals(bodyChildNode.getNodeName())) {
                             String paragraph = bodyChildNode.getTextContent();
                             log.info("paragraph: \"" + paragraph + "\"");
-                            paragraph = getCleanedUpParagraph(paragraph);
+                            paragraph = getCleanedUpParagraph(paragraph, language);
                             if (StringUtils.isNotBlank(paragraph)) {
                                 paragraphs.add(paragraph);
                             }
@@ -219,7 +222,7 @@ public class EPubParagraphExtractionHelper {
         return paragraphs;
     }
     
-    private static void processParagraphNode(StoryBookProvider storyBookProvider, Node paragraphNode, List<String> paragraphs) {
+    private static void processParagraphNode(StoryBookProvider storyBookProvider, Node paragraphNode, List<String> paragraphs, Language language) {
         log.info("processParagraphNode");
         
         log.info("storyBookProvider: " + storyBookProvider);
@@ -273,7 +276,7 @@ public class EPubParagraphExtractionHelper {
             String[] paragraphArray = paragraphNode.getTextContent().split("</p><p>");
             for (String paragraph : paragraphArray) {
                 log.info("paragraph: \"" + paragraph + "\"");
-                paragraph = getCleanedUpParagraph(paragraph);
+                paragraph = getCleanedUpParagraph(paragraph, language);
                 if (StringUtils.isNotBlank(paragraph)) {
                     paragraphs.add(paragraph);
                 }
@@ -281,7 +284,7 @@ public class EPubParagraphExtractionHelper {
         } else if (storyBookProvider == StoryBookProvider.STORYWEAVER) {
             String paragraph = paragraphNode.getTextContent();
             log.info("paragraph: \"" + paragraph + "\"");
-            paragraph = getCleanedUpParagraph(paragraph);
+            paragraph = getCleanedUpParagraph(paragraph, language);
 
             // Skip paragraphs containing CSS code
             // See example at src/test/resources/ai/elimu/util/epub/hin-sw-10145-ek-sau-saintisvan-paer.epub_4.xhtml
@@ -298,8 +301,13 @@ public class EPubParagraphExtractionHelper {
     /**
      * E.g. "लेना ।" --> "लेना।"
      */
-    private static String getCleanedUpParagraph(String paragraph) {
+    private static String getCleanedUpParagraph(String paragraph, Language language) {
         log.info("getCleanedUpParagraph, paragraph: \"" + paragraph + "\"");
+
+        if (language == Language.THA) {
+            // Add whitespaces between Thai words
+            paragraph = ThaiHelper.splitIntoWords(paragraph);
+        }
         
         // Replace line-breaks with a whitespace
         paragraph = paragraph.replace("\n", " ");

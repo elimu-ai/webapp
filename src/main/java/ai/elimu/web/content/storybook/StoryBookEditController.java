@@ -26,6 +26,7 @@ import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
+import ai.elimu.util.ml.ReadingLevelUtil;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -103,6 +104,13 @@ public class StoryBookEditController {
         paragraphs.add(storyBookParagraph.getOriginalText());
       }
     }
+
+    int wordCount = 0;
+    for (String paragraph : paragraphs) {
+      wordCount += paragraph.split(" ").length;
+    }
+    ReadingLevel predictedReadingLevel = ReadingLevelUtil.predictReadingLevel(storyBookChapters.size(), paragraphs.size(), wordCount);
+    model.addAttribute("predictedReadingLevel", predictedReadingLevel);
 
     model.addAttribute("storyBookContributionEvents", storyBookContributionEventDao.readAll(storyBook));
     model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(storyBook));

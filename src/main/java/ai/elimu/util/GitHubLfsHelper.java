@@ -35,7 +35,7 @@ public class GitHubLfsHelper {
         String languageCode = EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language");
         log.info("languageCode: " + languageCode);
         
-        String filename = image.getId() + "_r" + image.getRevisionNumber() + "." + image.getImageFormat().toString().toLowerCase();
+        String filename = image.getChecksumMd5() + "." + image.getImageFormat().toString().toLowerCase();
         log.info("filename: " + filename);
 
         String path = "lang-" + languageCode + "/images/" + filename;

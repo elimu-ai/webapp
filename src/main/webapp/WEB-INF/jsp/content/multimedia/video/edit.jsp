@@ -4,7 +4,7 @@
 
 <content:section cssId="videoEditPage">
     <h4><content:gettitle /></h4>
-    <div class="card-panel cid-${video.checksumGitHub != null}">
+    <div class="card-panel checksumGitHub-${video.checksumGitHub != null}">
         <video poster="<spring:url value='/video/${video.id}_r${video.revisionNumber}_thumbnail.png' />" controls>
             <source src="<spring:url value='${video.url}' />" />
         </video>
@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
             <a href="<spring:url value='/content/multimedia/video/delete/${video.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
@@ -358,14 +358,14 @@
 
     <div class="divider" style="margin-bottom: 1em;"></div>
 
-    <label>checksum_md5</label>
+    <label>checksum_md5</label><br />
     <code>${video.checksumMd5}</code><br />
     <br />
 
-    <label>file_url</label>
+    <label>file_url</label><br />
     <code>${video.url}</code><br />
     <br />
 
-    <label>checksum_github</label>
+    <label>checksum_github</label><br />
     <code>${video.checksumGitHub}</code><br />
 </content:aside>

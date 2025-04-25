@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Add <i class="material-icons right">send</i>
             </button>
         </form:form>
@@ -86,6 +86,9 @@
         <ol style="list-style-type: inherit;">
             <li>
                 <a href="https://bookdash.org/books/" target="_blank">Book Dash</a>
+            </li>
+            <li>
+                <a href="https://www.earlylearningresourcenetwork.org/books" target="_blank">Early Learning Resource Network</a>
             </li>
         </ol>
     </div>
