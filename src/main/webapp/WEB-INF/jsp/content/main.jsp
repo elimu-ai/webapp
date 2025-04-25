@@ -95,7 +95,7 @@
                     <span class="card-title"><i class="material-icons">image</i> Images</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/multimedia/image/list' />">View list (${imageCount})</a>
+                    <a id="imageListLink" href="<spring:url value='/content/multimedia/image/list' />">View list (${imageCount})</a>
                 </div>
             </div>
         </div>
