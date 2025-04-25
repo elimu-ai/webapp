@@ -18,7 +18,7 @@
 
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 
-                <meta name="description" content="We are a community with the purpose of providing every child with access to quality basic education." />
+                <meta name="description" content="elimu.ai's mission is to build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 within 6 months." />
                 <link rel="shortcut icon" href="<spring:url value='/static/img/favicon.ico' />" />
 
                 <meta property="og:image" content="https://${pageContext.request.serverName}/static/img/logo-256x256.png" />
@@ -261,11 +261,11 @@
                         <div class="row">
                           <div class="col l6 s12">
                             <h5 class="white-text">About elimu.ai</h5>
-                            <p class="grey-text text-lighten-2">The purpose of elimu.ai is to help solve the global learning crisis—At primary level, 10% of children worldwide are not in school.</p>
+                            <p class="grey-text text-lighten-2">Our mission is to build innovative learning software that empowers out-of-school children to teach themselves basic reading📖, writing✍🏽 and math🔢 <b>within 6 months</b>.</p>
                             <p class="grey-text text-lighten-2">Read more about the project in the <a class="white-text" href="https://github.com/elimu-ai/wiki" target="_blank">Wiki</a>.</p>
                           </div>
                           <div class="col l3 offset-l1 s12 ">
-                            <h5 class="white-text">Contact us 👋🏽</h5>
+                            <h5 class="white-text">Chat 💬</h5>
                             <p class="grey-text text-lighten-2">
                                 Send us an <a class="white-text" href="mailto:info@elimu.ai" style="text-transform: lowercase;">E-mail</a> 
                                 or chat with us directly in Discord:
@@ -294,7 +294,7 @@
                                 <a class="white-text" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> &nbsp; | &nbsp; See our&nbsp;<a class="white-text" href="<spring:url value='/content' />">content repository</a><br />
                             </div>
                             <div class="col s12 m6 right-align">
-                                Supported languages: 
+                                Languages: 
                                 <c:choose>
                                     <c:when test="${applicationScope.configProperties['env'] == 'DEV'}">
                                         <c:forEach var="supportedLanguage" items="${applicationScope.configProperties['supported.languages']}" varStatus="status">

@@ -4,7 +4,11 @@
 
 <content:section cssId="videoEditPage">
     <h4><content:gettitle /></h4>
-    <div class="card-panel">
+    <div class="card-panel checksumGitHub-${video.checksumGitHub != null}">
+        <video poster="<spring:url value='/video/${video.id}_r${video.revisionNumber}_thumbnail.png' />" controls>
+            <source src="<spring:url value='${video.url}' />" />
+        </video>
+
         <form:form modelAttribute="video" enctype="multipart/form-data">
             <tag:formErrors modelAttribute="video" />
 
@@ -103,7 +107,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
             <a href="<spring:url value='/content/multimedia/video/delete/${video.id}' />" class="waves-effect waves-red red-text btn-flat right">Delete</a>
@@ -112,19 +116,6 @@
 </content:section>
 
 <content:aside>
-    <h5 class="center">Preview</h5>
-    
-    <div class="video card">
-        <a class="valign-wrapper" href="<spring:url value='/video/${video.id}_r${video.revisionNumber}.${fn:toLowerCase(video.videoFormat)}' />" target="_blank">
-            <div style="position: absolute; width: 100%; text-align: center;">
-                <i class="material-icons" style=" background-color: rgba(0,0,0, 0.2); color: rgba(255,255,255, 0.8); padding: 0.5rem; font-size: 3em; border-width: 2px; border-color: rgba(255,255,255, 0.8); border-style: solid; border-radius: 50%;">play_arrow</i>
-            </div>
-            <img src="<spring:url value='/video/${video.id}_r${video.revisionNumber}_thumbnail.png' />" alt="${video.title}" />
-        </a>
-    </div>
-    
-    <div class="divider" style="margin-top: 1em;"></div>
-    
     <h5 class="center">Content labels</h5>
     
     <b>Letters</b><br />
@@ -364,4 +355,17 @@
             });
         });
     </script>
+
+    <div class="divider" style="margin-bottom: 1em;"></div>
+
+    <label>checksum_md5</label><br />
+    <code>${video.checksumMd5}</code><br />
+    <br />
+
+    <label>file_url</label><br />
+    <code>${video.url}</code><br />
+    <br />
+
+    <label>checksum_github</label><br />
+    <code>${video.checksumGitHub}</code><br />
 </content:aside>

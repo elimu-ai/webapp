@@ -16,9 +16,9 @@
                 });
             });
         </script>
-        
+
         <p>
-            To add new content, click the button below. You can also <a href="<spring:url value='/content/word/peer-reviews' />">peer-review</a> words.
+            To add new content, click the button below. <span style="position: absolute; transform: rotate(-33deg);">👇🏽</span>
         </p>
         
         <c:if test="${not empty words}">

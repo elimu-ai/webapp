@@ -16,12 +16,11 @@
                 });
             });
         </script>
-        
+
         <p>
-            To add new content, click the button below. You can also 
-            <a href="<spring:url value='/content/letter-sound/peer-reviews' />">peer-review</a> letter-sound correspondences.
+            To add new content, click the button below. <span style="position: absolute; transform: rotate(-33deg);">👇🏽</span>
         </p>
-    
+            
         <c:if test="${not empty letterSounds}">
             <table class="bordered highlight">
                 <thead>

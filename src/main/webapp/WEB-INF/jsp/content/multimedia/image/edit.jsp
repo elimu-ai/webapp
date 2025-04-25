@@ -14,7 +14,7 @@
             <form:hidden path="contentType" value="${image.contentType}" />
             <form:hidden path="dominantColor" value="${image.dominantColor}" />
             
-            <img class="cid-${image.cid != null}"
+            <img class="checksumGitHub-${image.checksumGitHub != null}"
                 src="<spring:url value='${image.url}' />"
                 alt="${image.title}" />
             <script>
@@ -23,6 +23,7 @@
                     <c:if test="${not empty image.dominantColor}">
                         $('nav').removeClass("deep-purple");
                         $('nav').css("background-color", "${image.dominantColor}");
+                        $('form img').css("box-shadow", "2px 2px ${image.dominantColor}");
                     </c:if>
                 });
             </script>
@@ -100,7 +101,7 @@
                 <div class="file-field input-field col s12">
                     <div class="btn">
                         <span>File</span>
-                        <form:input path="bytes" type="file" />
+                        <input name="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" />
@@ -115,7 +116,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
             <c:if test="${fn:contains(contributor.roles, 'EDITOR')}">
@@ -410,4 +411,17 @@
             });
         });
     </script>
+
+    <div class="divider" style="margin-bottom: 1em;"></div>
+
+    <label>checksum_md5</label><br />
+    <code>${image.checksumMd5}</code><br />
+    <br />
+
+    <label>file_url</label><br />
+    <code>${image.url}</code><br />
+    <br />
+
+    <label>checksum_github</label><br />
+    <code>${image.checksumGitHub}</code><br />
 </content:aside>

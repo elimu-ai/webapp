@@ -98,16 +98,8 @@ Copy the port number configuration from [`centos-stream-9/opt/jetty-base/start.d
 +jetty.http.port=80
 ```
 
-#### Add Web Application Archive (WAR)
-
-Add the latest release of your `*.war` file to `/opt/jetty-base/webapps/`. In our case, we download WAR releases from an external URL:
-
-    wget -O /opt/jetty-base/webapps/webapp.war https://jitpack.io/com/github/elimu-ai/webapp/webapp-2.4.66/webapp-webapp-2.4.66.war
-
-> [!IMPORTANT]
-> The WAR file's name must match the context file's name, e.g. `webapp.war` and `webapp.xml`.
-
-Also see [`RELEASE.md`](https://github.com/elimu-ai/webapp/blob/main/RELEASE.md) for instructions on how to perform releases from a GitHub repo.
+> [!TIP]
+> To verify that everything has been configured correctly, you can run `cd /opt/jetty-base/; java -jar /opt/jetty-home-11.0.24/start.jar --list-config` and `systemctl status jetty`
 
 #### Add Jetty Context XML File
 
@@ -118,14 +110,16 @@ Copy the content from [`webapp.xml`](./centos-stream-9/opt/jetty-base/webapps/we
 > [!NOTE]
 > If your deployment is for another language than English (language code `ENG`), set the `content_language` attribute to your language code.
 
-### Start Jetty
+#### Deploy Web Application Archive (WAR)
 
-Start the `jetty` service:
+Add the latest release of your `*.war` file to `/opt/jetty-base/webapps/`. In our case, we use a [deployment script](./centos-stream-9/~/.elimu-ai/deploy-webapp.sh) to download WAR releases from an external URL:
 
-    systemctl start jetty
+    ~/.elimu-ai/deploy-webapp.sh <version>
 
-> [!TIP]
-> To verify that everything has been configured correctly, you can run `cd /opt/jetty-base/; java -jar /opt/jetty-home-11.0.24/start.jar --list-config` and `systemctl status jetty`
+> [!IMPORTANT]
+> The WAR file's name must match the context file's name, e.g. `webapp.war` and `webapp.xml`.
+
+Also see [`RELEASE.md`](https://github.com/elimu-ai/webapp/blob/main/RELEASE.md) for instructions on how to perform releases from a GitHub repo.
 
 ## MariaDB Database 🛢️
 

@@ -37,8 +37,6 @@
 
     drop table if exists LetterContributionEvent;
 
-    drop table if exists LetterLearningEvent;
-
     drop table if exists LetterSound;
 
     drop table if exists LetterSound_Letter;
@@ -46,6 +44,8 @@
     drop table if exists LetterSound_Sound;
 
     drop table if exists LetterSoundContributionEvent;
+
+    drop table if exists LetterSoundLearningEvent;
 
     drop table if exists LetterSoundPeerReviewEvent;
 
@@ -209,9 +209,10 @@
         attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
-        bytes mediumblob,
-        cid varchar(255),
+        checksumGitHub varchar(255),
+        checksumMd5 varchar(255),
         dominantColor varchar(255),
+        fileSize integer,
         imageFormat varchar(255),
         title varchar(255),
         primary key (id)
@@ -277,19 +278,6 @@
         primary key (id)
     ) type=MyISAM;
 
-    create table LetterLearningEvent (
-       id bigint not null auto_increment,
-        additionalData text,
-        androidId varchar(255),
-        learningEventType varchar(255),
-        packageName varchar(255),
-        timestamp datetime,
-        letterText varchar(255),
-        application_id bigint,
-        letter_id bigint,
-        primary key (id)
-    ) type=MyISAM;
-
     create table LetterSound (
        id bigint not null auto_increment,
         contentStatus varchar(255),
@@ -321,6 +309,18 @@
         timestamp datetime,
         contributor_id bigint,
         letterSound_id bigint,
+        primary key (id)
+    ) type=MyISAM;
+
+    create table LetterSoundLearningEvent (
+       id bigint not null auto_increment,
+        additionalData text,
+        androidId varchar(255),
+        learningEventType varchar(255),
+        packageName varchar(255),
+        timestamp datetime,
+        letterSoundId bigint,
+        application_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -508,6 +508,8 @@
         contentLicense varchar(255),
         contentType varchar(255),
         bytes longblob,
+        checksumGitHub varchar(255),
+        checksumMd5 varchar(255),
         thumbnail mediumblob,
         title varchar(255),
         videoFormat varchar(255),
@@ -722,16 +724,6 @@
        foreign key (letter_id) 
        references Letter (id);
 
-    alter table LetterLearningEvent 
-       add constraint FKbgt0ocoif6wvshp6lyasfdmq7 
-       foreign key (application_id) 
-       references Application (id);
-
-    alter table LetterLearningEvent 
-       add constraint FKfheqcx945pkedcq0vnlcuayct 
-       foreign key (letter_id) 
-       references Letter (id);
-
     alter table LetterSound_Letter 
        add constraint FKgfio6vxgyrx52nc0so389ibi1 
        foreign key (letters_id) 
@@ -761,6 +753,11 @@
        add constraint FKqmngc8gfw52jjv9gf9dey1urk 
        foreign key (letterSound_id) 
        references LetterSound (id);
+
+    alter table LetterSoundLearningEvent 
+       add constraint FKdm16bp5gb29hsge3thngm1pli 
+       foreign key (application_id) 
+       references Application (id);
 
     alter table LetterSoundPeerReviewEvent 
        add constraint FK3wapf4y5anhgnjbqna2qjyie4 

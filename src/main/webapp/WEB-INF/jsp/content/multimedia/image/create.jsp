@@ -81,7 +81,7 @@
                 <div class="file-field input-field col s12">
                     <div class="btn">
                         <span>File</span>
-                        <form:input path="bytes" type="file" />
+                        <input name="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" />
@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Add <i class="material-icons right">send</i>
             </button>
         </form:form>

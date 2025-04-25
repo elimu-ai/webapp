@@ -18,15 +18,15 @@
         </script>
         
         <p>
-            To add new content, click the button below.
+            To add new content, click the button below. <span style="position: absolute; transform: rotate(-33deg);">👇🏽</span>
         </p>
         
         <c:forEach var="video" items="${videos}">
             <div class="col s12 m6 l4">
                 <a name="${video.id}"></a>
-                <div class="video card">
+                <div class="video card checksumGitHub-${video.checksumGitHub != null}">
                     <a class="valign-wrapper" href="<spring:url value='/content/multimedia/video/edit/${video.id}' />">
-                        <div style="position: absolute; width: 100%; text-align: center;">
+                        <div class="card-image" style="position: absolute; width: 100%; text-align: center;">
                             <i class="material-icons" style=" background-color: rgba(0,0,0, 0.2); color: rgba(255,255,255, 0.8); padding: 0.5rem; font-size: 3em; border-width: 2px; border-color: rgba(255,255,255, 0.8); border-style: solid; border-radius: 50%;">play_arrow</i>
                         </div>
                         <img src="<spring:url value='/video/${video.id}_r${video.revisionNumber}_thumbnail.png' />" alt="${video.title}" />

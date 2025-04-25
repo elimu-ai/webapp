@@ -43,4 +43,14 @@ public class MainContentPage {
         WebElement link = driver.findElement(By.id("emojiListLink"));
         link.click();
     }
+
+    public void pressImageListLink() {
+        WebElement link = driver.findElement(By.id("imageListLink"));
+        link.click();
+    }
+
+    public void pressStoryBookListLink() {
+        WebElement link = driver.findElement(By.id("storyBookListLink"));
+        link.click();
+    }
 }

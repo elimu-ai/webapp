@@ -23,7 +23,9 @@ import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.ImageColorHelper;
 import ai.elimu.web.ConnectionProviderWeb;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.web.context.WebApplicationContext;
@@ -231,7 +233,10 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             ResourceLoader resourceLoader = new ClassRelativeResourceLoader(this.getClass());
             Resource resource = resourceLoader.getResource("placeholder.png");
             byte[] bytes = Files.readAllBytes(resource.getFile().toPath());
-            image.setBytes(bytes);
+            image.setFileSize(bytes.length);
+            image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
+            int[] dominantColor = ImageColorHelper.getDominantColor(bytes);
+            image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
         } catch (IOException e) {
             logger.error(null, e);
         }

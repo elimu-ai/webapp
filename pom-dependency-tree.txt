@@ -1,7 +1,7 @@
-ai.elimu:webapp:war:2.5.72-SNAPSHOT
-+- com.github.elimu-ai:model:jar:model-2.0.88:compile
-|  \- com.google.code.gson:gson:jar:2.11.0:compile
-|     \- com.google.errorprone:error_prone_annotations:jar:2.27.0:compile
+ai.elimu:webapp:war:2.5.104-SNAPSHOT
++- ai.elimu:model:jar:model-2.0.97:compile
+|  \- com.google.code.gson:gson:jar:2.13.0:compile
+|     \- com.google.errorprone:error_prone_annotations:jar:2.37.0:compile
 +- org.springframework:spring-context:jar:6.0.9:compile
 |  +- org.springframework:spring-aop:jar:6.0.9:compile
 |  +- org.springframework:spring-beans:jar:6.0.9:compile
@@ -42,9 +42,10 @@ ai.elimu:webapp:war:2.5.72-SNAPSHOT
 |     +- com.fasterxml.jackson.core:jackson-annotations:jar:2.14.0:compile
 |     \- com.fasterxml.jackson.core:jackson-core:jar:2.14.0:compile
 +- org.json:json:jar:20231013:compile
-+- org.apache.httpcomponents.client5:httpclient5:jar:5.3.1:compile
-|  +- org.apache.httpcomponents.core5:httpcore5:jar:5.2.4:compile
-|  \- org.apache.httpcomponents.core5:httpcore5-h2:jar:5.2.4:compile
++- com.konghq:unirest-java-core:jar:4.4.5:compile
++- org.apache.httpcomponents.client5:httpclient5:jar:5.4.3:compile
+|  +- org.apache.httpcomponents.core5:httpcore5:jar:5.3.4:compile
+|  \- org.apache.httpcomponents.core5:httpcore5-h2:jar:5.3.4:compile
 +- org.web3j:core:jar:5.0.0:compile
 |  +- org.web3j:abi:jar:5.0.0:compile
 |  |  \- org.web3j:utils:jar:5.0.0:compile
@@ -99,7 +100,7 @@ ai.elimu:webapp:war:2.5.72-SNAPSHOT
 +- org.hibernate.validator:hibernate-validator:jar:7.0.0.Final:compile
 |  \- jakarta.validation:jakarta.validation-api:jar:3.0.0:compile
 +- jakarta.persistence:jakarta.persistence-api:jar:3.0.0:compile
-+- org.hsqldb:hsqldb:jar:2.7.3:compile
++- org.hsqldb:hsqldb:jar:2.7.4:compile
 +- com.mysql:mysql-connector-j:jar:8.2.0:compile
 |  \- com.google.protobuf:protobuf-java:jar:3.21.9:compile
 +- commons-dbcp:commons-dbcp:jar:1.4:compile
@@ -157,4 +158,4 @@ ai.elimu:webapp:war:2.5.72-SNAPSHOT
 |  |     \- org.apache.commons:commons-exec:jar:1.4.0:compile
 |  +- org.seleniumhq.selenium:selenium-safari-driver:jar:4.23.1:compile
 |  \- org.seleniumhq.selenium:selenium-support:jar:4.23.1:compile
-\- org.projectlombok:lombok:jar:1.18.36:provided
+\- org.projectlombok:lombok:jar:1.18.38:provided

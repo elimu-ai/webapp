@@ -50,7 +50,7 @@
                         
                         <li class="divider"></li>
                         <li class="grey-text"><b>Learning events</b></li>
-                        <li><a href="<spring:url value='/analytics/letter-learning-event/list' />"><i class="material-icons left">text_format</i>Letters</a></li>
+                        <li><a href="<spring:url value='/analytics/letter-sound-learning-event/list' />"><i class="material-icons left">text_format</i>Letter-sounds</a></li>
                         <li><a href="<spring:url value='/analytics/word-learning-event/list' />"><i class="material-icons left">sms</i>Words</a></li>
                         <li><a href="<spring:url value='/analytics/storybook-learning-event/list' />"><i class="material-icons left">book</i>Storybooks</a></li>
                         <li><a href="<spring:url value='/analytics/video-learning-event/list' />"><i class="material-icons left">movie</i>Videos</a></li>

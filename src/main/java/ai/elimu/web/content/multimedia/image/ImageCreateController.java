@@ -9,7 +9,9 @@ import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
@@ -76,8 +78,9 @@ public class ImageCreateController {
       }
     }
 
+    byte[] bytes = null;
     try {
-      byte[] bytes = multipartFile.getBytes();
+      bytes = multipartFile.getBytes();
       if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
         result.rejectValue("bytes", "NotNull");
       } else {
@@ -104,7 +107,8 @@ public class ImageCreateController {
           log.info("contentType: " + contentType);
           image.setContentType(contentType);
 
-          image.setBytes(bytes);
+          image.setFileSize(bytes.length);
+          image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         }
       }
     } catch (IOException e) {
@@ -119,12 +123,20 @@ public class ImageCreateController {
     } else {
       image.setTitle(image.getTitle().toLowerCase());
       try {
-        int[] dominantColor = ImageColorHelper.getDominantColor(image.getBytes());
+        int[] dominantColor = ImageColorHelper.getDominantColor(bytes);
         image.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
       } catch (NullPointerException ex) {
         // javax.imageio.IIOException: Unsupported Image Type
       }
       image.setTimeLastUpdate(Calendar.getInstance());
+      Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(image.getChecksumMd5());
+      if (existingImageWithSameFileContent != null) {
+        // Re-use existing file
+        image.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
+      } else {
+        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
+        image.setChecksumGitHub(checksumGitHub);
+      }
       imageDao.create(image);
 
       ImageContributionEvent imageContributionEvent = new ImageContributionEvent();

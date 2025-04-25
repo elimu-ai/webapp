@@ -16,9 +16,9 @@
                 });
             });
         </script>
-        
+
         <p>
-            To add new content, click the button below.  You can also <a href="<spring:url value='/content/number/peer-reviews' />">peer-review</a> numbers.
+            To add new content, click the button below. <span style="position: absolute; transform: rotate(-33deg);">👇🏽</span>
         </p>
         
         <table class="bordered highlight">

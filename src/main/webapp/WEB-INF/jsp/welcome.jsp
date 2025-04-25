@@ -1,5 +1,5 @@
 <content:title>
-    Quality basic education for every child \ud83d\ude80
+    Free open-source learning software for out-of-school children 🚀✨
 </content:title>
 
 <content:banner>
@@ -186,6 +186,7 @@
                   <h5>Distribute the software</h5>
                   
                   <p>Do you live near a child who does not have access to quality basic education? Help us <a href="https://github.com/elimu-ai/wiki/blob/main/SOFTWARE_ARCHITECTURE.md#distribution">distribute</a> the learning software.</p>
+                  <a href="https://sponsors.elimu.ai" target="_blank" class="btn waves-effect waves-light deep-purple lighten-2">Distribute</a>
                 </div>
             </div>
         </div>

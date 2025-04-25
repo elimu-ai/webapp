@@ -1,13 +1,12 @@
 package ai.elimu.entity.content.multimedia;
 
 import ai.elimu.model.v2.enums.content.ImageFormat;
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
+import ai.elimu.util.GitHubLfsHelper;
+import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,18 +19,24 @@ public class Image extends Multimedia {
   @NotNull
   private String title;
 
-  @Deprecated
-  @Basic(fetch = FetchType.LAZY)
+  /**
+   * The file size (byte length).
+   */
   @NotNull
-  @Lob
-  @Column(length = 10485760) // 10MB
-  private byte[] bytes;
+  private Integer fileSize;
 
   /**
-   * IPFS Content Identifier (CID). Based on the file content's cryptographic hash.
+   * MD5 checksum of the file content.
+   */
+  @NotNull
+  private String checksumMd5;
+
+/**
+   * The blob SHA of the file. This value is returned from GitHub when creating new repository file
+   * content via their REST API (see {@link GitHubLfsHelper}).
    */
   // @NotNull
-  private String cid;
+  private String checksumGitHub;
 
   @NotNull
   @Enumerated(EnumType.STRING)
@@ -41,10 +46,13 @@ public class Image extends Multimedia {
   private String dominantColor; // Web color
 
   public String getUrl() {
-    if (cid != null) {
-      return "https://black-historic-wren-832.mypinata.cloud/ipfs/" + cid + "?img-width=640";
-    } else {
-      return "/image/" + getId() + "_r" + getRevisionNumber() + "." + imageFormat.toString().toLowerCase();
+    String filename = getChecksumMd5() + "." + getImageFormat().toString().toLowerCase();
+    if (StringUtils.isBlank(getChecksumGitHub())) {
+      filename = getId() + "_r" + getRevisionNumber() + "." + getImageFormat().toString().toLowerCase();
     }
+    return "https://raw.githubusercontent.com/elimu-ai/webapp-lfs/main" +
+        "/lang-" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language") +
+        "/images" +
+        "/" + filename;
   }
 }

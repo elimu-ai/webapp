@@ -1,4 +1,4 @@
-name: Maven Regression Test (REST)
+name: Maven Regression Tests (localhost)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test_rest_localhost:
+  test_rest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +22,8 @@ jobs:
       - run: sleep 30
       - run: mvn verify -P regression-test-rest
 
-  test_ui_localhost:
-    needs: test_rest_localhost
+  test_ui:
+    needs: test_rest
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

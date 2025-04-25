@@ -17,7 +17,9 @@ import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
+import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -110,8 +112,9 @@ public class ImageEditController {
       }
     }
 
+    byte[] bytes = null;
     try {
-      byte[] bytes = multipartFile.getBytes();
+      bytes = multipartFile.getBytes();
       if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
         result.rejectValue("bytes", "NotNull");
       } else {
@@ -138,7 +141,8 @@ public class ImageEditController {
           log.info("contentType: " + contentType);
           image.setContentType(contentType);
 
-          image.setBytes(bytes);
+          image.setFileSize(bytes.length);
+          image.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
         }
       }
     } catch (IOException e) {
@@ -163,6 +167,14 @@ public class ImageEditController {
       image.setTitle(image.getTitle().toLowerCase());
       image.setTimeLastUpdate(Calendar.getInstance());
       image.setRevisionNumber(image.getRevisionNumber() + 1);
+      Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(image.getChecksumMd5());
+      if (existingImageWithSameFileContent != null) {
+        // Re-use existing file
+        image.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
+      } else {
+        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
+        image.setChecksumGitHub(checksumGitHub);
+      }
       imageDao.update(image);
 
       ImageContributionEvent imageContributionEvent = new ImageContributionEvent();

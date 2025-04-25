@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassRelativeResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+
+import ai.elimu.model.v2.enums.Language;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +23,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
         assertEquals(2, storyBookParagraphs.size());
         assertEquals("Fifth grade student, Little Miss Grace,", storyBookParagraphs.get(0));
@@ -35,7 +37,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
         assertEquals(2, storyBookParagraphs.size());
         assertEquals("Some wild cats have stripes.", storyBookParagraphs.get(0));
@@ -49,7 +51,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
         assertEquals(2, storyBookParagraphs.size());
         assertEquals("Some wild cats have spots.", storyBookParagraphs.get(0));
@@ -63,7 +65,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("The moon rises.", storyBookParagraphs.get(0));
@@ -76,7 +78,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("What if I try talking to them? The moon slowly moves toward the group of stars.", storyBookParagraphs.get(0));
@@ -89,7 +91,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("Will they play with me? I am so different from them. I should try.", storyBookParagraphs.get(0));
@@ -102,7 +104,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.TGL);
 
         assertEquals(3, storyBookParagraphs.size());
         assertEquals("WAAAAHHHH!", storyBookParagraphs.get(0));
@@ -117,7 +119,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.TGL);
 
         assertEquals(2, storyBookParagraphs.size());
         assertEquals("Ano kaya kung kaya kang palundagin ng jelly beans nang napakataas?", storyBookParagraphs.get(0));
@@ -131,7 +133,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.TGL);
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("\"Nagmumuni-muni lang,\" sabi niya.", storyBookParagraphs.get(0));
@@ -145,7 +147,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.HIN);
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("उस मोटे राजा के पास एक पतला कुत्ता था । एक दिन मोटा राजा और उसका पतला कुत्ता सैर करने गए।", storyBookParagraphs.get(0));
@@ -158,7 +160,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.HIN);
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("एक बादल घुमने चला.", storyBookParagraphs.get(0));
@@ -171,7 +173,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.HIN);
 
         assertEquals(2, storyBookParagraphs.size());
         assertEquals("साथ में चिड़िया भी उड़ती", storyBookParagraphs.get(0));
@@ -185,7 +187,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
 
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.HIN);
 
         assertEquals(2, storyBookParagraphs.size());
         assertEquals("हमारा सबसे अच्छा मित्र है पक्षी!", storyBookParagraphs.get(0));
@@ -199,7 +201,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.HIN);
 
         assertEquals(3, storyBookParagraphs.size());
         assertEquals("एक गोजर एक बड़े से भूरे पत्ते के भीतर", storyBookParagraphs.get(0));
@@ -214,7 +216,7 @@ public class EPubParagraphExtractionHelperTest {
         File xhtmlFile = resource.getFile();
         log.debug("xhtmlFile: " + xhtmlFile);
         
-        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile);
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.HIN);
 
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("\"देखो माँ, मैं बंदर की तरह झूल रही हूँ।\"", storyBookParagraphs.get(0));

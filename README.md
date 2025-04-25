@@ -1,5 +1,6 @@
 # elimu.ai Webapp
 
+[![jitpack](https://jitpack.io/v/ai.elimu/webapp.svg)](https://jitpack.io/#ai.elimu/webapp)
 [![maven build](https://github.com/elimu-ai/webapp/actions/workflows/maven-build.yml/badge.svg)](https://github.com/elimu-ai/webapp/actions/workflows/maven-build.yml)
 [![codecov](https://codecov.io/gh/elimu-ai/webapp/branch/main/graph/badge.svg?token=T1F9OTQVOH)](https://codecov.io/gh/elimu-ai/webapp)
 [![commits](https://img.shields.io/github/commit-activity/m/elimu-ai/webapp)](https://github.com/elimu-ai/webapp/commits)
@@ -12,6 +13,7 @@ Deployments in production:
  * https://hin.elimu.ai - Hindi database content
  * https://tgl.elimu.ai - Tagalog database content
  * https://tha.elimu.ai - Thai database content
+ * https://vie.elimu.ai - Vietnamese database content
  * https://eng.elimu.ai - English database content
 
 [<kbd>![](https://github.com/elimu-ai/webapp/assets/15718174/32f3c339-aacc-4dc1-9692-c9435bc63d57)</kbd>](https://hin.elimu.ai)
