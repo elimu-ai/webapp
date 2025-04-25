@@ -106,7 +106,7 @@
                     <span class="card-title"><i class="material-icons">book</i> Storybooks</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/storybook/list' />">View list (${storyBookCount})</a>
+                    <a id="storyBookListLink" href="<spring:url value='/content/storybook/list' />">View list (${storyBookCount})</a>
                 </div>
             </div>
         </div>
