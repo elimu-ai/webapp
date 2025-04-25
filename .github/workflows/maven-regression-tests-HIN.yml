@@ -16,7 +16,6 @@ jobs:
           distribution: 'temurin'
           java-version: 17
           cache: maven
-      - run: mvn clean
       - run: mvn verify -P regression-test-rest -D base.url=http://hin.elimu.ai
 
   test_ui:
@@ -29,5 +28,4 @@ jobs:
           distribution: 'temurin'
           java-version: 17
           cache: maven
-      - run: mvn clean
       - run: mvn verify -P regression-test-ui -D base.url=http://hin.elimu.ai -D headless=true
