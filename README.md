@@ -10,11 +10,11 @@
 
 Deployments in production:
 
- * https://hin.elimu.ai - Hindi database content
- * https://tgl.elimu.ai - Tagalog database content
- * https://tha.elimu.ai - Thai database content
- * https://vie.elimu.ai - Vietnamese database content
- * https://eng.elimu.ai - English database content
+ * http://hin.elimu.ai - Hindi database content
+ * http://tgl.elimu.ai - Tagalog database content
+ * http://tha.elimu.ai - Thai database content
+ * http://vie.elimu.ai - Vietnamese database content
+ * http://eng.elimu.ai - English database content
 
 [<kbd>![](https://github.com/elimu-ai/webapp/assets/15718174/32f3c339-aacc-4dc1-9692-c9435bc63d57)</kbd>](https://hin.elimu.ai)
 
