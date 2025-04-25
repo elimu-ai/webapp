@@ -2,9 +2,9 @@ html {
     font-family: monospace, sans-serif;
 }
 code {
-    background-color: rgba(0,0,0, 0.05); /* deep-purple */
+    background-color: rgba(0,0,0, 0.1);
     border-radius: 4px;
-    padding: 4px;
+    padding: 4px 6px;
 }
 
 body {
