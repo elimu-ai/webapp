@@ -43,7 +43,7 @@ See [`TEST.md`](./TEST.md)
 
 ## Prod server
 
-    https://<language>.elimu.ai
+    http://<language>.elimu.ai
 
 > [!NOTE]
 > See instructions for deploying the webapp on a production server in [`src/main/config/DEPLOY.md`](./src/main/config/DEPLOY.md).
