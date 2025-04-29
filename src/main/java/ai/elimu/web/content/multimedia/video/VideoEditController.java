@@ -125,9 +125,9 @@ public class VideoEditController {
           log.info("contentType: " + contentType);
           video.setContentType(contentType);
 
+          video.setFileSize(bytes.length);
           video.setBytes(bytes);
           video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
-          // TODO: https://github.com/elimu-ai/webapp/issues/2137
 
           // TODO: convert to a default video format?
         }
