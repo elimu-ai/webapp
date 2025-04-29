@@ -26,11 +26,6 @@ public class Video extends Multimedia {
   @NotNull
   private Integer fileSize;
 
-  @NotNull
-  @Lob
-  @Column(length = 209715200) // 200MB
-  private byte[] bytes;
-
   /**
    * MD5 checksum of the file content.
    */
@@ -44,6 +39,7 @@ public class Video extends Multimedia {
   @NotNull
   private String checksumGitHub;
 
+  @Deprecated
   @NotNull
   @Lob
   @Column(length = 1048576) // 1MB

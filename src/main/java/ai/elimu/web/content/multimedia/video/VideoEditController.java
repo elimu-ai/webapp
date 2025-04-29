@@ -65,14 +65,6 @@ public class VideoEditController {
     log.info("handleRequest");
 
     Video video = videoDao.read(id);
-    if (StringUtils.isBlank(video.getChecksumGitHub())) {
-      String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, video.getBytes());
-      video.setChecksumGitHub(checksumGitHub);
-      video.setRevisionNumber(video.getRevisionNumber() + 1);
-      videoDao.update(video);
-
-      // TODO: https://github.com/elimu-ai/webapp/issues/1545
-    }
     model.addAttribute("video", video);
 
     model.addAttribute("contentLicenses", ContentLicense.values());
@@ -105,8 +97,9 @@ public class VideoEditController {
       }
     }
 
+    byte[] bytes = null;
     try {
-      byte[] bytes = multipartFile.getBytes();
+      bytes = multipartFile.getBytes();
       if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
         result.rejectValue("bytes", "NotNull");
       } else {
@@ -125,9 +118,8 @@ public class VideoEditController {
           log.info("contentType: " + contentType);
           video.setContentType(contentType);
 
-          video.setBytes(bytes);
+          video.setFileSize(bytes.length);
           video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
-          // TODO: https://github.com/elimu-ai/webapp/issues/2137
 
           // TODO: convert to a default video format?
         }
@@ -150,6 +142,14 @@ public class VideoEditController {
       video.setTitle(video.getTitle().toLowerCase());
       video.setTimeLastUpdate(Calendar.getInstance());
       video.setRevisionNumber(video.getRevisionNumber() + 1);
+      Video existingVideoWithSameFileContent = videoDao.readByChecksumMd5(video.getChecksumMd5());
+      if (existingVideoWithSameFileContent != null) {
+        // Re-use existing file
+        video.setChecksumGitHub(existingVideoWithSameFileContent.getChecksumGitHub());
+      } else {
+        String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, bytes);
+        video.setChecksumGitHub(checksumGitHub);
+      }
       videoDao.update(video);
 
       // TODO: https://github.com/elimu-ai/webapp/issues/1545

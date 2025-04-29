@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 @RequestMapping("/content/video/list/videos.csv")
 @RequiredArgsConstructor
@@ -28,7 +27,7 @@ public class VideoCsvExportController {
     log.info("handleRequest");
 
     // Generate CSV file
-    String csvFileContent = "id,content_type,content_license,attribution_url,title,checksum_md5,file_url,video_format" + "\n";
+    String csvFileContent = "id,content_type,content_license,attribution_url,title,checksum_md5,file_url,file_size,video_format" + "\n";
     List<Video> videos = videoDao.readAllOrderedById();
     log.info("videos.size(): " + videos.size());
     for (Video video : videos) {
@@ -39,6 +38,7 @@ public class VideoCsvExportController {
           + "\"" + video.getTitle() + "\","
           + "\"" + video.getChecksumMd5() + "\","
           + "\"" + video.getUrl() + "\","
+          + "\"" + video.getFileSize() + "\","
           + video.getVideoFormat() + "\n";
     }
 

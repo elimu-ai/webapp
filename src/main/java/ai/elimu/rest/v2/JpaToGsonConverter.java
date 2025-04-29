@@ -354,7 +354,7 @@ public class JpaToGsonConverter {
             videoGson.setVideoFormat(video.getVideoFormat());
             videoGson.setChecksumMd5(video.getChecksumMd5());
             videoGson.setFileUrl(video.getUrl());
-            videoGson.setFileSize(video.getBytes().length / 1024);
+            videoGson.setFileSize(video.getFileSize());
             videoGson.setThumbnailUrl("/video/" + video.getId() + "_r" + video.getRevisionNumber() + "_thumbnail.png");
             Set<WordGson> wordGsons = new HashSet<>();
             for (Word word : video.getWords()) {

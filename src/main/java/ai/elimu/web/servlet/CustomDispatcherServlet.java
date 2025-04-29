@@ -9,6 +9,7 @@ import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Letter;
@@ -19,10 +20,12 @@ import ai.elimu.entity.content.StoryBook;
 import ai.elimu.entity.content.StoryBookChapter;
 import ai.elimu.entity.content.Word;
 import ai.elimu.entity.content.multimedia.Image;
+import ai.elimu.entity.content.multimedia.Video;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.content.ImageFormat;
+import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.ImageColorHelper;
@@ -258,5 +261,25 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         storyBookChapter.setStoryBook(storyBook);
         storyBookChapter.setSortOrder(0);
         storyBookChapterDao.create(storyBookChapter);
+
+
+        VideoDao videoDao = (VideoDao) webApplicationContext.getBean("videoDao");
+
+        Video video = new Video();
+        video.setTitle("placeholder");
+        try {
+            ResourceLoader resourceLoader = new ClassRelativeResourceLoader(this.getClass());
+            Resource resource = resourceLoader.getResource("placeholder.mp4");
+            byte[] bytes = Files.readAllBytes(resource.getFile().toPath());
+            video.setFileSize(bytes.length);
+            video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
+            video.setChecksumGitHub("1331d7c476649f4449ec7c6663fc107ce2b4d88b");
+            video.setThumbnail(Files.readAllBytes(new ClassRelativeResourceLoader(this.getClass()).getResource("placeholder.png").getFile().toPath()));
+        } catch (IOException e) {
+            logger.error(null, e);
+        }
+        video.setVideoFormat(VideoFormat.MP4);
+        video.setContentType("video/mp4");
+        videoDao.create(video);
     }
 }

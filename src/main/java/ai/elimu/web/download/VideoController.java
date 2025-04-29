@@ -22,48 +22,6 @@ public class VideoController {
 
   private final VideoDao videoDao;
 
-  @GetMapping(value="/{videoId}_r{revisionNumber}.{videoFormat}")
-  public void handleRequest(
-      Model model,
-      @PathVariable Long videoId,
-      @PathVariable Integer revisionNumber,
-      @PathVariable String videoFormat,
-      HttpServletResponse response,
-      OutputStream outputStream) {
-    log.info("handleRequest");
-
-    log.info("videoId: " + videoId);
-    log.info("revisionNumber: " + revisionNumber);
-    log.info("videoFormat: " + videoFormat);
-
-    Video video = videoDao.read(videoId);
-
-    response.setContentType(video.getContentType());
-
-    byte[] bytes = video.getBytes();
-    response.setContentLength(bytes.length);
-    try {
-      outputStream.write(bytes);
-    } catch (EOFException ex) {
-      // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-      log.warn(ex.getMessage());
-    } catch (IOException ex) {
-      log.error(ex.getMessage());
-    } finally {
-      try {
-        try {
-          outputStream.flush();
-          outputStream.close();
-        } catch (EOFException ex) {
-          // org.eclipse.jetty.io.EofException (occurs when download is aborted before completion)
-          log.warn(ex.getMessage());
-        }
-      } catch (IOException ex) {
-        log.error(ex.getMessage());
-      }
-    }
-  }
-
   @GetMapping(value = "/{videoId}_r{revisionNumber}_thumbnail.png")
   public void handleThumbnailRequest(
       Model model,
