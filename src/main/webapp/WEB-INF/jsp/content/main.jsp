@@ -117,7 +117,7 @@
                     <span class="card-title"><i class="material-icons">movie</i> Videos</span>
                 </div>
                 <div class="card-action">
-                    <a href="<spring:url value='/content/multimedia/video/list' />">View list (${videoCount})</a>
+                    <a id="videoListLink" href="<spring:url value='/content/multimedia/video/list' />">View list (${videoCount})</a>
                 </div>
             </div>
         </div>

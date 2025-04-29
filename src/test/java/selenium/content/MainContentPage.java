@@ -53,4 +53,9 @@ public class MainContentPage {
         WebElement link = driver.findElement(By.id("storyBookListLink"));
         link.click();
     }
+
+    public void pressVideoListLink() {
+        WebElement link = driver.findElement(By.id("videoListLink"));
+        link.click();
+    }
 }
