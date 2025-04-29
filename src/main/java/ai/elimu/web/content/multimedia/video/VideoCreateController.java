@@ -69,8 +69,9 @@ public class VideoCreateController {
       }
     }
 
+    byte[] bytes = null;
     try {
-      byte[] bytes = multipartFile.getBytes();
+      bytes = multipartFile.getBytes();
       if (multipartFile.isEmpty() || (bytes == null) || (bytes.length == 0)) {
         result.rejectValue("bytes", "NotNull");
       } else {
@@ -123,8 +124,14 @@ public class VideoCreateController {
     } else {
       video.setTitle(video.getTitle().toLowerCase());
       video.setTimeLastUpdate(Calendar.getInstance());
-      String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, video.getBytes());
-      video.setChecksumGitHub(checksumGitHub);
+      Video existingVideoWithSameFileContent = videoDao.readByChecksumMd5(video.getChecksumMd5());
+      if (existingVideoWithSameFileContent != null) {
+        // Re-use existing file
+        video.setChecksumGitHub(existingVideoWithSameFileContent.getChecksumGitHub());
+      } else {
+        String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, bytes);
+        video.setChecksumGitHub(checksumGitHub);
+      }
       videoDao.create(video);
 
       // TODO: https://github.com/elimu-ai/webapp/issues/1545
