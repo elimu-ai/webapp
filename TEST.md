@@ -34,7 +34,7 @@ Then, in another terminal window run all the regression tests against the REST A
 > [!TIP]
 > If you want to run the tests against another URL, set the `base.url` system property:
 > 
->     mvn verify -P regression-test-rest -D base.url=https://eng.elimu.ai
+>     mvn verify -P regression-test-rest -D base.url=http://eng.elimu.ai
 
 #### UI
 
@@ -49,7 +49,7 @@ Then, in another terminal window run all the regression tests against the UI:
 > [!TIP]
 > If you want to run the tests against another URL, set the `base.url` system property:
 > 
->     mvn verify -P regression-test-ui -D base.url=https://eng.elimu.ai
+>     mvn verify -P regression-test-ui -D base.url=http://eng.elimu.ai
 
 ##### Headless 😶‍🌫️
 
