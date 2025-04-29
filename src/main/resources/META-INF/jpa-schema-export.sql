@@ -510,6 +510,7 @@
         bytes longblob,
         checksumGitHub varchar(255),
         checksumMd5 varchar(255),
+        fileSize integer,
         thumbnail mediumblob,
         title varchar(255),
         videoFormat varchar(255),
