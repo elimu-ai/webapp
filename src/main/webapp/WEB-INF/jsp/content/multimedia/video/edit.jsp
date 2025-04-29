@@ -89,7 +89,7 @@
                 <div class="file-field input-field col s12">
                     <div class="btn">
                         <span>File (M4V/MP4)</span>
-                        <form:input path="bytes" type="file" />
+                        <input name="bytes" type="file" />
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" />
@@ -357,6 +357,10 @@
     </script>
 
     <div class="divider" style="margin-bottom: 1em;"></div>
+
+    <label>file_size</label><br />
+    <code>${video.fileSize} bytes</code><br />
+    <br />
 
     <label>checksum_md5</label><br />
     <code>${video.checksumMd5}</code><br />

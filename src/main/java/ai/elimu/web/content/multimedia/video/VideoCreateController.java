@@ -91,7 +91,6 @@ public class VideoCreateController {
           video.setContentType(contentType);
 
           video.setFileSize(bytes.length);
-          video.setBytes(bytes);
           video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
 
           // TODO: convert to a default video format?

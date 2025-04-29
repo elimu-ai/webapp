@@ -274,6 +274,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
             video.setFileSize(bytes.length);
             video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
             video.setChecksumGitHub("1331d7c476649f4449ec7c6663fc107ce2b4d88b");
+            video.setThumbnail(Files.readAllBytes(new ClassRelativeResourceLoader(this.getClass()).getResource("placeholder.png").getFile().toPath()));
         } catch (IOException e) {
             logger.error(null, e);
         }

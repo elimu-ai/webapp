@@ -507,7 +507,6 @@
         attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
-        bytes longblob,
         checksumGitHub varchar(255),
         checksumMd5 varchar(255),
         fileSize integer,

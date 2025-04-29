@@ -65,14 +65,6 @@ public class VideoEditController {
     log.info("handleRequest");
 
     Video video = videoDao.read(id);
-    if (StringUtils.isBlank(video.getChecksumGitHub())) {
-      String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, video.getBytes());
-      video.setChecksumGitHub(checksumGitHub);
-      video.setRevisionNumber(video.getRevisionNumber() + 1);
-      videoDao.update(video);
-
-      // TODO: https://github.com/elimu-ai/webapp/issues/1545
-    }
     model.addAttribute("video", video);
 
     model.addAttribute("contentLicenses", ContentLicense.values());
@@ -127,7 +119,6 @@ public class VideoEditController {
           video.setContentType(contentType);
 
           video.setFileSize(bytes.length);
-          video.setBytes(bytes);
           video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
 
           // TODO: convert to a default video format?
