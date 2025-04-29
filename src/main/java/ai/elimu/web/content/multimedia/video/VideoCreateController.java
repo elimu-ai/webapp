@@ -122,9 +122,9 @@ public class VideoCreateController {
       return "content/multimedia/video/create";
     } else {
       video.setTitle(video.getTitle().toLowerCase());
+      video.setTimeLastUpdate(Calendar.getInstance());
       String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, video.getBytes());
       video.setChecksumGitHub(checksumGitHub);
-      video.setTimeLastUpdate(Calendar.getInstance());
       videoDao.create(video);
 
       // TODO: https://github.com/elimu-ai/webapp/issues/1545
