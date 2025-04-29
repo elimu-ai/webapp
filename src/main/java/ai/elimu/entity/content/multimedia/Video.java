@@ -20,6 +20,12 @@ public class Video extends Multimedia {
   @NotNull
   private String title;
 
+  /**
+   * The file size (byte length).
+   */
+  @NotNull
+  private Integer fileSize;
+
   @NotNull
   @Lob
   @Column(length = 209715200) // 200MB
