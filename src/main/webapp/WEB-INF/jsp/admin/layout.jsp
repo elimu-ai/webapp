@@ -69,29 +69,8 @@
                 </div>
                 <div class="col s6">
                     <ul class="right">
-                        <a class="dropdown-button" data-activates="contributorDropdown" data-beloworigin="true" >
-                            <div class="chip">
-                                <c:choose>
-                                    <c:when test="${not empty contributor.imageUrl}">
-                                        <img src="${contributor.imageUrl}" />
-                                    </c:when>
-                                    <c:when test="${not empty contributor.providerIdWeb3}">
-                                        <img src="https://effigy.im/a/<c:out value="${contributor.providerIdWeb3}" />.svg" />
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="<spring:url value='/static/img/placeholder.png' />" />
-                                    </c:otherwise>
-                                </c:choose>
-                                <c:choose>
-                                    <c:when test="${not empty contributor.firstName}">
-                                        <c:out value="${contributor.firstName}" />&nbsp;<c:out value="${contributor.lastName}" />
-                                    </c:when>
-                                    <c:when test="${not empty contributor.providerIdWeb3}">
-                                        ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
-                                    </c:when>
-                                </c:choose>
-                            </div>
-                        </a>
+                        <c:set var="chipContributor" value="${contributor}" />
+                        <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                         <ul id='contributorDropdown' class='dropdown-content'>
                             <li><a href="<spring:url value='/contributor/${contributor.id}' />"><i class="material-icons left">art_track</i>My contributions</a></li>
                             <li class="divider"></li>

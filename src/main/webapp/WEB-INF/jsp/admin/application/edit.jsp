@@ -143,12 +143,8 @@
                                     <td>API ${applicationVersion.minSdkVersion}</td>
                                     <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" pattern="yyyy-MM-dd" /></td>
                                     <td>
-                                        <a href="<spring:url value='/contributor/${applicationVersion.contributor.id}' />">
-                                            <div class="chip">
-                                                <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
-                                                <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
-                                            </div>
-                                        </a>
+                                        <c:set var="chipContributor" value="${applicationVersion.contributor}" />
+                                        <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                                     </td>
                                     <td>
                                         <a href="<spring:url value='${applicationVersion.fileUrl}' />" class="waves-effect waves-light btn-small" title="Download">
