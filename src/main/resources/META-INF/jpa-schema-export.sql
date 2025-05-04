@@ -124,7 +124,6 @@
 
     create table ApplicationVersion (
        id bigint not null auto_increment,
-        bytes longblob,
         checksumMd5 varchar(255),
         contentType varchar(255),
         fileSizeInKb integer,

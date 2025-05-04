@@ -23,14 +23,6 @@ public class ApplicationVersion extends BaseEntity {
   private Application application;
 
   /**
-   * Do not use this property to calculate the size of the APK file. Instead, use the {@link #fileSizeInKb} property.
-   */
-  @NotNull
-  @Lob
-  @Column(length = 1073741824) // 1024MB
-  private byte[] bytes;
-
-  /**
    * This property is used to prevent calls to {@link #bytes} just to get the size of the APK file.
    */
   @NotNull
@@ -42,6 +34,7 @@ public class ApplicationVersion extends BaseEntity {
   @NotNull
   private String checksumMd5;
 
+  @Deprecated
   @NotNull
   private String contentType;
 
@@ -68,4 +61,15 @@ public class ApplicationVersion extends BaseEntity {
 
   @ManyToOne
   private Contributor contributor;
+
+  /**
+   * E.g. "https://jitpack.io/ai/elimu/sound-cards/2.1.0/sound-cards-2.1.0.apk"
+   */
+  public String getFileUrl() {
+    return "https://jitpack.io/ai/elimu" +
+        "/" + getApplication().getPackageName().replace("ai.elimu.", "") +
+        "/app" +
+        "/" + getVersionName() + 
+        "/app-" + getVersionName() + ".apk";
+  }
 }
