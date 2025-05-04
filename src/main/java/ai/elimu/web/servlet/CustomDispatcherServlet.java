@@ -1,5 +1,6 @@
 package ai.elimu.web.servlet;
 
+import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
@@ -11,6 +12,7 @@ import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.entity.admin.Application;
 import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.LetterSound;
@@ -24,6 +26,7 @@ import ai.elimu.entity.content.multimedia.Video;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
+import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.util.ChecksumHelper;
@@ -281,5 +284,14 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         video.setVideoFormat(VideoFormat.MP4);
         video.setContentType("video/mp4");
         videoDao.create(video);
+
+
+        ApplicationDao applicationDao = (ApplicationDao) webApplicationContext.getBean("applicationDao");
+
+        Application application = new Application();
+        application.setPackageName("ai.elimu.soundcards");
+        application.setApplicationStatus(ApplicationStatus.MISSING_APK);
+        application.setContributor(contributor);
+        applicationDao.create(application);
     }
 }
