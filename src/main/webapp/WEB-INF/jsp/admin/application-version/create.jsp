@@ -1,59 +1,55 @@
 <content:title>
-    Upload new APK file
+    Publish new APK file
 </content:title>
 
 <content:section cssId="applicationVersionCreatePage">
     <h4><content:gettitle /></h4>
     <div class="card-panel">
-        <form:form modelAttribute="applicationVersion" enctype="multipart/form-data">
+        <form:form modelAttribute="applicationVersion">
             <tag:formErrors modelAttribute="applicationVersion" />
+
+            <form:hidden path="application" value="${applicationVersion.application.id}" />
+            <form:hidden path="contributor" value="${contributor.id}" />
             
             <p>
                 Package name: <code>${applicationVersion.application.packageName}</code>
             </p>
 
-            <div class="row">
-                <form:hidden path="application" value="${applicationVersion.application.id}" />
-                <form:hidden path="contributor" value="${contributor.id}" />
-            </div>
-            
-            <div class="col s12" style="padding: 3em; background: #F4F4F4; border: 2px dashed #CCC; border-radius: 8px;">
-                <p class="center grey-text">
-                    Drag & drop your APK file here, or select a file.
-                </p>
-                <div class="file-field input-field col s8 offset-s2 center">
-                    <div class="btn">
-                        <span>File</span>
-                        <form:input path="bytes" type="file" />
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" />
-                    </div>
-                    <script>
-                        $(function() {
-                            $('#bytes').on('change', function() {
-                                console.info('#bytes on change');
+            <div class="divider" style="margin: 1.5em 0;"></div>
 
-                                $(this).parents('form').submit();
-                                Materialize.toast('Processing APK. Please wait...', 4000, 'rounded');
-                            });
-                        });
-                    </script>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="fileUrl" class="active">APK file URL</label>
+                    <input id="fileUrl" name="fileUrl" 
+                            type="url"
+                            placeholder="https://jitpack.io/ai/elimu/sound-cards/2.1.0/sound-cards-2.1.0.apk"
+                            required="required" />
                 </div>
             </div>
-            <div style="clear: both;"></div>
+            
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
+                Publish <i class="material-icons right">send</i>
+            </button>
         </form:form>
+        <script>
+            $(function() {
+                $('form').on('submit', function() {
+                    console.info('form on submit');
+                    Materialize.toast('Processing APK. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
     </div>
 </content:section>
 
 <content:aside>
     <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
-        Once uploaded, the APK will become available for download to an Android device through the Appstore application:
-        <ol style="list-style-type: inherit;">
-            <li>
-                <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a>
-            </li>
-        </ol>
+        <p>
+            Once published, the APK will become available for download through the <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a>.
+        </p>
+        <a href="https://github.com/elimu-ai/appstore" target="_blank">
+            <img src="https://user-images.githubusercontent.com/15718174/84632262-39fec180-af21-11ea-8a8a-215120744f05.png" />
+        </a>
     </div>
 </content:aside>

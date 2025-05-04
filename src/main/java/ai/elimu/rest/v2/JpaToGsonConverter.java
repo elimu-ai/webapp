@@ -327,7 +327,7 @@ public class JpaToGsonConverter {
             applicationVersionGson.setId(applicationVersion.getId());
             
             // ApplicationVersion
-            applicationVersionGson.setFileUrl("/apk/" + applicationVersion.getApplication().getPackageName() + "-" + applicationVersion.getVersionCode() + ".apk");
+            applicationVersionGson.setFileUrl(applicationVersion.getFileUrl());
             applicationVersionGson.setFileSizeInKb(applicationVersion.getFileSizeInKb());
             applicationVersionGson.setChecksumMd5(applicationVersion.getChecksumMd5());
             applicationVersionGson.setVersionCode(applicationVersion.getVersionCode());

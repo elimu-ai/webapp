@@ -6,7 +6,7 @@
     <h4><content:gettitle /></h4>
     <c:if test="${empty applicationVersions}">
         <div class="card-panel amber lighten-3">
-            <b>Note:</b> The application will not be active until you upload a corresponding APK file.
+            <b>Note:</b> The application will not be active until you publish a corresponding APK file.
         </div>
     </c:if>
     <div class="card-panel">
@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit">
+            <button id="submitButton" class="btn-large waves-effect waves-light" type="submit" <c:if test="${empty contributor}">disabled</c:if>>
                 Edit <i class="material-icons right">send</i>
             </button>
         </form:form>    
@@ -119,7 +119,7 @@
                 <a name="versions"></a>
                 <h5>Application versions</h5>
                 <p>
-                    <a href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">file_upload</i>Upload new APK file</a>
+                    <a class="publishLink" href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">new_releases</i>Publish new APK file</a>
                 </p>
                 <c:if test="${not empty applicationVersions}">
                     <table class="bordered highlight">
@@ -136,20 +136,22 @@
                         <tbody>
                             <c:forEach var="applicationVersion" items="${applicationVersions}">
                                 <tr>
-                                    <td>${applicationVersion.label}</td>
-                                    <td>${applicationVersion.versionCode}</td>
-                                    <td>${applicationVersion.versionName}</td>
+                                    <td>"${applicationVersion.label}"</td>
+                                    <td><code>${applicationVersion.versionCode}</code></td>
+                                    <td><code>${applicationVersion.versionName}</code></td>
                                     <td><fmt:formatNumber value="${applicationVersion.fileSizeInKb / 1024}" maxFractionDigits="2" />MB</td>
-                                    <td><c:out value="${applicationVersion.minSdkVersion}" /></td>
-                                    <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" type="both" timeStyle="short" /></td>
+                                    <td>API ${applicationVersion.minSdkVersion}</td>
+                                    <td><fmt:formatDate value="${applicationVersion.timeUploaded.time}" pattern="yyyy-MM-dd" /></td>
                                     <td>
-                                        <div class="chip">
-                                            <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
-                                            <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
-                                        </div>
+                                        <a href="<spring:url value='/contributor/${applicationVersion.contributor.id}' />">
+                                            <div class="chip">
+                                                <img src="<spring:url value='${applicationVersion.contributor.imageUrl}' />" alt="${applicationVersion.contributor.firstName}" /> 
+                                                <c:out value="${applicationVersion.contributor.firstName}" />&nbsp;<c:out value="${applicationVersion.contributor.lastName}" />
+                                            </div>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="<spring:url value='/apk/${application.packageName}-${applicationVersion.versionCode}.apk' />" class="waves-effect waves-light btn-small" title="Download">
+                                        <a href="<spring:url value='${applicationVersion.fileUrl}' />" class="waves-effect waves-light btn-small" title="Download">
                                             <i class="material-icons">vertical_align_bottom</i>
                                         </a>
                                     </td>
