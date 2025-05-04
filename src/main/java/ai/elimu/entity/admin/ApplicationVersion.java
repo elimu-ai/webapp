@@ -63,13 +63,14 @@ public class ApplicationVersion extends BaseEntity {
   private Contributor contributor;
 
   /**
-   * E.g. "https://jitpack.io/ai/elimu/sound-cards/2.1.0/sound-cards-2.1.0.apk"
+   * E.g. "https://github.com/elimu-ai/sound-cards/releases/download/2.1.0/ai.elimu.soundcards-2.1.0.apk"
    */
   public String getFileUrl() {
-    return "https://jitpack.io/ai/elimu" +
+    return "https://github.com/elimu-ai" +
         "/" + getApplication().getPackageName().replace("ai.elimu.", "") +
-        "/app" +
-        "/" + getVersionName() + 
-        "/app-" + getVersionName() + ".apk";
+        "/releases" +
+        "/download" +
+        "/" + getVersionName() +
+        "/" + getApplication().getPackageName() + "-" + getVersionName() + ".apk";
   }
 }
