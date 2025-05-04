@@ -22,7 +22,7 @@
                     <label for="fileUrl" class="active">APK file URL</label>
                     <input id="fileUrl" name="fileUrl" 
                             type="url"
-                            placeholder="https://jitpack.io/ai/elimu/sound-cards/2.1.0/sound-cards-2.1.0.apk"
+                            placeholder="https://github.com/elimu-ai/sound-cards/releases/download/2.1.0/ai.elimu.soundcards-2.1.0.apk"
                             required="required" />
                 </div>
             </div>
