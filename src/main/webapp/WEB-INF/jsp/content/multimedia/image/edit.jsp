@@ -138,29 +138,8 @@
                     Revision #${imageContributionEvent.revisionNumber} 
                     (<fmt:formatDate value="${imageContributionEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />)
                 </span>
-                <a href="<spring:url value='/contributor/${imageContributionEvent.contributor.id}' />">
-                    <div class="chip">
-                        <c:choose>
-                            <c:when test="${not empty imageContributionEvent.contributor.imageUrl}">
-                                <img src="${imageContributionEvent.contributor.imageUrl}" />
-                            </c:when>
-                            <c:when test="${not empty imageContributionEvent.contributor.providerIdWeb3}">
-                                <img src="https://effigy.im/a/<c:out value="${imageContributionEvent.contributor.providerIdWeb3}" />.svg" />
-                            </c:when>
-                            <c:otherwise>
-                                <img src="<spring:url value='/static/img/placeholder.png' />" />
-                            </c:otherwise>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${not empty imageContributionEvent.contributor.firstName}">
-                                <c:out value="${imageContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${imageContributionEvent.contributor.lastName}" />
-                            </c:when>
-                            <c:when test="${not empty imageContributionEvent.contributor.providerIdWeb3}">
-                                ${fn:substring(imageContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(imageContributionEvent.contributor.providerIdWeb3, 38, 42)}
-                            </c:when>
-                        </c:choose>
-                    </div>
-                </a>
+                <c:set var="chipContributor" value="${imageContributionEvent.contributor}" />
+                <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                 <c:if test="${not empty imageContributionEvent.comment}">
                     <blockquote><c:out value="${imageContributionEvent.comment}" /></blockquote>
                 </c:if>

@@ -43,29 +43,8 @@
                                 <c:if test="${storyBookPeerReviewEvent.storyBookContributionEvent.id == storyBookContributionEvent.id}">
                                     <div class="row peerReviewEvent indent" data-approved="${storyBookPeerReviewEvent.getApproved()}">
                                         <div class="col s4">
-                                            <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
-                                                <div class="chip">
-                                                    <c:choose>
-                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
-                                                            <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
-                                                        </c:when>
-                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                                            <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                    <c:choose>
-                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.firstName}">
-                                                            <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
-                                                        </c:when>
-                                                        <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                                            ${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
-                                                        </c:when>
-                                                    </c:choose>
-                                                </div>
-                                            </a>
+                                            <c:set var="chipContributor" value="${storyBookPeerReviewEvent.contributor}" />
+                                            <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                                         </div>
                                         <div class="col s4">
                                             <code class="peerReviewStatus">
@@ -117,29 +96,8 @@
                         <td>
                             <div class="row peerReviewEvent" data-approved="${storyBookPeerReviewEvent.getApproved()}">
                                 <div class="col s4">
-                                    <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.contributor.id}' />">
-                                        <div class="chip">
-                                            <c:choose>
-                                                <c:when test="${not empty storyBookPeerReviewEvent.contributor.imageUrl}">
-                                                    <img src="${storyBookPeerReviewEvent.contributor.imageUrl}" />
-                                                </c:when>
-                                                <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                                    <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.contributor.providerIdWeb3}" />.svg" />
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="<spring:url value='/static/img/placeholder.png' />" />
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <c:choose>
-                                                <c:when test="${not empty storyBookPeerReviewEvent.contributor.firstName}">
-                                                    <c:out value="${storyBookPeerReviewEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.contributor.lastName}" />
-                                                </c:when>
-                                                <c:when test="${not empty storyBookPeerReviewEvent.contributor.providerIdWeb3}">
-                                                    ${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.contributor.providerIdWeb3, 38, 42)}
-                                                </c:when>
-                                            </c:choose>
-                                        </div>
-                                    </a>
+                                    <c:set var="chipContributor" value="${storyBookPeerReviewEvent.contributor}" />
+                                    <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                                 </div>
                                 <div class="col s4">
                                     <code class="peerReviewStatus">
@@ -173,29 +131,8 @@
                             </c:choose>
                         </td>
                         <td>
-                            <a href="<spring:url value='/contributor/${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.id}' />">
-                                <div class="chip">
-                                    <c:choose>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.storyBookContributionEvent.contributor.imageUrl}">
-                                            <img src="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.imageUrl}" />
-                                        </c:when>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3}">
-                                            <img src="https://effigy.im/a/<c:out value="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3}" />.svg" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <img src="<spring:url value='/static/img/placeholder.png' />" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.storyBookContributionEvent.contributor.firstName}">
-                                            <c:out value="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.firstName}" />&nbsp;<c:out value="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor.lastName}" />
-                                        </c:when>
-                                        <c:when test="${not empty storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3}">
-                                            ${fn:substring(storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3, 0, 6)}...${fn:substring(storyBookPeerReviewEvent.storyBookContributionEvent.contributor.providerIdWeb3, 38, 42)}
-                                        </c:when>
-                                    </c:choose>
-                                </div>
-                            </a>
+                            <c:set var="chipContributor" value="${storyBookPeerReviewEvent.storyBookContributionEvent.contributor}" />
+                            <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                         </td>
                     </tr>
                 </c:forEach>

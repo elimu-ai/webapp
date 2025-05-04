@@ -75,7 +75,7 @@
                         <tr>
                             <td>
                                 <a name="${application.id}"></a>
-                                <a class="editLink" href="<spring:url value='/admin/application/edit/${application.id}' />">${application.packageName}</a>
+                                <a class="editLink" href="<spring:url value='/admin/application/edit/${application.id}' />"><code>${application.packageName}</code></a>
                             </td>
                             <td>
                                 ${application.literacySkills}
@@ -87,10 +87,8 @@
                                 ${application.applicationStatus}
                             </td>
                             <td>
-                                <div class="chip">
-                                    <img src="<spring:url value='${application.contributor.imageUrl}' />" alt="${application.contributor.firstName}" /> 
-                                    <c:out value="${application.contributor.firstName}" />&nbsp;<c:out value="${application.contributor.lastName}" />
-                                </div>
+                                <c:set var="chipContributor" value="${application.contributor}" />
+                                <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                             </td>
                         </tr>
                     </c:forEach>

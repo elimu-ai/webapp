@@ -130,32 +130,8 @@
                                 </li>
                             </ul>
                             <ul class="right">
-                                <a href="<spring:url value='/content' />">
-                                    <div class="chip">
-                                        <c:choose>
-                                            <c:when test="${not empty contributor.imageUrl}">
-                                                <img src="${contributor.imageUrl}" />
-                                            </c:when>
-                                            <c:when test="${not empty contributor.providerIdWeb3}">
-                                                <img src="https://effigy.im/a/<c:out value="${contributor.providerIdWeb3}" />.svg" />
-                                            </c:when>
-                                            <c:otherwise>
-                                                <img src="<spring:url value='/static/img/placeholder.png' />" />
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <c:choose>
-                                            <c:when test="${not empty contributor.firstName}">
-                                                <span class="contributor-name-wrapper" aria-label="${contributor.firstName}">
-                                                    <span><c:out value="${contributor.firstName}" /></span>
-                                                    <span><c:out value="${contributor.lastName}" /></span>
-                                                </span>
-                                            </c:when>
-                                            <c:when test="${not empty contributor.providerIdWeb3}">
-                                                ${fn:substring(contributor.providerIdWeb3, 0, 6)}...${fn:substring(contributor.providerIdWeb3, 38, 42)}
-                                            </c:when>
-                                        </c:choose>
-                                    </div>
-                                </a>
+                                <c:set var="chipContributor" value="${contributor}" />
+                                <%@ include file="/WEB-INF/jsp/contributor/chip-contributor.jsp" %>
                             </ul>
                         </c:if>
                         
