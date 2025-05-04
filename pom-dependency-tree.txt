@@ -1,4 +1,4 @@
-ai.elimu:webapp:war:2.5.109-SNAPSHOT
+ai.elimu:webapp:war:2.6.0-SNAPSHOT
 +- ai.elimu:model:jar:model-2.0.97:compile
 |  \- com.google.code.gson:gson:jar:2.13.0:compile
 |     \- com.google.errorprone:error_prone_annotations:jar:2.37.0:compile
@@ -107,14 +107,14 @@ ai.elimu:webapp:war:2.5.109-SNAPSHOT
 |  \- commons-pool:commons-pool:jar:1.5.4:compile
 +- jakarta.servlet:jakarta.servlet-api:jar:5.0.0:provided
 +- jakarta.servlet.jsp:jakarta.servlet.jsp-api:jar:3.0.0:provided
-+- org.junit.jupiter:junit-jupiter:jar:5.10.3:test
-|  +- org.junit.jupiter:junit-jupiter-api:jar:5.10.3:test
++- org.junit.jupiter:junit-jupiter:jar:5.12.2:test
+|  +- org.junit.jupiter:junit-jupiter-api:jar:5.12.2:test
 |  |  +- org.opentest4j:opentest4j:jar:1.3.0:test
-|  |  +- org.junit.platform:junit-platform-commons:jar:1.10.3:test
+|  |  +- org.junit.platform:junit-platform-commons:jar:1.12.2:test
 |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:test
-|  +- org.junit.jupiter:junit-jupiter-params:jar:5.10.3:test
-|  \- org.junit.jupiter:junit-jupiter-engine:jar:5.10.3:test
-|     \- org.junit.platform:junit-platform-engine:jar:1.10.3:test
+|  +- org.junit.jupiter:junit-jupiter-params:jar:5.12.2:test
+|  \- org.junit.jupiter:junit-jupiter-engine:jar:5.12.2:test
+|     \- org.junit.platform:junit-platform-engine:jar:1.12.2:test
 +- org.mockito:mockito-core:jar:5.12.0:test
 |  +- net.bytebuddy:byte-buddy-agent:jar:1.14.15:test
 |  \- org.objenesis:objenesis:jar:3.3:test

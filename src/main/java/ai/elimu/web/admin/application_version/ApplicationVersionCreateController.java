@@ -7,28 +7,31 @@ import ai.elimu.entity.admin.ApplicationVersion;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 @Controller
 @RequestMapping("/admin/application-version/create")
@@ -36,11 +39,11 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @Slf4j
 public class ApplicationVersionCreateController {
 
+  private final int MIN_SDK_VERSION = 26;
+
   private final ApplicationDao applicationDao;
 
   private final ApplicationVersionDao applicationVersionDao;
-
-  private final int MIN_SDK_VERSION = 26;
 
   @GetMapping
   public String handleRequest(
@@ -62,86 +65,90 @@ public class ApplicationVersionCreateController {
   @PostMapping
   public String handleSubmit(
       ApplicationVersion applicationVersion,
-      @RequestParam("bytes") MultipartFile multipartFile,
       BindingResult result,
       Model model,
+      HttpServletRequest request,
       HttpSession session
   ) {
     log.info("handleSubmit");
 
-    if (multipartFile.isEmpty()) {
-      result.rejectValue("bytes", "NotNull");
-    } else {
-      try {
-        byte[] bytes = multipartFile.getBytes();
-        if (applicationVersion.getBytes() != null) {
-          String originalFileName = multipartFile.getOriginalFilename();
-          log.info("originalFileName: " + originalFileName);
-          if (!originalFileName.endsWith(".apk")) {
-            result.rejectValue("bytes", "typeMismatch");
-          }
+    Application application = applicationVersion.getApplication();
+    log.info("application.getId(): " + application.getId());
 
-          String contentType = multipartFile.getContentType();
-          log.info("contentType: " + contentType);
-          applicationVersion.setContentType(contentType);
+    String fileUrl = request.getParameter("fileUrl");
+    log.info("fileUrl: " + fileUrl);
+    if (StringUtils.isBlank(fileUrl)) {
+      result.rejectValue("fileUrl", "NotNull");
+    }
 
-          applicationVersion.setBytes(bytes);
+    try {
+      // Download the APK file to a temporary folder on the file system
+      String tmpDir = System.getProperty("java.io.tmpdir");
+      log.info("tmpDir: " + tmpDir);
+      File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
+      log.info("tmpDirElimuAi: " + tmpDirElimuAi);
+      log.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
+      File apkFile = new File(tmpDirElimuAi, application.getPackageName() + ".apk");
+      log.info("apkFile.getPath(): " + apkFile.getPath());
+      FileUtils.copyURLToFile(new URL(fileUrl), apkFile);
+      log.info("apkFile.exists(): " + apkFile.exists());
 
-          Integer fileSizeInKb = bytes.length / 1024;
-          log.info("fileSizeInKb: " + fileSizeInKb + " (" + (fileSizeInKb / 1024) + "MB)");
-          applicationVersion.setFileSizeInKb(fileSizeInKb);
+      byte[] bytes = IOUtils.toByteArray(apkFile.toURI());
 
-          String checksumMd5 = ChecksumHelper.calculateMD5(bytes);
-          log.info("checksumMd5: " + checksumMd5);
-          applicationVersion.setChecksumMd5(checksumMd5);
+      applicationVersion.setContentType("application/vnd.android.package-archive");
 
-          ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
-          ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
+      Integer fileSizeInKb = bytes.length / 1_024;
+      log.info("fileSizeInKb: " + fileSizeInKb);
+      applicationVersion.setFileSizeInKb(fileSizeInKb);
 
-          String packageName = apkMeta.getPackageName();
-          log.info("packageName: " + packageName);
-          if (!packageName.equals(applicationVersion.getApplication().getPackageName())) {
-            result.reject("packageName.mismatch");
-          }
+      String checksumMd5 = ChecksumHelper.calculateMD5(bytes);
+      log.info("checksumMd5: " + checksumMd5);
+      applicationVersion.setChecksumMd5(checksumMd5);
 
-          Integer versionCode = apkMeta.getVersionCode().intValue();
-          log.info("versionCode: " + versionCode);
-
-          // Verify that the versionCode is higher than previous ones
-          List<ApplicationVersion> existingApplicationVersions = applicationVersionDao
-              .readAll(applicationVersion.getApplication());
-          for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
-            if (existingApplicationVersion.getVersionCode() >= versionCode) {
-              result.rejectValue("versionCode", "TooLow");
-              break;
-            }
-          }
-          applicationVersion.setVersionCode(versionCode);
-
-          String versionName = apkMeta.getVersionName();
-          log.info("versionName: " + versionName);
-          applicationVersion.setVersionName(versionName);
-
-          String label = apkMeta.getLabel();
-          log.info("label: " + label);
-          applicationVersion.setLabel(label);
-
-          Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
-          if (minSdkVersion < MIN_SDK_VERSION) {
-            result.reject("TooLow.sdkVersion");
-          }
-          log.info("minSdkVersion: " + minSdkVersion);
-          applicationVersion.setMinSdkVersion(minSdkVersion);
-
-          byte[] icon = byteArrayApkFile.getIconFile().getData();
-          log.info("icon.length: " + (icon.length / 1024) + "kB");
-          applicationVersion.setIcon(icon);
-        } else {
-          result.rejectValue("bytes", "NotNull");
-        }
-      } catch (IOException ex) {
-        log.error(ex.getMessage());
+      // Extract metadata from the APK file
+      ByteArrayApkFile byteArrayApkFile = new ByteArrayApkFile(bytes);
+      ApkMeta apkMeta = byteArrayApkFile.getApkMeta();
+      byte[] icon = byteArrayApkFile.getIconFile().getData();
+      byteArrayApkFile.close();
+      
+      String packageName = apkMeta.getPackageName();
+      log.info("packageName: " + packageName);
+      if (!packageName.equals(application.getPackageName())) {
+        result.reject("packageName.mismatch");
       }
+
+      Integer versionCode = apkMeta.getVersionCode().intValue();
+      log.info("versionCode: " + versionCode);
+
+      // Verify that the versionCode is higher than previous ones
+      List<ApplicationVersion> existingApplicationVersions = applicationVersionDao.readAll(application);
+      for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
+        if (existingApplicationVersion.getVersionCode() >= versionCode) {
+          result.rejectValue("versionCode", "TooLow");
+          break;
+        }
+      }
+      applicationVersion.setVersionCode(versionCode);
+
+      String versionName = apkMeta.getVersionName();
+      log.info("versionName: " + versionName);
+      applicationVersion.setVersionName(versionName);
+
+      String label = apkMeta.getLabel();
+      log.info("label: " + label);
+      applicationVersion.setLabel(label);
+
+      Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
+      if (minSdkVersion < MIN_SDK_VERSION) {
+        result.reject("TooLow.sdkVersion");
+      }
+      log.info("minSdkVersion: " + minSdkVersion);
+      applicationVersion.setMinSdkVersion(minSdkVersion);
+
+      log.info("icon.length: " + icon.length);
+      applicationVersion.setIcon(icon);
+    } catch (IOException e) {
+      log.error(null, e);
     }
 
     if (result.hasErrors()) {
@@ -153,35 +160,22 @@ public class ApplicationVersionCreateController {
       applicationVersion.setTimeUploaded(Calendar.getInstance());
       applicationVersionDao.create(applicationVersion);
 
-      // Update the Application entity to reflect the latest changes
-      Application application = applicationVersion.getApplication();
+      // If first APK file, change status of application to "ACTIVE"
       if (application.getApplicationStatus() == ApplicationStatus.MISSING_APK) {
-        // If first APK file, change status of application to "ACTIVE"
         application.setApplicationStatus(ApplicationStatus.ACTIVE);
+        applicationDao.update(application);
       }
-      applicationDao.update(application);
 
+      String contentUrl = "http://" + ConfigHelper.getProperty("content.language").toLowerCase() + ".elimu.ai/admin/application/edit/" + application.getId();
       DiscordHelper.sendChannelMessage(
-          "A new Application version (`.apk`) was uploaded:",
+          "A new Application version (`.apk`) was published: " + contentUrl,
           application.getPackageName(),
           "Version: `" + applicationVersion.getVersionName() + "`",
           null,
           null
       );
 
-      return "redirect:/admin/application/edit/" + applicationVersion.getApplication().getId() + "#versions";
+      return "redirect:/admin/application/edit/" + application.getId() + "#versions";
     }
-  }
-
-  /**
-   * See http://www.mkyong.com/spring-mvc/spring-mvc-failed-to-convert-property-value-in-file-upload-form/
-   * <p></p>
-   * Fixes this error message: "Cannot convert value of type [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile] to required type [byte] for property
-   * 'bytes[0]'"
-   */
-  @InitBinder
-  protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-    log.info("initBinder");
-    binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
   }
 }
