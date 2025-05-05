@@ -81,8 +81,7 @@
                 <prop key="/error/session-timeout">viewController</prop>
                 
                 <prop key="/contributions/privacy-policy">viewController</prop>
-                <prop key="/contributions/publish">viewController</prop>
-                
+
                 <prop key="/apps">viewController</prop>
             </props>
         </property>
