@@ -67,7 +67,7 @@
                         <td>
                             <c:choose>
                                 <c:when test="${not empty storyBookLearningEvent.application}">
-                                    <a href="<spring:url value='/admin/application/edit/${storyBookLearningEvent.application.id}' />">
+                                    <a href="<spring:url value='/application/edit/${storyBookLearningEvent.application.id}' />">
                                         <code>${storyBookLearningEvent.packageName}</code>
                                     </a>
                                 </c:when>

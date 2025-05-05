@@ -1,8 +1,8 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.WordLearningEventDao;
-import ai.elimu.entity.admin.Application;
 import ai.elimu.entity.analytics.WordLearningEvent;
+import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Word;
 
 import java.util.Calendar;

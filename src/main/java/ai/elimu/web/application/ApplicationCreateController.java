@@ -1,7 +1,7 @@
-package ai.elimu.web.admin.application;
+package ai.elimu.web.application;
 
 import ai.elimu.dao.ApplicationDao;
-import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.application.Application;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/application/create")
+@RequestMapping("/application/create")
 @RequiredArgsConstructor
 @Slf4j
 public class ApplicationCreateController {
@@ -35,7 +35,7 @@ public class ApplicationCreateController {
     model.addAttribute("literacySkills", LiteracySkill.values());
     model.addAttribute("numeracySkills", NumeracySkill.values());
 
-    return "admin/application/create";
+    return "application/create";
   }
 
   @PostMapping
@@ -56,10 +56,10 @@ public class ApplicationCreateController {
       model.addAttribute("application", application);
       model.addAttribute("literacySkills", LiteracySkill.values());
       model.addAttribute("numeracySkills", NumeracySkill.values());
-      return "admin/application/create";
+      return "application/create";
     } else {
       applicationDao.create(application);
-      return "redirect:/admin/application/list#" + application.getId();
+      return "redirect:/application/list#" + application.getId();
     }
   }
 }

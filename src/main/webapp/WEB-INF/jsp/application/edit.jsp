@@ -119,7 +119,7 @@
                 <a name="versions"></a>
                 <h5>Application versions</h5>
                 <p>
-                    <a class="publishLink" href="<spring:url value="/admin/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">new_releases</i>Publish new APK file</a>
+                    <a class="publishLink" href="<spring:url value="/application/application-version/create?applicationId=${application.id}" />"><i class="material-icons left">new_releases</i>Publish new APK file</a>
                 </p>
                 <c:if test="${not empty applicationVersions}">
                     <table class="bordered highlight">

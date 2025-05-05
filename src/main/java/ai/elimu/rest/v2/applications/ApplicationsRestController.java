@@ -2,8 +2,8 @@ package ai.elimu.rest.v2.applications;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.entity.admin.Application;
-import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.application.Application;
+import ai.elimu.entity.application.ApplicationVersion;
 import ai.elimu.model.v2.gson.application.ApplicationGson;
 import ai.elimu.model.v2.gson.application.ApplicationVersionGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;

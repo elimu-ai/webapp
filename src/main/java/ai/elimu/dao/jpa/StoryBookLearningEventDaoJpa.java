@@ -1,8 +1,8 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.entity.admin.Application;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.StoryBook;
 
 import java.util.Calendar;

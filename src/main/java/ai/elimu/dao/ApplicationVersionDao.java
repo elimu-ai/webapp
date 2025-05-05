@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import ai.elimu.entity.admin.Application;
-import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.application.Application;
+import ai.elimu.entity.application.ApplicationVersion;
 
 public interface ApplicationVersionDao extends GenericDao<ApplicationVersion> {
     
