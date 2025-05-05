@@ -4,7 +4,6 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.entity.admin.Application;
 import ai.elimu.entity.admin.ApplicationVersion;
-import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
@@ -62,16 +61,12 @@ public class ApplicationVersionsRestController {
 
     JSONObject jsonResponseObject = new JSONObject();
     try {
-      // Validate package name
-      Application application = applicationDao.readByPackageName(packageName);
-      log.info("application: " + application);
-      // TODO
-
-      // Validate version name
-      // TODO
-
       JSONObject jsonObject = new JSONObject(jsonData);
       log.info("jsonObject: " + jsonObject);
+
+      if (!jsonObject.has("fileUrl")) {
+        throw new IllegalArgumentException("fileUrl.missing");
+      }
       
       String fileUrl = jsonObject.getString("fileUrl");
       log.info("fileUrl: " + fileUrl);
@@ -80,6 +75,9 @@ public class ApplicationVersionsRestController {
       }
 
       // Perform the same steps as in the ApplicationVersionCreateController:
+
+      Application application = applicationDao.readByPackageName(packageName);
+      log.info("application: " + application);
 
       // Download the APK file to a temporary folder on the file system
       String tmpDir = System.getProperty("java.io.tmpdir");
