@@ -68,7 +68,7 @@
             As a minimum, the app/game should support English, and at least one of the following languages:
 
             <ul>
-                <c:forEach var="language" items="${supportedLanguage}" varStatus="status">
+                <c:forEach var="language" items="${supportedLanguages}" varStatus="status">
                     ${language.englishName}<c:if test="${!status.last}">/</c:if>
                 </c:forEach>.
             </ul>

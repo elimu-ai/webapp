@@ -21,7 +21,7 @@ public class PublishController {
         Language[] languages = Arrays.stream(Language.values())
                 .filter(lang -> lang != Language.ENG)
                 .toArray(Language[]::new);
-        model.addAttribute("supportedLanguage", languages);
+        model.addAttribute("supportedLanguages", languages);
 
         return "contributions/publish";
     }
