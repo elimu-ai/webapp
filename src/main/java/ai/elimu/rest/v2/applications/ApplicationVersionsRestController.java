@@ -1,4 +1,4 @@
-package ai.elimu.web.admin.application_version;
+package ai.elimu.rest.v2.applications;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
@@ -9,92 +9,93 @@ import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Calendar;
-import java.util.List;
-
+import ai.elimu.web.admin.application_version.ApplicationVersionCreateController;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dongliu.apk.parser.ByteArrayApkFile;
 import net.dongliu.apk.parser.bean.ApkMeta;
 
+import java.io.File;
+import java.net.URL;
+import java.util.Calendar;
+import java.util.List;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/admin/application-version/create")
+@RestController
+@RequestMapping(
+  value = "/rest/v2/applications/{packageName}/application-versions/{versionName}",
+  consumes = MediaType.APPLICATION_JSON_VALUE,
+  produces = MediaType.APPLICATION_JSON_VALUE
+)
 @RequiredArgsConstructor
 @Slf4j
-public class ApplicationVersionCreateController {
-
-  public static final int MIN_SDK_VERSION = 26;
+public class ApplicationVersionsRestController {
 
   private final ApplicationDao applicationDao;
 
   private final ApplicationVersionDao applicationVersionDao;
 
-  @GetMapping
-  public String handleRequest(
-      @RequestParam Long applicationId,
-      Model model
+  @PutMapping
+  public String handlePutRequest(
+    @PathVariable String packageName,
+    @PathVariable String versionName,
+    @RequestBody String jsonData,
+    HttpServletResponse response
   ) {
-    log.info("handleRequest");
+    log.info("handlePutRequest");
 
-    log.info("applicationId: " + applicationId);
-    Application application = applicationDao.read(applicationId);
+    log.info("packageName: " + packageName);
+    log.info("versionName: " + versionName);
+    log.info("jsonData: " + jsonData);
 
-    ApplicationVersion applicationVersion = new ApplicationVersion();
-    applicationVersion.setApplication(application);
-    model.addAttribute("applicationVersion", applicationVersion);
-
-    return "admin/application-version/create";
-  }
-
-  @PostMapping
-  public String handleSubmit(
-      ApplicationVersion applicationVersion,
-      BindingResult result,
-      Model model,
-      HttpServletRequest request,
-      HttpSession session
-  ) {
-    log.info("handleSubmit");
-
-    Application application = applicationVersion.getApplication();
-    log.info("application.getId(): " + application.getId());
-
-    String fileUrl = request.getParameter("fileUrl");
-    log.info("fileUrl: " + fileUrl);
-    if (StringUtils.isBlank(fileUrl)) {
-      result.rejectValue("fileUrl", "NotNull");
-    }
-
+    JSONObject jsonResponseObject = new JSONObject();
     try {
+      // Validate package name
+      Application application = applicationDao.readByPackageName(packageName);
+      log.info("application: " + application);
+      // TODO
+
+      // Validate version name
+      // TODO
+
+      JSONObject jsonObject = new JSONObject(jsonData);
+      log.info("jsonObject: " + jsonObject);
+      
+      String fileUrl = jsonObject.getString("fileUrl");
+      log.info("fileUrl: " + fileUrl);
+      if (StringUtils.isBlank(fileUrl)) {
+        throw new IllegalArgumentException("fileUrl.empty");
+      }
+
+      // Perform the same steps as in the ApplicationVersionCreateController:
+
       // Download the APK file to a temporary folder on the file system
       String tmpDir = System.getProperty("java.io.tmpdir");
       log.info("tmpDir: " + tmpDir);
       File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
       log.info("tmpDirElimuAi: " + tmpDirElimuAi);
       log.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
-      File apkFile = new File(tmpDirElimuAi, application.getPackageName() + ".apk");
+      File apkFile = new File(tmpDirElimuAi, application.getPackageName() + "-" + versionName + ".apk");
       log.info("apkFile.getPath(): " + apkFile.getPath());
       FileUtils.copyURLToFile(new URL(fileUrl), apkFile);
       log.info("apkFile.exists(): " + apkFile.exists());
 
       byte[] bytes = IOUtils.toByteArray(apkFile.toURI());
 
+      ApplicationVersion applicationVersion = new ApplicationVersion();
+      applicationVersion.setApplication(application);
       applicationVersion.setContentType("application/vnd.android.package-archive");
 
       Integer fileSizeInKb = bytes.length / 1_024;
@@ -111,10 +112,9 @@ public class ApplicationVersionCreateController {
       byte[] icon = byteArrayApkFile.getIconFile().getData();
       byteArrayApkFile.close();
       
-      String packageName = apkMeta.getPackageName();
-      log.info("packageName: " + packageName);
-      if (!packageName.equals(application.getPackageName())) {
-        result.reject("packageName.mismatch");
+      log.info("apkMeta.getPackageName(): " + apkMeta.getPackageName());
+      if (!apkMeta.getPackageName().equals(application.getPackageName())) {
+        throw new IllegalArgumentException("packageName.mismatch");
       }
 
       Integer versionCode = apkMeta.getVersionCode().intValue();
@@ -124,15 +124,16 @@ public class ApplicationVersionCreateController {
       List<ApplicationVersion> existingApplicationVersions = applicationVersionDao.readAll(application);
       for (ApplicationVersion existingApplicationVersion : existingApplicationVersions) {
         if (existingApplicationVersion.getVersionCode() >= versionCode) {
-          result.rejectValue("versionCode", "TooLow");
-          break;
+          throw new IllegalArgumentException("versionCode.TooLow");
         }
       }
       applicationVersion.setVersionCode(versionCode);
 
-      String versionName = apkMeta.getVersionName();
-      log.info("versionName: " + versionName);
-      applicationVersion.setVersionName(versionName);
+      log.info("apkMeta.getVersionName(): " + apkMeta.getVersionName());
+      if (!apkMeta.getVersionName().equals(versionName)) {
+        throw new IllegalArgumentException("versionName.mismatch");
+      }
+      applicationVersion.setVersionName(apkMeta.getVersionName());
 
       String label = apkMeta.getLabel();
       log.info("label: " + label);
@@ -140,23 +141,15 @@ public class ApplicationVersionCreateController {
 
       Integer minSdkVersion = Integer.valueOf(apkMeta.getMinSdkVersion());
       log.info("minSdkVersion: " + minSdkVersion);
-      if (minSdkVersion < MIN_SDK_VERSION) {
-        result.reject("sdkVersion.TooLow");
+      if (minSdkVersion < ApplicationVersionCreateController.MIN_SDK_VERSION) {
+        throw new IllegalArgumentException("sdkVersion.TooLow");
       }
       applicationVersion.setMinSdkVersion(minSdkVersion);
 
       log.info("icon.length: " + icon.length);
       applicationVersion.setIcon(icon);
-    } catch (IOException e) {
-      log.error(null, e);
-    }
 
-    if (result.hasErrors()) {
-      model.addAttribute("applicationVersion", applicationVersion);
-      return "admin/application-version/create";
-    } else {
-      Contributor contributor = (Contributor) session.getAttribute("contributor");
-      applicationVersion.setContributor(contributor);
+      applicationVersion.setContributor(application.getContributor());
       applicationVersion.setTimeUploaded(Calendar.getInstance());
       applicationVersionDao.create(applicationVersion);
 
@@ -175,7 +168,19 @@ public class ApplicationVersionCreateController {
           null
       );
 
-      return "redirect:/admin/application/edit/" + application.getId() + "#versions";
+      jsonResponseObject.put("result", "success");
+      jsonResponseObject.put("successMessage", "The application version was published with versionName " + applicationVersion.getVersionName());
+      response.setStatus(HttpStatus.OK.value());
+    } catch (Exception ex) {
+        log.error(ex.getClass() + ": " + ex.getMessage(), ex);
+
+        jsonResponseObject.put("result", "error");
+        jsonResponseObject.put("errorMessage", ex.getClass() + ": " + ex.getMessage());
+        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
+
+    String jsonResponse = jsonResponseObject.toString();
+    log.info("jsonResponse: " + jsonResponse);
+    return jsonResponse;
   }
 }
