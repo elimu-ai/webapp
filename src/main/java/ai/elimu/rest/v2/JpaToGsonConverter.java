@@ -1,7 +1,7 @@
 package ai.elimu.rest.v2;
 
-import ai.elimu.entity.admin.Application;
-import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.application.Application;
+import ai.elimu.entity.application.ApplicationVersion;
 import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.LetterSound;

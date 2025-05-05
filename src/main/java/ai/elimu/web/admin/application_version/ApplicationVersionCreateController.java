@@ -2,8 +2,8 @@ package ai.elimu.web.admin.application_version;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.entity.admin.Application;
-import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.application.Application;
+import ai.elimu.entity.application.ApplicationVersion;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/admin/application-version/create")
+@RequestMapping("/application-version/create")
 @RequiredArgsConstructor
 @Slf4j
 public class ApplicationVersionCreateController {
@@ -59,7 +59,7 @@ public class ApplicationVersionCreateController {
     applicationVersion.setApplication(application);
     model.addAttribute("applicationVersion", applicationVersion);
 
-    return "admin/application-version/create";
+    return "application-version/create";
   }
 
   @PostMapping
@@ -153,7 +153,7 @@ public class ApplicationVersionCreateController {
 
     if (result.hasErrors()) {
       model.addAttribute("applicationVersion", applicationVersion);
-      return "admin/application-version/create";
+      return "application-version/create";
     } else {
       Contributor contributor = (Contributor) session.getAttribute("contributor");
       applicationVersion.setContributor(contributor);
@@ -166,7 +166,7 @@ public class ApplicationVersionCreateController {
         applicationDao.update(application);
       }
 
-      String contentUrl = "http://" + ConfigHelper.getProperty("content.language").toLowerCase() + ".elimu.ai/admin/application/edit/" + application.getId();
+      String contentUrl = "http://" + ConfigHelper.getProperty("content.language").toLowerCase() + ".elimu.ai/application/edit/" + application.getId();
       DiscordHelper.sendChannelMessage(
           "A new Application version (`.apk`) was published: " + contentUrl,
           application.getPackageName(),
@@ -175,7 +175,7 @@ public class ApplicationVersionCreateController {
           null
       );
 
-      return "redirect:/admin/application/edit/" + application.getId() + "#versions";
+      return "redirect:/application/edit/" + application.getId() + "#versions";
     }
   }
 }

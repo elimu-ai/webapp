@@ -2,8 +2,8 @@ package ai.elimu.web.admin.application;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.entity.admin.Application;
-import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.application.Application;
+import ai.elimu.entity.application.ApplicationVersion;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/application/edit/{id}")
+@RequestMapping("/application/edit/{id}")
 @RequiredArgsConstructor
 @Slf4j
 public class ApplicationEditController {
@@ -48,7 +48,7 @@ public class ApplicationEditController {
     model.addAttribute("literacySkills", LiteracySkill.values());
     model.addAttribute("numeracySkills", NumeracySkill.values());
 
-    return "admin/application/edit";
+    return "application/edit";
   }
 
   @PostMapping
@@ -71,7 +71,7 @@ public class ApplicationEditController {
       model.addAttribute("literacySkills", LiteracySkill.values());
       model.addAttribute("numeracySkills", NumeracySkill.values());
 
-      return "admin/application/edit";
+      return "application/edit";
     } else {
       applicationDao.update(application);
 
@@ -84,7 +84,7 @@ public class ApplicationEditController {
         }
       }
 
-      return "redirect:/admin/application/list#" + application.getId();
+      return "redirect:/application/list#" + application.getId();
     }
   }
 }

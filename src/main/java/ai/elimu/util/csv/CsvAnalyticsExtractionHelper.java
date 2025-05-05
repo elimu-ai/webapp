@@ -2,9 +2,9 @@ package ai.elimu.util.csv;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.StoryBookDao;
-import ai.elimu.entity.admin.Application;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
+import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.StoryBook;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import ai.elimu.rest.v2.analytics.StoryBookLearningEventsRestController;

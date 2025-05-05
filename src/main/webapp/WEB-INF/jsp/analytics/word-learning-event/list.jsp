@@ -66,7 +66,7 @@
                             ${wordLearningEvent.androidId}
                         </td>
                         <td>
-                            <a href="<spring:url value='/admin/application/edit/${wordLearningEvent.application.id}' />">
+                            <a href="<spring:url value='/application/edit/${wordLearningEvent.application.id}' />">
                                 ${wordLearningEvent.application.packageName}
                             </a>
                         </td>

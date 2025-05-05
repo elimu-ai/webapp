@@ -75,7 +75,7 @@
                         <tr>
                             <td>
                                 <a name="${application.id}"></a>
-                                <a class="editLink" href="<spring:url value='/admin/application/edit/${application.id}' />"><code>${application.packageName}</code></a>
+                                <a class="editLink" href="<spring:url value='/application/edit/${application.id}' />"><code>${application.packageName}</code></a>
                             </td>
                             <td>
                                 ${application.literacySkills}
@@ -98,6 +98,6 @@
     </div>
     
     <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
-        <a id="createButton" href="<spring:url value='/admin/application/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add application"><i class="material-icons">add</i></a>
+        <a id="createButton" href="<spring:url value='/application/create' />" class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Add application"><i class="material-icons">add</i></a>
     </div>
 </content:section>

@@ -1,4 +1,4 @@
-package ai.elimu.entity.admin;
+package ai.elimu.entity.application;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

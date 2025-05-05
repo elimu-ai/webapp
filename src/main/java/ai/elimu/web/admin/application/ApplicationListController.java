@@ -1,7 +1,7 @@
 package ai.elimu.web.admin.application;
 
 import ai.elimu.dao.ApplicationDao;
-import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.application.Application;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/application/list")
+@RequestMapping("/application/list")
 @RequiredArgsConstructor
 @Slf4j
 public class ApplicationListController {
@@ -74,6 +74,6 @@ public class ApplicationListController {
     List<Application> applications = applicationDao.readAll();
     model.addAttribute("applications", applications);
 
-    return "admin/application/list";
+    return "application/list";
   }
 }

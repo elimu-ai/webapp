@@ -12,7 +12,7 @@ import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.LetterSound;

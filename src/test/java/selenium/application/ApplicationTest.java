@@ -31,7 +31,7 @@ public class ApplicationTest {
         
         driver = new ChromeDriver(chromeOptions);
 
-        driver.get(DomainHelper.getBaseUrl() + "/admin/application/list");
+        driver.get(DomainHelper.getBaseUrl() + "/application/list");
     }
 
     @AfterEach

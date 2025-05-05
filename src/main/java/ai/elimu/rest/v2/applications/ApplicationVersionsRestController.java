@@ -2,8 +2,8 @@ package ai.elimu.rest.v2.applications;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
-import ai.elimu.entity.admin.Application;
-import ai.elimu.entity.admin.ApplicationVersion;
+import ai.elimu.entity.application.Application;
+import ai.elimu.entity.application.ApplicationVersion;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
@@ -157,7 +157,7 @@ public class ApplicationVersionsRestController {
         applicationDao.update(application);
       }
 
-      String contentUrl = "http://" + ConfigHelper.getProperty("content.language").toLowerCase() + ".elimu.ai/admin/application/edit/" + application.getId();
+      String contentUrl = "http://" + ConfigHelper.getProperty("content.language").toLowerCase() + ".elimu.ai/application/edit/" + application.getId();
       DiscordHelper.sendChannelMessage(
           "A new Application version (`.apk`) was published: " + contentUrl,
           application.getPackageName(),

@@ -1,7 +1,7 @@
 package ai.elimu.entity.analytics;
 
 import ai.elimu.entity.BaseEntity;
-import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.application.Application;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;

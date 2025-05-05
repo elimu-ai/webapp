@@ -1,4 +1,4 @@
-package ai.elimu.entity.admin;
+package ai.elimu.entity.application;
 
 import ai.elimu.entity.BaseEntity;
 import ai.elimu.entity.contributor.Contributor;

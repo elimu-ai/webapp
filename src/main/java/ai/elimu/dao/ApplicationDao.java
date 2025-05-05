@@ -2,7 +2,7 @@ package ai.elimu.dao;
 
 import java.util.List;
 
-import ai.elimu.entity.admin.Application;
+import ai.elimu.entity.application.Application;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 
 import org.springframework.dao.DataAccessException;

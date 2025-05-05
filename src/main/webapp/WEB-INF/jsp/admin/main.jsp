@@ -14,7 +14,7 @@
                     <div class="progress">
                         <div class="determinate" style="width: ${applicationCount/(4+24+12) * 100}%"></div>
                     </div>
-                    <a href="<spring:url value='/admin/application/list' />">View list (${applicationCount})</a>
+                    <a href="<spring:url value='/application/list' />">View list (${applicationCount})</a>
                 </div>
             </div>
         </div>

@@ -50,7 +50,7 @@
                         
                         <li class="divider"></li>
                         <li class="grey-text"><b>Applications</b></li>
-                        <li><a href="<spring:url value='/admin/application/list' />"><i class="material-icons left">android</i>Applications</a></li>
+                        <li><a href="<spring:url value='/application/list' />"><i class="material-icons left">android</i>Applications</a></li>
                     </ul>
                     <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
@@ -58,10 +58,10 @@
                     <a href="<spring:url value='/admin' />" class="breadcrumb">Administration</a>
                     <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
                         <c:choose>
-                            <c:when test="${fn:contains(pageContext.request.requestURI, '/admin/application/')
-                                            || fn:contains(pageContext.request.requestURI, '/admin/application-version/')
+                            <c:when test="${fn:contains(pageContext.request.requestURI, '/application/')
+                                            || fn:contains(pageContext.request.requestURI, '/application-version/')
                                             && !fn:endsWith(pageContext.request.requestURI, '/list.jsp')}">
-                                <a class="breadcrumb" href="<spring:url value='/admin/application/list' />">Applications</a>
+                                <a class="breadcrumb" href="<spring:url value='/application/list' />">Applications</a>
                             </c:when>
                         </c:choose>
                         <a class="breadcrumb"><content:gettitle /></a>
