@@ -1,4 +1,4 @@
-package ai.elimu.web.admin.application_version;
+package ai.elimu.web.application.application_version;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/application-version/create")
+@RequestMapping("/application/application-version/create")
 @RequiredArgsConstructor
 @Slf4j
 public class ApplicationVersionCreateController {
@@ -59,7 +59,7 @@ public class ApplicationVersionCreateController {
     applicationVersion.setApplication(application);
     model.addAttribute("applicationVersion", applicationVersion);
 
-    return "application-version/create";
+    return "application/application-version/create";
   }
 
   @PostMapping
@@ -153,7 +153,7 @@ public class ApplicationVersionCreateController {
 
     if (result.hasErrors()) {
       model.addAttribute("applicationVersion", applicationVersion);
-      return "application-version/create";
+      return "application/application-version/create";
     } else {
       Contributor contributor = (Contributor) session.getAttribute("contributor");
       applicationVersion.setContributor(contributor);

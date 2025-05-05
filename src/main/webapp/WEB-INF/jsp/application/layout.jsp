@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
         <link rel="stylesheet" href="<spring:url value='/static/css/styles.css' />" />
-        <link rel="stylesheet" href="<spring:url value='/static/css/admin/styles.css' />" />
+        <link rel="stylesheet" href="<spring:url value='/static/css/application/styles.css' />" />
         
         <%-- JavaScripts --%>
         <script src="<spring:url value='/static/js/jquery-3.6.0.min.js' />"></script>
@@ -43,7 +43,7 @@
                 <div class="col s1">
                     <ul id="nav-mobile" class="side-nav">
                         <li>
-                            <a href="<spring:url value='/admin' />">
+                            <a href="<spring:url value='/application' />">
                                 <img style="max-width: 100%; vertical-align: middle; max-height: 60%;" src="<spring:url value='/static/img/logo-text-256x78.png' />" alt="elimu.ai" />
                             </a>
                         </li>
@@ -52,11 +52,11 @@
                         <li class="grey-text"><b>Applications</b></li>
                         <li><a href="<spring:url value='/application/list' />"><i class="material-icons left">android</i>Applications</a></li>
                     </ul>
-                    <a id="navButton" href="<spring:url value='/admin' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
+                    <a id="navButton" href="<spring:url value='/application' />" data-activates="nav-mobile" class="waves-effect waves-light"><i class="material-icons">dehaze</i></a>
                 </div>
                 <div class="col s5">
-                    <a href="<spring:url value='/admin' />" class="breadcrumb">Administration</a>
-                    <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/admin/main.jsp')}">
+                    <a href="<spring:url value='/application' />" class="breadcrumb">Administration</a>
+                    <c:if test="${!fn:contains(pageContext.request.requestURI, '/jsp/application/main.jsp')}">
                         <c:choose>
                             <c:when test="${fn:contains(pageContext.request.requestURI, '/application/')
                                             || fn:contains(pageContext.request.requestURI, '/application-version/')
@@ -79,7 +79,7 @@
                             <li><a href="<spring:url value='/content/contributor/edit-email' />"><i class="material-icons left">mail</i>Edit e-mail</a></li>--%>
                             <c:if test="${fn:contains(contributor.roles, 'ADMIN')}">
                                 <li class="divider"></li>
-                                <li><a href="<spring:url value='/admin' />"><i class="material-icons left">build</i>Administration</a></li>
+                                <li><a href="<spring:url value='/application' />"><i class="material-icons left">build</i>Administration</a></li>
                             </c:if>
                             <c:if test="${fn:contains(contributor.roles, 'ANALYST')}">
                                 <li class="divider"></li>

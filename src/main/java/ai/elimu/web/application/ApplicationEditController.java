@@ -1,4 +1,4 @@
-package ai.elimu.web.admin.application;
+package ai.elimu.web.application;
 
 import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;

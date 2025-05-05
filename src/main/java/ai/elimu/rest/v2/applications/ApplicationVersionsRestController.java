@@ -8,7 +8,7 @@ import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.web.admin.application_version.ApplicationVersionCreateController;
+import ai.elimu.web.application.application_version.ApplicationVersionCreateController;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
