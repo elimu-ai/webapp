@@ -15,6 +15,10 @@
                     <form:label path="packageName" cssErrorClass="error">Package name</form:label>
                     <form:input path="packageName" cssErrorClass="error" placeholder="ai.elimu.soundcards" />
                 </div>
+                <div class="col s12 m6 input-field">
+                    <form:label path="repoName" cssErrorClass="error">Repo name</form:label>
+                    <form:input path="repoName" cssErrorClass="error" placeholder="soundcards" />
+                </div>
             </div>
             
             <div class="row">

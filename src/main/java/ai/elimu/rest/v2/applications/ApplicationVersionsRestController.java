@@ -4,10 +4,10 @@ import ai.elimu.dao.ApplicationDao;
 import ai.elimu.dao.ApplicationVersionDao;
 import ai.elimu.entity.application.Application;
 import ai.elimu.entity.application.ApplicationVersion;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
-import ai.elimu.util.DiscordHelper;
 import ai.elimu.web.application.application_version.ApplicationVersionCreateController;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -85,7 +85,11 @@ public class ApplicationVersionsRestController {
       File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
       log.info("tmpDirElimuAi: " + tmpDirElimuAi);
       log.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
-      File apkFile = new File(tmpDirElimuAi, application.getPackageName() + "-" + versionName + ".apk");
+      Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+      File tmpDirLanguage = new File(tmpDirElimuAi, "lang-" + language);
+      log.info("tmpDirLanguage: " + tmpDirLanguage);
+      log.info("tmpDirLanguage.mkdir(): " + tmpDirLanguage.mkdir());
+      File apkFile = new File(tmpDirLanguage, application.getPackageName() + "-" + versionName + ".apk");
       log.info("apkFile.getPath(): " + apkFile.getPath());
       FileUtils.copyURLToFile(new URL(fileUrl), apkFile);
       log.info("apkFile.exists(): " + apkFile.exists());
@@ -156,15 +160,6 @@ public class ApplicationVersionsRestController {
         application.setApplicationStatus(ApplicationStatus.ACTIVE);
         applicationDao.update(application);
       }
-
-      String contentUrl = "http://" + ConfigHelper.getProperty("content.language").toLowerCase() + ".elimu.ai/application/edit/" + application.getId();
-      DiscordHelper.sendChannelMessage(
-          "A new Application version (`.apk`) was published: " + contentUrl,
-          application.getPackageName(),
-          "Version: `" + applicationVersion.getVersionName() + "`",
-          null,
-          null
-      );
 
       jsonResponseObject.put("result", "success");
       jsonResponseObject.put("successMessage", "The application version was published with versionName " + applicationVersion.getVersionName());

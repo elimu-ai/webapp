@@ -24,6 +24,12 @@ public class Application extends BaseEntity {
   @NotNull
   private String packageName;
 
+  /**
+   * The GitHub repository slug, e.g. "soundcards"
+   */
+  @NotNull
+  private String repoName;
+
   private boolean infrastructural;
 
   @ElementCollection(fetch = FetchType.EAGER)

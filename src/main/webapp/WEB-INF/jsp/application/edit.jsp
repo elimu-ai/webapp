@@ -16,8 +16,13 @@
             <div class="row">
                 <form:hidden path="contributor" value="${application.contributor.id}" />
                 <div class="input-field col s6">
-                    Package name: <code>${application.packageName}</code>
+                    <form:label path="packageName" cssErrorClass="error">Package name</form:label>
+                    <form:input disabled="true" path="packageName" cssErrorClass="error" placeholder="ai.elimu.soundcards" />
                     <form:hidden path="packageName" value="${application.packageName}" />
+                </div>
+                <div class="col s12 m6 input-field">
+                    <form:label path="repoName" cssErrorClass="error">Repo name</form:label>
+                    <form:input path="repoName" cssErrorClass="error" placeholder="soundcards" />
                 </div>
                 <div class="input-field col s6">
                     <select id="applicationStatus" name="applicationStatus">
@@ -160,3 +165,15 @@
         </div>
     </div>
 </content:section>
+
+<content:aside>
+    <h5 class="center">Resources</h5>
+    <div class="card-panel deep-purple lighten-5">
+        <p>
+            GitHub repo:
+        </p>
+        <a href="https://github.com/elimu-ai/${application.repoName}" target="_blank">
+            github.com/elimu-ai/<b>${application.repoName}</b>
+        </a>
+    </div>
+</content:aside>
