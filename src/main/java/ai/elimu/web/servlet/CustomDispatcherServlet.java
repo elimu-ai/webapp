@@ -290,6 +290,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
 
         Application application = new Application();
         application.setPackageName("ai.elimu.soundcards");
+        application.setRepoName("soundcards");
         application.setApplicationStatus(ApplicationStatus.MISSING_APK);
         application.setContributor(contributor);
         applicationDao.create(application);

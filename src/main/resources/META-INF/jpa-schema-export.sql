@@ -108,6 +108,7 @@
         applicationStatus varchar(255),
         infrastructural bit not null,
         packageName varchar(255),
+        repoName varchar(255),
         contributor_id bigint,
         primary key (id)
     ) type=MyISAM;

@@ -46,6 +46,15 @@
     <h5 class="center">Resources</h5>
     <div class="card-panel deep-purple lighten-5">
         <p>
+            GitHub repo:
+        </p>
+        <a href="https://github.com/elimu-ai/${application.repoName}" target="_blank">
+            github.com/elimu-ai/<b>${applicationVersion.application.repoName}</b>
+        </a>
+
+        <div class="divider" style="margin: 1em 0;"></div>
+
+        <p>
             Once published, the APK will become available for download through the <a href="https://github.com/elimu-ai/appstore" target="_blank">elimu.ai Appstore</a>.
         </p>
         <a href="https://github.com/elimu-ai/appstore" target="_blank">
