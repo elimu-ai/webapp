@@ -67,7 +67,7 @@ public class ApplicationVersion extends BaseEntity {
    */
   public String getFileUrl() {
     return "https://github.com/elimu-ai" +
-        "/" + getApplication().getPackageName().replace("ai.elimu.", "") +
+        "/" + getApplication().getRepoName() +
         "/releases" +
         "/download" +
         "/" + getVersionName() +
