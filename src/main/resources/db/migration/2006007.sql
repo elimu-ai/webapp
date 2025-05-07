@@ -1,0 +1,3 @@
+# 2.6.7
+
+ALTER TABLE `Letter` MODIFY `text` VARCHAR(3) NOT NULL;
