@@ -15,8 +15,8 @@ jobs:
           distribution: 'temurin'
           java-version: 17
           cache: maven
-      - run: git config user.name 'Nya Ξlimu'
-      - run: git config user.email 'info@elimu.ai'
+      - run: git config user.name 'github-actions[bot]'
+      - run: git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - run: mvn release:clean
       - run: mvn release:prepare
       - run: mvn release:perform
