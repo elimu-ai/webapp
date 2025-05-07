@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <form:label path="text" cssErrorClass="error">Text</form:label>
-                    <form:input path="text" cssErrorClass="error" />
+                    <form:input path="text" cssErrorClass="error" maxlength="3" />
                 </div>
             </div>
 
