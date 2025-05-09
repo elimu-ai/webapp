@@ -81,8 +81,8 @@ public class GitHubLfsHelper {
         body.addProperty("content", Base64.getEncoder().encodeToString(bytes));
         
         JsonObject committer = new JsonObject();
-        committer.addProperty("name", "Nya Ξlimu");
-        committer.addProperty("email", "info@elimu.ai");
+        committer.addProperty("name", "github-actions[bot]");
+        committer.addProperty("email", "41898282+github-actions[bot]@users.noreply.github.com");
         body.add("committer", committer);
         log.debug("body: " + body);
 
