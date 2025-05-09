@@ -264,7 +264,7 @@
         timeLastUpdate datetime,
         usageCount integer,
         diacritic bit not null,
-        text varchar(3),
+        text varchar(4),
         primary key (id)
     ) type=MyISAM;
 

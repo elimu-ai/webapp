@@ -12,7 +12,7 @@
                     <c:choose>
                         <c:when test="${fn:length(error.arguments) == 3}">
                             <c:choose>
-                                <c:when test="${code == 'Size'}">${error.field} should contain between ${error.arguments[2]} and ${error.arguments[1]} letters</c:when>
+                                <c:when test="${code == 'Size'}">${error.field} should contain between ${error.arguments[2]} and ${error.arguments[1]} characters</c:when>
                                 <c:otherwise>
                                     <c:set var="errorMessageFoundInPropertiesFile" value="false" />
                                 </c:otherwise>                           
