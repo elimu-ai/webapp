@@ -75,6 +75,8 @@
 
     drop table if exists StoryBookPeerReviewEvent;
 
+    drop table if exists Student;
+
     drop table if exists Syllable;
 
     drop table if exists Syllable_Sound;
@@ -479,6 +481,12 @@
         primary key (id)
     ) type=MyISAM;
 
+    create table Student (
+       id bigint not null auto_increment,
+        androidId varchar(255),
+        primary key (id)
+    ) type=MyISAM;
+
     create table Syllable (
        id bigint not null auto_increment,
         contentStatus varchar(255),
@@ -623,6 +631,9 @@
 
     alter table Device 
        add constraint UK_c2646199whiqrkjbht7hwyr3v unique (androidId);
+
+    alter table Student 
+       add constraint UK_ac9n51iqy52mto0jrnkqlk3ld unique (androidId);
 
     alter table Application 
        add constraint FKn1pft600om9qs7dn754chjk67 

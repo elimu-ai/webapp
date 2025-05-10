@@ -12,6 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Deprecated
 public class Device extends BaseEntity {
 
   @NotNull

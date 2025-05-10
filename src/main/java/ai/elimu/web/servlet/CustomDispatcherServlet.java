@@ -10,8 +10,10 @@ import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Emoji;
 import ai.elimu.entity.content.Letter;
@@ -294,5 +296,20 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         application.setApplicationStatus(ApplicationStatus.MISSING_APK);
         application.setContributor(contributor);
         applicationDao.create(application);
+
+
+        StudentDao studentDao = (StudentDao) webApplicationContext.getBean("studentDao");
+
+        Student student1 = new Student();
+        student1.setAndroidId("e387e38700000001");
+        studentDao.create(student1);
+
+        Student student2 = new Student();
+        student2.setAndroidId("e387e38700000002");
+        studentDao.create(student2);
+
+        Student student3 = new Student();
+        student3.setAndroidId("e387e38700000003");
+        studentDao.create(student3);
     }
 }
