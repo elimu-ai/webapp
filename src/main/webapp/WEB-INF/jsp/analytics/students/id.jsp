@@ -1,5 +1,5 @@
 <content:title>
-    🎓 Student ID ${student.id}
+    🎓 Student ${student.id}
 </content:title>
 
 <content:section cssId="studentPage">
