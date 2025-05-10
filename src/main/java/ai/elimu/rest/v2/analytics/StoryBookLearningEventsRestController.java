@@ -69,6 +69,7 @@ public class StoryBookLearningEventsRestController {
             File csvFile = new File(storyBookLearningEventsDir, originalFilename);
             log.info("Storing CSV file at " + csvFile);
             multipartFile.transferTo(csvFile);
+            log.info("csvFile.exists(): " + csvFile.exists());
             
             jsonResponseObject.put("result", "success");
             jsonResponseObject.put("successMessage", "The CSV file was uploaded");
