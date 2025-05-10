@@ -2,9 +2,6 @@
     <c:when test="${fn:contains(pageContext.request.requestURI, '/jsp/application/')}">
         <%@ include file="/WEB-INF/jsp/application/layout.jsp" %>
     </c:when>
-    <c:when test="${fn:contains(pageContext.request.requestURI, '/jsp/analytics/')}">
-        <%@ include file="/WEB-INF/jsp/analytics/layout.jsp" %>
-    </c:when>
     <c:when test="${fn:contains(pageContext.request.requestURI, '/jsp/content/')}">
         <%@ include file="/WEB-INF/jsp/content/layout.jsp" %>
     </c:when>

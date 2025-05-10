@@ -6,6 +6,7 @@ import ai.elimu.entity.Device;
 
 import org.springframework.dao.DataAccessException;
 
+@Deprecated
 public class DeviceDaoJpa extends GenericDaoJpa<Device> implements DeviceDao {
 
     @Override

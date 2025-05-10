@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -83,7 +84,8 @@ public class WordAssessmentEventsRestController {
       wordAssessmentEventsDir.mkdirs();
       File csvFile = new File(wordAssessmentEventsDir, originalFilename);
       log.info("Storing CSV file at " + csvFile);
-      multipartFile.transferTo(csvFile);
+      FileUtils.writeByteArrayToFile(csvFile, bytes);
+      log.info("csvFile.exists(): " + csvFile.exists());
 
       // Iterate each row in the CSV file
       Path csvFilePath = Paths.get(csvFile.toURI());

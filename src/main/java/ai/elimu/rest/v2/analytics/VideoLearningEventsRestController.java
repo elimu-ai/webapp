@@ -6,6 +6,8 @@ import ai.elimu.util.ConfigHelper;
 import java.io.File;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -68,7 +70,8 @@ public class VideoLearningEventsRestController {
             videoLearningEventsDir.mkdirs();
             File csvFile = new File(videoLearningEventsDir, originalFilename);
             log.info("Storing CSV file at " + csvFile);
-            multipartFile.transferTo(csvFile);
+            FileUtils.writeByteArrayToFile(csvFile, bytes);
+            log.info("csvFile.exists(): " + csvFile.exists());
             
             jsonResponseObject.put("result", "success");
             jsonResponseObject.put("successMessage", "The CSV file was uploaded");
