@@ -40,29 +40,29 @@
                             </td>
                             <td>
                                 <div style="float: right; text-align: right;">
-                                    <label>word.toString()</label>
+                                    <label>word.getText()</label>
                                     <div style="font-size: 2em;">
-                                        ${word}
+                                        "${word.text}"
                                     </div>
                                 </div>
                                 
-                                <label>word.getText()</label>
+                                <label>word.toString()</label>
                                 <div style="font-size: 2em;">
-                                    ${word.text}
+                                    "${word}"
                                 </div>
 
                                 <div id="letterSoundsContainer">
+                                    <label>Sound-to-letter correspondences</label><br />
                                     <c:forEach var="letterSound" items="${word.letterSounds}">
-                                        <input name="letterSounds" type="hidden" value="${letterSound.id}" />
                                         <div class="chip">
                                             <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}' />">
-                                                " <c:forEach var="letter" items="${letterSound.letters}">
-                                                    ${letter.text}<c:out value=" " />
-                                                </c:forEach> "<br />
-                                                ↓<br />
                                                 / <c:forEach var="sound" items="${letterSound.sounds}">
                                                     ${sound.valueIpa}<c:out value=" " />
-                                                </c:forEach> /
+                                                </c:forEach> /<br />
+                                                ↓<br />
+                                                " <c:forEach var="letter" items="${letterSound.letters}">
+                                                    ${letter.text}<c:out value=" " />
+                                                </c:forEach> "
                                             </a>
                                         </div>
                                     </c:forEach>

@@ -59,13 +59,13 @@
                                     <i class="close material-icons">clear</i>
                                 </a>
                                 <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}' />">
-                                    " <c:forEach var="letter" items="${letterSound.letters}">
-                                        ${letter.text}<c:out value=" " />
-                                    </c:forEach> "<br />
-                                    ↓<br />
                                     / <c:forEach var="sound" items="${letterSound.sounds}">
                                         ${sound.valueIpa}<c:out value=" " />
-                                    </c:forEach> /
+                                    </c:forEach> /<br />
+                                    ↓<br />
+                                    " <c:forEach var="letter" items="${letterSound.letters}">
+                                        ${letter.text}<c:out value=" " />
+                                    </c:forEach> "
                                 </a>
                             </div>
                         </c:forEach>
