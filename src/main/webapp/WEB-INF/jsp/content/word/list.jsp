@@ -48,7 +48,7 @@
                                 
                                 <label>word.toString()</label>
                                 <div style="font-size: 2em;">
-                                    "${word}"
+                                    <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />">"${word}"</a>
                                 </div>
 
                                 <div id="letterSoundsContainer">
