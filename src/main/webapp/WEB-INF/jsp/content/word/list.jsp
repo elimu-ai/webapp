@@ -25,86 +25,54 @@
             <table class="bordered highlight">
                 <thead>
                     <th>Frequency</th>
-                    <th>Text</th>
-                    <th>Letter-sound correspondences</th>
-                    <%--<th>Grapheme-phoneme correspondence</th>--%>
+                    <th>Word</th>
                     <th>Word type</th>
-                    <th>Root word</th>
                     <th>Revision</th>
                 </thead>
                 <tbody>
                     <c:forEach var="word" items="${words}">
                         <tr>
                             <td>
-                                ${word.usageCount}<br />
+                                ${word.usageCount}
                                 <div class="progress">
                                     <div class="determinate" style="width: ${word.usageCount * 100 / maxUsageCount}%"></div>
                                 </div>
                             </td>
-                            <td style="font-size: 2em;">
-                                <a name="${word.id}"></a>
-                                <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />">"<c:out value="${word.text}" />"</a>
-                            </td>
-                            <td style="font-size: 2em;">
+                            <td>
+                                <div style="float: right; text-align: right;">
+                                    <label>word.getText()</label>
+                                    <div style="font-size: 2em;">
+                                        "${word.text}"
+                                    </div>
+                                </div>
+                                
+                                <label>word.toString()</label>
+                                <div style="font-size: 2em;">
+                                    <a class="editLink" href="<spring:url value='/content/word/edit/${word.id}' />">"${word}"</a>
+                                </div>
+
                                 <div id="letterSoundsContainer">
+                                    <label>Sound-to-letter correspondences</label><br />
                                     <c:forEach var="letterSound" items="${word.letterSounds}">
-                                        <input name="letterSounds" type="hidden" value="${letterSound.id}" />
                                         <div class="chip">
                                             <a href="<spring:url value='/content/letter-sound/edit/${letterSound.id}' />">
-                                                " <c:forEach var="letter" items="${letterSound.letters}">
-                                                    ${letter.text}<c:out value=" " />
-                                                </c:forEach> "<br />
                                                 / <c:forEach var="sound" items="${letterSound.sounds}">
                                                     ${sound.valueIpa}<c:out value=" " />
-                                                </c:forEach> /
+                                                </c:forEach> /<br />
+                                                ↓<br />
+                                                " <c:forEach var="letter" items="${letterSound.letters}">
+                                                    ${letter.text}<c:out value=" " />
+                                                </c:forEach> "
                                             </a>
                                         </div>
                                     </c:forEach>
                                 </div>
                             </td>
-                            <%--
                             <td>
-                                <c:choose>
-                                    <c:when test="${word.spellingConsistency == 'PERFECT'}">
-                                        <c:set var="spellingConsistencyColor" value="green lighten-1" />
-                                    </c:when>
-                                    <c:when test="${word.spellingConsistency == 'HIGHLY_PHONEMIC'}">
-                                        <c:set var="spellingConsistencyColor" value="green lighten-3" />
-                                    </c:when>
-                                    <c:when test="${word.spellingConsistency == 'PHONEMIC'}">
-                                        <c:set var="spellingConsistencyColor" value="yellow lighten-3" />
-                                    </c:when>
-                                    <c:when test="${word.spellingConsistency == 'NON_PHONEMIC'}">
-                                        <c:set var="spellingConsistencyColor" value="orange lighten-3" />
-                                    </c:when>
-                                    <c:when test="${word.spellingConsistency == 'HIGHLY_NON_PHONEMIC'}">
-                                        <c:set var="spellingConsistencyColor" value="red lighten-3" />
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="spellingConsistencyColor" value="" />
-                                    </c:otherwise>
-                                </c:choose>
-                                <div class="chip ${spellingConsistencyColor}">
-                                    <c:choose>
-                                        <c:when test="${word.spellingConsistency == 'PERFECT'}">Perfect (100% correspondence)</c:when>
-                                        <c:when test="${word.spellingConsistency == 'HIGHLY_PHONEMIC'}">Highly phonemic (80%-99% correspondence)</c:when>
-                                        <c:when test="${word.spellingConsistency == 'PHONEMIC'}">Phonemic (60%-79% correspondence)</c:when>
-                                        <c:when test="${word.spellingConsistency == 'NON_PHONEMIC'}">Non-phonemic (40%-59% correspondence)</c:when>
-                                        <c:when test="${word.spellingConsistency == 'HIGHLY_NON_PHONEMIC'}">Highly non-phonemic (0%-39% correspondence)</c:when>
-                                    </c:choose>
+                                ${word.wordType}
+                                <div style="font-size: 2em;">
+                                    <c:out value=" ${emojisByWordId[word.id]}" />
                                 </div>
-                            </td>
-                            --%>
-                            <td>
-                                ${word.wordType}<br />
-                                <c:out value=" ${emojisByWordId[word.id]}" />
-                            </td>
-                            <td>
-                                <c:if test="${not empty word.rootWord}">
-                                    <a href="<spring:url value='/content/word/edit/${word.rootWord.id}' />">
-                                        ${word.rootWord.text} 
-                                    </a> (${word.rootWord.wordType})
-                                </c:if>
                             </td>
                             <td>
                                 <p>#${word.revisionNumber}</p>

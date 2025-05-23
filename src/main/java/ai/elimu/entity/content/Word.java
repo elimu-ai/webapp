@@ -12,6 +12,8 @@ import jakarta.persistence.OrderColumn;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,4 +43,12 @@ public class Word extends Content {
   //    @NotNull
   @Enumerated(EnumType.STRING)
   private SpellingConsistency spellingConsistency;
+
+  public String toString() {
+    String letters = "";
+    for (LetterSound letterSound : letterSounds) {
+      letters += letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining());
+    }
+    return letters;
+  }
 }
