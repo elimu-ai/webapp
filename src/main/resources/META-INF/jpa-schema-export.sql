@@ -43,6 +43,8 @@
 
     drop table if exists LetterSound_Sound;
 
+    drop table if exists LetterSoundAssessmentEvent;
+
     drop table if exists LetterSoundContributionEvent;
 
     drop table if exists LetterSoundLearningEvent;
@@ -302,6 +304,21 @@
         sounds_id bigint not null,
         sounds_ORDER integer not null,
         primary key (LetterSound_id, sounds_ORDER)
+    ) type=MyISAM;
+
+    create table LetterSoundAssessmentEvent (
+       id bigint not null auto_increment,
+        additionalData text,
+        androidId varchar(255),
+        packageName varchar(255),
+        timestamp datetime,
+        letterSoundId bigint,
+        letterSoundLetters varbinary(255),
+        letterSoundSounds varbinary(255),
+        masteryScore float(23),
+        timeSpentMs bigint,
+        application_id bigint,
+        primary key (id)
     ) type=MyISAM;
 
     create table LetterSoundContributionEvent (
@@ -754,6 +771,11 @@
        add constraint FKtlgjcxa3jtailq62jrgq1hgl6 
        foreign key (LetterSound_id) 
        references LetterSound (id);
+
+    alter table LetterSoundAssessmentEvent 
+       add constraint FKehf1rjbixnmdjol91didaj4b5 
+       foreign key (application_id) 
+       references Application (id);
 
     alter table LetterSoundContributionEvent 
        add constraint FK5uk320agfa13pvh52v6n6ncbs 

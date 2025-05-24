@@ -29,12 +29,14 @@ public abstract class AssessmentEvent extends BaseEntity {
 
   /**
    * The package name of the {@link #application} where the assessment event occurred.
+   * E.g. <code>ai.elimu.soundcards</code>.
    */
   @NotNull
   private String packageName;
 
   /**
-   * This field will only be populated if a corresponding {@link Application} can be found in the database for the {@link #packageName}.
+   * This field will only be populated if a corresponding {@link Application} can be 
+   * found in the database for the {@link #packageName}.
    */
   @ManyToOne
   private Application application;
