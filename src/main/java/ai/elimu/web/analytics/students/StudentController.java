@@ -1,9 +1,11 @@
 package ai.elimu.web.analytics.students;
 
+import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordLearningEventDao;
+import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
@@ -33,6 +35,8 @@ public class StudentController {
 
   private final StudentDao studentDao;
 
+  private final LetterSoundAssessmentEventDao letterSoundAssessmentEventDao;
+
   private final WordLearningEventDao wordLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
@@ -45,6 +49,10 @@ public class StudentController {
 
     Student student = studentDao.read(studentId);
     log.info("student.getAndroidId(): " + student.getAndroidId());
+
+
+    List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = letterSoundAssessmentEventDao.readAll();
+    model.addAttribute("letterSoundAssessmentEvents", letterSoundAssessmentEvents);
 
     
     // Prepare chart data - WordLearningEvents
