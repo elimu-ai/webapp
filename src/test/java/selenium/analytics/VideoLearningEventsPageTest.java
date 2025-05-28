@@ -32,6 +32,7 @@ public class VideoLearningEventsPageTest {
         driver = new ChromeDriver(chromeOptions);
 
         driver.get(DomainHelper.getBaseUrl() + "/analytics");
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
     }
 
     @AfterEach

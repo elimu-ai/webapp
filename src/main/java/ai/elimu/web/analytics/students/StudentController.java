@@ -1,13 +1,19 @@
 package ai.elimu.web.analytics.students;
 
+import ai.elimu.dao.LetterSoundAssessmentEventDao;
+import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordLearningEventDao;
+import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
+import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
+import ai.elimu.model.v2.enums.content.LiteracySkill;
+import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.AnalyticsHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +39,9 @@ public class StudentController {
 
   private final StudentDao studentDao;
 
+  private final LetterSoundAssessmentEventDao letterSoundAssessmentEventDao;
+  private final LetterSoundLearningEventDao letterSoundLearningEventDao;
+
   private final WordLearningEventDao wordLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
@@ -45,6 +54,17 @@ public class StudentController {
 
     Student student = studentDao.read(studentId);
     log.info("student.getAndroidId(): " + student.getAndroidId());
+
+
+    model.addAttribute("literacySkills", LiteracySkill.values());
+    model.addAttribute("numeracySkills", NumeracySkill.values());
+
+
+    List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = letterSoundAssessmentEventDao.readAll();
+    model.addAttribute("letterSoundAssessmentEvents", letterSoundAssessmentEvents);
+
+    List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll();
+    model.addAttribute("letterSoundLearningEvents", letterSoundLearningEvents);
 
     
     // Prepare chart data - WordLearningEvents

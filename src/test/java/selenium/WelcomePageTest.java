@@ -31,6 +31,7 @@ public class WelcomePageTest {
         driver = new ChromeDriver(chromeOptions);
 
         driver.get(DomainHelper.getBaseUrl());
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
     }
 
     @AfterEach

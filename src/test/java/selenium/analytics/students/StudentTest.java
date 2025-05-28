@@ -1,4 +1,4 @@
-package selenium.analytics;
+package selenium.analytics.students;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 import lombok.extern.slf4j.Slf4j;
+import selenium.content.MainContentPage;
 import selenium.util.DomainHelper;
 
 @Slf4j
-public class WordLearningEventsPageTest {
+public class StudentTest {
     
     private WebDriver driver;
 
@@ -30,7 +32,7 @@ public class WordLearningEventsPageTest {
         
         driver = new ChromeDriver(chromeOptions);
 
-        driver.get(DomainHelper.getBaseUrl() + "/analytics");
+        driver.get(DomainHelper.getBaseUrl() + "/analytics/students");
         log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
     }
 
@@ -42,12 +44,13 @@ public class WordLearningEventsPageTest {
     }
 
     @Test
-    public void testWordLearningEventsPage() {
-        log.info("testWordLearningEventsPage");
-
-        MainAnalyticsPage mainAnalyticsPage = new MainAnalyticsPage(driver);
-        mainAnalyticsPage.pressWordLearningEventsLink();
+    public void testRandomStudentEditPage() {
+        log.info("testRandomStudentEditPage");
         
-        WordLearningEventsPage wordLearningEventsPage = new WordLearningEventsPage(driver);
+        StudentListPage studentListPage = new StudentListPage(driver);
+        studentListPage.pressRandomStudent();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
+
+        StudentPage studentPage = new StudentPage(driver);
     }
 }

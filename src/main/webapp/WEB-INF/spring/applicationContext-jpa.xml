@@ -54,6 +54,7 @@
     <bean id="imageContributionEventDao" class="ai.elimu.dao.jpa.ImageContributionEventDaoJpa" />
     <bean id="letterDao" class="ai.elimu.dao.jpa.LetterDaoJpa" />
     <bean id="letterContributionEventDao" class="ai.elimu.dao.jpa.LetterContributionEventDaoJpa" />
+    <bean id="letterSoundAssessmentEventDao" class="ai.elimu.dao.jpa.LetterSoundAssessmentEventDaoJpa" />
     <bean id="letterSoundContributionEventDao" class="ai.elimu.dao.jpa.LetterSoundContributionEventDaoJpa" />
     <bean id="letterSoundDao" class="ai.elimu.dao.jpa.LetterSoundDaoJpa" />
     <bean id="letterSoundLearningEventDao" class="ai.elimu.dao.jpa.LetterSoundLearningEventDaoJpa" />

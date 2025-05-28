@@ -2,10 +2,7 @@ package ai.elimu.entity.analytics;
 
 import ai.elimu.entity.BaseEntity;
 import ai.elimu.entity.application.Application;
-import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
@@ -18,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class LearningEvent extends BaseEntity {
+public abstract class AssessmentEvent extends BaseEntity {
 
   @NotNull
   @Temporal(TemporalType.TIMESTAMP)
@@ -34,28 +31,25 @@ public abstract class LearningEvent extends BaseEntity {
   private String androidId;
 
   /**
-   * The package name of the {@link #application} where the learning event occurred.
+   * The package name of the {@link #application} where the assessment event occurred.
+   * E.g. <code>ai.elimu.soundcards</code>.
    */
   @NotNull
   private String packageName;
 
   /**
-   * This field will only be populated if a corresponding {@link Application} can be found in the database for the {@link #packageName}.
+   * This field will only be populated if a corresponding {@link Application} can be 
+   * found in the database for the {@link #packageName}.
    */
   @ManyToOne
   private Application application;
 
-  @NotNull
-  @Enumerated(EnumType.STRING)
-  private LearningEventType learningEventType;
-
   /**
    * Any additional data should be stored in the format of a JSON object.
-   * </p>
-   * <p>
+   * 
    * Example:
    * <pre>
-   * {'video_playback_position_ms': 27946}
+   * {'word_ids_presented': [1,2,3], 'word_id_selected': 2}
    * </pre>
    */
   @Column(length = 1024)

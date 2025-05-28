@@ -21,19 +21,19 @@
     </div>
 </content:banner>
 
-<content:section cssId="studentsListPage">
+<content:section cssId="studentListPage">
     <div class="section row">
         <table class="bordered highlight">
             <thead>
-                <th>id</th>
-                <th>android_id</th>
+                <th>Student ID</th>
+                <th>Android ID</th>
             </thead>
             <tbody>
                 <c:forEach var="student" items="${students}">
                     <tr class="student">
                         <td>
-                            <a href="<spring:url value='/analytics/students/${student.id}' />">
-                                🎓 Student ${student.id}
+                            <a class="studentLink" href="<spring:url value='/analytics/students/${student.id}' />">
+                                🎓 Student #${student.id}
                             </a>
                         </td>
                         <td>
