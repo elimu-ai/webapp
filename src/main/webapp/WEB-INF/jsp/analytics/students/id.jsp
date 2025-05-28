@@ -1,16 +1,139 @@
 <content:title>
-    🎓 Student ${student.id}
+    🎓 Student #${student.id}
 </content:title>
 
 <content:section cssId="studentPage">
-    <h4><content:gettitle /></h4>
-    <h5 style="margin-bottom: 1em;"><code>${student.androidId}</code></h5>
+    <div class="col s7 m5 l4">
+        <div class="card contributor">
+            <div class="card-image">
+                <img src="<spring:url value='/static/img/student-${applicationScope.configProperties["content.language"]}.png' />" />
+                <span class="card-title">
+                    <content:gettitle />
+                </span>
+            </div>
+            <div class="card-content">
+                <p class="grey-text">Student ID</p>
+                #${student.id}<br />
+                <br />
+                <p class="grey-text">Android ID</p>
+                <code>${student.androidId}</code>
+            </div>
+        </div>
+    </div>
+    <div class="col s5 m7 l8">
+        <div class="card-panel">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+            <canvas id="chart"></canvas>
+            <script>
+                var ctx = document.getElementById('chart');
+                var data = {
+                    labels: ['Letter-sounds', 'Words', 'Numbers', 'Storybooks', 'Videos'],
+                    datasets: [
+                        {
+                            data: [${letterSoundLearningEventsCount}, ${wordLearningEventsCount}, ${numberLearningEventsCount}, ${storyBookLearningEventsCount}, ${videoLearningEventsCount}],
+                            label: 'Learning events',
+                            backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                            tension: 0.5
+                        },
+                        {
+                            data: [${lettersoundAssessmentEventsCount}, ${wordAssessmentEventsCount}, ${numberAssessmentEventsCount}, ${storyBookAssessmentEventsCount}, ${videoAssessmentEventsCount}],
+                            label: 'Assessment events',
+                            backgroundColor: 'rgba(77,182,172, 0.5)', // #4db6ac teal lighten-2
+                            tension: 0.5
+                        }
+                    ]
+                };
+                var options = {};
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: data,
+                    options: options
+                });
+            </script>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+
+    <div class="col s6">
+        <h5 style="margin-top: 1em;">Literacy skills</h5>
+        <div class="card-panel">
+            <table>
+                <thead>
+                    <th>Skill</th>
+                    <th></th>
+                    <th>Mastery</th>
+                </thead>
+                <tbody>
+                    <c:forEach var="literacySkill" items="${literacySkills}">
+                        <tr>
+                            <td>
+                                ${literacySkill}
+                            </td>
+                            <td>
+                                0%
+                            </td>
+                            <td>
+                                <div class="progress">
+                                    <div class="determinate" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col s6">
+        <h5 style="margin-top: 1em;">Numeracy skills</h5>
+        <div class="card-panel">
+            <table>
+                <thead>
+                    <th>Skill</th>
+                    <th></th>
+                    <th>Mastery</th>
+                </thead>
+                <tbody>
+                    <c:forEach var="numeracySkill" items="${numeracySkills}">
+                        <tr>
+                            <td>
+                                ${numeracySkill}
+                            </td>
+                            <td>
+                                0%
+                            </td>
+                            <td>
+                                <div class="progress">
+                                    <div class="determinate" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-    
+    <h5 style="margin-top: 1em;">🎼 Letter-sounds</h5>
     <div class="card-panel">
-        <h5>🔤 Word learning events (${fn:length(wordLearningEvents)})</h5>
-        
+        <h5>Assessment events (${fn:length(letterSoundAssessmentEvents)})</h5>
+        ...
+
+        <div class="divider" style="margin: 2em 0;"></div>
+
+        <h5>Learning events (${fn:length(letterSoundLearningEvents)})</h5>
+        ...
+    </div>
+    <div style="clear: both;"></div>
+    
+    <h5 style="margin-top: 1em;">🔤 Words</h5>
+    <div class="card-panel">
+        <h5>Assessment events (${fn:length(wordAssessmentEvents)})</h5>
+        ...
+
+        <div class="divider" style="margin: 2em 0;"></div>
+
+        <h5>Learning events (${fn:length(wordLearningEvents)})</h5>
         <canvas id="wordChart"></canvas>
         <script>
             const wordLabels = [
@@ -36,10 +159,28 @@
             new Chart(wordCtx, wordConfig);
         </script>
     </div>
+    <div style="clear: both;"></div>
 
+    <h5 style="margin-top: 1em;">🔢 Numbers</h5>
     <div class="card-panel">
-        <h5>📚 Storybook learning events</h5>
-        
+        <h5>Assessment events (${fn:length(numberAssessmentEvents)})</h5>
+        ...
+
+        <div class="divider" style="margin: 2em 0;"></div>
+
+        <h5>Learning events (${fn:length(numberLearningEvents)})</h5>
+        ...
+    </div>
+    <div style="clear: both;"></div>
+
+    <h5 style="margin-top: 1em;">📚 Storybooks</h5>
+    <div class="card-panel">
+        <h5>Assessment events (${fn:length(storyBookAssessmentEvents)})</h5>
+        ...
+
+        <div class="divider" style="margin: 2em 0;"></div>
+
+        <h5>Learning events (${fn:length(storyBookLearningEvents)})</h5>
         <canvas id="storyBookChart"></canvas>
         <script>
             const storyBookLabels = [
@@ -65,10 +206,16 @@
             new Chart(storyBookCtx, storyBookConfig);
         </script>
     </div>
+    <div style="clear: both;"></div>
 
+    <h5 style="margin-top: 1em;">🎬 Videos</h5>
     <div class="card-panel">
-        <h5>🎬 Video learning events</h5>
+        <h5>Assessment events (${fn:length(videoAssessmentEvents)})</h5>
+        ...
+
+        <div class="divider" style="margin: 2em 0;"></div>
         
+        <h5>Learning events (${fn:length(videoLearningEvents)})</h5>
         <canvas id="videoChart"></canvas>
         <script>
             const videoLabels = [

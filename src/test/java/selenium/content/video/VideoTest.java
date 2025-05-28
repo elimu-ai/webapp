@@ -33,6 +33,7 @@ public class VideoTest {
         driver = new ChromeDriver(chromeOptions);
 
         driver.get(DomainHelper.getBaseUrl() + "/content");
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
     }
 
     @AfterEach

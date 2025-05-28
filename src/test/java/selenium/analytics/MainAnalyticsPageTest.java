@@ -31,6 +31,7 @@ public class MainAnalyticsPageTest {
         driver = new ChromeDriver(chromeOptions);
 
         driver.get(DomainHelper.getBaseUrl() + "/analytics");
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
     }
 
     @AfterEach

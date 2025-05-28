@@ -31,6 +31,7 @@ public class ContributorPageTest {
         driver = new ChromeDriver(chromeOptions);
 
         driver.get(DomainHelper.getBaseUrl() + "/contributor/list");
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
     }
 
     @AfterEach
