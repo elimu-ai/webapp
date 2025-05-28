@@ -10,14 +10,14 @@ import lombok.Setter;
 public class LetterSoundAssessmentEvent extends AssessmentEvent {
 
     /**
-     * The sequence of letters. E.g. <code>["s", "h"]</code>.
+     * The sequence of letters. E.g. <code>"sh"</code>.
      */
-    private String[] letterSoundLetters;
+    private String letterSoundLetters;
 
     /**
-     * The sequence of sounds (IPA values). E.g. <code>["ʃ"]</code>.
+     * The sequence of sounds (IPA values). E.g. <code>"ʃ"</code>.
      */
-    private String [] letterSoundSounds;
+    private String letterSoundSounds;
 
     /**
      * This field might not be included, e.g. if the assessment task was done in a 

@@ -57,7 +57,7 @@
     <div class="col s6">
         <h5 style="margin-top: 1em;">Literacy skills</h5>
         <div class="card-panel">
-            <table>
+            <table class="bordered highlight">
                 <thead>
                     <th>Skill</th>
                     <th></th>
@@ -86,7 +86,7 @@
     <div class="col s6">
         <h5 style="margin-top: 1em;">Numeracy skills</h5>
         <div class="card-panel">
-            <table>
+            <table class="bordered highlight">
                 <thead>
                     <th>Skill</th>
                     <th></th>
@@ -116,6 +116,18 @@
     
     <h5 style="margin-top: 1em;">🎼 Letter-sounds</h5>
     <div class="card-panel">
+        <a id="exportLetterSoundAssessmentEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/letter-sound-assessment-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportLetterSoundAssessmentEventsToCsvButton').click(function() {
+                    console.info('#exportLetterSoundAssessmentEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         <h5>Assessment events (${fn:length(letterSoundAssessmentEvents)})</h5>
         ...
 
