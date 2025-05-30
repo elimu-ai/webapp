@@ -41,4 +41,15 @@ public class VideoLearningEventDaoJpa extends GenericDaoJpa<VideoLearningEvent> 
             "ORDER BY event.timestamp " + orderDirection)
             .getResultList();
     }
+
+    @Override
+    public List<VideoLearningEvent> readAll(String androidId) throws DataAccessException {
+        return em.createQuery(
+            "SELECT event " + 
+            "FROM VideoLearningEvent event " +
+            "WHERE event.androidId = :androidId " + 
+            "ORDER BY event.timestamp")
+            .setParameter("androidId", androidId)
+            .getResultList();
+    }
 }

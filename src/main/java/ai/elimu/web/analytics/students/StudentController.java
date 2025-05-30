@@ -60,15 +60,15 @@ public class StudentController {
     model.addAttribute("numeracySkills", NumeracySkill.values());
 
 
-    List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = letterSoundAssessmentEventDao.readAll();
+    List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = letterSoundAssessmentEventDao.readAll(student.getAndroidId());
     model.addAttribute("letterSoundAssessmentEvents", letterSoundAssessmentEvents);
 
-    List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll();
+    List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll(student.getAndroidId());
     model.addAttribute("letterSoundLearningEvents", letterSoundLearningEvents);
 
     
     // Prepare chart data - WordLearningEvents
-    List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll();
+    List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll(student.getAndroidId());
     List<String> wordMonthList = new ArrayList<>();
     List<Integer> wordEventCountList = new ArrayList<>();
     if (!wordLearningEvents.isEmpty()) {
@@ -101,7 +101,7 @@ public class StudentController {
 
 
     // Prepare chart data - StoryBookLearningEvents
-    List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll();
+    List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll(student.getAndroidId());
     List<String> storyBookMonthList = new ArrayList<>();
     List<Integer> storyBookEventCountList = new ArrayList<>();
     if (!storyBookLearningEvents.isEmpty()) {
@@ -134,7 +134,7 @@ public class StudentController {
 
 
     // Prepare chart data - VideoLearningEvents
-    List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAll();
+    List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAll(student.getAndroidId());
     List<String> videoMonthList = new ArrayList<>();
     List<Integer> videoEventCountList = new ArrayList<>();
     if (!videoLearningEvents.isEmpty()) {

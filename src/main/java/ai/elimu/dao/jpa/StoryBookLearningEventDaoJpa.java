@@ -41,4 +41,15 @@ public class StoryBookLearningEventDaoJpa extends GenericDaoJpa<StoryBookLearnin
             return null;
         }
     }
+
+    @Override
+    public List<StoryBookLearningEvent> readAll(String androidId) throws DataAccessException {
+        return em.createQuery(
+            "SELECT event " + 
+            "FROM StoryBookLearningEvent event " +
+            "WHERE event.androidId = :androidId " + 
+            "ORDER BY event.timestamp")
+            .setParameter("androidId", androidId)
+            .getResultList();
+    }   
 }
