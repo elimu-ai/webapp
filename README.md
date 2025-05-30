@@ -43,7 +43,7 @@ See [`src/main/config/DEPLOY.md`](./src/main/config/DEPLOY.md)
 
 ## Release 📦
 
-See [`src/main/config/RELEASE.md`](./src/main/config/RELEASE.md)
+See [`src/main/config/RELEASE.md`](./RELEASE.md)
 
 ## Localization
 
