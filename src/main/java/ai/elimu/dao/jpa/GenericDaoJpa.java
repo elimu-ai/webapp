@@ -35,9 +35,9 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
   public List<T> readAll() throws DataAccessException {
     Class<?> entityClass = getEntityClass();
     return (List<T>) em.createQuery("SELECT c " +
-                "FROM " + entityClass.getSimpleName() + " c",
-            entityClass)
-        .getResultList();
+                            "FROM " + entityClass.getSimpleName() + " c ORDER BY c.id",
+                    entityClass)
+            .getResultList();
   }
 
   @Override
