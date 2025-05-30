@@ -10,7 +10,9 @@ import ai.elimu.entity.content.StoryBook;
 
 public interface StoryBookLearningEventDao extends GenericDao<StoryBookLearningEvent> {
     
-    List<StoryBookLearningEvent> readAllOrderedByTime() throws DataAccessException;
-    
     StoryBookLearningEvent read(Calendar time, String androidId, Application application, StoryBook storyBook) throws DataAccessException;
+
+    List<StoryBookLearningEvent> readAllOrderedByTime() throws DataAccessException;
+
+    List<StoryBookLearningEvent> readAll(String androidId) throws DataAccessException;
 }
