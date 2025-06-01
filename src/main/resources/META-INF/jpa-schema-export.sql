@@ -101,6 +101,8 @@
 
     drop table if exists Word_LetterSound;
 
+    drop table if exists WordAssessmentEvent;
+
     drop table if exists WordContributionEvent;
 
     drop table if exists WordLearningEvent;
@@ -604,6 +606,20 @@
         primary key (Word_id, letterSounds_ORDER)
     ) type=MyISAM;
 
+    create table WordAssessmentEvent (
+       id bigint not null auto_increment,
+        additionalData text,
+        androidId varchar(255),
+        packageName varchar(255),
+        timestamp datetime,
+        masteryScore float(23),
+        timeSpentMs bigint,
+        wordId bigint,
+        wordText varchar(255),
+        application_id bigint,
+        primary key (id)
+    ) type=MyISAM;
+
     create table WordContributionEvent (
        id bigint not null auto_increment,
         comment text,
@@ -976,6 +992,11 @@
        add constraint FKsx4fbojtfe17xitgiofdef23k 
        foreign key (Word_id) 
        references Word (id);
+
+    alter table WordAssessmentEvent 
+       add constraint FKlxj22iqgrsvw76fld5vsrhb8c 
+       foreign key (application_id) 
+       references Application (id);
 
     alter table WordContributionEvent 
        add constraint FKrsen7udud4svhc32e3rhkcmnu 

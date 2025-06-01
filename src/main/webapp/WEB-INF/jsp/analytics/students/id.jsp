@@ -165,7 +165,57 @@
             });
         </script>
         <h5>Word assessment events (${fn:length(wordAssessmentEvents)})</h5>
-        ...
+        <canvas id="wordAssessmentEventChart"></canvas>
+        <script>
+            const wordAssessmentEventLabels = [
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+            ];
+            const wordAssessmentEventData = {
+                labels: wordAssessmentEventLabels,
+                datasets: [{
+                    data: <c:out value="${wordAssessmentEventCountList}" />,
+                    label: 'Word assessment events',
+                    backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
+            const wordAssessmentEventConfig = {
+                type: 'line',
+                data: wordAssessmentEventData,
+                options: {}
+            };
+            var wordAssessmentEventCtx = document.getElementById('wordAssessmentEventChart');
+            new Chart(wordAssessmentEventCtx, wordAssessmentEventConfig);
+        </script>
+        <table class="bordered highlight">
+            <thead>
+                <th>id</th>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>word_text</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:set var="wordAssessmentEvent" value="${wordAssessmentEvents[fn:length(wordAssessmentEvents) - 1 - i]}" />
+                    <tr>
+                        <td>
+                            ${wordAssessmentEvent.id}
+                        </td>
+                        <td>
+                            ${wordAssessmentEvent.timestamp.time}
+                        </td>
+                        <td>
+                            <code>${wordAssessmentEvent.packageName}</code>
+                        </td>
+                        <td>
+                            "${wordAssessmentEvent.wordText}"
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 
         <div class="divider" style="margin: 2em 0;"></div>
 
