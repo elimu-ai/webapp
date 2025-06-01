@@ -13,8 +13,10 @@ import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoDao;
+import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Emoji;
@@ -47,8 +49,6 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.EnumSet;
@@ -319,18 +319,18 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         studentDao.create(student3);
 
 
-        StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
-
         // Generate weekly events from 6 months ago until now
         Calendar calendar6MonthsAgo = Calendar.getInstance();
         calendar6MonthsAgo.add(Calendar.MONTH, -6);
         Calendar calendarNow = Calendar.getInstance();
         Calendar week = (Calendar) calendar6MonthsAgo.clone();
+        StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
+        VideoLearningEventDao videoLearningEventDao = (VideoLearningEventDao) webApplicationContext.getBean("videoLearningEventDao");
         while (!week.after(calendarNow)) {
             List<Student> students = studentDao.readAll();
             for (Student student : students) {
-                int randomNumberOfEvents = (int) (Math.random() * 8);
-                for (int i = 0; i < randomNumberOfEvents; i++) {
+                int randomNumberOfStoryBookLearningEvents = (int) (Math.random() * 8);
+                for (int i = 0; i < randomNumberOfStoryBookLearningEvents; i++) {
                     StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                     storyBookLearningEvent.setTimestamp(week);
                     storyBookLearningEvent.setAndroidId(student.getAndroidId());
@@ -339,6 +339,18 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     storyBookLearningEvent.setStoryBookTitle(storyBook.getTitle());
                     storyBookLearningEvent.setStoryBookId(storyBook.getId());
                     storyBookLearningEventDao.create(storyBookLearningEvent);
+                }
+
+                int randomNumberOfVideoLearningEvents = (int) (Math.random() * 8);
+                for (int i = 0; i < randomNumberOfVideoLearningEvents; i++) {
+                    VideoLearningEvent videoLearningEvent = new VideoLearningEvent();
+                    videoLearningEvent.setTimestamp(week);
+                    videoLearningEvent.setAndroidId(student.getAndroidId());
+                    videoLearningEvent.setPackageName("ai.elimu.filamu");
+                    videoLearningEvent.setVideoTitle(video.getTitle());
+                    videoLearningEvent.setVideoId(video.getId());
+                    videoLearningEvent.setLearningEventType(LearningEventType.VIDEO_OPENED);
+                    videoLearningEventDao.create(videoLearningEvent);
                 }
             }
             week.add(Calendar.WEEK_OF_YEAR, 1);

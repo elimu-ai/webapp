@@ -30,13 +30,13 @@
                     labels: ['Letter-sounds', 'Words', 'Numbers', 'Storybooks', 'Videos'],
                     datasets: [
                         {
-                            data: [${letterSoundLearningEventsCount}, ${wordLearningEventsCount}, ${numberLearningEventsCount}, ${storyBookLearningEventsCount}, ${videoLearningEventsCount}],
+                            data: [${fn:length(letterSoundLearningEvents)}, ${fn:length(wordLearningEvents)}, ${fn:length(numberLearningEvents)}, ${fn:length(storyBookLearningEvents)}, ${fn:length(videoLearningEvents)}],
                             label: 'Learning events',
                             backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
                             tension: 0.5
                         },
                         {
-                            data: [${lettersoundAssessmentEventsCount}, ${wordAssessmentEventsCount}, ${numberAssessmentEventsCount}, ${storyBookAssessmentEventsCount}, ${videoAssessmentEventsCount}],
+                            data: [${fn:length(lettersoundAssessmentEvents)}, ${fn:length(wordAssessmentEvents)}, ${fn:length(numberAssessmentEvents)}, ${fn:length(storyBookAssessmentEvents)}, ${fn:length(videoAssessmentEvents)}],
                             label: 'Assessment events',
                             backgroundColor: 'rgba(77,182,172, 0.5)', // #4db6ac teal lighten-2
                             tension: 0.5
