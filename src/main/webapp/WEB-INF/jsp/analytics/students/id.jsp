@@ -223,6 +223,19 @@
 
     <h5 style="margin-top: 1em;">📚 Storybooks</h5>
     <div class="card-panel">
+        <a id="exportStoryBookLearningEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/storybook-learning-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportStoryBookLearningEventsToCsvButton').click(function() {
+                    console.info('#exportStoryBookLearningEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
+
         <h5>Storybook learning events (${fn:length(storyBookLearningEvents)})</h5>
         <canvas id="storyBookChart"></canvas>
         <script>
@@ -248,6 +261,34 @@
             var storyBookCtx = document.getElementById('storyBookChart');
             new Chart(storyBookCtx, storyBookConfig);
         </script>
+
+        <table class="bordered highlight">
+            <thead>
+                <th>id</th>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>storybook_title</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:set var="storyBookLearningEvent" value="${storyBookLearningEvents[fn:length(storyBookLearningEvents) - 1 - i]}" />
+                    <tr>
+                        <td>
+                            ${storyBookLearningEvent.id}
+                        </td>
+                        <td>
+                            ${storyBookLearningEvent.timestamp.time}
+                        </td>
+                        <td>
+                            <code>${storyBookLearningEvent.packageName}</code>
+                        </td>
+                        <td>
+                            "${storyBookLearningEvent.storyBookTitle}"
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
     <div style="clear: both;"></div>
 
@@ -278,5 +319,33 @@
             var videoCtx = document.getElementById('videoChart');
             new Chart(videoCtx, videoConfig);
         </script>
+
+        <table class="bordered highlight">
+            <thead>
+                <th>id</th>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>video_title</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:set var="videoLearningEvent" value="${videoLearningEvents[fn:length(videoLearningEvents) - 1 - i]}" />
+                    <tr>
+                        <td>
+                            ${videoLearningEvent.id}
+                        </td>
+                        <td>
+                            ${videoLearningEvent.timestamp.time}
+                        </td>
+                        <td>
+                            <code>${videoLearningEvent.packageName}</code>
+                        </td>
+                        <td>
+                            "${videoLearningEvent.videoTitle}"
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
 </content:section>

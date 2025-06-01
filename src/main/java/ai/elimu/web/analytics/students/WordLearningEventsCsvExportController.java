@@ -65,7 +65,7 @@ public class WordLearningEventsCsvExportController {
           wordLearningEvent.getTimestamp().getTimeInMillis(),
           wordLearningEvent.getPackageName(),
           wordLearningEvent.getWordText(),
-          (wordLearningEvent.getWord() != null) ? wordLearningEvent.getWord().getId() : 0,
+          (wordLearningEvent.getWord() == null) ? null : wordLearningEvent.getWord().getId(),
           // wordLearningEvent.getWordId(), https://github.com/elimu-ai/webapp/issues/2113
           wordLearningEvent.getLearningEventType(),
           wordLearningEvent.getAdditionalData()

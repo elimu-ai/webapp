@@ -40,7 +40,7 @@ public class WordLearningEventDaoJpa extends GenericDaoJpa<WordLearningEvent> im
             "SELECT event " + 
             "FROM WordLearningEvent event " +
             "WHERE event.androidId = :androidId " + 
-            "ORDER BY event.timestamp")
+            "ORDER BY event.id")
             .setParameter("androidId", androidId)
             .getResultList();
     }

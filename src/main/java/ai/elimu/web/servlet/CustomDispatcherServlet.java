@@ -329,7 +329,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         while (!week.after(calendarNow)) {
             List<Student> students = studentDao.readAll();
             for (Student student : students) {
-                int randomNumberOfStoryBookLearningEvents = (int) (Math.random() * 8);
+                int randomNumberOfStoryBookLearningEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfStoryBookLearningEvents; i++) {
                     StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                     storyBookLearningEvent.setTimestamp(week);
@@ -341,7 +341,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     storyBookLearningEventDao.create(storyBookLearningEvent);
                 }
 
-                int randomNumberOfVideoLearningEvents = (int) (Math.random() * 8);
+                int randomNumberOfVideoLearningEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfVideoLearningEvents; i++) {
                     VideoLearningEvent videoLearningEvent = new VideoLearningEvent();
                     videoLearningEvent.setTimestamp(week);
