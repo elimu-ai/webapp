@@ -185,7 +185,7 @@
         <canvas id="wordChart"></canvas>
         <script>
             const wordLabels = [
-                <c:forEach var="month" items="${wordMonthList}">'${month}',</c:forEach>
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
             ];
             const wordData = {
                 labels: wordLabels,
@@ -232,7 +232,7 @@
         <canvas id="storyBookChart"></canvas>
         <script>
             const storyBookLabels = [
-                <c:forEach var="month" items="${storyBookMonthList}">'${month}',</c:forEach>
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
             ];
             const storyBookData = {
                 labels: storyBookLabels,
@@ -267,7 +267,7 @@
         <canvas id="videoChart"></canvas>
         <script>
             const videoLabels = [
-                <c:forEach var="month" items="${videoMonthList}">'${month}',</c:forEach>
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
             ];
             const videoData = {
                 labels: videoLabels,

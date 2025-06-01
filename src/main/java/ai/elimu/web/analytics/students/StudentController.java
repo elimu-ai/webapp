@@ -60,6 +60,21 @@ public class StudentController {
     model.addAttribute("numeracySkills", NumeracySkill.values());
 
 
+    // Generate a list of weeks from 6 months ago until now
+    List<String> weekList = new ArrayList<>();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-ww");
+    Calendar calendar6MonthsAgo = Calendar.getInstance();
+    calendar6MonthsAgo.add(Calendar.MONTH, -6);
+    Calendar calendarNow = Calendar.getInstance();
+    Calendar week = calendar6MonthsAgo;
+    while (!week.after(calendarNow)) {
+      String weekAsString = simpleDateFormat.format(week.getTime());
+      weekList.add(weekAsString);
+      week.add(Calendar.WEEK_OF_YEAR, 1);
+    }
+    model.addAttribute("weekList", weekList);
+
+
     List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = letterSoundAssessmentEventDao.readAll(student.getAndroidId());
     model.addAttribute("letterSoundAssessmentEvents", letterSoundAssessmentEvents);
 
@@ -69,99 +84,69 @@ public class StudentController {
     
     // Prepare chart data - WordLearningEvents
     List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll(student.getAndroidId());
-    List<String> wordMonthList = new ArrayList<>();
     List<Integer> wordEventCountList = new ArrayList<>();
     if (!wordLearningEvents.isEmpty()) {
-      // Group event count by month (e.g. "Aug-2024", "Sep-2024")
-      Map<String, Integer> eventCountByMonthMap = new HashMap<>();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM-yyyy");
+      // Group event count by week (e.g. "2024-09", "2024-26")
+      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
       for (WordLearningEvent event : wordLearningEvents) {
-        String eventMonth = simpleDateFormat.format(event.getTimestamp().getTime());
-        eventCountByMonthMap.put(eventMonth, eventCountByMonthMap.getOrDefault(eventMonth, 0) + 1);
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
       }
 
-      // Iterate each month from 4 years ago until now
-      Calendar calendar4YearsAgo = Calendar.getInstance();
-      calendar4YearsAgo.add(Calendar.YEAR, -4);
-      Calendar calendarNow = Calendar.getInstance();
-      Calendar month = calendar4YearsAgo;
-      while (!month.after(calendarNow)) {
-        String monthAsString = simpleDateFormat.format(month.getTime());
-        wordMonthList.add(monthAsString);
-
-        wordEventCountList.add(eventCountByMonthMap.getOrDefault(monthAsString, 0));
-
-        // Increase the date by 1 month
-        month.add(Calendar.MONTH, 1);
+      // Iterate each week from 6 months ago until now
+      week = calendar6MonthsAgo;
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        wordEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
+        week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
-    model.addAttribute("wordMonthList", wordMonthList);
     model.addAttribute("wordEventCountList", wordEventCountList);
     model.addAttribute("wordLearningEvents", wordLearningEvents);
 
 
     // Prepare chart data - StoryBookLearningEvents
     List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll(student.getAndroidId());
-    List<String> storyBookMonthList = new ArrayList<>();
     List<Integer> storyBookEventCountList = new ArrayList<>();
     if (!storyBookLearningEvents.isEmpty()) {
-      // Group event count by month (e.g. "Aug-2024", "Sep-2024")
-      Map<String, Integer> eventCountByMonthMap = new HashMap<>();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM-yyyy");
+      // Group event count by week (e.g. "2024-09", "2024-26")
+      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
       for (StoryBookLearningEvent event : storyBookLearningEvents) {
-        String eventMonth = simpleDateFormat.format(event.getTimestamp().getTime());
-        eventCountByMonthMap.put(eventMonth, eventCountByMonthMap.getOrDefault(eventMonth, 0) + 1);
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
       }
 
-      // Iterate each month from 4 years ago until now
-      Calendar calendar4YearsAgo = Calendar.getInstance();
-      calendar4YearsAgo.add(Calendar.YEAR, -4);
-      Calendar calendarNow = Calendar.getInstance();
-      Calendar month = calendar4YearsAgo;
-      while (!month.after(calendarNow)) {
-        String monthAsString = simpleDateFormat.format(month.getTime());
-        storyBookMonthList.add(monthAsString);
-
-        storyBookEventCountList.add(eventCountByMonthMap.getOrDefault(monthAsString, 0));
-
-        // Increase the date by 1 month
-        month.add(Calendar.MONTH, 1);
+      // Iterate each week from 6 months ago until now
+      week = calendar6MonthsAgo;
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        storyBookEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
+        week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
-    model.addAttribute("storyBookMonthList", storyBookMonthList);
     model.addAttribute("storyBookEventCountList", storyBookEventCountList);
     model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
 
 
     // Prepare chart data - VideoLearningEvents
     List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAll(student.getAndroidId());
-    List<String> videoMonthList = new ArrayList<>();
     List<Integer> videoEventCountList = new ArrayList<>();
     if (!videoLearningEvents.isEmpty()) {
-      // Group event count by month (e.g. "Aug-2024", "Sep-2024")
-      Map<String, Integer> eventCountByMonthMap = new HashMap<>();
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM-yyyy");
+      // Group event count by week (e.g. "2024-09", "2024-26")
+      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
       for (VideoLearningEvent event : videoLearningEvents) {
-        String eventMonth = simpleDateFormat.format(event.getTimestamp().getTime());
-        eventCountByMonthMap.put(eventMonth, eventCountByMonthMap.getOrDefault(eventMonth, 0) + 1);
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
       }
 
-      // Iterate each month from 4 years ago until now
-      Calendar calendar4YearsAgo = Calendar.getInstance();
-      calendar4YearsAgo.add(Calendar.YEAR, -4);
-      Calendar calendarNow = Calendar.getInstance();
-      Calendar month = calendar4YearsAgo;
-      while (!month.after(calendarNow)) {
-        String monthAsString = simpleDateFormat.format(month.getTime());
-        videoMonthList.add(monthAsString);
-
-        videoEventCountList.add(eventCountByMonthMap.getOrDefault(monthAsString, 0));
-
-        // Increase the date by 1 month
-        month.add(Calendar.MONTH, 1);
+      // Iterate each week from 6 months ago until now
+      week = calendar6MonthsAgo;
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        videoEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
+        week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
-    model.addAttribute("videoMonthList", videoMonthList);
     model.addAttribute("videoEventCountList", videoEventCountList);
     model.addAttribute("videoLearningEvents", videoLearningEvents);
 
