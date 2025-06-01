@@ -10,9 +10,11 @@ import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
+import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Emoji;
@@ -29,6 +31,7 @@ import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
+import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.util.ChecksumHelper;
@@ -44,10 +47,13 @@ import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.EnumSet;
 import java.util.HashSet;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import lombok.extern.slf4j.Slf4j;
@@ -311,5 +317,31 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         Student student3 = new Student();
         student3.setAndroidId("e387e38700000003");
         studentDao.create(student3);
+
+
+        StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
+
+        // Generate weekly events from 6 months ago until now
+        Calendar calendar6MonthsAgo = Calendar.getInstance();
+        calendar6MonthsAgo.add(Calendar.MONTH, -6);
+        Calendar calendarNow = Calendar.getInstance();
+        Calendar week = (Calendar) calendar6MonthsAgo.clone();
+        while (!week.after(calendarNow)) {
+            List<Student> students = studentDao.readAll();
+            for (Student student : students) {
+                int randomNumberOfEvents = (int) (Math.random() * 8);
+                for (int i = 0; i < randomNumberOfEvents; i++) {
+                    StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
+                    storyBookLearningEvent.setTimestamp(week);
+                    storyBookLearningEvent.setAndroidId(student.getAndroidId());
+                    storyBookLearningEvent.setPackageName("ai.elimu.vitabu");
+                    storyBookLearningEvent.setLearningEventType(LearningEventType.STORYBOOK_OPENED);
+                    storyBookLearningEvent.setStoryBookTitle(storyBook.getTitle());
+                    storyBookLearningEvent.setStoryBookId(storyBook.getId());
+                    storyBookLearningEventDao.create(storyBookLearningEvent);
+                }
+            }
+            week.add(Calendar.WEEK_OF_YEAR, 1);
+        }
     }
 }

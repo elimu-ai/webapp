@@ -51,7 +51,7 @@ public class StoryBookLearningEventListController {
       Calendar calendar4YearsAgo = Calendar.getInstance();
       calendar4YearsAgo.add(Calendar.YEAR, -4);
       Calendar calendarNow = Calendar.getInstance();
-      Calendar month = calendar4YearsAgo;
+      Calendar month = (Calendar) calendar4YearsAgo.clone();
       while (!month.after(calendarNow)) {
         String monthAsString = simpleDateFormat.format(month.getTime());
         monthList.add(monthAsString);

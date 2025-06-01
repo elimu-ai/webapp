@@ -58,7 +58,7 @@ public class VideoLearningEventListController {
       Calendar calendar6MonthsAgo = Calendar.getInstance();
       calendar6MonthsAgo.add(Calendar.MONTH, -6); // 26 weeks
       Calendar calendarNow = Calendar.getInstance();
-      Calendar week = calendar6MonthsAgo;
+      Calendar week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
         weekList.add(weekAsString);

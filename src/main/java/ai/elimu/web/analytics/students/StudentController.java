@@ -66,12 +66,13 @@ public class StudentController {
     Calendar calendar6MonthsAgo = Calendar.getInstance();
     calendar6MonthsAgo.add(Calendar.MONTH, -6);
     Calendar calendarNow = Calendar.getInstance();
-    Calendar week = calendar6MonthsAgo;
+    Calendar week = (Calendar) calendar6MonthsAgo.clone();
     while (!week.after(calendarNow)) {
       String weekAsString = simpleDateFormat.format(week.getTime());
       weekList.add(weekAsString);
       week.add(Calendar.WEEK_OF_YEAR, 1);
     }
+    log.info("weekList: " + weekList);
     model.addAttribute("weekList", weekList);
 
 
@@ -94,7 +95,7 @@ public class StudentController {
       }
 
       // Iterate each week from 6 months ago until now
-      week = calendar6MonthsAgo;
+      week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
         wordEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
@@ -117,7 +118,7 @@ public class StudentController {
       }
 
       // Iterate each week from 6 months ago until now
-      week = calendar6MonthsAgo;
+      week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
         storyBookEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
@@ -140,7 +141,7 @@ public class StudentController {
       }
 
       // Iterate each week from 6 months ago until now
-      week = calendar6MonthsAgo;
+      week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
         videoEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
