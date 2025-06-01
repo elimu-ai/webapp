@@ -6,12 +6,11 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.entity.analytics.WordLearningEvent;
-import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Word;
 
 public interface WordLearningEventDao extends GenericDao<WordLearningEvent> {
     
-    WordLearningEvent read(Calendar time, String androidId, Application application, Word word) throws DataAccessException;
+    WordLearningEvent read(Calendar time, String androidId, String packageName, Word word) throws DataAccessException;
 
     List<WordLearningEvent> readAll(String androidId) throws DataAccessException;
 }

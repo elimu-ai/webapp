@@ -78,7 +78,7 @@ public class StoryBookLearningEventImportScheduler {
                   // Store in database
                   for (StoryBookLearningEvent event : events) {
                     // Check if the event has already been stored in the database
-                    StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getApplication(), event.getStoryBook());
+                    StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName(), event.getStoryBook());
                     if (existingStoryBookLearningEvent != null) {
                       log.warn("The event has already been stored in the database. Skipping data import.");
                       continue;

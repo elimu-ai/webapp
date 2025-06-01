@@ -114,14 +114,14 @@ public class CsvAnalyticsExtractionHelper {
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
                 storyBookLearningEvent.setStoryBookId(storyBookId);
 
-                String storyBookTitle = csvRecord.get("storybook_title");
-                storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
+                // String storyBookTitle = csvRecord.get("storybook_title");
+                // storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
 
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 storyBookLearningEvent.setLearningEventType(learningEventType);
 
-                String additionalData = csvRecord.get("additional_data");
-                storyBookLearningEvent.setAdditionalData(additionalData);
+                // String additionalData = csvRecord.get("additional_data");
+                // storyBookLearningEvent.setAdditionalData(additionalData);
 
                 storyBookLearningEvents.add(storyBookLearningEvent);
             }

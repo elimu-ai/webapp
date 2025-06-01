@@ -78,7 +78,7 @@ public class WordLearningEventImportScheduler {
                   // Store in database
                   for (WordLearningEvent event : events) {
                     // Check if the event has already been stored in the database
-                    WordLearningEvent existingWordLearningEvent = wordLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getApplication(), event.getWord());
+                    WordLearningEvent existingWordLearningEvent = wordLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName(), event.getWord());
                     if (existingWordLearningEvent != null) {
                       log.warn("The event has already been stored in the database. Skipping data import.");
                       continue;
