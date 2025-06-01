@@ -1,8 +1,10 @@
-package ai.elimu.web.analytics;
+package ai.elimu.web.analytics.students;
 
+import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.enums.OrderDirection;
 import ai.elimu.entity.analytics.VideoLearningEvent;
+import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.util.AnalyticsHelper;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,25 +17,32 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/analytics/video-learning-event/list/video-learning-events.csv")
+@RequestMapping("/analytics/students/{studentId}/video-learning-events.csv")
 @RequiredArgsConstructor
 @Slf4j
-public class VideoLearningEventCsvExportController {
+public class VideoLearningEventsCsvExportController {
+
+  private final StudentDao studentDao;
 
   private final VideoLearningEventDao videoLearningEventDao;
 
   @GetMapping
   public void handleRequest(
+      @PathVariable Long studentId,
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
     log.info("handleRequest");
 
-    List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAllOrderedByTimestamp(OrderDirection.ASC);
+    Student student = studentDao.read(studentId);
+    log.info("student.getAndroidId(): " + student.getAndroidId());
+
+    List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAll(student.getAndroidId());
     log.info("videoLearningEvents.size(): " + videoLearningEvents.size());
     for (VideoLearningEvent videoLearningEvent : videoLearningEvents) {
       videoLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(videoLearningEvent.getAndroidId()));
@@ -41,12 +50,11 @@ public class VideoLearningEventCsvExportController {
 
     CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(
-            "id", // The Room database ID
+            "id",
             "timestamp",
-            "android_id",
             "package_name",
-            "video_id",
             "video_title",
+            "video_id",
             "learning_event_type",
             "additional_data"
         )
@@ -61,10 +69,9 @@ public class VideoLearningEventCsvExportController {
       csvPrinter.printRecord(
           videoLearningEvent.getId(),
           videoLearningEvent.getTimestamp().getTimeInMillis(),
-          videoLearningEvent.getAndroidId(),
           videoLearningEvent.getPackageName(),
-          videoLearningEvent.getVideoId(),
           videoLearningEvent.getVideoTitle(),
+          videoLearningEvent.getVideoId(),
           videoLearningEvent.getLearningEventType(),
           videoLearningEvent.getAdditionalData()
       );

@@ -48,7 +48,7 @@ public class VideoLearningEventDaoJpa extends GenericDaoJpa<VideoLearningEvent> 
             "SELECT event " + 
             "FROM VideoLearningEvent event " +
             "WHERE event.androidId = :androidId " + 
-            "ORDER BY event.timestamp")
+            "ORDER BY event.id")
             .setParameter("androidId", androidId)
             .getResultList();
     }
