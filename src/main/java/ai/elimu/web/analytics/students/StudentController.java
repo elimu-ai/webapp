@@ -85,16 +85,14 @@ public class StudentController {
     
     // Prepare chart data - WordLearningEvents
     List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll(student.getAndroidId());
+    model.addAttribute("wordLearningEvents", wordLearningEvents);
     List<Integer> wordEventCountList = new ArrayList<>();
     if (!wordLearningEvents.isEmpty()) {
-      // Group event count by week (e.g. "2024-09", "2024-26")
       Map<String, Integer> eventCountByWeekMap = new HashMap<>();
       for (WordLearningEvent event : wordLearningEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
       }
-
-      // Iterate each week from 6 months ago until now
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
@@ -103,21 +101,18 @@ public class StudentController {
       }
     }
     model.addAttribute("wordEventCountList", wordEventCountList);
-    model.addAttribute("wordLearningEvents", wordLearningEvents);
 
 
     // Prepare chart data - StoryBookLearningEvents
     List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll(student.getAndroidId());
+    model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
     List<Integer> storyBookEventCountList = new ArrayList<>();
     if (!storyBookLearningEvents.isEmpty()) {
-      // Group event count by week (e.g. "2024-09", "2024-26")
       Map<String, Integer> eventCountByWeekMap = new HashMap<>();
       for (StoryBookLearningEvent event : storyBookLearningEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
       }
-
-      // Iterate each week from 6 months ago until now
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
@@ -126,21 +121,18 @@ public class StudentController {
       }
     }
     model.addAttribute("storyBookEventCountList", storyBookEventCountList);
-    model.addAttribute("storyBookLearningEvents", storyBookLearningEvents);
 
 
     // Prepare chart data - VideoLearningEvents
     List<VideoLearningEvent> videoLearningEvents = videoLearningEventDao.readAll(student.getAndroidId());
+    model.addAttribute("videoLearningEvents", videoLearningEvents);
     List<Integer> videoEventCountList = new ArrayList<>();
     if (!videoLearningEvents.isEmpty()) {
-      // Group event count by week (e.g. "2024-09", "2024-26")
       Map<String, Integer> eventCountByWeekMap = new HashMap<>();
       for (VideoLearningEvent event : videoLearningEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
       }
-
-      // Iterate each week from 6 months ago until now
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
@@ -149,7 +141,6 @@ public class StudentController {
       }
     }
     model.addAttribute("videoEventCountList", videoEventCountList);
-    model.addAttribute("videoLearningEvents", videoLearningEvents);
 
 
     student.setAndroidId(AnalyticsHelper.redactAndroidId(student.getAndroidId()));

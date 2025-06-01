@@ -37,18 +37,7 @@ public class CsvAnalyticsExtractionHelper {
         log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT
-                    .withHeader(
-                            "id", // The Android database ID
-                            "timestamp",
-                            "android_id",
-                            "package_name",
-                            "word_id",
-                            "word_text",
-                            "learning_event_type",
-                            "additional_data"
-                    )
-                    .withSkipHeaderRecord();
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
             log.info("header: " + Arrays.toString(csvFormat.getHeader()));
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
@@ -78,8 +67,8 @@ public class CsvAnalyticsExtractionHelper {
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 wordLearningEvent.setLearningEventType(learningEventType);
 
-                String additionalData = csvRecord.get("additional_data");
-                wordLearningEvent.setAdditionalData(additionalData);
+                // String additionalData = csvRecord.get("additional_data");
+                // wordLearningEvent.setAdditionalData(additionalData);
 
                 wordLearningEvents.add(wordLearningEvent);
             }
@@ -101,18 +90,7 @@ public class CsvAnalyticsExtractionHelper {
         log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT
-                    .withHeader(
-                            "id", // The Android database ID
-                            "time",
-                            "android_id",
-                            "package_name",
-                            "storybook_id",
-                            "storybook_title",
-                            "learning_event_type",
-                            "additional_data"
-                    )
-                    .withSkipHeaderRecord();
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
             log.info("header: " + Arrays.toString(csvFormat.getHeader()));
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
@@ -165,18 +143,7 @@ public class CsvAnalyticsExtractionHelper {
         log.info("csvFilePath: " + csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(csvFilePath);
-            CSVFormat csvFormat = CSVFormat.DEFAULT
-                    .withHeader(
-                            "id", // The Android database ID
-                            "timestamp",
-                            "android_id",
-                            "package_name",
-                            "video_id",
-                            "video_title",
-                            "learning_event_type",
-                            "additional_data"
-                    )
-                    .withSkipHeaderRecord();
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
             log.info("header: " + Arrays.toString(csvFormat.getHeader()));
             CSVParser csvParser = new CSVParser(reader, csvFormat);
             for (CSVRecord csvRecord : csvParser) {
