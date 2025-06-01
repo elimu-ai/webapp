@@ -294,6 +294,19 @@
 
     <h5 style="margin-top: 1em;">🎬 Videos</h5>
     <div class="card-panel">
+        <a id="exportVideoLearningEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/video-learning-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportVideoLearningEventsToCsvButton').click(function() {
+                    console.info('#exportVideoLearningEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
+
         <h5>Video learning events (${fn:length(videoLearningEvents)})</h5>
         <canvas id="videoChart"></canvas>
         <script>

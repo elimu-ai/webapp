@@ -48,7 +48,7 @@ public class StoryBookLearningEventsCsvExportController {
 
     CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(
-            "id", // The Room database ID
+            "id",
             "timestamp",
             "package_name",
             "storybook_title",
