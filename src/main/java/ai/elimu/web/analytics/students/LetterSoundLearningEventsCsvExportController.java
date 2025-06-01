@@ -1,8 +1,9 @@
-package ai.elimu.web.analytics;
+package ai.elimu.web.analytics.students;
 
 import ai.elimu.dao.LetterSoundLearningEventDao;
+import ai.elimu.dao.StudentDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
-import ai.elimu.util.AnalyticsHelper;
+import ai.elimu.entity.analytics.students.Student;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,39 +15,41 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/analytics/letter-sound-learning-event/list/letter-sound-learning-events.csv")
+@RequestMapping("/analytics/students/{studentId}/letter-sound-learning-events.csv")
 @RequiredArgsConstructor
 @Slf4j
-public class LetterSoundLearningEventCsvExportController {
+public class LetterSoundLearningEventsCsvExportController {
+
+  private final StudentDao studentDao;
 
   private final LetterSoundLearningEventDao letterSoundLearningEventDao;
 
   @GetMapping
   public void handleRequest(
+      @PathVariable Long studentId,
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
     log.info("handleRequest");
 
-    List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll();
+    Student student = studentDao.read(studentId);
+    log.info("student.getAndroidId(): " + student.getAndroidId());
+
+    List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll(student.getAndroidId());
     log.info("letterSoundLearningEvents.size(): " + letterSoundLearningEvents.size());
-    for (LetterSoundLearningEvent letterSoundLearningEvent : letterSoundLearningEvents) {
-      letterSoundLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(letterSoundLearningEvent.getAndroidId()));
-    }
 
     CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(
-            "id", // The Room database ID
+            "id",
             "timestamp",
-            "android_id",
             "package_name",
+            // "letter_sound_letters",
+            // "letter_sound_sounds",
             "letter_sound_id",
-            "letter_sound_letters",
-            "letter_sound_sounds",
-            "learning_event_type",
             "additional_data"
         )
         .build();
@@ -60,12 +63,10 @@ public class LetterSoundLearningEventCsvExportController {
       csvPrinter.printRecord(
           letterSoundLearningEvent.getId(),
           letterSoundLearningEvent.getTimestamp().getTimeInMillis(),
-          letterSoundLearningEvent.getAndroidId(),
           letterSoundLearningEvent.getPackageName(),
+          // letterSoundLearningEvent.getLetterSoundLetters(),
+          // letterSoundLearningEvent.getLetterSoundSounds(),
           letterSoundLearningEvent.getLetterSoundId(),
-          new String[] {}, // TODO
-          new String[] {}, // TODO
-          letterSoundLearningEvent.getLearningEventType(),
           letterSoundLearningEvent.getAdditionalData()
       );
     }

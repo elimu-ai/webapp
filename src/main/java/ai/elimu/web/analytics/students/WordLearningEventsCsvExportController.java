@@ -1,8 +1,9 @@
-package ai.elimu.web.analytics;
+package ai.elimu.web.analytics.students;
 
 import ai.elimu.dao.WordLearningEventDao;
+import ai.elimu.dao.StudentDao;
 import ai.elimu.entity.analytics.WordLearningEvent;
-import ai.elimu.util.AnalyticsHelper;
+import ai.elimu.entity.analytics.students.Student;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,37 +15,40 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/analytics/word-learning-event/list/word-learning-events.csv")
+@RequestMapping("/analytics/students/{studentId}/word-learning-events.csv")
 @RequiredArgsConstructor
 @Slf4j
-public class WordLearningEventCsvExportController {
+public class WordLearningEventsCsvExportController {
+
+  private final StudentDao studentDao;
 
   private final WordLearningEventDao wordLearningEventDao;
 
   @GetMapping
   public void handleRequest(
+      @PathVariable Long studentId,
       HttpServletResponse response,
       OutputStream outputStream
   ) throws IOException {
     log.info("handleRequest");
 
-    List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll();
+    Student student = studentDao.read(studentId);
+    log.info("student.getAndroidId(): " + student.getAndroidId());
+
+    List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll(student.getAndroidId());
     log.info("wordLearningEvents.size(): " + wordLearningEvents.size());
-    for (WordLearningEvent wordLearningEvent : wordLearningEvents) {
-      wordLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(wordLearningEvent.getAndroidId()));
-    }
 
     CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
         .setHeader(
-            "id", // The Room database ID
+            "id",
             "timestamp",
-            "android_id",
             "package_name",
-            "word_id",
             "word_text",
+            "word_id",
             "learning_event_type",
             "additional_data"
         )
@@ -59,15 +63,15 @@ public class WordLearningEventCsvExportController {
       csvPrinter.printRecord(
           wordLearningEvent.getId(),
           wordLearningEvent.getTimestamp().getTimeInMillis(),
-          wordLearningEvent.getAndroidId(),
           wordLearningEvent.getPackageName(),
-          (wordLearningEvent.getWord() == null) ? null : wordLearningEvent.getWord().getId(),
           wordLearningEvent.getWordText(),
+          (wordLearningEvent.getWord() != null) ? wordLearningEvent.getWord().getId() : 0,
+          // wordLearningEvent.getWordId(), https://github.com/elimu-ai/webapp/issues/2113
           wordLearningEvent.getLearningEventType(),
           wordLearningEvent.getAdditionalData()
       );
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

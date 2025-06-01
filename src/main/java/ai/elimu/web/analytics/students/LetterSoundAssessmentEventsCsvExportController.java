@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/analytics/students/{studentId}/letter-sound-assessment-events.csv")
 @RequiredArgsConstructor
 @Slf4j
-public class LetterSoundAssessmentEventCsvExportController {
+public class LetterSoundAssessmentEventsCsvExportController {
 
   private final StudentDao studentDao;
 
