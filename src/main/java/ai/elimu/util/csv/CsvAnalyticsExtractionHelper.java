@@ -40,13 +40,12 @@ public class CsvAnalyticsExtractionHelper {
             CSVFormat csvFormat = CSVFormat.DEFAULT
                     .withHeader(
                             "id", // The Android database ID
-                            "timestamp",
+                            "time",
                             "android_id",
                             "package_name",
                             "word_id",
                             "word_text",
-                            "learning_event_type",
-                            "additional_data"
+                            "learning_event_type"
                     )
                     .withSkipHeaderRecord();
             log.info("header: " + Arrays.toString(csvFormat.getHeader()));
@@ -78,8 +77,8 @@ public class CsvAnalyticsExtractionHelper {
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 wordLearningEvent.setLearningEventType(learningEventType);
 
-                String additionalData = csvRecord.get("additional_data");
-                wordLearningEvent.setAdditionalData(additionalData);
+                // String additionalData = csvRecord.get("additional_data");
+                // wordLearningEvent.setAdditionalData(additionalData);
 
                 wordLearningEvents.add(wordLearningEvent);
             }
