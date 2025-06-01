@@ -2,6 +2,7 @@ package ai.elimu.util.csv;
 
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
+import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,62 @@ import org.apache.commons.csv.CSVRecord;
  */
 @Slf4j
 public class CsvAnalyticsExtractionHelper {
+
+    public static List<WordAssessmentEvent> extractWordAssessmentEvents(File csvFile) {
+        log.info("extractWordAssessmentEvents");
+
+        List<WordAssessmentEvent> wordAssessmentEvents = new ArrayList<>();
+
+        // Iterate each row in the CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        log.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                log.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to Java
+
+                WordAssessmentEvent wordAssessmentEvent = new WordAssessmentEvent();
+                
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                timestamp.setTimeInMillis(timestampInMillis);
+                wordAssessmentEvent.setTimestamp(timestamp);
+                
+                String androidId = csvRecord.get("android_id");
+                wordAssessmentEvent.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                wordAssessmentEvent.setPackageName(packageName);
+
+                String wordText = csvRecord.get("word_text");
+                wordAssessmentEvent.setWordText(wordText);
+
+                Long wordId = Long.valueOf(csvRecord.get("word_id"));
+                wordAssessmentEvent.setWordId(wordId);
+
+                Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
+                wordAssessmentEvent.setMasteryScore(masteryScore);
+
+                Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
+                wordAssessmentEvent.setTimeSpentMs(timeSpentMs);
+
+                String additionalData = csvRecord.get("additional_data");
+                wordAssessmentEvent.setAdditionalData(additionalData);
+
+                wordAssessmentEvents.add(wordAssessmentEvent);
+            }
+            csvParser.close();
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+
+        return wordAssessmentEvents;
+    }
     
     public static List<WordLearningEvent> extractWordLearningEvents(File csvFile) {
         log.info("extractWordLearningEvents");
