@@ -22,7 +22,22 @@
 </content:banner>
 
 <content:section cssId="studentListPage">
-    <div class="section row">
+    <div class="row">
+        <a id="exportStudentsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+            href="<spring:url value='/analytics/students/students.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportStudentsToCsvButton').click(function() {
+                    console.info('#exportLetterSoundAssessmentEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
+        <h5>Students (${fn:length(students)})</h5>
+    </div>
+    <div class="row">
         <table class="bordered highlight">
             <thead>
                 <th>Student ID</th>

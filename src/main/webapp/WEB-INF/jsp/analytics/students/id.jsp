@@ -14,8 +14,8 @@
             <div class="card-content">
                 <p class="grey-text">Student ID</p>
                 #${student.id}<br />
-                <br />
-                <p class="grey-text">Android ID</p>
+
+                <p class="grey-text" style="margin-top: 1em;">Android ID</p>
                 <code>${student.androidId}</code>
             </div>
         </div>
@@ -128,12 +128,24 @@
                 });
             });
         </script>
-        <h5>Assessment events (${fn:length(letterSoundAssessmentEvents)})</h5>
+        <h5>Letter-sound assessment events (${fn:length(letterSoundAssessmentEvents)})</h5>
         ...
 
         <div class="divider" style="margin: 2em 0;"></div>
 
-        <h5>Learning events (${fn:length(letterSoundLearningEvents)})</h5>
+        <a id="exportLetterSoundLearningEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/letter-sound-learning-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportLetterSoundLearningEventsToCsvButton').click(function() {
+                    console.info('#exportLetterSoundLearningEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
+        <h5>Letter-sound learning events (${fn:length(letterSoundLearningEvents)})</h5>
         ...
     </div>
     <div style="clear: both;"></div>
