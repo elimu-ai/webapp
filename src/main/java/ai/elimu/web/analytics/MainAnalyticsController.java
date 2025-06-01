@@ -1,9 +1,12 @@
 package ai.elimu.web.analytics;
 
+import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
+import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordLearningEventDao;
+import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -17,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class MainAnalyticsController {
 
+  private final StudentDao studentDao;
+
+  private final LetterSoundAssessmentEventDao letterSoundAssessmentEventDao;
   private final LetterSoundLearningEventDao letterSoundLearningEventDao;
 
+  // private final WordAssessmentEventDao wordAssessmentEventDao;
   private final WordLearningEventDao wordLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
@@ -29,9 +36,16 @@ public class MainAnalyticsController {
   public String handleRequest(Model model) {
     log.info("handleRequest");
     
+    model.addAttribute("studentCount", studentDao.readCount());
+
+    model.addAttribute("letterSoundAssessmentEventCount", letterSoundAssessmentEventDao.readCount());
     model.addAttribute("letterSoundLearningEventCount", letterSoundLearningEventDao.readCount());
+
+    // model.addAttribute("wordAssessmentEventCount", wordAssessmentEventDao.readCount());
     model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
+    
     model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
+
     model.addAttribute("videoLearningEventCount", videoLearningEventDao.readCount());
 
     return "analytics/main";

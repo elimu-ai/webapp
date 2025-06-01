@@ -152,12 +152,36 @@
     
     <h5 style="margin-top: 1em;">🔤 Words</h5>
     <div class="card-panel">
-        <h5>Assessment events (${fn:length(wordAssessmentEvents)})</h5>
+        <a id="exportWordAssessmentEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/word-assessment-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportWordAssessmentEventsToCsvButton').click(function() {
+                    console.info('#exportWordAssessmentEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
+        <h5>Word assessment events (${fn:length(wordAssessmentEvents)})</h5>
         ...
 
         <div class="divider" style="margin: 2em 0;"></div>
 
-        <h5>Learning events (${fn:length(wordLearningEvents)})</h5>
+        <a id="exportWordLearningEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/word-learning-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportWordLearningEventsToCsvButton').click(function() {
+                    console.info('#exportWordLearningEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
+        <h5>Word learning events (${fn:length(wordLearningEvents)})</h5>
         <canvas id="wordChart"></canvas>
         <script>
             const wordLabels = [

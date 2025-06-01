@@ -18,11 +18,6 @@ public class MainAnalyticsPage {
         ErrorHelper.verifyNoScriptOrMarkupError(driver);
     }
 
-    public void pressWordLearningEventsLink() {
-        WebElement link = driver.findElement(By.id("wordLearningEventsLink"));
-        link.click();
-    }
-
     public void pressStoryBookLearningEventsLink() {
         WebElement link = driver.findElement(By.id("storyBookLearningEventsLink"));
         link.click();
