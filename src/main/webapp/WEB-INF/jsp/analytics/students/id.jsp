@@ -211,24 +211,19 @@
 
     <h5 style="margin-top: 1em;">🔢 Numbers</h5>
     <div class="card-panel">
-        <h5>Assessment events (${fn:length(numberAssessmentEvents)})</h5>
+        <h5>Number assessment events (${fn:length(numberAssessmentEvents)})</h5>
         ...
 
         <div class="divider" style="margin: 2em 0;"></div>
 
-        <h5>Learning events (${fn:length(numberLearningEvents)})</h5>
+        <h5>Number learning events (${fn:length(numberLearningEvents)})</h5>
         ...
     </div>
     <div style="clear: both;"></div>
 
     <h5 style="margin-top: 1em;">📚 Storybooks</h5>
     <div class="card-panel">
-        <h5>Assessment events (${fn:length(storyBookAssessmentEvents)})</h5>
-        ...
-
-        <div class="divider" style="margin: 2em 0;"></div>
-
-        <h5>Learning events (${fn:length(storyBookLearningEvents)})</h5>
+        <h5>Storybook learning events (${fn:length(storyBookLearningEvents)})</h5>
         <canvas id="storyBookChart"></canvas>
         <script>
             const storyBookLabels = [
@@ -258,12 +253,7 @@
 
     <h5 style="margin-top: 1em;">🎬 Videos</h5>
     <div class="card-panel">
-        <h5>Assessment events (${fn:length(videoAssessmentEvents)})</h5>
-        ...
-
-        <div class="divider" style="margin: 2em 0;"></div>
-        
-        <h5>Learning events (${fn:length(videoLearningEvents)})</h5>
+        <h5>Video learning events (${fn:length(videoLearningEvents)})</h5>
         <canvas id="videoChart"></canvas>
         <script>
             const videoLabels = [
