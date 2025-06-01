@@ -206,6 +206,33 @@
             var wordCtx = document.getElementById('wordChart');
             new Chart(wordCtx, wordConfig);
         </script>
+        <table class="bordered highlight">
+            <thead>
+                <th>id</th>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>word_text</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:set var="wordLearningEvent" value="${wordLearningEvents[fn:length(wordLearningEvents) - 1 - i]}" />
+                    <tr>
+                        <td>
+                            ${wordLearningEvent.id}
+                        </td>
+                        <td>
+                            ${wordLearningEvent.timestamp.time}
+                        </td>
+                        <td>
+                            <code>${wordLearningEvent.packageName}</code>
+                        </td>
+                        <td>
+                            "${wordLearningEvent.wordText}"
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
     <div style="clear: both;"></div>
 
