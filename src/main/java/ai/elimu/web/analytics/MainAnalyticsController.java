@@ -5,6 +5,7 @@ import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
+import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class MainAnalyticsController {
   private final LetterSoundAssessmentEventDao letterSoundAssessmentEventDao;
   private final LetterSoundLearningEventDao letterSoundLearningEventDao;
 
-  // private final WordAssessmentEventDao wordAssessmentEventDao;
+  private final WordAssessmentEventDao wordAssessmentEventDao;
   private final WordLearningEventDao wordLearningEventDao;
 
   // TODO: Numbers
@@ -43,7 +44,7 @@ public class MainAnalyticsController {
     model.addAttribute("letterSoundAssessmentEventCount", letterSoundAssessmentEventDao.readCount());
     model.addAttribute("letterSoundLearningEventCount", letterSoundLearningEventDao.readCount());
 
-    // model.addAttribute("wordAssessmentEventCount", wordAssessmentEventDao.readCount());
+    model.addAttribute("wordAssessmentEventCount", wordAssessmentEventDao.readCount());
     model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
     
     model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
