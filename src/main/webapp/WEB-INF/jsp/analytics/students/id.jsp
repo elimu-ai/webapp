@@ -146,7 +146,57 @@
             });
         </script>
         <h5>Letter-sound learning events (${fn:length(letterSoundLearningEvents)})</h5>
-        ...
+        <canvas id="letterSoundLearningEventChart"></canvas>
+        <script>
+            const letterSoundLearningEventLabels = [
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+            ];
+            const letterSoundLearningEventData = {
+                labels: letterSoundLearningEventLabels,
+                datasets: [{
+                    data: <c:out value="${letterSoundLearningEventCountList}" />,
+                    label: 'Letter-sound learning events',
+                    backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
+            const letterSoundLearningEventConfig = {
+                type: 'line',
+                data: letterSoundLearningEventData,
+                options: {}
+            };
+            var letterSoundLearningEventCtx = document.getElementById('letterSoundLearningEventChart');
+            new Chart(letterSoundLearningEventCtx, letterSoundLearningEventConfig);
+        </script>
+        <table class="bordered highlight">
+            <thead>
+                <th>id</th>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>letter_sound_id</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:set var="letterSoundLearningEvent" value="${letterSoundLearningEvents[fn:length(letterSoundLearningEvents) - 1 - i]}" />
+                    <tr>
+                        <td>
+                            ${letterSoundLearningEvent.id}
+                        </td>
+                        <td>
+                            ${letterSoundLearningEvent.timestamp.time}
+                        </td>
+                        <td>
+                            <code>${letterSoundLearningEvent.packageName}</code>
+                        </td>
+                        <td>
+                            "${letterSoundLearningEvent.letterSoundId}"
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
     <div style="clear: both;"></div>
     

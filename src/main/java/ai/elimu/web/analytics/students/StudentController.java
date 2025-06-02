@@ -82,8 +82,24 @@ public class StudentController {
     List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = letterSoundAssessmentEventDao.readAll(student.getAndroidId());
     model.addAttribute("letterSoundAssessmentEvents", letterSoundAssessmentEvents);
 
+    // Prepare chart data - LetterSoundLearningEvents
     List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll(student.getAndroidId());
     model.addAttribute("letterSoundLearningEvents", letterSoundLearningEvents);
+    List<Integer> letterSoundLearningEventCountList = new ArrayList<>();
+    if (!letterSoundLearningEvents.isEmpty()) {
+      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
+      for (LetterSoundLearningEvent event : letterSoundLearningEvents) {
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+      }
+      week = (Calendar) calendar6MonthsAgo.clone();
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        letterSoundLearningEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
+        week.add(Calendar.WEEK_OF_YEAR, 1);
+      }
+    }
+    model.addAttribute("letterSoundLearningEventCountList", letterSoundLearningEventCountList);
 
     
     // Prepare chart data - WordAssessmentEvents

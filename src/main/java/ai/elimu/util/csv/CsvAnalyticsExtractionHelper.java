@@ -1,5 +1,6 @@
 package ai.elimu.util.csv;
 
+import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
@@ -27,6 +28,50 @@ import org.apache.commons.csv.CSVRecord;
  */
 @Slf4j
 public class CsvAnalyticsExtractionHelper {
+
+    public static List<LetterSoundLearningEvent> extractLetterSoundLearningEvents(File csvFile) {
+        log.info("extractLetterSoundLearningEvents");
+
+        List<LetterSoundLearningEvent> letterSoundLearningEvents = new ArrayList<>();
+
+        // Iterate each row in the CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        log.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                log.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to Java
+
+                LetterSoundLearningEvent letterSoundLearningEvent = new LetterSoundLearningEvent();
+                
+                long timestampInMillis = Long.valueOf(csvRecord.get("time"));
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                timestamp.setTimeInMillis(timestampInMillis);
+                letterSoundLearningEvent.setTimestamp(timestamp);
+                
+                String androidId = csvRecord.get("android_id");
+                letterSoundLearningEvent.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                letterSoundLearningEvent.setPackageName(packageName);
+
+                Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
+                letterSoundLearningEvent.setLetterSoundId(letterSoundId);
+
+                letterSoundLearningEvents.add(letterSoundLearningEvent);
+            }
+            csvParser.close();
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+
+        return letterSoundLearningEvents;
+    }
 
     public static List<WordAssessmentEvent> extractWordAssessmentEvents(File csvFile) {
         log.info("extractWordAssessmentEvents");
