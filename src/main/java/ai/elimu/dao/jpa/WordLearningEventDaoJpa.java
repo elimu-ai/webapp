@@ -2,7 +2,6 @@ package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.WordLearningEvent;
-import ai.elimu.entity.content.Word;
 
 import java.util.Calendar;
 import java.util.List;
@@ -13,22 +12,20 @@ import org.springframework.dao.DataAccessException;
 public class WordLearningEventDaoJpa extends GenericDaoJpa<WordLearningEvent> implements WordLearningEventDao {
 
     @Override
-    public WordLearningEvent read(Calendar timestamp, String androidId, String packageName, Word word) throws DataAccessException {
+    public WordLearningEvent read(Calendar timestamp, String androidId, String packageName) throws DataAccessException {
         try {
             return (WordLearningEvent) em.createQuery(
                 "SELECT wle " +
                 "FROM WordLearningEvent wle " +
                 "WHERE wle.timestamp = :timestamp " +
                 "AND wle.androidId = :androidId " + 
-                "AND wle.packageName = :packageName " + 
-                "AND wle.word = :word")
+                "AND wle.packageName = :packageName")
                 .setParameter("timestamp", timestamp)
                 .setParameter("androidId", androidId)
                 .setParameter("packageName", packageName)
-                .setParameter("word", word)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("WordLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", \"" + packageName + "\", \"" + word.getText() + "\") was not found");
+            logger.info("WordLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", \"" + packageName + "\") was not found");
             return null;
         }
     }
