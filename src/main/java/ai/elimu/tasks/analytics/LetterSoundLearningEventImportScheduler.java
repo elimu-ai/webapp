@@ -1,11 +1,11 @@
 package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.StudentDao;
-import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.dao.LetterSoundLearningEventDao;
+import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.rest.v2.analytics.StoryBookLearningEventsRestController;
+import ai.elimu.rest.v2.analytics.LetterSoundLearningEventsRestController;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 import java.io.File;
@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Extracts learning events from CSV files previously received by the {@link StoryBookLearningEventsRestController}, and imports them into the database.
+ * Extracts learning events from CSV files previously received by the {@link LetterSoundLearningEventsRestController}, and imports them into the database.
  * <p/>
  * <p>
  * Expected folder structure:
@@ -25,31 +25,31 @@ import org.springframework.stereotype.Service;
  * │   ├── analytics
  * │   │   ├── android-id-e387e38700000001
  * │   │   │   └── version-code-3001018
- * │   │   │       └── storybook-learning-events
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-09.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-10.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-11.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-14.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-18.csv
- * │   │   │           └── e387e38700000001_3001018_storybook-learning-events_2024-10-20.csv
+ * │   │   │       └── letter-sound-learning-events
+ * │   │   │           ├── e387e38700000001_3001018_letter-sound-learning-events_2024-10-09.csv
+ * │   │   │           ├── e387e38700000001_3001018_letter-sound-learning-events_2024-10-10.csv
+ * │   │   │           ├── e387e38700000001_3001018_letter-sound-learning-events_2024-10-11.csv
+ * │   │   │           ├── e387e38700000001_3001018_letter-sound-learning-events_2024-10-14.csv
+ * │   │   │           ├── e387e38700000001_3001018_letter-sound-learning-events_2024-10-18.csv
+ * │   │   │           └── e387e38700000001_3001018_letter-sound-learning-events_2024-10-20.csv
  * │   │   ├── android-id-e387e38700000002
  * │   │   │   └── version-code-3001018
- * │   │   │       └── storybook-learning-events
- * │   │   │           ├── e387e38700000002_3001018_storybook-learning-events_2024-10-09.csv
- * │   │   │           ├── e387e38700000002_3001018_storybook-learning-events_2024-10-10.csv
- * │   │   │           ├── e387e38700000002_3001018_storybook-learning-events_2024-10-11.csv
+ * │   │   │       └── letter-sound-learning-events
+ * │   │   │           ├── e387e38700000002_3001018_letter-sound-learning-events_2024-10-09.csv
+ * │   │   │           ├── e387e38700000002_3001018_letter-sound-learning-events_2024-10-10.csv
+ * │   │   │           ├── e387e38700000002_3001018_letter-sound-learning-events_2024-10-11.csv
  * </pre>
  */
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class StoryBookLearningEventImportScheduler {
+public class LetterSoundLearningEventImportScheduler {
 
-  private final StoryBookLearningEventDao storyBookLearningEventDao;
+  private final LetterSoundLearningEventDao letterSoundLearningEventDao;
 
   private final StudentDao studentDao;
 
-  @Scheduled(cron = "00 35 * * * *") // 35 minutes past every hour
+  @Scheduled(cron = "00 20 * * * *") // 20 minutes past every hour
   public synchronized void execute() {
     log.info("execute");
 
@@ -66,20 +66,20 @@ public class StoryBookLearningEventImportScheduler {
           if (androidIdDirFile.getName().startsWith("version-code-")) {
             File versionCodeDir = new File(androidIdDir, androidIdDirFile.getName());
             for (File versionCodeDirFile : versionCodeDir.listFiles()) {
-              if (versionCodeDirFile.getName().equals("storybook-learning-events")) {
-                File storyBookLearningEventsDir = new File(versionCodeDir, versionCodeDirFile.getName());
-                for (File csvFile : storyBookLearningEventsDir.listFiles()) {
+              if (versionCodeDirFile.getName().equals("letter-sound-learning-events")) {
+                File letterSoundLearningEventsDir = new File(versionCodeDir, versionCodeDirFile.getName());
+                for (File csvFile : letterSoundLearningEventsDir.listFiles()) {
                   log.info("csvFile: " + csvFile);
 
                   // Convert from CSV to Java
-                  List<StoryBookLearningEvent> events = CsvAnalyticsExtractionHelper.extractStoryBookLearningEvents(csvFile);
+                  List<LetterSoundLearningEvent> events = CsvAnalyticsExtractionHelper.extractLetterSoundLearningEvents(csvFile);
                   log.info("events.size(): " + events.size());
 
                   // Store in database
-                  for (StoryBookLearningEvent event : events) {
+                  for (LetterSoundLearningEvent event : events) {
                     // Check if the event has already been stored in the database
-                    StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
-                    if (existingStoryBookLearningEvent != null) {
+                    LetterSoundLearningEvent existingLetterSoundLearningEvent = letterSoundLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
+                    if (existingLetterSoundLearningEvent != null) {
                       log.warn("The event has already been stored in the database. Skipping data import.");
                       continue;
                     }
@@ -94,7 +94,7 @@ public class StoryBookLearningEventImportScheduler {
                     }
 
                     // Store the event in the database
-                    storyBookLearningEventDao.create(event);
+                    letterSoundLearningEventDao.create(event);
                     log.info("Stored event in database with ID " + event.getId());
                   }
                 }

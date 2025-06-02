@@ -2,7 +2,6 @@ package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
-import ai.elimu.entity.content.StoryBook;
 
 import java.util.Calendar;
 import java.util.List;
@@ -21,22 +20,20 @@ public class StoryBookLearningEventDaoJpa extends GenericDaoJpa<StoryBookLearnin
     }
     
     @Override
-    public StoryBookLearningEvent read(Calendar timestamp, String androidId, String packageName, StoryBook storyBook) throws DataAccessException {
+    public StoryBookLearningEvent read(Calendar timestamp, String androidId, String packageName) throws DataAccessException {
         try {
             return (StoryBookLearningEvent) em.createQuery(
                 "SELECT sble " +
                 "FROM StoryBookLearningEvent sble " +
                 "WHERE sble.timestamp = :timestamp " +
                 "AND sble.androidId = :androidId " + 
-                "AND sble.packageName = :packageName " + 
-                "AND sble.storyBook = :storyBook")
+                "AND sble.packageName = :packageName")
                 .setParameter("timestamp", timestamp)
                 .setParameter("androidId", androidId)
                 .setParameter("packageName", packageName)
-                .setParameter("storyBook", storyBook)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("StoryBookLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", \"" + packageName + "\", " + storyBook.getId() + ") was not found");
+            logger.info("StoryBookLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", \"" + packageName + "\") was not found");
             return null;
         }
     }

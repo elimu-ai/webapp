@@ -1,0 +1,9 @@
+id,time,android_id,package_name,storybook_id,learning_event_type
+8,1742293901485,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,2,STORYBOOK_OPENED
+7,1742293870903,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,1,STORYBOOK_OPENED
+6,1742292343807,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,6,STORYBOOK_OPENED
+5,1742291858529,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,4,STORYBOOK_OPENED
+4,1742290783292,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,4,STORYBOOK_OPENED
+3,1742289984565,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,1,STORYBOOK_OPENED
+2,1742289982170,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,2,STORYBOOK_OPENED
+1,1742289948938,5b7c682a12ecbe2e,ai.elimu.vitabu.debug,2,STORYBOOK_OPENED
