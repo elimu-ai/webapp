@@ -48,7 +48,7 @@ public class CsvAnalyticsExtractionHelper {
 
                 WordAssessmentEvent wordAssessmentEvent = new WordAssessmentEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
+                long timestampInMillis = Long.valueOf(csvRecord.get("time"));
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 wordAssessmentEvent.setTimestamp(timestamp);
@@ -71,8 +71,8 @@ public class CsvAnalyticsExtractionHelper {
                 Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
                 wordAssessmentEvent.setTimeSpentMs(timeSpentMs);
 
-                String additionalData = csvRecord.get("additional_data");
-                wordAssessmentEvent.setAdditionalData(additionalData);
+                // String additionalData = csvRecord.get("additional_data");
+                // wordAssessmentEvent.setAdditionalData(additionalData);
 
                 wordAssessmentEvents.add(wordAssessmentEvent);
             }
