@@ -185,7 +185,7 @@
                             ${letterSoundLearningEvent.id}
                         </td>
                         <td>
-                            ${letterSoundLearningEvent.timestamp.time}
+                            <fmt:formatDate value="${letterSoundLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             <code>${letterSoundLearningEvent.packageName}</code>
@@ -223,18 +223,17 @@
             const wordAssessmentEventData = {
                 labels: wordAssessmentEventLabels,
                 datasets: [{
-                    data: <c:out value="${wordAssessmentEventIncorrectCountList}" />,
-                    label: 'Incorrect',
-                    backgroundColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
-                    borderColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
-                    tension: 0.5,
-                    fill: true
-                },
-                {
                     data: <c:out value="${wordAssessmentEventCorrectCountList}" />,
                     label: 'Correct',
                     backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
                     borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    tension: 0.5,
+                    fill: true
+                },{
+                    data: <c:out value="${wordAssessmentEventIncorrectCountList}" />,
+                    label: 'Incorrect',
+                    backgroundColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                    borderColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
                     tension: 0.5,
                     fill: true
                 }]
@@ -242,7 +241,13 @@
             const wordAssessmentEventConfig = {
                 type: 'line',
                 data: wordAssessmentEventData,
-                options: {}
+                options: {
+                    scales: {
+                        y: {
+                            stacked: true
+                        }
+                    }
+                }
             };
             var wordAssessmentEventCtx = document.getElementById('wordAssessmentEventChart');
             new Chart(wordAssessmentEventCtx, wordAssessmentEventConfig);
@@ -264,7 +269,7 @@
                             ${wordAssessmentEvent.id}
                         </td>
                         <td>
-                            ${wordAssessmentEvent.timestamp.time}ms
+                            <fmt:formatDate value="${wordAssessmentEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             <code>${wordAssessmentEvent.packageName}</code>
@@ -280,7 +285,7 @@
                             </c:choose>
                         </td>
                         <td>
-                            ${wordAssessmentEvent.timeSpentMs}
+                            ${wordAssessmentEvent.timeSpentMs} ms
                         </td>
                         <td>
                             "${wordAssessmentEvent.wordText}"
@@ -344,7 +349,7 @@
                             ${wordLearningEvent.id}
                         </td>
                         <td>
-                            ${wordLearningEvent.timestamp.time}
+                            <fmt:formatDate value="${wordLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             <code>${wordLearningEvent.packageName}</code>
@@ -427,7 +432,7 @@
                             ${storyBookLearningEvent.id}
                         </td>
                         <td>
-                            ${storyBookLearningEvent.timestamp.time}
+                            <fmt:formatDate value="${storyBookLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             <code>${storyBookLearningEvent.packageName}</code>
@@ -498,7 +503,7 @@
                             ${videoLearningEvent.id}
                         </td>
                         <td>
-                            ${videoLearningEvent.timestamp.time}
+                            <fmt:formatDate value="${videoLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
                         </td>
                         <td>
                             <code>${videoLearningEvent.packageName}</code>

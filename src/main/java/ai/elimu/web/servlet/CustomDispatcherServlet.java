@@ -338,7 +338,9 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                 int randomNumberOfLetterSoundLearningEvents = (int) (Math.random() * 5);
                 for (int i = 0; i < randomNumberOfLetterSoundLearningEvents; i++) {
                     LetterSoundLearningEvent letterSoundLearningEvent = new LetterSoundLearningEvent();
-                    letterSoundLearningEvent.setTimestamp(week);
+                    Calendar randomWeekday = (Calendar) week.clone();
+                    randomWeekday.add(Calendar.HOUR_OF_DAY, -(int) (Math.random() * 24 * 7));
+                    letterSoundLearningEvent.setTimestamp(randomWeekday);
                     letterSoundLearningEvent.setAndroidId(student.getAndroidId());
                     letterSoundLearningEvent.setPackageName("ai.elimu.herufi");
                     letterSoundLearningEvent.setLetterSoundId(letterSoundM.getId());
