@@ -65,7 +65,7 @@ public class StudentController {
 
     // Generate a list of weeks from 6 months ago until now
     List<String> weekList = new ArrayList<>();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-ww");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Calendar calendar6MonthsAgo = Calendar.getInstance();
     calendar6MonthsAgo.add(Calendar.MONTH, -6);
     Calendar calendarNow = Calendar.getInstance();

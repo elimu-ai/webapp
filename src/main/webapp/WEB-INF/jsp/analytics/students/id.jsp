@@ -244,6 +244,8 @@
                 <th>id</th>
                 <th>timestamp</th>
                 <th>package_name</th>
+                <th>mastery_score</th>
+                <th>time_spent_ms</th>
                 <th>word_text</th>
             </thead>
             <tbody>
@@ -258,6 +260,19 @@
                         </td>
                         <td>
                             <code>${wordAssessmentEvent.packageName}</code>
+                        </td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${wordAssessmentEvent.masteryScore < 0.5}">
+                                    <span data-badge-caption="${wordAssessmentEvent.masteryScore}" class="new badge orange darken-2"></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span data-badge-caption="${wordAssessmentEvent.masteryScore}" class="new badge blue lighten-2"></span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>
+                            ${wordAssessmentEvent.timeSpentMs}
                         </td>
                         <td>
                             "${wordAssessmentEvent.wordText}"
