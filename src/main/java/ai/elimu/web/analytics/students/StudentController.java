@@ -120,21 +120,29 @@ public class StudentController {
     // Prepare chart data - WordAssessmentEvents
     List<WordAssessmentEvent> wordAssessmentEvents = wordAssessmentEventDao.readAll(student.getAndroidId());
     model.addAttribute("wordAssessmentEvents", wordAssessmentEvents);
-    List<Integer> wordAssessmentEventCountList = new ArrayList<>();
+    List<Integer> wordAssessmentEventCorrectCountList = new ArrayList<>();
+    List<Integer> wordAssessmentEventIncorrectCountList = new ArrayList<>();
     if (!wordAssessmentEvents.isEmpty()) {
-      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
+      Map<String, Integer> eventCorrectCountByWeekMap = new HashMap<>();
+      Map<String, Integer> eventIncorrectCountByWeekMap = new HashMap<>();
       for (WordAssessmentEvent event : wordAssessmentEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
-        eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        if (event.getMasteryScore() < 0.5) {
+          eventIncorrectCountByWeekMap.put(eventWeek, eventIncorrectCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        } else {
+          eventCorrectCountByWeekMap.put(eventWeek, eventCorrectCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        }
       }
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
-        wordAssessmentEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
+        wordAssessmentEventCorrectCountList.add(eventCorrectCountByWeekMap.getOrDefault(weekAsString, 0));
+        wordAssessmentEventIncorrectCountList.add(eventIncorrectCountByWeekMap.getOrDefault(weekAsString, 0));
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
-    model.addAttribute("wordAssessmentEventCountList", wordAssessmentEventCountList);
+    model.addAttribute("wordAssessmentEventCorrectCountList", wordAssessmentEventCorrectCountList);
+    model.addAttribute("wordAssessmentEventIncorrectCountList", wordAssessmentEventIncorrectCountList);
     
     // Prepare chart data - WordLearningEvents
     List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll(student.getAndroidId());

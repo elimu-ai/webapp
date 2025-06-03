@@ -223,10 +223,18 @@
             const wordAssessmentEventData = {
                 labels: wordAssessmentEventLabels,
                 datasets: [{
-                    data: <c:out value="${wordAssessmentEventCountList}" />,
-                    label: 'Word assessment events',
-                    backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                    data: <c:out value="${wordAssessmentEventIncorrectCountList}" />,
+                    label: 'Incorrect',
+                    backgroundColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                    borderColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                    tension: 0.5,
+                    fill: true
+                },
+                {
+                    data: <c:out value="${wordAssessmentEventCorrectCountList}" />,
+                    label: 'Correct',
+                    backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
                     tension: 0.5,
                     fill: true
                 }]
@@ -256,7 +264,7 @@
                             ${wordAssessmentEvent.id}
                         </td>
                         <td>
-                            ${wordAssessmentEvent.timestamp.time}
+                            ${wordAssessmentEvent.timestamp.time}ms
                         </td>
                         <td>
                             <code>${wordAssessmentEvent.packageName}</code>

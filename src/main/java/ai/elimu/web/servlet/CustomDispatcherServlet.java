@@ -15,10 +15,12 @@ import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.VideoLearningEventDao;
+import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
+import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Emoji;
@@ -327,6 +329,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         Calendar calendarNow = Calendar.getInstance();
         Calendar week = (Calendar) calendar6MonthsAgo.clone();
         LetterSoundLearningEventDao letterSoundLearningEventDao = (LetterSoundLearningEventDao) webApplicationContext.getBean("letterSoundLearningEventDao");
+        WordAssessmentEventDao wordAssessmentEventDao = (WordAssessmentEventDao) webApplicationContext.getBean("wordAssessmentEventDao");
         StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
         VideoLearningEventDao videoLearningEventDao = (VideoLearningEventDao) webApplicationContext.getBean("videoLearningEventDao");
         while (!week.after(calendarNow)) {
@@ -340,6 +343,19 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     letterSoundLearningEvent.setPackageName("ai.elimu.herufi");
                     letterSoundLearningEvent.setLetterSoundId(letterSoundM.getId());
                     letterSoundLearningEventDao.create(letterSoundLearningEvent);
+                }
+
+                int randomNumberOfWordAssessmentEvents = (int) (Math.random() * 15);
+                for (int i = 0; i < randomNumberOfWordAssessmentEvents; i++) {
+                    WordAssessmentEvent wordAssessmentEvent = new WordAssessmentEvent();
+                    wordAssessmentEvent.setTimestamp(week);
+                    wordAssessmentEvent.setAndroidId(student.getAndroidId());
+                    wordAssessmentEvent.setPackageName("ai.elimu.kukariri");
+                    wordAssessmentEvent.setWordText(wordMAA.getText());
+                    wordAssessmentEvent.setWordId(wordMAA.getId());
+                    wordAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
+                    wordAssessmentEvent.setTimeSpentMs((long) (Math.random() * 20_000));
+                    wordAssessmentEventDao.create(wordAssessmentEvent);
                 }
 
                 int randomNumberOfStoryBookLearningEvents = (int) (Math.random() * 10);
