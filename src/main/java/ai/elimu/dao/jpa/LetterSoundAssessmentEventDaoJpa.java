@@ -15,7 +15,7 @@ public class LetterSoundAssessmentEventDaoJpa extends GenericDaoJpa<LetterSoundA
             "SELECT event " + 
             "FROM LetterSoundAssessmentEvent event " +
             "WHERE event.androidId = :androidId " + 
-            "ORDER BY event.id")
+            "ORDER BY event.timestamp")
             .setParameter("androidId", androidId)
             .getResultList();
     }

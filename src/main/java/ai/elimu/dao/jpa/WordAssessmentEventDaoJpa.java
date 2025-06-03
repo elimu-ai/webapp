@@ -36,7 +36,7 @@ public class WordAssessmentEventDaoJpa extends GenericDaoJpa<WordAssessmentEvent
             "SELECT event " + 
             "FROM WordAssessmentEvent event " +
             "WHERE event.androidId = :androidId " + 
-            "ORDER BY event.id")
+            "ORDER BY event.timestamp")
             .setParameter("androidId", androidId)
             .getResultList();
     }
