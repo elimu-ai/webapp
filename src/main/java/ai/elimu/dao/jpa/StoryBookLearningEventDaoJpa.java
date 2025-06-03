@@ -44,7 +44,7 @@ public class StoryBookLearningEventDaoJpa extends GenericDaoJpa<StoryBookLearnin
             "SELECT event " + 
             "FROM StoryBookLearningEvent event " +
             "WHERE event.androidId = :androidId " + 
-            "ORDER BY event.id")
+            "ORDER BY event.timestamp")
             .setParameter("androidId", androidId)
             .getResultList();
     }   
