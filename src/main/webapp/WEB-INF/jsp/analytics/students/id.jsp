@@ -423,6 +423,7 @@
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>storybook_title</th>
+                <th>storybook_id</th>
             </thead>
             <tbody>
                 <c:forEach var="i" begin="0" end="4">
@@ -439,6 +440,9 @@
                         </td>
                         <td>
                             "${storyBookLearningEvent.storyBookTitle}"
+                        </td>
+                        <td>
+                            ${storyBookLearningEvent.storyBookId}
                         </td>
                     </tr>
                 </c:forEach>
@@ -494,6 +498,7 @@
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>video_title</th>
+                <th>video_id</th>
             </thead>
             <tbody>
                 <c:forEach var="i" begin="0" end="4">
@@ -510,6 +515,9 @@
                         </td>
                         <td>
                             "${videoLearningEvent.videoTitle}"
+                        </td>
+                        <td>
+                            ${videoLearningEvent.videoId}
                         </td>
                     </tr>
                 </c:forEach>
