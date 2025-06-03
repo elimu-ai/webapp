@@ -6,6 +6,7 @@ import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
+import ai.elimu.util.AnalyticsHelper;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
@@ -185,6 +186,9 @@ public class CsvAnalyticsExtractionHelper {
     public static List<StoryBookLearningEvent> extractStoryBookLearningEvents(File csvFile) {
         log.info("extractStoryBookLearningEvents");
 
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
         List<StoryBookLearningEvent> storyBookLearningEvents = new ArrayList<>();
 
         // Iterate each row in the CSV file
@@ -213,11 +217,16 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 storyBookLearningEvent.setPackageName(packageName);
 
+                if (versionCode >= 3003000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.3.0
+                    String storyBookTitle = csvRecord.get("storybook_title");
+                    storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
+                } else {
+                    storyBookLearningEvent.setStoryBookTitle("");
+                }
+
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
                 storyBookLearningEvent.setStoryBookId(storyBookId);
-
-                // String storyBookTitle = csvRecord.get("storybook_title");
-                // storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
 
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 storyBookLearningEvent.setLearningEventType(learningEventType);
