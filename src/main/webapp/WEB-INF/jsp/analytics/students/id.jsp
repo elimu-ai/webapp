@@ -191,7 +191,7 @@
                             <code>${letterSoundLearningEvent.packageName}</code>
                         </td>
                         <td>
-                            "${letterSoundLearningEvent.letterSoundId}"
+                            ${letterSoundLearningEvent.letterSoundId}
                         </td>
                     </tr>
                 </c:forEach>

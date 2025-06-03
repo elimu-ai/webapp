@@ -6,6 +6,7 @@ import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundDao;
+import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
@@ -15,6 +16,7 @@ import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
@@ -324,11 +326,22 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         calendar6MonthsAgo.add(Calendar.MONTH, -6);
         Calendar calendarNow = Calendar.getInstance();
         Calendar week = (Calendar) calendar6MonthsAgo.clone();
+        LetterSoundLearningEventDao letterSoundLearningEventDao = (LetterSoundLearningEventDao) webApplicationContext.getBean("letterSoundLearningEventDao");
         StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
         VideoLearningEventDao videoLearningEventDao = (VideoLearningEventDao) webApplicationContext.getBean("videoLearningEventDao");
         while (!week.after(calendarNow)) {
             List<Student> students = studentDao.readAll();
             for (Student student : students) {
+                int randomNumberOfLetterSoundLearningEvents = (int) (Math.random() * 5);
+                for (int i = 0; i < randomNumberOfLetterSoundLearningEvents; i++) {
+                    LetterSoundLearningEvent letterSoundLearningEvent = new LetterSoundLearningEvent();
+                    letterSoundLearningEvent.setTimestamp(week);
+                    letterSoundLearningEvent.setAndroidId(student.getAndroidId());
+                    letterSoundLearningEvent.setPackageName("ai.elimu.herufi");
+                    letterSoundLearningEvent.setLetterSoundId(letterSoundM.getId());
+                    letterSoundLearningEventDao.create(letterSoundLearningEvent);
+                }
+
                 int randomNumberOfStoryBookLearningEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfStoryBookLearningEvents; i++) {
                     StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
@@ -341,7 +354,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     storyBookLearningEventDao.create(storyBookLearningEvent);
                 }
 
-                int randomNumberOfVideoLearningEvents = (int) (Math.random() * 10);
+                int randomNumberOfVideoLearningEvents = (int) (Math.random() * 15);
                 for (int i = 0; i < randomNumberOfVideoLearningEvents; i++) {
                     VideoLearningEvent videoLearningEvent = new VideoLearningEvent();
                     videoLearningEvent.setTimestamp(week);
