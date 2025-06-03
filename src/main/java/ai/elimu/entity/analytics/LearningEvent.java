@@ -45,7 +45,6 @@ public abstract class LearningEvent extends BaseEntity {
   @ManyToOne
   private Application application;
 
-  @NotNull
   @Enumerated(EnumType.STRING)
   private LearningEventType learningEventType;
 

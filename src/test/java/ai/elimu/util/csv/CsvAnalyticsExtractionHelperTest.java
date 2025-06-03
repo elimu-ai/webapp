@@ -25,7 +25,7 @@ public class CsvAnalyticsExtractionHelperTest {
      * https://github.com/elimu-ai/analytics/releases/tag/3.2.14
      */
     @Test
-    public void testExtractLetterSoundLearningEvents_v3001018() throws IOException {
+    public void testExtractLetterSoundLearningEvents_v3002014() throws IOException {
         ResourceLoader resourceLoader = new ClassRelativeResourceLoader(CsvAnalyticsExtractionHelper.class);
         Resource resource = resourceLoader.getResource("5b7c682a12ecbe2e_3002014_letter-sound-learning-events_2025-05-11.csv");
         File csvFile = resource.getFile();
