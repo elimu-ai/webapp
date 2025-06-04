@@ -3,8 +3,6 @@ package ai.elimu.util.epub;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,18 +26,13 @@ public class EPubImageExtractionHelper {
      */
     public static String extractImageReferenceFromChapterFile(File xhtmlFile) {
         log.info("extractImageReferenceFromChapterFile");
-
-        try {
-            String fileContent = new String(Files.readAllBytes(xhtmlFile.toPath()), StandardCharsets.UTF_8);
-            fileContent = fileContent.replaceAll("&igrave;", "ì");
-            fileContent = fileContent.replaceAll("&acirc;", "â");
-            Files.write(xhtmlFile.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            log.error(null, e);
-        }
         
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
+            // Enable external entity resolution
+            documentBuilderFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(xhtmlFile);
             NodeList nodeList = document.getDocumentElement().getChildNodes();
