@@ -143,6 +143,38 @@ public class StudentController {
     }
     model.addAttribute("wordAssessmentEventCorrectCountList", wordAssessmentEventCorrectCountList);
     model.addAttribute("wordAssessmentEventIncorrectCountList", wordAssessmentEventIncorrectCountList);
+
+    // Prepare chart data - Reading speed (words per minute)
+    List<Double> readingSpeedAvgList = new ArrayList<>();
+    if (!wordAssessmentEvents.isEmpty()) {
+      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
+      Map<String, Long> timeSpentMsSumByWeekMap = new HashMap<>();
+      for (WordAssessmentEvent event : wordAssessmentEvents) {
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        if (event.getMasteryScore() >= 0.5) {
+          eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+          timeSpentMsSumByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + event.getTimeSpentMs());
+        }
+      }
+      week = (Calendar) calendar6MonthsAgo.clone();
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        Integer wordsReadCount = eventCountByWeekMap.getOrDefault(weekAsString, 0);
+        log.info("wordsReadCount: " + wordsReadCount);
+        Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
+        log.info("timeSpentMsSum: " + timeSpentMsSum);
+        Double timeSpentInMinutes = (double) (timeSpentMsSum / 1_000);
+        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
+        Double wordsPerMinute = 0.00;
+        if (timeSpentInMinutes > 0) {
+          wordsPerMinute = wordsReadCount / timeSpentInMinutes;
+          log.info("wordsPerMinute: " + wordsPerMinute);
+        }
+        readingSpeedAvgList.add(wordsPerMinute);
+        week.add(Calendar.WEEK_OF_YEAR, 1);
+      }
+    }
+    model.addAttribute("readingSpeedAvgList", readingSpeedAvgList);
     
     // Prepare chart data - WordLearningEvents
     List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll(student.getAndroidId());

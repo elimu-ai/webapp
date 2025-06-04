@@ -202,6 +202,34 @@
     
     <h5 style="margin-top: 1em;">🔤 Words</h5>
     <div class="card-panel">
+        <h5>Reading speed (correct words per minute)</h5>
+        <canvas id="readingSpeedChart"></canvas>
+        <script>
+            const readingSpeedLabels = [
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+            ];
+            const readingSpeedData = {
+                labels: readingSpeedLabels,
+                datasets: [{
+                    data: <c:out value="${readingSpeedAvgList}" />,
+                    label: 'cwpm',
+                    backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
+            const readingSpeedConfig = {
+                type: 'line',
+                data: readingSpeedData,
+                options: {}
+            };
+            var readingSpeedCtx = document.getElementById('readingSpeedChart');
+            new Chart(readingSpeedCtx, readingSpeedConfig);
+        </script>
+
+        <div class="divider" style="margin: 2em 0;"></div>
+
         <a id="exportWordAssessmentEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/analytics/students/${student.id}/word-assessment-events.csv' />">
             Export to CSV<i class="material-icons right">vertical_align_bottom</i>
