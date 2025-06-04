@@ -217,6 +217,30 @@
                     borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
                     tension: 0.5,
                     fill: true
+                },{
+                    data: Array(readingSpeedLabels.length).fill(5.0),
+                    label: 'LEVEL1',
+                    backgroundColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                },{
+                    data: Array(readingSpeedLabels.length).fill(10.0),
+                    label: 'LEVEL2',
+                    backgroundColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                },{
+                    data: Array(readingSpeedLabels.length).fill(20.0),
+                    label: 'LEVEL3',
+                    backgroundColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                },{
+                    data: Array(readingSpeedLabels.length).fill(40.0),
+                    label: 'LEVEL4',
+                    backgroundColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
                 }]
             };
             const readingSpeedConfig = {
