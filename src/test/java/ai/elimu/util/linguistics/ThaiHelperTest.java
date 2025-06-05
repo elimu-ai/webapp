@@ -13,4 +13,9 @@ public class ThaiHelperTest {
         assertEquals("ฉัน จะ ไป โรงเรียน", ThaiHelper.splitIntoWords("ฉันจะไปโรงเรียน"));
         assertEquals("เดี๋ยว วัน นี้ เรา กลับ บ้าน ไป พัก", ThaiHelper.splitIntoWords("เดี๋ยววันนี้เรากลับบ้านไปพัก"));
     }
+
+    @Test
+    public void testSplitIntoWords_withQuotes() throws UnsupportedEncodingException {
+        assertEquals("\" มัน แพง ไป นะ \"",ThaiHelper.splitIntoWords("\"มันแพงไปนะ\""));
+    }
 }
