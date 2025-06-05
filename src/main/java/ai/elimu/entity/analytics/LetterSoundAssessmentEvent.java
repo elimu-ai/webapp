@@ -1,6 +1,8 @@
 package ai.elimu.entity.analytics;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +31,8 @@ public class LetterSoundAssessmentEvent extends AssessmentEvent {
     /**
      * A value in the range [0.0, 1.0].
      */
+    @Min(value = 0, message = "Mastery score must be at least 0")
+    @Max(value = 1, message = "Mastery score must not exceed 1")
     private Float masteryScore;
 
     /**
