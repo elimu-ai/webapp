@@ -221,4 +221,17 @@ public class EPubParagraphExtractionHelperTest {
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("\"देखो माँ, मैं बंदर की तरह झूल रही हूँ।\"", storyBookParagraphs.get(0));
     }
+
+    @Test
+    public void testExtractParagraphsFromChapterFile_THA_LRA_f1562b02_ch4() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tha-lra-f1562b02-2883-466e-ab2e-fde46b0ee60c.epub_Page_4.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.THA);
+
+        assertEquals(1, storyBookParagraphs.size());
+        assertEquals("นี่ คือ หู ของ ฉัน ฉัน ใช้ หู เพื่อ ฟัง เสียง ต่าง ต่าง", storyBookParagraphs.get(0));
+    }
 }
