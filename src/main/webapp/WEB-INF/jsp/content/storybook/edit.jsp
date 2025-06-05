@@ -3,22 +3,19 @@
 </content:title>
 
 <content:section cssId="storyBookEditPage">
-    <c:choose>
-        <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
-            <c:set var="peerReviewStatusColor" value="teal lighten-5" />
-        </c:when>
-        <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
-            <c:set var="peerReviewStatusColor" value="deep-orange lighten-4" />
-        </c:when>
-        <c:otherwise>
-            <c:set var="peerReviewStatusColor" value="" />
-        </c:otherwise>
-    </c:choose>
-    <div class="chip right ${peerReviewStatusColor}" style="margin-top: 1.14rem;">
-        <a href="#contribution-events">
-            Peer-review: ${storyBook.peerReviewStatus}
-        </a>
-    </div>
+    <a href="#contribution-events" class="right" style="margin-top: 1.14rem;">
+        <c:choose>
+            <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
+                <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge deep-purple lighten-2"></span>
+            </c:when>
+            <c:when test="${storyBook.peerReviewStatus == 'APPROVED'}">
+                <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge blue lighten-2"></span>
+            </c:when>
+            <c:when test="${storyBook.peerReviewStatus == 'NOT_APPROVED'}">
+                <span data-badge-caption="Peer-review: ${storyBook.peerReviewStatus}" class="new badge orange darken-2"></span>
+            </c:when>
+        </c:choose>
+    </a>
     
     <h4><content:gettitle /></h4>
     <div class="card-panel">

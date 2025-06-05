@@ -307,6 +307,9 @@ public class EPubParagraphExtractionHelper {
         if (language == Language.THA) {
             // Add whitespaces between Thai words
             paragraph = ThaiHelper.splitIntoWords(paragraph);
+
+            // Replace ๆ (máiyamok) with the word preceding it
+            paragraph = ThaiHelper.replaceๆ(paragraph);
         }
         
         // Replace line-breaks with a whitespace
