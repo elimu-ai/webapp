@@ -78,4 +78,15 @@ public class EPubImageExtractionHelperTest {
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
         assertEquals("p-1.jpg", imageReference);
     }
+
+    @Test
+    public void testExtractImageReferenceFromChapterFile_LETS_READ_ASIA_tha() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tha-lra-376896c7-b7de-40ee-83c3-d11e5bf68e19.epub_Page_9.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertEquals("p-9.jpg", imageReference);
+    }
 }
