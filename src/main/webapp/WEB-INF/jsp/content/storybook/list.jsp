@@ -83,7 +83,6 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p>Level 2. Learning to Read</p>
                         <p>
                             <c:choose>
                                 <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
@@ -124,7 +123,6 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p>Level 3. Reading Independently</p>
                         <p>
                             <c:choose>
                                 <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
@@ -165,7 +163,6 @@
                     </a>
                     <div class="card-content">
                         <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${storyBook.description}" /></p>
-                        <p>Level 4. Reading Proficiently</p>
                         <p>
                             <c:choose>
                                 <c:when test="${storyBook.peerReviewStatus == 'PENDING'}">
