@@ -3,6 +3,8 @@ package ai.elimu.util.epub;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -16,7 +18,6 @@ import org.xml.sax.SAXException;
 
 import ai.elimu.entity.enums.StoryBookProvider;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.linguistics.ThaiHelper;
 
 @Slf4j
@@ -32,26 +33,34 @@ public class EPubParagraphExtractionHelper {
         log.info("extractParagraphsFromChapter");
         
         List<String> paragraphs = new ArrayList<>();
+
+        try {
+            String fileContent = new String(Files.readAllBytes(xhtmlFile.toPath()), StandardCharsets.UTF_8);
+            fileContent = fileContent.replaceAll("&nbsp;", " ");
+            Files.write(xhtmlFile.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            log.error(null, e);
+        }
         
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(xhtmlFile);
             NodeList nodeList = document.getDocumentElement().getChildNodes();
-            log.info("nodeList.getLength(): " + nodeList.getLength());
+            log.debug("nodeList.getLength(): " + nodeList.getLength());
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                log.info("node: " + node);
+                log.debug("node: " + node);
                 
                 // Look for "<body>"
                 if ("body".equals(node.getNodeName())) {
                     NodeList bodyChildNodeList = node.getChildNodes();
-                    log.info("bodyChildNodeList.getLength(): " + bodyChildNodeList.getLength());
+                    log.debug("bodyChildNodeList.getLength(): " + bodyChildNodeList.getLength());
                     for (int j = 0; j < bodyChildNodeList.getLength(); j++) {
                         Node bodyChildNode = bodyChildNodeList.item(j);
-                        log.info("bodyChildNode: " + bodyChildNode);
-                        log.info("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
-                        log.info("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
+                        log.debug("bodyChildNode: " + bodyChildNode);
+                        log.debug("bodyChildNode.getNodeName(): " + bodyChildNode.getNodeName());
+                        log.debug("bodyChildNode.getTextContent(): \"" + bodyChildNode.getTextContent() + "\"");
                         
                         // StoryBookProvider: GLOBAL_DIGITAL_LIBRARY
                         // Look for paragraphs within `<body>`
@@ -98,10 +107,10 @@ public class EPubParagraphExtractionHelper {
                         */
                         if ("div".equals(bodyChildNode.getNodeName()) && (bodyChildNode.getAttributes().getNamedItem("lang") != null)) {
                             NodeList langDivChildNodeList = bodyChildNode.getChildNodes();
-                            log.info("langDivChildNodeList: " + langDivChildNodeList);
+                            log.debug("langDivChildNodeList: " + langDivChildNodeList);
                             for (int k = 0; k < langDivChildNodeList.getLength(); k++) {
                                 Node langDivChildNode = langDivChildNodeList.item(k);
-                                log.info("langDivChildNode: " + langDivChildNode);
+                                log.debug("langDivChildNode: " + langDivChildNode);
                                 
                                 // Look for "<p>"
                                 if ("p".equals(langDivChildNode.getNodeName())) {
@@ -141,49 +150,49 @@ public class EPubParagraphExtractionHelper {
                         */
                         if ("div".equals(bodyChildNode.getNodeName())) {
                             Node bodyChildNodeIdAttribute = bodyChildNode.getAttributes().getNamedItem("id");
-                            log.info("bodyChildNodeIdAttribute: " + bodyChildNodeIdAttribute);
+                            log.debug("bodyChildNodeIdAttribute: " + bodyChildNodeIdAttribute);
                             
                             // Expected format: <div id="story_epub">
                             if ((bodyChildNodeIdAttribute != null) && "story_epub".equals(bodyChildNodeIdAttribute.getNodeValue())) {
                                 NodeList storyEpubDivChildNodeList = bodyChildNode.getChildNodes();
-                                log.info("storyEpubDivChildNodeList: " + storyEpubDivChildNodeList);
+                                log.debug("storyEpubDivChildNodeList: " + storyEpubDivChildNodeList);
                                 for (int k = 0; k < storyEpubDivChildNodeList.getLength(); k++) {
                                     Node storyEpubDivChildNode = storyEpubDivChildNodeList.item(k);
-                                    log.info("storyEpubDivChildNode: " + storyEpubDivChildNode);
+                                    log.debug("storyEpubDivChildNode: " + storyEpubDivChildNode);
                                     
                                     // Expected format: <div id="storyReader" class="bengali">
                                     if ("div".equals(storyEpubDivChildNode.getNodeName())) {
                                         Node storyEpubDivChildNodeIdAttribute = storyEpubDivChildNode.getAttributes().getNamedItem("id");
-                                        log.info("storyEpubDivChildNodeIdAttribute: " + storyEpubDivChildNodeIdAttribute);
+                                        log.debug("storyEpubDivChildNodeIdAttribute: " + storyEpubDivChildNodeIdAttribute);
                                         if ((storyEpubDivChildNodeIdAttribute != null) && "storyReader".equals(storyEpubDivChildNodeIdAttribute.getNodeValue())) {
                                             NodeList storyReaderDivChildNodeList = storyEpubDivChildNode.getChildNodes();
-                                            log.info("storyReaderDivChildNodeList: " + storyReaderDivChildNodeList);
+                                            log.debug("storyReaderDivChildNodeList: " + storyReaderDivChildNodeList);
                                             for (int l = 0; l < storyReaderDivChildNodeList.getLength(); l++) {
                                                 Node storyReaderDivChildNode = storyReaderDivChildNodeList.item(l);
-                                                log.info("storyReaderDivChildNode: " + storyReaderDivChildNode);
+                                                log.debug("storyReaderDivChildNode: " + storyReaderDivChildNode);
                                                         
                                                 // Expected format: <div id="selected_page" class=" page-container-landscape story-page">
                                                 if ("div".equals(storyReaderDivChildNode.getNodeName())) {
                                                     Node storyReaderDivChildNodeIdAttribute = storyReaderDivChildNode.getAttributes().getNamedItem("id");
-                                                    log.info("storyReaderDivChildNodeIdAttribute: " + storyReaderDivChildNodeIdAttribute);
+                                                    log.debug("storyReaderDivChildNodeIdAttribute: " + storyReaderDivChildNodeIdAttribute);
                                                     if ((storyReaderDivChildNodeIdAttribute != null) && "selected_page".equals(storyReaderDivChildNodeIdAttribute.getNodeValue())) {
                                                         NodeList selectedPageDivChildNodeList = storyReaderDivChildNode.getChildNodes();
-                                                        log.info("selectedPageDivChildNodeList: " + selectedPageDivChildNodeList);
+                                                        log.debug("selectedPageDivChildNodeList: " + selectedPageDivChildNodeList);
                                                         for (int m = 0; m < selectedPageDivChildNodeList.getLength(); m++) {
                                                             Node selectedPageDivChildNode = selectedPageDivChildNodeList.item(m);
-                                                            log.info("selectedPageDivChildNode: " + selectedPageDivChildNode);
+                                                            log.debug("selectedPageDivChildNode: " + selectedPageDivChildNode);
                                                             
                                                             // Expected format: <div class='text-font-normal sp_h_iT66_cB33 content ' dir="auto">
                                                             if ("div".equals(selectedPageDivChildNode.getNodeName())) {
                                                                 Node selectedPageDivChildNodeClassAttribute = selectedPageDivChildNode.getAttributes().getNamedItem("class");
-                                                                log.info("selectedPageDivChildNodeClassAttribute: " + selectedPageDivChildNodeClassAttribute);
+                                                                log.debug("selectedPageDivChildNodeClassAttribute: " + selectedPageDivChildNodeClassAttribute);
                                                                 if ((selectedPageDivChildNodeClassAttribute != null) 
                                                                         && selectedPageDivChildNodeClassAttribute.getNodeValue().contains("content")) {
                                                                     NodeList contentDivChildNodeList = selectedPageDivChildNode.getChildNodes();
-                                                                    log.info("contentDivChildNodeList: " + contentDivChildNodeList);
+                                                                    log.debug("contentDivChildNodeList: " + contentDivChildNodeList);
                                                                     for (int n = 0; n < contentDivChildNodeList.getLength(); n++) {
                                                                         Node contentDivChildNode = contentDivChildNodeList.item(n);
-                                                                        log.info("contentDivChildNode : " + contentDivChildNode);
+                                                                        log.debug("contentDivChildNode : " + contentDivChildNode);
                                                                         
                                                                         // Expected format: <p>ভীমের শুধু ঘুম আর ঘুম। সকালে উঠতেই পারে না।</p>
                                                                         if ("p".equals(contentDivChildNode.getNodeName())) {
@@ -206,7 +215,7 @@ public class EPubParagraphExtractionHelper {
                         // In some cases, <p> tags are missing, and "#text" is the node name
                         if ("#text".equals(bodyChildNode.getNodeName())) {
                             String paragraph = bodyChildNode.getTextContent();
-                            log.info("paragraph: \"" + paragraph + "\"");
+                            log.debug("paragraph: \"" + paragraph + "\"");
                             paragraph = getCleanedUpParagraph(paragraph, language);
                             if (StringUtils.isNotBlank(paragraph)) {
                                 paragraphs.add(paragraph);
@@ -225,7 +234,7 @@ public class EPubParagraphExtractionHelper {
     private static void processParagraphNode(StoryBookProvider storyBookProvider, Node paragraphNode, List<String> paragraphs, Language language) {
         log.info("processParagraphNode");
         
-        log.info("storyBookProvider: " + storyBookProvider);
+        log.debug("storyBookProvider: " + storyBookProvider);
         if ((storyBookProvider == StoryBookProvider.GLOBAL_DIGITAL_LIBRARY) || (storyBookProvider == StoryBookProvider.LETS_READ_ASIA)) {
             // If single line-break ("<br/>"), replace it with whitespace.
             // If double line-breaks ("<br/><br/>"), treat the subsequent text as a new paragraph.
@@ -234,15 +243,15 @@ public class EPubParagraphExtractionHelper {
                 int consecutiveLineBreaksCount = 0;
                 for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
                     Node paragraphChildNode = paragraphChildNodeList.item(k);
-                    log.info("paragraphChildNode: " + paragraphChildNode);
-                    log.info("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
-                    log.info("paragraphChildNode.getTextContent(): \"" + paragraphChildNode.getTextContent() + "\"");
+                    log.debug("paragraphChildNode: " + paragraphChildNode);
+                    log.debug("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
+                    log.debug("paragraphChildNode.getTextContent(): \"" + paragraphChildNode.getTextContent() + "\"");
                     if ("br".equals(paragraphChildNode.getNodeName())) {
                         consecutiveLineBreaksCount++;
                     } else {
                         consecutiveLineBreaksCount = 0;
                     }
-                    log.info("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
+                    log.debug("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
                     if (consecutiveLineBreaksCount == 1) {
                         // Replace "<br/>" with " "
                         paragraphChildNode.setTextContent(" ");
@@ -275,7 +284,7 @@ public class EPubParagraphExtractionHelper {
             // Add each paragraph separately
             String[] paragraphArray = paragraphNode.getTextContent().split("</p><p>");
             for (String paragraph : paragraphArray) {
-                log.info("paragraph: \"" + paragraph + "\"");
+                log.debug("paragraph: \"" + paragraph + "\"");
                 paragraph = getCleanedUpParagraph(paragraph, language);
                 if (StringUtils.isNotBlank(paragraph)) {
                     paragraphs.add(paragraph);
@@ -283,7 +292,7 @@ public class EPubParagraphExtractionHelper {
             }
         } else if (storyBookProvider == StoryBookProvider.STORYWEAVER) {
             String paragraph = paragraphNode.getTextContent();
-            log.info("paragraph: \"" + paragraph + "\"");
+            log.debug("paragraph: \"" + paragraph + "\"");
             paragraph = getCleanedUpParagraph(paragraph, language);
 
             // Skip paragraphs containing CSS code

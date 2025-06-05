@@ -234,4 +234,17 @@ public class EPubParagraphExtractionHelperTest {
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("นี่ คือ หู ของ ฉัน ฉัน ใช้ หู เพื่อ ฟัง เสียง ต่าง ต่าง", storyBookParagraphs.get(0));
     }
+
+    @Test
+    public void testExtractParagraphsFromChapterFile_THA_LRA_376896c7_ch9() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tha-lra-376896c7-b7de-40ee-83c3-d11e5bf68e19.epub_Page_9.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.THA);
+
+        assertEquals(1, storyBookParagraphs.size());
+        assertEquals("คุณ แม่! คุณ แม่! มอง ไป ทาง ไหน มี แต่ คน หนู ชัก สับสน ไม่ รู้ จะ เดิน ตรง ไหน", storyBookParagraphs.get(0));
+    }
 }
