@@ -100,6 +100,10 @@ main .chip img {
     box-shadow: none;
 }
 
+span.badge.new {
+    border-radius: 4px;
+}
+
 #welcomePage .card-title {
     text-shadow: 1px 1px rgba(0,0,0, .8), 
         0 -1rem 3rem rgba(0,0,0, .8), 
