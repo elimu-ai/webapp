@@ -37,6 +37,7 @@ public class EPubParagraphExtractionHelper {
         try {
             String fileContent = new String(Files.readAllBytes(xhtmlFile.toPath()), StandardCharsets.UTF_8);
             fileContent = fileContent.replaceAll("&nbsp;", " ");
+            fileContent = fileContent.replaceAll("<br>", "<br/>");
             Files.write(xhtmlFile.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             log.error(null, e);
@@ -357,6 +358,7 @@ public class EPubParagraphExtractionHelper {
             paragraph = paragraph.replace(" \"", "\"");
         }
         
+        System.out.println("paragraph: " + paragraph);
         return paragraph;
     }
 }

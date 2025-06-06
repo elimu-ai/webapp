@@ -89,4 +89,26 @@ public class EPubImageExtractionHelperTest {
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
         assertEquals("p-9.jpg", imageReference);
     }
+
+    @Test
+    public void testExtractImageReferenceFromChapterFile_STORYWEAVER_tha() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tha-sw-587076-phb-kan-pen-khrang-raek.epub_2.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertEquals("image_2.jpg", imageReference);
+    }
+
+    @Test
+    public void testExtractImageReferenceFromChapterFile_STORYWEAVER_tha_page9() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tha-sw-446843-kon-kong-joa-jing-jog.epub_9.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertEquals("image_9.jpg", imageReference);
+    }
 }

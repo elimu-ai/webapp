@@ -247,4 +247,17 @@ public class EPubParagraphExtractionHelperTest {
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("คุณ แม่! คุณ แม่! มอง ไป ทาง ไหน มี แต่ คน หนู ชัก สับสน ไม่ รู้ จะ เดิน ตรง ไหน", storyBookParagraphs.get(0));
     }
+
+    @Test
+    public void testExtractParagraphsFromChapterFile_THA_SW_446843_ch9() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tha-sw-446843-kon-kong-joa-jing-jog.epub_9.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.THA);
+
+        assertEquals(2, storyBookParagraphs.size());
+        assertEquals("สัตว์ มากมาย ต่าง หลั่ง", storyBookParagraphs.get(0));
+    }
 }
