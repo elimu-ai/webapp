@@ -116,6 +116,58 @@
     
     <h5 style="margin-top: 1em;">🎼 Letter-sounds</h5>
     <div class="card-panel">
+        <h5>Letter identification speed (correct letter-sounds per minute)</h5>
+        <canvas id="letterIdentificationSpeedChart"></canvas>
+        <script>
+            const letterIdentificationSpeedLabels = [
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+            ];
+            const letterIdentificationSpeedData = {
+                labels: letterIdentificationSpeedLabels,
+                datasets: [{
+                    data: <c:out value="${letterIdentificationSpeedAvgList}" />,
+                    label: 'clspm',
+                    backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    tension: 0.5,
+                    fill: true
+                },{
+                    data: Array(letterIdentificationSpeedLabels.length).fill(10.0),
+                    label: 'LEVEL1',
+                    backgroundColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                },{
+                    data: Array(letterIdentificationSpeedLabels.length).fill(20.0),
+                    label: 'LEVEL2',
+                    backgroundColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                },{
+                    data: Array(letterIdentificationSpeedLabels.length).fill(40.0),
+                    label: 'LEVEL3',
+                    backgroundColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                },{
+                    data: Array(letterIdentificationSpeedLabels.length).fill(100.0),
+                    label: 'LEVEL4',
+                    backgroundColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                }]
+            };
+            const letterIdentificationSpeedConfig = {
+                type: 'line',
+                data: letterIdentificationSpeedData,
+                options: {}
+            };
+            var letterIdentificationSpeedCtx = document.getElementById('letterIdentificationSpeedChart');
+            new Chart(letterIdentificationSpeedCtx, letterIdentificationSpeedConfig);
+        </script>
+
+        <div class="divider" style="margin: 2em 0;"></div>
+
         <a id="exportLetterSoundAssessmentEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/analytics/students/${student.id}/letter-sound-assessment-events.csv' />">
             Export to CSV<i class="material-icons right">vertical_align_bottom</i>
@@ -236,7 +288,7 @@
                     borderColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
                     tension: 0.5,
                 },{
-                    data: Array(readingSpeedLabels.length).fill(40.0),
+                    data: Array(readingSpeedLabels.length).fill(50.0),
                     label: 'LEVEL4',
                     backgroundColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
                     borderColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2

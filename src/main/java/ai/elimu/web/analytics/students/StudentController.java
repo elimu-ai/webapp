@@ -14,9 +14,11 @@ import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
+import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.AnalyticsHelper;
+import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -144,7 +146,42 @@ public class StudentController {
     model.addAttribute("wordAssessmentEventCorrectCountList", wordAssessmentEventCorrectCountList);
     model.addAttribute("wordAssessmentEventIncorrectCountList", wordAssessmentEventIncorrectCountList);
 
-    // Prepare chart data - Reading speed (words per minute)
+    // Prepare chart data - Letter identification speed (correct letter-sounds per minute)
+    List<Double> letterIdentificationSpeedAvgList = new ArrayList<>();
+    if (!wordAssessmentEvents.isEmpty()) {
+      Map<String, Integer> letterCountByWeekMap = new HashMap<>();
+      Map<String, Long> timeSpentMsSumByWeekMap = new HashMap<>();
+      for (WordAssessmentEvent event : wordAssessmentEvents) {
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        if (event.getMasteryScore() >= 0.5) {
+          int letterCount = StringUtils.isNotBlank(event.getWordText()) ? event.getWordText().length() : 0;
+          if (letterCount > 0) {
+            letterCountByWeekMap.put(eventWeek, letterCountByWeekMap.getOrDefault(eventWeek, 0) + letterCount);
+            timeSpentMsSumByWeekMap.put(eventWeek, letterCountByWeekMap.getOrDefault(eventWeek, 0) + event.getTimeSpentMs());
+          }
+        }
+      }
+      week = (Calendar) calendar6MonthsAgo.clone();
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        Integer lettersIdentifiedCount = letterCountByWeekMap.getOrDefault(weekAsString, 0);
+        log.info("lettersIdentifiedCount: " + lettersIdentifiedCount);
+        Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
+        log.info("timeSpentMsSum: " + timeSpentMsSum);
+        Double timeSpentInMinutes = (double) (timeSpentMsSum / 1_000);
+        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
+        Double lettersPerMinute = 0.00;
+        if (timeSpentInMinutes > 0) {
+          lettersPerMinute = lettersIdentifiedCount / timeSpentInMinutes;
+          log.info("lettersPerMinute: " + lettersPerMinute);
+        }
+        letterIdentificationSpeedAvgList.add(lettersPerMinute);
+        week.add(Calendar.WEEK_OF_YEAR, 1);
+      }
+    }
+    model.addAttribute("letterIdentificationSpeedAvgList", letterIdentificationSpeedAvgList);
+    
+    // Prepare chart data - Reading speed (correct words per minute)
     List<Double> readingSpeedAvgList = new ArrayList<>();
     if (!wordAssessmentEvents.isEmpty()) {
       Map<String, Integer> eventCountByWeekMap = new HashMap<>();
