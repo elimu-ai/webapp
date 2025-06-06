@@ -258,6 +258,6 @@ public class EPubParagraphExtractionHelperTest {
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.THA);
 
         assertEquals(2, storyBookParagraphs.size());
-        assertEquals("มากมาย ต่างหลั่ง", storyBookParagraphs.get(0));
+        assertEquals("สัตว์ มากมาย ต่าง หลั่ง", storyBookParagraphs.get(0));
     }
 }
