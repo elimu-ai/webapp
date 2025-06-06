@@ -34,6 +34,7 @@ public class EPubImageExtractionHelper {
             fileContent = fileContent.replaceAll("&igrave;", "ì");
             fileContent = fileContent.replaceAll("&acirc;", "â");
             fileContent = fileContent.replaceAll("&nbsp;", " ");
+            fileContent = fileContent.replaceAll("<br>", "<br/>");
             Files.write(xhtmlFile.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             log.error(null, e);
