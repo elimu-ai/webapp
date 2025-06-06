@@ -357,6 +357,7 @@ public class EPubParagraphExtractionHelper {
             paragraph = paragraph.replace(" \"", "\"");
         }
         
+        System.out.println("paragraph: " + paragraph);
         return paragraph;
     }
 }
