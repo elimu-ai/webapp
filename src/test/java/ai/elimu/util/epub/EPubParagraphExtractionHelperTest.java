@@ -260,4 +260,17 @@ public class EPubParagraphExtractionHelperTest {
         assertEquals(2, storyBookParagraphs.size());
         assertEquals("สัตว์ มากมาย ต่าง หลั่ง", storyBookParagraphs.get(0));
     }
+
+    @Test
+    public void testExtractParagraphsFromChapterFile_THA_LRA_c2d75faf_ch8() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("tha-lra-c2d75faf-4145-424f-9f58-21182945d986.epub_Page_8.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.THA);
+
+        assertEquals(1, storyBookParagraphs.size());
+        assertEquals("“ส่วน นี่ คือ ท่า ตั้ง วง บน” “ทำ ตาม ฉัน นะ”", storyBookParagraphs.get(0));
+    }
 }

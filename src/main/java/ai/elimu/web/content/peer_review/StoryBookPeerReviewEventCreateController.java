@@ -86,7 +86,7 @@ public class StoryBookPeerReviewEventCreateController {
     log.info("approvedCount: " + approvedCount);
     log.info("notApprovedCount: " + notApprovedCount);
     StoryBook storyBook = storyBookContributionEvent.getStoryBook();
-    if (approvedCount >= notApprovedCount) {
+    if (approvedCount > notApprovedCount) {
       storyBook.setPeerReviewStatus(PeerReviewStatus.APPROVED);
     } else {
       storyBook.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
