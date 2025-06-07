@@ -142,14 +142,8 @@ public class VideoEditController {
       video.setTitle(video.getTitle().toLowerCase());
       video.setTimeLastUpdate(Calendar.getInstance());
       video.setRevisionNumber(video.getRevisionNumber() + 1);
-      Video existingVideoWithSameFileContent = videoDao.readByChecksumMd5(video.getChecksumMd5());
-      if (existingVideoWithSameFileContent != null) {
-        // Re-use existing file
-        video.setChecksumGitHub(existingVideoWithSameFileContent.getChecksumGitHub());
-      } else {
-        String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, bytes);
-        video.setChecksumGitHub(checksumGitHub);
-      }
+      String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, bytes);
+      video.setChecksumGitHub(checksumGitHub);
       videoDao.update(video);
 
       // TODO: https://github.com/elimu-ai/webapp/issues/1545
