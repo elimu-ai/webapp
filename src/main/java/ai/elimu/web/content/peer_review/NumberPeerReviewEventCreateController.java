@@ -81,7 +81,7 @@ public class NumberPeerReviewEventCreateController {
     log.info("approvedCount: " + approvedCount);
     log.info("notApprovedCount: " + notApprovedCount);
     Number number = numberContributionEvent.getNumber();
-    if (approvedCount >= notApprovedCount) {
+    if (approvedCount > notApprovedCount) {
       number.setPeerReviewStatus(PeerReviewStatus.APPROVED);
     } else {
       number.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);

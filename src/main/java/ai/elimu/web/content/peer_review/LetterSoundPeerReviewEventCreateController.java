@@ -89,7 +89,7 @@ public class LetterSoundPeerReviewEventCreateController {
   }
 
   private void updatePeerReviewStatus(LetterSound letterSound, int approvedCount, int notApprovedCount) {
-    if (approvedCount >= notApprovedCount) {
+    if (approvedCount > notApprovedCount) {
       letterSound.setPeerReviewStatus(PeerReviewStatus.APPROVED);
     } else {
       letterSound.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);

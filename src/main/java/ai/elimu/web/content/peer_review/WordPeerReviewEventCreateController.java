@@ -81,7 +81,7 @@ public class WordPeerReviewEventCreateController {
     log.info("approvedCount: " + approvedCount);
     log.info("notApprovedCount: " + notApprovedCount);
     Word word = wordContributionEvent.getWord();
-    if (approvedCount >= notApprovedCount) {
+    if (approvedCount > notApprovedCount) {
       word.setPeerReviewStatus(PeerReviewStatus.APPROVED);
     } else {
       word.setPeerReviewStatus(PeerReviewStatus.NOT_APPROVED);
