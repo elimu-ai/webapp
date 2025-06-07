@@ -27,20 +27,6 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
     }
 
     @Override
-    public Image readByChecksumMd5(String checksumMd5) throws DataAccessException {
-        try {
-            return (Image) em.createQuery(
-                "SELECT i " +
-                "FROM Image i " +
-                "WHERE i.checksumMd5 = :checksumMd5")
-                .setParameter("checksumMd5", checksumMd5)
-                .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-    @Override
     public List<Image> readAllOrdered() throws DataAccessException {
         return em.createQuery(
             "SELECT i " +
