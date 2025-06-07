@@ -167,14 +167,8 @@ public class ImageEditController {
       image.setTitle(image.getTitle().toLowerCase());
       image.setTimeLastUpdate(Calendar.getInstance());
       image.setRevisionNumber(image.getRevisionNumber() + 1);
-      Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(image.getChecksumMd5());
-      if (existingImageWithSameFileContent != null) {
-        // Re-use existing file
-        image.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
-      } else {
-        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
-        image.setChecksumGitHub(checksumGitHub);
-      }
+      String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
+      image.setChecksumGitHub(checksumGitHub);
       imageDao.update(image);
 
       ImageContributionEvent imageContributionEvent = new ImageContributionEvent();

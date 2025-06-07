@@ -76,6 +76,16 @@ public class GitHubLfsHelper {
         String url = API_BASE_URL + path;
         log.info("url: " + url);
 
+        // Check if the file already exists. If so, return its SHA value.
+        HttpResponse<String> getResponse = Unirest.get(url).asString();
+        log.info("getResponse.getStatus(): " + getResponse.getStatus());
+        if (getResponse.isSuccess()) {
+            JsonObject responseAsJson = JsonParser.parseString(getResponse.getBody()).getAsJsonObject();
+            String sha = responseAsJson.get("sha").getAsString();
+            log.info("sha: " + sha);
+            return sha;
+        }
+
         JsonObject body = new JsonObject();
         body.addProperty("message", "chore: add " + path );
         body.addProperty("content", Base64.getEncoder().encodeToString(bytes));
@@ -87,17 +97,17 @@ public class GitHubLfsHelper {
         log.debug("body: " + body);
 
         String accessToken = ConfigHelper.getProperty("github.lfs.token");
-        HttpResponse<String> httpResponse = Unirest.put(url)
+        HttpResponse<String> putResponse = Unirest.put(url)
             .header("Authorization", "Bearer " + accessToken)
             .body(body.toString())
             .asString();
-        log.info("httpResponse: " + httpResponse);
-        log.info("httpResponse.getStatus(): " + httpResponse.getStatus());
-        log.info("httpResponse.isSuccess(): " + httpResponse.isSuccess());
+        log.info("putResponse: " + putResponse);
+        log.info("putResponse.getStatus(): " + putResponse.getStatus());
+        log.info("putResponse.isSuccess(): " + putResponse.isSuccess());
         
-        JsonObject responseAsJson = JsonParser.parseString(httpResponse.getBody()).getAsJsonObject();
+        JsonObject responseAsJson = JsonParser.parseString(putResponse.getBody()).getAsJsonObject();
         log.info("responseAsJson.keySet(): " + responseAsJson.keySet());
-        if (!httpResponse.isSuccess()) {
+        if (!putResponse.isSuccess()) {
             log.warn("responseAsJson: " + responseAsJson);
             return null;
         } else {

@@ -25,20 +25,6 @@ public class VideoDaoJpa extends GenericDaoJpa<Video> implements VideoDao {
     }
 
     @Override
-    public Video readByChecksumMd5(String checksumMd5) throws DataAccessException {
-        try {
-            return (Video) em.createQuery(
-                "SELECT v " +
-                "FROM Video v " +
-                "WHERE v.checksumMd5 = :checksumMd5")
-                .setParameter("checksumMd5", checksumMd5)
-                .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-    @Override
     public List<Video> readAllOrdered() throws DataAccessException {
         return em.createQuery(
             "SELECT v " +

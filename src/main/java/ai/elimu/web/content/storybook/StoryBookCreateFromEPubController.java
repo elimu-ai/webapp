@@ -194,14 +194,9 @@ public class StoryBookCreateFromEPubController {
         
         // Store the cover image
         coverImage.setTitle(storyBook.getTitle() + "_cover");
-        Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(coverImage.getChecksumMd5());
-        if (existingImageWithSameFileContent != null) {
-          // Re-use existing file
-          coverImage.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
-        } else {
-          String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
-          coverImage.setChecksumGitHub(checksumGitHub);
-        }
+        coverImage.setTimeLastUpdate(Calendar.getInstance());
+        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
+        coverImage.setChecksumGitHub(checksumGitHub);
         imageDao.create(coverImage);
         storeImageContributionEvent(coverImage, session, request);
 
@@ -298,14 +293,9 @@ public class StoryBookCreateFromEPubController {
 
             // Store the chapter image
             chapterImage.setTitle(storyBook.getTitle() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
-            Image existingImageWithSameFileContent = imageDao.readByChecksumMd5(chapterImage.getChecksumMd5());
-            if (existingImageWithSameFileContent != null) {
-              // Re-use existing file
-              chapterImage.setChecksumGitHub(existingImageWithSameFileContent.getChecksumGitHub());
-            } else {
-              String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
-              chapterImage.setChecksumGitHub(checksumGitHub);
-            }
+            chapterImage.setTimeLastUpdate(Calendar.getInstance());
+            String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
+            chapterImage.setChecksumGitHub(checksumGitHub);
             imageDao.create(chapterImage);
             storeImageContributionEvent(chapterImage, session, request);
 
