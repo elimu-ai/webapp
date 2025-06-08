@@ -78,7 +78,7 @@ public class VideoLearningEventImportScheduler {
                   // Store in database
                   for (VideoLearningEvent event : events) {
                     // Check if the event has already been stored in the database
-                    VideoLearningEvent existingVideoLearningEvent = videoLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName(), event.getVideoTitle());
+                    VideoLearningEvent existingVideoLearningEvent = videoLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
                     if (existingVideoLearningEvent != null) {
                       log.warn("The event has already been stored in the database. Skipping data import.");
                       continue;

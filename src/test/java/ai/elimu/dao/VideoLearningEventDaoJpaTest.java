@@ -28,13 +28,11 @@ public class VideoLearningEventDaoJpaTest {
     Calendar timestamp = Calendar.getInstance();
     String androidId = "e387e38700000001";
     String packageName = "ai.elimu.filamu";
-    String videoTitle = "akili and me - the rectangle song";
 
     VideoLearningEvent existingEvent = videoLearningEventDao.read(
         timestamp,
         androidId,
-        packageName,
-        videoTitle
+        packageName
     );
     assertNull(existingEvent);
 
@@ -42,14 +40,12 @@ public class VideoLearningEventDaoJpaTest {
     event.setTimestamp(timestamp);
     event.setAndroidId(androidId);
     event.setPackageName(packageName);
-    event.setVideoTitle(videoTitle);
     videoLearningEventDao.create(event);
 
     existingEvent = videoLearningEventDao.read(
         timestamp,
         androidId,
-        packageName,
-        videoTitle
+        packageName
     );
     assertNotNull(existingEvent);
   }

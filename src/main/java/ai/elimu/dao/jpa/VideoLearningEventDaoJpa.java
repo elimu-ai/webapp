@@ -13,22 +13,20 @@ import org.springframework.dao.DataAccessException;
 public class VideoLearningEventDaoJpa extends GenericDaoJpa<VideoLearningEvent> implements VideoLearningEventDao {
 
     @Override
-    public VideoLearningEvent read(Calendar timestamp, String androidId, String packageName, String videoTitle) throws DataAccessException {
+    public VideoLearningEvent read(Calendar timestamp, String androidId, String packageName) throws DataAccessException {
         try {
             return (VideoLearningEvent) em.createQuery(
                 "SELECT event " +
                 "FROM VideoLearningEvent event " +
                 "WHERE event.timestamp = :timestamp " +
                 "AND event.androidId = :androidId " + 
-                "AND event.packageName = :packageName " + 
-                "AND event.videoTitle = :videoTitle")
+                "AND event.packageName = :packageName")
                 .setParameter("timestamp", timestamp)
                 .setParameter("androidId", androidId)
                 .setParameter("packageName", packageName)
-                .setParameter("videoTitle", videoTitle)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("VideoLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", " + packageName + ", \"" + videoTitle + "\") was not found");
+            logger.info("VideoLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", " + packageName + ") was not found");
             return null;
         }
     }
