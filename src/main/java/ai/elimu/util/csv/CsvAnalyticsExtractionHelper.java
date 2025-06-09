@@ -125,12 +125,6 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 wordAssessmentEvent.setPackageName(packageName);
 
-                String wordText = csvRecord.get("word_text");
-                wordAssessmentEvent.setWordText(wordText);
-
-                Long wordId = Long.valueOf(csvRecord.get("word_id"));
-                wordAssessmentEvent.setWordId(wordId);
-
                 Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
                 wordAssessmentEvent.setMasteryScore(masteryScore);
 
@@ -139,6 +133,12 @@ public class CsvAnalyticsExtractionHelper {
 
                 // String additionalData = csvRecord.get("additional_data");
                 // wordAssessmentEvent.setAdditionalData(additionalData);
+
+                String wordText = csvRecord.get("word_text");
+                wordAssessmentEvent.setWordText(wordText);
+
+                Long wordId = Long.valueOf(csvRecord.get("word_id"));
+                wordAssessmentEvent.setWordId(wordId);
 
                 wordAssessmentEvents.add(wordAssessmentEvent);
             }
