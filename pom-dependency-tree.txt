@@ -1,7 +1,7 @@
-ai.elimu:webapp:war:2.6.44-SNAPSHOT
-+- ai.elimu:model:jar:model-2.0.97:compile
-|  \- com.google.code.gson:gson:jar:2.13.0:compile
-|     \- com.google.errorprone:error_prone_annotations:jar:2.37.0:compile
+ai.elimu:webapp:war:2.6.47-SNAPSHOT
++- ai.elimu:model:jar:model-2.0.111:compile
+|  \- com.google.code.gson:gson:jar:2.13.1:compile
+|     \- com.google.errorprone:error_prone_annotations:jar:2.38.0:compile
 +- org.springframework:spring-context:jar:6.0.9:compile
 |  +- org.springframework:spring-aop:jar:6.0.9:compile
 |  +- org.springframework:spring-beans:jar:6.0.9:compile

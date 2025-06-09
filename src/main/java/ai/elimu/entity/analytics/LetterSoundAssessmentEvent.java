@@ -25,15 +25,4 @@ public class LetterSoundAssessmentEvent extends AssessmentEvent {
      * In this case, the {@link #letterSoundId} will be {@code null}.
      */
     private Long letterSoundId;
-
-    /**
-     * A value in the range [0.0, 1.0].
-     */
-    private Float masteryScore;
-
-    /**
-     * The number of milliseconds passed between the student opening the assessment task 
-     * and submitting a response. E.g. <code>15000</code>.
-     */
-    private Long timeSpentMs;
 }

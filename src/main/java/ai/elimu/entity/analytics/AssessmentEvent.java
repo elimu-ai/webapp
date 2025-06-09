@@ -45,11 +45,22 @@ public abstract class AssessmentEvent extends BaseEntity {
   private Application application;
 
   /**
+   * A value in the range [0.0, 1.0].
+   */
+  private Float masteryScore;
+
+  /**
+   * The number of milliseconds passed between the student opening the assessment task 
+   * and submitting a response. E.g. <code>15000</code>.
+   */
+  private Long timeSpentMs;
+
+  /**
    * Any additional data should be stored in the format of a JSON object.
    * 
    * Example:
    * <pre>
-   * {'word_ids_presented': [1,2,3], 'word_id_selected': 2}
+   * {'word_ids_presented': [1,2,3], 'word_id_selected': [2]}
    * </pre>
    */
   @Column(length = 1024)
