@@ -1,5 +1,6 @@
 package ai.elimu.util.csv;
 
+import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
@@ -30,6 +31,68 @@ import org.apache.commons.csv.CSVRecord;
 @Slf4j
 public class CsvAnalyticsExtractionHelper {
 
+    public static List<LetterSoundAssessmentEvent> extractLetterSoundAssessmentEvents(File csvFile) {
+        log.info("extractLetterSoundAssessmentEvents");
+
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
+        List<LetterSoundAssessmentEvent> letterSoundAssessmentEvents = new ArrayList<>();
+
+        // Iterate each row in the CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        log.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                log.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to Java
+
+                LetterSoundAssessmentEvent letterSoundAssessmentEvent = new LetterSoundAssessmentEvent();
+                
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                timestamp.setTimeInMillis(timestampInMillis);
+                letterSoundAssessmentEvent.setTimestamp(timestamp);
+                
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
+                letterSoundAssessmentEvent.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                letterSoundAssessmentEvent.setPackageName(packageName);
+
+                Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
+                letterSoundAssessmentEvent.setMasteryScore(masteryScore);
+
+                Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
+                letterSoundAssessmentEvent.setTimeSpentMs(timeSpentMs);
+
+                String additionalData = csvRecord.get("additional_data");
+                letterSoundAssessmentEvent.setAdditionalData(additionalData);
+
+                String letterSoundLetters = csvRecord.get("letter_sound_letters");
+                letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundLetters);
+
+                String letterSoundSounds = csvRecord.get("letter_sound_sounds");
+                letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundSounds);
+
+                Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
+                letterSoundAssessmentEvent.setLetterSoundId(letterSoundId);
+
+                letterSoundAssessmentEvents.add(letterSoundAssessmentEvent);
+            }
+            csvParser.close();
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+
+        return letterSoundAssessmentEvents;
+    }
+    
     public static List<LetterSoundLearningEvent> extractLetterSoundLearningEvents(File csvFile) {
         log.info("extractLetterSoundLearningEvents");
 
