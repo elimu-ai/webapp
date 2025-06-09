@@ -1,6 +1,7 @@
 package ai.elimu.entity.analytics;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,11 +13,13 @@ public class LetterSoundAssessmentEvent extends AssessmentEvent {
     /**
      * The sequence of letters. E.g. <code>"sh"</code>.
      */
+    @NotNull
     private String letterSoundLetters;
 
     /**
      * The sequence of sounds (IPA values). E.g. <code>"ʃ"</code>.
      */
+    @NotNull
     private String letterSoundSounds;
 
     /**
