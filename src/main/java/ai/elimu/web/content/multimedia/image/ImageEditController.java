@@ -14,17 +14,22 @@ import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.ImageContributionEvent;
 import ai.elimu.entity.enums.ContentLicense;
+import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -35,6 +40,7 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -80,14 +86,42 @@ public class ImageEditController {
 
     Image image = imageDao.read(id);
 
-    if (image.getChecksumGitHub() == null) {
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
+    if ((image.getChecksumGitHub() == null) && (contributor != null)) {
       log.info("image.getUrl(): " + image.getUrl());
-      byte[] bytes = IOUtils.toByteArray(image.getUrl());
-      String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
-      log.info("checksumGitHub: " + checksumGitHub);
-      image.setChecksumGitHub(checksumGitHub);
-      image.setRevisionNumber(image.getRevisionNumber() + 1);
-      imageDao.update(image);
+
+      // Download the image file to a temporary folder on the file system
+      String tmpDir = System.getProperty("java.io.tmpdir");
+      log.info("tmpDir: " + tmpDir);
+      File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
+      log.info("tmpDirElimuAi: " + tmpDirElimuAi);
+      log.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
+      Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+      File tmpDirLanguage = new File(tmpDirElimuAi, "lang-" + language);
+      log.info("tmpDirLanguage: " + tmpDirLanguage);
+      log.info("tmpDirLanguage.mkdir(): " + tmpDirLanguage.mkdir());
+      File tmpFileImage = new File(tmpDirLanguage, image.getChecksumMd5() + "." + image.getImageFormat().toString().toLowerCase());
+      log.info("tmpFileImage.getPath(): " + tmpFileImage.getPath());
+      try {
+        FileUtils.copyURLToFile(new URL(image.getUrl()), tmpFileImage);
+        log.info("tmpFileImage.exists(): " + tmpFileImage.exists());
+        byte[] bytes = IOUtils.toByteArray(tmpFileImage.toURI());
+        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
+        log.info("checksumGitHub: " + checksumGitHub);
+        image.setChecksumGitHub(checksumGitHub);
+        image.setRevisionNumber(image.getRevisionNumber() + 1);
+        imageDao.update(image);
+
+        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+        imageContributionEvent.setContributor(contributor);
+        imageContributionEvent.setTimestamp(Calendar.getInstance());
+        imageContributionEvent.setImage(image);
+        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+        imageContributionEvent.setComment("Updated file name in LFS (🤖 auto-generated comment)");
+        imageContributionEventDao.create(imageContributionEvent);
+      } catch (IOException e) {
+        log.error(null, e);
+      }
     }
 
     model.addAttribute("image", image);

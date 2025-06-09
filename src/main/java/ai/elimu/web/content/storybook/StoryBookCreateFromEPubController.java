@@ -252,9 +252,7 @@ public class StoryBookCreateFromEPubController {
               chapterImageFile = new File(tmpDirElimuAi, "chapter-image");
 
               log.warn("Downloading image from " + sourceUrl + " and storing at " + chapterImageFile);
-              int connectionTimeout = 1000 * 10; // 1000 milliseconds x 10
-              int readTimeout = 1000 * 10; // 1000 milliseconds x 10
-              FileUtils.copyURLToFile(sourceUrl, chapterImageFile, connectionTimeout, readTimeout);
+              FileUtils.copyURLToFile(sourceUrl, chapterImageFile);
             } else {
               chapterImageFile = new File(chapterFile.getParent(), chapterImageReference);
             }
