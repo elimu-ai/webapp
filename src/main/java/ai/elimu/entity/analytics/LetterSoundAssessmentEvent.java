@@ -1,6 +1,7 @@
 package ai.elimu.entity.analytics;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,11 +13,13 @@ public class LetterSoundAssessmentEvent extends AssessmentEvent {
     /**
      * The sequence of letters. E.g. <code>"sh"</code>.
      */
+    @NotNull
     private String letterSoundLetters;
 
     /**
      * The sequence of sounds (IPA values). E.g. <code>"ʃ"</code>.
      */
+    @NotNull
     private String letterSoundSounds;
 
     /**
@@ -25,15 +28,4 @@ public class LetterSoundAssessmentEvent extends AssessmentEvent {
      * In this case, the {@link #letterSoundId} will be {@code null}.
      */
     private Long letterSoundId;
-
-    /**
-     * A value in the range [0.0, 1.0].
-     */
-    private Float masteryScore;
-
-    /**
-     * The number of milliseconds passed between the student opening the assessment task 
-     * and submitting a response. E.g. <code>15000</code>.
-     */
-    private Long timeSpentMs;
 }

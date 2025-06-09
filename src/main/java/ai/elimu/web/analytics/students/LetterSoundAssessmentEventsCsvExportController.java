@@ -47,12 +47,12 @@ public class LetterSoundAssessmentEventsCsvExportController {
             "id",
             "timestamp",
             "package_name",
-            "letter_sound_letters",
-            "letter_sound_sounds",
-            "letter_sound_id",
             "mastery_score",
             "time_spent_ms",
-            "additional_data"
+            "additional_data",
+            "letter_sound_letters",
+            "letter_sound_sounds",
+            "letter_sound_id"
         )
         .build();
 
@@ -66,12 +66,12 @@ public class LetterSoundAssessmentEventsCsvExportController {
           letterSoundAssessmentEvent.getId(),
           letterSoundAssessmentEvent.getTimestamp().getTimeInMillis(),
           letterSoundAssessmentEvent.getPackageName(),
-          letterSoundAssessmentEvent.getLetterSoundLetters(),
-          letterSoundAssessmentEvent.getLetterSoundSounds(),
-          letterSoundAssessmentEvent.getLetterSoundId(),
           letterSoundAssessmentEvent.getMasteryScore(),
           letterSoundAssessmentEvent.getTimeSpentMs(),
-          letterSoundAssessmentEvent.getAdditionalData()
+          letterSoundAssessmentEvent.getAdditionalData(),
+          letterSoundAssessmentEvent.getLetterSoundLetters(),
+          letterSoundAssessmentEvent.getLetterSoundSounds(),
+          letterSoundAssessmentEvent.getLetterSoundId()
       );
     }
     csvPrinter.flush();

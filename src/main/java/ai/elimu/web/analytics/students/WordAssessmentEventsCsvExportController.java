@@ -47,11 +47,11 @@ public class WordAssessmentEventsCsvExportController {
             "id",
             "timestamp",
             "package_name",
-            "word_text",
-            "word_id",
             "mastery_score",
             "time_spent_ms",
-            "additional_data"
+            "additional_data",
+            "word_text",
+            "word_id"
         )
         .build();
 
@@ -65,11 +65,11 @@ public class WordAssessmentEventsCsvExportController {
           wordAssessmentEvent.getId(),
           wordAssessmentEvent.getTimestamp().getTimeInMillis(),
           wordAssessmentEvent.getPackageName(),
-          wordAssessmentEvent.getWordText(),
-          wordAssessmentEvent.getWordId(),
           wordAssessmentEvent.getMasteryScore(),
           wordAssessmentEvent.getTimeSpentMs(),
-          wordAssessmentEvent.getAdditionalData()
+          wordAssessmentEvent.getAdditionalData(),
+          wordAssessmentEvent.getWordText(),
+          wordAssessmentEvent.getWordId()
       );
     }
     csvPrinter.flush();
