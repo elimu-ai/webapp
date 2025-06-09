@@ -24,20 +24,18 @@ import org.springframework.stereotype.Service;
  * ├── lang-ENG
  * │   ├── analytics
  * │   │   ├── android-id-e387e38700000001
- * │   │   │   └── version-code-3001018
- * │   │   │       └── storybook-learning-events
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-09.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-10.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-11.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-14.csv
- * │   │   │           ├── e387e38700000001_3001018_storybook-learning-events_2024-10-18.csv
- * │   │   │           └── e387e38700000001_3001018_storybook-learning-events_2024-10-20.csv
+ * │   │   │   └── storybook-learning-events
+ * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-09.csv
+ * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-10.csv
+ * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-11.csv
+ * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-14.csv
+ * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-18.csv
+ * │   │   │       └── e387e38700000001_3001018_storybook-learning-events_2024-10-20.csv
  * │   │   ├── android-id-e387e38700000002
- * │   │   │   └── version-code-3001018
- * │   │   │       └── storybook-learning-events
- * │   │   │           ├── e387e38700000002_3001018_storybook-learning-events_2024-10-09.csv
- * │   │   │           ├── e387e38700000002_3001018_storybook-learning-events_2024-10-10.csv
- * │   │   │           ├── e387e38700000002_3001018_storybook-learning-events_2024-10-11.csv
+ * │   │   │   └── storybook-learning-events
+ * │   │   │       ├── e387e38700000002_3001018_storybook-learning-events_2024-10-09.csv
+ * │   │   │       ├── e387e38700000002_3001018_storybook-learning-events_2024-10-10.csv
+ * │   │   │       ├── e387e38700000002_3001018_storybook-learning-events_2024-10-11.csv
  * </pre>
  */
 @Service
@@ -63,41 +61,36 @@ public class StoryBookLearningEventImportScheduler {
       if (analyticsDirFile.getName().startsWith("android-id-")) {
         File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
         for (File androidIdDirFile : androidIdDir.listFiles()) {
-          if (androidIdDirFile.getName().startsWith("version-code-")) {
-            File versionCodeDir = new File(androidIdDir, androidIdDirFile.getName());
-            for (File versionCodeDirFile : versionCodeDir.listFiles()) {
-              if (versionCodeDirFile.getName().equals("storybook-learning-events")) {
-                File storyBookLearningEventsDir = new File(versionCodeDir, versionCodeDirFile.getName());
-                for (File csvFile : storyBookLearningEventsDir.listFiles()) {
-                  log.info("csvFile: " + csvFile);
+          if (androidIdDirFile.getName().equals("storybook-learning-events")) {
+            File storyBookLearningEventsDir = new File(androidIdDir, androidIdDirFile.getName());
+            for (File csvFile : storyBookLearningEventsDir.listFiles()) {
+              log.info("csvFile: " + csvFile);
 
-                  // Convert from CSV to Java
-                  List<StoryBookLearningEvent> events = CsvAnalyticsExtractionHelper.extractStoryBookLearningEvents(csvFile);
-                  log.info("events.size(): " + events.size());
+              // Convert from CSV to Java
+              List<StoryBookLearningEvent> events = CsvAnalyticsExtractionHelper.extractStoryBookLearningEvents(csvFile);
+              log.info("events.size(): " + events.size());
 
-                  // Store in database
-                  for (StoryBookLearningEvent event : events) {
-                    // Check if the event has already been stored in the database
-                    StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
-                    if (existingStoryBookLearningEvent != null) {
-                      log.warn("The event has already been stored in the database. Skipping data import.");
-                      continue;
-                    }
-
-                    // Generate Student ID
-                    Student existingStudent = studentDao.read(event.getAndroidId());
-                    if (existingStudent == null) {
-                      Student student = new Student();
-                      student.setAndroidId(event.getAndroidId());
-                      studentDao.create(student);
-                      log.info("Stored Student in database with ID " + student.getId());
-                    }
-
-                    // Store the event in the database
-                    storyBookLearningEventDao.create(event);
-                    log.info("Stored event in database with ID " + event.getId());
-                  }
+              // Store in database
+              for (StoryBookLearningEvent event : events) {
+                // Check if the event has already been stored in the database
+                StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
+                if (existingStoryBookLearningEvent != null) {
+                  log.warn("The event has already been stored in the database. Skipping data import.");
+                  continue;
                 }
+
+                // Generate Student ID
+                Student existingStudent = studentDao.read(event.getAndroidId());
+                if (existingStudent == null) {
+                  Student student = new Student();
+                  student.setAndroidId(event.getAndroidId());
+                  studentDao.create(student);
+                  log.info("Stored Student in database with ID " + student.getId());
+                }
+
+                // Store the event in the database
+                storyBookLearningEventDao.create(event);
+                log.info("Stored event in database with ID " + event.getId());
               }
             }
           }
