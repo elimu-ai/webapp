@@ -34,6 +34,8 @@ import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,6 +79,16 @@ public class ImageEditController {
     log.info("handleRequest");
 
     Image image = imageDao.read(id);
+
+    if (image.getChecksumGitHub() == null) {
+      log.info("image.getUrl(): " + image.getUrl());
+      byte[] bytes = IOUtils.toByteArray(image.getUrl());
+      String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
+      log.info("checksumGitHub: " + checksumGitHub);
+      image.setChecksumGitHub(checksumGitHub);
+      image.setRevisionNumber(image.getRevisionNumber() + 1);
+      imageDao.update(image);
+    }
 
     model.addAttribute("image", image);
     model.addAttribute("contentLicenses", ContentLicense.values());
