@@ -54,9 +54,6 @@ public class LetterSoundLearningEventsRestController {
             String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
             log.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
             
-            Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
-            log.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
-            
             byte[] bytes = multipartFile.getBytes();
             log.info("bytes.length: " + bytes.length);
             
@@ -65,8 +62,7 @@ public class LetterSoundLearningEventsRestController {
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
             File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
-            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
-            File letterSoundLearningEventsDir = new File(versionCodeDir, "letter-sound-learning-events");
+            File letterSoundLearningEventsDir = new File(androidIdDir, "letter-sound-learning-events");
             letterSoundLearningEventsDir.mkdirs();
             File csvFile = new File(letterSoundLearningEventsDir, originalFilename);
             log.info("Storing CSV file at " + csvFile);

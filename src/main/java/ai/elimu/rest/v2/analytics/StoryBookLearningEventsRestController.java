@@ -54,9 +54,6 @@ public class StoryBookLearningEventsRestController {
             String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
             log.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
             
-            Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
-            log.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
-            
             byte[] bytes = multipartFile.getBytes();
             log.info("bytes.length: " + bytes.length);
             
@@ -65,8 +62,7 @@ public class StoryBookLearningEventsRestController {
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
             File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
-            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
-            File storyBookLearningEventsDir = new File(versionCodeDir, "storybook-learning-events");
+            File storyBookLearningEventsDir = new File(androidIdDir, "storybook-learning-events");
             storyBookLearningEventsDir.mkdirs();
             File csvFile = new File(storyBookLearningEventsDir, originalFilename);
             log.info("Storing CSV file at " + csvFile);

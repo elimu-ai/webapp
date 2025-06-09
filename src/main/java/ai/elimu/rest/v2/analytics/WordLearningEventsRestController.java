@@ -54,9 +54,6 @@ public class WordLearningEventsRestController {
             String androidIdExtractedFromFilename = AnalyticsHelper.extractAndroidIdFromCsvFilename(originalFilename);
             log.info("androidIdExtractedFromFilename: \"" + androidIdExtractedFromFilename + "\"");
             
-            Integer versionCodeExtractedFromFilename = AnalyticsHelper.extractVersionCodeFromCsvFilename(originalFilename);
-            log.info("versionCodeExtractedFromFilename: " + versionCodeExtractedFromFilename);
-            
             byte[] bytes = multipartFile.getBytes();
             log.info("bytes.length: " + bytes.length);
             
@@ -65,8 +62,7 @@ public class WordLearningEventsRestController {
             File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
             File analyticsDir = new File(languageDir, "analytics");
             File androidIdDir = new File(analyticsDir, "android-id-" + androidIdExtractedFromFilename);
-            File versionCodeDir = new File(androidIdDir, "version-code-" + versionCodeExtractedFromFilename);
-            File wordLearningEventsDir = new File(versionCodeDir, "word-learning-events");
+            File wordLearningEventsDir = new File(androidIdDir, "word-learning-events");
             wordLearningEventsDir.mkdirs();
             File csvFile = new File(wordLearningEventsDir, originalFilename);
             log.info("Storing CSV file at " + csvFile);
