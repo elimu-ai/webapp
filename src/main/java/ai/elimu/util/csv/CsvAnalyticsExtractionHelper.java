@@ -33,6 +33,9 @@ public class CsvAnalyticsExtractionHelper {
     public static List<LetterSoundLearningEvent> extractLetterSoundLearningEvents(File csvFile) {
         log.info("extractLetterSoundLearningEvents");
 
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
         List<LetterSoundLearningEvent> letterSoundLearningEvents = new ArrayList<>();
 
         // Iterate each row in the CSV file
@@ -50,7 +53,14 @@ public class CsvAnalyticsExtractionHelper {
 
                 LetterSoundLearningEvent letterSoundLearningEvent = new LetterSoundLearningEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("time"));
+                String timestampColumnName = null;
+                if (versionCode < 3004000) {
+                    timestampColumnName = "time";
+                } else {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
+                    timestampColumnName = "timestamp";
+                }
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 letterSoundLearningEvent.setTimestamp(timestamp);
@@ -77,6 +87,9 @@ public class CsvAnalyticsExtractionHelper {
     public static List<WordAssessmentEvent> extractWordAssessmentEvents(File csvFile) {
         log.info("extractWordAssessmentEvents");
 
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
         List<WordAssessmentEvent> wordAssessmentEvents = new ArrayList<>();
 
         // Iterate each row in the CSV file
@@ -94,7 +107,14 @@ public class CsvAnalyticsExtractionHelper {
 
                 WordAssessmentEvent wordAssessmentEvent = new WordAssessmentEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("time"));
+                String timestampColumnName = null;
+                if (versionCode < 3004000) {
+                    timestampColumnName = "time";
+                } else {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
+                    timestampColumnName = "timestamp";
+                }
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 wordAssessmentEvent.setTimestamp(timestamp);
@@ -133,6 +153,9 @@ public class CsvAnalyticsExtractionHelper {
     public static List<WordLearningEvent> extractWordLearningEvents(File csvFile) {
         log.info("extractWordLearningEvents");
 
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
         List<WordLearningEvent> wordLearningEvents = new ArrayList<>();
 
         // Iterate each row in the CSV file
@@ -150,7 +173,14 @@ public class CsvAnalyticsExtractionHelper {
 
                 WordLearningEvent wordLearningEvent = new WordLearningEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("time"));
+                String timestampColumnName = null;
+                if (versionCode < 3004000) {
+                    timestampColumnName = "time";
+                } else {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
+                    timestampColumnName = "timestamp";
+                }
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 wordLearningEvent.setTimestamp(timestamp);
@@ -206,7 +236,14 @@ public class CsvAnalyticsExtractionHelper {
 
                 StoryBookLearningEvent storyBookLearningEvent = new StoryBookLearningEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("time"));
+                String timestampColumnName = null;
+                if (versionCode < 3004000) {
+                    timestampColumnName = "time";
+                } else {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
+                    timestampColumnName = "timestamp";
+                }
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 storyBookLearningEvent.setTimestamp(timestamp);
@@ -217,12 +254,12 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 storyBookLearningEvent.setPackageName(packageName);
 
-                if (versionCode >= 3003000) {
+                if (versionCode < 3003000) {
+                    storyBookLearningEvent.setStoryBookTitle("");
+                } else {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.3.0
                     String storyBookTitle = csvRecord.get("storybook_title");
                     storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
-                } else {
-                    storyBookLearningEvent.setStoryBookTitle("");
                 }
 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
@@ -246,6 +283,9 @@ public class CsvAnalyticsExtractionHelper {
 
     public static List<VideoLearningEvent> extractVideoLearningEvents(File csvFile) {
         log.info("extractVideoLearningEvents");
+
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
 
         List<VideoLearningEvent> videoLearningEvents = new ArrayList<>();
 
