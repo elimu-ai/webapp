@@ -55,7 +55,7 @@ public class CsvAnalyticsExtractionHelper {
                 timestamp.setTimeInMillis(timestampInMillis);
                 letterSoundLearningEvent.setTimestamp(timestamp);
                 
-                String androidId = csvRecord.get("android_id");
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
                 letterSoundLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
@@ -99,7 +99,7 @@ public class CsvAnalyticsExtractionHelper {
                 timestamp.setTimeInMillis(timestampInMillis);
                 wordAssessmentEvent.setTimestamp(timestamp);
                 
-                String androidId = csvRecord.get("android_id");
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
                 wordAssessmentEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
@@ -155,7 +155,7 @@ public class CsvAnalyticsExtractionHelper {
                 timestamp.setTimeInMillis(timestampInMillis);
                 wordLearningEvent.setTimestamp(timestamp);
                 
-                String androidId = csvRecord.get("android_id");
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
                 wordLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
@@ -211,7 +211,7 @@ public class CsvAnalyticsExtractionHelper {
                 timestamp.setTimeInMillis(timestampInMillis);
                 storyBookLearningEvent.setTimestamp(timestamp);
                 
-                String androidId = csvRecord.get("android_id");
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
                 storyBookLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
@@ -269,7 +269,7 @@ public class CsvAnalyticsExtractionHelper {
                 timestamp.setTimeInMillis(timestampInMillis);
                 videoLearningEvent.setTimestamp(timestamp);
                 
-                String androidId = csvRecord.get("android_id");
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
                 videoLearningEvent.setAndroidId(androidId);
                 
                 String packageName = csvRecord.get("package_name");
