@@ -201,7 +201,6 @@ public class StoryBookEditController {
 
       return "content/storybook/edit";
     } else {
-      storyBook.setTimeLastUpdate(Calendar.getInstance());
       storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
       storyBookDao.update(storyBook);
 

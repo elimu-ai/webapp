@@ -140,7 +140,6 @@ public class VideoEditController {
       return "content/multimedia/video/edit";
     } else {
       video.setTitle(video.getTitle().toLowerCase());
-      video.setTimeLastUpdate(Calendar.getInstance());
       video.setRevisionNumber(video.getRevisionNumber() + 1);
       String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, bytes);
       video.setChecksumGitHub(checksumGitHub);

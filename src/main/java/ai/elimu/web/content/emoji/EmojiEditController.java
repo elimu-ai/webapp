@@ -76,7 +76,6 @@ public class EmojiEditController {
 
       return "content/emoji/edit";
     } else {
-      emoji.setTimeLastUpdate(Calendar.getInstance());
       emoji.setRevisionNumber(emoji.getRevisionNumber() + 1);
       emojiDao.update(emoji);
 

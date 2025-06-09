@@ -52,7 +52,6 @@ public class EmojiCreateController {
 
       return "content/emoji/create";
     } else {
-      emoji.setTimeLastUpdate(Calendar.getInstance());
       emojiDao.create(emoji);
 
       return "redirect:/content/emoji/list#" + emoji.getId();

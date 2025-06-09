@@ -81,7 +81,6 @@ public class StoryBookCreateController {
 
       return "content/storybook/create";
     } else {
-      storyBook.setTimeLastUpdate(Calendar.getInstance());
       storybookDao.create(storyBook);
 
       StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();

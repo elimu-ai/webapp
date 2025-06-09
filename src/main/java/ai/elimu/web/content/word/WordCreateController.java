@@ -110,7 +110,6 @@ public class WordCreateController {
 
       return "content/word/create";
     } else {
-      word.setTimeLastUpdate(Calendar.getInstance());
       wordDao.create(word);
 
       WordContributionEvent wordContributionEvent = new WordContributionEvent();

@@ -85,7 +85,6 @@ public class SoundEditController {
       model.addAttribute("letterSounds", letterSoundDao.readAll());
       return "content/sound/edit";
     } else {
-      sound.setTimeLastUpdate(Calendar.getInstance());
       sound.setRevisionNumber(sound.getRevisionNumber() + 1);
       soundDao.update(sound);
 

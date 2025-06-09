@@ -84,7 +84,6 @@ public class LetterSoundCreateController {
 
       return "content/letter-sound/create";
     } else {
-      letterSound.setTimeLastUpdate(Calendar.getInstance());
       letterSoundDao.create(letterSound);
 
       LetterSoundContributionEvent letterSoundContributionEvent = new LetterSoundContributionEvent();

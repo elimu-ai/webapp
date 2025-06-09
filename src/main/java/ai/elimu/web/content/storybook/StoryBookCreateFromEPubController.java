@@ -194,7 +194,6 @@ public class StoryBookCreateFromEPubController {
         
         // Store the cover image
         coverImage.setTitle(storyBook.getTitle() + "_cover");
-        coverImage.setTimeLastUpdate(Calendar.getInstance());
         String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
         coverImage.setChecksumGitHub(checksumGitHub);
         imageDao.create(coverImage);
@@ -293,7 +292,6 @@ public class StoryBookCreateFromEPubController {
 
             // Store the chapter image
             chapterImage.setTitle(storyBook.getTitle() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
-            chapterImage.setTimeLastUpdate(Calendar.getInstance());
             String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
             chapterImage.setChecksumGitHub(checksumGitHub);
             imageDao.create(chapterImage);
@@ -332,7 +330,6 @@ public class StoryBookCreateFromEPubController {
       return "content/storybook/create-from-epub";
     } else {
       // Store the StoryBook in the database
-      storyBook.setTimeLastUpdate(Calendar.getInstance());
       storyBookDao.create(storyBook);
 
       StoryBookContributionEvent storyBookContributionEvent = new StoryBookContributionEvent();

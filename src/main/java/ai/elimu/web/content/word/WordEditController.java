@@ -148,7 +148,6 @@ public class WordEditController {
 
       return "content/word/edit";
     } else {
-      word.setTimeLastUpdate(Calendar.getInstance());
       word.setRevisionNumber(word.getRevisionNumber() + 1);
       wordDao.update(word);
 

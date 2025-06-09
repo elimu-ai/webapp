@@ -61,7 +61,6 @@ public class LetterCreateController {
 
       return "content/letter/create";
     } else {
-      letter.setTimeLastUpdate(Calendar.getInstance());
       letterDao.create(letter);
 
       LetterContributionEvent letterContributionEvent = new LetterContributionEvent();

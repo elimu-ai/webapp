@@ -122,7 +122,6 @@ public class VideoCreateController {
       return "content/multimedia/video/create";
     } else {
       video.setTitle(video.getTitle().toLowerCase());
-      video.setTimeLastUpdate(Calendar.getInstance());
       String checksumGitHub = GitHubLfsHelper.uploadVideoToLfs(video, bytes);
       video.setChecksumGitHub(checksumGitHub);
       videoDao.create(video);

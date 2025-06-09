@@ -128,7 +128,6 @@ public class ImageCreateController {
       } catch (NullPointerException ex) {
         // javax.imageio.IIOException: Unsupported Image Type
       }
-      image.setTimeLastUpdate(Calendar.getInstance());
       String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
       image.setChecksumGitHub(checksumGitHub);
       imageDao.create(image);

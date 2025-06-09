@@ -75,7 +75,6 @@ public class StoryBookParagraphEditController {
 
       // Update the storybook's metadata
       StoryBook storyBook = storyBookParagraph.getStoryBookChapter().getStoryBook();
-      storyBook.setTimeLastUpdate(Calendar.getInstance());
       storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
       storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
       storyBookDao.update(storyBook);
