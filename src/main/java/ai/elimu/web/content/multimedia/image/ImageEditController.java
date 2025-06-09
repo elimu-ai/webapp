@@ -256,11 +256,14 @@ public class ImageEditController {
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
+      HttpSession session,
       @PathVariable Long id) {
     log.info("handleAddContentLabelRequest");
 
     log.info("id: " + id);
     Image image = imageDao.read(id);
+
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
 
     String letterIdParameter = request.getParameter("letterId");
     log.info("letterIdParameter: " + letterIdParameter);
@@ -272,6 +275,14 @@ public class ImageEditController {
         letters.add(letter);
         image.setRevisionNumber(image.getRevisionNumber() + 1);
         imageDao.update(image);
+
+        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+        imageContributionEvent.setContributor(contributor);
+        imageContributionEvent.setTimestamp(Calendar.getInstance());
+        imageContributionEvent.setImage(image);
+        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+        imageContributionEvent.setComment("Add letter label: \"" + letter.getText() + "\" (🤖 auto-generated comment)");
+        imageContributionEventDao.create(imageContributionEvent);
       }
     }
 
@@ -285,6 +296,14 @@ public class ImageEditController {
         numbers.add(number);
         image.setRevisionNumber(image.getRevisionNumber() + 1);
         imageDao.update(image);
+
+        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+        imageContributionEvent.setContributor(contributor);
+        imageContributionEvent.setTimestamp(Calendar.getInstance());
+        imageContributionEvent.setImage(image);
+        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+        imageContributionEvent.setComment("Add number label: " + number.getValue() + " (🤖 auto-generated comment)");
+        imageContributionEventDao.create(imageContributionEvent);
       }
     }
 
@@ -298,6 +317,14 @@ public class ImageEditController {
         words.add(word);
         image.setRevisionNumber(image.getRevisionNumber() + 1);
         imageDao.update(image);
+
+        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+        imageContributionEvent.setContributor(contributor);
+        imageContributionEvent.setTimestamp(Calendar.getInstance());
+        imageContributionEvent.setImage(image);
+        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+        imageContributionEvent.setComment("Add word label: \"" + word.getText() + "\" (🤖 auto-generated comment)");
+        imageContributionEventDao.create(imageContributionEvent);
       }
     }
 
@@ -308,11 +335,14 @@ public class ImageEditController {
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
+      HttpSession session,
       @PathVariable Long id) {
     log.info("handleRemoveContentLabelRequest");
 
     log.info("id: " + id);
     Image image = imageDao.read(id);
+
+    Contributor contributor = (Contributor) session.getAttribute("contributor");
 
     String letterIdParameter = request.getParameter("letterId");
     log.info("letterIdParameter: " + letterIdParameter);
@@ -329,6 +359,14 @@ public class ImageEditController {
       }
       image.setRevisionNumber(image.getRevisionNumber() + 1);
       imageDao.update(image);
+
+      ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+      imageContributionEvent.setContributor(contributor);
+      imageContributionEvent.setTimestamp(Calendar.getInstance());
+      imageContributionEvent.setImage(image);
+      imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+      imageContributionEvent.setComment("Remove letter label: \"" + letter.getText() + "\" (🤖 auto-generated comment)");
+      imageContributionEventDao.create(imageContributionEvent);
     }
 
     String numberIdParameter = request.getParameter("numberId");
@@ -346,6 +384,14 @@ public class ImageEditController {
       }
       image.setRevisionNumber(image.getRevisionNumber() + 1);
       imageDao.update(image);
+
+      ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+      imageContributionEvent.setContributor(contributor);
+      imageContributionEvent.setTimestamp(Calendar.getInstance());
+      imageContributionEvent.setImage(image);
+      imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+      imageContributionEvent.setComment("Remove number label: " + number.getValue() + " (🤖 auto-generated comment)");
+      imageContributionEventDao.create(imageContributionEvent);
     }
 
     String wordIdParameter = request.getParameter("wordId");
@@ -363,6 +409,14 @@ public class ImageEditController {
       }
       image.setRevisionNumber(image.getRevisionNumber() + 1);
       imageDao.update(image);
+
+      ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
+      imageContributionEvent.setContributor(contributor);
+      imageContributionEvent.setTimestamp(Calendar.getInstance());
+      imageContributionEvent.setImage(image);
+      imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
+      imageContributionEvent.setComment("Remove word label: \"" + word.getText() + "\" (🤖 auto-generated comment)");
+      imageContributionEventDao.create(imageContributionEvent);
     }
 
     return "success";
