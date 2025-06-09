@@ -59,7 +59,6 @@ public class StoryBookParagraphDeleteController {
 
     // Update the storybook's metadata
     StoryBook storyBook = storyBookParagraphToBeDeleted.getStoryBookChapter().getStoryBook();
-    storyBook.setTimeLastUpdate(Calendar.getInstance());
     storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
     storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
     storyBookDao.update(storyBook);

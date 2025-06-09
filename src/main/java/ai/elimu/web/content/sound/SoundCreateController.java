@@ -73,7 +73,6 @@ public class SoundCreateController {
       model.addAttribute("soundTypes", SoundType.values());
       return "content/sound/create";
     } else {
-      sound.setTimeLastUpdate(Calendar.getInstance());
       soundDao.create(sound);
 
       SoundContributionEvent soundContributionEvent = new SoundContributionEvent();

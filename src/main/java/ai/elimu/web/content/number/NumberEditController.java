@@ -89,7 +89,6 @@ public class NumberEditController {
 
       return "content/number/edit";
     } else {
-      number.setTimeLastUpdate(Calendar.getInstance());
       number.setRevisionNumber(number.getRevisionNumber() + 1);
       numberDao.update(number);
 

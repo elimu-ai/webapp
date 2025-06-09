@@ -78,7 +78,6 @@ public class NumberCreateController {
 
       return "content/number/create";
     } else {
-      number.setTimeLastUpdate(Calendar.getInstance());
       numberDao.create(number);
 
       NumberContributionEvent numberContributionEvent = new NumberContributionEvent();

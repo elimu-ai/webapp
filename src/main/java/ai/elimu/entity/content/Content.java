@@ -6,10 +6,7 @@ import ai.elimu.model.v2.enums.content.ContentStatus;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
-import java.util.Calendar;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,9 +17,6 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public abstract class Content extends BaseEntity {
-
-  @Temporal(TemporalType.TIMESTAMP)
-  private Calendar timeLastUpdate;
 
   @NotNull
   private Integer revisionNumber = 1; // [1, 2, 3, ...]

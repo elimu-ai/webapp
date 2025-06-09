@@ -165,7 +165,6 @@ public class ImageEditController {
       return "content/multimedia/image/edit";
     } else {
       image.setTitle(image.getTitle().toLowerCase());
-      image.setTimeLastUpdate(Calendar.getInstance());
       image.setRevisionNumber(image.getRevisionNumber() + 1);
       String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
       image.setChecksumGitHub(checksumGitHub);

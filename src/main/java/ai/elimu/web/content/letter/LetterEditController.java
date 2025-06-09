@@ -74,7 +74,6 @@ public class LetterEditController {
 
       return "content/letter/edit";
     } else {
-      letter.setTimeLastUpdate(Calendar.getInstance());
       letter.setRevisionNumber(letter.getRevisionNumber() + 1);
       letterDao.update(letter);
 

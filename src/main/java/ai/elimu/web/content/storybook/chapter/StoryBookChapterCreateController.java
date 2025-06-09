@@ -87,7 +87,6 @@ public class StoryBookChapterCreateController {
 
       // Update the storybook's metadata
       StoryBook storyBook = storyBookChapter.getStoryBook();
-      storyBook.setTimeLastUpdate(Calendar.getInstance());
       storyBook.setRevisionNumber(storyBook.getRevisionNumber() + 1);
       storyBook.setPeerReviewStatus(PeerReviewStatus.PENDING);
       storyBookDao.update(storyBook);

@@ -101,7 +101,6 @@ public class LetterSoundEditController {
 
       return "content/letter-sound/edit";
     } else {
-      letterSound.setTimeLastUpdate(Calendar.getInstance());
       letterSound.setRevisionNumber(letterSound.getRevisionNumber() + 1);
       letterSoundDao.update(letterSound);
 
