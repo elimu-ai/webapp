@@ -273,4 +273,17 @@ public class EPubParagraphExtractionHelperTest {
         assertEquals(1, storyBookParagraphs.size());
         assertEquals("“ส่วน นี่ คือ ท่า ตั้ง วง บน” “ทำ ตาม ฉัน นะ”", storyBookParagraphs.get(0));
     }
+
+    @Test
+    public void testExtractParagraphsFromChapterFile_VIE_LRA_b46cf9ee_ch2() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubParagraphExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("vie-lra-b46cf9ee-1298-4b81-a285-ecd5c2021af6.epub_Page_2.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.VIE);
+
+        assertEquals(1, storyBookParagraphs.size());
+        assertEquals("Chó thách Mèo vật nhau Xem thử tay nào thắng", storyBookParagraphs.get(0));
+    }
 }

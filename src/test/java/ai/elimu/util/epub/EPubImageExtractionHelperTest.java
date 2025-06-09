@@ -122,4 +122,15 @@ public class EPubImageExtractionHelperTest {
         String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
         assertEquals("p-9.jpg", imageReference);
     }
+
+    @Test
+    public void testExtractImageReferenceFromChapterFile_VIE_LRA_b46cf9ee_ch2() throws IOException {
+        ResourceLoader resourceLoader = new ClassRelativeResourceLoader(EPubImageExtractionHelper.class);
+        Resource resource = resourceLoader.getResource("vie-lra-b46cf9ee-1298-4b81-a285-ecd5c2021af6.epub_Page_2.xhtml");
+        File xhtmlFile = resource.getFile();
+        log.debug("xhtmlFile: " + xhtmlFile);
+        
+        String imageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(xhtmlFile);
+        assertEquals("p-2.jpg", imageReference);
+    }
 }
