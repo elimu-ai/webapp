@@ -31,6 +31,7 @@ public class EPubImageExtractionHelper {
 
         try {
             String fileContent = new String(Files.readAllBytes(xhtmlFile.toPath()), StandardCharsets.UTF_8);
+            fileContent = fileContent.replaceAll("&aacute;", "á");
             fileContent = fileContent.replaceAll("&acirc;", "â");
             fileContent = fileContent.replaceAll("&agrave;", "à");
             fileContent = fileContent.replaceAll("&igrave;", "ì");
