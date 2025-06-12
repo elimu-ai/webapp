@@ -25,7 +25,7 @@ public class WordAssessmentEventDaoJpa extends GenericDaoJpa<WordAssessmentEvent
                 .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("WordAssessmentEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", \"" + packageName + "\") was not found");
+            logger.info("WordAssessmentEvent (" + timestamp.getTime() + ", \"" + androidId + "\", \"" + packageName + "\") was not found");
             return null;
         }
     }

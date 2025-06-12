@@ -124,7 +124,7 @@ public class CsvAnalyticsExtractionHelper {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
                     timestampColumnName = "timestamp";
                 }
-                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName).substring(0, 10)) * 1_000;
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 letterSoundLearningEvent.setTimestamp(timestamp);
@@ -171,7 +171,7 @@ public class CsvAnalyticsExtractionHelper {
 
                 NumberLearningEvent numberLearningEvent = new NumberLearningEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 numberLearningEvent.setTimestamp(timestamp);
@@ -237,7 +237,7 @@ public class CsvAnalyticsExtractionHelper {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
                     timestampColumnName = "timestamp";
                 }
-                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName).substring(0, 10)) * 1_000;
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 wordAssessmentEvent.setTimestamp(timestamp);
@@ -303,7 +303,7 @@ public class CsvAnalyticsExtractionHelper {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
                     timestampColumnName = "timestamp";
                 }
-                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName).substring(0, 10)) * 1_000;
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 wordLearningEvent.setTimestamp(timestamp);
@@ -366,7 +366,7 @@ public class CsvAnalyticsExtractionHelper {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.4.0
                     timestampColumnName = "timestamp";
                 }
-                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName));
+                long timestampInMillis = Long.valueOf(csvRecord.get(timestampColumnName).substring(0, 10)) * 1_000;
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 storyBookLearningEvent.setTimestamp(timestamp);
@@ -427,7 +427,7 @@ public class CsvAnalyticsExtractionHelper {
 
                 VideoLearningEvent videoLearningEvent = new VideoLearningEvent();
                 
-                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp"));
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
                 Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 timestamp.setTimeInMillis(timestampInMillis);
                 videoLearningEvent.setTimestamp(timestamp);
