@@ -2,6 +2,7 @@ package ai.elimu.web.analytics.students;
 
 import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
+import ai.elimu.dao.NumberLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
@@ -9,12 +10,12 @@ import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
+import ai.elimu.entity.analytics.NumberLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
-import ai.elimu.entity.content.Word;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.AnalyticsHelper;
@@ -48,6 +49,8 @@ public class StudentController {
 
   private final WordAssessmentEventDao wordAssessmentEventDao;
   private final WordLearningEventDao wordLearningEventDao;
+
+  private final NumberLearningEventDao numberLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
 
@@ -231,6 +234,26 @@ public class StudentController {
       }
     }
     model.addAttribute("wordEventCountList", wordEventCountList);
+
+
+    // Prepare chart data - NumberLearningEvents
+    List<NumberLearningEvent> numberLearningEvents = numberLearningEventDao.readAll(student.getAndroidId());
+    model.addAttribute("numberLearningEvents", numberLearningEvents);
+    List<Integer> numberEventCountList = new ArrayList<>();
+    if (!numberLearningEvents.isEmpty()) {
+      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
+      for (NumberLearningEvent event : numberLearningEvents) {
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+      }
+      week = (Calendar) calendar6MonthsAgo.clone();
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        numberEventCountList.add(eventCountByWeekMap.getOrDefault(weekAsString, 0));
+        week.add(Calendar.WEEK_OF_YEAR, 1);
+      }
+    }
+    model.addAttribute("numberEventCountList", numberEventCountList);
 
 
     // Prepare chart data - StoryBookLearningEvents

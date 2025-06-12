@@ -2,12 +2,12 @@ package ai.elimu.web.analytics;
 
 import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
+import ai.elimu.dao.NumberLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordLearningEventDao;
-import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ public class MainAnalyticsController {
   private final WordAssessmentEventDao wordAssessmentEventDao;
   private final WordLearningEventDao wordLearningEventDao;
 
-  // TODO: Numbers
+  private final NumberLearningEventDao numberLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
 
@@ -46,6 +46,8 @@ public class MainAnalyticsController {
 
     model.addAttribute("wordAssessmentEventCount", wordAssessmentEventDao.readCount());
     model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
+
+    model.addAttribute("numberLearningEventCount", numberLearningEventDao.readCount());
     
     model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
 

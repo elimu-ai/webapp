@@ -8,6 +8,7 @@ import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.NumberLearningEventDao;
 import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
@@ -18,6 +19,7 @@ import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
+import ai.elimu.entity.analytics.NumberLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
@@ -330,6 +332,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         Calendar week = (Calendar) calendar6MonthsAgo.clone();
         LetterSoundLearningEventDao letterSoundLearningEventDao = (LetterSoundLearningEventDao) webApplicationContext.getBean("letterSoundLearningEventDao");
         WordAssessmentEventDao wordAssessmentEventDao = (WordAssessmentEventDao) webApplicationContext.getBean("wordAssessmentEventDao");
+        NumberLearningEventDao numberLearningEventDao = (NumberLearningEventDao) webApplicationContext.getBean("numberLearningEventDao");
         StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
         VideoLearningEventDao videoLearningEventDao = (VideoLearningEventDao) webApplicationContext.getBean("videoLearningEventDao");
         while (!week.after(calendarNow)) {
@@ -358,6 +361,19 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
                     wordAssessmentEvent.setTimeSpentMs((long) (Math.random() * 20_000));
                     wordAssessmentEventDao.create(wordAssessmentEvent);
+                }
+
+                int randomNumberOfNumberLearningEvents = (int) (Math.random() * 15);
+                for (int i = 0; i < randomNumberOfNumberLearningEvents; i++) {
+                    NumberLearningEvent numberLearningEvent = new NumberLearningEvent();
+                    numberLearningEvent.setTimestamp(week);
+                    numberLearningEvent.setAndroidId(student.getAndroidId());
+                    numberLearningEvent.setPackageName("ai.elimu.calculator");
+                    numberLearningEvent.setNumberValue(number3.getValue());
+                    numberLearningEvent.setNumberSymbol(number3.getSymbol());
+                    numberLearningEvent.setNumberId(number3.getId());
+                    numberLearningEvent.setLearningEventType(LearningEventType.VIDEO_OPENED);
+                    numberLearningEventDao.create(numberLearningEvent);
                 }
 
                 int randomNumberOfStoryBookLearningEvents = (int) (Math.random() * 10);

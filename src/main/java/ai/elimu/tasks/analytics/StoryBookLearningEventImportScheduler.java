@@ -47,7 +47,7 @@ public class StoryBookLearningEventImportScheduler {
 
   private final StudentDao studentDao;
 
-  @Scheduled(cron = "00 35 * * * *") // 35 minutes past every hour
+  @Scheduled(cron = "00 45 * * * *") // 35 minutes past every hour
   public synchronized void execute() {
     log.info("execute");
 
