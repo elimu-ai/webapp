@@ -63,7 +63,7 @@ public class NumberLearningEventsCsvExportController {
 
       csvPrinter.printRecord(
           numberLearningEvent.getId(),
-          numberLearningEvent.getTimestamp().getTimeInMillis(),
+          numberLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
           numberLearningEvent.getPackageName(),
           numberLearningEvent.getAdditionalData(),
           numberLearningEvent.getNumberValue(),

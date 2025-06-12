@@ -64,7 +64,7 @@ public class LetterSoundAssessmentEventsCsvExportController {
 
       csvPrinter.printRecord(
           letterSoundAssessmentEvent.getId(),
-          letterSoundAssessmentEvent.getTimestamp().getTimeInMillis(),
+          letterSoundAssessmentEvent.getTimestamp().getTimeInMillis() / 1_000,
           letterSoundAssessmentEvent.getPackageName(),
           letterSoundAssessmentEvent.getMasteryScore(),
           letterSoundAssessmentEvent.getTimeSpentMs(),

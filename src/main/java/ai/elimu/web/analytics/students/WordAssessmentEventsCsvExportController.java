@@ -63,7 +63,7 @@ public class WordAssessmentEventsCsvExportController {
 
       csvPrinter.printRecord(
           wordAssessmentEvent.getId(),
-          wordAssessmentEvent.getTimestamp().getTimeInMillis(),
+          wordAssessmentEvent.getTimestamp().getTimeInMillis() / 1_000,
           wordAssessmentEvent.getPackageName(),
           wordAssessmentEvent.getMasteryScore(),
           wordAssessmentEvent.getTimeSpentMs(),
