@@ -34,7 +34,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(6, letterSoundLearningEvents.size());
 
         LetterSoundLearningEvent letterSoundLearningEvent = letterSoundLearningEvents.get(0);
-        assertEquals(1746952025058L, letterSoundLearningEvent.getTimestamp().getTimeInMillis());
+        assertEquals(1746952025000L, letterSoundLearningEvent.getTimestamp().getTimeInMillis());
         assertEquals("5b7c682a12ecbe2e", letterSoundLearningEvent.getAndroidId());
         assertEquals("ai.elimu.herufi.debug", letterSoundLearningEvent.getPackageName());
         assertEquals(300, letterSoundLearningEvent.getLetterSoundId());
@@ -54,7 +54,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(1, wordAssessmentEvents.size());
 
         WordAssessmentEvent wordAssessmentEvent = wordAssessmentEvents.get(0);
-        assertEquals(1742402392907L, wordAssessmentEvent.getTimestamp().getTimeInMillis());
+        assertEquals(1742402392000L, wordAssessmentEvent.getTimestamp().getTimeInMillis());
         assertEquals("1bb5b718814899b5", wordAssessmentEvent.getAndroidId());
         assertEquals("ai.elimu.kukariri.debug", wordAssessmentEvent.getPackageName());
         assertEquals("aso", wordAssessmentEvent.getWordText());
@@ -77,7 +77,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(6, videoLearningEvents.size());
 
         VideoLearningEvent videoLearningEvent = videoLearningEvents.get(0);
-        assertEquals(1728486312687L, videoLearningEvent.getTimestamp().getTimeInMillis());
+        assertEquals(1728486312000L, videoLearningEvent.getTimestamp().getTimeInMillis());
         assertEquals("e387e38700000001", videoLearningEvent.getAndroidId());
         assertEquals("ai.elimu.filamu", videoLearningEvent.getPackageName());
         assertEquals("akili and me - the rectangle song", videoLearningEvent.getVideoTitle());
@@ -99,7 +99,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(143, wordLearningEvents.size());
 
         WordLearningEvent wordLearningEvent = wordLearningEvents.get(0);
-        assertEquals(1742293958238L, wordLearningEvent.getTimestamp().getTimeInMillis());
+        assertEquals(1742293958000L, wordLearningEvent.getTimestamp().getTimeInMillis());
         assertEquals("5b7c682a12ecbe2e", wordLearningEvent.getAndroidId());
         assertEquals("ai.elimu.vitabu.debug", wordLearningEvent.getPackageName());
         assertEquals("ฉัน", wordLearningEvent.getWordText());
@@ -121,7 +121,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(8, storyBookLearningEvents.size());
 
         StoryBookLearningEvent storyBookLearningEvent = storyBookLearningEvents.get(0);
-        assertEquals(1742293901485L, storyBookLearningEvent.getTimestamp().getTimeInMillis());
+        assertEquals(1742293901000L, storyBookLearningEvent.getTimestamp().getTimeInMillis());
         assertEquals("5b7c682a12ecbe2e", storyBookLearningEvent.getAndroidId());
         assertEquals("ai.elimu.vitabu.debug", storyBookLearningEvent.getPackageName());
         assertEquals("", storyBookLearningEvent.getStoryBookTitle());
@@ -143,7 +143,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(2, storyBookLearningEvents.size());
 
         StoryBookLearningEvent storyBookLearningEvent = storyBookLearningEvents.get(0);
-        assertEquals(1748252197301L, storyBookLearningEvent.getTimestamp().getTimeInMillis());
+        assertEquals(1748252197000L, storyBookLearningEvent.getTimestamp().getTimeInMillis());
         assertEquals("5b7c682a12ecbe2e", storyBookLearningEvent.getAndroidId());
         assertEquals("ai.elimu.vitabu.debug", storyBookLearningEvent.getPackageName());
         assertEquals("", storyBookLearningEvent.getStoryBookTitle());
@@ -165,7 +165,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(2, storyBookLearningEvents.size());
 
         StoryBookLearningEvent storyBookLearningEvent = storyBookLearningEvents.get(0);
-        assertEquals(1748252197301L, storyBookLearningEvent.getTimestamp().getTimeInMillis());
+        assertEquals(1748252197000L, storyBookLearningEvent.getTimestamp().getTimeInMillis());
         assertEquals("5b7c682a12ecbe2e", storyBookLearningEvent.getAndroidId());
         assertEquals("ai.elimu.vitabu.debug", storyBookLearningEvent.getPackageName());
         assertEquals("กลโกงเจ้าจิ้งจอก", storyBookLearningEvent.getStoryBookTitle());

@@ -67,7 +67,7 @@ public class VideoLearningEventsCsvExportController {
 
       csvPrinter.printRecord(
           videoLearningEvent.getId(),
-          videoLearningEvent.getTimestamp().getTimeInMillis(),
+          videoLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
           videoLearningEvent.getPackageName(),
           videoLearningEvent.getVideoTitle(),
           videoLearningEvent.getVideoId(),

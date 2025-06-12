@@ -62,7 +62,7 @@ public class WordLearningEventsCsvExportController {
 
       csvPrinter.printRecord(
           wordLearningEvent.getId(),
-          wordLearningEvent.getTimestamp().getTimeInMillis(),
+          wordLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
           wordLearningEvent.getPackageName(),
           wordLearningEvent.getWordText(),
           (wordLearningEvent.getWord() == null) ? null : wordLearningEvent.getWord().getId(),

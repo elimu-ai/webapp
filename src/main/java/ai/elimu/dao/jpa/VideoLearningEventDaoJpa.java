@@ -26,7 +26,7 @@ public class VideoLearningEventDaoJpa extends GenericDaoJpa<VideoLearningEvent> 
                 .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("VideoLearningEvent (" + timestamp.getTimeInMillis() + ", " + androidId + ", " + packageName + ") was not found");
+            logger.info("VideoLearningEvent (" + timestamp.getTime() + ", " + androidId + ", " + packageName + ") was not found");
             return null;
         }
     }

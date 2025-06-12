@@ -62,7 +62,7 @@ public class LetterSoundLearningEventsCsvExportController {
 
       csvPrinter.printRecord(
           letterSoundLearningEvent.getId(),
-          letterSoundLearningEvent.getTimestamp().getTimeInMillis(),
+          letterSoundLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
           letterSoundLearningEvent.getPackageName(),
           // letterSoundLearningEvent.getLetterSoundLetters(),
           // letterSoundLearningEvent.getLetterSoundSounds(),
