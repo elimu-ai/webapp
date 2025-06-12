@@ -18,11 +18,13 @@ import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordDao;
+import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.NumberLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
+import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.entity.application.Application;
 import ai.elimu.entity.content.Emoji;
@@ -332,13 +334,14 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         Calendar week = (Calendar) calendar6MonthsAgo.clone();
         LetterSoundLearningEventDao letterSoundLearningEventDao = (LetterSoundLearningEventDao) webApplicationContext.getBean("letterSoundLearningEventDao");
         WordAssessmentEventDao wordAssessmentEventDao = (WordAssessmentEventDao) webApplicationContext.getBean("wordAssessmentEventDao");
+        WordLearningEventDao wordLearningEventDao = (WordLearningEventDao) webApplicationContext.getBean("wordLearningEventDao");
         NumberLearningEventDao numberLearningEventDao = (NumberLearningEventDao) webApplicationContext.getBean("numberLearningEventDao");
         StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
         VideoLearningEventDao videoLearningEventDao = (VideoLearningEventDao) webApplicationContext.getBean("videoLearningEventDao");
         while (!week.after(calendarNow)) {
             List<Student> students = studentDao.readAll();
             for (Student student : students) {
-                int randomNumberOfLetterSoundLearningEvents = (int) (Math.random() * 5);
+                int randomNumberOfLetterSoundLearningEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfLetterSoundLearningEvents; i++) {
                     LetterSoundLearningEvent letterSoundLearningEvent = new LetterSoundLearningEvent();
                     Calendar randomWeekday = (Calendar) week.clone();
@@ -350,7 +353,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     letterSoundLearningEventDao.create(letterSoundLearningEvent);
                 }
 
-                int randomNumberOfWordAssessmentEvents = (int) (Math.random() * 15);
+                int randomNumberOfWordAssessmentEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfWordAssessmentEvents; i++) {
                     WordAssessmentEvent wordAssessmentEvent = new WordAssessmentEvent();
                     wordAssessmentEvent.setTimestamp(week);
@@ -363,7 +366,26 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordAssessmentEventDao.create(wordAssessmentEvent);
                 }
 
-                int randomNumberOfNumberLearningEvents = (int) (Math.random() * 15);
+                int randomNumberOfWordLearningEvents = (int) (Math.random() * 10);
+                for (int i = 0; i < randomNumberOfWordLearningEvents; i++) {
+                    WordLearningEvent wordLearningEvent = new WordLearningEvent();
+                    wordLearningEvent.setTimestamp(week);
+                    wordLearningEvent.setAndroidId(student.getAndroidId());
+                    wordLearningEvent.setPackageName("ai.elimu.maneno");
+                    if (Math.random() > 0.5) {
+                        wordLearningEvent.setWordText(wordMAA.getText());
+                        // wordLearningEvent.setWordId(wordMAA.getId());
+                        // TODO: https://github.com/elimu-ai/webapp/issues/2113
+                    } else {
+                        wordLearningEvent.setWordText(wordSAAM.getText());
+                        // wordLearningEvent.setWordId(wordSAAM.getId());
+                        // TODO: https://github.com/elimu-ai/webapp/issues/2113
+                    }
+                    wordLearningEvent.setLearningEventType(LearningEventType.WORD_PRESSED);
+                    wordLearningEventDao.create(wordLearningEvent);
+                }
+
+                int randomNumberOfNumberLearningEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfNumberLearningEvents; i++) {
                     NumberLearningEvent numberLearningEvent = new NumberLearningEvent();
                     numberLearningEvent.setTimestamp(week);
@@ -388,7 +410,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     storyBookLearningEventDao.create(storyBookLearningEvent);
                 }
 
-                int randomNumberOfVideoLearningEvents = (int) (Math.random() * 15);
+                int randomNumberOfVideoLearningEvents = (int) (Math.random() * 10);
                 for (int i = 0; i < randomNumberOfVideoLearningEvents; i++) {
                     VideoLearningEvent videoLearningEvent = new VideoLearningEvent();
                     videoLearningEvent.setTimestamp(week);

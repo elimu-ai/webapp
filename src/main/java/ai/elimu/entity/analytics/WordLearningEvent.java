@@ -19,4 +19,7 @@ public class WordLearningEvent extends LearningEvent {
    */
 //    @NotNull
   private String wordText;
+
+  // TODO: private Long wordId;
+  // https://github.com/elimu-ai/webapp/issues/2113
 }

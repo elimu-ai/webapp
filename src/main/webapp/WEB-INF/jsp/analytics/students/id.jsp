@@ -468,7 +468,10 @@
                             "${wordLearningEvent.wordText}"
                         </td>
                         <td>
+                            <%--
                             ${wordLearningEvent.wordId}
+                            TODO: https://github.com/elimu-ai/webapp/issues/2113
+                            --%>
                         </td>
                         <td>
                             <code>${wordLearningEvent.additionalData}</code>
