@@ -228,6 +228,7 @@
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>letter_sound_id</th>
+                <th>ℹ️</th>
             </thead>
             <tbody>
                 <c:forEach var="i" begin="0" end="4">
@@ -244,6 +245,9 @@
                         </td>
                         <td>
                             ${letterSoundLearningEvent.letterSoundId}
+                        </td>
+                        <td>
+                            <code>${letterSoundLearningEvent.additionalData}</code>
                         </td>
                     </tr>
                 </c:forEach>
@@ -444,6 +448,8 @@
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>word_text</th>
+                <th>word_id</th>
+                <th>ℹ️</th>
             </thead>
             <tbody>
                 <c:forEach var="i" begin="0" end="4">
@@ -461,6 +467,12 @@
                         <td>
                             "${wordLearningEvent.wordText}"
                         </td>
+                        <td>
+                            ${wordLearningEvent.wordId}
+                        </td>
+                        <td>
+                            <code>${wordLearningEvent.additionalData}</code>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -475,8 +487,82 @@
 
         <div class="divider" style="margin: 2em 0;"></div>
 
+        <a id="exportNumberLearningEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/number-learning-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportNumberLearningEventsToCsvButton').click(function() {
+                    console.info('#exportNumberLearningEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         <h5>Number learning events (${fn:length(numberLearningEvents)})</h5>
-        ...
+        <canvas id="numberChart"></canvas>
+        <script>
+            const numberLabels = [
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+            ];
+            const numberData = {
+                labels: numberLabels,
+                datasets: [{
+                    data: <c:out value="${numberEventCountList}" />,
+                    label: 'Number learning events',
+                    backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
+            const numberConfig = {
+                type: 'line',
+                data: numberData,
+                options: {}
+            };
+            var numberCtx = document.getElementById('numberChart');
+            new Chart(numberCtx, numberConfig);
+        </script>
+        <table class="bordered highlight">
+            <thead>
+                <th>id</th>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>number_value</th>
+                <th>number_symbol</th>
+                <th>number_id</th>
+                <th>ℹ️</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:set var="numberLearningEvent" value="${numberLearningEvents[fn:length(numberLearningEvents) - 1 - i]}" />
+                    <tr>
+                        <td>
+                            ${numberLearningEvent.id}
+                        </td>
+                        <td>
+                            <fmt:formatDate value="${numberLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                        </td>
+                        <td>
+                            <code>${numberLearningEvent.packageName}</code>
+                        </td>
+                        <td>
+                            ${numberLearningEvent.numberValue}
+                        </td>
+                        <td>
+                            "${numberLearningEvent.numberSymbol}"
+                        </td>
+                        <td>
+                            ${numberLearningEvent.numberId}
+                        </td>
+                        <td>
+                            <code>${numberLearningEvent.additionalData}</code>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
     <div style="clear: both;"></div>
 
@@ -528,6 +614,7 @@
                 <th>package_name</th>
                 <th>storybook_title</th>
                 <th>storybook_id</th>
+                <th>ℹ️</th>
             </thead>
             <tbody>
                 <c:forEach var="i" begin="0" end="4">
@@ -547,6 +634,9 @@
                         </td>
                         <td>
                             ${storyBookLearningEvent.storyBookId}
+                        </td>
+                        <td>
+                            <code>${storyBookLearningEvent.additionalData}</code>
                         </td>
                     </tr>
                 </c:forEach>
@@ -603,6 +693,7 @@
                 <th>package_name</th>
                 <th>video_title</th>
                 <th>video_id</th>
+                <th>ℹ️</th>
             </thead>
             <tbody>
                 <c:forEach var="i" begin="0" end="4">
@@ -622,6 +713,9 @@
                         </td>
                         <td>
                             ${videoLearningEvent.videoId}
+                        </td>
+                        <td>
+                            <code>${videoLearningEvent.additionalData}</code>
                         </td>
                     </tr>
                 </c:forEach>
