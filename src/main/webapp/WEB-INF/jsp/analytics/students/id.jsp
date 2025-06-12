@@ -238,7 +238,7 @@
                             ${letterSoundLearningEvent.id}
                         </td>
                         <td>
-                            <fmt:formatDate value="${letterSoundLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${letterSoundLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
                         </td>
                         <td>
                             <code>${letterSoundLearningEvent.packageName}</code>
@@ -377,7 +377,7 @@
                             ${wordAssessmentEvent.id}
                         </td>
                         <td>
-                            <fmt:formatDate value="${wordAssessmentEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${wordAssessmentEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
                         </td>
                         <td>
                             <code>${wordAssessmentEvent.packageName}</code>
@@ -459,7 +459,7 @@
                             ${wordLearningEvent.id}
                         </td>
                         <td>
-                            <fmt:formatDate value="${wordLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${wordLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
                         </td>
                         <td>
                             <code>${wordLearningEvent.packageName}</code>
@@ -545,7 +545,7 @@
                             ${numberLearningEvent.id}
                         </td>
                         <td>
-                            <fmt:formatDate value="${numberLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${numberLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
                         </td>
                         <td>
                             <code>${numberLearningEvent.packageName}</code>
@@ -627,7 +627,7 @@
                             ${storyBookLearningEvent.id}
                         </td>
                         <td>
-                            <fmt:formatDate value="${storyBookLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${storyBookLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
                         </td>
                         <td>
                             <code>${storyBookLearningEvent.packageName}</code>
@@ -706,7 +706,7 @@
                             ${videoLearningEvent.id}
                         </td>
                         <td>
-                            <fmt:formatDate value="${videoLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm" />
+                            <fmt:formatDate value="${videoLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
                         </td>
                         <td>
                             <code>${videoLearningEvent.packageName}</code>
