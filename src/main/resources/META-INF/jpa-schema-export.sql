@@ -57,6 +57,8 @@
 
     drop table if exists NumberContributionEvent;
 
+    drop table if exists NumberLearningEvent;
+
     drop table if exists NumberPeerReviewEvent;
 
     drop table if exists Sound;
@@ -375,6 +377,21 @@
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
+        number_id bigint,
+        primary key (id)
+    ) type=MyISAM;
+
+    create table NumberLearningEvent (
+       id bigint not null auto_increment,
+        additionalData text,
+        androidId varchar(255),
+        learningEventType varchar(255),
+        packageName varchar(255),
+        timestamp datetime,
+        numberId bigint,
+        numberSymbol varchar(255),
+        numberValue integer,
+        application_id bigint,
         number_id bigint,
         primary key (id)
     ) type=MyISAM;
@@ -825,6 +842,16 @@
 
     alter table NumberContributionEvent 
        add constraint FKkfyssxfqg6x1vygyhjks96m4u 
+       foreign key (number_id) 
+       references Number (id);
+
+    alter table NumberLearningEvent 
+       add constraint FKelrgxep39nss6majgtkv6pdem 
+       foreign key (application_id) 
+       references Application (id);
+
+    alter table NumberLearningEvent 
+       add constraint FK14drkt4fawgjw0ve761bkt0q 
        foreign key (number_id) 
        references Number (id);
 
