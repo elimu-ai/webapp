@@ -25,7 +25,7 @@ public class LetterSoundLearningEventDaoJpa extends GenericDaoJpa<LetterSoundLea
                 .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
-            logger.info("LetterSoundLearningEvent (" + timestamp.getTime() + ", \"" + androidId + "\", \"" + packageName + "\") was not found");
+            logger.info("LetterSoundLearningEvent (" + timestamp.getTime() + ", " + androidId + ", " + packageName + ") was not found");
             return null;
         }
     }
