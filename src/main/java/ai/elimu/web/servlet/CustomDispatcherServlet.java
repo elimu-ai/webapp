@@ -186,16 +186,19 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         Sound soundM = new Sound();
         soundM.setValueIpa("m");
         soundM.setValueSampa("m");
+        soundM.setUsageCount(9_962);
         soundDao.create(soundM);
         
         Sound soundAA = new Sound();
         soundAA.setValueIpa("aː");
         soundAA.setValueSampa("a:");
+        soundAA.setUsageCount(30_315);
         soundDao.create(soundAA);
 
         Sound soundS = new Sound();
         soundS.setValueIpa("s");
         soundS.setValueSampa("s");
+        soundS.setUsageCount(1_526);
         soundDao.create(soundS);
 
         
