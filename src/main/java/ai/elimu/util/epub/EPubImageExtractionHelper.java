@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import org.apache.commons.lang.StringEscapeUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -31,11 +33,7 @@ public class EPubImageExtractionHelper {
 
         try {
             String fileContent = new String(Files.readAllBytes(xhtmlFile.toPath()), StandardCharsets.UTF_8);
-            fileContent = fileContent.replaceAll("&aacute;", "á");
-            fileContent = fileContent.replaceAll("&acirc;", "â");
-            fileContent = fileContent.replaceAll("&agrave;", "à");
-            fileContent = fileContent.replaceAll("&igrave;", "ì");
-            fileContent = fileContent.replaceAll("&nbsp;", " ");
+            fileContent = StringEscapeUtils.unescapeHtml(fileContent);
             fileContent = fileContent.replaceAll("<br>", "<br/>");
             Files.write(xhtmlFile.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
