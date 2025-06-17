@@ -2,6 +2,7 @@ package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.entity.content.LetterSound;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.content.LetterSoundGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
@@ -28,6 +29,11 @@ public class LetterSoundsRestController {
 
     JSONArray letterSoundsJsonArray = new JSONArray();
     for (LetterSound letterSound : letterSoundDao.readAllOrderedByUsage()) {
+      if (letterSound.getPeerReviewStatus() == PeerReviewStatus.NOT_APPROVED) {
+        log.warn("Not approved during peer-review. Skipping.");
+        continue;
+      }
+
       LetterSoundGson letterSoundGson = JpaToGsonConverter.getLetterSoundGson(letterSound);
       String json = new Gson().toJson(letterSoundGson);
       letterSoundsJsonArray.put(new JSONObject(json));
