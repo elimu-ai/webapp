@@ -6,6 +6,7 @@ import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.entity.content.StoryBook;
 import ai.elimu.entity.content.StoryBookChapter;
 import ai.elimu.entity.content.StoryBookParagraph;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.content.StoryBookChapterGson;
 import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
@@ -46,6 +47,11 @@ public class StoryBooksJsonService {
 
     JSONArray storyBooksJsonArray = new JSONArray();
     for (StoryBook storyBook : storyBookDao.readAllOrdered()) {
+      if (storyBook.getPeerReviewStatus() == PeerReviewStatus.NOT_APPROVED) {
+        log.warn("Not approved during peer-review. Skipping.");
+        continue;
+      }
+
       StoryBookGson storyBookGson = JpaToGsonConverter.getStoryBookGson(storyBook);
 
       // Add chapters

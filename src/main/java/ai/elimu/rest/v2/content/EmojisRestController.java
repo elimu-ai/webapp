@@ -2,6 +2,7 @@ package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.content.EmojiGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
@@ -29,6 +30,11 @@ public class EmojisRestController {
 
     JSONArray emojisJsonArray = new JSONArray();
     for (Emoji emoji : emojiDao.readAllOrdered()) {
+      if (emoji.getPeerReviewStatus() == PeerReviewStatus.NOT_APPROVED) {
+        log.warn("Not approved during peer-review. Skipping.");
+        continue;
+      }
+
       EmojiGson emojiGson = JpaToGsonConverter.getEmojiGson(emoji);
 
       String json = new Gson().toJson(emojiGson);

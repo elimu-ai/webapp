@@ -2,6 +2,7 @@ package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.SoundDao;
 import ai.elimu.entity.content.Sound;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.content.SoundGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
@@ -28,6 +29,11 @@ public class SoundsRestController {
 
     JSONArray soundsJsonArray = new JSONArray();
     for (Sound sound : soundDao.readAllOrdered()) {
+      if (sound.getPeerReviewStatus() == PeerReviewStatus.NOT_APPROVED) {
+        log.warn("Not approved during peer-review. Skipping.");
+        continue;
+      }
+
       SoundGson soundGson = JpaToGsonConverter.getSoundGson(sound);
       String json = new Gson().toJson(soundGson);
       soundsJsonArray.put(new JSONObject(json));

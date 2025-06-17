@@ -2,6 +2,7 @@ package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.VideoDao;
 import ai.elimu.entity.content.multimedia.Video;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.content.VideoGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
@@ -29,6 +30,11 @@ public class VideosRestController {
 
     JSONArray videosJsonArray = new JSONArray();
     for (Video video : videoDao.readAllOrdered()) {
+      if (video.getPeerReviewStatus() == PeerReviewStatus.NOT_APPROVED) {
+        log.warn("Not approved during peer-review. Skipping.");
+        continue;
+      }
+
       VideoGson videoGson = JpaToGsonConverter.getVideoGson(video);
 
       String json = new Gson().toJson(videoGson);

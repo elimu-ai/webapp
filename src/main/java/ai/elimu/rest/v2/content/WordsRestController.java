@@ -2,6 +2,7 @@ package ai.elimu.rest.v2.content;
 
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.Word;
+import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.model.v2.gson.content.WordGson;
 import ai.elimu.rest.v2.JpaToGsonConverter;
 import com.google.gson.Gson;
@@ -28,6 +29,11 @@ public class WordsRestController {
 
     JSONArray wordsJsonArray = new JSONArray();
     for (Word word : wordDao.readAllOrdered()) {
+      if (word.getPeerReviewStatus() == PeerReviewStatus.NOT_APPROVED) {
+        log.warn("Not approved during peer-review. Skipping.");
+        continue;
+      }
+
       WordGson wordGson = JpaToGsonConverter.getWordGson(word);
       String json = new Gson().toJson(wordGson);
       wordsJsonArray.put(new JSONObject(json));
