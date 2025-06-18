@@ -58,7 +58,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -455,8 +454,7 @@ public class StoryBookCreateFromEPubController {
     File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
     log.info("tmpDirElimuAi: " + tmpDirElimuAi);
     log.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
-    String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    String tmpDirEPub = currentDate + "_" + originalFilename.replaceAll("[^a-zA-Z0-9]+", "_");
+    String tmpDirEPub = LocalDate.now() + "_" + originalFilename.replaceAll("[^a-zA-Z0-9]+", "_");
     File unzipDestinationDirectory = new File(tmpDirElimuAi, tmpDirEPub + "_unzipped");
     log.info("unzipDestinationDirectory: " + unzipDestinationDirectory);
     log.info("unzipDestinationDirectory.mkdir(): " + unzipDestinationDirectory.mkdir());
