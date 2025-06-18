@@ -27,6 +27,22 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
     }
 
     @Override
+    public String readChecksumGitHub(String checksumMd5) throws DataAccessException {
+        try {
+            return (String) em.createQuery(
+                "SELECT i.checksumGitHub " +
+                "FROM Image i " +
+                "WHERE i.checksumMd5 = :checksumMd5 " +
+                "AND i.checksumGitHub IS NOT NULL " +
+                "LIMIT 1")
+                .setParameter("checksumMd5", checksumMd5)
+                .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     public List<Image> readAllOrdered() throws DataAccessException {
         return em.createQuery(
             "SELECT i " +
