@@ -195,8 +195,14 @@ public class StoryBookCreateFromEPubController {
         
         // Store the cover image
         coverImage.setTitle(storyBook.getTitle() + "_cover");
-        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
-        coverImage.setChecksumGitHub(checksumGitHub);
+        String existingChecksumGitHub = imageDao.readChecksumGitHub(coverImage.getChecksumMd5());
+        if (StringUtils.isNotBlank(existingChecksumGitHub)) {
+          // Re-use existing checksum previously returned from the GitHub API
+          coverImage.setChecksumGitHub(existingChecksumGitHub);
+        } else {
+          String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
+          coverImage.setChecksumGitHub(checksumGitHub);
+        }
         imageDao.create(coverImage);
         storeImageContributionEvent(coverImage, session, request);
 
@@ -291,8 +297,14 @@ public class StoryBookCreateFromEPubController {
 
             // Store the chapter image
             chapterImage.setTitle(storyBook.getTitle() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
-            String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
-            chapterImage.setChecksumGitHub(checksumGitHub);
+            String existingChecksumGitHub = imageDao.readChecksumGitHub(chapterImage.getChecksumMd5());
+            if (StringUtils.isNotBlank(existingChecksumGitHub)) {
+              // Re-use existing checksum previously returned from the GitHub API
+              chapterImage.setChecksumGitHub(existingChecksumGitHub);
+            } else {
+              String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
+              chapterImage.setChecksumGitHub(checksumGitHub);
+            }
             imageDao.create(chapterImage);
             storeImageContributionEvent(chapterImage, session, request);
 

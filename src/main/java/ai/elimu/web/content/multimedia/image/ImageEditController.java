@@ -106,9 +106,14 @@ public class ImageEditController {
         FileUtils.copyURLToFile(new URL(image.getUrl()), tmpFileImage);
         log.info("tmpFileImage.exists(): " + tmpFileImage.exists());
         byte[] bytes = IOUtils.toByteArray(tmpFileImage.toURI());
-        String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
-        log.info("checksumGitHub: " + checksumGitHub);
-        image.setChecksumGitHub(checksumGitHub);
+        String existingChecksumGitHub = imageDao.readChecksumGitHub(image.getChecksumMd5());
+        if (StringUtils.isNotBlank(existingChecksumGitHub)) {
+          // Re-use existing checksum previously returned from the GitHub API
+          image.setChecksumGitHub(existingChecksumGitHub);
+        } else {
+          String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(image, bytes);
+          image.setChecksumGitHub(checksumGitHub);
+        }
         image.setRevisionNumber(image.getRevisionNumber() + 1);
         imageDao.update(image);
 
