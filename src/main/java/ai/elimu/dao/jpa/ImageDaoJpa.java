@@ -33,9 +33,9 @@ public class ImageDaoJpa extends GenericDaoJpa<Image> implements ImageDao {
                 "SELECT i.checksumGitHub " +
                 "FROM Image i " +
                 "WHERE i.checksumMd5 = :checksumMd5 " +
-                "AND i.checksumGitHub IS NOT NULL " +
-                "LIMIT 1")
+                "AND i.checksumGitHub IS NOT NULL")
                 .setParameter("checksumMd5", checksumMd5)
+                .setMaxResults(1)
                 .getSingleResult();
         } catch (NoResultException e) {
             return null;
