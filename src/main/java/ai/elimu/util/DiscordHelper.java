@@ -65,16 +65,20 @@ public class DiscordHelper {
             String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");
             log.info("discordWebhookUrl: " + discordWebhookUrl);
             HttpPost httpPost = new HttpPost(discordWebhookUrl);
-            try {
-                StringEntity entity = new StringEntity(jsonBody.toString());
-                httpPost.setEntity(entity);
-                httpPost.setHeader("Content-type", "application/json");
-                HttpResponse httpResponse = client.execute(httpPost);
-                log.info("httpResponse.getStatusLine(): " + httpResponse);
-                client.close();
-            } catch (IOException e) {
-               log.error(e.getMessage());
-            }
+            
+            StringEntity entity = new StringEntity(jsonBody.toString());
+            httpPost.setEntity(entity);
+            httpPost.setHeader("Content-type", "application/json");
+            log.info("httpPost: " + httpPost);
+            new Thread(() -> {
+                try {
+                    HttpResponse httpResponse = client.execute(httpPost);
+                    log.info("httpResponse.getStatusLine(): " + httpResponse);
+                    client.close();
+                } catch (IOException e) {
+                    log.error(e.getMessage());
+                }
+            }).start();
         }
     }
 }

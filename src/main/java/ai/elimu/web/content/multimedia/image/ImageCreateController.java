@@ -11,6 +11,7 @@ import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
@@ -141,7 +142,7 @@ public class ImageCreateController {
       imageContributionEventDao.create(imageContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
         String embedThumbnailUrl = image.getUrl();
         DiscordHelper.sendChannelMessage(
             "Image created: " + contentUrl,

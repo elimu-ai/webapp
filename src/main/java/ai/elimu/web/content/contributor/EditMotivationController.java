@@ -3,6 +3,7 @@ package ai.elimu.web.content.contributor;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class EditMotivationController {
         // The Contributor completed the on-boarding wizard for the first time
 
         if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-          String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/contributor/" + contributor.getId();
+          String contentUrl = DomainHelper.getBaseUrl() + "/contributor/" + contributor.getId();
           String embedThumbnailUrl = null;
           if (StringUtils.isNotBlank(contributor.getImageUrl())) {
             embedThumbnailUrl = contributor.getImageUrl();

@@ -24,6 +24,7 @@ import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import ai.elimu.util.ml.ReadingLevelUtil;
@@ -213,7 +214,7 @@ public class StoryBookEditController {
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
         String embedThumbnailUrl = null;
         if (storyBook.getCoverImage() != null) {
           embedThumbnailUrl = storyBook.getCoverImage().getUrl();
