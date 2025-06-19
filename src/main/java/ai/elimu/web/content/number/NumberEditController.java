@@ -11,6 +11,7 @@ import ai.elimu.entity.content.Word;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -101,7 +102,7 @@ public class NumberEditController {
       numberContributionEventDao.create(numberContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + number.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/number/edit/" + number.getId();
         DiscordHelper.sendChannelMessage(
             "Number edited: " + contentUrl,
             String.valueOf(numberContributionEvent.getNumber().getValue()),

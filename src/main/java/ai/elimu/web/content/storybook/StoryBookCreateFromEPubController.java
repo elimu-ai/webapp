@@ -20,6 +20,7 @@ import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
 import ai.elimu.util.epub.EPubChapterExtractionHelper;
@@ -422,8 +423,7 @@ public class StoryBookCreateFromEPubController {
       storyBookDao.update(storyBook);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-        String contentUrl = "http://" + language.toString().toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
         String embedThumbnailUrl = null;
         if (storyBook.getCoverImage() != null) {
           embedThumbnailUrl = storyBook.getCoverImage().getUrl();
@@ -524,7 +524,7 @@ public class StoryBookCreateFromEPubController {
     imageContributionEventDao.create(imageContributionEvent);
 
     if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
       String embedThumbnailUrl = image.getUrl();
       DiscordHelper.sendChannelMessage(
           "Image created: " + contentUrl,

@@ -6,6 +6,7 @@ import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.LetterContributionEvent;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -72,7 +73,7 @@ public class LetterCreateController {
       letterContributionEventDao.create(letterContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter/edit/" + letter.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/letter/edit/" + letter.getId();
         DiscordHelper.sendChannelMessage(
             "Letter created: " + contentUrl,
             "\"" + letterContributionEvent.getLetter().getText() + "\"",

@@ -17,6 +17,7 @@ import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
@@ -113,7 +114,7 @@ public class StoryBookChapterDeleteController {
     storyBookContributionEventDao.create(storyBookContributionEvent);
 
     if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
       String embedThumbnailUrl = null;
       if (storyBook.getCoverImage() != null) {
         embedThumbnailUrl = storyBook.getCoverImage().getUrl();

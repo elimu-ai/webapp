@@ -20,6 +20,7 @@ import ai.elimu.entity.contributor.WordContributionEvent;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -160,7 +161,7 @@ public class WordEditController {
       wordContributionEventDao.create(wordContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + word.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/word/edit/" + word.getId();
         DiscordHelper.sendChannelMessage(
             "Word edited: " + contentUrl,
             "\"" + word.getText() + "\"",

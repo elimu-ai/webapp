@@ -13,6 +13,7 @@ import ai.elimu.entity.content.Word;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.LetterSoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -113,7 +114,7 @@ public class LetterSoundEditController {
       letterSoundContributionEventDao.create(letterSoundContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/letter-sound/edit/" + letterSound.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/letter-sound/edit/" + letterSound.getId();
         DiscordHelper.sendChannelMessage(
             "Letter-sound correspondence edited: " + contentUrl,
             "\"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",

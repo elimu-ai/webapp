@@ -60,7 +60,6 @@ public class DiscordHelper {
         log.info("jsonBody: " + jsonBody);
 
         if (EnvironmentContextLoaderListener.env == Environment.PROD) {
-        // if (EnvironmentContextLoaderListener.env == Environment.DEV) {
             // Send the message to Discord
             CloseableHttpClient client = HttpClients.createDefault();
             String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");

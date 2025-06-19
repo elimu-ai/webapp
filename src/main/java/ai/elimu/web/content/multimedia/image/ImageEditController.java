@@ -21,6 +21,7 @@ import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
@@ -230,7 +231,7 @@ public class ImageEditController {
       imageContributionEventDao.create(imageContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/multimedia/image/edit/" + image.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
         String embedThumbnailUrl = image.getUrl();
         DiscordHelper.sendChannelMessage(
             "Image edited: " + contentUrl,

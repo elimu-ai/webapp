@@ -10,6 +10,7 @@ import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.io.File;
@@ -171,7 +172,7 @@ public class ApplicationVersionCreateController {
         applicationDao.update(application);
       }
 
-      String contentUrl = "http://" + ConfigHelper.getProperty("content.language").toLowerCase() + ".elimu.ai/application/edit/" + application.getId();
+      String contentUrl = DomainHelper.getBaseUrl() + "/application/edit/" + application.getId();
       DiscordHelper.sendChannelMessage(
           "A new Application version (`.apk`) was published: " + contentUrl,
           application.getPackageName(),

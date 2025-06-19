@@ -10,6 +10,7 @@ import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -92,7 +93,7 @@ public class StoryBookCreateController {
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
       if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBook.getId();
+        String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
         String embedThumbnailUrl = null;
         if (storyBook.getCoverImage() != null) {
           embedThumbnailUrl = storyBook.getCoverImage().getUrl();
