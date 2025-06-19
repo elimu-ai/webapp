@@ -12,7 +12,6 @@ import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.util.Calendar;
@@ -101,20 +100,18 @@ public class StoryBookChapterCreateController {
       storyBookContributionEvent.setComment("Created storybook chapter " + (storyBookChapter.getSortOrder() + 1) + " (🤖 auto-generated comment)");
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
-        String embedThumbnailUrl = null;
-        if (storyBook.getCoverImage() != null) {
-          embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-        }
-        DiscordHelper.sendChannelMessage(
-            "Storybook chapter created: " + contentUrl,
-            "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-            "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-            null,
-            embedThumbnailUrl
-        );
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
+      String embedThumbnailUrl = null;
+      if (storyBook.getCoverImage() != null) {
+        embedThumbnailUrl = storyBook.getCoverImage().getUrl();
       }
+      DiscordHelper.sendChannelMessage(
+          "Storybook chapter created: " + contentUrl,
+          "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+          "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+          null,
+          embedThumbnailUrl
+      );
 
       return "redirect:/content/storybook/edit/" + storyBookId + "#ch-id-" + storyBookChapter.getId();
     }

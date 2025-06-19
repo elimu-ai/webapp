@@ -11,7 +11,6 @@ import ai.elimu.entity.contributor.LetterSoundPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.stream.Collectors;
@@ -59,16 +58,14 @@ public class LetterSoundPeerReviewEventCreateController {
     letterSoundPeerReviewEvent.setTimestamp(Calendar.getInstance());
     letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
 
-    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl = DomainHelper.getBaseUrl() + "/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSound().getId();
-      DiscordHelper.sendChannelMessage(
-          "Letter-sound peer-reviewed: " + contentUrl,
-          "\"" + letterSoundContributionEvent.getLetterSound().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
-          "Comment: \"" + letterSoundPeerReviewEvent.getComment() + "\"",
-          letterSoundPeerReviewEvent.getApproved(),
-          null
-      );
-    }
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSound().getId();
+    DiscordHelper.sendChannelMessage(
+        "Letter-sound peer-reviewed: " + contentUrl,
+        "\"" + letterSoundContributionEvent.getLetterSound().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
+        "Comment: \"" + letterSoundPeerReviewEvent.getComment() + "\"",
+        letterSoundPeerReviewEvent.getApproved(),
+        null
+    );
 
     // Update the peer review status
     int approvedCount = 0;

@@ -12,7 +12,6 @@ import ai.elimu.entity.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.List;
@@ -74,20 +73,18 @@ public class StoryBookParagraphDeleteController {
     storyBookContributionEvent.setParagraphTextBefore(paragraphTextBeforeDeletion);
     storyBookContributionEventDao.create(storyBookContributionEvent);
 
-    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
-      String embedThumbnailUrl = null;
-      if (storyBook.getCoverImage() != null) {
-        embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-      }
-      DiscordHelper.sendChannelMessage(
-          "Storybook paragraph deleted: " + contentUrl,
-          "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-          "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-          null,
-          embedThumbnailUrl
-      );
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
+    String embedThumbnailUrl = null;
+    if (storyBook.getCoverImage() != null) {
+      embedThumbnailUrl = storyBook.getCoverImage().getUrl();
     }
+    DiscordHelper.sendChannelMessage(
+        "Storybook paragraph deleted: " + contentUrl,
+        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+        null,
+        embedThumbnailUrl
+    );
 
     // Update the sorting order of the remaining paragraphs
     List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll(storyBookParagraphToBeDeleted.getStoryBookChapter());

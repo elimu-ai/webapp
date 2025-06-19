@@ -14,7 +14,6 @@ import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -141,17 +140,15 @@ public class ImageCreateController {
       imageContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
       imageContributionEventDao.create(imageContributionEvent);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
-        String embedThumbnailUrl = image.getUrl();
-        DiscordHelper.sendChannelMessage(
-            "Image created: " + contentUrl,
-            "\"" + image.getTitle() + "\"",
-            "Comment: \"" + imageContributionEvent.getComment() + "\"",
-            null,
-            embedThumbnailUrl
-        );
-      }
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
+      String embedThumbnailUrl = image.getUrl();
+      DiscordHelper.sendChannelMessage(
+          "Image created: " + contentUrl,
+          "\"" + image.getTitle() + "\"",
+          "Comment: \"" + imageContributionEvent.getComment() + "\"",
+          null,
+          embedThumbnailUrl
+      );
 
       return "redirect:/content/multimedia/image/list#" + image.getId();
     }

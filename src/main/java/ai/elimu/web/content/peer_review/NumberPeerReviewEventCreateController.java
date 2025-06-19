@@ -9,7 +9,7 @@ import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.entity.contributor.NumberPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
@@ -56,17 +56,14 @@ public class NumberPeerReviewEventCreateController {
     numberPeerReviewEvent.setTimestamp(Calendar.getInstance());
     numberPeerReviewEventDao.create(numberPeerReviewEvent);
 
-    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl =
-          "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/number/edit/" + numberContributionEvent.getNumber().getId();
-      DiscordHelper.sendChannelMessage(
-          "Number peer-reviewed: " + contentUrl,
-          "\"" + numberContributionEvent.getNumber().getValue() + "\"",
-          "Comment: \"" + numberPeerReviewEvent.getComment() + "\"",
-          numberPeerReviewEvent.getApproved(),
-          null
-      );
-    }
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/number/edit/" + numberContributionEvent.getNumber().getId();
+    DiscordHelper.sendChannelMessage(
+        "Number peer-reviewed: " + contentUrl,
+        "\"" + numberContributionEvent.getNumber().getValue() + "\"",
+        "Comment: \"" + numberPeerReviewEvent.getComment() + "\"",
+        numberPeerReviewEvent.getApproved(),
+        null
+    );
 
     // Update the number's peer review status
     int approvedCount = 0;

@@ -13,7 +13,6 @@ import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -95,20 +94,18 @@ public class StoryBookParagraphCreateController {
       storyBookContributionEvent.setComment("Created storybook paragraph in chapter " + (storyBookParagraph.getStoryBookChapter().getSortOrder() + 1) + " (🤖 auto-generated comment)");
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
-        String embedThumbnailUrl = null;
-        if (storyBook.getCoverImage() != null) {
-          embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-        }
-        DiscordHelper.sendChannelMessage(
-            "Storybook paragraph created: " + contentUrl,
-            "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-            "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-            null,
-            embedThumbnailUrl
-        );
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
+      String embedThumbnailUrl = null;
+      if (storyBook.getCoverImage() != null) {
+        embedThumbnailUrl = storyBook.getCoverImage().getUrl();
       }
+      DiscordHelper.sendChannelMessage(
+          "Storybook paragraph created: " + contentUrl,
+          "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+          "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+          null,
+          embedThumbnailUrl
+      );
 
       // Refresh the REST API cache
       storyBooksJsonService.refreshStoryBooksJSONArray();
