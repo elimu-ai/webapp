@@ -9,7 +9,7 @@ import ai.elimu.entity.contributor.WordContributionEvent;
 import ai.elimu.entity.contributor.WordPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
@@ -56,17 +56,14 @@ public class WordPeerReviewEventCreateController {
     wordPeerReviewEvent.setTimestamp(Calendar.getInstance());
     wordPeerReviewEventDao.create(wordPeerReviewEvent);
 
-    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl =
-          "https://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/word/edit/" + wordContributionEvent.getWord().getId();
-      DiscordHelper.sendChannelMessage(
-          "Word peer-reviewed: " + contentUrl,
-          "\"" + wordContributionEvent.getWord().getText() + "\"",
-          "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",
-          wordPeerReviewEvent.getApproved(),
-          null
-      );
-    }
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/word/edit/" + wordContributionEvent.getWord().getId();
+    DiscordHelper.sendChannelMessage(
+        "Word peer-reviewed: " + contentUrl,
+        "\"" + wordContributionEvent.getWord().getText() + "\"",
+        "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",
+        wordPeerReviewEvent.getApproved(),
+        null
+    );
 
     // Update the word's peer review status
     int approvedCount = 0;

@@ -21,7 +21,6 @@ import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -160,16 +159,14 @@ public class WordEditController {
       wordContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
       wordContributionEventDao.create(wordContributionEvent);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/word/edit/" + word.getId();
-        DiscordHelper.sendChannelMessage(
-            "Word edited: " + contentUrl,
-            "\"" + word.getText() + "\"",
-            "Comment: \"" + wordContributionEvent.getComment() + "\"",
-            null,
-            null
-        );
-      }
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/word/edit/" + word.getId();
+      DiscordHelper.sendChannelMessage(
+          "Word edited: " + contentUrl,
+          "\"" + word.getText() + "\"",
+          "Comment: \"" + wordContributionEvent.getComment() + "\"",
+          null,
+          null
+      );
 
       // Note: updating the list of Words in StoryBookParagraphs is handled by the ParagraphWordScheduler
 

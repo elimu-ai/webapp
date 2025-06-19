@@ -28,7 +28,6 @@ import ai.elimu.util.DomainHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
 import ai.elimu.util.ml.ReadingLevelUtil;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -213,19 +212,17 @@ public class StoryBookEditController {
       storyBookContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
       storyBookContributionEventDao.create(storyBookContributionEvent);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
-        String embedThumbnailUrl = null;
-        if (storyBook.getCoverImage() != null) {
-          embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-        }
-        DiscordHelper.sendChannelMessage("Storybook edited: " + contentUrl,
-            "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-            "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-            null,
-            embedThumbnailUrl
-        );
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
+      String embedThumbnailUrl = null;
+      if (storyBook.getCoverImage() != null) {
+        embedThumbnailUrl = storyBook.getCoverImage().getUrl();
       }
+      DiscordHelper.sendChannelMessage("Storybook edited: " + contentUrl,
+          "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+          "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+          null,
+          embedThumbnailUrl
+      );
 
       // Refresh REST API cache
       storyBooksJsonService.refreshStoryBooksJSONArray();

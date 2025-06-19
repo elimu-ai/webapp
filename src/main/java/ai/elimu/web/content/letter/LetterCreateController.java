@@ -7,7 +7,6 @@ import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.LetterContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -72,16 +71,14 @@ public class LetterCreateController {
       letterContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
       letterContributionEventDao.create(letterContributionEvent);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/letter/edit/" + letter.getId();
-        DiscordHelper.sendChannelMessage(
-            "Letter created: " + contentUrl,
-            "\"" + letterContributionEvent.getLetter().getText() + "\"",
-            "Comment: \"" + letterContributionEvent.getComment() + "\"",
-            null,
-            null
-        );
-      }
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/letter/edit/" + letter.getId();
+      DiscordHelper.sendChannelMessage(
+          "Letter created: " + contentUrl,
+          "\"" + letterContributionEvent.getLetter().getText() + "\"",
+          "Comment: \"" + letterContributionEvent.getComment() + "\"",
+          null,
+          null
+      );
 
       return "redirect:/content/letter/list#" + letter.getId();
     }

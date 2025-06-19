@@ -9,7 +9,7 @@ import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.entity.contributor.StoryBookPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
+import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import lombok.RequiredArgsConstructor;
@@ -56,22 +56,18 @@ public class StoryBookPeerReviewEventCreateController {
     storyBookPeerReviewEvent.setTimestamp(Calendar.getInstance());
     storyBookPeerReviewEventDao.create(storyBookPeerReviewEvent);
 
-    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl =
-          "http://" + EnvironmentContextLoaderListener.PROPERTIES.getProperty("content.language").toLowerCase() + ".elimu.ai/content/storybook/edit/" + storyBookContributionEvent.getStoryBook()
-              .getId();
-      String embedThumbnailUrl = null;
-      if (storyBookContributionEvent.getStoryBook().getCoverImage() != null) {
-        embedThumbnailUrl = storyBookContributionEvent.getStoryBook().getCoverImage().getUrl();
-      }
-      DiscordHelper.sendChannelMessage(
-          "Storybook peer-reviewed: " + contentUrl,
-          "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-          "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",
-          storyBookPeerReviewEvent.getApproved(),
-          embedThumbnailUrl
-      );
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBookContributionEvent.getStoryBook().getId();
+    String embedThumbnailUrl = null;
+    if (storyBookContributionEvent.getStoryBook().getCoverImage() != null) {
+      embedThumbnailUrl = storyBookContributionEvent.getStoryBook().getCoverImage().getUrl();
     }
+    DiscordHelper.sendChannelMessage(
+        "Storybook peer-reviewed: " + contentUrl,
+        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+        "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",
+        storyBookPeerReviewEvent.getApproved(),
+        embedThumbnailUrl
+    );
 
     // Update the storybook's peer review status
     int approvedCount = 0;

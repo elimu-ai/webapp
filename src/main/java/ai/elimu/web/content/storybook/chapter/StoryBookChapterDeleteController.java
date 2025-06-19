@@ -18,7 +18,6 @@ import ai.elimu.entity.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.List;
@@ -113,20 +112,18 @@ public class StoryBookChapterDeleteController {
     storyBookContributionEvent.setComment("Deleted storybook chapter " + (storyBookChapterToBeDeleted.getSortOrder() + 1) + " (🤖 auto-generated comment)");
     storyBookContributionEventDao.create(storyBookContributionEvent);
 
-    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
-      String embedThumbnailUrl = null;
-      if (storyBook.getCoverImage() != null) {
-        embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-      }
-      DiscordHelper.sendChannelMessage(
-          "Storybook chapter deleted: " + contentUrl,
-          "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-          "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-          null,
-          embedThumbnailUrl
-      );
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
+    String embedThumbnailUrl = null;
+    if (storyBook.getCoverImage() != null) {
+      embedThumbnailUrl = storyBook.getCoverImage().getUrl();
     }
+    DiscordHelper.sendChannelMessage(
+        "Storybook chapter deleted: " + contentUrl,
+        "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+        "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+        null,
+        embedThumbnailUrl
+    );
 
     // Update the sorting order of the remaining chapters
     List<StoryBookChapter> storyBookChapters = storyBookChapterDao.readAll(storyBook);

@@ -28,7 +28,6 @@ import ai.elimu.util.epub.EPubImageExtractionHelper;
 import ai.elimu.util.epub.EPubMetadataExtractionHelper;
 import ai.elimu.util.epub.EPubParagraphExtractionHelper;
 import ai.elimu.util.ml.ReadingLevelUtil;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -422,20 +421,18 @@ public class StoryBookCreateFromEPubController {
       storyBook.setReadingLevel(predictedReadingLevel);
       storyBookDao.update(storyBook);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
-        String embedThumbnailUrl = null;
-        if (storyBook.getCoverImage() != null) {
-          embedThumbnailUrl = storyBook.getCoverImage().getUrl();
-        }
-        DiscordHelper.sendChannelMessage(
-            "Storybook created (imported from ePUB): " + contentUrl,
-            "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
-            "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
-            null,
-            embedThumbnailUrl
-        );
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/storybook/edit/" + storyBook.getId();
+      String embedThumbnailUrl = null;
+      if (storyBook.getCoverImage() != null) {
+        embedThumbnailUrl = storyBook.getCoverImage().getUrl();
       }
+      DiscordHelper.sendChannelMessage(
+          "Storybook created (imported from ePUB): " + contentUrl,
+          "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
+          "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
+          null,
+          embedThumbnailUrl
+      );
 
       return "redirect:/content/storybook/edit/" + storyBook.getId();
     }
@@ -523,17 +520,15 @@ public class StoryBookCreateFromEPubController {
     imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
     imageContributionEventDao.create(imageContributionEvent);
 
-    if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-      String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
-      String embedThumbnailUrl = image.getUrl();
-      DiscordHelper.sendChannelMessage(
-          "Image created: " + contentUrl,
-          "\"" + image.getTitle() + "\"",
-          "Comment: \"" + imageContributionEvent.getComment() + "\"",
-          null,
-          embedThumbnailUrl
-      );
-    }
+    String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
+    String embedThumbnailUrl = image.getUrl();
+    DiscordHelper.sendChannelMessage(
+        "Image created: " + contentUrl,
+        "\"" + image.getTitle() + "\"",
+        "Comment: \"" + imageContributionEvent.getComment() + "\"",
+        null,
+        embedThumbnailUrl
+    );
   }
 
   private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {

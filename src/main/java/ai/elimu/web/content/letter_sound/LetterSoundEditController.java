@@ -14,7 +14,6 @@ import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.LetterSoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -113,16 +112,14 @@ public class LetterSoundEditController {
       letterSoundContributionEvent.setComment(StringUtils.abbreviate(request.getParameter("contributionComment"), 1000));
       letterSoundContributionEventDao.create(letterSoundContributionEvent);
 
-      if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-        String contentUrl = DomainHelper.getBaseUrl() + "/content/letter-sound/edit/" + letterSound.getId();
-        DiscordHelper.sendChannelMessage(
-            "Letter-sound correspondence edited: " + contentUrl,
-            "\"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
-            "Comment: \"" + letterSoundContributionEvent.getComment() + "\"",
-            null,
-            null
-        );
-      }
+      String contentUrl = DomainHelper.getBaseUrl() + "/content/letter-sound/edit/" + letterSound.getId();
+      DiscordHelper.sendChannelMessage(
+          "Letter-sound correspondence edited: " + contentUrl,
+          "\"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
+          "Comment: \"" + letterSoundContributionEvent.getComment() + "\"",
+          null,
+          null
+      );
 
       return "redirect:/content/letter-sound/list#" + letterSound.getId();
     }

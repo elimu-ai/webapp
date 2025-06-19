@@ -4,7 +4,6 @@ import ai.elimu.dao.ContributorDao;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
-import ai.elimu.web.context.EnvironmentContextLoaderListener;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,20 +48,18 @@ public class EditMotivationController {
       if (StringUtils.isBlank(contributor.getMotivation())) {
         // The Contributor completed the on-boarding wizard for the first time
 
-        if (!EnvironmentContextLoaderListener.PROPERTIES.isEmpty()) {
-          String contentUrl = DomainHelper.getBaseUrl() + "/contributor/" + contributor.getId();
-          String embedThumbnailUrl = null;
-          if (StringUtils.isNotBlank(contributor.getImageUrl())) {
-            embedThumbnailUrl = contributor.getImageUrl();
-          }
-          DiscordHelper.sendChannelMessage(
-              "Contributor joined: " + contentUrl,
-              contributor.getFirstName() + " " + contributor.getLastName(),
-              "Motivation: \"" + motivation + "\"",
-              null,
-              embedThumbnailUrl
-          );
+        String contentUrl = DomainHelper.getBaseUrl() + "/contributor/" + contributor.getId();
+        String embedThumbnailUrl = null;
+        if (StringUtils.isNotBlank(contributor.getImageUrl())) {
+          embedThumbnailUrl = contributor.getImageUrl();
         }
+        DiscordHelper.sendChannelMessage(
+            "Contributor joined: " + contentUrl,
+            contributor.getFirstName() + " " + contributor.getLastName(),
+            "Motivation: \"" + motivation + "\"",
+            null,
+            embedThumbnailUrl
+        );
       }
 
       contributor.setMotivation(motivation);
