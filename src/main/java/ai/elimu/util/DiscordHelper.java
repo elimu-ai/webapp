@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -30,6 +32,9 @@ public class DiscordHelper {
             String embedThumbnailUrl
     ) {
         log.info("sendChannelMessage");
+
+        embedTitle = StringEscapeUtils.escapeHtml(embedTitle);
+        embedDescription = StringEscapeUtils.escapeHtml(embedDescription);
 
         // Prepare the JSON body
         JsonObject jsonBody = new JsonObject();
