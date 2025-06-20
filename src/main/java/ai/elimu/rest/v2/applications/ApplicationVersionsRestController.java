@@ -168,7 +168,7 @@ public class ApplicationVersionsRestController {
       jsonResponseObject.put("successMessage", "The application version was published with versionName " + applicationVersion.getVersionName());
       response.setStatus(HttpStatus.OK.value());
       
-      DiscordHelper.postToChannel(Channel.ANALYTICS, "New application version distributed: " + DomainHelper.getBaseUrl() + "/application/edit/" + application.getId());
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "New application version distributed for `" + packageName + "`: " + DomainHelper.getBaseUrl() + "/application/edit/" + application.getId());
     } catch (Exception ex) {
         log.error(ex.getClass() + ": " + ex.getMessage(), ex);
 
@@ -176,7 +176,7 @@ public class ApplicationVersionsRestController {
         jsonResponseObject.put("errorMessage", ex.getClass() + ": " + ex.getMessage());
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         
-        DiscordHelper.postToChannel(Channel.ANALYTICS, "Application version distribution failed: `" + ex.getClass() + ": " + ex.getMessage() + "`");
+        DiscordHelper.postToChannel(Channel.ANALYTICS, "Application version distribution failed for `" + packageName + "`: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
 
     String jsonResponse = jsonResponseObject.toString();

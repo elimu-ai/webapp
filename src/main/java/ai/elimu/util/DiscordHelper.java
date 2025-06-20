@@ -12,6 +12,7 @@ import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpResponse;
+import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import java.io.IOException;
 
@@ -95,7 +96,9 @@ public class DiscordHelper {
                 try {
                     HttpResponse httpResponse = client.execute(httpPost);
                     log.info("httpResponse.getStatusLine(): " + httpResponse);
-                    log.info("httpResponse: " + httpResponse);
+                    for (Header header : httpResponse.getHeaders()) {
+                        log.info(header.getName() + ": " + header.getValue());
+                    }
                     client.close();
                 } catch (IOException e) {
                     log.error(e.getMessage());
