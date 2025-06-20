@@ -1,0 +1,3 @@
+id,timestamp,package_name,additional_data,learning_event_type,research_experiment,experiment_group,video_title,video_id
+44,1750210660,ai.elimu.filamu.debug,,VIDEO_OPENED,0,1,เพลง นับเลข 1-10 ｜ เพลงเด็กอนุบาล ｜ นับเล,9
+45,1750210668,ai.elimu.filamu.debug,,VIDEO_CLOSED_BEFORE_COMPLETION,0,1,,9

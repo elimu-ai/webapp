@@ -1,0 +1,5 @@
+id,timestamp,package_name,additional_data,learning_event_type,research_experiment,experiment_group,storybook_title,storybook_id
+115,1750389715,ai.elimu.vitabu.debug,,STORYBOOK_OPENED,0,1,จับปลา,48
+116,1750389954,ai.elimu.vitabu.debug,,STORYBOOK_OPENED,0,1,จับปลา,48
+117,1750389960,ai.elimu.vitabu.debug,,STORYBOOK_COMPLETED,0,1,จับปลา,48
+118,1750389966,ai.elimu.vitabu.debug,,STORYBOOK_OPENED,0,1,จืดกับเจ้าตึก,45

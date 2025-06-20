@@ -1,0 +1,4 @@
+id,timestamp,package_name,mastery_score,time_spent_ms,research_experiment,experiment_group,word_text,word_id
+255,1750305009,ai.elimu.kukariri.debug,1.0,7345,0,1,มา,35
+256,1750305015,ai.elimu.kukariri.debug,1.0,6158,0,1,ดี,48
+257,1750305024,ai.elimu.kukariri.debug,1.0,9742,0,1,ทำ,97
