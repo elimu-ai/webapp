@@ -119,10 +119,11 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
                 String gitHubApiSecret = (String) servletContext.getAttribute("github_api_secret");
                 PROPERTIES.put("github.api.secret", gitHubApiSecret);
                 
-                if (env == Environment.PROD) {
-                    String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");
-                    PROPERTIES.put("discord.webhook.url", discordWebhookUrl);
-                }
+                String discordWebhookUrl = (String) servletContext.getAttribute("discord_webhook_url");
+                PROPERTIES.put("discord.webhook.url", discordWebhookUrl);
+
+                String discordAnalyticsWebhookUrl = (String) servletContext.getAttribute("discord_analytics_webhook_url");
+                PROPERTIES.put("discord.analytics.webhook.url", discordAnalyticsWebhookUrl);
 
                 String gitHubLfsToken = (String) servletContext.getAttribute("github_lfs_token");
                 PROPERTIES.put("github.lfs.token", gitHubLfsToken);

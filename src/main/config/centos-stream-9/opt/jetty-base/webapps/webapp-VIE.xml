@@ -42,6 +42,10 @@
     <Arg>**********</Arg>
   </Call>
   <Call name="setAttribute">
+    <Arg>discord_analytics_webhook_url</Arg>
+    <Arg>**********</Arg>
+  </Call>
+  <Call name="setAttribute">
     <Arg>github_lfs_token</Arg>
     <Arg>**********</Arg>
   </Call>

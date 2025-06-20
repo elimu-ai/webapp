@@ -1,8 +1,6 @@
 package ai.elimu.web.analytics.students;
 
-import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
-import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.util.AnalyticsHelper;
 import lombok.RequiredArgsConstructor;

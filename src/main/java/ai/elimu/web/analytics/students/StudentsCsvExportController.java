@@ -41,15 +41,11 @@ public class StudentsCsvExportController {
         .setHeader(
             "id",
             "android_id"
-        )
-        .build();
-
+        ).build();
     StringWriter stringWriter = new StringWriter();
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-
     for (Student student : students) {
       log.info("student.getId(): " + student.getId());
-
       csvPrinter.printRecord(
           student.getId(),
           student.getAndroidId()
@@ -59,7 +55,6 @@ public class StudentsCsvExportController {
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();
-
     response.setContentType("text/csv");
     byte[] bytes = csvFileContent.getBytes();
     response.setContentLength(bytes.length);

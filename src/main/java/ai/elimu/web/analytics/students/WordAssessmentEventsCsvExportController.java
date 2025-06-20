@@ -50,17 +50,15 @@ public class WordAssessmentEventsCsvExportController {
             "mastery_score",
             "time_spent_ms",
             "additional_data",
+            "research_experiment",
+            "experiment_group",
             "word_text",
             "word_id"
-        )
-        .build();
-
+        ).build();
     StringWriter stringWriter = new StringWriter();
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-
     for (WordAssessmentEvent wordAssessmentEvent : wordAssessmentEvents) {
       log.info("wordAssessmentEvent.getId(): " + wordAssessmentEvent.getId());
-
       csvPrinter.printRecord(
           wordAssessmentEvent.getId(),
           wordAssessmentEvent.getTimestamp().getTimeInMillis() / 1_000,
@@ -68,6 +66,8 @@ public class WordAssessmentEventsCsvExportController {
           wordAssessmentEvent.getMasteryScore(),
           wordAssessmentEvent.getTimeSpentMs(),
           wordAssessmentEvent.getAdditionalData(),
+          wordAssessmentEvent.getResearchExperiment().ordinal(),
+          wordAssessmentEvent.getExperimentGroup().ordinal(),
           wordAssessmentEvent.getWordText(),
           wordAssessmentEvent.getWordId()
       );
@@ -76,7 +76,6 @@ public class WordAssessmentEventsCsvExportController {
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();
-
     response.setContentType("text/csv");
     byte[] bytes = csvFileContent.getBytes();
     response.setContentLength(bytes.length);

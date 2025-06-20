@@ -47,36 +47,35 @@ public class NumberLearningEventsCsvExportController {
             "id",
             "timestamp",
             "package_name",
+            "learning_event_type",
             "additional_data",
+            "research_experiment",
+            "experiment_group",
             "number_value",
             "number_symbol",
-            "number_id",
-            "learning_event_type"
-        )
-        .build();
-
+            "number_id"
+        ).build();
     StringWriter stringWriter = new StringWriter();
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-
     for (NumberLearningEvent numberLearningEvent : numberLearningEvents) {
       log.info("numberLearningEvent.getId(): " + numberLearningEvent.getId());
-
       csvPrinter.printRecord(
           numberLearningEvent.getId(),
           numberLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
           numberLearningEvent.getPackageName(),
+          numberLearningEvent.getLearningEventType(),
           numberLearningEvent.getAdditionalData(),
+          numberLearningEvent.getResearchExperiment().ordinal(),
+          numberLearningEvent.getExperimentGroup().ordinal(),
           numberLearningEvent.getNumberValue(),
           numberLearningEvent.getNumberSymbol(),
-          numberLearningEvent.getNumberId(),
-          numberLearningEvent.getLearningEventType()
+          numberLearningEvent.getNumberId()
       );
     }
     csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();
-
     response.setContentType("text/csv");
     byte[] bytes = csvFileContent.getBytes();
     response.setContentLength(bytes.length);

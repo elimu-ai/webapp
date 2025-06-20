@@ -47,6 +47,7 @@ public class MainAnalyticsController {
     model.addAttribute("wordAssessmentEventCount", wordAssessmentEventDao.readCount());
     model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
 
+    // TODO: number assessment events
     model.addAttribute("numberLearningEventCount", numberLearningEventDao.readCount());
     
     model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());
