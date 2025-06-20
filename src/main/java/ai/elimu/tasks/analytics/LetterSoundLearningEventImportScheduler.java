@@ -54,61 +54,66 @@ public class LetterSoundLearningEventImportScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    // Lookup CSV files stored on the filesystem
-    File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
-    File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
-    File analyticsDir = new File(languageDir, "analytics");
-    log.info("analyticsDir: " + analyticsDir);
-    analyticsDir.mkdirs();
-    for (File analyticsDirFile : analyticsDir.listFiles()) {
-      if (analyticsDirFile.getName().startsWith("android-id-")) {
-        File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
-        for (File androidIdDirFile : androidIdDir.listFiles()) {
-          Long studentId = null;
-          Integer eventImportCount = 0;
-          if (androidIdDirFile.getName().equals("letter-sound-learning-events")) {
-            File letterSoundLearningEventsDir = new File(androidIdDir, androidIdDirFile.getName());
-            for (File csvFile : letterSoundLearningEventsDir.listFiles()) {
-              log.info("csvFile: " + csvFile);
+    try {
+      // Lookup CSV files stored on the filesystem
+      File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
+      File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
+      File analyticsDir = new File(languageDir, "analytics");
+      log.info("analyticsDir: " + analyticsDir);
+      analyticsDir.mkdirs();
+      for (File analyticsDirFile : analyticsDir.listFiles()) {
+        if (analyticsDirFile.getName().startsWith("android-id-")) {
+          File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
+          for (File androidIdDirFile : androidIdDir.listFiles()) {
+            Long studentId = null;
+            Integer eventImportCount = 0;
+            if (androidIdDirFile.getName().equals("letter-sound-learning-events")) {
+              File letterSoundLearningEventsDir = new File(androidIdDir, androidIdDirFile.getName());
+              for (File csvFile : letterSoundLearningEventsDir.listFiles()) {
+                log.info("csvFile: " + csvFile);
 
-              // Convert from CSV to Java
-              List<LetterSoundLearningEvent> events = CsvAnalyticsExtractionHelper.extractLetterSoundLearningEvents(csvFile);
-              log.info("events.size(): " + events.size());
+                // Convert from CSV to Java
+                List<LetterSoundLearningEvent> events = CsvAnalyticsExtractionHelper.extractLetterSoundLearningEvents(csvFile);
+                log.info("events.size(): " + events.size());
 
-              // Store in database
-              for (LetterSoundLearningEvent event : events) {
-                // Check if the event has already been stored in the database
-                LetterSoundLearningEvent existingLetterSoundLearningEvent = letterSoundLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
-                if (existingLetterSoundLearningEvent != null) {
-                  log.warn("The event has already been stored in the database. Skipping data import.");
-                  continue;
+                // Store in database
+                for (LetterSoundLearningEvent event : events) {
+                  // Check if the event has already been stored in the database
+                  LetterSoundLearningEvent existingLetterSoundLearningEvent = letterSoundLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
+                  if (existingLetterSoundLearningEvent != null) {
+                    log.warn("The event has already been stored in the database. Skipping data import.");
+                    continue;
+                  }
+
+                  // Generate Student ID
+                  Student existingStudent = studentDao.read(event.getAndroidId());
+                  if (existingStudent == null) {
+                    Student student = new Student();
+                    student.setAndroidId(event.getAndroidId());
+                    studentDao.create(student);
+                    log.info("Stored Student in database with ID " + student.getId());
+                    studentId = student.getId();
+                  } else {
+                    studentId = existingStudent.getId();
+                  }
+
+                  // Store the event in the database
+                  letterSoundLearningEventDao.create(event);
+                  log.info("Stored event in database with ID " + event.getId());
+                  eventImportCount++;
                 }
-
-                // Generate Student ID
-                Student existingStudent = studentDao.read(event.getAndroidId());
-                if (existingStudent == null) {
-                  Student student = new Student();
-                  student.setAndroidId(event.getAndroidId());
-                  studentDao.create(student);
-                  log.info("Stored Student in database with ID " + student.getId());
-                  studentId = student.getId();
-                } else {
-                  studentId = existingStudent.getId();
-                }
-
-                // Store the event in the database
-                letterSoundLearningEventDao.create(event);
-                log.info("Stored event in database with ID " + event.getId());
-                eventImportCount++;
               }
             }
-          }
-          if ((studentId != null) && (eventImportCount > 0)) {
-            String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
-            DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " letter-sound learning events: " + contentUrl);
+            if ((studentId != null) && (eventImportCount > 0)) {
+              String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
+              DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " letter-sound learning events: " + contentUrl);
+            }
           }
         }
       }
+    } catch (Exception e) {
+      log.error("Error during data import:", e);
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during data import: `" + e.getClass() + ": " + e.getMessage() + "`");
     }
 
     log.info("execute complete");

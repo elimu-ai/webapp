@@ -8,6 +8,9 @@ import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DomainHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.web.application.application_version.ApplicationVersionCreateController;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -164,12 +167,16 @@ public class ApplicationVersionsRestController {
       jsonResponseObject.put("result", "success");
       jsonResponseObject.put("successMessage", "The application version was published with versionName " + applicationVersion.getVersionName());
       response.setStatus(HttpStatus.OK.value());
+      
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "New application version distributed: " + DomainHelper.getBaseUrl() + "/application/edit/" + application.getId());
     } catch (Exception ex) {
         log.error(ex.getClass() + ": " + ex.getMessage(), ex);
 
         jsonResponseObject.put("result", "error");
         jsonResponseObject.put("errorMessage", ex.getClass() + ": " + ex.getMessage());
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        
+        DiscordHelper.postToChannel(Channel.ANALYTICS, "Application version distribution failed: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
 
     String jsonResponse = jsonResponseObject.toString();
