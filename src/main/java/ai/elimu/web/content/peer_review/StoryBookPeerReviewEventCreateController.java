@@ -9,6 +9,7 @@ import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.entity.contributor.StoryBookPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
@@ -61,7 +62,8 @@ public class StoryBookPeerReviewEventCreateController {
     if (storyBookContributionEvent.getStoryBook().getCoverImage() != null) {
       embedThumbnailUrl = storyBookContributionEvent.getStoryBook().getCoverImage().getUrl();
     }
-    DiscordHelper.sendChannelMessage(
+    DiscordHelper.postToChannel(
+        Channel.CONTENT,
         "Storybook peer-reviewed: " + contentUrl,
         "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
         "Comment: \"" + storyBookPeerReviewEvent.getComment() + "\"",

@@ -24,6 +24,7 @@ import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import ai.elimu.util.LetterFrequencyHelper;
 import ai.elimu.util.WordFrequencyHelper;
@@ -217,7 +218,9 @@ public class StoryBookEditController {
       if (storyBook.getCoverImage() != null) {
         embedThumbnailUrl = storyBook.getCoverImage().getUrl();
       }
-      DiscordHelper.sendChannelMessage("Storybook edited: " + contentUrl,
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
+          "Storybook edited: " + contentUrl,
           "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
           "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
           null,

@@ -23,7 +23,24 @@ import java.io.IOException;
 @Slf4j
 public class DiscordHelper {
 
-    public static void sendChannelMessage(
+    public enum Channel {
+        CONTENT,
+        ANALYTICS
+    }
+
+    public static void postToChannel(Channel channel, String content) {
+        postToChannel(
+            channel,
+            content,
+            null,
+            null,
+            null,
+            null
+        );
+    }
+
+    public static void postToChannel(
+            Channel channel,
             String content,
             String embedTitle,
             String embedDescription,
@@ -64,6 +81,9 @@ public class DiscordHelper {
             // Send the message to Discord
             CloseableHttpClient client = HttpClients.createDefault();
             String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");
+            if (channel == Channel.ANALYTICS) {
+                discordWebhookUrl = ConfigHelper.getProperty("discord.analytics.webhook.url");
+            }
             log.info("discordWebhookUrl: " + discordWebhookUrl);
             HttpPost httpPost = new HttpPost(discordWebhookUrl);
             

@@ -26,7 +26,6 @@ import ai.elimu.model.v2.gson.content.StoryBookGson;
 import ai.elimu.model.v2.gson.content.StoryBookParagraphGson;
 import ai.elimu.model.v2.gson.content.VideoGson;
 import ai.elimu.model.v2.gson.content.WordGson;
-import ai.elimu.util.ChecksumHelper;
 
 import java.util.ArrayList;
 import java.util.HashSet;

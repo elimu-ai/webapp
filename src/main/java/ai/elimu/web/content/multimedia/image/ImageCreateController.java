@@ -11,6 +11,7 @@ import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
@@ -142,7 +143,8 @@ public class ImageCreateController {
 
       String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
       String embedThumbnailUrl = image.getUrl();
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Image created: " + contentUrl,
           "\"" + image.getTitle() + "\"",
           "Comment: \"" + imageContributionEvent.getComment() + "\"",

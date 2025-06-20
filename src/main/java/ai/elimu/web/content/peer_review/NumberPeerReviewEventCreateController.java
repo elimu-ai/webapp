@@ -9,6 +9,7 @@ import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.entity.contributor.NumberPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
@@ -57,7 +58,8 @@ public class NumberPeerReviewEventCreateController {
     numberPeerReviewEventDao.create(numberPeerReviewEvent);
 
     String contentUrl = DomainHelper.getBaseUrl() + "/content/number/edit/" + numberContributionEvent.getNumber().getId();
-    DiscordHelper.sendChannelMessage(
+    DiscordHelper.postToChannel(
+        Channel.CONTENT,
         "Number peer-reviewed: " + contentUrl,
         "\"" + numberContributionEvent.getNumber().getValue() + "\"",
         "Comment: \"" + numberPeerReviewEvent.getComment() + "\"",

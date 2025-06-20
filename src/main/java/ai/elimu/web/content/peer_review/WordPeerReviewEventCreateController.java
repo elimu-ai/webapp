@@ -9,6 +9,7 @@ import ai.elimu.entity.contributor.WordContributionEvent;
 import ai.elimu.entity.contributor.WordPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
@@ -57,7 +58,8 @@ public class WordPeerReviewEventCreateController {
     wordPeerReviewEventDao.create(wordPeerReviewEvent);
 
     String contentUrl = DomainHelper.getBaseUrl() + "/content/word/edit/" + wordContributionEvent.getWord().getId();
-    DiscordHelper.sendChannelMessage(
+    DiscordHelper.postToChannel(
+        Channel.CONTENT,
         "Word peer-reviewed: " + contentUrl,
         "\"" + wordContributionEvent.getWord().getText() + "\"",
         "Comment: \"" + wordPeerReviewEvent.getComment() + "\"",

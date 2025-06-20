@@ -7,6 +7,9 @@ import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.analytics.VideoLearningEventsRestController;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 import java.io.File;
 import java.util.List;
@@ -51,6 +54,9 @@ public class VideoLearningEventImportScheduler {
   public synchronized void execute() {
     log.info("execute");
 
+    Long studentId = null;
+    Integer eventImportCount = 0;
+
     // Lookup CSV files stored on the filesystem
     File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
     File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
@@ -81,21 +87,29 @@ public class VideoLearningEventImportScheduler {
 
                 // Generate Student ID
                 Student existingStudent = studentDao.read(event.getAndroidId());
+                studentId = existingStudent.getId();
                 if (existingStudent == null) {
                   Student student = new Student();
                   student.setAndroidId(event.getAndroidId());
                   studentDao.create(student);
                   log.info("Stored Student in database with ID " + student.getId());
+                  studentId = student.getId();
                 }
 
                 // Store the event in the database
                 videoLearningEventDao.create(event);
                 log.info("Stored event in database with ID " + event.getId());
+                eventImportCount++;
               }
             }
           }
         }
       }
+    }
+
+    if ((studentId != null) && (eventImportCount > 0)) {
+      String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " video learning events: " + contentUrl);
     }
 
     log.info("execute complete");
