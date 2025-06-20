@@ -113,7 +113,7 @@ public class LetterSoundAssessmentEventImportScheduler {
       }
     } catch (Exception e) {
       log.error("Error during data import:", e);
-      DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during data import: `" + e.getClass() + ": " + e.getMessage() + "`");
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during import of letter-sound assessment events: `" + e.getClass() + ": " + e.getMessage() + "`");
     }
 
     log.info("execute complete");
