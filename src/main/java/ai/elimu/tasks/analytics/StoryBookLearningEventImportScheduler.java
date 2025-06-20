@@ -54,9 +54,6 @@ public class StoryBookLearningEventImportScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    Long studentId = null;
-    Integer eventImportCount = 0;
-
     // Lookup CSV files stored on the filesystem
     File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
     File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
@@ -67,6 +64,8 @@ public class StoryBookLearningEventImportScheduler {
       if (analyticsDirFile.getName().startsWith("android-id-")) {
         File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
         for (File androidIdDirFile : androidIdDir.listFiles()) {
+          Long studentId = null;
+          Integer eventImportCount = 0;
           if (androidIdDirFile.getName().equals("storybook-learning-events")) {
             File storyBookLearningEventsDir = new File(androidIdDir, androidIdDirFile.getName());
             for (File csvFile : storyBookLearningEventsDir.listFiles()) {
@@ -104,13 +103,12 @@ public class StoryBookLearningEventImportScheduler {
               }
             }
           }
+          if ((studentId != null) && (eventImportCount > 0)) {
+            String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
+            DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " storybook learning events: " + contentUrl);
+          }
         }
       }
-    }
-
-    if ((studentId != null) && (eventImportCount > 0)) {
-      String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
-      DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " storybook learning events: " + contentUrl);
     }
 
     log.info("execute complete");

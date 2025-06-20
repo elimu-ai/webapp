@@ -51,9 +51,6 @@ public class NumberLearningEventImportScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    Long studentId = null;
-    Integer eventImportCount = 0;
-
     // Lookup CSV files stored on the filesystem
     File elimuAiDir = new File(System.getProperty("user.home"), ".elimu-ai");
     File languageDir = new File(elimuAiDir, "lang-" + Language.valueOf(ConfigHelper.getProperty("content.language")));
@@ -64,6 +61,8 @@ public class NumberLearningEventImportScheduler {
       if (analyticsDirFile.getName().startsWith("android-id-")) {
         File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
         for (File androidIdDirFile : androidIdDir.listFiles()) {
+          Long studentId = null;
+          Integer eventImportCount = 0;
           if (androidIdDirFile.getName().equals("number-learning-events")) {
             File numberLearningEventsDir = new File(androidIdDir, androidIdDirFile.getName());
             for (File csvFile : numberLearningEventsDir.listFiles()) {
@@ -101,13 +100,12 @@ public class NumberLearningEventImportScheduler {
               }
             }
           }
+          if ((studentId != null) && (eventImportCount > 0)) {
+            String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
+            DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " number learning events: " + contentUrl);
+          }
         }
       }
-    }
-
-    if ((studentId != null) && (eventImportCount > 0)) {
-      String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
-      DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " number learning events: " + contentUrl);
     }
 
     log.info("execute complete");
