@@ -2,6 +2,8 @@ package ai.elimu.entity.analytics;
 
 import ai.elimu.entity.BaseEntity;
 import ai.elimu.entity.application.Application;
+import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
@@ -65,4 +67,8 @@ public abstract class AssessmentEvent extends BaseEntity {
    */
   @Column(length = 1024)
   private String additionalData;
+
+  private ResearchExperiment researchExperiment;
+
+  private ExperimentGroup experimentGroup;
 }
