@@ -6,6 +6,7 @@ import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.LetterContributionEvent;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -72,7 +73,8 @@ public class LetterCreateController {
       letterContributionEventDao.create(letterContributionEvent);
 
       String contentUrl = DomainHelper.getBaseUrl() + "/content/letter/edit/" + letter.getId();
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Letter created: " + contentUrl,
           "\"" + letterContributionEvent.getLetter().getText() + "\"",
           "Comment: \"" + letterContributionEvent.getComment() + "\"",

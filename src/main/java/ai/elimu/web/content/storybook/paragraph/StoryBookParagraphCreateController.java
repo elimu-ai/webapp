@@ -12,6 +12,7 @@ import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -99,7 +100,8 @@ public class StoryBookParagraphCreateController {
       if (storyBook.getCoverImage() != null) {
         embedThumbnailUrl = storyBook.getCoverImage().getUrl();
       }
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Storybook paragraph created: " + contentUrl,
           "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
           "Comment: \"" + storyBookContributionEvent.getComment() + "\"",

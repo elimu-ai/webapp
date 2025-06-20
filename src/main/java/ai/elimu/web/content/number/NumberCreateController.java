@@ -10,6 +10,7 @@ import ai.elimu.entity.content.Word;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -89,7 +90,8 @@ public class NumberCreateController {
       numberContributionEventDao.create(numberContributionEvent);
 
       String contentUrl = DomainHelper.getBaseUrl() + "/content/number/edit/" + number.getId();
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Number created: " + contentUrl,
           String.valueOf(numberContributionEvent.getNumber().getValue()),
           "Comment: \"" + numberContributionEvent.getComment() + "\"",

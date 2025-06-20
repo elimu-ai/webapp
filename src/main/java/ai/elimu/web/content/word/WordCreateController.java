@@ -17,6 +17,7 @@ import ai.elimu.entity.contributor.WordContributionEvent;
 import ai.elimu.model.v2.enums.content.SpellingConsistency;
 import ai.elimu.model.v2.enums.content.WordType;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -121,7 +122,8 @@ public class WordCreateController {
       wordContributionEventDao.create(wordContributionEvent);
 
       String contentUrl = DomainHelper.getBaseUrl() + "/content/word/edit/" + word.getId();
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Word created: " + contentUrl,
           "\"" + wordContributionEvent.getWord().getText() + "\"",
           "Comment: \"" + wordContributionEvent.getComment() + "\"",

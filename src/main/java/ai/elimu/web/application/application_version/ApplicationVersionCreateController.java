@@ -11,6 +11,7 @@ import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DomainHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.io.File;
@@ -173,7 +174,8 @@ public class ApplicationVersionCreateController {
       }
 
       String contentUrl = DomainHelper.getBaseUrl() + "/application/edit/" + application.getId();
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "A new Application version (`.apk`) was published: " + contentUrl,
           application.getPackageName(),
           "Version: `" + applicationVersion.getVersionName() + "`",

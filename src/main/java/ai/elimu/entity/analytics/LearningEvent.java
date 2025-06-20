@@ -3,6 +3,8 @@ package ai.elimu.entity.analytics;
 import ai.elimu.entity.BaseEntity;
 import ai.elimu.entity.application.Application;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
+import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -45,6 +47,7 @@ public abstract class LearningEvent extends BaseEntity {
   @ManyToOne
   private Application application;
 
+  @Deprecated
   @Enumerated(EnumType.STRING)
   private LearningEventType learningEventType;
 
@@ -59,4 +62,8 @@ public abstract class LearningEvent extends BaseEntity {
    */
   @Column(length = 1024)
   private String additionalData;
+
+  private ResearchExperiment researchExperiment;
+
+  private ExperimentGroup experimentGroup;
 }

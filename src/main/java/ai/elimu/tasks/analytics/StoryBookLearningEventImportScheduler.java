@@ -7,6 +7,9 @@ import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.rest.v2.analytics.StoryBookLearningEventsRestController;
 import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.csv.CsvAnalyticsExtractionHelper;
 import java.io.File;
 import java.util.List;
@@ -61,6 +64,8 @@ public class StoryBookLearningEventImportScheduler {
       if (analyticsDirFile.getName().startsWith("android-id-")) {
         File androidIdDir = new File(analyticsDir, analyticsDirFile.getName());
         for (File androidIdDirFile : androidIdDir.listFiles()) {
+          Long studentId = null;
+          Integer eventImportCount = 0;
           if (androidIdDirFile.getName().equals("storybook-learning-events")) {
             File storyBookLearningEventsDir = new File(androidIdDir, androidIdDirFile.getName());
             for (File csvFile : storyBookLearningEventsDir.listFiles()) {
@@ -86,13 +91,21 @@ public class StoryBookLearningEventImportScheduler {
                   student.setAndroidId(event.getAndroidId());
                   studentDao.create(student);
                   log.info("Stored Student in database with ID " + student.getId());
+                  studentId = student.getId();
+                } else {
+                  studentId = existingStudent.getId();
                 }
 
                 // Store the event in the database
                 storyBookLearningEventDao.create(event);
                 log.info("Stored event in database with ID " + event.getId());
+                eventImportCount++;
               }
             }
+          }
+          if ((studentId != null) && (eventImportCount > 0)) {
+            String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
+            DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " storybook learning events: " + contentUrl);
           }
         }
       }

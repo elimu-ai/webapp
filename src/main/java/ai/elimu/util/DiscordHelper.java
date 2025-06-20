@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -24,7 +23,24 @@ import java.io.IOException;
 @Slf4j
 public class DiscordHelper {
 
-    public static void sendChannelMessage(
+    public enum Channel {
+        CONTENT,
+        ANALYTICS
+    }
+
+    public static void postToChannel(Channel channel, String content) {
+        postToChannel(
+            channel,
+            content,
+            null,
+            null,
+            null,
+            null
+        );
+    }
+
+    public static void postToChannel(
+            Channel channel,
             String content,
             String embedTitle,
             String embedDescription,
@@ -32,9 +48,6 @@ public class DiscordHelper {
             String embedThumbnailUrl
     ) {
         log.info("sendChannelMessage");
-
-        embedTitle = StringEscapeUtils.escapeHtml(embedTitle);
-        embedDescription = StringEscapeUtils.escapeHtml(embedDescription);
 
         // Prepare the JSON body
         JsonObject jsonBody = new JsonObject();
@@ -68,6 +81,9 @@ public class DiscordHelper {
             // Send the message to Discord
             CloseableHttpClient client = HttpClients.createDefault();
             String discordWebhookUrl = ConfigHelper.getProperty("discord.webhook.url");
+            if (channel == Channel.ANALYTICS) {
+                discordWebhookUrl = ConfigHelper.getProperty("discord.analytics.webhook.url");
+            }
             log.info("discordWebhookUrl: " + discordWebhookUrl);
             HttpPost httpPost = new HttpPost(discordWebhookUrl);
             
@@ -79,7 +95,7 @@ public class DiscordHelper {
                 try {
                     HttpResponse httpResponse = client.execute(httpPost);
                     log.info("httpResponse.getStatusLine(): " + httpResponse);
-                    log.info("httpResponse.getHeaders(): " + httpResponse.getHeaders());
+                    log.info("httpResponse: " + httpResponse);
                     client.close();
                 } catch (IOException e) {
                     log.error(e.getMessage());

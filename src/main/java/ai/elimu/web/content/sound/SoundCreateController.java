@@ -7,6 +7,7 @@ import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.SoundContributionEvent;
 import ai.elimu.model.v2.enums.content.sound.SoundType;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -84,7 +85,8 @@ public class SoundCreateController {
       soundContributionEventDao.create(soundContributionEvent);
 
       String contentUrl = DomainHelper.getBaseUrl() + "/content/sound/edit/" + sound.getId();
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Sound created: " + contentUrl,
           "/" + soundContributionEvent.getSound().getValueIpa() + "/",
           "Comment: \"" + soundContributionEvent.getComment() + "\"",

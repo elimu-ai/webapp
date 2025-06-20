@@ -20,6 +20,7 @@ import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import ai.elimu.util.ImageColorHelper;
@@ -426,7 +427,8 @@ public class StoryBookCreateFromEPubController {
       if (storyBook.getCoverImage() != null) {
         embedThumbnailUrl = storyBook.getCoverImage().getUrl();
       }
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Storybook created (imported from ePUB): " + contentUrl,
           "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
           "Comment: \"" + storyBookContributionEvent.getComment() + "\"",
@@ -522,7 +524,8 @@ public class StoryBookCreateFromEPubController {
 
     String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
     String embedThumbnailUrl = image.getUrl();
-    DiscordHelper.sendChannelMessage(
+    DiscordHelper.postToChannel(
+        Channel.CONTENT,
         "Image created: " + contentUrl,
         "\"" + image.getTitle() + "\"",
         "Comment: \"" + imageContributionEvent.getComment() + "\"",

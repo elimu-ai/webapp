@@ -3,6 +3,7 @@ package ai.elimu.web.content.contributor;
 import ai.elimu.dao.ContributorDao;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +54,8 @@ public class EditMotivationController {
         if (StringUtils.isNotBlank(contributor.getImageUrl())) {
           embedThumbnailUrl = contributor.getImageUrl();
         }
-        DiscordHelper.sendChannelMessage(
+        DiscordHelper.postToChannel(
+            Channel.CONTENT,
             "Contributor joined: " + contentUrl,
             contributor.getFirstName() + " " + contributor.getLastName(),
             "Motivation: \"" + motivation + "\"",

@@ -8,6 +8,8 @@ import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
+import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import ai.elimu.util.AnalyticsHelper;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
@@ -75,6 +77,18 @@ public class CsvAnalyticsExtractionHelper {
                 String additionalData = csvRecord.get("additional_data");
                 letterSoundAssessmentEvent.setAdditionalData(additionalData);
 
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                    letterSoundAssessmentEvent.setResearchExperiment(researchExperiment);
+
+                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                    letterSoundAssessmentEvent.setExperimentGroup(experimentGroup);
+                }
+
                 String letterSoundLetters = csvRecord.get("letter_sound_letters");
                 letterSoundAssessmentEvent.setLetterSoundLetters(letterSoundLetters);
 
@@ -135,6 +149,24 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 letterSoundLearningEvent.setPackageName(packageName);
 
+                // TODO: additionalData
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                    letterSoundLearningEvent.setResearchExperiment(researchExperiment);
+
+                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                    letterSoundLearningEvent.setExperimentGroup(experimentGroup);
+                }
+
+                // TODO: letterSoundLetters
+
+                // TODO: letterSoundSounds
+
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
                 letterSoundLearningEvent.setLetterSoundId(letterSoundId);
 
@@ -185,6 +217,21 @@ public class CsvAnalyticsExtractionHelper {
                 String additionalData = csvRecord.get("additional_data");
                 numberLearningEvent.setAdditionalData(additionalData);
 
+                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                numberLearningEvent.setLearningEventType(learningEventType);
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                    numberLearningEvent.setResearchExperiment(researchExperiment);
+
+                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                    numberLearningEvent.setExperimentGroup(experimentGroup);
+                }
+
                 Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
                 numberLearningEvent.setNumberValue(numberValue);
 
@@ -193,9 +240,6 @@ public class CsvAnalyticsExtractionHelper {
 
                 Long numberId = Long.valueOf(csvRecord.get("number_id"));
                 numberLearningEvent.setNumberId(numberId);
-
-                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                numberLearningEvent.setLearningEventType(learningEventType);
 
                 numberLearningEvents.add(numberLearningEvent);
             }
@@ -254,8 +298,22 @@ public class CsvAnalyticsExtractionHelper {
                 Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
                 wordAssessmentEvent.setTimeSpentMs(timeSpentMs);
 
-                // String additionalData = csvRecord.get("additional_data");
-                // wordAssessmentEvent.setAdditionalData(additionalData);
+                // if (versionCode >= ???) {
+                //     String additionalData = csvRecord.get("additional_data");
+                //     wordAssessmentEvent.setAdditionalData(additionalData);
+                // }
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                    wordAssessmentEvent.setResearchExperiment(researchExperiment);
+
+                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                    wordAssessmentEvent.setExperimentGroup(experimentGroup);
+                }
 
                 String wordText = csvRecord.get("word_text");
                 wordAssessmentEvent.setWordText(wordText);
@@ -314,17 +372,31 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 wordLearningEvent.setPackageName(packageName);
 
-                Long wordId = Long.valueOf(csvRecord.get("word_id"));
-                // wordLearningEvent.setWordId(wordId);
+                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                wordLearningEvent.setLearningEventType(learningEventType);
+
+                // if (versionCode >= ???)
+                //     String additionalData = csvRecord.get("additional_data");
+                //     wordLearningEvent.setAdditionalData(additionalData);
+                // }
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                    wordLearningEvent.setResearchExperiment(researchExperiment);
+
+                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                    wordLearningEvent.setExperimentGroup(experimentGroup);
+                }
 
                 String wordText = csvRecord.get("word_text");
                 wordLearningEvent.setWordText(wordText);
 
-                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                wordLearningEvent.setLearningEventType(learningEventType);
-
-                // String additionalData = csvRecord.get("additional_data");
-                // wordLearningEvent.setAdditionalData(additionalData);
+                Long wordId = Long.valueOf(csvRecord.get("word_id"));
+                // wordLearningEvent.setWordId(wordId);
 
                 wordLearningEvents.add(wordLearningEvent);
             }
@@ -377,6 +449,26 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 storyBookLearningEvent.setPackageName(packageName);
 
+                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                storyBookLearningEvent.setLearningEventType(learningEventType);
+
+                // if (versionCode >= ???)
+                //     String additionalData = csvRecord.get("additional_data");
+                //     storyBookLearningEvent.setAdditionalData(additionalData);
+                // }
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                    storyBookLearningEvent.setResearchExperiment(researchExperiment);
+
+                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                    storyBookLearningEvent.setExperimentGroup(experimentGroup);
+                }
+
                 if (versionCode < 3003000) {
                     storyBookLearningEvent.setStoryBookTitle("");
                 } else {
@@ -387,12 +479,6 @@ public class CsvAnalyticsExtractionHelper {
 
                 Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
                 storyBookLearningEvent.setStoryBookId(storyBookId);
-
-                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                storyBookLearningEvent.setLearningEventType(learningEventType);
-
-                // String additionalData = csvRecord.get("additional_data");
-                // storyBookLearningEvent.setAdditionalData(additionalData);
 
                 storyBookLearningEvents.add(storyBookLearningEvent);
             }
@@ -438,17 +524,29 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 videoLearningEvent.setPackageName(packageName);
 
-                Long videoId = Long.valueOf(csvRecord.get("video_id"));
-                videoLearningEvent.setVideoId(videoId);
-
-                String videoTitle = csvRecord.get("video_title");
-                videoLearningEvent.setVideoTitle(videoTitle);
-
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 videoLearningEvent.setLearningEventType(learningEventType);
 
                 String additionalData = csvRecord.get("additional_data");
                 videoLearningEvent.setAdditionalData(additionalData);
+
+                if (versionCode >= 3005009) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
+                    
+                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                    videoLearningEvent.setResearchExperiment(researchExperiment);
+
+                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                    videoLearningEvent.setExperimentGroup(experimentGroup);
+                }
+
+                String videoTitle = csvRecord.get("video_title");
+                videoLearningEvent.setVideoTitle(videoTitle);
+
+                Long videoId = Long.valueOf(csvRecord.get("video_id"));
+                videoLearningEvent.setVideoId(videoId);
 
                 videoLearningEvents.add(videoLearningEvent);
             }

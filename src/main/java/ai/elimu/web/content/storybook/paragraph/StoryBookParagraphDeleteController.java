@@ -11,6 +11,7 @@ import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.entity.enums.Role;
 import ai.elimu.rest.v2.service.StoryBooksJsonService;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
@@ -78,7 +79,8 @@ public class StoryBookParagraphDeleteController {
     if (storyBook.getCoverImage() != null) {
       embedThumbnailUrl = storyBook.getCoverImage().getUrl();
     }
-    DiscordHelper.sendChannelMessage(
+    DiscordHelper.postToChannel(
+        Channel.CONTENT,
         "Storybook paragraph deleted: " + contentUrl,
         "\"" + storyBookContributionEvent.getStoryBook().getTitle() + "\"",
         "Comment: \"" + storyBookContributionEvent.getComment() + "\"",

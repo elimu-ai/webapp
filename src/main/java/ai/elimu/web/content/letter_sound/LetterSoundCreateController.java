@@ -10,6 +10,7 @@ import ai.elimu.entity.content.Sound;
 import ai.elimu.entity.contributor.Contributor;
 import ai.elimu.entity.contributor.LetterSoundContributionEvent;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -95,7 +96,8 @@ public class LetterSoundCreateController {
       letterSoundContributionEventDao.create(letterSoundContributionEvent);
 
       String contentUrl = DomainHelper.getBaseUrl() + "/content/letter-sound/edit/" + letterSound.getId();
-      DiscordHelper.sendChannelMessage(
+      DiscordHelper.postToChannel(
+          Channel.CONTENT,
           "Letter-sound correspondence created: " + contentUrl,
           "\"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
           "Comment: \"" + letterSoundContributionEvent.getComment() + "\"",

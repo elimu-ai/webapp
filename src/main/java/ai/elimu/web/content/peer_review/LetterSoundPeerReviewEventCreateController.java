@@ -10,6 +10,7 @@ import ai.elimu.entity.contributor.LetterSoundContributionEvent;
 import ai.elimu.entity.contributor.LetterSoundPeerReviewEvent;
 import ai.elimu.entity.enums.PeerReviewStatus;
 import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import ai.elimu.util.DomainHelper;
 import jakarta.servlet.http.HttpSession;
 import java.util.Calendar;
@@ -59,7 +60,8 @@ public class LetterSoundPeerReviewEventCreateController {
     letterSoundPeerReviewEventDao.create(letterSoundPeerReviewEvent);
 
     String contentUrl = DomainHelper.getBaseUrl() + "/content/letter-sound/edit/" + letterSoundContributionEvent.getLetterSound().getId();
-    DiscordHelper.sendChannelMessage(
+    DiscordHelper.postToChannel(
+        Channel.CONTENT,
         "Letter-sound peer-reviewed: " + contentUrl,
         "\"" + letterSoundContributionEvent.getLetterSound().getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"",
         "Comment: \"" + letterSoundPeerReviewEvent.getComment() + "\"",
