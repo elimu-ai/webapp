@@ -1,0 +1,10 @@
+id,timestamp,package_name,additional_data,learning_event_type,research_experiment,experiment_group,video_title,video_id
+1,1749775644,ai.elimu.filamu,,VIDEO_OPENED,,,akili and me - letter b,2
+2,1749775646,ai.elimu.filamu,,VIDEO_CLOSED_BEFORE_COMPLETION,,,,2
+3,1749775647,ai.elimu.filamu,,VIDEO_OPENED,,,[test] a test video,44
+4,1749775648,ai.elimu.filamu,,VIDEO_CLOSED_BEFORE_COMPLETION,,,,44
+5,1749775649,ai.elimu.filamu,,VIDEO_OPENED,,,[test] a test video,44
+6,1749775653,ai.elimu.filamu,,VIDEO_CLOSED_BEFORE_COMPLETION,,,,44
+7,1749799858,ai.elimu.filamu,,VIDEO_OPENED,,,[test] a test video,44
+8,1749799867,ai.elimu.filamu,,VIDEO_COMPLETED,,,[test] a test video,44
+9,1749800215,ai.elimu.filamu,,VIDEO_OPENED,,,akili and me - the rectangle song,13
