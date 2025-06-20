@@ -47,35 +47,34 @@ public class WordLearningEventsCsvExportController {
             "id",
             "timestamp",
             "package_name",
-            "word_text",
-            "word_id",
             "learning_event_type",
-            "additional_data"
-        )
-        .build();
-
+            "additional_data",
+            "research_experiment",
+            "experiment_group",
+            "word_text",
+            "word_id"
+        ).build();
     StringWriter stringWriter = new StringWriter();
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-
     for (WordLearningEvent wordLearningEvent : wordLearningEvents) {
       log.info("wordLearningEvent.getId(): " + wordLearningEvent.getId());
-
       csvPrinter.printRecord(
           wordLearningEvent.getId(),
           wordLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
           wordLearningEvent.getPackageName(),
-          wordLearningEvent.getWordText(),
-          (wordLearningEvent.getWord() == null) ? null : wordLearningEvent.getWord().getId(),
-          // wordLearningEvent.getWordId(), https://github.com/elimu-ai/webapp/issues/2113
           wordLearningEvent.getLearningEventType(),
-          wordLearningEvent.getAdditionalData()
+          wordLearningEvent.getAdditionalData(),
+          wordLearningEvent.getResearchExperiment().ordinal(),
+          wordLearningEvent.getExperimentGroup().ordinal(),
+          wordLearningEvent.getWordText(),
+          (wordLearningEvent.getWord() == null) ? null : wordLearningEvent.getWord().getId()
+          // wordLearningEvent.getWordId(), https://github.com/elimu-ai/webapp/issues/2113
       );
     }
     csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();
-
     response.setContentType("text/csv");
     byte[] bytes = csvFileContent.getBytes();
     response.setContentLength(bytes.length);

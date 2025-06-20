@@ -50,18 +50,16 @@ public class LetterSoundAssessmentEventsCsvExportController {
             "mastery_score",
             "time_spent_ms",
             "additional_data",
+            "research_experiment",
+            "experiment_group",
             "letter_sound_letters",
             "letter_sound_sounds",
             "letter_sound_id"
-        )
-        .build();
-
+        ).build();
     StringWriter stringWriter = new StringWriter();
     CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-
     for (LetterSoundAssessmentEvent letterSoundAssessmentEvent : letterSoundAssessmentEvents) {
       log.info("letterSoundAssessmentEvent.getId(): " + letterSoundAssessmentEvent.getId());
-
       csvPrinter.printRecord(
           letterSoundAssessmentEvent.getId(),
           letterSoundAssessmentEvent.getTimestamp().getTimeInMillis() / 1_000,
@@ -69,6 +67,8 @@ public class LetterSoundAssessmentEventsCsvExportController {
           letterSoundAssessmentEvent.getMasteryScore(),
           letterSoundAssessmentEvent.getTimeSpentMs(),
           letterSoundAssessmentEvent.getAdditionalData(),
+          letterSoundAssessmentEvent.getResearchExperiment().ordinal(),
+          letterSoundAssessmentEvent.getExperimentGroup().ordinal(),
           letterSoundAssessmentEvent.getLetterSoundLetters(),
           letterSoundAssessmentEvent.getLetterSoundSounds(),
           letterSoundAssessmentEvent.getLetterSoundId()
@@ -78,7 +78,6 @@ public class LetterSoundAssessmentEventsCsvExportController {
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();
-
     response.setContentType("text/csv");
     byte[] bytes = csvFileContent.getBytes();
     response.setContentLength(bytes.length);
