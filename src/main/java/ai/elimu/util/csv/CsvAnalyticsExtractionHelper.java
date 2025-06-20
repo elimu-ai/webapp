@@ -83,13 +83,17 @@ public class CsvAnalyticsExtractionHelper {
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
                     
-                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                    letterSoundAssessmentEvent.setResearchExperiment(researchExperiment);
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        letterSoundAssessmentEvent.setResearchExperiment(researchExperiment);
+                    }
 
-                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                    letterSoundAssessmentEvent.setExperimentGroup(experimentGroup);
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        letterSoundAssessmentEvent.setExperimentGroup(experimentGroup);
+                    }
                 }
 
                 String letterSoundLetters = csvRecord.get("letter_sound_letters");
@@ -156,14 +160,18 @@ public class CsvAnalyticsExtractionHelper {
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
-                    
-                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                    letterSoundLearningEvent.setResearchExperiment(researchExperiment);
 
-                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                    letterSoundLearningEvent.setExperimentGroup(experimentGroup);
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        letterSoundLearningEvent.setResearchExperiment(researchExperiment);
+                    }
+
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        letterSoundLearningEvent.setExperimentGroup(experimentGroup);
+                    }
                 }
 
                 // TODO: letterSoundLetters
@@ -231,13 +239,17 @@ public class CsvAnalyticsExtractionHelper {
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
                     
-                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                    numberLearningEvent.setResearchExperiment(researchExperiment);
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        numberLearningEvent.setResearchExperiment(researchExperiment);
+                    }
 
-                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                    numberLearningEvent.setExperimentGroup(experimentGroup);
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        numberLearningEvent.setExperimentGroup(experimentGroup);
+                    }
                 }
 
                 Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
@@ -317,13 +329,17 @@ public class CsvAnalyticsExtractionHelper {
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
                     
-                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                    wordAssessmentEvent.setResearchExperiment(researchExperiment);
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        wordAssessmentEvent.setResearchExperiment(researchExperiment);
+                    }
 
-                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                    wordAssessmentEvent.setExperimentGroup(experimentGroup);
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        wordAssessmentEvent.setExperimentGroup(experimentGroup);
+                    }
                 }
 
                 String wordText = csvRecord.get("word_text");
@@ -396,13 +412,17 @@ public class CsvAnalyticsExtractionHelper {
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
                     
-                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                    wordLearningEvent.setResearchExperiment(researchExperiment);
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        wordLearningEvent.setResearchExperiment(researchExperiment);
+                    }
 
-                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                    wordLearningEvent.setExperimentGroup(experimentGroup);
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        wordLearningEvent.setExperimentGroup(experimentGroup);
+                    }
                 }
 
                 String wordText = csvRecord.get("word_text");
@@ -476,13 +496,17 @@ public class CsvAnalyticsExtractionHelper {
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
                     
-                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                    storyBookLearningEvent.setResearchExperiment(researchExperiment);
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        storyBookLearningEvent.setResearchExperiment(researchExperiment);
+                    }
 
-                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                    storyBookLearningEvent.setExperimentGroup(experimentGroup);
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        storyBookLearningEvent.setExperimentGroup(experimentGroup);
+                    }
                 }
 
                 if (versionCode < 3003000) {
@@ -552,13 +576,17 @@ public class CsvAnalyticsExtractionHelper {
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
                     
-                    int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
-                    ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
-                    videoLearningEvent.setResearchExperiment(researchExperiment);
+                    if (StringUtils.isNotBlank(csvRecord.get("research_experiment"))) {
+                        int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                        ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                        videoLearningEvent.setResearchExperiment(researchExperiment);
+                    }
 
-                    int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
-                    ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
-                    videoLearningEvent.setExperimentGroup(experimentGroup);
+                    if (StringUtils.isNotBlank(csvRecord.get("experiment_group"))) {
+                        int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                        ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                        videoLearningEvent.setExperimentGroup(experimentGroup);
+                    }
                 }
 
                 String videoTitle = csvRecord.get("video_title");
