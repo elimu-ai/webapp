@@ -87,13 +87,14 @@ public class WordAssessmentEventImportScheduler {
 
                 // Generate Student ID
                 Student existingStudent = studentDao.read(event.getAndroidId());
-                studentId = existingStudent.getId();
                 if (existingStudent == null) {
                   Student student = new Student();
                   student.setAndroidId(event.getAndroidId());
                   studentDao.create(student);
                   log.info("Stored Student in database with ID " + student.getId());
                   studentId = student.getId();
+                } else {
+                  studentId = existingStudent.getId();
                 }
 
                 // Store the event in the database
