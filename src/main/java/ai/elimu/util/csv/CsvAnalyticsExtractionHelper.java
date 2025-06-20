@@ -298,8 +298,10 @@ public class CsvAnalyticsExtractionHelper {
                 Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
                 wordAssessmentEvent.setTimeSpentMs(timeSpentMs);
 
-                String additionalData = csvRecord.get("additional_data");
-                wordAssessmentEvent.setAdditionalData(additionalData);
+                // if (versionCode >= ???) {
+                //     String additionalData = csvRecord.get("additional_data");
+                //     wordAssessmentEvent.setAdditionalData(additionalData);
+                // }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
@@ -373,8 +375,10 @@ public class CsvAnalyticsExtractionHelper {
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 wordLearningEvent.setLearningEventType(learningEventType);
 
-                String additionalData = csvRecord.get("additional_data");
-                wordLearningEvent.setAdditionalData(additionalData);
+                // if (versionCode >= ???)
+                //     String additionalData = csvRecord.get("additional_data");
+                //     wordLearningEvent.setAdditionalData(additionalData);
+                // }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
@@ -448,8 +452,10 @@ public class CsvAnalyticsExtractionHelper {
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 storyBookLearningEvent.setLearningEventType(learningEventType);
 
-                String additionalData = csvRecord.get("additional_data");
-                storyBookLearningEvent.setAdditionalData(additionalData);
+                // if (versionCode >= ???)
+                //     String additionalData = csvRecord.get("additional_data");
+                //     storyBookLearningEvent.setAdditionalData(additionalData);
+                // }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
