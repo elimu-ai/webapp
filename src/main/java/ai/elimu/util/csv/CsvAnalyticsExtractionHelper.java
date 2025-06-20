@@ -180,6 +180,9 @@ public class CsvAnalyticsExtractionHelper {
         return letterSoundLearningEvents;
     }
 
+    
+    // TODO: number assessment events
+
     public static List<NumberLearningEvent> extractNumberLearningEvents(File csvFile) {
         log.info("extractNumberLearningEvents");
 
@@ -251,6 +254,7 @@ public class CsvAnalyticsExtractionHelper {
         return numberLearningEvents;
     }
 
+    
     public static List<WordAssessmentEvent> extractWordAssessmentEvents(File csvFile) {
         log.info("extractWordAssessmentEvents");
 
@@ -408,6 +412,7 @@ public class CsvAnalyticsExtractionHelper {
         return wordLearningEvents;
     }
 
+    
     public static List<StoryBookLearningEvent> extractStoryBookLearningEvents(File csvFile) {
         log.info("extractStoryBookLearningEvents");
 
@@ -490,6 +495,7 @@ public class CsvAnalyticsExtractionHelper {
         return storyBookLearningEvents;
     }
 
+    
     public static List<VideoLearningEvent> extractVideoLearningEvents(File csvFile) {
         log.info("extractVideoLearningEvents");
 
