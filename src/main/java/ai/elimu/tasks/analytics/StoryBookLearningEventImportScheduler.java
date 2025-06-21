@@ -1,6 +1,7 @@
 package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.StudentDao;
+import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
@@ -47,7 +48,7 @@ import org.springframework.stereotype.Service;
 public class StoryBookLearningEventImportScheduler {
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
-
+  private final StoryBookDao storyBookDao;
   private final StudentDao studentDao;
 
   @Scheduled(cron = "00 45 * * * *") // 35 minutes past every hour
@@ -95,6 +96,11 @@ public class StoryBookLearningEventImportScheduler {
                     studentId = student.getId();
                   } else {
                     studentId = existingStudent.getId();
+                  }
+
+                  // If content ID has been provided, look for match in the database
+                  if (event.getStoryBookId() != null) {
+                    event.setStoryBook(storyBookDao.read(event.getStoryBookId()));
                   }
 
                   // Store the event in the database

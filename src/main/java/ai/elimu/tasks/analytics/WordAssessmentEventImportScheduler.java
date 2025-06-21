@@ -2,6 +2,7 @@ package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.WordAssessmentEventDao;
+import ai.elimu.dao.WordDao;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.model.v2.enums.Language;
@@ -47,7 +48,7 @@ import org.springframework.stereotype.Service;
 public class WordAssessmentEventImportScheduler {
 
   private final WordAssessmentEventDao wordAssessmentEventDao;
-
+  private final WordDao wordDao;
   private final StudentDao studentDao;
 
   @Scheduled(cron = "00 35 * * * *") // 25 minutes past every hour
@@ -95,6 +96,11 @@ public class WordAssessmentEventImportScheduler {
                     studentId = student.getId();
                   } else {
                     studentId = existingStudent.getId();
+                  }
+
+                  // If content ID has been provided, look for match in the database
+                  if (event.getWordId() != null) {
+                    event.setWord(wordDao.read(event.getWordId()));
                   }
 
                   // Store the event in the database

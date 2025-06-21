@@ -11,15 +11,19 @@ import lombok.Setter;
 @Entity
 public class WordLearningEvent extends LearningEvent {
 
-  @ManyToOne
-  private Word word;
-
   /**
    * A Word's text value is used as a fall-back if the Android application did not use a Word ID.
    */
 //    @NotNull
   private String wordText;
 
-  // TODO: private Long wordId;
-  // https://github.com/elimu-ai/webapp/issues/2113
+  /**
+   * This field might not be included, e.g. if the assessment task was done in a 
+   * 3rd-party app that did not load the content from the elimu.ai Content Provider. 
+   * In this case, the {@link #wordId} will be {@code null}.
+   */
+  private Long wordId;
+
+  @ManyToOne
+  private Word word;
 }

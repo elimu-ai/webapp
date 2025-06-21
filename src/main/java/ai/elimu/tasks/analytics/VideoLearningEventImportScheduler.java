@@ -1,6 +1,7 @@
 package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.StudentDao;
+import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
@@ -47,7 +48,7 @@ import org.springframework.stereotype.Service;
 public class VideoLearningEventImportScheduler {
 
   private final VideoLearningEventDao videoLearningEventDao;
-
+  private final VideoDao videoDao;
   private final StudentDao studentDao;
 
   @Scheduled(cron = "00 50 * * * *") // 40 minutes past every hour
@@ -95,6 +96,11 @@ public class VideoLearningEventImportScheduler {
                     studentId = student.getId();
                   } else {
                     studentId = existingStudent.getId();
+                  }
+
+                  // If content ID has been provided, look for match in the database
+                  if (event.getVideoId() != null) {
+                    event.setVideo(videoDao.read(event.getVideoId()));
                   }
 
                   // Store the event in the database

@@ -1,6 +1,8 @@
 package ai.elimu.entity.analytics;
 
+import ai.elimu.entity.content.Word;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +22,7 @@ public class WordAssessmentEvent extends AssessmentEvent {
      * In this case, the {@link #wordId} will be {@code null}.
      */
     private Long wordId;
+
+    @ManyToOne
+    private Word word;
 }
