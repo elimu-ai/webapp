@@ -16,6 +16,16 @@
                 </div>
             </div>
         </div>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title"><i class="material-icons">biotech</i> Research Experiments</span>
+                </div>
+                <div class="card-action">
+                    <a id="experimentsLink" href="<spring:url value='/analytics/research/experiments' />">View list (${researchExperimentCount})</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">

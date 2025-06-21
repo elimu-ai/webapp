@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 
 public interface StoryBookLearningEventDao extends GenericDao<StoryBookLearningEvent> {
     
@@ -13,4 +15,6 @@ public interface StoryBookLearningEventDao extends GenericDao<StoryBookLearningE
     List<StoryBookLearningEvent> readAllOrderedByTime() throws DataAccessException;
 
     List<StoryBookLearningEvent> readAll(String androidId) throws DataAccessException;
+
+    List<StoryBookLearningEvent> readAll(ResearchExperiment researchExperiment, ExperimentGroup experimentGroup) throws DataAccessException;
 }

@@ -1,6 +1,7 @@
 package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.StoryBookParagraphDao;
+import ai.elimu.entity.content.StoryBook;
 import ai.elimu.entity.content.StoryBookChapter;
 import ai.elimu.entity.content.StoryBookParagraph;
 
@@ -19,6 +20,16 @@ public class StoryBookParagraphDaoJpa extends GenericDaoJpa<StoryBookParagraph> 
             "WHERE paragraph.storyBookChapter = :storyBookChapter " +
             "ORDER BY paragraph.sortOrder")
             .setParameter("storyBookChapter", storyBookChapter)
+            .getResultList();
+    }
+
+    @Override
+    public List<StoryBookParagraph> readAll(StoryBook storyBook) throws DataAccessException {
+        return em.createQuery(
+            "SELECT paragraph " +
+            "FROM StoryBookParagraph paragraph " +
+            "WHERE paragraph.storyBookChapter.storyBook = :storyBook")
+            .setParameter("storyBook", storyBook)
             .getResultList();
     }
 

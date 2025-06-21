@@ -2,6 +2,8 @@ package ai.elimu.dao.jpa;
 
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 
 import java.util.Calendar;
 import java.util.List;
@@ -46,6 +48,20 @@ public class StoryBookLearningEventDaoJpa extends GenericDaoJpa<StoryBookLearnin
             "WHERE event.androidId = :androidId " + 
             "ORDER BY event.timestamp")
             .setParameter("androidId", androidId)
+            .getResultList();
+    }
+
+    @Override
+    public List<StoryBookLearningEvent> readAll(ResearchExperiment researchExperiment, ExperimentGroup experimentGroup)
+            throws DataAccessException {
+        return em.createQuery(
+            "SELECT event " + 
+            "FROM StoryBookLearningEvent event " +
+            "WHERE event.researchExperiment = :researchExperiment " + 
+            "AND event.experimentGroup = :experimentGroup " +
+            "ORDER BY event.timestamp")
+            .setParameter("researchExperiment", researchExperiment)
+            .setParameter("experimentGroup", experimentGroup)
             .getResultList();
     }   
 }

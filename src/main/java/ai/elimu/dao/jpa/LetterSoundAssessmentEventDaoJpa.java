@@ -7,6 +7,8 @@ import org.springframework.dao.DataAccessException;
 
 import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
+import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import jakarta.persistence.NoResultException;
 
 public class LetterSoundAssessmentEventDaoJpa extends GenericDaoJpa<LetterSoundAssessmentEvent> implements LetterSoundAssessmentEventDao {
@@ -38,6 +40,20 @@ public class LetterSoundAssessmentEventDaoJpa extends GenericDaoJpa<LetterSoundA
             "WHERE event.androidId = :androidId " + 
             "ORDER BY event.timestamp")
             .setParameter("androidId", androidId)
+            .getResultList();
+    }
+
+    @Override
+    public List<LetterSoundAssessmentEvent> readAll(ResearchExperiment researchExperiment,
+            ExperimentGroup experimentGroup) throws DataAccessException {
+        return em.createQuery(
+            "SELECT event " + 
+            "FROM LetterSoundAssessmentEvent event " +
+            "WHERE event.researchExperiment = :researchExperiment " + 
+            "AND event.experimentGroup = :experimentGroup " +
+            "ORDER BY event.timestamp")
+            .setParameter("researchExperiment", researchExperiment)
+            .setParameter("experimentGroup", experimentGroup)
             .getResultList();
     }
 }
