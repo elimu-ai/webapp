@@ -1,6 +1,8 @@
 package ai.elimu.entity.analytics;
 
+import ai.elimu.entity.content.LetterSound;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,4 +17,7 @@ public class LetterSoundLearningEvent extends LearningEvent {
    * In this case, the {@link #letterSoundId} will be {@code null}.
    */
   private Long letterSoundId;
+
+  @ManyToOne
+  private LetterSound letterSound;
 }

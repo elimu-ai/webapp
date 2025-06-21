@@ -1,6 +1,7 @@
 package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.StudentDao;
+import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
@@ -47,7 +48,7 @@ import org.springframework.stereotype.Service;
 public class LetterSoundLearningEventImportScheduler {
 
   private final LetterSoundLearningEventDao letterSoundLearningEventDao;
-
+  private final LetterSoundDao letterSoundDao;
   private final StudentDao studentDao;
 
   @Scheduled(cron = "00 20 * * * *") // 20 minutes past every hour
@@ -95,6 +96,11 @@ public class LetterSoundLearningEventImportScheduler {
                     studentId = student.getId();
                   } else {
                     studentId = existingStudent.getId();
+                  }
+
+                  // If content ID has been provided, look for match in the database
+                  if (event.getLetterSoundId() != null) {
+                    event.setLetterSound(letterSoundDao.read(event.getLetterSoundId()));
                   }
 
                   // Store the event in the database

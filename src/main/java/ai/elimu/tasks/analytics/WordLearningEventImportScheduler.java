@@ -1,6 +1,7 @@
 package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.StudentDao;
+import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
@@ -47,7 +48,7 @@ import org.springframework.stereotype.Service;
 public class WordLearningEventImportScheduler {
 
   private final WordLearningEventDao wordLearningEventDao;
-
+  private final WordDao wordDao;
   private final StudentDao studentDao;
 
   @Scheduled(cron = "00 40 * * * *") // 30 minutes past every hour
@@ -96,6 +97,12 @@ public class WordLearningEventImportScheduler {
                   } else {
                     studentId = existingStudent.getId();
                   }
+
+                  // If content ID has been provided, look for match in the database
+                  // TODO: https://github.com/elimu-ai/webapp/issues/2113
+                  // if (event.getWordId() != null) {
+                  //   event.setWord(wordDao.read(event.getWordId()));
+                  // }
 
                   // Store the event in the database
                   wordLearningEventDao.create(event);

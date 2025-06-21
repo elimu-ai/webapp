@@ -320,6 +320,7 @@
         letterSoundLetters varchar(255),
         letterSoundSounds varchar(255),
         application_id bigint,
+        letterSound_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -344,6 +345,7 @@
         timestamp datetime,
         letterSoundId bigint,
         application_id bigint,
+        letterSound_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -636,6 +638,7 @@
         wordId bigint,
         wordText varchar(255),
         application_id bigint,
+        word_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -814,6 +817,11 @@
        foreign key (application_id) 
        references Application (id);
 
+    alter table LetterSoundAssessmentEvent 
+       add constraint FKr3r908t2wb4g6qrft3uheack6 
+       foreign key (letterSound_id) 
+       references LetterSound (id);
+
     alter table LetterSoundContributionEvent 
        add constraint FK5uk320agfa13pvh52v6n6ncbs 
        foreign key (contributor_id) 
@@ -828,6 +836,11 @@
        add constraint FKdm16bp5gb29hsge3thngm1pli 
        foreign key (application_id) 
        references Application (id);
+
+    alter table LetterSoundLearningEvent 
+       add constraint FKa7y3jjd44ki8l0ia94siviyn7 
+       foreign key (letterSound_id) 
+       references LetterSound (id);
 
     alter table LetterSoundPeerReviewEvent 
        add constraint FK3wapf4y5anhgnjbqna2qjyie4 
@@ -1028,6 +1041,11 @@
        add constraint FKlxj22iqgrsvw76fld5vsrhb8c 
        foreign key (application_id) 
        references Application (id);
+
+    alter table WordAssessmentEvent 
+       add constraint FKeh2bf4xeskf6netv0nsy86m3d 
+       foreign key (word_id) 
+       references Word (id);
 
     alter table WordContributionEvent 
        add constraint FKrsen7udud4svhc32e3rhkcmnu 
