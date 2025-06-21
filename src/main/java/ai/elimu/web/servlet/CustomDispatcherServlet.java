@@ -13,6 +13,7 @@ import ai.elimu.dao.SoundDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.VideoLearningEventDao;
@@ -34,6 +35,7 @@ import ai.elimu.entity.content.Number;
 import ai.elimu.entity.content.Sound;
 import ai.elimu.entity.content.StoryBook;
 import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
 import ai.elimu.entity.content.Word;
 import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.entity.content.multimedia.Video;
@@ -73,6 +75,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
+import org.json.JSONObject;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.io.ClassRelativeResourceLoader;
@@ -287,6 +290,21 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         storyBookChapterDao.create(storyBookChapter);
 
 
+        StoryBookParagraphDao storyBookParagraphDao = (StoryBookParagraphDao) webApplicationContext.getBean("storyBookParagraphDao");
+
+        StoryBookParagraph storyBookParagraph1 = new StoryBookParagraph();
+        storyBookParagraph1.setStoryBookChapter(storyBookChapter);
+        storyBookParagraph1.setSortOrder(0);
+        storyBookParagraph1.setOriginalText("ฉัน ชื่อ ซารูน");
+        storyBookParagraphDao.create(storyBookParagraph1);
+
+        StoryBookParagraph storyBookParagraph2 = new StoryBookParagraph();
+        storyBookParagraph2.setStoryBookChapter(storyBookChapter);
+        storyBookParagraph2.setSortOrder(1);
+        storyBookParagraph2.setOriginalText("ฉัน มา จาก จังหวัด ตาแก้ว");
+        storyBookParagraphDao.create(storyBookParagraph2);
+
+
         VideoDao videoDao = (VideoDao) webApplicationContext.getBean("videoDao");
 
         Video video = new Video();
@@ -343,6 +361,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         NumberLearningEventDao numberLearningEventDao = (NumberLearningEventDao) webApplicationContext.getBean("numberLearningEventDao");
         StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
         VideoLearningEventDao videoLearningEventDao = (VideoLearningEventDao) webApplicationContext.getBean("videoLearningEventDao");
+        int weekCount = 1;
         while (!week.after(calendarNow)) {
             List<Student> students = studentDao.readAll();
             for (Student student : students) {
@@ -418,8 +437,16 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     storyBookLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                     storyBookLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     storyBookLearningEvent.setLearningEventType(LearningEventType.STORYBOOK_OPENED);
+                    JSONObject additionalData = new JSONObject();
+                    if (storyBookLearningEvent.getExperimentGroup() == ExperimentGroup.CONTROL) {
+                        additionalData.put("seconds_spent_per_chapter", "[" + (int) (Math.pow(0.98, weekCount) * Math.random() * 30) + ", " + (int) (Math.pow(0.98, weekCount) * Math.random() * 60) + "]");
+                    } else {
+                        additionalData.put("seconds_spent_per_chapter", "[" + (int) (Math.pow(0.96, weekCount) * Math.random() * 30) + ", " + (int) (Math.pow(0.96, weekCount) * Math.random() * 60) + "]");
+                    }
+                    storyBookLearningEvent.setAdditionalData(additionalData.toString());
                     storyBookLearningEvent.setStoryBookTitle(storyBook.getTitle());
                     storyBookLearningEvent.setStoryBookId(storyBook.getId());
+                    storyBookLearningEvent.setStoryBook(storyBook);
                     storyBookLearningEventDao.create(storyBookLearningEvent);
                 }
 
@@ -438,6 +465,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                 }
             }
             week.add(Calendar.WEEK_OF_YEAR, 1);
+            weekCount++;
         }
     }
 }

@@ -145,4 +145,65 @@
             </tbody>
         </table>
     </div>
+
+    <div class="row">
+        <h5 style="margin-top: 1em;">🔤 Words</h5>
+        <div class="card-panel">
+            <h5>Reading speed (correct words per minute)</h5>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+            <canvas id="readingSpeedChart"></canvas>
+            <script>
+                const readingSpeedLabels = [
+                    <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+                ];
+                const readingSpeedData = {
+                    labels: readingSpeedLabels,
+                    datasets: [{
+                        data: <c:out value="${readingSpeedAvgList_CONTROL}" />,
+                        label: 'cwpm (CONTROL)',
+                        backgroundColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                        borderColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                        tension: 0.5
+                    },{
+                        data: <c:out value="${readingSpeedAvgList_TREATMENT}" />,
+                        label: 'cwpm (TREATMENT)',
+                        backgroundColor: 'rgba(100,181,246, 1.0)', // #64b5f6 blue lighten-2
+                        borderColor: 'rgba(100,181,246, 1.0)', // #64b5f6 blue lighten-2
+                        tension: 0.5
+                    },{
+                        data: Array(readingSpeedLabels.length).fill(5.0),
+                        label: 'LEVEL1',
+                        backgroundColor: 'rgba(149,117,205, 0.1)', // #9575cd deep-purple lighten-2
+                        borderColor: 'rgba(149,117,205, 0.1)', // #9575cd deep-purple lighten-2
+                        tension: 0.5,
+                    },{
+                        data: Array(readingSpeedLabels.length).fill(10.0),
+                        label: 'LEVEL2',
+                        backgroundColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                        borderColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                        tension: 0.5,
+                    },{
+                        data: Array(readingSpeedLabels.length).fill(20.0),
+                        label: 'LEVEL3',
+                        backgroundColor: 'rgba(149,117,205, 0.3)', // #9575cd deep-purple lighten-2
+                        borderColor: 'rgba(149,117,205, 0.3)', // #9575cd deep-purple lighten-2
+                        tension: 0.5,
+                    },{
+                        data: Array(readingSpeedLabels.length).fill(50.0),
+                        label: 'LEVEL4',
+                        backgroundColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                        borderColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                        tension: 0.5,
+                    }]
+                };
+                const readingSpeedConfig = {
+                    type: 'line',
+                    data: readingSpeedData,
+                    options: {}
+                };
+                var readingSpeedCtx = document.getElementById('readingSpeedChart');
+                new Chart(readingSpeedCtx, readingSpeedConfig);
+            </script>
+        </div>
+    </div>
 </content:section>
