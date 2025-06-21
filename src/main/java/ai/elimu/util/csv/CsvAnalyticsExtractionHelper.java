@@ -437,7 +437,7 @@ public class CsvAnalyticsExtractionHelper {
                 wordLearningEvent.setWordText(wordText);
 
                 Long wordId = Long.valueOf(csvRecord.get("word_id"));
-                // wordLearningEvent.setWordId(wordId);
+                wordLearningEvent.setWordId(wordId);
 
                 wordLearningEvents.add(wordLearningEvent);
             }

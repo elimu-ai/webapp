@@ -377,12 +377,10 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordLearningEvent.setPackageName("ai.elimu.maneno");
                     if (Math.random() > 0.5) {
                         wordLearningEvent.setWordText(wordMAA.getText());
-                        // wordLearningEvent.setWordId(wordMAA.getId());
-                        // TODO: https://github.com/elimu-ai/webapp/issues/2113
+                        wordLearningEvent.setWordId(wordMAA.getId());
                     } else {
                         wordLearningEvent.setWordText(wordSAAM.getText());
-                        // wordLearningEvent.setWordId(wordSAAM.getId());
-                        // TODO: https://github.com/elimu-ai/webapp/issues/2113
+                        wordLearningEvent.setWordId(wordSAAM.getId());
                     }
                     wordLearningEvent.setLearningEventType(LearningEventType.WORD_PRESSED);
                     wordLearningEventDao.create(wordLearningEvent);
