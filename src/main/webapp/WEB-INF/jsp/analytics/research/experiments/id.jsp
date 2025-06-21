@@ -146,6 +146,7 @@
         </table>
     </div>
 
+    <%--
     <div class="row">
         <h5 style="margin-top: 1em;">🔤 Words</h5>
         <div class="card-panel">
@@ -206,4 +207,5 @@
             </script>
         </div>
     </div>
+    --%>
 </content:section>

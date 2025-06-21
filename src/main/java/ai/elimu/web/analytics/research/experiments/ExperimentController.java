@@ -92,117 +92,117 @@ public class ExperimentController {
     model.addAttribute("videoLearningEvents_TREATMENT", videoLearningEventDao.readAll(researchExperiment, ExperimentGroup.TREATMENT));
 
     
-    // Generate a list of weeks from 6 months ago until now
-    List<String> weekList = new ArrayList<>();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-ww");
-    Calendar calendar6MonthsAgo = Calendar.getInstance();
-    calendar6MonthsAgo.add(Calendar.MONTH, -6);
-    Calendar calendarNow = Calendar.getInstance();
-    Calendar week = (Calendar) calendar6MonthsAgo.clone();
-    while (!week.after(calendarNow)) {
-      String weekAsString = simpleDateFormat.format(week.getTime());
-      weekList.add(weekAsString);
-      week.add(Calendar.WEEK_OF_YEAR, 1);
-    }
-    log.info("weekList: " + weekList);
-    model.addAttribute("weekList", weekList);
+    // // Generate a list of weeks from 6 months ago until now
+    // List<String> weekList = new ArrayList<>();
+    // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-ww");
+    // Calendar calendar6MonthsAgo = Calendar.getInstance();
+    // calendar6MonthsAgo.add(Calendar.MONTH, -6);
+    // Calendar calendarNow = Calendar.getInstance();
+    // Calendar week = (Calendar) calendar6MonthsAgo.clone();
+    // while (!week.after(calendarNow)) {
+    //   String weekAsString = simpleDateFormat.format(week.getTime());
+    //   weekList.add(weekAsString);
+    //   week.add(Calendar.WEEK_OF_YEAR, 1);
+    // }
+    // log.info("weekList: " + weekList);
+    // model.addAttribute("weekList", weekList);
 
-    // Prepare chart data - Reading speed (correct words per minute)
-    List<Double> readingSpeedAvgList_CONTROL = new ArrayList<>();
-    if (!storyBookLearningEvents_CONTROL.isEmpty()) {
-      Map<String, Integer> wordCountByWeekMap = new HashMap<>();
-      Map<String, Integer> secondsSpentByWeekMap = new HashMap<>();
-      for (StoryBookLearningEvent event : storyBookLearningEvents_CONTROL) {
-        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+    // // Prepare chart data - Reading speed (correct words per minute)
+    // List<Double> readingSpeedAvgList_CONTROL = new ArrayList<>();
+    // if (!storyBookLearningEvents_CONTROL.isEmpty()) {
+    //   Map<String, Integer> wordCountByWeekMap = new HashMap<>();
+    //   Map<String, Integer> secondsSpentByWeekMap = new HashMap<>();
+    //   for (StoryBookLearningEvent event : storyBookLearningEvents_CONTROL) {
+    //     String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
 
-        // Get total number of words in the storybook
-        List<StoryBookParagraph> storyBookParagraphsInBook = storyBookParagraphDao.readAll(event.getStoryBook());
-        int wordCountInBook = 0;
-        for (StoryBookParagraph storyBookParagraph : storyBookParagraphsInBook) {
-          wordCountInBook += storyBookParagraph.getOriginalText().split(" ").length;
-        }
-        wordCountByWeekMap.put(eventWeek, wordCountByWeekMap.getOrDefault(eventWeek, 0) + wordCountInBook);
+    //     // Get total number of words in the storybook
+    //     List<StoryBookParagraph> storyBookParagraphsInBook = storyBookParagraphDao.readAll(event.getStoryBook());
+    //     int wordCountInBook = 0;
+    //     for (StoryBookParagraph storyBookParagraph : storyBookParagraphsInBook) {
+    //       wordCountInBook += storyBookParagraph.getOriginalText().split(" ").length;
+    //     }
+    //     wordCountByWeekMap.put(eventWeek, wordCountByWeekMap.getOrDefault(eventWeek, 0) + wordCountInBook);
 
-        // Get the total number of seconds spent in the storybook
-        JSONObject additionalData = new JSONObject(event.getAdditionalData());
-        JSONArray secondsSpentPerChapter = new JSONArray(additionalData.getString("seconds_spent_per_chapter"));
-        int secondsSpentInBook = IntStream.range(0, secondsSpentPerChapter.length()).map(i -> secondsSpentPerChapter.getInt(i)).sum();
-        secondsSpentByWeekMap.put(eventWeek, secondsSpentByWeekMap.getOrDefault(eventWeek, 0) + secondsSpentInBook);
-      }
+    //     // Get the total number of seconds spent in the storybook
+    //     JSONObject additionalData = new JSONObject(event.getAdditionalData());
+    //     JSONArray secondsSpentPerChapter = new JSONArray(additionalData.getString("seconds_spent_per_chapter"));
+    //     int secondsSpentInBook = IntStream.range(0, secondsSpentPerChapter.length()).map(i -> secondsSpentPerChapter.getInt(i)).sum();
+    //     secondsSpentByWeekMap.put(eventWeek, secondsSpentByWeekMap.getOrDefault(eventWeek, 0) + secondsSpentInBook);
+    //   }
 
-      week = (Calendar) calendar6MonthsAgo.clone();
-      while (!week.after(calendarNow)) {
-        String weekAsString = simpleDateFormat.format(week.getTime());
-        log.info("weekAsString: " + weekAsString);
+    //   week = (Calendar) calendar6MonthsAgo.clone();
+    //   while (!week.after(calendarNow)) {
+    //     String weekAsString = simpleDateFormat.format(week.getTime());
+    //     log.info("weekAsString: " + weekAsString);
         
-        Integer wordCount = wordCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("wordCount: " + wordCount);
+    //     Integer wordCount = wordCountByWeekMap.getOrDefault(weekAsString, 0);
+    //     log.info("wordCount: " + wordCount);
         
-        Integer secondsSpent = secondsSpentByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("secondsSpent: " + secondsSpent);
+    //     Integer secondsSpent = secondsSpentByWeekMap.getOrDefault(weekAsString, 0);
+    //     log.info("secondsSpent: " + secondsSpent);
 
-        Double timeSpentInMinutes = secondsSpent / 60D;
-        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
+    //     Double timeSpentInMinutes = secondsSpent / 60D;
+    //     log.info("timeSpentInMinutes: " + timeSpentInMinutes);
 
-        Double wordsPerMinute = 0.00;
-        if (timeSpentInMinutes > 0) {
-          wordsPerMinute = wordCount / timeSpentInMinutes;
-          log.info("wordsPerMinute: " + wordsPerMinute);
-        }
-        readingSpeedAvgList_CONTROL.add(wordsPerMinute);
+    //     Double wordsPerMinute = 0.00;
+    //     if (timeSpentInMinutes > 0) {
+    //       wordsPerMinute = wordCount / timeSpentInMinutes;
+    //       log.info("wordsPerMinute: " + wordsPerMinute);
+    //     }
+    //     readingSpeedAvgList_CONTROL.add(wordsPerMinute);
 
-        week.add(Calendar.WEEK_OF_YEAR, 1);
-      }
-    }
-    model.addAttribute("readingSpeedAvgList_CONTROL", readingSpeedAvgList_CONTROL);
+    //     week.add(Calendar.WEEK_OF_YEAR, 1);
+    //   }
+    // }
+    // model.addAttribute("readingSpeedAvgList_CONTROL", readingSpeedAvgList_CONTROL);
 
-    List<Double> readingSpeedAvgList_TREATMENT = new ArrayList<>();
-    if (!storyBookLearningEvents_TREATMENT.isEmpty()) {
-      Map<String, Integer> wordCountByWeekMap = new HashMap<>();
-      Map<String, Integer> secondsSpentByWeekMap = new HashMap<>();
-      for (StoryBookLearningEvent event : storyBookLearningEvents_TREATMENT) {
-        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+    // List<Double> readingSpeedAvgList_TREATMENT = new ArrayList<>();
+    // if (!storyBookLearningEvents_TREATMENT.isEmpty()) {
+    //   Map<String, Integer> wordCountByWeekMap = new HashMap<>();
+    //   Map<String, Integer> secondsSpentByWeekMap = new HashMap<>();
+    //   for (StoryBookLearningEvent event : storyBookLearningEvents_TREATMENT) {
+    //     String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
 
-        // Get total number of words in the storybook
-        List<StoryBookParagraph> storyBookParagraphsInBook = storyBookParagraphDao.readAll(event.getStoryBook());
-        int wordCountInBook = 0;
-        for (StoryBookParagraph storyBookParagraph : storyBookParagraphsInBook) {
-          wordCountInBook += storyBookParagraph.getOriginalText().split(" ").length;
-        }
-        wordCountByWeekMap.put(eventWeek, wordCountByWeekMap.getOrDefault(eventWeek, 0) + wordCountInBook);
+    //     // Get total number of words in the storybook
+    //     List<StoryBookParagraph> storyBookParagraphsInBook = storyBookParagraphDao.readAll(event.getStoryBook());
+    //     int wordCountInBook = 0;
+    //     for (StoryBookParagraph storyBookParagraph : storyBookParagraphsInBook) {
+    //       wordCountInBook += storyBookParagraph.getOriginalText().split(" ").length;
+    //     }
+    //     wordCountByWeekMap.put(eventWeek, wordCountByWeekMap.getOrDefault(eventWeek, 0) + wordCountInBook);
 
-        // Get the total number of seconds spent in the storybook
-        JSONObject additionalData = new JSONObject(event.getAdditionalData());
-        JSONArray secondsSpentPerChapter = new JSONArray(additionalData.getString("seconds_spent_per_chapter"));
-        int secondsSpentInBook = IntStream.range(0, secondsSpentPerChapter.length()).map(i -> secondsSpentPerChapter.getInt(i)).sum();
-        secondsSpentByWeekMap.put(eventWeek, secondsSpentByWeekMap.getOrDefault(eventWeek, 0) + secondsSpentInBook);
-      }
+    //     // Get the total number of seconds spent in the storybook
+    //     JSONObject additionalData = new JSONObject(event.getAdditionalData());
+    //     JSONArray secondsSpentPerChapter = new JSONArray(additionalData.getString("seconds_spent_per_chapter"));
+    //     int secondsSpentInBook = IntStream.range(0, secondsSpentPerChapter.length()).map(i -> secondsSpentPerChapter.getInt(i)).sum();
+    //     secondsSpentByWeekMap.put(eventWeek, secondsSpentByWeekMap.getOrDefault(eventWeek, 0) + secondsSpentInBook);
+    //   }
 
-      week = (Calendar) calendar6MonthsAgo.clone();
-      while (!week.after(calendarNow)) {
-        String weekAsString = simpleDateFormat.format(week.getTime());
-        log.info("weekAsString: " + weekAsString);
+    //   week = (Calendar) calendar6MonthsAgo.clone();
+    //   while (!week.after(calendarNow)) {
+    //     String weekAsString = simpleDateFormat.format(week.getTime());
+    //     log.info("weekAsString: " + weekAsString);
         
-        Integer wordCount = wordCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("wordCount: " + wordCount);
+    //     Integer wordCount = wordCountByWeekMap.getOrDefault(weekAsString, 0);
+    //     log.info("wordCount: " + wordCount);
         
-        Integer secondsSpent = secondsSpentByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("secondsSpent: " + secondsSpent);
+    //     Integer secondsSpent = secondsSpentByWeekMap.getOrDefault(weekAsString, 0);
+    //     log.info("secondsSpent: " + secondsSpent);
 
-        Double timeSpentInMinutes = secondsSpent / 60D;
-        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
+    //     Double timeSpentInMinutes = secondsSpent / 60D;
+    //     log.info("timeSpentInMinutes: " + timeSpentInMinutes);
 
-        Double wordsPerMinute = 0.00;
-        if (timeSpentInMinutes > 0) {
-          wordsPerMinute = wordCount / timeSpentInMinutes;
-          log.info("wordsPerMinute: " + wordsPerMinute);
-        }
-        readingSpeedAvgList_TREATMENT.add(wordsPerMinute);
+    //     Double wordsPerMinute = 0.00;
+    //     if (timeSpentInMinutes > 0) {
+    //       wordsPerMinute = wordCount / timeSpentInMinutes;
+    //       log.info("wordsPerMinute: " + wordsPerMinute);
+    //     }
+    //     readingSpeedAvgList_TREATMENT.add(wordsPerMinute);
 
-        week.add(Calendar.WEEK_OF_YEAR, 1);
-      }
-    }
-    model.addAttribute("readingSpeedAvgList_TREATMENT", readingSpeedAvgList_TREATMENT);
+    //     week.add(Calendar.WEEK_OF_YEAR, 1);
+    //   }
+    // }
+    // model.addAttribute("readingSpeedAvgList_TREATMENT", readingSpeedAvgList_TREATMENT);
 
     return "analytics/research/experiments/id";
   }
