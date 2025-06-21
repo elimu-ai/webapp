@@ -62,7 +62,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals(1750210474 * 1_000L, letterSoundLearningEvent.getTimestamp().getTimeInMillis());
         assertEquals("5b7c682a12ecbe2e", letterSoundLearningEvent.getAndroidId());
         assertEquals("ai.elimu.herufi.debug", letterSoundLearningEvent.getPackageName());
-        assertEquals(ResearchExperiment.WORD_EMOJIS, letterSoundLearningEvent.getResearchExperiment());
+        assertEquals(ResearchExperiment.EXP_0_WORD_EMOJIS, letterSoundLearningEvent.getResearchExperiment());
         assertEquals(ExperimentGroup.TREATMENT, letterSoundLearningEvent.getExperimentGroup());
         assertEquals(149, letterSoundLearningEvent.getLetterSoundId());
     }
@@ -137,7 +137,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals("ai.elimu.kukariri.debug", wordAssessmentEvent.getPackageName());
         assertEquals(1.0F, wordAssessmentEvent.getMasteryScore());
         assertEquals(7_345, wordAssessmentEvent.getTimeSpentMs());
-        assertEquals(ResearchExperiment.WORD_EMOJIS, wordAssessmentEvent.getResearchExperiment());
+        assertEquals(ResearchExperiment.EXP_0_WORD_EMOJIS, wordAssessmentEvent.getResearchExperiment());
         assertEquals(ExperimentGroup.TREATMENT, wordAssessmentEvent.getExperimentGroup());
         assertEquals("มา", wordAssessmentEvent.getWordText());
         assertEquals(35, wordAssessmentEvent.getWordId());
@@ -184,7 +184,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals("ai.elimu.vitabu.debug", wordLearningEvent.getPackageName());
         assertNull(wordLearningEvent.getAdditionalData());
         assertEquals(LearningEventType.WORD_PRESSED, wordLearningEvent.getLearningEventType());
-        assertEquals(ResearchExperiment.WORD_EMOJIS, wordLearningEvent.getResearchExperiment());
+        assertEquals(ResearchExperiment.EXP_0_WORD_EMOJIS, wordLearningEvent.getResearchExperiment());
         assertEquals(ExperimentGroup.TREATMENT, wordLearningEvent.getExperimentGroup());
         assertEquals("ดี", wordLearningEvent.getWordText());
     }
@@ -275,7 +275,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals("ai.elimu.vitabu.debug", storyBookLearningEvent.getPackageName());
         assertNull(storyBookLearningEvent.getAdditionalData());
         assertEquals(LearningEventType.STORYBOOK_OPENED, storyBookLearningEvent.getLearningEventType());
-        assertEquals(ResearchExperiment.WORD_EMOJIS, storyBookLearningEvent.getResearchExperiment());
+        assertEquals(ResearchExperiment.EXP_0_WORD_EMOJIS, storyBookLearningEvent.getResearchExperiment());
         assertEquals(ExperimentGroup.TREATMENT, storyBookLearningEvent.getExperimentGroup());
         assertEquals("จับปลา", storyBookLearningEvent.getStoryBookTitle());
         assertEquals(48, storyBookLearningEvent.getStoryBookId());
@@ -323,7 +323,7 @@ public class CsvAnalyticsExtractionHelperTest {
         assertEquals("ai.elimu.filamu.debug", videoLearningEvent.getPackageName());
         assertNull(videoLearningEvent.getAdditionalData());
         assertEquals(LearningEventType.VIDEO_OPENED, videoLearningEvent.getLearningEventType());
-        assertEquals(ResearchExperiment.WORD_EMOJIS, videoLearningEvent.getResearchExperiment());
+        assertEquals(ResearchExperiment.EXP_0_WORD_EMOJIS, videoLearningEvent.getResearchExperiment());
         assertEquals(ExperimentGroup.TREATMENT, videoLearningEvent.getExperimentGroup());
         assertEquals("เพลง นับเลข 1-10 ｜ เพลงเด็กอนุบาล ｜ นับเล", videoLearningEvent.getVideoTitle());
         assertEquals(9, videoLearningEvent.getVideoId());

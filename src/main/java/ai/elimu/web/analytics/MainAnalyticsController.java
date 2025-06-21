@@ -8,6 +8,7 @@ import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordLearningEventDao;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,7 @@ public class MainAnalyticsController {
     log.info("handleRequest");
     
     model.addAttribute("studentCount", studentDao.readCount());
+    model.addAttribute("researchExperimentCount", ResearchExperiment.values().length);
 
     model.addAttribute("letterSoundAssessmentEventCount", letterSoundAssessmentEventDao.readCount());
     model.addAttribute("letterSoundLearningEventCount", letterSoundLearningEventDao.readCount());

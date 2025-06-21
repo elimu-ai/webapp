@@ -42,6 +42,8 @@ import ai.elimu.entity.enums.Role;
 import ai.elimu.model.v2.enums.Environment;
 import ai.elimu.model.v2.enums.admin.ApplicationStatus;
 import ai.elimu.model.v2.enums.analytics.LearningEventType;
+import ai.elimu.model.v2.enums.analytics.research.ExperimentGroup;
+import ai.elimu.model.v2.enums.analytics.research.ResearchExperiment;
 import ai.elimu.model.v2.enums.content.ImageFormat;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.util.ChecksumHelper;
@@ -352,6 +354,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     letterSoundLearningEvent.setTimestamp(randomWeekday);
                     letterSoundLearningEvent.setAndroidId(student.getAndroidId());
                     letterSoundLearningEvent.setPackageName("ai.elimu.herufi");
+                    letterSoundLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                    letterSoundLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     letterSoundLearningEvent.setLetterSoundId(letterSoundM.getId());
                     letterSoundLearningEventDao.create(letterSoundLearningEvent);
                 }
@@ -362,6 +366,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordAssessmentEvent.setTimestamp(week);
                     wordAssessmentEvent.setAndroidId(student.getAndroidId());
                     wordAssessmentEvent.setPackageName("ai.elimu.kukariri");
+                    wordAssessmentEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                    wordAssessmentEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     wordAssessmentEvent.setWordText(wordMAA.getText());
                     wordAssessmentEvent.setWordId(wordMAA.getId());
                     wordAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
@@ -375,6 +381,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordLearningEvent.setTimestamp(week);
                     wordLearningEvent.setAndroidId(student.getAndroidId());
                     wordLearningEvent.setPackageName("ai.elimu.maneno");
+                    wordLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                    wordLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     if (Math.random() > 0.5) {
                         wordLearningEvent.setWordText(wordMAA.getText());
                         wordLearningEvent.setWordId(wordMAA.getId());
@@ -392,6 +400,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     numberLearningEvent.setTimestamp(week);
                     numberLearningEvent.setAndroidId(student.getAndroidId());
                     numberLearningEvent.setPackageName("ai.elimu.calculator");
+                    numberLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                    numberLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     numberLearningEvent.setNumberValue(number3.getValue());
                     numberLearningEvent.setNumberSymbol(number3.getSymbol());
                     numberLearningEvent.setNumberId(number3.getId());
@@ -405,6 +415,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     storyBookLearningEvent.setTimestamp(week);
                     storyBookLearningEvent.setAndroidId(student.getAndroidId());
                     storyBookLearningEvent.setPackageName("ai.elimu.vitabu");
+                    storyBookLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                    storyBookLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     storyBookLearningEvent.setLearningEventType(LearningEventType.STORYBOOK_OPENED);
                     storyBookLearningEvent.setStoryBookTitle(storyBook.getTitle());
                     storyBookLearningEvent.setStoryBookId(storyBook.getId());
@@ -417,6 +429,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     videoLearningEvent.setTimestamp(week);
                     videoLearningEvent.setAndroidId(student.getAndroidId());
                     videoLearningEvent.setPackageName("ai.elimu.filamu");
+                    videoLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                    videoLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     videoLearningEvent.setVideoTitle(video.getTitle());
                     videoLearningEvent.setVideoId(video.getId());
                     videoLearningEvent.setLearningEventType(LearningEventType.VIDEO_OPENED);
