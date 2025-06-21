@@ -661,6 +661,7 @@
         packageName varchar(255),
         researchExperiment smallint,
         timestamp datetime,
+        wordId bigint,
         wordText varchar(255),
         application_id bigint,
         word_id bigint,

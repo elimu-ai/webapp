@@ -99,10 +99,9 @@ public class WordLearningEventImportScheduler {
                   }
 
                   // If content ID has been provided, look for match in the database
-                  // TODO: https://github.com/elimu-ai/webapp/issues/2113
-                  // if (event.getWordId() != null) {
-                  //   event.setWord(wordDao.read(event.getWordId()));
-                  // }
+                  if (event.getWordId() != null) {
+                    event.setWord(wordDao.read(event.getWordId()));
+                  }
 
                   // Store the event in the database
                   wordLearningEventDao.create(event);
