@@ -156,7 +156,13 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 letterSoundLearningEvent.setPackageName(packageName);
 
-                // TODO: additionalData
+                if (versionCode >= 3006000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
+                    String additionalData = csvRecord.get("additional_data");
+                    if (StringUtils.isNotBlank(additionalData)) {
+                        letterSoundLearningEvent.setAdditionalData(additionalData);
+                    }
+                }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
@@ -319,12 +325,13 @@ public class CsvAnalyticsExtractionHelper {
                 Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
                 wordAssessmentEvent.setTimeSpentMs(timeSpentMs);
 
-                // if (versionCode >= ???) {
-                //     String additionalData = csvRecord.get("additional_data");
-                //     if (StringUtils.isNotBlank(additionalData)) {
-                //        wordAssessmentEvent.setAdditionalData(additionalData);
-                //     }
-                // }
+                if (versionCode >= 3006000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
+                    String additionalData = csvRecord.get("additional_data");
+                    if (StringUtils.isNotBlank(additionalData)) {
+                        wordAssessmentEvent.setAdditionalData(additionalData);
+                    }
+                }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
@@ -402,12 +409,13 @@ public class CsvAnalyticsExtractionHelper {
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 wordLearningEvent.setLearningEventType(learningEventType);
 
-                // if (versionCode >= ???) {
-                //     String additionalData = csvRecord.get("additional_data");
-                //     if (StringUtils.isNotBlank(additionalData)) {
-                //        wordLearningEvent.setAdditionalData(additionalData);
-                //     }
-                // }
+                if (versionCode >= 3006000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
+                    String additionalData = csvRecord.get("additional_data");
+                    if (StringUtils.isNotBlank(additionalData)) {
+                        wordLearningEvent.setAdditionalData(additionalData);
+                    }
+                }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
@@ -486,12 +494,13 @@ public class CsvAnalyticsExtractionHelper {
                 LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                 storyBookLearningEvent.setLearningEventType(learningEventType);
 
-                // if (versionCode >= ???) {
-                //     String additionalData = csvRecord.get("additional_data");
-                //     if (StringUtils.isNotBlank(additionalData)) {
-                //        storyBookLearningEvent.setAdditionalData(additionalData);
-                //     }
-                // }
+                if (versionCode >= 3006000) {
+                    // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
+                    String additionalData = csvRecord.get("additional_data");
+                    if (StringUtils.isNotBlank(additionalData)) {
+                        storyBookLearningEvent.setAdditionalData(additionalData);
+                    }
+                }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
