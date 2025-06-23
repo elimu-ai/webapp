@@ -68,6 +68,7 @@ public class StoryBookCreateController {
     StoryBook existingStoryBook = storybookDao.readByTitle(storyBook.getTitle());
     if (existingStoryBook != null) {
       result.rejectValue("title", "NonUnique");
+      model.addAttribute("existingStoryBook", existingStoryBook);
     }
 
     if (result.hasErrors()) {

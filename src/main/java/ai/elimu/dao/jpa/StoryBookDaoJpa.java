@@ -19,6 +19,7 @@ public class StoryBookDaoJpa extends GenericDaoJpa<StoryBook> implements StoryBo
                 "FROM StoryBook book " +
                 "WHERE book.title = :title")
                 .setParameter("title", title)
+                .setMaxResults(1)
                 .getSingleResult();
         } catch (NoResultException e) {
             return null;
