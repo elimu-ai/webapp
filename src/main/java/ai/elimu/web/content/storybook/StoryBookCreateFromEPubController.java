@@ -378,7 +378,7 @@ public class StoryBookCreateFromEPubController {
                   || originalTextLowerCase.contains("pratham books")
                   || originalTextLowerCase.contains("storyweaver")
                   || originalTextLowerCase.contains("copyright page")
-                  || originalTextLowerCase.contains("by smart axiata") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("smart axiata") // StoryBookProvider#LETS_READ_ASIA
                   || originalTextLowerCase.contains("the asia foundation") // StoryBookProvider#LETS_READ_ASIA
                   || originalTextLowerCase.contains("এশিয়া ফাউন্ডেশনের") // StoryBookProvider#LETS_READ_ASIA
           ) {
