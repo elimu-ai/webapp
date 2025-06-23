@@ -150,189 +150,200 @@ public class StoryBookCreateFromEPubController {
         log.info("title: \"" + title + "\"");
         storyBook.setTitle(title);
 
-        String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
-        log.info("description: \"" + description + "\"");
-        if (StringUtils.isNotBlank(description)) {
-          log.info("description.length(): " + description.length());
-          if (description.length() > 1024) {
-            description = description.substring(0, 1023);
-          }
-          storyBook.setDescription(description);
+        StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getTitle());
+        log.info("existingStoryBook: " + existingStoryBook);
+        if (existingStoryBook != null) {
+          result.rejectValue("title", "NonUnique");
+          model.addAttribute("existingStoryBook", existingStoryBook);
         }
 
-        coverImage = new Image();
-        String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
-        log.info("coverImageReference: " + coverImageReference);
-        File coverImageFile = new File(opfFile.getParent(), coverImageReference);
-        log.info("coverImageFile: " + coverImageFile);
-        log.info("coverImageFile.exists(): " + coverImageFile.exists());
-        URI coverImageUri = coverImageFile.toURI();
-        log.info("coverImageUri: " + coverImageUri);
-        coverImageBytes = IOUtils.toByteArray(coverImageUri);
-        coverImage.setFileSize(coverImageBytes.length);
-        coverImage.setChecksumMd5(ChecksumHelper.calculateMD5(coverImageBytes));
-        byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
-        byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
-        byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
-        if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
-          coverImage.setContentType("image/gif");
-          coverImage.setImageFormat(ImageFormat.GIF);
-        } else if (coverImageFile.getName().toLowerCase().endsWith(".png")) {
-          coverImage.setContentType("image/png");
-          coverImage.setImageFormat(ImageFormat.PNG);
-        } else if (coverImageFile.getName().toLowerCase().endsWith(".jpg") || coverImageFile.getName().toLowerCase().endsWith(".jpeg")) {
-          coverImage.setContentType("image/jpg");
-          coverImage.setImageFormat(ImageFormat.JPG);
-        } else if (coverImageFile.getName().toLowerCase().endsWith(".gif")) {
-          coverImage.setContentType("image/gif");
-          coverImage.setImageFormat(ImageFormat.GIF);
+        if (!result.hasErrors()) {
+          String description = EPubMetadataExtractionHelper.extractDescriptionFromOpfFile(opfFile);
+          log.info("description: \"" + description + "\"");
+          if (StringUtils.isNotBlank(description)) {
+            log.info("description.length(): " + description.length());
+            if (description.length() > 1024) {
+              description = description.substring(0, 1023);
+            }
+            storyBook.setDescription(description);
+          }
+
+          coverImage = new Image();
+          String coverImageReference = EPubMetadataExtractionHelper.extractCoverImageReferenceFromOpfFile(opfFile);
+          log.info("coverImageReference: " + coverImageReference);
+          File coverImageFile = new File(opfFile.getParent(), coverImageReference);
+          log.info("coverImageFile: " + coverImageFile);
+          log.info("coverImageFile.exists(): " + coverImageFile.exists());
+          URI coverImageUri = coverImageFile.toURI();
+          log.info("coverImageUri: " + coverImageUri);
+          coverImageBytes = IOUtils.toByteArray(coverImageUri);
+          coverImage.setFileSize(coverImageBytes.length);
+          coverImage.setChecksumMd5(ChecksumHelper.calculateMD5(coverImageBytes));
+          byte[] headerBytes = Arrays.copyOfRange(coverImageBytes, 0, 6);
+          byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+          byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+          if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+            coverImage.setContentType("image/gif");
+            coverImage.setImageFormat(ImageFormat.GIF);
+          } else if (coverImageFile.getName().toLowerCase().endsWith(".png")) {
+            coverImage.setContentType("image/png");
+            coverImage.setImageFormat(ImageFormat.PNG);
+          } else if (coverImageFile.getName().toLowerCase().endsWith(".jpg") || coverImageFile.getName().toLowerCase().endsWith(".jpeg")) {
+            coverImage.setContentType("image/jpg");
+            coverImage.setImageFormat(ImageFormat.JPG);
+          } else if (coverImageFile.getName().toLowerCase().endsWith(".gif")) {
+            coverImage.setContentType("image/gif");
+            coverImage.setImageFormat(ImageFormat.GIF);
+          }
+          try {
+            int[] dominantColor = ImageColorHelper.getDominantColor(coverImageBytes);
+            coverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+          } catch (NullPointerException ex) {
+            // javax.imageio.IIOException: Unsupported Image Type
+          }
+          
+          // Store the cover image
+          coverImage.setTitle(storyBook.getTitle() + "_cover");
+          String existingChecksumGitHub = imageDao.readChecksumGitHub(coverImage.getChecksumMd5());
+          if (StringUtils.isNotBlank(existingChecksumGitHub)) {
+            // Re-use existing checksum previously returned from the GitHub API
+            coverImage.setChecksumGitHub(existingChecksumGitHub);
+          } else {
+            String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
+            coverImage.setChecksumGitHub(checksumGitHub);
+          }
+          imageDao.create(coverImage);
+          storeImageContributionEvent(coverImage, session, request);
+
+          // Set it as the StoryBook's cover image
+          storyBook.setCoverImage(coverImage);
         }
-        try {
-          int[] dominantColor = ImageColorHelper.getDominantColor(coverImageBytes);
-          coverImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
-        } catch (NullPointerException ex) {
-          // javax.imageio.IIOException: Unsupported Image Type
+      }
+
+      if (!result.hasErrors()) {
+        // Extract the ePUB's chapters
+        File tableOfContentsFile = null;
+        for (File file : filesInEPub) {
+          log.info("file: " + file);
+          if (file.getName().startsWith("toc.")
+              || file.getName().startsWith("nav.")) {
+            tableOfContentsFile = file;
+          }
         }
-        
-        // Store the cover image
-        coverImage.setTitle(storyBook.getTitle() + "_cover");
-        String existingChecksumGitHub = imageDao.readChecksumGitHub(coverImage.getChecksumMd5());
-        if (StringUtils.isNotBlank(existingChecksumGitHub)) {
-          // Re-use existing checksum previously returned from the GitHub API
-          coverImage.setChecksumGitHub(existingChecksumGitHub);
+        log.info("tableOfContentsFile: \"" + tableOfContentsFile + "\"");
+        if (tableOfContentsFile == null) {
+          throw new IllegalArgumentException("The TOC file was not found");
         } else {
-          String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(coverImage, coverImageBytes);
-          coverImage.setChecksumGitHub(checksumGitHub);
-        }
-        imageDao.create(coverImage);
-        storeImageContributionEvent(coverImage, session, request);
-
-        // Set it as the StoryBook's cover image
-        storyBook.setCoverImage(coverImage);
-      }
-
-      // Extract the ePUB's chapters
-      File tableOfContentsFile = null;
-      for (File file : filesInEPub) {
-        log.info("file: " + file);
-        if (file.getName().startsWith("toc.")
-            || file.getName().startsWith("nav.")) {
-          tableOfContentsFile = file;
-        }
-      }
-      log.info("tableOfContentsFile: \"" + tableOfContentsFile + "\"");
-      if (tableOfContentsFile == null) {
-        throw new IllegalArgumentException("The TOC file was not found");
-      } else {
-        List<String> chapterReferences = null;
-        if (storyBookEPubService.isTableOfContentsFileHtmlLike(tableOfContentsFile.getName())) {
-          // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
-          chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
-        } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
-          // StoryBookProvider#STORYWEAVER
-          chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(tableOfContentsFile);
-        }
-        log.info("chapterReferences.size(): " + chapterReferences.size());
-
-        // Extract each chapter's image (if any) and paragraphs
-        for (String chapterReference : chapterReferences) {
-          log.info("chapterReference: \"" + chapterReference + "\"");
-          File chapterFile = new File(opfFile.getParent(), chapterReference);
-          log.info("chapterFile: \"" + chapterFile + "\"");
-          StoryBookChapter storyBookChapter = new StoryBookChapter();
-          storyBookChapter.setSortOrder(storyBookChapters.size());
-          storyBookChapters.add(storyBookChapter);
-
-          String chapterImageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(chapterFile);
-          log.info("chapterImageReference: " + chapterImageReference);
-          if (StringUtils.isNotBlank(chapterImageReference)) {
-            File chapterImageFile = null;
-            if (chapterImageReference.startsWith("http://") || chapterImageReference.startsWith("https://")) {
-              // Download the file
-
-              URL sourceUrl = new URL(chapterImageReference);
-
-              String tmpDir = System.getProperty("java.io.tmpdir");
-              log.info("tmpDir: " + tmpDir);
-              File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
-              log.info("tmpDirElimuAi: " + tmpDirElimuAi);
-              log.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
-              chapterImageFile = new File(tmpDirElimuAi, "chapter-image");
-
-              log.warn("Downloading image from " + sourceUrl + " and storing at " + chapterImageFile);
-              FileUtils.copyURLToFile(sourceUrl, chapterImageFile);
-            } else {
-              chapterImageFile = new File(chapterFile.getParent(), chapterImageReference);
-            }
-            log.info("chapterImageFile: " + chapterImageFile);
-            log.info("chapterImageFile.exists(): " + chapterImageFile.exists());
-            URI chapterImageUri = chapterImageFile.toURI();
-            log.info("chapterImageUri: " + chapterImageUri);
-            byte [] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
-            
-            Image chapterImage = new Image();
-            chapterImage.setFileSize(chapterImageBytes.length);
-            chapterImage.setChecksumMd5(ChecksumHelper.calculateMD5(chapterImageBytes));
-            byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
-            byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
-            byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
-            if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
-              chapterImage.setContentType("image/gif");
-              chapterImage.setImageFormat(ImageFormat.GIF);
-            } else if (chapterImageFile.getName().toLowerCase().endsWith(".png")) {
-              chapterImage.setContentType("image/png");
-              chapterImage.setImageFormat(ImageFormat.PNG);
-            } else if (chapterImageFile.getName().toLowerCase().endsWith(".jpg") || chapterImageFile.getName().toLowerCase().endsWith(".jpeg")) {
-              chapterImage.setContentType("image/jpg");
-              chapterImage.setImageFormat(ImageFormat.JPG);
-            } else if (chapterImageFile.getName().toLowerCase().endsWith(".gif")) {
-              chapterImage.setContentType("image/gif");
-              chapterImage.setImageFormat(ImageFormat.GIF);
-            }
-            try {
-              int[] dominantColor = ImageColorHelper.getDominantColor(chapterImageBytes);
-              chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
-            } catch (NullPointerException ex) {
-              // javax.imageio.IIOException: Unsupported Image Type
-            }
-
-            // Store the chapter image
-            chapterImage.setTitle(storyBook.getTitle() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
-            String existingChecksumGitHub = imageDao.readChecksumGitHub(chapterImage.getChecksumMd5());
-            if (StringUtils.isNotBlank(existingChecksumGitHub)) {
-              // Re-use existing checksum previously returned from the GitHub API
-              chapterImage.setChecksumGitHub(existingChecksumGitHub);
-            } else {
-              String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
-              chapterImage.setChecksumGitHub(checksumGitHub);
-            }
-            imageDao.create(chapterImage);
-            storeImageContributionEvent(chapterImage, session, request);
-
-            storyBookChapter.setImage(chapterImage);
+          List<String> chapterReferences = null;
+          if (storyBookEPubService.isTableOfContentsFileHtmlLike(tableOfContentsFile.getName())) {
+            // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
+            chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
+          } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
+            // StoryBookProvider#STORYWEAVER
+            chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFileNcx(tableOfContentsFile);
           }
+          log.info("chapterReferences.size(): " + chapterReferences.size());
 
-          Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-          List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile, language);
-          log.info("paragraphs.size(): " + paragraphs.size());
-          for (int i = 0; i < paragraphs.size(); i++) {
-            String paragraph = paragraphs.get(i);
-            log.info("paragraph: \"" + paragraph + "\"");
-            log.info("paragraph.length(): " + paragraph.length());
+          // Extract each chapter's image (if any) and paragraphs
+          for (String chapterReference : chapterReferences) {
+            log.info("chapterReference: \"" + chapterReference + "\"");
+            File chapterFile = new File(opfFile.getParent(), chapterReference);
+            log.info("chapterFile: \"" + chapterFile + "\"");
+            StoryBookChapter storyBookChapter = new StoryBookChapter();
+            storyBookChapter.setSortOrder(storyBookChapters.size());
+            storyBookChapters.add(storyBookChapter);
 
-            StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
-            storyBookParagraph.setStoryBookChapter(storyBookChapter);
-            storyBookParagraph.setSortOrder(i);
+            String chapterImageReference = EPubImageExtractionHelper.extractImageReferenceFromChapterFile(chapterFile);
+            log.info("chapterImageReference: " + chapterImageReference);
+            if (StringUtils.isNotBlank(chapterImageReference)) {
+              File chapterImageFile = null;
+              if (chapterImageReference.startsWith("http://") || chapterImageReference.startsWith("https://")) {
+                // Download the file
 
-            if (paragraph.length() > 1024) {
-              log.warn("Reducing the length of the paragraph to its initial 1,024 characters.");
-              paragraph = paragraph.substring(0, 1023);
+                URL sourceUrl = new URL(chapterImageReference);
+
+                String tmpDir = System.getProperty("java.io.tmpdir");
+                log.info("tmpDir: " + tmpDir);
+                File tmpDirElimuAi = new File(tmpDir, "elimu-ai");
+                log.info("tmpDirElimuAi: " + tmpDirElimuAi);
+                log.info("tmpDirElimuAi.mkdir(): " + tmpDirElimuAi.mkdir());
+                chapterImageFile = new File(tmpDirElimuAi, "chapter-image");
+
+                log.warn("Downloading image from " + sourceUrl + " and storing at " + chapterImageFile);
+                FileUtils.copyURLToFile(sourceUrl, chapterImageFile);
+              } else {
+                chapterImageFile = new File(chapterFile.getParent(), chapterImageReference);
+              }
+              log.info("chapterImageFile: " + chapterImageFile);
+              log.info("chapterImageFile.exists(): " + chapterImageFile.exists());
+              URI chapterImageUri = chapterImageFile.toURI();
+              log.info("chapterImageUri: " + chapterImageUri);
+              byte [] chapterImageBytes = IOUtils.toByteArray(chapterImageUri);
+              
+              Image chapterImage = new Image();
+              chapterImage.setFileSize(chapterImageBytes.length);
+              chapterImage.setChecksumMd5(ChecksumHelper.calculateMD5(chapterImageBytes));
+              byte[] headerBytes = Arrays.copyOfRange(chapterImageBytes, 0, 6);
+              byte[] gifHeader87a = {71, 73, 70, 56, 55, 97}; // "GIF87a"
+              byte[] gifHeader89a = {71, 73, 70, 56, 57, 97}; // "GIF89a"
+              if (Arrays.equals(gifHeader87a, headerBytes) || Arrays.equals(gifHeader89a, headerBytes)) {
+                chapterImage.setContentType("image/gif");
+                chapterImage.setImageFormat(ImageFormat.GIF);
+              } else if (chapterImageFile.getName().toLowerCase().endsWith(".png")) {
+                chapterImage.setContentType("image/png");
+                chapterImage.setImageFormat(ImageFormat.PNG);
+              } else if (chapterImageFile.getName().toLowerCase().endsWith(".jpg") || chapterImageFile.getName().toLowerCase().endsWith(".jpeg")) {
+                chapterImage.setContentType("image/jpg");
+                chapterImage.setImageFormat(ImageFormat.JPG);
+              } else if (chapterImageFile.getName().toLowerCase().endsWith(".gif")) {
+                chapterImage.setContentType("image/gif");
+                chapterImage.setImageFormat(ImageFormat.GIF);
+              }
+              try {
+                int[] dominantColor = ImageColorHelper.getDominantColor(chapterImageBytes);
+                chapterImage.setDominantColor("rgb(" + dominantColor[0] + "," + dominantColor[1] + "," + dominantColor[2] + ")");
+              } catch (NullPointerException ex) {
+                // javax.imageio.IIOException: Unsupported Image Type
+              }
+
+              // Store the chapter image
+              chapterImage.setTitle(storyBook.getTitle() + "_ch-" + (storyBookChapter.getSortOrder() + 1));
+              String existingChecksumGitHub = imageDao.readChecksumGitHub(chapterImage.getChecksumMd5());
+              if (StringUtils.isNotBlank(existingChecksumGitHub)) {
+                // Re-use existing checksum previously returned from the GitHub API
+                chapterImage.setChecksumGitHub(existingChecksumGitHub);
+              } else {
+                String checksumGitHub = GitHubLfsHelper.uploadImageToLfs(chapterImage, chapterImageBytes);
+                chapterImage.setChecksumGitHub(checksumGitHub);
+              }
+              imageDao.create(chapterImage);
+              storeImageContributionEvent(chapterImage, session, request);
+
+              storyBookChapter.setImage(chapterImage);
             }
-            storyBookParagraph.setOriginalText(paragraph);
 
-            // Note: updating the paragraph's list of Words is handled by the ParagraphWordScheduler
+            Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+            List<String> paragraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(chapterFile, language);
+            log.info("paragraphs.size(): " + paragraphs.size());
+            for (int i = 0; i < paragraphs.size(); i++) {
+              String paragraph = paragraphs.get(i);
+              log.info("paragraph: \"" + paragraph + "\"");
+              log.info("paragraph.length(): " + paragraph.length());
 
-            storyBookParagraphs.add(storyBookParagraph);
+              StoryBookParagraph storyBookParagraph = new StoryBookParagraph();
+              storyBookParagraph.setStoryBookChapter(storyBookChapter);
+              storyBookParagraph.setSortOrder(i);
+
+              if (paragraph.length() > 1024) {
+                log.warn("Reducing the length of the paragraph to its initial 1,024 characters.");
+                paragraph = paragraph.substring(0, 1023);
+              }
+              storyBookParagraph.setOriginalText(paragraph);
+
+              // Note: updating the paragraph's list of Words is handled by the ParagraphWordScheduler
+
+              storyBookParagraphs.add(storyBookParagraph);
+            }
           }
         }
       }

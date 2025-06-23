@@ -21,6 +21,27 @@
     <div class="card-panel">
         <form:form modelAttribute="storyBook">
             <tag:formErrors modelAttribute="storyBook" />
+            <c:if test="${not empty existingStoryBook}">
+                <div class="row">
+                    <div class="col s12 m8 l6">
+                        <div class="storyBook card">
+                            <div class="headband"></div>
+                            <c:set var="coverImageUrl" value="" />
+                            <c:if test="${not empty existingStoryBook.coverImage}">
+                                <c:set var="coverImageUrl" value="${existingStoryBook.coverImage.url}" />
+                            </c:if>
+                            <a class="editLink" href="<spring:url value='/content/storybook/edit/${existingStoryBook.id}' />">
+                                <div class="card-image checksumGitHub-${existingStoryBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                                    <span class="card-title"><c:out value="${existingStoryBook.title}" /></span>
+                                </div>
+                            </a>
+                            <div class="card-content">
+                                <p class="grey-text" style="margin-bottom: 0.5em;"><c:out value="${existingStoryBook.description}" /></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
             
             <form:hidden path="revisionNumber" value="${storyBook.revisionNumber}" />
 

@@ -48,6 +48,7 @@
                                 <c:when test="${code == 'NonUnique.packageName'}">The package name already exists</c:when>                                    
                                 <c:when test="${code == 'NonUnique.valueIpa'}">The IPA value already exists</c:when>                                    
                                 <c:when test="${code == 'NonUnique.valueSampa'}">The X-SAMPA value already exists</c:when>                                    
+                                <c:when test="${code == 'NonUnique'}">${error.field} already exists</c:when>
                                 <c:when test="${code == 'NotNull.bytes'}">File must be selected</c:when>                                    
                                 <c:when test="${code == 'NotNull.motivation'}">Personal motivation must be provided</c:when>                                    
                                 <c:when test="${code == 'NotNull.packageName'}">Package name must be provided</c:when>                                    

@@ -149,6 +149,7 @@ public class StoryBookEditController {
     StoryBook existingStoryBook = storyBookDao.readByTitle(storyBook.getTitle());
     if ((existingStoryBook != null) && !existingStoryBook.getId().equals(storyBook.getId())) {
       result.rejectValue("title", "NonUnique");
+      model.addAttribute("existingStoryBook", existingStoryBook);
     }
 
     if (result.hasErrors()) {
