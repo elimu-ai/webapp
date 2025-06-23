@@ -17,7 +17,7 @@
                                 <c:set var="coverImageUrl" value="${existingStoryBook.coverImage.url}" />
                             </c:if>
                             <a class="editLink" href="<spring:url value='/content/storybook/edit/${existingStoryBook.id}' />">
-                                <div class="card-image checksumGitHub-${existingStoryBook.coverImage.checksumGitHub != null}" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
+                                <div class="card-image" style="background-image: url(<spring:url value='${coverImageUrl}' />); background-color: #DDD;">
                                     <span class="card-title"><c:out value="${existingStoryBook.title}" /></span>
                                 </div>
                             </a>
