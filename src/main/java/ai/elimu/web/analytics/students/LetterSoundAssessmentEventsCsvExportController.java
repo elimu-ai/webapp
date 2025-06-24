@@ -61,20 +61,20 @@ public class LetterSoundAssessmentEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (LetterSoundAssessmentEvent letterSoundAssessmentEvent : letterSoundAssessmentEvents) {
-        log.info("letterSoundAssessmentEvent.getId(): " + letterSoundAssessmentEvent.getId());
+      for (LetterSoundAssessmentEvent event : letterSoundAssessmentEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            letterSoundAssessmentEvent.getId(),
-            letterSoundAssessmentEvent.getTimestamp().getTimeInMillis() / 1_000,
-            letterSoundAssessmentEvent.getPackageName(),
-            letterSoundAssessmentEvent.getMasteryScore(),
-            letterSoundAssessmentEvent.getTimeSpentMs(),
-            letterSoundAssessmentEvent.getAdditionalData(),
-            letterSoundAssessmentEvent.getResearchExperiment().ordinal(),
-            letterSoundAssessmentEvent.getExperimentGroup().ordinal(),
-            letterSoundAssessmentEvent.getLetterSoundLetters(),
-            letterSoundAssessmentEvent.getLetterSoundSounds(),
-            letterSoundAssessmentEvent.getLetterSoundId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getMasteryScore(),
+            event.getTimeSpentMs(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getLetterSoundLetters(),
+            event.getLetterSoundSounds(),
+            event.getLetterSoundId()
         );
       }
       csvPrinter.flush();

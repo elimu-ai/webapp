@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,18 +60,18 @@ public class LetterSoundLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (LetterSoundLearningEvent letterSoundLearningEvent : letterSoundLearningEvents) {
-        log.info("letterSoundLearningEvent.getId(): " + letterSoundLearningEvent.getId());
+      for (LetterSoundLearningEvent event : letterSoundLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            letterSoundLearningEvent.getId(),
-            letterSoundLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            letterSoundLearningEvent.getPackageName(),
-            letterSoundLearningEvent.getAdditionalData(),
-            letterSoundLearningEvent.getResearchExperiment().ordinal(),
-            letterSoundLearningEvent.getExperimentGroup().ordinal(),
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
             // letterSoundLearningEvent.getLetterSoundLetters(),
             // letterSoundLearningEvent.getLetterSoundSounds(),
-            letterSoundLearningEvent.getLetterSoundId()
+            event.getLetterSoundId()
         );
       }
       csvPrinter.flush();
@@ -86,6 +87,7 @@ public class LetterSoundLearningEventsCsvExportController {
       outputStream.close();
     } catch (Exception ex) {
       log.error(ex.getMessage());
+      response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
       DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of letter-sound learning events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }

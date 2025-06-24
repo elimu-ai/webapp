@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,18 +60,18 @@ public class WordLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (WordLearningEvent wordLearningEvent : wordLearningEvents) {
-        log.info("wordLearningEvent.getId(): " + wordLearningEvent.getId());
+      for (WordLearningEvent event : wordLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            wordLearningEvent.getId(),
-            wordLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            wordLearningEvent.getPackageName(),
-            wordLearningEvent.getLearningEventType(),
-            wordLearningEvent.getAdditionalData(),
-            wordLearningEvent.getResearchExperiment().ordinal(),
-            wordLearningEvent.getExperimentGroup().ordinal(),
-            wordLearningEvent.getWordText(),
-            (wordLearningEvent.getWord() == null) ? null : wordLearningEvent.getWord().getId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getLearningEventType(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getWordText(),
+            (event.getWord() == null) ? null : event.getWord().getId()
             // wordLearningEvent.getWordId(), https://github.com/elimu-ai/webapp/issues/2113
         );
       }
@@ -87,6 +88,7 @@ public class WordLearningEventsCsvExportController {
       outputStream.close();
     } catch (Exception ex) {
       log.error(ex.getMessage());
+      response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
       DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of word learning events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }

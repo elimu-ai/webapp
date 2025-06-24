@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,18 +64,18 @@ public class StoryBookLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
-        log.info("storyBookLearningEvent.getId(): " + storyBookLearningEvent.getId());
+      for (StoryBookLearningEvent event : storyBookLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            storyBookLearningEvent.getId(),
-            storyBookLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            storyBookLearningEvent.getPackageName(),
-            storyBookLearningEvent.getLearningEventType(),
-            storyBookLearningEvent.getAdditionalData(),
-            storyBookLearningEvent.getResearchExperiment().ordinal(),
-            storyBookLearningEvent.getExperimentGroup().ordinal(),
-            storyBookLearningEvent.getStoryBookTitle(),
-            storyBookLearningEvent.getStoryBookId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getLearningEventType(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getStoryBookTitle(),
+            event.getStoryBookId()
         );
       }
       csvPrinter.flush();
@@ -90,6 +91,7 @@ public class StoryBookLearningEventsCsvExportController {
       outputStream.close();
     } catch (Exception ex) {
       log.error(ex.getMessage());
+      response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
       DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of storybook learning events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }

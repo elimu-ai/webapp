@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,19 +61,19 @@ public class NumberLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (NumberLearningEvent numberLearningEvent : numberLearningEvents) {
-        log.info("numberLearningEvent.getId(): " + numberLearningEvent.getId());
+      for (NumberLearningEvent event : numberLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            numberLearningEvent.getId(),
-            numberLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            numberLearningEvent.getPackageName(),
-            numberLearningEvent.getLearningEventType(),
-            numberLearningEvent.getAdditionalData(),
-            numberLearningEvent.getResearchExperiment().ordinal(),
-            numberLearningEvent.getExperimentGroup().ordinal(),
-            numberLearningEvent.getNumberValue(),
-            numberLearningEvent.getNumberSymbol(),
-            numberLearningEvent.getNumberId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getLearningEventType(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getNumberValue(),
+            event.getNumberSymbol(),
+            event.getNumberId()
         );
       }
       csvPrinter.flush();
@@ -88,6 +89,7 @@ public class NumberLearningEventsCsvExportController {
       outputStream.close();
     } catch (Exception ex) {
       log.error(ex.getMessage());
+      response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
       DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of number learning events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }

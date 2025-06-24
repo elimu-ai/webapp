@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,19 +61,19 @@ public class WordAssessmentEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (WordAssessmentEvent wordAssessmentEvent : wordAssessmentEvents) {
-        log.info("wordAssessmentEvent.getId(): " + wordAssessmentEvent.getId());
+      for (WordAssessmentEvent event : wordAssessmentEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            wordAssessmentEvent.getId(),
-            wordAssessmentEvent.getTimestamp().getTimeInMillis() / 1_000,
-            wordAssessmentEvent.getPackageName(),
-            wordAssessmentEvent.getMasteryScore(),
-            wordAssessmentEvent.getTimeSpentMs(),
-            wordAssessmentEvent.getAdditionalData(),
-            wordAssessmentEvent.getResearchExperiment().ordinal(),
-            wordAssessmentEvent.getExperimentGroup().ordinal(),
-            wordAssessmentEvent.getWordText(),
-            wordAssessmentEvent.getWordId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getMasteryScore(),
+            event.getTimeSpentMs(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getWordText(),
+            event.getWordId()
         );
       }
       csvPrinter.flush();
@@ -88,6 +89,7 @@ public class WordAssessmentEventsCsvExportController {
       outputStream.close();
     } catch (Exception ex) {
       log.error(ex.getMessage());
+      response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
       DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of word assessment events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }
