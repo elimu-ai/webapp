@@ -85,6 +85,24 @@ public class StudentCsvExportTest {
     }
 
     @Test
+    public void testExportCsv_WordAssessmentEvents() {
+        log.info("testExportCsv_WordAssessmentEvents");
+        
+        StudentListPage studentListPage = new StudentListPage(driver);
+        studentListPage.pressRandomStudent();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
+
+        StudentPage studentPage = new StudentPage(driver);
+        
+        String fileUrl = studentPage.getWordAssessmentEventsUrl();
+        log.info("fileUrl: " + fileUrl);
+        HttpResponse<String> getResponse = Unirest.get(fileUrl).asString();
+        log.info("getResponse.getStatus(): " + getResponse.getStatus());
+        log.info("getResponse.isSuccess(): " + getResponse.isSuccess());
+        assertTrue(getResponse.isSuccess());
+    }
+
+    @Test
     public void testExportCsv_WordLearningEvents() {
         log.info("testExportCsv_WordLearningEvents");
         
@@ -95,6 +113,60 @@ public class StudentCsvExportTest {
         StudentPage studentPage = new StudentPage(driver);
         
         String fileUrl = studentPage.getWordLearningEventsUrl();
+        log.info("fileUrl: " + fileUrl);
+        HttpResponse<String> getResponse = Unirest.get(fileUrl).asString();
+        log.info("getResponse.getStatus(): " + getResponse.getStatus());
+        log.info("getResponse.isSuccess(): " + getResponse.isSuccess());
+        assertTrue(getResponse.isSuccess());
+    }
+
+    @Test
+    public void testExportCsv_NumberLearningEvents() {
+        log.info("testExportCsv_NumberLearningEvents");
+        
+        StudentListPage studentListPage = new StudentListPage(driver);
+        studentListPage.pressRandomStudent();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
+
+        StudentPage studentPage = new StudentPage(driver);
+        
+        String fileUrl = studentPage.getNumberLearningEventsUrl();
+        log.info("fileUrl: " + fileUrl);
+        HttpResponse<String> getResponse = Unirest.get(fileUrl).asString();
+        log.info("getResponse.getStatus(): " + getResponse.getStatus());
+        log.info("getResponse.isSuccess(): " + getResponse.isSuccess());
+        assertTrue(getResponse.isSuccess());
+    }
+
+    @Test
+    public void testExportCsv_StoryBookLearningEvents() {
+        log.info("testExportCsv_StoryBookLearningEvents");
+        
+        StudentListPage studentListPage = new StudentListPage(driver);
+        studentListPage.pressRandomStudent();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
+
+        StudentPage studentPage = new StudentPage(driver);
+        
+        String fileUrl = studentPage.getStoryBookLearningEventsUrl();
+        log.info("fileUrl: " + fileUrl);
+        HttpResponse<String> getResponse = Unirest.get(fileUrl).asString();
+        log.info("getResponse.getStatus(): " + getResponse.getStatus());
+        log.info("getResponse.isSuccess(): " + getResponse.isSuccess());
+        assertTrue(getResponse.isSuccess());
+    }
+
+    @Test
+    public void testExportCsv_VideoLearningEvents() {
+        log.info("testExportCsv_VideoLearningEvents");
+        
+        StudentListPage studentListPage = new StudentListPage(driver);
+        studentListPage.pressRandomStudent();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
+
+        StudentPage studentPage = new StudentPage(driver);
+        
+        String fileUrl = studentPage.getVideoLearningEventsUrl();
         log.info("fileUrl: " + fileUrl);
         HttpResponse<String> getResponse = Unirest.get(fileUrl).asString();
         log.info("getResponse.getStatus(): " + getResponse.getStatus());
