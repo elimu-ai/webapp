@@ -60,8 +60,8 @@ public class WordLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (WordLearningEvent wordLearningEvent : wordLearningEvents) {
-        log.info("wordLearningEvent.getId(): " + wordLearningEvent.getId());
+      for (WordLearningEvent event : wordLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
             wordLearningEvent.getId(),
             wordLearningEvent.getTimestamp().getTimeInMillis() / 1_000,

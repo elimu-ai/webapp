@@ -65,18 +65,18 @@ public class VideoLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (VideoLearningEvent videoLearningEvent : videoLearningEvents) {
-        log.info("videoLearningEvent.getId(): " + videoLearningEvent.getId());
+      for (VideoLearningEvent event : videoLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            videoLearningEvent.getId(),
-            videoLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            videoLearningEvent.getPackageName(),
-            videoLearningEvent.getLearningEventType(),
-            videoLearningEvent.getAdditionalData(),
-            videoLearningEvent.getResearchExperiment().ordinal(),
-            videoLearningEvent.getExperimentGroup().ordinal(),
-            videoLearningEvent.getVideoTitle(),
-            videoLearningEvent.getVideoId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getLearningEventType(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getVideoTitle(),
+            event.getVideoId()
         );
       }
       csvPrinter.flush();

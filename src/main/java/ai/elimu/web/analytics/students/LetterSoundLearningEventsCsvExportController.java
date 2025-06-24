@@ -60,18 +60,18 @@ public class LetterSoundLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (LetterSoundLearningEvent letterSoundLearningEvent : letterSoundLearningEvents) {
-        log.info("letterSoundLearningEvent.getId(): " + letterSoundLearningEvent.getId());
+      for (LetterSoundLearningEvent event : letterSoundLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            letterSoundLearningEvent.getId(),
-            letterSoundLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            letterSoundLearningEvent.getPackageName(),
-            letterSoundLearningEvent.getAdditionalData(),
-            letterSoundLearningEvent.getResearchExperiment().ordinal(),
-            letterSoundLearningEvent.getExperimentGroup().ordinal(),
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
             // letterSoundLearningEvent.getLetterSoundLetters(),
             // letterSoundLearningEvent.getLetterSoundSounds(),
-            letterSoundLearningEvent.getLetterSoundId()
+            event.getLetterSoundId()
         );
       }
       csvPrinter.flush();

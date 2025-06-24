@@ -64,18 +64,18 @@ public class StoryBookLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
-        log.info("storyBookLearningEvent.getId(): " + storyBookLearningEvent.getId());
+      for (StoryBookLearningEvent event : storyBookLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            storyBookLearningEvent.getId(),
-            storyBookLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            storyBookLearningEvent.getPackageName(),
-            storyBookLearningEvent.getLearningEventType(),
-            storyBookLearningEvent.getAdditionalData(),
-            storyBookLearningEvent.getResearchExperiment().ordinal(),
-            storyBookLearningEvent.getExperimentGroup().ordinal(),
-            storyBookLearningEvent.getStoryBookTitle(),
-            storyBookLearningEvent.getStoryBookId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getLearningEventType(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getStoryBookTitle(),
+            event.getStoryBookId()
         );
       }
       csvPrinter.flush();

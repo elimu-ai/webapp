@@ -61,19 +61,19 @@ public class NumberLearningEventsCsvExportController {
           ).build();
       StringWriter stringWriter = new StringWriter();
       CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-      for (NumberLearningEvent numberLearningEvent : numberLearningEvents) {
-        log.info("numberLearningEvent.getId(): " + numberLearningEvent.getId());
+      for (NumberLearningEvent event : numberLearningEvents) {
+        log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            numberLearningEvent.getId(),
-            numberLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            numberLearningEvent.getPackageName(),
-            numberLearningEvent.getLearningEventType(),
-            numberLearningEvent.getAdditionalData(),
-            numberLearningEvent.getResearchExperiment().ordinal(),
-            numberLearningEvent.getExperimentGroup().ordinal(),
-            numberLearningEvent.getNumberValue(),
-            numberLearningEvent.getNumberSymbol(),
-            numberLearningEvent.getNumberId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getLearningEventType(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getNumberValue(),
+            event.getNumberSymbol(),
+            event.getNumberId()
         );
       }
       csvPrinter.flush();
