@@ -4,6 +4,8 @@ import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,53 +38,55 @@ public class LetterSoundLearningEventsCsvExportController {
   ) throws IOException {
     log.info("handleRequest");
 
-    Student student = studentDao.read(studentId);
-    log.info("student.getAndroidId(): " + student.getAndroidId());
-
-    List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll(student.getAndroidId());
-    log.info("letterSoundLearningEvents.size(): " + letterSoundLearningEvents.size());
-
-    CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-        .setHeader(
-            "id",
-            "timestamp",
-            "package_name",
-            "additional_data",
-            "research_experiment",
-            "experiment_group",
-            // "letter_sound_letters",
-            // "letter_sound_sounds",
-            "letter_sound_id"
-        ).build();
-    StringWriter stringWriter = new StringWriter();
-    CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-    for (LetterSoundLearningEvent letterSoundLearningEvent : letterSoundLearningEvents) {
-      log.info("letterSoundLearningEvent.getId(): " + letterSoundLearningEvent.getId());
-      csvPrinter.printRecord(
-          letterSoundLearningEvent.getId(),
-          letterSoundLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-          letterSoundLearningEvent.getPackageName(),
-          letterSoundLearningEvent.getAdditionalData(),
-          letterSoundLearningEvent.getResearchExperiment().ordinal(),
-          letterSoundLearningEvent.getExperimentGroup().ordinal(),
-          // letterSoundLearningEvent.getLetterSoundLetters(),
-          // letterSoundLearningEvent.getLetterSoundSounds(),
-          letterSoundLearningEvent.getLetterSoundId()
-      );
-    }
-    csvPrinter.flush();
-    csvPrinter.close();
-
-    String csvFileContent = stringWriter.toString();
-    response.setContentType("text/csv");
-    byte[] bytes = csvFileContent.getBytes();
-    response.setContentLength(bytes.length);
     try {
+      Student student = studentDao.read(studentId);
+      log.info("student.getAndroidId(): " + student.getAndroidId());
+
+      List<LetterSoundLearningEvent> letterSoundLearningEvents = letterSoundLearningEventDao.readAll(student.getAndroidId());
+      log.info("letterSoundLearningEvents.size(): " + letterSoundLearningEvents.size());
+
+      CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+          .setHeader(
+              "id",
+              "timestamp",
+              "package_name",
+              "additional_data",
+              "research_experiment",
+              "experiment_group",
+              // "letter_sound_letters",
+              // "letter_sound_sounds",
+              "letter_sound_id"
+          ).build();
+      StringWriter stringWriter = new StringWriter();
+      CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
+      for (LetterSoundLearningEvent letterSoundLearningEvent : letterSoundLearningEvents) {
+        log.info("letterSoundLearningEvent.getId(): " + letterSoundLearningEvent.getId());
+        csvPrinter.printRecord(
+            letterSoundLearningEvent.getId(),
+            letterSoundLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
+            letterSoundLearningEvent.getPackageName(),
+            letterSoundLearningEvent.getAdditionalData(),
+            letterSoundLearningEvent.getResearchExperiment().ordinal(),
+            letterSoundLearningEvent.getExperimentGroup().ordinal(),
+            // letterSoundLearningEvent.getLetterSoundLetters(),
+            // letterSoundLearningEvent.getLetterSoundSounds(),
+            letterSoundLearningEvent.getLetterSoundId()
+        );
+      }
+      csvPrinter.flush();
+      csvPrinter.close();
+
+      String csvFileContent = stringWriter.toString();
+      response.setContentType("text/csv");
+      byte[] bytes = csvFileContent.getBytes();
+      response.setContentLength(bytes.length);
+
       outputStream.write(bytes);
       outputStream.flush();
       outputStream.close();
-    } catch (IOException ex) {
+    } catch (Exception ex) {
       log.error(ex.getMessage());
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of letter-sound learning events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }
 }

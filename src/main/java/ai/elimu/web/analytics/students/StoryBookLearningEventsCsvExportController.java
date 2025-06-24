@@ -5,6 +5,8 @@ import ai.elimu.dao.StudentDao;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.util.AnalyticsHelper;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -37,56 +39,58 @@ public class StoryBookLearningEventsCsvExportController {
   ) throws IOException {
     log.info("handleRequest");
 
-    Student student = studentDao.read(studentId);
-    log.info("student.getAndroidId(): " + student.getAndroidId());
-
-    List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll(student.getAndroidId());
-    log.info("storyBookLearningEvents.size(): " + storyBookLearningEvents.size());
-    for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
-      storyBookLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(storyBookLearningEvent.getAndroidId()));
-    }
-
-    CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-        .setHeader(
-            "id",
-            "timestamp",
-            "package_name",
-            "learning_event_type",
-            "additional_data",
-            "research_experiment",
-            "experiment_group",
-            "storybook_title",
-            "storybook_id"
-        ).build();
-    StringWriter stringWriter = new StringWriter();
-    CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
-    for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
-      log.info("storyBookLearningEvent.getId(): " + storyBookLearningEvent.getId());
-      csvPrinter.printRecord(
-          storyBookLearningEvent.getId(),
-          storyBookLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-          storyBookLearningEvent.getPackageName(),
-          storyBookLearningEvent.getLearningEventType(),
-          storyBookLearningEvent.getAdditionalData(),
-          storyBookLearningEvent.getResearchExperiment().ordinal(),
-          storyBookLearningEvent.getExperimentGroup().ordinal(),
-          storyBookLearningEvent.getStoryBookTitle(),
-          storyBookLearningEvent.getStoryBookId()
-      );
-    }
-    csvPrinter.flush();
-    csvPrinter.close();
-
-    String csvFileContent = stringWriter.toString();
-    response.setContentType("text/csv");
-    byte[] bytes = csvFileContent.getBytes();
-    response.setContentLength(bytes.length);
     try {
+      Student student = studentDao.read(studentId);
+      log.info("student.getAndroidId(): " + student.getAndroidId());
+
+      List<StoryBookLearningEvent> storyBookLearningEvents = storyBookLearningEventDao.readAll(student.getAndroidId());
+      log.info("storyBookLearningEvents.size(): " + storyBookLearningEvents.size());
+      for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
+        storyBookLearningEvent.setAndroidId(AnalyticsHelper.redactAndroidId(storyBookLearningEvent.getAndroidId()));
+      }
+
+      CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+          .setHeader(
+              "id",
+              "timestamp",
+              "package_name",
+              "learning_event_type",
+              "additional_data",
+              "research_experiment",
+              "experiment_group",
+              "storybook_title",
+              "storybook_id"
+          ).build();
+      StringWriter stringWriter = new StringWriter();
+      CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
+      for (StoryBookLearningEvent storyBookLearningEvent : storyBookLearningEvents) {
+        log.info("storyBookLearningEvent.getId(): " + storyBookLearningEvent.getId());
+        csvPrinter.printRecord(
+            storyBookLearningEvent.getId(),
+            storyBookLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
+            storyBookLearningEvent.getPackageName(),
+            storyBookLearningEvent.getLearningEventType(),
+            storyBookLearningEvent.getAdditionalData(),
+            storyBookLearningEvent.getResearchExperiment().ordinal(),
+            storyBookLearningEvent.getExperimentGroup().ordinal(),
+            storyBookLearningEvent.getStoryBookTitle(),
+            storyBookLearningEvent.getStoryBookId()
+        );
+      }
+      csvPrinter.flush();
+      csvPrinter.close();
+
+      String csvFileContent = stringWriter.toString();
+      response.setContentType("text/csv");
+      byte[] bytes = csvFileContent.getBytes();
+      response.setContentLength(bytes.length);
+      
       outputStream.write(bytes);
       outputStream.flush();
       outputStream.close();
-    } catch (IOException ex) {
+    } catch (Exception ex) {
       log.error(ex.getMessage());
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of storybook learning events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }
 }
