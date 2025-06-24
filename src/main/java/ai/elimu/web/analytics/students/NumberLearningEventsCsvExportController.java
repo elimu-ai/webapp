@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,6 +89,7 @@ public class NumberLearningEventsCsvExportController {
       outputStream.close();
     } catch (Exception ex) {
       log.error(ex.getMessage());
+      response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
       DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during CSV export of number learning events: `" + ex.getClass() + ": " + ex.getMessage() + "`");
     }
   }

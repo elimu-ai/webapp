@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import lombok.extern.slf4j.Slf4j;
-import selenium.content.MainContentPage;
 import selenium.util.DomainHelper;
 
 @Slf4j
