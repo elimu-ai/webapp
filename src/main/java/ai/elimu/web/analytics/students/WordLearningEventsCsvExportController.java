@@ -63,15 +63,15 @@ public class WordLearningEventsCsvExportController {
       for (WordLearningEvent event : wordLearningEvents) {
         log.info("event.getId(): " + event.getId());
         csvPrinter.printRecord(
-            wordLearningEvent.getId(),
-            wordLearningEvent.getTimestamp().getTimeInMillis() / 1_000,
-            wordLearningEvent.getPackageName(),
-            wordLearningEvent.getLearningEventType(),
-            wordLearningEvent.getAdditionalData(),
-            wordLearningEvent.getResearchExperiment().ordinal(),
-            wordLearningEvent.getExperimentGroup().ordinal(),
-            wordLearningEvent.getWordText(),
-            (wordLearningEvent.getWord() == null) ? null : wordLearningEvent.getWord().getId()
+            event.getId(),
+            event.getTimestamp().getTimeInMillis() / 1_000,
+            event.getPackageName(),
+            event.getLearningEventType(),
+            event.getAdditionalData(),
+            (event.getResearchExperiment() != null) ? event.getResearchExperiment().ordinal() : null,
+            (event.getExperimentGroup() != null) ? event.getExperimentGroup().ordinal() : null,
+            event.getWordText(),
+            (event.getWord() == null) ? null : event.getWord().getId()
             // wordLearningEvent.getWordId(), https://github.com/elimu-ai/webapp/issues/2113
         );
       }
