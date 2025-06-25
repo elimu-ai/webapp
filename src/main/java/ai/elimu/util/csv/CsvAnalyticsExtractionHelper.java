@@ -239,8 +239,10 @@ public class CsvAnalyticsExtractionHelper {
                     numberLearningEvent.setAdditionalData(additionalData);
                 }
 
-                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                numberLearningEvent.setLearningEventType(learningEventType);
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                    numberLearningEvent.setLearningEventType(learningEventType);
+                }
 
                 if (versionCode >= 3005009) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.5.9
@@ -406,8 +408,10 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 wordLearningEvent.setPackageName(packageName);
 
-                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                wordLearningEvent.setLearningEventType(learningEventType);
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                    wordLearningEvent.setLearningEventType(learningEventType);
+                }
 
                 if (versionCode >= 3006000) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
@@ -491,8 +495,10 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 storyBookLearningEvent.setPackageName(packageName);
 
-                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                storyBookLearningEvent.setLearningEventType(learningEventType);
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                    storyBookLearningEvent.setLearningEventType(learningEventType);
+                }
 
                 if (versionCode >= 3006000) {
                     // https://github.com/elimu-ai/analytics/releases/tag/3.6.0
@@ -574,8 +580,10 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 videoLearningEvent.setPackageName(packageName);
 
-                LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                videoLearningEvent.setLearningEventType(learningEventType);
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                    videoLearningEvent.setLearningEventType(learningEventType);
+                }
 
                 String additionalData = csvRecord.get("additional_data");
                 if (StringUtils.isNotBlank(additionalData)) {
