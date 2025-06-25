@@ -391,6 +391,8 @@ public class StoryBookCreateFromEPubController {
                   || originalTextLowerCase.contains("copyright page")
                   || originalTextLowerCase.contains("smart axiata") // StoryBookProvider#LETS_READ_ASIA
                   || originalTextLowerCase.contains("the asia foundation") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("มูลนิธิเอเชีย") // StoryBookProvider#LETS_READ_ASIA
+                  || originalTextLowerCase.contains("มูลนิธิ เอเชีย") // StoryBookProvider#LETS_READ_ASIA
                   || originalTextLowerCase.contains("এশিয়া ফাউন্ডেশনের") // StoryBookProvider#LETS_READ_ASIA
           ) {
             isMetadata = true;
