@@ -239,7 +239,7 @@ public class CsvAnalyticsExtractionHelper {
                     numberLearningEvent.setAdditionalData(additionalData);
                 }
 
-                if (csvRecord.isSet("learning_event_type")) {
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
                     LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                     numberLearningEvent.setLearningEventType(learningEventType);
                 }
@@ -408,7 +408,7 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 wordLearningEvent.setPackageName(packageName);
 
-                if (csvRecord.isSet("learning_event_type")) {
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
                     LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                     wordLearningEvent.setLearningEventType(learningEventType);
                 }
@@ -495,7 +495,7 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 storyBookLearningEvent.setPackageName(packageName);
 
-                if (csvRecord.isSet("learning_event_type")) {
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
                     LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                     storyBookLearningEvent.setLearningEventType(learningEventType);
                 }
@@ -580,7 +580,7 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 videoLearningEvent.setPackageName(packageName);
 
-                if (csvRecord.isSet("learning_event_type")) {
+                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
                     LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
                     videoLearningEvent.setLearningEventType(learningEventType);
                 }
