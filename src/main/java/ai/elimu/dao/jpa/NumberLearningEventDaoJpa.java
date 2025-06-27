@@ -23,7 +23,7 @@ public class NumberLearningEventDaoJpa extends GenericDaoJpa<NumberLearningEvent
                 "AND event.androidId = :androidId " + 
                 "AND event.packageName = :packageName")
                 .setParameter("timestamp", timestamp)
-                .setParameter("androidIdevent", androidId)
+                .setParameter("androidId", androidId)
                 .setParameter("packageName", packageName)
                 .getSingleResult();
         } catch (NoResultException e) {
