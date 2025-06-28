@@ -44,21 +44,8 @@
 
     <task:annotation-driven />
 
-    <!--
-             - This bean resolves specific types of exceptions to corresponding logical
-             - view names for error views. The default behaviour of DispatcherServlet
-             - is to propagate all exceptions to the servlet container: this will happen
-             - here with all other types of exceptions.
-     -->
     <bean id="exceptionResolver" class="ai.elimu.web.servlet.CustomSimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <prop key="org.springframework.web.servlet.PageNotFound">error/page-not-found</prop>
-                <prop key="org.springframework.dao.DataAccessException">error/data-access-failure</prop>
-                <prop key="org.springframework.transaction.TransactionException">error/data-access-failure</prop>
-            </props>
-        </property>
-        <property name="warnLogCategory" value="CustomSimpleMappingExceptionResolver" />
+        <property name="defaultErrorView" value="error/500" />
     </bean>
     
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />

@@ -6,7 +6,9 @@
     <div class="col s12 m10 l8 offset-m1 offset-l2">
         <h4><content:gettitle /></h4>
         <div class="card-panel">
-            Error 500 - Internal Server Error
+            An error occurred: 
+            <hr />
+            <code>${pageContext.exception}</code>
         </div>
     </div>
 </content:section>
