@@ -48,9 +48,9 @@ public class LetterSoundDaoJpa extends GenericDaoJpa<LetterSound> implements Let
     @Override
     public List<LetterSound> readAllOrderedByLettersLength() throws DataAccessException {
         return em.createQuery(
-            "SELECT lsc " +
-            "FROM LetterSound lsc " +
-            "ORDER BY lsc.letters.size DESC, lsc.usageCount DESC")
+            "SELECT ls " +
+            "FROM LetterSound ls " +
+            "ORDER BY SIZE(ls.letters) DESC, ls.usageCount DESC")
             .getResultList();
     }
 }
