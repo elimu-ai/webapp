@@ -187,30 +187,26 @@ public class StudentController {
     // Prepare chart data - Reading speed (correct words per minute)
     List<Double> readingSpeedAvgList = new ArrayList<>();
     if (!wordAssessmentEvents.isEmpty()) {
-      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
+      Map<String, Integer> correctCountByWeekMap = new HashMap<>();
       Map<String, Long> timeSpentMsSumByWeekMap = new HashMap<>();
       for (WordAssessmentEvent event : wordAssessmentEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         if (event.getMasteryScore() >= 0.5) {
-          eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
-          timeSpentMsSumByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + event.getTimeSpentMs());
+          correctCountByWeekMap.put(eventWeek, correctCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
         }
+        timeSpentMsSumByWeekMap.put(eventWeek, timeSpentMsSumByWeekMap.getOrDefault(eventWeek, 0L) + event.getTimeSpentMs());
       }
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
-        Integer wordsReadCount = eventCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("wordsReadCount: " + wordsReadCount);
+        log.info("weekAsString: " + weekAsString);
+        Integer correctCount = correctCountByWeekMap.getOrDefault(weekAsString, 0);
+        log.info("correctCount: " + correctCount);
         Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
         log.info("timeSpentMsSum: " + timeSpentMsSum);
-        Double timeSpentInMinutes = (double) (timeSpentMsSum / 1_000);
-        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
-        Double wordsPerMinute = 0.00;
-        if (timeSpentInMinutes > 0) {
-          wordsPerMinute = wordsReadCount / timeSpentInMinutes;
-          log.info("wordsPerMinute: " + wordsPerMinute);
-        }
-        readingSpeedAvgList.add(wordsPerMinute);
+        Double correctPerMinute = (double) 60 * 1_000 * correctCount / timeSpentMsSum;
+        log.info("correctPerMinute: " + correctPerMinute);
+        readingSpeedAvgList.add(correctPerMinute);
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
