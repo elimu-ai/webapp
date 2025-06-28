@@ -88,6 +88,6 @@ public class WordTest {
         log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
 
         WordCreatePage wordCreatePage = new WordCreatePage(driver);
-        // TODO
+        // TODO: assert auto-filled word text
     }
 }
