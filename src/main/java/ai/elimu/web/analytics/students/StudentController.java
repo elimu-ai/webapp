@@ -161,39 +161,33 @@ public class StudentController {
     model.addAttribute("wordAssessmentEventIncorrectCountList", wordAssessmentEventIncorrectCountList);
 
     // Prepare chart data - Letter identification speed (correct letter-sounds per minute)
-    List<Double> letterIdentificationSpeedAvgList = new ArrayList<>();
+    List<Double> letterIdentificationSpeedAvgList_kukariri = new ArrayList<>();
     if (!wordAssessmentEvents.isEmpty()) {
-      Map<String, Integer> letterCountByWeekMap = new HashMap<>();
+      Map<String, Integer> correctCountByWeekMap = new HashMap<>();
       Map<String, Long> timeSpentMsSumByWeekMap = new HashMap<>();
       for (WordAssessmentEvent event : wordAssessmentEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         if (event.getMasteryScore() >= 0.5) {
-          int letterCount = StringUtils.isNotBlank(event.getWordText()) ? event.getWordText().length() : 0;
-          if (letterCount > 0) {
-            letterCountByWeekMap.put(eventWeek, letterCountByWeekMap.getOrDefault(eventWeek, 0) + letterCount);
-            timeSpentMsSumByWeekMap.put(eventWeek, letterCountByWeekMap.getOrDefault(eventWeek, 0) + event.getTimeSpentMs());
-          }
+          int letterCount = event.getWordText().length();
+          correctCountByWeekMap.put(eventWeek, correctCountByWeekMap.getOrDefault(eventWeek, 0) + letterCount);
         }
+        timeSpentMsSumByWeekMap.put(eventWeek, timeSpentMsSumByWeekMap.getOrDefault(eventWeek, 0L) + event.getTimeSpentMs());
       }
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
-        Integer lettersIdentifiedCount = letterCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("lettersIdentifiedCount: " + lettersIdentifiedCount);
+        log.info("weekAsString: " + weekAsString);
+        Integer correctCount = correctCountByWeekMap.getOrDefault(weekAsString, 0);
+        log.info("correctCount: " + correctCount);
         Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
         log.info("timeSpentMsSum: " + timeSpentMsSum);
-        Double timeSpentInMinutes = (double) (timeSpentMsSum / 1_000);
-        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
-        Double lettersPerMinute = 0.00;
-        if (timeSpentInMinutes > 0) {
-          lettersPerMinute = lettersIdentifiedCount / timeSpentInMinutes;
-          log.info("lettersPerMinute: " + lettersPerMinute);
-        }
-        letterIdentificationSpeedAvgList.add(lettersPerMinute);
+        Double correctPerMinute = (double) 60 * 1_000 * correctCount / timeSpentMsSum;
+        log.info("correctPerMinute: " + correctPerMinute);
+        letterIdentificationSpeedAvgList_kukariri.add(correctPerMinute);
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
-    model.addAttribute("letterIdentificationSpeedAvgList", letterIdentificationSpeedAvgList);
+    model.addAttribute("letterIdentificationSpeedAvgList_kukariri", letterIdentificationSpeedAvgList_kukariri);
     
     // Prepare chart data - Reading speed (correct words per minute)
     List<Double> readingSpeedAvgList_kukariri = new ArrayList<>();
