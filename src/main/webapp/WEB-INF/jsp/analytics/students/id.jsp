@@ -264,10 +264,17 @@
             const readingSpeedData = {
                 labels: readingSpeedLabels,
                 datasets: [{
-                    data: <c:out value="${readingSpeedAvgList}" />,
-                    label: 'cwpm',
+                    data: <c:out value="${readingSpeedAvgList_kukariri}" />,
+                    label: 'cwpm (kukariri)',
                     backgroundColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
                     borderColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
+                    borderWidth: 4,
+                    tension: 0.5
+                },{
+                    data: <c:out value="${readingSpeedAvgList_vitabu}" />,
+                    label: 'cwpm (vitabu)',
+                    backgroundColor: 'rgba(77,182,172, 0.8)', // #4db6ac teal lighten-2
+                    borderColor: 'rgba(77,182,172, 0.8)', // #4db6ac teal lighten-2
                     borderWidth: 4,
                     tension: 0.5
                 },{
