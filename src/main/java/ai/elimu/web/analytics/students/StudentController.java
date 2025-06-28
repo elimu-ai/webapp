@@ -3,7 +3,10 @@ package ai.elimu.web.analytics.students;
 import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
 import ai.elimu.dao.NumberLearningEventDao;
+import ai.elimu.dao.StoryBookChapterDao;
+import ai.elimu.dao.StoryBookDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.StudentDao;
 import ai.elimu.dao.VideoLearningEventDao;
 import ai.elimu.dao.WordAssessmentEventDao;
@@ -16,6 +19,9 @@ import ai.elimu.entity.analytics.VideoLearningEvent;
 import ai.elimu.entity.analytics.WordAssessmentEvent;
 import ai.elimu.entity.analytics.WordLearningEvent;
 import ai.elimu.entity.analytics.students.Student;
+import ai.elimu.entity.content.StoryBook;
+import ai.elimu.entity.content.StoryBookChapter;
+import ai.elimu.entity.content.StoryBookParagraph;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.util.AnalyticsHelper;
@@ -30,6 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +61,9 @@ public class StudentController {
   private final NumberLearningEventDao numberLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
+  private final StoryBookDao storyBookDao;
+  private final StoryBookChapterDao storyBookChapterDao;
+  private final StoryBookParagraphDao storyBookParagraphDao;
 
   private final VideoLearningEventDao videoLearningEventDao;
 
@@ -150,71 +161,61 @@ public class StudentController {
     model.addAttribute("wordAssessmentEventIncorrectCountList", wordAssessmentEventIncorrectCountList);
 
     // Prepare chart data - Letter identification speed (correct letter-sounds per minute)
-    List<Double> letterIdentificationSpeedAvgList = new ArrayList<>();
+    List<Double> letterIdentificationSpeedAvgList_kukariri = new ArrayList<>();
     if (!wordAssessmentEvents.isEmpty()) {
-      Map<String, Integer> letterCountByWeekMap = new HashMap<>();
+      Map<String, Integer> correctCountByWeekMap = new HashMap<>();
       Map<String, Long> timeSpentMsSumByWeekMap = new HashMap<>();
       for (WordAssessmentEvent event : wordAssessmentEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         if (event.getMasteryScore() >= 0.5) {
-          int letterCount = StringUtils.isNotBlank(event.getWordText()) ? event.getWordText().length() : 0;
-          if (letterCount > 0) {
-            letterCountByWeekMap.put(eventWeek, letterCountByWeekMap.getOrDefault(eventWeek, 0) + letterCount);
-            timeSpentMsSumByWeekMap.put(eventWeek, letterCountByWeekMap.getOrDefault(eventWeek, 0) + event.getTimeSpentMs());
-          }
+          int letterCount = event.getWordText().length();
+          correctCountByWeekMap.put(eventWeek, correctCountByWeekMap.getOrDefault(eventWeek, 0) + letterCount);
         }
+        timeSpentMsSumByWeekMap.put(eventWeek, timeSpentMsSumByWeekMap.getOrDefault(eventWeek, 0L) + event.getTimeSpentMs());
       }
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
-        Integer lettersIdentifiedCount = letterCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("lettersIdentifiedCount: " + lettersIdentifiedCount);
+        log.info("weekAsString: " + weekAsString);
+        Integer correctCount = correctCountByWeekMap.getOrDefault(weekAsString, 0);
+        log.info("correctCount: " + correctCount);
         Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
         log.info("timeSpentMsSum: " + timeSpentMsSum);
-        Double timeSpentInMinutes = (double) (timeSpentMsSum / 1_000);
-        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
-        Double lettersPerMinute = 0.00;
-        if (timeSpentInMinutes > 0) {
-          lettersPerMinute = lettersIdentifiedCount / timeSpentInMinutes;
-          log.info("lettersPerMinute: " + lettersPerMinute);
-        }
-        letterIdentificationSpeedAvgList.add(lettersPerMinute);
+        Double correctPerMinute = (double) 60 * 1_000 * correctCount / timeSpentMsSum;
+        log.info("correctPerMinute: " + correctPerMinute);
+        letterIdentificationSpeedAvgList_kukariri.add(correctPerMinute);
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
-    model.addAttribute("letterIdentificationSpeedAvgList", letterIdentificationSpeedAvgList);
+    model.addAttribute("letterIdentificationSpeedAvgList_kukariri", letterIdentificationSpeedAvgList_kukariri);
     
     // Prepare chart data - Reading speed (correct words per minute)
-    List<Double> readingSpeedAvgList = new ArrayList<>();
+    List<Double> readingSpeedAvgList_kukariri = new ArrayList<>();
     if (!wordAssessmentEvents.isEmpty()) {
-      Map<String, Integer> eventCountByWeekMap = new HashMap<>();
+      Map<String, Integer> correctCountByWeekMap = new HashMap<>();
       Map<String, Long> timeSpentMsSumByWeekMap = new HashMap<>();
       for (WordAssessmentEvent event : wordAssessmentEvents) {
         String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
         if (event.getMasteryScore() >= 0.5) {
-          eventCountByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
-          timeSpentMsSumByWeekMap.put(eventWeek, eventCountByWeekMap.getOrDefault(eventWeek, 0) + event.getTimeSpentMs());
+          correctCountByWeekMap.put(eventWeek, correctCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
         }
+        timeSpentMsSumByWeekMap.put(eventWeek, timeSpentMsSumByWeekMap.getOrDefault(eventWeek, 0L) + event.getTimeSpentMs());
       }
       week = (Calendar) calendar6MonthsAgo.clone();
       while (!week.after(calendarNow)) {
         String weekAsString = simpleDateFormat.format(week.getTime());
-        Integer wordsReadCount = eventCountByWeekMap.getOrDefault(weekAsString, 0);
-        log.info("wordsReadCount: " + wordsReadCount);
+        log.info("weekAsString: " + weekAsString);
+        Integer correctCount = correctCountByWeekMap.getOrDefault(weekAsString, 0);
+        log.info("correctCount: " + correctCount);
         Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
         log.info("timeSpentMsSum: " + timeSpentMsSum);
-        Double timeSpentInMinutes = (double) (timeSpentMsSum / 1_000);
-        log.info("timeSpentInMinutes: " + timeSpentInMinutes);
-        Double wordsPerMinute = 0.00;
-        if (timeSpentInMinutes > 0) {
-          wordsPerMinute = wordsReadCount / timeSpentInMinutes;
-          log.info("wordsPerMinute: " + wordsPerMinute);
-        }
-        readingSpeedAvgList.add(wordsPerMinute);
+        Double correctPerMinute = (double) 60 * 1_000 * correctCount / timeSpentMsSum;
+        log.info("correctPerMinute: " + correctPerMinute);
+        readingSpeedAvgList_kukariri.add(correctPerMinute);
         week.add(Calendar.WEEK_OF_YEAR, 1);
       }
     }
-    model.addAttribute("readingSpeedAvgList", readingSpeedAvgList);
+    model.addAttribute("readingSpeedAvgList_kukariri", readingSpeedAvgList_kukariri);
     
     // Prepare chart data - WordLearningEvents
     List<WordLearningEvent> wordLearningEvents = wordLearningEventDao.readAll(student.getAndroidId());
@@ -274,6 +275,68 @@ public class StudentController {
       }
     }
     model.addAttribute("storyBookEventCountList", storyBookEventCountList);
+
+    // Prepare chart data - Reading speed (correct words per minute)
+    List<Double> readingSpeedAvgList_vitabu = new ArrayList<>();
+    if (!storyBookLearningEvents.isEmpty()) {
+      Map<String, Integer> correctCountByWeekMap = new HashMap<>();
+      Map<String, Long> timeSpentMsSumByWeekMap = new HashMap<>();
+      for (StoryBookLearningEvent event : storyBookLearningEvents) {
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        log.info("eventWeek: " + eventWeek);
+
+        // Extract total number of words from storybook
+        int storyBookWordCount = 0;
+        StoryBook storyBook = event.getStoryBook();
+        if ((storyBook == null) && (event.getStoryBookId() != null)) {
+          storyBook = storyBookDao.read(event.getStoryBookId());
+        }
+        if (storyBook != null) {
+          List<StoryBookChapter> chapters = storyBookChapterDao.readAll(storyBook);
+          for (StoryBookChapter chapter : chapters) {
+            List<StoryBookParagraph> paragraphs = storyBookParagraphDao.readAll(chapter);
+            for (StoryBookParagraph paragraph : paragraphs) {
+              storyBookWordCount += paragraph.getOriginalText().split(" ").length;
+            }
+          }
+        }
+        log.info("storyBookWordCount: " + storyBookWordCount);
+
+        // Extract total time spent in storybook
+        int storyBookSecondsSpent = 0;
+        JSONObject additionalData = new JSONObject(event.getAdditionalData());
+        log.info("additionalData: " + additionalData);
+        if (additionalData.has("seconds_spent_per_chapter")) {
+          String secondsSpentPerChapterAsString = additionalData.getString("seconds_spent_per_chapter");
+          log.info("secondsSpentPerChapterAsString: " + secondsSpentPerChapterAsString);
+          JSONArray secondsSpentPerChapter = new JSONArray(secondsSpentPerChapterAsString);
+          log.info("secondsSpentPerChapter: " + secondsSpentPerChapter);
+          for (int i = 0; i < secondsSpentPerChapter.length(); i++) {
+            int secondsSpentInChapter = secondsSpentPerChapter.getInt(i);
+            log.info("secondsSpentInChapter: " + secondsSpentInChapter);
+            storyBookSecondsSpent += secondsSpentInChapter;
+          }
+        }
+        log.info("storyBookSecondsSpent: " + storyBookSecondsSpent);
+
+        correctCountByWeekMap.put(eventWeek, correctCountByWeekMap.getOrDefault(eventWeek, 0) + storyBookWordCount);
+        timeSpentMsSumByWeekMap.put(eventWeek, timeSpentMsSumByWeekMap.getOrDefault(eventWeek, 0L) + storyBookSecondsSpent * 1_000);
+      }
+      week = (Calendar) calendar6MonthsAgo.clone();
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        log.info("weekAsString: " + weekAsString);
+        Integer correctCount = correctCountByWeekMap.getOrDefault(weekAsString, 0);
+        log.info("correctCount: " + correctCount);
+        Long timeSpentMsSum = timeSpentMsSumByWeekMap.getOrDefault(weekAsString, 0L);
+        log.info("timeSpentMsSum: " + timeSpentMsSum);
+        Double correctPerMinute = (double) 60 * 1_000 * correctCount / timeSpentMsSum;
+        log.info("correctPerMinute: " + correctPerMinute);
+        readingSpeedAvgList_vitabu.add(correctPerMinute);
+        week.add(Calendar.WEEK_OF_YEAR, 1);
+      }
+    }
+    model.addAttribute("readingSpeedAvgList_vitabu", readingSpeedAvgList_vitabu);
 
 
     // Prepare chart data - VideoLearningEvents

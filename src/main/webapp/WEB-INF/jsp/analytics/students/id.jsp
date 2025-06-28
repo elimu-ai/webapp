@@ -125,36 +125,37 @@
             const letterIdentificationSpeedData = {
                 labels: letterIdentificationSpeedLabels,
                 datasets: [{
-                    data: <c:out value="${letterIdentificationSpeedAvgList}" />,
-                    label: 'clspm',
-                    backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
-                    borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    data: <c:out value="${letterIdentificationSpeedAvgList_kukariri}" />,
+                    label: 'clspm (kukariri)',
+                    backgroundColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
+                    borderColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
+                    borderWidth: 4,
                     tension: 0.5,
                     fill: true
                 },{
                     data: Array(letterIdentificationSpeedLabels.length).fill(10.0),
                     label: 'LEVEL1',
-                    backgroundColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.1)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.1)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 },{
                     data: Array(letterIdentificationSpeedLabels.length).fill(20.0),
                     label: 'LEVEL2',
-                    backgroundColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 },{
                     data: Array(letterIdentificationSpeedLabels.length).fill(40.0),
                     label: 'LEVEL3',
-                    backgroundColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.3)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.3)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 },{
                     data: Array(letterIdentificationSpeedLabels.length).fill(100.0),
                     label: 'LEVEL4',
-                    backgroundColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 }]
             };
             const letterIdentificationSpeedConfig = {
@@ -224,7 +225,6 @@
         </script>
         <table class="bordered highlight">
             <thead>
-                <th>id</th>
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>letter_sound_id</th>
@@ -235,10 +235,7 @@
                     <c:set var="letterSoundLearningEvent" value="${letterSoundLearningEvents[fn:length(letterSoundLearningEvents) - 1 - i]}" />
                     <tr>
                         <td>
-                            ${letterSoundLearningEvent.id}
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${letterSoundLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+                            <fmt:formatDate value="${letterSoundLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             <code>${letterSoundLearningEvent.packageName}</code>
@@ -267,36 +264,43 @@
             const readingSpeedData = {
                 labels: readingSpeedLabels,
                 datasets: [{
-                    data: <c:out value="${readingSpeedAvgList}" />,
-                    label: 'cwpm',
-                    backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
-                    borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
-                    tension: 0.5,
-                    fill: true
+                    data: <c:out value="${readingSpeedAvgList_kukariri}" />,
+                    label: 'cwpm (kukariri)',
+                    backgroundColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
+                    borderColor: 'rgba(100,181,246, 0.8)', // #64b5f6 blue lighten-2
+                    borderWidth: 4,
+                    tension: 0.5
+                },{
+                    data: <c:out value="${readingSpeedAvgList_vitabu}" />,
+                    label: 'cwpm (vitabu)',
+                    backgroundColor: 'rgba(77,182,172, 0.8)', // #4db6ac teal lighten-2
+                    borderColor: 'rgba(77,182,172, 0.8)', // #4db6ac teal lighten-2
+                    borderWidth: 4,
+                    tension: 0.5
                 },{
                     data: Array(readingSpeedLabels.length).fill(5.0),
                     label: 'LEVEL1',
-                    backgroundColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.1)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.1)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 },{
                     data: Array(readingSpeedLabels.length).fill(10.0),
                     label: 'LEVEL2',
-                    backgroundColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.2)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 },{
                     data: Array(readingSpeedLabels.length).fill(20.0),
                     label: 'LEVEL3',
-                    backgroundColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.6)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.3)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.3)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 },{
                     data: Array(readingSpeedLabels.length).fill(50.0),
                     label: 'LEVEL4',
-                    backgroundColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
-                    borderColor: 'rgba(149,117,205, 0.8)', // #9575cd deep-purple lighten-2
-                    tension: 0.5,
+                    backgroundColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    borderColor: 'rgba(149,117,205, 0.4)', // #9575cd deep-purple lighten-2
+                    tension: 0.5
                 }]
             };
             const readingSpeedConfig = {
@@ -362,7 +366,6 @@
         </script>
         <table class="bordered highlight">
             <thead>
-                <th>id</th>
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>mastery_score</th>
@@ -374,10 +377,7 @@
                     <c:set var="wordAssessmentEvent" value="${wordAssessmentEvents[fn:length(wordAssessmentEvents) - 1 - i]}" />
                     <tr>
                         <td>
-                            ${wordAssessmentEvent.id}
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${wordAssessmentEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+                            <fmt:formatDate value="${wordAssessmentEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             <code>${wordAssessmentEvent.packageName}</code>
@@ -393,7 +393,7 @@
                             </c:choose>
                         </td>
                         <td>
-                            ${wordAssessmentEvent.timeSpentMs} ms
+                            <fmt:formatNumber value="${wordAssessmentEvent.timeSpentMs}" /> ms
                         </td>
                         <td>
                             "${wordAssessmentEvent.wordText}"
@@ -444,7 +444,6 @@
         </script>
         <table class="bordered highlight">
             <thead>
-                <th>id</th>
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>word_text</th>
@@ -456,10 +455,7 @@
                     <c:set var="wordLearningEvent" value="${wordLearningEvents[fn:length(wordLearningEvents) - 1 - i]}" />
                     <tr>
                         <td>
-                            ${wordLearningEvent.id}
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${wordLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+                            <fmt:formatDate value="${wordLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             <code>${wordLearningEvent.packageName}</code>
@@ -529,7 +525,6 @@
         </script>
         <table class="bordered highlight">
             <thead>
-                <th>id</th>
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>number_value</th>
@@ -542,10 +537,7 @@
                     <c:set var="numberLearningEvent" value="${numberLearningEvents[fn:length(numberLearningEvents) - 1 - i]}" />
                     <tr>
                         <td>
-                            ${numberLearningEvent.id}
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${numberLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+                            <fmt:formatDate value="${numberLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             <code>${numberLearningEvent.packageName}</code>
@@ -612,7 +604,6 @@
 
         <table class="bordered highlight">
             <thead>
-                <th>id</th>
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>storybook_title</th>
@@ -624,10 +615,7 @@
                     <c:set var="storyBookLearningEvent" value="${storyBookLearningEvents[fn:length(storyBookLearningEvents) - 1 - i]}" />
                     <tr>
                         <td>
-                            ${storyBookLearningEvent.id}
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${storyBookLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+                            <fmt:formatDate value="${storyBookLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             <code>${storyBookLearningEvent.packageName}</code>
@@ -691,7 +679,6 @@
 
         <table class="bordered highlight">
             <thead>
-                <th>id</th>
                 <th>timestamp</th>
                 <th>package_name</th>
                 <th>video_title</th>
@@ -703,10 +690,7 @@
                     <c:set var="videoLearningEvent" value="${videoLearningEvents[fn:length(videoLearningEvents) - 1 - i]}" />
                     <tr>
                         <td>
-                            ${videoLearningEvent.id}
-                        </td>
-                        <td>
-                            <fmt:formatDate value="${videoLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+                            <fmt:formatDate value="${videoLearningEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
                         <td>
                             <code>${videoLearningEvent.packageName}</code>

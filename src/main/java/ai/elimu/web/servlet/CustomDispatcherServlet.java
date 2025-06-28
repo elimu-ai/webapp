@@ -373,8 +373,10 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     letterSoundLearningEvent.setTimestamp(randomWeekday);
                     letterSoundLearningEvent.setAndroidId(student.getAndroidId());
                     letterSoundLearningEvent.setPackageName("ai.elimu.herufi");
-                    letterSoundLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
-                    letterSoundLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
+                    if (weekCount > 26/2) {
+                        letterSoundLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                        letterSoundLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
+                    }
                     letterSoundLearningEvent.setLetterSoundId(letterSoundM.getId());
                     letterSoundLearningEventDao.create(letterSoundLearningEvent);
                 }
@@ -385,7 +387,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordAssessmentEvent.setTimestamp(week);
                     wordAssessmentEvent.setAndroidId(student.getAndroidId());
                     wordAssessmentEvent.setPackageName("ai.elimu.kukariri");
-                    if (weekCount > 26) {
+                    if (weekCount > 26/2) {
                         wordAssessmentEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         wordAssessmentEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
@@ -402,7 +404,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordLearningEvent.setTimestamp(week);
                     wordLearningEvent.setAndroidId(student.getAndroidId());
                     wordLearningEvent.setPackageName("ai.elimu.maneno");
-                    if (weekCount > 13) {
+                    if (weekCount > 26/2) {
                         wordLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         wordLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
@@ -423,14 +425,13 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     numberLearningEvent.setTimestamp(week);
                     numberLearningEvent.setAndroidId(student.getAndroidId());
                     numberLearningEvent.setPackageName("ai.elimu.calculator");
-                    if (weekCount > 13) {
+                    if (weekCount > 26/2) {
                         numberLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         numberLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
                     numberLearningEvent.setNumberValue(number3.getValue());
                     numberLearningEvent.setNumberSymbol(number3.getSymbol());
                     numberLearningEvent.setNumberId(number3.getId());
-                    numberLearningEvent.setLearningEventType(LearningEventType.VIDEO_OPENED);
                     numberLearningEventDao.create(numberLearningEvent);
                 }
 
@@ -440,7 +441,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     storyBookLearningEvent.setTimestamp(week);
                     storyBookLearningEvent.setAndroidId(student.getAndroidId());
                     storyBookLearningEvent.setPackageName("ai.elimu.vitabu");
-                    if (weekCount > 13) {
+                    if (weekCount > 26/2) {
                         storyBookLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         storyBookLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
@@ -464,7 +465,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     videoLearningEvent.setTimestamp(week);
                     videoLearningEvent.setAndroidId(student.getAndroidId());
                     videoLearningEvent.setPackageName("ai.elimu.filamu");
-                    if (weekCount > 13) {
+                    if (weekCount > 26/2) {
                         videoLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         videoLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
