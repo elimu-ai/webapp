@@ -310,7 +310,7 @@
                         <c:choose>
                             <c:when test="${empty wordMap[wordTextLowerCase]}">
                                 <c:out value="${wordText}" /><br />
-                                <a href="<spring:url value='/content/word/create?autoFillText=${wordTextLowerCase}' />" target="_blank">Add word <i class="material-icons">launch</i></a>
+                                <a href="<spring:url value='/content/word/create?autoFillText=${wordTextLowerCase}' />" class="autoFillWordLink" target="_blank">Add word <i class="material-icons">launch</i></a>
                             </c:when>
                             <c:otherwise>
                                 <c:set var="word" value="${wordMap[wordTextLowerCase]}" />

@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import lombok.extern.slf4j.Slf4j;
 import selenium.content.MainContentPage;
+import selenium.content.storybook.StoryBookEditPage;
+import selenium.content.storybook.StoryBookListPage;
 import selenium.util.DomainHelper;
 
 @Slf4j
@@ -68,5 +70,24 @@ public class WordTest {
         wordListPage.pressCreateButton();
 
         WordCreatePage wordCreatePage = new WordCreatePage(driver);
+    }
+
+    @Test
+    public void testWordAutoFill() {
+        log.info("testWordAutoFill");
+
+        MainContentPage mainContentPage = new MainContentPage(driver);
+        mainContentPage.pressStoryBookListLink();
+
+        StoryBookListPage storyBookListPage = new StoryBookListPage(driver);
+        storyBookListPage.pressRandomStoryBook();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
+
+        StoryBookEditPage storyBookEditPage = new StoryBookEditPage(driver);
+        storyBookEditPage.pressRandomAutoFillWordLink();
+        log.info("driver.getCurrentUrl(): " + driver.getCurrentUrl());
+
+        WordCreatePage wordCreatePage = new WordCreatePage(driver);
+        // TODO
     }
 }
