@@ -55,6 +55,8 @@
 
     drop table if exists Number_Word;
 
+    drop table if exists NumberAssessmentEvent;
+
     drop table if exists NumberContributionEvent;
 
     drop table if exists NumberLearningEvent;
@@ -375,6 +377,23 @@
         words_id bigint not null,
         words_ORDER integer not null,
         primary key (Number_id, words_ORDER)
+    ) type=MyISAM;
+
+    create table NumberAssessmentEvent (
+       id bigint not null auto_increment,
+        additionalData text,
+        androidId varchar(255),
+        experimentGroup smallint,
+        masteryScore float(23),
+        packageName varchar(255),
+        researchExperiment smallint,
+        timeSpentMs bigint,
+        timestamp datetime,
+        numberId bigint,
+        numberSymbol varchar(255),
+        numberValue integer,
+        application_id bigint,
+        primary key (id)
     ) type=MyISAM;
 
     create table NumberContributionEvent (
@@ -862,6 +881,11 @@
        add constraint FKim83prd786jsowiyrhdf1vo59 
        foreign key (Number_id) 
        references Number (id);
+
+    alter table NumberAssessmentEvent 
+       add constraint FKec7ikjyqnxjnkcmjfcv9iy67r 
+       foreign key (application_id) 
+       references Application (id);
 
     alter table NumberContributionEvent 
        add constraint FK8tr84kkqmavan1jxfmc1pq8h6 
