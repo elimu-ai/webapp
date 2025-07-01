@@ -96,9 +96,6 @@ public class DiscordHelper {
                 try {
                     HttpResponse httpResponse = client.execute(httpPost);
                     log.info("httpResponse.getStatusLine(): " + httpResponse);
-                    for (Header header : httpResponse.getHeaders()) {
-                        log.info(header.getName() + ": " + header.getValue());
-                    }
                     client.close();
                 } catch (IOException e) {
                     log.error(e.getMessage());
