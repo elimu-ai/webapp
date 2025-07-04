@@ -481,8 +481,94 @@
 
     <h5 style="margin-top: 1em;">🔢 Numbers</h5>
     <div class="card-panel">
+        <a id="exportNumberAssessmentEventsToCsvButton" class="right btn waves-effect waves-light grey-text white" 
+           href="<spring:url value='/analytics/students/${student.id}/number-assessment-events.csv' />">
+            Export to CSV<i class="material-icons right">vertical_align_bottom</i>
+        </a>
+        <script>
+            $(function() {
+                $('#exportNumberAssessmentEventsToCsvButton').click(function() {
+                    console.info('#exportNumberAssessmentEventsToCsvButton click');
+                    Materialize.toast('Preparing CSV file. Please wait...', 4000, 'rounded');
+                });
+            });
+        </script>
         <h5>Number assessment events (${fn:length(numberAssessmentEvents)})</h5>
-        ...
+        <canvas id="numberAssessmentEventChart"></canvas>
+        <script>
+            const numberAssessmentEventLabels = [
+                <c:forEach var="week" items="${weekList}">'${week}',</c:forEach>
+            ];
+            const numberAssessmentEventData = {
+                labels: numberAssessmentEventLabels,
+                datasets: [{
+                    data: <c:out value="${numberAssessmentEventCorrectCountList}" />,
+                    label: 'Correct',
+                    backgroundColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    borderColor: 'rgba(100,181,246, 0.5)', // #64b5f6 blue lighten-2
+                    tension: 0.5,
+                    fill: true
+                },{
+                    data: <c:out value="${numberAssessmentEventIncorrectCountList}" />,
+                    label: 'Incorrect',
+                    backgroundColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                    borderColor: 'rgba(245,124,0, 0.5)', // #f57c00 orange darken-2
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
+            const numberAssessmentEventConfig = {
+                type: 'line',
+                data: numberAssessmentEventData,
+                options: {
+                    scales: {
+                        y: {
+                            stacked: true
+                        }
+                    }
+                }
+            };
+            var numberAssessmentEventCtx = document.getElementById('numberAssessmentEventChart');
+            new Chart(numberAssessmentEventCtx, numberAssessmentEventConfig);
+        </script>
+        <table class="bordered highlight">
+            <thead>
+                <th>timestamp</th>
+                <th>package_name</th>
+                <th>mastery_score</th>
+                <th>time_spent_ms</th>
+                <th>number_value</th>
+            </thead>
+            <tbody>
+                <c:forEach var="i" begin="0" end="4">
+                    <c:set var="numberAssessmentEvent" value="${numberAssessmentEvents[fn:length(numberAssessmentEvents) - 1 - i]}" />
+                    <tr>
+                        <td>
+                            <fmt:formatDate value="${numberAssessmentEvent.timestamp.time}" pattern="yyyy-MM-dd HH:mm:ss" />
+                        </td>
+                        <td>
+                            <code>${numberAssessmentEvent.packageName}</code>
+                        </td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${numberAssessmentEvent.masteryScore < 0.5}">
+                                    <span data-badge-caption="${numberAssessmentEvent.masteryScore}" class="new badge orange darken-2"></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span data-badge-caption="${numberAssessmentEvent.masteryScore}" class="new badge blue lighten-2"></span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <fmt:formatNumber value="${numberAssessmentEvent.timeSpentMs}" /> ms
+                        </td>
+                        <td>
+                            ${numberAssessmentEvent.numberValue}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 
         <div class="divider" style="margin: 2em 0;"></div>
 

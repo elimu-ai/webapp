@@ -393,6 +393,7 @@
         numberSymbol varchar(255),
         numberValue integer,
         application_id bigint,
+        number_id bigint,
         primary key (id)
     ) type=MyISAM;
 
@@ -886,6 +887,11 @@
        add constraint FKec7ikjyqnxjnkcmjfcv9iy67r 
        foreign key (application_id) 
        references Application (id);
+
+    alter table NumberAssessmentEvent 
+       add constraint FK8xswt8aljh7hfnqsg4iyot3gj 
+       foreign key (number_id) 
+       references Number (id);
 
     alter table NumberContributionEvent 
        add constraint FK8tr84kkqmavan1jxfmc1pq8h6 

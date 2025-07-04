@@ -51,7 +51,7 @@ public class VideoLearningEventImportScheduler {
   private final VideoDao videoDao;
   private final StudentDao studentDao;
 
-  @Scheduled(cron = "00 50 * * * *") // 40 minutes past every hour
+  @Scheduled(cron = "00 50 * * * *") // 50 minutes past every hour
   public synchronized void execute() {
     log.info("execute");
 

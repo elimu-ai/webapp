@@ -7,6 +7,7 @@ import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
+import ai.elimu.dao.NumberAssessmentEventDao;
 import ai.elimu.dao.NumberDao;
 import ai.elimu.dao.NumberLearningEventDao;
 import ai.elimu.dao.SoundDao;
@@ -21,6 +22,7 @@ import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
+import ai.elimu.entity.analytics.NumberAssessmentEvent;
 import ai.elimu.entity.analytics.NumberLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
@@ -358,6 +360,7 @@ public class CustomDispatcherServlet extends DispatcherServlet {
         LetterSoundLearningEventDao letterSoundLearningEventDao = (LetterSoundLearningEventDao) webApplicationContext.getBean("letterSoundLearningEventDao");
         WordAssessmentEventDao wordAssessmentEventDao = (WordAssessmentEventDao) webApplicationContext.getBean("wordAssessmentEventDao");
         WordLearningEventDao wordLearningEventDao = (WordLearningEventDao) webApplicationContext.getBean("wordLearningEventDao");
+        NumberAssessmentEventDao numberAssessmentEventDao = (NumberAssessmentEventDao) webApplicationContext.getBean("numberAssessmentEventDao");
         NumberLearningEventDao numberLearningEventDao = (NumberLearningEventDao) webApplicationContext.getBean("numberLearningEventDao");
         StoryBookLearningEventDao storyBookLearningEventDao = (StoryBookLearningEventDao) webApplicationContext.getBean("storyBookLearningEventDao");
         VideoLearningEventDao videoLearningEventDao = (VideoLearningEventDao) webApplicationContext.getBean("videoLearningEventDao");
@@ -387,14 +390,14 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     wordAssessmentEvent.setTimestamp(week);
                     wordAssessmentEvent.setAndroidId(student.getAndroidId());
                     wordAssessmentEvent.setPackageName("ai.elimu.kukariri");
+                    wordAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
+                    wordAssessmentEvent.setTimeSpentMs((long) (Math.random() * 20_000));
                     if (weekCount > 26/2) {
                         wordAssessmentEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         wordAssessmentEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
                     wordAssessmentEvent.setWordText(wordMAA.getText());
                     wordAssessmentEvent.setWordId(wordMAA.getId());
-                    wordAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
-                    wordAssessmentEvent.setTimeSpentMs((long) (Math.random() * 20_000));
                     wordAssessmentEventDao.create(wordAssessmentEvent);
                 }
 
@@ -417,6 +420,23 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                     }
                     wordLearningEvent.setLearningEventType(LearningEventType.WORD_PRESSED);
                     wordLearningEventDao.create(wordLearningEvent);
+                }
+
+                int randomNumberOfNumberAssessmentEvents = (int) (Math.random() * 10);
+                for (int i = 0; i < randomNumberOfNumberAssessmentEvents; i++) {
+                    NumberAssessmentEvent numberAssessmentEvent = new NumberAssessmentEvent();
+                    numberAssessmentEvent.setTimestamp(week);
+                    numberAssessmentEvent.setAndroidId(student.getAndroidId());
+                    numberAssessmentEvent.setPackageName("ai.elimu.learndigits");
+                    numberAssessmentEvent.setMasteryScore((float) (int) (Math.random() * 2));
+                    numberAssessmentEvent.setTimeSpentMs((long) (Math.random() * 10_000));
+                    if (weekCount > 26/2) {
+                        numberAssessmentEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
+                        numberAssessmentEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
+                    }
+                    numberAssessmentEvent.setNumberValue(number3.getValue());
+                    numberAssessmentEvent.setNumberId(number3.getId());
+                    numberAssessmentEventDao.create(numberAssessmentEvent);
                 }
 
                 int randomNumberOfNumberLearningEvents = (int) (Math.random() * 10);

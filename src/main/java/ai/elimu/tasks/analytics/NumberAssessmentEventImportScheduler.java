@@ -1,12 +1,12 @@
 package ai.elimu.tasks.analytics;
 
 import ai.elimu.dao.StudentDao;
-import ai.elimu.dao.StoryBookDao;
-import ai.elimu.dao.StoryBookLearningEventDao;
-import ai.elimu.entity.analytics.StoryBookLearningEvent;
+import ai.elimu.dao.NumberAssessmentEventDao;
+import ai.elimu.dao.NumberDao;
+import ai.elimu.entity.analytics.NumberAssessmentEvent;
 import ai.elimu.entity.analytics.students.Student;
 import ai.elimu.model.v2.enums.Language;
-import ai.elimu.rest.v2.analytics.StoryBookLearningEventsRestController;
+import ai.elimu.rest.v2.analytics.NumberAssessmentEventsRestController;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
 import ai.elimu.util.DiscordHelper.Channel;
@@ -20,7 +20,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Extracts learning events from CSV files previously received by the {@link StoryBookLearningEventsRestController}, and imports them into the database.
+ * Extracts assessment events from CSV files previously received by the {@link NumberAssessmentEventsRestController}, and imports them into the database.
  * <p/>
  * <p>
  * Expected folder structure:
@@ -28,30 +28,30 @@ import org.springframework.stereotype.Service;
  * ├── lang-ENG
  * │   ├── analytics
  * │   │   ├── android-id-e387e38700000001
- * │   │   │   └── storybook-learning-events
- * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-09.csv
- * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-10.csv
- * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-11.csv
- * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-14.csv
- * │   │   │       ├── e387e38700000001_3001018_storybook-learning-events_2024-10-18.csv
- * │   │   │       └── e387e38700000001_3001018_storybook-learning-events_2024-10-20.csv
+ * │   │   │   └── number-assessment-events
+ * │   │   │       ├── e387e38700000001_3001018_number-assessment-events_2024-10-09.csv
+ * │   │   │       ├── e387e38700000001_3001018_number-assessment-events_2024-10-10.csv
+ * │   │   │       ├── e387e38700000001_3001018_number-assessment-events_2024-10-11.csv
+ * │   │   │       ├── e387e38700000001_3001018_number-assessment-events_2024-10-14.csv
+ * │   │   │       ├── e387e38700000001_3001018_number-assessment-events_2024-10-18.csv
+ * │   │   │       └── e387e38700000001_3001018_number-assessment-events_2024-10-20.csv
  * │   │   ├── android-id-e387e38700000002
- * │   │   │   └── storybook-learning-events
- * │   │   │       ├── e387e38700000002_3001018_storybook-learning-events_2024-10-09.csv
- * │   │   │       ├── e387e38700000002_3001018_storybook-learning-events_2024-10-10.csv
- * │   │   │       ├── e387e38700000002_3001018_storybook-learning-events_2024-10-11.csv
+ * │   │   │   └── number-assessment-events
+ * │   │   │       ├── e387e38700000002_3001018_number-assessment-events_2024-10-09.csv
+ * │   │   │       ├── e387e38700000002_3001018_number-assessment-events_2024-10-10.csv
+ * │   │   │       ├── e387e38700000002_3001018_number-assessment-events_2024-10-11.csv
  * </pre>
  */
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class StoryBookLearningEventImportScheduler {
+public class NumberAssessmentEventImportScheduler {
 
-  private final StoryBookLearningEventDao storyBookLearningEventDao;
-  private final StoryBookDao storyBookDao;
+  private final NumberAssessmentEventDao numberAssessmentEventDao;
+  private final NumberDao numberDao;
   private final StudentDao studentDao;
 
-  @Scheduled(cron = "00 45 * * * *") // 45 minutes past every hour
+  @Scheduled(cron = "00 25 * * * *") // 25 minutes past every hour
   public synchronized void execute() {
     log.info("execute");
 
@@ -68,20 +68,20 @@ public class StoryBookLearningEventImportScheduler {
           for (File androidIdDirFile : androidIdDir.listFiles()) {
             Long studentId = null;
             Integer eventImportCount = 0;
-            if (androidIdDirFile.getName().equals("storybook-learning-events")) {
-              File storyBookLearningEventsDir = new File(androidIdDir, androidIdDirFile.getName());
-              for (File csvFile : storyBookLearningEventsDir.listFiles()) {
+            if (androidIdDirFile.getName().equals("number-assessment-events")) {
+              File numberAssessmentEventsDir = new File(androidIdDir, androidIdDirFile.getName());
+              for (File csvFile : numberAssessmentEventsDir.listFiles()) {
                 log.info("csvFile: " + csvFile);
 
                 // Convert from CSV to Java
-                List<StoryBookLearningEvent> events = CsvAnalyticsExtractionHelper.extractStoryBookLearningEvents(csvFile);
+                List<NumberAssessmentEvent> events = CsvAnalyticsExtractionHelper.extractNumberAssessmentEvents(csvFile);
                 log.info("events.size(): " + events.size());
 
                 // Store in database
-                for (StoryBookLearningEvent event : events) {
+                for (NumberAssessmentEvent event : events) {
                   // Check if the event has already been stored in the database
-                  StoryBookLearningEvent existingStoryBookLearningEvent = storyBookLearningEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
-                  if (existingStoryBookLearningEvent != null) {
+                  NumberAssessmentEvent existingNumberAssessmentEvent = numberAssessmentEventDao.read(event.getTimestamp(), event.getAndroidId(), event.getPackageName());
+                  if (existingNumberAssessmentEvent != null) {
                     log.warn("The event has already been stored in the database. Skipping data import.");
                     continue;
                   }
@@ -99,12 +99,12 @@ public class StoryBookLearningEventImportScheduler {
                   }
 
                   // If content ID has been provided, look for match in the database
-                  if (event.getStoryBookId() != null) {
-                    event.setStoryBook(storyBookDao.read(event.getStoryBookId()));
+                  if (event.getNumberId() != null) {
+                    event.setNumber(numberDao.read(event.getNumberId()));
                   }
 
                   // Store the event in the database
-                  storyBookLearningEventDao.create(event);
+                  numberAssessmentEventDao.create(event);
                   log.info("Stored event in database with ID " + event.getId());
                   eventImportCount++;
                 }
@@ -112,14 +112,14 @@ public class StoryBookLearningEventImportScheduler {
             }
             if ((studentId != null) && (eventImportCount > 0)) {
               String contentUrl = DomainHelper.getBaseUrl() + "/analytics/students/" + studentId;
-              DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " storybook learning events: " + contentUrl);
+              DiscordHelper.postToChannel(Channel.ANALYTICS, "Imported " + eventImportCount + " number assessment events: " + contentUrl);
             }
           }
         }
       }
     } catch (Exception e) {
       log.error("Error during data import:", e);
-      DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during import of storybook learning events: `" + e.getClass() + ": " + e.getMessage() + "`");
+      DiscordHelper.postToChannel(Channel.ANALYTICS, "Error during import of number assessment events: `" + e.getClass() + ": " + e.getMessage() + "`");
     }
 
     log.info("execute complete");

@@ -2,6 +2,7 @@ package ai.elimu.web.analytics;
 
 import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
+import ai.elimu.dao.NumberAssessmentEventDao;
 import ai.elimu.dao.NumberLearningEventDao;
 import ai.elimu.dao.StoryBookLearningEventDao;
 import ai.elimu.dao.StudentDao;
@@ -30,6 +31,7 @@ public class MainAnalyticsController {
   private final WordAssessmentEventDao wordAssessmentEventDao;
   private final WordLearningEventDao wordLearningEventDao;
 
+  private final NumberAssessmentEventDao numberAssessmentEventDao;
   private final NumberLearningEventDao numberLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
@@ -49,7 +51,7 @@ public class MainAnalyticsController {
     model.addAttribute("wordAssessmentEventCount", wordAssessmentEventDao.readCount());
     model.addAttribute("wordLearningEventCount", wordLearningEventDao.readCount());
 
-    // TODO: number assessment events
+    model.addAttribute("numberAssessmentEventCount", numberAssessmentEventDao.readCount());
     model.addAttribute("numberLearningEventCount", numberLearningEventDao.readCount());
     
     model.addAttribute("storyBookLearningEventCount", storyBookLearningEventDao.readCount());

@@ -2,6 +2,7 @@ package ai.elimu.util.csv;
 
 import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
+import ai.elimu.entity.analytics.NumberAssessmentEvent;
 import ai.elimu.entity.analytics.NumberLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
@@ -198,7 +199,79 @@ public class CsvAnalyticsExtractionHelper {
     }
 
     
-    // TODO: number assessment events
+    public static List<NumberAssessmentEvent> extractNumberAssessmentEvents(File csvFile) {
+        log.info("extractNumberAssessmentEvents");
+
+        Integer versionCode = AnalyticsHelper.extractVersionCodeFromCsvFilename(csvFile.getName());
+        log.info("versionCode: " + versionCode);
+
+        List<NumberAssessmentEvent> numberAssessmentEvents = new ArrayList<>();
+
+        // Iterate each row in the CSV file
+        Path csvFilePath = Paths.get(csvFile.toURI());
+        log.info("csvFilePath: " + csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(csvFilePath);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withFirstRecordAsHeader();
+            log.info("header: " + Arrays.toString(csvFormat.getHeader()));
+            CSVParser csvParser = new CSVParser(reader, csvFormat);
+            for (CSVRecord csvRecord : csvParser) {
+                log.info("csvRecord: " + csvRecord);
+                
+                // Convert from CSV to Java
+
+                NumberAssessmentEvent numberAssessmentEvent = new NumberAssessmentEvent();
+                
+                long timestampInMillis = Long.valueOf(csvRecord.get("timestamp").substring(0, 10)) * 1_000;
+                Calendar timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                timestamp.setTimeInMillis(timestampInMillis);
+                numberAssessmentEvent.setTimestamp(timestamp);
+                
+                String androidId = AnalyticsHelper.extractAndroidIdFromCsvFilename(csvFile.getName());
+                numberAssessmentEvent.setAndroidId(androidId);
+                
+                String packageName = csvRecord.get("package_name");
+                numberAssessmentEvent.setPackageName(packageName);
+
+                Float masteryScore = Float.valueOf(csvRecord.get("mastery_score"));
+                numberAssessmentEvent.setMasteryScore(masteryScore);
+
+                Long timeSpentMs = Long.valueOf(csvRecord.get("time_spent_ms"));
+                numberAssessmentEvent.setTimeSpentMs(timeSpentMs);
+
+                String additionalData = csvRecord.get("additional_data");
+                if (StringUtils.isNotBlank(additionalData)) {
+                    numberAssessmentEvent.setAdditionalData(additionalData);
+                }
+
+                int researchExperimentOrdinal = Integer.valueOf(csvRecord.get("research_experiment"));
+                ResearchExperiment researchExperiment = ResearchExperiment.values()[researchExperimentOrdinal];
+                numberAssessmentEvent.setResearchExperiment(researchExperiment);
+
+                int experimentGroupOrdinal = Integer.valueOf(csvRecord.get("experiment_group"));
+                ExperimentGroup experimentGroup = ExperimentGroup.values()[experimentGroupOrdinal];
+                numberAssessmentEvent.setExperimentGroup(experimentGroup);
+
+                Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
+                numberAssessmentEvent.setNumberValue(numberValue);
+
+                // String numberSymbol = csvRecord.get("number_symbol");
+                // numberAssessmentEvent.setNumberSymbol(numberSymbol);
+
+                if (StringUtils.isNotBlank(csvRecord.get("number_id"))) {
+                    Long numberId = Long.valueOf(csvRecord.get("number_id"));
+                    numberAssessmentEvent.setNumberId(numberId);
+                }
+
+                numberAssessmentEvents.add(numberAssessmentEvent);
+            }
+            csvParser.close();
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
+        }
+
+        return numberAssessmentEvents;
+    }
 
     public static List<NumberLearningEvent> extractNumberLearningEvents(File csvFile) {
         log.info("extractNumberLearningEvents");
