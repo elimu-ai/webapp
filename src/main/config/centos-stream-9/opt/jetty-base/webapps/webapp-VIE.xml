@@ -19,7 +19,7 @@
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_url</Arg>
-    <Arg>jdbc:mysql://localhost/webapp-VIE?useUnicode=true&amp;characterEncoding=utf8</Arg>
+    <Arg>jdbc:mariadb://localhost/webapp-VIE?useUnicode=true&amp;characterEncoding=utf8</Arg>
   </Call>
   <Call name="setAttribute">
     <Arg>jdbc_username</Arg>
