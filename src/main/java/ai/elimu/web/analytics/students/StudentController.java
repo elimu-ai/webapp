@@ -2,6 +2,7 @@ package ai.elimu.web.analytics.students;
 
 import ai.elimu.dao.LetterSoundAssessmentEventDao;
 import ai.elimu.dao.LetterSoundLearningEventDao;
+import ai.elimu.dao.NumberAssessmentEventDao;
 import ai.elimu.dao.NumberLearningEventDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookDao;
@@ -13,6 +14,7 @@ import ai.elimu.dao.WordAssessmentEventDao;
 import ai.elimu.dao.WordLearningEventDao;
 import ai.elimu.entity.analytics.LetterSoundAssessmentEvent;
 import ai.elimu.entity.analytics.LetterSoundLearningEvent;
+import ai.elimu.entity.analytics.NumberAssessmentEvent;
 import ai.elimu.entity.analytics.NumberLearningEvent;
 import ai.elimu.entity.analytics.StoryBookLearningEvent;
 import ai.elimu.entity.analytics.VideoLearningEvent;
@@ -58,6 +60,7 @@ public class StudentController {
   private final WordAssessmentEventDao wordAssessmentEventDao;
   private final WordLearningEventDao wordLearningEventDao;
 
+  private final NumberAssessmentEventDao numberAssessmentEventDao;
   private final NumberLearningEventDao numberLearningEventDao;
 
   private final StoryBookLearningEventDao storyBookLearningEventDao;
@@ -237,6 +240,33 @@ public class StudentController {
     model.addAttribute("wordEventCountList", wordEventCountList);
 
 
+    // Prepare chart data - NumberAssessmentEvents
+    List<NumberAssessmentEvent> numberAssessmentEvents = numberAssessmentEventDao.readAll(student.getAndroidId());
+    model.addAttribute("numberAssessmentEvents", numberAssessmentEvents);
+    List<Integer> numberAssessmentEventCorrectCountList = new ArrayList<>();
+    List<Integer> numberAssessmentEventIncorrectCountList = new ArrayList<>();
+    if (!numberAssessmentEvents.isEmpty()) {
+      Map<String, Integer> eventCorrectCountByWeekMap = new HashMap<>();
+      Map<String, Integer> eventIncorrectCountByWeekMap = new HashMap<>();
+      for (NumberAssessmentEvent event : numberAssessmentEvents) {
+        String eventWeek = simpleDateFormat.format(event.getTimestamp().getTime());
+        if (event.getMasteryScore() < 0.5) {
+          eventIncorrectCountByWeekMap.put(eventWeek, eventIncorrectCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        } else {
+          eventCorrectCountByWeekMap.put(eventWeek, eventCorrectCountByWeekMap.getOrDefault(eventWeek, 0) + 1);
+        }
+      }
+      week = (Calendar) calendar6MonthsAgo.clone();
+      while (!week.after(calendarNow)) {
+        String weekAsString = simpleDateFormat.format(week.getTime());
+        numberAssessmentEventCorrectCountList.add(eventCorrectCountByWeekMap.getOrDefault(weekAsString, 0));
+        numberAssessmentEventIncorrectCountList.add(eventIncorrectCountByWeekMap.getOrDefault(weekAsString, 0));
+        week.add(Calendar.WEEK_OF_YEAR, 1);
+      }
+    }
+    model.addAttribute("numberAssessmentEventCorrectCountList", numberAssessmentEventCorrectCountList);
+    model.addAttribute("numberAssessmentEventIncorrectCountList", numberAssessmentEventIncorrectCountList);
+    
     // Prepare chart data - NumberLearningEvents
     List<NumberLearningEvent> numberLearningEvents = numberLearningEventDao.readAll(student.getAndroidId());
     model.addAttribute("numberLearningEvents", numberLearningEvents);
