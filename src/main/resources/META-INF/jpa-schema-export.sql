@@ -1,320 +1,4 @@
 
-    alter table Application 
-       drop 
-       foreign key FKn1pft600om9qs7dn754chjk67;
-
-    alter table Application_literacySkills 
-       drop 
-       foreign key FK6m0x1m1hks48tio7hdlcyumqq;
-
-    alter table Application_numeracySkills 
-       drop 
-       foreign key FK858mh1kg9x9w8oqip0mkf53tr;
-
-    alter table ApplicationVersion 
-       drop 
-       foreign key FKf2y9evfvnfd82cot9dhk0ue54;
-
-    alter table ApplicationVersion 
-       drop 
-       foreign key FKbmfakjprck5g1jlh74xpmp0j7;
-
-    alter table Contributor_roles 
-       drop 
-       foreign key FKriv03x8alxet23b7b4ivk2vot;
-
-    alter table Emoji_Word 
-       drop 
-       foreign key FKbkw2j0k8qfhx43docakb9j5ve;
-
-    alter table Emoji_Word 
-       drop 
-       foreign key FKlwplucw359d2d5i4yelfkwy6f;
-
-    alter table Image_Letter 
-       drop 
-       foreign key FK9pi4lblfl1s807tlif82cm5mt;
-
-    alter table Image_Letter 
-       drop 
-       foreign key FK4gkpmcffc4upm7mrudt4clux4;
-
-    alter table Image_literacySkills 
-       drop 
-       foreign key FKase42u556a5hkq1qau359sohp;
-
-    alter table Image_Number 
-       drop 
-       foreign key FKitwj5vppcji5now11mp8icipa;
-
-    alter table Image_Number 
-       drop 
-       foreign key FK70i88cwc0frkrx6lo2hjuav4v;
-
-    alter table Image_numeracySkills 
-       drop 
-       foreign key FKlsmoxnf75p3c9bsstqxjy39cx;
-
-    alter table Image_Word 
-       drop 
-       foreign key FKo4boxy1gphgg94k7gsyyf2gkh;
-
-    alter table Image_Word 
-       drop 
-       foreign key FKm6hxhjn1og47ovf4xyt6uaqff;
-
-    alter table ImageContributionEvent 
-       drop 
-       foreign key FKlw0g62yxana6js9f7hpc4hybc;
-
-    alter table ImageContributionEvent 
-       drop 
-       foreign key FK9v3p0869ivi1jeohpkn8sttr0;
-
-    alter table LetterContributionEvent 
-       drop 
-       foreign key FKrrosmtv3fcec9acjayfruop5;
-
-    alter table LetterContributionEvent 
-       drop 
-       foreign key FK5do5q62aj1bilg8pwmphr4ugl;
-
-    alter table LetterSound_Letter 
-       drop 
-       foreign key FKgfio6vxgyrx52nc0so389ibi1;
-
-    alter table LetterSound_Letter 
-       drop 
-       foreign key FKgb32dkiivg3d8owk1e6hcyu78;
-
-    alter table LetterSound_Sound 
-       drop 
-       foreign key FKjjypynbc4x7ij6vqsi9e0m3st;
-
-    alter table LetterSound_Sound 
-       drop 
-       foreign key FKtlgjcxa3jtailq62jrgq1hgl6;
-
-    alter table LetterSoundAssessmentEvent 
-       drop 
-       foreign key FKehf1rjbixnmdjol91didaj4b5;
-
-    alter table LetterSoundAssessmentEvent 
-       drop 
-       foreign key FKr3r908t2wb4g6qrft3uheack6;
-
-    alter table LetterSoundContributionEvent 
-       drop 
-       foreign key FK5uk320agfa13pvh52v6n6ncbs;
-
-    alter table LetterSoundContributionEvent 
-       drop 
-       foreign key FKqmngc8gfw52jjv9gf9dey1urk;
-
-    alter table LetterSoundLearningEvent 
-       drop 
-       foreign key FKdm16bp5gb29hsge3thngm1pli;
-
-    alter table LetterSoundLearningEvent 
-       drop 
-       foreign key FKa7y3jjd44ki8l0ia94siviyn7;
-
-    alter table LetterSoundPeerReviewEvent 
-       drop 
-       foreign key FK3wapf4y5anhgnjbqna2qjyie4;
-
-    alter table LetterSoundPeerReviewEvent 
-       drop 
-       foreign key FKcnsd5pxijcu7qmjxs6qr2k2p6;
-
-    alter table Number_Word 
-       drop 
-       foreign key FKspo8bt34fftva3y5jac7p2no1;
-
-    alter table Number_Word 
-       drop 
-       foreign key FKim83prd786jsowiyrhdf1vo59;
-
-    alter table NumberAssessmentEvent 
-       drop 
-       foreign key FKec7ikjyqnxjnkcmjfcv9iy67r;
-
-    alter table NumberAssessmentEvent 
-       drop 
-       foreign key FK8xswt8aljh7hfnqsg4iyot3gj;
-
-    alter table NumberContributionEvent 
-       drop 
-       foreign key FK8tr84kkqmavan1jxfmc1pq8h6;
-
-    alter table NumberContributionEvent 
-       drop 
-       foreign key FKkfyssxfqg6x1vygyhjks96m4u;
-
-    alter table NumberLearningEvent 
-       drop 
-       foreign key FKelrgxep39nss6majgtkv6pdem;
-
-    alter table NumberLearningEvent 
-       drop 
-       foreign key FK14drkt4fawgjw0ve761bkt0q;
-
-    alter table NumberPeerReviewEvent 
-       drop 
-       foreign key FKhcm34w6kojhaiqneed300n9p8;
-
-    alter table NumberPeerReviewEvent 
-       drop 
-       foreign key FKtq7b81iqfw1dxuk79c2se2onu;
-
-    alter table SoundContributionEvent 
-       drop 
-       foreign key FKbuah2o1ndo9kpbj39gr8tic3t;
-
-    alter table SoundContributionEvent 
-       drop 
-       foreign key FK2vw08gkdxfbcp4ufji6nsuyoi;
-
-    alter table StoryBook 
-       drop 
-       foreign key FKkwr1b53nrmjdvd874vsiql21a;
-
-    alter table StoryBookChapter 
-       drop 
-       foreign key FKcnlksdikth82ec6nia8tb3cps;
-
-    alter table StoryBookChapter 
-       drop 
-       foreign key FKaqnew7dipgs9ffkfh2js25l1g;
-
-    alter table StoryBookContributionEvent 
-       drop 
-       foreign key FK3s4f77htgff63dqy4diam9fc9;
-
-    alter table StoryBookContributionEvent 
-       drop 
-       foreign key FKpuk0ynailkg93eiaf62tn2phy;
-
-    alter table StoryBookLearningEvent 
-       drop 
-       foreign key FK8f7cr6xa4n3kgrmffy7crtcrn;
-
-    alter table StoryBookLearningEvent 
-       drop 
-       foreign key FKi731lr5iofppbd0lod4pjoufr;
-
-    alter table StoryBookParagraph 
-       drop 
-       foreign key FKdna2npdcgkq74v2306anb4f6s;
-
-    alter table StoryBookParagraph_Word 
-       drop 
-       foreign key FKecjq9ll62036jtbwl3g9vytg8;
-
-    alter table StoryBookParagraph_Word 
-       drop 
-       foreign key FK6kx5ydfx49dfl5oy44bold81k;
-
-    alter table StoryBookPeerReviewEvent 
-       drop 
-       foreign key FKjc6t09q4xff532a4s8jocuvs1;
-
-    alter table StoryBookPeerReviewEvent 
-       drop 
-       foreign key FKe1bnu38w5m0dc0qkeuuxf4g5h;
-
-    alter table Syllable_Sound 
-       drop 
-       foreign key FKlfp5s4xc4wi7s7fo980027tl1;
-
-    alter table Syllable_Sound 
-       drop 
-       foreign key FK627nj3gkx5dn4xn9g4tmnmbdx;
-
-    alter table Video_Letter 
-       drop 
-       foreign key FK426jmgm09qif0fhqke99ejl8c;
-
-    alter table Video_Letter 
-       drop 
-       foreign key FKlmbmpg1y1jue79i9w0f3ejetp;
-
-    alter table Video_literacySkills 
-       drop 
-       foreign key FKcp7t3km7xi2wkraaugjuk5xoo;
-
-    alter table Video_Number 
-       drop 
-       foreign key FK5lrjvgqa5wnd49g6gsohlm0tg;
-
-    alter table Video_Number 
-       drop 
-       foreign key FKr064lw8ryd35xks27348u2s9a;
-
-    alter table Video_numeracySkills 
-       drop 
-       foreign key FKt545qojkqdegjg5muf41ltk86;
-
-    alter table Video_Word 
-       drop 
-       foreign key FK2un2s9ljli58i2qkjmvdpwfc7;
-
-    alter table Video_Word 
-       drop 
-       foreign key FKplswdv1whriquc00dsaxrqe0s;
-
-    alter table VideoLearningEvent 
-       drop 
-       foreign key FKoqqhe1r2epyv55g6jo79t251h;
-
-    alter table VideoLearningEvent 
-       drop 
-       foreign key FK38rllate5mtlhi6fdiudffm4c;
-
-    alter table Word 
-       drop 
-       foreign key FKd1ussioi3bpu2tmxm0cim5s5a;
-
-    alter table Word_LetterSound 
-       drop 
-       foreign key FKnxxaf27n4dfiblvkg73ewiig5;
-
-    alter table Word_LetterSound 
-       drop 
-       foreign key FKsx4fbojtfe17xitgiofdef23k;
-
-    alter table WordAssessmentEvent 
-       drop 
-       foreign key FKlxj22iqgrsvw76fld5vsrhb8c;
-
-    alter table WordAssessmentEvent 
-       drop 
-       foreign key FKeh2bf4xeskf6netv0nsy86m3d;
-
-    alter table WordContributionEvent 
-       drop 
-       foreign key FKrsen7udud4svhc32e3rhkcmnu;
-
-    alter table WordContributionEvent 
-       drop 
-       foreign key FKkwqjkxvg3rvmp1kys6fr8blwq;
-
-    alter table WordLearningEvent 
-       drop 
-       foreign key FKb5jjaetgs99whlxywbi0palby;
-
-    alter table WordLearningEvent 
-       drop 
-       foreign key FK221ytgbt7u8eajdics6a5sloe;
-
-    alter table WordPeerReviewEvent 
-       drop 
-       foreign key FKp3i671x4kb823ayc73381gk33;
-
-    alter table WordPeerReviewEvent 
-       drop 
-       foreign key FKjyi59inavblt0afri8vd3xhw1;
-
     drop table if exists Application;
 
     drop table if exists Application_literacySkills;
@@ -437,17 +121,17 @@
         repoName varchar(255),
         contributor_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Application_literacySkills (
        Application_id bigint not null,
         literacySkills varchar(255)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Application_numeracySkills (
        Application_id bigint not null,
         numeracySkills varchar(255)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table ApplicationVersion (
        id bigint not null auto_increment,
@@ -463,7 +147,7 @@
         application_id bigint,
         contributor_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Contributor (
        id bigint not null auto_increment,
@@ -471,7 +155,7 @@
         firstName varchar(255),
         imageUrl varchar(255),
         lastName varchar(255),
-        motivation varchar(1000),
+        motivation text,
         providerIdDiscord varchar(255),
         providerIdGitHub varchar(255),
         providerIdWeb3 varchar(42),
@@ -479,20 +163,20 @@
         usernameDiscord varchar(255),
         usernameGitHub varchar(255),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Contributor_roles (
        Contributor_id bigint not null,
         roles varchar(255)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table DbMigration (
        id bigint not null auto_increment,
         calendar datetime,
-        script varchar(10000),
+        script text,
         version integer,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Device (
        id bigint not null auto_increment,
@@ -504,7 +188,7 @@
         remoteAddress varchar(255),
         timeRegistered datetime,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Emoji (
        id bigint not null auto_increment,
@@ -516,13 +200,13 @@
         unicodeEmojiVersion float(53),
         unicodeVersion float(53),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Emoji_Word (
        Emoji_id bigint not null,
         words_id bigint not null,
         primary key (Emoji_id, words_id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Image (
        id bigint not null auto_increment,
@@ -530,7 +214,7 @@
         peerReviewStatus varchar(255),
         revisionNumber integer,
         usageCount integer,
-        attributionUrl varchar(1000),
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
         checksumGitHub varchar(255),
@@ -540,45 +224,45 @@
         imageFormat varchar(255),
         title varchar(255),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Image_Letter (
        Image_id bigint not null,
         letters_id bigint not null,
         primary key (Image_id, letters_id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Image_literacySkills (
        Image_id bigint not null,
         literacySkills varchar(255)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Image_Number (
        Image_id bigint not null,
         numbers_id bigint not null,
         primary key (Image_id, numbers_id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Image_numeracySkills (
        Image_id bigint not null,
         numeracySkills varchar(255)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Image_Word (
        Image_id bigint not null,
         words_id bigint not null,
         primary key (Image_id, words_id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table ImageContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
         image_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Letter (
        id bigint not null auto_increment,
@@ -589,17 +273,17 @@
         diacritic bit not null,
         text varchar(4),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
         letter_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterSound (
        id bigint not null auto_increment,
@@ -608,25 +292,25 @@
         revisionNumber integer,
         usageCount integer,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterSound_Letter (
        LetterSound_id bigint not null,
         letters_id bigint not null,
         letters_ORDER integer not null,
         primary key (LetterSound_id, letters_ORDER)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterSound_Sound (
        LetterSound_id bigint not null,
         sounds_id bigint not null,
         sounds_ORDER integer not null,
         primary key (LetterSound_id, sounds_ORDER)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterSoundAssessmentEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         masteryScore float(23),
@@ -640,21 +324,21 @@
         application_id bigint,
         letterSound_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterSoundContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
         letterSound_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterSoundLearningEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         learningEventType varchar(255),
@@ -665,17 +349,17 @@
         application_id bigint,
         letterSound_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table LetterSoundPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         letterSoundContributionEvent_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Number (
        id bigint not null auto_increment,
@@ -686,18 +370,18 @@
         symbol varchar(255),
         value integer,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Number_Word (
        Number_id bigint not null,
         words_id bigint not null,
         words_ORDER integer not null,
         primary key (Number_id, words_ORDER)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table NumberAssessmentEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         masteryScore float(23),
@@ -711,21 +395,21 @@
         application_id bigint,
         number_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table NumberContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
         number_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table NumberLearningEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         learningEventType varchar(255),
@@ -738,17 +422,17 @@
         application_id bigint,
         number_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table NumberPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         numberContributionEvent_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Sound (
        id bigint not null auto_increment,
@@ -768,17 +452,17 @@
         vowelHeight varchar(255),
         vowelLength varchar(255),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table SoundContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
         sound_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table StoryBook (
        id bigint not null auto_increment,
@@ -786,14 +470,14 @@
         peerReviewStatus varchar(255),
         revisionNumber integer,
         usageCount integer,
-        attributionUrl varchar(1000),
+        attributionUrl text,
         contentLicense varchar(255),
-        description varchar(1024),
+        description text,
         readingLevel varchar(255),
         title varchar(255),
         coverImage_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table StoryBookChapter (
        id bigint not null auto_increment,
@@ -801,23 +485,23 @@
         image_id bigint,
         storyBook_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table StoryBookContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timestamp datetime,
-        paragraphTextAfter varchar(1000),
-        paragraphTextBefore varchar(1000),
+        paragraphTextAfter text,
+        paragraphTextBefore text,
         contributor_id bigint,
         storyBook_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table StoryBookLearningEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         learningEventType varchar(255),
@@ -829,38 +513,38 @@
         application_id bigint,
         storyBook_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table StoryBookParagraph (
        id bigint not null auto_increment,
-        originalText varchar(1024),
+        originalText text,
         sortOrder integer,
         storyBookChapter_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table StoryBookParagraph_Word (
        StoryBookParagraph_id bigint not null,
         words_id bigint not null,
         words_ORDER integer not null,
         primary key (StoryBookParagraph_id, words_ORDER)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table StoryBookPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         storyBookContributionEvent_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Student (
        id bigint not null auto_increment,
         androidId varchar(255),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Syllable (
        id bigint not null auto_increment,
@@ -870,14 +554,14 @@
         usageCount integer,
         text varchar(255),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Syllable_Sound (
        Syllable_id bigint not null,
         sounds_id bigint not null,
         sounds_ORDER integer not null,
         primary key (Syllable_id, sounds_ORDER)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Video (
        id bigint not null auto_increment,
@@ -885,7 +569,7 @@
         peerReviewStatus varchar(255),
         revisionNumber integer,
         usageCount integer,
-        attributionUrl varchar(1000),
+        attributionUrl text,
         contentLicense varchar(255),
         contentType varchar(255),
         checksumGitHub varchar(255),
@@ -895,39 +579,39 @@
         title varchar(255),
         videoFormat varchar(255),
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Video_Letter (
        Video_id bigint not null,
         letters_id bigint not null,
         primary key (Video_id, letters_id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Video_literacySkills (
        Video_id bigint not null,
         literacySkills varchar(255)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Video_Number (
        Video_id bigint not null,
         numbers_id bigint not null,
         primary key (Video_id, numbers_id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Video_numeracySkills (
        Video_id bigint not null,
         numeracySkills varchar(255)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Video_Word (
        Video_id bigint not null,
         words_id bigint not null,
         primary key (Video_id, words_id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table VideoLearningEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         learningEventType varchar(255),
@@ -939,7 +623,7 @@
         application_id bigint,
         video_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Word (
        id bigint not null auto_increment,
@@ -952,18 +636,18 @@
         wordType varchar(255),
         rootWord_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table Word_LetterSound (
        Word_id bigint not null,
         letterSounds_id bigint not null,
         letterSounds_ORDER integer not null,
         primary key (Word_id, letterSounds_ORDER)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table WordAssessmentEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         masteryScore float(23),
@@ -976,21 +660,21 @@
         application_id bigint,
         word_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table WordContributionEvent (
        id bigint not null auto_increment,
-        comment varchar(1000),
+        comment text,
         revisionNumber integer,
         timestamp datetime,
         contributor_id bigint,
         word_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table WordLearningEvent (
        id bigint not null auto_increment,
-        additionalData varchar(1024),
+        additionalData text,
         androidId varchar(255),
         experimentGroup smallint,
         learningEventType varchar(255),
@@ -1002,17 +686,17 @@
         application_id bigint,
         word_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     create table WordPeerReviewEvent (
        id bigint not null auto_increment,
         approved bit,
-        comment varchar(1000),
+        comment text,
         timestamp datetime,
         contributor_id bigint,
         wordContributionEvent_id bigint,
         primary key (id)
-    ) engine=InnoDB;
+    ) type=MyISAM;
 
     alter table Contributor 
        add constraint UK_se15thb3bqtr3sw28rgf1v8ia unique (email);

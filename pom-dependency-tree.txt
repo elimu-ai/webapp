@@ -101,7 +101,8 @@ ai.elimu:webapp:war:2.6.91-SNAPSHOT
 |  \- jakarta.validation:jakarta.validation-api:jar:3.0.0:compile
 +- jakarta.persistence:jakarta.persistence-api:jar:3.0.0:compile
 +- org.hsqldb:hsqldb:jar:2.7.4:compile
-+- org.mariadb.jdbc:mariadb-java-client:jar:3.5.3:compile
++- com.mysql:mysql-connector-j:jar:8.2.0:compile
+|  \- com.google.protobuf:protobuf-java:jar:3.21.9:compile
 +- commons-dbcp:commons-dbcp:jar:1.4:compile
 |  \- commons-pool:commons-pool:jar:1.5.4:compile
 +- jakarta.servlet:jakarta.servlet-api:jar:5.0.0:provided
