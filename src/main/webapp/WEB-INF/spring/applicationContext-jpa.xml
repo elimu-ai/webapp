@@ -25,12 +25,12 @@
             p:dataSource-ref="dataSource"
             p:persistenceXmlLocation="classpath:META-INF/jpa-persistence.xml">
     <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-                    p:database="${jpa.database}"
-                    p:databasePlatform="${jpa.databasePlatform}"
-                    p:showSql="${jpa.showSql}"
-                    p:generateDdl="${jpa.generateDdl}" />
-            </property>
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+                p:database="${jpa.database}"
+                p:databasePlatform="${jpa.databasePlatform}"
+                p:showSql="${jpa.showSql}"
+                p:generateDdl="${jpa.generateDdl}" />
+        </property>
     </bean>
 
     <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
