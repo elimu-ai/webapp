@@ -51,7 +51,7 @@ public class WordLearningEventImportScheduler {
   private final WordDao wordDao;
   private final StudentDao studentDao;
 
-  @Scheduled(cron = "00 40 * * * *") // 30 minutes past every hour
+  @Scheduled(cron = "00 40 * * * *") // 40 minutes past every hour
   public synchronized void execute() {
     log.info("execute");
 

@@ -51,7 +51,7 @@ public class WordAssessmentEventImportScheduler {
   private final WordDao wordDao;
   private final StudentDao studentDao;
 
-  @Scheduled(cron = "00 35 * * * *") // 25 minutes past every hour
+  @Scheduled(cron = "00 35 * * * *") // 35 minutes past every hour
   public synchronized void execute() {
     log.info("execute");
 

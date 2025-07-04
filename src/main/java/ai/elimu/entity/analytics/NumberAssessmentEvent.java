@@ -1,6 +1,8 @@
 package ai.elimu.entity.analytics;
 
+import ai.elimu.entity.content.Number;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +29,7 @@ public class NumberAssessmentEvent extends AssessmentEvent {
      * In that case, this field will be {@code null}.
      */
     private Long numberId;
+
+    @ManyToOne
+    private Number number;
 }
