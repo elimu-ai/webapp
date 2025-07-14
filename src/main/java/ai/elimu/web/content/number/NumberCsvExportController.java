@@ -71,9 +71,8 @@ public class NumberCsvExportController {
           wordIdsJsonArray,
           wordTextsJsonArray
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

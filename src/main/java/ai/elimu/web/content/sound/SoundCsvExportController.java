@@ -53,9 +53,8 @@ public class SoundCsvExportController {
           sound.getSoundType(),
           sound.getUsageCount()
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

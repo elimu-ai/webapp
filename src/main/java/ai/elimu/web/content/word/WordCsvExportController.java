@@ -84,9 +84,8 @@ public class WordCsvExportController {
           rootWordId,
           rootWordText
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();
