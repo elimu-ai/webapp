@@ -6,10 +6,14 @@ import ai.elimu.entity.content.Syllable;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +29,23 @@ public class SyllableCsvExportController {
   @GetMapping
   public void handleRequest(
       HttpServletResponse response,
-      OutputStream outputStream) {
+      OutputStream outputStream
+  ) throws IOException {
     log.info("handleRequest");
 
-    // Generate CSV file
-    String csvFileContent = "id,text,sound_ids,usage_count" + "\n";
     List<Syllable> syllables = syllableDao.readAllOrderedByUsage();
     log.info("syllables.size(): " + syllables.size());
+
+    CSVFormat csvFormat = CSVFormat.DEFAULT
+        .withHeader(
+            "id",
+            "text",
+            "sound_ids",
+            "usage_count"
+        );
+    StringWriter stringWriter = new StringWriter();
+    CSVPrinter csvPrinter = new CSVPrinter(stringWriter, csvFormat);
+    
     for (Syllable syllable : syllables) {
       long[] soundIdsArray = new long[syllable.getSounds().size()];
       int index = 0;
@@ -39,11 +53,18 @@ public class SyllableCsvExportController {
         soundIdsArray[index] = sound.getId();
         index++;
       }
-      csvFileContent += syllable.getId() + ","
-          + "\"" + syllable.getText() + "\","
-          + Arrays.toString(soundIdsArray) + ","
-          + syllable.getUsageCount() + "\n";
+      
+      csvPrinter.printRecord(
+          syllable.getId(),
+          syllable.getText(),
+          Arrays.toString(soundIdsArray),
+          syllable.getUsageCount()
+      );
     }
+    csvPrinter.flush();
+    csvPrinter.close();
+
+    String csvFileContent = stringWriter.toString();
 
     response.setContentType("text/csv");
     byte[] bytes = csvFileContent.getBytes();
