@@ -16,7 +16,6 @@ import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.ReadingLevel;
 import ai.elimu.model.v2.enums.content.ImageFormat;
-import ai.elimu.service.storybook.StoryBookEPubService;
 import ai.elimu.util.ChecksumHelper;
 import ai.elimu.util.ConfigHelper;
 import ai.elimu.util.DiscordHelper;
@@ -83,8 +82,6 @@ public class StoryBookCreateFromEPubController {
   private final StoryBookChapterDao storyBookChapterDao;
 
   private final StoryBookParagraphDao storyBookParagraphDao;
-
-  private final StoryBookEPubService storyBookEPubService;
 
   @GetMapping
   public String handleRequest(Model model) {
@@ -235,7 +232,7 @@ public class StoryBookCreateFromEPubController {
           throw new IllegalArgumentException("The TOC file was not found");
         } else {
           List<String> chapterReferences = null;
-          if (storyBookEPubService.isTableOfContentsFileHtmlLike(tableOfContentsFile.getName())) {
+          if (tableOfContentsFile.getName().endsWith(".xhtml") || tableOfContentsFile.getName().endsWith(".html")) {
             // StoryBookProvider#GLOBAL_DIGITAL_LIBRARY or StoryBookProvider#LETS_READ_ASIA
             chapterReferences = EPubChapterExtractionHelper.extractChapterReferencesFromTableOfContentsFile(tableOfContentsFile);
           } else if (tableOfContentsFile.getName().endsWith(".ncx")) {
