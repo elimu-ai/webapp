@@ -181,9 +181,8 @@ public class ContributorCsvExportController {
           ethereumAddress,
           impactPercentage
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

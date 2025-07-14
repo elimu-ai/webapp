@@ -61,9 +61,8 @@ public class ImageCsvExportController {
           image.getUrl(),
           image.getImageFormat()
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

@@ -117,9 +117,8 @@ public class StoryBookCsvExportController {
           coverImageId,
           chaptersJsonArray
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

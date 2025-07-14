@@ -52,9 +52,8 @@ public class LetterCsvExportController {
           letter.isDiacritic(),
           letter.getUsageCount()
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

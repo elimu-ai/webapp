@@ -72,9 +72,8 @@ public class EmojiCsvExportController {
           wordIdsJsonArray,
           wordTextsJsonArray
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();

@@ -86,9 +86,8 @@ public class LetterSoundCsvExportController {
           soundValuesIpaJsonArray,
           letterSound.getUsageCount()
       );
-
-      csvPrinter.flush();
     }
+    csvPrinter.flush();
     csvPrinter.close();
 
     String csvFileContent = stringWriter.toString();
