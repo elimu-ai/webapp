@@ -312,9 +312,11 @@ public class CsvAnalyticsExtractionHelper {
                     numberLearningEvent.setAdditionalData(additionalData);
                 }
 
-                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
-                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                    numberLearningEvent.setLearningEventType(learningEventType);
+                if (versionCode < 4000033) {
+                    if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                        LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                        numberLearningEvent.setLearningEventType(learningEventType);
+                    }
                 }
 
                 if (versionCode >= 3005009) {
@@ -481,9 +483,11 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 wordLearningEvent.setPackageName(packageName);
 
-                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
-                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                    wordLearningEvent.setLearningEventType(learningEventType);
+                if (versionCode < 4000033) {
+                    if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                        LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                        wordLearningEvent.setLearningEventType(learningEventType);
+                    }
                 }
 
                 if (versionCode >= 3006000) {
@@ -568,9 +572,11 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 storyBookLearningEvent.setPackageName(packageName);
 
-                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
-                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                    storyBookLearningEvent.setLearningEventType(learningEventType);
+                if (versionCode < 4000033) {
+                    if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                        LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                        storyBookLearningEvent.setLearningEventType(learningEventType);
+                    }
                 }
 
                 if (versionCode >= 3006000) {
@@ -653,9 +659,11 @@ public class CsvAnalyticsExtractionHelper {
                 String packageName = csvRecord.get("package_name");
                 videoLearningEvent.setPackageName(packageName);
 
-                if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
-                    LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
-                    videoLearningEvent.setLearningEventType(learningEventType);
+                if (versionCode < 4000033) {
+                    if (StringUtils.isNotBlank(csvRecord.get("learning_event_type"))) {
+                        LearningEventType learningEventType = LearningEventType.valueOf(csvRecord.get("learning_event_type"));
+                        videoLearningEvent.setLearningEventType(learningEventType);
+                    }
                 }
 
                 String additionalData = csvRecord.get("additional_data");
