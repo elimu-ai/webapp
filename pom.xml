@@ -12,7 +12,7 @@
     <model.version>2.0.114</model.version>
     <hibernate.version>6.1.7.Final</hibernate.version>
     <jetty.version>11.0.24</jetty.version>
-    <spring.version>6.0.11</spring.version>
+    <spring.version>6.2.9</spring.version>
     <surefire-plugin.version>3.1.2</surefire-plugin.version>
     <lombok.version>1.18.38</lombok.version>
   </properties>
