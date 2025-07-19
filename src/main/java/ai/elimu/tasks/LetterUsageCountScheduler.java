@@ -21,7 +21,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Iterates all StoryBooks and calculates the frequency of each letter. Lower-case and upper-case variants are considered as two different letters, e.g. 'a' and 'A'.
+ * Iterates all StoryBooks and calculates the frequency of each letter. Lower-case and 
+ * upper-case variants are considered as two different letters, e.g. 'a' and 'A'.
  */
 @Service
 @RequiredArgsConstructor
@@ -31,9 +32,7 @@ public class LetterUsageCountScheduler {
   private final LetterDao letterDao;
 
   private final StoryBookDao storyBookDao;
-
   private final StoryBookChapterDao storyBookChapterDao;
-
   private final StoryBookParagraphDao storyBookParagraphDao;
 
   @Scheduled(cron = "00 15 06 * * *") // At 06:15 every day

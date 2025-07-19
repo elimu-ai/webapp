@@ -56,7 +56,7 @@
         <c:if test="${not empty sounds}">
             <table class="bordered highlight">
                 <thead>
-                    <th>Frequency</th>
+                    <th>Usage count</th>
                     <th>IPA value</th>
                     <th>X-SAMPA value</th>
                     <th>Sound type</th>

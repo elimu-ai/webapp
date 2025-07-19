@@ -4,6 +4,38 @@
 
 <content:section cssId="letterListPage">
     <div class="section row">
+        <div class="card-panel">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+            <canvas id="chart"></canvas>
+            <script>
+                var ctx = document.getElementById('chart');
+                var data = {
+                    labels: [
+                        <c:forEach var="key" items="${letterFrequencyMap.keySet()}">
+                            '${key}',
+                        </c:forEach>
+                    ],
+                    datasets: [
+                        {
+                            data: [
+                                <c:forEach var="key" items="${letterFrequencyMap}">
+                                    ${key.value},
+                                </c:forEach>
+                            ],
+                            label: 'Letter frequency distribution',
+                            backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
+                        }
+                    ]
+                };
+                var options = {};
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: options
+                });
+            </script>
+        </div>
+
         <a id="exportToCsvButton" class="right btn waves-effect waves-light grey-text white" 
            href="<spring:url value='/content/letter/list/letters.csv' />">
             Export to CSV<i class="material-icons right">vertical_align_bottom</i>
@@ -24,7 +56,7 @@
         <c:if test="${not empty letters}">
             <table class="bordered highlight">
                 <thead>
-                    <th>Frequency</th>
+                    <th>Usage count</th>
                     <th>Letter</th>
                     <th>Diacritic</th>
                     <th>Revision</th>
