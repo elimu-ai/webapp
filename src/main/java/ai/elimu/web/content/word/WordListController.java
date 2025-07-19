@@ -1,10 +1,16 @@
 package ai.elimu.web.content.word;
 
 import ai.elimu.dao.EmojiDao;
+import ai.elimu.dao.StoryBookParagraphDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.Emoji;
+import ai.elimu.entity.content.StoryBookParagraph;
 import ai.elimu.entity.content.Word;
+import ai.elimu.model.v2.enums.Language;
+import ai.elimu.util.ConfigHelper;
+import ai.elimu.util.WordFrequencyHelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +32,8 @@ public class WordListController {
 
   private final EmojiDao emojiDao;
 
+  private final StoryBookParagraphDao storyBookParagraphDao;
+
   @GetMapping
   public String handleRequest(Model model) {
     log.info("handleRequest");
@@ -41,6 +49,19 @@ public class WordListController {
       }
     }
     model.addAttribute("maxUsageCount", maxUsageCount);
+
+    // Extract letter frequency distribution from storybook paragraphs
+    List<String> wordsInParagraphs = new ArrayList<>();
+    for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {
+      for (String word : storyBookParagraph.getOriginalText().split(" ")) {
+        wordsInParagraphs.add(word);
+      }
+    }
+    if (StringUtils.isNotBlank(ConfigHelper.getProperty("content.language"))) {
+      Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+      Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(wordsInParagraphs, language);
+      model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+    }
 
     return "content/word/list";
   }

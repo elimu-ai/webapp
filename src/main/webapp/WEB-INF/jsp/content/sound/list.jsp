@@ -22,7 +22,7 @@
                                     '${sound.usageCount}',
                                 </c:forEach>
                             ],
-                            label: 'Sound distribution',
+                            label: 'Sound frequency distribution',
                             backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
                         }
                     ]
@@ -56,7 +56,7 @@
         <c:if test="${not empty sounds}">
             <table class="bordered highlight">
                 <thead>
-                    <th>Frequency</th>
+                    <th>Usage count</th>
                     <th>IPA value</th>
                     <th>X-SAMPA value</th>
                     <th>Sound type</th>
