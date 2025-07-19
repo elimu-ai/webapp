@@ -22,7 +22,7 @@
                                     '${sound.usageCount}',
                                 </c:forEach>
                             ],
-                            label: 'Sound distribution',
+                            label: 'Sound frequency distribution',
                             backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
                         }
                     ]
