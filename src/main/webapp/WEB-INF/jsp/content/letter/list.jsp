@@ -12,7 +12,7 @@
                 var data = {
                     labels: [
                         <c:forEach var="key" items="${letterFrequencyMap.keySet()}">
-                            '${key}',
+                            '<c:out value="${key}" escapeXml="true" />',
                         </c:forEach>
                     ],
                     datasets: [

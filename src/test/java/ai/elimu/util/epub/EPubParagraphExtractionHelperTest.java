@@ -80,8 +80,9 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
-        assertEquals(1, storyBookParagraphs.size());
-        assertEquals("What if I try talking to them? The moon slowly moves toward the group of stars.", storyBookParagraphs.get(0));
+        assertEquals(2, storyBookParagraphs.size());
+        assertEquals("What if I try talking to them?", storyBookParagraphs.get(0));
+        assertEquals("The moon slowly moves toward the group of stars.", storyBookParagraphs.get(1));
     }
 
     @Test
@@ -93,8 +94,9 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.ENG);
 
-        assertEquals(1, storyBookParagraphs.size());
-        assertEquals("Will they play with me? I am so different from them. I should try.", storyBookParagraphs.get(0));
+        assertEquals(2, storyBookParagraphs.size());
+        assertEquals("Will they play with me? I am so different from them.", storyBookParagraphs.get(0));
+        assertEquals("I should try.", storyBookParagraphs.get(1));
     }
 
     @Test
@@ -244,8 +246,10 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.THA);
 
-        assertEquals(1, storyBookParagraphs.size());
-        assertEquals("คุณ แม่! คุณ แม่! มอง ไป ทาง ไหน มี แต่ คน หนู ชัก สับสน ไม่ รู้ จะ เดิน ตรง ไหน", storyBookParagraphs.get(0));
+        assertEquals(3, storyBookParagraphs.size());
+        assertEquals("คุณ แม่! คุณ แม่!", storyBookParagraphs.get(0));
+        assertEquals("มอง ไป ทาง ไหน มี แต่ คน", storyBookParagraphs.get(1));
+        assertEquals("หนู ชัก สับสน ไม่ รู้ จะ เดิน ตรง ไหน", storyBookParagraphs.get(2));
     }
 
     @Test
@@ -270,8 +274,9 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.THA);
 
-        assertEquals(1, storyBookParagraphs.size());
-        assertEquals("“ส่วน นี่ คือ ท่า ตั้ง วง บน” “ทำ ตาม ฉัน นะ”", storyBookParagraphs.get(0));
+        assertEquals(2, storyBookParagraphs.size());
+        assertEquals("“ส่วน นี่ คือ ท่า ตั้ง วง บน”", storyBookParagraphs.get(0));
+        assertEquals("“ทำ ตาม ฉัน นะ”", storyBookParagraphs.get(1));
     }
 
     @Test
@@ -283,7 +288,8 @@ public class EPubParagraphExtractionHelperTest {
         
         List<String> storyBookParagraphs = EPubParagraphExtractionHelper.extractParagraphsFromChapterFile(xhtmlFile, Language.VIE);
 
-        assertEquals(1, storyBookParagraphs.size());
-        assertEquals("Chó thách Mèo vật nhau Xem thử tay nào thắng", storyBookParagraphs.get(0));
+        assertEquals(2, storyBookParagraphs.size());
+        assertEquals("Chó thách Mèo vật nhau", storyBookParagraphs.get(0));
+        assertEquals("Xem thử tay nào thắng", storyBookParagraphs.get(1));
     }
 }

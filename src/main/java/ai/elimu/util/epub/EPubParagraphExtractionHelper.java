@@ -239,29 +239,17 @@ public class EPubParagraphExtractionHelper {
         
         log.debug("storyBookProvider: " + storyBookProvider);
         if ((storyBookProvider == StoryBookProvider.GLOBAL_DIGITAL_LIBRARY) || (storyBookProvider == StoryBookProvider.LETS_READ_ASIA)) {
-            // If single line-break ("<br/>"), replace it with whitespace.
-            // If double line-breaks ("<br/><br/>"), treat the subsequent text as a new paragraph.
+            // If line-break ("<br/>"), treat the subsequent text as a new paragraph.
             if (paragraphNode.hasChildNodes()) {
                 NodeList paragraphChildNodeList = paragraphNode.getChildNodes();
-                int consecutiveLineBreaksCount = 0;
                 for (int k = 0; k < paragraphChildNodeList.getLength(); k++) {
                     Node paragraphChildNode = paragraphChildNodeList.item(k);
                     log.debug("paragraphChildNode: " + paragraphChildNode);
                     log.debug("paragraphChildNode.getNodeName(): " + paragraphChildNode.getNodeName());
                     log.debug("paragraphChildNode.getTextContent(): \"" + paragraphChildNode.getTextContent() + "\"");
                     if ("br".equals(paragraphChildNode.getNodeName())) {
-                        consecutiveLineBreaksCount++;
-                    } else {
-                        consecutiveLineBreaksCount = 0;
-                    }
-                    log.debug("consecutiveLineBreaksCount: " + consecutiveLineBreaksCount);
-                    if (consecutiveLineBreaksCount == 1) {
-                        // Replace "<br/>" with " "
-                        paragraphChildNode.setTextContent(" ");
-                    } else if (consecutiveLineBreaksCount == 2) {
-                        // Replace "<br/><br/>" with "</p><p>"
+                        // Replace "<br/>" with "</p><p>"
                         paragraphChildNode.setTextContent("</p><p>");
-                        consecutiveLineBreaksCount = 0;
                     }
                     
                     if (storyBookProvider == StoryBookProvider.LETS_READ_ASIA) {
@@ -275,8 +263,8 @@ public class EPubParagraphExtractionHelper {
                             for (int l = 0; l < emChildNodeList.getLength(); l++) {
                                 Node emChildNode = emChildNodeList.item(l);
                                 if ("br".equals(emChildNode.getNodeName())) {
-                                    // Replace "<br/>" with " "
-                                    emChildNode.setTextContent(" ");
+                                    // Replace "<br/>" with "</p><p>"
+                                    emChildNode.setTextContent("</p><p>");
                                 }
                             }
                         }

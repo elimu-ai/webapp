@@ -13,14 +13,14 @@
                     labels: [
                         <c:forEach var="key" items="${wordFrequencyMap.keySet()}" varStatus="status">
                             <c:if test="${status.index < 100}">
-                                "${key}",
+                                "<c:out value="${key}" escapeXml="true" />",
                             </c:if>
                         </c:forEach>
                     ],
                     datasets: [
                         {
                             data: [
-                                <c:forEach var="key" items="${wordFrequencyMap}">
+                                <c:forEach var="key" items="${wordFrequencyMap}" varStatus="status">
                                     <c:if test="${status.index < 100}">
                                         ${key.value},
                                     </c:if>
