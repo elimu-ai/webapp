@@ -51,15 +51,15 @@ public class WordListController {
     model.addAttribute("maxUsageCount", maxUsageCount);
 
     // Extract letter frequency distribution from storybook paragraphs
-    List<String> wordsInParagraphs = new ArrayList<>();
+    List<String> paragraphs = new ArrayList<>();
     for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {
-      for (String word : storyBookParagraph.getOriginalText().split(" ")) {
-        wordsInParagraphs.add(word);
+      if (StringUtils.isNotBlank(storyBookParagraph.getOriginalText())) {
+        paragraphs.add(storyBookParagraph.getOriginalText());
       }
     }
     if (StringUtils.isNotBlank(ConfigHelper.getProperty("content.language"))) {
       Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-      Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(wordsInParagraphs, language);
+      Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(paragraphs, language);
       model.addAttribute("wordFrequencyMap", wordFrequencyMap);
     }
 
