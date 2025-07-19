@@ -20,7 +20,7 @@
                     datasets: [
                         {
                             data: [
-                                <c:forEach var="key" items="${wordFrequencyMap}">
+                                <c:forEach var="key" items="${wordFrequencyMap}" varStatus="status">
                                     <c:if test="${status.index < 100}">
                                         ${key.value},
                                     </c:if>
