@@ -57,9 +57,11 @@ public class WordListController {
         wordsInParagraphs.add(word);
       }
     }
-    Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
-    Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(wordsInParagraphs, language);
-    model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+    if (StringUtils.isNotBlank(ConfigHelper.getProperty("content.language"))) {
+      Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
+      Map<String, Integer> wordFrequencyMap = WordFrequencyHelper.getWordFrequency(wordsInParagraphs, language);
+      model.addAttribute("wordFrequencyMap", wordFrequencyMap);
+    }
 
     return "content/word/list";
   }
