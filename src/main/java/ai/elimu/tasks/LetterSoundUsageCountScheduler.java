@@ -25,7 +25,7 @@ public class LetterSoundUsageCountScheduler {
 
   private final LetterSoundDao letterSoundDao;
 
-  @Scheduled(cron = "00 15 06 * * *") // At 06:15 every day
+  @Scheduled(cron = "00 10 06 * * *") // At 06:10 every day
   public synchronized void execute() {
     log.info("execute");
 

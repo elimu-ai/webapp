@@ -50,7 +50,7 @@ public class WordListController {
     }
     model.addAttribute("maxUsageCount", maxUsageCount);
 
-    // Extract letter frequency distribution from storybook paragraphs
+    // Extract word frequency distribution from storybook paragraphs
     List<String> paragraphs = new ArrayList<>();
     for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {
       if (StringUtils.isNotBlank(storyBookParagraph.getOriginalText())) {

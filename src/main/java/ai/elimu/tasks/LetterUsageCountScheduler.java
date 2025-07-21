@@ -35,7 +35,7 @@ public class LetterUsageCountScheduler {
   private final StoryBookChapterDao storyBookChapterDao;
   private final StoryBookParagraphDao storyBookParagraphDao;
 
-  @Scheduled(cron = "00 15 06 * * *") // At 06:15 every day
+  @Scheduled(cron = "00 20 06 * * *") // At 06:20 every day
   public synchronized void execute() {
     log.info("execute");
 
