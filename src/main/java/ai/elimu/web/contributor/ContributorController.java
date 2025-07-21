@@ -5,6 +5,7 @@ import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.NumberPeerReviewEventDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookPeerReviewEventDao;
+import ai.elimu.dao.VideoContributionEventDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.entity.contributor.Contributor;
@@ -34,17 +35,16 @@ public class ContributorController {
 
   private final ContributorDao contributorDao;
 
-  private final StoryBookContributionEventDao storyBookContributionEventDao;
-
-  private final StoryBookPeerReviewEventDao storyBookPeerReviewEventDao;
-
   private final WordContributionEventDao wordContributionEventDao;
-
   private final WordPeerReviewEventDao wordPeerReviewEventDao;
 
   private final NumberContributionEventDao numberContributionEventDao;
-
   private final NumberPeerReviewEventDao numberPeerReviewEventDao;
+
+  private final StoryBookContributionEventDao storyBookContributionEventDao;
+  private final StoryBookPeerReviewEventDao storyBookPeerReviewEventDao;
+
+  private final VideoContributionEventDao videoContributionEventDao;
 
   @GetMapping
   public String handleRequest(
@@ -57,22 +57,13 @@ public class ContributorController {
     model.addAttribute("contributor2", contributor);
 
     // For contributor-summarized.jsp
-    model.addAttribute("storyBookContributionsCount", storyBookContributionEventDao.readCount(contributor));
-    model.addAttribute("storyBookPeerReviewsCount", storyBookPeerReviewEventDao.readCount(contributor));
     model.addAttribute("wordContributionsCount", wordContributionEventDao.readCount(contributor));
     model.addAttribute("wordPeerReviewsCount", wordPeerReviewEventDao.readCount(contributor));
     model.addAttribute("numberContributionsCount", numberContributionEventDao.readCount(contributor));
     model.addAttribute("numberPeerReviewsCount", numberPeerReviewEventDao.readCount(contributor));
-
-    // For contributor-storybooks.jsp
-    List<StoryBookContributionEvent> storyBookContributionEvents = storyBookContributionEventDao.readAll(contributor);
-    model.addAttribute("storyBookContributionEvents", storyBookContributionEvents);
-    model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
-    Map<Long, List<StoryBookPeerReviewEvent>> storyBookPeerReviewEventsByContributionMap = new HashMap<>();
-    for (StoryBookContributionEvent storyBookContributionEvent : storyBookContributionEvents) {
-      storyBookPeerReviewEventsByContributionMap.put(storyBookContributionEvent.getId(), storyBookPeerReviewEventDao.readAll(storyBookContributionEvent));
-    }
-    model.addAttribute("storyBookPeerReviewEventsByContributionMap", storyBookPeerReviewEventsByContributionMap);
+    model.addAttribute("storyBookContributionsCount", storyBookContributionEventDao.readCount(contributor));
+    model.addAttribute("storyBookPeerReviewsCount", storyBookPeerReviewEventDao.readCount(contributor));
+    model.addAttribute("videoContributionsCount", videoContributionEventDao.readCount(contributor));
 
     // For contributor-words.jsp
     List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readAll(contributor);
@@ -93,6 +84,16 @@ public class ContributorController {
       numberPeerReviewEventsByContributionMap.put(numberContributionEvent.getId(), numberPeerReviewEventDao.readAll(numberContributionEvent));
     }
     model.addAttribute("numberPeerReviewEventsByContributionMap", numberPeerReviewEventsByContributionMap);
+
+    // For contributor-storybooks.jsp
+    List<StoryBookContributionEvent> storyBookContributionEvents = storyBookContributionEventDao.readAll(contributor);
+    model.addAttribute("storyBookContributionEvents", storyBookContributionEvents);
+    model.addAttribute("storyBookPeerReviewEvents", storyBookPeerReviewEventDao.readAll(contributor));
+    Map<Long, List<StoryBookPeerReviewEvent>> storyBookPeerReviewEventsByContributionMap = new HashMap<>();
+    for (StoryBookContributionEvent storyBookContributionEvent : storyBookContributionEvents) {
+      storyBookPeerReviewEventsByContributionMap.put(storyBookContributionEvent.getId(), storyBookPeerReviewEventDao.readAll(storyBookContributionEvent));
+    }
+    model.addAttribute("storyBookPeerReviewEventsByContributionMap", storyBookPeerReviewEventsByContributionMap);
 
     return "contributor/contributor";
   }

@@ -9,6 +9,7 @@ import ai.elimu.dao.NumberContributionEventDao;
 import ai.elimu.dao.SoundContributionEventDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
 import ai.elimu.dao.StoryBookPeerReviewEventDao;
+import ai.elimu.dao.VideoContributionEventDao;
 import ai.elimu.dao.WordContributionEventDao;
 import ai.elimu.dao.WordPeerReviewEventDao;
 import ai.elimu.entity.contributor.Contributor;
@@ -20,6 +21,7 @@ import ai.elimu.entity.contributor.NumberContributionEvent;
 import ai.elimu.entity.contributor.SoundContributionEvent;
 import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.entity.contributor.StoryBookPeerReviewEvent;
+import ai.elimu.entity.contributor.VideoContributionEvent;
 import ai.elimu.entity.contributor.WordContributionEvent;
 import ai.elimu.entity.contributor.WordPeerReviewEvent;
 import jakarta.servlet.http.HttpServletResponse;
@@ -59,6 +61,8 @@ public class ContributorCsvExportController {
 
   private final StoryBookContributionEventDao storyBookContributionEventDao;
   private final StoryBookPeerReviewEventDao storyBookPeerReviewEventDao;
+
+  private final VideoContributionEventDao videoContributionEventDao;
 
   @GetMapping
   public void handleRequest(
@@ -106,6 +110,9 @@ public class ContributorCsvExportController {
     List<StoryBookPeerReviewEvent> storyBookPeerReviewEventsTotal = storyBookPeerReviewEventDao.readAll();
     log.info("storyBookPeerReviewEventsTotal.size(): " + storyBookPeerReviewEventsTotal.size());
 
+    List<VideoContributionEvent> videoContributionEventsTotal = videoContributionEventDao.readAll();
+    log.info("videoContributionEventsTotal.size(): " + videoContributionEventsTotal.size());
+
     for (Contributor contributor : contributors) {
       log.info("contributor.getId(): " + contributor.getId());
 
@@ -151,6 +158,10 @@ public class ContributorCsvExportController {
       Double impactPercentageStoryBookPeerReviews = storyBookPeerReviewEvents.size() * 100D / storyBookPeerReviewEventsTotal.size();
       log.debug("impactPercentageStoryBookPeerReviews: " + impactPercentageStoryBookPeerReviews);
 
+      List<VideoContributionEvent> videoContributionEvents = videoContributionEventDao.readAll(contributor);
+      Double impactPercentageVideos = videoContributionEvents.size() * 100D / videoContributionEventsTotal.size();
+      log.debug("impactPercentageVideos: " + impactPercentageImages);
+
       Double impactPercentage = (
               letterContributionEvents.size()
             + soundContributionEvents.size()
@@ -162,6 +173,7 @@ public class ContributorCsvExportController {
             + imageContributionEvents.size()
             + storyBookContributionEvents.size()
             + storyBookPeerReviewEvents.size()
+            + videoContributionEvents.size()
           ) * 100D / (
               letterContributionEventsTotal.size()
             + soundContributionEventsTotal.size()
@@ -173,6 +185,7 @@ public class ContributorCsvExportController {
             + imageContributionEventsTotal.size()
             + storyBookContributionEventsTotal.size()
             + storyBookPeerReviewEventsTotal.size()
+            + videoContributionEventsTotal.size()
           );
       log.debug("impactPercentage: " + impactPercentage);
 

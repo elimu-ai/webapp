@@ -263,6 +263,14 @@
        drop 
        foreign key FKplswdv1whriquc00dsaxrqe0s;
 
+    alter table VideoContributionEvent 
+       drop 
+       foreign key FKaqradfcqycsr34wswgjpv4x8o;
+
+    alter table VideoContributionEvent 
+       drop 
+       foreign key FKe87qab0yt7p1gp8yb37v4t82e;
+
     alter table VideoLearningEvent 
        drop 
        foreign key FKoqqhe1r2epyv55g6jo79t251h;
@@ -414,6 +422,8 @@
     drop table if exists Video_numeracySkills;
 
     drop table if exists Video_Word;
+
+    drop table if exists VideoContributionEvent;
 
     drop table if exists VideoLearningEvent;
 
@@ -925,6 +935,16 @@
         primary key (Video_id, words_id)
     ) engine=InnoDB;
 
+    create table VideoContributionEvent (
+       id bigint not null auto_increment,
+        comment varchar(1000),
+        revisionNumber integer,
+        timestamp datetime,
+        contributor_id bigint,
+        video_id bigint,
+        primary key (id)
+    ) engine=InnoDB;
+
     create table VideoLearningEvent (
        id bigint not null auto_increment,
         additionalData varchar(1024),
@@ -1357,6 +1377,16 @@
     alter table Video_Word 
        add constraint FKplswdv1whriquc00dsaxrqe0s 
        foreign key (Video_id) 
+       references Video (id);
+
+    alter table VideoContributionEvent 
+       add constraint FKaqradfcqycsr34wswgjpv4x8o 
+       foreign key (contributor_id) 
+       references Contributor (id);
+
+    alter table VideoContributionEvent 
+       add constraint FKe87qab0yt7p1gp8yb37v4t82e 
+       foreign key (video_id) 
        references Video (id);
 
     alter table VideoLearningEvent 
