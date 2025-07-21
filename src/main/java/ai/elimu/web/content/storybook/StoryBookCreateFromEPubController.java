@@ -1,6 +1,5 @@
 package ai.elimu.web.content.storybook;
 
-import ai.elimu.dao.ImageContributionEventDao;
 import ai.elimu.dao.ImageDao;
 import ai.elimu.dao.StoryBookChapterDao;
 import ai.elimu.dao.StoryBookContributionEventDao;
@@ -11,7 +10,6 @@ import ai.elimu.entity.content.StoryBookChapter;
 import ai.elimu.entity.content.StoryBookParagraph;
 import ai.elimu.entity.content.multimedia.Image;
 import ai.elimu.entity.contributor.Contributor;
-import ai.elimu.entity.contributor.ImageContributionEvent;
 import ai.elimu.entity.contributor.StoryBookContributionEvent;
 import ai.elimu.model.v2.enums.Language;
 import ai.elimu.model.v2.enums.ReadingLevel;
@@ -76,8 +74,6 @@ public class StoryBookCreateFromEPubController {
   private final StoryBookContributionEventDao storyBookContributionEventDao;
 
   private final ImageDao imageDao;
-
-  private final ImageContributionEventDao imageContributionEventDao;
 
   private final StoryBookChapterDao storyBookChapterDao;
 
@@ -210,7 +206,6 @@ public class StoryBookCreateFromEPubController {
             coverImage.setChecksumGitHub(checksumGitHub);
           }
           imageDao.create(coverImage);
-          storeImageContributionEvent(coverImage, session, request);
 
           // Set it as the StoryBook's cover image
           storyBook.setCoverImage(coverImage);
@@ -314,7 +309,6 @@ public class StoryBookCreateFromEPubController {
                 chapterImage.setChecksumGitHub(checksumGitHub);
               }
               imageDao.create(chapterImage);
-              storeImageContributionEvent(chapterImage, session, request);
 
               storyBookChapter.setImage(chapterImage);
             }
@@ -519,29 +513,6 @@ public class StoryBookCreateFromEPubController {
     }
 
     return unzippedFiles;
-  }
-
-  private void storeImageContributionEvent(Image image, HttpSession session, HttpServletRequest request) {
-    log.info("storeImageContributionEvent");
-
-    ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
-    imageContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-    imageContributionEvent.setTimestamp(Calendar.getInstance());
-    imageContributionEvent.setImage(image);
-    imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
-    imageContributionEvent.setComment("Extracted from ePUB file (🤖 auto-generated comment)");
-    imageContributionEventDao.create(imageContributionEvent);
-
-    String contentUrl = DomainHelper.getBaseUrl() + "/content/multimedia/image/edit/" + image.getId();
-    String embedThumbnailUrl = image.getUrl();
-    DiscordHelper.postToChannel(
-        Channel.CONTENT,
-        "Image created: " + contentUrl,
-        "\"" + image.getTitle() + "\"",
-        "Comment: \"" + imageContributionEvent.getComment() + "\"",
-        null,
-        embedThumbnailUrl
-    );
   }
 
   private ReadingLevel predictReadingLevel(int chapterCount, int paragraphCount, int wordCount) {
