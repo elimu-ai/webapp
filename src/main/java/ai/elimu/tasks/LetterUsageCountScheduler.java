@@ -34,7 +34,7 @@ public class LetterUsageCountScheduler {
     // Calculate the frequency of each letter
     for (LetterSound letterSound : letterSoundDao.readAll()) {
       for (Letter letter : letterSound.getLetters()) {
-        frequencyMap.put(letter.getId(), frequencyMap.getOrDefault(letter.getId(), 0) + 1);
+        frequencyMap.put(letter.getId(), frequencyMap.getOrDefault(letter.getId(), 0) + letterSound.getUsageCount());
       }
     }
 
