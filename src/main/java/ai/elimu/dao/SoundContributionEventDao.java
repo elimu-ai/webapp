@@ -15,9 +15,5 @@ public interface SoundContributionEventDao extends GenericDao<SoundContributionE
     
     List<SoundContributionEvent> readAll(Contributor contributor) throws DataAccessException;
     
-    List<SoundContributionEvent> readMostRecent(int maxResults) throws DataAccessException;
-    
-    List<SoundContributionEvent> readMostRecentPerSound() throws DataAccessException;
-    
     Long readCount(Contributor contributor) throws DataAccessException;
 }

@@ -42,26 +42,6 @@ public class SoundContributionEventDaoJpa extends GenericDaoJpa<SoundContributio
     }
 
     @Override
-    public List<SoundContributionEvent> readMostRecent(int maxResults) throws DataAccessException {
-        return em.createQuery(
-            "SELECT event " + 
-            "FROM SoundContributionEvent event " +
-            "ORDER BY event.timestamp DESC")
-            .setMaxResults(maxResults)
-            .getResultList();
-    }
-    
-    @Override
-    public List<SoundContributionEvent> readMostRecentPerSound() throws DataAccessException {
-        return em.createQuery(
-            "SELECT event " + 
-            "FROM SoundContributionEvent event " +
-            "WHERE event.timestamp IN (SELECT MAX(time) FROM SoundContributionEvent GROUP BY sound_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY event.timestamp ASC")
-            .getResultList();
-    }
-
-    @Override
     public Long readCount(Contributor contributor) throws DataAccessException {
         return (Long) em.createQuery("SELECT COUNT(event) " +
                 "FROM SoundContributionEvent event " +

@@ -33,16 +33,6 @@ public class ImageContributionEventDaoJpa extends GenericDaoJpa<ImageContributio
     }
 
     @Override
-    public List<ImageContributionEvent> readMostRecent(int maxResults) throws DataAccessException {
-        return em.createQuery(
-            "SELECT ice " + 
-            "FROM ImageContributionEvent ice " +
-            "ORDER BY ice.timestamp DESC")
-            .setMaxResults(maxResults)
-            .getResultList();
-    }
-
-    @Override
     public Long readCount(Contributor contributor) throws DataAccessException {
         return (Long) em.createQuery("SELECT COUNT(ice) " +
                 "FROM ImageContributionEvent ice " +
