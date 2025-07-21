@@ -104,15 +104,6 @@ public class VideoCreateController {
 
           video.setFileSize(bytes.length);
           video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
-
-          VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
-          videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
-          videoContributionEvent.setTimestamp(Calendar.getInstance());
-          videoContributionEvent.setVideo(video);
-          videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
-          videoContributionEventDao.create(videoContributionEvent);
-
-          DiscordHelper.postToChannel(Channel.CONTENT, "Video created: " + DomainHelper.getBaseUrl() + "/content/multimedia/video/edit/" + video.getId());
         }
       }
 
@@ -145,7 +136,14 @@ public class VideoCreateController {
       video.setChecksumGitHub(checksumGitHub);
       videoDao.create(video);
 
-      // TODO: https://github.com/elimu-ai/webapp/issues/1545
+      VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setTimestamp(Calendar.getInstance());
+      videoContributionEvent.setVideo(video);
+      videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+      videoContributionEventDao.create(videoContributionEvent);
+
+      DiscordHelper.postToChannel(Channel.CONTENT, "Video created: " + DomainHelper.getBaseUrl() + "/content/multimedia/video/edit/" + video.getId());
 
       return "redirect:/content/multimedia/video/list#" + video.getId();
     }
