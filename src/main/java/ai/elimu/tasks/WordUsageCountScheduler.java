@@ -6,7 +6,6 @@ import ai.elimu.entity.content.StoryBookParagraph;
 import ai.elimu.entity.content.Word;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,27 +32,16 @@ public class WordUsageCountScheduler {
     // <ID, frequency>
     Map<Long, Integer> frequencyMap = new HashMap<>();
 
-    List<Word> words = wordDao.readAll();
-    log.info("words.size(): " + words.size());
-
-    List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
-    log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
-
     // Calculate the frequency of each word
-    for (Word word : words) {
-      frequencyMap.put(word.getId(), 0);
-      for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
-        for (Word wordInParagraph : storyBookParagraph.getWords()) {
-          if (wordInParagraph.getId() == word.getId()) {
-            frequencyMap.put(word.getId(), frequencyMap.get(word.getId()) + 1);
-          }
-        }
+    for (StoryBookParagraph storyBookParagraph : storyBookParagraphDao.readAll()) {
+      for (Word word : storyBookParagraph.getWords()) {
+        frequencyMap.put(word.getId(), frequencyMap.getOrDefault(word.getId(), 0) + 1);
       }
     }
 
     // Update the values previously stored in the database
-    for (Word word : words) {
-      word.setUsageCount(frequencyMap.get(word.getId()));
+    for (Word word : wordDao.readAll()) {
+      word.setUsageCount(frequencyMap.getOrDefault(word.getId(), 0));
       wordDao.update(word);
     }
 
