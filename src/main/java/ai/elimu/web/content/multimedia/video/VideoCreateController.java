@@ -1,17 +1,26 @@
 package ai.elimu.web.content.multimedia.video;
 
+import ai.elimu.dao.VideoContributionEventDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.entity.content.multimedia.Video;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.VideoContributionEvent;
 import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.Calendar;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -36,6 +45,8 @@ public class VideoCreateController {
 
   private final VideoDao videoDao;
 
+  private final VideoContributionEventDao videoContributionEventDao;
+
   @GetMapping
   public String handleRequest(Model model) {
     log.info("handleRequest");
@@ -53,6 +64,7 @@ public class VideoCreateController {
 
   @PostMapping
   public String handleSubmit(
+      HttpSession session,
       /*@Valid*/ Video video,
       @RequestParam("bytes") MultipartFile multipartFile,
       @RequestParam("thumbnail") MultipartFile multipartFileThumbnail,
@@ -92,8 +104,6 @@ public class VideoCreateController {
 
           video.setFileSize(bytes.length);
           video.setChecksumMd5(ChecksumHelper.calculateMD5(bytes));
-
-          // TODO: convert to a default video format?
         }
       }
 
@@ -126,7 +136,14 @@ public class VideoCreateController {
       video.setChecksumGitHub(checksumGitHub);
       videoDao.create(video);
 
-      // TODO: https://github.com/elimu-ai/webapp/issues/1545
+      VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setTimestamp(Calendar.getInstance());
+      videoContributionEvent.setVideo(video);
+      videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+      videoContributionEventDao.create(videoContributionEvent);
+
+      DiscordHelper.postToChannel(Channel.CONTENT, "Video created: " + DomainHelper.getBaseUrl() + "/content/multimedia/video/edit/" + video.getId());
 
       return "redirect:/content/multimedia/video/list#" + video.getId();
     }

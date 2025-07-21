@@ -33,26 +33,6 @@ public class NumberContributionEventDaoJpa extends GenericDaoJpa<NumberContribut
     }
 
     @Override
-    public List<NumberContributionEvent> readMostRecent(int maxResults) throws DataAccessException {
-        return em.createQuery(
-            "SELECT nce " + 
-            "FROM NumberContributionEvent nce " +
-            "ORDER BY nce.timestamp DESC")
-            .setMaxResults(maxResults)
-            .getResultList();
-    }
-    
-    @Override
-    public List<NumberContributionEvent> readMostRecentPerNumber() throws DataAccessException {
-        return em.createQuery(
-            "SELECT nce " + 
-            "FROM NumberContributionEvent nce " +
-            "WHERE nce.timestamp IN (SELECT MAX(timestamp) FROM NumberContributionEvent GROUP BY number_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY nce.timestamp ASC")
-            .getResultList();
-    }
-
-    @Override
     public Long readCount(Contributor contributor) throws DataAccessException {
         return (Long) em.createQuery("SELECT COUNT(nce) " +
                 "FROM NumberContributionEvent nce " +

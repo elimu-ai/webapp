@@ -42,26 +42,6 @@ public class LetterContributionEventDaoJpa extends GenericDaoJpa<LetterContribut
     }
 
     @Override
-    public List<LetterContributionEvent> readMostRecent(int maxResults) throws DataAccessException {
-        return em.createQuery(
-            "SELECT event " + 
-            "FROM LetterContributionEvent event " +
-            "ORDER BY event.timestamp DESC")
-            .setMaxResults(maxResults)
-            .getResultList();
-    }
-    
-    @Override
-    public List<LetterContributionEvent> readMostRecentPerLetter() throws DataAccessException {
-        return em.createQuery(
-            "SELECT event " + 
-            "FROM LetterContributionEvent event " +
-            "WHERE event.timestamp IN (SELECT MAX(timestamp) FROM LetterContributionEvent GROUP BY letter_id) " + // TODO: replace with "NOT EXISTS"? - https://stackoverflow.com/a/25694562
-            "ORDER BY event.timestamp ASC")
-            .getResultList();
-    }
-
-    @Override
     public Long readCount(Contributor contributor) throws DataAccessException {
         return (Long) em.createQuery("SELECT COUNT(event) " +
                 "FROM LetterContributionEvent event " +

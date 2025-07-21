@@ -42,16 +42,6 @@ public class WordContributionEventDaoJpa extends GenericDaoJpa<WordContributionE
     }
 
     @Override
-    public List<WordContributionEvent> readMostRecent(int maxResults) throws DataAccessException {
-        return em.createQuery(
-            "SELECT wce " + 
-            "FROM WordContributionEvent wce " +
-            "ORDER BY wce.timestamp DESC")
-            .setMaxResults(maxResults)
-            .getResultList();
-    }
-
-    @Override
     public Long readCount(Contributor contributor) throws DataAccessException {
         return (Long) em.createQuery("SELECT COUNT(wce) " +
                 "FROM WordContributionEvent wce " +

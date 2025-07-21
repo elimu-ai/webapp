@@ -85,16 +85,16 @@
             <script>
                 var ctx = document.getElementById('chart');
                 var data = {
-                    labels: ['Storybooks', 'Words', 'Numbers'],
+                    labels: ['Words', 'Numbers', 'Storybooks', 'Videos'],
                     datasets: [
                         {
-                            data: [${storyBookContributionsCount}, ${wordContributionsCount}, ${numberContributionsCount}],
+                            data: [${wordContributionsCount}, ${numberContributionsCount}, ${storyBookContributionsCount}, ${videoContributionsCount}],
                             label: 'Contributions',
                             backgroundColor: 'rgba(149,117,205, 0.5)', // #9575cd deep-purple lighten-2
                             tension: 0.5
                         },
                         {
-                            data: [${storyBookPeerReviewsCount}, ${wordPeerReviewsCount}, ${numberPeerReviewsCount}],
+                            data: [${wordPeerReviewsCount}, ${numberPeerReviewsCount}, ${storyBookPeerReviewsCount}, ${videoPeerReviewsCount}],
                             label: 'Peer-reviews',
                             backgroundColor: 'rgba(77,182,172, 0.5)', // #4db6ac teal lighten-2
                             tension: 0.5

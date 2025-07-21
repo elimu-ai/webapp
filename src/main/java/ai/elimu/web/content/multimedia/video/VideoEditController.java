@@ -3,6 +3,7 @@ package ai.elimu.web.content.multimedia.video;
 import ai.elimu.dao.EmojiDao;
 import ai.elimu.dao.LetterDao;
 import ai.elimu.dao.NumberDao;
+import ai.elimu.dao.VideoContributionEventDao;
 import ai.elimu.dao.VideoDao;
 import ai.elimu.dao.WordDao;
 import ai.elimu.entity.content.Emoji;
@@ -10,14 +11,21 @@ import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.Number;
 import ai.elimu.entity.content.Word;
 import ai.elimu.entity.content.multimedia.Video;
+import ai.elimu.entity.contributor.Contributor;
+import ai.elimu.entity.contributor.VideoContributionEvent;
 import ai.elimu.entity.enums.ContentLicense;
 import ai.elimu.model.v2.enums.content.LiteracySkill;
 import ai.elimu.model.v2.enums.content.NumeracySkill;
 import ai.elimu.model.v2.enums.content.VideoFormat;
 import ai.elimu.util.ChecksumHelper;
+import ai.elimu.util.DiscordHelper;
+import ai.elimu.util.DiscordHelper.Channel;
+import ai.elimu.util.DomainHelper;
 import ai.elimu.util.GitHubLfsHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -49,6 +57,8 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 public class VideoEditController {
 
   private final VideoDao videoDao;
+
+  private final VideoContributionEventDao videoContributionEventDao;
 
   private final LetterDao letterDao;
 
@@ -82,6 +92,7 @@ public class VideoEditController {
 
   @PostMapping
   public String handleSubmit(
+      HttpSession session,
       Video video,
       @RequestParam("bytes") MultipartFile multipartFile,
       BindingResult result,
@@ -145,7 +156,14 @@ public class VideoEditController {
       video.setChecksumGitHub(checksumGitHub);
       videoDao.update(video);
 
-      // TODO: https://github.com/elimu-ai/webapp/issues/1545
+      VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setTimestamp(Calendar.getInstance());
+      videoContributionEvent.setVideo(video);
+      videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+      videoContributionEventDao.create(videoContributionEvent);
+
+      DiscordHelper.postToChannel(Channel.CONTENT, "Video updated: " + DomainHelper.getBaseUrl() + "/content/multimedia/video/edit/" + video.getId());
 
       return "redirect:/content/multimedia/video/list#" + video.getId();
     }
@@ -167,6 +185,7 @@ public class VideoEditController {
   @ResponseBody
   public String handleAddContentLabelRequest(
       HttpServletRequest request,
+      HttpSession session,
       @PathVariable Long id) {
     log.info("handleAddContentLabelRequest");
 
@@ -183,6 +202,14 @@ public class VideoEditController {
         letters.add(letter);
         video.setRevisionNumber(video.getRevisionNumber() + 1);
         videoDao.update(video);
+
+        VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+        videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        videoContributionEvent.setTimestamp(Calendar.getInstance());
+        videoContributionEvent.setVideo(video);
+        videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+        videoContributionEvent.setComment("Add letter label: \"" + letter.getText() + "\" (🤖 auto-generated comment)");
+        videoContributionEventDao.create(videoContributionEvent);
       }
     }
 
@@ -196,6 +223,14 @@ public class VideoEditController {
         numbers.add(number);
         video.setRevisionNumber(video.getRevisionNumber() + 1);
         videoDao.update(video);
+
+        VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+        videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        videoContributionEvent.setTimestamp(Calendar.getInstance());
+        videoContributionEvent.setVideo(video);
+        videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+        videoContributionEvent.setComment("Add number label: " + number.getValue() + " (🤖 auto-generated comment)");
+        videoContributionEventDao.create(videoContributionEvent);
       }
     }
 
@@ -209,6 +244,14 @@ public class VideoEditController {
         words.add(word);
         video.setRevisionNumber(video.getRevisionNumber() + 1);
         videoDao.update(video);
+
+        VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+        videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+        videoContributionEvent.setTimestamp(Calendar.getInstance());
+        videoContributionEvent.setVideo(video);
+        videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+        videoContributionEvent.setComment("Add word label: \"" + word.getText() + "\" (🤖 auto-generated comment)");
+        videoContributionEventDao.create(videoContributionEvent);
       }
     }
 
@@ -219,6 +262,7 @@ public class VideoEditController {
   @ResponseBody
   public String handleRemoveContentLabelRequest(
       HttpServletRequest request,
+      HttpSession session,
       @PathVariable Long id) {
     log.info("handleRemoveContentLabelRequest");
 
@@ -240,6 +284,14 @@ public class VideoEditController {
       }
       video.setRevisionNumber(video.getRevisionNumber() + 1);
       videoDao.update(video);
+
+      VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setTimestamp(Calendar.getInstance());
+      videoContributionEvent.setVideo(video);
+      videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+      videoContributionEvent.setComment("Remove letter label: \"" + letter.getText() + "\" (🤖 auto-generated comment)");
+      videoContributionEventDao.create(videoContributionEvent);
     }
 
     String numberIdParameter = request.getParameter("numberId");
@@ -257,6 +309,14 @@ public class VideoEditController {
       }
       video.setRevisionNumber(video.getRevisionNumber() + 1);
       videoDao.update(video);
+
+      VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setTimestamp(Calendar.getInstance());
+      videoContributionEvent.setVideo(video);
+      videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+      videoContributionEvent.setComment("Remove number label: " + number.getValue() + " (🤖 auto-generated comment)");
+      videoContributionEventDao.create(videoContributionEvent);
     }
 
     String wordIdParameter = request.getParameter("wordId");
@@ -274,6 +334,14 @@ public class VideoEditController {
       }
       video.setRevisionNumber(video.getRevisionNumber() + 1);
       videoDao.update(video);
+
+      VideoContributionEvent videoContributionEvent = new VideoContributionEvent();
+      videoContributionEvent.setContributor((Contributor) session.getAttribute("contributor"));
+      videoContributionEvent.setTimestamp(Calendar.getInstance());
+      videoContributionEvent.setVideo(video);
+      videoContributionEvent.setRevisionNumber(video.getRevisionNumber());
+      videoContributionEvent.setComment("Remove word label: \"" + word.getText() + "\" (🤖 auto-generated comment)");
+      videoContributionEventDao.create(videoContributionEvent);
     }
 
     return "success";

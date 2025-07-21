@@ -15,9 +15,5 @@ public interface LetterContributionEventDao extends GenericDao<LetterContributio
     
     List<LetterContributionEvent> readAll(Contributor contributor) throws DataAccessException;
     
-    List<LetterContributionEvent> readMostRecent(int maxResults) throws DataAccessException;
-    
-    List<LetterContributionEvent> readMostRecentPerLetter() throws DataAccessException;
-    
     Long readCount(Contributor contributor) throws DataAccessException;
 }

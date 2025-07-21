@@ -13,7 +13,5 @@ public interface ImageContributionEventDao extends GenericDao<ImageContributionE
     
     List<ImageContributionEvent> readAll(Contributor contributor) throws DataAccessException;
     
-    List<ImageContributionEvent> readMostRecent(int maxResults) throws DataAccessException;
-    
     Long readCount(Contributor contributor) throws DataAccessException;
 }

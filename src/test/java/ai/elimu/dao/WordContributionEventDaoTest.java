@@ -1,6 +1,5 @@
 package ai.elimu.dao;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import lombok.extern.slf4j.Slf4j;
@@ -183,40 +182,6 @@ public class WordContributionEventDaoTest {
     assertTrue(wordContributionEvents.size() == 1);
     Contributor contributor1stInList = wordContributionEvents.get(0).getContributor();
     assertTrue(contributor1stInList.getId().equals(contributor1.getId()));
-  }
-
-  @Test
-  public void testReadMostRecent() {
-    log.info("testReadMostRecent");
-
-    List<WordContributionEvent> wordContributionEvents = wordContributionEventDao.readMostRecent(10);
-    int numberOfWordContributionEventsBefore = wordContributionEvents.size();
-    log.info("numberOfWordContributionEventsBefore: " + numberOfWordContributionEventsBefore);
-
-    Contributor contributor = new Contributor();
-    contributorDao.create(contributor);
-
-    Word word1 = new Word();
-    word1.setText("word1");
-    wordDao.create(word1);
-
-    WordContributionEvent wordContributionEvent1 = new WordContributionEvent();
-    wordContributionEvent1.setContributor(contributor);
-    wordContributionEvent1.setWord(word1);
-    wordContributionEvent1.setRevisionNumber(word1.getRevisionNumber());
-    wordContributionEvent1.setTimestamp(Calendar.getInstance());
-    wordContributionEventDao.create(wordContributionEvent1);
-
-    wordContributionEvents = wordContributionEventDao.readMostRecent(10);
-    int numberOfWordContributionEventsAfter = wordContributionEvents.size();
-    log.info("numberOfWordContributionEventsAfter: " + numberOfWordContributionEventsAfter);
-
-    if (numberOfWordContributionEventsBefore < 10) {
-      assertEquals(numberOfWordContributionEventsBefore + 1,
-          numberOfWordContributionEventsAfter);
-    } else {
-      assertEquals(10, numberOfWordContributionEventsAfter);
-    }
   }
 
   @Test
