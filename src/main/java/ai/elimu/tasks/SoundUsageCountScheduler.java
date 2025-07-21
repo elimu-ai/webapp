@@ -15,9 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Iterates all Words and calculates the frequency of Sounds, based on the Word's frequency in StoryBooks.
- * <p/>
- * For this to work, the frequency of each {@link Word} must have been calculated and stored previously (see {@link WordUsageCountScheduler} and {@link LetterSoundUsageCountScheduler}).
+ * Iterates all letter-sounds and calculates the frequency of each sound.
  */
 @Slf4j
 @Service
@@ -32,11 +30,8 @@ public class SoundUsageCountScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    log.info("Calculating usage count of Sounds");
-
-    // Long = Sound ID
-    // Integer = Usage count
-    Map<Long, Integer> soundFrequencyMap = new HashMap<>();
+    // <ID, frequency>
+    Map<Long, Integer> frequencyMap = new HashMap<>();
 
     // Summarize the usage count of each Word's Sounds based on the LetterSound's
     // usage count (see LetterSoundUsageCountScheduler).
@@ -45,14 +40,14 @@ public class SoundUsageCountScheduler {
     for (Word word : words) {
       for (LetterSound letterSound : word.getLetterSounds()) {
         for (Sound sound : letterSound.getSounds()) {
-          soundFrequencyMap.put(sound.getId(), soundFrequencyMap.getOrDefault(sound.getId(), 0) + letterSound.getUsageCount());
+          frequencyMap.put(sound.getId(), frequencyMap.getOrDefault(sound.getId(), 0) + letterSound.getUsageCount());
         }
       }
     }
     // Update each Sound's usage count in the database
-    for (Long soundId : soundFrequencyMap.keySet()) {
+    for (Long soundId : frequencyMap.keySet()) {
       Sound sound = soundDao.read(soundId);
-      sound.setUsageCount(soundFrequencyMap.get(soundId));
+      sound.setUsageCount(frequencyMap.get(soundId));
       soundDao.update(sound);
     }
 

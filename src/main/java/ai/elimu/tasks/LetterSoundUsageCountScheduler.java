@@ -2,20 +2,20 @@ package ai.elimu.tasks;
 
 import ai.elimu.dao.LetterSoundDao;
 import ai.elimu.dao.WordDao;
-import ai.elimu.entity.content.Letter;
 import ai.elimu.entity.content.LetterSound;
-import ai.elimu.entity.content.Sound;
 import ai.elimu.entity.content.Word;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+/**
+ * Iterates all words and calculates the frequency of each letter-sound.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -29,37 +29,31 @@ public class LetterSoundUsageCountScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    log.info("Calculating usage count for LetterSounds");
+    // <ID, frequency>
+    Map<Long, Integer> frequencyMap = new HashMap<>();
 
-    // <id, usageCount>
-    Map<Long, Integer> letterSoundFrequencyMap = new HashMap<>();
+    List<LetterSound> letterSounds = letterSoundDao.readAll();
+    log.info("letterSounds.size(): " + letterSounds.size());
 
     List<Word> words = wordDao.readAll();
     log.info("words.size(): " + words.size());
-    for (Word word : words) {
-      log.debug("word.getText(): " + word.getText());
-      for (LetterSound letterSound : word.getLetterSounds()) {
-        letterSoundFrequencyMap.put(letterSound.getId(),
-            letterSoundFrequencyMap.getOrDefault(letterSound.getId(), 0) + word.getUsageCount());
+
+    // Calculate the frequency of each letter-sound
+    for (LetterSound letterSound : letterSounds) {
+      frequencyMap.put(letterSound.getId(), 0);
+      for (Word word : words) {
+        for (LetterSound letterSoundInWord : word.getLetterSounds()) {
+          if (letterSoundInWord.getId() == letterSound.getId()) {
+            frequencyMap.put(letterSound.getId(), frequencyMap.get(letterSound.getId()) + 1);
+          }
+        }
       }
     }
 
     // Update the values previously stored in the database
-    for (LetterSound letterSound : letterSoundDao.readAll()) {
-      log.debug("letterSound.getId(): " + letterSound.getId());
-      log.debug("letterSound Letters: \"" + letterSound.getLetters().stream().map(Letter::getText).collect(Collectors.joining()) + "\"");
-      log.debug("letterSound Sounds: /" + letterSound.getSounds().stream().map(Sound::getValueIpa).collect(Collectors.joining()) + "/");
-      log.debug("letterSound.getUsageCount() (before update): " + letterSound.getUsageCount());
-
-      int newUsageCount = 0;
-      if (letterSoundFrequencyMap.containsKey(letterSound.getId())) {
-        newUsageCount = letterSoundFrequencyMap.get(letterSound.getId());
-      }
-      log.info("newUsageCount: " + newUsageCount);
-
-      letterSound.setUsageCount(newUsageCount);
+    for (LetterSound letterSound : letterSounds) {
+      letterSound.setUsageCount(frequencyMap.get(letterSound.getId()));
       letterSoundDao.update(letterSound);
-      log.info("letterSound.getUsageCount() (after update): " + letterSound.getUsageCount());
     }
 
     log.info("execute complete");

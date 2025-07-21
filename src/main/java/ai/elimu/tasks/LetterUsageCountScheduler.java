@@ -21,8 +21,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * Iterates all StoryBooks and calculates the frequency of each letter. Lower-case and 
- * upper-case variants are considered as two different letters, e.g. 'a' and 'A'.
+ * Iterates all letter-sounds and calculates the frequency of each letter.
  */
 @Service
 @RequiredArgsConstructor
@@ -39,9 +38,8 @@ public class LetterUsageCountScheduler {
   public synchronized void execute() {
     log.info("execute");
 
-    log.info("Calculating usage count for Letters");
-
-    Map<String, Integer> letterFrequencyMap = new HashMap<>();
+    // <ID, frequency>
+    Map<Long, Integer> frequencyMap = new HashMap<>();
 
     Language language = Language.valueOf(ConfigHelper.getProperty("content.language"));
 
@@ -60,15 +58,15 @@ public class LetterUsageCountScheduler {
       }
 
       Map<String, Integer> letterFrequencyMapForBook = LetterFrequencyHelper.getLetterFrequency(paragraphs, language);
-      letterFrequencyMapForBook.keySet().forEach(letterText -> letterFrequencyMap.put(letterText, letterFrequencyMap.getOrDefault(letterText, 0) + letterFrequencyMapForBook.get(letterText)));
+      letterFrequencyMapForBook.keySet().forEach(letterText -> frequencyMap.put(letterText, frequencyMap.getOrDefault(letterText, 0) + letterFrequencyMapForBook.get(letterText)));
     }
 
-    log.info("letterFrequencyMap: " + letterFrequencyMap);
+    log.info("letterFrequencyMap: " + frequencyMap);
 
-    for (String letterText : letterFrequencyMap.keySet()) {
+    for (String letterText : frequencyMap.keySet()) {
       Letter existingLetter = letterDao.readByText(letterText);
       if (existingLetter != null) {
-        existingLetter.setUsageCount(letterFrequencyMap.get(letterText));
+        existingLetter.setUsageCount(frequencyMap.get(letterText));
         letterDao.update(existingLetter);
       }
     }

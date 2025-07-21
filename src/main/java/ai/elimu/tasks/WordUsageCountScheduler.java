@@ -30,27 +30,30 @@ public class WordUsageCountScheduler {
   public synchronized void execute() {
     log.info("execute");
 
+    // <ID, frequency>
+    Map<Long, Integer> frequencyMap = new HashMap<>();
+
     List<Word> words = wordDao.readAll();
     log.info("words.size(): " + words.size());
 
     List<StoryBookParagraph> storyBookParagraphs = storyBookParagraphDao.readAll();
     log.info("storyBookParagraphs.size(): " + storyBookParagraphs.size());
 
-    // <Word ID, Word frequency>
-    Map<Long, Integer> wordFrequencyMap = new HashMap<>();
+    // Calculate the frequency of each word
     for (Word word : words) {
-      wordFrequencyMap.put(word.getId(), 0);
+      frequencyMap.put(word.getId(), 0);
       for (StoryBookParagraph storyBookParagraph : storyBookParagraphs) {
         for (Word wordInParagraph : storyBookParagraph.getWords()) {
           if (wordInParagraph.getId() == word.getId()) {
-            wordFrequencyMap.put(word.getId(), wordFrequencyMap.get(word.getId()) + 1);
+            frequencyMap.put(word.getId(), frequencyMap.get(word.getId()) + 1);
           }
         }
       }
     }
 
+    // Update the values previously stored in the database
     for (Word word : words) {
-      word.setUsageCount(wordFrequencyMap.get(word.getId()));
+      word.setUsageCount(frequencyMap.get(word.getId()));
       wordDao.update(word);
     }
 
