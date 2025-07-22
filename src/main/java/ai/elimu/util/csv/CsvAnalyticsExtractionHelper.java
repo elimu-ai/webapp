@@ -338,11 +338,15 @@ public class CsvAnalyticsExtractionHelper {
                 Integer numberValue = Integer.valueOf(csvRecord.get("number_value"));
                 numberLearningEvent.setNumberValue(numberValue);
 
-                String numberSymbol = csvRecord.get("number_symbol");
-                numberLearningEvent.setNumberSymbol(numberSymbol);
+                if (StringUtils.isNotBlank(csvRecord.get("number_symbol"))) {
+                    String numberSymbol = csvRecord.get("number_symbol");
+                    numberLearningEvent.setNumberSymbol(numberSymbol);
+                }
 
-                Long numberId = Long.valueOf(csvRecord.get("number_id"));
-                numberLearningEvent.setNumberId(numberId);
+                if (StringUtils.isNotBlank(csvRecord.get("number_id"))) {
+                    Long numberId = Long.valueOf(csvRecord.get("number_id"));
+                    numberLearningEvent.setNumberId(numberId);
+                }
 
                 numberLearningEvents.add(numberLearningEvent);
             }
