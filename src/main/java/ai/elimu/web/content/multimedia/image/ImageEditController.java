@@ -117,14 +117,6 @@ public class ImageEditController {
         }
         image.setRevisionNumber(image.getRevisionNumber() + 1);
         imageDao.update(image);
-
-        ImageContributionEvent imageContributionEvent = new ImageContributionEvent();
-        imageContributionEvent.setContributor(contributor);
-        imageContributionEvent.setTimestamp(Calendar.getInstance());
-        imageContributionEvent.setImage(image);
-        imageContributionEvent.setRevisionNumber(image.getRevisionNumber());
-        imageContributionEvent.setComment("Updated file name in LFS (🤖 auto-generated comment)");
-        imageContributionEventDao.create(imageContributionEvent);
       } catch (IOException e) {
         log.error(null, e);
       }
