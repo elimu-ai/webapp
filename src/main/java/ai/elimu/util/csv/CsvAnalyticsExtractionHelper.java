@@ -615,8 +615,10 @@ public class CsvAnalyticsExtractionHelper {
                     storyBookLearningEvent.setStoryBookTitle(storyBookTitle);
                 }
 
-                Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
-                storyBookLearningEvent.setStoryBookId(storyBookId);
+                if (StringUtils.isNotBlank(csvRecord.get("storybook_id"))) {
+                    Long storyBookId = Long.valueOf(csvRecord.get("storybook_id"));
+                    storyBookLearningEvent.setStoryBookId(storyBookId);
+                }
 
                 storyBookLearningEvents.add(storyBookLearningEvent);
             }
