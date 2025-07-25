@@ -12,7 +12,6 @@ import lombok.Setter;
 @Entity
 public class StoryBookLearningEvent extends LearningEvent {
 
-  @NotNull
   private Long storyBookId;
 
   @NotNull
