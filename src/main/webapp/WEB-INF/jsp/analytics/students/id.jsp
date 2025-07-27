@@ -227,7 +227,8 @@
             <thead>
                 <th>timestamp</th>
                 <th>package_name</th>
-                <th>letter_sound_id</th>
+                <th>letter_sound_letters</th>
+                <th>letter_sound_sounds</th>
                 <th>ℹ️</th>
             </thead>
             <tbody>
@@ -241,7 +242,10 @@
                             <code>${letterSoundLearningEvent.packageName}</code>
                         </td>
                         <td>
-                            ${letterSoundLearningEvent.letterSoundId}
+                            ${letterSoundLearningEvent.letterSoundLetters}
+                        </td>
+                        <td>
+                            ${letterSoundLearningEvent.letterSoundSounds}
                         </td>
                         <td>
                             <code>${letterSoundLearningEvent.additionalData}</code>

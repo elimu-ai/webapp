@@ -672,6 +672,8 @@
         researchExperiment smallint,
         timestamp datetime,
         letterSoundId bigint,
+        letterSoundLetters varchar(255),
+        letterSoundSounds varchar(255),
         application_id bigint,
         letterSound_id bigint,
         primary key (id)

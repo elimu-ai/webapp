@@ -181,9 +181,13 @@ public class CsvAnalyticsExtractionHelper {
                     }
                 }
 
-                // TODO: letterSoundLetters
+                String letterSoundLetters = csvRecord.get("letter_sound_letters");
+                log.info("letterSoundLetters: " + letterSoundLetters);
+                // TODO: letterSoundLearningEvent.setLetterSoundLetters(letterSoundLetters);
 
-                // TODO: letterSoundSounds
+                String letterSoundSounds = csvRecord.get("letter_sound_sounds");
+                log.info("letterSoundSounds: " + letterSoundSounds);
+                // TODO: letterSoundLearningEvent.setLetterSoundLetters(letterSoundSounds);
 
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
                 letterSoundLearningEvent.setLetterSoundId(letterSoundId);
