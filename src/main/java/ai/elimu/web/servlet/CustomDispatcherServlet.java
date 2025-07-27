@@ -380,6 +380,8 @@ public class CustomDispatcherServlet extends DispatcherServlet {
                         letterSoundLearningEvent.setResearchExperiment(ResearchExperiment.EXP_0_WORD_EMOJIS);
                         letterSoundLearningEvent.setExperimentGroup(ExperimentGroup.values()[(int) (Math.random() * 2)]);
                     }
+                    letterSoundLearningEvent.setLetterSoundLetters(letterSoundM.getLetters().stream().map(Letter::getText).toList());
+                    letterSoundLearningEvent.setLetterSoundSounds(letterSoundM.getSounds().stream().map(Sound::getValueIpa).toList());
                     letterSoundLearningEvent.setLetterSoundId(letterSoundM.getId());
                     letterSoundLearningEventDao.create(letterSoundLearningEvent);
                 }

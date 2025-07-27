@@ -181,9 +181,9 @@ public class CsvAnalyticsExtractionHelper {
                     }
                 }
 
-                // TODO: letterSoundLetters
+                // TODO: letter_sound_letters
 
-                // TODO: letterSoundSounds
+                // TODO: letter_sound_sounds
 
                 Long letterSoundId = Long.valueOf(csvRecord.get("letter_sound_id"));
                 letterSoundLearningEvent.setLetterSoundId(letterSoundId);
